@@ -2006,6 +2006,15 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 name|Lock
 name|updateLock
 init|=
