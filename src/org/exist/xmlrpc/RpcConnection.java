@@ -275,16 +275,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|Indexer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
