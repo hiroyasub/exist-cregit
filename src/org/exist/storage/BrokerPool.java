@@ -2013,7 +2013,7 @@ name|sync
 argument_list|(
 name|broker
 argument_list|,
-name|syncEvent
+name|event
 argument_list|)
 expr_stmt|;
 name|syncRequired

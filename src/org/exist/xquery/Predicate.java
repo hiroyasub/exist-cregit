@@ -1379,6 +1379,24 @@ operator|.
 name|CHILD_AXIS
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Clearing cached result"
+argument_list|)
+expr_stmt|;
+name|cached
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 

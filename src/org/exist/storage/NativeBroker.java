@@ -15175,6 +15175,11 @@ operator|.
 name|sync
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|gc
+argument_list|()
+expr_stmt|;
 name|Runtime
 name|runtime
 init|=
@@ -15185,7 +15190,7 @@ argument_list|()
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Memory: "
 operator|+

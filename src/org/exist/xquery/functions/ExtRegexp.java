@@ -1156,6 +1156,17 @@ return|return
 name|deps
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|cached
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 

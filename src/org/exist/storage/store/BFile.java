@@ -587,21 +587,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        Runnable syncAction = new Runnable() {
-comment|//            public void run() {
-comment|//                if(dataCache.hasDirtyItems()) {
-comment|//	                try {
-comment|//	                    lock.acquire(Lock.WRITE_LOCK);
-comment|//	                    dataCache.flush();
-comment|//	                } catch (LockException e) {
-comment|//	                    LOG.warn("Failed to acquire lock on " + getFile().getName());
-comment|//	                } finally {
-comment|//	                    lock.release();
-comment|//	                }
-comment|//                }
-comment|//            }
-comment|//        };
-comment|//        pool.getSyncDaemon().executePeriodically(getDataSyncPeriod(), syncAction, false);
 block|}
 comment|/**      * @return      */
 specifier|public
@@ -8614,6 +8599,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//        	if(offsets.length> 256)
+comment|//        		LOG.warn("TID size: " + ph.nextTID);
 name|Arrays
 operator|.
 name|fill
@@ -8902,6 +8889,8 @@ name|nextTID
 operator|=
 name|next
 expr_stmt|;
+comment|//        	if(ph.nextTID> 256)
+comment|//        		LOG.warn("TID size: " + ph.nextTID);
 return|return
 name|tid
 return|;

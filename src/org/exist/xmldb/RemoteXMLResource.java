@@ -2117,6 +2117,7 @@ argument_list|)
 throw|;
 try|try
 block|{
+specifier|final
 name|byte
 index|[]
 name|chunk
@@ -2127,6 +2128,7 @@ index|[
 literal|512
 index|]
 decl_stmt|;
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -2134,6 +2136,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FileInputStream
 name|in
 init|=
@@ -2188,6 +2191,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -2197,14 +2201,7 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
-name|content
-operator|=
-operator|new
-name|String
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
+comment|//				content = new String(data);
 name|file
 operator|=
 literal|null
