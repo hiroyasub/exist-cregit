@@ -112,12 +112,8 @@ return|return
 operator|(
 name|byte
 operator|)
-name|VariableByteCoding
-operator|.
-name|decode
-argument_list|(
-name|this
-argument_list|)
+name|read
+argument_list|()
 return|;
 block|}
 specifier|public

@@ -1603,7 +1603,14 @@ index|[]
 name|expr
 parameter_list|)
 block|{
-comment|//long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|ArraySet
 index|[]
 name|result
@@ -1985,12 +1992,34 @@ block|{
 block|}
 block|}
 comment|//( (ArraySet) result[i] ).setIsSorted( true );
-comment|//			LOG.debug(
-comment|//				"found: "
-comment|//					+ result[i].getLength()
-comment|//					+ " in "
-comment|//					+ (System.currentTimeMillis() - start)
-comment|//					+ "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found: "
+operator|+
+name|result
+index|[
+name|i
+index|]
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|result
@@ -5374,7 +5403,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|//words = new TreeMap();
-comment|//System.gc();
 block|}
 specifier|private
 name|void
