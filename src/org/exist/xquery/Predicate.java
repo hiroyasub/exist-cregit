@@ -462,6 +462,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+comment|// just to be sure: change mode to boolean if the predicate expression returns a number
 if|if
 condition|(
 name|Type
@@ -482,10 +483,12 @@ name|executionMode
 operator|==
 name|BOOLEAN
 condition|)
+block|{
 name|executionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|executionMode

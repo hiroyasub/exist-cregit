@@ -328,23 +328,6 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|sequenceType
-operator|!=
-literal|null
-condition|)
-comment|// check sequence type
-name|sequenceType
-operator|.
-name|checkType
-argument_list|(
-name|contextItem
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|var
 operator|.
 name|setValue
@@ -354,6 +337,11 @@ operator|.
 name|toSequence
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|var
+operator|.
+name|checkType
+argument_list|()
 expr_stmt|;
 name|satisfiesSeq
 operator|=
