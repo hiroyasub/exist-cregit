@@ -580,6 +580,17 @@ name|checkModulesValid
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|reset
+parameter_list|()
+block|{
+name|mContext
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

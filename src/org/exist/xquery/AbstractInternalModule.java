@@ -472,6 +472,12 @@ name|qname
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|reset
+parameter_list|()
+block|{
+block|}
 block|}
 end_class
 

@@ -159,6 +159,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
+specifier|public
+name|void
+name|reset
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
