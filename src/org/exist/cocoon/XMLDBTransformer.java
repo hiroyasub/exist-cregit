@@ -406,7 +406,7 @@ specifier|final
 name|String
 name|NAMESPACE
 init|=
-literal|"http://exist-db/transformer/1.0"
+literal|"http://exist-db.org/transformer/1.0"
 decl_stmt|;
 specifier|public
 specifier|static
