@@ -358,6 +358,16 @@ argument_list|,
 name|origProperty
 argument_list|)
 expr_stmt|;
+else|else
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"javax.xml.transform.TransformerFactory"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
 name|getLogger
 argument_list|()
 operator|.
