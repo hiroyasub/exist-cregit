@@ -521,6 +521,16 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|pid
+operator|<
+literal|0
+condition|)
+comment|// given node was already document element -> no parent
+return|return
+literal|null
+return|;
 name|first
 operator|=
 operator|new
@@ -609,23 +619,6 @@ name|parent
 argument_list|)
 expr_stmt|;
 comment|// Timo Boehme: we return the ancestor which is child of context
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"found: "
-operator|+
-name|node
-operator|.
-name|gid
-operator|+
-literal|": "
-operator|+
-name|inPredicate
-argument_list|)
-expr_stmt|;
 return|return
 name|node
 return|;
