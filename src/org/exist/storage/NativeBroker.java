@@ -9186,6 +9186,10 @@ parameter_list|(
 specifier|final
 name|NodeProxy
 name|proxy
+parameter_list|,
+specifier|final
+name|boolean
+name|addWhitespace
 parameter_list|)
 block|{
 return|return
@@ -9215,6 +9219,8 @@ operator|.
 name|getNodeValue
 argument_list|(
 name|proxy
+argument_list|,
+name|addWhitespace
 argument_list|)
 return|;
 block|}
@@ -14298,6 +14304,8 @@ operator|.
 name|getNodeValue
 argument_list|(
 name|p
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

@@ -933,15 +933,6 @@ operator|+
 name|docName
 expr_stmt|;
 comment|// retrieve the document
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"loading "
-operator|+
-name|docName
-argument_list|)
-expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
@@ -1074,6 +1065,13 @@ operator|.
 name|broker
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|docName
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|doc

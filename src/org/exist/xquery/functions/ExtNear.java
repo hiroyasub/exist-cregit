@@ -626,7 +626,7 @@ name|value
 operator|=
 name|current
 operator|.
-name|getNodeValue
+name|getNodeValueSeparated
 argument_list|()
 expr_stmt|;
 name|tok

@@ -1219,13 +1219,16 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the string value of the specified node. 	 */
+comment|/** 	 * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
 specifier|public
 name|String
 name|getNodeValue
 parameter_list|(
 name|NodeProxy
 name|proxy
+parameter_list|,
+name|boolean
+name|addWhitespace
 parameter_list|)
 block|{
 throw|throw

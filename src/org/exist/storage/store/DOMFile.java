@@ -6997,6 +6997,9 @@ name|getNodeValue
 parameter_list|(
 name|NodeProxy
 name|proxy
+parameter_list|,
+name|boolean
+name|addWhitespace
 parameter_list|)
 block|{
 try|try
@@ -7101,6 +7104,8 @@ argument_list|,
 name|rec
 argument_list|,
 literal|true
+argument_list|,
+name|addWhitespace
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -7196,6 +7201,9 @@ name|rec
 parameter_list|,
 name|boolean
 name|firstCall
+parameter_list|,
+name|boolean
+name|addWhitespace
 parameter_list|)
 block|{
 name|boolean
@@ -7512,6 +7520,18 @@ operator|+
 literal|5
 argument_list|)
 decl_stmt|;
+specifier|final
+name|boolean
+name|extraWhitespace
+init|=
+name|addWhitespace
+operator|&&
+name|children
+operator|-
+name|attributes
+operator|>
+literal|1
+decl_stmt|;
 name|rec
 operator|.
 name|offset
@@ -7542,10 +7562,24 @@ argument_list|,
 name|rec
 argument_list|,
 literal|false
+argument_list|,
+name|addWhitespace
 argument_list|)
 expr_stmt|;
-comment|//	        	if (children - attributes> 1)
-comment|//	        		os.write((byte) ' ');
+if|if
+condition|(
+name|extraWhitespace
+condition|)
+name|os
+operator|.
+name|write
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|' '
+argument_list|)
+expr_stmt|;
 block|}
 return|return;
 case|case
