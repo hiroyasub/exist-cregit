@@ -6526,8 +6526,8 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
-name|xde
+name|Throwable
+name|e
 parameter_list|)
 block|{
 if|if
@@ -6540,10 +6540,10 @@ name|showErrorMessage
 argument_list|(
 name|getExceptionMessage
 argument_list|(
-name|xde
+name|e
 argument_list|)
 argument_list|,
-name|xde
+name|e
 argument_list|)
 expr_stmt|;
 else|else
@@ -6555,7 +6555,7 @@ name|println
 argument_list|(
 name|getExceptionMessage
 argument_list|(
-name|xde
+name|e
 argument_list|)
 argument_list|)
 expr_stmt|;
