@@ -7214,6 +7214,17 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|newNode
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+condition|)
 name|ownerDocument
 operator|.
 name|broker
