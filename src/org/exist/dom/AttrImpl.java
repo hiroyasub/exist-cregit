@@ -272,16 +272,12 @@ argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
+comment|//this.value = XMLUtil.encodeAttrMarkup( value );
 name|this
 operator|.
 name|value
 operator|=
-name|XMLUtil
-operator|.
-name|encodeAttrMarkup
-argument_list|(
 name|value
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@param  doc   Description of the Parameter      *@return       Description of the Return Value      */

@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Do a query on the root-Collection To run this example enter: bin/run.sh  *  samples.APISearch xpath-query in the root directory of the distribution.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. September 2002  */
+comment|/**  *  Perform a nested query on the root-Collection.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. September 2002  */
 end_comment
 
 begin_class
@@ -101,16 +101,15 @@ specifier|static
 name|String
 name|query1
 init|=
-literal|"document(*)/rdf:RDF/sn:WebPage"
+literal|"document(*)//rdf:Description[dc:subject&='computer']"
 decl_stmt|;
 specifier|protected
 specifier|static
 name|String
 name|query2
 init|=
-literal|"@dc:title"
+literal|"/dc:title"
 decl_stmt|;
-comment|/**      *  Description of the Method      *      *@param  args           Description of the Parameter      */
 specifier|public
 specifier|static
 name|void
@@ -187,7 +186,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|// set pretty-printing on
+comment|// set properties
 name|service
 operator|.
 name|setProperty
@@ -206,7 +205,16 @@ argument_list|,
 literal|"ISO-8859-1"
 argument_list|)
 expr_stmt|;
-comment|// execute query and get results in ResourceSet
+name|service
+operator|.
+name|setProperty
+argument_list|(
+literal|"create-container-elements"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
+comment|// execute first query
 name|ResourceSet
 name|result
 init|=
@@ -242,6 +250,8 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// iterate through the results and execute the second query
+comment|// using the current result node as context
 for|for
 control|(
 name|int
@@ -300,22 +310,7 @@ argument_list|,
 name|query2
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|query2
-operator|+
-literal|" found: "
-operator|+
-name|result2
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// print the results found by the second query
 for|for
 control|(
 name|int
