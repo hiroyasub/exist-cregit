@@ -4144,7 +4144,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
-name|addDocumentLink
+name|addDocument
 argument_list|(
 name|broker
 argument_list|,
@@ -5306,7 +5306,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
-name|addDocumentLink
+name|addDocument
 argument_list|(
 name|broker
 argument_list|,
@@ -6355,7 +6355,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
-name|addDocumentLink
+name|addDocument
 argument_list|(
 name|broker
 argument_list|,
@@ -6790,7 +6790,7 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
-name|addDocumentLink
+name|addDocument
 argument_list|(
 name|broker
 argument_list|,
