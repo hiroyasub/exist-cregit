@@ -2719,6 +2719,16 @@ return|return
 name|order
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
+specifier|public
+name|Node
+name|getParentNode
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 specifier|public
 name|String
 name|getVersion
