@@ -1534,18 +1534,7 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating additional page: "
-operator|+
-name|newPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                    LOG.debug("creating additional page: " + newPage.getPageNum());
 name|newPage
 operator|.
 name|getPageHeader
@@ -1735,18 +1724,7 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating new page: "
-operator|+
-name|newPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("creating new page: " + newPage.getPageNum());
 name|long
 name|next
 init|=
@@ -2347,39 +2325,9 @@ name|splitRecordCount
 init|=
 literal|0
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"splitting "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|": new: "
-operator|+
-name|nextSplitPage
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|"; next: "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getNextDataPage
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("splitting " + rec.page.getPageNum() + ": new: "
+comment|//                + nextSplitPage.getPageNum() + "; next: " +
+comment|//                rec.page.getPageHeader().getNextDataPage());
 for|for
 control|(
 name|int

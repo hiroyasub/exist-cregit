@@ -407,7 +407,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|DocumentFragment
+name|NodeList
 name|content
 init|=
 literal|null
@@ -501,13 +501,13 @@ specifier|public
 name|void
 name|setContent
 parameter_list|(
-name|DocumentFragment
-name|node
+name|NodeList
+name|nodes
 parameter_list|)
 block|{
 name|content
 operator|=
-name|node
+name|nodes
 expr_stmt|;
 block|}
 comment|/** 	 * Evaluate the select expression. 	 *  	 * @param docs 	 * @return 	 * @throws PermissionDeniedException 	 * @throws EXistException 	 * @throws XPathException 	 */
@@ -1054,18 +1054,7 @@ argument_list|(
 literal|"\">"
 argument_list|)
 expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-name|XMLUtil
-operator|.
-name|dump
-argument_list|(
-name|content
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//		buf.append(XMLUtil.dump(content));
 name|buf
 operator|.
 name|append

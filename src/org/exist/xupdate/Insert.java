@@ -270,9 +270,6 @@ name|NodeList
 name|children
 init|=
 name|content
-operator|.
-name|getChildNodes
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
