@@ -323,7 +323,9 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
-return|return
+name|StringValue
+name|result
+init|=
 operator|new
 name|StringValue
 argument_list|(
@@ -332,6 +334,14 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|result
+operator|.
+name|expand
+argument_list|()
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 specifier|private
