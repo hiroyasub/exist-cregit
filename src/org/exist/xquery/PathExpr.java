@@ -1269,6 +1269,19 @@ return|return
 name|creationTime
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#isValid() 	 */
+specifier|public
+name|boolean
+name|isValid
+parameter_list|()
+block|{
+return|return
+name|context
+operator|.
+name|checkModulesValid
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

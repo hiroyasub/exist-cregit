@@ -213,7 +213,7 @@ argument_list|)
 argument_list|,
 literal|"Returns the item in the first argument sequence that is located at the position "
 operator|+
-literal|"specified by the second argument."
+literal|"specified by the second argument. Deprecated. Use $x[1] instead."
 argument_list|,
 operator|new
 name|SequenceType

@@ -362,7 +362,9 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-return|return
+name|CompiledXQuery
+name|query
+init|=
 operator|(
 name|CompiledXQuery
 operator|)
@@ -370,6 +372,30 @@ name|stack
 operator|.
 name|pop
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|query
+operator|.
+name|isValid
+argument_list|()
+condition|)
+block|{
+comment|// the compiled query is no longer valid: one of the imported
+comment|// modules may have changed
+name|remove
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+else|else
+return|return
+name|query
 return|;
 block|}
 return|return
