@@ -1900,8 +1900,13 @@ name|System
 operator|.
 name|out
 operator|.
-name|println
+name|print
 argument_list|(
+name|hashCode
+argument_list|()
+operator|+
+literal|" "
+operator|+
 name|gid
 operator|+
 literal|": "

@@ -1047,6 +1047,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//LOG.debug("compiling " + query);
 name|DBBroker
 name|broker
 init|=

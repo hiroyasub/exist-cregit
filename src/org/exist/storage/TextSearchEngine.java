@@ -185,7 +185,7 @@ name|TextSearchEngine
 extends|extends
 name|Observable
 block|{
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|Category

@@ -307,7 +307,7 @@ specifier|abstract
 class|class
 name|Modification
 block|{
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|Logger

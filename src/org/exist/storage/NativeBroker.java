@@ -6154,12 +6154,12 @@ argument_list|,
 name|expr
 argument_list|)
 decl_stmt|;
-comment|//		LOG.debug(
-comment|//			"searching "
-comment|//				+ context.getLength()
-comment|//				+ " nodes took "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
+comment|//				LOG.debug(
+comment|//					"searching "
+comment|//						+ result.getLength()
+comment|//						+ " nodes took "
+comment|//						+ (System.currentTimeMillis() - start)
+comment|//						+ "ms.");
 return|return
 name|result
 return|;

@@ -318,6 +318,26 @@ index|[
 name|i
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|node
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"select "
+operator|+
+name|selectStmt
+operator|+
+literal|" returned empty node"
+argument_list|)
+expr_stmt|;
+continue|continue;
+block|}
 name|doc
 operator|=
 operator|(

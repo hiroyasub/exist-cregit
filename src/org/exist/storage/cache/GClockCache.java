@@ -73,7 +73,7 @@ specifier|protected
 name|long
 name|syncPeriod
 init|=
-literal|10000
+literal|15000
 decl_stmt|;
 specifier|protected
 name|long

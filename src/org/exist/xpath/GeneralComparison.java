@@ -1331,7 +1331,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug("using shortcut: " + cmp);
 name|nodes
 operator|=
 operator|(
@@ -1654,30 +1653,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|lv
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-name|Constants
-operator|.
-name|OPS
-index|[
-name|relation
-index|]
-operator|+
-name|rv
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//				System.out.println(
+comment|//					lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 return|return
 name|lv
 operator|.
@@ -1975,13 +1952,6 @@ name|void
 name|switchOperands
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"switching operands"
-argument_list|)
-expr_stmt|;
 switch|switch
 condition|(
 name|relation

@@ -236,6 +236,7 @@ name|list
 operator|.
 name|add
 argument_list|(
+operator|-
 literal|43
 argument_list|)
 expr_stmt|;
@@ -250,6 +251,7 @@ name|list
 operator|.
 name|add
 argument_list|(
+operator|-
 literal|122
 argument_list|)
 expr_stmt|;
