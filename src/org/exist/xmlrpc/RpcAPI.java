@@ -1053,6 +1053,24 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 *  Execute XPath/Xquery from path file (stored inside eXist) 	 *  returned reference may be used later to get a summary of results or 	 *  retrieve the actual hits. 	 */
+name|Hashtable
+name|execute
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|path
+parameter_list|,
+name|Hashtable
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 comment|/** 	 *  Retrieve a summary of the result set identified by it's result-set-id. 	 *  This method returns a struct with the following fields: 	 * 	 *<tableborder="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "queryTime" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "hits" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "documents" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][3] 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "doctypes" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][2] 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 *  Documents and doctypes represent tables where each row describes one 	 *  document or doctype for which hits were found. Each document entry has 	 *  the following structure: docId (int), docName (string), hits (int) The 	 *  doctype entry has this structure: doctypeName (string), hits (int) 	 * 	 *@param  resultId                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Hashtable
 name|querySummary
