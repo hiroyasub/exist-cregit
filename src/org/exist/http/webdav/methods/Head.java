@@ -273,13 +273,21 @@ condition|)
 block|{
 name|response
 operator|.
-name|sendError
+name|setContentLength
 argument_list|(
-name|HttpServletResponse
+literal|0
+argument_list|)
+expr_stmt|;
+name|response
 operator|.
-name|SC_METHOD_NOT_ALLOWED
+name|addDateHeader
+argument_list|(
+literal|"Last-Modified"
 argument_list|,
-literal|"GET is not available on collections"
+name|collection
+operator|.
+name|getCreationTime
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
