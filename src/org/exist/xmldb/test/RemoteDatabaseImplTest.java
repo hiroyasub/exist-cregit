@@ -168,9 +168,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|startServer
-argument_list|()
-expr_stmt|;
 name|Class
 name|cl
 init|=
@@ -350,11 +347,6 @@ operator|.
 name|removeCollection
 argument_list|(
 name|ADMIN_COLLECTION_NAME
-argument_list|)
-expr_stmt|;
-name|stopServer
-argument_list|(
-name|rootCollection
 argument_list|)
 expr_stmt|;
 block|}
