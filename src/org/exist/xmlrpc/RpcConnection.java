@@ -2423,6 +2423,18 @@ condition|)
 block|{
 if|if
 condition|(
+name|stylesheet
+operator|.
+name|indexOf
+argument_list|(
+literal|":"
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|stylesheet
 operator|.
@@ -2514,6 +2526,7 @@ operator|+
 name|stylesheet
 operator|)
 expr_stmt|;
+block|}
 block|}
 name|serializer
 operator|.
