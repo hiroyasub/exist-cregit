@@ -5895,6 +5895,12 @@ name|copyTo
 argument_list|(
 name|os
 argument_list|,
+name|termFreq
+condition|?
+name|len
+operator|*
+literal|2
+else|:
 name|len
 argument_list|)
 expr_stmt|;
