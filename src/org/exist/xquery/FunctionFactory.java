@@ -810,7 +810,7 @@ name|code
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|)
 decl_stmt|;
 name|castExpr
