@@ -611,7 +611,7 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"//para"
+literal|"(::pragma exist:serialize indent=no::) //para"
 decl_stmt|;
 name|params
 operator|.

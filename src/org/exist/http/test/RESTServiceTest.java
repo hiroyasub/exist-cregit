@@ -210,7 +210,15 @@ literal|"<property name=\"encoding\" value=\"UTF-8\"/>"
 operator|+
 literal|"</properties>"
 operator|+
-literal|"<text>//para[. = 'Ã¤Ã¤Ã¼Ã¼Ã¶Ã¶ÃÃÃÃÃÃ']/text()</text>"
+literal|"<text>"
+operator|+
+literal|"xquery version \"1.0\";"
+operator|+
+literal|"(::pragma exist:serialize indent=no ::)"
+operator|+
+literal|"//para[. = 'Ã¤Ã¤Ã¼Ã¼Ã¶Ã¶ÃÃÃÃÃÃ']/text()"
+operator|+
+literal|"</text>"
 operator|+
 literal|"</query>"
 decl_stmt|;

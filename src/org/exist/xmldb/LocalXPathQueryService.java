@@ -946,6 +946,11 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+name|checkPragmas
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 name|XQuery
 name|xquery
 init|=
@@ -1212,6 +1217,11 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+name|checkPragmas
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|result
@@ -1435,6 +1445,11 @@ name|query
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|checkPragmas
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -1694,11 +1709,6 @@ operator|.
 name|setBackwardsCompatibility
 argument_list|(
 name|xpathCompatible
-argument_list|)
-expr_stmt|;
-name|checkPragmas
-argument_list|(
-name|context
 argument_list|)
 expr_stmt|;
 block|}
