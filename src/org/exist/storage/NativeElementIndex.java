@@ -651,16 +651,6 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
-name|qname
-operator|.
-name|setLocalName
-argument_list|(
-name|qname
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -947,6 +937,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+comment|//                    debug.append("D" + docId + ": ");
 name|len
 operator|=
 name|is

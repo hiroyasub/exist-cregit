@@ -388,6 +388,20 @@ return|return
 name|nl
 return|;
 block|}
+specifier|public
+name|int
+name|getChildCount
+parameter_list|()
+block|{
+return|return
+name|document
+operator|.
+name|getChildCountFor
+argument_list|(
+name|nodeNumber
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
 specifier|public
 name|String
@@ -571,6 +585,20 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+specifier|public
+name|int
+name|getAttributesCount
+parameter_list|()
+block|{
+return|return
+name|document
+operator|.
+name|getAttributesCountFor
+argument_list|(
+name|nodeNumber
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getAttributes() 	 */
 specifier|public
 name|NamedNodeMap
@@ -698,18 +726,6 @@ operator|++
 name|ns
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|map
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|map
 return|;
