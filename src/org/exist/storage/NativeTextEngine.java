@@ -898,7 +898,7 @@ name|dataBuffers
 operator|=
 name|buffers
 operator|*
-literal|12
+literal|16
 expr_stmt|;
 block|}
 else|else
@@ -4206,7 +4206,7 @@ expr_stmt|;
 name|TextToken
 name|token
 decl_stmt|;
-name|String
+name|CharSequence
 name|word
 decl_stmt|;
 specifier|final
@@ -4299,9 +4299,10 @@ name|word
 operator|=
 name|token
 operator|.
-name|getText
+name|getCharSequence
 argument_list|()
 expr_stmt|;
+comment|//			word = token.getText();
 if|if
 condition|(
 name|stoplist
@@ -4480,7 +4481,7 @@ specifier|public
 name|void
 name|addText
 parameter_list|(
-name|String
+name|CharSequence
 name|word
 parameter_list|,
 name|long
@@ -4531,6 +4532,9 @@ operator|.
 name|put
 argument_list|(
 name|word
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|buf
 argument_list|)

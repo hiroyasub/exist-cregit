@@ -1027,7 +1027,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|String
+name|XMLString
 argument_list|(
 name|value_
 argument_list|,

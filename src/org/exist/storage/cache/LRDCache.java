@@ -66,13 +66,13 @@ name|maxReferences
 operator|=
 name|size
 operator|*
-literal|1000
+literal|10000
 expr_stmt|;
 name|ageingPeriod
 operator|=
 name|size
 operator|*
-literal|500
+literal|5000
 expr_stmt|;
 block|}
 specifier|public
@@ -174,6 +174,9 @@ argument_list|()
 argument_list|,
 name|item
 argument_list|)
+expr_stmt|;
+name|used
+operator|++
 expr_stmt|;
 block|}
 else|else
@@ -352,6 +355,12 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
+name|used
+operator|++
+expr_stmt|;
+block|}
 name|items
 index|[
 name|bucket
@@ -471,9 +480,22 @@ block|{
 name|Cacheable
 name|item
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"totalReferences = "
+operator|+
+name|totalReferences
+operator|+
+literal|"; maxReferences = "
+operator|+
+name|maxReferences
+argument_list|)
+expr_stmt|;
 name|totalReferences
 operator|=
-literal|0
+name|count
 expr_stmt|;
 for|for
 control|(
@@ -515,8 +537,7 @@ name|item
 operator|.
 name|setTimestamp
 argument_list|(
-name|totalReferences
-operator|++
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -525,7 +546,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"total references: "
+name|fileName
+operator|+
+literal|" total references: "
 operator|+
 name|totalReferences
 argument_list|)

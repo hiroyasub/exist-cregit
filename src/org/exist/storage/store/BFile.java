@@ -241,7 +241,7 @@ name|storage
 operator|.
 name|cache
 operator|.
-name|LRDCache
+name|LRUCache
 import|;
 end_import
 
@@ -556,7 +556,7 @@ expr_stmt|;
 name|dataCache
 operator|=
 operator|new
-name|LRDCache
+name|LRUCache
 argument_list|(
 name|dataBuffers
 argument_list|)
@@ -634,7 +634,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to acquire lock on dom.dbx"
+literal|"Failed to acquire lock on "
+operator|+
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1030,6 +1036,12 @@ operator|new
 name|FixedByteArray
 argument_list|(
 name|newData
+argument_list|,
+literal|0
+argument_list|,
+name|newData
+operator|.
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3874,7 +3886,6 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
-comment|//System.arraycopy(value, 0, data, len, vlen);
 name|len
 operator|+=
 name|vlen

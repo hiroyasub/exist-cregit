@@ -1347,7 +1347,7 @@ name|dataBuffers
 operator|=
 name|buffers
 operator|*
-literal|8
+literal|4
 expr_stmt|;
 block|}
 name|LOG

@@ -778,13 +778,15 @@ name|idx
 index|]
 operator|==
 name|REMOVED
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|bucket
 operator|==
 operator|-
 literal|1
 condition|)
-block|{
 name|bucket
 operator|=
 name|idx
