@@ -118,6 +118,13 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Delete and recreate the index file based on the schema resources stored in the  	 * /db/system/schema collection 	 * @throws XMLDBException 	 */
+name|void
+name|rebuildIndex
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 
