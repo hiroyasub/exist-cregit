@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-04 Wolfgang M. Meier  * wolfgang@exist-db.org http://exist.sourceforge.net  *   * This program is free software; you can redistribute it and/or modify it under  * the terms of the GNU Lesser General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more  * details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -16,18 +20,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
 import|;
 end_import
 
@@ -131,6 +123,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|XPathException
@@ -150,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Insert.java  *   * @author Wolfgang Meier  */
+comment|/**  * Implements an XUpdate insert-after or insert-before modification.  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -177,27 +181,12 @@ init|=
 literal|1
 decl_stmt|;
 specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|Insert
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-specifier|private
 name|int
 name|mode
 init|=
 name|INSERT_BEFORE
 decl_stmt|;
-comment|/** 	 * Constructor for Insert. 	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
+comment|/**      * Constructor for Insert.      *       * @param pool      * @param user      * @param selectStmt      */
 specifier|public
 name|Insert
 parameter_list|(
@@ -263,7 +252,7 @@ operator|=
 name|mode
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet) 	 */
+comment|/**      * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet)      */
 specifier|public
 name|long
 name|process
@@ -271,19 +260,12 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 throws|,
+name|LockException
+throws|,
 name|EXistException
 throws|,
 name|XPathException
 block|{
-name|NodeImpl
-index|[]
-name|qr
-init|=
-name|select
-argument_list|(
-name|docs
-argument_list|)
-decl_stmt|;
 name|NodeList
 name|children
 init|=
@@ -294,10 +276,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|qr
-operator|==
-literal|null
-operator|||
 name|children
 operator|.
 name|getLength
@@ -308,13 +286,22 @@ condition|)
 return|return
 literal|0
 return|;
+try|try
+block|{
+name|NodeImpl
+index|[]
+name|ql
+init|=
+name|selectAndLock
+argument_list|()
+decl_stmt|;
 name|IndexListener
 name|listener
 init|=
 operator|new
 name|IndexListener
 argument_list|(
-name|qr
+name|ql
 argument_list|)
 decl_stmt|;
 name|NodeImpl
@@ -365,7 +352,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|qr
+name|ql
 operator|.
 name|length
 condition|;
@@ -375,7 +362,7 @@ control|)
 block|{
 name|node
 operator|=
-name|qr
+name|ql
 index|[
 name|i
 index|]
@@ -535,12 +522,19 @@ name|collection
 argument_list|)
 expr_stmt|;
 return|return
-name|qr
+name|ql
 operator|.
 name|length
 return|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#getName() 	 */
+finally|finally
+block|{
+name|unlockDocuments
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**      * @see org.exist.xupdate.Modification#getName()      */
 specifier|public
 name|String
 name|getName

@@ -3668,6 +3668,8 @@ parameter_list|)
 throws|throws
 name|SAXException
 throws|,
+name|LockException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|EXistException
@@ -3728,7 +3730,9 @@ name|broker
 argument_list|,
 operator|new
 name|DocumentSet
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|,
 literal|true
 argument_list|)
@@ -3869,6 +3873,8 @@ parameter_list|)
 throws|throws
 name|SAXException
 throws|,
+name|LockException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|EXistException
@@ -3923,7 +3929,9 @@ name|docs
 init|=
 operator|new
 name|DocumentSet
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|docs
 operator|.

@@ -163,6 +163,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ReentrantReadWriteLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|ShutdownListener
@@ -170,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  This class controls all available instances of the database.  * Use it to configure, start and stop database instances. You may  * have multiple instances defined, each using its own configuration,  * database directory etc.. To define multiple instances, pass an  * identification string to the static method configure() and use  * getInstance(id) to retrieve an instance.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    9. Mai 2002  */
+comment|/**  *  This class controls all available instances of the database.  * Use it to configure, start and stop database instances. You may  * have multiple instances defined, each using its own configuration,  * database directory etc.. To define multiple instances, pass an  * identification string to the static method configure() and use  * getInstance(id) to retrieve an instance.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -179,6 +203,7 @@ class|class
 name|BrokerPool
 block|{
 specifier|private
+specifier|final
 specifier|static
 name|Logger
 name|LOG
@@ -193,6 +218,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
 name|TreeMap
 name|instances
@@ -209,6 +235,7 @@ init|=
 literal|30000L
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
 name|ShutdownThread
 name|shutdownThread
@@ -756,6 +783,16 @@ specifier|private
 name|XQueryPool
 name|xqueryCache
 decl_stmt|;
+specifier|private
+name|Lock
+name|globalXUpdateLock
+init|=
+operator|new
+name|ReentrantReadWriteLock
+argument_list|(
+literal|"xupdate"
+argument_list|)
+decl_stmt|;
 comment|/** 	 *  Constructor for the BrokerPool object 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|BrokerPool
@@ -941,7 +978,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Number of available Brokers in this pool. 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 *  Number of available Brokers for the current database instance. 	 */
 specifier|public
 name|int
 name|available
@@ -954,6 +991,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Returns the configuration object for this database 	 * instance. 	 */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -1023,7 +1061,7 @@ return|return
 name|broker
 return|;
 block|}
-comment|/** 	 *  Get a DBBroker instance from the pool. 	 * 	 *@return                     Description of the Return Value 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/** 	 *  Get a DBBroker instance from the pool. 	 */
 specifier|public
 name|DBBroker
 name|get
@@ -1661,6 +1699,7 @@ operator|=
 name|listener
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the global XQuery pool for this database instance. 	 *  	 * @return 	 */
 specifier|public
 name|XQueryPool
 name|getXQueryPool
@@ -1668,6 +1707,16 @@ parameter_list|()
 block|{
 return|return
 name|xqueryCache
+return|;
+block|}
+comment|/** 	 * Returns the global update lock for this database instance. 	 * This lock is used by XUpdate operations to avoid that 	 * concurrent XUpdate requests modify the database until all 	 * document locks have been correctly set. 	 *   	 * @return 	 */
+specifier|public
+name|Lock
+name|getGlobalUpdateLock
+parameter_list|()
+block|{
+return|return
+name|globalXUpdateLock
 return|;
 block|}
 specifier|protected

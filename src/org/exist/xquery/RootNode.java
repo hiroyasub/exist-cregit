@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents the document-root node in an expression.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    02 August 2002  */
+comment|/**  *  Represents the document-root node in an expression.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -136,6 +136,18 @@ name|RootNode
 extends|extends
 name|Step
 block|{
+specifier|private
+name|Sequence
+name|cached
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|DocumentSet
+name|cachedDocs
+init|=
+literal|null
+decl_stmt|;
 comment|/**  Constructor for the RootNode object */
 specifier|public
 name|RootNode
@@ -191,7 +203,22 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-comment|//NodeSet result = new ExtArrayNodeSet(ds.getLength(), 1);
+if|if
+condition|(
+name|cachedDocs
+operator|!=
+literal|null
+operator|&&
+name|cachedDocs
+operator|.
+name|equals
+argument_list|(
+name|ds
+argument_list|)
+condition|)
+return|return
+name|cached
+return|;
 name|NodeSet
 name|result
 init|=
@@ -242,6 +269,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|cached
+operator|=
+name|result
+expr_stmt|;
+name|cachedDocs
+operator|=
+name|ds
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -273,6 +308,14 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+name|cachedDocs
+operator|=
+literal|null
+expr_stmt|;
+name|cached
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class

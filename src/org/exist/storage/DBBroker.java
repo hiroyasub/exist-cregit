@@ -1630,6 +1630,12 @@ return|return
 name|xupdateGrowthFactor
 return|;
 block|}
+specifier|public
+specifier|abstract
+name|int
+name|getPageSize
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

@@ -561,6 +561,14 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|getRootExpression
+argument_list|()
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

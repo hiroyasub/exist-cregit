@@ -2554,6 +2554,27 @@ condition|)
 return|return;
 if|if
 condition|(
+name|doc
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Document "
+operator|+
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+operator|+
+literal|" is locked for write"
+argument_list|)
+throw|;
+if|if
+condition|(
 operator|!
 name|getPermissions
 argument_list|()
@@ -2668,7 +2689,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-specifier|synchronized
 specifier|public
 name|void
 name|removeBinaryResource
@@ -2721,6 +2741,27 @@ argument_list|(
 name|path
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Document "
+operator|+
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+operator|+
+literal|" is locked for write"
+argument_list|)
+throw|;
 if|if
 condition|(
 operator|!
@@ -2798,7 +2839,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-specifier|synchronized
 specifier|public
 name|void
 name|removeBinaryResource
@@ -2844,6 +2884,27 @@ name|getFileName
 argument_list|()
 operator|+
 literal|" is not a binary object"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|doc
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Document "
+operator|+
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+operator|+
+literal|" is locked for write"
 argument_list|)
 throw|;
 name|Lock

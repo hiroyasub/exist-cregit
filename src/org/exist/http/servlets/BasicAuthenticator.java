@@ -313,6 +313,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|response
+operator|.
+name|setHeader
+argument_list|(
+literal|"WWW-Authenticate"
+argument_list|,
+literal|"Basic realm=\"exist\""
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_UNAUTHORIZED
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -789,7 +789,6 @@ literal|"Unsupported axis specified"
 argument_list|)
 throw|;
 block|}
-comment|//		LOG.debug("Found: " + temp.getLength());
 if|if
 condition|(
 name|contextSequence

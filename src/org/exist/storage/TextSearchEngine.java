@@ -851,7 +851,7 @@ comment|/** 	 * Remove index entries for an entire collection. 	 *  	 * @param c
 specifier|public
 specifier|abstract
 name|void
-name|removeCollection
+name|dropIndex
 parameter_list|(
 name|Collection
 name|collection

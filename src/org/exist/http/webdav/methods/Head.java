@@ -218,6 +218,16 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|.
+name|setContentLength
+argument_list|(
+name|resource
+operator|.
+name|getContentLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
 name|addDateHeader
 argument_list|(
 literal|"Last-Modified"
