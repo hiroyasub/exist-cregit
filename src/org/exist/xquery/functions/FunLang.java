@@ -410,6 +410,8 @@ name|getDocumentSet
 argument_list|()
 argument_list|,
 name|qname
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|NodeSet
