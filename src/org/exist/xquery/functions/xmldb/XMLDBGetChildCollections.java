@@ -354,7 +354,7 @@ decl_stmt|;
 if|if
 condition|(
 name|collection
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
