@@ -17,16 +17,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|DataInput
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Iterator
@@ -883,26 +873,6 @@ name|Serializer
 name|getSerializer
 parameter_list|()
 function_decl|;
-comment|/**      *  Gets the stream attribute of the DBBroker object      *      *@param  doc  Description of the Parameter      *@param  gid  Description of the Parameter      *@return      The stream value      */
-specifier|public
-name|DataInput
-name|getStream
-parameter_list|(
-name|Document
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented for this storage backend"
-argument_list|)
-throw|;
-block|}
 comment|/**      *  get the TextSearchEngine associated with this broker. Every subclass of      *  DBBroker will have it's own implementation of TextSearchEngine.      *      *@return    The textEngine value      */
 specifier|public
 specifier|abstract
@@ -1205,6 +1175,9 @@ name|oldDoc
 parameter_list|,
 name|DocumentImpl
 name|doc
+parameter_list|,
+name|NodeImpl
+name|node
 parameter_list|)
 block|{
 throw|throw
@@ -1238,7 +1211,23 @@ parameter_list|(
 specifier|final
 name|NodeImpl
 name|node
+parameter_list|,
+name|String
+name|currentPath
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|void
+name|endRemove
+parameter_list|()
 block|{
 throw|throw
 operator|new

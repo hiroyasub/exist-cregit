@@ -1894,18 +1894,24 @@ argument_list|,
 literal|" you are not allowed to change this user"
 argument_list|)
 throw|;
-if|if
-condition|(
-operator|!
+name|User
+name|old
+init|=
 name|manager
 operator|.
-name|hasUser
+name|getUser
 argument_list|(
 name|u
 operator|.
 name|getName
 argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|old
+operator|==
+literal|null
 condition|)
 throw|throw
 operator|new
@@ -1925,6 +1931,16 @@ operator|+
 literal|" does not exist"
 argument_list|)
 throw|;
+name|u
+operator|.
+name|setUID
+argument_list|(
+name|old
+operator|.
+name|getUID
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|manager
 operator|.
 name|setUser

@@ -860,7 +860,7 @@ literal|1
 index|]
 expr_stmt|;
 comment|// we know the start point of the root element (which is always 1)
-comment|// and the start point of the first non-root node (2)
+comment|// and the start point of the first non-root node (children + 1)
 name|treeLevelStartPoints
 index|[
 literal|0
@@ -3075,6 +3075,8 @@ name|int
 name|level
 parameter_list|)
 block|{
+name|this
+operator|.
 name|reindex
 operator|=
 name|level

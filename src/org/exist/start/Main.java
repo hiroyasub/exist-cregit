@@ -2269,6 +2269,26 @@ expr_stmt|;
 block|}
 comment|// set up classpath:
 comment|// prefill existing paths in classpath_dirs...
+if|if
+condition|(
+name|_debug
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"existing classpath = "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.class.path"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|_classpath
 operator|.
 name|addClasspath
@@ -2715,7 +2735,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"ERROR: jetty.home cound not be autodetected, bailing out."
+literal|"ERROR: exist.home cound not be autodetected, bailing out."
 argument_list|)
 expr_stmt|;
 name|System

@@ -945,6 +945,16 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|==
+name|KEY_NOT_FOUND
+condition|)
+return|return
+operator|-
+literal|1
+return|;
 return|return
 name|insertAfter
 argument_list|(
@@ -2270,21 +2280,22 @@ name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 comment|// first try to find the node in the index
-return|return
+specifier|final
+name|long
+name|p
+init|=
 name|findValue
 argument_list|(
 name|nodeRef
 argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|BTreeException
-name|e
-parameter_list|)
+decl_stmt|;
+if|if
+condition|(
+name|p
+operator|==
+name|KEY_NOT_FOUND
+condition|)
 block|{
 comment|//LOG.debug("node " + node.gid + " not found, trying parent.");
 comment|// node not found in index: try to find the nearest available
@@ -2466,6 +2477,10 @@ else|:
 name|address
 return|;
 block|}
+else|else
+return|return
+name|p
+return|;
 block|}
 comment|/** 	 *  Find matching nodes for the given query.  	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
@@ -2689,8 +2704,8 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|KEY_NOT_FOUND
 condition|)
 return|return
 literal|null
@@ -2755,8 +2770,8 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|KEY_NOT_FOUND
 condition|)
 return|return
 literal|null
@@ -3051,33 +3066,13 @@ operator|.
 name|getNextDataPage
 argument_list|()
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|owner
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|": tid "
-operator|+
-name|tid
-operator|+
-literal|" not found on "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-operator|+
-literal|". Loading "
-operator|+
-name|pageNr
-argument_list|)
-throw|;
+comment|//			LOG.debug(owner.toString() +
+comment|//				": tid "
+comment|//					+ tid
+comment|//					+ " not found on "
+comment|//					+ page.page.getPageInfo()
+comment|//					+ ". Loading "
+comment|//					+ pageNr);
 block|}
 name|LOG
 operator|.
@@ -3536,6 +3531,13 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|==
+name|KEY_NOT_FOUND
+condition|)
+return|return;
 name|remove
 argument_list|(
 name|key
@@ -4054,8 +4056,8 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|KEY_NOT_FOUND
 condition|)
 return|return
 literal|false
@@ -4552,6 +4554,15 @@ argument_list|,
 name|node
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|addr
+operator|==
+name|KEY_NOT_FOUND
+condition|)
+return|return
+literal|false
+return|;
 name|RecordPos
 name|rec
 init|=
@@ -4818,6 +4829,15 @@ argument_list|,
 name|node
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|addr
+operator|==
+name|KEY_NOT_FOUND
+condition|)
+return|return
+literal|null
+return|;
 name|RecordPos
 name|rec
 init|=
@@ -5755,14 +5775,14 @@ specifier|public
 name|DOMFilePageHeader
 parameter_list|(
 name|DataInputStream
-name|dis
+name|is
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 argument_list|(
-name|dis
+name|is
 argument_list|)
 expr_stmt|;
 block|}

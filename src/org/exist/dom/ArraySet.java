@@ -81,6 +81,18 @@ name|Value
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FastQSort
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -2319,7 +2331,7 @@ operator|++
 expr_stmt|;
 continue|continue;
 block|}
-comment|//				System.out.println(dl[dx].gid + " = " + al.nodes[ax].gid);
+comment|//System.out.println(dl[dx].gid + " = " + al.nodes[ax].gid);
 name|cmp
 operator|=
 name|dl
@@ -3161,7 +3173,8 @@ literal|2
 condition|)
 return|return;
 comment|//quickSort(nodes, 0, counter - 1);
-name|Arrays
+comment|//Arrays.sort(nodes, 0, counter - 1);
+name|FastQSort
 operator|.
 name|sort
 argument_list|(

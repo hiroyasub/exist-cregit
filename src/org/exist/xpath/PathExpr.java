@@ -428,6 +428,18 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"processing "
+operator|+
+name|expr
+operator|.
+name|pprint
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expr

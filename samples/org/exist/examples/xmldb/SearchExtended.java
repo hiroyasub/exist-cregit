@@ -70,14 +70,14 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SearchExample
+name|SearchExtended
 block|{
 specifier|protected
 specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
+literal|"xmldb:exist://"
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -292,6 +292,9 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+name|Element
+name|elem
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -329,11 +332,8 @@ operator|)
 name|i
 argument_list|)
 decl_stmt|;
-comment|//String xml = resource.getContent().toString();
-comment|//System.out.println( xml );
-name|Element
 name|elem
-init|=
+operator|=
 operator|(
 name|Element
 operator|)
@@ -341,7 +341,17 @@ name|resource
 operator|.
 name|getContentAsDOM
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+name|elem
+operator|=
+operator|(
+name|Element
+operator|)
+name|elem
+operator|.
+name|getParentNode
+argument_list|()
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -350,7 +360,7 @@ name|println
 argument_list|(
 name|elem
 operator|.
-name|getTagName
+name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;

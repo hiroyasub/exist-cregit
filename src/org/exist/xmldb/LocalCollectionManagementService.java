@@ -463,7 +463,6 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
-comment|//parent.getCollection().removeCollection( collName );
 block|}
 catch|catch
 parameter_list|(

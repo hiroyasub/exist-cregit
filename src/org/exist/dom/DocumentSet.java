@@ -13,6 +13,10 @@ name|dom
 package|;
 end_package
 
+begin_comment
+comment|//import it.unimi.dsi.fastutil.Int2ObjectAVLTreeMap;
+end_comment
+
 begin_import
 import|import
 name|it
@@ -23,7 +27,7 @@ name|dsi
 operator|.
 name|fastutil
 operator|.
-name|Int2ObjectAVLTreeMap
+name|Int2ObjectOpenHashMap
 import|;
 end_import
 
@@ -116,7 +120,7 @@ specifier|public
 class|class
 name|DocumentSet
 extends|extends
-name|Int2ObjectAVLTreeMap
+name|Int2ObjectOpenHashMap
 implements|implements
 name|NodeList
 block|{
@@ -437,6 +441,18 @@ name|getLength
 parameter_list|()
 block|{
 return|return
+name|size
+argument_list|()
+return|;
+block|}
+specifier|public
+name|int
+name|getCollectionCount
+parameter_list|()
+block|{
+return|return
+name|collections
+operator|.
 name|size
 argument_list|()
 return|;

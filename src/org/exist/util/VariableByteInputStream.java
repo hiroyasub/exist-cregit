@@ -64,7 +64,7 @@ name|VariableByteInputStream
 extends|extends
 name|ByteArrayInputStream
 block|{
-comment|/**      *  Constructor for the VariableByteInputStream object      *      *@param  data  Description of the Parameter      */
+comment|/** 	 *  Constructor for the VariableByteInputStream object 	 * 	 *@param  data  Description of the Parameter 	 */
 specifier|public
 name|VariableByteInputStream
 parameter_list|(
@@ -150,7 +150,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|int
 name|readInt
@@ -185,7 +185,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|long
 name|readLong
@@ -282,7 +282,7 @@ return|return
 name|s
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  count  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  count  Description of the Parameter 	 */
 specifier|public
 name|void
 name|skip
@@ -315,6 +315,26 @@ operator|.
 name|decode
 argument_list|(
 name|this
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|copyTo
+parameter_list|(
+name|VariableByteOutputStream
+name|os
+parameter_list|)
+block|{
+name|VariableByteCoding
+operator|.
+name|copyTo
+argument_list|(
+name|this
+argument_list|,
+name|os
+operator|.
+name|buf
 argument_list|)
 expr_stmt|;
 block|}

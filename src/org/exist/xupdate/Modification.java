@@ -290,6 +290,10 @@ specifier|protected
 name|User
 name|user
 decl_stmt|;
+specifier|protected
+name|DocumentSet
+name|docs
+decl_stmt|;
 comment|/** 	 * Constructor for Modification. 	 */
 specifier|public
 name|Modification
@@ -299,6 +303,9 @@ name|pool
 parameter_list|,
 name|User
 name|user
+parameter_list|,
+name|DocumentSet
+name|docs
 parameter_list|,
 name|String
 name|selectStmt
@@ -322,15 +329,18 @@ name|user
 operator|=
 name|user
 expr_stmt|;
+name|this
+operator|.
+name|docs
+operator|=
+name|docs
+expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
 name|long
 name|process
-parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|)
+parameter_list|()
 throws|throws
 name|PermissionDeniedException
 throws|,
@@ -431,7 +441,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"query: "
+literal|"modification select: "
 operator|+
 name|expr
 operator|.
@@ -522,13 +532,6 @@ operator|+
 literal|"node-set"
 argument_list|)
 throw|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"retrieving nodes ..."
-argument_list|)
-expr_stmt|;
 name|NodeList
 name|set
 init|=
@@ -584,7 +587,14 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"finished"
+literal|"found "
+operator|+
+name|out
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" for select"
 argument_list|)
 expr_stmt|;
 return|return
@@ -807,27 +817,8 @@ operator|==
 name|address
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setting "
-operator|+
-name|current
-operator|.
-name|getGID
-argument_list|()
-operator|+
-literal|" -> "
-operator|+
-name|node
-operator|.
-name|getGID
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//					System.out.println("setting " + current.getGID() +
+comment|//						" -> " + node.getGID());
 name|current
 operator|.
 name|setGID

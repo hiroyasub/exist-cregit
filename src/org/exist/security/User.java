@@ -836,7 +836,7 @@ name|password
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 name|void
 name|setUID
 parameter_list|(

@@ -19,16 +19,6 @@ name|ByteArrayInputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|ByteBuffer
-import|;
-end_import
-
 begin_comment
 comment|/**  *  This class encodes integer values using variable-byte coding.  * In variable-byte coding, the value is split into a sequence  * of 7-bit chunks. Bit 8 is used to indicate if more bytes follow.  * If bit 8 is 0, all bytes have been read.  *   * Variable-byte coding usually achieves good compression ratios for  * a sequence of random integer values. Compression ratio is bad for  * very small and very large values.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
@@ -38,7 +28,7 @@ specifier|public
 class|class
 name|VariableByteCoding
 block|{
-comment|/**      *  Decode a variable-byte encoded sequence      *      *@param  d       the variable-byte encoded sequence of bytes      *@param  offset  the offset at which decoding should start      *@return         the decoded value      */
+comment|/** 	 *  Decode a variable-byte encoded sequence 	 * 	 *@param  d       the variable-byte encoded sequence of bytes 	 *@param  offset  the offset at which decoding should start 	 *@return         the decoded value 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -113,7 +103,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/**      *  Decode a variable-byte encoded sequence      *      *@param  is  ByteArrayInputStream to read the variable-byte      *	encoded data from      *@return     the decoded value      */
+comment|/** 	 *  Decode a variable-byte encoded sequence 	 * 	 *@param  is  ByteArrayInputStream to read the variable-byte 	 *	encoded data from 	 *@return     the decoded value 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -167,13 +157,13 @@ operator|new
 name|ArrayIndexOutOfBoundsException
 argument_list|()
 throw|;
-name|more
-operator|&=
-literal|0200
-expr_stmt|;
 name|shift
 operator|+=
 literal|7
+expr_stmt|;
+name|more
+operator|&=
+literal|0200
 expr_stmt|;
 block|}
 do|while
@@ -187,7 +177,55 @@ return|return
 name|r
 return|;
 block|}
-comment|/**      *  Encode a long integer to a variable-byte encoded      * sequence of bytes.      *      *@param  l  The long integer value to encode      *@return    The coded byte sequence      */
+specifier|public
+specifier|final
+specifier|static
+name|void
+name|copyTo
+parameter_list|(
+name|ByteArrayInputStream
+name|in
+parameter_list|,
+name|FastByteBuffer
+name|out
+parameter_list|)
+block|{
+name|long
+name|more
+decl_stmt|;
+do|do
+block|{
+name|more
+operator|=
+name|in
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
+name|out
+operator|.
+name|append
+argument_list|(
+operator|(
+name|byte
+operator|)
+name|more
+argument_list|)
+expr_stmt|;
+name|more
+operator|&=
+literal|0200
+expr_stmt|;
+block|}
+do|while
+condition|(
+name|more
+operator|>
+literal|0
+condition|)
+do|;
+block|}
+comment|/** 	 *  Encode a long integer to a variable-byte encoded 	 * sequence of bytes. 	 * 	 *@param  l  The long integer value to encode 	 *@return    The coded byte sequence 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -297,7 +335,7 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      * Encode a long integer to a variable-byte encoded sequence of bytes.      *       *@param  l       Description of the Parameter      *@param  data    Description of the Parameter      *@param  offset  Description of the Parameter      */
+comment|/** 	 * Encode a long integer to a variable-byte encoded sequence of bytes. 	 *  	 *@param  l       Description of the Parameter 	 *@param  data    Description of the Parameter 	 *@param  offset  Description of the Parameter 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -371,7 +409,7 @@ literal|0177
 operator|)
 expr_stmt|;
 block|}
-comment|/**      *  Encode  a long integer to a variable-byte encoded sequence of bytes.      * Write output to a FastByteBuffer.      *      *@param  buf  Description of the Parameter      *@param  l    Description of the Parameter      */
+comment|/** 	 *  Encode  a long integer to a variable-byte encoded sequence of bytes. 	 * Write output to a FastByteBuffer. 	 * 	 *@param  buf  Description of the Parameter 	 *@param  l    Description of the Parameter 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -430,65 +468,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|encode
-parameter_list|(
-name|ByteBuffer
-name|buf
-parameter_list|,
-name|long
-name|l
-parameter_list|)
-block|{
-while|while
-condition|(
-name|l
-operator|>
-literal|0177
-condition|)
-block|{
-name|buf
-operator|.
-name|put
-argument_list|(
-operator|(
-name|byte
-operator|)
-operator|(
-operator|(
-name|l
-operator|&
-literal|0177
-operator|)
-operator||
-literal|0200
-operator|)
-argument_list|)
-expr_stmt|;
-name|l
-operator|>>=
-literal|7
-expr_stmt|;
-block|}
-name|buf
-operator|.
-name|put
-argument_list|(
-operator|(
-name|byte
-operator|)
-operator|(
-name|l
-operator|&
-literal|0177
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      *  Get the size of the variable-byte encoded sequence for a      * given long.      *      *@param  l  Description of the Parameter      *@return    The size value      */
+comment|/** 	 *  Get the size of the variable-byte encoded sequence for a 	 * given long. 	 * 	 *@param  l  Description of the Parameter 	 *@return    The size value 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -525,7 +505,7 @@ operator|+
 literal|1
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  args  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  args  Description of the Parameter 	 */
 specifier|public
 specifier|static
 name|void
