@@ -4776,7 +4776,7 @@ condition|)
 return|return;
 name|freeList
 operator|.
-name|removeNode
+name|remove
 argument_list|(
 name|space
 argument_list|)
