@@ -1043,7 +1043,12 @@ expr_stmt|;
 name|receiver
 operator|.
 name|endElement
+argument_list|(
+name|node
+operator|.
+name|getNodeName
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}

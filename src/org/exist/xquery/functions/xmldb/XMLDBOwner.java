@@ -220,11 +220,11 @@ name|QName
 argument_list|(
 literal|"get-resource-owner"
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -336,7 +336,8 @@ name|perm
 operator|=
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getPermissions
 argument_list|()

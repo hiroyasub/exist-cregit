@@ -34,6 +34,58 @@ specifier|public
 interface|interface
 name|Module
 block|{
+comment|/**  	 * XQuery/XPath 2.0 function namespace. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|BUILTIN_FUNCTION_NS
+init|=
+literal|"http://www.w3.org/2003/05/xpath-functions"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in xmldb module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XMLDB_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/xmldb"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in utility module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|UTIL_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/util"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in request module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|REQUEST_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/request"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TRANSFORM_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/transform"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TEXT_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/text"
+decl_stmt|;
 comment|/** 	 * Returns the namespace URI that uniquely identifies this module. 	 *  	 * @return 	 */
 specifier|public
 name|String

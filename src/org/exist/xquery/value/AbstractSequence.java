@@ -820,6 +820,28 @@ block|}
 block|}
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
+specifier|public
+name|boolean
+name|isCached
+parameter_list|()
+block|{
+comment|// always return false by default
+return|return
+literal|false
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setIsCached(boolean) 	 */
+specifier|public
+name|void
+name|setIsCached
+parameter_list|(
+name|boolean
+name|cached
+parameter_list|)
+block|{
+comment|// ignore by default
+block|}
 block|}
 end_class
 

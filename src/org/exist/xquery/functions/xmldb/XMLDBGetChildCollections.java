@@ -242,11 +242,11 @@ name|QName
 argument_list|(
 literal|"get-child-collections"
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|PREFIX
 argument_list|)

@@ -208,11 +208,11 @@ name|QName
 argument_list|(
 literal|"created"
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -321,7 +321,8 @@ name|DateTimeValue
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCreated
 argument_list|()

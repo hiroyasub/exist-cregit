@@ -430,8 +430,9 @@ argument_list|()
 operator|==
 literal|1
 condition|)
-name|add
-argument_list|(
+block|{
+name|left
+operator|=
 operator|(
 operator|(
 name|PathExpr
@@ -443,9 +444,8 @@ name|getExpression
 argument_list|(
 literal|0
 argument_list|)
-argument_list|)
 expr_stmt|;
-else|else
+block|}
 name|add
 argument_list|(
 name|left
@@ -469,8 +469,9 @@ argument_list|()
 operator|==
 literal|1
 condition|)
-name|add
-argument_list|(
+block|{
+name|right
+operator|=
 operator|(
 operator|(
 name|PathExpr
@@ -482,9 +483,8 @@ name|getExpression
 argument_list|(
 literal|0
 argument_list|)
-argument_list|)
 expr_stmt|;
-else|else
+block|}
 name|add
 argument_list|(
 name|right
@@ -837,8 +837,9 @@ name|atomize
 argument_list|()
 expr_stmt|;
 return|return
-operator|new
 name|BooleanValue
+operator|.
+name|valueOf
 argument_list|(
 name|compareValues
 argument_list|(

@@ -167,18 +167,20 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//		context.pushLocalContext(false);
+name|LocalVariable
+name|mark
+init|=
 name|context
 operator|.
-name|pushLocalContext
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|Variable
+name|markLocalVariables
+argument_list|()
+decl_stmt|;
+name|LocalVariable
 name|var
 init|=
 operator|new
-name|Variable
+name|LocalVariable
 argument_list|(
 name|QName
 operator|.
@@ -187,6 +189,8 @@ argument_list|(
 name|context
 argument_list|,
 name|varName
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -324,10 +328,13 @@ operator|)
 condition|)
 break|break;
 block|}
+comment|//		context.popLocalContext();
 name|context
 operator|.
-name|popLocalContext
-argument_list|()
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
 expr_stmt|;
 return|return
 name|found

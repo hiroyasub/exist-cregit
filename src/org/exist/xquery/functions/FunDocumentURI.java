@@ -95,6 +95,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Module
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -206,6 +218,8 @@ name|QName
 argument_list|(
 literal|"document-uri"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
@@ -307,7 +321,8 @@ name|path
 init|=
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -319,7 +334,8 @@ literal|'/'
 operator|+
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()

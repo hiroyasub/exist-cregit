@@ -290,6 +290,8 @@ name|QName
 argument_list|(
 literal|"id"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
@@ -695,7 +697,8 @@ name|NodeProxy
 argument_list|(
 name|n
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|XMLUtil
 operator|.
@@ -703,7 +706,8 @@ name|getParentId
 argument_list|(
 name|n
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|n
 operator|.

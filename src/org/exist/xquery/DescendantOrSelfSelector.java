@@ -89,7 +89,8 @@ name|parentWithChild
 argument_list|(
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|node
 operator|.

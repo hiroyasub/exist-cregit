@@ -333,7 +333,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -552,11 +552,11 @@ name|QName
 argument_list|(
 literal|"transform"
 argument_list|,
-name|ModuleImpl
+name|TransformModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|TransformModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -880,11 +880,11 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 init|=
 operator|new
-name|Receiver
+name|DocumentBuilderReceiver
 argument_list|(
 name|builder
 argument_list|)
@@ -1402,7 +1402,8 @@ operator|)
 name|stylesheetRoot
 operator|)
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -212,11 +212,11 @@ name|QName
 argument_list|(
 literal|"remove-resource"
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|XMLDBModule
 operator|.
 name|PREFIX
 argument_list|)

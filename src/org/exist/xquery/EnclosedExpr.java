@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -184,11 +184,11 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 init|=
 operator|new
-name|Receiver
+name|DocumentBuilderReceiver
 argument_list|(
 name|builder
 argument_list|)

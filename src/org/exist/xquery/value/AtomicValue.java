@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -439,7 +439,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 parameter_list|)
 throws|throws
@@ -665,6 +665,28 @@ name|toString
 argument_list|()
 return|;
 block|}
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
+specifier|public
+name|boolean
+name|isCached
+parameter_list|()
+block|{
+comment|// always returns false by default
+return|return
+literal|false
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setIsCached(boolean) 	 */
+specifier|public
+name|void
+name|setIsCached
+parameter_list|(
+name|boolean
+name|cached
+parameter_list|)
+block|{
+comment|// ignore
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext() 	 */
 specifier|public

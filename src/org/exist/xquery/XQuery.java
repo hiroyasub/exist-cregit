@@ -293,6 +293,8 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+name|context
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;

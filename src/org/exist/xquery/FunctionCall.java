@@ -431,13 +431,15 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+comment|//		context.pushLocalContext(true);
+name|LocalVariable
+name|mark
+init|=
 name|context
 operator|.
-name|pushLocalContext
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+name|markLocalVariables
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|Sequence
@@ -485,10 +487,13 @@ throw|;
 block|}
 finally|finally
 block|{
+comment|//			context.popLocalContext();
 name|context
 operator|.
-name|popLocalContext
-argument_list|()
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
 expr_stmt|;
 block|}
 block|}

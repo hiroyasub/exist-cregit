@@ -141,6 +141,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Module
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -250,6 +262,8 @@ name|QName
 argument_list|(
 literal|"lang"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
@@ -524,7 +538,8 @@ name|getParentId
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.

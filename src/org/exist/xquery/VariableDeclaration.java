@@ -161,6 +161,8 @@ argument_list|(
 name|context
 argument_list|,
 name|qname
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|Module

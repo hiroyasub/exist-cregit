@@ -196,11 +196,11 @@ name|QName
 argument_list|(
 literal|"document-id"
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -308,7 +308,8 @@ name|path
 init|=
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -319,7 +320,8 @@ name|IntegerValue
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDocId
 argument_list|()

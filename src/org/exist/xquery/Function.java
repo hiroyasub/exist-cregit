@@ -139,7 +139,6 @@ name|Function
 extends|extends
 name|PathExpr
 block|{
-comment|/**  	 * XQuery/XPath 2.0 function namespace. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -147,32 +146,6 @@ name|String
 name|BUILTIN_FUNCTION_NS
 init|=
 literal|"http://www.w3.org/2003/05/xpath-functions"
-decl_stmt|;
-comment|/** 	 * Namespace for the built-in xmldb functions. 	 */
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|XMLDB_FUNCTION_NS
-init|=
-literal|"http://exist-db.org/xquery/xmldb"
-decl_stmt|;
-comment|/** 	 * Namespace for the built-in utility functions. 	 */
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|UTIL_FUNCTION_NS
-init|=
-literal|"http://exist-db.org/xquery/util"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|REQUEST_FUNCTION_NS
-init|=
-literal|"http://exist-db.org/xquery/request"
 decl_stmt|;
 comment|// The signature of the function.
 specifier|protected

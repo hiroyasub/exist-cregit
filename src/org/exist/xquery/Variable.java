@@ -60,22 +60,28 @@ specifier|public
 class|class
 name|Variable
 block|{
+comment|// the name of the variable
 specifier|private
 name|QName
 name|qname
 decl_stmt|;
+comment|// the current value assigned to the variable
 specifier|private
 name|Sequence
 name|value
 init|=
 literal|null
 decl_stmt|;
+comment|// the context position of this variable in the local variable stack
+comment|// this can be used to determine if a variable has been declared
+comment|// before another
 specifier|private
 name|int
 name|positionInStack
 init|=
 literal|0
 decl_stmt|;
+comment|// the cardinality of this variable
 specifier|private
 name|int
 name|cardinality
@@ -84,6 +90,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 decl_stmt|;
+comment|// the context document set
 specifier|private
 name|DocumentSet
 name|contextDocs

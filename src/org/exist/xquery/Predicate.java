@@ -428,7 +428,8 @@ literal|null
 operator|||
 name|current
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|!=
 name|lastDoc
 condition|)
@@ -437,7 +438,8 @@ name|lastDoc
 operator|=
 name|current
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 expr_stmt|;
 name|sizeHint
 operator|=

@@ -232,9 +232,13 @@ name|QName
 argument_list|(
 literal|"describe-function"
 argument_list|,
-name|UTIL_FUNCTION_NS
+name|UtilModule
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"util"
+name|UtilModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Describes a built-in function. Returns an element describing the "

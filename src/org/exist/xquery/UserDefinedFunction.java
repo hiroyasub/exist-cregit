@@ -174,6 +174,8 @@ argument_list|(
 name|context
 argument_list|,
 name|varName
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|parameters
@@ -220,7 +222,7 @@ block|{
 name|QName
 name|varName
 decl_stmt|;
-name|Variable
+name|LocalVariable
 name|var
 decl_stmt|;
 name|Sequence
@@ -263,7 +265,7 @@ expr_stmt|;
 name|var
 operator|=
 operator|new
-name|Variable
+name|LocalVariable
 argument_list|(
 name|varName
 argument_list|)

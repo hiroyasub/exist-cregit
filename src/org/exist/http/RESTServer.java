@@ -4170,14 +4170,14 @@ argument_list|)
 expr_stmt|;
 name|serializer
 operator|.
-name|setContentHandler
+name|setLexicalHandler
 argument_list|(
 name|sax
 argument_list|)
 expr_stmt|;
 name|serializer
 operator|.
-name|setLexicalHandler
+name|setContentHandler
 argument_list|(
 name|sax
 argument_list|)

@@ -113,11 +113,10 @@ end_comment
 
 begin_class
 specifier|public
-specifier|final
 class|class
 name|ExtArrayNodeSet
 extends|extends
-name|AbstractNodeSet
+name|AbstractNodeSetBase
 block|{
 specifier|private
 name|TreeMap
@@ -246,7 +245,8 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
@@ -289,7 +289,8 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
@@ -595,7 +596,8 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -800,7 +802,8 @@ name|getPart
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -903,7 +906,8 @@ name|getPart
 argument_list|(
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -938,7 +942,8 @@ name|remove
 argument_list|(
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|setHasChanged
@@ -1005,7 +1010,8 @@ name|getPart
 argument_list|(
 name|parent
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -1776,7 +1782,8 @@ index|[
 literal|0
 index|]
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 return|;
 block|}
 name|void
@@ -1959,7 +1966,8 @@ name|getChildRange
 argument_list|(
 name|parent
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|parent
 operator|.

@@ -222,9 +222,13 @@ name|QName
 argument_list|(
 literal|"get-session-attribute"
 argument_list|,
-name|REQUEST_FUNCTION_NS
+name|RequestModule
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"request"
+name|RequestModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns an attribute stored in the current session object or an empty sequence "

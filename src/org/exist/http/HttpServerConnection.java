@@ -1514,7 +1514,8 @@ name|docName
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -1523,7 +1524,8 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDoctype
 argument_list|()
@@ -1565,7 +1567,8 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|map

@@ -326,9 +326,13 @@ name|QName
 argument_list|(
 literal|"eval"
 argument_list|,
-name|UTIL_FUNCTION_NS
+name|UtilModule
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"util"
+name|UtilModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
@@ -409,6 +413,10 @@ comment|// get the query expression
 name|String
 name|expr
 init|=
+name|StringValue
+operator|.
+name|expand
+argument_list|(
 name|getArgument
 argument_list|(
 literal|0
@@ -423,6 +431,7 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -512,6 +521,8 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+name|context
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(

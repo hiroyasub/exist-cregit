@@ -74,6 +74,25 @@ specifier|private
 name|boolean
 name|value
 decl_stmt|;
+comment|/** 	 * Returns one of the static fields TRUE or FALSE depending on 	 * the value of the parameter. 	 *  	 * @param bool 	 * @return 	 */
+specifier|public
+specifier|final
+specifier|static
+name|BooleanValue
+name|valueOf
+parameter_list|(
+name|boolean
+name|bool
+parameter_list|)
+block|{
+return|return
+name|bool
+condition|?
+name|TRUE
+else|:
+name|FALSE
+return|;
+block|}
 specifier|public
 name|BooleanValue
 parameter_list|(

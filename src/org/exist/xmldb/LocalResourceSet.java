@@ -1065,7 +1065,8 @@ literal|null
 operator|||
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -1082,7 +1083,8 @@ argument_list|()
 operator|!=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -1104,7 +1106,8 @@ literal|null
 argument_list|,
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()

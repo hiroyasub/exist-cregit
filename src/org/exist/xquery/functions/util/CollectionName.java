@@ -196,11 +196,11 @@ name|QName
 argument_list|(
 literal|"collection-name"
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -309,7 +309,8 @@ name|StringValue
 argument_list|(
 name|proxy
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()

@@ -184,9 +184,13 @@ name|QName
 argument_list|(
 literal|"md5"
 argument_list|,
-name|UTIL_FUNCTION_NS
+name|UtilModule
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"util"
+name|UtilModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Generates an MD5 key from a string."

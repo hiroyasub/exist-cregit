@@ -128,6 +128,8 @@ name|QName
 argument_list|(
 literal|"match-any"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,

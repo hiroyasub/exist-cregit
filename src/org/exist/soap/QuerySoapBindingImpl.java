@@ -1930,6 +1930,8 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+name|context
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -2818,7 +2820,8 @@ name|path
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -2830,7 +2833,8 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -3187,7 +3191,8 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -3212,7 +3217,8 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -3238,7 +3244,8 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -3253,7 +3260,8 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -3272,7 +3280,8 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()

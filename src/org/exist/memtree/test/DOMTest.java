@@ -77,7 +77,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -228,11 +228,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 init|=
 operator|new
-name|Receiver
+name|DocumentBuilderReceiver
 argument_list|()
 decl_stmt|;
 name|SAXParserFactory

@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Module
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -192,6 +204,8 @@ name|QName
 argument_list|(
 literal|"normalize-space"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,

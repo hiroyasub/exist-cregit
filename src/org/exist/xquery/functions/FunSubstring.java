@@ -83,6 +83,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Module
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -222,6 +234,8 @@ name|QName
 argument_list|(
 literal|"substring"
 argument_list|,
+name|Module
+operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,

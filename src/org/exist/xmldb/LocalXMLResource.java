@@ -555,7 +555,8 @@ name|parent
 argument_list|,
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()

@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * A sequence that sorts its entries in the order specified by the order specs of  * an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *   * Contrary to class {@link org.exist.xquery.value.PreorderedValueSequence},  * all order expressions are evaluated once for each item in the sequence   *<b>while</b> items are added.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -89,6 +89,12 @@ decl_stmt|;
 specifier|private
 name|int
 name|count
+init|=
+literal|0
+decl_stmt|;
+specifier|private
+name|long
+name|execTime
 init|=
 literal|0
 decl_stmt|;
@@ -338,6 +344,17 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"order by took "
+operator|+
+name|execTime
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
@@ -414,6 +431,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|this
 operator|.
 name|item
@@ -533,6 +558,19 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|execTime
+operator|=
+name|execTime
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.lang.Comparable#compareTo(java.lang.Object) 		 */
 specifier|public

@@ -280,13 +280,6 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#returnsType() 	 */
-comment|//	public int returnsType() {
-comment|//		if(axis == Constants.SELF_AXIS)
-comment|//			return Type.ITEM;
-comment|//		else
-comment|//			return Type.NODE;
-comment|//	}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
@@ -493,6 +486,13 @@ argument_list|)
 condition|)
 block|{
 comment|//				LOG.debug("returning cached result");
+name|cachedResult
+operator|.
+name|setIsCached
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|predicates
@@ -1854,7 +1854,8 @@ name|NodeProxy
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.
@@ -1880,7 +1881,8 @@ name|getParentId
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.
@@ -1917,7 +1919,8 @@ name|NodeProxy
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.

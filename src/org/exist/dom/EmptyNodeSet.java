@@ -80,7 +80,7 @@ specifier|public
 class|class
 name|EmptyNodeSet
 extends|extends
-name|AbstractNodeSet
+name|AbstractNodeSetBase
 block|{
 specifier|private
 specifier|final

@@ -89,7 +89,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -359,8 +359,9 @@ operator|instanceof
 name|Boolean
 condition|)
 return|return
-operator|new
 name|BooleanValue
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 operator|(
@@ -645,11 +646,11 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 init|=
 operator|new
-name|Receiver
+name|DocumentBuilderReceiver
 argument_list|(
 name|builder
 argument_list|)
@@ -826,11 +827,11 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 init|=
 operator|new
-name|Receiver
+name|DocumentBuilderReceiver
 argument_list|(
 name|builder
 argument_list|)

@@ -591,6 +591,8 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+name|context
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(

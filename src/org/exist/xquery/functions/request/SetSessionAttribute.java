@@ -210,9 +210,13 @@ name|QName
 argument_list|(
 literal|"set-session-attribute"
 argument_list|,
-name|REQUEST_FUNCTION_NS
+name|RequestModule
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"request"
+name|RequestModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Stores a value in the current session using the supplied attribute name."

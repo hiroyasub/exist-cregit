@@ -420,7 +420,8 @@ name|nextMatch
 init|=
 name|np
 operator|.
-name|match
+name|getMatches
+argument_list|()
 init|;
 name|nextMatch
 operator|!=

@@ -63,6 +63,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|PreorderedValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -136,18 +150,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// Save the local variable stack
+name|LocalVariable
+name|mark
+init|=
 name|context
 operator|.
-name|pushLocalContext
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|Variable
+name|markLocalVariables
+argument_list|()
+decl_stmt|;
+comment|// Declare the iteration variable
+name|LocalVariable
 name|var
 init|=
 operator|new
-name|Variable
+name|LocalVariable
 argument_list|(
 name|QName
 operator|.
@@ -156,6 +173,8 @@ argument_list|(
 name|context
 argument_list|,
 name|varName
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -167,7 +186,7 @@ name|var
 argument_list|)
 expr_stmt|;
 name|Sequence
-name|val
+name|in
 init|=
 name|inputSequence
 operator|.
@@ -189,7 +208,7 @@ name|sequenceType
 operator|.
 name|checkType
 argument_list|(
-name|val
+name|in
 operator|.
 name|getItemType
 argument_list|()
@@ -199,7 +218,7 @@ name|sequenceType
 operator|.
 name|checkCardinality
 argument_list|(
-name|val
+name|in
 argument_list|)
 expr_stmt|;
 block|}
@@ -207,7 +226,7 @@ name|var
 operator|.
 name|setValue
 argument_list|(
-name|val
+name|in
 argument_list|)
 expr_stmt|;
 name|Sequence
@@ -271,6 +290,39 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+comment|// Check if we can speed up the processing of the "order by" clause.
+name|boolean
+name|fastOrderBy
+init|=
+name|checkOrderSpecs
+argument_list|(
+name|in
+argument_list|)
+decl_stmt|;
+comment|//	PreorderedValueSequence applies the order specs to all items
+comment|// in one single processing step
+if|if
+condition|(
+name|fastOrderBy
+condition|)
+block|{
+name|in
+operator|=
+operator|new
+name|PreorderedValueSequence
+argument_list|(
+name|orderSpecs
+argument_list|,
+name|in
+operator|.
+name|toNodeSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Otherwise, if there's an order by clause, wrap the result into
+comment|// an OrderedValueSequence. OrderedValueSequence will compute
+comment|// order expressions for every item when it is added to the result sequence.
 if|if
 condition|(
 name|resultSequence
@@ -283,6 +335,9 @@ condition|(
 name|orderSpecs
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|fastOrderBy
 condition|)
 name|resultSequence
 operator|=
@@ -291,7 +346,7 @@ name|OrderedValueSequence
 argument_list|(
 name|orderSpecs
 argument_list|,
-name|val
+name|in
 operator|.
 name|getLength
 argument_list|()
@@ -331,7 +386,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|val
+name|in
 operator|=
 name|returnExpr
 operator|.
@@ -344,7 +399,7 @@ name|resultSequence
 operator|.
 name|addAll
 argument_list|(
-name|val
+name|in
 argument_list|)
 expr_stmt|;
 block|}
@@ -353,6 +408,9 @@ condition|(
 name|orderSpecs
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|fastOrderBy
 condition|)
 operator|(
 operator|(
@@ -364,10 +422,13 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
+comment|// Restore the local variable stack
 name|context
 operator|.
-name|popLocalContext
-argument_list|()
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
 expr_stmt|;
 return|return
 name|resultSequence

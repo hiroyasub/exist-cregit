@@ -78,7 +78,8 @@ name|doc
 init|=
 name|p1
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -88,7 +89,8 @@ name|docId
 operator|>
 name|p2
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 condition|)
@@ -103,7 +105,8 @@ name|docId
 operator|<
 name|p2
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 condition|)

@@ -40905,6 +40905,12 @@ literal|"WS"
 block|,
 literal|"EXPR_COMMENT"
 block|,
+literal|"PRAGMA"
+block|,
+literal|"PRAGMA_CONTENT"
+block|,
+literal|"PRAGMA_QNAME"
+block|,
 literal|"PREDEFINED_ENTITY_REF"
 block|,
 literal|"CHAR_REF"
@@ -41484,7 +41490,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|70368744177663L
+literal|562949953421311L
 expr_stmt|;
 return|return
 name|data

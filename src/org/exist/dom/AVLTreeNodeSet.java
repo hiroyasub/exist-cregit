@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|AVLTreeNodeSet
 extends|extends
-name|AbstractNodeSet
+name|AbstractNodeSetBase
 block|{
 specifier|private
 name|Node
@@ -1303,7 +1303,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 operator|==
@@ -1357,7 +1358,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 operator|<
@@ -1419,7 +1421,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 operator|==
@@ -1438,7 +1441,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|docId
 operator|<

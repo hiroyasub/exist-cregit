@@ -1338,7 +1338,8 @@ name|getParentId
 argument_list|(
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|node
 operator|.
@@ -1734,7 +1735,8 @@ name|level
 operator|=
 name|child
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getTreeLevel
 argument_list|(
@@ -1764,7 +1766,8 @@ name|gid
 operator|-
 name|child
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getLevelStartPoint
 argument_list|(
@@ -1774,7 +1777,8 @@ operator|)
 operator|/
 name|child
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getTreeLevelOrder
 argument_list|(
@@ -1783,7 +1787,8 @@ argument_list|)
 operator|+
 name|child
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getLevelStartPoint
 argument_list|(
@@ -1803,7 +1808,8 @@ name|get
 argument_list|(
 name|child
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|child
 operator|.

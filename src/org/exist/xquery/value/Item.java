@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -142,7 +142,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 parameter_list|)
 throws|throws

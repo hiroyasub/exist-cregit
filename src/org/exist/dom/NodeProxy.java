@@ -41,7 +41,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|Receiver
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -237,7 +237,6 @@ end_comment
 
 begin_class
 specifier|public
-specifier|final
 class|class
 name|NodeProxy
 extends|extends
@@ -1200,6 +1199,30 @@ name|doc
 return|;
 block|}
 specifier|public
+name|DocumentImpl
+name|getDocument
+parameter_list|()
+block|{
+return|return
+name|doc
+return|;
+block|}
+specifier|public
+name|void
+name|setDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+name|this
+operator|.
+name|doc
+operator|=
+name|doc
+expr_stmt|;
+block|}
+specifier|public
 name|long
 name|getGID
 parameter_list|()
@@ -1550,6 +1573,30 @@ literal|0
 return|;
 block|}
 specifier|public
+name|Match
+name|getMatches
+parameter_list|()
+block|{
+return|return
+name|match
+return|;
+block|}
+specifier|public
+name|void
+name|setMatches
+parameter_list|(
+name|Match
+name|match
+parameter_list|)
+block|{
+name|this
+operator|.
+name|match
+operator|=
+name|match
+expr_stmt|;
+block|}
+specifier|public
 name|boolean
 name|hasMatch
 parameter_list|(
@@ -1789,7 +1836,8 @@ name|m
 init|=
 name|p
 operator|.
-name|match
+name|getMatches
+argument_list|()
 decl_stmt|;
 while|while
 condition|(
@@ -1948,7 +1996,6 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
-comment|//			Thread.dumpStack();
 return|return;
 block|}
 name|ContextItem
@@ -2008,17 +2055,6 @@ name|getNextItem
 argument_list|()
 expr_stmt|;
 block|}
-comment|//		Thread.dumpStack();
-block|}
-specifier|public
-name|void
-name|clearContext
-parameter_list|()
-block|{
-name|context
-operator|=
-literal|null
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -2036,11 +2072,6 @@ name|out
 operator|.
 name|print
 argument_list|(
-name|hashCode
-argument_list|()
-operator|+
-literal|" "
-operator|+
 name|gid
 operator|+
 literal|": "
@@ -2557,7 +2588,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|Receiver
+name|DocumentBuilderReceiver
 name|receiver
 parameter_list|)
 throws|throws

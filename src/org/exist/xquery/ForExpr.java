@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|PreorderedValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -219,19 +233,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// Save the local variable stack
+name|LocalVariable
+name|mark
+init|=
 name|context
 operator|.
-name|pushLocalContext
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// declare the variable
-name|Variable
+name|markLocalVariables
+argument_list|()
+decl_stmt|;
+comment|// Declare the iteration variable
+name|LocalVariable
 name|var
 init|=
 operator|new
-name|Variable
+name|LocalVariable
 argument_list|(
 name|QName
 operator|.
@@ -240,6 +256,8 @@ argument_list|(
 name|context
 argument_list|,
 name|varName
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -250,8 +268,8 @@ argument_list|(
 name|var
 argument_list|)
 expr_stmt|;
-comment|// declare positional variable
-name|Variable
+comment|// Declare positional variable
+name|LocalVariable
 name|at
 init|=
 literal|null
@@ -266,7 +284,7 @@ block|{
 name|at
 operator|=
 operator|new
-name|Variable
+name|LocalVariable
 argument_list|(
 name|QName
 operator|.
@@ -275,6 +293,8 @@ argument_list|(
 name|context
 argument_list|,
 name|positionalVariable
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -286,7 +306,7 @@ name|at
 argument_list|)
 expr_stmt|;
 block|}
-comment|// evaluate the "in" expression
+comment|// Evaluate the "in" expression
 name|Sequence
 name|in
 init|=
@@ -299,7 +319,9 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|// assign to the bound variable
+comment|// Assign the whole input sequence to the bound variable.
+comment|// This is required if we process the "where" or "order by" clause
+comment|// in one step.
 name|var
 operator|.
 name|setValue
@@ -307,6 +329,8 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+comment|// Save the current context document set to the variable as a hint
+comment|// for path expressions occurring in the "return" clause.
 if|if
 condition|(
 name|in
@@ -335,6 +359,13 @@ name|contextDocs
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Check if we can speed up the processing of the "order by" clause.
+name|boolean
+name|fastOrderBy
+init|=
+literal|false
+decl_stmt|;
+comment|// checkOrderSpecs(in);
 if|if
 condition|(
 name|whereExpr
@@ -349,12 +380,28 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|in
+operator|.
+name|isCached
+argument_list|()
+operator|||
+name|fastOrderBy
+operator|)
+condition|)
 name|setContext
 argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
 block|}
+comment|// See if we can process the "where" clause in a single step (instead of
+comment|// calling the where expression for each item in the input sequence)
+comment|// This is possible if the input sequence is a node set and has no
+comment|// dependencies on the current context item.
 name|boolean
 name|fastExec
 init|=
@@ -388,18 +435,13 @@ name|Type
 operator|.
 name|NODE
 decl_stmt|;
+comment|// If possible, apply the where expression ahead of the iteration
 if|if
 condition|(
 name|fastExec
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"fast evaluation mode"
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("fast evaluation mode");
 name|in
 operator|=
 name|applyWhereExpression
@@ -408,8 +450,27 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|// if there's an order by clause, wrap the result into
-comment|// an OrderedValueSequence
+comment|// PreorderedValueSequence applies the order specs to all items
+comment|// in one single processing step
+if|if
+condition|(
+name|fastOrderBy
+condition|)
+block|{
+name|in
+operator|=
+operator|new
+name|PreorderedValueSequence
+argument_list|(
+name|orderSpecs
+argument_list|,
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Otherwise, if there's an order by clause, wrap the result into
+comment|// an OrderedValueSequence. OrderedValueSequence will compute
+comment|// order expressions for every item when it is added to the result sequence.
 if|if
 condition|(
 name|resultSequence
@@ -422,6 +483,9 @@ condition|(
 name|orderSpecs
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|fastOrderBy
 condition|)
 name|resultSequence
 operator|=
@@ -476,7 +540,7 @@ argument_list|(
 name|atVal
 argument_list|)
 expr_stmt|;
-comment|// loop through each variable binding
+comment|// Loop through each variable binding
 for|for
 control|(
 name|SequenceIterator
@@ -681,6 +745,9 @@ condition|(
 name|orderSpecs
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|fastOrderBy
 condition|)
 operator|(
 operator|(
@@ -692,10 +759,13 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
+comment|// restore the local variable stack
 name|context
 operator|.
-name|popLocalContext
-argument_list|()
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
 expr_stmt|;
 return|return
 name|resultSequence
@@ -879,6 +949,66 @@ name|Type
 operator|.
 name|ITEM
 return|;
+block|}
+specifier|public
+specifier|final
+specifier|static
+name|void
+name|setContext
+parameter_list|(
+name|Sequence
+name|seq
+parameter_list|)
+block|{
+name|Item
+name|next
+decl_stmt|;
+for|for
+control|(
+name|SequenceIterator
+name|i
+init|=
+name|seq
+operator|.
+name|unorderedIterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|next
+operator|=
+name|i
+operator|.
+name|nextItem
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|next
+operator|instanceof
+name|NodeProxy
+condition|)
+operator|(
+operator|(
+name|NodeProxy
+operator|)
+name|next
+operator|)
+operator|.
+name|addContextNode
+argument_list|(
+operator|(
+name|NodeProxy
+operator|)
+name|next
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

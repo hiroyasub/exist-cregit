@@ -114,11 +114,11 @@ name|QName
 argument_list|(
 literal|"exclusive-lock"
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ModuleImpl
+name|UtilModule
 operator|.
 name|PREFIX
 argument_list|)

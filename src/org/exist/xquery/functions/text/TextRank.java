@@ -349,7 +349,8 @@ name|nextMatch
 init|=
 name|proxy
 operator|.
-name|match
+name|getMatches
+argument_list|()
 decl_stmt|;
 comment|// we just count the number of distinct terms matched
 while|while

@@ -999,6 +999,8 @@ name|k
 operator|++
 control|)
 block|{
+comment|//            			if(result.getLength()> 1000)
+comment|//            				continue;
 name|gid
 operator|=
 name|gid

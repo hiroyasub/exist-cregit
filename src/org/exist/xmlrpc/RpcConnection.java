@@ -1462,6 +1462,8 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+name|context
+argument_list|,
 operator|new
 name|StringReader
 argument_list|(
@@ -8147,7 +8149,8 @@ name|add
 argument_list|(
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -8320,7 +8323,8 @@ name|addElement
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -8332,7 +8336,8 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -11341,7 +11346,8 @@ name|docName
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -11353,7 +11359,8 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -11362,7 +11369,8 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDoctype
 argument_list|()
@@ -11404,7 +11412,8 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|map
@@ -11934,7 +11943,8 @@ name|docName
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()
@@ -11946,7 +11956,8 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getFileName
 argument_list|()
@@ -11955,7 +11966,8 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDoctype
 argument_list|()
@@ -11997,7 +12009,8 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|map

@@ -191,6 +191,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Returns true if the sequence is the result of a previous operation 	 * and has been cached. 	 *  	 * @return 	 */
+specifier|public
+name|boolean
+name|isCached
+parameter_list|()
+function_decl|;
+comment|/** 	 * Indicates that the sequence  is the result of a previous operation 	 * and has not been recomputed. 	 *   	 * @param cached 	 */
+specifier|public
+name|void
+name|setIsCached
+parameter_list|(
+name|boolean
+name|cached
+parameter_list|)
+function_decl|;
 specifier|public
 name|void
 name|setSelfAsContext

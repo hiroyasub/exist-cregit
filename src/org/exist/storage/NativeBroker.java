@@ -9459,7 +9459,8 @@ name|objectWith
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.
@@ -9517,7 +9518,8 @@ literal|" not found in document "
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -9526,7 +9528,8 @@ literal|"; docId = "
 operator|+
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDocId
 argument_list|()
@@ -9544,7 +9547,8 @@ name|objectWith
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|p
 operator|.
@@ -9577,7 +9581,8 @@ name|DocumentImpl
 operator|)
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|node
@@ -9595,7 +9600,8 @@ name|setOwnerDocument
 argument_list|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|node

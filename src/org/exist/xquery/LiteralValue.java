@@ -19,18 +19,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|value
@@ -144,21 +132,6 @@ name|XPathException
 block|{
 return|return
 name|value
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xquery.StaticContext) 	 */
-specifier|public
-name|DocumentSet
-name|preselect
-parameter_list|(
-name|DocumentSet
-name|in_docs
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|in_docs
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
