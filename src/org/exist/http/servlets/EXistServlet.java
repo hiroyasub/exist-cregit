@@ -544,8 +544,17 @@ name|this
 operator|.
 name|log
 argument_list|(
-literal|"DatabaseAdminServlet: exist.home="
+literal|"EXistServlet: exist.home="
 operator|+
+name|dbHome
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"exist.home"
+argument_list|,
 name|dbHome
 argument_list|)
 expr_stmt|;

@@ -494,6 +494,15 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Loading files from directory: "
+operator|+
+name|baseDir
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|patterns
 init|=

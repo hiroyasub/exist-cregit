@@ -222,6 +222,11 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+name|clearContext
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 name|var
 operator|.
 name|setValue
