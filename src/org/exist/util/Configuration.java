@@ -199,6 +199,18 @@ name|apache
 operator|.
 name|log4j
 operator|.
+name|BasicConfigurator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
 name|Logger
 import|;
 end_import
@@ -280,6 +292,11 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+name|BasicConfigurator
+operator|.
+name|configure
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|String
@@ -344,11 +361,9 @@ name|canRead
 argument_list|()
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"unable to read configuration. Trying to guess location ..."
 argument_list|)
@@ -1795,7 +1810,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"data directory = "
 operator|+

@@ -837,18 +837,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"configuration = "
-operator|+
-name|conf
-operator|.
-name|getPath
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|pool
 operator|.
 name|push
@@ -1077,7 +1065,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"database engine initialized."
+literal|"database engine "
+operator|+
+name|instanceId
+operator|+
+literal|" initialized."
 argument_list|)
 expr_stmt|;
 block|}

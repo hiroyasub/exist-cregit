@@ -2489,7 +2489,9 @@ name|byte
 index|[]
 name|data
 decl_stmt|;
-comment|//InputStream dis;
+name|InputStream
+name|dis
+decl_stmt|;
 name|short
 name|sym
 decl_stmt|;
@@ -2577,16 +2579,16 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//dis = elementsDb.getAsStream(ref);
-name|val
+name|dis
 operator|=
 name|elementsDb
 operator|.
-name|get
+name|getAsStream
 argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
+comment|//val = elementsDb.get(ref);
 block|}
 catch|catch
 parameter_list|(
@@ -2603,11 +2605,11 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//dis = null;
-name|val
+name|dis
 operator|=
 literal|null
 expr_stmt|;
+comment|//val = null;
 block|}
 finally|finally
 block|{
@@ -2621,40 +2623,21 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|val
+name|dis
 operator|==
 literal|null
 condition|)
 continue|continue;
-name|data
-operator|=
-name|val
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
+comment|//data = val.getData();
+comment|//is = new VariableByteInputStream(val.data(), val.start(), val.length());
 name|is
 operator|=
 operator|new
 name|VariableByteInputStream
 argument_list|(
-name|val
-operator|.
-name|data
-argument_list|()
-argument_list|,
-name|val
-operator|.
-name|start
-argument_list|()
-argument_list|,
-name|val
-operator|.
-name|length
-argument_list|()
+name|dis
 argument_list|)
 expr_stmt|;
-comment|//is = new VariableByteInputStream(dis);
 try|try
 block|{
 while|while
@@ -2769,7 +2752,6 @@ argument_list|,
 name|tid
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug("loaded " + docId + ':' + gid);
 name|result
 operator|.
 name|add
@@ -2798,15 +2780,6 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"unexpected io error"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

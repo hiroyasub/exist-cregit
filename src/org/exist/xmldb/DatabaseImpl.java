@@ -1187,31 +1187,6 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#finalize() 	 */
-specifier|protected
-name|void
-name|finalize
-parameter_list|()
-throws|throws
-name|Throwable
-block|{
-if|if
-condition|(
-name|mode
-operator|==
-name|LOCAL
-operator|&&
-name|autoCreate
-condition|)
-comment|// cleanly shut down the database
-name|BrokerPool
-operator|.
-name|stop
-argument_list|(
-name|dbName
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

@@ -1693,7 +1693,11 @@ decl_stmt|;
 name|VariableByteInputStream
 name|is
 decl_stmt|;
-comment|//InputStream dis = null;
+name|InputStream
+name|dis
+init|=
+literal|null
+decl_stmt|;
 name|NodeProxy
 name|p
 decl_stmt|;
@@ -1843,16 +1847,16 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|value
+comment|//value = dbWords.get(ref);
+name|dis
 operator|=
 name|dbWords
 operator|.
-name|get
+name|getAsStream
 argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
-comment|//dis = dbWords.getAsStream(ref);
 block|}
 catch|catch
 parameter_list|(
@@ -1869,11 +1873,11 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|value
+comment|//value = null;
+name|dis
 operator|=
 literal|null
 expr_stmt|;
-comment|//dis = null;
 block|}
 finally|finally
 block|{
@@ -1887,26 +1891,20 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|value
+name|dis
 operator|==
 literal|null
 condition|)
 block|{
 continue|continue;
 block|}
-name|data
-operator|=
-name|value
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
+comment|//data = value.getData();
 name|is
 operator|=
 operator|new
 name|VariableByteInputStream
 argument_list|(
-name|data
+name|dis
 argument_list|)
 expr_stmt|;
 try|try
@@ -6468,34 +6466,27 @@ name|regexp
 argument_list|)
 condition|)
 block|{
-name|Value
-name|value
+comment|//Value value = dbWords.get(pointer);
+name|InputStream
+name|dis
 init|=
 name|dbWords
 operator|.
-name|get
+name|getAsStream
 argument_list|(
 name|pointer
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|value
+name|dis
 operator|==
 literal|null
 condition|)
 return|return
 literal|true
 return|;
-name|byte
-index|[]
-name|data
-init|=
-name|value
-operator|.
-name|getData
-argument_list|()
-decl_stmt|;
+comment|//byte[] data = value.getData();
 name|int
 name|k
 init|=
@@ -6531,7 +6522,7 @@ init|=
 operator|new
 name|VariableByteInputStream
 argument_list|(
-name|data
+name|dis
 argument_list|)
 decl_stmt|;
 try|try
@@ -6673,15 +6664,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"eof while reading index"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|// EOFExceptions are normal
 block|}
 catch|catch
 parameter_list|(

@@ -7531,6 +7531,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/** 	 * An input stream for overflow pages. 	 *  	 * @author wolf 	 */
 specifier|private
 specifier|final
 class|class
@@ -7717,14 +7718,12 @@ name|IOException
 block|{
 return|return
 name|pageLen
-operator|>
+operator|<
 literal|0
 condition|?
-name|pageLen
-operator|-
-name|offset
-else|:
 literal|0
+else|:
+name|pageLen
 return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.io.InputStream#read(byte[], int, int) 		 */
