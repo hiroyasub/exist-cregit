@@ -1448,8 +1448,9 @@ name|this
 argument_list|)
 expr_stmt|;
 return|return
-literal|null
+name|services
 return|;
+comment|// jmv null;
 block|}
 specifier|protected
 name|boolean
@@ -2214,6 +2215,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
