@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  * Copyright (C) 2001-03, Wolfgang M. Meier (meier@ifs. tu- darmstadt. de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  * Copyright (C) 2001-04, Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -199,7 +199,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -211,7 +211,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -1075,10 +1075,18 @@ argument_list|(
 literal|"no search terms"
 argument_list|)
 throw|;
+comment|//		if(contextSet instanceof VirtualNodeSet) {
 name|NodeSet
 name|hits
+index|[]
 init|=
-literal|null
+operator|new
+name|NodeSet
+index|[
+name|terms
+operator|.
+name|length
+index|]
 decl_stmt|;
 for|for
 control|(
@@ -1098,6 +1106,9 @@ operator|++
 control|)
 block|{
 name|hits
+index|[
+name|k
+index|]
 operator|=
 name|context
 operator|.
@@ -1122,33 +1133,108 @@ name|k
 index|]
 argument_list|)
 expr_stmt|;
+block|}
+name|NodeSet
+name|result
+init|=
+name|hits
+index|[
+literal|0
+index|]
+decl_stmt|;
+if|if
+condition|(
+name|result
+operator|!=
+literal|null
+condition|)
+block|{
+for|for
+control|(
+name|int
+name|k
+init|=
+literal|1
+init|;
+name|k
+operator|<
+name|hits
+operator|.
+name|length
+condition|;
+name|k
+operator|++
+control|)
+block|{
 if|if
 condition|(
 name|hits
-operator|==
+index|[
+name|k
+index|]
+operator|!=
 literal|null
 condition|)
-return|return
-name|NodeSet
-operator|.
-name|EMPTY_SET
-return|;
-if|if
-condition|(
+name|result
+operator|=
+operator|(
 name|type
 operator|==
 name|Constants
 operator|.
 name|FULLTEXT_AND
-condition|)
-name|contextSet
-operator|=
+condition|?
+name|result
+operator|.
+name|deepIntersection
+argument_list|(
 name|hits
+index|[
+name|k
+index|]
+argument_list|)
+else|:
+name|result
+operator|.
+name|union
+argument_list|(
+name|hits
+index|[
+name|k
+index|]
+argument_list|)
+operator|)
 expr_stmt|;
 block|}
 return|return
-name|hits
+name|result
 return|;
+block|}
+else|else
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
+comment|//		} else {
+comment|//			NodeSet result = null, hits;
+comment|//			for (int k = 0; k< terms.length; k++) {
+comment|//				hits =
+comment|//					context.getBroker().getTextEngine().getNodesContaining(
+comment|//						contextSet.getDocumentSet(),
+comment|//						contextSet,
+comment|//						terms[k]);
+comment|//				if(hits != null) {
+comment|//					if(result == null)
+comment|//						result = hits;
+comment|//					else if(type == Constants.FULLTEXT_AND)
+comment|//						result = result.intersection(hits);
+comment|//					else
+comment|//						result.addAll(hits);
+comment|//				}
+comment|//			}
+comment|//			return result == null ? NodeSet.EMPTY_SET : result;
+comment|//		}
 block|}
 specifier|public
 name|int

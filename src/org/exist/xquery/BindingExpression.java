@@ -417,6 +417,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//		long start = System.currentTimeMillis();
 name|whereExpr
 operator|.
 name|setInPredicate
@@ -636,6 +637,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|//			LOG.debug("where expression took " + (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;

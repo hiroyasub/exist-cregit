@@ -59,6 +59,10 @@ name|Node
 import|;
 end_import
 
+begin_comment
+comment|/**  * Tests if a node is of a given node type.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -235,19 +239,6 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"loaded node "
-operator|+
-name|proxy
-operator|.
-name|gid
-argument_list|)
-expr_stmt|;
 return|return
 name|matches
 argument_list|(

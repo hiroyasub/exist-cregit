@@ -766,6 +766,11 @@ name|BTreeException
 name|e
 parameter_list|)
 block|{
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|warn

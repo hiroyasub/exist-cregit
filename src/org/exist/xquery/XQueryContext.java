@@ -2249,8 +2249,6 @@ operator|new
 name|XQueryParser
 argument_list|(
 name|lexer
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|XQueryTreeParser
