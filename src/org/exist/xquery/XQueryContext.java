@@ -1966,6 +1966,21 @@ return|return
 name|func
 return|;
 block|}
+specifier|public
+name|Iterator
+name|localFunctions
+parameter_list|()
+block|{
+return|return
+name|declaredFunctions
+operator|.
+name|values
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
 comment|/** 	 * Declare a local variable. This is called by variable binding expressions like 	 * "let" and "for". 	 *  	 * @param var 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 name|LocalVariable

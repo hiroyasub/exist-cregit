@@ -1086,6 +1086,7 @@ condition|)
 block|{
 if|if
 condition|(
+operator|!
 name|endsWith
 condition|)
 block|{

@@ -481,6 +481,18 @@ name|getASTNode
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|prependMessage
+argument_list|(
+literal|"In call to function "
+operator|+
+name|expression
+operator|.
+name|pprint
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 name|e
 throw|;

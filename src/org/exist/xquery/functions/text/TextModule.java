@@ -148,6 +148,16 @@ name|functions
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDescription() 	 */
+specifier|public
+name|String
+name|getDescription
+parameter_list|()
+block|{
+return|return
+literal|"Extension functions for text searching"
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
 specifier|public
 name|String

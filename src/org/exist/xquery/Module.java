@@ -108,6 +108,12 @@ name|String
 name|getDefaultPrefix
 parameter_list|()
 function_decl|;
+comment|/** 	 * Return a short description of this module to be displayed to a user. 	 *  	 * @return 	 */
+specifier|public
+name|String
+name|getDescription
+parameter_list|()
+function_decl|;
 comment|/** 	 * Is this an internal module? 	 *  	 * @return 	 */
 specifier|public
 name|boolean

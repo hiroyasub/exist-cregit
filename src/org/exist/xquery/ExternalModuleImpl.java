@@ -141,6 +141,16 @@ operator|=
 name|prefix
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDescription() 	 */
+specifier|public
+name|String
+name|getDescription
+parameter_list|()
+block|{
+return|return
+literal|"User defined module"
+return|;
+block|}
 specifier|public
 name|UserDefinedFunction
 name|getFunction

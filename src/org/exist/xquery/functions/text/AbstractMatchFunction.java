@@ -179,9 +179,6 @@ specifier|abstract
 name|Sequence
 name|evalQuery
 parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
 name|NodeSet
 name|nodes
 parameter_list|,

@@ -206,7 +206,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-hours-from-dayTimeDuration"
+literal|"hours-from-duration"
 argument_list|,
 name|Module
 operator|.

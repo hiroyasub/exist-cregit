@@ -423,8 +423,6 @@ name|hits
 init|=
 name|processQuery
 argument_list|(
-name|context
-argument_list|,
 name|nodes
 argument_list|)
 decl_stmt|;

@@ -260,7 +260,7 @@ name|get
 argument_list|(
 name|Calendar
 operator|.
-name|HOUR
+name|HOUR_OF_DAY
 argument_list|)
 return|;
 case|case
@@ -311,6 +311,17 @@ literal|"Invalid argument to method getPart"
 argument_list|)
 throw|;
 block|}
+block|}
+specifier|public
+name|long
+name|getTimezoneOffset
+parameter_list|()
+block|{
+return|return
+name|tzOffset
+operator|*
+literal|60000
+return|;
 block|}
 specifier|protected
 name|void

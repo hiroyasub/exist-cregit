@@ -184,6 +184,10 @@ operator|+
 name|Dependency
 operator|.
 name|GLOBAL_VARS
+operator|+
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
 return|;
 else|else
 return|return
