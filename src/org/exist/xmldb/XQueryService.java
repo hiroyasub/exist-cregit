@@ -55,6 +55,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XMLResource
+import|;
+end_import
+
 begin_comment
 comment|/**  * Execute XQuery expressions on the database.  *   * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -71,6 +85,20 @@ specifier|public
 name|ResourceSet
 name|query
 parameter_list|(
+name|String
+name|query
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/** 	 * Process a query based on the result of a previous query. 	 * The XMLResource contains the result received from a previous 	 * query. 	 *  	 * @param res an XMLResource as obtained from a previous query. 	 * @param query the XPath query 	 */
+specifier|public
+name|ResourceSet
+name|query
+parameter_list|(
+name|XMLResource
+name|res
+parameter_list|,
 name|String
 name|query
 parameter_list|)
