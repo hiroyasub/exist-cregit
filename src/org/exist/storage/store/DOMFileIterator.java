@@ -606,6 +606,13 @@ name|offset
 operator|=
 literal|0
 expr_stmt|;
+name|db
+operator|.
+name|addToBuffer
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 block|}
 name|lastOffset
 operator|=
@@ -1295,6 +1302,13 @@ operator|.
 name|getCurrentPage
 argument_list|(
 name|page
+argument_list|)
+expr_stmt|;
+name|db
+operator|.
+name|addToBuffer
+argument_list|(
+name|p
 argument_list|)
 expr_stmt|;
 return|return

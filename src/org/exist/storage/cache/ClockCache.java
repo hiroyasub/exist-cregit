@@ -333,7 +333,6 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
-comment|//		System.out.println(old.getKey() + " -> " + item.getKey());
 name|items
 index|[
 name|bucket
@@ -386,6 +385,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//			LOG.debug("Page " + key + " not found in cache");
 name|fails
 operator|++
 expr_stmt|;
@@ -454,6 +454,7 @@ operator|==
 literal|null
 condition|)
 return|return;
+comment|//		LOG.debug("Removing from cache: " + key);
 for|for
 control|(
 name|int

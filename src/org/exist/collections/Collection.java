@@ -4274,25 +4274,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// jmv: Note: this was only in addDocument(DBBroker broker, String name, String data,)
-if|if
-condition|(
-name|oldDoc
-operator|.
-name|isLockedForWrite
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Document "
-operator|+
-name|name
-operator|+
-literal|" is locked for write"
-argument_list|)
-throw|;
 comment|// check if the document is locked by another user
 name|User
 name|lockUser

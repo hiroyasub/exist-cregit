@@ -23128,7 +23128,6 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
-comment|// jmv: trouble with bIg integer in XQuery source: step= new LiteralValue(context, new IntegerValue(Integer.parseInt(i.getText())));
 name|step
 operator|=
 operator|new

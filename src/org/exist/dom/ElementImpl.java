@@ -6876,6 +6876,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|//		ownerDocument.broker.checkTree(ownerDocument);
 return|return
 name|old
 return|;

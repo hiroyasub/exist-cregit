@@ -5024,12 +5024,15 @@ specifier|public
 name|void
 name|reindex
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|oldDoc
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeImpl
 name|node
 parameter_list|)
@@ -5083,6 +5086,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//		checkTree(doc);
 specifier|final
 name|long
 name|start
@@ -5093,6 +5097,27 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|// remove all old index keys from the btree
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+throws|throws
+name|ReadOnlyException
+block|{
+try|try
+block|{
 name|Value
 name|ref
 init|=
@@ -5105,7 +5130,6 @@ name|getDocId
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -5119,34 +5143,6 @@ argument_list|,
 name|ref
 argument_list|)
 decl_stmt|;
-specifier|final
-name|Lock
-name|lock
-init|=
-name|domDb
-operator|.
-name|getLock
-argument_list|()
-decl_stmt|;
-comment|// try to acquire a lock on the file
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-name|domDb
-operator|.
-name|setOwnerObject
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 specifier|final
 name|ArrayList
 name|nodes
@@ -5268,15 +5264,20 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|DBException
+name|BTreeException
 name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|debug
 argument_list|(
-literal|"db error during reindex"
+literal|"Exception while reindexing document: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -5290,40 +5291,28 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|debug
 argument_list|(
-literal|"io error during reindex"
+literal|"Exception while reindexing document: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-comment|// timed out
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"lock timed out during reindex"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return;
+return|return
+literal|null
+return|;
 block|}
-finally|finally
-block|{
-name|lock
+block|}
 operator|.
-name|release
+name|run
 argument_list|()
 expr_stmt|;
-block|}
 try|try
 block|{
 comment|// now reindex the nodes
@@ -5483,18 +5472,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|domDb
-operator|.
-name|debugPages
-argument_list|(
-name|doc
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 name|elementIndex
 operator|.
@@ -5522,6 +5499,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+comment|//		checkTree(doc);
 name|LOG
 operator|.
 name|debug
@@ -7092,19 +7070,16 @@ decl_stmt|;
 try|try
 block|{
 comment|//			checkTree(doc);
+comment|// remember this for later remove
 specifier|final
-name|NodeImpl
+name|long
 name|firstChild
 init|=
-operator|(
-name|NodeImpl
-operator|)
 name|doc
 operator|.
-name|getFirstChild
+name|getFirstChildAddress
 argument_list|()
 decl_stmt|;
-comment|//		    LOG.debug(domDb.debugPages(doc));
 comment|// dropping old structure index
 name|elementIndex
 operator|.
@@ -7164,6 +7139,11 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|domDb
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -7212,6 +7192,24 @@ operator|.
 name|warn
 argument_list|(
 literal|"method terminated"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"start() - "
+operator|+
+literal|"error while removing doc"
 argument_list|,
 name|e
 argument_list|)
@@ -7353,6 +7351,7 @@ block|}
 name|flush
 argument_list|()
 expr_stmt|;
+comment|//			checkTree(tempDoc);
 comment|// remove the old nodes
 operator|new
 name|DOMTransaction
@@ -7372,11 +7371,34 @@ operator|.
 name|removeAll
 argument_list|(
 name|firstChild
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|domDb
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"start() - "
+operator|+
+literal|"error while removing doc"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -7386,7 +7408,7 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
-comment|//			LOG.debug(domDb.debugPages(tempDoc));
+comment|//			checkTree(tempDoc);
 name|doc
 operator|.
 name|copyChildren
@@ -7445,6 +7467,12 @@ expr_stmt|;
 name|closeDocument
 argument_list|()
 expr_stmt|;
+comment|//			new DOMTransaction(this, domDb, Lock.READ_LOCK) {
+comment|//				public Object start() throws ReadOnlyException {
+comment|//					LOG.debug("Pages used: " + domDb.debugPages(doc));
+comment|//					return null;
+comment|//				}
+comment|//			}.run();
 name|saveCollection
 argument_list|(
 name|doc
@@ -7785,6 +7813,7 @@ specifier|public
 name|void
 name|checkTree
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -7800,6 +7829,48 @@ operator|.
 name|getFileName
 argument_list|()
 argument_list|)
+expr_stmt|;
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+throws|throws
+name|ReadOnlyException
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Pages used: "
+operator|+
+name|domDb
+operator|.
+name|debugPages
+argument_list|(
+name|doc
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
+operator|.
+name|run
+argument_list|()
 expr_stmt|;
 name|NodeList
 name|nodes
@@ -7877,6 +7948,100 @@ name|n
 argument_list|)
 expr_stmt|;
 block|}
+name|NodeRef
+name|ref
+init|=
+operator|new
+name|NodeRef
+argument_list|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
+decl_stmt|;
+specifier|final
+name|IndexQuery
+name|idx
+init|=
+operator|new
+name|IndexQuery
+argument_list|(
+name|IndexQuery
+operator|.
+name|TRUNC_RIGHT
+argument_list|,
+name|ref
+argument_list|)
+decl_stmt|;
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+block|{
+try|try
+block|{
+name|domDb
+operator|.
+name|findKeys
+argument_list|(
+name|idx
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|BTreeException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"start() - "
+operator|+
+literal|"error while removing doc"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"start() - "
+operator|+
+literal|"error while removing doc"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|null
+return|;
+block|}
+block|}
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
 block|}
 specifier|private
 name|void
@@ -8851,6 +9016,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -8872,7 +9038,12 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//throw new RuntimeException("node " + gid + " not found");
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -9007,7 +9178,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"node "
+literal|"Node "
 operator|+
 name|p
 operator|.
@@ -9035,13 +9206,36 @@ name|getFileName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|domDb
+operator|.
+name|debugPages
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Thread
 operator|.
 name|dumpStack
 argument_list|()
 expr_stmt|;
 return|return
-literal|null
+name|objectWith
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|,
+name|p
+operator|.
+name|gid
+argument_list|)
 return|;
 block|}
 name|NodeImpl
@@ -12840,13 +13034,6 @@ try|try
 block|{
 name|domDb
 operator|.
-name|setOwnerObject
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-name|domDb
-operator|.
 name|getLock
 argument_list|()
 operator|.
@@ -12855,6 +13042,13 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
+argument_list|)
+expr_stmt|;
+name|domDb
+operator|.
+name|setOwnerObject
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 name|content

@@ -71,16 +71,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -92,26 +82,6 @@ operator|.
 name|util
 operator|.
 name|LinkedList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
 import|;
 end_import
 
@@ -353,9 +323,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|ByteConversion
+name|cache
+operator|.
+name|LRDCache
 import|;
 end_import
 
@@ -367,7 +339,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|FastQSort
+name|ByteConversion
 import|;
 end_import
 
@@ -813,6 +785,13 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating overflow page"
+argument_list|)
+expr_stmt|;
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -1331,7 +1310,18 @@ operator|new
 name|OverflowDOMPage
 argument_list|()
 decl_stmt|;
-comment|//			LOG.debug("creating overflow page: " + overflow.getPageNum());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating overflow page: "
+operator|+
+name|overflow
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|overflow
 operator|.
 name|write
@@ -1599,7 +1589,18 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-comment|//                    LOG.debug("creating additional page: " + newPage.getPageNum());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating additional page: "
+operator|+
+name|newPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|newPage
 operator|.
 name|getPageHeader
@@ -1789,7 +1790,18 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-comment|//            LOG.debug("creating new page: " + newPage.getPageNum());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating new page: "
+operator|+
+name|newPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|long
 name|next
 init|=
@@ -3487,6 +3499,20 @@ name|nextPage
 argument_list|)
 expr_stmt|;
 block|}
+name|rec
+operator|.
+name|page
+operator|=
+name|getCurrentPage
+argument_list|(
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|firstSplitPage
@@ -3772,7 +3798,12 @@ name|buf
 operator|.
 name|append
 argument_list|(
+name|ItemId
+operator|.
+name|getId
+argument_list|(
 name|currentId
+argument_list|)
 operator|+
 literal|" "
 argument_list|)
@@ -4076,6 +4107,7 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
+comment|//            LOG.debug("New page: " + page.getPageNum());
 return|return
 name|page
 return|;
@@ -4616,13 +4648,37 @@ argument_list|,
 name|iter
 argument_list|)
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|address
 operator|==
 literal|0
-condition|?
+condition|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Node data location not found for node "
+operator|+
+name|node
+operator|.
+name|gid
+argument_list|)
+expr_stmt|;
+return|return
 name|KEY_NOT_FOUND
-else|:
+return|;
+block|}
+else|else
+return|return
 name|address
 return|;
 block|}
@@ -5408,6 +5464,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//        	LOG.debug("Loading page " + p + " from file");
 name|page
 operator|=
 operator|new
@@ -5770,7 +5827,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
-comment|//        LOG.debug("removing value " + rec.tid + " from " + rec.page.getPageNum() + "; " + rec.page.page.hashCode());
+comment|//        LOG.debug("removing value " + rec.tid + " from " + rec.page.getPageNum());
 name|int
 name|startOffset
 init|=
@@ -5993,7 +6050,9 @@ operator|-
 name|end
 argument_list|)
 expr_stmt|;
-name|ph
+name|rec
+operator|.
+name|page
 operator|.
 name|setDirty
 argument_list|(
@@ -6049,7 +6108,20 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//            LOG.debug("removing page " + rec.page.getPageNum());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"removing page "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|removePage
 argument_list|(
 name|rec
@@ -6559,6 +6631,13 @@ argument_list|(
 name|pnum
 argument_list|)
 decl_stmt|;
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|page
+argument_list|)
+expr_stmt|;
 name|buf
 operator|.
 name|append
@@ -7863,10 +7942,28 @@ argument_list|(
 name|forwardLink
 argument_list|)
 expr_stmt|;
-comment|//                        LOG.debug("following link. page = "
-comment|//                                + pageNr
-comment|//                                + "; tid="
-comment|//                                + targetId);
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"following link on "
+operator|+
+name|StorageAddress
+operator|.
+name|pageFromPointer
+argument_list|(
+name|forwardLink
+argument_list|)
+operator|+
+literal|" to page "
+operator|+
+name|pageNr
+operator|+
+literal|"; tid="
+operator|+
+name|targetId
+argument_list|)
+expr_stmt|;
 continue|continue
 name|outerLoop
 continue|;
@@ -7982,21 +8079,49 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"illegal link to next page"
+literal|"circular link to next page on "
+operator|+
+name|pageNr
 argument_list|)
 expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
-comment|//            			LOG.debug(
-comment|//            				owner.toString()
-comment|//            					+ ": tid "
-comment|//            					+ targetId
-comment|//            					+ " not found on "
-comment|//            					+ page.page.getPageInfo()
-comment|//            					+ ". Loading "
-comment|//            					+ pageNr);
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|owner
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|": tid "
+operator|+
+name|targetId
+operator|+
+literal|" not found on "
+operator|+
+name|page
+operator|.
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
+operator|+
+literal|". Loading "
+operator|+
+name|pageNr
+operator|+
+literal|"; contents: "
+operator|+
+name|debugPageContents
+argument_list|(
+name|page
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
@@ -8552,58 +8677,6 @@ literal|2
 return|;
 block|}
 specifier|public
-name|void
-name|setDataLength
-parameter_list|(
-name|int
-name|len
-parameter_list|)
-block|{
-name|dataLen
-operator|=
-name|len
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setNextDataPage
-parameter_list|(
-name|long
-name|page
-parameter_list|)
-block|{
-name|nextDataPage
-operator|=
-name|page
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setPrevDataPage
-parameter_list|(
-name|long
-name|page
-parameter_list|)
-block|{
-name|prevDataPage
-operator|=
-name|page
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setRecordCount
-parameter_list|(
-name|short
-name|recs
-parameter_list|)
-block|{
-name|records
-operator|=
-name|recs
-expr_stmt|;
-block|}
-specifier|public
 name|int
 name|write
 parameter_list|(
@@ -8705,6 +8778,58 @@ operator|+
 literal|2
 return|;
 block|}
+specifier|public
+name|void
+name|setDataLength
+parameter_list|(
+name|int
+name|len
+parameter_list|)
+block|{
+name|dataLen
+operator|=
+name|len
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setNextDataPage
+parameter_list|(
+name|long
+name|page
+parameter_list|)
+block|{
+name|nextDataPage
+operator|=
+name|page
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setPrevDataPage
+parameter_list|(
+name|long
+name|page
+parameter_list|)
+block|{
+name|prevDataPage
+operator|=
+name|page
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setRecordCount
+parameter_list|(
+name|short
+name|recs
+parameter_list|)
+block|{
+name|records
+operator|=
+name|recs
+expr_stmt|;
+block|}
 block|}
 specifier|protected
 specifier|final
@@ -8740,6 +8865,11 @@ name|saved
 init|=
 literal|true
 decl_stmt|;
+name|boolean
+name|invalidated
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|DOMPage
 parameter_list|()
@@ -8749,6 +8879,7 @@ operator|=
 name|createNewPage
 argument_list|()
 expr_stmt|;
+comment|//         LOG.debug("Created new page: " + page.getPageNum());
 name|data
 operator|=
 operator|new
@@ -9112,20 +9243,11 @@ argument_list|(
 name|len
 argument_list|)
 expr_stmt|;
-name|Value
-name|value
-init|=
-operator|new
-name|Value
-argument_list|(
-name|data
-argument_list|)
-decl_stmt|;
 name|writeValue
 argument_list|(
 name|page
 argument_list|,
-name|value
+name|data
 argument_list|)
 expr_stmt|;
 name|setDirty
@@ -9133,7 +9255,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//page.write();
 block|}
 catch|catch
 parameter_list|(
@@ -9149,6 +9270,27 @@ name|ioe
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|String
+name|dumpPage
+parameter_list|()
+block|{
+return|return
+literal|"Contents of page "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|hexDump
+argument_list|(
+name|data
+argument_list|)
+return|;
 block|}
 specifier|public
 name|boolean
@@ -9210,7 +9352,27 @@ name|page
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|invalidate
+parameter_list|()
+block|{
+name|invalidated
+operator|=
+literal|true
+expr_stmt|;
 block|}
+specifier|public
+name|boolean
+name|isInvalidated
+parameter_list|()
+block|{
+return|return
+name|invalidated
+return|;
+block|}
+block|}
+comment|/**      * This represents an overflow page. Overflow pages are created if      * the node data exceeds the size of one page. An overflow page is a      * sequence of DOMPages.      *        * @author wolf      *      */
 specifier|protected
 specifier|final
 class|class
@@ -9225,6 +9387,13 @@ specifier|public
 name|OverflowDOMPage
 parameter_list|()
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating overflow page"
+argument_list|)
+expr_stmt|;
 name|firstPage
 operator|=
 name|createNewPage
