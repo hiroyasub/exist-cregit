@@ -932,8 +932,6 @@ operator|.
 name|getNode
 argument_list|(
 name|p
-operator|.
-name|gid
 argument_list|)
 return|;
 block|}

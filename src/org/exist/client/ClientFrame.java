@@ -3001,6 +3001,11 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+name|client
+operator|.
+name|getResources
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

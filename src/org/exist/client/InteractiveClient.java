@@ -9164,11 +9164,6 @@ argument_list|,
 literal|450
 argument_list|)
 expr_stmt|;
-name|frame
-operator|.
-name|show
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -9972,6 +9967,17 @@ condition|(
 name|interactive
 condition|)
 block|{
+if|if
+condition|(
+name|startGUI
+condition|)
+name|frame
+operator|.
+name|setVisible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// enter interactive mode
 try|try
 block|{

@@ -1682,7 +1682,14 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
-comment|//		long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|sort
 argument_list|()
 expr_stmt|;
@@ -1940,8 +1947,31 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|//		LOG.debug(
-comment|//			"getChildren took " + (System.currentTimeMillis() - start) + "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"getChildren found "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -2533,7 +2563,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"getDescendants took "
+literal|"getDescendants found "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
 operator|+
 operator|(
 name|System

@@ -1089,6 +1089,10 @@ decl_stmt|;
 if|if
 condition|(
 name|tagging
+operator|==
+literal|null
+operator|||
+name|tagging
 operator|.
 name|equals
 argument_list|(
@@ -2437,6 +2441,13 @@ operator|.
 name|setIndenting
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|format
+operator|.
+name|setPreserveSpace
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 name|format

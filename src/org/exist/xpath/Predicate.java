@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeIDSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -188,6 +200,7 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+comment|//NodeIDSet result = new NodeIDSet();
 name|Expression
 name|first
 init|=
@@ -256,19 +269,6 @@ decl_stmt|;
 name|NodeProxy
 name|parent
 decl_stmt|;
-name|boolean
-name|includeSelf
-init|=
-operator|(
-name|context
-operator|instanceof
-name|VirtualNodeSet
-condition|?
-literal|false
-else|:
-literal|true
-operator|)
-decl_stmt|;
 name|long
 name|pid
 decl_stmt|;
@@ -309,7 +309,7 @@ name|l
 argument_list|,
 literal|false
 argument_list|,
-name|includeSelf
+literal|true
 argument_list|)
 expr_stmt|;
 if|if

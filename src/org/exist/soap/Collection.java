@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/**  * Collection.java  *  * This file was auto-generated from WSDL  * by the Apache Axis WSDL2Java emitter.  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -12,6 +8,10 @@ operator|.
 name|soap
 package|;
 end_package
+
+begin_comment
+comment|/**  * A wrapper around collection information.  *   * @author wolf  */
+end_comment
 
 begin_class
 specifier|public
@@ -47,6 +47,7 @@ name|Collection
 parameter_list|()
 block|{
 block|}
+comment|/** 	 * Return the list of child collections in this collection. 	 *  	 * @return 	 */
 specifier|public
 name|java
 operator|.
@@ -81,6 +82,7 @@ operator|=
 name|collections
 expr_stmt|;
 block|}
+comment|/** 	 * Return the list of resources contained in this collection. 	 * @return 	 */
 specifier|public
 name|java
 operator|.
@@ -204,6 +206,8 @@ literal|true
 operator|&&
 operator|(
 operator|(
+name|this
+operator|.
 name|collections
 operator|==
 literal|null
@@ -217,6 +221,8 @@ literal|null
 operator|)
 operator|||
 operator|(
+name|this
+operator|.
 name|collections
 operator|!=
 literal|null
@@ -229,6 +235,8 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
+name|this
+operator|.
 name|collections
 argument_list|,
 name|other
@@ -241,6 +249,8 @@ operator|)
 operator|&&
 operator|(
 operator|(
+name|this
+operator|.
 name|resources
 operator|==
 literal|null
@@ -254,6 +264,8 @@ literal|null
 operator|)
 operator|||
 operator|(
+name|this
+operator|.
 name|resources
 operator|!=
 literal|null
@@ -266,6 +278,8 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
+name|this
+operator|.
 name|resources
 argument_list|,
 name|other
@@ -522,6 +536,25 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
+name|typeDesc
+operator|.
+name|setXmlType
+argument_list|(
+operator|new
+name|javax
+operator|.
+name|xml
+operator|.
+name|namespace
+operator|.
+name|QName
+argument_list|(
+literal|"urn:exist"
+argument_list|,
+literal|"Collection"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|org
 operator|.
 name|apache
@@ -530,8 +563,8 @@ name|axis
 operator|.
 name|description
 operator|.
-name|FieldDesc
-name|field
+name|ElementDesc
+name|elemField
 init|=
 operator|new
 name|org
@@ -545,14 +578,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 decl_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"collections"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -571,7 +604,7 @@ literal|"collections"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -594,10 +627,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|=
 operator|new
 name|org
@@ -611,14 +644,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"resources"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -637,7 +670,7 @@ literal|"resources"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -660,11 +693,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 comment|/**      * Return type metadata object      */
 specifier|public
 specifier|static

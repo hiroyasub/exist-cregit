@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/**  * QueryResponseCollection.java  *  * This file was auto-generated from WSDL  * by the Apache Axis WSDL2Java emitter.  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -12,6 +8,10 @@ operator|.
 name|soap
 package|;
 end_package
+
+begin_comment
+comment|/**  * A wrapper class containing a query summary for all documents for which hits  * have been found in the collection.  */
+end_comment
 
 begin_class
 specifier|public
@@ -48,6 +48,7 @@ name|QueryResponseCollection
 parameter_list|()
 block|{
 block|}
+comment|/** 	 * Returns the name of the collection represented by this  	 * object. 	 *  	 * @return 	 */
 specifier|public
 name|java
 operator|.
@@ -80,6 +81,7 @@ operator|=
 name|collectionName
 expr_stmt|;
 block|}
+comment|/** 	 * Returns a query result summary for each of the documents 	 * for which hits have been found in this collection. 	 *  	 * @return 	 */
 specifier|public
 name|org
 operator|.
@@ -207,6 +209,8 @@ literal|true
 operator|&&
 operator|(
 operator|(
+name|this
+operator|.
 name|collectionName
 operator|==
 literal|null
@@ -220,10 +224,14 @@ literal|null
 operator|)
 operator|||
 operator|(
+name|this
+operator|.
 name|collectionName
 operator|!=
 literal|null
 operator|&&
+name|this
+operator|.
 name|collectionName
 operator|.
 name|equals
@@ -238,6 +246,8 @@ operator|)
 operator|&&
 operator|(
 operator|(
+name|this
+operator|.
 name|documents
 operator|==
 literal|null
@@ -251,6 +261,8 @@ literal|null
 operator|)
 operator|||
 operator|(
+name|this
+operator|.
 name|documents
 operator|!=
 literal|null
@@ -263,6 +275,8 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
+name|this
+operator|.
 name|documents
 argument_list|,
 name|other
@@ -452,6 +466,25 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
+name|typeDesc
+operator|.
+name|setXmlType
+argument_list|(
+operator|new
+name|javax
+operator|.
+name|xml
+operator|.
+name|namespace
+operator|.
+name|QName
+argument_list|(
+literal|"urn:exist"
+argument_list|,
+literal|"QueryResponseCollection"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|org
 operator|.
 name|apache
@@ -460,8 +493,8 @@ name|axis
 operator|.
 name|description
 operator|.
-name|FieldDesc
-name|field
+name|ElementDesc
+name|elemField
 init|=
 operator|new
 name|org
@@ -475,14 +508,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 decl_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"collectionName"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -501,7 +534,7 @@ literal|"collectionName"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -524,10 +557,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|=
 operator|new
 name|org
@@ -541,14 +574,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"documents"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -567,7 +600,7 @@ literal|"documents"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -590,11 +623,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 comment|/**      * Return type metadata object      */
 specifier|public
 specifier|static

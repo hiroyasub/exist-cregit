@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/**  * QueryResponseDocument.java  *  * This file was auto-generated from WSDL  * by the Apache Axis WSDL2Java emitter.  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -12,6 +8,10 @@ operator|.
 name|soap
 package|;
 end_package
+
+begin_comment
+comment|/**  * Wrapper class containing a query result summary for a single document.  *    * @author wolf  */
+end_comment
 
 begin_class
 specifier|public
@@ -41,6 +41,7 @@ name|QueryResponseDocument
 parameter_list|()
 block|{
 block|}
+comment|/** 	 * Returns the name of the document represented by this object. 	 *  	 * @return 	 */
 specifier|public
 name|java
 operator|.
@@ -73,6 +74,7 @@ operator|=
 name|documentName
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the number of hits found within this document. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getHitCount
@@ -186,6 +188,8 @@ literal|true
 operator|&&
 operator|(
 operator|(
+name|this
+operator|.
 name|documentName
 operator|==
 literal|null
@@ -199,10 +203,14 @@ literal|null
 operator|)
 operator|||
 operator|(
+name|this
+operator|.
 name|documentName
 operator|!=
 literal|null
 operator|&&
+name|this
+operator|.
 name|documentName
 operator|.
 name|equals
@@ -215,6 +223,8 @@ argument_list|)
 operator|)
 operator|)
 operator|&&
+name|this
+operator|.
 name|hitCount
 operator|==
 name|other
@@ -322,6 +332,25 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
+name|typeDesc
+operator|.
+name|setXmlType
+argument_list|(
+operator|new
+name|javax
+operator|.
+name|xml
+operator|.
+name|namespace
+operator|.
+name|QName
+argument_list|(
+literal|"urn:exist"
+argument_list|,
+literal|"QueryResponseDocument"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|org
 operator|.
 name|apache
@@ -330,8 +359,8 @@ name|axis
 operator|.
 name|description
 operator|.
-name|FieldDesc
-name|field
+name|ElementDesc
+name|elemField
 init|=
 operator|new
 name|org
@@ -345,14 +374,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 decl_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"documentName"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -371,7 +400,7 @@ literal|"documentName"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -394,10 +423,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|=
 operator|new
 name|org
@@ -411,14 +440,14 @@ operator|.
 name|ElementDesc
 argument_list|()
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setFieldName
 argument_list|(
 literal|"hitCount"
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlName
 argument_list|(
@@ -437,7 +466,7 @@ literal|"hitCount"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|field
+name|elemField
 operator|.
 name|setXmlType
 argument_list|(
@@ -460,11 +489,10 @@ name|typeDesc
 operator|.
 name|addFieldDesc
 argument_list|(
-name|field
+name|elemField
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 comment|/**      * Return type metadata object      */
 specifier|public
 specifier|static

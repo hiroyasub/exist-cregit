@@ -5055,15 +5055,6 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"trying to resolve "
-operator|+
-name|path
-argument_list|)
-expr_stmt|;
 name|File
 name|f
 init|=

@@ -1289,6 +1289,7 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+comment|//System.setProperty("xml.catalog.verbosity", "10");
 name|config
 operator|.
 name|put
@@ -1438,6 +1439,7 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 name|resolver
 operator|.
 name|getCatalog
@@ -1451,6 +1453,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

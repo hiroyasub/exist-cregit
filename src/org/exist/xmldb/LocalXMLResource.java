@@ -1032,6 +1032,20 @@ operator|.
 name|getDocumentElement
 argument_list|()
 return|;
+if|else if
+condition|(
+name|proxy
+operator|!=
+literal|null
+condition|)
+return|return
+name|document
+operator|.
+name|getNode
+argument_list|(
+name|proxy
+argument_list|)
+return|;
 else|else
 return|return
 name|document

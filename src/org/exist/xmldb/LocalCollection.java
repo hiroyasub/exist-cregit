@@ -303,6 +303,12 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|protected
+name|boolean
+name|needsSync
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|LocalCollection
 parameter_list|(
@@ -588,6 +594,11 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+if|if
+condition|(
+name|needsSync
+condition|)
+block|{
 name|DBBroker
 name|broker
 init|=
@@ -640,6 +651,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1850,6 +1862,10 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+name|needsSync
+operator|=
+literal|true
+expr_stmt|;
 name|load
 argument_list|(
 name|getPath
@@ -1878,21 +1894,6 @@ name|property
 argument_list|,
 name|value
 argument_list|)
-expr_stmt|;
-block|}
-specifier|protected
-name|void
-name|setUser
-parameter_list|(
-name|User
-name|user
-parameter_list|)
-block|{
-name|this
-operator|.
-name|user
-operator|=
-name|user
 expr_stmt|;
 block|}
 specifier|public
@@ -2151,6 +2152,10 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+name|needsSync
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/** 	 * Add a new observer to the list. Observers are just passed 	 * on to the indexer to be notified about the indexing progress. 	 */
 specifier|public

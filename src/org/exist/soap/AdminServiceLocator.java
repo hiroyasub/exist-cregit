@@ -153,10 +153,19 @@ name|MalformedURLException
 name|e
 parameter_list|)
 block|{
-return|return
-literal|null
-return|;
-comment|// unlikely as URL was validated in WSDL2Java
+throw|throw
+operator|new
+name|javax
+operator|.
+name|xml
+operator|.
+name|rpc
+operator|.
+name|ServiceException
+argument_list|(
+name|e
+argument_list|)
+throw|;
 block|}
 return|return
 name|getAdmin
