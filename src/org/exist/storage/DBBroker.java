@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  DBBroker.java - eXist Open Source Native XML Database  *  Copyright (C) 2001 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+comment|/*  *  DBBroker.java - eXist Open Source Native XML Database  *  Copyright (C) 2003 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -414,132 +414,12 @@ name|symbols
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Constructor for the DBBroker object      *      *@param  config  Description of the Parameter      */
-specifier|public
-name|DBBroker
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-name|this
-operator|.
-name|config
-operator|=
-name|config
-expr_stmt|;
-name|Boolean
-name|temp
+specifier|protected
+name|User
+name|user
+init|=
+literal|null
 decl_stmt|;
-if|if
-condition|(
-operator|(
-name|temp
-operator|=
-operator|(
-name|Boolean
-operator|)
-name|config
-operator|.
-name|getProperty
-argument_list|(
-literal|"indexer.case-sensitive"
-argument_list|)
-operator|)
-operator|!=
-literal|null
-condition|)
-name|caseSensitive
-operator|=
-name|temp
-operator|.
-name|booleanValue
-argument_list|()
-expr_stmt|;
-name|String
-name|sym
-decl_stmt|,
-name|dataDir
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|dataDir
-operator|=
-operator|(
-name|String
-operator|)
-name|config
-operator|.
-name|getProperty
-argument_list|(
-literal|"db-connection.data-dir"
-argument_list|)
-operator|)
-operator|==
-literal|null
-condition|)
-name|dataDir
-operator|=
-literal|"data"
-expr_stmt|;
-if|if
-condition|(
-name|symbols
-operator|==
-literal|null
-condition|)
-block|{
-name|symbolsFile
-operator|=
-operator|new
-name|File
-argument_list|(
-name|dataDir
-operator|+
-name|File
-operator|.
-name|separatorChar
-operator|+
-literal|"symbols.dbx"
-argument_list|)
-expr_stmt|;
-name|symbols
-operator|=
-operator|new
-name|SymbolTable
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|symbolsFile
-operator|.
-name|canRead
-argument_list|()
-condition|)
-block|{
-name|saveSymbols
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-name|loadSymbols
-argument_list|()
-expr_stmt|;
-block|}
-name|this
-operator|.
-name|pool
-operator|=
-name|pool
-expr_stmt|;
-block|}
 specifier|protected
 specifier|static
 name|void
@@ -729,7 +609,157 @@ return|return
 name|symbols
 return|;
 block|}
-comment|/**      *  find elements by their tag name. This method is comparable to the DOM's      *  method call getElementsByTagName. All elements matching tagName and      *  belonging to one of the documents in the DocumentSet docs are returned.      *      *@param  docs     Description of the Parameter      *@param  tagName  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Constructor for the DBBroker object 	 * 	 *@param  config  Description of the Parameter 	 */
+specifier|public
+name|DBBroker
+parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
+name|Configuration
+name|config
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+name|this
+operator|.
+name|config
+operator|=
+name|config
+expr_stmt|;
+name|Boolean
+name|temp
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|temp
+operator|=
+operator|(
+name|Boolean
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+literal|"indexer.case-sensitive"
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+name|caseSensitive
+operator|=
+name|temp
+operator|.
+name|booleanValue
+argument_list|()
+expr_stmt|;
+name|String
+name|sym
+decl_stmt|,
+name|dataDir
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|dataDir
+operator|=
+operator|(
+name|String
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+literal|"db-connection.data-dir"
+argument_list|)
+operator|)
+operator|==
+literal|null
+condition|)
+name|dataDir
+operator|=
+literal|"data"
+expr_stmt|;
+if|if
+condition|(
+name|symbols
+operator|==
+literal|null
+condition|)
+block|{
+name|symbolsFile
+operator|=
+operator|new
+name|File
+argument_list|(
+name|dataDir
+operator|+
+name|File
+operator|.
+name|separatorChar
+operator|+
+literal|"symbols.dbx"
+argument_list|)
+expr_stmt|;
+name|symbols
+operator|=
+operator|new
+name|SymbolTable
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|symbolsFile
+operator|.
+name|canRead
+argument_list|()
+condition|)
+block|{
+name|saveSymbols
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+name|loadSymbols
+argument_list|()
+expr_stmt|;
+block|}
+name|this
+operator|.
+name|pool
+operator|=
+name|pool
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setUser
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+block|{
+name|this
+operator|.
+name|user
+operator|=
+name|user
+expr_stmt|;
+block|}
+specifier|public
+name|User
+name|getUser
+parameter_list|()
+block|{
+return|return
+name|user
+return|;
+block|}
+comment|/** 	 *  find elements by their tag name. This method is comparable to the DOM's 	 *  method call getElementsByTagName. All elements matching tagName and 	 *  belonging to one of the documents in the DocumentSet docs are returned. 	 * 	 *@param  docs     Description of the Parameter 	 *@param  tagName  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -748,40 +778,16 @@ name|void
 name|flush
 parameter_list|()
 block|{
-comment|/*          *  do nothing          */
+comment|/* 		 *  do nothing 		 */
 block|}
-comment|/**      *  Gets the allDocuments attribute of the DBBroker object      *      *@return    The allDocuments value      */
-specifier|public
-name|DocumentSet
-name|getAllDocuments
-parameter_list|()
-block|{
-return|return
-name|getAllDocuments
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**      *  get all the documents in this database repository. The documents are      *  returned as a DocumentSet.      *      *@param  user  Description of the Parameter      *@return       The allDocuments value      */
+comment|/** 	 *  get all the documents in this database repository. The documents are 	 *  returned as a DocumentSet. 	 * 	 *@param  user  Description of the Parameter 	 *@return       The allDocuments value 	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
 name|getAllDocuments
-parameter_list|(
-name|User
-name|user
-parameter_list|)
+parameter_list|()
 function_decl|;
-comment|/**      *  find elements by their tag name. This method is comparable to the DOM's      *  method call getElementsByTagName. All elements matching tagName and      *  belonging to one of the documents in the DocumentSet docs are returned.      *      *@param  docs  Description of the Parameter      *@param  name  Description of the Parameter      *@return       The attributesByName value      */
+comment|/** 	 *  find elements by their tag name. This method is comparable to the DOM's 	 *  method call getElementsByTagName. All elements matching tagName and 	 *  belonging to one of the documents in the DocumentSet docs are returned. 	 * 	 *@param  docs  Description of the Parameter 	 *@param  name  Description of the Parameter 	 *@return       The attributesByName value 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -794,7 +800,7 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
-comment|/**      *  Gets the collection attribute of the DBBroker object      *      *@param  name  Description of the Parameter      *@return       The collection value      */
+comment|/** 	 *  Gets the collection attribute of the DBBroker object 	 * 	 *@param  name  Description of the Parameter 	 *@return       The collection value 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -819,7 +825,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  get the configuration.      *      *@return    The configuration value      */
+comment|/** 	 *  get the configuration. 	 * 	 *@return    The configuration value 	 */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -829,7 +835,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/**      *  Gets the dOMIterator attribute of the DBBroker object      *      *@param  doc  Description of the Parameter      *@param  gid  Description of the Parameter      *@return      The dOMIterator value      */
+comment|/** 	 *  Gets the dOMIterator attribute of the DBBroker object 	 * 	 *@param  doc  Description of the Parameter 	 *@param  gid  Description of the Parameter 	 *@return      The dOMIterator value 	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -849,7 +855,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the dOMIterator attribute of the DBBroker object      *      *@param  proxy  Description of the Parameter      *@return        The dOMIterator value      */
+comment|/** 	 *  Gets the dOMIterator attribute of the DBBroker object 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        The dOMIterator value 	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -882,108 +888,43 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      *  return the type of database this broker is connected to.      *      *@return    one of the constants defined above.      */
+comment|/** 	 *  return the type of database this broker is connected to. 	 * 	 *@return    one of the constants defined above. 	 */
 specifier|public
 specifier|abstract
 name|int
 name|getDatabaseType
 parameter_list|()
 function_decl|;
-comment|/**      *  Gets the document attribute of the DBBroker object      *      *@param  fileName                       Description of the Parameter      *@return                                The document value      *@exception  PermissionDeniedException  Description of the Exception      */
-specifier|public
-name|Document
-name|getDocument
-parameter_list|(
-name|String
-name|fileName
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-return|return
-name|getDocument
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|,
-name|fileName
-argument_list|)
-return|;
-block|}
-comment|/**      *  get a document by it's file name. The document's file name is used to      *  identify a document. File names are stored without the leading path.      *      *@param  fileName                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The document value      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  get a document by it's file name. The document's file name is used to 	 *  identify a document. File names are stored without the leading path. 	 * 	 *@param  fileName                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The document value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 specifier|abstract
 name|Document
 name|getDocument
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
 name|fileName
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Gets the documentsByCollection attribute of the DBBroker object      *      *@param  collection                     Description of the Parameter      *@return                                The documentsByCollection value      *@exception  PermissionDeniedException  Description of the Exception      */
-specifier|public
-name|DocumentSet
-name|getDocumentsByCollection
-parameter_list|(
-name|String
-name|collection
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-return|return
-name|getDocumentsByCollection
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|,
-name|collection
-argument_list|)
-return|;
-block|}
-comment|/**      *  Gets the documentsByCollection attribute of the DBBroker object      *      *@param  collection                     Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The documentsByCollection value      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Gets the documentsByCollection attribute of the DBBroker object 	 * 	 *@param  collection                     Description of the Parameter 	 *@return                                The documentsByCollection value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
 name|getDocumentsByCollection
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
 name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Gets the documentsByCollection attribute of the DBBroker object      *      *@param  collection                     Description of the Parameter      *@param  inclusive                      Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The documentsByCollection value      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Gets the documentsByCollection attribute of the DBBroker object 	 * 	 *@param  collection                     Description of the Parameter 	 *@param  inclusive                      Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The documentsByCollection value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
 name|getDocumentsByCollection
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
 name|collection
 parameter_list|,
@@ -993,46 +934,17 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Gets the documentsByDoctype attribute of the DBBroker object      *      *@param  doctype  Description of the Parameter      *@return          The documentsByDoctype value      */
-specifier|public
-name|DocumentSet
-name|getDocumentsByDoctype
-parameter_list|(
-name|String
-name|doctype
-parameter_list|)
-block|{
-return|return
-name|getDocumentsByDoctype
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|,
-name|doctype
-argument_list|)
-return|;
-block|}
-comment|/**      *  get all the documents in this database matching the given      *  document-type's name.      *      *@param  doctypeName  Description of the Parameter      *@param  user         Description of the Parameter      *@return              The documentsByDoctype value      */
+comment|/** 	 *  get all the documents in this database matching the given 	 *  document-type's name. 	 * 	 *@param  doctypeName  Description of the Parameter 	 *@param  user         Description of the Parameter 	 *@return              The documentsByDoctype value 	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
 name|getDocumentsByDoctype
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
-name|doctypeName
+name|doctype
 parameter_list|)
 function_decl|;
-comment|/**      *  get a common prefix for a namespace URI. It should be guaranteed that      *  only one prefix is associated with one namespace URI throughout the      *  database.      *      *@param  namespace  Description of the Parameter      *@return            The namespacePrefix value      */
+comment|/** 	 *  get a common prefix for a namespace URI. It should be guaranteed that 	 *  only one prefix is associated with one namespace URI throughout the 	 *  database. 	 * 	 *@param  namespace  Description of the Parameter 	 *@return            The namespacePrefix value 	 */
 specifier|public
 name|String
 name|getNamespacePrefix
@@ -1045,7 +957,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  get the namespace associated with the given prefix. Every broker      *  subclass should keep an internal map, where it stores the prefixes used      *  for different namespaces. It should be guaranteed that only one prefix      *  is associated with one namespace URI.      *      *@param  prefix  Description of the Parameter      *@return         The namespaceURI value      */
+comment|/** 	 *  get the namespace associated with the given prefix. Every broker 	 *  subclass should keep an internal map, where it stores the prefixes used 	 *  for different namespaces. It should be guaranteed that only one prefix 	 *  is associated with one namespace URI. 	 * 	 *@param  prefix  Description of the Parameter 	 *@return         The namespaceURI value 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1058,7 +970,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  Gets the nextDocId attribute of the DBBroker object      *      *@param  collection  Description of the Parameter      *@return             The nextDocId value      */
+comment|/** 	 *  Gets the nextDocId attribute of the DBBroker object 	 * 	 *@param  collection  Description of the Parameter 	 *@return             The nextDocId value 	 */
 specifier|public
 specifier|abstract
 name|int
@@ -1068,7 +980,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/**      *  Gets the nodeValue attribute of the DBBroker object      *      *@param  proxy  Description of the Parameter      *@return        The nodeValue value      */
+comment|/** 	 *  Gets the nodeValue attribute of the DBBroker object 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        The nodeValue value 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -1085,7 +997,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      *  get all the nodes containing the search terms given by the array expr      *  using the fulltext-index. Calls to this method are normally delegated to      *  the associated instance of class TextSearchEngine.      *      *@param  doc   the set of documents to search through      *@param  expr  an array of search terms. a query is executed for each of      *      them      *@return       NodeSet[] an array of node sets, one for each search term      */
+comment|/** 	 *  get all the nodes containing the search terms given by the array expr 	 *  using the fulltext-index. Calls to this method are normally delegated to 	 *  the associated instance of class TextSearchEngine. 	 * 	 *@param  doc   the set of documents to search through 	 *@param  expr  an array of search terms. a query is executed for each of 	 *      them 	 *@return       NodeSet[] an array of node sets, one for each search term 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -1100,7 +1012,7 @@ index|[]
 name|expr
 parameter_list|)
 function_decl|;
-comment|/**      *  Gets the nodesContaining attribute of the DBBroker object      *      *@param  doc   Description of the Parameter      *@param  expr  Description of the Parameter      *@param  type  Description of the Parameter      *@return       The nodesContaining value      */
+comment|/** 	 *  Gets the nodesContaining attribute of the DBBroker object 	 * 	 *@param  doc   Description of the Parameter 	 *@param  expr  Description of the Parameter 	 *@param  type  Description of the Parameter 	 *@return       The nodesContaining value 	 */
 specifier|public
 name|NodeSet
 index|[]
@@ -1128,7 +1040,7 @@ name|MATCH_EXACT
 argument_list|)
 return|;
 block|}
-comment|/**      *  find all Nodes whose string value is equal to expr in the document set.      *      *@param  context   Description of the Parameter      *@param  docs      Description of the Parameter      *@param  relation  Description of the Parameter      *@param  expr      Description of the Parameter      *@return           The nodesEqualTo value      */
+comment|/** 	 *  find all Nodes whose string value is equal to expr in the document set. 	 * 	 *@param  context   Description of the Parameter 	 *@param  docs      Description of the Parameter 	 *@param  relation  Description of the Parameter 	 *@param  expr      Description of the Parameter 	 *@return           The nodesEqualTo value 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -1147,7 +1059,7 @@ name|String
 name|expr
 parameter_list|)
 function_decl|;
-comment|/**      *  Gets the orCreateCollection attribute of the DBBroker object      *      *@param  name                           Description of the Parameter      *@return                                The orCreateCollection value      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve a collection by name. This method is used by NativeBroker.java. 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The orCreateCollection value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -1158,47 +1070,11 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-name|User
-name|user
-init|=
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-decl_stmt|;
-return|return
-name|getOrCreateCollection
-argument_list|(
-name|user
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-comment|/**      *  Retrieve a collection by name. This method is used by NativeBroker.java.      *      *@param  name                           Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The orCreateCollection value      *@exception  PermissionDeniedException  Description of the Exception      */
-specifier|public
-name|Collection
-name|getOrCreateCollection
-parameter_list|(
-name|User
-name|user
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
 return|return
 literal|null
 return|;
 block|}
-comment|/**      *  get a range of nodes with given owner document from the database,      *  starting at first and ending at last.      *      *@param  doc    the document the node's belong to      *@param  first  unique id of the first node to retrieve      *@param  last   unique id of the last node to retrieve      *@return        The range value      */
+comment|/** 	 *  get a range of nodes with given owner document from the database, 	 *  starting at first and ending at last. 	 * 	 *@param  doc    the document the node's belong to 	 *@param  first  unique id of the first node to retrieve 	 *@param  last   unique id of the last node to retrieve 	 *@return        The range value 	 */
 specifier|public
 specifier|abstract
 name|NodeList
@@ -1214,21 +1090,21 @@ name|long
 name|last
 parameter_list|)
 function_decl|;
-comment|/**      *  get an instance of the Serializer used for converting nodes back to XML.      *  Subclasses of DBBroker may have specialized subclasses of Serializer to      *  convert a node into an XML-string      *      *@return    The serializer value      */
+comment|/** 	 *  get an instance of the Serializer used for converting nodes back to XML. 	 *  Subclasses of DBBroker may have specialized subclasses of Serializer to 	 *  convert a node into an XML-string 	 * 	 *@return    The serializer value 	 */
 specifier|public
 specifier|abstract
 name|Serializer
 name|getSerializer
 parameter_list|()
 function_decl|;
-comment|/**      *  get the TextSearchEngine associated with this broker. Every subclass of      *  DBBroker will have it's own implementation of TextSearchEngine.      *      *@return    The textEngine value      */
+comment|/** 	 *  get the TextSearchEngine associated with this broker. Every subclass of 	 *  DBBroker will have it's own implementation of TextSearchEngine. 	 * 	 *@return    The textEngine value 	 */
 specifier|public
 specifier|abstract
 name|TextSearchEngine
 name|getTextEngine
 parameter_list|()
 function_decl|;
-comment|/**      *  Gets the caseSensitive attribute of the DBBroker object      *      *@return    The caseSensitive value      */
+comment|/** 	 *  Gets the caseSensitive attribute of the DBBroker object 	 * 	 *@return    The caseSensitive value 	 */
 specifier|public
 name|boolean
 name|isCaseSensitive
@@ -1238,14 +1114,14 @@ return|return
 name|caseSensitive
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 specifier|abstract
 name|Serializer
 name|newSerializer
 parameter_list|()
 function_decl|;
-comment|/**      *  get a node with given owner document and id from the database.      *      *@param  doc  the document the node belongs to      *@param  gid  the node's unique identifier      *@return      Description of the Return Value      */
+comment|/** 	 *  get a node with given owner document and id from the database. 	 * 	 *@param  doc  the document the node belongs to 	 *@param  gid  the node's unique identifier 	 *@return      Description of the Return Value 	 */
 specifier|public
 specifier|abstract
 name|Node
@@ -1267,7 +1143,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/**      *  associate a prefix with a given namespace. Every broker subclass should      *  keep an internal map, where it stores the prefixes used for different      *  namespaces. It should be guaranteed that only one prefix is associated      *  with one namespace URI.      *      *@param  namespace  Description of the Parameter      *@param  prefix     Description of the Parameter      */
+comment|/** 	 *  associate a prefix with a given namespace. Every broker subclass should 	 *  keep an internal map, where it stores the prefixes used for different 	 *  namespaces. It should be guaranteed that only one prefix is associated 	 *  with one namespace URI. 	 * 	 *@param  namespace  Description of the Parameter 	 *@param  prefix     Description of the Parameter 	 */
 specifier|public
 name|void
 name|registerNamespace
@@ -1281,92 +1157,31 @@ parameter_list|)
 block|{
 comment|// do nothing
 block|}
-comment|/**      *  Description of the Method      *      *@param  name                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  PermissionDeniedException  Description of the Exception      */
-specifier|public
-name|boolean
-name|removeCollection
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-return|return
-name|removeCollection
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-comment|/**      *  Description of the Method      *      *@param  name                           Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 specifier|abstract
 name|boolean
 name|removeCollection
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
 name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Description of the Method      *      *@param  docName                        Description of the Parameter      *@exception  PermissionDeniedException  Description of the Exception      */
-specifier|public
-name|void
-name|removeDocument
-parameter_list|(
-name|String
-name|docName
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-name|removeDocument
-argument_list|(
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
-argument_list|,
-name|docName
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      *  remove the document with the given document name.      *      *@param  docName                        Description of the Parameter      *@param  user                           Description of the Parameter      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  remove the document with the given document name. 	 * 	 *@param  docName                        Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 specifier|abstract
 name|void
 name|removeDocument
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|String
 name|docName
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Store a collection into the database.      *      *@param  collection  Description of the Parameter      */
+comment|/** 	 *  Store a collection into the database. 	 * 	 *@param  collection  Description of the Parameter 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1398,14 +1213,14 @@ name|closeDocument
 parameter_list|()
 block|{
 block|}
-comment|/**      *  shutdown the broker. All open files, jdbc connections etc. should be      *  closed.      */
+comment|/** 	 *  shutdown the broker. All open files, jdbc connections etc. should be 	 *  closed. 	 */
 specifier|public
 name|void
 name|shutdown
 parameter_list|()
 block|{
 block|}
-comment|/**      *  Store a node into the database. This method is called by the parser to      *  write a node to the storage backend.      *      *@param  node         the node to be stored      *@param  currentPath  path expression which points to this node's      *      element-parent or to itself if it is an element (currently used by      *      the Broker to determine if a node's content should be      *      fulltext-indexed).      */
+comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1418,7 +1233,7 @@ name|CharSequence
 name|currentPath
 parameter_list|)
 function_decl|;
-comment|/**      *  Store a document into the database.      *      *@param  doc  Description of the Parameter      */
+comment|/** 	 *  Store a document into the database. 	 * 	 *@param  doc  Description of the Parameter 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1434,9 +1249,9 @@ name|void
 name|sync
 parameter_list|()
 block|{
-comment|/*          *  do nothing          */
+comment|/* 		 *  do nothing 		 */
 block|}
-comment|/**      *  Update a node's data. This method is only used by the NativeBroker. To      *  keep nodes in a correct sequential order, it sometimes needs to update a      *  previous written node. Warning: don't use it for other purposes.      *  RelationalBroker does not implement this method.      *      *@param  node  Description of the Parameter      */
+comment|/** 	 *  Update a node's data. This method is only used by the NativeBroker. To 	 *  keep nodes in a correct sequential order, it sometimes needs to update a 	 *  previous written node. Warning: don't use it for other purposes. 	 *  RelationalBroker does not implement this method. 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|void
 name|update
@@ -1453,7 +1268,7 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Is the database running read-only? Returns false by default.      * Storage backends should override this if they support read-only      * mode.      *       * @return boolean      */
+comment|/** 	 * Is the database running read-only? Returns false by default. 	 * Storage backends should override this if they support read-only 	 * mode. 	 *  	 * @return boolean 	 */
 specifier|public
 name|boolean
 name|isReadOnly
@@ -1569,9 +1384,6 @@ name|Occurrences
 index|[]
 name|scanIndexedElements
 parameter_list|(
-name|User
-name|user
-parameter_list|,
 name|Collection
 name|collection
 parameter_list|,

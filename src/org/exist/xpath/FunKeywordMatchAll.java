@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -20,16 +20,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|EXistException
 import|;
 end_import
 
@@ -89,18 +79,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -134,15 +112,10 @@ decl_stmt|;
 comment|/**  Constructor for the FunKeywordMatchAll object */
 specifier|public
 name|FunKeywordMatchAll
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|)
+parameter_list|()
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 literal|"match-all"
 argument_list|)
 expr_stmt|;
@@ -151,17 +124,12 @@ comment|/** 	 *  Constructor for the FunKeywordMatchAll object 	 * 	 *@param  na
 specifier|public
 name|FunKeywordMatchAll
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|String
 name|name
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -224,6 +192,8 @@ literal|null
 condition|)
 name|processQuery
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
@@ -647,6 +617,9 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
+parameter_list|,
+name|StaticContext
+name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -658,6 +631,8 @@ literal|0
 decl_stmt|;
 name|processQuery
 argument_list|(
+name|context
+argument_list|,
 name|in_docs
 argument_list|)
 expr_stmt|;
@@ -844,6 +819,9 @@ specifier|protected
 name|void
 name|processQuery
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|in_docs
 parameter_list|)
@@ -892,20 +870,6 @@ argument_list|)
 argument_list|)
 operator|.
 name|literalValue
-expr_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|broker
-operator|=
-name|pool
-operator|.
-name|get
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -965,7 +929,10 @@ index|[
 name|j
 index|]
 operator|=
-name|broker
+name|context
+operator|.
+name|getBroker
+argument_list|()
 operator|.
 name|getNodesContaining
 argument_list|(
@@ -976,33 +943,6 @@ argument_list|,
 name|DBBroker
 operator|.
 name|MATCH_REGEXP
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"An error occurred while evaluating expression"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-finally|finally
-block|{
-name|pool
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}

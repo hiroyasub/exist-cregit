@@ -61,18 +61,6 @@ name|SingleNodeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -82,15 +70,10 @@ name|Function
 block|{
 specifier|public
 name|FunContains
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|)
+parameter_list|()
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 literal|"contains"
 argument_list|)
 expr_stmt|;

@@ -1372,8 +1372,6 @@ name|broker
 operator|.
 name|getDocument
 argument_list|(
-name|user
-argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
@@ -5127,6 +5125,13 @@ operator|.
 name|get
 argument_list|(  )
 expr_stmt|;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -5329,7 +5334,7 @@ init|=
 operator|new
 name|StaticContext
 argument_list|(
-name|user
+name|broker
 argument_list|)
 decl_stmt|;
 name|XPathLexer2
@@ -5360,11 +5365,6 @@ init|=
 operator|new
 name|XPathTreeParser2
 argument_list|(
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -5420,12 +5420,7 @@ name|expr
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|broker
-operator|.
-name|getBrokerPool
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|treeParser
 operator|.
@@ -5502,7 +5497,9 @@ init|=
 name|expr
 operator|.
 name|preselect
-argument_list|(  )
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

@@ -83,18 +83,6 @@ name|NodeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    02 August 2002  */
 end_comment
@@ -109,22 +97,17 @@ block|{
 comment|/**  Constructor for the RootNode object */
 specifier|public
 name|RootNode
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|)
+parameter_list|()
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|SELF_AXIS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|Value
 name|eval
@@ -215,7 +198,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|pprint

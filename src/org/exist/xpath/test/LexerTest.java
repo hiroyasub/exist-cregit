@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -258,16 +268,6 @@ operator|.
 name|collections
 operator|.
 name|AST
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
 import|;
 end_import
 
@@ -511,7 +511,7 @@ init|=
 operator|new
 name|StaticContext
 argument_list|(
-name|user
+name|broker
 argument_list|)
 decl_stmt|;
 name|XPathLexer2
@@ -542,8 +542,6 @@ init|=
 operator|new
 name|XPathTreeParser2
 argument_list|(
-name|pool
-argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -601,9 +599,7 @@ name|expr
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|treeParser
 operator|.
@@ -643,7 +639,9 @@ init|=
 name|expr
 operator|.
 name|preselect
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|Value
 name|resultValue

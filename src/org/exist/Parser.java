@@ -2614,6 +2614,13 @@ argument_list|(
 literal|"database is read-only"
 argument_list|)
 throw|;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|fileName
@@ -2793,8 +2800,6 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
-name|user
-argument_list|,
 name|collName
 argument_list|)
 expr_stmt|;
@@ -3272,6 +3277,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 name|validate
 operator|=
 literal|true
@@ -3400,8 +3412,6 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
-name|user
-argument_list|,
 name|collName
 argument_list|)
 expr_stmt|;

@@ -137,21 +137,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
-name|BrokerPool
+name|DBBroker
 import|;
 end_import
 
@@ -202,11 +190,8 @@ comment|/** 	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
 specifier|public
 name|Rename
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
-name|User
-name|user
+name|DBBroker
+name|broker
 parameter_list|,
 name|DocumentSet
 name|docs
@@ -217,9 +202,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
-name|user
+name|broker
 argument_list|,
 name|docs
 argument_list|,
@@ -390,7 +373,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -403,7 +389,10 @@ name|PermissionDeniedException
 argument_list|(
 literal|"write access to collection denied; user="
 operator|+
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -419,7 +408,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.

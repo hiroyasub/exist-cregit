@@ -1988,6 +1988,13 @@ operator|==
 literal|null
 condition|)
 return|return;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 name|Collection
 name|home
 init|=

@@ -349,7 +349,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -367,8 +369,6 @@ operator|.
 name|allDocs
 argument_list|(
 name|broker
-argument_list|,
-name|user
 argument_list|,
 literal|true
 argument_list|)
@@ -439,9 +439,7 @@ init|=
 operator|new
 name|XUpdateProcessor
 argument_list|(
-name|pool
-argument_list|,
-name|user
+name|broker
 argument_list|,
 name|docs
 argument_list|)

@@ -10,6 +10,8 @@ operator|.
 name|exist
 operator|.
 name|collections
+operator|.
+name|triggers
 package|;
 end_package
 
@@ -32,6 +34,30 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|CollectionConfigurationException
 import|;
 end_import
 
@@ -122,7 +148,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Abstract default implementation of a Trigger. This implementation just forwards  * all SAX events to the output content handler.  *    * @author wolf  */
 end_comment
 
 begin_class
@@ -160,32 +186,51 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
+name|Collection
+name|collection
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
 name|boolean
 name|validating
 init|=
 literal|true
 decl_stmt|;
+comment|/** 	 * Configure the trigger. The default implementation just stores the parent collection 	 * reference into the field {@link #collection collection}. Use method {@link #getCollection() getCollection} 	 * to later retrieve the collection.  	 */
 specifier|public
-specifier|abstract
 name|void
 name|configure
-parameter_list|(
-name|Map
-name|parameters
-parameter_list|)
-throws|throws
-name|CollectionConfigurationException
-function_decl|;
-specifier|public
-specifier|abstract
-name|void
-name|prepare
 parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
 name|Collection
+name|parent
+parameter_list|,
+name|Map
+name|parameters
+parameter_list|)
+throws|throws
+name|CollectionConfigurationException
+block|{
+name|this
+operator|.
 name|collection
+operator|=
+name|parent
+expr_stmt|;
+block|}
+specifier|public
+specifier|abstract
+name|void
+name|prepare
+parameter_list|(
+name|int
+name|event
+parameter_list|,
+name|DBBroker
+name|broker
 parameter_list|,
 name|String
 name|documentName
@@ -218,6 +263,15 @@ parameter_list|()
 block|{
 return|return
 name|validating
+return|;
+block|}
+specifier|public
+name|Collection
+name|getCollection
+parameter_list|()
+block|{
+return|return
+name|collection
 return|;
 block|}
 specifier|public
@@ -264,16 +318,6 @@ name|ContentHandler
 name|handler
 parameter_list|)
 block|{
-name|getLogger
-argument_list|()
-operator|.
-name|debug
-argument_list|(
-literal|"output handler = "
-operator|+
-name|handler
-argument_list|)
-expr_stmt|;
 name|outputHandler
 operator|=
 name|handler
@@ -309,15 +353,6 @@ name|Locator
 name|locator
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setting document locator"
-argument_list|)
-expr_stmt|;
 name|outputHandler
 operator|.
 name|setDocumentLocator

@@ -103,17 +103,12 @@ comment|/**      *  Constructor for the Function object      *      *@param  nam
 specifier|public
 name|Function
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|String
 name|name
 parameter_list|)
 block|{
 name|super
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -125,15 +120,10 @@ block|}
 comment|/**  Constructor for the Function object */
 specifier|public
 name|Function
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|)
+parameter_list|()
 block|{
 name|super
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**      *  Description of the Method      *      *@param  name    Description of the Parameter      *@return         Description of the Return Value      */
@@ -142,9 +132,6 @@ specifier|static
 name|Function
 name|createFunction
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -168,11 +155,11 @@ name|Class
 name|constructorArgs
 index|[]
 init|=
-block|{
-name|BrokerPool
-operator|.
-name|class
-block|}
+operator|new
+name|Class
+index|[
+literal|0
+index|]
 decl_stmt|;
 name|Class
 name|fclass
@@ -227,16 +214,9 @@ init|=
 operator|new
 name|Object
 index|[
-literal|1
-index|]
-decl_stmt|;
-name|initArgs
-index|[
 literal|0
 index|]
-operator|=
-name|pool
-expr_stmt|;
+decl_stmt|;
 name|Object
 name|obj
 init|=
@@ -292,7 +272,11 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"function not found"
+literal|"function "
+operator|+
+name|name
+operator|+
+literal|" not found"
 argument_list|)
 throw|;
 block|}

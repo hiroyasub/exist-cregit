@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-01,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public  * License along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id:  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public  * License along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,16 @@ operator|.
 name|dom
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
 
 begin_import
 import|import
@@ -39,11 +49,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Iterator
+name|xpath
+operator|.
+name|value
+operator|.
+name|AbstractSequence
 import|;
 end_import
 
@@ -51,11 +65,27 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|xpath
 operator|.
-name|NodeList
+name|value
+operator|.
+name|SequenceIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -71,6 +101,18 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for all node set implementations returned by most  * xpath expressions. It implements NodeList plus some additional  * methods needed by the xpath engine.  *  * There are three classes extending NodeSet: NodeIDSet, ArraySet  * and VirtualNodeSet. Depending on the context each of these  * implementations has its advantages and drawbacks. ArraySet  * uses a sorted array and binary search, while NodeIDSet is based  * on a HashSet. VirtualNodeSet is specifically used for steps like  * descendant::* etc..  */
 end_comment
@@ -80,6 +122,8 @@ specifier|public
 specifier|abstract
 class|class
 name|NodeSet
+extends|extends
+name|AbstractSequence
 implements|implements
 name|NodeList
 block|{
@@ -130,6 +174,25 @@ name|Iterator
 name|iterator
 parameter_list|()
 function_decl|;
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+specifier|public
+specifier|abstract
+name|SequenceIterator
+name|iterate
+parameter_list|()
+function_decl|;
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getItemType() 	 */
+specifier|public
+name|int
+name|getItemType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|NODE
+return|;
+block|}
 specifier|public
 specifier|abstract
 name|boolean
@@ -1999,11 +2062,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|NodeIDSet
+name|TreeNodeSet
 name|r
 init|=
 operator|new
-name|NodeIDSet
+name|TreeNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy

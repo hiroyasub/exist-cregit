@@ -117,6 +117,9 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
+parameter_list|,
+name|StaticContext
+name|context
 parameter_list|)
 throws|throws
 name|XPathException

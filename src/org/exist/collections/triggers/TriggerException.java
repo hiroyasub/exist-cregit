@@ -10,6 +10,8 @@ operator|.
 name|exist
 operator|.
 name|collections
+operator|.
+name|triggers
 package|;
 end_package
 

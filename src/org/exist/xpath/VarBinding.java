@@ -49,18 +49,6 @@ name|NodeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -81,9 +69,6 @@ decl_stmt|;
 specifier|public
 name|VarBinding
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|String
 name|name
 parameter_list|,
@@ -93,8 +78,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 literal|0
 argument_list|,
 literal|null
@@ -116,17 +99,12 @@ block|}
 specifier|public
 name|VarBinding
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|String
 name|name
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 literal|0
 argument_list|,
 literal|null

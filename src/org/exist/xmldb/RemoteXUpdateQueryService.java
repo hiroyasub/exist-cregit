@@ -497,9 +497,8 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+literal|"XUpdateQueryService"
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Service#getVersion() 	 */
@@ -510,9 +509,8 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+literal|"1.0"
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Service#setCollection(org.xmldb.api.base.Collection) 	 */
@@ -526,7 +524,13 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|// TODO Auto-generated method stub
+name|parent
+operator|=
+operator|(
+name|RemoteCollection
+operator|)
+name|col
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Configurable#getProperty(java.lang.String) 	 */
 specifier|public
@@ -539,7 +543,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -558,7 +561,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

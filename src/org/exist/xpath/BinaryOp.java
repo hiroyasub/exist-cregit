@@ -49,18 +49,6 @@ name|NodeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_class
 specifier|public
 specifier|abstract
@@ -71,15 +59,10 @@ name|PathExpr
 block|{
 specifier|public
 name|BinaryOp
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|)
+parameter_list|()
 block|{
 name|super
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -124,6 +107,9 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
+parameter_list|,
+name|StaticContext
+name|context
 parameter_list|)
 throws|throws
 name|XPathException

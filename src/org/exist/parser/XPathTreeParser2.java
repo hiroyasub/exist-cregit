@@ -315,10 +315,6 @@ implements|implements
 name|XPathParser2TokenTypes
 block|{
 specifier|private
-name|BrokerPool
-name|pool
-decl_stmt|;
-specifier|private
 name|StaticContext
 name|context
 decl_stmt|;
@@ -341,21 +337,12 @@ decl_stmt|;
 specifier|public
 name|XPathTreeParser2
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|StaticContext
 name|context
 parameter_list|)
 block|{
 name|this
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|pool
-operator|=
-name|pool
 expr_stmt|;
 name|this
 operator|.
@@ -517,7 +504,7 @@ name|XPOINTER
 case|:
 block|{
 name|AST
-name|__t314
+name|__t90
 init|=
 name|_t
 decl_stmt|;
@@ -556,7 +543,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t314
+name|__t90
 expr_stmt|;
 name|_t
 operator|=
@@ -572,7 +559,7 @@ name|XPOINTER_ID
 case|:
 block|{
 name|AST
-name|__t315
+name|__t91
 init|=
 name|_t
 decl_stmt|;
@@ -621,7 +608,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t315
+name|__t91
 expr_stmt|;
 name|_t
 operator|=
@@ -635,9 +622,7 @@ name|fun
 init|=
 operator|new
 name|FunId
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|fun
 operator|.
@@ -769,7 +754,7 @@ name|LITERAL_or
 case|:
 block|{
 name|AST
-name|__t318
+name|__t94
 init|=
 name|_t
 decl_stmt|;
@@ -800,18 +785,14 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PathExpr
 name|right
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|expr
 argument_list|(
@@ -837,7 +818,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t318
+name|__t94
 expr_stmt|;
 name|_t
 operator|=
@@ -851,9 +832,7 @@ name|or
 init|=
 operator|new
 name|OpOr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|or
 operator|.
@@ -883,7 +862,7 @@ name|LITERAL_and
 case|:
 block|{
 name|AST
-name|__t319
+name|__t95
 init|=
 name|_t
 decl_stmt|;
@@ -914,18 +893,14 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PathExpr
 name|right
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|expr
 argument_list|(
@@ -951,7 +926,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t319
+name|__t95
 expr_stmt|;
 name|_t
 operator|=
@@ -965,9 +940,7 @@ name|and
 init|=
 operator|new
 name|OpAnd
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|and
 operator|.
@@ -997,7 +970,7 @@ name|PARENTHESIZED
 case|:
 block|{
 name|AST
-name|__t320
+name|__t96
 init|=
 name|_t
 decl_stmt|;
@@ -1028,9 +1001,7 @@ name|expr
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|path
 operator|.
@@ -1052,7 +1023,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t320
+name|__t96
 expr_stmt|;
 name|_t
 operator|=
@@ -1068,7 +1039,7 @@ name|UNION
 case|:
 block|{
 name|AST
-name|__t321
+name|__t97
 init|=
 name|_t
 decl_stmt|;
@@ -1099,18 +1070,14 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PathExpr
 name|right
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|expr
 argument_list|(
@@ -1136,7 +1103,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t321
+name|__t97
 expr_stmt|;
 name|_t
 operator|=
@@ -1151,8 +1118,6 @@ init|=
 operator|new
 name|Union
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -1172,7 +1137,7 @@ name|ABSOLUTE_SLASH
 case|:
 block|{
 name|AST
-name|__t322
+name|__t98
 init|=
 name|_t
 decl_stmt|;
@@ -1203,9 +1168,7 @@ name|root
 init|=
 operator|new
 name|RootNode
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|path
 operator|.
@@ -1408,7 +1371,7 @@ block|}
 block|}
 name|_t
 operator|=
-name|__t322
+name|__t98
 expr_stmt|;
 name|_t
 operator|=
@@ -1424,7 +1387,7 @@ name|ABSOLUTE_DSLASH
 case|:
 block|{
 name|AST
-name|__t324
+name|__t100
 init|=
 name|_t
 decl_stmt|;
@@ -1455,9 +1418,7 @@ name|root
 init|=
 operator|new
 name|RootNode
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|path
 operator|.
@@ -1646,7 +1607,7 @@ block|}
 block|}
 name|_t
 operator|=
-name|__t324
+name|__t100
 expr_stmt|;
 name|_t
 operator|=
@@ -2524,7 +2485,7 @@ name|PREFIX_WILDCARD
 case|:
 block|{
 name|AST
-name|__t330
+name|__t106
 init|=
 name|_t
 decl_stmt|;
@@ -2573,7 +2534,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t330
+name|__t106
 expr_stmt|;
 name|_t
 operator|=
@@ -2617,7 +2578,7 @@ name|NCNAME
 case|:
 block|{
 name|AST
-name|__t331
+name|__t107
 init|=
 name|_t
 decl_stmt|;
@@ -2672,7 +2633,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t331
+name|__t107
 expr_stmt|;
 name|_t
 operator|=
@@ -2848,8 +2809,6 @@ operator|=
 operator|new
 name|LocationStep
 argument_list|(
-name|pool
-argument_list|,
 name|axis
 argument_list|,
 name|test
@@ -2863,7 +2822,7 @@ name|step
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop333
+name|_loop109
 label|:
 do|do
 block|{
@@ -2907,7 +2866,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop333
+name|_loop109
 break|;
 block|}
 block|}
@@ -3013,7 +2972,7 @@ name|PREFIX_WILDCARD
 case|:
 block|{
 name|AST
-name|__t335
+name|__t111
 init|=
 name|_t
 decl_stmt|;
@@ -3062,7 +3021,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t335
+name|__t111
 expr_stmt|;
 name|_t
 operator|=
@@ -3093,7 +3052,7 @@ name|NCNAME
 case|:
 block|{
 name|AST
-name|__t336
+name|__t112
 init|=
 name|_t
 decl_stmt|;
@@ -3148,7 +3107,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t336
+name|__t112
 expr_stmt|;
 name|_t
 operator|=
@@ -3219,8 +3178,6 @@ operator|=
 operator|new
 name|LocationStep
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
@@ -3244,7 +3201,7 @@ name|step
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop338
+name|_loop114
 label|:
 do|do
 block|{
@@ -3288,7 +3245,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop338
+name|_loop114
 break|;
 block|}
 block|}
@@ -3331,8 +3288,6 @@ operator|=
 operator|new
 name|LocationStep
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|SELF_AXIS
@@ -3354,7 +3309,7 @@ name|step
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop340
+name|_loop116
 label|:
 do|do
 block|{
@@ -3398,7 +3353,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop340
+name|_loop116
 break|;
 block|}
 block|}
@@ -3441,8 +3396,6 @@ operator|=
 operator|new
 name|LocationStep
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|PARENT_AXIS
@@ -3464,7 +3417,7 @@ name|step
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop342
+name|_loop118
 label|:
 do|do
 block|{
@@ -3508,7 +3461,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop342
+name|_loop118
 break|;
 block|}
 block|}
@@ -3525,7 +3478,7 @@ name|SLASH
 case|:
 block|{
 name|AST
-name|__t343
+name|__t119
 init|=
 name|_t
 decl_stmt|;
@@ -3730,7 +3683,7 @@ block|}
 block|}
 name|_t
 operator|=
-name|__t343
+name|__t119
 expr_stmt|;
 name|_t
 operator|=
@@ -3779,7 +3732,7 @@ name|DSLASH
 case|:
 block|{
 name|AST
-name|__t345
+name|__t121
 init|=
 name|_t
 decl_stmt|;
@@ -3997,7 +3950,7 @@ block|}
 block|}
 name|_t
 operator|=
-name|__t345
+name|__t121
 expr_stmt|;
 name|_t
 operator|=
@@ -4085,18 +4038,14 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PathExpr
 name|right
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -4121,7 +4070,7 @@ name|EQ
 case|:
 block|{
 name|AST
-name|__t366
+name|__t142
 init|=
 name|_t
 decl_stmt|;
@@ -4174,8 +4123,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4194,7 +4141,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t366
+name|__t142
 expr_stmt|;
 name|_t
 operator|=
@@ -4210,7 +4157,7 @@ name|NEQ
 case|:
 block|{
 name|AST
-name|__t367
+name|__t143
 init|=
 name|_t
 decl_stmt|;
@@ -4263,8 +4210,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4283,7 +4228,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t367
+name|__t143
 expr_stmt|;
 name|_t
 operator|=
@@ -4299,7 +4244,7 @@ name|LT
 case|:
 block|{
 name|AST
-name|__t368
+name|__t144
 init|=
 name|_t
 decl_stmt|;
@@ -4352,8 +4297,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4372,7 +4315,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t368
+name|__t144
 expr_stmt|;
 name|_t
 operator|=
@@ -4388,7 +4331,7 @@ name|LTEQ
 case|:
 block|{
 name|AST
-name|__t369
+name|__t145
 init|=
 name|_t
 decl_stmt|;
@@ -4441,8 +4384,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4461,7 +4402,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t369
+name|__t145
 expr_stmt|;
 name|_t
 operator|=
@@ -4477,7 +4418,7 @@ name|GT
 case|:
 block|{
 name|AST
-name|__t370
+name|__t146
 init|=
 name|_t
 decl_stmt|;
@@ -4530,8 +4471,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4550,7 +4489,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t370
+name|__t146
 expr_stmt|;
 name|_t
 operator|=
@@ -4566,7 +4505,7 @@ name|GTEQ
 case|:
 block|{
 name|AST
-name|__t371
+name|__t147
 init|=
 name|_t
 decl_stmt|;
@@ -4619,8 +4558,6 @@ operator|=
 operator|new
 name|OpEquals
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -4639,7 +4576,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t371
+name|__t147
 expr_stmt|;
 name|_t
 operator|=
@@ -4717,9 +4654,7 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -4744,7 +4679,7 @@ name|ANDEQ
 case|:
 block|{
 name|AST
-name|__t363
+name|__t139
 init|=
 name|_t
 decl_stmt|;
@@ -4804,7 +4739,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t363
+name|__t139
 expr_stmt|;
 name|_t
 operator|=
@@ -4819,8 +4754,6 @@ init|=
 operator|new
 name|ExtFulltext
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|FULLTEXT_AND
@@ -4837,6 +4770,8 @@ name|exprCont
 operator|.
 name|addTerms
 argument_list|(
+name|context
+argument_list|,
 name|c
 operator|.
 name|getText
@@ -4857,7 +4792,7 @@ name|OREQ
 case|:
 block|{
 name|AST
-name|__t364
+name|__t140
 init|=
 name|_t
 decl_stmt|;
@@ -4917,7 +4852,7 @@ argument_list|()
 expr_stmt|;
 name|_t
 operator|=
-name|__t364
+name|__t140
 expr_stmt|;
 name|_t
 operator|=
@@ -4932,8 +4867,6 @@ init|=
 operator|new
 name|ExtFulltext
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|FULLTEXT_OR
@@ -4950,6 +4883,8 @@ name|exprCont
 operator|.
 name|addTerms
 argument_list|(
+name|context
+argument_list|,
 name|c2
 operator|.
 name|getText
@@ -5022,18 +4957,14 @@ name|left
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|PathExpr
 name|right
 init|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -5058,7 +4989,7 @@ name|PLUS
 case|:
 block|{
 name|AST
-name|__t348
+name|__t124
 init|=
 name|_t
 decl_stmt|;
@@ -5108,7 +5039,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t348
+name|__t124
 expr_stmt|;
 name|_t
 operator|=
@@ -5123,8 +5054,6 @@ init|=
 operator|new
 name|OpNumeric
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -5152,7 +5081,7 @@ name|MINUS
 case|:
 block|{
 name|AST
-name|__t349
+name|__t125
 init|=
 name|_t
 decl_stmt|;
@@ -5202,7 +5131,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t349
+name|__t125
 expr_stmt|;
 name|_t
 operator|=
@@ -5217,8 +5146,6 @@ init|=
 operator|new
 name|OpNumeric
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -5246,7 +5173,7 @@ name|UNARY_MINUS
 case|:
 block|{
 name|AST
-name|__t350
+name|__t126
 init|=
 name|_t
 decl_stmt|;
@@ -5285,7 +5212,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t350
+name|__t126
 expr_stmt|;
 name|_t
 operator|=
@@ -5300,8 +5227,6 @@ init|=
 operator|new
 name|UnaryExpr
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|MINUS
@@ -5332,7 +5257,7 @@ name|UNARY_PLUS
 case|:
 block|{
 name|AST
-name|__t351
+name|__t127
 init|=
 name|_t
 decl_stmt|;
@@ -5371,7 +5296,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t351
+name|__t127
 expr_stmt|;
 name|_t
 operator|=
@@ -5386,8 +5311,6 @@ init|=
 operator|new
 name|UnaryExpr
 argument_list|(
-name|pool
-argument_list|,
 name|Constants
 operator|.
 name|PLUS
@@ -5418,7 +5341,7 @@ name|LITERAL_div
 case|:
 block|{
 name|AST
-name|__t352
+name|__t128
 init|=
 name|_t
 decl_stmt|;
@@ -5468,7 +5391,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t352
+name|__t128
 expr_stmt|;
 name|_t
 operator|=
@@ -5483,8 +5406,6 @@ init|=
 operator|new
 name|OpNumeric
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -5512,7 +5433,7 @@ name|LITERAL_mod
 case|:
 block|{
 name|AST
-name|__t353
+name|__t129
 init|=
 name|_t
 decl_stmt|;
@@ -5562,7 +5483,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t353
+name|__t129
 expr_stmt|;
 name|_t
 operator|=
@@ -5577,8 +5498,6 @@ init|=
 operator|new
 name|OpNumeric
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -5606,7 +5525,7 @@ name|STAR
 case|:
 block|{
 name|AST
-name|__t354
+name|__t130
 init|=
 name|_t
 decl_stmt|;
@@ -5656,7 +5575,7 @@ name|_retTree
 expr_stmt|;
 name|_t
 operator|=
-name|__t354
+name|__t130
 expr_stmt|;
 name|_t
 operator|=
@@ -5671,8 +5590,6 @@ init|=
 operator|new
 name|OpNumeric
 argument_list|(
-name|pool
-argument_list|,
 name|left
 argument_list|,
 name|right
@@ -5756,7 +5673,7 @@ operator|=
 literal|null
 expr_stmt|;
 name|AST
-name|__t358
+name|__t134
 init|=
 name|_t
 decl_stmt|;
@@ -5795,7 +5712,7 @@ name|Vector
 argument_list|()
 decl_stmt|;
 block|{
-name|_loop360
+name|_loop136
 label|:
 do|do
 block|{
@@ -5828,9 +5745,7 @@ name|pathExpr
 operator|=
 operator|new
 name|PathExpr
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|expr
 argument_list|(
@@ -5854,7 +5769,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop360
+name|_loop136
 break|;
 block|}
 block|}
@@ -5866,7 +5781,7 @@ do|;
 block|}
 name|_t
 operator|=
-name|__t358
+name|__t134
 expr_stmt|;
 name|_t
 operator|=
@@ -5881,8 +5796,6 @@ name|Util
 operator|.
 name|createFunction
 argument_list|(
-name|pool
-argument_list|,
 name|context
 argument_list|,
 name|path
@@ -6338,7 +6251,7 @@ operator|)
 name|_t
 decl_stmt|;
 name|AST
-name|__t356
+name|__t132
 init|=
 name|_t
 decl_stmt|;
@@ -6369,9 +6282,7 @@ name|predicateExpr
 init|=
 operator|new
 name|Predicate
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|expr
 argument_list|(
@@ -6393,7 +6304,7 @@ argument_list|)
 expr_stmt|;
 name|_t
 operator|=
-name|__t356
+name|__t132
 expr_stmt|;
 name|_t
 operator|=

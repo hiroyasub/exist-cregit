@@ -241,6 +241,13 @@ operator|.
 name|get
 argument_list|()
 expr_stmt|;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 name|org
 operator|.
 name|exist
@@ -254,8 +261,6 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
-name|user
-argument_list|,
 name|collName
 argument_list|)
 decl_stmt|;
@@ -443,7 +448,9 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
@@ -458,8 +465,6 @@ name|broker
 operator|.
 name|removeCollection
 argument_list|(
-name|user
-argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
