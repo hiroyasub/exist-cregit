@@ -572,21 +572,6 @@ argument_list|(
 literal|"dom.dbx"
 argument_list|)
 expr_stmt|;
-comment|//        Runnable syncAction = new Runnable() {
-comment|//            public void run() {
-comment|//                if(dataCache.hasDirtyItems()) {
-comment|//	                try {
-comment|//	                    lock.acquire(Lock.WRITE_LOCK);
-comment|//	                    dataCache.flush();
-comment|//	                } catch (LockException e) {
-comment|//	                    LOG.warn("Failed to acquire lock on dom.dbx");
-comment|//	                } finally {
-comment|//	                    lock.release();
-comment|//	                }
-comment|//                }
-comment|//            }
-comment|//        };
-comment|//        pool.getSyncDaemon().executePeriodically(DATA_SYNC_PERIOD, syncAction, false);
 block|}
 specifier|public
 name|DOMFile
@@ -2059,6 +2044,31 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getCurrentTID
+argument_list|()
+operator|==
+name|ItemId
+operator|.
+name|DEFRAG_LIMIT
+operator|&&
+name|doc
+operator|!=
+literal|null
+condition|)
+name|doc
+operator|.
+name|triggerDefrag
+argument_list|()
+expr_stmt|;
 comment|//        LOG.debug(debugPageContents(rec.page));
 name|dataCache
 operator|.
@@ -2347,7 +2357,29 @@ name|nextSplitPage
 init|=
 name|firstSplitPage
 decl_stmt|;
-comment|//        nextSplitPage.getPageHeader().setNextTID((short)(rec.page.getPageHeader().getCurrentTID()));
+name|nextSplitPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
+operator|(
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getCurrentTID
+argument_list|()
+operator|)
+argument_list|)
+expr_stmt|;
 name|short
 name|tid
 decl_stmt|,
@@ -2577,7 +2609,31 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-comment|//                newPage.getPageHeader().setNextTID((short)(rec.page.getPageHeader().getNextTID() - 1));
+name|newPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
+operator|(
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextTID
+argument_list|()
+operator|-
+literal|1
+operator|)
+argument_list|)
+expr_stmt|;
 name|newPage
 operator|.
 name|getPageHeader
@@ -2644,11 +2700,6 @@ name|setDirty
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|nextSplitPage
-operator|.
-name|cleanUp
-argument_list|()
 expr_stmt|;
 name|dataCache
 operator|.
@@ -3008,7 +3059,31 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-comment|//                    newPage.getPageHeader().setNextTID((short)(rec.page.getPageHeader().getNextTID() - 1));
+name|newPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
+operator|(
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextTID
+argument_list|()
+operator|-
+literal|1
+operator|)
+argument_list|)
+expr_stmt|;
 name|newPage
 operator|.
 name|getPageHeader
@@ -3110,13 +3185,6 @@ name|setDirty
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|rec
-operator|.
-name|page
-operator|.
-name|cleanUp
-argument_list|()
 expr_stmt|;
 name|dataCache
 operator|.
@@ -3356,11 +3424,6 @@ name|setDirty
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|nextSplitPage
-operator|.
-name|cleanUp
-argument_list|()
 expr_stmt|;
 name|dataCache
 operator|.

@@ -501,7 +501,7 @@ name|XPathException
 block|{
 name|context
 operator|.
-name|pushNamespaceContext
+name|pushInScopeNamespaces
 argument_list|()
 expr_stmt|;
 name|MemTreeBuilder
@@ -920,7 +920,7 @@ argument_list|)
 decl_stmt|;
 name|context
 operator|.
-name|popNamespaceContext
+name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 return|return

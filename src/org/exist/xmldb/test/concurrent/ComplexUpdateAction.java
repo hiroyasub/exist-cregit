@@ -308,11 +308,28 @@ name|sessionUpdate
 argument_list|)
 expr_stmt|;
 comment|// The following update will fail
-comment|//			String versionUpdate =
-comment|//				"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">" +
-comment|//				"<xu:update select=\"//USER-SESSION-DATA[1]/@version\">" + (i + 1) +
-comment|//				"</xu:update></xu:modifications>";
-comment|//			update(col, versionUpdate);
+name|String
+name|versionUpdate
+init|=
+literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+operator|+
+literal|"<xu:update select=\"//USER-SESSION-DATA[1]/@version\">"
+operator|+
+operator|(
+name|i
+operator|+
+literal|1
+operator|)
+operator|+
+literal|"</xu:update></xu:modifications>"
+decl_stmt|;
+name|update
+argument_list|(
+name|col
+argument_list|,
+name|versionUpdate
+argument_list|)
+expr_stmt|;
 name|update
 argument_list|(
 name|col

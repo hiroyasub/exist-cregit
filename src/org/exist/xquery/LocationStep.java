@@ -485,13 +485,7 @@ name|timestamp
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"returning cached result"
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("returning cached result");
 name|cachedResult
 operator|.
 name|setIsCached

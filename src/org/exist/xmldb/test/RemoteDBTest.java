@@ -131,7 +131,7 @@ specifier|static
 name|String
 name|COLLECTION_NAME
 init|=
-literal|"unit-testing-collection"
+literal|"unit-testing-collection-CittÃ "
 decl_stmt|;
 specifier|public
 specifier|final

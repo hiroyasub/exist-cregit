@@ -101,6 +101,17 @@ operator|)
 literal|0x3FFE
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|short
+name|DEFRAG_LIMIT
+init|=
+operator|(
+name|short
+operator|)
+literal|0x2FFE
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|byte

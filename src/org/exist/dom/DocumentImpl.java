@@ -4822,6 +4822,7 @@ return|return
 name|pageCount
 return|;
 block|}
+comment|/** 	 * Set the number of pages currently occupied by this document. 	 * @param count 	 */
 specifier|public
 name|void
 name|setPageCount
@@ -4878,6 +4879,7 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
+comment|/** 	 * Increase the page split count of this document. The number 	 * of pages that have been split during inserts serves as an 	 * indicator for the  	 * 	 */
 specifier|public
 name|void
 name|incSplitCount
@@ -4907,6 +4909,19 @@ block|{
 name|splitCount
 operator|=
 name|count
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|triggerDefrag
+parameter_list|()
+block|{
+name|splitCount
+operator|=
+name|broker
+operator|.
+name|getFragmentationLimit
+argument_list|()
 expr_stmt|;
 block|}
 block|}
