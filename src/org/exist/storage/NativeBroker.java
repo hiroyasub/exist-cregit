@@ -7169,6 +7169,16 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|newDoc
+operator|.
+name|setDocId
+argument_list|(
+name|getNextDocId
+argument_list|(
+name|destination
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|copyResource
 argument_list|(
 name|doc
@@ -7176,23 +7186,21 @@ argument_list|,
 name|newDoc
 argument_list|)
 expr_stmt|;
-name|flush
-argument_list|()
-expr_stmt|;
 name|destination
 operator|.
 name|addDocument
 argument_list|(
 name|this
 argument_list|,
-name|doc
+name|newDoc
 argument_list|)
 expr_stmt|;
-name|saveCollection
+name|updateDocument
 argument_list|(
-name|destination
+name|newDoc
 argument_list|)
 expr_stmt|;
+comment|//	        saveCollection(destination);
 block|}
 catch|catch
 parameter_list|(
@@ -7245,9 +7253,6 @@ operator|+
 literal|" to "
 operator|+
 name|newDoc
-operator|.
-name|getCollection
-argument_list|()
 operator|.
 name|getName
 argument_list|()
