@@ -74,7 +74,6 @@ specifier|public
 class|class
 name|User
 block|{
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -116,6 +115,14 @@ init|=
 literal|"password"
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|USER_ID
+init|=
+literal|"uid"
+decl_stmt|;
+specifier|private
 name|ArrayList
 name|groups
 init|=
@@ -135,7 +142,14 @@ specifier|private
 name|String
 name|user
 decl_stmt|;
-comment|/**      *  Constructor for the User object      *      *@param  user      Description of the Parameter      *@param  password  Description of the Parameter      */
+specifier|private
+name|int
+name|uid
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/**      *  Create a new user with name and password      *      *@param  user      Description of the Parameter      *@param  password  Description of the Parameter      */
 specifier|public
 name|User
 parameter_list|(
@@ -158,7 +172,7 @@ name|password
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the User object      *      *@param  user  Description of the Parameter      */
+comment|/**      *  Create a new user with name      *      *@param  user  Description of the Parameter      */
 specifier|public
 name|User
 parameter_list|(
@@ -173,7 +187,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the User object      *      *@param  user          Description of the Parameter      *@param  password      Description of the Parameter      *@param  primaryGroup  Description of the Parameter      */
+comment|/**      *  Create a new user with name, password and primary group      *      *@param  user          Description of the Parameter      *@param  password      Description of the Parameter      *@param  primaryGroup  Description of the Parameter      */
 specifier|public
 name|User
 parameter_list|(
@@ -200,7 +214,7 @@ name|primaryGroup
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the User object      *      *@param  node                                Description of the Parameter      *@exception  DatabaseConfigurationException  Description of the Exception      */
+comment|/**      *  Read a new user from the given DOM node      *      *@param  node                                Description of the Parameter      *@exception  DatabaseConfigurationException  Description of the Exception      */
 specifier|public
 name|User
 parameter_list|(
@@ -245,6 +259,61 @@ argument_list|(
 name|PASS
 argument_list|)
 expr_stmt|;
+name|String
+name|userId
+init|=
+name|node
+operator|.
+name|getAttribute
+argument_list|(
+name|USER_ID
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|userId
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"attribute id missing"
+argument_list|)
+throw|;
+try|try
+block|{
+name|uid
+operator|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|userId
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"illegal user id: "
+operator|+
+name|userId
+operator|+
+literal|" for user "
+operator|+
+name|user
+argument_list|)
+throw|;
+block|}
 name|NodeList
 name|gl
 init|=
@@ -303,7 +372,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Adds a feature to the Group attribute of the User object      *      *@param  group  The feature to be added to the Group attribute      */
+comment|/**      *  Add the user to a group      *      *@param  group  The feature to be added to the Group attribute      */
 specifier|public
 specifier|final
 name|void
@@ -321,7 +390,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Gets the groups attribute of the User object      *      *@return    The groups value      */
+comment|/**      *  Get all groups this user belongs to      *      *@return    The groups value      */
 specifier|public
 specifier|final
 name|Iterator
@@ -335,7 +404,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the user attribute of the User object      *      *@return    The user value      */
+comment|/**      *  Get the user name      *      *@return    The user value      */
 specifier|public
 specifier|final
 name|String
@@ -346,7 +415,17 @@ return|return
 name|user
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+specifier|public
+specifier|final
+name|int
+name|getUID
+parameter_list|()
+block|{
+return|return
+name|uid
+return|;
+block|}
+comment|/**      *  Get the user's password      *      *@return    Description of the Return Value      */
 specifier|public
 specifier|final
 name|String
@@ -357,7 +436,7 @@ return|return
 name|password
 return|;
 block|}
-comment|/**      *  Gets the primaryGroup attribute of the User object      *      *@return    The primaryGroup value      */
+comment|/**      *  Get the primary group this user belongs to      *      *@return    The primaryGroup value      */
 specifier|public
 specifier|final
 name|String
@@ -388,7 +467,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  group  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/**      *  Is the user a member of group?      *      *@param  group  Description of the Parameter      *@return        Description of the Return Value      */
 specifier|public
 specifier|final
 name|boolean
@@ -524,6 +603,32 @@ operator|.
 name|append
 argument_list|(
 name|user
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"\" "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"uid=\""
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|uid
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buf
@@ -677,6 +782,21 @@ argument_list|(
 name|password
 argument_list|)
 return|;
+block|}
+specifier|protected
+name|void
+name|setUID
+parameter_list|(
+name|int
+name|uid
+parameter_list|)
+block|{
+name|this
+operator|.
+name|uid
+operator|=
+name|uid
+expr_stmt|;
 block|}
 block|}
 end_class

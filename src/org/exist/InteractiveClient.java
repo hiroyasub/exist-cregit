@@ -3601,6 +3601,11 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 if|else if
@@ -6250,10 +6255,6 @@ name|length
 operator|+
 literal|") "
 operator|+
-literal|" to "
-operator|+
-name|next
-operator|+
 literal|"..."
 argument_list|)
 expr_stmt|;
@@ -6309,7 +6310,7 @@ name|filesCount
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"stored "
+literal|" "
 operator|+
 name|temp
 index|[
@@ -6477,14 +6478,11 @@ name|filesCount
 operator|+
 literal|" files ("
 operator|+
-operator|(
 name|bytesCount
-operator|/
-literal|1024
-operator|)
 operator|+
 literal|"K) took "
 operator|+
+operator|(
 operator|(
 name|System
 operator|.
@@ -6493,8 +6491,11 @@ argument_list|()
 operator|-
 name|start
 operator|)
+operator|/
+literal|1000
+operator|)
 operator|+
-literal|"ms."
+literal|"sec."
 argument_list|)
 expr_stmt|;
 return|return

@@ -114,7 +114,6 @@ specifier|public
 class|class
 name|Permission
 block|{
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -123,7 +122,6 @@ name|DEFAULT_PERM
 init|=
 literal|0755
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -132,7 +130,6 @@ name|DEFAULT_STRING
 init|=
 literal|"other"
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -141,7 +138,6 @@ name|GROUP_STRING
 init|=
 literal|"group"
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -150,7 +146,6 @@ name|READ
 init|=
 literal|4
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -159,7 +154,6 @@ name|UPDATE
 init|=
 literal|1
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -168,7 +162,6 @@ name|USER_STRING
 init|=
 literal|"user"
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -479,7 +472,7 @@ name|permissions
 operator|=
 name|istream
 operator|.
-name|readInt
+name|readByte
 argument_list|()
 expr_stmt|;
 block|}
@@ -1144,7 +1137,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      *  Description of the Method      *      *@param  perm  Description of the Parameter      *@return       Description of the Return Value      */
-specifier|public
+specifier|private
+specifier|final
 name|boolean
 name|validateGroup
 parameter_list|(
@@ -1169,7 +1163,8 @@ name|perm
 return|;
 block|}
 comment|/**      *  Description of the Method      *      *@param  perm  Description of the Parameter      *@return       Description of the Return Value      */
-specifier|public
+specifier|private
+specifier|final
 name|boolean
 name|validatePublic
 parameter_list|(
@@ -1188,7 +1183,8 @@ name|perm
 return|;
 block|}
 comment|/**      *  Description of the Method      *      *@param  perm  Description of the Parameter      *@return       Description of the Return Value      */
-specifier|public
+specifier|private
+specifier|final
 name|boolean
 name|validateUser
 parameter_list|(
@@ -1271,8 +1267,11 @@ argument_list|)
 expr_stmt|;
 name|ostream
 operator|.
-name|writeInt
+name|writeByte
 argument_list|(
+operator|(
+name|byte
+operator|)
 name|permissions
 argument_list|)
 expr_stmt|;

@@ -445,10 +445,7 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
+literal|"configuration error"
 argument_list|,
 name|e
 argument_list|)

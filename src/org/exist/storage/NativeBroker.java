@@ -551,7 +551,31 @@ name|exist
 operator|.
 name|util
 operator|.
+name|CollectionCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|IndexCallback
 import|;
 end_import
 
@@ -864,6 +888,16 @@ name|int
 name|nodesCount
 init|=
 literal|0
+decl_stmt|;
+specifier|protected
+name|CollectionCache
+name|collections
+init|=
+operator|new
+name|CollectionCache
+argument_list|(
+literal|128
+argument_list|)
 decl_stmt|;
 specifier|private
 specifier|final
@@ -2892,6 +2926,9 @@ decl_stmt|;
 name|Collection
 name|collection
 decl_stmt|;
+name|String
+name|collName
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2923,8 +2960,8 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+name|collName
+operator|=
 name|entry
 index|[
 literal|0
@@ -2932,6 +2969,10 @@ index|]
 operator|.
 name|toString
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|collName
 operator|.
 name|startsWith
 argument_list|(
@@ -2939,6 +2980,22 @@ literal|"__"
 argument_list|)
 condition|)
 continue|continue;
+name|collection
+operator|=
+name|collections
+operator|.
+name|get
+argument_list|(
+name|collName
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
 name|val
 operator|=
 name|entry
@@ -2967,6 +3024,8 @@ operator|new
 name|Collection
 argument_list|(
 name|this
+argument_list|,
+name|collName
 argument_list|)
 expr_stmt|;
 name|collection
@@ -2976,6 +3035,7 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|collection
@@ -3272,10 +3332,27 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
 name|Collection
 name|collection
 init|=
+name|collections
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+return|return
+name|collection
+return|;
+name|collection
+operator|=
 operator|new
 name|Collection
 argument_list|(
@@ -3283,7 +3360,7 @@ name|this
 argument_list|,
 name|name
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|Value
 name|val
 init|=
@@ -3359,6 +3436,13 @@ return|return
 literal|null
 return|;
 block|}
+name|collections
+operator|.
+name|add
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
 comment|//        LOG.debug("loading collection " + name + " took " +
 comment|//            (System.currentTimeMillis() - start) + "ms.");
 return|return
@@ -3513,6 +3597,35 @@ expr_stmt|;
 block|}
 return|return
 name|symbols
+return|;
+block|}
+specifier|public
+name|Iterator
+name|getDOMIterator
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+name|domDb
+operator|.
+name|setOwnerObject
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+return|return
+name|domDb
+operator|.
+name|iterator
+argument_list|(
+name|doc
+argument_list|,
+name|doc
+operator|.
+name|getAddress
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/** 	 *  Gets the dOMIterator attribute of the NativeBroker object 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        The dOMIterator value 	 */
@@ -3847,7 +3960,14 @@ operator|new
 name|DocumentSet
 argument_list|()
 decl_stmt|;
-comment|//long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|collection
@@ -3898,193 +4018,250 @@ operator|+
 name|collection
 expr_stmt|;
 name|Collection
-name|coll
+name|root
 init|=
 name|getCollection
 argument_list|(
 name|collection
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|coll
-operator|==
-literal|null
-condition|)
-block|{
+name|docs
+operator|=
+name|root
+operator|.
+name|allDocs
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
+comment|//		ArrayList collections = null;
+comment|//		// read collection + subcollections if inclusive=true
+comment|//		if (inclusive) {
+comment|//			Value key;
+comment|//			try {
+comment|//				key = new Value(collection.getBytes("UTF-8"));
+comment|//			} catch (UnsupportedEncodingException uee) {
+comment|//				key = new Value(collection.getBytes());
+comment|//			}
+comment|//			IndexQuery query =
+comment|//				new IndexQuery(null, IndexQuery.TRUNC_RIGHT, key);
+comment|//			CollectionsCallback cb = new CollectionsCallback(this);
+comment|//			synchronized (collectionsDb) {
+comment|//				try {
+comment|//					collectionsDb.find(query, cb);
+comment|//				} catch (BTreeException e) {
+comment|//					LOG.warn(
+comment|//						"btree error while reading collection " + collection,
+comment|//						e);
+comment|//				} catch (IOException e) {
+comment|//					LOG.warn(
+comment|//						"io error while reading collection " + collection,
+comment|//						e);
+comment|//				}
+comment|//			}
+comment|//			collections = cb.getCollections();
+comment|//			// read single collection
+comment|//		} else {
+comment|//			Collection coll = getCollection(collection);
+comment|//			if (coll == null) {
+comment|//				LOG.debug("collection " + collection + " not found");
+comment|//				return docs;
+comment|//			}
+comment|//			collections = new ArrayList(1);
+comment|//			collections.add(coll);
+comment|//		}
+comment|//		Collection temp;
+comment|//		DocumentImpl doc;
+comment|//		for (Iterator i = collections.iterator(); i.hasNext();) {
+comment|//			temp = (Collection) i.next();
+comment|//			if (!temp.getPermissions().validate(user, Permission.READ))
+comment|//				throw new PermissionDeniedException("permission to read collection denied");
+comment|//			for (Iterator j = temp.iterator(); j.hasNext();) {
+comment|//				doc = (DocumentImpl) j.next();
+comment|//				if (doc.getPermissions().validate(user, Permission.READ))
+comment|//					docs.add(doc);
+comment|//			}
+comment|//		}
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"collection "
+literal|"loading "
+operator|+
+name|docs
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" documents from collection "
 operator|+
 name|collection
 operator|+
-literal|" not found"
+literal|" took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
 argument_list|)
 expr_stmt|;
 return|return
 name|docs
 return|;
 block|}
-if|if
-condition|(
-operator|!
-name|coll
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"permission to read collection denied"
-argument_list|)
-throw|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|j
-init|=
-name|coll
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|j
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
+specifier|private
+specifier|final
+class|class
+name|CollectionsCallback
+implements|implements
+name|IndexCallback
 block|{
-name|doc
-operator|=
-operator|(
-name|DocumentImpl
-operator|)
-name|j
-operator|.
-name|next
+name|DBBroker
+name|broker
+decl_stmt|;
+name|ArrayList
+name|list
+init|=
+operator|new
+name|ArrayList
 argument_list|()
+decl_stmt|;
+specifier|public
+name|CollectionsCallback
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
 expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|indexInfo
+parameter_list|(
+name|Value
+name|key
+parameter_list|,
+name|Value
+name|value
+parameter_list|)
+block|{
+name|String
+name|name
+init|=
+name|key
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|Collection
+name|temp
+init|=
+name|collections
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
+name|temp
+operator|==
+literal|null
 condition|)
-name|docs
+block|{
+name|temp
+operator|=
+operator|new
+name|Collection
+argument_list|(
+name|broker
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+name|byte
+index|[]
+name|data
+init|=
+name|value
+operator|.
+name|getData
+argument_list|()
+decl_stmt|;
+name|VariableByteInputStream
+name|istream
+init|=
+operator|new
+name|VariableByteInputStream
+argument_list|(
+name|data
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|temp
+operator|.
+name|read
+argument_list|(
+name|istream
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"io error while reading collection "
+operator|+
+name|name
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+block|}
+name|list
 operator|.
 name|add
 argument_list|(
-name|doc
+name|temp
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|inclusive
-condition|)
-block|{
-name|String
-name|childName
-decl_stmt|;
-name|DocumentSet
-name|childDocs
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|coll
-operator|.
-name|collectionIterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|childName
-operator|=
-operator|(
-name|String
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-name|childName
-operator|=
-name|coll
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|'/'
-operator|+
-name|childName
-expr_stmt|;
-name|childDocs
-operator|=
-name|getDocumentsByCollection
-argument_list|(
-name|user
-argument_list|,
-name|childName
-argument_list|,
-name|inclusive
-argument_list|)
-expr_stmt|;
-name|docs
-operator|.
-name|addAll
-argument_list|(
-name|childDocs
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//		LOG.debug(
-comment|//			"loading "
-comment|//				+ docs.getLength()
-comment|//				+ " documents from collection "
-comment|//				+ collection
-comment|//				+ " took "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
 return|return
-name|docs
+literal|true
 return|;
+block|}
+specifier|public
+name|ArrayList
+name|getCollections
+parameter_list|()
+block|{
+return|return
+name|list
+return|;
+block|}
 block|}
 comment|/** 	 *  get all the documents in this database matching the given 	 *  document-type's name. 	 * 	 *@param  doctypeName  Description of the Parameter 	 *@param  user         Description of the Parameter 	 *@return              The documentsByDoctype value 	 */
 specifier|public
@@ -8728,6 +8905,16 @@ name|j
 argument_list|)
 expr_stmt|;
 block|}
+name|domDb
+operator|.
+name|remove
+argument_list|(
+name|doc
+operator|.
+name|getAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|ref
 operator|=
@@ -9242,6 +9429,11 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|storeDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|VariableByteOutputStream
 name|ostream
 init|=
@@ -9502,6 +9694,13 @@ literal|"database is read-only"
 argument_list|)
 expr_stmt|;
 block|}
+name|collections
+operator|.
+name|add
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 specifier|static
@@ -10115,7 +10314,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|'@'
+literal|"indexScheme."
 operator|+
 name|doc
 operator|.
@@ -10572,10 +10771,123 @@ specifier|public
 name|void
 name|storeDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+specifier|final
+name|byte
+name|data
+index|[]
+init|=
+name|doc
+operator|.
+name|serialize
+argument_list|()
+decl_stmt|;
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+throws|throws
+name|ReadOnlyException
+block|{
+name|doc
+operator|.
+name|setAddress
+argument_list|(
+name|domDb
+operator|.
+name|add
+argument_list|(
+name|data
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|readDocumentMetadata
+parameter_list|(
+specifier|final
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+throws|throws
+name|ReadOnlyException
+block|{
+specifier|final
+name|Value
+name|val
+init|=
+name|domDb
+operator|.
+name|get
+argument_list|(
+name|doc
+operator|.
+name|getAddress
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|doc
+operator|.
+name|deserialize
+argument_list|(
+name|val
+operator|.
+name|getData
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|void

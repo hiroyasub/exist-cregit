@@ -535,7 +535,7 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DOMFile object.      *       * Use this constructor if all keys have the same length. 	 * 	 *@param  file     the file to use 	 *@param  buffers  size of the data page buffer 	 *@param  keyLen   key size if all keys have the same length 	 */
+comment|/** 	 *  Constructor for the DOMFile object. 	 *  	 * Use this constructor if all keys have the same length. 	 * 	 *@param  file     the file to use 	 *@param  buffers  size of the data page buffer 	 *@param  keyLen   key size if all keys have the same length 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -2283,19 +2283,7 @@ name|BTreeException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"node "
-operator|+
-name|node
-operator|.
-name|gid
-operator|+
-literal|" not found, trying parent."
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("node " + node.gid + " not found, trying parent.");
 comment|// node not found in index: try to find the nearest available
 comment|// ancestor and traverse it
 name|long
@@ -3217,6 +3205,7 @@ name|page
 operator|==
 literal|null
 condition|)
+block|{
 name|page
 operator|=
 operator|new
@@ -3225,6 +3214,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|page
 return|;
@@ -3251,7 +3241,7 @@ comment|//            e.printStackTrace();
 comment|//            return null;
 comment|//        }
 comment|//    }
-comment|/** 	 *  Get a node iterator starting at the address of the given      * NodeProxy. 	 * 	 *@param  doc   Description of the Parameter 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 *  Get a node iterator starting at the address of the given 	 * NodeProxy. 	 * 	 *@param  doc   Description of the Parameter 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -3523,14 +3513,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Remove the value at address p. 	 * 	 *@param  p  Description of the Parameter 	 */
 specifier|public
 name|void
 name|remove
 parameter_list|(
-name|Value
-name|key
-parameter_list|,
 name|long
 name|p
 parameter_list|)
@@ -3784,6 +3770,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+comment|//ph.setNextTID((short)0);
 name|ph
 operator|.
 name|setRecordCount
@@ -3840,6 +3827,24 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** 	 *  Remove the value at address p. 	 * 	 *@param  p  Description of the Parameter 	 */
+specifier|public
+name|void
+name|remove
+parameter_list|(
+name|Value
+name|key
+parameter_list|,
+name|long
+name|p
+parameter_list|)
+block|{
+name|remove
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|removeValue
@@ -3875,7 +3880,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Set the last page in the sequence to which nodes are      * currently appended. 	 * 	 *@param  page  The new currentPage value 	 */
+comment|/** 	 *  Set the last page in the sequence to which nodes are 	 * currently appended. 	 * 	 *@param  page  The new currentPage value 	 */
 specifier|private
 specifier|final
 name|void
@@ -3930,7 +3935,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Get the active Lock object for this file.      *  	 * @see org.exist.util.Lockable#getLock() 	 */
+comment|/** 	 * Get the active Lock object for this file. 	 *  	 * @see org.exist.util.Lockable#getLock() 	 */
 specifier|public
 specifier|final
 name|Lock
@@ -3962,7 +3967,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  The current object owning this file.      *  	 * 	 *@param  obj  The new ownerObject value 	 */
+comment|/** 	 *  The current object owning this file. 	 *  	 * 	 *@param  obj  The new ownerObject value 	 */
 specifier|public
 specifier|final
 name|void
@@ -4082,7 +4087,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  Update the key/value pair where the value is found at      * address p. 	 * 	 *@param  key    Description of the Parameter 	 *@param  p      Description of the Parameter 	 *@param  value  Description of the Parameter 	 */
+comment|/** 	 *  Update the key/value pair where the value is found at 	 * address p. 	 * 	 *@param  key    Description of the Parameter 	 *@param  p      Description of the Parameter 	 *@param  value  Description of the Parameter 	 */
 specifier|public
 name|void
 name|update
@@ -4674,6 +4679,15 @@ return|return
 literal|false
 return|;
 block|}
+name|db
+operator|.
+name|buffer
+operator|.
+name|add
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -5012,6 +5026,15 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+name|db
+operator|.
+name|buffer
+operator|.
+name|add
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|short
 name|tid
 init|=
@@ -5200,6 +5223,13 @@ operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
+name|p
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|ph
@@ -5267,6 +5297,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+comment|//ph.setNextTID((short)0);
 name|ph
 operator|.
 name|setRecordCount
@@ -5801,8 +5832,8 @@ name|void
 name|decRecordCount
 parameter_list|()
 block|{
-name|records
 operator|--
+name|records
 expr_stmt|;
 block|}
 specifier|public

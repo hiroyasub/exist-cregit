@@ -1252,6 +1252,16 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|void
+name|readDocumentMetadata
+parameter_list|(
+specifier|final
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+block|}
 block|}
 end_class
 
