@@ -199,6 +199,8 @@ class|class
 name|NodeImpl
 implements|implements
 name|Node
+implements|,
+name|QNameable
 block|{
 specifier|protected
 specifier|final

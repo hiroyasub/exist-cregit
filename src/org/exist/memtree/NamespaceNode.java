@@ -31,6 +31,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QNameable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|value
@@ -87,6 +99,8 @@ extends|extends
 name|NodeImpl
 implements|implements
 name|Attr
+implements|,
+name|QNameable
 block|{
 comment|/**      * @param doc      * @param nodeNumber      */
 specifier|public

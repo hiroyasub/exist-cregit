@@ -41,6 +41,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QNameable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -117,6 +129,8 @@ extends|extends
 name|NodeImpl
 implements|implements
 name|Element
+implements|,
+name|QNameable
 block|{
 specifier|public
 name|ElementImpl

@@ -47,6 +47,8 @@ class|class
 name|NamedNode
 extends|extends
 name|NodeImpl
+implements|implements
+name|QNameable
 block|{
 specifier|protected
 name|QName
