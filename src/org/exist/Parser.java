@@ -2262,6 +2262,18 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"parsing node "
+operator|+
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|collection
 operator|=
 name|coll

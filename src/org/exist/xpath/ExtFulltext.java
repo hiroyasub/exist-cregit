@@ -216,6 +216,17 @@ name|String
 name|arg
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"adding "
+operator|+
+name|arg
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|containsExpr
@@ -335,6 +346,18 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|int
+name|countTerms
+parameter_list|()
+block|{
+return|return
+name|containsExpr
+operator|.
+name|size
+argument_list|()
+return|;
 block|}
 specifier|public
 name|Value

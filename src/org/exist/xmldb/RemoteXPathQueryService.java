@@ -251,7 +251,7 @@ argument_list|)
 condition|)
 name|query
 operator|=
-literal|"document(*)"
+literal|"document()"
 operator|+
 name|query
 expr_stmt|;

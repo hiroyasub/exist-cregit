@@ -681,6 +681,28 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io error while reindexing "
+operator|+
+name|qname
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|dis
+operator|=
+literal|null
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|lock
@@ -2228,6 +2250,24 @@ operator|.
 name|error
 argument_list|(
 literal|"could not acquire lock on elements"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io error while writing element "
+operator|+
+name|qname
 argument_list|,
 name|e
 argument_list|)

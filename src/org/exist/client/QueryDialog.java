@@ -1073,7 +1073,7 @@ argument_list|)
 condition|)
 name|xpath
 operator|=
-literal|"document(*)"
+literal|"document()"
 operator|+
 name|xpath
 expr_stmt|;

@@ -2190,7 +2190,7 @@ expr_stmt|;
 else|else
 name|query
 operator|=
-literal|"document(*)"
+literal|"document()"
 operator|+
 name|query
 expr_stmt|;

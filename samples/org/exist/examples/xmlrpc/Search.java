@@ -67,7 +67,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"document(*)//character[.//reading&= 'ãã§ã¦']"
+literal|"document()//character[.//reading&= 'ãã§ã¦']"
 decl_stmt|;
 if|if
 condition|(

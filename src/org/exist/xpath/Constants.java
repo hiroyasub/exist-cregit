@@ -47,6 +47,8 @@ block|,
 literal|"preceding-sibling"
 block|,
 literal|"self"
+block|,
+literal|"attribute"
 block|}
 decl_stmt|;
 specifier|public
@@ -153,6 +155,14 @@ name|SELF_AXIS
 init|=
 literal|12
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DESCENDANT_ATTRIBUTE_AXIS
+init|=
+literal|13
+decl_stmt|;
 comment|/**      * These constants represent the      * different node types in<i>XPath</i>.      */
 specifier|public
 specifier|final
@@ -166,7 +176,7 @@ literal|"node"
 block|,
 literal|"root"
 block|,
-literal|"element"
+literal|"*"
 block|,
 literal|"text"
 block|,

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR 2.7.2: "XPathParser2.g" -> "XPathLexer2.java"$
+comment|// $ANTLR : "XPathParser2.g" -> "XPathLexer2.java"$
 end_comment
 
 begin_package

@@ -614,6 +614,32 @@ name|int
 name|offset
 parameter_list|)
 block|{
+if|if
+condition|(
+name|page
+operator|<
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"page num< 0"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|offset
+operator|<
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"offset< 0"
+argument_list|)
+throw|;
 name|long
 name|p
 init|=
@@ -710,6 +736,8 @@ name|value
 parameter_list|)
 throws|throws
 name|ReadOnlyException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(
@@ -1047,24 +1075,6 @@ return|return
 name|p
 return|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"io error while appending value "
-operator|+
-name|key
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1523,6 +1533,8 @@ parameter_list|,
 name|short
 name|tid
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|pos
@@ -1922,6 +1934,8 @@ parameter_list|(
 name|Value
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 try|try
 block|{
@@ -2020,20 +2034,6 @@ literal|" not found"
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 literal|null
 return|;
@@ -2045,6 +2045,8 @@ parameter_list|(
 name|long
 name|pointer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|DataPage
@@ -2109,6 +2111,8 @@ parameter_list|,
 name|long
 name|pointer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|pages
 operator|.
@@ -2564,8 +2568,8 @@ parameter_list|(
 name|long
 name|pos
 parameter_list|)
-block|{
-try|try
+throws|throws
+name|IOException
 block|{
 name|DataPage
 name|wp
@@ -2686,32 +2690,6 @@ else|else
 return|return
 name|wp
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"cannot read page: "
-operator|+
-name|pos
-operator|+
-literal|": "
-operator|+
-name|ioe
-argument_list|,
-name|ioe
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
 block|}
 comment|/** 	 *  Gets the entries attribute of the BFile object 	 * 	 *@return                     The entries value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
@@ -3999,6 +3977,21 @@ name|tid
 operator|<
 literal|0
 condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"removing page "
+operator|+
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|+
+literal|" from free pages"
+argument_list|)
+expr_stmt|;
 name|fileHeader
 operator|.
 name|removeFreeSpace
@@ -4006,6 +3999,7 @@ argument_list|(
 name|free
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// create pointer from pageNum and offset into page
 name|long
@@ -5334,10 +5328,8 @@ expr_stmt|;
 if|if
 condition|(
 name|nextTID
-operator|>
-name|Short
-operator|.
-name|MAX_VALUE
+operator|<
+literal|0
 condition|)
 block|{
 name|LOG
@@ -5698,6 +5690,8 @@ name|byte
 index|[]
 name|getData
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** 		 *  Gets the pageHeader attribute of the DataPage object 		 * 		 *@return    The pageHeader value 		 */
 specifier|public
@@ -5896,6 +5890,8 @@ name|long
 name|pointer
 parameter_list|)
 block|{
+try|try
+block|{
 name|long
 name|pos
 decl_stmt|;
@@ -5996,6 +5992,29 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 block|}
 block|}
 comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
@@ -6136,6 +6155,8 @@ name|byte
 index|[]
 name|data
 decl_stmt|;
+try|try
+block|{
 switch|switch
 condition|(
 name|mode
@@ -6427,6 +6448,26 @@ return|return
 literal|true
 return|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -6587,6 +6628,8 @@ parameter_list|(
 name|ByteArray
 name|chunk
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|SinglePage
 name|nextPage
@@ -7070,6 +7113,8 @@ name|byte
 index|[]
 name|getData
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

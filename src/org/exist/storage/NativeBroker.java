@@ -2483,6 +2483,28 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"io exception while reading elements for "
+operator|+
+name|qname
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|dis
+operator|=
+literal|null
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|lock
@@ -3107,6 +3129,8 @@ argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|addr
@@ -3133,6 +3157,26 @@ operator|.
 name|getAsStream
 argument_list|(
 name|addr
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|ioe
 argument_list|)
 expr_stmt|;
 block|}
@@ -6628,6 +6672,7 @@ operator|+
 literal|" not found!"
 argument_list|)
 expr_stmt|;
+comment|//throw new RuntimeException("node " + gid + " not found");
 return|return
 literal|null
 return|;

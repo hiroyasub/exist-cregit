@@ -279,6 +279,19 @@ operator|==
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see java.lang.Object#toString() 	 */
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|nodeName
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
