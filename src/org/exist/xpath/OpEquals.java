@@ -1048,6 +1048,15 @@ operator|==
 name|Constants
 operator|.
 name|TYPE_STRING
+operator|||
+name|right
+operator|.
+name|returnsType
+argument_list|()
+operator|==
+name|Constants
+operator|.
+name|TYPE_NODELIST
 condition|)
 block|{
 comment|// evaluate left expression
@@ -1087,13 +1096,6 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
-operator|.
-name|replace
-argument_list|(
-literal|'%'
-argument_list|,
-literal|'*'
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1117,8 +1119,17 @@ name|nodes
 operator|.
 name|hasIndex
 argument_list|()
+operator|&&
+name|cmp
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
+comment|// try to use a fulltext search expression to reduce the number
+comment|// of potential nodes to scan through
 name|SimpleTokenizer
 name|tokenizer
 init|=
@@ -1144,6 +1155,17 @@ name|foundNumeric
 init|=
 literal|false
 decl_stmt|;
+name|cmp
+operator|=
+name|cmp
+operator|.
+name|replace
+argument_list|(
+literal|'%'
+argument_list|,
+literal|'*'
+argument_list|)
+expr_stmt|;
 comment|// setup up an&= expression using the fulltext index
 name|containsExpr
 operator|=
@@ -1185,6 +1207,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// remember if we find an alphanumeric token
 if|if
 condition|(
 name|token
@@ -1230,6 +1253,7 @@ operator|!
 name|foundNumeric
 condition|)
 block|{
+comment|// all elements are indexed: use the fulltext index
 name|Value
 name|temp
 init|=
@@ -1255,8 +1279,19 @@ name|getNodeList
 argument_list|()
 expr_stmt|;
 block|}
+name|cmp
+operator|=
+name|cmp
+operator|.
+name|replace
+argument_list|(
+literal|'*'
+argument_list|,
+literal|'%'
+argument_list|)
+expr_stmt|;
 block|}
-comment|// get a list of all nodes equal to ...
+comment|// now compare the input node set to the search expression
 name|DBBroker
 name|broker
 init|=
@@ -1284,13 +1319,6 @@ argument_list|,
 name|relation
 argument_list|,
 name|cmp
-operator|.
-name|replace
-argument_list|(
-literal|'*'
-argument_list|,
-literal|'%'
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1920,6 +1948,7 @@ argument_list|,
 name|rvalue
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1927,6 +1956,14 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+name|n
+operator|.
+name|addContextNode
+argument_list|(
+name|n
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 operator|new
@@ -1990,7 +2027,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  check relevant documents. if right operand is a string literal and right 	 *  returns a node set, we check which documents contain it at all. in other 	 *  cases do nothing. 	 * 	 *@param  in_docs  Description of the Parameter 	 *@return          Description of the Return Value 	 */
+comment|/** 	 *  check relevant documents. Does nothing here. 	 * 	 *@param  in_docs  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -2015,7 +2052,6 @@ operator|.
 name|TYPE_NODELIST
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  left     Description of the Parameter 	 *@param  right    Description of the Parameter 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|Value
 name|stringCompare
@@ -2141,7 +2177,6 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|protected
 name|void
 name|switchOperands

@@ -3913,7 +3913,7 @@ decl_stmt|;
 return|return
 name|con
 operator|.
-name|xupdate
+name|xupdateResource
 argument_list|(
 name|user
 argument_list|,

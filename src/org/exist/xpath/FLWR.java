@@ -469,6 +469,16 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
+block|{
+block|}
 block|}
 end_class
 

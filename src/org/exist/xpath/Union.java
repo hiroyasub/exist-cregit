@@ -298,7 +298,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"union took "
+literal|"union found "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
 operator|+
 operator|(
 name|System
@@ -363,6 +370,37 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
+block|{
+name|super
+operator|.
+name|setInPredicate
+argument_list|(
+name|inPredicate
+argument_list|)
+expr_stmt|;
+name|left
+operator|.
+name|setInPredicate
+argument_list|(
+name|inPredicate
+argument_list|)
+expr_stmt|;
+name|right
+operator|.
+name|setInPredicate
+argument_list|(
+name|inPredicate
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Native XML Database  *  Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/*  *  eXist Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
 end_comment
 
 begin_package
@@ -166,7 +166,12 @@ operator|new
 name|LinkedList
 argument_list|()
 decl_stmt|;
-comment|/**  Constructor for the PathExpr object */
+specifier|protected
+name|boolean
+name|inPredicate
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
@@ -181,7 +186,6 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  s  Description of the Parameter      */
 specifier|public
 name|void
 name|add
@@ -198,7 +202,6 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  path  Description of the Parameter      */
 specifier|public
 name|void
 name|add
@@ -237,7 +240,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Document attribute of the PathExpr object      *      *@param  doc  The feature to be added to the Document attribute      */
 specifier|public
 name|void
 name|addDocument
@@ -254,7 +256,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Path attribute of the PathExpr object      *      *@param  path  The feature to be added to the Path attribute      */
 specifier|public
 name|void
 name|addPath
@@ -271,7 +272,6 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Predicate attribute of the PathExpr object      *      *@param  pred  The feature to be added to the Predicate attribute      */
 specifier|public
 name|void
 name|addPredicate
@@ -320,7 +320,6 @@ literal|"not a Step"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 name|Value
 name|eval
@@ -428,6 +427,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//            LOG.debug("processing " + expr.pprint());
 if|if
 condition|(
 name|expr
@@ -529,7 +529,6 @@ return|return
 name|r
 return|;
 block|}
-comment|/**      *  Gets the documentSet attribute of the PathExpr object      *      *@return    The documentSet value      */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -539,7 +538,6 @@ return|return
 name|docs
 return|;
 block|}
-comment|/**      *  Gets the expression attribute of the PathExpr object      *      *@param  pos  Description of the Parameter      *@return      The expression value      */
 specifier|public
 name|Expression
 name|getExpression
@@ -560,7 +558,6 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the length attribute of the PathExpr object      *      *@return    The length value      */
 specifier|public
 name|int
 name|getLength
@@ -573,7 +570,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|pprint
@@ -659,7 +655,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -672,7 +667,6 @@ name|docs
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  in_docs  Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -735,7 +729,6 @@ return|return
 name|docs
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|int
 name|returnsType
@@ -774,7 +767,6 @@ operator|.
 name|TYPE_NODELIST
 return|;
 block|}
-comment|/**      *  Sets the documentSet attribute of the PathExpr object      *      *@param  docs  The new documentSet value      */
 specifier|public
 name|void
 name|setDocumentSet
@@ -790,7 +782,6 @@ operator|=
 name|docs
 expr_stmt|;
 block|}
-comment|/**      *  Sets the firstExpression attribute of the PathExpr object      *      *@param  s  The new firstExpression value      */
 specifier|public
 name|void
 name|setFirstExpression
@@ -804,6 +795,48 @@ operator|.
 name|addFirst
 argument_list|(
 name|s
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|inPredicate
+operator|=
+name|inPredicate
+expr_stmt|;
+if|if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+operator|(
+operator|(
+name|Expression
+operator|)
+name|steps
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|setInPredicate
+argument_list|(
+name|inPredicate
 argument_list|)
 expr_stmt|;
 block|}

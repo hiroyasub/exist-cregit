@@ -19,16 +19,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|*
@@ -73,6 +63,15 @@ specifier|public
 name|int
 name|returnsType
 parameter_list|()
+function_decl|;
+comment|/** 	 * This method is called to inform the expression object that 	 * it is executed inside an XPath predicate. 	 *  	 * @param inPredicate 	 */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
 function_decl|;
 comment|/** 	 * Return a readable representation of this expression. 	 * 	 * This method is called whenever the xpath-query should be 	 * displayed to the user. 	 */
 specifier|public

@@ -761,6 +761,8 @@ name|out
 operator|.
 name|println
 argument_list|(
+literal|"update file: "
+operator|+
 name|updateFile
 argument_list|)
 expr_stmt|;
@@ -841,6 +843,17 @@ argument_list|(
 name|characters
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"modifications: "
+operator|+
+name|xUpdateModifications
+argument_list|)
+expr_stmt|;
 comment|//
 name|service
 operator|.

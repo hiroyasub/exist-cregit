@@ -6260,17 +6260,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"pretty-print = "
-operator|+
-name|prettyPrint
-argument_list|)
-expr_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -6402,6 +6391,13 @@ name|toString
 argument_list|(
 name|prettyPrint
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
+name|setProperties
+argument_list|(
+name|properties
 argument_list|)
 expr_stmt|;
 return|return

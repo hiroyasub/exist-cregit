@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *   *  Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *   *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
 end_comment
 
 begin_package
@@ -81,10 +81,6 @@ name|BrokerPool
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    7. Oktober 2002  */
-end_comment
-
 begin_class
 specifier|public
 specifier|abstract
@@ -118,7 +114,12 @@ specifier|protected
 name|NodeTest
 name|test
 decl_stmt|;
-comment|/**      *  Constructor for the Step object      *      *@param  axis  Description of the Parameter      */
+specifier|protected
+name|boolean
+name|inPredicate
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|Step
 parameter_list|(
@@ -145,7 +146,6 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the Step object      *      *@param  axis  Description of the Parameter      *@param  test  Description of the Parameter      */
 specifier|public
 name|Step
 parameter_list|(
@@ -173,7 +173,6 @@ operator|=
 name|test
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Predicate attribute of the Step object      *      *@param  expr  The feature to be added to the Predicate attribute      */
 specifier|public
 name|void
 name|addPredicate
@@ -190,7 +189,6 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 specifier|abstract
 name|Value
@@ -206,7 +204,6 @@ name|NodeProxy
 name|node
 parameter_list|)
 function_decl|;
-comment|/**      *  Gets the axis attribute of the Step object      *      *@return    The axis value      */
 specifier|public
 name|int
 name|getAxis
@@ -216,7 +213,6 @@ return|return
 name|axis
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|pprint
@@ -344,7 +340,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  in_docs  Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -404,7 +399,6 @@ return|return
 name|out_docs
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|int
 name|returnsType
@@ -416,7 +410,6 @@ operator|.
 name|TYPE_NODELIST
 return|;
 block|}
-comment|/**      *  Sets the axis attribute of the Step object      *      *@param  axis  The new axis value      */
 specifier|public
 name|void
 name|setAxis
@@ -432,7 +425,6 @@ operator|=
 name|axis
 expr_stmt|;
 block|}
-comment|/**      *  Sets the test attribute of the Step object      *      *@param  test  The new test value      */
 specifier|public
 name|void
 name|setTest
@@ -448,7 +440,21 @@ operator|=
 name|test
 expr_stmt|;
 block|}
-comment|/*      *  protected final static boolean nodeHasParent(DocumentImpl doc, long gid,      *  exist.NodeSet parents,      *  boolean directParent) {      *  return nodeHasParent(doc, gid, parents, directParent, false);      *  }      *  protected final static boolean nodeHasParent(DocumentImpl doc, long gid,      *  exist.NodeSet parents,      *  boolean directParent,      *  boolean includeSelf) {      *  if(gid< 2)      *  return false;      *  if(includeSelf&& parents.contains(doc, gid))      *  return true;      *  int level = doc.getTreeLevel(gid);      *  / calculate parent's gid      *  long pid = (gid - doc.getLevelStartPoint(level)) /      *  doc.getTreeLevelOrder(level)      *  + doc.getLevelStartPoint(level - 1);      *  /long pid = (gid - 2) / ((DocumentImpl)doc).getOrder() + 1;      *  if(parents.contains(doc, pid))      *  return true;      *  else if(directParent)      *  return false;      *  else      *  return nodeHasParent(doc, pid, parents, directParent);      *  }      *  protected final static      *  long parentWithChild(DocumentImpl doc, long gid, exist.NodeSet parents,      *  boolean directParent) {      *  return parentWithChild(doc, gid, parents, directParent, false);      *  }      *  protected final static      *  long parentWithChild(DocumentImpl doc, long gid, exist.NodeSet parents,      *  boolean directParent, boolean includeSelf) {      *  if(gid< 2)      *  return -1;      *  if(includeSelf&& parents.contains(doc, gid))      *  return gid;      *  int level = doc.getTreeLevel(gid);      *  / calculate parent's gid      *  long pid = (gid - doc.getLevelStartPoint(level)) /      *  doc.getTreeLevelOrder(level)      *  + doc.getLevelStartPoint(level - 1);      *  /long pid = (gid - 2) / ((DocumentImpl)doc).getOrder() + 1;      *  if(parents.contains(doc, pid))      *  return pid;      *  else if(directParent)      *  return -1;      *  else      *  return parentWithChild(doc, pid, parents, directParent);      *  }      */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|inPredicate
+operator|=
+name|inPredicate
+expr_stmt|;
+block|}
 block|}
 end_class
 

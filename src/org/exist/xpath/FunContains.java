@@ -1015,6 +1015,29 @@ operator|=
 name|path
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+specifier|public
+name|void
+name|setInPredicate
+parameter_list|(
+name|boolean
+name|inPredicate
+parameter_list|)
+block|{
+if|if
+condition|(
+name|path
+operator|!=
+literal|null
+condition|)
+name|path
+operator|.
+name|setInPredicate
+argument_list|(
+name|inPredicate
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
