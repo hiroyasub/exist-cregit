@@ -76,6 +76,12 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+name|int
+name|getContentLength
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 
