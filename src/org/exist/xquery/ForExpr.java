@@ -517,11 +517,16 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-name|atVal
+comment|//			atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
+name|at
 operator|.
 name|setValue
 argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
 name|p
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|contextSequence
