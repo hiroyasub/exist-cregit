@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|BasicFunction
+name|Cardinality
 import|;
 end_import
 
@@ -98,20 +98,6 @@ operator|.
 name|value
 operator|.
 name|BooleanValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Item
 import|;
 end_import
 

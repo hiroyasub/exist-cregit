@@ -312,7 +312,6 @@ operator|.
 name|returnsType
 argument_list|()
 decl_stmt|;
-comment|//LOG.debug("inner expr " + inner.pprint() + " returns " + Type.getTypeName(type));
 comment|// Case 1: predicate expression returns a node set. Check the returned node set
 comment|// against the context set and return all nodes from the context, for which the
 comment|// predicate expression returns a non-empty sequence.
@@ -617,6 +616,18 @@ argument_list|,
 name|item
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"innerSeq = "
+operator|+
+name|innerSeq
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|innerSeq

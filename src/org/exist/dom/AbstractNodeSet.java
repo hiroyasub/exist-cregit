@@ -3742,6 +3742,17 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|current
+operator|.
+name|gid
+argument_list|)
+expr_stmt|;
 name|contextNode
 operator|=
 name|current
@@ -3768,6 +3779,19 @@ operator|.
 name|addMatches
 argument_list|(
 name|current
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"context: "
+operator|+
+name|context
+operator|.
+name|gid
 argument_list|)
 expr_stmt|;
 if|if

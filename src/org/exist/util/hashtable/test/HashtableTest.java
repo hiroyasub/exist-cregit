@@ -90,7 +90,7 @@ specifier|private
 name|int
 name|tabSize
 init|=
-literal|1000000
+literal|100000
 decl_stmt|;
 specifier|private
 name|Object

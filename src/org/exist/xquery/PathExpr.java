@@ -523,7 +523,6 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|//LOG.debug("single step mode: " + expr.pprint());
 if|if
 condition|(
 name|r
