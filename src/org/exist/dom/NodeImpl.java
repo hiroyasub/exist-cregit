@@ -1124,12 +1124,26 @@ name|nodeName
 operator|!=
 literal|null
 condition|)
-return|return
+block|{
+specifier|final
+name|String
+name|prefix
+init|=
 name|nodeName
 operator|.
 name|getPrefix
 argument_list|()
+decl_stmt|;
+return|return
+name|prefix
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
+name|prefix
 return|;
+block|}
 comment|//		if (nodeName != null&& nodeName.indexOf(':')> -1)
 comment|//			return nodeName.substring(0, nodeName.indexOf(':'));
 return|return
