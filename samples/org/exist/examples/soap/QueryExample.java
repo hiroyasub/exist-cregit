@@ -62,7 +62,7 @@ name|query
 operator|.
 name|query
 argument_list|(
-literal|"//SPEECH[LINE&= 'cursed spite']"
+literal|"//SPEECH[LINE&= 'curse*']"
 argument_list|)
 decl_stmt|;
 name|System
@@ -190,6 +190,28 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<=
+name|resp
+operator|.
+name|getHits
+argument_list|()
+operator|&&
+name|i
+operator|<
+literal|10
+condition|;
+name|i
+operator|++
+control|)
+block|{
 name|byte
 index|[]
 name|record
@@ -203,7 +225,7 @@ operator|.
 name|getResultSetId
 argument_list|()
 argument_list|,
-literal|1
+name|i
 argument_list|,
 literal|"ISO-8859-1"
 argument_list|,
@@ -225,6 +247,7 @@ literal|"ISO-8859-1"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

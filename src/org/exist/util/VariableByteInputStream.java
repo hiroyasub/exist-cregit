@@ -387,9 +387,10 @@ condition|;
 name|i
 operator|++
 control|)
+comment|//VariableByteCoding.decode(is);
 name|VariableByteCoding
 operator|.
-name|decode
+name|skipNext
 argument_list|(
 name|is
 argument_list|)

@@ -935,20 +935,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|treeLevelStartPoints
-index|[
-name|i
-operator|+
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(treeLevelStartPoints[i + 1] + "; k = " + treeLevelOrder[i]);
 block|}
 block|}
 specifier|private
@@ -2897,6 +2884,8 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
+comment|//System.out.println("k[" + i + "] = " + treeLevelOrder[i]);
 name|ostream
 operator|.
 name|writeInt
@@ -2907,6 +2896,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|SecurityManager
 name|secman
 init|=

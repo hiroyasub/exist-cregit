@@ -1817,6 +1817,7 @@ operator|.
 name|getChildCount
 argument_list|()
 condition|)
+block|{
 name|document
 operator|.
 name|setTreeLevelOrder
@@ -1831,6 +1832,7 @@ operator|+
 name|SPARSE_IDENTIFIERS
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

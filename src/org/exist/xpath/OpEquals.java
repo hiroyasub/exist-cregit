@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *   * 	Copyright (C) 2000, Wolfgang M. Meier (meier@ifs. tu- darmstadt. de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *   *  Copyright (C) 2000, Wolfgang M. Meier (meier@ifs. tu- darmstadt. de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
 end_comment
 
 begin_package
@@ -41,7 +41,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|*
+name|EXistException
 import|;
 end_import
 
@@ -53,7 +53,43 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|ArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSet
 import|;
 end_import
 
@@ -65,7 +101,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|*
+name|BrokerPool
 import|;
 end_import
 
@@ -73,11 +109,51 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|storage
 operator|.
-name|NodeList
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|IndexPaths
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|analysis
+operator|.
+name|SimpleTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|analysis
+operator|.
+name|TextToken
 import|;
 end_import
 
@@ -120,6 +196,13 @@ decl_stmt|;
 specifier|protected
 name|NodeSet
 name|temp
+init|=
+literal|null
+decl_stmt|;
+comment|// in some cases, we use a fulltext expression to preselect nodes
+specifier|protected
+name|FunContains
+name|containsExpr
 init|=
 literal|null
 decl_stmt|;
@@ -919,40 +1002,10 @@ operator|.
 name|TYPE_STRING
 condition|)
 block|{
-name|String
-name|cmp
-init|=
-name|right
-operator|.
-name|eval
-argument_list|(
-name|docs
-argument_list|,
-name|context
-argument_list|,
-literal|null
-argument_list|)
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-name|cmp
-operator|=
-name|cmp
-operator|.
-name|replace
-argument_list|(
-literal|'*'
-argument_list|,
-literal|'%'
-argument_list|)
-expr_stmt|;
 comment|// evaluate left expression
 name|NodeSet
 name|nodes
-decl_stmt|;
-name|nodes
-operator|=
+init|=
 operator|(
 name|NodeSet
 operator|)
@@ -969,7 +1022,63 @@ argument_list|)
 operator|.
 name|getNodeList
 argument_list|()
+decl_stmt|;
+name|String
+name|cmp
+init|=
+name|right
+operator|.
+name|eval
+argument_list|(
+name|docs
+argument_list|,
+name|context
+argument_list|,
+literal|null
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|'*'
+argument_list|,
+literal|'%'
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|containsExpr
+operator|!=
+literal|null
+condition|)
+block|{
+name|Value
+name|temp
+init|=
+name|containsExpr
+operator|.
+name|eval
+argument_list|(
+name|docs
+argument_list|,
+name|nodes
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|nodes
+operator|=
+operator|(
+name|NodeSet
+operator|)
+name|temp
+operator|.
+name|getNodeList
+argument_list|()
 expr_stmt|;
+block|}
 comment|// get a list of all nodes equal to ...
 name|DBBroker
 name|broker
@@ -1549,6 +1658,22 @@ name|DocumentSet
 name|in_docs
 parameter_list|)
 block|{
+comment|// use the fulltext index if one operand is a literal and the
+comment|// relation is =
+comment|//		if(getLeft().returnsType() == Constants.TYPE_NODELIST&&
+comment|//			getRight() instanceof Literal&&
+comment|//			relation == Constants.EQ) {
+comment|//			String cmp = ((Literal)getRight()).literalValue;
+comment|//			SimpleTokenizer tokenizer = new SimpleTokenizer();
+comment|//			tokenizer.setText(cmp);
+comment|//			TextToken token;
+comment|//			String term;
+comment|//			containsExpr = new FunContains(pool, Constants.FULLTEXT_AND);
+comment|//			for(int i = 0; i< 5&& (token = tokenizer.nextToken()) != null; i++) {
+comment|//				containsExpr.addTerm(token.getText());
+comment|//			}
+comment|//			return containsExpr.preselect( in_docs );
+comment|//		} else
 return|return
 name|in_docs
 return|;

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR : "XPathParser.g" -> "XPathLexer.java"$
+comment|// $ANTLR 2.7.2rc2 (20030105): "XPathParser.g" -> "XPathLexer.java"$
 end_comment
 
 begin_package
@@ -473,7 +473,7 @@ argument_list|,
 operator|new
 name|Integer
 argument_list|(
-literal|43
+literal|42
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -492,7 +492,7 @@ argument_list|,
 operator|new
 name|Integer
 argument_list|(
-literal|39
+literal|38
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2141,7 +2141,7 @@ name|_saveIndex
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop975
+name|_loop65
 label|:
 do|do
 block|{
@@ -2171,7 +2171,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop975
+name|_loop65
 break|;
 block|}
 block|}
@@ -2226,7 +2226,7 @@ name|_saveIndex
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop978
+name|_loop68
 label|:
 do|do
 block|{
@@ -2256,7 +2256,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop978
+name|_loop68
 break|;
 block|}
 block|}
@@ -5604,7 +5604,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|{
-name|_loop1005
+name|_loop95
 label|:
 do|do
 block|{
@@ -5632,7 +5632,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop1005
+name|_loop95
 break|;
 block|}
 block|}
@@ -5740,11 +5740,11 @@ name|_saveIndex
 decl_stmt|;
 block|{
 name|int
-name|_cnt1008
+name|_cnt98
 init|=
 literal|0
 decl_stmt|;
-name|_loop1008
+name|_loop98
 label|:
 do|do
 block|{
@@ -5779,13 +5779,13 @@ else|else
 block|{
 if|if
 condition|(
-name|_cnt1008
+name|_cnt98
 operator|>=
 literal|1
 condition|)
 block|{
 break|break
-name|_loop1008
+name|_loop98
 break|;
 block|}
 else|else
@@ -5814,7 +5814,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|_cnt1008
+name|_cnt98
 operator|++
 expr_stmt|;
 block|}
@@ -5825,7 +5825,7 @@ condition|)
 do|;
 block|}
 block|{
-name|_loop1012
+name|_loop102
 label|:
 do|do
 block|{
@@ -5848,11 +5848,11 @@ argument_list|)
 expr_stmt|;
 block|{
 name|int
-name|_cnt1011
+name|_cnt101
 init|=
 literal|0
 decl_stmt|;
-name|_loop1011
+name|_loop101
 label|:
 do|do
 block|{
@@ -5887,13 +5887,13 @@ else|else
 block|{
 if|if
 condition|(
-name|_cnt1011
+name|_cnt101
 operator|>=
 literal|1
 condition|)
 block|{
 break|break
-name|_loop1011
+name|_loop101
 break|;
 block|}
 else|else
@@ -5922,7 +5922,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|_cnt1011
+name|_cnt101
 operator|++
 expr_stmt|;
 block|}
@@ -5936,7 +5936,7 @@ block|}
 else|else
 block|{
 break|break
-name|_loop1012
+name|_loop102
 break|;
 block|}
 block|}

@@ -242,6 +242,12 @@ block|{
 name|NodeSet
 name|nodes
 init|=
+name|path
+operator|==
+literal|null
+condition|?
+name|context
+else|:
 operator|(
 name|NodeSet
 operator|)

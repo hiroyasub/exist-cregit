@@ -616,6 +616,13 @@ argument_list|(
 name|nextPage
 argument_list|)
 expr_stmt|;
+name|db
+operator|.
+name|addToBuffer
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|offset
 operator|=
 literal|0
