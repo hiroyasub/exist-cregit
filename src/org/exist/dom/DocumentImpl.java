@@ -966,6 +966,12 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|lastModified
+operator|=
+name|other
+operator|.
+name|lastModified
+expr_stmt|;
 block|}
 specifier|public
 name|void
