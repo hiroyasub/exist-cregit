@@ -893,6 +893,13 @@ literal|"no"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|stylesheet
+operator|!=
+literal|null
+condition|)
+block|{
 name|parametri
 operator|.
 name|put
@@ -904,6 +911,7 @@ argument_list|,
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 name|parametri
 operator|.
 name|put
@@ -1103,6 +1111,13 @@ literal|"no"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|stylesheet
+operator|!=
+literal|null
+condition|)
+block|{
 name|parametri
 operator|.
 name|put
@@ -1114,6 +1129,7 @@ argument_list|,
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|xml
 init|=
