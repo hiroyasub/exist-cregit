@@ -101,6 +101,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Set the parent expression of this expression. 	 *  	 * @param parent 	 */
+specifier|public
+name|void
+name|setParent
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|)
+function_decl|;
+comment|/** 	 * Returns the parent expression of this expression. 	 *  	 * @return 	 */
+specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+function_decl|;
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -156,6 +171,7 @@ name|DocumentSet
 name|contextSet
 parameter_list|)
 function_decl|;
+comment|/** 	 * Returns the {@link XQueryAST} node from which this expression 	 * has been constructed by the parser. This node contains location information 	 * (line number and column) important for error reports. 	 *  	 * @return 	 */
 specifier|public
 name|XQueryAST
 name|getASTNode

@@ -243,6 +243,13 @@ name|Expression
 name|s
 parameter_list|)
 block|{
+name|s
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|steps
 operator|.
 name|add

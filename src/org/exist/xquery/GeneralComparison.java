@@ -577,6 +577,15 @@ operator|.
 name|getDependencies
 argument_list|()
 decl_stmt|;
+name|int
+name|rightDeps
+init|=
+name|getRight
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+decl_stmt|;
 comment|// left expression returns node set
 if|if
 condition|(
@@ -601,7 +610,7 @@ name|leftDeps
 operator|&
 name|Dependency
 operator|.
-name|GLOBAL_VARS
+name|LOCAL_VARS
 operator|)
 operator|==
 literal|0
@@ -613,6 +622,16 @@ operator|&
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
+operator|)
+operator|==
+literal|0
+operator|&&
+operator|(
+name|rightDeps
+operator|&
+name|Dependency
+operator|.
+name|LOCAL_VARS
 operator|)
 operator|==
 literal|0

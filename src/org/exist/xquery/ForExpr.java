@@ -203,6 +203,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * A "for" expression may have an optional positional variable whose 	 * QName can be set via this method. 	 *  	 * @param var 	 */
 specifier|public
 name|void
 name|setPositionalVariable
@@ -216,7 +217,7 @@ operator|=
 name|var
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/** 	 * This implementation tries to process the "where" clause in advance, i.e. in one single 	 * step. This is possible if the input sequence is a node set and the where expression 	 * has no dependencies on other variables than those declared in this "for" statement. 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -441,7 +442,13 @@ condition|(
 name|fastExec
 condition|)
 block|{
-comment|//			LOG.debug("fast evaluation mode");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"fast evaluation mode"
+argument_list|)
+expr_stmt|;
 name|in
 operator|=
 name|applyWhereExpression

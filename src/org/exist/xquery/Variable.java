@@ -167,6 +167,10 @@ name|XQueryContext
 name|context
 parameter_list|)
 block|{
+comment|//		if(context.getCurrentStackSize()> positionInStack)
+comment|//			return Dependency.CONTEXT_SET + Dependency.GLOBAL_VARS+ Dependency.CONTEXT_ITEM;
+comment|//		else
+comment|//			return Dependency.CONTEXT_SET + Dependency.LOCAL_VARS;
 if|if
 condition|(
 name|context
@@ -180,10 +184,6 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
-operator|+
-name|Dependency
-operator|.
-name|GLOBAL_VARS
 operator|+
 name|Dependency
 operator|.

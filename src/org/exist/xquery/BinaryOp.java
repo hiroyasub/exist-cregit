@@ -128,6 +128,13 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+name|expr
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -144,6 +151,13 @@ argument_list|(
 literal|1
 argument_list|,
 name|expr
+argument_list|)
+expr_stmt|;
+name|expr
+operator|.
+name|setParent
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 block|}
