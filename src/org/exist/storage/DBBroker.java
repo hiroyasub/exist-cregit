@@ -1373,7 +1373,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Store a collection into the database. 	 */
+comment|/** 	 * Store a collection into the database.      *       * @param collection to store 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1449,7 +1449,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Store a document into the database. This method will save the document 	 * metadata. 	 * 	 *@param  doc 	 */
+comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1459,6 +1459,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
+comment|/**      * Stores the document (descriptor) and it's parent collection.      *       * @param doc the document to store      * @throws LockException if document is write locked      * @throws PermissionDeniedException if you don't have the right to do this      */
 specifier|public
 specifier|abstract
 name|void
@@ -1472,6 +1473,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Stores the given data under the given binary resource descriptor       * (BinaryDocument).      *       * @param blob the binary document descriptor      * @param data the document binary data      */
 specifier|public
 specifier|abstract
 name|void
@@ -1485,6 +1487,7 @@ index|[]
 name|data
 parameter_list|)
 function_decl|;
+comment|/**      * Retrieve the binary data stored under the resource descriptor      * BinaryDocument.      *       * @param blob the binary document descriptor      * @return the document binary data      */
 specifier|public
 specifier|abstract
 name|byte
@@ -1496,6 +1499,7 @@ name|BinaryDocument
 name|blob
 parameter_list|)
 function_decl|;
+comment|/**      * Completely delete this binary document (descriptor and binary      * data).      *       * @param blob the binary document descriptor      * @throws PermissionDeniedException if you don't have the right to do this      */
 specifier|public
 specifier|abstract
 name|void
@@ -1588,6 +1592,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
+comment|/**      * Defragment pages of this document. This will minimize the number of      * split pages.      *       * @param doc to defrag      */
 specifier|public
 specifier|abstract
 name|void
@@ -1618,6 +1623,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
+comment|/**      * Sync dom and collection state data (pages) to disk.      * In case of {@link org.exist.storage.sync.Sync.MAJOR_SYNC}, sync all      * states (dom, collection, text and element) to disk.      *       * @param syncEvent Sync.MAJOR_SYNC or Sync.MINOR_SYNC      */
 specifier|public
 specifier|abstract
 name|void
