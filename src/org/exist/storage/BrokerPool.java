@@ -1284,6 +1284,15 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|SyncDaemon
+name|getSyncDaemon
+parameter_list|()
+block|{
+return|return
+name|syncDaemon
+return|;
+block|}
 comment|/** 	 *  Initialize the current instance. 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|protected
 name|void

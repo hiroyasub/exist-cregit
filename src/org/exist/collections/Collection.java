@@ -7548,10 +7548,13 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#release() 	 */
 specifier|public
-name|void
+name|boolean
 name|sync
 parameter_list|()
 block|{
+return|return
+literal|false
+return|;
 block|}
 block|}
 end_class

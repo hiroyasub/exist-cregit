@@ -368,13 +368,7 @@ condition|)
 return|return
 literal|null
 return|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"adding command for periodic execution"
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("adding command for periodic execution");
 name|long
 name|firstTime
 init|=

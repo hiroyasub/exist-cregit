@@ -69,21 +69,6 @@ name|fails
 init|=
 literal|0
 decl_stmt|;
-specifier|private
-name|long
-name|lastSync
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-specifier|private
-name|long
-name|syncPeriod
-init|=
-literal|30000
-decl_stmt|;
 specifier|public
 name|ClockCache
 parameter_list|(
@@ -216,8 +201,6 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if(System.currentTimeMillis() - lastSync> syncPeriod)
-comment|//	flush();
 block|}
 specifier|protected
 name|Cacheable
@@ -348,6 +331,7 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
+comment|//		System.out.println(old.getKey() + " -> " + item.getKey());
 name|items
 index|[
 name|bucket
@@ -540,6 +524,11 @@ name|void
 name|flush
 parameter_list|()
 block|{
+name|int
+name|written
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -554,6 +543,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|items
@@ -562,7 +552,7 @@ name|i
 index|]
 operator|!=
 literal|null
-condition|)
+operator|&&
 name|items
 index|[
 name|i
@@ -570,14 +560,12 @@ index|]
 operator|.
 name|sync
 argument_list|()
+condition|)
+operator|++
+name|written
 expr_stmt|;
-name|lastSync
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
+block|}
+comment|//		LOG.debug(written + " pages written to disk");
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cache#getBuffers() 	 */
 specifier|public

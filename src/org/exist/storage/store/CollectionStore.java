@@ -37,6 +37,18 @@ name|CollectionCache
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -63,52 +75,13 @@ argument_list|(
 name|COLLECTION_BUFFER_SIZE
 argument_list|)
 decl_stmt|;
-comment|/** 	 *  	 */
-specifier|public
-name|CollectionStore
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
-comment|/** 	 * @param file 	 */
-specifier|public
-name|CollectionStore
-parameter_list|(
-name|File
-name|file
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** 	 * @param file 	 * @param buffers 	 */
-specifier|public
-name|CollectionStore
-parameter_list|(
-name|File
-name|file
-parameter_list|,
-name|int
-name|buffers
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|file
-argument_list|,
-name|buffers
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** 	 * @param file 	 * @param btreeBuffers 	 * @param dataBuffers 	 */
 specifier|public
 name|CollectionStore
 parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
 name|File
 name|file
 parameter_list|,
@@ -121,6 +94,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|pool
+argument_list|,
 name|file
 argument_list|,
 name|btreeBuffers
@@ -136,6 +111,26 @@ parameter_list|()
 block|{
 return|return
 name|collectionsCache
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.dbxml.core.filer.BTree#getBTreeSyncPeriod()      */
+specifier|protected
+name|long
+name|getBTreeSyncPeriod
+parameter_list|()
+block|{
+return|return
+literal|1000
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.storage.store.BFile#getDataSyncPeriod()      */
+specifier|protected
+name|long
+name|getDataSyncPeriod
+parameter_list|()
+block|{
+return|return
+literal|1000
 return|;
 block|}
 block|}

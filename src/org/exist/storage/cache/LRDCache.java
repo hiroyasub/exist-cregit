@@ -205,22 +205,6 @@ condition|)
 name|ageReferences
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|lastSync
-operator|>
-name|syncPeriod
-condition|)
-block|{
-name|flush
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.LFUCache#removeOne(org.exist.storage.cache.Cacheable) 	 */
 specifier|protected
