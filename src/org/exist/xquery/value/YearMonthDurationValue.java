@@ -1152,7 +1152,8 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
+if|if
+condition|(
 name|other
 operator|.
 name|getType
@@ -1161,7 +1162,8 @@ operator|==
 name|Type
 operator|.
 name|DATE
-condition|?
+condition|)
+return|return
 operator|new
 name|DateValue
 argument_list|(
@@ -1169,7 +1171,8 @@ name|ncal
 argument_list|,
 name|tzOffset
 argument_list|)
-else|:
+return|;
+else|else
 operator|new
 name|DateTimeValue
 argument_list|(
@@ -1177,7 +1180,7 @@ name|ncal
 argument_list|,
 name|tzOffset
 argument_list|)
-return|;
+expr_stmt|;
 default|default:
 throw|throw
 operator|new
