@@ -219,7 +219,7 @@ condition|)
 block|{
 break|break;
 block|}
-if|else if
+if|if
 condition|(
 name|singleCharToken
 argument_list|(
@@ -256,7 +256,14 @@ break|break;
 block|}
 if|else if
 condition|(
-name|isNonBreakingCharacter
+name|Character
+operator|.
+name|isLetter
+argument_list|(
+name|ch
+argument_list|)
+operator|||
+name|nonBreakingChar
 argument_list|(
 name|ch
 argument_list|)
@@ -1356,31 +1363,6 @@ operator|.
 name|WS_TOKEN
 return|;
 block|}
-specifier|private
-name|boolean
-name|isNonBreakingCharacter
-parameter_list|(
-name|char
-name|ch
-parameter_list|)
-block|{
-return|return
-name|Character
-operator|.
-name|isLetter
-argument_list|(
-name|ch
-argument_list|)
-operator|&&
-operator|(
-operator|!
-name|singleCharToken
-argument_list|(
-name|ch
-argument_list|)
-operator|)
-return|;
-block|}
 comment|/** 	 * The code ranges defined here should be interpreted as 1-char 	 * tokens. 	 */
 specifier|private
 specifier|static
@@ -1618,7 +1600,7 @@ block|{
 name|String
 name|t1
 init|=
-literal|"\u30A8\u31A1\uACFF\u2FAA\u312A\u3045"
+literal|"\u30A8\u30FB\u31A1\uACFF\u2FAA\u312A\u3045"
 decl_stmt|;
 name|String
 name|t2
@@ -1630,51 +1612,12 @@ name|t3
 init|=
 literal|"ë¬¸ì ì¬ì© ìì ì¤ë¥ë¥¼ ì°¾ìë´ê¸° ìí´ ê²ì¦ë ì¤êµ­ì´ íì ì¬ê²í íê³ , ë³´ë¤ ì½ê¸° ì½ê² íê¸° ìí´ ì¸ì´ì  ííì ë¤ë¬ëë¤."
 decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|t2
-operator|.
-name|length
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|char
-name|ch
-init|=
-name|t2
-operator|.
-name|charAt
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-name|Integer
-operator|.
-name|toHexString
-argument_list|(
-name|ch
-argument_list|)
-operator|+
-literal|' '
-argument_list|)
-expr_stmt|;
-block|}
+comment|//		for(int i = 0; i< t2.length(); i++) {
+comment|//			char ch = t2.charAt(i);
+comment|//			System.out.print(
+comment|//				Integer.toHexString(ch) + ' '
+comment|//			);
+comment|//		}
 name|SimpleTokenizer
 name|tokenizer
 init|=
@@ -1686,7 +1629,7 @@ name|tokenizer
 operator|.
 name|setText
 argument_list|(
-name|t3
+name|t2
 argument_list|)
 expr_stmt|;
 name|TextToken
@@ -1715,18 +1658,7 @@ operator|.
 name|EOF
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|token
-operator|.
-name|getText
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(token.getText());
 name|token
 operator|=
 name|tokenizer
