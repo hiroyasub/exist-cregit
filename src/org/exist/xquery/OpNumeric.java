@@ -611,6 +611,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// runtime type checks:
 if|if
 condition|(
@@ -890,6 +892,25 @@ operator|)
 name|rvalue
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|setASTNode
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 specifier|public
 name|ComputableValue

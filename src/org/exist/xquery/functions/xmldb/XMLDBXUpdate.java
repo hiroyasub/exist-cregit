@@ -312,9 +312,13 @@ name|QName
 argument_list|(
 literal|"update"
 argument_list|,
-name|XMLDB_FUNCTION_NS
+name|ModuleImpl
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"xmldb"
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Process an XUpdate request on the current collection. The first "
@@ -431,6 +435,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Specified Java object is not an XMLDB collection object"
 argument_list|)
 throw|;
@@ -532,6 +539,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Exception while serializing XUpdate document: "
 operator|+
 name|e
@@ -623,6 +633,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Exception while processing xupdate: "
 operator|+
 name|e

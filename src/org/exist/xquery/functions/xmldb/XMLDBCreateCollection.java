@@ -37,7 +37,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|Cardinality
 import|;
 end_import
 
@@ -73,18 +73,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 import|;
 end_import
@@ -97,9 +85,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
-operator|.
-name|Item
+name|XQueryContext
 import|;
 end_import
 
@@ -210,7 +196,7 @@ specifier|public
 class|class
 name|XMLDBCreateCollection
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -226,9 +212,13 @@ name|QName
 argument_list|(
 literal|"create-collection"
 argument_list|,
-name|XMLDB_FUNCTION_NS
+name|ModuleImpl
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"xmldb"
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Create a new collection as a child of the collection object passed as "
@@ -295,16 +285,17 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, 	 *         org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSequence
+name|args
+index|[]
 parameter_list|,
-name|Item
-name|contextItem
+name|Sequence
+name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
@@ -315,17 +306,10 @@ init|=
 operator|(
 name|JavaObjectValue
 operator|)
-name|getArgument
-argument_list|(
+name|args
+index|[
 literal|0
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
+index|]
 operator|.
 name|itemAt
 argument_list|(
@@ -335,17 +319,10 @@ decl_stmt|;
 name|String
 name|collectionName
 init|=
-name|getArgument
-argument_list|(
-literal|1
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
+name|args
+index|[
+literal|0
+index|]
 operator|.
 name|getStringValue
 argument_list|()
@@ -366,6 +343,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Argument 1 should be an instance of org.xmldb.api.base.Collection"
 argument_list|)
 throw|;
@@ -433,10 +413,13 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"failed to create new collection "
 operator|+
 name|collectionName
@@ -450,12 +433,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
+throw|;
 block|}
 block|}
 block|}

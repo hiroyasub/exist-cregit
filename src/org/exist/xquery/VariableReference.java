@@ -118,6 +118,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+try|try
+block|{
 name|Variable
 name|var
 init|=
@@ -139,6 +141,25 @@ decl_stmt|;
 return|return
 name|seq
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|setASTNode
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xpath.StaticContext) 	 */
 specifier|public

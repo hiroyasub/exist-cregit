@@ -212,9 +212,13 @@ name|QName
 argument_list|(
 literal|"remove-resource"
 argument_list|,
-name|XMLDB_FUNCTION_NS
+name|ModuleImpl
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"xmldb"
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Remove a resource from the collection. The first "
@@ -331,6 +335,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Argument 1 should be an instance of org.xmldb.api.base.Collection"
 argument_list|)
 throw|;
@@ -415,6 +422,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"No resource name found in "
 operator|+
 name|doc
@@ -443,6 +453,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Resource "
 operator|+
 name|doc
@@ -468,6 +481,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XMLDB exception caught: "
 operator|+
 name|e

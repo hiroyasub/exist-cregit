@@ -37,7 +37,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|Cardinality
 import|;
 end_import
 
@@ -73,18 +73,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 import|;
 end_import
@@ -97,9 +85,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
-operator|.
-name|Item
+name|XQueryContext
 import|;
 end_import
 
@@ -208,7 +194,7 @@ specifier|public
 class|class
 name|XMLDBCollection
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -224,9 +210,13 @@ name|QName
 argument_list|(
 literal|"collection"
 argument_list|,
-name|XMLDB_FUNCTION_NS
+name|ModuleImpl
+operator|.
+name|NAMESPACE_URI
 argument_list|,
-literal|"xmldb"
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Get a reference to a collection identified by the XMLDB URI passed "
@@ -315,10 +305,11 @@ name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSequence
+name|args
+index|[]
 parameter_list|,
-name|Item
-name|contextItem
+name|Sequence
+name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
@@ -326,17 +317,10 @@ block|{
 name|String
 name|collectionURI
 init|=
-name|getArgument
-argument_list|(
+name|args
+index|[
 literal|0
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
+index|]
 operator|.
 name|getStringValue
 argument_list|()
@@ -344,17 +328,10 @@ decl_stmt|;
 name|String
 name|user
 init|=
-name|getArgument
-argument_list|(
+name|args
+index|[
 literal|1
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
+index|]
 operator|.
 name|getStringValue
 argument_list|()
@@ -362,17 +339,10 @@ decl_stmt|;
 name|String
 name|passwd
 init|=
-name|getArgument
-argument_list|(
+name|args
+index|[
 literal|2
-argument_list|)
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
+index|]
 operator|.
 name|getStringValue
 argument_list|()
@@ -404,10 +374,13 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"exception while retrieving collection: "
 operator|+
 name|e
@@ -417,7 +390,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 return|return
 name|collection

@@ -65,6 +65,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|parser
+operator|.
+name|XQueryAST
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -169,6 +183,12 @@ comment|// The parent expression from which this function is called.
 specifier|private
 name|Expression
 name|parent
+decl_stmt|;
+specifier|private
+name|XQueryAST
+name|astNode
+init|=
+literal|null
 decl_stmt|;
 comment|/** 	 * Internal constructor. Subclasses should<b>always</b> call this and 	 * pass the current context and their function signature. 	 *  	 * @param context 	 * @param signature 	 */
 specifier|protected
@@ -293,9 +313,14 @@ parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|,
+name|XQueryAST
+name|ast
+parameter_list|,
 name|Class
 name|fclass
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 try|try
 block|{
@@ -307,8 +332,10 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"class for function is null"
 argument_list|)
 throw|;
@@ -340,8 +367,10 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"constructor not found"
 argument_list|)
 throw|;
@@ -369,17 +398,33 @@ name|obj
 operator|instanceof
 name|Function
 condition|)
+block|{
+operator|(
+operator|(
+name|Function
+operator|)
+name|obj
+operator|)
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|Function
 operator|)
 name|obj
 return|;
+block|}
 else|else
 throw|throw
 operator|new
-name|RuntimeException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"function object does not implement interface function"
 argument_list|)
 throw|;
@@ -402,15 +447,12 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
-name|RuntimeException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"function "
 operator|+
 name|fclass
@@ -493,6 +535,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"number of arguments to function "
 operator|+
 name|getName
@@ -680,7 +725,18 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Function does not allow an empty argument"
+name|astNode
+argument_list|,
+literal|"Argument "
+operator|+
+name|expr
+operator|.
+name|pprint
+argument_list|()
+operator|+
+literal|" is empty. An "
+operator|+
+literal|"empty argument is not allowed here."
 argument_list|)
 throw|;
 block|}
@@ -1006,6 +1062,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|astNode
+argument_list|,
 literal|"Supplied argument "
 operator|+
 name|expr
@@ -1345,6 +1403,30 @@ name|buf
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+specifier|public
+name|void
+name|setASTNode
+parameter_list|(
+name|XQueryAST
+name|ast
+parameter_list|)
+block|{
+name|this
+operator|.
+name|astNode
+operator|=
+name|ast
+expr_stmt|;
+block|}
+specifier|public
+name|XQueryAST
+name|getASTNode
+parameter_list|()
+block|{
+return|return
+name|astNode
 return|;
 block|}
 block|}
