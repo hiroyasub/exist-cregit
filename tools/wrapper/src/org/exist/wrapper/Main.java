@@ -307,6 +307,14 @@ name|int
 name|exitCode
 parameter_list|)
 block|{
+comment|// wait up to 1 minute
+name|WrapperManager
+operator|.
+name|signalStopping
+argument_list|(
+literal|60000
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Method
