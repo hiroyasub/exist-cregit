@@ -4991,7 +4991,7 @@ expr_stmt|;
 comment|// dropping dom index
 name|domIndexer
 operator|.
-name|n5
+name|removeDocument
 argument_list|(
 name|doc
 argument_list|)
@@ -6035,7 +6035,7 @@ argument_list|()
 decl_stmt|;
 name|domIndexer
 operator|.
-name|n10
+name|dropIndex
 argument_list|(
 name|doc
 argument_list|)
