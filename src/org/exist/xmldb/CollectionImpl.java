@@ -1707,6 +1707,15 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+if|if
+condition|(
+name|resources
+operator|==
+literal|null
+condition|)
+name|readCollection
+argument_list|()
+expr_stmt|;
 name|resources
 operator|.
 name|remove
