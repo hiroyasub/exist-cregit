@@ -376,7 +376,7 @@ name|service
 argument_list|,
 literal|"items.xml"
 argument_list|,
-literal|"//item[x:rating> 8.0]"
+literal|"declare namespace x=\"http://www.foo.com\"; //item[x:rating> 8.0]"
 argument_list|,
 literal|2
 argument_list|)
