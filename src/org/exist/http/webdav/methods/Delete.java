@@ -283,9 +283,6 @@ operator|.
 name|removeCollection
 argument_list|(
 name|collection
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

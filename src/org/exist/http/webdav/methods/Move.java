@@ -575,9 +575,6 @@ operator|.
 name|removeCollection
 argument_list|(
 name|destCollection
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|replaced

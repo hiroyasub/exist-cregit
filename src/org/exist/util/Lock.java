@@ -34,7 +34,16 @@ name|WRITE_LOCK
 init|=
 literal|1
 decl_stmt|;
-comment|/** 	 * Attempt to acquire a lock for read. 	 *  	 * @return 	 * @throws LockException 	 */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|NO_LOCK
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/** 	 * Acquire a lock for read. 	 *  	 * @return 	 * @throws LockException 	 */
 specifier|public
 name|boolean
 name|acquire
@@ -42,7 +51,7 @@ parameter_list|( )
 throws|throws
 name|LockException
 function_decl|;
-comment|/**      * Attempt to acquire a lock for read or write.      * mode is one of {@link #READ_LOCK} or      * {@link #WRITE_LOCK}.      *       * @param mode      * @return      * @throws LockException      */
+comment|/**      * Acquire a lock for read or write.      * mode is one of {@link #READ_LOCK} or      * {@link #WRITE_LOCK}.      *       * @param mode      * @return      * @throws LockException      */
 specifier|public
 name|boolean
 name|acquire
@@ -52,6 +61,15 @@ name|mode
 parameter_list|)
 throws|throws
 name|LockException
+function_decl|;
+comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *   	 * @param mode 	 * @return 	 * @throws LockException 	 */
+specifier|public
+name|boolean
+name|attempt
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
 function_decl|;
 comment|/** 	 * Release a lock. This method assumes that the 	 * lock is a read lock. 	 */
 specifier|public

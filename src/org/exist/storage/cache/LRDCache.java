@@ -26,7 +26,7 @@ name|LRDCache
 extends|extends
 name|GClockCache
 block|{
-specifier|private
+specifier|protected
 name|int
 name|totalReferences
 init|=

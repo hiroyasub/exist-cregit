@@ -2851,7 +2851,7 @@ name|broker
 operator|.
 name|removeCollection
 argument_list|(
-name|path
+name|collection
 argument_list|)
 expr_stmt|;
 name|response

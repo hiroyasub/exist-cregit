@@ -157,6 +157,23 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.util.Lock#attempt(int) 	 */
+specifier|public
+name|boolean
+name|attempt
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Not implemented"
+argument_list|)
+throw|;
+block|}
 comment|/**      * Issue a read lock if there is no outstanding write lock or threads      * waiting to get a write lock. Caller of this method must be careful to      * avoid synchronizing the calling code so as to avoid deadlock.      */
 specifier|private
 specifier|synchronized
