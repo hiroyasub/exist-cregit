@@ -242,13 +242,7 @@ index|]
 operator|=
 literal|true
 expr_stmt|;
-name|textSpecialChars
-index|[
-literal|'\r'
-index|]
-operator|=
-literal|true
-expr_stmt|;
+comment|//		textSpecialChars['\r'] = true;
 name|textSpecialChars
 index|[
 literal|'&'
