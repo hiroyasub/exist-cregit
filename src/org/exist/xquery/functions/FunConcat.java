@@ -190,7 +190,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: string(object)  *  */
+comment|/**  * Implements the library function fn:concat().  *  */
 end_comment
 
 begin_class
@@ -219,7 +219,22 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|null
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ATOMIC
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -232,6 +247,8 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|public
