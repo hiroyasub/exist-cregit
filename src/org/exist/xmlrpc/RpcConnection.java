@@ -766,7 +766,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
+comment|/**  * This class implements the actual methods defined by {@link org.exist.xmlrpc.RpcAPI}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -835,7 +835,6 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
-comment|/** 	 *  Constructor for the RpcConnection object 	 * 	 *@param  conf                Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|RpcConnection
 parameter_list|(
@@ -904,7 +903,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@exception  Exception                  Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|void
 name|createCollection
@@ -1008,7 +1006,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  collName            Description of the Parameter 	 *@param  user                Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|String
 name|createId
@@ -1574,7 +1571,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  message  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|String
 name|formatErrorMsg

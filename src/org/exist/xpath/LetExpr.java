@@ -209,8 +209,6 @@ name|filtered
 operator|=
 name|applyWhereExpression
 argument_list|(
-name|context
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;

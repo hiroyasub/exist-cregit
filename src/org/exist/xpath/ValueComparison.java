@@ -139,20 +139,6 @@ name|Sequence
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|value
-operator|.
-name|SequenceIterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment

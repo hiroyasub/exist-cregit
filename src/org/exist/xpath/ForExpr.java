@@ -327,6 +327,15 @@ operator|&&
 name|at
 operator|==
 literal|null
+operator|&&
+name|in
+operator|.
+name|getItemType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|NODE
 decl_stmt|;
 if|if
 condition|(
@@ -344,8 +353,6 @@ name|in
 operator|=
 name|applyWhereExpression
 argument_list|(
-name|context
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -519,8 +526,6 @@ name|val
 operator|=
 name|applyWhereExpression
 argument_list|(
-name|context
-argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;

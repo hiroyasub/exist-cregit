@@ -141,7 +141,7 @@ name|User
 name|user
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user 	 *@return   Document data as binary array.  	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user 	 *@return   Document data as binary array.  	 *@deprecated Use {@link #getDocument(User, String, Hashtable)} instead. 	 */
 name|byte
 index|[]
 name|getDocument
@@ -163,7 +163,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output and apply the specified stylesheet.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user                           Description of the Parameter 	 *@return                                The document value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output and apply the specified stylesheet.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user                           Description of the Parameter 	 *@return                                The document value 	 *@deprecated Use {@link #getDocument(User, String, Hashtable)} instead. 	 */
 name|byte
 index|[]
 name|getDocument
@@ -188,7 +188,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output and apply the specified stylesheet.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  parametri                      Hashtable of parameter. 	 *@return                                The document value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/** 	 * Retrieve document by name.  All optional output parameters are passed as key/value pairs 	 * int the hashtable<code>parameters</code>. 	 *  	 * Valid keys may either be taken from {@link javax.xml.transform.OutputKeys} or  	 * {@link org.exist.storage.serializers.EXistOutputKeys}. For example, the encoding is identified by 	 * the value of key {@link javax.xml.transform.OutputKeys#ENCODING}. 	 * 	 *@param  name                           the document's name. 	 *@param  parameters                      Hashtable of parameters. 	 *@return                                The document value 	 */
 name|byte
 index|[]
 name|getDocument
@@ -200,7 +200,7 @@ name|String
 name|name
 parameter_list|,
 name|Hashtable
-name|parametri
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -657,7 +657,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param length total length of the file  	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
+comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param length total length of the file  	 * @return the name of the file to which the chunk has been appended. 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 name|String
 name|upload
 parameter_list|(
@@ -676,7 +676,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param length total length of the file  	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
+comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param file the name of the file to which the chunk will be appended. This 	 * should be the file name returned by the first call to upload. 	 * @param length total length of the file  	 * @return the name of the file to which the chunk has been appended. 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 name|String
 name|upload
 parameter_list|(

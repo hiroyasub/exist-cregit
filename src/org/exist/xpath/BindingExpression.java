@@ -191,6 +191,20 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|ValueSequence
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract superclass for the variable binding expressions "for" and "let".  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -369,9 +383,6 @@ specifier|protected
 name|Sequence
 name|applyWhereExpression
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -400,6 +411,26 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
+operator|&&
+operator|(
+name|contextSequence
+operator|==
+literal|null
+operator|||
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+operator|)
 condition|)
 block|{
 comment|// if the where expression returns a node set, check the context
@@ -618,11 +649,11 @@ block|}
 else|else
 block|{
 comment|// general where clause: just check the effective boolean value
-name|NodeSet
+name|ValueSequence
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|ValueSequence
 argument_list|()
 decl_stmt|;
 name|int

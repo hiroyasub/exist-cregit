@@ -23,18 +23,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 import|;
 end_import
@@ -47,7 +35,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|*
+name|Cardinality
 import|;
 end_import
 
@@ -59,7 +47,19 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Cardinality
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|FunctionSignature
 import|;
 end_import
 
@@ -84,20 +84,6 @@ operator|.
 name|xpath
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|value
-operator|.
-name|DoubleValue
 import|;
 end_import
 

@@ -514,6 +514,12 @@ argument_list|(
 name|next
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
 name|docs
 operator|.
 name|add

@@ -397,16 +397,6 @@ name|javax
 operator|.
 name|swing
 operator|.
-name|JDialog
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
 name|JFileChooser
 import|;
 end_import
@@ -860,30 +850,6 @@ operator|.
 name|xmldb
 operator|.
 name|XMLResourceImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|jedit
-operator|.
-name|syntax
-operator|.
-name|JEditTextArea
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|jedit
-operator|.
-name|syntax
-operator|.
-name|XMLTokenMarker
 import|;
 end_import
 
@@ -4239,7 +4205,7 @@ name|service
 argument_list|,
 literal|"Edit Users"
 argument_list|,
-name|properties
+name|client
 argument_list|)
 decl_stmt|;
 name|dialog
