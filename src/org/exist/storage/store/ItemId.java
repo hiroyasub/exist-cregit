@@ -15,6 +15,10 @@ name|store
 package|;
 end_package
 
+begin_comment
+comment|/**  * Provides static methods to set or test the status bits of a record identifier  * in the dom.dbx persistent DOM store.  *   * @author wolf  */
+end_comment
+
 begin_class
 class|class
 name|ItemId

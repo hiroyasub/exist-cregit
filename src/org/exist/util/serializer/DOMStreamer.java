@@ -665,17 +665,6 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Attr = "
-operator|+
-name|attrName
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|attrName

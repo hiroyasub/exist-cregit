@@ -518,6 +518,12 @@ name|p
 argument_list|)
 expr_stmt|;
 comment|//			atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
+if|if
+condition|(
+name|positionalVariable
+operator|!=
+literal|null
+condition|)
 name|at
 operator|.
 name|setValue

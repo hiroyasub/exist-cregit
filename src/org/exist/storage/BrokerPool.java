@@ -199,6 +199,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|XMLReaderObjectFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|XMLReaderPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|ShutdownListener
@@ -206,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  This class controls all available instances of the database.  * Use it to configure, start and stop database instances. You may  * have multiple instances defined, each using its own configuration,  * database directory etc.. To define multiple instances, pass an  * identification string to the static method configure() and use  * getInstance(id) to retrieve an instance.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances. You may  * have multiple instances defined, each using its own configuration,  * database directory etc.. To define multiple instances, pass an  * identification string to the static method configure() and use  * getInstance(id) to retrieve an instance.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -784,6 +808,7 @@ name|initializing
 init|=
 literal|true
 decl_stmt|;
+comment|/** 	 * The security manager for this database instance. 	 */
 specifier|private
 name|org
 operator|.
@@ -796,23 +821,32 @@ name|secManager
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * SyncDaemon is a daemon thread which periodically triggers a cache sync. 	 */
 specifier|private
 name|SyncDaemon
 name|syncDaemon
 decl_stmt|;
+comment|/** 	 * ShutdownListener will be notified when the database instance shuts down. 	 */
 specifier|private
 name|ShutdownListener
 name|shutdownListener
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * The global pool for compiled XQuery expressions. 	 */
 specifier|private
 name|XQueryPool
 name|xqueryCache
 decl_stmt|;
+comment|/** 	 * The global collection cache. 	 */
 specifier|protected
 name|CollectionCache
 name|collectionsCache
+decl_stmt|;
+comment|/** 	 * Global pool for SAX XMLReader instances. 	 */
+specifier|protected
+name|XMLReaderPool
+name|xmlReaderPool
 decl_stmt|;
 specifier|private
 name|Lock
@@ -1000,6 +1034,22 @@ argument_list|(
 name|COLLECTION_BUFFER_SIZE
 argument_list|)
 expr_stmt|;
+name|xmlReaderPool
+operator|=
+operator|new
+name|XMLReaderPool
+argument_list|(
+operator|new
+name|XMLReaderObjectFactory
+argument_list|(
+name|this
+argument_list|)
+argument_list|,
+literal|5
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 name|initialize
 argument_list|()
 expr_stmt|;
@@ -1040,6 +1090,7 @@ return|return
 name|conf
 return|;
 block|}
+comment|/** 	 * Returns the global collections cache. Collection objects 	 * are shared within one database instance. 	 *  	 * @return 	 */
 specifier|public
 name|CollectionCache
 name|getCollectionsCache
@@ -1047,6 +1098,15 @@ parameter_list|()
 block|{
 return|return
 name|collectionsCache
+return|;
+block|}
+specifier|public
+name|XMLReaderPool
+name|getParserPool
+parameter_list|()
+block|{
+return|return
+name|xmlReaderPool
 return|;
 block|}
 specifier|protected
@@ -1584,19 +1644,21 @@ argument_list|()
 expr_stmt|;
 while|while
 condition|(
-name|pool
+name|threads
 operator|.
 name|size
 argument_list|()
-operator|<
-name|brokers
+operator|>
+literal|0
 condition|)
 try|try
 block|{
 name|this
 operator|.
 name|wait
-argument_list|()
+argument_list|(
+literal|2000
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
