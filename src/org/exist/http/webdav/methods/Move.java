@@ -930,6 +930,8 @@ name|destCollection
 operator|.
 name|getDocument
 argument_list|(
+name|broker
+argument_list|,
 name|newResourceName
 argument_list|)
 decl_stmt|;

@@ -944,24 +944,11 @@ return|return
 name|xqueryService
 return|;
 block|}
-comment|/** 	 *  Returns a node set containing all the attributes matching the given QName and 	 * belonging to one of the documents in the DocumentSet. 	 * 	 */
 specifier|public
 specifier|abstract
-name|NodeSet
-name|findElementsByTagName
-parameter_list|(
-name|byte
-name|type
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
-name|QName
-name|qname
-parameter_list|,
-name|NodeSelector
-name|selector
-parameter_list|)
+name|ElementIndex
+name|getElementIndex
+parameter_list|()
 function_decl|;
 comment|/**  Flush all data that has not been written before. */
 specifier|public
@@ -979,19 +966,6 @@ name|getAllDocuments
 parameter_list|(
 name|DocumentSet
 name|docs
-parameter_list|)
-function_decl|;
-comment|/** 	 *  Returns a node set containing all the attributes matching the given QName and 	 * belonging to one of the documents in the DocumentSet. 	 */
-specifier|public
-specifier|abstract
-name|NodeSet
-name|getAttributesByName
-parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
-name|QName
-name|qname
 parameter_list|)
 function_decl|;
 comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/system. 	 *  	 * @return collection or null if no collection matches the path 	 */
@@ -1021,6 +995,7 @@ return|;
 block|}
 comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 */
 specifier|public
+specifier|abstract
 name|Collection
 name|getCollection
 parameter_list|(
@@ -1030,11 +1005,16 @@ parameter_list|,
 name|long
 name|address
 parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
+function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|reloadCollection
+parameter_list|(
+name|Collection
+name|collection
+parameter_list|)
+function_decl|;
 comment|/** 	 *  Returns the configuration object used to initialize the  	 * current database instance. 	 *  	 */
 specifier|public
 name|Configuration
@@ -1272,12 +1252,33 @@ name|PermissionDeniedException
 function_decl|;
 comment|/** 	 *  Remove a document from the database. 	 * 	 */
 specifier|public
+name|void
+name|removeDocument
+parameter_list|(
+name|String
+name|docName
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+name|removeDocument
+argument_list|(
+name|docName
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
 specifier|abstract
 name|void
 name|removeDocument
 parameter_list|(
 name|String
 name|docName
+parameter_list|,
+name|boolean
+name|freeDocId
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -1575,28 +1576,6 @@ specifier|public
 name|void
 name|endRemove
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
-specifier|public
-name|Occurrences
-index|[]
-name|scanIndexedElements
-parameter_list|(
-name|Collection
-name|collection
-parameter_list|,
-name|boolean
-name|inclusive
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
 block|{
 throw|throw
 operator|new

@@ -136,10 +136,6 @@ block|{
 name|super
 argument_list|(
 name|nodeType
-argument_list|,
-name|QName
-operator|.
-name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 block|}
@@ -156,10 +152,6 @@ block|{
 name|super
 argument_list|(
 name|nodeType
-argument_list|,
-name|QName
-operator|.
-name|TEXT_QNAME
 argument_list|,
 name|gid
 argument_list|)
@@ -181,10 +173,6 @@ block|{
 name|super
 argument_list|(
 name|nodeType
-argument_list|,
-name|QName
-operator|.
-name|TEXT_QNAME
 argument_list|,
 name|gid
 argument_list|)
@@ -214,10 +202,6 @@ block|{
 name|super
 argument_list|(
 name|nodeType
-argument_list|,
-name|QName
-operator|.
-name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 name|cdata
@@ -252,10 +236,6 @@ block|{
 name|super
 argument_list|(
 name|nodeType
-argument_list|,
-name|QName
-operator|.
-name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 name|cdata

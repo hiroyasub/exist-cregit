@@ -102,11 +102,7 @@ specifier|private
 name|List
 name|waitingForWriteLock
 init|=
-operator|new
-name|ArrayList
-argument_list|(
-literal|5
-argument_list|)
+literal|null
 decl_stmt|;
 comment|/** Default constructor. */
 specifier|public
@@ -284,6 +280,20 @@ comment|//            if ( writeLockedThread == thisThread )
 comment|//            {
 comment|//                log.debug("nested write lock: " + outstandingWriteLocks);
 comment|//            }
+if|if
+condition|(
+name|waitingForWriteLock
+operator|==
+literal|null
+condition|)
+name|waitingForWriteLock
+operator|=
+operator|new
+name|ArrayList
+argument_list|(
+literal|3
+argument_list|)
+expr_stmt|;
 name|waitingForWriteLock
 operator|.
 name|add
@@ -456,6 +466,10 @@ operator|==
 literal|0
 operator|&&
 name|waitingForWriteLock
+operator|!=
+literal|null
+operator|&&
+name|waitingForWriteLock
 operator|.
 name|size
 argument_list|()
@@ -572,6 +586,10 @@ operator|==
 literal|null
 operator|&&
 name|waitingForWriteLock
+operator|!=
+literal|null
+operator|&&
+name|waitingForWriteLock
 operator|.
 name|size
 argument_list|()
@@ -637,12 +655,18 @@ name|writeLockedThread
 operator|!=
 literal|null
 operator|||
+operator|(
+name|waitingForWriteLock
+operator|!=
+literal|null
+operator|&&
 name|waitingForWriteLock
 operator|.
 name|size
 argument_list|()
 operator|>
 literal|0
+operator|)
 return|;
 block|}
 block|}

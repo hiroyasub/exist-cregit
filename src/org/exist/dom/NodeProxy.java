@@ -1482,7 +1482,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/** 		 * Returns the storage address of this node in dom.dbx. 		 * @return long 		 */
+comment|/** 	 * Returns the storage address of this node in dom.dbx. 	 * @return long 	 */
 specifier|public
 name|long
 name|getInternalAddress

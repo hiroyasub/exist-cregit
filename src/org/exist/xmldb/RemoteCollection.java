@@ -183,6 +183,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmlrpc
+operator|.
+name|RpcServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -269,7 +281,21 @@ specifier|final
 name|int
 name|MAX_CHUNK_LENGTH
 init|=
-literal|1000000
+literal|512
+operator|*
+literal|1024
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_UPLOAD_CHUNK
+init|=
+literal|1
+operator|*
+literal|1024
+operator|*
+literal|1024
 decl_stmt|;
 specifier|protected
 name|Map
@@ -1470,12 +1496,6 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-comment|//		List resources = readResources();
-comment|//		int lsize = resources.size();
-comment|//		String[] list = new String[lsize];
-comment|//		for (int i = 0; i< lsize; i++)
-comment|//			list[i] = ((DocumentProxy) resources.get(i)).getName();
-comment|//		return list;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.CollectionImpl#getResources() 	 */
 specifier|public
@@ -2954,7 +2974,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|MAX_CHUNK_LENGTH
+name|MAX_UPLOAD_CHUNK
 index|]
 decl_stmt|;
 try|try
@@ -2979,6 +2999,10 @@ decl_stmt|;
 name|Vector
 name|params
 decl_stmt|;
+name|byte
+index|[]
+name|compressed
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -2996,6 +3020,17 @@ operator|-
 literal|1
 condition|)
 block|{
+name|compressed
+operator|=
+name|RpcServer
+operator|.
+name|compress
+argument_list|(
+name|chunk
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
 name|params
 operator|=
 operator|new
@@ -3019,7 +3054,7 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-name|chunk
+name|compressed
 argument_list|)
 expr_stmt|;
 name|params
@@ -3042,7 +3077,7 @@ name|rpcClient
 operator|.
 name|execute
 argument_list|(
-literal|"upload"
+literal|"uploadCompressed"
 argument_list|,
 name|params
 argument_list|)

@@ -731,12 +731,6 @@ operator|.
 name|parentWithChild
 argument_list|(
 name|n
-operator|.
-name|doc
-argument_list|,
-name|n
-operator|.
-name|gid
 argument_list|,
 literal|true
 argument_list|,
@@ -850,12 +844,6 @@ operator|.
 name|parentWithChild
 argument_list|(
 name|n
-operator|.
-name|doc
-argument_list|,
-name|n
-operator|.
-name|gid
 argument_list|,
 literal|true
 argument_list|,

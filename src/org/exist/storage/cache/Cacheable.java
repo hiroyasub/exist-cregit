@@ -92,6 +92,11 @@ name|boolean
 name|allowUnload
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|isDirty
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

@@ -54,7 +54,7 @@ specifier|private
 name|long
 name|timeOut_
 init|=
-literal|60000L
+literal|240000L
 decl_stmt|;
 specifier|public
 name|ReentrantReadWriteLock

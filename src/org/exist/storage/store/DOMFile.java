@@ -596,9 +596,16 @@ name|void
 name|run
 parameter_list|()
 block|{
+if|if
+condition|(
+name|dataCache
+operator|.
+name|hasDirtyItems
+argument_list|()
+condition|)
+block|{
 try|try
 block|{
-comment|//                    LOG.debug("Triggering cache sync");
 name|lock
 operator|.
 name|acquire
@@ -635,6 +642,7 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

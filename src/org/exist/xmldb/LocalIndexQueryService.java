@@ -431,6 +431,9 @@ expr_stmt|;
 return|return
 name|broker
 operator|.
+name|getElementIndex
+argument_list|()
+operator|.
 name|scanIndexedElements
 argument_list|(
 name|parent

@@ -387,10 +387,8 @@ name|sysCollection
 operator|.
 name|getDocument
 argument_list|(
-name|SYSTEM
-operator|+
-literal|'/'
-operator|+
+name|broker
+argument_list|,
 name|ACL_FILE
 argument_list|)
 decl_stmt|;

@@ -640,6 +640,9 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
+name|getElementIndex
+argument_list|()
+operator|.
 name|findElementsByTagName
 argument_list|(
 name|ElementValue

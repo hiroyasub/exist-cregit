@@ -838,7 +838,9 @@ name|collection
 operator|.
 name|getDocument
 argument_list|(
-name|path
+name|broker
+argument_list|,
+name|docName
 argument_list|)
 decl_stmt|;
 if|if
@@ -1087,6 +1089,8 @@ name|collection
 operator|.
 name|getDocument
 argument_list|(
+name|broker
+argument_list|,
 name|path
 argument_list|)
 decl_stmt|;

@@ -263,14 +263,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|text
-operator|.
-name|nodeName
-operator|=
-name|QName
-operator|.
-name|TEXT_QNAME
-expr_stmt|;
 comment|/*try {              text.appendData(new String( data, start + 1, len - 1, "UTF-8" ));         } catch ( UnsupportedEncodingException uee ) {             text.appendData(new String( data, start + 1, len - 1 ));         }*/
 return|return
 name|text

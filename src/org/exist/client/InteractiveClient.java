@@ -3145,6 +3145,9 @@ argument_list|)
 condition|)
 block|{
 comment|// list collection contents
+name|getResources
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|properties

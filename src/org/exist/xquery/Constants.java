@@ -30,9 +30,15 @@ literal|"ancestor"
 block|,
 literal|"ancestor-or-self"
 block|,
-literal|"attribute"
+literal|"parent"
+block|,
+literal|"preceding"
+block|,
+literal|"preceding-sibling"
 block|,
 literal|"child"
+block|,
+literal|"attribute"
 block|,
 literal|"descendant"
 block|,
@@ -43,12 +49,6 @@ block|,
 literal|"following-sibling"
 block|,
 literal|"namespace"
-block|,
-literal|"parent"
-block|,
-literal|"preceding"
-block|,
-literal|"preceding-sibling"
 block|,
 literal|"self"
 block|,
@@ -103,7 +103,7 @@ specifier|static
 name|int
 name|CHILD_AXIS
 init|=
-literal|10
+literal|5
 decl_stmt|;
 specifier|public
 specifier|final
@@ -111,7 +111,7 @@ specifier|static
 name|int
 name|ATTRIBUTE_AXIS
 init|=
-literal|11
+literal|6
 decl_stmt|;
 specifier|public
 specifier|final
@@ -119,7 +119,7 @@ specifier|static
 name|int
 name|DESCENDANT_AXIS
 init|=
-literal|12
+literal|7
 decl_stmt|;
 specifier|public
 specifier|final
@@ -127,7 +127,7 @@ specifier|static
 name|int
 name|DESCENDANT_SELF_AXIS
 init|=
-literal|13
+literal|8
 decl_stmt|;
 specifier|public
 specifier|final
@@ -135,7 +135,7 @@ specifier|static
 name|int
 name|FOLLOWING_AXIS
 init|=
-literal|14
+literal|9
 decl_stmt|;
 specifier|public
 specifier|final
@@ -143,7 +143,7 @@ specifier|static
 name|int
 name|FOLLOWING_SIBLING_AXIS
 init|=
-literal|15
+literal|10
 decl_stmt|;
 specifier|public
 specifier|final
@@ -151,7 +151,7 @@ specifier|static
 name|int
 name|NAMESPACE_AXIS
 init|=
-literal|16
+literal|11
 decl_stmt|;
 specifier|public
 specifier|final
@@ -159,7 +159,7 @@ specifier|static
 name|int
 name|SELF_AXIS
 init|=
-literal|17
+literal|12
 decl_stmt|;
 specifier|public
 specifier|final
@@ -167,7 +167,7 @@ specifier|static
 name|int
 name|DESCENDANT_ATTRIBUTE_AXIS
 init|=
-literal|18
+literal|13
 decl_stmt|;
 comment|/**      * These constants represent the      * different node types in<i>XPath</i>.      */
 specifier|public

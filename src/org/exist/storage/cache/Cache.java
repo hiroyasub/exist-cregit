@@ -84,6 +84,11 @@ name|Cacheable
 name|item
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|hasDirtyItems
+parameter_list|()
+function_decl|;
 comment|/** 	 * Call release on all items, but without 	 * actually removing them from the cache. 	 *  	 * This gives the items a chance to write all 	 * unwritten data to disk. 	 */
 specifier|public
 name|void

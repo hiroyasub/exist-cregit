@@ -886,7 +886,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//		    DocumentSet docs = contextSet.getDocumentSet();
 name|DocumentSet
 name|docs
 init|=
@@ -928,6 +927,9 @@ operator|)
 name|context
 operator|.
 name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
 argument_list|()
 operator|.
 name|getAttributesByName
@@ -1035,7 +1037,11 @@ return|;
 block|}
 else|else
 block|{
-comment|//		    DocumentSet docs = contextSet.getDocumentSet();
+name|NodeSet
+name|result
+init|=
+literal|null
+decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -1044,6 +1050,12 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|cacheResults
+argument_list|()
+condition|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -1079,6 +1091,9 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
+name|getElementIndex
+argument_list|()
+operator|.
 name|findElementsByTagName
 argument_list|(
 name|ElementValue
@@ -1096,9 +1111,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|NodeSet
 name|result
-init|=
+operator|=
 name|currentSet
 operator|.
 name|selectParentChild
@@ -1111,12 +1125,48 @@ name|DESCENDANT
 argument_list|,
 name|inPredicate
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|NodeSelector
+name|selector
+init|=
+operator|new
+name|ChildSelector
+argument_list|(
+name|contextSet
+argument_list|,
+name|inPredicate
+argument_list|)
 decl_stmt|;
-comment|//			DocumentSet docs = contextSet.getDocumentSet();
-comment|//			NodeSelector selector = new ChildSelector(contextSet, inPredicate);
-comment|//			NodeSet result = context.getBroker().findElementsByTagName(
-comment|//					ElementValue.ELEMENT, docs, test.getName(), selector
-comment|//			);
+name|result
+operator|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
+argument_list|()
+operator|.
+name|findElementsByTagName
+argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|,
+name|docs
+argument_list|,
+name|test
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|selector
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1210,6 +1260,9 @@ operator|)
 name|context
 operator|.
 name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1328,6 +1381,9 @@ operator|)
 name|context
 operator|.
 name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1596,6 +1652,9 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
+name|getElementIndex
+argument_list|()
+operator|.
 name|findElementsByTagName
 argument_list|(
 name|ElementValue
@@ -1692,6 +1751,9 @@ operator|)
 name|context
 operator|.
 name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1918,6 +1980,16 @@ argument_list|()
 expr_stmt|;
 return|return
 name|ds
+return|;
+block|}
+specifier|protected
+name|boolean
+name|cacheResults
+parameter_list|()
+block|{
+comment|//return getContextDocSet() != null;
+return|return
+literal|true
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#resetState() 	 */

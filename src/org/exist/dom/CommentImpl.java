@@ -498,14 +498,6 @@ argument_list|(
 name|cdata
 argument_list|)
 expr_stmt|;
-name|comment
-operator|.
-name|nodeName
-operator|=
-name|QName
-operator|.
-name|COMMENT_QNAME
-expr_stmt|;
 return|return
 name|comment
 return|;

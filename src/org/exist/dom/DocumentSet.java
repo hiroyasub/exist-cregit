@@ -527,17 +527,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-name|put
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|,
-name|doc
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|public

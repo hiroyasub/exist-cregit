@@ -186,7 +186,7 @@ specifier|public
 class|class
 name|AttrImpl
 extends|extends
-name|NodeImpl
+name|NamedNode
 implements|implements
 name|Attr
 block|{
@@ -250,6 +250,8 @@ operator|.
 name|ATTRIBUTE_NODE
 argument_list|,
 name|gid
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

@@ -134,10 +134,6 @@ argument_list|(
 name|Node
 operator|.
 name|DOCUMENT_TYPE_NODE
-argument_list|,
-name|QName
-operator|.
-name|DOCTYPE_QNAME
 argument_list|)
 expr_stmt|;
 name|this
@@ -165,10 +161,6 @@ argument_list|(
 name|Node
 operator|.
 name|DOCUMENT_TYPE_NODE
-argument_list|,
-name|QName
-operator|.
-name|DOCTYPE_QNAME
 argument_list|)
 expr_stmt|;
 name|this
