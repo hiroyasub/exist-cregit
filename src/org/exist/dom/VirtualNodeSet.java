@@ -274,7 +274,7 @@ name|int
 name|recursions
 parameter_list|)
 block|{
-comment|// if includeSelf is true set first to gid during the first recursion
+comment|// if includeSelf is true check node during first recursion
 if|if
 condition|(
 name|recursions
@@ -342,11 +342,13 @@ name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
 comment|// is pid member of the context set?
+comment|/*// commented out by Timo Boehme: next is wrong because we have 		 * to test for current node set */
+comment|//NodeProxy parent = context.get(node.doc, pid);
+comment|// -- inserted by Timo Boehme --
+comment|// is pid member of the virutal set?
 name|NodeProxy
 name|parent
 init|=
-name|context
-operator|.
 name|get
 argument_list|(
 name|node
@@ -895,6 +897,7 @@ name|gid
 operator|<
 literal|0
 condition|)
+block|{
 name|proxy
 operator|.
 name|gid
@@ -906,6 +909,52 @@ operator|.
 name|getDocumentElementId
 argument_list|()
 expr_stmt|;
+comment|// -- inserted by Timo Boehme --
+name|NodeProxy
+name|docElemProxy
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|proxy
+operator|.
+name|getDoc
+argument_list|()
+argument_list|,
+name|proxy
+operator|.
+name|doc
+operator|.
+name|getDocumentElementId
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|result
+operator|.
+name|add
+argument_list|(
+name|docElemProxy
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|recursive
+condition|)
+name|addChildren
+argument_list|(
+name|result
+argument_list|,
+name|docElemProxy
+operator|.
+name|getNode
+argument_list|()
+argument_list|,
+name|recursive
+argument_list|)
+expr_stmt|;
+continue|continue;
+comment|// -- end of insertion --
+block|}
 if|if
 condition|(
 name|proxy
@@ -1298,6 +1347,15 @@ operator|!=
 literal|null
 condition|)
 return|return;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"realizing nodes"
+argument_list|)
+expr_stmt|;
 switch|switch
 condition|(
 name|axis

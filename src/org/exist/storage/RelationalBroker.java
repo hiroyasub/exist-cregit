@@ -8597,7 +8597,7 @@ parameter_list|(
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|CharSequence
 name|path
 parameter_list|)
 block|{

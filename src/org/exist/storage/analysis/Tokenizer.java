@@ -20,7 +20,7 @@ specifier|public
 name|void
 name|setText
 parameter_list|(
-name|String
+name|CharSequence
 name|text
 parameter_list|)
 function_decl|;

@@ -7907,6 +7907,28 @@ name|ioe
 parameter_list|)
 block|{
 block|}
+comment|// set default character encoding - doesn't work on all systems
+name|String
+name|enc
+init|=
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"encoding"
+argument_list|,
+name|ENCODING
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"file.encoding"
+argument_list|,
+name|enc
+argument_list|)
+expr_stmt|;
 comment|// parse command-line options
 name|CLArgsParser
 name|optParser

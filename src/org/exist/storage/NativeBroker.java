@@ -113,6 +113,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Observer
 import|;
 end_import
@@ -529,6 +539,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ByteArrayPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|ByteConversion
 import|;
 end_import
@@ -724,6 +746,7 @@ name|NativeBroker
 extends|extends
 name|DBBroker
 block|{
+comment|// default buffer size setting
 specifier|protected
 specifier|final
 specifier|static
@@ -732,13 +755,7 @@ name|BUFFERS
 init|=
 literal|256
 decl_stmt|;
-specifier|protected
-specifier|static
-name|int
-name|FILE_BUFFER_SIZE
-init|=
-literal|131072
-decl_stmt|;
+comment|// check available memory after storing MEM_LIMIT_CHECK nodes
 specifier|protected
 specifier|static
 name|int
@@ -746,6 +763,7 @@ name|MEM_LIMIT_CHECK
 init|=
 literal|10000
 decl_stmt|;
+comment|// size of the internal buffer for collection objects
 specifier|protected
 specifier|static
 name|int
@@ -857,6 +875,10 @@ name|int
 name|defaultIndexDepth
 init|=
 literal|1
+decl_stmt|;
+specifier|protected
+name|Map
+name|idxPathMap
 decl_stmt|;
 specifier|protected
 name|boolean
@@ -1592,6 +1614,18 @@ name|collections
 argument_list|)
 expr_stmt|;
 block|}
+name|idxPathMap
+operator|=
+operator|(
+name|Map
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+literal|"indexer.map"
+argument_list|)
+expr_stmt|;
 name|textEngine
 operator|=
 operator|new
@@ -1650,7 +1684,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|protected
 specifier|final
 specifier|static
@@ -1739,7 +1772,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Object
 name|acquireWriteLock
@@ -1749,7 +1781,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Adds a feature to the Observer attribute of the NativeBroker object 	 * 	 *@param  o  The feature to be added to the Observer attribute 	 */
 specifier|public
 name|void
 name|addObserver
@@ -2082,8 +2113,6 @@ operator|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -2270,7 +2299,7 @@ name|skip
 argument_list|(
 name|len
 operator|*
-literal|3
+literal|4
 argument_list|)
 expr_stmt|;
 block|}
@@ -2281,11 +2310,6 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2870,54 +2894,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//		try {
-comment|//			ArrayList collList = null;
-comment|//			synchronized (collectionsDb) {
-comment|//				collList = collectionsDb.getEntries();
-comment|//			}
-comment|//			if (collList == null)
-comment|//				return docs;
-comment|//
-comment|//			Value val;
-comment|//			Value[] entry;
-comment|//			byte[] data;
-comment|//			VariableByteInputStream istream;
-comment|//			DocumentImpl doc;
-comment|//			Collection collection;
-comment|//			String collName;
-comment|//			for (int i = 0; i< collList.size(); i++) {
-comment|//				entry = (Value[]) collList.get(i);
-comment|//				collName = entry[0].toString();
-comment|//				if (collName.startsWith("__"))
-comment|//					continue;
-comment|//				collection = collections.get(collName);
-comment|//				if(collection == null) {
-comment|//					val = entry[1];
-comment|//					data = val.getData();
-comment|//					istream = new VariableByteInputStream(data);
-comment|//					collection = new Collection(this, collName);
-comment|//					collection.read(istream);
-comment|//				}
-comment|//				if (collection
-comment|//					.getPermissions()
-comment|//					.validate(user, Permission.READ))
-comment|//					for (Iterator iter = collection.iterator();
-comment|//						iter.hasNext();
-comment|//						) {
-comment|//						doc = (DocumentImpl) iter.next();
-comment|//						if (doc
-comment|//							.getPermissions()
-comment|//							.validate(user, Permission.READ)) {
-comment|//							docs.add(doc);
-comment|//						}
-comment|//					}
-comment|//
-comment|//			}
-comment|//		} catch (BTreeException dbe) {
-comment|//			LOG.error(dbe);
-comment|//		} catch (IOException ioe) {
-comment|//			LOG.debug(ioe);
-comment|//		}
 name|LOG
 operator|.
 name|debug
@@ -3495,7 +3471,6 @@ return|return
 name|symbols
 return|;
 block|}
-comment|/** 	 *  Gets the dOMIterator attribute of the NativeBroker object 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        The dOMIterator value 	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -3619,7 +3594,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the databaseType attribute of the NativeBroker object 	 * 	 *@return    The databaseType value 	 */
 specifier|public
 name|int
 name|getDatabaseType
@@ -3805,7 +3779,6 @@ return|return
 name|doc
 return|;
 block|}
-comment|/** 	 *  Gets the documentsByCollection attribute of the NativeBroker object 	 * 	 *@param  collection                     Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The documentsByCollection value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|DocumentSet
 name|getDocumentsByCollection
@@ -3830,7 +3803,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the documentsByCollection attribute of the NativeBroker object 	 * 	 *@param  collection                     Description of the Parameter 	 *@param  inclusive                      Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The documentsByCollection value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|DocumentSet
 name|getDocumentsByCollection
@@ -3952,54 +3924,6 @@ argument_list|,
 name|inclusive
 argument_list|)
 expr_stmt|;
-comment|//		ArrayList collections = null;
-comment|//		// read collection + subcollections if inclusive=true
-comment|//		if (inclusive) {
-comment|//			Value key;
-comment|//			try {
-comment|//				key = new Value(collection.getBytes("UTF-8"));
-comment|//			} catch (UnsupportedEncodingException uee) {
-comment|//				key = new Value(collection.getBytes());
-comment|//			}
-comment|//			IndexQuery query =
-comment|//				new IndexQuery(null, IndexQuery.TRUNC_RIGHT, key);
-comment|//			CollectionsCallback cb = new CollectionsCallback(this);
-comment|//			synchronized (collectionsDb) {
-comment|//				try {
-comment|//					collectionsDb.find(query, cb);
-comment|//				} catch (BTreeException e) {
-comment|//					LOG.warn(
-comment|//						"btree error while reading collection " + collection,
-comment|//						e);
-comment|//				} catch (IOException e) {
-comment|//					LOG.warn(
-comment|//						"io error while reading collection " + collection,
-comment|//						e);
-comment|//				}
-comment|//			}
-comment|//			collections = cb.getCollections();
-comment|//			// read single collection
-comment|//		} else {
-comment|//			Collection coll = getCollection(collection);
-comment|//			if (coll == null) {
-comment|//				LOG.debug("collection " + collection + " not found");
-comment|//				return docs;
-comment|//			}
-comment|//			collections = new ArrayList(1);
-comment|//			collections.add(coll);
-comment|//		}
-comment|//		Collection temp;
-comment|//		DocumentImpl doc;
-comment|//		for (Iterator i = collections.iterator(); i.hasNext();) {
-comment|//			temp = (Collection) i.next();
-comment|//			if (!temp.getPermissions().validate(user, Permission.READ))
-comment|//				throw new PermissionDeniedException("permission to read collection denied");
-comment|//			for (Iterator j = temp.iterator(); j.hasNext();) {
-comment|//				doc = (DocumentImpl) j.next();
-comment|//				if (doc.getPermissions().validate(user, Permission.READ))
-comment|//					docs.add(doc);
-comment|//			}
-comment|//		}
 name|LOG
 operator|.
 name|debug
@@ -4162,7 +4086,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 *  Gets the namespacePrefix attribute of the NativeBroker object 	 * 	 *@param  namespace  Description of the Parameter 	 *@return            The namespacePrefix value 	 */
 specifier|public
 name|String
 name|getNamespacePrefix
@@ -4241,7 +4164,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Gets the namespaceURI attribute of the NativeBroker object 	 * 	 *@param  prefix  Description of the Parameter 	 *@return         The namespaceURI value 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -4257,7 +4179,6 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the nextCollectionId attribute of the NativeBroker object 	 * 	 *@return    The nextCollectionId value 	 */
 specifier|protected
 name|short
 name|getNextCollectionId
@@ -4363,6 +4284,8 @@ argument_list|(
 name|key
 argument_list|,
 name|d
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4507,6 +4430,8 @@ argument_list|(
 name|key
 argument_list|,
 name|d
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4614,18 +4539,17 @@ operator|.
 name|getInternalAddress
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IndexPaths
 name|idx
 init|=
 operator|(
 name|IndexPaths
 operator|)
-name|config
+name|idxPathMap
 operator|.
-name|getProperty
+name|get
 argument_list|(
-literal|"indexScheme."
-operator|+
 name|node
 operator|.
 name|getOwnerDocument
@@ -5023,8 +4947,6 @@ init|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -5316,7 +5238,9 @@ name|iterator
 argument_list|,
 name|n
 argument_list|,
-literal|""
+operator|new
+name|StringBuffer
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -5415,7 +5339,7 @@ specifier|final
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|StringBuffer
 name|currentPath
 parameter_list|)
 block|{
@@ -5454,12 +5378,10 @@ init|=
 operator|(
 name|IndexPaths
 operator|)
-name|config
+name|idxPathMap
 operator|.
-name|getProperty
+name|get
 argument_list|(
-literal|"indexScheme."
-operator|+
 name|node
 operator|.
 name|getOwnerDocument
@@ -5719,6 +5641,9 @@ operator|.
 name|match
 argument_list|(
 name|currentPath
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5757,6 +5682,9 @@ operator|.
 name|match
 argument_list|(
 name|currentPath
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5874,6 +5802,9 @@ operator|.
 name|match
 argument_list|(
 name|currentPath
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 condition|)
 name|textEngine
@@ -5902,7 +5833,7 @@ parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|StringBuffer
 name|currentPath
 parameter_list|)
 block|{
@@ -5918,15 +5849,19 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 name|currentPath
-operator|=
-name|currentPath
-operator|+
+operator|.
+name|append
+argument_list|(
 literal|'/'
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|node
 operator|.
 name|getNodeName
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|reindex
 argument_list|(
@@ -6076,7 +6011,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Gets the nodeValue attribute of the NativeBroker object 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        The nodeValue value 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -6152,7 +6086,6 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the nodesContaining attribute of the NativeBroker object 	 * 	 *@param  docs      Description of the Parameter 	 *@param  termList  Description of the Parameter 	 *@return           The nodesContaining value 	 */
 specifier|public
 name|NodeSet
 index|[]
@@ -6819,7 +6752,6 @@ return|return
 name|xmlSerializer
 return|;
 block|}
-comment|/** 	 *  Gets the textEngine attribute of the NativeBroker object 	 * 	 *@return    The textEngine value 	 */
 specifier|public
 name|TextSearchEngine
 name|getTextEngine
@@ -6829,7 +6761,6 @@ return|return
 name|textEngine
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Serializer
 name|newSerializer
@@ -6845,7 +6776,6 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc  Description of the Parameter 	 *@param  gid  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|Node
 name|objectWith
@@ -6981,7 +6911,157 @@ name|run
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc  Description of the Parameter 	 *@return      Description of the Return Value 	 */
+specifier|public
+name|Node
+name|objectWith
+parameter_list|(
+specifier|final
+name|NodeProxy
+name|p
+parameter_list|)
+block|{
+if|if
+condition|(
+name|p
+operator|.
+name|internalAddress
+operator|<
+literal|0
+condition|)
+return|return
+name|objectWith
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|,
+name|p
+operator|.
+name|gid
+argument_list|)
+return|;
+return|return
+operator|(
+name|Node
+operator|)
+operator|new
+name|DOMTransaction
+argument_list|(
+name|this
+argument_list|,
+name|domDb
+argument_list|)
+block|{
+specifier|public
+name|Object
+name|start
+parameter_list|()
+block|{
+name|Value
+name|val
+init|=
+name|domDb
+operator|.
+name|get
+argument_list|(
+name|p
+operator|.
+name|internalAddress
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|val
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"node "
+operator|+
+name|p
+operator|.
+name|gid
+operator|+
+literal|" not found!"
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+name|NodeImpl
+name|node
+init|=
+name|NodeImpl
+operator|.
+name|deserialize
+argument_list|(
+name|val
+operator|.
+name|getData
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|val
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+operator|(
+name|DocumentImpl
+operator|)
+name|p
+operator|.
+name|doc
+argument_list|)
+decl_stmt|;
+name|node
+operator|.
+name|setGID
+argument_list|(
+name|p
+operator|.
+name|gid
+argument_list|)
+expr_stmt|;
+name|node
+operator|.
+name|setOwnerDocument
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|)
+expr_stmt|;
+name|node
+operator|.
+name|setInternalAddress
+argument_list|(
+name|p
+operator|.
+name|internalAddress
+argument_list|)
+expr_stmt|;
+return|return
+name|node
+return|;
+block|}
+block|}
+operator|.
+name|run
+argument_list|()
+return|;
+block|}
 specifier|public
 name|Node
 name|preloadDocument
@@ -6994,7 +7074,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  namespace  Description of the Parameter 	 *@param  prefix     Description of the Parameter 	 */
 specifier|public
 name|void
 name|registerNamespace
@@ -7123,7 +7202,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  lock  Description of the Parameter 	 */
 specifier|public
 name|void
 name|releaseWriteLock
@@ -7133,7 +7211,6 @@ name|lock
 parameter_list|)
 block|{
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|removeCollection
@@ -7529,8 +7606,6 @@ init|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -7771,8 +7846,6 @@ init|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -7903,7 +7976,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  docName                        Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeDocument
@@ -8151,8 +8223,6 @@ init|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -8445,13 +8515,7 @@ condition|(
 name|changed
 condition|)
 block|{
-name|ndata
-operator|=
-name|os
-operator|.
-name|toByteArray
-argument_list|()
-expr_stmt|;
+comment|//ndata = os.toByteArray();
 if|if
 condition|(
 name|elementsDb
@@ -8460,7 +8524,10 @@ name|put
 argument_list|(
 name|key
 argument_list|,
-name|ndata
+name|os
+operator|.
+name|data
+argument_list|()
 argument_list|)
 operator|<
 literal|0
@@ -8649,8 +8716,6 @@ init|=
 operator|new
 name|IndexQuery
 argument_list|(
-literal|null
-argument_list|,
 name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
@@ -8946,12 +9011,10 @@ init|=
 operator|(
 name|IndexPaths
 operator|)
-name|config
+name|idxPathMap
 operator|.
-name|getProperty
+name|get
 argument_list|(
-literal|"indexScheme."
-operator|+
 name|node
 operator|.
 name|getOwnerDocument
@@ -9029,10 +9092,17 @@ operator|.
 name|getInternalAddress
 argument_list|()
 decl_stmt|;
-specifier|final
-name|NodeRef
-name|key
-init|=
+if|if
+condition|(
+name|address
+operator|>
+operator|-
+literal|1
+condition|)
+name|domDb
+operator|.
+name|remove
+argument_list|(
 operator|new
 name|NodeRef
 argument_list|(
@@ -9046,19 +9116,6 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|address
-operator|>
-operator|-
-literal|1
-condition|)
-name|domDb
-operator|.
-name|remove
-argument_list|(
-name|key
 argument_list|,
 name|address
 argument_list|)
@@ -9068,7 +9125,19 @@ name|domDb
 operator|.
 name|remove
 argument_list|(
-name|key
+operator|new
+name|NodeRef
+argument_list|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getGID
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -9336,7 +9405,9 @@ name|ostream
 init|=
 operator|new
 name|VariableByteOutputStream
-argument_list|()
+argument_list|(
+literal|6
+argument_list|)
 decl_stmt|;
 name|doc
 operator|.
@@ -9345,15 +9416,6 @@ argument_list|(
 name|ostream
 argument_list|)
 expr_stmt|;
-name|byte
-index|[]
-name|data
-init|=
-name|ostream
-operator|.
-name|toByteArray
-argument_list|()
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -9378,7 +9440,10 @@ name|append
 argument_list|(
 name|name
 argument_list|,
+name|ostream
+operator|.
 name|data
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -9466,6 +9531,11 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+name|ostream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9496,7 +9566,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  collection  Description of the Parameter 	 */
 specifier|public
 name|void
 name|saveCollection
@@ -9595,7 +9664,9 @@ name|ostream
 init|=
 operator|new
 name|VariableByteOutputStream
-argument_list|()
+argument_list|(
+literal|8
+argument_list|)
 decl_stmt|;
 name|collection
 operator|.
@@ -9635,7 +9706,7 @@ name|name
 argument_list|,
 name|ostream
 operator|.
-name|toByteArray
+name|data
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -9724,6 +9795,11 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+name|ostream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9815,7 +9891,9 @@ name|ostream
 init|=
 operator|new
 name|VariableByteOutputStream
-argument_list|()
+argument_list|(
+literal|7
+argument_list|)
 decl_stmt|;
 name|symbols
 operator|.
@@ -9824,15 +9902,7 @@ argument_list|(
 name|ostream
 argument_list|)
 expr_stmt|;
-name|byte
-index|[]
-name|data
-init|=
-name|ostream
-operator|.
-name|toByteArray
-argument_list|()
-decl_stmt|;
+comment|//byte[] data = ostream.toByteArray();
 synchronized|synchronized
 init|(
 name|namespacesDb
@@ -9846,7 +9916,10 @@ name|put
 argument_list|(
 name|name
 argument_list|,
+name|ostream
+operator|.
 name|data
+argument_list|()
 argument_list|)
 operator|<
 literal|0
@@ -9862,6 +9935,11 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+name|ostream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -10254,7 +10332,6 @@ return|return
 name|resultNodeSet
 return|;
 block|}
-comment|/** 	 *  Sets the retrvMode attribute of the NativeBroker object 	 * 	 *@param  mode  The new retrvMode value 	 */
 specifier|public
 name|void
 name|setRetrvMode
@@ -10264,7 +10341,6 @@ name|mode
 parameter_list|)
 block|{
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|shutdown
@@ -10338,11 +10414,18 @@ specifier|final
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|CharSequence
 name|currentPath
 parameter_list|)
 block|{
 comment|// first, check available memory
+if|if
+condition|(
+name|nodesCount
+operator|>
+name|MEM_LIMIT_CHECK
+condition|)
+block|{
 specifier|final
 name|int
 name|percent
@@ -10368,10 +10451,6 @@ operator|)
 decl_stmt|;
 if|if
 condition|(
-name|nodesCount
-operator|>
-name|MEM_LIMIT_CHECK
-operator|&&
 name|percent
 operator|<
 name|memMinFree
@@ -10424,6 +10503,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|final
 name|DocumentImpl
 name|doc
@@ -10443,12 +10523,10 @@ init|=
 operator|(
 name|IndexPaths
 operator|)
-name|config
+name|idxPathMap
 operator|.
-name|getProperty
+name|get
 argument_list|(
-literal|"indexScheme."
-operator|+
 name|doc
 operator|.
 name|getDoctype
@@ -10530,16 +10608,6 @@ operator|.
 name|getIndexDepth
 argument_list|()
 decl_stmt|;
-specifier|final
-name|byte
-name|data
-index|[]
-init|=
-name|node
-operator|.
-name|serialize
-argument_list|()
-decl_stmt|;
 operator|new
 name|DOMTransaction
 argument_list|(
@@ -10564,6 +10632,16 @@ name|address
 init|=
 operator|-
 literal|1
+decl_stmt|;
+specifier|final
+name|byte
+name|data
+index|[]
+init|=
+name|node
+operator|.
+name|serialize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -10640,6 +10718,13 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
+name|ByteArrayPool
+operator|.
+name|releaseByteArray
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -10652,6 +10737,7 @@ expr_stmt|;
 operator|++
 name|nodesCount
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|tempProxy
 init|=
@@ -11253,6 +11339,24 @@ parameter_list|()
 throws|throws
 name|ReadOnlyException
 block|{
+specifier|final
+name|NodeRef
+name|ref
+init|=
+operator|new
+name|NodeRef
+argument_list|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getGID
+argument_list|()
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 operator|-
@@ -11264,19 +11368,7 @@ name|domDb
 operator|.
 name|update
 argument_list|(
-operator|new
-name|NodeRef
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getGID
-argument_list|()
-argument_list|)
+name|ref
 argument_list|,
 name|internalAddress
 argument_list|,
@@ -11288,19 +11380,7 @@ name|domDb
 operator|.
 name|update
 argument_list|(
-operator|new
-name|NodeRef
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getGID
-argument_list|()
-argument_list|)
+name|ref
 argument_list|,
 name|data
 argument_list|)
@@ -11313,6 +11393,13 @@ block|}
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|ByteArrayPool
+operator|.
+name|releaseByteArray
+argument_list|(
+name|data
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -11473,25 +11560,6 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
-name|String
-name|getId
-parameter_list|()
-block|{
-return|return
-literal|"NativeBroker ["
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"]"
-return|;
-block|}
-specifier|public
 name|boolean
 name|isReadOnly
 parameter_list|()
@@ -11507,103 +11575,6 @@ name|ElementValue
 extends|extends
 name|Value
 block|{
-name|ElementValue
-parameter_list|(
-name|short
-name|collectionId
-parameter_list|,
-name|String
-name|elementName
-parameter_list|)
-block|{
-name|super
-argument_list|(
-operator|new
-name|byte
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-name|byte
-index|[]
-name|ed
-decl_stmt|;
-try|try
-block|{
-name|ed
-operator|=
-name|elementName
-operator|.
-name|getBytes
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedEncodingException
-name|uee
-parameter_list|)
-block|{
-name|ed
-operator|=
-name|elementName
-operator|.
-name|getBytes
-argument_list|()
-expr_stmt|;
-block|}
-name|len
-operator|=
-name|ed
-operator|.
-name|length
-operator|+
-literal|2
-expr_stmt|;
-name|data
-operator|=
-operator|new
-name|byte
-index|[
-name|len
-index|]
-expr_stmt|;
-name|ByteConversion
-operator|.
-name|shortToByte
-argument_list|(
-name|collectionId
-argument_list|,
-name|data
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|ed
-argument_list|,
-literal|0
-argument_list|,
-name|data
-argument_list|,
-literal|2
-argument_list|,
-name|ed
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|pos
-operator|=
-literal|0
-expr_stmt|;
-block|}
 name|ElementValue
 parameter_list|(
 name|short
@@ -11782,7 +11753,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    3. Juni 2002 	 */
 specifier|final
 specifier|static
 class|class

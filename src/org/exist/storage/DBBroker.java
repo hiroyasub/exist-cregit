@@ -926,6 +926,15 @@ name|long
 name|gid
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|Node
+name|objectWith
+parameter_list|(
+name|NodeProxy
+name|p
+parameter_list|)
+function_decl|;
 comment|/**      *  associate a prefix with a given namespace. Every broker subclass should      *  keep an internal map, where it stores the prefixes used for different      *  namespaces. It should be guaranteed that only one prefix is associated      *  with one namespace URI.      *      *@param  namespace  Description of the Parameter      *@param  prefix     Description of the Parameter      */
 specifier|public
 name|void
@@ -1103,7 +1112,7 @@ parameter_list|(
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|CharSequence
 name|currentPath
 parameter_list|)
 function_decl|;

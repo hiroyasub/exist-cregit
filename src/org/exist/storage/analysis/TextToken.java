@@ -180,7 +180,7 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
-name|String
+name|CharSequence
 name|tokenText
 decl_stmt|;
 specifier|private
@@ -201,7 +201,7 @@ parameter_list|(
 name|int
 name|type
 parameter_list|,
-name|String
+name|CharSequence
 name|text
 parameter_list|)
 block|{
@@ -227,7 +227,7 @@ parameter_list|(
 name|int
 name|type
 parameter_list|,
-name|String
+name|CharSequence
 name|text
 parameter_list|,
 name|int
@@ -253,7 +253,7 @@ parameter_list|(
 name|int
 name|type
 parameter_list|,
-name|String
+name|CharSequence
 name|text
 parameter_list|,
 name|int
@@ -304,7 +304,7 @@ parameter_list|(
 name|int
 name|type
 parameter_list|,
-name|String
+name|CharSequence
 name|text
 parameter_list|,
 name|int
@@ -410,12 +410,15 @@ throw|;
 return|return
 name|tokenText
 operator|.
-name|substring
+name|subSequence
 argument_list|(
 name|start
 argument_list|,
 name|end
 argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 comment|/**      *  Gets the type attribute of the Token object      *      *@return    The type value      */
