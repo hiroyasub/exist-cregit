@@ -545,7 +545,8 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 comment|/** 	 *  execute XPath query and return howmany nodes from the result set, 	 *  starting at position<code>start</code>. If<code>prettyPrint</code> is 	 *  set to>0 (true), results are pretty printed. 	 * 	 *@param  xpath                          the XPath query to execute 	 *@param  howmany                        maximum number of results to 	 *      return. 	 *@param  start                          item in the result set to start 	 *      with. 	 *@param  prettyPrint                    turn on pretty printing if>0. 	 *@param  encoding                       the character encoding to use. 	 *@param  sortExpr                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 *@depreceated                           use Vector query() or int 	 *      executeQuery() instead 	 */
-name|String
+name|byte
+index|[]
 name|query
 parameter_list|(
 name|User
