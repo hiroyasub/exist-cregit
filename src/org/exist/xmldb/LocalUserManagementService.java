@@ -127,10 +127,6 @@ name|*
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. August 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -150,7 +146,6 @@ specifier|private
 name|User
 name|user
 decl_stmt|;
-comment|/** 	 *  Constructor for the UserAdminService object 	 * 	 *@param  pool        Description of the Parameter 	 *@param  collection  Description of the Parameter 	 *@param  user        Description of the Parameter 	 */
 specifier|public
 name|LocalUserManagementService
 parameter_list|(
@@ -183,7 +178,6 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/** 	 *  Adds a feature to the User attribute of the LocalUserManagementService 	 *  object 	 * 	 *@param  u                   The feature to be added to the User attribute 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|addUser
@@ -267,7 +261,6 @@ name|u
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  modeStr             Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chmod
@@ -773,7 +766,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  resource            Description of the Parameter 	 *@param  modeStr             Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chmod
@@ -959,7 +951,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  u                   Description of the Parameter 	 *@param  group               Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chown
@@ -1127,7 +1118,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  res                 Description of the Parameter 	 *@param  u                   Description of the Parameter 	 *@param  group               Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chown
@@ -1316,7 +1306,6 @@ literal|"resource not found"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Gets the name attribute of the UserAdminService object 	 * 	 *@return    The name value 	 */
 specifier|public
 name|String
 name|getName
@@ -1326,7 +1315,6 @@ return|return
 literal|"UserManagementService"
 return|;
 block|}
-comment|/** 	 *  Gets the permissions attribute of the LocalUserManagementService object 	 * 	 *@param  coll                Description of the Parameter 	 *@return                     The permissions value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -1361,7 +1349,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the permissions attribute of the LocalUserManagementService object 	 * 	 *@param  resource            Description of the Parameter 	 *@return                     The permissions value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -1675,7 +1662,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Gets the property attribute of the LocalUserManagementService object 	 * 	 *@param  property            Description of the Parameter 	 *@return                     The property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|String
 name|getProperty
@@ -1690,7 +1676,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the user attribute of the LocalUserManagementService object 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|User
 name|getUser
@@ -1724,7 +1709,6 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the users attribute of the LocalUserManagementService object 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|User
 index|[]
@@ -1754,7 +1738,6 @@ name|getUsers
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Gets the version attribute of the UserAdminService object 	 * 	 *@return    The version value 	 */
 specifier|public
 name|String
 name|getVersion
@@ -1764,7 +1747,6 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeUser
@@ -1818,7 +1800,6 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the collection attribute of the LocalUserManagementService object 	 * 	 *@param  collection          The new collection value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setCollection
@@ -1839,7 +1820,6 @@ operator|)
 name|collection
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the property attribute of the LocalUserManagementService object 	 * 	 *@param  property            The new property value 	 *@param  value               The new property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setProperty
@@ -1854,7 +1834,6 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  u                   Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|updateUser

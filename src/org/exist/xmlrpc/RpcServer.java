@@ -988,7 +988,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|Vector
+name|Hashtable
 name|listDocumentPermissions
 parameter_list|(
 name|User
@@ -1035,7 +1035,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|Vector
+name|Hashtable
 name|listCollectionPermissions
 parameter_list|(
 name|User
@@ -3442,6 +3442,9 @@ name|password
 parameter_list|,
 name|Vector
 name|groups
+parameter_list|,
+name|String
+name|home
 parameter_list|)
 throws|throws
 name|EXistException
@@ -3474,6 +3477,8 @@ argument_list|,
 name|password
 argument_list|,
 name|groups
+argument_list|,
+name|home
 argument_list|)
 return|;
 block|}

@@ -1586,6 +1586,7 @@ literal|"client"
 argument_list|)
 condition|)
 block|{
+comment|//_classname = "org.exist.client.InteractiveClient";
 name|_classname
 operator|=
 literal|"org.exist.InteractiveClient"
@@ -2536,24 +2537,6 @@ argument_list|(
 literal|"JAVAC="
 operator|+
 name|tools_jar_file
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"tools.jar could not"
-operator|+
-literal|" be found! Some Cocoon pages will not compile! tools.jar"
-operator|+
-literal|" is part of the Java Development Kit. Please check if your"
-operator|+
-literal|" JAVA_HOME environment variable points to the correct location"
 argument_list|)
 expr_stmt|;
 block|}

@@ -282,6 +282,7 @@ name|nextGroupId
 init|=
 literal|0
 decl_stmt|;
+comment|/** 	 * Initialize the security manager. 	 *  	 * Checks if the file /db/system/users.xml exists in the database. 	 * If not, it is created with two default users: admin and guest. 	 *   	 * @param pool 	 * @param sysBroker 	 */
 specifier|public
 name|SecurityManager
 parameter_list|(
@@ -600,20 +601,6 @@ argument_list|(
 literal|"user"
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|ul
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" users"
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -650,18 +637,6 @@ operator|new
 name|User
 argument_list|(
 name|node
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"registered user "
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|users
@@ -808,7 +783,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -905,7 +879,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Gets the user attribute of the SecurityManager object 	 * 	 *@param  name  Description of the Parameter 	 *@return       The user value 	 */
 specifier|public
 specifier|synchronized
 name|User
@@ -1023,7 +996,6 @@ return|return
 name|user
 return|;
 block|}
-comment|/** 	 *  Gets the users attribute of the SecurityManager object 	 * 	 *@return    The users value 	 */
 specifier|public
 specifier|synchronized
 name|User
@@ -1266,7 +1238,6 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  user  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1285,7 +1256,6 @@ name|DBA_GROUP
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1348,7 +1318,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  broker              Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -1645,7 +1614,6 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  user  Description of the Parameter 	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -1747,6 +1715,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|createUserHome
+argument_list|(
+name|broker
+argument_list|,
+name|user
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1754,10 +1729,30 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|debug
+argument_list|(
+literal|"error while creating user"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"error while create home collection"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally
@@ -1770,6 +1765,78 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|private
+name|void
+name|createUserHome
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|User
+name|user
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
+if|if
+condition|(
+name|user
+operator|.
+name|getHome
+argument_list|()
+operator|==
+literal|null
+condition|)
+return|return;
+name|Collection
+name|home
+init|=
+name|broker
+operator|.
+name|getOrCreateCollection
+argument_list|(
+name|user
+operator|.
+name|getHome
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|home
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setOwner
+argument_list|(
+name|user
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|home
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setGroup
+argument_list|(
+name|user
+operator|.
+name|getPrimaryGroup
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|home
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

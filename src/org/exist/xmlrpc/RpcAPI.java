@@ -175,7 +175,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-name|Vector
+name|Hashtable
 name|listDocumentPermissions
 parameter_list|(
 name|User
@@ -189,7 +189,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-name|Vector
+name|Hashtable
 name|listCollectionPermissions
 parameter_list|(
 name|User
@@ -760,6 +760,9 @@ name|passwd
 parameter_list|,
 name|Vector
 name|groups
+parameter_list|,
+name|String
+name|home
 parameter_list|)
 throws|throws
 name|EXistException

@@ -249,18 +249,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|ByteConversion
 import|;
 end_import
@@ -322,18 +310,6 @@ operator|.
 name|util
 operator|.
 name|SimpleTimeOutLock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StringUtil
 import|;
 end_import
 
@@ -790,8 +766,6 @@ operator|.
 name|add
 argument_list|(
 name|page
-argument_list|,
-literal|10
 argument_list|)
 expr_stmt|;
 block|}
@@ -922,6 +896,8 @@ operator|.
 name|add
 argument_list|(
 name|page
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 comment|// create pointer from pageNum and offset into page
@@ -1913,6 +1889,17 @@ name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
 operator|-
 literal|1
 argument_list|)
@@ -3194,7 +3181,6 @@ name|page
 return|;
 block|}
 else|else
-block|{
 return|return
 name|getCurrentPage
 argument_list|(
@@ -3206,7 +3192,6 @@ name|owner
 argument_list|)
 argument_list|)
 return|;
-block|}
 block|}
 comment|/** 	 *  Retrieve the page with page number p 	 * 	 *@param  p  Description of the Parameter 	 *@return    The currentPage value 	 */
 specifier|private
@@ -3250,6 +3235,19 @@ block|}
 return|return
 name|page
 return|;
+block|}
+specifier|public
+name|void
+name|closeDocument
+parameter_list|()
+block|{
+name|pages
+operator|.
+name|remove
+argument_list|(
+name|owner
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 *@return    The rootNode value 	 */
 comment|//    protected BTreeNode getRootNode() {
@@ -3709,6 +3707,17 @@ operator|.
 name|getNextDataPage
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|ph
+operator|.
+name|getPrevDataPage
+argument_list|()
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
 name|DOMPage
 name|prev
 init|=
@@ -3744,6 +3753,7 @@ argument_list|(
 name|prev
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|ph
@@ -3788,7 +3798,6 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
-comment|//fileHeader.write();
 block|}
 catch|catch
 parameter_list|(
@@ -4164,6 +4173,30 @@ operator|+
 name|rec
 operator|.
 name|offset
+operator|+
+literal|"; data-len = "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getDataLength
+argument_list|()
+operator|+
+literal|"; previous-page = "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getPrevDataPage
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -5165,6 +5198,42 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|np
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+name|DOMPage
+name|next
+init|=
+name|getCurrentPage
+argument_list|(
+name|np
+argument_list|)
+decl_stmt|;
+name|next
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|prevDataPage
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|db
+operator|.
+name|buffer
+operator|.
+name|add
+argument_list|(
+name|next
+argument_list|)
+expr_stmt|;
+block|}
 name|ph
 operator|.
 name|setNextDataPage
@@ -5224,7 +5293,6 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
-comment|//db.fileHeader.write();
 block|}
 catch|catch
 parameter_list|(
@@ -6675,9 +6743,6 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
-comment|//			int idx;
-comment|//			while ((idx = queue.indexOf(page))> -1)
-comment|//				queue.remove(idx);
 name|map
 operator|.
 name|remove

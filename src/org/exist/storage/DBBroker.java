@@ -1061,6 +1061,12 @@ name|PermissionDeniedException
 block|{
 block|}
 specifier|public
+name|void
+name|closeDocument
+parameter_list|()
+block|{
+block|}
+specifier|public
 specifier|static
 name|SymbolTable
 name|getSymbols
