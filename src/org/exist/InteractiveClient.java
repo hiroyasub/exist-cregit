@@ -3389,6 +3389,10 @@ return|return
 literal|true
 return|;
 block|}
+name|recurseDirs
+operator|=
+literal|true
+expr_stmt|;
 name|boolean
 name|r
 init|=

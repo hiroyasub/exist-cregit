@@ -2754,32 +2754,6 @@ argument_list|,
 name|iter
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|address
-operator|==
-literal|0
-condition|)
-block|{
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"node "
-operator|+
-name|node
-operator|.
-name|gid
-operator|+
-literal|" not found"
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|address
 operator|==

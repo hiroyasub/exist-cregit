@@ -2217,7 +2217,7 @@ name|result
 return|;
 block|}
 specifier|public
-name|ArraySet
+name|NodeSet
 name|getDescendants
 parameter_list|(
 name|NodeSet
@@ -2240,7 +2240,7 @@ return|;
 block|}
 comment|/** 	 *  For a given set of potential ancestor nodes, get the 	 * descendants in this node set 	 * 	 *@param  al    Description of the Parameter 	 *@param  mode  Description of the Parameter 	 *@return       The descendants value 	 */
 specifier|public
-name|ArraySet
+name|NodeSet
 name|getDescendants
 parameter_list|(
 name|NodeSet

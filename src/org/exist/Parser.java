@@ -1006,6 +1006,18 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"validating = "
+operator|+
+name|saxFactory
+operator|.
+name|isValidating
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|saxFactory
 operator|.
 name|setNamespaceAware
@@ -4152,7 +4164,10 @@ literal|0
 init|;
 name|i
 operator|<
-name|attrLength
+name|attributes
+operator|.
+name|getLength
+argument_list|()
 condition|;
 name|i
 operator|++
