@@ -239,8 +239,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -254,8 +252,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -427,8 +423,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|c
 operator|.
 name|getNode

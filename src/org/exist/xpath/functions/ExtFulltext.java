@@ -587,9 +587,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -644,8 +641,6 @@ name|path
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 operator|.
@@ -659,8 +654,6 @@ name|searchTerm
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 operator|.
@@ -671,8 +664,6 @@ return|return
 name|evalQuery
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 name|arg
 argument_list|,
@@ -741,8 +732,6 @@ name|path
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 operator|.
@@ -784,8 +773,6 @@ name|searchTerm
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|current
 operator|.
 name|toSequence
@@ -824,8 +811,6 @@ name|path
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|current
 operator|.
 name|toSequence
@@ -841,8 +826,6 @@ operator|=
 name|evalQuery
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 name|arg
 argument_list|,
@@ -896,9 +879,6 @@ parameter_list|(
 name|StaticContext
 name|context
 parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
 name|String
 name|searchArg
 parameter_list|,
@@ -943,8 +923,6 @@ init|=
 name|processQuery
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 name|nodes
 argument_list|)
@@ -1080,9 +1058,6 @@ parameter_list|(
 name|StaticContext
 name|context
 parameter_list|,
-name|DocumentSet
-name|in_docs
-parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
@@ -1134,7 +1109,10 @@ argument_list|()
 operator|.
 name|getNodesContaining
 argument_list|(
-name|in_docs
+name|contextSet
+operator|.
+name|getDocumentSet
+argument_list|()
 argument_list|,
 name|contextSet
 argument_list|,

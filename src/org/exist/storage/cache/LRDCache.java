@@ -341,7 +341,7 @@ argument_list|)
 expr_stmt|;
 name|old
 operator|.
-name|release
+name|sync
 argument_list|()
 expr_stmt|;
 block|}
@@ -426,6 +426,7 @@ name|refCount
 operator|>
 name|limit
 condition|)
+block|{
 name|item
 operator|.
 name|setReferenceCount
@@ -435,6 +436,7 @@ operator|-
 name|limit
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 name|item
 operator|.
@@ -456,13 +458,6 @@ name|void
 name|cleanup
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"------------------------------ adjusting references"
-argument_list|)
-expr_stmt|;
 name|Cacheable
 name|item
 decl_stmt|;

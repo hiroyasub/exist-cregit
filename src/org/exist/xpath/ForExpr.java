@@ -21,18 +21,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -195,9 +183,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -287,8 +272,6 @@ name|inputSequence
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 literal|null
 argument_list|,
 literal|null
@@ -363,8 +346,6 @@ name|applyWhereExpression
 argument_list|(
 name|context
 argument_list|,
-name|docs
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -380,8 +361,6 @@ operator|=
 operator|new
 name|OrderedValueSequence
 argument_list|(
-name|docs
-argument_list|,
 name|orderSpecs
 argument_list|,
 name|in
@@ -542,8 +521,6 @@ name|applyWhereExpression
 argument_list|(
 name|context
 argument_list|,
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
@@ -579,8 +556,6 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
@@ -675,8 +650,6 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;

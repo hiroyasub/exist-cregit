@@ -296,7 +296,7 @@ argument_list|()
 expr_stmt|;
 name|next
 operator|.
-name|release
+name|sync
 argument_list|()
 expr_stmt|;
 block|}
@@ -394,7 +394,7 @@ argument_list|)
 expr_stmt|;
 name|first
 operator|.
-name|release
+name|sync
 argument_list|()
 expr_stmt|;
 block|}

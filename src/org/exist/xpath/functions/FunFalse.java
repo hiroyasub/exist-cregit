@@ -219,9 +219,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSet
 parameter_list|,

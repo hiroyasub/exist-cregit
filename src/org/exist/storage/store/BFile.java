@@ -5639,7 +5639,7 @@ block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.storage.cache.Cacheable#release() 		 */
 specifier|public
 name|void
-name|release
+name|sync
 parameter_list|()
 block|{
 if|if

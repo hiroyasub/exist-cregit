@@ -390,8 +390,6 @@ name|distance
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|nodes
 argument_list|)
 operator|.
@@ -441,8 +439,6 @@ init|=
 name|processQuery
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 name|nodes
 argument_list|)

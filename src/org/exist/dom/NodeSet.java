@@ -140,6 +140,11 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
+specifier|public
+name|DocumentSet
+name|getDocumentSet
+parameter_list|()
+function_decl|;
 comment|/** 	 * Add a new proxy object to the node set. Please note: node set 	 * implementations may allow duplicates. 	 *  	 * @param proxy 	 */
 specifier|public
 name|void

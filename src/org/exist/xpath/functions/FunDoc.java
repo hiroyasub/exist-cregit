@@ -304,9 +304,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -316,12 +313,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|DocumentSet
 name|docs
-operator|=
+init|=
 operator|new
 name|DocumentSet
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|getParent
 argument_list|()
 operator|.
@@ -338,8 +336,6 @@ argument_list|)
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem

@@ -83,7 +83,7 @@ function_decl|;
 comment|/** 	 * Called before the object is released by the 	 * cache. The object should prepare to be garbage 	 * collected. All unwritten data should be flushed 	 * to disk. 	 */
 specifier|public
 name|void
-name|release
+name|sync
 parameter_list|()
 function_decl|;
 block|}

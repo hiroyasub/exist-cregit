@@ -83,6 +83,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 import|;
 end_import
@@ -273,6 +285,12 @@ name|Stack
 argument_list|()
 decl_stmt|;
 specifier|private
+name|DocumentSet
+name|staticDocuments
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
@@ -375,6 +393,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Declare an in-scope namespace. This is called during query execution. 	 *  	 * @param prefix 	 * @param uri 	 */
 specifier|public
 name|void
 name|declareInScopeNamespace
@@ -434,6 +453,7 @@ return|return
 name|defaultFunctionNamespace
 return|;
 block|}
+comment|/** 	 * Set the default function namespace. By default, this 	 * points to the namespace for XPath built-in functions. 	 *  	 * @param uri 	 */
 specifier|public
 name|void
 name|setDefaultFunctionNamespace
@@ -768,6 +788,28 @@ name|loadDefaults
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setStaticallyKnownDocuments
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|)
+block|{
+name|staticDocuments
+operator|=
+name|docs
+expr_stmt|;
+block|}
+specifier|public
+name|DocumentSet
+name|getStaticallyKnownDocuments
+parameter_list|()
+block|{
+return|return
+name|staticDocuments
+return|;
+block|}
 comment|/** 	 * Find the implementing class for a function name. 	 *  	 * @param fnName 	 * @return 	 */
 specifier|public
 name|Class
@@ -871,7 +913,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Declare a variable. 	 *  	 * @param var 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Declare a variable. This is called by variable binding expressions like 	 * "let" and "for". 	 *  	 * @param var 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 name|Variable
 name|declareVariable
@@ -1267,7 +1309,7 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Save the current context on top of a stack.  	 *  	 * Use {@link popContext()} to restore the current state. 	 * This method saves the current in-scope namespace 	 * definitions and variables. 	 */
+comment|/** 	 * Save the current context on top of a stack.  	 *  	 * Use {@link popContext()} to restore the current state. 	 * This method saves the current in-scope variable 	 * definitions. 	 */
 specifier|public
 name|void
 name|pushLocalContext
@@ -1320,6 +1362,7 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the current size of the stack. This is used to determine 	 * where a variable has been declared. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getCurrentStackSize

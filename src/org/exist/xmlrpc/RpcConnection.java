@@ -1204,6 +1204,13 @@ argument_list|(
 name|baseURI
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|setStaticallyKnownDocuments
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|namespaces
@@ -1421,8 +1428,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSet
 argument_list|,
 literal|null

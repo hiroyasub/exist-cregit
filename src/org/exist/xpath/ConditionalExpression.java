@@ -169,9 +169,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -188,8 +185,6 @@ name|testExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -208,8 +203,6 @@ name|thenExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -223,8 +216,6 @@ name|elseExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem

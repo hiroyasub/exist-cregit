@@ -1576,6 +1576,16 @@ operator|)
 name|compiled
 operator|)
 decl_stmt|;
+name|expr
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|setStaticallyKnownDocuments
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Sequence
@@ -1585,8 +1595,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSet
 argument_list|,
 literal|null

@@ -384,7 +384,7 @@ index|[
 name|i
 index|]
 operator|.
-name|release
+name|sync
 argument_list|()
 expr_stmt|;
 block|}
@@ -505,7 +505,7 @@ argument_list|)
 expr_stmt|;
 name|old
 operator|.
-name|release
+name|sync
 argument_list|()
 expr_stmt|;
 block|}

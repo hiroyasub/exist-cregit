@@ -547,9 +547,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -651,8 +648,6 @@ comment|// lookup search terms in the fulltext index
 return|return
 name|quickNodeSetCompare
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 return|;
@@ -662,8 +657,6 @@ block|{
 return|return
 name|nodeSetCompare
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 return|;
@@ -675,8 +668,6 @@ return|return
 name|genericCompare
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 name|contextSequence
 argument_list|,
@@ -690,9 +681,6 @@ name|genericCompare
 parameter_list|(
 name|StaticContext
 name|context
-parameter_list|,
-name|DocumentSet
-name|docs
 parameter_list|,
 name|Sequence
 name|contextSequence
@@ -711,8 +699,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -726,8 +712,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -914,9 +898,6 @@ specifier|protected
 name|Sequence
 name|nodeSetCompare
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -935,8 +916,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 decl_stmt|;
@@ -944,8 +923,6 @@ return|return
 name|nodeSetCompare
 argument_list|(
 name|nodes
-argument_list|,
-name|docs
 argument_list|,
 name|contextSequence
 argument_list|)
@@ -957,9 +934,6 @@ name|nodeSetCompare
 parameter_list|(
 name|NodeSet
 name|nodes
-parameter_list|,
-name|DocumentSet
-name|docs
 parameter_list|,
 name|Sequence
 name|contextSequence
@@ -1038,8 +1012,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|c
 operator|.
 name|getNode
@@ -1118,9 +1090,6 @@ specifier|protected
 name|Sequence
 name|quickNodeSetCompare
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -1139,8 +1108,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 decl_stmt|;
@@ -1152,8 +1119,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 decl_stmt|;
@@ -1172,11 +1137,17 @@ name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 return|;
+name|DocumentSet
+name|docs
+init|=
+name|nodes
+operator|.
+name|getDocumentSet
+argument_list|()
+decl_stmt|;
 name|String
 name|cmp
 init|=
@@ -1370,8 +1341,6 @@ name|containsExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|nodes
 argument_list|,
 literal|null

@@ -356,9 +356,6 @@ specifier|abstract
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -374,9 +371,6 @@ name|applyWhereExpression
 parameter_list|(
 name|StaticContext
 name|context
-parameter_list|,
-name|DocumentSet
-name|docs
 parameter_list|,
 name|Sequence
 name|contextSequence
@@ -417,8 +411,6 @@ name|whereExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|)
 operator|.
@@ -605,8 +597,6 @@ name|whereExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -688,8 +678,6 @@ name|whereExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|contextSequence
 argument_list|,
 name|item

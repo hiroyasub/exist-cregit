@@ -2869,8 +2869,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|documentSet
-argument_list|,
 literal|null
 argument_list|,
 literal|null

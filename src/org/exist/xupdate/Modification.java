@@ -571,8 +571,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 literal|null
 argument_list|,
 literal|null

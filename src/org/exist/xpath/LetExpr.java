@@ -21,18 +21,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 import|;
 end_import
@@ -122,9 +110,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -171,8 +156,6 @@ name|inputSequence
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 literal|null
 argument_list|,
 literal|null
@@ -227,8 +210,6 @@ operator|=
 name|applyWhereExpression
 argument_list|(
 name|context
-argument_list|,
-name|docs
 argument_list|,
 literal|null
 argument_list|)
@@ -291,8 +272,6 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|filtered
 argument_list|,
 literal|null
@@ -316,8 +295,6 @@ init|=
 operator|new
 name|OrderedValueSequence
 argument_list|(
-name|docs
-argument_list|,
 name|orderSpecs
 argument_list|,
 name|val
@@ -339,8 +316,6 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|docs
-argument_list|,
 name|ordered
 argument_list|,
 literal|null

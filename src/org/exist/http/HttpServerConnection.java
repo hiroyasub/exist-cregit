@@ -3713,7 +3713,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Description of the Method 	 * 	 * @param resultSet Description of the Parameter 	 * @param howmany Description of the Parameter 	 * @param start Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|printValues
@@ -5338,7 +5337,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Description of the Method 	 * 	 * @param query Description of the Parameter 	 * @param howmany Description of the Parameter 	 * @param start Description of the Parameter 	 * @param printSummary Description of the Parameter 	 * @param indent Description of the Parameter 	 * @param stylesheet Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|search
@@ -5541,8 +5539,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 literal|null

@@ -1258,8 +1258,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|ndocs
-argument_list|,
 name|proxy
 argument_list|)
 decl_stmt|;
