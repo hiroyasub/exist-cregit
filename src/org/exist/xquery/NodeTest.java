@@ -59,6 +59,11 @@ name|nodeType
 parameter_list|)
 function_decl|;
 specifier|public
+name|int
+name|getType
+parameter_list|()
+function_decl|;
+specifier|public
 name|boolean
 name|matches
 parameter_list|(

@@ -188,6 +188,17 @@ name|nodeType
 parameter_list|)
 block|{
 block|}
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|NODE
+return|;
+block|}
 block|}
 end_class
 

@@ -858,14 +858,10 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
-operator|(
-name|TypeTest
-operator|)
 name|test
-operator|)
 operator|.
-name|nodeType
+name|getType
+argument_list|()
 operator|==
 name|Type
 operator|.
