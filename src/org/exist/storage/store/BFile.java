@@ -2569,6 +2569,7 @@ name|lock
 argument_list|)
 return|;
 block|}
+comment|/**      * Put data under given key.      *       * @see {@link BFile#put(Value, ByteArray, boolean)}      * @param with which the data is updated      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -2613,6 +2614,7 @@ name|overwrite
 argument_list|)
 return|;
 block|}
+comment|/**      * Convinience method for {@link BFile#put(Value, byte[], true)}.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -2637,6 +2639,7 @@ literal|true
 argument_list|)
 return|;
 block|}
+comment|/**      * Put a value under given key. The difference of this      * method and {@link BFile#append(Value, ByteArray)} is,      * that the value gets updated and not stored.      *       * @param key with which the data is updated      * @param value value to update      * @param overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
