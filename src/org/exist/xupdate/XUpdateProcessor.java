@@ -2293,25 +2293,6 @@ operator|+
 literal|"twice on the same element"
 argument_list|)
 throw|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"attribute: "
-operator|+
-name|attrib
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|attrib
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|last
 operator|.
 name|setAttributeNodeNS
