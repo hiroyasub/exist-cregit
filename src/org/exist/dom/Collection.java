@@ -79,6 +79,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|TreeMap
 import|;
 end_import
@@ -268,7 +278,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Collection attribute of the Collection object      *      *@param  name  The feature to be added to the Collection attribute      */
+comment|/** 	 *  Adds a feature to the Collection attribute of the Collection object 	 * 	 *@param  name  The feature to be added to the Collection attribute 	 */
 specifier|public
 name|void
 name|addCollection
@@ -295,7 +305,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Document attribute of the Collection object      *      *@param  doc  The feature to be added to the Document attribute      */
+comment|/** 	 *  Adds a feature to the Document attribute of the Collection object 	 * 	 *@param  doc  The feature to be added to the Document attribute 	 */
 specifier|public
 name|void
 name|addDocument
@@ -320,7 +330,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Document attribute of the Collection object      *      *@param  user  The feature to be added to the Document attribute      *@param  doc   The feature to be added to the Document attribute      */
+comment|/** 	 *  Adds a feature to the Document attribute of the Collection object 	 * 	 *@param  user  The feature to be added to the Document attribute 	 *@param  doc   The feature to be added to the Document attribute 	 */
 specifier|public
 name|void
 name|addDocument
@@ -366,7 +376,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|collectionIterator
@@ -379,7 +389,297 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  obj  Description of the Parameter      *@return      Description of the Return Value      */
+comment|/** 	 * Load all collections being descendants of this collections 	 * and return them in a List. 	 *  	 * @return List 	 */
+specifier|public
+name|List
+name|getDescendants
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+block|{
+specifier|final
+name|ArrayList
+name|cl
+init|=
+operator|new
+name|ArrayList
+argument_list|(
+name|subcollections
+operator|.
+name|size
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|Collection
+name|child
+decl_stmt|;
+name|String
+name|childName
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|subcollections
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|childName
+operator|=
+operator|(
+name|String
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|child
+operator|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|name
+operator|+
+literal|'/'
+operator|+
+name|childName
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|permissions
+operator|.
+name|validate
+argument_list|(
+name|user
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+block|{
+name|cl
+operator|.
+name|add
+argument_list|(
+name|child
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|child
+operator|.
+name|getChildCollectionCount
+argument_list|()
+operator|>
+literal|0
+condition|)
+name|cl
+operator|.
+name|addAll
+argument_list|(
+name|child
+operator|.
+name|getDescendants
+argument_list|(
+name|user
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|cl
+return|;
+block|}
+specifier|public
+name|DocumentSet
+name|allDocs
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+block|{
+name|DocumentSet
+name|docs
+init|=
+operator|new
+name|DocumentSet
+argument_list|()
+decl_stmt|;
+name|getDocuments
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
+name|allDocs
+argument_list|(
+name|user
+argument_list|,
+name|docs
+argument_list|)
+expr_stmt|;
+return|return
+name|docs
+return|;
+block|}
+specifier|private
+name|DocumentSet
+name|allDocs
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|DocumentSet
+name|docs
+parameter_list|)
+block|{
+name|Collection
+name|child
+decl_stmt|;
+name|String
+name|childName
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|subcollections
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|childName
+operator|=
+operator|(
+name|String
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|child
+operator|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|name
+operator|+
+literal|'/'
+operator|+
+name|childName
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|permissions
+operator|.
+name|validate
+argument_list|(
+name|user
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+block|{
+name|child
+operator|.
+name|getDocuments
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|child
+operator|.
+name|getChildCollectionCount
+argument_list|()
+operator|>
+literal|0
+condition|)
+name|child
+operator|.
+name|allDocs
+argument_list|(
+name|user
+argument_list|,
+name|docs
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|docs
+return|;
+block|}
+specifier|public
+name|void
+name|getDocuments
+parameter_list|(
+name|DocumentSet
+name|set
+parameter_list|)
+block|{
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|documents
+operator|.
+name|values
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+name|set
+operator|.
+name|add
+argument_list|(
+operator|(
+name|DocumentImpl
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 *  Description of the Method 	 * 	 *@param  obj  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|int
 name|compareTo
@@ -457,7 +757,7 @@ operator|==
 name|collectionId
 return|;
 block|}
-comment|/**      *  Gets the childCollectionCount attribute of the Collection object      *      *@return    The childCollectionCount value      */
+comment|/** 	 *  Gets the childCollectionCount attribute of the Collection object 	 * 	 *@return    The childCollectionCount value 	 */
 specifier|public
 name|int
 name|getChildCollectionCount
@@ -470,7 +770,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the document attribute of the Collection object      *      *@param  name  Description of the Parameter      *@return       The document value      */
+comment|/** 	 *  Gets the document attribute of the Collection object 	 * 	 *@param  name  Description of the Parameter 	 *@return       The document value 	 */
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -491,7 +791,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the documentCount attribute of the Collection object      *      *@return    The documentCount value      */
+comment|/** 	 *  Gets the documentCount attribute of the Collection object 	 * 	 *@return    The documentCount value 	 */
 specifier|public
 name|int
 name|getDocumentCount
@@ -504,7 +804,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the id attribute of the Collection object      *      *@return    The id value      */
+comment|/** 	 *  Gets the id attribute of the Collection object 	 * 	 *@return    The id value 	 */
 specifier|public
 name|short
 name|getId
@@ -514,7 +814,7 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/**      *  Gets the name attribute of the Collection object      *      *@return    The name value      */
+comment|/** 	 *  Gets the name attribute of the Collection object 	 * 	 *@return    The name value 	 */
 specifier|public
 name|String
 name|getName
@@ -524,7 +824,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**      *  Gets the parent attribute of the Collection object      *      *@return    The parent value      */
+comment|/** 	 *  Gets the parent attribute of the Collection object 	 * 	 *@return    The parent value 	 */
 specifier|public
 name|Collection
 name|getParent
@@ -581,7 +881,7 @@ name|parent
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the permissions attribute of the Collection object      *      *@return    The permissions value      */
+comment|/** 	 *  Gets the permissions attribute of the Collection object 	 * 	 *@return    The permissions value 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -591,7 +891,7 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      *  Gets the symbols attribute of the Collection object      *      *@return    The symbols value      */
+comment|/** 	 *  Gets the symbols attribute of the Collection object 	 * 	 *@return    The symbols value 	 */
 specifier|public
 name|SymbolTable
 name|getSymbols
@@ -601,7 +901,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|hasDocument
@@ -619,7 +919,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|hasSubcollection
@@ -637,7 +937,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -653,7 +953,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  istream          Description of the Parameter      *@exception  IOException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  istream          Description of the Parameter 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|void
 name|read
@@ -872,7 +1172,7 @@ parameter_list|)
 block|{
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 name|void
 name|removeCollection
@@ -894,7 +1194,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 name|void
 name|removeDocument
@@ -935,7 +1235,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  oldName  Description of the Parameter      *@param  newName  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  oldName  Description of the Parameter 	 *@param  newName  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|renameDocument
@@ -1004,7 +1304,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Sets the id attribute of the Collection object      *      *@param  id  The new id value      */
+comment|/** 	 *  Sets the id attribute of the Collection object 	 * 	 *@param  id  The new id value 	 */
 specifier|public
 name|void
 name|setId
@@ -1020,7 +1320,7 @@ operator|=
 name|id
 expr_stmt|;
 block|}
-comment|/**      *  Sets the name attribute of the Collection object      *      *@param  name  The new name value      */
+comment|/** 	 *  Sets the name attribute of the Collection object 	 * 	 *@param  name  The new name value 	 */
 specifier|public
 name|void
 name|setName
@@ -1036,7 +1336,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**      *  Sets the permissions attribute of the Collection object      *      *@param  mode  The new permissions value      */
+comment|/** 	 *  Sets the permissions attribute of the Collection object 	 * 	 *@param  mode  The new permissions value 	 */
 specifier|public
 name|void
 name|setPermissions
@@ -1053,7 +1353,7 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Sets the permissions attribute of the Collection object      *      *@param  mode                 The new permissions value      *@exception  SyntaxException  Description of the Exception      */
+comment|/** 	 *  Sets the permissions attribute of the Collection object 	 * 	 *@param  mode                 The new permissions value 	 *@exception  SyntaxException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setPermissions
@@ -1072,7 +1372,7 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ostream          Description of the Parameter      *@exception  IOException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ostream          Description of the Parameter 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|void
 name|write

@@ -97,7 +97,7 @@ name|exist
 operator|.
 name|parser
 operator|.
-name|*
+name|XPathLexer
 import|;
 end_import
 
@@ -109,7 +109,7 @@ name|exist
 operator|.
 name|parser
 operator|.
-name|*
+name|XPathParser
 import|;
 end_import
 
@@ -157,7 +157,19 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|*
+name|PathExpr
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|Value
 import|;
 end_import
 
@@ -171,7 +183,49 @@ name|api
 operator|.
 name|base
 operator|.
-name|*
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ResourceSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
 import|;
 end_import
 
@@ -185,7 +239,7 @@ name|api
 operator|.
 name|modules
 operator|.
-name|*
+name|XMLResource
 import|;
 end_import
 

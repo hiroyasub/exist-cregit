@@ -1110,22 +1110,6 @@ name|length
 operator|+
 literal|4
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" moving data to "
-operator|+
-name|end
-argument_list|)
-expr_stmt|;
 name|System
 operator|.
 name|arraycopy
@@ -1189,26 +1173,6 @@ block|}
 else|else
 block|{
 comment|// split the page
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"splitting page "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" at "
-operator|+
-name|rec
-operator|.
-name|offset
-argument_list|)
-expr_stmt|;
 name|DOMPage
 name|splitPage
 init|=
@@ -1479,18 +1443,6 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"appending to new page "
-operator|+
-name|newPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|newPage
 operator|.
 name|getPageHeader
@@ -1630,31 +1582,6 @@ operator|.
 name|getNextTID
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"writing tid "
-operator|+
-operator|+
-name|tid
-operator|+
-literal|" to page "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" at "
-operator|+
-name|rec
-operator|.
-name|offset
-argument_list|)
-expr_stmt|;
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -2356,6 +2283,19 @@ name|BTreeException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"node "
+operator|+
+name|node
+operator|.
+name|gid
+operator|+
+literal|" not found, trying parent."
+argument_list|)
+expr_stmt|;
 comment|// node not found in index: try to find the nearest available
 comment|// ancestor and traverse it
 name|long
@@ -3548,12 +3488,9 @@ argument_list|)
 decl_stmt|;
 name|remove
 argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-name|removeValue
-argument_list|(
 name|key
+argument_list|,
+name|p
 argument_list|)
 expr_stmt|;
 block|}
@@ -3591,6 +3528,9 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+name|Value
+name|key
+parameter_list|,
 name|long
 name|p
 parameter_list|)
@@ -3900,6 +3840,40 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|removeValue
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|BTreeException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 *  Set the last page in the sequence to which nodes are      * currently appended. 	 * 	 *@param  page  The new currentPage value 	 */
 specifier|private

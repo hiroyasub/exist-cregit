@@ -226,7 +226,7 @@ name|NodeImpl
 parameter_list|()
 block|{
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  nodeType  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -244,7 +244,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  n  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  n  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -278,7 +278,7 @@ name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  gid  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  gid  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -299,7 +299,7 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  nodeType  Description of the Parameter      *@param  gid       Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  gid       Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -320,7 +320,7 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  nodeType  Description of the Parameter      *@param  nodeName  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  nodeName  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -341,7 +341,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeImpl object      *      *@param  nodeType  Description of the Parameter      *@param  nodeName  Description of the Parameter      *@param  gid       Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  nodeName  Description of the Parameter 	 *@param  gid       Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -374,7 +374,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@param  doc   Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  data  Description of the Parameter 	 *@param  doc   Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 specifier|static
 name|NodeImpl
@@ -476,7 +476,7 @@ argument_list|(
 name|data
 argument_list|)
 return|;
-default|default:
+default|default :
 name|LOG
 operator|.
 name|debug
@@ -489,7 +489,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Reset this object to its initial state. Required by the      * parser to be able to reuse node objects.      */
+comment|/** 	 * Reset this object to its initial state. Required by the 	 * parser to be able to reuse node objects. 	 */
 specifier|public
 name|void
 name|clear
@@ -527,9 +527,39 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|Node
+name|appendChildren
+parameter_list|(
+name|NodeList
+name|nodes
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
 specifier|public
@@ -585,7 +615,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|long
 name|firstChildID
@@ -615,7 +645,7 @@ return|return
 name|attributes
 return|;
 block|}
-comment|/**      *  Gets the broker attribute of the NodeImpl object      *      *@return    The broker value      */
+comment|/** 	 *  Gets the broker attribute of the NodeImpl object 	 * 	 *@return    The broker value 	 */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -640,7 +670,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**      *  Gets the childNodes attribute of the NodeImpl object      *      *@return    The childNodes value      */
+comment|/** 	 *  Gets the childNodes attribute of the NodeImpl object 	 * 	 *@return    The childNodes value 	 */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -665,7 +695,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Get the unique identifier assigned to this node      *      *@return    The gID value      */
+comment|/** 	 *  Get the unique identifier assigned to this node 	 * 	 *@return    The gID value 	 */
 specifier|public
 name|long
 name|getGID
@@ -675,7 +705,7 @@ return|return
 name|gid
 return|;
 block|}
-comment|/**      *  Get the internal storage address of this node      *      *@return    The internalAddress value      */
+comment|/** 	 *  Get the internal storage address of this node 	 * 	 *@return    The internalAddress value 	 */
 specifier|public
 name|long
 name|getInternalAddress
@@ -883,7 +913,7 @@ return|return
 name|ownerDocument
 return|;
 block|}
-comment|/**      *  Get the unique node identifier of this node's parent node.      *      *@return    The parentGID value      */
+comment|/** 	 *  Get the unique node identifier of this node's parent node. 	 * 	 *@return    The parentGID value 	 */
 specifier|public
 name|long
 name|getParentGID
@@ -1130,9 +1160,17 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
 block|}
 specifier|public
 name|Node
@@ -1147,9 +1185,67 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|Node
+name|insertAfter
+parameter_list|(
+name|NodeList
+name|nodes
+parameter_list|,
+name|Node
+name|refChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|Node
+name|insertBefore
+parameter_list|(
+name|NodeList
+name|nodes
+parameter_list|,
+name|Node
+name|refChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -1167,7 +1263,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Get the unique node identifier of the last child of this node.      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Get the unique node identifier of the last child of this node. 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|long
 name|lastChildID
@@ -1228,7 +1324,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Set the attributes that belong to this node.      *      *@param  attribNum  The new attributes value      */
+comment|/** 	 *  Set the attributes that belong to this node. 	 * 	 *@param  attribNum  The new attributes value 	 */
 specifier|public
 name|void
 name|setAttributes
@@ -1242,7 +1338,7 @@ operator|=
 name|attribNum
 expr_stmt|;
 block|}
-comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
+comment|/** 	 *  Set the number of children. 	 * 	 *@param  count  The new childCount value 	 */
 specifier|protected
 name|void
 name|setChildCount
@@ -1253,7 +1349,7 @@ parameter_list|)
 block|{
 return|return;
 block|}
-comment|/**      *  Set the unique node identifier of this node.      *      *@param  gid  The new gID value      */
+comment|/** 	 *  Set the unique node identifier of this node. 	 * 	 *@param  gid  The new gID value 	 */
 specifier|public
 name|void
 name|setGID
@@ -1269,7 +1365,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/**      *  Set the internal storage address of this node.      *      *@param  address  The new internalAddress value      */
+comment|/** 	 *  Set the internal storage address of this node. 	 * 	 *@param  address  The new internalAddress value 	 */
 specifier|public
 name|void
 name|setInternalAddress
@@ -1283,7 +1379,7 @@ operator|=
 name|address
 expr_stmt|;
 block|}
-comment|/**      *  Set the node name.      *      *@param  name  The new nodeName value      */
+comment|/** 	 *  Set the node name. 	 * 	 *@param  name  The new nodeName value 	 */
 specifier|public
 name|void
 name|setNodeName
@@ -1297,7 +1393,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**      *  Set the node value.      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Set the node value. 	 * 	 *@param  value             The new nodeValue value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setNodeValue
@@ -1309,7 +1405,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/**      *  Set the owner document.      *      *@param  doc  The new ownerDocument value      */
+comment|/** 	 *  Set the owner document. 	 * 	 *@param  doc  The new ownerDocument value 	 */
 specifier|public
 name|void
 name|setOwnerDocument
@@ -1326,7 +1422,7 @@ operator|)
 name|doc
 expr_stmt|;
 block|}
-comment|/**      *  Sets the prefix attribute of the NodeImpl object      *      *@param  prefix            The new prefix value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Sets the prefix attribute of the NodeImpl object 	 * 	 *@param  prefix            The new prefix value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setPrefix
@@ -1354,7 +1450,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  contentHandler    Description of the Parameter      *@param  lexicalHandler    Description of the Parameter      *@param  first             Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  contentHandler    Description of the Parameter 	 *@param  lexicalHandler    Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -1387,7 +1483,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  contentHandler    Description of the Parameter      *@param  lexicalHandler    Description of the Parameter      *@param  first             Description of the Parameter      *@param  prefixes          Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  contentHandler    Description of the Parameter 	 *@param  lexicalHandler    Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@param  prefixes          Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -1408,7 +1504,7 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|toString
@@ -1454,7 +1550,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  top  Description of the Parameter      *@return      Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  top  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|String
 name|toString
@@ -1468,7 +1564,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the nodeNameRef.      * @return int      */
+comment|/** 	* Returns the nodeNameRef. 	* @return int 	*/
 specifier|public
 name|int
 name|getNodeNameRef
@@ -1478,7 +1574,7 @@ return|return
 name|nodeNameRef
 return|;
 block|}
-comment|/**      * Sets the nodeNameRef.      * @param nodeNameRef The nodeNameRef to set      */
+comment|/** 	 * Sets the nodeNameRef. 	 * @param nodeNameRef The nodeNameRef to set 	 */
 specifier|public
 name|void
 name|setNodeNameRef

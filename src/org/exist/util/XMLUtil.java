@@ -1066,6 +1066,7 @@ name|long
 name|gid
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|level
 init|=
@@ -1089,11 +1090,60 @@ argument_list|(
 literal|"child index out of bounds"
 argument_list|)
 throw|;
-comment|//        System.out.println("level = " + level + "max = " +
-comment|//        	doc.getMaxDepth());
-comment|//        System.out.println("(" + gid + " - " + doc.getLevelStartPoint( level ) +
-comment|//        	") * " + doc.getTreeLevelOrder( level + 1 ) + " + " +
-comment|//        	doc.getLevelStartPoint( level + 1 ));
+specifier|final
+name|int
+name|order
+init|=
+name|doc
+operator|.
+name|getTreeLevelOrder
+argument_list|(
+name|level
+operator|+
+literal|1
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|order
+operator|<
+literal|0
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"level "
+operator|+
+operator|(
+name|level
+operator|+
+literal|1
+operator|)
+operator|+
+literal|" out of bounds: "
+operator|+
+name|gid
+operator|+
+literal|"; start = "
+operator|+
+name|doc
+operator|.
+name|getLevelStartPoint
+argument_list|(
+name|level
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 operator|(
 name|gid
@@ -1106,14 +1156,7 @@ name|level
 argument_list|)
 operator|)
 operator|*
-name|doc
-operator|.
-name|getTreeLevelOrder
-argument_list|(
-name|level
-operator|+
-literal|1
-argument_list|)
+name|order
 operator|+
 name|doc
 operator|.
