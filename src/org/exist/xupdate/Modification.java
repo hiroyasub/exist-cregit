@@ -999,6 +999,8 @@ parameter_list|(
 name|DocumentSet
 name|docs
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 for|for
 control|(
@@ -1043,6 +1045,13 @@ condition|)
 name|broker
 operator|.
 name|defrag
+argument_list|(
+name|next
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|consistencyCheck
 argument_list|(
 name|next
 argument_list|)

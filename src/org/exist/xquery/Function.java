@@ -235,6 +235,18 @@ block|{
 if|if
 condition|(
 name|mySignature
+operator|==
+literal|null
+condition|)
+return|return
+name|Type
+operator|.
+name|ITEM
+return|;
+comment|// Type is not known yet
+if|if
+condition|(
+name|mySignature
 operator|.
 name|getReturnType
 argument_list|()

@@ -323,20 +323,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|cache
-operator|.
-name|LRDCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|ByteConversion
@@ -6583,11 +6569,24 @@ name|append
 argument_list|(
 name|doc
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
+operator|.
+name|append
+argument_list|(
+literal|"; docId "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
 operator|.
 name|append
 argument_list|(
@@ -8071,14 +8070,40 @@ return|return
 literal|null
 return|;
 block|}
-comment|//                LOG.debug(
-comment|//                		owner.toString()
-comment|//						+ ": tid "
-comment|//						+ targetId
-comment|//						+ " not found on "
-comment|//						+ page.page.getPageInfo()
-comment|//						+ ". Loading "
-comment|//						+ pageNr + "; contents: " + debugPageContents(page));
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|owner
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|": tid "
+operator|+
+name|targetId
+operator|+
+literal|" not found on "
+operator|+
+name|page
+operator|.
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
+operator|+
+literal|". Loading "
+operator|+
+name|pageNr
+operator|+
+literal|"; contents: "
+operator|+
+name|debugPageContents
+argument_list|(
+name|page
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
