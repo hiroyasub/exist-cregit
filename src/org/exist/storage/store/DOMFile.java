@@ -1747,13 +1747,9 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|setNextDataPage
-argument_list|(
+name|long
+name|next
+init|=
 name|rec
 operator|.
 name|page
@@ -1763,6 +1759,15 @@ argument_list|()
 operator|.
 name|getNextDataPage
 argument_list|()
+decl_stmt|;
+name|newPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setNextDataPage
+argument_list|(
+name|next
 argument_list|)
 expr_stmt|;
 name|newPage
@@ -1795,6 +1800,50 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|-
+literal|1
+operator|<
+name|next
+condition|)
+block|{
+name|DOMPage
+name|nextPage
+init|=
+name|getCurrentPage
+argument_list|(
+name|next
+argument_list|)
+decl_stmt|;
+name|nextPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setPrevDataPage
+argument_list|(
+name|newPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|nextPage
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|nextPage
+argument_list|)
+expr_stmt|;
+block|}
 name|rec
 operator|.
 name|page
@@ -2051,6 +2100,105 @@ name|RecordPos
 name|rec
 parameter_list|)
 block|{
+comment|// check if a split is really required
+name|boolean
+name|requireSplit
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+name|int
+name|pos
+init|=
+name|rec
+operator|.
+name|offset
+init|;
+name|pos
+operator|<
+name|rec
+operator|.
+name|page
+operator|.
+name|len
+condition|;
+control|)
+block|{
+name|short
+name|currentId
+init|=
+name|ByteConversion
+operator|.
+name|byteToShort
+argument_list|(
+name|rec
+operator|.
+name|page
+operator|.
+name|data
+argument_list|,
+name|pos
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|ItemId
+operator|.
+name|isLink
+argument_list|(
+name|currentId
+argument_list|)
+condition|)
+block|{
+name|requireSplit
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+name|pos
+operator|+=
+literal|10
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|requireSplit
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"page "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|": no split required"
+argument_list|)
+expr_stmt|;
+name|rec
+operator|.
+name|offset
+operator|=
+name|rec
+operator|.
+name|page
+operator|.
+name|len
+expr_stmt|;
+return|return
+name|rec
+return|;
+block|}
 name|NodeIndexListener
 name|idx
 init|=
@@ -2217,6 +2365,18 @@ operator|+
 name|nextSplitPage
 operator|.
 name|getPageNum
+argument_list|()
+operator|+
+literal|"; next: "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2874,21 +3034,13 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating new: "
-operator|+
 name|newPage
 operator|.
-name|getPageNum
+name|getPageHeader
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|long
-name|np
-init|=
+operator|.
+name|setNextDataPage
+argument_list|(
 name|rec
 operator|.
 name|page
@@ -2898,7 +3050,20 @@ argument_list|()
 operator|.
 name|getNextDataPage
 argument_list|()
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating new page after split: "
+operator|+
+name|newPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|rec
 operator|.
 name|page
@@ -2970,16 +3135,6 @@ operator|.
 name|add
 argument_list|(
 name|newPage
-argument_list|)
-expr_stmt|;
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|setNextDataPage
-argument_list|(
-name|np
 argument_list|)
 expr_stmt|;
 name|rec
@@ -3085,6 +3240,20 @@ operator|==
 literal|0
 condition|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"page "
+operator|+
+name|nextSplitPage
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|" is empty. Remove it"
+argument_list|)
+expr_stmt|;
 comment|// if nothing has been copied to the last split page,
 comment|// remove it
 name|dataCache
@@ -3233,10 +3402,22 @@ name|firstSplitPage
 argument_list|)
 expr_stmt|;
 block|}
+comment|//	        long next = nextSplitPage.getPageHeader().getNextDataPage();
+comment|//	        if (-1< next) {
+comment|//	            DOMPage nextPage = getCurrentPage(nextSplitPage.getPageHeader()
+comment|//	                    .getNextDataPage());
+comment|//	            nextPage.getPageHeader()
+comment|//	                    .setPrevDataPage(nextSplitPage.getPageNum());
+comment|//	            nextPage.setDirty(true);
+comment|//	            dataCache.add(nextPage);
+comment|//	        }
+block|}
 name|long
 name|next
 init|=
-name|nextSplitPage
+name|rec
+operator|.
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -3257,13 +3438,7 @@ name|nextPage
 init|=
 name|getCurrentPage
 argument_list|(
-name|nextSplitPage
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getNextDataPage
-argument_list|()
+name|next
 argument_list|)
 decl_stmt|;
 name|nextPage
@@ -3294,13 +3469,13 @@ name|nextPage
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 if|if
 condition|(
 name|firstSplitPage
 operator|!=
 literal|null
 condition|)
+block|{
 name|rec
 operator|.
 name|page
@@ -3316,6 +3491,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|rec
 operator|.
 name|page
@@ -3491,24 +3667,7 @@ literal|4
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"page "
-operator|+
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" has "
-operator|+
-name|count
-operator|+
-literal|" records."
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("page " + page.getPageNum() + " has " + count + " records.");
 return|return
 name|count
 return|;
@@ -5880,6 +6039,7 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|//            LOG.debug("removing page " + rec.page.getPageNum());
 name|removePage
 argument_list|(
 name|rec
@@ -6022,6 +6182,7 @@ name|getPrevDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//			LOG.debug(next.getPageNum() + ".prev = " + ph.getPrevDataPage());
 name|next
 operator|.
 name|setDirty
@@ -6072,6 +6233,7 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//        	LOG.debug(prev.getPageNum() + ".next = " + ph.getNextDataPage());
 name|prev
 operator|.
 name|setDirty
@@ -6092,6 +6254,14 @@ block|{
 name|ph
 operator|.
 name|setNextDataPage
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setPrevDataPage
 argument_list|(
 operator|-
 literal|1

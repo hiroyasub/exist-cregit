@@ -626,6 +626,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|//						LOG.debug(page + " -> " + nextPage);
 name|page
 operator|=
 name|nextPage
@@ -835,6 +836,76 @@ name|offset
 operator|+=
 name|l
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|nextNode
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"illegal node on page "
+operator|+
+name|p
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|"; tid = "
+operator|+
+name|ItemId
+operator|.
+name|getId
+argument_list|(
+name|lastTID
+argument_list|)
+operator|+
+literal|"; next = "
+operator|+
+name|p
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
+argument_list|()
+operator|+
+literal|"; prev = "
+operator|+
+name|p
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getPrevDataPage
+argument_list|()
+operator|+
+literal|"; offset = "
+operator|+
+operator|(
+name|offset
+operator|-
+name|l
+operator|)
+operator|+
+literal|"; len = "
+operator|+
+name|p
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getDataLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 name|nextNode
 operator|.

@@ -472,7 +472,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"not implemented"
+literal|"Unknown node type: "
+operator|+
+name|type
 argument_list|)
 expr_stmt|;
 return|return

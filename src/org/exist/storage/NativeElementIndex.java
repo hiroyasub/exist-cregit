@@ -2594,7 +2594,6 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|//val = dbElement.get(ref);
 name|is
 operator|=
 name|dbElement
@@ -2670,7 +2669,6 @@ literal|null
 condition|)
 block|{
 comment|// add old entries to the new list
-comment|//data = val.getData();
 try|try
 block|{
 while|while
@@ -2774,7 +2772,6 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
-comment|//address = is.readFixedLong();
 name|address
 operator|=
 name|StorageAddress
@@ -3224,6 +3221,17 @@ argument_list|()
 condition|;
 control|)
 block|{
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|entry
 operator|=
 operator|(
@@ -3337,18 +3345,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// try to retrieve old index entry for the element
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 name|val
 operator|=
 name|dbElement
@@ -3358,32 +3354,6 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"could not acquire lock for index on "
-operator|+
-name|qname
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
 name|os
 operator|.
 name|clear
@@ -3469,6 +3439,8 @@ argument_list|(
 name|len
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|is
 operator|.
 name|copyTo
@@ -3480,6 +3452,23 @@ operator|*
 literal|4
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EOFException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"EOF while copying: expected: "
+operator|+
+name|len
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -3529,7 +3518,6 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
-comment|//address = is.readFixedLong();
 if|if
 condition|(
 operator|!
@@ -3700,17 +3688,6 @@ name|os
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|val

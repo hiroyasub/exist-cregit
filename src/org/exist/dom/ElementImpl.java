@@ -1506,6 +1506,8 @@ name|children
 operator|==
 literal|0
 condition|)
+block|{
+comment|// no children: append a new child
 name|node
 operator|=
 name|appendChildren
@@ -1523,6 +1525,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -6450,6 +6453,13 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 decl_stmt|;
+specifier|final
+name|long
+name|lastChild
+init|=
+name|lastChildID
+argument_list|()
+decl_stmt|;
 name|removeAll
 argument_list|(
 name|old
@@ -6482,6 +6492,15 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|old
+operator|.
+name|gid
+operator|<
+name|lastChild
+condition|)
+block|{
 name|ownerDocument
 operator|.
 name|reindex
@@ -6503,6 +6522,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|old
 return|;
