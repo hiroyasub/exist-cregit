@@ -73,6 +73,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -1238,6 +1250,18 @@ parameter_list|()
 block|{
 return|return
 literal|1
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getCardinality() 	 */
+specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+block|{
+return|return
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
