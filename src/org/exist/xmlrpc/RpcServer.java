@@ -393,6 +393,9 @@ name|user
 parameter_list|,
 name|String
 name|xpath
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -417,6 +420,8 @@ argument_list|(
 name|user
 argument_list|,
 name|xpath
+argument_list|,
+name|parameters
 argument_list|)
 return|;
 block|}
@@ -460,6 +465,9 @@ name|xpath
 parameter_list|,
 name|String
 name|encoding
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -526,6 +534,8 @@ argument_list|(
 name|user
 argument_list|,
 name|xpathString
+argument_list|,
+name|parameters
 argument_list|)
 return|;
 block|}
@@ -539,6 +549,9 @@ parameter_list|,
 name|byte
 index|[]
 name|xpath
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -553,6 +566,8 @@ argument_list|,
 name|xpath
 argument_list|,
 literal|null
+argument_list|,
+name|parameters
 argument_list|)
 return|;
 block|}

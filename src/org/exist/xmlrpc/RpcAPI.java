@@ -118,6 +118,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|VARIABLES
+init|=
+literal|"variables"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|BASE_URI
 init|=
 literal|"base-uri"
@@ -746,6 +754,9 @@ name|xpath
 parameter_list|,
 name|String
 name|encoding
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -761,6 +772,9 @@ parameter_list|,
 name|byte
 index|[]
 name|xpath
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
@@ -775,6 +789,9 @@ name|user
 parameter_list|,
 name|String
 name|xpath
+parameter_list|,
+name|Hashtable
+name|parameters
 parameter_list|)
 throws|throws
 name|EXistException
