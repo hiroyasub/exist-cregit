@@ -131,11 +131,6 @@ name|XQueryWatchDog
 name|watchdog
 parameter_list|)
 block|{
-name|watchdog
-operator|.
-name|cleanUp
-argument_list|()
-expr_stmt|;
 name|runningQueries
 operator|.
 name|remove

@@ -1612,14 +1612,15 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|XPathException
+comment|//		throw new XPathException("Querying constructed nodes is not yet implemented");
+return|return
+name|document
+operator|.
+name|toNodeSet
 argument_list|(
-literal|"Querying constructed nodes is not yet implemented"
+name|this
 argument_list|)
-throw|;
-comment|//		return document.toNodeSet(this);
+return|;
 block|}
 specifier|private
 specifier|final

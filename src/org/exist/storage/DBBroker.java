@@ -1810,6 +1810,13 @@ comment|/** 	 * Clean up any temporary resources. 	 * 	 */
 specifier|public
 specifier|abstract
 name|void
+name|cleanUpAll
+parameter_list|()
+function_decl|;
+comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 * 	 */
+specifier|public
+specifier|abstract
+name|void
 name|cleanUp
 parameter_list|()
 function_decl|;

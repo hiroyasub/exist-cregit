@@ -1011,19 +1011,6 @@ argument_list|(
 literal|"data"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Received: "
-operator|+
-name|data
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
 name|os
 operator|.
 name|write
@@ -1111,19 +1098,6 @@ operator|.
 name|get
 argument_list|(
 literal|"data"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Received: "
-operator|+
-name|data
-operator|.
-name|length
 argument_list|)
 expr_stmt|;
 name|os

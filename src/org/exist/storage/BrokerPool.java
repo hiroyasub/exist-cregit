@@ -1543,7 +1543,7 @@ argument_list|()
 decl_stmt|;
 name|broker
 operator|.
-name|cleanUp
+name|cleanUpAll
 argument_list|()
 expr_stmt|;
 name|secManager
@@ -1710,6 +1710,11 @@ name|sync
 argument_list|(
 name|syncEvent
 argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|cleanUp
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

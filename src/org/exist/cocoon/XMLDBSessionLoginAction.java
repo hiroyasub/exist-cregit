@@ -340,6 +340,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"no user "
+argument_list|)
+expr_stmt|;
 comment|// try to read parameters from sitemap
 name|user
 operator|=
@@ -520,6 +529,15 @@ argument_list|,
 literal|"password"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|user
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 block|}
 comment|// return data to the sitemap
 name|map

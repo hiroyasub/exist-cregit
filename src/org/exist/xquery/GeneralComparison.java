@@ -937,25 +937,6 @@ return|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"left: "
-operator|+
-name|ls
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|"; right: "
-operator|+
-name|rs
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -982,18 +963,6 @@ argument_list|()
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"left: "
-operator|+
-name|lv
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -1192,6 +1161,22 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|c
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Internal error: context node missing"
+argument_list|)
+throw|;
 do|do
 block|{
 name|lv
