@@ -1835,7 +1835,7 @@ decl_stmt|;
 name|String
 name|namespace
 init|=
-literal|""
+literal|null
 decl_stmt|;
 name|String
 name|prefix
@@ -2082,7 +2082,7 @@ decl_stmt|;
 name|String
 name|namespace
 init|=
-literal|""
+literal|null
 decl_stmt|;
 if|if
 condition|(
