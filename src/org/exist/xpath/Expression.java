@@ -93,6 +93,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|void
+name|setPrimaryAxis
+parameter_list|(
+name|int
+name|axis
+parameter_list|)
+function_decl|;
 comment|/** 	 * The static return type of the expression. 	 * 	 * This method should return one of the type constants defined in class  	 * {@link org.exist.xpath.value.Type}. If the return type cannot be determined 	 * statically, return Type.ITEM. 	 */
 specifier|public
 name|int

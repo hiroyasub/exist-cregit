@@ -1337,6 +1337,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+comment|//			Thread.dumpStack();
 return|return;
 block|}
 name|ContextItem
@@ -1396,6 +1397,17 @@ name|getNextItem
 argument_list|()
 expr_stmt|;
 block|}
+comment|//		Thread.dumpStack();
+block|}
+specifier|public
+name|void
+name|clearContext
+parameter_list|()
+block|{
+name|context
+operator|=
+literal|null
+expr_stmt|;
 block|}
 specifier|public
 name|void

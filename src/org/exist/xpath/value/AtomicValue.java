@@ -152,6 +152,28 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+specifier|abstract
+name|AtomicValue
+name|max
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+specifier|public
+specifier|abstract
+name|AtomicValue
+name|min
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
 specifier|public
 name|int
@@ -463,6 +485,21 @@ return|return
 name|this
 return|;
 block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 		 */
+specifier|public
+name|AtomicValue
+name|max
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+name|this
+return|;
+block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.Sequence#add(org.exist.xpath.value.Item) 		 */
 specifier|public
 name|void
@@ -496,6 +533,21 @@ argument_list|(
 literal|"Cannot compare operand to empty value"
 argument_list|)
 throw|;
+block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.AtomicValue#min(org.exist.xpath.value.AtomicValue) 		 */
+specifier|public
+name|AtomicValue
+name|min
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+name|this
+return|;
 block|}
 block|}
 block|}

@@ -190,6 +190,43 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+specifier|public
+name|AtomicValue
+name|max
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Invalid argument to aggregate function: cannot compare Java objects"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|AtomicValue
+name|min
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Invalid argument to aggregate function: cannot compare Java objects"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

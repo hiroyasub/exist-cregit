@@ -476,11 +476,6 @@ literal|"!"
 argument_list|)
 throw|;
 block|}
-name|int
-name|c
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 name|contextNode
@@ -488,9 +483,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|c
-operator|++
-expr_stmt|;
 name|next
 operator|=
 name|contextNode
@@ -507,16 +499,6 @@ operator|.
 name|match
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|result
-operator|.
-name|contains
-argument_list|(
-name|next
-argument_list|)
-condition|)
 name|result
 operator|.
 name|add
@@ -526,6 +508,7 @@ argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("found: " + next.gid);
 name|contextNode
 operator|=
 name|contextNode
@@ -928,18 +911,6 @@ return|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"returning sequence item: "
-operator|+
-name|contextSequence
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|innerSeq
 init|=

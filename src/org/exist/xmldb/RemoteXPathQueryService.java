@@ -65,6 +65,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmlrpc
+operator|.
+name|RpcAPI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -137,6 +149,8 @@ class|class
 name|RemoteXPathQueryService
 implements|implements
 name|XPathQueryServiceImpl
+implements|,
+name|XQueryService
 block|{
 specifier|protected
 name|RemoteCollection
@@ -200,6 +214,55 @@ name|XMLDBException
 block|{
 try|try
 block|{
+name|Hashtable
+name|optParams
+init|=
+operator|new
+name|Hashtable
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|sortExpr
+operator|!=
+literal|null
+condition|)
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|SORT_EXPR
+argument_list|,
+name|sortExpr
+argument_list|)
+expr_stmt|;
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|NAMESPACES
+argument_list|,
+name|namespaceMappings
+argument_list|)
+expr_stmt|;
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|BASE_URI
+argument_list|,
+name|collection
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Vector
 name|params
 init|=
@@ -219,29 +282,11 @@ literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sortExpr
-operator|!=
-literal|null
-condition|)
 name|params
 operator|.
 name|addElement
 argument_list|(
-name|sortExpr
-operator|.
-name|getBytes
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|params
-operator|.
-name|addElement
-argument_list|(
-name|namespaceMappings
+name|optParams
 argument_list|)
 expr_stmt|;
 name|Hashtable
@@ -420,6 +465,55 @@ name|res
 decl_stmt|;
 try|try
 block|{
+name|Hashtable
+name|optParams
+init|=
+operator|new
+name|Hashtable
+argument_list|()
+decl_stmt|;
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|NAMESPACES
+argument_list|,
+name|namespaceMappings
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|sortExpr
+operator|!=
+literal|null
+condition|)
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|SORT_EXPR
+argument_list|,
+name|sortExpr
+argument_list|)
+expr_stmt|;
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|BASE_URI
+argument_list|,
+name|collection
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Vector
 name|params
 init|=
@@ -457,29 +551,11 @@ operator|.
 name|id
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sortExpr
-operator|!=
-literal|null
-condition|)
 name|params
 operator|.
 name|addElement
 argument_list|(
-name|sortExpr
-operator|.
-name|getBytes
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|params
-operator|.
-name|addElement
-argument_list|(
-name|namespaceMappings
+name|optParams
 argument_list|)
 expr_stmt|;
 name|Hashtable
@@ -608,7 +684,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  resource            Description of the Parameter      *@param  query               Description of the Parameter      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|ResourceSet
 name|queryResource
@@ -629,7 +704,6 @@ name|query
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the version attribute of the XPathQueryServiceImpl object      *      *@return                     The version value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getVersion
@@ -641,7 +715,6 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/**      *  Sets the collection attribute of the XPathQueryServiceImpl object      *      *@param  col                 The new collection value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|setCollection
@@ -653,7 +726,6 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-comment|/**      *  Gets the name attribute of the XPathQueryServiceImpl object      *      *@return                     The name value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getName
@@ -665,7 +737,6 @@ return|return
 literal|"XPathQueryService"
 return|;
 block|}
-comment|/**      *  Gets the property attribute of the XPathQueryServiceImpl object      *      *@param  property            Description of the Parameter      *@return                     The property value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getProperty
@@ -685,7 +756,6 @@ name|property
 argument_list|)
 return|;
 block|}
-comment|/**      *  Sets the property attribute of the XPathQueryServiceImpl object      *      *@param  property            The new property value      *@param  value               The new property value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|setProperty
@@ -709,7 +779,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|clearNamespaces
@@ -723,7 +792,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ns                  Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|removeNamespace
@@ -778,7 +846,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Sets the namespace attribute of the XPathQueryServiceImpl object      *      *@param  prefix              The new namespace value      *@param  namespace           The new namespace value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|setNamespace
@@ -802,7 +869,6 @@ name|namespace
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Gets the namespace attribute of the XPathQueryServiceImpl object      *      *@param  prefix              Description of the Parameter      *@return                     The namespace value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getNamespace
@@ -851,6 +917,63 @@ argument_list|,
 literal|"method not implemented"
 argument_list|)
 throw|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#compile(java.lang.String) 	 */
+specifier|public
+name|CompiledExpression
+name|compile
+parameter_list|(
+name|String
+name|query
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|,
+literal|"compiling an XQuery expression is currently not implemented for a remote connection"
+argument_list|)
+throw|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#execute(org.exist.xmldb.CompiledExpression) 	 */
+specifier|public
+name|ResourceSet
+name|execute
+parameter_list|(
+name|CompiledExpression
+name|expression
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|,
+literal|"compiling an XQuery expression is currently not implemented for a remote connection"
+argument_list|)
+throw|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#setXPathCompatibility(boolean) 	 */
+specifier|public
+name|void
+name|setXPathCompatibility
+parameter_list|(
+name|boolean
+name|backwardsCompatible
+parameter_list|)
+block|{
+comment|// TODO: not passed
 block|}
 block|}
 end_class

@@ -738,6 +738,7 @@ block|}
 block|}
 else|else
 block|{
+comment|//LOG.debug("start: " + qName);
 name|contentHandler
 operator|.
 name|startElement

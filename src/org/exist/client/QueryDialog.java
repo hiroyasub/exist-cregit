@@ -996,7 +996,7 @@ operator|=
 operator|new
 name|JLabel
 argument_list|(
-literal|"Query:"
+literal|"XQuery:"
 argument_list|)
 expr_stmt|;
 name|queryPanel
@@ -2053,6 +2053,13 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|client
+operator|.
+name|queryHistory
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
 operator|!
 operator|(
 operator|(

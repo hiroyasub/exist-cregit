@@ -79,6 +79,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements an XQuery let-expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -207,6 +221,7 @@ name|whereExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|filtered
 operator|=
 name|applyWhereExpression
@@ -221,9 +236,31 @@ expr_stmt|;
 if|if
 condition|(
 name|whereExpr
-operator|!=
-literal|null
-operator|&&
+operator|.
+name|returnsType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|BOOLEAN
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|filtered
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+if|else if
+condition|(
 name|filtered
 operator|.
 name|getLength
@@ -236,6 +273,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|Sequence
 name|returnSeq
 init|=

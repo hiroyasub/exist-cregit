@@ -199,7 +199,7 @@ case|:
 return|return
 name|this
 return|;
-default|default:
+default|default :
 throw|throw
 operator|new
 name|XPathException
@@ -324,7 +324,7 @@ name|cmp
 operator|>=
 literal|0
 return|;
-default|default:
+default|default :
 throw|throw
 operator|new
 name|XPathException
@@ -408,6 +408,43 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|)
+throw|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+specifier|public
+name|AtomicValue
+name|max
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Invalid argument to aggregate function: QName"
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|AtomicValue
+name|min
+parameter_list|(
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Invalid argument to aggregate function: QName"
 argument_list|)
 throw|;
 block|}

@@ -760,6 +760,12 @@ operator|.
 name|resetState
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|whereExpr
+operator|!=
+literal|null
+condition|)
 name|whereExpr
 operator|.
 name|resetState

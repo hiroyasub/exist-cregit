@@ -83,20 +83,6 @@ name|Sequence
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -217,6 +203,11 @@ condition|)
 return|return
 name|seq
 return|;
+name|setContext
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
 name|Predicate
 name|pred
 decl_stmt|;
@@ -251,20 +242,6 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"calling predicate with "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|result
 operator|=
@@ -420,6 +397,23 @@ name|resetState
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#setPrimaryAxis(int) 	 */
+specifier|public
+name|void
+name|setPrimaryAxis
+parameter_list|(
+name|int
+name|axis
+parameter_list|)
+block|{
+name|expression
+operator|.
+name|setPrimaryAxis
+argument_list|(
+name|axis
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
 specifier|public

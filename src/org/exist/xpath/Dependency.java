@@ -54,6 +54,14 @@ name|LOCAL_VARS
 init|=
 literal|4
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|GLOBAL_VARS
+init|=
+literal|8
+decl_stmt|;
 comment|/** 	 * Expression evaluates the context position and thus requires 	 * that the corresponding field in the context is set. 	 */
 specifier|public
 specifier|final
@@ -61,7 +69,7 @@ specifier|static
 name|int
 name|CONTEXT_POSITION
 init|=
-literal|8
+literal|16
 decl_stmt|;
 comment|/** 	 * The default dependencies: just CONTEXT_SET is set. 	 */
 specifier|public

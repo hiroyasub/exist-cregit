@@ -288,7 +288,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|2
+literal|10
 condition|;
 name|i
 operator|++

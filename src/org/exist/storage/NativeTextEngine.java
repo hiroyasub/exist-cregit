@@ -1740,7 +1740,14 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -2202,12 +2209,41 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-comment|//		LOG.debug(
-comment|//			"found " + expr + ": "
-comment|//				+ result.getLength() + " (" + count + ") "
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found "
+operator|+
+name|expr
+operator|+
+literal|": "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|count
+operator|+
+literal|") "
+operator|+
+literal|" in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
