@@ -459,11 +459,6 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"declare function "
-argument_list|)
-operator|.
-name|display
-argument_list|(
 name|signature
 operator|.
 name|getName
@@ -528,7 +523,20 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|')'
+literal|") "
+argument_list|)
+expr_stmt|;
+name|dumper
+operator|.
+name|display
+argument_list|(
+name|signature
+operator|.
+name|getReturnType
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -436,6 +436,36 @@ argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
+comment|// if the path is an absolute URL that starts with the current base URI,
+comment|// we remove the base URI
+if|if
+condition|(
+name|path
+operator|.
+name|startsWith
+argument_list|(
+name|context
+operator|.
+name|getBaseURI
+argument_list|()
+argument_list|)
+condition|)
+name|path
+operator|=
+name|path
+operator|.
+name|substring
+argument_list|(
+name|context
+operator|.
+name|getBaseURI
+argument_list|()
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// relative URL: add the current base collection
 if|if
 condition|(
 name|path
@@ -451,12 +481,21 @@ name|path
 operator|=
 name|context
 operator|.
-name|getBaseURI
+name|getBaseCollection
 argument_list|()
 operator|+
 literal|'/'
 operator|+
 name|path
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Loading document: "
+operator|+
+name|path
+argument_list|)
 expr_stmt|;
 comment|// check if the loaded documents should remain locked
 name|boolean

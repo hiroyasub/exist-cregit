@@ -156,6 +156,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|BASE_COLLECTION
+init|=
+literal|"base-collection"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|STATIC_DOCUMENTS
 init|=
 literal|"static-documents"

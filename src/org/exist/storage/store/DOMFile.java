@@ -4807,6 +4807,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+comment|//        closeDocument();
 try|try
 block|{
 if|if

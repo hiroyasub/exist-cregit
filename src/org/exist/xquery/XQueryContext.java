@@ -730,6 +730,12 @@ literal|""
 decl_stmt|;
 specifier|protected
 name|String
+name|baseCollection
+init|=
+literal|"/db"
+decl_stmt|;
+specifier|protected
+name|String
 name|moduleLoadPath
 init|=
 literal|"."
@@ -3201,6 +3207,31 @@ block|{
 return|return
 name|baseURI
 return|;
+block|}
+comment|/**      * Returns the base collection for the current query.      * The value depends on how the XQuery was called.      *       * @return      */
+specifier|public
+name|String
+name|getBaseCollection
+parameter_list|()
+block|{
+return|return
+name|baseCollection
+return|;
+block|}
+specifier|public
+name|void
+name|setBaseCollection
+parameter_list|(
+name|String
+name|collection
+parameter_list|)
+block|{
+name|this
+operator|.
+name|baseCollection
+operator|=
+name|collection
+expr_stmt|;
 block|}
 comment|/** 	 * Set the current context position, i.e. the position 	 * of the currently processed item in the context sequence. 	 * This value is required by some expressions, e.g. fn:position(). 	 *  	 * @param pos 	 */
 specifier|public

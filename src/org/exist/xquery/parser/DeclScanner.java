@@ -368,7 +368,9 @@ block|}
 throw|throw
 operator|new
 name|XPathException
-argument_list|()
+argument_list|(
+literal|"Processing stopped"
+argument_list|)
 throw|;
 block|}
 specifier|public
