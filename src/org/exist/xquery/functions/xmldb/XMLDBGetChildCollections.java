@@ -351,6 +351,28 @@ decl_stmt|;
 name|String
 name|child
 decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Collection "
+operator|+
+name|collectionURI
+operator|+
+literal|" does not exist"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
