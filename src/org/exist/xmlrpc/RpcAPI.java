@@ -390,6 +390,21 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 *  Does the Collection identified by<code>name</code> exist in the 	 *  repository? 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+name|boolean
+name|hasCollection
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 comment|/** 	 *  Get a list of all documents contained in the database. 	 * 	 *@param  user 	 *@return  list of document paths 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Vector
 name|getDocumentListing
