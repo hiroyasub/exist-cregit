@@ -3236,6 +3236,16 @@ name|String
 name|collection
 parameter_list|)
 block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+name|baseCollection
+operator|=
+literal|""
+expr_stmt|;
 name|this
 operator|.
 name|baseCollection
