@@ -99,7 +99,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|JavaObjectValue
+name|BooleanValue
 import|;
 end_import
 
@@ -216,7 +216,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|XMLDBDeleteUser
+name|XMLDBExistsUser
 extends|extends
 name|BasicFunction
 block|{
@@ -232,7 +232,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"delete-user"
+literal|"exists-user"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -243,7 +243,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Deletes an existing user in the database. Requires username. Does not delete the user's home collection."
+literal|"Returns true if user exists. Requires username. Does not delete the user's home collection."
 argument_list|,
 operator|new
 name|SequenceType
@@ -267,17 +267,17 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|XMLDBDeleteUser
+name|XMLDBExistsUser
 parameter_list|(
 name|XQueryContext
 name|context
@@ -360,29 +360,28 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
-name|userObj
-init|=
+return|return
+operator|(
+operator|(
+literal|null
+operator|==
 name|ums
 operator|.
 name|getUser
 argument_list|(
 name|user
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-literal|null
-operator|!=
-name|userObj
-condition|)
-name|ums
+operator|)
+condition|?
+name|BooleanValue
 operator|.
-name|removeUser
-argument_list|(
-name|userObj
-argument_list|)
-expr_stmt|;
+name|FALSE
+else|:
+name|BooleanValue
+operator|.
+name|TRUE
+operator|)
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -397,7 +396,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Failed to remove user "
+literal|"Failed to create new user "
 operator|+
 name|user
 argument_list|,
@@ -430,11 +429,6 @@ block|{
 comment|/* ignore */
 block|}
 block|}
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
 block|}
 block|}
 end_class
