@@ -21,6 +21,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|jboss
+operator|.
+name|exist
+operator|.
+name|EXistService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -101,6 +115,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Category
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|naming
@@ -152,6 +178,23 @@ name|ServiceMBeanSupport
 implements|implements
 name|XmlDbClientServiceMBean
 block|{
+specifier|private
+specifier|static
+name|Category
+name|LOG
+init|=
+name|Category
+operator|.
+name|getInstance
+argument_list|(
+name|XmlDbClientService
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -315,7 +358,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -336,7 +379,7 @@ name|RESOURCE_TYPE
 argument_list|)
 expr_stmt|;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -350,7 +393,7 @@ argument_list|(
 name|xml
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -432,7 +475,7 @@ operator|+
 literal|" was not found"
 return|;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -510,7 +553,7 @@ operator|.
 name|getBaseCollection
 argument_list|()
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -535,7 +578,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -554,7 +597,7 @@ argument_list|(
 name|baseCol
 argument_list|)
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -570,7 +613,7 @@ argument_list|(
 name|INVENTORY_NAME
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -584,7 +627,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(

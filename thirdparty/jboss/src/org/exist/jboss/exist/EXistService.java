@@ -59,6 +59,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Category
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -100,6 +112,23 @@ name|ServiceMBeanSupport
 implements|implements
 name|EXistServiceMBean
 block|{
+specifier|private
+specifier|static
+name|Category
+name|LOG
+init|=
+name|Category
+operator|.
+name|getInstance
+argument_list|(
+name|EXistService
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|protected
 name|String
 name|confFile
@@ -184,7 +213,7 @@ argument_list|(
 literal|"jboss.server.home.dir"
 argument_list|)
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -208,7 +237,7 @@ argument_list|,
 name|eXistHome
 argument_list|)
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -224,7 +253,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -242,7 +271,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -288,7 +317,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -314,7 +343,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -341,7 +370,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -409,7 +438,7 @@ name|isConfigured
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
