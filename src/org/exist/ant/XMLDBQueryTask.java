@@ -198,6 +198,25 @@ argument_list|(
 literal|"you have to specify a query"
 argument_list|)
 throw|;
+name|log
+argument_list|(
+literal|"XQuery is:\n"
+operator|+
+name|query
+argument_list|,
+name|org
+operator|.
+name|apache
+operator|.
+name|tools
+operator|.
+name|ant
+operator|.
+name|Project
+operator|.
+name|MSG_DEBUG
+argument_list|)
+expr_stmt|;
 name|registerDatabase
 argument_list|()
 expr_stmt|;
