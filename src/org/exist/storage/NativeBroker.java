@@ -9343,7 +9343,8 @@ name|NativeSerializer
 argument_list|(
 name|this
 argument_list|,
-literal|null
+name|getConfiguration
+argument_list|()
 argument_list|)
 return|;
 block|}

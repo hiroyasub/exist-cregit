@@ -2287,15 +2287,6 @@ operator|.
 name|STYLESHEET
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"xsl = "
-operator|+
-name|stylesheet
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|stylesheet
@@ -2688,6 +2679,13 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|templates
+operator|=
+name|handler
+operator|.
+name|getTemplates
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2705,13 +2703,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|templates
-operator|=
-name|handler
-operator|.
-name|getTemplates
-argument_list|()
-expr_stmt|;
 comment|// restore handlers
 name|receiver
 operator|=
@@ -2741,6 +2732,12 @@ name|start
 operator|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|templates
+operator|!=
+literal|null
+condition|)
 name|xslHandler
 operator|=
 operator|(
