@@ -147,6 +147,12 @@ literal|null
 decl_stmt|;
 specifier|protected
 name|boolean
+name|realSetIsComplete
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
+name|boolean
 name|inPredicate
 init|=
 literal|false
@@ -902,6 +908,10 @@ name|add
 argument_list|(
 name|p
 argument_list|)
+expr_stmt|;
+name|realSetIsComplete
+operator|=
+literal|false
 expr_stmt|;
 block|}
 specifier|public
@@ -1663,12 +1673,23 @@ name|void
 name|realize
 parameter_list|()
 block|{
-comment|//if (realSet != null)
-comment|//	return;
+if|if
+condition|(
+name|realSet
+operator|!=
+literal|null
+operator|&&
+name|realSetIsComplete
+condition|)
+return|return;
 name|realSet
 operator|=
 name|getNodes
 argument_list|()
+expr_stmt|;
+name|realSetIsComplete
+operator|=
+literal|true
 expr_stmt|;
 block|}
 specifier|public

@@ -947,7 +947,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 * @return 	 */
+comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 *  	 * @return 	 */
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -1247,81 +1247,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * TODO: This method is rubbish. It can't work this way if descendants occur on  	 * different levels in the dom tree. 	 *  	 * Fast ancestor descendant join based on two iterators. This method is 	 * selected if the ancestor set is fixed, i.e. the selection step did not contain 	 * any wildcards. 	 *  	 * @param al 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
-comment|//	private NodeSet quickSelectAncestorDescendant(NodeSet al, int mode, boolean includeSelf, boolean rememberContext) {
-comment|//	    final NodeSet result = new ExtArrayNodeSet();
-comment|//		final Iterator ia = al.iterator();
-comment|//		final Iterator ib = iterator();
-comment|////		final long start = System.currentTimeMillis();
-comment|//		NodeProxy na = (NodeProxy) ia.next(), nb = (NodeProxy) ib.next();
-comment|//		// check if one of the node sets is empty
-comment|//		if(na == null || nb == null)
-comment|//		    return result;
-comment|//
-comment|//		long pa, pb;
-comment|//		while (true) {
-comment|//			// first, try to find nodes belonging to the same doc
-comment|//			if (na.doc.getDocId()< nb.doc.getDocId()) {
-comment|//				if (ia.hasNext())
-comment|//					na = (NodeProxy) ia.next();
-comment|//				else
-comment|//					break;
-comment|//			} else if (na.doc.getDocId()> nb.doc.getDocId()) {
-comment|//				if (ib.hasNext())
-comment|//					nb = (NodeProxy) ib.next();
-comment|//				else
-comment|//					break;
-comment|//			} else {
-comment|//			    // same document
-comment|//			    pa = na.gid;
-comment|//			    pb = nb.gid;
-comment|//			    int la = na.doc.getTreeLevel(pa);
-comment|//				int lb = nb.doc.getTreeLevel(pb);
-comment|//				boolean foundSelf = la == lb;
-comment|//				while (lb> la) {
-comment|//					pb = XMLUtil.getParentId(nb.doc, pb, lb--);
-comment|//					System.out.println(pb);
-comment|//				}
-comment|//				System.out.println("Comparing " + pa + " -> " + pb + " (" + nb.gid + ") " +
-comment|//						XMLUtil.getParentId(nb.doc, pb));
-comment|//				if (pa< pb) {
-comment|//					if (ia.hasNext())
-comment|//						na = (NodeProxy) ia.next();
-comment|//					else
-comment|//						break;
-comment|//				} else if (pa> pb) {
-comment|//					if (ib.hasNext())
-comment|//						nb = (NodeProxy) ib.next();
-comment|//					else if(ia.hasNext())
-comment|//						na = (NodeProxy) ia.next();
-comment|//					else
-comment|//						break;
-comment|//				} else {
-comment|//				    if(!foundSelf || includeSelf) {
-comment|//				        if(mode == NodeSet.DESCENDANT) {
-comment|//				            if (rememberContext)
-comment|//				                nb.addContextNode(na);
-comment|//				            else
-comment|//				                nb.copyContext(na);
-comment|//				            result.add(nb);
-comment|//				        } else {
-comment|//				            if (rememberContext)
-comment|//				                na.addContextNode(nb);
-comment|//				            else
-comment|//				                na.copyContext(nb);
-comment|//				            result.add(na);
-comment|//				        }
-comment|//				    }
-comment|//				    if (ib.hasNext())
-comment|//						nb = (NodeProxy) ib.next();
-comment|//					else
-comment|//						break;
-comment|//				}
-comment|//			}
-comment|//		}
-comment|////		LOG.debug("quickSelect took " + (System.currentTimeMillis() - start));
-comment|//		return result;
-comment|//	}
 specifier|private
 name|NodeSet
 name|quickSelectParentChild
@@ -1500,7 +1425,19 @@ name|nb
 operator|.
 name|gid
 expr_stmt|;
-comment|//			    System.out.println(pa + " -> " + pb);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|pa
+operator|+
+literal|" -> "
+operator|+
+name|pb
+argument_list|)
+expr_stmt|;
 name|pb
 operator|=
 name|XMLUtil
@@ -1525,7 +1462,21 @@ name|pb
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//				System.out.println("comparing " + pa + " -> " + pb);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"comparing "
+operator|+
+name|pa
+operator|+
+literal|" -> "
+operator|+
+name|pb
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|pa

@@ -509,6 +509,7 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
+comment|/** 	 * Return a new node set, containing all nodes in this node set that 	 * are contained or have descendants in the other node set. 	 *  	 * @param other 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|deepIntersection
