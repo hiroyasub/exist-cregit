@@ -1719,13 +1719,6 @@ name|Node
 operator|.
 name|COMMENT_NODE
 case|:
-if|if
-condition|(
-name|lexicalHandler
-operator|!=
-literal|null
-condition|)
-block|{
 name|String
 name|comment
 init|=
@@ -1784,7 +1777,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-block|}
 name|node
 operator|.
 name|release
