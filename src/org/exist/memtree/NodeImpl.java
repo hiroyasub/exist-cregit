@@ -45,6 +45,8 @@ name|exist
 operator|.
 name|util
 operator|.
+name|serializer
+operator|.
 name|DOMStreamer
 import|;
 end_import
@@ -1166,9 +1168,11 @@ argument_list|)
 decl_stmt|;
 name|streamer
 operator|.
-name|stream
+name|serialize
 argument_list|(
 name|this
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

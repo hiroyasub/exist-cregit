@@ -326,17 +326,6 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"calling startDocument "
-operator|+
-name|callDocumentEvents
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|callDocumentEvents
