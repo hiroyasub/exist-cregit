@@ -764,7 +764,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|BooleanValue
+name|Sequence
 name|genericCompare
 parameter_list|(
 name|Sequence
