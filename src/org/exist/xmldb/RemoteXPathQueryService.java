@@ -947,17 +947,8 @@ throws|throws
 name|XMLDBException
 block|{
 comment|// TODO Not implemented
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|NOT_IMPLEMENTED
-argument_list|,
-literal|"method not implemented"
-argument_list|)
-throw|;
+comment|//throw new XMLDBException(ErrorCodes.NOT_IMPLEMENTED,
+comment|//	"method not implemented");
 block|}
 comment|/** 	 * The XML-RPC server automatically caches compiled queries. 	 * Thus calling this method has no effect. 	 *  	 * @see org.exist.xmldb.XQueryService#compile(java.lang.String) 	 */
 specifier|public
