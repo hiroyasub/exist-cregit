@@ -290,7 +290,7 @@ name|sendError
 argument_list|(
 name|HttpServletResponse
 operator|.
-name|SC_BAD_REQUEST
+name|SC_METHOD_NOT_ALLOWED
 argument_list|,
 literal|"no path specified"
 argument_list|)
@@ -424,7 +424,7 @@ argument_list|)
 expr_stmt|;
 name|response
 operator|.
-name|sendError
+name|setStatus
 argument_list|(
 name|HttpServletResponse
 operator|.

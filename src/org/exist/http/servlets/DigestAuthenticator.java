@@ -29,9 +29,29 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|security
 operator|.
 name|MessageDigest
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|security
+operator|.
+name|NoSuchAlgorithmException
 import|;
 end_import
 
@@ -108,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * An Authenticator that uses MD5 Digest Authentication.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -676,6 +696,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|credentials
+operator|==
+literal|null
+condition|)
+comment|// no password set for the user: return true
+return|return
+literal|true
+return|;
 try|try
 block|{
 name|MessageDigest
@@ -809,24 +839,6 @@ name|digest
 argument_list|()
 decl_stmt|;
 comment|// check digest
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|MD5
-operator|.
-name|byteArrayToHex
-argument_list|(
-name|digest
-argument_list|)
-operator|+
-literal|" = "
-operator|+
-name|response
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|MD5
@@ -845,15 +857,29 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|NoSuchAlgorithmException
 name|e
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|RuntimeException
 argument_list|(
-literal|"Internal error while checking digest"
+literal|"MD5 not supported"
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedEncodingException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Encoding not supported"
 argument_list|)
 throw|;
 block|}

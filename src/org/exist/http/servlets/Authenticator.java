@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Interface for HTTP authentication methods.  *   * @author wolf  */
 end_comment
 
 begin_interface
@@ -70,6 +70,7 @@ specifier|public
 interface|interface
 name|Authenticator
 block|{
+comment|/**      * Try to authenticate the user specified in the HTTP request.      *       * @param request      * @param response      * @return      * @throws IOException      */
 specifier|public
 name|User
 name|authenticate
@@ -83,6 +84,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** 	 * Send an WWW-Authenticate header back to client. 	 *  	 * @param request 	 * @param response 	 * @throws IOException 	 */
 specifier|public
 name|void
 name|sendChallenge

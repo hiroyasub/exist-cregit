@@ -267,7 +267,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -275,6 +277,7 @@ name|resource
 operator|==
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -285,6 +288,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -449,6 +453,15 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+name|response
+operator|.
+name|setStatus
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_NO_CONTENT
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

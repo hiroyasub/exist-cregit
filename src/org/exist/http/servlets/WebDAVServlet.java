@@ -105,6 +105,10 @@ name|WebDAV
 import|;
 end_import
 
+begin_comment
+comment|/**  * Provides a WebDAV interface to the database. All WebDAV requests  * are delegated to the {@link org.exist.http.webdav.WebDAV} class.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class

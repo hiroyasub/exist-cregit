@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Interface for all WebDAV methods.  *   * @author wolf  */
 end_comment
 
 begin_interface
@@ -130,6 +130,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** 	 * Process a WebDAV request. The collection and resource parameters 	 * are set to the corresponding objects selected by the request path. 	 * The user parameter represents a valid database user. 	 *  	 * @param user 	 * @param request 	 * @param response 	 * @param collection 	 * @param resource 	 * @throws ServletException 	 * @throws IOException 	 */
 name|void
 name|process
 parameter_list|(
