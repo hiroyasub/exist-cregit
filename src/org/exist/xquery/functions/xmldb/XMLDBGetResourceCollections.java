@@ -236,7 +236,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-resource-collections"
+literal|"get-child-resources"
 argument_list|,
 name|XMLDBModule
 operator|.
