@@ -115,7 +115,7 @@ init|=
 operator|new
 name|BigInteger
 argument_list|(
-literal|"4294967295L"
+literal|"4294967295"
 argument_list|)
 decl_stmt|;
 specifier|private
