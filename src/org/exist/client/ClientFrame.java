@@ -3250,7 +3250,7 @@ try|try
 block|{
 name|client
 operator|.
-name|getResources
+name|reloadCollection
 argument_list|()
 expr_stmt|;
 block|}
