@@ -2870,271 +2870,72 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+name|Collection
+name|root
+init|=
+name|getCollection
+argument_list|(
+literal|"/db"
+argument_list|)
+decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|ArrayList
-name|collList
-init|=
-literal|null
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|collectionsDb
-init|)
-block|{
-name|collList
-operator|=
-name|collectionsDb
+name|root
 operator|.
-name|getEntries
-argument_list|()
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|collList
-operator|==
-literal|null
-condition|)
-return|return
-name|docs
-return|;
-name|Value
-name|val
-decl_stmt|;
-name|Value
-index|[]
-name|entry
-decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
-name|VariableByteInputStream
-name|istream
-decl_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
-name|Collection
-name|collection
-decl_stmt|;
-name|String
-name|collName
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|collList
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|entry
-operator|=
-operator|(
-name|Value
-index|[]
-operator|)
-name|collList
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-expr_stmt|;
-name|collName
-operator|=
-name|entry
-index|[
-literal|0
-index|]
-operator|.
-name|toString
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|collName
-operator|.
-name|startsWith
-argument_list|(
-literal|"__"
-argument_list|)
-condition|)
-continue|continue;
-name|collection
-operator|=
-name|collections
-operator|.
-name|get
-argument_list|(
-name|collName
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|collection
-operator|==
-literal|null
-condition|)
-block|{
-name|val
-operator|=
-name|entry
-index|[
-literal|1
-index|]
-expr_stmt|;
-name|data
-operator|=
-name|val
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
-name|istream
-operator|=
-operator|new
-name|VariableByteInputStream
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-name|collection
-operator|=
-operator|new
-name|Collection
-argument_list|(
-name|this
-argument_list|,
-name|collName
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
-name|read
-argument_list|(
-name|istream
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|collection
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
+name|allDocs
 argument_list|(
 name|user
-argument_list|,
-name|Permission
-operator|.
-name|READ
 argument_list|)
-condition|)
-for|for
-control|(
-name|Iterator
-name|iter
-init|=
-name|collection
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|doc
-operator|=
-operator|(
-name|DocumentImpl
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-block|{
-name|docs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|BTreeException
-name|dbe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|dbe
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|ioe
-argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
+comment|//		try {
+comment|//			ArrayList collList = null;
+comment|//			synchronized (collectionsDb) {
+comment|//				collList = collectionsDb.getEntries();
+comment|//			}
+comment|//			if (collList == null)
+comment|//				return docs;
+comment|//
+comment|//			Value val;
+comment|//			Value[] entry;
+comment|//			byte[] data;
+comment|//			VariableByteInputStream istream;
+comment|//			DocumentImpl doc;
+comment|//			Collection collection;
+comment|//			String collName;
+comment|//			for (int i = 0; i< collList.size(); i++) {
+comment|//				entry = (Value[]) collList.get(i);
+comment|//				collName = entry[0].toString();
+comment|//				if (collName.startsWith("__"))
+comment|//					continue;
+comment|//				collection = collections.get(collName);
+comment|//				if(collection == null) {
+comment|//					val = entry[1];
+comment|//					data = val.getData();
+comment|//					istream = new VariableByteInputStream(data);
+comment|//					collection = new Collection(this, collName);
+comment|//					collection.read(istream);
+comment|//				}
+comment|//				if (collection
+comment|//					.getPermissions()
+comment|//					.validate(user, Permission.READ))
+comment|//					for (Iterator iter = collection.iterator();
+comment|//						iter.hasNext();
+comment|//						) {
+comment|//						doc = (DocumentImpl) iter.next();
+comment|//						if (doc
+comment|//							.getPermissions()
+comment|//							.validate(user, Permission.READ)) {
+comment|//							docs.add(doc);
+comment|//						}
+comment|//					}
+comment|//
+comment|//			}
+comment|//		} catch (BTreeException dbe) {
+comment|//			LOG.error(dbe);
+comment|//		} catch (IOException ioe) {
+comment|//			LOG.debug(ioe);
+comment|//		}
 name|LOG
 operator|.
 name|debug
@@ -3215,7 +3016,15 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|//        final long start = System.currentTimeMillis();
+specifier|final
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|name
 operator|=
 name|normalizeCollectionName
@@ -3443,8 +3252,28 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-comment|//        LOG.debug("loading collection " + name + " took " +
-comment|//            (System.currentTimeMillis() - start) + "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"loading collection "
+operator|+
+name|name
+operator|+
+literal|" took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|collection
 return|;
@@ -10836,6 +10665,18 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"reading collection metadata for "
+operator|+
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
+expr_stmt|;
 operator|new
 name|DOMTransaction
 argument_list|(
