@@ -185,8 +185,7 @@ parameter_list|,
 name|NodeSet
 name|nodes
 parameter_list|,
-name|String
-index|[]
+name|List
 name|terms
 parameter_list|)
 throws|throws

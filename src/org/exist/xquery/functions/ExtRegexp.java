@@ -513,13 +513,6 @@ operator|.
 name|NO_DEPENDENCY
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"single execution"
-argument_list|)
-expr_stmt|;
 name|NodeSet
 name|nodes
 init|=
