@@ -4182,6 +4182,8 @@ name|old
 operator|.
 name|getPath
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|broker
@@ -4230,6 +4232,8 @@ argument_list|(
 name|newNode
 argument_list|,
 name|path
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|broker
@@ -4250,6 +4254,8 @@ name|old
 operator|.
 name|getPath
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|broker

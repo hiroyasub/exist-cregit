@@ -27,6 +27,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -161,16 +171,6 @@ name|XUpdateQueryService
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -200,7 +200,7 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:x=\"http://www.foo.com\" xmlns:xx=\"http://test.com\">"
 operator|+
-literal|"<fulltext default=\"all\">"
+literal|"<fulltext default=\"none\">"
 operator|+
 literal|"<include path=\"//item/name\"/>"
 operator|+
@@ -221,6 +221,8 @@ operator|+
 literal|"<create path=\"//item/x:rating\" type=\"xs:double\"/>"
 operator|+
 literal|"<create path=\"//item/@xx:test\" type=\"xs:integer\"/>"
+operator|+
+literal|"<create path=\"//item/mixed\" type=\"xs:string\"/>"
 operator|+
 literal|"</index>"
 operator|+
@@ -491,6 +493,28 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[mixed = 'external']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[fn:matches(mixed, 'un.*')]"
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -525,7 +549,7 @@ name|remove
 init|=
 literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
 operator|+
-literal|"<xu:remove select=\"/items/item[itemno='10']\"/>"
+literal|"<xu:remove select=\"/items/item[itemno=7]\"/>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
@@ -559,6 +583,9 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+name|long
+name|mods
+init|=
 name|update
 operator|.
 name|updateResource
@@ -566,6 +593,13 @@ argument_list|(
 literal|"items.xml"
 argument_list|,
 name|append
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|mods
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|queryResource
@@ -579,6 +613,8 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|mods
+operator|=
 name|update
 operator|.
 name|updateResource
@@ -588,35 +624,22 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
-name|queryResource
+name|assertEquals
 argument_list|(
-name|query
-argument_list|,
-literal|"items.xml"
-argument_list|,
-literal|"//item[price = 55.50]"
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
-name|update
-operator|.
-name|updateResource
-argument_list|(
-literal|"items.xml"
-argument_list|,
-name|append
-argument_list|)
-expr_stmt|;
-name|queryResource
-argument_list|(
-name|query
-argument_list|,
-literal|"items.xml"
-argument_list|,
-literal|"//item[price = 55.50]"
+name|mods
 argument_list|,
 literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[itemno = 7]"
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

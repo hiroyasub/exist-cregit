@@ -1457,6 +1457,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|String
+name|content
 parameter_list|)
 function_decl|;
 comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
@@ -1767,6 +1770,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|String
+name|content
 parameter_list|)
 block|{
 throw|throw

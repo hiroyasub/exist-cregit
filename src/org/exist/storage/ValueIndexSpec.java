@@ -150,6 +150,14 @@ name|TEXT
 init|=
 literal|0x80
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|RANGE_INDEX_MASK
+init|=
+literal|0x3F
+decl_stmt|;
 comment|// Maps the type constants above to the corresponding
 comment|// XPath atomic types
 specifier|private
@@ -271,7 +279,7 @@ name|xpathTypes
 index|[
 name|type
 operator|&
-literal|0x3F
+name|RANGE_INDEX_MASK
 index|]
 return|;
 block|}
@@ -333,6 +341,26 @@ name|indexTypes
 index|[
 name|type
 index|]
+return|;
+block|}
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|hasRangeIndex
+parameter_list|(
+name|int
+name|type
+parameter_list|)
+block|{
+return|return
+operator|(
+name|type
+operator|&
+name|RANGE_INDEX_MASK
+operator|)
+operator|>
+literal|0
 return|;
 block|}
 specifier|private

@@ -1542,15 +1542,6 @@ operator|.
 name|getIndexType
 argument_list|()
 decl_stmt|;
-comment|// we can't use the index if the node has mixed content
-name|boolean
-name|hasMixedContent
-init|=
-name|nodes
-operator|.
-name|hasMixedContent
-argument_list|()
-decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -1579,9 +1570,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|hasMixedContent
-operator|&&
 name|indexType
 operator|!=
 name|Type
@@ -1767,6 +1755,18 @@ name|debug
 argument_list|(
 literal|"Using value index for key: "
 operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|": "
+operator|+
 name|key
 operator|.
 name|getStringValue
@@ -1838,7 +1838,10 @@ block|{
 if|if
 condition|(
 operator|!
+name|nodes
+operator|.
 name|hasMixedContent
+argument_list|()
 operator|&&
 name|relation
 operator|==
