@@ -1225,6 +1225,11 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|validate
+condition|)
 name|broker
 operator|.
 name|endElement
