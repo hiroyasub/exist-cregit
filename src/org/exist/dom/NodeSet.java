@@ -2356,11 +2356,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|TreeNodeSet
+name|AVLTreeNodeSet
 name|r
 init|=
 operator|new
-name|TreeNodeSet
+name|AVLTreeNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy

@@ -21,6 +21,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|AVLTreeNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|ContextItem
 import|;
 end_import
@@ -58,18 +70,6 @@ operator|.
 name|dom
 operator|.
 name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|TreeNodeSet
 import|;
 end_import
 
@@ -207,7 +207,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|TreeNodeSet
+name|AVLTreeNodeSet
 argument_list|()
 decl_stmt|;
 name|Expression
