@@ -796,14 +796,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//				long start = System.currentTimeMillis();
 if|if
 condition|(
 operator|!
@@ -853,33 +846,13 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|temp
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" for "
-operator|+
-name|arg
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug(
+comment|//					"found "
+comment|//						+ temp.getLength()
+comment|//						+ " for "
+comment|//						+ arg
+comment|//						+ " in "
+comment|//						+ (System.currentTimeMillis() - start));
 block|}
 return|return
 name|result
@@ -1196,28 +1169,7 @@ name|k
 operator|++
 control|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"hits: "
-operator|+
-name|terms
-index|[
-name|k
-index|]
-operator|+
-literal|": "
-operator|+
-name|hits
-index|[
-name|k
-index|]
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("hits: " + terms[k] + ": " + hits[k].getLength());
 if|if
 condition|(
 name|hits

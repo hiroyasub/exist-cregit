@@ -387,14 +387,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|Sequence
 name|values
 init|=
