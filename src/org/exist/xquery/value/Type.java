@@ -514,6 +514,14 @@ name|JAVA_OBJECT
 init|=
 literal|100
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|FUNCTION_REFERENCE
+init|=
+literal|101
+decl_stmt|;
 comment|/** 	 * Special type constant to indicate that an item has been 	 * fulltext indexed. 	 */
 specifier|public
 specifier|final
@@ -645,6 +653,13 @@ argument_list|(
 name|ATOMIC
 argument_list|,
 name|JAVA_OBJECT
+argument_list|)
+expr_stmt|;
+name|defineSubType
+argument_list|(
+name|ATOMIC
+argument_list|,
+name|FUNCTION_REFERENCE
 argument_list|)
 expr_stmt|;
 name|defineSubType
@@ -973,6 +988,13 @@ argument_list|(
 name|JAVA_OBJECT
 argument_list|,
 literal|"object"
+argument_list|)
+expr_stmt|;
+name|defineBuiltInType
+argument_list|(
+name|FUNCTION_REFERENCE
+argument_list|,
+literal|"function"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType

@@ -893,6 +893,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// Function belongs to a module
 if|if
 condition|(
 name|module
@@ -979,6 +980,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// function is from an imported XQuery module
 name|UserDefinedFunction
 name|func
 init|=
