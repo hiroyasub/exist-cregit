@@ -813,8 +813,8 @@ argument_list|()
 condition|)
 block|{
 comment|// for internal modules: create a new function instance from the class
-name|Class
-name|clazz
+name|FunctionDef
+name|def
 init|=
 operator|(
 operator|(
@@ -823,14 +823,19 @@ operator|)
 name|module
 operator|)
 operator|.
-name|getClassForFunction
+name|getFunctionDef
 argument_list|(
 name|qname
+argument_list|,
+name|params
+operator|.
+name|size
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|clazz
+name|def
 operator|==
 literal|null
 condition|)
@@ -868,7 +873,7 @@ name|context
 argument_list|,
 name|ast
 argument_list|,
-name|clazz
+name|def
 argument_list|)
 decl_stmt|;
 name|func

@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -113,8 +123,8 @@ parameter_list|()
 function_decl|;
 comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname 	 * @return the function signature or null if the function is not defined. 	 */
 specifier|public
-name|FunctionSignature
-name|getSignatureForFunction
+name|Iterator
+name|getSignaturesForFunction
 parameter_list|(
 name|QName
 name|qname

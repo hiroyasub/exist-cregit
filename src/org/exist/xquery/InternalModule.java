@@ -38,11 +38,14 @@ name|Module
 block|{
 comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return 	 */
 specifier|public
-name|Class
-name|getClassForFunction
+name|FunctionDef
+name|getFunctionDef
 parameter_list|(
 name|QName
 name|qname
+parameter_list|,
+name|int
+name|argCount
 parameter_list|)
 function_decl|;
 block|}
