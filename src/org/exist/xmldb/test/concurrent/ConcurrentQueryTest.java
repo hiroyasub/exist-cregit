@@ -207,10 +207,23 @@ literal|"/C1"
 argument_list|,
 literal|"R1.xml"
 argument_list|,
-name|query0
+name|query1
 argument_list|)
 expr_stmt|;
-comment|//		action2 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+name|action2
+operator|=
+operator|new
+name|XQueryAction
+argument_list|(
+name|URI
+operator|+
+literal|"/C1"
+argument_list|,
+literal|"R1.xml"
+argument_list|,
+name|query2
+argument_list|)
+expr_stmt|;
 comment|//		action3 = new XQueryAction(URI + "/C1", "R1.xml", query0);
 comment|//		action4 = new XQueryAction(URI + "/C1", "R1.xml", query0);
 comment|//		action5 = new XQueryAction(URI + "/C1", "R1.xml", query0);
@@ -236,7 +249,17 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//		addAction(action2, 50, 0, 0);
+name|addAction
+argument_list|(
+name|action2
+argument_list|,
+literal|50
+argument_list|,
+literal|0
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 comment|//		addAction(action3, 50, 0, 0);
 comment|//		addAction(action4, 50, 0, 0);
 comment|//		addAction(action5, 50, 0, 0);
@@ -296,7 +319,27 @@ name|avgExecTime
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        System.out.println("Avg. query time for " + action2.getQuery() + ": " + action2.avgExecTime());
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Avg. query time for "
+operator|+
+name|action2
+operator|.
+name|getQuery
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|action2
+operator|.
+name|avgExecTime
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//        System.out.println("Avg. query time for " + action3.getQuery() + ": " + action3.avgExecTime());
 comment|//        System.out.println("Avg. query time for " + action4.getQuery() + ": " + action4.avgExecTime());
 comment|//        System.out.println("Avg. query time for " + action5.getQuery() + ": " + action5.avgExecTime());
