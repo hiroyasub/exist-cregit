@@ -494,6 +494,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|pushNamespaceContext
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -744,6 +749,11 @@ name|setStaticallyKnownDocuments
 argument_list|(
 name|oldDocumentSet
 argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|popNamespaceContext
+argument_list|()
 expr_stmt|;
 block|}
 block|}
