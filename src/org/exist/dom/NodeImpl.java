@@ -190,7 +190,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  The base class for all persistent DOM nodes in the database.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    8. Juli 2002  */
+comment|/**  *  The base class for all persistent DOM nodes in the database.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class

@@ -245,7 +245,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|ReentrantReadWriteLock
+name|MultiReadReentrantLock
 import|;
 end_import
 
@@ -644,14 +644,6 @@ name|complete
 init|=
 literal|true
 decl_stmt|;
-comment|// true while a write operation is in progress
-specifier|private
-specifier|transient
-name|boolean
-name|writeLocked
-init|=
-literal|false
-decl_stmt|;
 specifier|private
 specifier|transient
 name|User
@@ -664,7 +656,9 @@ specifier|transient
 name|Lock
 name|updateLock
 init|=
-literal|null
+operator|new
+name|MultiReadReentrantLock
+argument_list|()
 decl_stmt|;
 specifier|public
 name|DocumentImpl
@@ -998,6 +992,7 @@ name|i
 index|]
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the type of this resource, either  {@link #XML_FILE} or  	 * {@link #BINARY_FILE}. 	 *  	 * @return 	 */
 specifier|public
 name|byte
 name|getResourceType
@@ -1007,29 +1002,33 @@ return|return
 name|XML_FILE
 return|;
 block|}
-specifier|public
-name|void
-name|setWriteLock
-parameter_list|(
-name|boolean
-name|locked
-parameter_list|)
-block|{
-name|this
-operator|.
-name|writeLocked
-operator|=
-name|locked
-expr_stmt|;
-block|}
+comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 * @return 	 */
 specifier|public
 name|boolean
 name|isLockedForWrite
 parameter_list|()
 block|{
 return|return
-name|writeLocked
+name|updateLock
+operator|.
+name|isLockedForWrite
+argument_list|()
 return|;
+block|}
+specifier|public
+name|void
+name|setCollection
+parameter_list|(
+name|Collection
+name|parent
+parameter_list|)
+block|{
+name|this
+operator|.
+name|collection
+operator|=
+name|parent
+expr_stmt|;
 block|}
 specifier|protected
 specifier|static
@@ -1277,11 +1276,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// jmv - PMD - Avoid unused private methods
-comment|//	private void checkRange(int level) throws EXistException {
-comment|//		if (treeLevelStartPoints[level]< 0 || treeLevelStartPoints[level + 1]< 0)
-comment|//			throw new EXistException("index out of range");
-comment|//	}
 specifier|public
 name|int
 name|compareTo
@@ -4591,16 +4585,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// jmv - PMD - Avoid unused private methods
-comment|//	private void checkTree(int size) throws EXistException {
-comment|//		// check if the tree structure needs to be changed
-comment|//		System.out.println(treeLevelOrder[0]);
-comment|//		if (treeLevelOrder[0]< children + size) {
-comment|//			// recompute the order of the tree
-comment|//			treeLevelOrder[0] = children + size;
-comment|//			calculateTreeLevelStartPoints();
-comment|//		}
-comment|//	}
 comment|/** 	 * @return 	 */
 specifier|public
 name|long
@@ -4665,27 +4649,13 @@ operator|=
 name|l
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the update lock associated with this 	 * resource. 	 *  	 * @return 	 */
 specifier|public
 specifier|synchronized
 name|Lock
 name|getUpdateLock
 parameter_list|()
 block|{
-if|if
-condition|(
-name|updateLock
-operator|==
-literal|null
-condition|)
-name|updateLock
-operator|=
-operator|new
-name|ReentrantReadWriteLock
-argument_list|(
-name|getFileName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|updateLock
 return|;

@@ -332,6 +332,37 @@ block|}
 block|}
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.util.Lock#isLockedForWrite()      */
+specifier|public
+name|boolean
+name|isLockedForWrite
+parameter_list|()
+block|{
+return|return
+name|holds_
+operator|>
+literal|0
+operator|&&
+name|mode_
+operator|==
+name|Lock
+operator|.
+name|WRITE_LOCK
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.util.Lock#release(int)      */
+specifier|public
+name|void
+name|release
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
+block|{
+name|release
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** 	 * Release the lock. 	 * @exception Error thrown if not current owner of lock 	 **/
 specifier|public
 specifier|synchronized

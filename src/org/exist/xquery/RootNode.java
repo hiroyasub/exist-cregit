@@ -89,6 +89,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|value
@@ -126,7 +138,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents the document-root node in an expression.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * Represents the document root node in an expression.  *   * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -148,7 +160,7 @@ name|cachedDocs
 init|=
 literal|null
 decl_stmt|;
-comment|/**  Constructor for the RootNode object */
+comment|/** Constructor for the RootNode object */
 specifier|public
 name|RootNode
 parameter_list|(
@@ -176,6 +188,8 @@ parameter_list|,
 name|Item
 name|contextItem
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|DocumentSet
 name|ds
@@ -203,6 +217,16 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+try|try
+block|{
+comment|// wait for pending updates
+name|ds
+operator|.
+name|lock
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|cachedDocs
@@ -231,6 +255,9 @@ name|getLength
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|DocumentImpl
+name|d
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -248,13 +275,8 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|result
-operator|.
-name|add
-argument_list|(
-operator|new
-name|NodeProxy
-argument_list|(
+name|d
+operator|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -262,6 +284,15 @@ name|i
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+name|result
+operator|.
+name|add
+argument_list|(
+operator|new
+name|NodeProxy
+argument_list|(
+name|d
 argument_list|,
 operator|-
 literal|1
@@ -281,6 +312,34 @@ return|return
 name|result
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Failed to acquire lock on the context document set"
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|ds
+operator|.
+name|unlock
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|String
 name|pprint
@@ -290,7 +349,7 @@ return|return
 literal|"ROOT"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#returnsType() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -302,7 +361,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#resetState() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#resetState()      */
 specifier|public
 name|void
 name|resetState

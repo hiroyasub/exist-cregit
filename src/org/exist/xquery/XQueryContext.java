@@ -403,10 +403,12 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|// Static namespace/prefix mappings
 specifier|private
 name|Map
 name|namespaces
 decl_stmt|;
+comment|// Local in-scope namespace/prefix mappings in the current context
 specifier|private
 name|HashMap
 name|inScopeNamespaces
@@ -415,10 +417,12 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+comment|// Static prefix/namespace mappings
 specifier|private
 name|HashMap
 name|prefixes
 decl_stmt|;
+comment|// Local prefix/namespace mappings in the current context
 specifier|private
 name|HashMap
 name|inScopePrefixes
@@ -427,6 +431,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+comment|// Local namespace stack
 specifier|private
 name|Stack
 name|namespaceStack
@@ -435,6 +440,7 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
+comment|// Known user defined functions in the local module
 specifier|private
 name|TreeMap
 name|declaredFunctions
@@ -443,6 +449,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|// Globally declare variables
 specifier|private
 name|TreeMap
 name|globalVariables
@@ -451,6 +458,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|// Local in-scope variables in the current context
 specifier|private
 name|TreeMap
 name|variables
@@ -459,6 +467,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|// Local in-scope variable stack
 specifier|private
 name|Stack
 name|variableStack
@@ -467,6 +476,7 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
+comment|// Unresolved references to user defined functions
 specifier|private
 name|Stack
 name|forwardReferences
@@ -546,6 +556,7 @@ name|builder
 init|=
 literal|null
 decl_stmt|;
+comment|// Stack for temporary document fragments
 specifier|private
 name|Stack
 name|fragmentStack
@@ -557,6 +568,13 @@ decl_stmt|;
 specifier|private
 name|Expression
 name|rootExpression
+decl_stmt|;
+comment|/** 	 * Flag to indicate that the query should put an exclusive 	 * lock on all documents involved. 	 */
+specifier|private
+name|boolean
+name|exclusive
+init|=
+literal|false
 decl_stmt|;
 specifier|public
 name|XQueryContext
@@ -598,6 +616,7 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** 	 * Called from the XQuery compiler to set the root expression 	 * for this context. 	 *  	 * @param expr 	 */
 specifier|public
 name|void
 name|setRootExpression
@@ -613,6 +632,7 @@ operator|=
 name|expr
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the root expression of the XQuery associated with 	 * this context. 	 *  	 * @return 	 */
 specifier|public
 name|Expression
 name|getRootExpression
@@ -2815,6 +2835,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * Add a forward reference to an undeclared function. Forward 	 * references will be resolved later. 	 *  	 * @param call 	 */
 specifier|public
 name|void
 name|addForwardReference
@@ -2831,6 +2852,7 @@ name|call
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Resolve all forward references to previously undeclared functions. 	 *  	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|resolveForwardReferences
@@ -2903,6 +2925,30 @@ name|func
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|setExclusiveMode
+parameter_list|(
+name|boolean
+name|exclusive
+parameter_list|)
+block|{
+name|this
+operator|.
+name|exclusive
+operator|=
+name|exclusive
+expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|inExclusiveMode
+parameter_list|()
+block|{
+return|return
+name|exclusive
+return|;
 block|}
 comment|/** 	 * Load the default prefix/namespace mappings table and set up 	 * internal functions. 	 */
 specifier|private

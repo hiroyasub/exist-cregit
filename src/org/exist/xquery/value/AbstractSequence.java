@@ -43,6 +43,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -327,6 +339,18 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
+specifier|public
+name|DocumentSet
+name|getDocumentSet
+parameter_list|()
+block|{
+return|return
+name|DocumentSet
+operator|.
+name|EMPTY_DOCUMENT_SET
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean

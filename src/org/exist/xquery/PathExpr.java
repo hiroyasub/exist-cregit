@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will  * be called step by step.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will be called  * step by step.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -181,6 +181,7 @@ implements|,
 name|CompiledExpression
 block|{
 specifier|protected
+specifier|final
 specifier|static
 name|Logger
 name|LOG
@@ -233,7 +234,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add an arbitrary expression to this object's list of       * child-expressions.      *       * @param s      */
+comment|/**      * Add an arbitrary expression to this object's list of child-expressions.      *       * @param s      */
 specifier|public
 name|void
 name|add
@@ -250,7 +251,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add all the child-expressions from another PathExpr       * to this object's child-expressions.      *        * @param path      */
+comment|/**      * Add all the child-expressions from another PathExpr to this object's      * child-expressions.      *       * @param path      */
 specifier|public
 name|void
 name|add
@@ -298,7 +299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add another PathExpr to this object's expression list.      * @param path      */
+comment|/**      * Add another PathExpr to this object's expression list.      *       * @param path      */
 specifier|public
 name|void
 name|addPath
@@ -315,7 +316,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add a predicate expression to the list of expressions.      * The predicate is added to the last expression in the      * list.      *       * @param pred      */
+comment|/**      * Add a predicate expression to the list of expressions. The predicate is      * added to the last expression in the list.      *       * @param pred      */
 specifier|public
 name|void
 name|addPredicate
@@ -390,10 +391,12 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|r
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 else|else
 block|{
 name|r
@@ -445,6 +448,7 @@ name|var
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextDocs
 operator|=
 name|var
@@ -452,6 +456,7 @@ operator|.
 name|getContextDocs
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|NodeSet
 name|set
@@ -871,7 +876,7 @@ return|return
 name|rtype
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -1057,7 +1062,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getASTNode() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getASTNode()      */
 specifier|public
 name|XQueryAST
 name|getASTNode
@@ -1106,7 +1111,7 @@ return|return
 name|ast
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Expression#setInPredicate(boolean)      */
 specifier|public
 name|void
 name|setInPredicate
@@ -1148,7 +1153,7 @@ name|inPredicate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int)      */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -1184,7 +1189,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -1222,7 +1227,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.CompiledExpression#reset() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmldb.CompiledExpression#reset()      */
 specifier|public
 name|void
 name|reset
@@ -1232,7 +1237,7 @@ name|resetState
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#setCreationTime(long)      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.CompiledXQuery#setCreationTime(long)      */
 specifier|public
 name|void
 name|setCreationTime
@@ -1246,7 +1251,7 @@ operator|=
 name|created
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#getCreationTime()      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.CompiledXQuery#getCreationTime()      */
 specifier|public
 name|long
 name|getCreationTime

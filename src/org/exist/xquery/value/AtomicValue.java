@@ -23,6 +23,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -543,6 +555,18 @@ operator|+
 literal|" to a node set"
 argument_list|)
 throw|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
+specifier|public
+name|DocumentSet
+name|getDocumentSet
+parameter_list|()
+block|{
+return|return
+name|DocumentSet
+operator|.
+name|EMPTY_DOCUMENT_SET
+return|;
 block|}
 specifier|public
 name|String

@@ -3881,18 +3881,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//				    LOG.debug(e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(
@@ -3900,18 +3889,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//				    LOG.debug(e.getMessage(), e);
 block|}
 if|if
 condition|(

@@ -23,6 +23,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -153,6 +165,11 @@ name|toNodeSet
 parameter_list|()
 throws|throws
 name|XPathException
+function_decl|;
+specifier|public
+name|DocumentSet
+name|getDocumentSet
+parameter_list|()
 function_decl|;
 comment|/** 	 * Returns a preference indicator, indicating the preference of 	 * a value to be converted into the given Java class. Low numbers mean 	 * that the value can be easily converted into the given class. 	 *  	 * @param javaClass 	 * @return 	 */
 specifier|public
