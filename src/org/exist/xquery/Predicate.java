@@ -304,6 +304,12 @@ operator||=
 name|IN_PREDICATE
 expr_stmt|;
 comment|// set flag to signal subexpression that we are in a predicate
+name|flags
+operator|&=
+operator|~
+name|IN_WHERE_CLAUSE
+expr_stmt|;
+comment|// remove where clause flag
 name|Expression
 name|inner
 init|=
