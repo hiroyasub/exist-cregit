@@ -37,9 +37,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|VariableByteInputStream
+name|io
+operator|.
+name|VariableByteInput
 import|;
 end_import
 
@@ -49,7 +51,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|io
 operator|.
 name|VariableByteOutputStream
 import|;
@@ -293,7 +297,7 @@ specifier|static
 name|long
 name|read
 parameter_list|(
-name|VariableByteInputStream
+name|VariableByteInput
 name|is
 parameter_list|)
 throws|throws

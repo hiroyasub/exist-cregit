@@ -2582,7 +2582,9 @@ name|getInstance
 argument_list|()
 operator|.
 name|borrowDOMStreamer
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|streamer
 operator|.
@@ -2635,8 +2637,6 @@ throw|;
 block|}
 finally|finally
 block|{
-try|try
-block|{
 name|DOMStreamerPool
 operator|.
 name|getInstance
@@ -2647,14 +2647,6 @@ argument_list|(
 name|streamer
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e1
-parameter_list|)
-block|{
-block|}
 block|}
 if|if
 condition|(

@@ -58,7 +58,7 @@ name|Exception
 block|{
 return|return
 operator|new
-name|DOMStreamer
+name|ExtendedDOMStreamer
 argument_list|()
 return|;
 block|}

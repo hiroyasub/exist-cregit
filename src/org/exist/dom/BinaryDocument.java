@@ -99,9 +99,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|VariableByteInputStream
+name|io
+operator|.
+name|VariableByteArrayInput
 import|;
 end_import
 
@@ -111,7 +113,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|io
 operator|.
 name|VariableByteOutputStream
 import|;
@@ -400,7 +404,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
-name|VariableByteInputStream
+name|VariableByteArrayInput
 name|istream
 parameter_list|)
 throws|throws
@@ -637,11 +641,11 @@ index|[]
 name|data
 parameter_list|)
 block|{
-name|VariableByteInputStream
+name|VariableByteArrayInput
 name|istream
 init|=
 operator|new
-name|VariableByteInputStream
+name|VariableByteArrayInput
 argument_list|(
 name|data
 argument_list|)

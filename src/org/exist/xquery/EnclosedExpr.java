@@ -152,6 +152,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+comment|// evaluate the expression
 name|context
 operator|.
 name|pushDocumentContext
@@ -174,6 +175,7 @@ operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+comment|// create the output
 name|MemTreeBuilder
 name|builder
 init|=
@@ -297,6 +299,8 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
+comment|// if item is a node, flush any collected character data and
+comment|//	copy the node to the target doc.
 block|}
 if|else if
 condition|(
@@ -365,6 +369,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// flush remaining character data
 if|if
 condition|(
 name|buf
@@ -392,6 +397,20 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"SAXException during serialization: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException

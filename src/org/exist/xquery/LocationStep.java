@@ -1245,6 +1245,13 @@ argument_list|,
 name|inPredicate
 argument_list|)
 decl_stmt|;
+comment|//			DocumentSet docs = contextSet.getDocumentSet();
+comment|//			NodeSelector selector = axis == Constants.DESCENDANT_SELF_AXIS ?
+comment|//			        new DescendantOrSelfSelector(contextSet, inPredicate) :
+comment|//			    new DescendantSelector(contextSet, inPredicate);
+comment|//			NodeSet result = context.getBroker().findElementsByTagName(
+comment|//					ElementValue.ELEMENT, docs, test.getName(), selector
+comment|//			);
 return|return
 name|result
 return|;

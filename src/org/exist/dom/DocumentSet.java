@@ -481,6 +481,14 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+else|else
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"document is locked"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public

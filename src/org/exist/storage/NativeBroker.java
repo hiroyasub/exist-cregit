@@ -49,16 +49,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -130,6 +120,18 @@ operator|.
 name|util
 operator|.
 name|TreeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -531,6 +533,48 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|io
+operator|.
+name|VariableByteArrayInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|VariableByteInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|VariableByteOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|NativeSerializer
@@ -739,30 +783,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|VariableByteInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|VariableByteOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|Constants
@@ -852,6 +872,22 @@ name|NativeBroker
 extends|extends
 name|DBBroker
 block|{
+comment|/**      * Log4J Logger for this class      */
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|NativeBroker
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -2042,7 +2078,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
-name|VariableByteInputStream
+name|VariableByteArrayInput
 name|is
 decl_stmt|;
 name|int
@@ -2307,7 +2343,7 @@ block|}
 name|is
 operator|=
 operator|new
-name|VariableByteInputStream
+name|VariableByteArrayInput
 argument_list|(
 name|val
 index|[
@@ -2538,16 +2574,13 @@ decl_stmt|;
 name|long
 name|gid
 decl_stmt|;
-name|VariableByteInputStream
+name|VariableByteInput
 name|is
+init|=
+literal|null
 decl_stmt|;
 name|ElementValue
 name|ref
-decl_stmt|;
-name|InputStream
-name|dis
-init|=
-literal|null
 decl_stmt|;
 name|short
 name|sym
@@ -2713,7 +2746,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|dis
+name|is
 operator|=
 name|elementsDb
 operator|.
@@ -2733,6 +2766,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"findElementsByTagName(byte, DocumentSet, QName, NodeSelector) - "
+operator|+
 literal|"failed to acquire lock"
 argument_list|,
 name|e
@@ -2754,6 +2789,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"findElementsByTagName(byte, DocumentSet, QName, NodeSelector) - "
+operator|+
 literal|"io exception while reading elements for "
 operator|+
 name|qname
@@ -2779,21 +2816,13 @@ comment|// jmv: if (dis == null)
 comment|// wolf: dis == null if no matching element has been found in the index
 if|if
 condition|(
-name|dis
+name|is
 operator|==
 literal|null
 operator|||
 name|exceptionOcurred
 condition|)
 continue|continue;
-name|is
-operator|=
-operator|new
-name|VariableByteInputStream
-argument_list|(
-name|dis
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 while|while
@@ -2936,6 +2965,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"findElementsByTagName(byte, DocumentSet, QName, NodeSelector) - "
+operator|+
 literal|"unexpected io error"
 argument_list|,
 name|e
@@ -3064,10 +3095,20 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"getAllDocuments(DocumentSet) - end - "
+operator|+
 literal|"loading "
 operator|+
 name|docs
@@ -3096,6 +3137,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|docs
 return|;
@@ -3303,8 +3345,8 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-name|InputStream
-name|dis
+name|VariableByteInput
+name|is
 init|=
 literal|null
 decl_stmt|;
@@ -3350,6 +3392,24 @@ return|return
 name|collection
 return|;
 block|}
+if|if
+condition|(
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"/db/collection-31/collection-31-1"
+argument_list|)
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"loading collection "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
 name|collection
 operator|=
 operator|new
@@ -3369,7 +3429,7 @@ operator|<
 literal|0
 condition|)
 block|{
-name|dis
+name|is
 operator|=
 name|collectionsDb
 operator|.
@@ -3381,7 +3441,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|dis
+name|is
 operator|=
 name|collectionsDb
 operator|.
@@ -3413,22 +3473,13 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|dis
+name|is
 operator|==
 literal|null
 condition|)
 return|return
 literal|null
 return|;
-name|VariableByteInputStream
-name|istream
-init|=
-operator|new
-name|VariableByteInputStream
-argument_list|(
-name|dis
-argument_list|)
-decl_stmt|;
 try|try
 block|{
 name|collection
@@ -3437,7 +3488,7 @@ name|read
 argument_list|(
 name|this
 argument_list|,
-name|istream
+name|is
 argument_list|)
 expr_stmt|;
 block|}
@@ -8410,47 +8461,26 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
-name|Iterator
-name|k
-init|=
-name|getDOMIterator
-argument_list|(
-operator|new
-name|NodeProxy
-argument_list|(
-name|doc
-argument_list|,
-name|node
+name|domDb
 operator|.
-name|getGID
-argument_list|()
-argument_list|,
+name|removeAll
+argument_list|(
 name|node
 operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
-argument_list|)
-decl_stmt|;
-while|while
-condition|(
-name|k
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|k
-operator|.
-name|next
-argument_list|()
 expr_stmt|;
-name|k
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-block|}
+comment|//							Iterator k =
+comment|//								getDOMIterator(
+comment|//									new NodeProxy(
+comment|//										doc,
+comment|//										node.getGID(),
+comment|//										node.getInternalAddress()));
+comment|//							while(k.hasNext()) {
+comment|//								k.next();
+comment|//								k.remove();
+comment|//							}
 block|}
 return|return
 literal|null
@@ -8694,10 +8724,20 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"removeDocument(String) - end - "
+operator|+
 literal|"document "
 operator|+
 name|docName
@@ -8705,12 +8745,23 @@ operator|+
 literal|" not found"
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isInfoEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|info
 argument_list|(
+literal|"removeDocument() - "
+operator|+
 literal|"removing document "
 operator|+
 name|doc
@@ -8721,6 +8772,7 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
+block|}
 comment|// drop element-index
 name|short
 name|collectionId
@@ -8784,10 +8836,20 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"removeDocument() - "
+operator|+
 literal|"found "
 operator|+
 name|elements
@@ -8798,6 +8860,7 @@ operator|+
 literal|" elements."
 argument_list|)
 expr_stmt|;
+block|}
 name|Value
 name|key
 decl_stmt|;
@@ -8809,7 +8872,7 @@ index|[]
 name|data
 decl_stmt|;
 comment|// byte[] ndata;
-name|VariableByteInputStream
+name|VariableByteArrayInput
 name|is
 decl_stmt|;
 name|VariableByteOutputStream
@@ -8879,7 +8942,7 @@ expr_stmt|;
 name|is
 operator|=
 operator|new
-name|VariableByteInputStream
+name|VariableByteArrayInput
 argument_list|(
 name|data
 argument_list|)
@@ -9019,18 +9082,31 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"removeDocument(String) - "
+operator|+
 literal|"eof: "
 operator|+
 name|is
 operator|.
 name|available
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -9054,13 +9130,24 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"removeDocument() - "
+operator|+
 literal|"could not save element"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -9074,6 +9161,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"removeDocument(String) - "
+operator|+
 literal|"could not acquire lock on elements"
 argument_list|,
 name|e
@@ -9105,13 +9194,24 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"removeDocument() - "
+operator|+
 literal|"removing dom"
 argument_list|)
 expr_stmt|;
+block|}
 operator|new
 name|DOMTransaction
 argument_list|(
@@ -9125,85 +9225,40 @@ name|Object
 name|start
 parameter_list|()
 block|{
-name|NodeList
-name|children
-init|=
-name|doc
-operator|.
-name|getChildNodes
-argument_list|()
-decl_stmt|;
 name|NodeImpl
 name|node
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
 init|=
-literal|0
-init|;
-name|i
-operator|<
-name|children
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|node
-operator|=
 operator|(
 name|NodeImpl
 operator|)
-name|children
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-expr_stmt|;
-name|Iterator
-name|j
-init|=
-name|getDOMIterator
-argument_list|(
-operator|new
-name|NodeProxy
-argument_list|(
 name|doc
-argument_list|,
-name|node
 operator|.
-name|getGID
+name|getFirstChild
 argument_list|()
-argument_list|,
+decl_stmt|;
+name|domDb
+operator|.
+name|removeAll
+argument_list|(
 name|node
 operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
-argument_list|)
-decl_stmt|;
-name|removeNodes
-argument_list|(
-name|j
-argument_list|)
 expr_stmt|;
-block|}
-name|domDb
-operator|.
-name|remove
-argument_list|(
-name|doc
-operator|.
-name|getAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//					NodeList children = doc.getChildNodes();
+comment|//					NodeImpl node;
+comment|//					for (int i = 0; i< children.getLength(); i++) {
+comment|//						node = (NodeImpl) children.item(i);
+comment|//						Iterator j =
+comment|//							getDOMIterator(
+comment|//								new NodeProxy(
+comment|//									doc,
+comment|//									node.getGID(),
+comment|//									node.getInternalAddress()));
+comment|//						removeNodes(j);
+comment|//					}
+comment|//					domDb.remove(doc.getAddress());
 return|return
 literal|null
 return|;
@@ -9278,6 +9333,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"start() - "
+operator|+
 literal|"error while removing doc"
 argument_list|,
 name|e
@@ -9294,6 +9351,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"start() - "
+operator|+
 literal|"error while removing doc"
 argument_list|,
 name|e
@@ -9310,6 +9369,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"start() - "
+operator|+
 literal|"error while removing doc"
 argument_list|,
 name|e
@@ -9333,13 +9394,6 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"removed document."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9356,6 +9410,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"removeDocument(String) - "
+operator|+
 name|ioe
 argument_list|)
 expr_stmt|;
@@ -9375,6 +9431,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"removeDocument(String) - "
+operator|+
 name|bte
 argument_list|)
 expr_stmt|;
@@ -9389,6 +9447,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"removeDocument(String) - "
+operator|+
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 expr_stmt|;
@@ -12232,6 +12292,22 @@ name|NodeRef
 extends|extends
 name|Value
 block|{
+comment|/**          * Log4J Logger for this class          */
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|NodeRef
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 name|NodeRef
 parameter_list|()

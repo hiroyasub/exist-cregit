@@ -61,9 +61,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|VariableByteInputStream
+name|io
+operator|.
+name|VariableByteInput
 import|;
 end_import
 
@@ -73,7 +75,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|io
 operator|.
 name|VariableByteOutputStream
 import|;
@@ -90,20 +94,6 @@ operator|.
 name|hashtable
 operator|.
 name|Int2ObjectHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|hashtable
-operator|.
-name|NamePool
 import|;
 end_import
 
@@ -1183,7 +1173,7 @@ specifier|synchronized
 name|void
 name|read
 parameter_list|(
-name|VariableByteInputStream
+name|VariableByteInput
 name|istream
 parameter_list|)
 throws|throws
