@@ -179,15 +179,6 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|expr
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|regexp
