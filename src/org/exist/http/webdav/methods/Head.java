@@ -168,16 +168,13 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// GET is not available on collections
 name|response
 operator|.
 name|sendError
 argument_list|(
 name|HttpServletResponse
 operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"GET is not available on collections"
+name|SC_NOT_FOUND
 argument_list|)
 expr_stmt|;
 return|return;
