@@ -166,6 +166,13 @@ operator|+
 literal|" is not defined"
 argument_list|)
 throw|;
+name|qname
+operator|.
+name|setPrefix
+argument_list|(
+name|prefix
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|qname
