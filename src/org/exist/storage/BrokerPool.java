@@ -113,6 +113,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionConfigurationManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|User
@@ -863,6 +875,12 @@ name|secManager
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|CollectionConfigurationManager
+name|collectionConfig
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 * SyncDaemon is a daemon thread which periodically triggers a cache sync. 	 */
 specifier|private
 name|SyncDaemon
@@ -1130,6 +1148,8 @@ operator|=
 operator|new
 name|CollectionCache
 argument_list|(
+name|this
+argument_list|,
 name|COLLECTION_BUFFER_SIZE
 argument_list|)
 expr_stmt|;
@@ -1570,6 +1590,14 @@ expr_stmt|;
 name|initializing
 operator|=
 literal|false
+expr_stmt|;
+name|collectionConfig
+operator|=
+operator|new
+name|CollectionConfigurationManager
+argument_list|(
+name|broker
+argument_list|)
 expr_stmt|;
 comment|// now create remaining brokers
 for|for
@@ -2202,6 +2230,15 @@ parameter_list|()
 block|{
 return|return
 name|monitor
+return|;
+block|}
+specifier|public
+name|CollectionConfigurationManager
+name|getConfigurationManager
+parameter_list|()
+block|{
+return|return
+name|collectionConfig
 return|;
 block|}
 comment|/** 	 * Returns the global update lock for this database instance. 	 * This lock is used by XUpdate operations to avoid that 	 * concurrent XUpdate requests modify the database until all 	 * document locks have been correctly set. 	 *   	 * @return 	 */

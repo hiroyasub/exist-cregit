@@ -1564,6 +1564,13 @@ name|response
 init|=
 literal|null
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|content
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|InputSource

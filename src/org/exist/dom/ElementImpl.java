@@ -3672,12 +3672,10 @@ if|if
 condition|(
 name|getAttributesCount
 argument_list|()
-operator|==
+operator|>
 literal|0
 condition|)
-return|return
-name|map
-return|;
+block|{
 for|for
 control|(
 name|long
@@ -3727,6 +3725,7 @@ argument_list|(
 name|child
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

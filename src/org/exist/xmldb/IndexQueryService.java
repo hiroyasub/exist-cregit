@@ -64,6 +64,16 @@ name|IndexQueryService
 extends|extends
 name|Service
 block|{
+specifier|public
+name|void
+name|configureCollection
+parameter_list|(
+name|String
+name|configData
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      * Reindex the current collection, i.e. the collection from which      * this service has been retrieved.      *       * @throws XMLDBException      */
 specifier|public
 name|void

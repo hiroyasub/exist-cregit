@@ -2333,6 +2333,13 @@ operator|!=
 name|type
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|indexType
 operator|=
 name|Type
@@ -2361,10 +2368,12 @@ operator|.
 name|hasMixedContent
 argument_list|()
 condition|)
+block|{
 name|hasMixedContent
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return

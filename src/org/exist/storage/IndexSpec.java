@@ -195,6 +195,23 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+name|read
+argument_list|(
+name|index
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * @param index      * @param namespaces      * @throws DatabaseConfigurationException      */
+specifier|public
+name|void
+name|read
+parameter_list|(
+name|Element
+name|index
+parameter_list|)
+throws|throws
+name|DatabaseConfigurationException
+block|{
 name|Map
 name|namespaces
 init|=
@@ -264,19 +281,8 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|ftSpec
-operator|!=
-literal|null
-condition|)
-throw|throw
-operator|new
-name|DatabaseConfigurationException
-argument_list|(
-literal|"Only one fulltext section is allowed per index"
-argument_list|)
-throw|;
+comment|//	                if(ftSpec != null)
+comment|//	                    throw new DatabaseConfigurationException("Only one fulltext section is allowed per index");
 name|ftSpec
 operator|=
 operator|new
@@ -554,6 +560,16 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|attr
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|attr

@@ -29,6 +29,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|IndexQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -165,6 +177,40 @@ init|=
 literal|"xmldb:exist:///db"
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|CONFIG
+init|=
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
+operator|+
+literal|"<index xmlns:x=\"http://www.foo.com\">"
+operator|+
+literal|"<fulltext default=\"all\">"
+operator|+
+literal|"<include path=\"//item/name\"/>"
+operator|+
+literal|"<include path=\"//item/mixed\"/>"
+operator|+
+literal|"</fulltext>"
+operator|+
+literal|"<create path=\"//item/itemno\" type=\"xs:integer\"/>"
+operator|+
+literal|"<create path=\"//item/name\" type=\"xs:string\"/>"
+operator|+
+literal|"<create path=\"//item/stock\" type=\"xs:integer\"/>"
+operator|+
+literal|"<create path=\"//item/price\" type=\"xs:double\"/>"
+operator|+
+literal|"<create path=\"//item/prices/@specialprice\" type=\"xs:boolean\"/>"
+operator|+
+literal|"<create path=\"//item/x:rating\" type=\"xs:double\"/>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
+decl_stmt|;
+specifier|private
 name|Collection
 name|testCollection
 decl_stmt|;
@@ -256,11 +302,26 @@ argument_list|(
 name|testCollection
 argument_list|)
 expr_stmt|;
-name|storeXMLFileAndGetQueryService
+name|IndexQueryService
+name|idxConf
+init|=
+operator|(
+name|IndexQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
 argument_list|(
-literal|"collection.xconf"
+literal|"IndexQueryService"
 argument_list|,
-literal|"src/org/exist/xquery/test/collection.xconf"
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|idxConf
+operator|.
+name|configureCollection
+argument_list|(
+name|CONFIG
 argument_list|)
 expr_stmt|;
 block|}

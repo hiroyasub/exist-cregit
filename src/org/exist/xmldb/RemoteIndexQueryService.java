@@ -787,6 +787,29 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.IndexQueryService#configureCollection(java.lang.String) 	 */
+specifier|public
+name|void
+name|configureCollection
+parameter_list|(
+name|String
+name|configData
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|,
+literal|"Method is not yet implemented"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
