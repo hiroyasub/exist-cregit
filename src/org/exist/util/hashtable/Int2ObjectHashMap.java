@@ -761,17 +761,6 @@ name|o
 return|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|key
-operator|+
-literal|" not found for remove"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -1117,7 +1106,6 @@ name|retVal
 return|;
 block|}
 specifier|protected
-specifier|final
 specifier|static
 name|int
 name|hash

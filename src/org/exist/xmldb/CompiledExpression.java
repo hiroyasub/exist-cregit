@@ -13,20 +13,6 @@ name|xmldb
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Identifies a compiled representation of an XQuery expression.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -36,12 +22,11 @@ specifier|public
 interface|interface
 name|CompiledExpression
 block|{
+comment|/** 	 * Prepare the expression for being reused. 	 * 	 */
 specifier|public
 name|void
 name|reset
 parameter_list|()
-throws|throws
-name|XMLDBException
 function_decl|;
 block|}
 end_interface

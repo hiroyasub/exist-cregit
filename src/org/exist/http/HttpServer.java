@@ -610,6 +610,15 @@ argument_list|,
 name|this
 argument_list|)
 decl_stmt|;
+name|Thread
+name|thread
+init|=
+operator|new
+name|Thread
+argument_list|(
+name|con
+argument_list|)
+decl_stmt|;
 name|threads
 operator|.
 name|add
@@ -617,7 +626,7 @@ argument_list|(
 name|con
 argument_list|)
 expr_stmt|;
-name|con
+name|thread
 operator|.
 name|start
 argument_list|()
@@ -663,8 +672,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|HttpServer
-operator|.
 name|LOG
 operator|.
 name|debug

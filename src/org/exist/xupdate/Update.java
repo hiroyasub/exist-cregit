@@ -149,7 +149,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XPathException
 import|;

@@ -216,20 +216,8 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|lastSync
-operator|>
-name|syncPeriod
-condition|)
-name|flush
-argument_list|()
-expr_stmt|;
+comment|//if(System.currentTimeMillis() - lastSync> syncPeriod)
+comment|//	flush();
 block|}
 specifier|protected
 name|Cacheable

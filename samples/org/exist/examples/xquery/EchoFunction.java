@@ -33,7 +33,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|BasicFunction
 import|;
@@ -45,7 +45,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|Cardinality
 import|;
@@ -57,7 +57,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|FunctionSignature
 import|;
@@ -69,7 +69,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XPathException
 import|;
@@ -81,7 +81,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XQueryContext
 import|;
@@ -93,7 +93,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -107,7 +107,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -121,7 +121,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -135,7 +135,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -149,7 +149,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -163,7 +163,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.

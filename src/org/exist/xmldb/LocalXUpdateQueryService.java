@@ -424,13 +424,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|xupdate
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug(xupdate);
 name|XUpdateProcessor
 name|processor
 init|=

@@ -170,6 +170,15 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+name|options
+operator|.
+name|put
+argument_list|(
+literal|"process-xsl-pi"
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|Vector
 name|params
 init|=

@@ -177,7 +177,7 @@ init|=
 operator|new
 name|URL
 argument_list|(
-literal|"http://localhost:8088/db/test/"
+literal|"http://localhost:8080/exist/servlet/db/"
 argument_list|)
 decl_stmt|;
 name|HttpURLConnection

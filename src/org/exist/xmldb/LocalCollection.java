@@ -139,7 +139,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|BLOBDocument
+name|BinaryDocument
 import|;
 end_import
 
@@ -1413,7 +1413,7 @@ argument_list|,
 name|this
 argument_list|,
 operator|(
-name|BLOBDocument
+name|BinaryDocument
 operator|)
 name|document
 argument_list|)
@@ -2378,7 +2378,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|BLOBDocument
+name|BinaryDocument
 name|blob
 init|=
 name|collection

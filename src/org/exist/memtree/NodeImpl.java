@@ -71,7 +71,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XPathException
 import|;
@@ -83,7 +83,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -97,7 +97,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -111,7 +111,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -125,7 +125,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -139,7 +139,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -153,7 +153,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -167,7 +167,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -499,6 +499,18 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|obj
+operator|instanceof
+name|NodeImpl
+operator|)
+condition|)
+return|return
+literal|false
+return|;
 return|return
 name|nodeNumber
 operator|==
@@ -1204,6 +1216,20 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#unorderedIterator() 	 */
+specifier|public
+name|SequenceIterator
+name|unorderedIterator
+parameter_list|()
+block|{
+return|return
+operator|new
+name|SingleNodeIterator
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
 specifier|public
 name|int
@@ -1682,6 +1708,13 @@ name|target
 argument_list|)
 return|;
 block|}
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#setSelfAsContext() 	 */
+specifier|public
+name|void
+name|setSelfAsContext
+parameter_list|()
+block|{
 block|}
 block|}
 end_class

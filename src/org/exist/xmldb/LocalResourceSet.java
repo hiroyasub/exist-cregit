@@ -169,7 +169,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XPathException
 import|;
@@ -181,7 +181,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -195,7 +195,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -209,7 +209,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -223,7 +223,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -237,7 +237,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.

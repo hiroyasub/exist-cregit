@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * CreateBackupDialog.java - Jun 16, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -239,7 +235,6 @@ decl_stmt|;
 name|String
 name|passwd
 decl_stmt|;
-comment|/** 	 * @param owner 	 * @param title 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
 specifier|public
 name|CreateBackupDialog
 parameter_list|(
@@ -663,6 +658,13 @@ argument_list|(
 name|JFileChooser
 operator|.
 name|DIRECTORIES_ONLY
+argument_list|)
+expr_stmt|;
+name|chooser
+operator|.
+name|setCurrentDirectory
+argument_list|(
+literal|null
 argument_list|)
 expr_stmt|;
 if|if

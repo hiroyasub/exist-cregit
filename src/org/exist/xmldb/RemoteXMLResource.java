@@ -415,12 +415,28 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XMLResource
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
 name|RemoteXMLResource
 implements|implements
-name|XMLResourceImpl
+name|XMLResource
+implements|,
+name|EXistResource
 block|{
 comment|/** 	 *  if this class is used from Cocoon, use the Cocoon parser component 	 *  instead of JAXP 	 */
 specifier|private
@@ -893,6 +909,8 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+comment|//params.addElement("UTF-8");
+comment|//params.addElement(new Integer(1));
 try|try
 block|{
 name|data
@@ -963,22 +981,6 @@ block|}
 block|}
 else|else
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"indent = "
-operator|+
-name|properties
-operator|.
-name|getProperty
-argument_list|(
-literal|"indent"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Vector
 name|params
 init|=

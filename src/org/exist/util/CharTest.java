@@ -35,7 +35,7 @@ block|{
 name|String
 name|s
 init|=
-literal|"&<>{}/\"'"
+literal|"09&<>{}/\"'"
 decl_stmt|;
 for|for
 control|(

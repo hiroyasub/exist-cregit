@@ -181,10 +181,6 @@ name|AttributesImpl
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    9. Juli 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -228,7 +224,6 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Constructor for the AttrImpl object      *      *@param  gid  Description of the Parameter      */
 specifier|public
 name|AttrImpl
 parameter_list|(
@@ -246,7 +241,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the AttrImpl object      *      *@param  name   Description of the Parameter      *@param  value  Description of the Parameter      */
 specifier|public
 name|AttrImpl
 parameter_list|(
@@ -273,7 +267,6 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@param  doc   Description of the Parameter      *@return       Description of the Return Value      */
 specifier|public
 specifier|static
 name|NodeImpl
@@ -559,7 +552,6 @@ return|return
 name|attr
 return|;
 block|}
-comment|/**      *  Gets the name attribute of the AttrImpl object      *      *@return    The name value      */
 specifier|public
 name|String
 name|getName
@@ -594,7 +586,6 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**      *  Gets the nodeValue attribute of the AttrImpl object      *      *@return    The nodeValue value      */
 specifier|public
 name|String
 name|getNodeValue
@@ -604,7 +595,6 @@ return|return
 name|value
 return|;
 block|}
-comment|/**      *  Gets the ownerElement attribute of the AttrImpl object      *      *@return    The ownerElement value      */
 specifier|public
 name|Element
 name|getOwnerElement
@@ -623,7 +613,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the specified attribute of the AttrImpl object      *      *@return    The specified value      */
 specifier|public
 name|boolean
 name|getSpecified
@@ -633,7 +622,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Gets the value attribute of the AttrImpl object      *      *@return    The value value      */
 specifier|public
 name|String
 name|getValue
@@ -643,7 +631,6 @@ return|return
 name|value
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|byte
 index|[]
@@ -935,7 +922,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      *  Sets the value attribute of the AttrImpl object      *      *@param  value             The new value value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|setValue
@@ -958,7 +944,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  contentHandler    Description of the Parameter      *@param  lexicalHandler    Description of the Parameter      *@param  first             Description of the Parameter      *@param  prefixes          Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|toSAX
@@ -1073,7 +1058,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|toString
@@ -1128,7 +1112,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  top  Description of the Parameter      *@return      Description of the Return Value      */
 specifier|public
 name|String
 name|toString

@@ -937,7 +937,7 @@ name|temp
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"true"
+literal|"yes"
 argument_list|)
 condition|?
 name|Serializer
@@ -970,7 +970,7 @@ name|temp
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"true"
+literal|"yes"
 argument_list|)
 condition|)
 name|trackMatches
@@ -1822,6 +1822,11 @@ operator|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|(
+name|docs
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
 literal|250
 argument_list|)
 expr_stmt|;
@@ -2272,7 +2277,14 @@ name|int
 name|type
 parameter_list|)
 block|{
-comment|//long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|NodeSet
 name|result
 decl_stmt|;
@@ -2625,12 +2637,31 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//		LOG.debug(
-comment|//			"regexp found: "
-comment|//				+ result.getLength()
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"regexp found: "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -3093,8 +3124,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-try|try
-block|{
 name|lock
 operator|.
 name|acquire
@@ -3104,42 +3133,11 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|dbWords
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"could not acquire lock on words db"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"removing words ..."
+literal|"removing fulltext index ..."
 argument_list|)
 expr_stmt|;
 name|WordRef
@@ -3167,63 +3165,16 @@ argument_list|,
 name|ref
 argument_list|)
 decl_stmt|;
-name|ArrayList
-name|entries
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
+name|dbWords
 operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
+name|flush
+argument_list|()
 expr_stmt|;
 name|dbWords
 operator|.
 name|removeAll
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"could not acquire lock on words db"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-name|entries
-operator|=
-literal|null
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removed words index"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3267,6 +3218,30 @@ name|warn
 argument_list|(
 name|dbe
 argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire lock on collections.dbx"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|release
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -3883,6 +3858,13 @@ name|contains
 argument_list|(
 name|word
 argument_list|)
+operator|||
+name|word
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|512
 condition|)
 block|{
 continue|continue;
@@ -4009,6 +3991,13 @@ name|contains
 argument_list|(
 name|word
 argument_list|)
+operator|||
+name|word
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|1024
 condition|)
 block|{
 continue|continue;
@@ -6697,9 +6686,7 @@ name|context
 operator|.
 name|parentWithChild
 argument_list|(
-name|doc
-argument_list|,
-name|gid
+name|proxy
 argument_list|,
 literal|false
 argument_list|,

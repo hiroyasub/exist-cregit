@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Add a document to the database.  *  */
+comment|/**  * Add a document to the database.  *   * Call with  *   * java -jar start.jar org.exist.examples.xmldb.Put collection docName  *  */
 end_comment
 
 begin_class
@@ -243,7 +243,7 @@ name|collection
 operator|.
 name|substring
 argument_list|(
-literal|"/db"
+literal|"/db/"
 operator|.
 name|length
 argument_list|()

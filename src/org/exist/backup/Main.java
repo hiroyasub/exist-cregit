@@ -1013,6 +1013,17 @@ name|getProperty
 argument_list|(
 literal|"backup-dir"
 argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"user.home"
+argument_list|)
+operator|+
+name|File
+operator|.
+name|separatorChar
+operator|+
 literal|"backup"
 argument_list|)
 argument_list|)

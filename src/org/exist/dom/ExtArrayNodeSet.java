@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-03 Wolfgang M.  * Meier wolfgang@exist-db.org http://exist-db.org  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -67,7 +67,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -81,7 +81,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -102,11 +102,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A fast node set implementation, based on arrays to store nodes and a hash map to   * organize documents.   *   * The class uses arrays to store all nodes belonging to one document.  * The hash map maps the document id to the array containing the nodes for the document.  * Nodes are just appended to the array. No order is guaranteed and calls to get/contains may fail  * although a node is present in the array (get/contains do a binary search and thus assume that  * the set is sorted). Also, duplicates are allowed. If you have to ensure that calls to get/contains   * return valid results at any time and no duplicates occur, use class   * {@link org.exist.dom.AVLTreeNodeSet}.   *   * Use this class, if you can either ensure that items are added in order, or no calls to   * contains/get are required during the creation phase. Only after   * a call to one of the iterator methods,  the set will get sorted and duplicates removed.  *   * @author Wolfgang<wolfgang@exist-db.org>  * @since 0.9.3  */
+comment|/**  * A fast node set implementation, based on arrays to store nodes and a hash  * map to organize documents.  *   * The class uses arrays to store all nodes belonging to one document. The hash  * map maps the document id to the array containing the nodes for the document.  * Nodes are just appended to the array. No order is guaranteed and calls to  * get/contains may fail although a node is present in the array (get/contains  * do a binary search and thus assume that the set is sorted). Also, duplicates  * are allowed. If you have to ensure that calls to get/contains return valid  * results at any time and no duplicates occur, use class  * {@link org.exist.dom.AVLTreeNodeSet}.  *   * Use this class, if you can either ensure that items are added in order, or  * no calls to contains/get are required during the creation phase. Only after  * a call to one of the iterator methods, the set will get sorted and  * duplicates removed.  *   * @author Wolfgang<wolfgang@exist-db.org>  * @since 0.9.3  */
 end_comment
 
 begin_class
 specifier|public
+specifier|final
 class|class
 name|ExtArrayNodeSet
 extends|extends
@@ -115,12 +116,6 @@ block|{
 specifier|private
 name|Int2ObjectHashMap
 name|map
-init|=
-operator|new
-name|Int2ObjectHashMap
-argument_list|(
-literal|512
-argument_list|)
 decl_stmt|;
 specifier|private
 name|int
@@ -153,15 +148,34 @@ name|lastPart
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|int
+name|state
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 name|ExtArrayNodeSet
 parameter_list|()
 block|{
+name|this
+operator|.
+name|map
+operator|=
+operator|new
+name|Int2ObjectHashMap
+argument_list|(
+literal|512
+argument_list|)
+expr_stmt|;
 block|}
-comment|/** 	 * Constructor for ExtArrayNodeSet. The int argument specifies the 	 * default array size, which is used whenever a new array has to be 	 * allocated for nodes. The default array size can be overwritten by the 	 * sizeHint argument passed to {@link #add(NodeProxy, int). 	 *  	 * @param initialArraySize 	 */
+comment|/** 	 * Constructor for ExtArrayNodeSet.  	 *  	 * The first argument specifies the expected number of documents in 	 * this node set. The second int argument specifies the default 	 * array size, which is used whenever a new array has to be allocated for 	 * nodes. The default array size can be overwritten by the sizeHint 	 * argument passed to {@link #add(NodeProxy, int). 	 *  	 * @param initialDocsCount 	 * @param initialArraySize 	 */
 specifier|public
 name|ExtArrayNodeSet
 parameter_list|(
+name|int
+name|initialDocsCount
+parameter_list|,
 name|int
 name|initialArraySize
 parameter_list|)
@@ -172,54 +186,40 @@ name|initalSize
 operator|=
 name|initialArraySize
 expr_stmt|;
-block|}
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|NodeProxy
-name|proxy
-parameter_list|)
-block|{
-name|add
+name|this
+operator|.
+name|map
+operator|=
+operator|new
+name|Int2ObjectHashMap
 argument_list|(
-name|proxy
-argument_list|,
-name|initalSize
+name|initialDocsCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Add a new node to the set. If a new array of nodes has to be 	 * allocated for the document, use the sizeHint parameter to 	 * determine the size of the newly allocated array. This will overwrite 	 * the default array size. 	 *  	 * If the size hint is correct, no further reallocations will be required. 	 */
+specifier|public
+name|ExtArrayNodeSet
+parameter_list|(
+name|int
+name|initialArraySize
+parameter_list|)
+block|{
+name|this
+argument_list|(
+literal|512
+argument_list|,
+name|initialArraySize
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|add
 parameter_list|(
 name|NodeProxy
 name|proxy
-parameter_list|,
-name|int
-name|sizeHint
 parameter_list|)
 block|{
-name|Part
-name|part
-init|=
-operator|(
-name|proxy
-operator|.
-name|doc
-operator|.
-name|docId
-operator|==
-name|lastDoc
-operator|&&
-name|lastPart
-operator|!=
-literal|null
-operator|)
-condition|?
-name|lastPart
-else|:
 name|getPart
 argument_list|(
 name|proxy
@@ -230,16 +230,8 @@ name|docId
 argument_list|,
 literal|true
 argument_list|,
-name|sizeHint
-operator|>
-literal|0
-condition|?
-name|sizeHint
-else|:
 name|initalSize
 argument_list|)
-decl_stmt|;
-name|part
 operator|.
 name|add
 argument_list|(
@@ -252,6 +244,81 @@ expr_stmt|;
 name|isSorted
 operator|=
 literal|false
+expr_stmt|;
+name|setHasChanged
+argument_list|()
+expr_stmt|;
+block|}
+comment|/** 	 * Add a new node to the set. If a new array of nodes has to be allocated 	 * for the document, use the sizeHint parameter to determine the size of 	 * the newly allocated array. This will overwrite the default array size. 	 *  	 * If the size hint is correct, no further reallocations will be required. 	 */
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|,
+name|int
+name|sizeHint
+parameter_list|)
+block|{
+name|getPart
+argument_list|(
+name|proxy
+operator|.
+name|doc
+operator|.
+name|docId
+argument_list|,
+literal|true
+argument_list|,
+name|sizeHint
+operator|>
+operator|-
+literal|1
+condition|?
+name|sizeHint
+else|:
+name|initalSize
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|proxy
+argument_list|)
+expr_stmt|;
+operator|++
+name|size
+expr_stmt|;
+name|isSorted
+operator|=
+literal|false
+expr_stmt|;
+name|setHasChanged
+argument_list|()
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|setHasChanged
+parameter_list|()
+block|{
+name|state
+operator|=
+operator|(
+name|state
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|?
+name|state
+operator|=
+literal|0
+else|:
+name|state
+operator|+
+literal|1
+operator|)
 expr_stmt|;
 block|}
 specifier|public
@@ -290,7 +357,6 @@ name|length
 return|;
 block|}
 specifier|private
-specifier|final
 name|Part
 name|getPart
 parameter_list|(
@@ -369,7 +435,7 @@ return|return
 name|part
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterator() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#iterator() 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -384,7 +450,7 @@ name|ExtArrayIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -399,7 +465,22 @@ name|ExtArrayIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#containsDoc(org.exist.dom.DocumentImpl) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+specifier|public
+name|SequenceIterator
+name|unorderedIterator
+parameter_list|()
+block|{
+name|sort
+argument_list|()
+expr_stmt|;
+return|return
+operator|new
+name|ExtArrayIterator
+argument_list|()
+return|;
+block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#containsDoc(org.exist.dom.DocumentImpl) 	 */
 specifier|public
 name|boolean
 name|containsDoc
@@ -419,7 +500,7 @@ name|docId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#contains(org.exist.dom.DocumentImpl, long) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#contains(org.exist.dom.DocumentImpl, long) 	 */
 specifier|public
 name|boolean
 name|contains
@@ -435,20 +516,6 @@ specifier|final
 name|Part
 name|part
 init|=
-operator|(
-name|doc
-operator|.
-name|docId
-operator|==
-name|lastDoc
-operator|&&
-name|lastPart
-operator|!=
-literal|null
-operator|)
-condition|?
-name|lastPart
-else|:
 name|getPart
 argument_list|(
 name|doc
@@ -475,7 +542,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|boolean
 name|contains
@@ -488,22 +555,6 @@ specifier|final
 name|Part
 name|part
 init|=
-operator|(
-name|proxy
-operator|.
-name|doc
-operator|.
-name|docId
-operator|==
-name|lastDoc
-operator|&&
-name|lastPart
-operator|!=
-literal|null
-operator|)
-condition|?
-name|lastPart
-else|:
 name|getPart
 argument_list|(
 name|proxy
@@ -534,7 +585,7 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet) 	 */
 specifier|public
 name|void
 name|addAll
@@ -573,7 +624,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
 specifier|public
 name|int
 name|getLength
@@ -583,7 +634,7 @@ return|return
 name|size
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.NodeList#item(int) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.w3c.dom.NodeList#item(int) 	 */
 specifier|public
 name|Node
 name|item
@@ -613,7 +664,7 @@ name|getNode
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#get(int) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#get(int) 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -688,7 +739,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -701,22 +752,6 @@ specifier|final
 name|Part
 name|part
 init|=
-operator|(
-name|p
-operator|.
-name|doc
-operator|.
-name|docId
-operator|==
-name|lastDoc
-operator|&&
-name|lastPart
-operator|!=
-literal|null
-operator|)
-condition|?
-name|lastPart
-else|:
 name|getPart
 argument_list|(
 name|p
@@ -747,7 +782,7 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#get(org.exist.dom.DocumentImpl, long) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#get(org.exist.dom.DocumentImpl, long) 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -759,24 +794,13 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 specifier|final
 name|Part
 name|part
 init|=
-operator|(
-name|doc
-operator|.
-name|docId
-operator|==
-name|lastDoc
-operator|&&
-name|lastPart
-operator|!=
-literal|null
-operator|)
-condition|?
-name|lastPart
-else|:
 name|getPart
 argument_list|(
 name|doc
@@ -803,7 +827,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -819,7 +843,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#remove(org.exist.dom.NodeProxy) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#remove(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|void
 name|remove
@@ -879,6 +903,9 @@ operator|.
 name|getDocId
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|setHasChanged
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -1040,7 +1067,8 @@ name|isSorted
 operator|=
 literal|true
 expr_stmt|;
-comment|//		System.out.println("sort took " + (System.currentTimeMillis() - start) + "ms.");
+comment|//		System.out.println("sort took " + (System.currentTimeMillis() -
+comment|// start) + "ms.");
 block|}
 specifier|public
 name|void
@@ -1099,7 +1127,51 @@ name|isSorted
 operator|=
 literal|false
 expr_stmt|;
-comment|//		System.out.println("in-document-order sort took " + (System.currentTimeMillis() - start) + "ms.");
+comment|//		System.out.println("in-document-order sort took " +
+comment|// (System.currentTimeMillis() - start) + "ms.");
+block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.AbstractSequence#setSelfAsContext() 	 */
+specifier|public
+name|void
+name|setSelfAsContext
+parameter_list|()
+block|{
+name|Part
+name|part
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|map
+operator|.
+name|valueIterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|part
+operator|=
+operator|(
+name|Part
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|part
+operator|.
+name|setSelfAsContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|DocumentSet
@@ -1248,8 +1320,32 @@ return|return
 name|ds
 return|;
 block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.AbstractNodeSet#hasChanged(int) 	 */
+specifier|public
+name|boolean
+name|hasChanged
+parameter_list|(
+name|int
+name|previousState
+parameter_list|)
+block|{
+return|return
+name|state
+operator|!=
+name|previousState
+return|;
+block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.AbstractNodeSet#getState() 	 */
+specifier|public
+name|int
+name|getState
+parameter_list|()
+block|{
+return|return
+name|state
+return|;
+block|}
 specifier|private
-specifier|final
 specifier|static
 class|class
 name|Part
@@ -1376,7 +1472,7 @@ name|gid
 parameter_list|)
 block|{
 return|return
-name|search
+name|get
 argument_list|(
 name|gid
 argument_list|)
@@ -1400,61 +1496,6 @@ return|;
 block|}
 name|NodeProxy
 name|get
-parameter_list|(
-name|long
-name|gid
-parameter_list|)
-block|{
-return|return
-name|search
-argument_list|(
-name|gid
-argument_list|)
-return|;
-block|}
-name|void
-name|sort
-parameter_list|()
-block|{
-name|FastQSort
-operator|.
-name|sortByNodeId
-argument_list|(
-name|array
-argument_list|,
-literal|0
-argument_list|,
-name|length
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-name|void
-name|sortInDocumentOrder
-parameter_list|()
-block|{
-name|FastQSort
-operator|.
-name|sort
-argument_list|(
-name|array
-argument_list|,
-operator|new
-name|DocumentOrderComparator
-argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|length
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-specifier|final
-name|NodeProxy
-name|search
 parameter_list|(
 name|long
 name|gid
@@ -1539,8 +1580,184 @@ return|return
 literal|null
 return|;
 block|}
+name|void
+name|sort
+parameter_list|()
+block|{
+name|FastQSort
+operator|.
+name|sortByNodeId
+argument_list|(
+name|array
+argument_list|,
+literal|0
+argument_list|,
+name|length
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+name|void
+name|sortInDocumentOrder
+parameter_list|()
+block|{
+name|FastQSort
+operator|.
+name|sort
+argument_list|(
+name|array
+argument_list|,
+operator|new
+name|DocumentOrderComparator
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|length
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 		 * Check if the node identified by its node id has an ancestor 		 * contained in this node set and return the ancestor found. 		 *  		 * If directParent is true, only immediate ancestors (parents) are 		 * considered. Otherwise the method will call itself recursively for 		 * all the node's parents. 		 *  		 * If includeSelf is true, the method returns also true if the node 		 * itself is contained in the node set. 		 */
+name|NodeProxy
+name|parentWithChild
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|long
+name|gid
+parameter_list|,
+name|boolean
+name|directParent
+parameter_list|,
+name|boolean
+name|includeSelf
+parameter_list|,
+name|int
+name|level
+parameter_list|)
+block|{
+name|NodeProxy
+name|temp
+decl_stmt|;
+if|if
+condition|(
+name|includeSelf
+operator|&&
+operator|(
+name|temp
+operator|=
+name|get
+argument_list|(
+name|gid
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+return|return
+name|temp
+return|;
+if|if
+condition|(
+name|level
+operator|<
+literal|0
+condition|)
+name|level
+operator|=
+name|doc
+operator|.
+name|getTreeLevel
+argument_list|(
+name|gid
+argument_list|)
+expr_stmt|;
+while|while
+condition|(
+name|gid
+operator|>
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|level
+operator|==
+literal|0
+condition|)
+name|gid
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+else|else
+comment|// calculate parent's gid
+name|gid
+operator|=
+operator|(
+name|gid
+operator|-
+name|doc
+operator|.
+name|treeLevelStartPoints
+index|[
+name|level
+index|]
+operator|)
+operator|/
+name|doc
+operator|.
+name|treeLevelOrder
+index|[
+name|level
+index|]
+operator|+
+name|doc
+operator|.
+name|treeLevelStartPoints
+index|[
+name|level
+operator|-
+literal|1
+index|]
+expr_stmt|;
+if|if
+condition|(
+operator|(
+name|temp
+operator|=
+name|get
+argument_list|(
+name|gid
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+return|return
+name|temp
+return|;
+if|else if
+condition|(
+name|directParent
+condition|)
+return|return
+literal|null
+return|;
+else|else
+operator|--
+name|level
+expr_stmt|;
+block|}
+return|return
+literal|null
+return|;
+block|}
 comment|/** 		 * Find all nodes in the current set being children of the specified 		 * parent. 		 *  		 * @param parent 		 * @param mode 		 * @param rememberContext 		 * @return 		 */
-specifier|final
 name|NodeSet
 name|getChildrenInSet
 parameter_list|(
@@ -1561,7 +1778,8 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-comment|// get the range of node ids reserved for children of the parent node
+comment|// get the range of node ids reserved for children of the parent
+comment|// node
 name|Range
 name|range
 init|=
@@ -1598,7 +1816,8 @@ decl_stmt|;
 name|NodeProxy
 name|p
 decl_stmt|;
-comment|// do a binary search to pick some node in the range of valid child ids
+comment|// do a binary search to pick some node in the range of valid child
+comment|// ids
 while|while
 condition|(
 name|low
@@ -1820,7 +2039,6 @@ return|return
 name|result
 return|;
 block|}
-specifier|final
 name|NodeSet
 name|getRange
 parameter_list|(
@@ -1869,7 +2087,8 @@ decl_stmt|;
 name|NodeProxy
 name|p
 decl_stmt|;
-comment|// do a binary search to pick some node in the range of valid node ids
+comment|// do a binary search to pick some node in the range of valid node
+comment|// ids
 while|while
 condition|(
 name|low
@@ -2002,7 +2221,6 @@ return|return
 name|result
 return|;
 block|}
-specifier|final
 name|void
 name|remove
 parameter_list|(
@@ -2131,8 +2349,7 @@ operator|--
 name|length
 expr_stmt|;
 block|}
-comment|/** 		 * Remove all duplicate nodes from this part. 		 *  		 * @return the new length of the part, after removing all 		 * duplicates 		 */
-specifier|final
+comment|/** 		 * Remove all duplicate nodes from this part. 		 *  		 * @return the new length of the part, after removing all duplicates 		 */
 name|int
 name|removeDuplicates
 parameter_list|()
@@ -2201,6 +2418,41 @@ expr_stmt|;
 return|return
 name|length
 return|;
+block|}
+specifier|final
+name|void
+name|setSelfAsContext
+parameter_list|()
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|array
+index|[
+name|i
+index|]
+operator|.
+name|addContextNode
+argument_list|(
+name|array
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -2278,7 +2530,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.util.Iterator#hasNext() 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -2290,7 +2542,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.util.Iterator#next() 		 */
 specifier|public
 name|Object
 name|next
@@ -2385,7 +2637,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item
 name|nextItem
@@ -2399,7 +2651,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.util.Iterator#remove() 		 */
 specifier|public
 name|void
 name|remove

@@ -21,7 +21,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|AbstractInternalModule
 import|;
@@ -33,7 +33,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|FunctionDef
 import|;

@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Retrieve a document from the database. To run this example enter:  *   *  bin/run.sh org.exist.examples.xmldb.Retrieve collection document   *   *  in the root directory of the distribution.  *  *	@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  *  Retrieve a document from the database. To run this example enter:  *   *  java -jar start.jar org.exist.examples.xmldb.Retrieve collection document   *   *  in the root directory of the distribution.  *  *	@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -114,7 +114,6 @@ name|URI
 init|=
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
-comment|//protected static String URI = "xmldb:exist://";
 specifier|protected
 specifier|static
 name|void
@@ -221,7 +220,7 @@ name|OutputKeys
 operator|.
 name|INDENT
 argument_list|,
-literal|"no"
+literal|"yes"
 argument_list|)
 expr_stmt|;
 name|col

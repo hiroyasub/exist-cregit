@@ -158,6 +158,14 @@ name|boolean
 name|backwardsCompatible
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|setModuleLoadPath
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

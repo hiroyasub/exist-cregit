@@ -43,7 +43,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|Constants
 import|;
@@ -55,7 +55,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|NodeTest
 import|;
@@ -67,7 +67,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -81,7 +81,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -1860,6 +1860,22 @@ return|return
 name|realSet
 operator|.
 name|iterate
+argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+specifier|public
+name|SequenceIterator
+name|unorderedIterator
+parameter_list|()
+block|{
+name|realize
+argument_list|()
+expr_stmt|;
+return|return
+name|realSet
+operator|.
+name|unorderedIterator
 argument_list|()
 return|;
 block|}

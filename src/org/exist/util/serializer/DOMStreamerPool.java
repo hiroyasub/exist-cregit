@@ -133,6 +133,13 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+name|streamer
+operator|==
+literal|null
+condition|)
+return|return;
 name|returnObject
 argument_list|(
 name|streamer

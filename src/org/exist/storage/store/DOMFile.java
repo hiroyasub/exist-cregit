@@ -89,18 +89,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|dbxml
 operator|.
 name|core
@@ -404,7 +392,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  DOMFile represents the central storage file for DOM nodes.  *   * Nodes are stored in sequential order to allow fast access when  * serializing a document or fragment. Pages have previous-page/next-page  * links. Each node has a virtual address,  * which consists of a page-number/tid pair. The tid is a virtual offset  * into the page. A node may be moved to a new page on node insertions.  * However, the tid will always remain the same.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    25. Mai 2002  */
+comment|/**  *  DOMFile represents the central storage file for DOM nodes.  *   * Nodes are stored in sequential order to allow fast access when  * serializing a document or fragment. Pages have previous-page/next-page  * links. Each node has a virtual address,  * which consists of a page-number/tid pair. The tid is a virtual offset  * into the page. A node may be moved to a new page on node insertions.  * However, the tid will always remain the same.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -417,14 +405,6 @@ implements|implements
 name|Lockable
 block|{
 comment|// page types
-specifier|public
-specifier|final
-specifier|static
-name|byte
-name|FREE_LIST
-init|=
-literal|22
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -448,20 +428,6 @@ name|short
 name|OVERFLOW
 init|=
 literal|0
-decl_stmt|;
-specifier|private
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|DOMFile
-operator|.
-name|class
-argument_list|)
 decl_stmt|;
 specifier|private
 specifier|final
@@ -2306,7 +2272,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|close
@@ -2326,7 +2291,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|create
@@ -2354,7 +2318,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -2370,7 +2333,6 @@ name|PAGE_SIZE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  read             Description of the Parameter 	 *@return                  Description of the Return Value 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -2389,7 +2351,6 @@ name|read
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pageCount  Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -2408,7 +2369,6 @@ name|PAGE_SIZE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pageCount  Description of the Parameter 	 *@param  pageSize   Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -2430,7 +2390,6 @@ name|pageSize
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|protected
 name|Page
 name|createNewPage
@@ -2554,7 +2513,6 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|PageHeader
 name|createPageHeader
@@ -2566,7 +2524,6 @@ name|DOMFilePageHeader
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|findKeys
@@ -2683,8 +2640,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-comment|//if(firstChildId> 1258600&& firstChildId< 1258700)
-comment|//System.out.print(firstChildId + "-" + lastChildId + " ");
 name|long
 name|p
 decl_stmt|;
@@ -5398,24 +5353,8 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|children
-operator|-
-name|attributes
-operator|>
-literal|1
-condition|)
-name|os
-operator|.
-name|write
-argument_list|(
-operator|(
-name|byte
-operator|)
-literal|0x20
-argument_list|)
-expr_stmt|;
+comment|//if (children - attributes> 1)
+comment|//	os.write((byte) 0x20);
 block|}
 return|return;
 case|case
@@ -5732,6 +5671,11 @@ return|;
 block|}
 comment|/*LOG.debug( 				owner.toString() 					+ ": tid " 					+ tid 					+ " not found on " 					+ page.page.getPageInfo() 					+ ". Loading " 					+ pageNr);*/
 block|}
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -5747,7 +5691,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    3. Juni 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -5763,13 +5706,11 @@ operator|new
 name|LinkedList
 argument_list|()
 decl_stmt|;
-comment|/**  Constructor for the DOMFileHeader object */
 specifier|public
 name|DOMFileHeader
 parameter_list|()
 block|{
 block|}
-comment|/** 		 *  Constructor for the DOMFileHeader object 		 * 		 *@param  pageCount  Description of the Parameter 		 */
 specifier|public
 name|DOMFileHeader
 parameter_list|(
@@ -5783,7 +5724,6 @@ name|pageCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DOMFileHeader object 		 * 		 *@param  pageCount  Description of the Parameter 		 *@param  pageSize   Description of the Parameter 		 */
 specifier|public
 name|DOMFileHeader
 parameter_list|(
@@ -5802,7 +5742,6 @@ name|pageSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DOMFileHeader object 		 * 		 *@param  pageCount  Description of the Parameter 		 *@param  pageSize   Description of the Parameter 		 *@param  blockSize  Description of the Parameter 		 */
 specifier|public
 name|DOMFileHeader
 parameter_list|(
@@ -5826,7 +5765,6 @@ name|blockSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DOMFileHeader object 		 * 		 *@param  read             Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|DOMFileHeader
 parameter_list|(
@@ -5842,7 +5780,6 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Adds a feature to the ReservedPage attribute of the DOMFileHeader 		 *  object 		 * 		 *@param  page  The feature to be added to the ReservedPage attribute 		 */
 specifier|public
 name|void
 name|addReservedPage
@@ -5863,7 +5800,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the reservedPage attribute of the DOMFileHeader object 		 * 		 *@return    The reservedPage value 		 */
 specifier|public
 name|long
 name|getReservedPage
@@ -5897,7 +5833,6 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  raf              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|read
@@ -5966,7 +5901,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  raf              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|write
@@ -6042,7 +5976,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    3. Juni 2002 	 */
 specifier|protected
 specifier|final
 class|class
@@ -6083,7 +6016,6 @@ name|records
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Constructor for the DOMFilePageHeader object */
 specifier|public
 name|DOMFilePageHeader
 parameter_list|()
@@ -6113,7 +6045,6 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|decRecordCount
@@ -6310,7 +6241,6 @@ operator|+
 literal|2
 return|;
 block|}
-comment|/** 		 *  Sets the dataLength attribute of the DOMFilePageHeader object 		 * 		 *@param  len  The new dataLength value 		 */
 specifier|public
 name|void
 name|setDataLength
@@ -6324,7 +6254,6 @@ operator|=
 name|len
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the nextDataPage attribute of the DOMFilePageHeader object 		 * 		 *@param  page  The new nextDataPage value 		 */
 specifier|public
 name|void
 name|setNextDataPage
@@ -6351,7 +6280,6 @@ operator|=
 name|page
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the recordCount attribute of the DOMFilePageHeader object 		 * 		 *@param  recs  The new recordCount value 		 */
 specifier|public
 name|void
 name|setRecordCount
@@ -6365,7 +6293,6 @@ operator|=
 name|recs
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  dos              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|int
 name|write
@@ -6806,6 +6733,11 @@ argument_list|()
 operator|+
 literal|" data length == 0"
 argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
 expr_stmt|;
 return|return;
 block|}
@@ -7283,13 +7215,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"deleting overflow page"
-argument_list|)
-expr_stmt|;
 name|Page
 name|page
 init|=

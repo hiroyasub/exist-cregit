@@ -32,6 +32,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|PROCESS_XSL_PI
+init|=
+literal|"process-xsl-pi"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|HIGHLIGHT_MATCHES
 init|=
 literal|"highlight-matches"

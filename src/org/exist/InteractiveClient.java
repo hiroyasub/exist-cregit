@@ -9518,7 +9518,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"eXist version 0.9, Copyright (C) 2003 Wolfgang Meier"
+literal|"eXist version 1.0 beta1, Copyright (C) 2004 Wolfgang Meier"
 argument_list|)
 expr_stmt|;
 name|System

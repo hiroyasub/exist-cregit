@@ -57,9 +57,11 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xquery
+operator|.
 name|parser
 operator|.
-name|XPathLexer2
+name|XQueryLexer
 import|;
 end_import
 
@@ -69,9 +71,11 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xquery
+operator|.
 name|parser
 operator|.
-name|XPathParser2
+name|XQueryParser
 import|;
 end_import
 
@@ -81,9 +85,11 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xquery
+operator|.
 name|parser
 operator|.
-name|XPathTreeParser2
+name|XQueryTreeParser
 import|;
 end_import
 
@@ -141,7 +147,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|PathExpr
 import|;
@@ -153,7 +159,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XQueryContext
 import|;
@@ -165,7 +171,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|XPathException
 import|;
@@ -177,7 +183,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -191,7 +197,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -205,7 +211,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -446,11 +452,11 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
-name|XPathLexer2
+name|XQueryLexer
 name|lexer
 init|=
 operator|new
-name|XPathLexer2
+name|XQueryLexer
 argument_list|(
 operator|new
 name|StringReader
@@ -459,20 +465,20 @@ name|sortExpr
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|XPathParser2
+name|XQueryParser
 name|parser
 init|=
 operator|new
-name|XPathParser2
+name|XQueryParser
 argument_list|(
 name|lexer
 argument_list|)
 decl_stmt|;
-name|XPathTreeParser2
+name|XQueryTreeParser
 name|treeParser
 init|=
 operator|new
-name|XPathTreeParser2
+name|XQueryTreeParser
 argument_list|(
 name|context
 argument_list|)
@@ -1090,6 +1096,23 @@ comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
+parameter_list|()
+block|{
+return|return
+operator|new
+name|SortedNodeSetIterator
+argument_list|(
+name|list
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+specifier|public
+name|SequenceIterator
+name|unorderedIterator
 parameter_list|()
 block|{
 return|return

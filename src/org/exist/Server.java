@@ -130,7 +130,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Main class to start the stand-alone server. By default,  *  an XML-RPC listener is started at port 8081. The HTTP server  *  will be available at port 8088. Use command-line options to  *  change this.  *    *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    22 May 2002  */
+comment|/**  *  Main class to start the stand-alone server. By default,  *  an XML-RPC listener is started at port 8081. The HTTP server  *  will be available at port 8088. Use command-line options to  *  change this.  *    *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class

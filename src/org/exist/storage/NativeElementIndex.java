@@ -599,7 +599,7 @@ condition|)
 block|{
 name|sym
 operator|=
-name|DBBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()
@@ -614,7 +614,7 @@ argument_list|)
 expr_stmt|;
 name|nsSym
 operator|=
-name|DBBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()
@@ -918,7 +918,7 @@ operator|(
 operator|!
 name|XMLUtil
 operator|.
-name|isDescendantOrSelf
+name|isDescendant
 argument_list|(
 name|oldDoc
 argument_list|,
@@ -1094,7 +1094,6 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
-comment|//os.writeFixedLong(p.getInternalAddress());
 block|}
 comment|//data = os.toByteArray();
 try|try
@@ -1360,7 +1359,7 @@ condition|)
 block|{
 name|sym
 operator|=
-name|DBBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()
@@ -1375,7 +1374,7 @@ argument_list|)
 expr_stmt|;
 name|nsSym
 operator|=
-name|DBBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()
@@ -1559,31 +1558,17 @@ argument_list|(
 name|len
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|len
-operator|*
-literal|4
-condition|;
-name|j
-operator|++
-control|)
-block|{
 name|is
 operator|.
 name|copyTo
 argument_list|(
 name|os
+argument_list|,
+name|len
+operator|*
+literal|4
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -1803,7 +1788,6 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
-comment|//os.writeFixedLong(p.getInternalAddress());
 block|}
 try|try
 block|{
@@ -1822,6 +1806,7 @@ name|val
 operator|==
 literal|null
 condition|)
+block|{
 name|dbElement
 operator|.
 name|put
@@ -1834,7 +1819,9 @@ name|data
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dbElement
 operator|.
 name|update
@@ -1852,6 +1839,7 @@ name|data
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2233,7 +2221,7 @@ block|{
 name|short
 name|sym
 init|=
-name|NativeBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()
@@ -2249,7 +2237,7 @@ decl_stmt|;
 name|short
 name|nsSym
 init|=
-name|NativeBroker
+name|broker
 operator|.
 name|getSymbols
 argument_list|()

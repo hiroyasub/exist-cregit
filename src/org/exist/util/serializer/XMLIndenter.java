@@ -138,6 +138,35 @@ name|writer
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#setWriter(java.io.Writer) 	 */
+specifier|public
+name|void
+name|setWriter
+parameter_list|(
+name|Writer
+name|writer
+parameter_list|)
+block|{
+name|super
+operator|.
+name|setWriter
+argument_list|(
+name|writer
+argument_list|)
+expr_stmt|;
+name|level
+operator|=
+literal|0
+expr_stmt|;
+name|afterTag
+operator|=
+literal|false
+expr_stmt|;
+name|sameline
+operator|=
+literal|false
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#startElement(java.lang.String) 	 */
 specifier|public
 name|void

@@ -358,7 +358,7 @@ argument_list|()
 expr_stmt|;
 return|return
 operator|new
-name|ResourceSetImpl
+name|RemoteResourceSet
 argument_list|(
 name|collection
 argument_list|,
@@ -627,7 +627,7 @@ argument_list|()
 expr_stmt|;
 return|return
 operator|new
-name|ResourceSetImpl
+name|RemoteResourceSet
 argument_list|(
 name|collection
 argument_list|,
@@ -918,7 +918,7 @@ literal|"method not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#compile(java.lang.String) 	 */
+comment|/** 	 * The XML-RPC server automatically caches compiled queries. 	 * Thus calling this method has no effect. 	 *  	 * @see org.exist.xmldb.XQueryService#compile(java.lang.String) 	 */
 specifier|public
 name|CompiledExpression
 name|compile
@@ -929,17 +929,13 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-throw|throw
+return|return
 operator|new
-name|XMLDBException
+name|RemoteCompiledExpression
 argument_list|(
-name|ErrorCodes
-operator|.
-name|NOT_IMPLEMENTED
-argument_list|,
-literal|"compiling an XQuery expression is currently not implemented for a remote connection"
+name|query
 argument_list|)
-throw|;
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#execute(org.exist.xmldb.CompiledExpression) 	 */
 specifier|public
@@ -952,17 +948,20 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-throw|throw
-operator|new
-name|XMLDBException
+return|return
+name|query
 argument_list|(
-name|ErrorCodes
+operator|(
+operator|(
+name|RemoteCompiledExpression
+operator|)
+name|expression
+operator|)
 operator|.
-name|NOT_IMPLEMENTED
-argument_list|,
-literal|"compiling an XQuery expression is currently not implemented for a remote connection"
+name|getQuery
+argument_list|()
 argument_list|)
-throw|;
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.XQueryService#setXPathCompatibility(boolean) 	 */
 specifier|public
@@ -974,6 +973,16 @@ name|backwardsCompatible
 parameter_list|)
 block|{
 comment|// TODO: not passed
+block|}
+comment|/**  	 * Calling this method has no effect. The server loads modules 	 * relative to its own context. 	 *  	 * @see org.exist.xmldb.XQueryService#setModuleLoadPath(java.lang.String) 	 */
+specifier|public
+name|void
+name|setModuleLoadPath
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+block|{
 block|}
 block|}
 end_class

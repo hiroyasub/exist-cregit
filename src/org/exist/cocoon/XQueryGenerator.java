@@ -213,6 +213,20 @@ name|storage
 operator|.
 name|serializers
 operator|.
+name|EXistOutputKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|serializers
+operator|.
 name|Serializer
 import|;
 end_import
@@ -247,7 +261,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|functions
 operator|.
@@ -338,7 +352,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generator for Cocoon which reads an XQuery script, executes it and   * passes the results into the Cocoon pipeline.  *   * The following sitemap parameters (with default values) are accepted:  *   *<pre>  *&lt;map:parameter name="collection" value="xmldb:exist:///db"/&gt;  *&lt;map:parameter name="user" value="guest"/&gt;  *&lt;map:parameter name="password" value="guest"/&gt;  *&lt;map:parameter name="create-session" value="false"/&gt;  *</pre>  *   * Parameter collection identifies the XML:DB root collection used to  * process the request. If set to "true", parameter create-session  * indicates that an HTTP session should be created upon the first  * invocation.  *    * @author wolf  */
+comment|/**  * A generator for Cocoon which reads an XQuery script, executes it and   * passes the results into the Cocoon pipeline.  *   * The following sitemap parameters (with default values) are accepted:  *   *<pre>  *&lt;map:parameter name="collection" value="xmldb:exist:///db"/&gt;  *&lt;map:parameter name="user" value="guest"/&gt;  *&lt;map:parameter name="password" value="guest"/&gt;  *&lt;map:parameter name="create-session" value="false"/&gt;  *&lt;map:parameter name="expand-xincludes" value="false"/&gt;  *</pre>  *   * Parameter collection identifies the XML:DB root collection used to  * process the request. If set to "true", parameter create-session  * indicates that an HTTP session should be created upon the first  * invocation.  *    * @author wolf  */
 end_comment
 
 begin_class
@@ -363,6 +377,12 @@ decl_stmt|;
 specifier|private
 name|boolean
 name|createSession
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|boolean
+name|expandXIncludes
 init|=
 literal|false
 decl_stmt|;
@@ -532,6 +552,19 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|expandXIncludes
+operator|=
+name|parameters
+operator|.
+name|getParameterAsBoolean
+argument_list|(
+literal|"expand-xincludes"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.cocoon.generation.AbstractGenerator#recycle() 	 */
 specifier|public
@@ -606,6 +639,14 @@ name|getResponse
 argument_list|(
 name|objectModel
 argument_list|)
+decl_stmt|;
+name|String
+name|contextPath
+init|=
+name|request
+operator|.
+name|getPathTranslated
+argument_list|()
 decl_stmt|;
 name|Session
 name|session
@@ -684,21 +725,6 @@ condition|)
 name|password
 operator|=
 name|defaultPassword
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"user = "
-operator|+
-name|user
-operator|+
-literal|"; password = "
-operator|+
-name|password
-argument_list|)
 expr_stmt|;
 try|try
 block|{
@@ -781,6 +807,21 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|EXistOutputKeys
+operator|.
+name|EXPAND_XINCLUDES
+argument_list|,
+name|expandXIncludes
+condition|?
+literal|"yes"
+else|:
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|String
 name|prefix
 init|=
@@ -797,6 +838,13 @@ argument_list|,
 name|RequestModule
 operator|.
 name|NAMESPACE_URI
+argument_list|)
+expr_stmt|;
+name|service
+operator|.
+name|setModuleLoadPath
+argument_list|(
+name|contextPath
 argument_list|)
 expr_stmt|;
 name|service

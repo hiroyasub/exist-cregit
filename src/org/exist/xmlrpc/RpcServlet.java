@@ -87,10 +87,6 @@ name|Configuration
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     wolf  *@created    24. April 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class

@@ -57,7 +57,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -71,7 +71,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xpath
+name|xquery
 operator|.
 name|value
 operator|.
@@ -880,6 +880,16 @@ comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+specifier|public
+name|SequenceIterator
+name|unorderedIterator
 parameter_list|()
 block|{
 return|return

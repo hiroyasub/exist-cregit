@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment go to   * Window>Preferences>Java>Code Generation>Code and Comments  */
+comment|/**  * Represents a (virtual) storage address in the paged file, consisting  * of page number, offset (tuple id) and flags.  */
 end_comment
 
 begin_class
@@ -68,7 +68,7 @@ specifier|public
 class|class
 name|StorageAddress
 block|{
-comment|/** 		 *  Create virtual address from page number and offset (tid) 		 * 		 *@param  page    page number 		 *@param  offset  offset (tid) 		 *@return         new virtual address in a long 		 */
+comment|/** 	 *  Create virtual address from page number and offset (tid) 	 * 	 *@param  page    page number 	 *@param  offset  offset (tid) 	 *@return         new virtual address in a long 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -145,7 +145,7 @@ operator|<<
 literal|32
 return|;
 block|}
-comment|/** 	 *  Get the tid from a virtual address 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
+comment|/** 	 *  Get the tid (tuple id) from a virtual address 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -264,8 +264,6 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|StorageAddress
-operator|.
 name|pageFromPointer
 argument_list|(
 name|pointer
@@ -276,8 +274,6 @@ name|os
 operator|.
 name|writeShort
 argument_list|(
-name|StorageAddress
-operator|.
 name|tidFromPointer
 argument_list|(
 name|pointer
@@ -288,8 +284,6 @@ name|os
 operator|.
 name|writeShort
 argument_list|(
-name|StorageAddress
-operator|.
 name|flagsFromPointer
 argument_list|(
 name|pointer

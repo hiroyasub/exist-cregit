@@ -89,18 +89,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Category
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|dbxml
 operator|.
 name|core
@@ -364,24 +352,6 @@ name|BFile
 extends|extends
 name|BTree
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Category
-name|LOG
-init|=
-name|Category
-operator|.
-name|getInstance
-argument_list|(
-name|BFile
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-decl_stmt|;
 comment|// minimum free space a page should have to be
 comment|// considered for reusing
 specifier|public
@@ -4952,6 +4922,24 @@ operator|>
 name|MAX_FREE_LIST_LEN
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"removing "
+operator|+
+operator|(
+name|freeList
+operator|.
+name|size
+argument_list|()
+operator|-
+name|MAX_FREE_LIST_LEN
+operator|)
+operator|+
+literal|" free pages."
+argument_list|)
+expr_stmt|;
 comment|// no: remove some smaller entries to make it fit
 for|for
 control|(
@@ -7726,7 +7714,6 @@ block|}
 block|}
 comment|/** 	 * An input stream for overflow pages. 	 *  	 * @author wolf 	 */
 specifier|private
-specifier|final
 class|class
 name|MultiPageInputStream
 extends|extends
