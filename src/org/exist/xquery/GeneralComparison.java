@@ -291,6 +291,10 @@ decl_stmt|;
 specifier|protected
 name|int
 name|truncation
+init|=
+name|Constants
+operator|.
+name|TRUNC_NONE
 decl_stmt|;
 specifier|public
 name|GeneralComparison
@@ -400,6 +404,12 @@ operator|.
 name|relation
 operator|=
 name|relation
+expr_stmt|;
+name|this
+operator|.
+name|truncation
+operator|=
+name|truncation
 expr_stmt|;
 comment|// simplify arguments
 if|if
