@@ -551,6 +551,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|maxNodesLimit
+operator|>
+literal|0
+operator|&&
 name|builder
 operator|.
 name|getSize
