@@ -197,18 +197,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|SymbolTable
 import|;
 end_import
@@ -261,7 +249,7 @@ name|storage
 operator|.
 name|io
 operator|.
-name|VariableByteOutputStream
+name|VariableByteInputStream
 import|;
 end_import
 
@@ -275,7 +263,7 @@ name|storage
 operator|.
 name|io
 operator|.
-name|VariableByteInputStream
+name|VariableByteOutputStream
 import|;
 end_import
 
@@ -314,30 +302,6 @@ operator|.
 name|util
 operator|.
 name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Occurrences
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|NodeSelector
 import|;
 end_import
 
@@ -1560,7 +1524,7 @@ specifier|final
 name|NodeImpl
 name|node
 parameter_list|,
-name|String
+name|NodePath
 name|currentPath
 parameter_list|)
 block|{
