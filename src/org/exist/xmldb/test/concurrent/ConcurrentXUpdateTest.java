@@ -156,6 +156,8 @@ argument_list|,
 literal|10
 argument_list|,
 literal|500
+argument_list|,
+literal|500
 argument_list|)
 expr_stmt|;
 name|addAction
@@ -174,6 +176,8 @@ argument_list|)
 argument_list|,
 literal|10
 argument_list|,
+literal|300
+argument_list|,
 literal|500
 argument_list|)
 expr_stmt|;
@@ -190,6 +194,8 @@ literal|"R1.xml"
 argument_list|)
 argument_list|,
 literal|10
+argument_list|,
+literal|1000
 argument_list|,
 literal|2000
 argument_list|)

@@ -52,7 +52,7 @@ specifier|static
 name|String
 name|QUERY
 init|=
-literal|"util:shared-lock(doc('/db/C1/R1.xml'), //ELEMENT[@attribute-1])"
+literal|"//ELEMENT[@attribute-1]"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -164,28 +164,12 @@ argument_list|)
 argument_list|,
 literal|20
 argument_list|,
-literal|400
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
-name|addAction
-argument_list|(
-operator|new
-name|XQueryAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|QUERY
-argument_list|)
-argument_list|,
-literal|100
-argument_list|,
-literal|30
-argument_list|)
-expr_stmt|;
+comment|//		addAction(new XQueryAction(URI + "/C1", "R1.xml", QUERY), 100, 100, 30);
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
 specifier|protected

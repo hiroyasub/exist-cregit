@@ -173,6 +173,8 @@ argument_list|,
 literal|20
 argument_list|,
 literal|500
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|addAction
@@ -190,6 +192,8 @@ name|query1
 argument_list|)
 argument_list|,
 literal|20
+argument_list|,
+literal|250
 argument_list|,
 literal|0
 argument_list|)
@@ -209,6 +213,8 @@ name|query2
 argument_list|)
 argument_list|,
 literal|20
+argument_list|,
+literal|0
 argument_list|,
 literal|0
 argument_list|)

@@ -75,7 +75,7 @@ argument_list|(
 operator|new
 name|TestSuite
 argument_list|(
-name|ConcurrentAttrUpdateTest
+name|ConcurrentResourceTest
 operator|.
 name|class
 argument_list|)
@@ -88,7 +88,7 @@ argument_list|(
 operator|new
 name|TestSuite
 argument_list|(
-name|ConcurrentResourceTest
+name|ConcurrentAttrUpdateTest
 operator|.
 name|class
 argument_list|)
@@ -115,6 +115,19 @@ operator|new
 name|TestSuite
 argument_list|(
 name|ConcurrentQueryTest
+operator|.
+name|class
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTest
+argument_list|(
+operator|new
+name|TestSuite
+argument_list|(
+name|ComplexUpdateTest
 operator|.
 name|class
 argument_list|)
