@@ -1577,6 +1577,8 @@ parameter_list|,
 name|String
 name|dest
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 block|}
 end_interface
