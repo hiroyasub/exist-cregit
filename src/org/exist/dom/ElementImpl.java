@@ -1370,7 +1370,7 @@ name|node
 return|;
 block|}
 comment|/** 	 * Internal append. 	 *  	 * @param last 	 * @param child 	 * @return Node 	 * @throws DOMException 	 */
-specifier|private
+specifier|protected
 name|Node
 name|appendChildren
 parameter_list|(

@@ -5681,6 +5681,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|words
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|100
+condition|)
+block|{
 name|progress
 operator|.
 name|finish
@@ -5694,6 +5704,7 @@ argument_list|(
 name|progress
 argument_list|)
 expr_stmt|;
+block|}
 name|words
 operator|.
 name|clear

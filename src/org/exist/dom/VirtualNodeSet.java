@@ -192,11 +192,36 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// Timo Boehme: getFirstParent returns now only real parents
+comment|//              therefore test if node is child of context
+comment|//return (first != null);
 return|return
+operator|(
 operator|(
 name|first
 operator|!=
 literal|null
+operator|)
+operator|||
+operator|(
+name|context
+operator|.
+name|get
+argument_list|(
+name|doc
+argument_list|,
+name|XMLUtil
+operator|.
+name|getParentId
+argument_list|(
+name|doc
+argument_list|,
+name|nodeId
+argument_list|)
+argument_list|)
+operator|!=
+literal|null
+operator|)
 operator|)
 return|;
 block|}
@@ -222,11 +247,42 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// Timo Boehme: getFirstParent returns now only real parents
+comment|//              therefore test if node is child of context
+comment|//return (first != null);
 return|return
+operator|(
 operator|(
 name|first
 operator|!=
 literal|null
+operator|)
+operator|||
+operator|(
+name|context
+operator|.
+name|get
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|,
+name|XMLUtil
+operator|.
+name|getParentId
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|,
+name|p
+operator|.
+name|gid
+argument_list|)
+argument_list|)
+operator|!=
+literal|null
+operator|)
 operator|)
 return|;
 block|}
@@ -253,6 +309,8 @@ literal|null
 argument_list|,
 name|includeSelf
 argument_list|,
+literal|true
+argument_list|,
 literal|0
 argument_list|)
 return|;
@@ -274,7 +332,42 @@ name|int
 name|recursions
 parameter_list|)
 block|{
-comment|// if includeSelf is true check node during first recursion
+return|return
+name|getFirstParent
+argument_list|(
+name|node
+argument_list|,
+name|first
+argument_list|,
+name|includeSelf
+argument_list|,
+literal|true
+argument_list|,
+name|recursions
+argument_list|)
+return|;
+block|}
+specifier|protected
+name|NodeProxy
+name|getFirstParent
+parameter_list|(
+name|NodeProxy
+name|node
+parameter_list|,
+name|NodeProxy
+name|first
+parameter_list|,
+name|boolean
+name|includeSelf
+parameter_list|,
+name|boolean
+name|directParent
+parameter_list|,
+name|int
+name|recursions
+parameter_list|)
+block|{
+comment|// if includeSelf is true set first to gid during the first recursion
 if|if
 condition|(
 name|recursions
@@ -325,6 +418,7 @@ name|first
 operator|==
 literal|null
 condition|)
+block|{
 name|first
 operator|=
 operator|new
@@ -341,7 +435,25 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|//System.out.println(node.gid + " -> " + pid);
+comment|// Timo Boehme: we need a real parent (child from context)
+return|return
+name|getFirstParent
+argument_list|(
+name|first
+argument_list|,
+name|first
+argument_list|,
+literal|false
+argument_list|,
+name|directParent
+argument_list|,
+name|recursions
+operator|+
+literal|1
+argument_list|)
+return|;
+block|}
+comment|// is pid member of the context set?
 name|NodeProxy
 name|parent
 init|=
@@ -361,21 +473,13 @@ condition|(
 name|parent
 operator|!=
 literal|null
-operator|&&
-name|recursions
-operator|>
-literal|0
 condition|)
+comment|// Timo Boehme: we return the ancestor which is child of context
+comment|//return first == null ? parent : first;
 return|return
-name|first
-operator|==
-literal|null
-condition|?
-name|parent
-else|:
-name|first
+name|node
 return|;
-if|if
+if|else if
 condition|(
 name|pid
 operator|<
@@ -384,8 +488,10 @@ condition|)
 return|return
 literal|null
 return|;
-if|if
+if|else if
 condition|(
+name|directParent
+operator|&&
 name|axis
 operator|==
 name|Constants
@@ -425,6 +531,8 @@ argument_list|,
 name|first
 argument_list|,
 literal|false
+argument_list|,
+name|directParent
 argument_list|,
 name|recursions
 operator|+
@@ -624,6 +732,8 @@ literal|null
 argument_list|,
 name|includeSelf
 argument_list|,
+name|directParent
+argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
@@ -669,6 +779,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|includeSelf
+argument_list|,
+name|directParent
 argument_list|,
 literal|0
 argument_list|)
@@ -774,26 +886,8 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-if|if
-condition|(
-name|realSet
-operator|!=
-literal|null
-condition|)
-return|return
-name|super
-operator|.
-name|parentWithChild
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|,
-name|directParent
-argument_list|,
-name|includeSelf
-argument_list|)
-return|;
+comment|//if(realSet != null)
+comment|//	return super.parentWithChild(doc, gid, directParent, includeSelf);
 name|NodeProxy
 name|first
 init|=
@@ -810,6 +904,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|includeSelf
+argument_list|,
+name|directParent
 argument_list|,
 literal|0
 argument_list|)
@@ -842,6 +938,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|includeSelf
+argument_list|,
+name|directParent
 argument_list|,
 literal|0
 argument_list|)
@@ -918,17 +1016,7 @@ operator|<
 literal|0
 condition|)
 block|{
-name|proxy
-operator|.
-name|gid
-operator|=
-name|proxy
-operator|.
-name|doc
-operator|.
-name|getDocumentElementId
-argument_list|()
-expr_stmt|;
+comment|/* // commented out by Timo Boehme (document element is already part of virtual node set (not parent!)) 				proxy.gid = proxy.doc.getDocumentElementId(); */
 comment|// -- inserted by Timo Boehme --
 name|NodeProxy
 name|docElemProxy
@@ -943,7 +1031,10 @@ argument_list|()
 argument_list|,
 name|proxy
 operator|.
-name|gid
+name|doc
+operator|.
+name|getDocumentElementId
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|result
@@ -1317,7 +1408,6 @@ name|test
 argument_list|)
 condition|)
 block|{
-comment|//					System.out.println("found " + c.getNodeName());
 name|result
 operator|.
 name|add
@@ -1364,15 +1454,6 @@ operator|!=
 literal|null
 condition|)
 return|return;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"realizing nodes"
-argument_list|)
-expr_stmt|;
 switch|switch
 condition|(
 name|axis

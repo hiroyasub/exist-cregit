@@ -245,6 +245,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|JOptionPane
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -5509,6 +5519,25 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|startGUI
+condition|)
+name|frame
+operator|.
+name|showErrorMessage
+argument_list|(
+literal|"XMLDBException: "
+operator|+
+name|xde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|xde
+argument_list|)
+expr_stmt|;
+else|else
 name|System
 operator|.
 name|err
@@ -9492,16 +9521,30 @@ condition|)
 block|{
 try|try
 block|{
+name|XMLResource
+name|res
+init|=
+name|retrieve
+argument_list|(
+name|optionGet
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|res
+operator|!=
+literal|null
+condition|)
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-name|retrieve
-argument_list|(
-name|optionGet
-argument_list|)
+name|res
+operator|.
+name|getContent
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -9531,7 +9574,10 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-return|return;
+name|interactive
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -9555,8 +9601,9 @@ argument_list|(
 literal|"Please specify target collection with --collection"
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
+else|else
+block|{
 try|try
 block|{
 name|remove
@@ -9591,6 +9638,11 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+name|interactive
+operator|=
+literal|false
+expr_stmt|;
 return|return;
 block|}
 if|else if
@@ -9613,8 +9665,9 @@ argument_list|(
 literal|"Please specify target collection with --collection"
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
+else|else
+block|{
 for|for
 control|(
 name|Iterator
@@ -9671,7 +9724,11 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-return|return;
+block|}
+name|interactive
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -9731,9 +9788,19 @@ argument_list|(
 literal|"failed to read query from stdin"
 argument_list|)
 expr_stmt|;
-return|return;
+name|optionXpath
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|optionXpath
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|ResourceSet
@@ -9817,7 +9884,11 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-return|return;
+block|}
+name|interactive
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -9891,7 +9962,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|interactive
+operator|=
+literal|false
+expr_stmt|;
 block|}
+if|if
+condition|(
+name|interactive
+condition|)
+block|{
 comment|// enter interactive mode
 try|try
 block|{
@@ -9929,6 +10009,34 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|frame
+operator|.
+name|showErrorMessage
+argument_list|(
+literal|"XMLDBException occurred while retrieving collection: "
+operator|+
+name|e1
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e1
+argument_list|)
+expr_stmt|;
+name|frame
+operator|.
+name|setVisible
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 name|messageln
 argument_list|(
@@ -9952,6 +10060,13 @@ name|frame
 operator|.
 name|displayPrompt
 argument_list|()
+expr_stmt|;
+block|}
+else|else
+name|shutdown
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public

@@ -478,6 +478,14 @@ name|modificationCount
 operator|++
 expr_stmt|;
 break|break;
+default|default :
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"unsupported node-type"
+argument_list|)
+throw|;
 block|}
 name|doc
 operator|.
