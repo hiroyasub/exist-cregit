@@ -166,6 +166,14 @@ argument_list|()
 decl_stmt|;
 return|return
 name|seq
+operator|==
+literal|null
+condition|?
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+else|:
+name|seq
 return|;
 block|}
 specifier|protected
