@@ -10640,6 +10640,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -10647,6 +10648,14 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|'\n'
+argument_list|)
+expr_stmt|;
+block|}
 name|optionXpath
 operator|=
 name|buf

@@ -53,6 +53,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -251,6 +263,34 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|QName
+name|qname
+init|=
+name|QName
+operator|.
+name|parseFunction
+argument_list|(
+name|context
+argument_list|,
+name|fnName
+argument_list|)
+decl_stmt|;
+name|String
+name|local
+init|=
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+decl_stmt|;
+name|String
+name|uri
+init|=
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+decl_stmt|;
 name|Expression
 name|step
 init|=
@@ -258,7 +298,19 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|fnName
+name|uri
+operator|.
+name|equals
+argument_list|(
+name|Function
+operator|.
+name|BUILTIN_FUNCTION_NS
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -411,14 +463,14 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
 literal|"collection"
 argument_list|)
 operator|||
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -548,7 +600,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -650,7 +702,7 @@ block|}
 comment|// near(node-set, string)
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -805,7 +857,7 @@ block|}
 comment|// ends-with(node-set, string)
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -962,7 +1014,7 @@ block|}
 comment|// ends-with(node-set, string)
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -1119,7 +1171,7 @@ block|}
 comment|// contains(node-set, string)
 if|if
 condition|(
-name|fnName
+name|local
 operator|.
 name|equals
 argument_list|(
@@ -1275,6 +1327,7 @@ name|op
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|step
@@ -1282,14 +1335,14 @@ operator|==
 literal|null
 condition|)
 block|{
-name|String
+name|Class
 name|clazz
 init|=
 name|context
 operator|.
 name|getClassForFunction
 argument_list|(
-name|fnName
+name|qname
 argument_list|)
 decl_stmt|;
 if|if
@@ -1304,9 +1357,19 @@ name|XPathException
 argument_list|(
 literal|"function "
 operator|+
-name|fnName
+name|qname
+operator|.
+name|toString
+argument_list|()
 operator|+
-literal|" not defined"
+literal|" ( namespace-uri = "
+operator|+
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|+
+literal|") is not defined"
 argument_list|)
 throw|;
 name|Function

@@ -144,7 +144,7 @@ name|FunFalse
 extends|extends
 name|Function
 block|{
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature

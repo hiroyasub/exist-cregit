@@ -364,6 +364,13 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|||
 name|docs
 operator|.
 name|getLength

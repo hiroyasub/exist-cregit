@@ -115,18 +115,6 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|CastExpression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
 name|Dependency
 import|;
 end_import
@@ -287,9 +275,25 @@ name|BUILTIN_FUNCTION_NS
 init|=
 literal|"http://www.w3.org/2003/05/xpath-functions"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XMLDB_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/xmldb"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|UTIL_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/util"
+decl_stmt|;
 specifier|private
 name|FunctionSignature
-name|signature
+name|mySignature
 decl_stmt|;
 specifier|public
 name|Function
@@ -308,22 +312,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|signature
+name|mySignature
 operator|=
 name|signature
-expr_stmt|;
-block|}
-specifier|public
-name|Function
-parameter_list|(
-name|StaticContext
-name|context
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|context
-argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#returnsType() 	 */
@@ -333,7 +324,7 @@ name|returnsType
 parameter_list|()
 block|{
 return|return
-name|signature
+name|mySignature
 operator|.
 name|getReturnType
 argument_list|()
@@ -349,7 +340,7 @@ name|getCardinality
 parameter_list|()
 block|{
 return|return
-name|signature
+name|mySignature
 operator|.
 name|getReturnType
 argument_list|()
@@ -366,15 +357,15 @@ parameter_list|(
 name|StaticContext
 name|context
 parameter_list|,
-name|String
-name|clazzName
+name|Class
+name|fclass
 parameter_list|)
 block|{
 try|try
 block|{
 if|if
 condition|(
-name|clazzName
+name|fclass
 operator|==
 literal|null
 condition|)
@@ -382,7 +373,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"insufficient arguments"
+literal|"class for function is null"
 argument_list|)
 throw|;
 name|Class
@@ -395,29 +386,6 @@ operator|.
 name|class
 block|}
 decl_stmt|;
-name|Class
-name|fclass
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-name|clazzName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|fclass
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"class not found"
-argument_list|)
-throw|;
 name|Constructor
 name|construct
 init|=
@@ -509,7 +477,10 @@ name|RuntimeException
 argument_list|(
 literal|"function "
 operator|+
-name|clazzName
+name|fclass
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|" not found"
 argument_list|)
@@ -530,7 +501,7 @@ name|SequenceType
 index|[]
 name|argumentTypes
 init|=
-name|signature
+name|mySignature
 operator|.
 name|getArgumentTypes
 argument_list|()
@@ -539,7 +510,7 @@ if|if
 condition|(
 operator|(
 operator|!
-name|signature
+name|mySignature
 operator|.
 name|isOverloaded
 argument_list|()
@@ -550,7 +521,7 @@ operator|.
 name|size
 argument_list|()
 operator|!=
-name|signature
+name|mySignature
 operator|.
 name|getArgumentCount
 argument_list|()
@@ -566,7 +537,7 @@ argument_list|()
 operator|+
 literal|" doesn't match function signature (expected "
 operator|+
-name|signature
+name|mySignature
 operator|.
 name|getArgumentCount
 argument_list|()
@@ -1198,7 +1169,7 @@ name|getName
 parameter_list|()
 block|{
 return|return
-name|signature
+name|mySignature
 operator|.
 name|getName
 argument_list|()
@@ -1210,7 +1181,7 @@ name|getSignature
 parameter_list|()
 block|{
 return|return
-name|signature
+name|mySignature
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
