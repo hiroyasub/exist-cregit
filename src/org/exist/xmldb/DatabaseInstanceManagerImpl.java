@@ -162,6 +162,8 @@ operator|.
 name|VENDOR_ERROR
 argument_list|,
 literal|"shutdown failed"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -180,6 +182,8 @@ operator|.
 name|VENDOR_ERROR
 argument_list|,
 literal|"shutdown failed"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

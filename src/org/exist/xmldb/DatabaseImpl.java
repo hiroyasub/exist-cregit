@@ -338,18 +338,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|String
-name|pathSep
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"file.separator"
-argument_list|,
-literal|"/"
-argument_list|)
-decl_stmt|;
+comment|//String pathSep = System.getProperty( "file.separator", "/" );
 name|String
 name|home
 decl_stmt|,
@@ -460,6 +449,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -602,6 +593,8 @@ operator|.
 name|VENDOR_ERROR
 argument_list|,
 literal|"db not correctly initialized"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -913,6 +906,8 @@ argument_list|,
 literal|"malformed url: "
 operator|+
 name|address
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

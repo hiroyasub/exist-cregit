@@ -290,6 +290,8 @@ argument_list|,
 literal|"failed to create collection "
 operator|+
 name|collName
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -308,6 +310,8 @@ operator|.
 name|PERMISSION_DENIED
 argument_list|,
 literal|"not allowed to create collection"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -483,6 +487,8 @@ argument_list|,
 literal|"failed to remove collection "
 operator|+
 name|collName
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -504,6 +510,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

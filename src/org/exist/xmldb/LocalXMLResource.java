@@ -792,6 +792,8 @@ operator|.
 name|VENDOR_ERROR
 argument_list|,
 literal|"error while reading resource contents"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -964,6 +966,8 @@ name|saxe
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|saxe
 argument_list|)
 throw|;
 block|}
@@ -985,6 +989,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1011,6 +1017,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1126,6 +1134,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1311,6 +1321,8 @@ name|saxe
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|saxe
 argument_list|)
 throw|;
 block|}
@@ -1333,6 +1345,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1444,6 +1458,8 @@ argument_list|(
 name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1715,6 +1731,8 @@ name|ioe
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|ioe
 argument_list|)
 throw|;
 block|}
