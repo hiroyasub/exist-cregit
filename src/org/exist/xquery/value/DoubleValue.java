@@ -1044,6 +1044,47 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue) 	 */
+specifier|public
+name|NumericValue
+name|round
+parameter_list|(
+name|IntegerValue
+name|precision
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|/* use the decimal rounding method */
+return|return
+operator|(
+name|DoubleValue
+operator|)
+operator|(
+operator|(
+name|DecimalValue
+operator|)
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DECIMAL
+argument_list|)
+operator|)
+operator|.
+name|round
+argument_list|(
+name|precision
+argument_list|)
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue

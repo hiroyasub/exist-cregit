@@ -432,6 +432,17 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|NumericValue
+name|round
+parameter_list|(
+name|IntegerValue
+name|precision
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+specifier|public
+specifier|abstract
+name|NumericValue
 name|mod
 parameter_list|(
 name|NumericValue
