@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|BasicFunction
 import|;
 end_import
 
@@ -150,7 +150,7 @@ specifier|public
 class|class
 name|FunTrue
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -166,8 +166,16 @@ name|QName
 argument_list|(
 literal|"true"
 argument_list|,
-name|BUILTIN_FUNCTION_NS
+name|ModuleImpl
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
+argument_list|,
+literal|"Always returns the boolean value true"
 argument_list|,
 literal|null
 argument_list|,
@@ -215,16 +223,17 @@ name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSequence
+name|args
+index|[]
 parameter_list|,
-name|Item
-name|contextItem
+name|Sequence
+name|contextSequence
 parameter_list|)
 block|{
 return|return
 name|BooleanValue
 operator|.
-name|FALSE
+name|TRUE
 return|;
 block|}
 specifier|public

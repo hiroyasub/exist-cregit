@@ -262,6 +262,15 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|ls
+condition|)
+return|return
+name|BooleanValue
+operator|.
+name|TRUE
+return|;
 name|boolean
 name|rs
 init|=

@@ -212,6 +212,29 @@ name|int
 name|returnsType
 parameter_list|()
 block|{
+if|if
+condition|(
+name|mySignature
+operator|.
+name|getReturnType
+argument_list|()
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Return type for function "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" is not defined"
+argument_list|)
+throw|;
 return|return
 name|mySignature
 operator|.
@@ -228,6 +251,29 @@ name|int
 name|getCardinality
 parameter_list|()
 block|{
+if|if
+condition|(
+name|mySignature
+operator|.
+name|getReturnType
+argument_list|()
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Return type for function "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" is not defined"
+argument_list|)
+throw|;
 return|return
 name|mySignature
 operator|.

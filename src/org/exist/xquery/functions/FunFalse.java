@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|BasicFunction
 import|;
 end_import
 
@@ -154,7 +154,7 @@ specifier|public
 class|class
 name|FunFalse
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -172,6 +172,8 @@ literal|"false"
 argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
+argument_list|,
+literal|"Always returns the boolean value false"
 argument_list|,
 literal|null
 argument_list|,
@@ -220,10 +222,11 @@ name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSet
+index|[]
+name|args
 parameter_list|,
-name|Item
-name|contextNode
+name|Sequence
+name|contextSet
 parameter_list|)
 block|{
 return|return
