@@ -90,6 +90,8 @@ specifier|public
 interface|interface
 name|Expression
 block|{
+comment|// Flags to be passed to analyze:
+comment|/** 	 * Indicates that the query engine will call the expression once for every 	 * item in the context sequence. This is what you would expect to be the 	 * normal behaviour of an XQuery processor. However, eXist tries to process  	 * some types of expressions in one single step for the whole input sequence. 	 * So if the flag is not set, the expression is only called once.    	 */
 specifier|public
 specifier|final
 specifier|static
@@ -98,7 +100,16 @@ name|SINGLE_STEP_EXECUTION
 init|=
 literal|1
 decl_stmt|;
-comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables or some type errors.      * @param parent      * @param flags      *       * @throws XPathException      */
+comment|/**      * Indicates that the expression is within a predicate or the where clause of      * a FLWOR.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IN_PREDICATE
+init|=
+literal|2
+decl_stmt|;
+comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables or some type errors.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class.      *       * @throws XPathException      */
 specifier|public
 name|void
 name|analyze
@@ -168,15 +179,6 @@ specifier|public
 name|void
 name|resetState
 parameter_list|()
-function_decl|;
-comment|/** 	 * This method is called to inform the expression object that 	 * it is executed inside an XPath predicate (or in a where clause). 	 *  	 * @param inPredicate 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
 function_decl|;
 comment|/** 	 * Write a diagnostic dump of the expression to the passed 	 * {@link ExpressionDumper}. 	 *   	 * @param dumper the expression dumper to write to 	 */
 specifier|public

@@ -277,30 +277,6 @@ name|resetState
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#setInPredicate(boolean) 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
-block|{
-name|super
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
-name|expression
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
 specifier|public
 name|void

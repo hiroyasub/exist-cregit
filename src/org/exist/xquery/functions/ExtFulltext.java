@@ -323,6 +323,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements the fulltext operators:&amp;= and |=.  *   * This is internally handled like a special function and thus inherits  * from {@link org.exist.xquery.Function}.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -1267,29 +1271,6 @@ operator|.
 name|path
 operator|=
 name|path
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
-block|{
-if|if
-condition|(
-name|path
-operator|!=
-literal|null
-condition|)
-name|path
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */

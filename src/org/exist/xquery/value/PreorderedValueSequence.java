@@ -272,13 +272,6 @@ operator|.
 name|getSortExpression
 argument_list|()
 decl_stmt|;
-name|expr
-operator|.
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|NodeSet
 name|result
 init|=

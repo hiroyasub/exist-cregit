@@ -265,16 +265,6 @@ operator|==
 literal|1
 condition|)
 block|{
-name|getExpression
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 return|return
 name|getExpression
 argument_list|(
@@ -309,11 +299,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
+name|flags
+operator||=
+name|IN_PREDICATE
 expr_stmt|;
+comment|// set flag to signal subexpression that we are in a predicate
 name|Expression
 name|inner
 init|=

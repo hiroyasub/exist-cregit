@@ -674,14 +674,6 @@ literal|null
 argument_list|)
 decl_stmt|;
 comment|// check results
-name|NodeSet
-name|resultSet
-init|=
-operator|(
-name|NodeSet
-operator|)
-name|result
-decl_stmt|;
 name|System
 operator|.
 name|out
@@ -699,7 +691,7 @@ name|println
 argument_list|(
 literal|"found: "
 operator|+
-name|resultSet
+name|result
 operator|.
 name|getLength
 argument_list|()

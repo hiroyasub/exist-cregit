@@ -208,37 +208,6 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
-block|{
-name|super
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
-name|left
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
-name|right
-operator|.
-name|setInPredicate
-argument_list|(
-name|inPredicate
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

@@ -166,16 +166,6 @@ name|EXACTLY_ONE
 return|;
 comment|// default cardinality
 block|}
-comment|/** 	 * Ignored. Has no effect by default. 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
-block|{
-block|}
 comment|/** 	 * Returns {@link Dependency#DEFAULT_DEPENDENCIES}. 	 *  	 * @see org.exist.xquery.Expression#getDependencies() 	 */
 specifier|public
 name|int

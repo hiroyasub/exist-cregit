@@ -321,6 +321,7 @@ name|whereExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|whereExpr
 operator|.
 name|analyze
@@ -328,8 +329,11 @@ argument_list|(
 name|this
 argument_list|,
 name|flags
+operator||
+name|IN_PREDICATE
 argument_list|)
 expr_stmt|;
+block|}
 comment|// the order by specs should be analyzed by the last binding expression
 comment|// in the chain to have access to all variables. So if the return expression
 comment|// is another binding expression, we just forward the order specs.
@@ -570,21 +574,6 @@ init|=
 literal|false
 decl_stmt|;
 comment|// checkOrderSpecs(in);
-if|if
-condition|(
-name|whereExpr
-operator|!=
-literal|null
-condition|)
-block|{
-name|whereExpr
-operator|.
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 comment|// See if we can process the "where" clause in a single step (instead of
 comment|// calling the where expression for each item in the input sequence)
 comment|// This is possible if the input sequence is a node set and has no
@@ -628,13 +617,6 @@ condition|(
 name|fastExec
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"single-step where-clause evaluation selected"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!

@@ -1255,6 +1255,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|inPredicate
+operator|=
+operator|(
+name|flags
+operator|&
+name|IN_PREDICATE
+operator|)
+operator|>
+literal|0
+expr_stmt|;
 for|for
 control|(
 name|int

@@ -210,6 +210,7 @@ name|whereExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|whereExpr
 operator|.
 name|analyze
@@ -217,8 +218,11 @@ argument_list|(
 name|this
 argument_list|,
 name|flags
+operator||
+name|IN_PREDICATE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|returnExpr

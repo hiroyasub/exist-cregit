@@ -472,15 +472,12 @@ throws|throws
 name|XPathException
 block|{
 comment|//		long start = System.currentTimeMillis();
-name|whereExpr
-operator|.
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
+name|contextSequence
+operator|!=
+literal|null
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -495,11 +492,6 @@ operator|.
 name|NODE
 argument_list|)
 operator|&&
-operator|(
-name|contextSequence
-operator|==
-literal|null
-operator|||
 name|Type
 operator|.
 name|subTypeOf
@@ -513,7 +505,6 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-operator|)
 condition|)
 block|{
 comment|// if the where expression returns a node set, check the context
