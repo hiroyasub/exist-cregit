@@ -384,6 +384,7 @@ condition|(
 operator|!
 name|stop
 condition|)
+block|{
 try|try
 block|{
 name|Socket
@@ -432,6 +433,19 @@ name|ie
 parameter_list|)
 block|{
 block|}
+block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Shutting down ..."
+argument_list|)
+expr_stmt|;
+name|sock
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
