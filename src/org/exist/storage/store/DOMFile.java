@@ -6095,27 +6095,6 @@ operator|.
 name|getNextDataPage
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"REMOVING PAGE "
-operator|+
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|dataCache
 operator|.
 name|remove

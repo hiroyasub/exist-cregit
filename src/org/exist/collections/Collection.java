@@ -2437,7 +2437,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Remove the specified document from the collection. 	 * 	 *@param  name  Description of the Parameter 	 */
+comment|/** 	 *  Remove the specified document from the collection. 	 * 	 *@param  name 	 */
 specifier|public
 name|void
 name|removeDocument
@@ -5690,7 +5690,6 @@ name|document
 return|;
 block|}
 specifier|public
-specifier|synchronized
 name|BinaryDocument
 name|addBinaryResource
 parameter_list|(

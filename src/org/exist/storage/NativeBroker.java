@@ -2994,11 +2994,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|result
-operator|.
-name|sort
-argument_list|()
-expr_stmt|;
+comment|//		result.sort();
 comment|//				LOG.debug(
 comment|//					"found "
 comment|//						+ qname
