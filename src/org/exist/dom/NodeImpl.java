@@ -535,7 +535,7 @@ argument_list|)
 throw|;
 block|}
 specifier|public
-name|Node
+name|void
 name|appendChildren
 parameter_list|(
 name|NodeList
@@ -948,6 +948,14 @@ operator|new
 name|NodePath
 argument_list|()
 decl_stmt|;
+name|path
+operator|.
+name|addComponent
+argument_list|(
+name|getQName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|NodeImpl
 name|parent
 init|=
@@ -1341,7 +1349,7 @@ argument_list|)
 throw|;
 block|}
 specifier|public
-name|Node
+name|void
 name|insertAfter
 parameter_list|(
 name|NodeList
@@ -1366,7 +1374,7 @@ argument_list|)
 throw|;
 block|}
 specifier|public
-name|Node
+name|void
 name|insertBefore
 parameter_list|(
 name|NodeList

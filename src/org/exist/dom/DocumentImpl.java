@@ -4186,7 +4186,7 @@ block|}
 block|}
 comment|/* 	 * @see org.exist.dom.NodeImpl#insertBefore(org.w3c.dom.NodeList, org.w3c.dom.Node) 	 */
 specifier|public
-name|Node
+name|void
 name|insertBefore
 parameter_list|(
 name|NodeList
@@ -4392,12 +4392,9 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-return|return
-name|prev
-return|;
 block|}
 specifier|public
-name|Node
+name|void
 name|insertAfter
 parameter_list|(
 name|NodeList
@@ -4599,9 +4596,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-return|return
-name|prev
-return|;
 block|}
 specifier|private
 name|Node

@@ -196,6 +196,17 @@ name|localName_
 operator|=
 name|localName
 expr_stmt|;
+if|if
+condition|(
+name|namespaceURI
+operator|==
+literal|null
+condition|)
+name|namespaceURI_
+operator|=
+literal|""
+expr_stmt|;
+else|else
 name|namespaceURI_
 operator|=
 name|namespaceURI
