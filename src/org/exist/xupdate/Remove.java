@@ -179,6 +179,9 @@ name|selectStmt
 parameter_list|,
 name|Map
 name|namespaces
+parameter_list|,
+name|Map
+name|variables
 parameter_list|)
 block|{
 name|super
@@ -190,6 +193,8 @@ argument_list|,
 name|selectStmt
 argument_list|,
 name|namespaces
+argument_list|,
+name|variables
 argument_list|)
 expr_stmt|;
 block|}

@@ -245,6 +245,9 @@ name|selectStmt
 parameter_list|,
 name|Map
 name|namespaces
+parameter_list|,
+name|Map
+name|variables
 parameter_list|)
 block|{
 name|super
@@ -256,6 +259,8 @@ argument_list|,
 name|selectStmt
 argument_list|,
 name|namespaces
+argument_list|,
+name|variables
 argument_list|)
 expr_stmt|;
 block|}
@@ -370,6 +375,11 @@ name|docs
 argument_list|)
 expr_stmt|;
 name|declareNamespaces
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+name|declareVariables
 argument_list|(
 name|context
 argument_list|)
