@@ -375,6 +375,12 @@ block|}
 specifier|public
 specifier|abstract
 name|NumericValue
+name|negate
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|NumericValue
 name|ceiling
 parameter_list|()
 function_decl|;
@@ -398,6 +404,8 @@ parameter_list|(
 name|NumericValue
 name|other
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -407,6 +415,8 @@ parameter_list|(
 name|NumericValue
 name|other
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -416,6 +426,8 @@ parameter_list|(
 name|NumericValue
 name|other
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -436,6 +448,8 @@ parameter_list|(
 name|NumericValue
 name|other
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 block|}
 end_class

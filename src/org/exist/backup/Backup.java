@@ -957,6 +957,7 @@ argument_list|(
 name|contentSerializer
 argument_list|)
 expr_stmt|;
+comment|//writer.write((String)resource.getContent());
 name|writer
 operator|.
 name|close

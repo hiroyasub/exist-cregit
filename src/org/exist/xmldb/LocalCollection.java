@@ -311,20 +311,6 @@ name|XMLDBException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XMLResource
-import|;
-end_import
-
 begin_comment
 comment|/**  *  A local implementation of the Collection interface. This  * is used when the database is running in embedded mode.  *  * Extends Observable to allow status callbacks during indexing.  * Methods storeResource notifies registered observers about the  * progress of the indexer by passing an object of type ProgressIndicator  * to the observer.  *   *@author     wolf  *@created    April 2, 2002  */
 end_comment
@@ -2622,6 +2608,11 @@ throw|;
 block|}
 finally|finally
 block|{
+name|collection
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 name|brokerPool
 operator|.
 name|release

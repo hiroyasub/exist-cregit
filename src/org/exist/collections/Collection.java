@@ -2458,6 +2458,11 @@ comment|// add observers to the indexer
 name|Observer
 name|observer
 decl_stmt|;
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|observers
@@ -2873,6 +2878,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 return|return
 name|document
 return|;
@@ -3254,6 +3264,11 @@ comment|// add observers to the indexer
 name|Observer
 name|observer
 decl_stmt|;
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|observers
@@ -3713,6 +3728,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 return|return
 name|document
 return|;
@@ -4094,6 +4114,11 @@ comment|// add observers to the indexer
 name|Observer
 name|observer
 decl_stmt|;
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|observers
@@ -4429,6 +4454,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|broker
+operator|.
+name|deleteObservers
+argument_list|()
+expr_stmt|;
 return|return
 name|document
 return|;
@@ -5617,6 +5647,19 @@ name|add
 argument_list|(
 name|o
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see java.util.Observable#deleteObservers() 	 */
+specifier|public
+specifier|synchronized
+name|void
+name|deleteObservers
+parameter_list|()
+block|{
+name|observers
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#getKey() 	 */

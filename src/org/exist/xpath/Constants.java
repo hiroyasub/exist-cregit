@@ -402,6 +402,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|IDIV
+init|=
+literal|13
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|OPS

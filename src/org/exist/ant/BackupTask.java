@@ -140,6 +140,8 @@ argument_list|,
 name|password
 argument_list|,
 name|dir
+argument_list|,
+name|uri
 argument_list|)
 decl_stmt|;
 name|log
@@ -174,6 +176,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|BuildException

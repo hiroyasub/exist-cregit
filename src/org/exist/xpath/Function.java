@@ -853,8 +853,10 @@ name|Type
 operator|.
 name|ATOMIC
 argument_list|)
-operator|&&
-operator|(
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|Type
 operator|.
@@ -866,9 +868,7 @@ name|Type
 operator|.
 name|ATOMIC
 argument_list|)
-operator|)
 condition|)
-block|{
 name|expr
 operator|=
 operator|new
