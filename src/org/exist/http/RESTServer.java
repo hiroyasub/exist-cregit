@@ -2056,16 +2056,30 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+comment|//	FD : Returns an XML doc
 name|response
 operator|=
 operator|new
 name|Response
 argument_list|(
+literal|"<?xml version='1.0'?>\n"
+operator|+
+literal|"<exist:modifications mlns:exist='"
+operator|+
+name|NS
+operator|+
+literal|"' count='"
+operator|+
 name|mods
 operator|+
-literal|" modifications processed."
+literal|"'>"
+operator|+
+name|mods
+operator|+
+literal|"modifications processed.</exist:modifications>"
 argument_list|)
 expr_stmt|;
+comment|// END FD
 block|}
 else|else
 throw|throw
@@ -3892,10 +3906,15 @@ argument_list|(
 literal|"Start parameter out of range"
 argument_list|)
 throw|;
+comment|// FD : correct bound evaluation
 if|if
 condition|(
 operator|(
+operator|(
 name|howmany
+operator|+
+name|start
+operator|)
 operator|>
 name|rlen
 operator|)
@@ -3911,6 +3930,8 @@ operator|=
 name|rlen
 operator|-
 name|start
+operator|+
+literal|1
 expr_stmt|;
 block|}
 else|else
