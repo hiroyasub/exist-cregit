@@ -407,7 +407,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"parent collection "
+literal|"Parent collection "
 operator|+
 name|parentPath
 operator|+
@@ -422,7 +422,7 @@ name|HttpServletResponse
 operator|.
 name|SC_CONFLICT
 argument_list|,
-literal|"parent collection not found"
+literal|"Parent collection not found"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -453,7 +453,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"created collection "
+literal|"Created collection "
 operator|+
 name|path
 argument_list|)
