@@ -283,6 +283,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -613,6 +625,10 @@ name|doc
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+name|Node
+operator|.
+name|DOCUMENT_NODE
 argument_list|)
 argument_list|)
 expr_stmt|;
