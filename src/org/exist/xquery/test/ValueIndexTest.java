@@ -327,7 +327,7 @@ literal|"items.xml"
 argument_list|,
 literal|"//item[name> 'Racing Bicycle']"
 argument_list|,
-literal|3
+literal|4
 argument_list|)
 expr_stmt|;
 name|queryResource
@@ -349,7 +349,7 @@ literal|"items.xml"
 argument_list|,
 literal|"//item[stock<= 10]"
 argument_list|,
-literal|3
+literal|5
 argument_list|)
 expr_stmt|;
 name|queryResource

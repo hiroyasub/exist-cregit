@@ -380,6 +380,11 @@ name|int
 name|getIndexType
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|hasTextIndex
+parameter_list|()
+function_decl|;
 comment|/** 	 * Return a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */
 specifier|public
 name|NodeSet

@@ -832,6 +832,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** 	 * Generic, slow implementation. Applied if none of the possible  	 * optimizations can be used. 	 *  	 * @param contextSequence 	 * @param contextItem 	 * @return 	 * @throws XPathException 	 */
 specifier|protected
 name|Sequence
 name|genericCompare
@@ -1272,7 +1273,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Optimized implementation, which uses the fulltext index to look up 	 * matching string sequences. Applies to comparisons where the left 	 * operand returns a node set and the right operand is a string literal. 	 */
+comment|/** 	 * Optimized implementation: first checks if a range index is defined 	 * on the nodes in the left argument. If that fails, check if we can use 	 * the fulltext index to speed up the search. Otherwise, fall back to 	 * {@link #nodeSetCompare(NodeSet, Sequence)}. 	 */
 specifier|protected
 name|Sequence
 name|quickNodeSetCompare
@@ -1320,15 +1321,6 @@ name|eval
 argument_list|(
 name|contextSequence
 argument_list|)
-decl_stmt|;
-comment|// get the type of a possible index
-name|int
-name|indexType
-init|=
-name|nodes
-operator|.
-name|getIndexType
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1378,6 +1370,15 @@ argument_list|,
 name|contextSequence
 argument_list|)
 return|;
+comment|// get the type of a possible index
+name|int
+name|indexType
+init|=
+name|nodes
+operator|.
+name|getIndexType
+argument_list|()
+decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -1398,61 +1399,31 @@ operator|!=
 name|Type
 operator|.
 name|ITEM
-operator|&&
-name|indexType
-operator|!=
-name|Type
-operator|.
-name|IDX_FULLTEXT
 condition|)
 block|{
+comment|// we have a range index defined on the nodes in this sequence
 name|Item
 name|key
-decl_stmt|;
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|rightSeq
-operator|.
-name|getItemType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|)
-condition|)
-name|key
-operator|=
-operator|new
-name|StringValue
-argument_list|(
-name|getComparisonString
-argument_list|(
-name|rightSeq
-argument_list|)
-argument_list|)
-expr_stmt|;
-else|else
-name|key
-operator|=
+init|=
 name|rightSeq
 operator|.
 name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|key
-operator|instanceof
-name|Indexable
+operator|.
+name|getType
+argument_list|()
+operator|!=
+name|indexType
 condition|)
 block|{
+comment|// index type doesn't match. If index and argument have a numeric type,
+comment|// we convert to the type of the index
 if|if
 condition|(
 name|Type
@@ -1489,9 +1460,14 @@ argument_list|(
 name|indexType
 argument_list|)
 expr_stmt|;
+block|}
+comment|// if key does not implement Indexable, we can't use the index
 if|if
 condition|(
-operator|!
+name|key
+operator|instanceof
+name|Indexable
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -1504,15 +1480,19 @@ argument_list|,
 name|indexType
 argument_list|)
 condition|)
-return|return
-name|nodeSetCompare
+block|{
+name|LOG
+operator|.
+name|debug
 argument_list|(
-name|nodes
-argument_list|,
-name|contextSequence
+literal|"Using value index for key: "
+operator|+
+name|key
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
-return|;
-comment|//	            LOG.debug("Using value index");
+expr_stmt|;
 name|result
 operator|=
 name|context
@@ -1538,6 +1518,15 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+return|return
+name|nodeSetCompare
+argument_list|(
+name|nodes
+argument_list|,
+name|contextSequence
+argument_list|)
+return|;
 block|}
 if|else if
 condition|(
@@ -1547,13 +1536,13 @@ name|Constants
 operator|.
 name|EQ
 operator|&&
-name|indexType
-operator|==
-name|Type
+name|nodes
 operator|.
-name|IDX_FULLTEXT
+name|hasTextIndex
+argument_list|()
 condition|)
 block|{
+comment|// we can use the fulltext index
 name|String
 name|cmp
 init|=
@@ -1613,6 +1602,18 @@ argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// no usable index found. Fall back to nodeSetCompare()
+return|return
+name|nodeSetCompare
+argument_list|(
+name|nodes
+argument_list|,
+name|contextSequence
+argument_list|)
+return|;
 block|}
 comment|// can this result be cached? Don't cache if the result depends on local variables.
 name|boolean

@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -163,6 +173,9 @@ block|}
 specifier|public
 name|FulltextIndexSpec
 parameter_list|(
+name|Map
+name|namespaces
+parameter_list|,
 name|Element
 name|node
 parameter_list|)
@@ -370,6 +383,8 @@ argument_list|)
 expr_stmt|;
 name|addInclude
 argument_list|(
+name|namespaces
+argument_list|,
 name|ps
 argument_list|)
 expr_stmt|;
@@ -423,6 +438,8 @@ argument_list|)
 expr_stmt|;
 name|addExclude
 argument_list|(
+name|namespaces
+argument_list|,
 name|ps
 argument_list|)
 expr_stmt|;
@@ -476,16 +493,21 @@ argument_list|)
 expr_stmt|;
 name|addpreserveContent
 argument_list|(
+name|namespaces
+argument_list|,
 name|ps
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 comment|/**      * Add a path to the list of includes      *      * @param path The feature to be added to the Include attribute      */
-specifier|public
+specifier|private
 name|void
 name|addInclude
 parameter_list|(
+name|Map
+name|namespaces
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -497,6 +519,8 @@ argument_list|(
 operator|new
 name|NodePath
 argument_list|(
+name|namespaces
+argument_list|,
 name|path
 argument_list|)
 argument_list|)
@@ -507,6 +531,9 @@ specifier|public
 name|void
 name|addExclude
 parameter_list|(
+name|Map
+name|namespaces
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -518,6 +545,8 @@ argument_list|(
 operator|new
 name|NodePath
 argument_list|(
+name|namespaces
+argument_list|,
 name|path
 argument_list|)
 argument_list|)
@@ -735,6 +764,9 @@ specifier|public
 name|void
 name|addpreserveContent
 parameter_list|(
+name|Map
+name|namespaces
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -746,6 +778,8 @@ argument_list|(
 operator|new
 name|NodePath
 argument_list|(
+name|namespaces
+argument_list|,
 name|path
 argument_list|)
 argument_list|)

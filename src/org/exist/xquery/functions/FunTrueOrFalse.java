@@ -59,6 +59,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Dependency
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -174,7 +186,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -214,7 +226,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -245,6 +257,30 @@ return|return
 name|Type
 operator|.
 name|BOOLEAN
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#getDependencies()      */
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#getCardinality()      */
+specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+block|{
+return|return
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
 return|;
 block|}
 specifier|public

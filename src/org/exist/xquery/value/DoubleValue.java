@@ -2046,10 +2046,12 @@ name|bits
 init|=
 name|Double
 operator|.
-name|doubleToRawLongBits
+name|doubleToLongBits
 argument_list|(
 name|value
 argument_list|)
+operator|^
+literal|0x8000000000000000L
 decl_stmt|;
 name|ByteConversion
 operator|.
@@ -2088,6 +2090,8 @@ name|data
 argument_list|,
 literal|3
 argument_list|)
+operator|^
+literal|0x8000000000000000L
 decl_stmt|;
 name|value
 operator|=

@@ -2259,7 +2259,7 @@ name|addComponent
 argument_list|(
 name|elem
 operator|.
-name|getNodeName
+name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6684,7 +6684,7 @@ name|addComponent
 argument_list|(
 name|child
 operator|.
-name|getNodeName
+name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6908,6 +6908,11 @@ operator|.
 name|index
 argument_list|(
 name|newNode
+argument_list|,
+name|newNode
+operator|.
+name|getPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ownerDocument
@@ -7160,7 +7165,7 @@ operator|)
 name|child
 operator|)
 operator|.
-name|getNodeName
+name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -2270,7 +2270,7 @@ name|currentPath
 operator|.
 name|addComponent
 argument_list|(
-name|qname
+name|qn
 argument_list|)
 expr_stmt|;
 comment|//			currentPath.append('/').append(qname);
@@ -2377,7 +2377,7 @@ name|currentPath
 operator|.
 name|addComponent
 argument_list|(
-name|qname
+name|qn
 argument_list|)
 expr_stmt|;
 comment|//			currentPath.append('/').append(qname);

@@ -2638,6 +2638,8 @@ name|data
 argument_list|,
 literal|3
 argument_list|)
+operator|^
+literal|0x8000000000000000L
 decl_stmt|;
 name|type
 operator|=

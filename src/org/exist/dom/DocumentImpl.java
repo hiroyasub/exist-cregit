@@ -4099,6 +4099,11 @@ operator|.
 name|index
 argument_list|(
 name|newNode
+argument_list|,
+name|newNode
+operator|.
+name|getPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker

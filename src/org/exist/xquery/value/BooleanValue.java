@@ -813,7 +813,7 @@ literal|0
 operator|)
 expr_stmt|;
 return|return
-literal|null
+name|data
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.Indexable#deserialize(byte[])      */

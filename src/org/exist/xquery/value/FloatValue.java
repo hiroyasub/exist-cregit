@@ -158,6 +158,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|FLOAT
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
 specifier|public
 name|String
@@ -1452,12 +1464,19 @@ specifier|final
 name|int
 name|bits
 init|=
+operator|(
+name|int
+operator|)
+operator|(
 name|Float
 operator|.
-name|floatToRawIntBits
+name|floatToIntBits
 argument_list|(
 name|value
 argument_list|)
+operator|^
+literal|0x80000000
+operator|)
 decl_stmt|;
 name|ByteConversion
 operator|.
