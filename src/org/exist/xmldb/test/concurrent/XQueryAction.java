@@ -226,7 +226,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//		service.beginProtected();
+name|service
+operator|.
+name|beginProtected
+argument_list|()
+expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -259,12 +263,60 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//		DefaultHandler handler = new DefaultHandler();
-comment|//		for (int i = 0; i< result.getSize(); i++) {
-comment|//			XMLResource next = (XMLResource) result.getResource((long)i);
-comment|//			next.getContentAsSAX(handler);
-comment|//		}
-comment|//		service.endProtected();
+name|DefaultHandler
+name|handler
+init|=
+operator|new
+name|DefaultHandler
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|result
+operator|.
+name|getSize
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|XMLResource
+name|next
+init|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+operator|(
+name|long
+operator|)
+name|i
+argument_list|)
+decl_stmt|;
+name|next
+operator|.
+name|getContentAsSAX
+argument_list|(
+name|handler
+argument_list|)
+expr_stmt|;
+block|}
+name|service
+operator|.
+name|endProtected
+argument_list|()
+expr_stmt|;
 name|runningTime
 operator|+=
 operator|(

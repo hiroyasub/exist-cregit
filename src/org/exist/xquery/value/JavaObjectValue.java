@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Represents a reference to an arbitrary Java object which is treated as an  * atomic value.  *   * @author wolf  */
 end_comment
 
 begin_class

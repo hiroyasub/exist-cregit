@@ -1350,31 +1350,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removeDocument() - "
-operator|+
-literal|"found "
-operator|+
-name|elements
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" elements."
-argument_list|)
-expr_stmt|;
-block|}
 name|Value
 name|key
 decl_stmt|;

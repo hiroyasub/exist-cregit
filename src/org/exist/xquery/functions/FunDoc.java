@@ -430,6 +430,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
@@ -455,11 +458,22 @@ literal|'/'
 operator|+
 name|path
 expr_stmt|;
+comment|// check if the loaded documents should remain locked
+name|boolean
+name|lockOnLoad
+init|=
+name|context
+operator|.
+name|lockDocumentsOnLoad
+argument_list|()
+decl_stmt|;
 name|Lock
 name|dlock
 init|=
 literal|null
 decl_stmt|;
+comment|// if the expression occurs in a nested context, we might have cached the
+comment|// document set
 if|if
 condition|(
 name|path
@@ -486,7 +500,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|// wait for pending updates
+comment|// wait for pending updates by acquiring a lock
 name|dlock
 operator|.
 name|acquire
@@ -532,11 +546,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-try|try
-block|{
 name|DocumentImpl
 name|doc
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// try to open the document and acquire a lock
+name|doc
+operator|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -545,11 +564,15 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getDocument
+name|openDocument
 argument_list|(
 name|path
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -581,6 +604,23 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+name|doc
+operator|=
+literal|null
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -593,23 +633,7 @@ operator|+
 name|path
 argument_list|)
 throw|;
-comment|// wait for currently pending updates
-name|dlock
-operator|=
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-expr_stmt|;
-name|dlock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
+block|}
 name|cachedPath
 operator|=
 name|path
@@ -629,6 +653,35 @@ operator|.
 name|DOCUMENT_NODE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lockOnLoad
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Locking document: "
+operator|+
+name|doc
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// add the document to the list of locked documents
+name|context
+operator|.
+name|getLockedDocuments
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|cachedNode
 return|;
@@ -643,26 +696,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Permission denied: unable to load document "
-operator|+
-name|path
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Failed to acquire read lock on document "
+literal|"Permission denied: unable to load document "
 operator|+
 name|path
 argument_list|)
@@ -670,13 +707,20 @@ throw|;
 block|}
 finally|finally
 block|{
+comment|// release all locks unless lockOnLoad is true
 if|if
 condition|(
-name|dlock
+operator|!
+name|lockOnLoad
+operator|&&
+name|doc
 operator|!=
 literal|null
 condition|)
-name|dlock
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
 operator|.
 name|release
 argument_list|(

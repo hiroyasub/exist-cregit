@@ -488,9 +488,23 @@ if|if
 condition|(
 name|cacheIsValid
 condition|)
+block|{
+comment|// if the expression occurs in a nested context, we might have cached the
+comment|// document set
 return|return
 name|cached
 return|;
+block|}
+comment|// check if the loaded documents should remain locked
+name|boolean
+name|lockOnLoad
+init|=
+name|context
+operator|.
+name|lockDocumentsOnLoad
+argument_list|()
+decl_stmt|;
+comment|// build the document set
 name|DocumentSet
 name|docs
 init|=
@@ -565,6 +579,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|// iterate through all docs and create the node set
 name|NodeSet
 name|result
 init|=
@@ -648,6 +663,34 @@ name|DOCUMENT_NODE
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lockOnLoad
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Locking document: "
+operator|+
+name|doc
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getLockedDocuments
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -670,6 +713,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|lockOnLoad
+condition|)
 name|dlock
 operator|.
 name|release

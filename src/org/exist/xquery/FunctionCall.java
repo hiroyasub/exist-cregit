@@ -175,7 +175,7 @@ name|functionDef
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
+specifier|private
 name|void
 name|setFunction
 parameter_list|(
@@ -359,6 +359,7 @@ name|flags
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Called by {@link XQueryContext} to resolve a call to a function that has not      * yet been declared. XQueryContext remembers all calls to undeclared functions      * and tries to resolve them after parsing has completed.      *       * @param functionDef      * @throws XPathException      */
 specifier|public
 name|void
 name|resolveForwardReference
@@ -464,7 +465,6 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-comment|//		context.pushLocalContext(true);
 name|LocalVariable
 name|mark
 init|=
@@ -551,7 +551,6 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|//			context.popLocalContext();
 name|context
 operator|.
 name|popLocalVariables

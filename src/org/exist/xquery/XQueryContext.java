@@ -1565,6 +1565,7 @@ name|staticDocuments
 operator|!=
 literal|null
 condition|)
+comment|// the document set has already been built, return it
 return|return
 name|staticDocuments
 return|;
@@ -1580,6 +1581,7 @@ name|staticDocumentPaths
 operator|==
 literal|null
 condition|)
+comment|// no path defined: return all documents in the db
 name|broker
 operator|.
 name|getAllDocuments
@@ -1754,7 +1756,7 @@ return|return
 name|staticDocuments
 return|;
 block|}
-comment|/** 	 * Should loaded documents be locked? 	 *  	 * @return 	 */
+comment|/** 	 * Should loaded documents be locked? 	 *       * @see #setLockDocumentsOnLoad(boolean)      *  	 * @return 	 */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
@@ -1788,7 +1790,7 @@ name|DocumentSet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the set of documents that have been loaded and 	 * locked during query execution. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the set of documents that have been loaded and 	 * locked during query execution. 	 *       * @see #setLockDocumentsOnLoad(boolean)      *  	 * @return 	 */
 specifier|public
 name|DocumentSet
 name|getLockedDocuments
@@ -1798,6 +1800,7 @@ return|return
 name|lockedDocuments
 return|;
 block|}
+comment|/**      * Release all locks on documents that have been locked      * during query execution.      *      *@see #setLockDocumentsOnLoad(boolean)      */
 specifier|public
 name|void
 name|releaseLockedDocuments
@@ -1825,6 +1828,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @return      */
 specifier|public
 name|DocumentSet
 name|releaseUnusedDocuments
@@ -2008,18 +2012,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Releasing lock on "
-operator|+
-name|next
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                LOG.debug("Releasing lock on " + next.getName());
 name|next
 operator|.
 name|getUpdateLock
@@ -2034,18 +2027,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Locks remaining: "
-operator|+
-name|remaining
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("Locks remaining: " + remaining.getLength());
 name|lockDocumentsOnLoad
 operator|=
 literal|false
@@ -2058,7 +2040,7 @@ return|return
 name|remaining
 return|;
 block|}
-comment|/** 	 * Prepare this XQueryContext to be reused. 	 */
+comment|/** 	 * Prepare this XQueryContext to be reused. This should be      * called when adding an XQuery to the cache. 	 */
 specifier|public
 name|void
 name|reset
