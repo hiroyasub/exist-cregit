@@ -9244,29 +9244,26 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|domDb
-operator|.
-name|debugPages
-argument_list|(
-name|p
-operator|.
-name|doc
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//					LOG.debug(domDb.debugPages(p.doc));
 name|Thread
 operator|.
 name|dumpStack
 argument_list|()
 expr_stmt|;
+comment|//					return null;
 return|return
-literal|null
+name|objectWith
+argument_list|(
+name|p
+operator|.
+name|doc
+argument_list|,
+name|p
+operator|.
+name|gid
+argument_list|)
 return|;
-comment|//					return objectWith(p.doc, p.gid); // retry?
+comment|// retry?
 block|}
 name|NodeImpl
 name|node

@@ -24490,9 +24490,9 @@ literal|"COMP_NS_CONSTRUCTOR"
 block|,
 literal|"\"xpointer\""
 block|,
-literal|"LPAREN"
+literal|"("
 block|,
-literal|"RPAREN"
+literal|")"
 block|,
 literal|"NCNAME"
 block|,

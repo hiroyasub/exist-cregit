@@ -1169,6 +1169,12 @@ name|response
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|session
+operator|!=
+literal|null
+condition|)
 name|service
 operator|.
 name|declareVariable

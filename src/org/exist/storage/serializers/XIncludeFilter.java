@@ -947,6 +947,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|doc
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|doc
 operator|.
