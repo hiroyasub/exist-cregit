@@ -113,6 +113,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|VirtualNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|value
@@ -465,7 +477,22 @@ block|{
 comment|// if the where expression returns a node set, check the context
 comment|// node of each node in the set
 name|NodeSet
-name|temp
+name|contextSet
+init|=
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+decl_stmt|;
+name|boolean
+name|contextIsVirtual
+init|=
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+decl_stmt|;
+name|NodeSet
+name|nodes
 init|=
 name|whereExpr
 operator|.
@@ -513,7 +540,7 @@ control|(
 name|Iterator
 name|i
 init|=
-name|temp
+name|nodes
 operator|.
 name|iterator
 argument_list|()
@@ -558,7 +585,7 @@ name|doc
 expr_stmt|;
 name|sizeHint
 operator|=
-name|temp
+name|nodes
 operator|.
 name|getSizeHint
 argument_list|(
@@ -584,7 +611,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Internal evaluation error: context node is missing!"
+literal|"Internal evaluation error: context node is missing for node "
+operator|+
+name|current
+operator|.
+name|gid
+operator|+
+literal|"!"
 argument_list|)
 throw|;
 block|}
@@ -602,6 +635,18 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|contextIsVirtual
+operator|||
+name|contextSet
+operator|.
+name|contains
+argument_list|(
+name|next
+argument_list|)
+condition|)
+block|{
 name|next
 operator|.
 name|addMatches
@@ -609,16 +654,6 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|result
-operator|.
-name|contains
-argument_list|(
-name|next
-argument_list|)
-condition|)
 name|result
 operator|.
 name|add
@@ -628,6 +663,7 @@ argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
+block|}
 name|contextNode
 operator|=
 name|contextNode
