@@ -272,25 +272,7 @@ name|docs
 operator|.
 name|add
 argument_list|(
-name|this
-operator|.
 name|doc
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"doc is "
-operator|+
-name|this
-operator|.
-name|doc
-operator|.
-name|hashCode
-argument_list|()
 argument_list|)
 expr_stmt|;
 try|try
@@ -466,18 +448,6 @@ operator|=
 literal|"contents.xml"
 expr_stmt|;
 comment|// try to retrieve the contents file
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|parent
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|doc
