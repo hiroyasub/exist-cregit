@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on Oct 22, 2003  *  * To change the template for this generated file go to  * Window - Preferences - Java - Code Generation - Code and Comments  */
+comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -52,18 +52,6 @@ operator|.
 name|dom
 operator|.
 name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
 import|;
 end_import
 
@@ -137,6 +125,10 @@ name|StringValue
 import|;
 end_import
 
+begin_comment
+comment|/**  * Node constructor for attribute nodes.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -162,10 +154,18 @@ decl_stmt|;
 specifier|public
 name|AttributeConstructor
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|String
 name|name
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|name
@@ -256,9 +256,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -322,8 +319,6 @@ operator|)
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence

@@ -89,6 +89,10 @@ name|Sequence
 import|;
 end_import
 
+begin_comment
+comment|/**  * Constructor for processing-instruction nodes.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -109,12 +113,20 @@ decl_stmt|;
 specifier|public
 name|PIConstructor
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|String
 name|pi
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|super
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 name|int
 name|p
 init|=
@@ -174,9 +186,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,

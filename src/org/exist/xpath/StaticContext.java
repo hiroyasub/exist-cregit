@@ -162,7 +162,7 @@ block|,
 block|{
 literal|"normalize-space"
 block|,
-literal|"org.exist.xpath.functions.FunNormalizeString"
+literal|"org.exist.xpath.functions.FunNormalizeSpace"
 block|}
 block|,
 block|{
@@ -388,6 +388,13 @@ name|boolean
 name|backwardsCompatible
 init|=
 literal|true
+decl_stmt|;
+comment|/** 	 * The position of the currently processed item in the context  	 * sequence. This field has to be set on demand, for example, 	 * before calling the fn:position() function.  	 */
+specifier|private
+name|int
+name|contextPosition
+init|=
+literal|0
 decl_stmt|;
 comment|/** 	 * The builder used for creating in-memory document  	 * fragments 	 */
 specifier|private
@@ -881,7 +888,7 @@ operator|=
 name|backwardsCompatible
 expr_stmt|;
 block|}
-comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 *  	 * @return 	 */
+comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 *  	 * In XPath 1.0 compatible mode, additional conversions 	 * will be applied to values if a numeric value is expected. 	 *   	 * @return 	 */
 specifier|public
 name|boolean
 name|isBackwardsCompatible
@@ -893,7 +900,7 @@ operator|.
 name|backwardsCompatible
 return|;
 block|}
-comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * @return 	 */
+comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * The DBBroker is the main database access object, providing 	 * access to all internal database functions. 	 *  	 * @return 	 */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -916,6 +923,7 @@ name|getUser
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the document builder currently used for creating 	 * temporary document fragments. A new document builder 	 * will be created on demand. 	 *  	 * @return 	 */
 specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
@@ -944,6 +952,7 @@ return|return
 name|builder
 return|;
 block|}
+comment|/** 	 * Set the base URI for the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() 	 * function. 	 *  	 * @param uri 	 */
 specifier|public
 name|void
 name|setBaseURI
@@ -964,6 +973,29 @@ parameter_list|()
 block|{
 return|return
 name|baseURI
+return|;
+block|}
+comment|/** 	 * Set the current context position, i.e. the position 	 * of the currently processed item in the context sequence. 	 * This value is required by some expressions, e.g. fn:position(). 	 *  	 * @param pos 	 */
+specifier|public
+name|void
+name|setContextPosition
+parameter_list|(
+name|int
+name|pos
+parameter_list|)
+block|{
+name|contextPosition
+operator|=
+name|pos
+expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getContextPosition
+parameter_list|()
+block|{
+return|return
+name|contextPosition
 return|;
 block|}
 comment|/** 	 * Save the current context on top of a stack.  	 *  	 * Use {@link popContext()} to restore the current state. 	 * This method saves the current in-scope namespace 	 * definitions and variables. 	 */

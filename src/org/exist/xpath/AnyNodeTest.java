@@ -56,11 +56,6 @@ name|AnyNodeTest
 implements|implements
 name|NodeTest
 block|{
-specifier|public
-name|AnyNodeTest
-parameter_list|()
-block|{
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#getName() 	 */
 specifier|public
 name|QName

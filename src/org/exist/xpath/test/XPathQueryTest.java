@@ -341,6 +341,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -556,6 +560,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -699,6 +707,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -878,6 +890,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1023,6 +1039,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1175,6 +1195,10 @@ argument_list|(
 name|URI
 operator|+
 literal|"/test"
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull

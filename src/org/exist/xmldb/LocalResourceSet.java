@@ -591,6 +591,7 @@ name|item
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|resources
 operator|.
 name|add
@@ -601,6 +602,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

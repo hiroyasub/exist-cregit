@@ -89,6 +89,10 @@ name|Sequence
 import|;
 end_import
 
+begin_comment
+comment|/**  * Constructor for text nodes.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -105,10 +109,18 @@ decl_stmt|;
 specifier|public
 name|TextConstructor
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|String
 name|text
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|text
@@ -121,9 +133,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,

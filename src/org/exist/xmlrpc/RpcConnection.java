@@ -1341,7 +1341,9 @@ name|expr
 init|=
 operator|new
 name|PathExpr
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|treeParser
 operator|.
@@ -1408,8 +1410,6 @@ operator|.
 name|preselect
 argument_list|(
 name|docs
-argument_list|,
-name|context
 argument_list|)
 operator|)
 decl_stmt|;
@@ -1438,8 +1438,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|ndocs
 argument_list|,
 name|contextSet

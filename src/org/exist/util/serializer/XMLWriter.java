@@ -107,6 +107,10 @@ name|CharacterSet
 import|;
 end_import
 
+begin_comment
+comment|/**  * Write XML to a writer. This class defines methods similar to SAX.  * It deals with opening and closing tags, writing attributes and so on.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -180,6 +184,7 @@ operator|=
 name|writer
 expr_stmt|;
 block|}
+comment|/** 	 * Set the output properties. 	 *  	 * @param outputProperties 	 */
 specifier|public
 name|void
 name|setOutputProperties
@@ -216,6 +221,39 @@ name|getCharacterSet
 argument_list|(
 name|encoding
 argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Set a new writer. Calling this method will reset the state 	 * of the object. 	 *  	 * @param writer 	 */
+specifier|public
+name|void
+name|setWriter
+parameter_list|(
+name|Writer
+name|writer
+parameter_list|)
+block|{
+name|this
+operator|.
+name|writer
+operator|=
+name|writer
+expr_stmt|;
+name|tagIsOpen
+operator|=
+literal|false
+expr_stmt|;
+name|tagIsEmpty
+operator|=
+literal|true
+expr_stmt|;
+name|declarationWritten
+operator|=
+literal|false
+expr_stmt|;
+name|elementStack
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

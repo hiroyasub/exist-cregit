@@ -95,6 +95,9 @@ decl_stmt|;
 specifier|public
 name|Union
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|PathExpr
 name|left
 parameter_list|,
@@ -103,7 +106,9 @@ name|right
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -136,9 +141,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -152,8 +154,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 decl_stmt|;
 name|DocumentSet
@@ -164,8 +164,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 decl_stmt|;
 return|return
@@ -181,9 +179,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -203,8 +198,6 @@ name|left
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -219,8 +212,6 @@ name|right
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence

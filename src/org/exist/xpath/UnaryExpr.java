@@ -81,6 +81,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * A unary minus or plus.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -95,12 +99,17 @@ decl_stmt|;
 specifier|public
 name|UnaryExpr
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|int
 name|mode
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -124,9 +133,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -179,8 +185,6 @@ argument_list|)
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence

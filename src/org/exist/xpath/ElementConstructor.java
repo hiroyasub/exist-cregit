@@ -145,6 +145,10 @@ name|AttributesImpl
 import|;
 end_import
 
+begin_comment
+comment|/**  * Constructor for element nodes.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -171,10 +175,18 @@ decl_stmt|;
 specifier|public
 name|ElementConstructor
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|String
 name|qname
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|qname
@@ -230,9 +242,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -424,8 +433,6 @@ name|constructor
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -514,8 +521,6 @@ name|content
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -702,9 +707,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -721,8 +723,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 return|;
 else|else

@@ -412,9 +412,6 @@ control|)
 block|{
 name|add
 argument_list|(
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|nextItem
@@ -806,6 +803,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
+operator|(
+name|al
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
 name|al
 operator|.
 name|getLength
@@ -1283,7 +1287,7 @@ name|gid
 argument_list|,
 literal|false
 argument_list|,
-literal|false
+name|includeSelf
 argument_list|,
 operator|-
 literal|1
@@ -1397,6 +1401,11 @@ operator|.
 name|gid
 argument_list|,
 literal|false
+argument_list|,
+name|includeSelf
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 if|if

@@ -110,7 +110,7 @@ specifier|static
 name|String
 name|sortBy
 init|=
-literal|"/SPEAKER[1]"
+literal|"./SPEAKER"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -272,6 +272,20 @@ argument_list|,
 name|sortBy
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"found: "
+operator|+
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// create iterator
 for|for
 control|(

@@ -370,6 +370,24 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+specifier|abstract
+name|NumericValue
+name|ceiling
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|NumericValue
+name|floor
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|NumericValue
+name|round
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

@@ -1733,15 +1733,9 @@ name|cmp
 operator|=
 name|o1
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|compareTo
+name|compareToIgnoreCase
 argument_list|(
 name|o2
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
@@ -5958,14 +5952,7 @@ name|String
 name|expr
 parameter_list|)
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|NodeSet
 name|temp
 decl_stmt|;
@@ -6099,31 +6086,12 @@ argument_list|,
 name|expr
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"searching "
-operator|+
-name|context
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" nodes took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"searching "
+comment|//				+ context.getLength()
+comment|//				+ " nodes took "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;

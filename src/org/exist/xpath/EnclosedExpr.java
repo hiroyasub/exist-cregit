@@ -131,10 +131,15 @@ block|{
 comment|/** 	 *  	 */
 specifier|public
 name|EnclosedExpr
-parameter_list|()
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence) 	 */
@@ -142,9 +147,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -189,8 +191,6 @@ name|super
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -205,6 +205,8 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|Item
 name|next
 decl_stmt|;
@@ -239,8 +241,6 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 comment|// if item is an atomic value, collect the string values of all
 comment|// following atomic values and seperate them by a space.
 if|if
@@ -266,7 +266,7 @@ name|buf
 operator|.
 name|length
 argument_list|()
-operator|==
+operator|>
 literal|0
 condition|)
 name|buf
@@ -328,6 +328,23 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|buf
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+name|receiver
+operator|.
+name|characters
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
+block|}
 catch|catch
 parameter_list|(
 name|SAXException
@@ -338,10 +355,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"SAX exception while evaluating enclosed expression"
+literal|"Encountered SAX exception while serializing enclosed expression: "
+operator|+
+name|pprint
+argument_list|()
 argument_list|)
 throw|;
-block|}
 block|}
 return|return
 name|result

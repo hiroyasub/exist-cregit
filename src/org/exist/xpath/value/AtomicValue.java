@@ -331,6 +331,16 @@ literal|" to a node set"
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|String
+name|pprint
+parameter_list|()
+block|{
+return|return
+name|getStringValue
+argument_list|()
+return|;
+block|}
 specifier|private
 specifier|final
 specifier|static

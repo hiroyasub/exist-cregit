@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    9. Juli 2002  */
+comment|/**  * Persistent implementation of a DOM processing-instruction node.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -136,7 +136,6 @@ specifier|protected
 name|String
 name|data
 decl_stmt|;
-comment|/**  Constructor for the ProcessingInstructionImpl object */
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|()
@@ -145,7 +144,6 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the ProcessingInstructionImpl object      *      *@param  gid  Description of the Parameter      */
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|(

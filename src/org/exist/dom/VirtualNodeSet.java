@@ -486,6 +486,7 @@ name|useSelfAsContext
 operator|&&
 name|inPredicate
 condition|)
+block|{
 name|node
 operator|.
 name|addContextNode
@@ -493,6 +494,20 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"self: "
+operator|+
+name|node
+operator|.
+name|gid
+argument_list|)
+expr_stmt|;
+block|}
 if|else if
 condition|(
 name|inPredicate
@@ -605,14 +620,30 @@ name|first
 argument_list|)
 condition|)
 block|{
-comment|//			if(directParent)
-comment|//				node = first;
+if|if
+condition|(
+name|axis
+operator|!=
+name|Constants
+operator|.
+name|CHILD_AXIS
+condition|)
+block|{
+comment|// if we are on the descendant-axis, we return the first node
+comment|// we found while walking bottom-up.
+comment|// Otherwise, we return the last one (which is node)
+name|node
+operator|=
+name|first
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|useSelfAsContext
 operator|&&
 name|inPredicate
 condition|)
+block|{
 name|node
 operator|.
 name|addContextNode
@@ -620,10 +651,12 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|inPredicate
 condition|)
+block|{
 name|node
 operator|.
 name|addContextNode
@@ -631,6 +664,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|node
@@ -644,7 +678,7 @@ block|}
 comment|// Timo Boehme: we return the ancestor which is child of context
 comment|// TODO
 return|return
-name|first
+name|node
 return|;
 block|}
 if|else if
@@ -1501,6 +1535,20 @@ operator|!=
 literal|null
 condition|)
 return|return;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"realize"
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 name|realSet
 operator|=
 name|getNodes

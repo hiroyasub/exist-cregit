@@ -123,12 +123,17 @@ decl_stmt|;
 specifier|public
 name|Step
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|int
 name|axis
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -140,6 +145,9 @@ block|}
 specifier|public
 name|Step
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|int
 name|axis
 parameter_list|,
@@ -149,6 +157,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|context
+argument_list|,
 name|axis
 argument_list|)
 expr_stmt|;
@@ -180,9 +190,6 @@ specifier|abstract
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -338,9 +345,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -390,8 +394,6 @@ operator|.
 name|preselect
 argument_list|(
 name|out_docs
-argument_list|,
-name|context
 argument_list|)
 expr_stmt|;
 return|return

@@ -74,10 +74,15 @@ name|BinaryOp
 block|{
 specifier|public
 name|OpOr
-parameter_list|()
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -86,9 +91,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -114,8 +116,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 decl_stmt|;
 for|for
@@ -147,8 +147,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -160,9 +158,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -217,8 +212,6 @@ argument_list|)
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -283,8 +276,6 @@ argument_list|)
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence

@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    02 August 2002  */
+comment|/**  *  Represents the document-root node in an expression.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    02 August 2002  */
 end_comment
 
 begin_class
@@ -139,10 +139,15 @@ block|{
 comment|/**  Constructor for the RootNode object */
 specifier|public
 name|RootNode
-parameter_list|()
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
 block|{
 name|super
 argument_list|(
+name|context
+argument_list|,
 name|Constants
 operator|.
 name|SELF_AXIS
@@ -153,9 +158,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,

@@ -601,7 +601,9 @@ name|expr
 init|=
 operator|new
 name|PathExpr
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|treeParser
 operator|.
@@ -652,8 +654,6 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 literal|null

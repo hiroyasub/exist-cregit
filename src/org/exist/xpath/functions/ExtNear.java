@@ -340,10 +340,15 @@ literal|null
 decl_stmt|;
 specifier|public
 name|ExtNear
-parameter_list|()
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
 block|{
 name|super
 argument_list|(
+name|context
+argument_list|,
 name|Constants
 operator|.
 name|FULLTEXT_AND
@@ -385,8 +390,6 @@ name|distance
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|nodes
@@ -455,20 +458,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"scanning "
-operator|+
-name|hits
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" matches ..."
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("scanning " + hits.getLength() + " matches ...");
 name|boolean
 name|hasWildcards
 init|=
@@ -786,18 +776,7 @@ name|distance
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|r
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("found " + r.getLength());
 return|return
 name|r
 return|;

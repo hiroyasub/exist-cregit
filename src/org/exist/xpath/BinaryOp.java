@@ -77,10 +77,15 @@ name|PathExpr
 block|{
 specifier|public
 name|BinaryOp
-parameter_list|()
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -161,9 +166,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -173,9 +175,6 @@ specifier|abstract
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,

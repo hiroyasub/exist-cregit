@@ -76,14 +76,24 @@ name|LetExpr
 extends|extends
 name|BindingExpression
 block|{
+specifier|public
+name|LetExpr
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -126,8 +136,6 @@ name|inputSequence
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 literal|null
@@ -187,8 +195,6 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|filtered

@@ -137,12 +137,17 @@ decl_stmt|;
 specifier|public
 name|OpNumeric
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|int
 name|operator
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -154,6 +159,9 @@ block|}
 specifier|public
 name|OpNumeric
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|Expression
 name|left
 parameter_list|,
@@ -165,7 +173,9 @@ name|operator
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -201,9 +211,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -229,8 +236,6 @@ operator|.
 name|preselect
 argument_list|(
 name|in_docs
-argument_list|,
-name|context
 argument_list|)
 decl_stmt|;
 for|for
@@ -262,8 +267,6 @@ operator|.
 name|preselect
 argument_list|(
 name|out_docs
-argument_list|,
-name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -275,9 +278,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -315,8 +315,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence
@@ -345,8 +343,6 @@ argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|context
-argument_list|,
 name|docs
 argument_list|,
 name|contextSequence

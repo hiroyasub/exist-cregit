@@ -67,9 +67,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -87,9 +84,6 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -106,9 +100,6 @@ name|preselect
 parameter_list|(
 name|DocumentSet
 name|in_docs
-parameter_list|,
-name|StaticContext
-name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -119,13 +110,19 @@ name|int
 name|returnsType
 parameter_list|()
 function_decl|;
+comment|/** 	 * The expected cardinality of the return value of the expression. 	 *  	 * Should return a bit mask with bits set as defined in class {@link Cardinality}. 	 */
+specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+function_decl|;
 comment|/** 	 * Returns a set of bit-flags, indicating some of the parameters 	 * on which this expression depends. The flags are defined in 	 * {@link Dependency}. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getDependencies
 parameter_list|()
 function_decl|;
-comment|/** 	 * This method is called to inform the expression object that 	 * it is executed inside an XPath predicate. 	 *  	 * @param inPredicate 	 */
+comment|/** 	 * This method is called to inform the expression object that 	 * it is executed inside an XPath predicate (or in a where clause). 	 *  	 * @param inPredicate 	 */
 specifier|public
 name|void
 name|setInPredicate
