@@ -127,20 +127,21 @@ argument_list|(
 name|resourceName
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
+comment|//		System.out.println(res.getContent());
+name|DefaultHandler
+name|handler
+init|=
+operator|new
+name|DefaultHandler
+argument_list|()
+decl_stmt|;
 name|res
 operator|.
-name|getContent
-argument_list|()
+name|getContentAsSAX
+argument_list|(
+name|handler
 argument_list|)
 expr_stmt|;
-comment|//		DefaultHandler handler = new DefaultHandler();
-comment|//		res.getContentAsSAX(handler);
 name|System
 operator|.
 name|out

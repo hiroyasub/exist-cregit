@@ -191,6 +191,10 @@ operator|.
 name|getCollection
 argument_list|(
 name|collectionPath
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|String

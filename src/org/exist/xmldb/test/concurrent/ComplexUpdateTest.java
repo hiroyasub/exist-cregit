@@ -52,7 +52,7 @@ specifier|static
 name|String
 name|XML
 init|=
-literal|"<TEST><USER-SESSION-DATA version=\"1\"/></TEST>"
+literal|"<TEST><USER-SESSION-DATA version=\"0\"/></TEST>"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -157,7 +157,7 @@ literal|"/complex"
 argument_list|,
 literal|"R01.xml"
 argument_list|,
-literal|10000
+literal|200
 argument_list|)
 argument_list|,
 literal|1
@@ -165,6 +165,22 @@ argument_list|,
 literal|0
 argument_list|,
 literal|0
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|DBUtils
+operator|.
+name|shutdownDB
+argument_list|(
+name|rootColURI
 argument_list|)
 expr_stmt|;
 block|}
