@@ -242,22 +242,9 @@ name|strength
 init|=
 literal|null
 decl_stmt|;
-comment|/* 			 * Check if the db broker is configured to be case insensitive. 			 * If yes, we assume "primary" strength unless the user specified 			 * something different. 			 */
-if|if
-condition|(
-operator|!
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|isCaseSensitive
-argument_list|()
-condition|)
-name|strength
-operator|=
-literal|"primary"
-expr_stmt|;
+comment|/* 			 * Check if the db broker is configured to be case insensitive. 			 * If yes, we assume "primary" strength unless the user specified 			 * something different. 			 *  			 * TODO: bad idea: using primary strength as default also ignores 			 * German Umlaute. 			 */
+comment|//			if(!context.getBroker().isCaseSensitive())
+comment|//				strength = "primary";
 if|if
 condition|(
 name|query
@@ -278,6 +265,15 @@ return|;
 block|}
 else|else
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Loading collation: "
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
 name|String
 name|lang
 init|=
