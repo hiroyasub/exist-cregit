@@ -1413,6 +1413,9 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
+operator|.
+name|atomize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1446,8 +1449,30 @@ operator|!=
 name|indexType
 condition|)
 block|{
-comment|// index type doesn't match. If index and argument have a numeric type,
-comment|// we convert to the type of the index
+comment|// index type doesn't match. If key is untyped atomic, convert it to string
+if|if
+condition|(
+name|key
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATOMIC
+condition|)
+name|key
+operator|=
+name|key
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+comment|// If index has a numeric type, we convert to xs:double
 if|if
 condition|(
 name|Type
@@ -1460,20 +1485,6 @@ name|Type
 operator|.
 name|NUMBER
 argument_list|)
-operator|&&
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|key
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
 condition|)
 name|key
 operator|=
@@ -1481,7 +1492,9 @@ name|key
 operator|.
 name|convertTo
 argument_list|(
-name|indexType
+name|Type
+operator|.
+name|DOUBLE
 argument_list|)
 expr_stmt|;
 block|}
