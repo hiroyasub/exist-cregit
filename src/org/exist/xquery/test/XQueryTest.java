@@ -231,6 +231,11 @@ specifier|static
 name|String
 name|attributeXML
 decl_stmt|;
+specifier|private
+specifier|static
+name|int
+name|stringSize
+decl_stmt|;
 specifier|public
 name|XQueryTest
 parameter_list|(
@@ -393,6 +398,15 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 1: ========"
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item return $f"
@@ -406,15 +420,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 1: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -436,6 +441,15 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 2: ========"
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by $f ascending  return $f"
@@ -449,15 +463,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 2: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -501,6 +506,15 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 3: ========"
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by $f descending  return $f"
@@ -514,15 +528,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 3: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -566,6 +571,15 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 4: ========"
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by xs:double($f/price) descending  return $f"
@@ -579,15 +593,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 4: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -739,17 +744,38 @@ name|large
 init|=
 name|makeString
 argument_list|(
-literal|592
+name|stringSize
 argument_list|)
+decl_stmt|;
+name|String
+name|head
+init|=
+literal|"<details format='xml'>"
+decl_stmt|;
+name|String
+name|elem
+init|=
+literal|"<metadata docid='"
+operator|+
+name|large
+operator|+
+literal|"'></metadata>"
+decl_stmt|;
+name|String
+name|tail
+init|=
+literal|"</details>"
 decl_stmt|;
 name|String
 name|xml
 init|=
-literal|"<details format='xml'><metadata docid='"
+name|head
 operator|+
-name|large
+name|elem
 operator|+
-literal|"'></metadata></details>"
+name|elem
+operator|+
+name|tail
 decl_stmt|;
 specifier|final
 name|String
@@ -801,7 +827,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 name|result
 operator|.
@@ -1178,6 +1204,32 @@ name|args
 index|[
 literal|0
 index|]
+expr_stmt|;
+block|}
+name|stringSize
+operator|=
+literal|513
+expr_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|>
+literal|1
+condition|)
+block|{
+name|stringSize
+operator|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|args
+index|[
+literal|1
+index|]
+argument_list|)
 expr_stmt|;
 block|}
 name|junit
