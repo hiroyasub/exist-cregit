@@ -2233,6 +2233,13 @@ name|getStaticallyKnownDocuments
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|setBaseURI
+argument_list|(
+name|baseURI
+argument_list|)
+expr_stmt|;
 name|XQueryLexer
 name|lexer
 init|=
