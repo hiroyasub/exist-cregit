@@ -1011,7 +1011,7 @@ name|syncDaemon
 operator|.
 name|executePeriodically
 argument_list|(
-literal|2000
+literal|1000
 argument_list|,
 operator|new
 name|Sync
