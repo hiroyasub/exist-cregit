@@ -1274,6 +1274,23 @@ index|]
 argument_list|)
 return|;
 block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.util.hashtable.AbstractHashtable.HashtableIterator#remove() 		 */
+specifier|public
+name|void
+name|remove
+parameter_list|()
+block|{
+name|values
+index|[
+name|idx
+index|]
+operator|=
+name|REMOVED
+expr_stmt|;
+name|items
+operator|--
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

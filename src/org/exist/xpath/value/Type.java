@@ -79,6 +79,10 @@ name|XPathException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Defines all built-in types and their relations.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -406,6 +410,13 @@ argument_list|(
 name|NODE
 argument_list|,
 name|ELEMENT
+argument_list|)
+expr_stmt|;
+name|defineSubType
+argument_list|(
+name|NODE
+argument_list|,
+name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
 name|defineSubType
@@ -902,6 +913,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Get the internal name for the built-in type. 	 *  	 * @param type 	 * @return 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -924,6 +936,7 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Get the type code for a type identified by its internal name. 	 *  	 * @param name 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -980,6 +993,7 @@ return|return
 name|code
 return|;
 block|}
+comment|/** 	 * Get the type code for a type identified by its QName. 	 *  	 * @param qname 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1055,6 +1069,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Define supertype/subtype relation. 	 *  	 * @param supertype 	 * @param subtype 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1082,6 +1097,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype 	 * @return 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1173,6 +1189,7 @@ name|supertype
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Get the type code of the supertype of the specified subtype. 	 *  	 * @param subtype 	 * @return 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1192,8 +1209,9 @@ condition|)
 return|return
 name|ITEM
 return|;
-return|return
-operator|(
+name|Integer
+name|i
+init|=
 operator|(
 name|Integer
 operator|)
@@ -1203,10 +1221,88 @@ name|get
 argument_list|(
 name|subtype
 argument_list|)
-operator|)
+decl_stmt|;
+if|if
+condition|(
+name|i
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"no supertype for "
+operator|+
+name|getTypeName
+argument_list|(
+name|subtype
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|ITEM
+return|;
+block|}
+return|return
+name|i
 operator|.
 name|intValue
 argument_list|()
+return|;
+block|}
+comment|/** 	 * Find a common supertype for two given type codes. 	 *  	 * Type.ITEM is returned if no other common supertype 	 * is found. 	 *   	 * @param type1 	 * @param type2 	 * @return 	 */
+specifier|public
+specifier|static
+name|int
+name|getCommonSuperType
+parameter_list|(
+name|int
+name|type1
+parameter_list|,
+name|int
+name|type2
+parameter_list|)
+block|{
+if|if
+condition|(
+name|type1
+operator|==
+name|type2
+condition|)
+return|return
+name|type1
+return|;
+name|type1
+operator|=
+name|getSuperType
+argument_list|(
+name|type1
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|type1
+operator|==
+name|type2
+condition|)
+return|return
+name|type1
+return|;
+else|else
+return|return
+name|getCommonSuperType
+argument_list|(
+name|type1
+argument_list|,
+name|getSuperType
+argument_list|(
+name|type2
+argument_list|)
+argument_list|)
 return|;
 block|}
 block|}

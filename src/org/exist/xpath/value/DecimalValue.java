@@ -81,6 +81,18 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#getType() 	 */
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|DECIMAL
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getStringValue() 	 */
 specifier|public
 name|String

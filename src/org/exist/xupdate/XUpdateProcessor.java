@@ -972,18 +972,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"appending text to fragment: "
-operator|+
-name|text
-operator|.
-name|getData
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("appending text to fragment: " + text.getData());
 name|fragment
 operator|.
 name|appendChild
@@ -3097,18 +3086,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"appending text to fragment: "
-operator|+
-name|text
-operator|.
-name|getData
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("appending text to fragment: " + text.getData());
 name|fragment
 operator|.
 name|appendChild

@@ -110,7 +110,7 @@ specifier|public
 class|class
 name|FunctionFactory
 block|{
-comment|/** 	 * Create a function call. This method handles special functions like  	 * document(), collection() or near(). It also optimizes some function  	 * calls. 	 *  	 * @param pool 	 * @param context 	 * @param parent 	 * @param fnName 	 * @param params 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
+comment|/** 	 * Create a function call.  	 *  	 * This method handles all calls to built-in or user-defined 	 * functions. It also deals with constructor functions and 	 * optimizes selected function calls.  	 *  	 * @param pool 	 * @param context 	 * @param parent 	 * @param fnName 	 * @param params 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 specifier|public
 specifier|static
 name|Expression
@@ -323,13 +323,6 @@ name|step
 operator|=
 name|near
 expr_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|near
-argument_list|)
-expr_stmt|;
 block|}
 comment|// ends-with(node-set, string)
 if|if
@@ -475,13 +468,6 @@ operator|.
 name|EQ
 argument_list|)
 decl_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|op
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|op
@@ -632,13 +618,6 @@ operator|.
 name|EQ
 argument_list|)
 decl_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|op
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|op
@@ -791,19 +770,14 @@ operator|.
 name|EQ
 argument_list|)
 decl_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|op
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|op
 expr_stmt|;
 block|}
 block|}
+comment|// Check if the namespace belongs to one of the schema namespaces.
+comment|// If yes, the function is a constructor function
 block|}
 if|else if
 condition|(
@@ -882,13 +856,6 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 decl_stmt|;
-name|parent
-operator|.
-name|add
-argument_list|(
-name|castExpr
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|castExpr
@@ -1005,13 +972,6 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|func
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|func
@@ -1045,13 +1005,6 @@ operator|.
 name|setArguments
 argument_list|(
 name|params
-argument_list|)
-expr_stmt|;
-name|parent
-operator|.
-name|addPath
-argument_list|(
-name|call
 argument_list|)
 expr_stmt|;
 name|step

@@ -294,6 +294,11 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|setContext
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 name|var
 operator|.
 name|setValue
@@ -314,8 +319,9 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+name|boolean
+name|fastExec
+init|=
 name|whereExpr
 operator|!=
 literal|null
@@ -336,18 +342,17 @@ operator|&&
 name|at
 operator|==
 literal|null
+decl_stmt|;
+if|if
+condition|(
+name|fastExec
 condition|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"using single walk-through"
-argument_list|)
-expr_stmt|;
-name|setContext
-argument_list|(
-name|in
+literal|"fast evaluation mode"
 argument_list|)
 expr_stmt|;
 name|in
@@ -360,10 +365,6 @@ name|docs
 argument_list|,
 literal|null
 argument_list|)
-expr_stmt|;
-name|whereExpr
-operator|=
-literal|null
 expr_stmt|;
 block|}
 if|if
@@ -495,6 +496,23 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|sequenceType
+operator|!=
+literal|null
+condition|)
+comment|// check sequence type
+name|sequenceType
+operator|.
+name|checkType
+argument_list|(
+name|contextItem
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// set variable value to current item
 name|var
 operator|.
@@ -509,6 +527,11 @@ condition|(
 name|whereExpr
 operator|!=
 literal|null
+operator|&&
+operator|(
+operator|!
+name|fastExec
+operator|)
 condition|)
 block|{
 name|val
@@ -704,6 +727,31 @@ argument_list|(
 name|varName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sequenceType
+operator|!=
+literal|null
+condition|)
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|" as "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|sequenceType
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append

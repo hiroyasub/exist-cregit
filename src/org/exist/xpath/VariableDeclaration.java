@@ -65,6 +65,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|SequenceType
+import|;
+end_import
+
 begin_comment
 comment|/**  * A global variable declaration (with: declare variable). Variable bindings within  * for and let expressions are handled by {@link org.exist.xpath.ForExpr} and  * {@link org.exist.xpath.LetExpr}.  *   * @author wolf  */
 end_comment
@@ -78,6 +92,11 @@ name|AbstractExpression
 block|{
 name|String
 name|qname
+decl_stmt|;
+name|SequenceType
+name|sequenceType
+init|=
+literal|null
 decl_stmt|;
 name|Expression
 name|expression
@@ -112,6 +131,22 @@ operator|.
 name|expression
 operator|=
 name|expr
+expr_stmt|;
+block|}
+comment|/** 	 * Set the sequence type of the variable. 	 *  	 * @param type 	 */
+specifier|public
+name|void
+name|setSequenceType
+parameter_list|(
+name|SequenceType
+name|type
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sequenceType
+operator|=
+name|type
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
@@ -162,6 +197,31 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|sequenceType
+operator|!=
+literal|null
+condition|)
+block|{
+name|sequenceType
+operator|.
+name|checkType
+argument_list|(
+name|seq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sequenceType
+operator|.
+name|checkCardinality
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+block|}
 name|var
 operator|.
 name|setValue

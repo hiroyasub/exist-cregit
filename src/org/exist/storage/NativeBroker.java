@@ -8629,6 +8629,13 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|next
+operator|==
+literal|null
+condition|)
+return|return;
 specifier|final
 name|byte
 index|[]

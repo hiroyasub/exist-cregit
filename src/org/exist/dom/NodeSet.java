@@ -545,6 +545,14 @@ name|boolean
 name|rememberContext
 parameter_list|)
 function_decl|;
+specifier|public
+name|NodeSet
+name|getContextNodes
+parameter_list|(
+name|boolean
+name|rememberContext
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

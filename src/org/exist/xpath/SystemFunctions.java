@@ -125,6 +125,8 @@ literal|"org.exist.xpath.functions.FunOneOrMore"
 block|,
 literal|"org.exist.xpath.functions.FunExactlyOne"
 block|,
+literal|"org.exist.xpath.functions.FunDoc"
+block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBCollection"
 block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBStore"

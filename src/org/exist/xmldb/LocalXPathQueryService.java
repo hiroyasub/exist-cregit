@@ -1097,6 +1097,18 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"compiled: "
+operator|+
+name|expr
+operator|.
+name|pprint
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|long
 name|start
 init|=

@@ -173,6 +173,20 @@ name|xpath
 operator|.
 name|value
 operator|.
+name|SequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
 name|Type
 import|;
 end_import
@@ -207,6 +221,12 @@ decl_stmt|;
 specifier|protected
 name|String
 name|varName
+decl_stmt|;
+specifier|protected
+name|SequenceType
+name|sequenceType
+init|=
+literal|null
 decl_stmt|;
 specifier|protected
 name|Expression
@@ -253,6 +273,22 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+comment|/** 	 * Set the sequence type of the variable (as specified in the "as" clause). 	 *  	 * @param type 	 */
+specifier|public
+name|void
+name|setSequenceType
+parameter_list|(
+name|SequenceType
+name|type
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sequenceType
+operator|=
+name|type
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|setInputSequence
@@ -261,6 +297,8 @@ name|Expression
 name|sequence
 parameter_list|)
 block|{
+name|this
+operator|.
 name|inputSequence
 operator|=
 name|sequence
@@ -274,6 +312,8 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|this
+operator|.
 name|returnExpr
 operator|=
 name|expr
@@ -287,6 +327,8 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|this
+operator|.
 name|whereExpr
 operator|=
 name|expr
@@ -368,15 +410,6 @@ condition|)
 block|{
 comment|// if the where expression returns a node set, check the context
 comment|// node of each node in the set
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"calling single: "
-operator|+
-name|whereExpr
-argument_list|)
-expr_stmt|;
 name|NodeSet
 name|temp
 init|=

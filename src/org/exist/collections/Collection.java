@@ -5656,6 +5656,12 @@ name|void
 name|deleteObservers
 parameter_list|()
 block|{
+if|if
+condition|(
+name|observers
+operator|!=
+literal|null
+condition|)
 name|observers
 operator|.
 name|clear

@@ -949,7 +949,7 @@ name|toSequence
 parameter_list|()
 block|{
 return|return
-literal|null
+name|this
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#convertTo(int) 	 */

@@ -958,19 +958,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  get all the documents in this database matching the given 	 *  document-type's name. 	 * 	 *@param  doctypeName  Description of the Parameter 	 *@param  user         Description of the Parameter 	 *@return              The documentsByDoctype value 	 */
-specifier|public
-specifier|abstract
-name|DocumentSet
-name|getDocumentsByDoctype
-parameter_list|(
-name|String
-name|doctype
-parameter_list|,
-name|DocumentSet
-name|result
-parameter_list|)
-function_decl|;
 comment|/** 	 *  get a common prefix for a namespace URI. It should be guaranteed that 	 *  only one prefix is associated with one namespace URI throughout the 	 *  database. 	 * 	 *@param  namespace  Description of the Parameter 	 *@return            The namespacePrefix value 	 */
 specifier|public
 name|String
@@ -1430,6 +1417,19 @@ name|doc
 parameter_list|)
 block|{
 block|}
+comment|/** 	 *  get all the documents in this database matching the given  document-type's name.@param  doctypeName  Description of the Parameter@param  user         Description of the Parameter@return              The documentsByDoctype value   	 */
+specifier|public
+specifier|abstract
+name|DocumentSet
+name|getDocumentsByDoctype
+parameter_list|(
+name|String
+name|doctype
+parameter_list|,
+name|DocumentSet
+name|result
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

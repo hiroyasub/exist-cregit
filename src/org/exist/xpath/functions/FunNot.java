@@ -424,6 +424,15 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
 name|result
 operator|.
 name|addAll
@@ -488,6 +497,18 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"not argument: "
+operator|+
+name|argSeq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|NodeProxy
 name|parent
 decl_stmt|;

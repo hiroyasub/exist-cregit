@@ -290,8 +290,6 @@ argument_list|(
 name|docs
 argument_list|,
 name|contextSequence
-argument_list|,
-name|contextItem
 argument_list|)
 decl_stmt|;
 return|return

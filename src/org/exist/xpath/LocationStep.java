@@ -819,21 +819,6 @@ argument_list|,
 name|inPredicate
 argument_list|)
 expr_stmt|;
-comment|//		} else {
-comment|//				Node n;
-comment|//				Node attr;
-comment|//				NamedNodeMap map;
-comment|//				result = new ArraySet(contextSet.getLength());
-comment|//				for (int i = 0; i< contextSet.getLength(); i++) {
-comment|//					n = contextSet.item(i);
-comment|//					if (n.getNodeType() == Node.ELEMENT_NODE) {
-comment|//						map = ((Element) n).getAttributes();
-comment|//						for (int j = 0; j< map.getLength(); j++) {
-comment|//							attr = map.item(j);
-comment|//							result.add(attr);
-comment|//						}
-comment|//					}
-comment|//				}
 block|}
 return|return
 name|result

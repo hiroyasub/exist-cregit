@@ -375,9 +375,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//docs.clear();
 name|docs
-operator|.
-name|clear
+operator|=
+operator|new
+name|DocumentSet
 argument_list|()
 expr_stmt|;
 name|getParent

@@ -4459,7 +4459,17 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//ph.setNextTID((short)0);
+name|ph
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 name|ph
 operator|.
 name|setRecordCount
@@ -5720,7 +5730,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*LOG.debug( 							owner.toString() 								+ ": tid " 								+ tid 								+ " not found on " 								+ page.page.getPageInfo() 								+ ". Loading " 								+ pageNr);*/
+comment|/*LOG.debug( 				owner.toString() 					+ ": tid " 					+ tid 					+ " not found on " 					+ page.page.getPageInfo() 					+ ". Loading " 					+ pageNr);*/
 block|}
 name|LOG
 operator|.
@@ -6064,7 +6074,8 @@ specifier|protected
 name|short
 name|tid
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 specifier|protected
 name|short
@@ -6081,7 +6092,6 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DOMFilePageHeader object 		 * 		 *@param  dis              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|DOMFilePageHeader
 parameter_list|(
@@ -6118,8 +6128,23 @@ name|short
 name|getNextTID
 parameter_list|()
 block|{
-return|return
+if|if
+condition|(
 operator|++
+name|tid
+operator|==
+name|Short
+operator|.
+name|MAX_VALUE
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"TID limit reached in dom.dbx!!!!!!!!!!!!!!!!!!!!!!!"
+argument_list|)
+throw|;
+return|return
 name|tid
 return|;
 block|}
@@ -6138,7 +6163,6 @@ operator|=
 name|tid
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the dataLength attribute of the DOMFilePageHeader object 		 * 		 *@return    The dataLength value 		 */
 specifier|public
 name|int
 name|getDataLength
@@ -6148,7 +6172,6 @@ return|return
 name|dataLen
 return|;
 block|}
-comment|/** 		 *  Gets the nextDataPage attribute of the DOMFilePageHeader object 		 * 		 *@return    The nextDataPage value 		 */
 specifier|public
 name|long
 name|getNextDataPage
@@ -6167,7 +6190,6 @@ return|return
 name|prevDataPage
 return|;
 block|}
-comment|/** 		 *  Gets the recordCount attribute of the DOMFilePageHeader object 		 * 		 *@return    The recordCount value 		 */
 specifier|public
 name|short
 name|getRecordCount
@@ -6177,7 +6199,6 @@ return|return
 name|records
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|incRecordCount
@@ -6187,7 +6208,6 @@ name|records
 operator|++
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  dis              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|int
 name|read
@@ -7154,8 +7174,6 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
-try|try
-block|{
 name|Page
 name|page
 init|=
@@ -7168,12 +7186,19 @@ decl_stmt|;
 name|long
 name|np
 decl_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|page
 operator|!=
 literal|null
 condition|)
+block|{
+try|try
 block|{
 name|chunk
 operator|=
@@ -7214,7 +7239,6 @@ else|:
 literal|null
 expr_stmt|;
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|IOException
@@ -7231,9 +7255,18 @@ name|firstPage
 operator|.
 name|getPageNum
 argument_list|()
+operator|+
+literal|"; read: "
+operator|+
+name|count
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+break|break;
+block|}
+operator|++
+name|count
 expr_stmt|;
 block|}
 return|return
