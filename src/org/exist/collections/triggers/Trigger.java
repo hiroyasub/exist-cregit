@@ -185,6 +185,24 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
+comment|/** 	 * This method is called once before the database will actually parse the input data. You may take any action 	 * here, using the supplied broker instance. 	 *  	 * FIXME: documentation   	 **/
+specifier|public
+name|void
+name|finish
+parameter_list|(
+name|int
+name|event
+parameter_list|,
+name|DBBroker
+name|broker
+parameter_list|,
+name|String
+name|documentName
+parameter_list|,
+name|Document
+name|document
+parameter_list|)
+function_decl|;
 comment|/** 	 * Returns true if the SAX parser is currently in validation phase. During validation phase, the trigger 	 * may safely throw a SAXException. However, if is {@link #isValidating() isValidating} returns false, no exceptions should be 	 * thrown. 	 *  	 * @return true if the parser is in validation phase. 	 */
 specifier|public
 name|boolean
