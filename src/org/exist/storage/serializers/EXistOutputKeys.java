@@ -44,6 +44,22 @@ name|INDENT_SPACES
 init|=
 literal|"{http://exist-db.org/}indent-spaces"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|STYLESHEET
+init|=
+literal|"{http://exist-db.org/}stylesheet"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|STYLESHEET_PARAM
+init|=
+literal|"{http://exist-db.org/}stylesheet-param"
+decl_stmt|;
 block|}
 end_class
 
