@@ -15022,6 +15022,7 @@ name|spec
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexType
 operator|=
 name|spec
@@ -15029,6 +15030,7 @@ operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

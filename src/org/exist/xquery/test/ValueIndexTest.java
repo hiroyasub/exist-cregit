@@ -198,7 +198,7 @@ name|CONFIG
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
-literal|"<index xmlns:x=\"http://www.foo.com\">"
+literal|"<index xmlns:x=\"http://www.foo.com\" xmlns:xx=\"http://test.com\">"
 operator|+
 literal|"<fulltext default=\"all\">"
 operator|+
@@ -219,6 +219,8 @@ operator|+
 literal|"<create path=\"//item/price/@specialprice\" type=\"xs:boolean\"/>"
 operator|+
 literal|"<create path=\"//item/x:rating\" type=\"xs:double\"/>"
+operator|+
+literal|"<create path=\"//item/@xx:test\" type=\"xs:integer\"/>"
 operator|+
 literal|"</index>"
 operator|+
@@ -454,6 +456,17 @@ argument_list|,
 literal|"declare namespace x=\"http://www.foo.com\"; //item[x:rating> 8.0]"
 argument_list|,
 literal|2
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"declare namespace xx=\"http://test.com\"; //item[@xx:test = 123]"
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|queryResource
