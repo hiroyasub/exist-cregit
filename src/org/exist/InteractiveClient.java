@@ -1646,9 +1646,6 @@ literal|"password"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|getResources
-argument_list|()
-expr_stmt|;
 block|}
 comment|/** 	 *  Get list of resources contained in collection. 	 * 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|private
@@ -2898,6 +2895,18 @@ literal|2
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
+name|int
+name|s
+init|=
+operator|(
+name|int
+operator|)
+name|result
+operator|.
+name|getSize
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|start
@@ -2906,10 +2915,7 @@ literal|1
 operator|||
 name|start
 operator|>
-name|result
-operator|.
-name|getSize
-argument_list|()
+name|s
 condition|)
 block|{
 name|System
@@ -2934,20 +2940,11 @@ name|start
 operator|+
 name|count
 operator|>
-name|result
-operator|.
-name|getSize
-argument_list|()
+name|s
 condition|)
 name|count
 operator|=
-operator|(
-name|int
-operator|)
-name|result
-operator|.
-name|getSize
-argument_list|()
+name|s
 operator|-
 name|start
 expr_stmt|;
@@ -8566,6 +8563,43 @@ block|}
 comment|//if (!interactive)
 comment|//	return;
 comment|// enter interactive mode
+try|try
+block|{
+name|getResources
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e1
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"XMLDBException while retrieving collection "
+operator|+
+literal|"contents: "
+operator|+
+name|e1
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|e1
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 name|messageln
 argument_list|(
 literal|"\ntype help or ? for help."
