@@ -695,6 +695,9 @@ name|idx
 parameter_list|,
 name|TextImpl
 name|text
+parameter_list|,
+name|boolean
+name|onetoken
 parameter_list|)
 function_decl|;
 comment|/** 	 * Tokenize and index the given attribute node. 	 *  	 * @param idx 	 * @param text 	 */
