@@ -836,7 +836,7 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
-literal|"../webapp/logo.jpg"
+literal|"webapp/logo.jpg"
 argument_list|)
 argument_list|,
 name|testCollection
