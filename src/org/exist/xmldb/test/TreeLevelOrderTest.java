@@ -31,9 +31,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
 name|xmldb
+operator|.
+name|api
+operator|.
+name|base
 operator|.
 name|CompiledExpression
 import|;

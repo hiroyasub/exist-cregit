@@ -59,20 +59,6 @@ name|api
 operator|.
 name|base
 operator|.
-name|Service
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
 name|XMLDBException
 import|;
 end_import
@@ -91,6 +77,20 @@ name|XMLResource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|CompiledExpression
+import|;
+end_import
+
 begin_comment
 comment|/**  * Execute XQuery expressions on the database.  *   * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -100,7 +100,15 @@ specifier|public
 interface|interface
 name|XQueryService
 extends|extends
-name|Service
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XQueryService
 block|{
 comment|/** 	 * Execute the specified query and return the results as a {@link ResourceSet}. 	 *  	 * @param query 	 * @return 	 * @throws XMLDBException 	 */
 specifier|public

@@ -13,6 +13,20 @@ name|xmldb
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|CompiledExpression
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is just a placeholder for an expression that has been compiled  * on the server. It only stores the xquery string.  *   * @author wolf  *  */
 end_comment
