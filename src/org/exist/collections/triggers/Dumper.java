@@ -297,6 +297,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 for|for

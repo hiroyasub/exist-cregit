@@ -458,6 +458,9 @@ name|util
 operator|.
 name|Collection
 name|docs
+parameter_list|,
+name|boolean
+name|checkPermissions
 parameter_list|)
 block|{
 name|DocumentImpl
@@ -490,11 +493,16 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//			    if(doc.isLockedForWrite())
+comment|//			        continue;
 if|if
 condition|(
 name|broker
 operator|==
 literal|null
+operator|||
+operator|!
+name|checkPermissions
 operator|||
 name|doc
 operator|.
@@ -514,8 +522,6 @@ name|READ
 argument_list|)
 condition|)
 block|{
-comment|//			    if(doc.isLockedForWrite())
-comment|//			        continue;
 name|put
 argument_list|(
 name|doc

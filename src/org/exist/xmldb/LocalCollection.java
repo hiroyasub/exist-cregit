@@ -1440,10 +1440,7 @@ name|brokerPool
 argument_list|,
 name|this
 argument_list|,
-operator|(
-name|BinaryDocument
-operator|)
-name|document
+name|id
 argument_list|)
 expr_stmt|;
 else|else
@@ -2526,12 +2523,6 @@ name|getContent
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|res
-operator|.
-name|blob
-operator|=
-name|blob
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

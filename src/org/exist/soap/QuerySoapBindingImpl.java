@@ -1321,6 +1321,33 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+name|document
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Not allowed to read resource"
+argument_list|)
+throw|;
 name|Serializer
 name|serializer
 init|=

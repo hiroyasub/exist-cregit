@@ -159,7 +159,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setValueExpr
+name|setContentExpr
 parameter_list|(
 name|Expression
 name|expr
@@ -192,6 +192,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|pprint
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|MemTreeBuilder
 name|builder
 init|=

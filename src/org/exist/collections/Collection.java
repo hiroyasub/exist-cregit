@@ -1280,6 +1280,9 @@ name|docs
 parameter_list|,
 name|boolean
 name|recursive
+parameter_list|,
+name|boolean
+name|checkPermissions
 parameter_list|)
 block|{
 if|if
@@ -1304,6 +1307,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
+argument_list|,
+name|checkPermissions
 argument_list|)
 expr_stmt|;
 if|if
@@ -1315,6 +1320,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
+argument_list|,
+name|checkPermissions
 argument_list|)
 expr_stmt|;
 block|}
@@ -1331,6 +1338,9 @@ name|broker
 parameter_list|,
 name|DocumentSet
 name|docs
+parameter_list|,
+name|boolean
+name|checkPermissions
 parameter_list|)
 block|{
 try|try
@@ -1411,6 +1421,7 @@ operator|+
 literal|" not found. Skipping ..."
 argument_list|)
 expr_stmt|;
+comment|// we always check if we have permissions to read the child collection
 block|}
 if|else if
 condition|(
@@ -1438,6 +1449,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
+argument_list|,
+name|checkPermissions
 argument_list|)
 expr_stmt|;
 if|if
@@ -1456,6 +1469,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
+argument_list|,
+name|checkPermissions
 argument_list|)
 expr_stmt|;
 block|}
@@ -1502,6 +1517,9 @@ name|broker
 parameter_list|,
 name|DocumentSet
 name|docs
+parameter_list|,
+name|boolean
+name|checkPermissions
 parameter_list|)
 block|{
 try|try
@@ -1549,6 +1567,8 @@ name|documents
 operator|.
 name|values
 argument_list|()
+argument_list|,
+name|checkPermissions
 argument_list|)
 expr_stmt|;
 block|}
@@ -2274,6 +2294,8 @@ argument_list|,
 operator|new
 name|DocumentSet
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 operator|.
 name|iterator
@@ -3051,6 +3073,66 @@ name|getFileName
 argument_list|()
 operator|+
 literal|" is locked for write"
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|WRITE
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"write access to collection denied; user="
+operator|+
+name|broker
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+name|doc
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|WRITE
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"permission to remove document denied"
 argument_list|)
 throw|;
 try|try

@@ -2036,6 +2036,8 @@ argument_list|,
 name|docs
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -2944,30 +2946,8 @@ return|return
 literal|null
 return|;
 block|}
-if|if
-condition|(
-operator|!
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"not allowed to read document"
-argument_list|)
-throw|;
+comment|//		if (!doc.getPermissions().validate(user, Permission.READ))
+comment|//			throw new PermissionDeniedException("not allowed to read document");
 return|return
 name|doc
 return|;
@@ -3110,6 +3090,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|inclusive
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -11209,6 +11191,35 @@ if|if
 condition|(
 operator|!
 name|collection
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|user
+argument_list|,
+name|Permission
+operator|.
+name|WRITE
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Insufficient privileges to move resource "
+operator|+
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+name|doc
 operator|.
 name|getPermissions
 argument_list|()
