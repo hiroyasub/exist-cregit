@@ -299,6 +299,18 @@ name|exist
 operator|.
 name|collections
 operator|.
+name|IndexInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
 name|triggers
 operator|.
 name|TriggerException
@@ -6609,8 +6621,8 @@ decl_stmt|;
 name|InputSource
 name|source
 decl_stmt|;
-name|Indexer
-name|indexer
+name|IndexInfo
+name|info
 decl_stmt|;
 try|try
 block|{
@@ -6693,7 +6705,7 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
-name|indexer
+name|info
 operator|=
 name|collection
 operator|.
@@ -6727,7 +6739,7 @@ name|store
 argument_list|(
 name|broker
 argument_list|,
-name|indexer
+name|info
 argument_list|,
 name|source
 argument_list|,
@@ -6933,8 +6945,8 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-name|Indexer
-name|indexer
+name|IndexInfo
+name|info
 decl_stmt|;
 name|InputSource
 name|source
@@ -7048,7 +7060,7 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
-name|indexer
+name|info
 operator|=
 name|collection
 operator|.
@@ -7082,7 +7094,7 @@ name|store
 argument_list|(
 name|broker
 argument_list|,
-name|indexer
+name|info
 argument_list|,
 name|source
 argument_list|,

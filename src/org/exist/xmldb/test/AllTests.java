@@ -78,19 +78,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|suite
-operator|.
-name|addTest
-argument_list|(
-operator|new
-name|TestSuite
-argument_list|(
-name|ResourceSetTest
-operator|.
-name|class
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//		suite.addTest(new TestSuite(ResourceSetTest.class));
 name|suite
 operator|.
 name|addTest

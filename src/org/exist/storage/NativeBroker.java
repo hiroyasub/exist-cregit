@@ -9319,41 +9319,10 @@ operator|==
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"node "
-operator|+
-name|gid
-operator|+
-literal|" not found in document "
-operator|+
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|doc
-operator|)
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
-block|}
+comment|//				    if(LOG.isDebugEnabled()) {
+comment|//				        LOG.debug("node " + gid + " not found in document " + ((DocumentImpl)doc).getDocId());
+comment|//				        Thread.dumpStack();
+comment|//				    }
 return|return
 literal|null
 return|;

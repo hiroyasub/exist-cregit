@@ -4641,24 +4641,8 @@ operator|==
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Node data location not found for node "
-operator|+
-name|node
-operator|.
-name|gid
-argument_list|)
-expr_stmt|;
+comment|//            	if(LOG.isDebugEnabled())
+comment|//            		LOG.debug("Node data location not found for node " + node.gid);
 return|return
 name|KEY_NOT_FOUND
 return|;
