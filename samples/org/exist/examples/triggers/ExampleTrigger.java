@@ -414,15 +414,6 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
-comment|// IMPORTANT: temporarily disable triggers on the collection.
-comment|// We would end up in infinite recursion if we don't do that
-name|parent
-operator|.
-name|setTriggersEnabled
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// the name of the contents file can be set through parameters
 name|String
 name|contentsFile
@@ -478,6 +469,15 @@ operator|.
 name|debug
 argument_list|(
 literal|"creating new file for collection contents"
+argument_list|)
+expr_stmt|;
+comment|// IMPORTANT: temporarily disable triggers on the collection.
+comment|// We would end up in infinite recursion if we don't do that
+name|parent
+operator|.
+name|setTriggersEnabled
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 name|this

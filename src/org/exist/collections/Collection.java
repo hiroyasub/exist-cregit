@@ -235,6 +235,20 @@ name|collections
 operator|.
 name|triggers
 operator|.
+name|DocumentTrigger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
 name|Trigger
 import|;
 end_import
@@ -2830,7 +2844,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|Trigger
+name|DocumentTrigger
 name|trigger
 init|=
 literal|null
@@ -2869,6 +2883,9 @@ literal|null
 condition|)
 name|trigger
 operator|=
+operator|(
+name|DocumentTrigger
+operator|)
 name|config
 operator|.
 name|getTrigger
@@ -3798,6 +3815,10 @@ operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 return|return;
 block|}
 specifier|public
@@ -4171,6 +4192,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 name|broker
 operator|.
 name|deleteObservers
@@ -4275,7 +4300,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-name|Trigger
+name|DocumentTrigger
 name|trigger
 init|=
 name|setupTriggers
@@ -4913,6 +4938,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 name|broker
 operator|.
 name|deleteObservers
@@ -5290,6 +5319,10 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 name|broker
 operator|.
 name|deleteObservers
@@ -5355,7 +5388,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-name|Trigger
+name|DocumentTrigger
 name|trigger
 init|=
 name|setupTriggers
@@ -5717,7 +5750,7 @@ parameter_list|,
 name|DocumentImpl
 name|oldDoc
 parameter_list|,
-name|Trigger
+name|DocumentTrigger
 name|trigger
 parameter_list|,
 name|IndexInfo
@@ -6622,6 +6655,10 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 name|broker
 operator|.
 name|deleteObservers
@@ -6788,7 +6825,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-name|Trigger
+name|DocumentTrigger
 name|trigger
 init|=
 name|setupTriggers
@@ -7343,6 +7380,10 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 name|broker
 operator|.
 name|deleteObservers
@@ -7354,7 +7395,7 @@ return|;
 block|}
 comment|/** 	 * @param broker 	 * @param name 	 * @param oldDoc 	 * @return 	 */
 specifier|private
-name|Trigger
+name|DocumentTrigger
 name|setupTriggers
 parameter_list|(
 name|DBBroker
@@ -7367,7 +7408,7 @@ name|DocumentImpl
 name|oldDoc
 parameter_list|)
 block|{
-name|Trigger
+name|DocumentTrigger
 name|trigger
 init|=
 literal|null
@@ -7411,15 +7452,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|collectionConfEnabled
-operator|=
-literal|true
-expr_stmt|;
-if|if
-condition|(
-name|triggersEnabled
-condition|)
-block|{
 if|if
 condition|(
 name|triggersEnabled
@@ -7448,6 +7480,9 @@ literal|null
 condition|)
 name|trigger
 operator|=
+operator|(
+name|DocumentTrigger
+operator|)
 name|config
 operator|.
 name|getTrigger
@@ -7460,6 +7495,9 @@ expr_stmt|;
 else|else
 name|trigger
 operator|=
+operator|(
+name|DocumentTrigger
+operator|)
 name|config
 operator|.
 name|getTrigger
@@ -7491,7 +7529,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
@@ -8099,6 +8136,10 @@ operator|.
 name|getConfigurationManager
 argument_list|()
 decl_stmt|;
+name|collectionConfEnabled
+operator|=
+literal|false
+expr_stmt|;
 try|try
 block|{
 name|configuration
@@ -8132,6 +8173,10 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|collectionConfEnabled
+operator|=
+literal|true
+expr_stmt|;
 block|}
 return|return
 name|configuration
