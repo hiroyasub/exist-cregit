@@ -3486,7 +3486,7 @@ argument_list|()
 argument_list|,
 name|Type
 operator|.
-name|NODE
+name|ELEMENT
 argument_list|)
 condition|)
 block|{

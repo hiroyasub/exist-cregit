@@ -1233,6 +1233,11 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|expr
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|seq
 init|=
