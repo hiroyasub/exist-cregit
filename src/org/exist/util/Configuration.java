@@ -83,7 +83,7 @@ name|xml
 operator|.
 name|parsers
 operator|.
-name|DocumentBuilderFactory
+name|ParserConfigurationException
 import|;
 end_import
 
@@ -95,7 +95,19 @@ name|xml
 operator|.
 name|parsers
 operator|.
-name|ParserConfigurationException
+name|SAXParser
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|SAXParserFactory
 import|;
 end_import
 
@@ -124,6 +136,18 @@ operator|.
 name|tools
 operator|.
 name|CatalogResolver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|SAXAdapter
 import|;
 end_import
 
@@ -220,6 +244,18 @@ operator|.
 name|sax
 operator|.
 name|SAXParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|XMLReader
 import|;
 end_import
 
@@ -502,10 +538,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// initialize xml parser
-name|DocumentBuilderFactory
+comment|// we use eXist's in-memory DOM implementation to work
+comment|// around a bug in Xerces
+name|SAXParserFactory
 name|factory
 init|=
-name|DocumentBuilderFactory
+name|SAXParserFactory
 operator|.
 name|newInstance
 argument_list|()
@@ -517,20 +555,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|builder
-operator|=
-name|factory
-operator|.
-name|newDocumentBuilder
-argument_list|()
-expr_stmt|;
-name|builder
-operator|.
-name|setErrorHandler
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 name|InputSource
 name|src
 init|=
@@ -540,16 +564,59 @@ argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
-name|Document
-name|doc
+name|SAXParser
+name|parser
 init|=
-name|builder
+name|factory
+operator|.
+name|newSAXParser
+argument_list|()
+decl_stmt|;
+name|XMLReader
+name|reader
+init|=
+name|parser
+operator|.
+name|getXMLReader
+argument_list|()
+decl_stmt|;
+name|SAXAdapter
+name|adapter
+init|=
+operator|new
+name|SAXAdapter
+argument_list|()
+decl_stmt|;
+name|reader
+operator|.
+name|setContentHandler
+argument_list|(
+name|adapter
+argument_list|)
+expr_stmt|;
+name|reader
 operator|.
 name|parse
 argument_list|(
 name|src
 argument_list|)
+expr_stmt|;
+name|Document
+name|doc
+init|=
+name|adapter
+operator|.
+name|getDocument
+argument_list|()
 decl_stmt|;
+comment|//			DocumentBuilderFactory factory =
+comment|//				DocumentBuilderFactory.newInstance();
+comment|//			factory.setNamespaceAware(true);
+comment|//
+comment|//			builder = factory.newDocumentBuilder();
+comment|//			builder.setErrorHandler(this);
+comment|//			InputSource src = new InputSource(is);
+comment|//			Document doc = builder.parse(src);
 name|Element
 name|root
 init|=

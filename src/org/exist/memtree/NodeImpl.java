@@ -33,6 +33,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeListImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -968,9 +980,10 @@ name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|NodeListImpl
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
