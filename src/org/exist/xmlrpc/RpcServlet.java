@@ -340,6 +340,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|XmlRpc
+operator|.
+name|setEncoding
+argument_list|(
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
