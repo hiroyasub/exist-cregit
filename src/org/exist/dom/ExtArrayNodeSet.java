@@ -1906,9 +1906,11 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|temp
 return|;
+block|}
 if|else if
 condition|(
 name|directParent

@@ -985,27 +985,8 @@ name|boolean
 name|rememberContext
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|al
-operator|instanceof
-name|VirtualNodeSet
-operator|)
-condition|)
-return|return
-name|quickSelectAncestorDescendant
-argument_list|(
-name|al
-argument_list|,
-name|mode
-argument_list|,
-name|includeSelf
-argument_list|,
-name|rememberContext
-argument_list|)
-return|;
+comment|//	    if(!(al instanceof VirtualNodeSet))
+comment|//	        return quickSelectAncestorDescendant(al, mode, includeSelf, rememberContext);
 name|NodeProxy
 name|n
 decl_stmt|,
@@ -1280,398 +1261,81 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Fast ancestor descendant join based on two iterators. This method is 	 * selected if the ancestor set is fixed, i.e. the selection step did not contain 	 * any wildcards. 	 *  	 * @param al 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
-specifier|private
-name|NodeSet
-name|quickSelectAncestorDescendant
-parameter_list|(
-name|NodeSet
-name|al
-parameter_list|,
-name|int
-name|mode
-parameter_list|,
-name|boolean
-name|includeSelf
-parameter_list|,
-name|boolean
-name|rememberContext
-parameter_list|)
-block|{
-specifier|final
-name|NodeSet
-name|result
-init|=
-operator|new
-name|ExtArrayNodeSet
-argument_list|()
-decl_stmt|;
-specifier|final
-name|Iterator
-name|ia
-init|=
-name|al
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-specifier|final
-name|Iterator
-name|ib
-init|=
-name|iterator
-argument_list|()
-decl_stmt|;
-comment|//		final long start = System.currentTimeMillis();
-name|NodeProxy
-name|na
-init|=
-operator|(
-name|NodeProxy
-operator|)
-name|ia
-operator|.
-name|next
-argument_list|()
-decl_stmt|,
-name|nb
-init|=
-operator|(
-name|NodeProxy
-operator|)
-name|ib
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-comment|// check if one of the node sets is empty
-if|if
-condition|(
-name|na
-operator|==
-literal|null
-operator|||
-name|nb
-operator|==
-literal|null
-condition|)
-return|return
-name|result
-return|;
-name|long
-name|pa
-decl_stmt|,
-name|pb
-decl_stmt|;
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-comment|// first, try to find nodes belonging to the same doc
-if|if
-condition|(
-name|na
-operator|.
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-operator|<
-name|nb
-operator|.
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|ia
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|na
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ia
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-else|else
-break|break;
-block|}
-if|else if
-condition|(
-name|na
-operator|.
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-operator|>
-name|nb
-operator|.
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|ib
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|nb
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ib
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-else|else
-break|break;
-block|}
-else|else
-block|{
-comment|// same document
-name|pa
-operator|=
-name|na
-operator|.
-name|gid
-expr_stmt|;
-name|pb
-operator|=
-name|nb
-operator|.
-name|gid
-expr_stmt|;
-name|int
-name|la
-init|=
-name|na
-operator|.
-name|doc
-operator|.
-name|getTreeLevel
-argument_list|(
-name|pa
-argument_list|)
-decl_stmt|;
-name|int
-name|lb
-init|=
-name|nb
-operator|.
-name|doc
-operator|.
-name|getTreeLevel
-argument_list|(
-name|pb
-argument_list|)
-decl_stmt|;
-name|boolean
-name|foundSelf
-init|=
-name|la
-operator|==
-name|lb
-decl_stmt|;
-while|while
-condition|(
-name|la
-operator|<
-name|lb
-condition|)
-block|{
-name|pb
-operator|=
-name|XMLUtil
-operator|.
-name|getParentId
-argument_list|(
-name|nb
-operator|.
-name|doc
-argument_list|,
-name|pb
-argument_list|,
-name|lb
-argument_list|)
-expr_stmt|;
-operator|--
-name|lb
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|pa
-operator|<
-name|pb
-condition|)
-block|{
-if|if
-condition|(
-name|ia
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|na
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ia
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-else|else
-break|break;
-block|}
-if|else if
-condition|(
-name|pa
-operator|>
-name|pb
-condition|)
-block|{
-if|if
-condition|(
-name|ib
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|nb
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ib
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-else|else
-break|break;
-block|}
-else|else
-block|{
-if|if
-condition|(
-operator|!
-name|foundSelf
-operator|||
-name|includeSelf
-condition|)
-block|{
-if|if
-condition|(
-name|mode
-operator|==
-name|NodeSet
-operator|.
-name|DESCENDANT
-condition|)
-block|{
-if|if
-condition|(
-name|rememberContext
-condition|)
-name|nb
-operator|.
-name|addContextNode
-argument_list|(
-name|na
-argument_list|)
-expr_stmt|;
-else|else
-name|nb
-operator|.
-name|copyContext
-argument_list|(
-name|na
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|add
-argument_list|(
-name|nb
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|rememberContext
-condition|)
-name|na
-operator|.
-name|addContextNode
-argument_list|(
-name|nb
-argument_list|)
-expr_stmt|;
-else|else
-name|na
-operator|.
-name|copyContext
-argument_list|(
-name|nb
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|add
-argument_list|(
-name|na
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|ib
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-name|nb
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ib
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-else|else
-break|break;
-block|}
-block|}
-block|}
-comment|//		LOG.debug("quickSelect took " + (System.currentTimeMillis() - start));
-return|return
-name|result
-return|;
-block|}
+comment|/** 	 * TODO: This method is rubbish. It can't work this way if descendants occur on  	 * different levels in the dom tree. 	 *  	 * Fast ancestor descendant join based on two iterators. This method is 	 * selected if the ancestor set is fixed, i.e. the selection step did not contain 	 * any wildcards. 	 *  	 * @param al 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
+comment|//	private NodeSet quickSelectAncestorDescendant(NodeSet al, int mode, boolean includeSelf, boolean rememberContext) {
+comment|//	    final NodeSet result = new ExtArrayNodeSet();
+comment|//		final Iterator ia = al.iterator();
+comment|//		final Iterator ib = iterator();
+comment|////		final long start = System.currentTimeMillis();
+comment|//		NodeProxy na = (NodeProxy) ia.next(), nb = (NodeProxy) ib.next();
+comment|//		// check if one of the node sets is empty
+comment|//		if(na == null || nb == null)
+comment|//		    return result;
+comment|//
+comment|//		long pa, pb;
+comment|//		while (true) {
+comment|//			// first, try to find nodes belonging to the same doc
+comment|//			if (na.doc.getDocId()< nb.doc.getDocId()) {
+comment|//				if (ia.hasNext())
+comment|//					na = (NodeProxy) ia.next();
+comment|//				else
+comment|//					break;
+comment|//			} else if (na.doc.getDocId()> nb.doc.getDocId()) {
+comment|//				if (ib.hasNext())
+comment|//					nb = (NodeProxy) ib.next();
+comment|//				else
+comment|//					break;
+comment|//			} else {
+comment|//			    // same document
+comment|//			    pa = na.gid;
+comment|//			    pb = nb.gid;
+comment|//			    int la = na.doc.getTreeLevel(pa);
+comment|//				int lb = nb.doc.getTreeLevel(pb);
+comment|//				boolean foundSelf = la == lb;
+comment|//				while (lb> la) {
+comment|//					pb = XMLUtil.getParentId(nb.doc, pb, lb--);
+comment|//					System.out.println(pb);
+comment|//				}
+comment|//				System.out.println("Comparing " + pa + " -> " + pb + " (" + nb.gid + ") " +
+comment|//						XMLUtil.getParentId(nb.doc, pb));
+comment|//				if (pa< pb) {
+comment|//					if (ia.hasNext())
+comment|//						na = (NodeProxy) ia.next();
+comment|//					else
+comment|//						break;
+comment|//				} else if (pa> pb) {
+comment|//					if (ib.hasNext())
+comment|//						nb = (NodeProxy) ib.next();
+comment|//					else if(ia.hasNext())
+comment|//						na = (NodeProxy) ia.next();
+comment|//					else
+comment|//						break;
+comment|//				} else {
+comment|//				    if(!foundSelf || includeSelf) {
+comment|//				        if(mode == NodeSet.DESCENDANT) {
+comment|//				            if (rememberContext)
+comment|//				                nb.addContextNode(na);
+comment|//				            else
+comment|//				                nb.copyContext(na);
+comment|//				            result.add(nb);
+comment|//				        } else {
+comment|//				            if (rememberContext)
+comment|//				                na.addContextNode(nb);
+comment|//				            else
+comment|//				                na.copyContext(nb);
+comment|//				            result.add(na);
+comment|//				        }
+comment|//				    }
+comment|//				    if (ib.hasNext())
+comment|//						nb = (NodeProxy) ib.next();
+comment|//					else
+comment|//						break;
+comment|//				}
+comment|//			}
+comment|//		}
+comment|////		LOG.debug("quickSelect took " + (System.currentTimeMillis() - start));
+comment|//		return result;
+comment|//	}
 specifier|private
 name|NodeSet
 name|quickSelectParentChild
