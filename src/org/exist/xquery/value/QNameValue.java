@@ -125,6 +125,14 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|qname
+operator|.
+name|needsNamespaceDecl
+argument_list|()
+condition|)
+block|{
 name|String
 name|prefix
 init|=
@@ -158,6 +166,7 @@ operator|+
 literal|" is not defined"
 argument_list|)
 throw|;
+block|}
 return|return
 name|qname
 operator|.

@@ -326,6 +326,14 @@ name|REFERENCE_NODE
 init|=
 literal|100
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|NAMESPACE_NODE
+init|=
+literal|101
+decl_stmt|;
 specifier|protected
 name|int
 name|nodeNumber

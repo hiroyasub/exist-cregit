@@ -176,7 +176,7 @@ specifier|static
 name|int
 name|NAMESPACE
 init|=
-literal|7
+literal|500
 decl_stmt|;
 specifier|public
 specifier|final
