@@ -148,7 +148,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|50000
+literal|500
 argument_list|,
 literal|7
 argument_list|,
