@@ -421,6 +421,9 @@ name|void
 name|testStarAxis
 parameter_list|()
 block|{
+name|ResourceSet
+name|result
+decl_stmt|;
 try|try
 block|{
 name|XPathQueryService
@@ -433,9 +436,8 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|ResourceSet
 name|result
-init|=
+operator|=
 name|service
 operator|.
 name|queryResource
@@ -444,14 +446,14 @@ literal|"numbers.xml"
 argument_list|,
 literal|"/*/item"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"testElements 1: ========"
+literal|"testStarAxis 1: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -479,7 +481,7 @@ name|queryResource
 argument_list|(
 literal|"numbers.xml"
 argument_list|,
-literal|"/*/*"
+literal|"/test/*"
 argument_list|)
 expr_stmt|;
 name|System
@@ -488,7 +490,70 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testElements  2: ========"
+literal|"testStarAxis  2: ========"
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: /test/*"
+argument_list|,
+literal|4
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+literal|"/test/descendant-or-self::*"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxis  3: ========"
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: /test/descendant-or-self::*"
+argument_list|,
+literal|12
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxis 4: ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -521,7 +586,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testElements(): XMLDBException: "
+literal|"testStarAxis(): XMLDBException: "
 operator|+
 name|e
 argument_list|)
