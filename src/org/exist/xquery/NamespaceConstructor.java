@@ -317,7 +317,7 @@ name|getDocument
 argument_list|()
 operator|)
 operator|.
-name|getNode
+name|getNamespaceNode
 argument_list|(
 name|nodeNr
 argument_list|)

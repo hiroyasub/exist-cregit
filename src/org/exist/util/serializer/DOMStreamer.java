@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * General purpose class to stream a DOM node to SAX.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -307,6 +307,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
+comment|/** 	 * Reset internal state for reuse. Registered handlers will be set 	 * to null. 	 * 	 */
 specifier|public
 name|void
 name|reset
@@ -336,6 +337,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/** 	 * Serialize the given node and all its descendants to SAX. 	 *  	 * @param node 	 * @throws SAXException 	 */
 specifier|public
 name|void
 name|serialize
@@ -354,6 +356,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Serialize the given node and all its descendants to SAX. If      * callDocumentEvents is set to false, startDocument/endDocument      * events will not be fired.      *       * @param node      * @param callDocumentEvents      * @throws SAXException      */
 specifier|public
 name|void
 name|serialize
@@ -655,6 +658,20 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"attr = "
+operator|+
+name|nextAttr
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|attrName
 operator|=
 name|nextAttr
@@ -721,6 +738,17 @@ literal|"xmlns:"
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found "
+operator|+
+name|attrName
+argument_list|)
+expr_stmt|;
 name|prefix
 operator|=
 name|attrName

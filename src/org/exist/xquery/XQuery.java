@@ -358,7 +358,18 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
-comment|//            LOG.debug("Generated AST: " + ast.toStringTree());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Generated AST: "
+operator|+
+name|ast
+operator|.
+name|toStringTree
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|PathExpr
 name|expr
 init|=
