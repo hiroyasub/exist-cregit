@@ -6977,6 +6977,9 @@ block|}
 name|flush
 argument_list|()
 expr_stmt|;
+name|closeDocument
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -7009,7 +7012,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"--------------------> Defragmenting document "
+literal|"============> Defragmenting document "
+operator|+
+name|doc
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|'/'
 operator|+
 name|doc
 operator|.
@@ -7028,7 +7041,19 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|// dropping old index
+specifier|final
+name|NodeImpl
+name|firstChild
+init|=
+operator|(
+name|NodeImpl
+operator|)
+name|doc
+operator|.
+name|getFirstChild
+argument_list|()
+decl_stmt|;
+comment|// dropping old structure index
 name|elementIndex
 operator|.
 name|dropIndex
@@ -7172,6 +7197,7 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+comment|// create a copy of the old doc to copy the nodes into it
 name|DocumentImpl
 name|tempDoc
 init|=
@@ -7208,6 +7234,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// copy the nodes
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -7297,6 +7324,7 @@ block|}
 name|flush
 argument_list|()
 expr_stmt|;
+comment|// remove the old nodes
 operator|new
 name|DOMTransaction
 argument_list|(
@@ -7310,22 +7338,21 @@ name|Object
 name|start
 parameter_list|()
 block|{
-name|NodeImpl
-name|node
-init|=
-operator|(
-name|NodeImpl
-operator|)
+name|domDb
+operator|.
+name|remove
+argument_list|(
 name|doc
 operator|.
-name|getFirstChild
+name|getAddress
 argument_list|()
-decl_stmt|;
+argument_list|)
+expr_stmt|;
 name|domDb
 operator|.
 name|removeAll
 argument_list|(
-name|node
+name|firstChild
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -7372,22 +7399,13 @@ name|getPageCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"New doc size: "
-operator|+
-name|doc
-operator|.
-name|getContentLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|storeDocument
 argument_list|(
 name|doc
 argument_list|)
+expr_stmt|;
+name|closeDocument
+argument_list|()
 expr_stmt|;
 name|saveCollection
 argument_list|(
@@ -8689,7 +8707,26 @@ name|p
 operator|.
 name|gid
 operator|+
-literal|" not found!"
+literal|" not found in document "
+operator|+
+name|p
+operator|.
+name|doc
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|'/'
+operator|+
+name|p
+operator|.
+name|doc
+operator|.
+name|getFileName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Thread

@@ -430,6 +430,14 @@ name|BINARY_FILE
 init|=
 literal|1
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|byte
+name|DOCUMENT_NODE_SIGNATURE
+init|=
+literal|0x0F
+decl_stmt|;
 specifier|private
 specifier|transient
 name|NodeIndexListener
@@ -3426,6 +3434,13 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|ostream
+operator|.
+name|writeByte
+argument_list|(
+name|DOCUMENT_NODE_SIGNATURE
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|children
@@ -3572,6 +3587,38 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|byte
+name|signature
+init|=
+name|istream
+operator|.
+name|readByte
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|signature
+operator|!=
+name|DOCUMENT_NODE_SIGNATURE
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not read document metadata for document "
+operator|+
+name|fileName
+operator|+
+literal|" ( "
+operator|+
+name|docId
+operator|+
+literal|"): not a metadata node."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|childList
 operator|=
 operator|new
@@ -3675,7 +3722,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"io error while reading document data"
+literal|"io error while reading document data for document "
+operator|+
+name|fileName
 argument_list|,
 name|e
 argument_list|)
