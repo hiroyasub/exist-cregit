@@ -8263,7 +8263,7 @@ name|createTempFile
 argument_list|(
 literal|"rpc"
 argument_list|,
-literal|"xml"
+literal|".xml"
 argument_list|)
 expr_stmt|;
 name|fileName
