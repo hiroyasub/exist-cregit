@@ -25,7 +25,6 @@ end_comment
 
 begin_class
 specifier|public
-specifier|final
 class|class
 name|OrderedLongLinkedList
 extends|extends
@@ -58,8 +57,7 @@ condition|)
 block|{
 name|first
 operator|=
-operator|new
-name|ListItem
+name|createListItem
 argument_list|(
 name|l
 argument_list|)
@@ -78,8 +76,7 @@ block|{
 name|ListItem
 name|newItem
 init|=
-operator|new
-name|ListItem
+name|createListItem
 argument_list|(
 name|l
 argument_list|)
