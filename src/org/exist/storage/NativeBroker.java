@@ -777,6 +777,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|NodeSelector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -2439,7 +2451,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Find elements by their tag name. This method is comparable to the DOM's 	 *  method call getElementsByTagName. All elements matching tagName and 	 *  belonging to one of the documents in the DocumentSet docs are returned. 	 * 	 *@param  docs     Description of the Parameter 	 *@param  tagName  Description of the Parameter 	 *@return          Description of the Return Value 	 */
+comment|/** 	 *  Find elements by their tag name. This method is comparable to the DOM's 	 *  method call getElementsByTagName. All elements matching tagName and 	 *  belonging to one of the documents in the DocumentSet docs are returned. 	 * 	 *@param  docs     Description of the Parameter 	 *@param  tagName  Description of the Parameter 	 *@return 	 */
 specifier|public
 name|NodeSet
 name|findElementsByTagName
@@ -2452,6 +2464,9 @@ name|docs
 parameter_list|,
 name|QName
 name|qname
+parameter_list|,
+name|NodeSelector
+name|selector
 parameter_list|)
 block|{
 comment|//		final long start = System.currentTimeMillis();
@@ -2485,14 +2500,12 @@ decl_stmt|;
 name|long
 name|gid
 decl_stmt|;
-comment|// , address;
 name|VariableByteInputStream
 name|is
 decl_stmt|;
 name|ElementValue
 name|ref
 decl_stmt|;
-comment|// byte[] data;
 name|InputStream
 name|dis
 init|=
@@ -2505,6 +2518,9 @@ name|nsSym
 decl_stmt|;
 name|Collection
 name|collection
+decl_stmt|;
+name|NodeProxy
+name|p
 decl_stmt|;
 specifier|final
 name|short
@@ -2821,10 +2837,8 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|result
-operator|.
-name|add
-argument_list|(
+name|p
+operator|=
 operator|new
 name|NodeProxy
 argument_list|(
@@ -2841,6 +2855,25 @@ argument_list|(
 name|is
 argument_list|)
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|selector
+operator|==
+literal|null
+operator|||
+name|selector
+operator|.
+name|match
+argument_list|(
+name|p
+argument_list|)
+condition|)
+name|result
+operator|.
+name|add
+argument_list|(
+name|p
 argument_list|,
 name|len
 argument_list|)
@@ -2872,11 +2905,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|result
-operator|.
-name|sort
-argument_list|()
-expr_stmt|;
+comment|//		result.sort();
 comment|//				LOG.debug(
 comment|//					"found "
 comment|//						+ qname
@@ -3067,6 +3096,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|qname
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 return|return

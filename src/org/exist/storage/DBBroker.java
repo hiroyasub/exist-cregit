@@ -303,6 +303,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeSelector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -855,6 +867,9 @@ name|docs
 parameter_list|,
 name|QName
 name|qname
+parameter_list|,
+name|NodeSelector
+name|selector
 parameter_list|)
 function_decl|;
 comment|/**  flush all data that has not been written before. */

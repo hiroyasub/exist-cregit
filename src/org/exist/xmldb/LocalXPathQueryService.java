@@ -859,6 +859,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1099,6 +1107,11 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+name|context
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1156,6 +1169,24 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"query took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|" ms."
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|result
@@ -1201,6 +1232,14 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|broker
 operator|=
 name|brokerPool
@@ -1495,12 +1534,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"compiled: "
+literal|"compilation took "
 operator|+
-name|expr
+operator|(
+name|System
 operator|.
-name|pprint
+name|currentTimeMillis
 argument_list|()
+operator|-
+name|start
+operator|)
 argument_list|)
 expr_stmt|;
 return|return

@@ -1331,6 +1331,9 @@ argument_list|,
 literal|false
 argument_list|,
 name|includeSelf
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 if|if
