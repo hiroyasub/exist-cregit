@@ -279,6 +279,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|XMLReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -468,6 +480,12 @@ name|needsSync
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+name|XMLReader
+name|userReader
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 * Create a collection with no parent (root collection). 	 *  	 * @param user 	 * @param brokerPool 	 * @param collection 	 * @throws XMLDBException 	 */
 specifier|public
 name|LocalCollection
@@ -627,6 +645,13 @@ argument_list|,
 literal|"collection not found"
 argument_list|)
 throw|;
+name|collection
+operator|.
+name|setReader
+argument_list|(
+name|userReader
+argument_list|)
+expr_stmt|;
 return|return
 name|collection
 return|;
@@ -2831,6 +2856,20 @@ block|{
 return|return
 literal|false
 return|;
+block|}
+comment|/** set user-defined Reader  	 * @param dataSource */
+specifier|public
+name|void
+name|setReader
+parameter_list|(
+name|XMLReader
+name|reader
+parameter_list|)
+block|{
+name|userReader
+operator|=
+name|reader
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -783,6 +783,13 @@ name|lock
 init|=
 literal|null
 decl_stmt|;
+comment|/** user-defined Reader */
+specifier|private
+name|XMLReader
+name|userReader
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
@@ -6339,6 +6346,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** set user-defined Reader */
+specifier|public
+name|void
+name|setReader
+parameter_list|(
+name|XMLReader
+name|reader
+parameter_list|)
+block|{
+name|userReader
+operator|=
+name|reader
+expr_stmt|;
+block|}
+comment|/** If user-defined Reader is set, return it; otherwise return JAXP default XMLReader  	 * configured by eXist. */
 specifier|private
 name|XMLReader
 name|getReader
@@ -6351,6 +6373,15 @@ name|EXistException
 throws|,
 name|SAXException
 block|{
+if|if
+condition|(
+name|userReader
+operator|!=
+literal|null
+condition|)
+return|return
+name|userReader
+return|;
 name|Configuration
 name|config
 init|=
