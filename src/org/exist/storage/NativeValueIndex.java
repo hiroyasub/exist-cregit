@@ -2324,18 +2324,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|pending
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" nodes to remove"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|pending
