@@ -1477,6 +1477,10 @@ condition|(
 name|supertype
 operator|==
 name|ITEM
+operator|||
+name|supertype
+operator|==
+name|ANY_TYPE
 condition|)
 return|return
 literal|true

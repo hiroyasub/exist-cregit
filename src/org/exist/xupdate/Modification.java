@@ -732,6 +732,14 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
+operator|(
+name|resultSeq
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+operator|||
 name|Type
 operator|.
 name|subTypeOf
@@ -745,6 +753,7 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
+operator|)
 condition|)
 throw|throw
 operator|new
