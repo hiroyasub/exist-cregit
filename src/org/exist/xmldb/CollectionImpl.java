@@ -62,6 +62,13 @@ name|CollectionImpl
 extends|extends
 name|Collection
 block|{
+specifier|public
+name|boolean
+name|isRemoteCollection
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	 * Returns the time of creation of the collection. 	 * @return 	 */
 name|Date
 name|getCreationTime

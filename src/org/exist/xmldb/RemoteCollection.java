@@ -3030,6 +3030,18 @@ return|return
 name|permissions
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#isRemoteCollection()      */
+specifier|public
+name|boolean
+name|isRemoteCollection
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_class
 

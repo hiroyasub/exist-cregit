@@ -2764,6 +2764,18 @@ name|o
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#isRemoteCollection()      */
+specifier|public
+name|boolean
+name|isRemoteCollection
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 
