@@ -1620,7 +1620,16 @@ operator|=
 operator|new
 name|NativeCollectionIndexer
 argument_list|(
+name|pool
+argument_list|,
 name|collectionsDb
+argument_list|)
+expr_stmt|;
+name|collectionIndexer
+operator|.
+name|setReadOnly
+argument_list|(
+name|readOnly
 argument_list|)
 expr_stmt|;
 if|if

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on Oct 1, 2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/*  * eXist Open Source Native XML Database   *   * This library is free software; you can redistribute it and/or modify it under  * the terms of the GNU Library General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This library is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more  * details.  *   * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -95,20 +95,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|dbxml
-operator|.
-name|core
-operator|.
-name|filer
-operator|.
-name|BTreeException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|collections
@@ -126,18 +112,6 @@ operator|.
 name|collections
 operator|.
 name|CollectionCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentImpl
 import|;
 end_import
 
@@ -280,40 +254,43 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author tjaeger  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * Class which encapsulates the CollectionStore functionallity  * with some goodies.  */
 end_comment
 
 begin_class
-specifier|public
+specifier|final
 class|class
 name|NativeCollectionIndexer
 block|{
-comment|/**      * TODO section follows (all must be initialized)      */
-specifier|protected
-name|CollectionStore
-name|collectionsDb
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|BrokerPool
-name|pool
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|boolean
-name|readOnly
-init|=
-literal|false
-decl_stmt|;
+comment|/**      * TODO section follows (must be initialized)      */
 specifier|protected
 name|User
 name|user
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Log4J logger      */
+comment|/**      * Is any of the databases read-only?      */
+specifier|private
+name|boolean
+name|readOnly
+init|=
+literal|false
+decl_stmt|;
+comment|/**      * The broker pool.      */
+specifier|private
+name|BrokerPool
+name|pool
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * The underlying native db.      */
+specifier|private
+name|CollectionStore
+name|collectionsDb
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * The Log4J logger.      */
 specifier|private
 specifier|static
 specifier|final
@@ -329,7 +306,47 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|// TODO
+comment|/**      * Create a new NativeCollectionIndexer. The CollectionStore      * must be initialized when calling this constructor.      *       * @param pool broker pool to use      * @param collectionsDb initialized collectionsDb      */
+specifier|public
+name|NativeCollectionIndexer
+parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
+name|CollectionStore
+name|collectionsDb
+parameter_list|)
+block|{
+name|this
+operator|.
+name|pool
+operator|=
+name|pool
+expr_stmt|;
+name|this
+operator|.
+name|collectionsDb
+operator|=
+name|collectionsDb
+expr_stmt|;
+block|}
+comment|/**      * Set read-only if any of the backend datastores      * are set read-only.      *       * @param readOnly true, if one backend db is read-only      */
+specifier|public
+name|void
+name|setReadOnly
+parameter_list|(
+name|boolean
+name|readOnly
+parameter_list|)
+block|{
+name|this
+operator|.
+name|readOnly
+operator|=
+name|readOnly
+expr_stmt|;
+block|}
+comment|//  TODO
 name|boolean
 name|removeCollection
 parameter_list|(
@@ -342,19 +359,6 @@ block|{
 return|return
 literal|false
 return|;
-block|}
-name|NativeCollectionIndexer
-parameter_list|(
-name|CollectionStore
-name|collectionsDb
-parameter_list|)
-block|{
-name|this
-operator|.
-name|collectionsDb
-operator|=
-name|collectionsDb
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -548,6 +552,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Release the collection id assigned to a collection so it can be      * reused later.      *       * @param id      * @throws PermissionDeniedException      */
+specifier|public
 name|void
 name|freeCollection
 parameter_list|(
@@ -744,6 +749,7 @@ expr_stmt|;
 block|}
 block|}
 comment|///////////////////// exported DB METHODS
+specifier|public
 name|void
 name|sync
 parameter_list|(
@@ -803,6 +809,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|public
 name|void
 name|printStatistics
 parameter_list|()
@@ -813,6 +820,7 @@ name|printStatistics
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
 name|boolean
 name|close
 parameter_list|()
@@ -826,6 +834,7 @@ name|close
 argument_list|()
 return|;
 block|}
+specifier|public
 name|void
 name|remove
 parameter_list|(
@@ -843,6 +852,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
 name|long
 name|append
 parameter_list|(
@@ -868,6 +878,7 @@ name|value
 argument_list|)
 return|;
 block|}
+specifier|public
 name|Lock
 name|getLock
 parameter_list|()
@@ -880,6 +891,7 @@ argument_list|()
 return|;
 block|}
 comment|///////////////////// DB METHODS
+specifier|public
 name|int
 name|getNextDocId
 parameter_list|(
@@ -1070,6 +1082,7 @@ return|return
 name|nextDocId
 return|;
 block|}
+specifier|public
 name|void
 name|saveCollection
 parameter_list|(
@@ -1312,6 +1325,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      *  get collection object If the collection does not yet exists, it is      *  created automatically.      *      *@param  name                           the collection's name      *@param  user                           Description of the Parameter      *@return                                The orCreateCollection value      *@exception  PermissionDeniedException  Description of the Exception      *@author=@author      */
+specifier|public
 name|Collection
 name|getOrCreateCollection
 parameter_list|(
@@ -1738,6 +1752,7 @@ block|}
 block|}
 block|}
 comment|/**      *  Get collection object. If the collection does not exist, null is      *  returned.      *      *@param  name  Description of the Parameter      *@return       The collection value      */
+specifier|public
 name|Collection
 name|openCollection
 parameter_list|(
@@ -2095,6 +2110,7 @@ name|collection
 return|;
 block|}
 block|}
+specifier|public
 name|void
 name|moveCollection
 parameter_list|(
@@ -3254,6 +3270,7 @@ name|freeDocId
 return|;
 block|}
 comment|/**      * Release the document id reserved for a document so it      * can be reused.      *       * @param id      * @throws PermissionDeniedException      */
+specifier|public
 name|void
 name|freeDocument
 parameter_list|(
