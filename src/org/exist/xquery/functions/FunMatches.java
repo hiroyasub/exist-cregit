@@ -1173,7 +1173,7 @@ if|if
 condition|(
 name|matcher
 operator|.
-name|matches
+name|contains
 argument_list|(
 name|string
 argument_list|,

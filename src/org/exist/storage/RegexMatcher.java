@@ -179,6 +179,15 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|regexp
@@ -245,7 +254,7 @@ block|{
 return|return
 name|matcher
 operator|.
-name|matches
+name|contains
 argument_list|(
 name|term
 argument_list|,
