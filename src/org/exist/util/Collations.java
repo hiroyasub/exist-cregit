@@ -107,6 +107,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility methods dealing with collations.  *   * @author wolf  */
 end_comment
@@ -165,6 +177,9 @@ specifier|static
 name|Collator
 name|getCollationFromURI
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|String
 name|uri
 parameter_list|)
@@ -222,29 +237,49 @@ operator|.
 name|getQuery
 argument_list|()
 decl_stmt|;
+name|String
+name|strength
+init|=
+literal|null
+decl_stmt|;
+comment|/* 			 * Check if the db broker is configured to be case insensitive. 			 * If yes, we assume "primary" strength unless the user specified 			 * something different. 			 */
+if|if
+condition|(
+operator|!
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|isCaseSensitive
+argument_list|()
+condition|)
+name|strength
+operator|=
+literal|"primary"
+expr_stmt|;
 if|if
 condition|(
 name|query
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|getCollationFromParams
 argument_list|(
 literal|null
 argument_list|,
-literal|null
+name|strength
 argument_list|,
 literal|null
 argument_list|)
 return|;
+block|}
+else|else
+block|{
 name|String
 name|lang
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|strength
 init|=
 literal|null
 decl_stmt|;
@@ -295,15 +330,6 @@ condition|(
 name|eq
 operator|>
 literal|0
-operator|&&
-name|eq
-operator|<
-name|param
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
 condition|)
 block|{
 name|String
@@ -387,6 +413,7 @@ argument_list|,
 name|decomposition
 argument_list|)
 return|;
+block|}
 block|}
 else|else
 comment|// unknown collation
@@ -1209,6 +1236,13 @@ argument_list|)
 expr_stmt|;
 if|else if
 condition|(
+name|strength
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|||
 literal|"identical"
 operator|.
 name|equals
@@ -1216,6 +1250,7 @@ argument_list|(
 name|strength
 argument_list|)
 condition|)
+comment|// the default setting
 name|collator
 operator|.
 name|setStrength
@@ -1279,6 +1314,13 @@ argument_list|)
 expr_stmt|;
 if|else if
 condition|(
+name|decomposition
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|||
 literal|"standard"
 operator|.
 name|equals
@@ -1286,6 +1328,7 @@ argument_list|(
 name|decomposition
 argument_list|)
 condition|)
+comment|// the default setting
 name|collator
 operator|.
 name|setDecomposition

@@ -539,6 +539,7 @@ name|Module
 operator|.
 name|BUILTIN_FUNCTION_NS
 decl_stmt|;
+comment|/** 	 * The default collation URI 	 */
 specifier|private
 name|String
 name|defaultCollation
@@ -547,6 +548,7 @@ name|Collations
 operator|.
 name|CODEPOINT
 decl_stmt|;
+comment|/** 	 * Default Collator. Will be null for the default unicode codepoint collation. 	 */
 specifier|private
 name|Collator
 name|defaultCollator
@@ -939,6 +941,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
+comment|/** 	 * Set the default collation to be used by all operators and functions on strings. 	 * Throws an exception if the collation is unknown or cannot be instantiated. 	 *  	 * @param uri 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|setDefaultCollation
@@ -987,6 +990,8 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
+name|this
+argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
@@ -1028,6 +1033,8 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
+name|this
+argument_list|,
 name|uri
 argument_list|)
 return|;
