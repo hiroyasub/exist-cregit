@@ -18845,6 +18845,13 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|qname
+operator|.
+name|setNamespaceURI
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|test
 operator|=
 operator|new

@@ -949,6 +949,23 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+name|boolean
+name|configureCollection
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|collection
+parameter_list|,
+name|String
+name|configuration
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 comment|/** 	 *  Execute XPath query and return a reference to the result set. The 	 *  returned reference may be used later to get a summary of results or 	 *  retrieve the actual hits. 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  encoding                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|int
 name|executeQuery
