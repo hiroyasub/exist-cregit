@@ -1113,6 +1113,12 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|coll
+operator|.
+name|properties
+operator|=
+name|outputProperties
+expr_stmt|;
 block|}
 name|res
 operator|=

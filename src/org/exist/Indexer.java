@@ -213,6 +213,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|NodePath
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -432,12 +444,13 @@ name|currentLine
 init|=
 literal|0
 decl_stmt|;
+comment|//	protected StringBuffer currentPath = new StringBuffer();
 specifier|protected
-name|StringBuffer
+name|NodePath
 name|currentPath
 init|=
 operator|new
-name|StringBuffer
+name|NodePath
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -704,10 +717,8 @@ literal|0
 expr_stmt|;
 name|currentPath
 operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
+name|reset
+argument_list|()
 expr_stmt|;
 name|stack
 operator|=
@@ -842,9 +853,6 @@ argument_list|(
 name|comment
 argument_list|,
 name|currentPath
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|document
@@ -938,9 +946,6 @@ argument_list|(
 name|text
 argument_list|,
 name|currentPath
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -969,9 +974,6 @@ argument_list|(
 name|comment
 argument_list|,
 name|currentPath
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1171,12 +1173,11 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+comment|//			currentPath = removeLastPathComponent(currentPath);
 name|currentPath
-operator|=
-name|removeLastPathComponent
-argument_list|(
-name|currentPath
-argument_list|)
+operator|.
+name|removeLastComponent
+argument_list|()
 expr_stmt|;
 comment|//			currentPath.delete(
 comment|//				currentPath.lastIndexOf("/"),
@@ -1271,9 +1272,6 @@ argument_list|(
 name|last
 argument_list|,
 name|currentPath
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2191,16 +2189,12 @@ argument_list|)
 expr_stmt|;
 name|currentPath
 operator|.
-name|append
-argument_list|(
-literal|'/'
-argument_list|)
-operator|.
-name|append
+name|addComponent
 argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+comment|//			currentPath.append('/').append(qname);
 if|if
 condition|(
 operator|!
@@ -2302,16 +2296,12 @@ argument_list|)
 expr_stmt|;
 name|currentPath
 operator|.
-name|append
-argument_list|(
-literal|'/'
-argument_list|)
-operator|.
-name|append
+name|addComponent
 argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+comment|//			currentPath.append('/').append(qname);
 if|if
 condition|(
 operator|!

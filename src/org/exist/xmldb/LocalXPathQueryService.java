@@ -956,18 +956,6 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"docs: "
-operator|+
-name|docs
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Map
 operator|.
 name|Entry

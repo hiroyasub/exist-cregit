@@ -1265,6 +1265,13 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
+name|DocumentSet
+name|ds
+init|=
+operator|new
+name|DocumentSet
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1276,13 +1283,6 @@ literal|0
 expr_stmt|;
 name|Part
 name|part
-decl_stmt|;
-name|DocumentSet
-name|ds
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
 decl_stmt|;
 name|DocumentImpl
 name|doc

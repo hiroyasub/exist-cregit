@@ -1353,17 +1353,7 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"module class "
-operator|+
-name|moduleClass
-operator|+
-literal|" not found. Skipping..."
-argument_list|)
-expr_stmt|;
+comment|//LOG.warn("module class " + moduleClass + " not found. Skipping...");
 block|}
 catch|catch
 parameter_list|(

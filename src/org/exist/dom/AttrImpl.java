@@ -394,6 +394,21 @@ argument_list|(
 name|id
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|name
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"no symbol for id "
+operator|+
+name|id
+argument_list|)
+throw|;
 name|short
 name|nsId
 init|=
@@ -688,6 +703,22 @@ index|[]
 name|serialize
 parameter_list|()
 block|{
+if|if
+condition|(
+name|nodeName
+operator|.
+name|getLocalName
+argument_list|()
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Local name is null"
+argument_list|)
+throw|;
 specifier|final
 name|short
 name|id

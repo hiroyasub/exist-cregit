@@ -81,7 +81,7 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|Category
+name|Logger
 import|;
 end_import
 
@@ -313,10 +313,6 @@ name|ReadOnlyException
 import|;
 end_import
 
-begin_comment
-comment|//import org.exist.util.StorageAddress;
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -326,12 +322,12 @@ name|ElementIndex
 block|{
 specifier|private
 specifier|static
-name|Category
+name|Logger
 name|LOG
 init|=
-name|Category
+name|Logger
 operator|.
-name|getInstance
+name|getLogger
 argument_list|(
 name|NativeElementIndex
 operator|.
@@ -340,14 +336,6 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|PARTITION_SIZE
-init|=
-literal|102400
 decl_stmt|;
 specifier|protected
 name|BFile
@@ -2200,7 +2188,6 @@ argument_list|(
 name|cid
 argument_list|)
 expr_stmt|;
-comment|//os.writeFixedLong(proxy.getInternalAddress());
 name|StorageAddress
 operator|.
 name|write

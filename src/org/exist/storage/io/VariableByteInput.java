@@ -141,6 +141,16 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+specifier|public
+name|void
+name|skipBytes
+parameter_list|(
+name|long
+name|count
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**      * Copy the next numeric value from the input to the      * specified output stream.      *       * @param os      * @throws IOException      */
 specifier|public
 name|void

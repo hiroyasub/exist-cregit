@@ -268,14 +268,6 @@ name|prevCollection
 init|=
 literal|null
 decl_stmt|;
-name|int
-name|len
-init|=
-name|children
-operator|.
-name|getLength
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int

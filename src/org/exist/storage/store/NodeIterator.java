@@ -557,6 +557,11 @@ name|gotoNextPosition
 argument_list|()
 condition|)
 block|{
+name|boolean
+name|skipped
+init|=
+literal|false
+decl_stmt|;
 do|do
 block|{
 name|DOMFile
@@ -694,8 +699,12 @@ name|offset
 operator|+=
 literal|8
 expr_stmt|;
-comment|//System.out.println("skipping link on p " + page + " -> " +
-comment|//		StorageAddress.pageFromPointer(link));
+comment|//						System.out.println("skipping link on p " + page + " -> " +
+comment|//								StorageAddress.pageFromPointer(link));
+name|skipped
+operator|=
+literal|true
+expr_stmt|;
 continue|continue;
 block|}
 comment|// read data length
@@ -743,6 +752,35 @@ operator|.
 name|OVERFLOW
 condition|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"unexpected overflow page at "
+operator|+
+name|p
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|"; tid = "
+operator|+
+name|ItemId
+operator|.
+name|getId
+argument_list|(
+name|lastTID
+argument_list|)
+operator|+
+literal|"; offset = "
+operator|+
+name|offset
+operator|+
+literal|"; skipped = "
+operator|+
+name|skipped
+argument_list|)
+expr_stmt|;
 name|l
 operator|=
 literal|8

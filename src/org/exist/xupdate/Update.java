@@ -538,6 +538,27 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|parent
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"parent node not found for "
+operator|+
+name|node
+operator|.
+name|getGID
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
 name|AttrImpl
 name|attr
 init|=

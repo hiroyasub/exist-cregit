@@ -366,7 +366,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the base class for all database backends. All other components rely  * on the methods defined here.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    20. Mai 2002  */
+comment|/**  * This is the base class for all database backends. All other components rely  * on the methods defined here.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -492,6 +492,12 @@ name|int
 name|referenceCount
 init|=
 literal|0
+decl_stmt|;
+specifier|protected
+name|int
+name|xupdateGrowthFactor
+init|=
+literal|1
 decl_stmt|;
 specifier|protected
 name|void
@@ -843,6 +849,25 @@ name|symbols
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|(
+name|xupdateGrowthFactor
+operator|=
+name|config
+operator|.
+name|getInteger
+argument_list|(
+literal|"xupdate.growth-factor"
+argument_list|)
+operator|)
+operator|<
+literal|0
+condition|)
+name|xupdateGrowthFactor
+operator|=
+literal|1
+expr_stmt|;
 name|this
 operator|.
 name|pool
@@ -1306,7 +1331,7 @@ parameter_list|(
 name|NodeImpl
 name|node
 parameter_list|,
-name|CharSequence
+name|NodePath
 name|currentPath
 parameter_list|)
 function_decl|;
@@ -1562,6 +1587,15 @@ block|{
 operator|--
 name|referenceCount
 expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getXUpdateGrowthFactor
+parameter_list|()
+block|{
+return|return
+name|xupdateGrowthFactor
+return|;
 block|}
 block|}
 end_class

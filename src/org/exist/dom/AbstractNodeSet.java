@@ -465,7 +465,6 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
-comment|//long start = System.currentTimeMillis();
 name|DocumentSet
 name|ds
 init|=
@@ -511,7 +510,6 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|//LOG.debug("getDocumentSet took " + (System.currentTimeMillis() - start));
 return|return
 name|ds
 return|;

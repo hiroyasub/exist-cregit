@@ -5446,6 +5446,8 @@ operator|.
 name|serialize
 argument_list|(
 name|node
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|document
@@ -5586,6 +5588,8 @@ operator|.
 name|serialize
 argument_list|(
 name|node
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 try|try
@@ -6530,12 +6534,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Failed to load collection configuration "
+operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 block|}

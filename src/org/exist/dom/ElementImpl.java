@@ -1387,6 +1387,13 @@ argument_list|,
 name|children
 operator|+
 name|size
+operator|+
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|getXUpdateGrowthFactor
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ownerDocument

@@ -2491,7 +2491,6 @@ argument_list|,
 name|tid
 argument_list|)
 expr_stmt|;
-comment|//            LOG.debug("Writing " + ItemId.getId(currentId) + " to " + nextSplitPage.getPageNum());
 comment|// set the relocated flag and save the item id
 name|ByteConversion
 operator|.
@@ -2966,6 +2965,72 @@ literal|8
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|nextSplitPage
+operator|.
+name|len
+operator|==
+literal|0
+condition|)
+block|{
+comment|// if nothing has been copied to the last split page,
+comment|// remove it
+name|dataCache
+operator|.
+name|remove
+argument_list|(
+name|nextSplitPage
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|nextSplitPage
+operator|==
+name|firstSplitPage
+condition|)
+name|firstSplitPage
+operator|=
+literal|null
+expr_stmt|;
+try|try
+block|{
+name|unlinkPages
+argument_list|(
+name|nextSplitPage
+operator|.
+name|page
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to remove empty split page: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+name|nextSplitPage
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
 name|nextSplitPage
 operator|.
 name|getPageHeader
@@ -3118,6 +3183,13 @@ name|nextPage
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|firstSplitPage
+operator|!=
+literal|null
+condition|)
 name|rec
 operator|.
 name|page
@@ -4105,6 +4177,11 @@ name|gid
 operator|+
 literal|" not found."
 argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
 expr_stmt|;
 throw|throw
 operator|new

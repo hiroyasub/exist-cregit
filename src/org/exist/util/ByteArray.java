@@ -68,6 +68,13 @@ name|len
 parameter_list|)
 function_decl|;
 name|void
+name|copyTo
+parameter_list|(
+name|ByteArray
+name|other
+parameter_list|)
+function_decl|;
+name|void
 name|append
 parameter_list|(
 name|byte

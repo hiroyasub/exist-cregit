@@ -604,7 +604,11 @@ operator|.
 name|getLength
 argument_list|()
 operator|+
-literal|" for select; retrieving nodes..."
+literal|" for select: "
+operator|+
+name|selectStmt
+operator|+
+literal|"; retrieving nodes..."
 argument_list|)
 expr_stmt|;
 name|ArrayList
