@@ -359,6 +359,25 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"parent = "
+operator|+
+name|parent
+operator|.
+name|getNodeType
+argument_list|()
+operator|+
+literal|"; "
+operator|+
+name|parent
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|EXistException
