@@ -754,6 +754,8 @@ parameter_list|,
 name|String
 name|value
 parameter_list|)
+throws|throws
+name|DOMException
 block|{
 if|if
 condition|(
@@ -806,6 +808,17 @@ expr_stmt|;
 return|return
 name|nextAttr
 operator|++
+return|;
+block|}
+specifier|public
+name|int
+name|getLastNode
+parameter_list|()
+block|{
+return|return
+name|size
+operator|-
+literal|1
 return|;
 block|}
 specifier|private

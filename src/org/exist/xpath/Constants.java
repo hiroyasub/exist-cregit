@@ -48,7 +48,7 @@ literal|"preceding-sibling"
 block|,
 literal|"self"
 block|,
-literal|"attribute"
+literal|"attribute-descendant"
 block|}
 decl_stmt|;
 specifier|public

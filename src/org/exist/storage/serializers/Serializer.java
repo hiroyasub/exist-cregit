@@ -123,18 +123,6 @@ name|xml
 operator|.
 name|transform
 operator|.
-name|TransformerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
 name|URIResolver
 import|;
 end_import
@@ -178,6 +166,20 @@ operator|.
 name|sax
 operator|.
 name|SAXTransformerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|sax
+operator|.
+name|TemplatesHandler
 import|;
 end_import
 
@@ -354,6 +356,20 @@ operator|.
 name|serializer
 operator|.
 name|SAXSerializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|SAXSerializerPool
 import|;
 end_import
 
@@ -542,7 +558,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  This is the base class for all serializers. Serializers are  *  used to serialize a document or document fragment back to XML.  *  A serializer may be obtained by calling DBBroker.getSerializer().  *  *  The class basically offers two overloaded methods: serialize()  *  and toSAX(). serialize() returns the XML as a string, while  *  toSAX() generates a stream of SAX events. The stream of SAX  *  events is passed to the ContentHandler set by setContentHandler().  *  serialize() internally calls toSAX() and uses a Xerces XML Writer  *  to consume the stream.  *  *  If the processXInclude property is set, XInclude elements in  *  the source document will be expanded.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. April 2002  */
+comment|/**  *  Serializer base class, used to serialize a document or document fragment back to XML.  *  A serializer may be obtained by calling DBBroker.getSerializer().  *  *  The class basically offers two overloaded methods: serialize()  *  and toSAX(). serialize() returns the XML as a string, while  *  toSAX() generates a stream of SAX events. The stream of SAX  *  events is passed to the ContentHandler set by setContentHandler().  *  serialize() internally calls toSAX().  *  *  If the processXInclude property is set, XInclude elements in  *  the source document will be expanded.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. April 2002  */
 end_comment
 
 begin_class
@@ -647,7 +663,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|TransformerFactory
+name|SAXTransformerFactory
 name|factory
 decl_stmt|;
 specifier|protected
@@ -661,6 +677,14 @@ name|boolean
 name|processXSL
 init|=
 literal|false
+decl_stmt|;
+specifier|protected
+name|Properties
+name|defaultProperties
+init|=
+operator|new
+name|Properties
+argument_list|()
 decl_stmt|;
 specifier|protected
 name|Properties
@@ -687,6 +711,12 @@ name|XIncludeFilter
 name|xinclude
 decl_stmt|;
 specifier|protected
+name|SAXSerializer
+name|xmlout
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
 name|ContentHandler
 name|contentHandler
 decl_stmt|;
@@ -708,7 +738,6 @@ name|user
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 *  Constructor for the Serializer object 	 * 	 *@param  broker  Description of the Parameter 	 *@param  pool    Description of the Parameter 	 */
 specifier|public
 name|Serializer
 parameter_list|(
@@ -727,7 +756,10 @@ name|broker
 expr_stmt|;
 name|factory
 operator|=
-name|TransformerFactory
+operator|(
+name|SAXTransformerFactory
+operator|)
+name|SAXTransformerFactory
 operator|.
 name|newInstance
 argument_list|()
@@ -790,7 +822,7 @@ name|option
 operator|!=
 literal|null
 condition|)
-name|outputProperties
+name|defaultProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -819,7 +851,7 @@ name|option
 operator|!=
 literal|null
 condition|)
-name|outputProperties
+name|defaultProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -924,7 +956,7 @@ name|option
 operator|=
 literal|"none"
 expr_stmt|;
-name|outputProperties
+name|defaultProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -1046,6 +1078,48 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|String
+name|getProperty
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|String
+name|defaultValue
+parameter_list|)
+block|{
+name|String
+name|value
+init|=
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|key
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+name|value
+operator|=
+name|defaultProperties
+operator|.
+name|getProperty
+argument_list|(
+name|key
+argument_list|,
+name|defaultValue
+argument_list|)
+expr_stmt|;
+return|return
+name|value
+return|;
+block|}
 specifier|protected
 name|int
 name|getHighlightingMode
@@ -1054,8 +1128,6 @@ block|{
 name|String
 name|option
 init|=
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -1137,8 +1209,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -1579,6 +1649,9 @@ argument_list|,
 name|queryTime
 argument_list|)
 expr_stmt|;
+name|releasePrettyPrinter
+argument_list|()
+expr_stmt|;
 return|return
 name|out
 operator|.
@@ -1656,6 +1729,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|releasePrettyPrinter
+argument_list|()
+expr_stmt|;
 return|return
 name|out
 operator|.
@@ -1703,6 +1779,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|releasePrettyPrinter
+argument_list|()
+expr_stmt|;
 return|return
 name|out
 operator|.
@@ -1749,6 +1828,9 @@ name|p
 argument_list|,
 literal|true
 argument_list|)
+expr_stmt|;
+name|releasePrettyPrinter
+argument_list|()
 expr_stmt|;
 return|return
 name|out
@@ -2214,8 +2296,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -2370,16 +2450,6 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
-comment|//		OutputFormat format = new OutputFormat("xml", encoding, false);
-comment|//		format.setOmitXMLDeclaration(!xmlDecl);
-comment|//		format.setOmitComments(false);
-comment|//		if (indent) {
-comment|//			format.setIndenting(true);
-comment|//			format.setPreserveSpace(false);
-comment|//			format.setLineWidth(60);
-comment|//		} else
-comment|//			format.setPreserveSpace(true);
-comment|//		XMLSerializer xmlout = new XMLSerializer(sout, format);
 name|outputProperties
 operator|.
 name|setProperty
@@ -2395,17 +2465,30 @@ else|:
 literal|"yes"
 argument_list|)
 expr_stmt|;
-name|SAXSerializer
 name|xmlout
-init|=
-operator|new
-name|SAXSerializer
+operator|=
+name|SAXSerializerPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|borrowSAXSerializer
+argument_list|()
+expr_stmt|;
+name|xmlout
+operator|.
+name|setWriter
 argument_list|(
 name|sout
-argument_list|,
+argument_list|)
+expr_stmt|;
+name|xmlout
+operator|.
+name|setOutputProperties
+argument_list|(
 name|outputProperties
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|setContentHandler
 argument_list|(
 name|xmlout
@@ -2419,6 +2502,32 @@ expr_stmt|;
 return|return
 name|sout
 return|;
+block|}
+specifier|protected
+name|void
+name|releasePrettyPrinter
+parameter_list|()
+block|{
+if|if
+condition|(
+name|xmlout
+operator|!=
+literal|null
+condition|)
+name|SAXSerializerPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|returnSAXSerializer
+argument_list|(
+name|xmlout
+argument_list|)
+expr_stmt|;
+name|xmlout
+operator|=
+literal|null
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -2507,10 +2616,9 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+comment|// read stylesheet from the database
 block|}
-else|else
-try|try
-block|{
+if|else
 comment|// if stylesheet is relative, add path to the
 comment|// current collection
 if|if
@@ -2546,6 +2654,12 @@ comment|// load stylesheet from eXist
 name|DocumentImpl
 name|xsl
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|xsl
+operator|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -2555,7 +2669,22 @@ name|getDocument
 argument_list|(
 name|stylesheet
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"permission denied to read stylesheet"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|xsl
@@ -2581,6 +2710,14 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"setting uri resolver"
+argument_list|)
+expr_stmt|;
 name|factory
 operator|.
 name|setURIResolver
@@ -2598,6 +2735,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// save handlers
 name|ContentHandler
 name|oldHandler
@@ -2609,30 +2747,51 @@ name|oldLexical
 init|=
 name|lexicalHandler
 decl_stmt|;
-name|SAXSource
-name|source
-init|=
-operator|new
-name|SAXSource
-argument_list|(
-name|this
-argument_list|,
-operator|new
-name|InputSource
-argument_list|(
-name|stylesheet
-argument_list|)
-argument_list|)
-decl_stmt|;
 comment|// compile stylesheet
-name|templates
-operator|=
+name|TemplatesHandler
+name|handler
+init|=
 name|factory
 operator|.
-name|newTemplates
+name|newTemplatesHandler
+argument_list|()
+decl_stmt|;
+name|contentHandler
+operator|=
+name|handler
+expr_stmt|;
+try|try
+block|{
+name|this
+operator|.
+name|toSAX
 argument_list|(
-name|source
+name|xsl
 argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"SAXException while creating template"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+name|templates
+operator|=
+name|handler
+operator|.
+name|getTemplates
+argument_list|()
 expr_stmt|;
 comment|// restore handlers
 name|contentHandler
@@ -2650,24 +2809,6 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"permission denied"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 name|LOG
 operator|.
 name|debug
@@ -2717,7 +2858,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|/**      	 * Set stylesheet parameter     	 **/
+comment|/**  	 * Set stylesheet parameter 	 **/
 specifier|public
 name|void
 name|setStylesheetParamameter
@@ -2729,6 +2870,12 @@ name|String
 name|valore1
 parameter_list|)
 block|{
+if|if
+condition|(
+name|xslHandler
+operator|!=
+literal|null
+condition|)
 name|xslHandler
 operator|.
 name|getTransformer
@@ -2779,8 +2926,6 @@ expr_stmt|;
 name|boolean
 name|processXInclude
 init|=
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -2960,8 +3105,6 @@ name|serializeToSAX
 argument_list|(
 name|doc
 argument_list|,
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
@@ -2994,8 +3137,6 @@ name|serializeToSAX
 argument_list|(
 name|n
 argument_list|,
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
@@ -3028,8 +3169,6 @@ name|serializeToSAX
 argument_list|(
 name|p
 argument_list|,
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
@@ -3241,6 +3380,15 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"resolving stylesheet ref "
+operator|+
+name|href
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|href
@@ -3293,15 +3441,6 @@ literal|'/'
 operator|+
 name|href
 operator|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"resolving stylesheet ref "
-operator|+
-name|href
-argument_list|)
 expr_stmt|;
 name|Serializer
 name|serializer

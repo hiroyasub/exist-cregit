@@ -69,9 +69,9 @@ operator|new
 name|DOMStreamerObjectFactory
 argument_list|()
 argument_list|,
-literal|15
+literal|10
 argument_list|,
-literal|5
+literal|2
 argument_list|)
 decl_stmt|;
 specifier|public

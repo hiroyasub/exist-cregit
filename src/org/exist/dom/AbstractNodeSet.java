@@ -155,7 +155,7 @@ name|AbstractSequence
 implements|implements
 name|NodeSet
 block|{
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|Logger

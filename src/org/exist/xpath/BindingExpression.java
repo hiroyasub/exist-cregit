@@ -364,6 +364,31 @@ operator|=
 name|specs
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#eval(org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+specifier|public
+name|Sequence
+name|eval
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
 specifier|public
 specifier|abstract
@@ -375,6 +400,9 @@ name|contextSequence
 parameter_list|,
 name|Item
 name|contextItem
+parameter_list|,
+name|Sequence
+name|resultSequence
 parameter_list|)
 throws|throws
 name|XPathException

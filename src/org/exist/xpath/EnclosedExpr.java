@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xpath.AttributeConstructor}.  *    * @author Wolfgang Meier<wolfgang@exist-db.org>  *   * TODO: if the enclosed expression evaluates to an attribute node,   * it should be added to the outer element.  */
+comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xpath.AttributeConstructor}.  *    * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -332,7 +332,7 @@ expr_stmt|;
 block|}
 name|next
 operator|.
-name|toSAX
+name|copyTo
 argument_list|(
 name|context
 operator|.

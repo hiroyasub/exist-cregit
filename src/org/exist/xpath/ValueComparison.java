@@ -202,12 +202,6 @@ specifier|protected
 name|BooleanValue
 name|genericCompare
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -295,8 +289,6 @@ name|BooleanValue
 argument_list|(
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|rv
@@ -319,9 +311,6 @@ name|nodeSetCompare
 parameter_list|(
 name|NodeSet
 name|nodes
-parameter_list|,
-name|DocumentSet
-name|docs
 parameter_list|,
 name|Sequence
 name|contextSequence
@@ -438,8 +427,6 @@ if|if
 condition|(
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|rs

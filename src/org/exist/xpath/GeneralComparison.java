@@ -517,6 +517,7 @@ name|CONTEXT_SET
 return|;
 block|}
 else|else
+block|{
 return|return
 name|Dependency
 operator|.
@@ -526,6 +527,7 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xpath.StaticContext) 	 */
 specifier|public
@@ -562,15 +564,6 @@ condition|(
 name|inPredicate
 condition|)
 block|{
-name|int
-name|rightDeps
-init|=
-name|getRight
-argument_list|()
-operator|.
-name|getDependencies
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 operator|(
@@ -588,7 +581,11 @@ block|{
 if|if
 condition|(
 operator|(
-name|rightDeps
+name|getRight
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
 operator|&
 name|Dependency
 operator|.
@@ -667,8 +664,6 @@ comment|// Fall back to the generic compare process
 return|return
 name|genericCompare
 argument_list|(
-name|context
-argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
@@ -679,9 +674,6 @@ specifier|protected
 name|BooleanValue
 name|genericCompare
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
@@ -769,8 +761,6 @@ name|BooleanValue
 argument_list|(
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|rv
@@ -818,8 +808,6 @@ literal|1
 operator|&&
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|rs
@@ -871,8 +859,6 @@ if|if
 condition|(
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|rv
@@ -1042,8 +1028,6 @@ if|if
 condition|(
 name|compareValues
 argument_list|(
-name|context
-argument_list|,
 name|lv
 argument_list|,
 name|si
@@ -1352,9 +1336,7 @@ name|cmpCopy
 expr_stmt|;
 block|}
 comment|// now compare the input node set to the search expression
-name|NodeSet
-name|r
-init|=
+return|return
 name|context
 operator|.
 name|getBroker
@@ -1370,9 +1352,6 @@ name|relation
 argument_list|,
 name|cmp
 argument_list|)
-decl_stmt|;
-return|return
-name|r
 return|;
 block|}
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
@@ -1380,9 +1359,6 @@ specifier|protected
 name|boolean
 name|compareValues
 parameter_list|(
-name|StaticContext
-name|context
-parameter_list|,
 name|AtomicValue
 name|lv
 parameter_list|,

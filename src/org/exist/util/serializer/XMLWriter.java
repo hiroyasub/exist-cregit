@@ -119,6 +119,8 @@ block|{
 specifier|protected
 name|Writer
 name|writer
+init|=
+literal|null
 decl_stmt|;
 specifier|protected
 name|CharacterSet
@@ -167,6 +169,11 @@ index|[
 literal|10
 index|]
 decl_stmt|;
+specifier|public
+name|XMLWriter
+parameter_list|()
+block|{
+block|}
 specifier|public
 name|XMLWriter
 parameter_list|(
@@ -1126,7 +1133,8 @@ throw|;
 block|}
 block|}
 block|}
-specifier|protected
+specifier|private
+specifier|final
 name|void
 name|writeChars
 parameter_list|(

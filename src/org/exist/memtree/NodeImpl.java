@@ -1375,6 +1375,27 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|void
+name|copyTo
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Receiver
+name|receiver
+parameter_list|)
+throws|throws
+name|SAXException
+block|{
+name|toSAX
+argument_list|(
+name|broker
+argument_list|,
+name|receiver
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

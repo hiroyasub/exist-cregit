@@ -151,6 +151,10 @@ literal|"org.exist.xpath.functions.FunCurrentTime"
 block|,
 literal|"org.exist.xpath.functions.FunGetSecondsFromDayTimeDuration"
 block|,
+literal|"org.exist.xpath.functions.FunGetMonthFromDate"
+block|,
+literal|"org.exist.xpath.functions.FunGetYearFromDate"
+block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBCollection"
 block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBStore"

@@ -314,6 +314,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+comment|//			System.out.println("found " + seq[i].getLength() + " for " + getArgument(i).pprint());
 block|}
 name|functionDef
 operator|.

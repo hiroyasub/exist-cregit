@@ -809,7 +809,9 @@ name|Type
 operator|.
 name|NODE
 return|;
-return|return
+name|int
+name|rtype
+init|=
 operator|(
 operator|(
 name|Expression
@@ -822,6 +824,9 @@ operator|)
 operator|.
 name|returnsType
 argument_list|()
+decl_stmt|;
+return|return
+name|rtype
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */

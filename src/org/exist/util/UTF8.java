@@ -95,9 +95,7 @@ init|=
 operator|new
 name|XMLString
 argument_list|(
-name|code
-operator|.
-name|length
+name|many
 argument_list|)
 decl_stmt|;
 name|char

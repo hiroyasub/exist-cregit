@@ -188,15 +188,13 @@ name|contextSequence
 parameter_list|,
 name|Item
 name|contextItem
+parameter_list|,
+name|Sequence
+name|resultSequence
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Sequence
-name|result
-init|=
-literal|null
-decl_stmt|;
 name|context
 operator|.
 name|pushLocalContext
@@ -356,26 +354,21 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"where found "
-operator|+
-name|in
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
+if|if
+condition|(
+name|resultSequence
+operator|==
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|orderSpecs
 operator|!=
 literal|null
 condition|)
-name|result
+name|resultSequence
 operator|=
 operator|new
 name|OrderedValueSequence
@@ -389,12 +382,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
-name|result
+name|resultSequence
 operator|=
 operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|val
 init|=
@@ -543,9 +537,10 @@ name|bool
 init|=
 name|applyWhereExpression
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|)
 decl_stmt|;
+comment|// if where returned false, continue
 if|if
 condition|(
 operator|!
@@ -564,24 +559,42 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-comment|// if there is no "order by" clause, immediately call
-comment|// the return clause
+comment|/* if the returnExpr is another BindingExpression, call it 			 * with the result sequence. 			 */
 if|if
 condition|(
-name|orderSpecs
-operator|==
-literal|null
+name|returnExpr
+operator|instanceof
+name|BindingExpression
 condition|)
+operator|(
+operator|(
+name|BindingExpression
+operator|)
+name|returnExpr
+operator|)
+operator|.
+name|eval
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+name|resultSequence
+argument_list|)
+expr_stmt|;
+comment|// otherwise call the return expression and add results to resultSequence
+else|else
+block|{
 name|val
 operator|=
 name|returnExpr
 operator|.
 name|eval
 argument_list|(
-name|val
+literal|null
 argument_list|)
 expr_stmt|;
-name|result
+name|resultSequence
 operator|.
 name|addAll
 argument_list|(
@@ -589,112 +602,47 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|//		if(orderSpecs != null) {
+comment|//			// sort the result and call return for every item
+comment|//			((OrderedValueSequence)result).sort();
+comment|//			Sequence orderedResult = new ValueSequence();
+comment|//			LOG.debug("ordered: " + result.getLength());
+comment|//			p = 1;
+comment|//			for(SequenceIterator i = result.iterate(); i.hasNext(); p++) {
+comment|//				contextItem = i.nextItem();
+comment|//				contextSequence = contextItem.toSequence();
+comment|//				// set variable value to current item
+comment|//				var.setValue(contextSequence);
+comment|//				context.setContextPosition(p);
+comment|//				val = returnExpr.eval(contextSequence);
+comment|//				orderedResult.addAll(val);
+comment|//			}
+comment|//			result = orderedResult;
+comment|//		}
 if|if
 condition|(
 name|orderSpecs
 operator|!=
 literal|null
 condition|)
-block|{
-comment|// sort the result and call return for every item
 operator|(
 operator|(
 name|OrderedValueSequence
 operator|)
-name|result
+name|resultSequence
 operator|)
 operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-name|Sequence
-name|orderedResult
-init|=
-operator|new
-name|ValueSequence
-argument_list|()
-decl_stmt|;
-name|p
-operator|=
-literal|1
-expr_stmt|;
-for|for
-control|(
-name|SequenceIterator
-name|i
-init|=
-name|result
-operator|.
-name|iterate
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|p
-operator|++
-control|)
-block|{
-name|contextItem
-operator|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-expr_stmt|;
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
-comment|// set variable value to current item
-name|var
-operator|.
-name|setValue
-argument_list|(
-name|contextSequence
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-name|val
-operator|=
-name|returnExpr
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
-expr_stmt|;
-name|orderedResult
-operator|.
-name|addAll
-argument_list|(
-name|val
-argument_list|)
-expr_stmt|;
-block|}
-name|result
-operator|=
-name|orderedResult
-expr_stmt|;
-block|}
 name|context
 operator|.
 name|popLocalContext
 argument_list|()
 expr_stmt|;
 return|return
-name|result
+name|resultSequence
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
@@ -714,7 +662,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"for "
+literal|"(for "
 argument_list|)
 expr_stmt|;
 name|buf
@@ -848,6 +796,13 @@ name|returnExpr
 operator|.
 name|pprint
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|')'
 argument_list|)
 expr_stmt|;
 return|return

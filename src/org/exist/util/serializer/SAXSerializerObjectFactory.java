@@ -36,12 +36,12 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|DOMStreamerObjectFactory
+name|SAXSerializerObjectFactory
 extends|extends
 name|BasePoolableObjectFactory
 block|{
 specifier|public
-name|DOMStreamerObjectFactory
+name|SAXSerializerObjectFactory
 parameter_list|()
 block|{
 name|super
@@ -58,7 +58,7 @@ name|Exception
 block|{
 return|return
 operator|new
-name|DOMStreamer
+name|SAXSerializer
 argument_list|()
 return|;
 block|}
@@ -75,7 +75,7 @@ name|Exception
 block|{
 operator|(
 operator|(
-name|DOMStreamer
+name|SAXSerializer
 operator|)
 name|obj
 operator|)

@@ -115,6 +115,15 @@ specifier|public
 name|XMLString
 parameter_list|()
 block|{
+name|value_
+operator|=
+name|CharArrayPool
+operator|.
+name|getCharArray
+argument_list|(
+name|DEFAULT_CAPACITY
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|XMLString
@@ -123,6 +132,15 @@ name|int
 name|capacity
 parameter_list|)
 block|{
+name|value_
+operator|=
+name|CharArrayPool
+operator|.
+name|getCharArray
+argument_list|(
+name|capacity
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|XMLString
@@ -211,6 +229,7 @@ name|length
 expr_stmt|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|append
 parameter_list|(
@@ -231,6 +250,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|append
 parameter_list|(
@@ -255,6 +275,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|append
 parameter_list|(
@@ -300,6 +321,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|append
 parameter_list|(
@@ -307,6 +329,16 @@ name|char
 name|ch
 parameter_list|)
 block|{
+if|if
+condition|(
+name|value_
+operator|.
+name|length
+operator|<
+name|length_
+operator|+
+literal|2
+condition|)
 name|ensureCapacity
 argument_list|(
 name|length_
@@ -317,18 +349,17 @@ expr_stmt|;
 name|value_
 index|[
 name|length_
+operator|++
 index|]
 operator|=
 name|ch
-expr_stmt|;
-operator|++
-name|length_
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|void
 name|setData
 parameter_list|(
@@ -362,6 +393,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|normalize
 parameter_list|(
@@ -458,6 +490,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|String
 name|toString
 parameter_list|()
@@ -484,6 +517,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
+specifier|final
 name|int
 name|length
 parameter_list|()
@@ -493,6 +527,7 @@ name|length_
 return|;
 block|}
 specifier|public
+specifier|final
 name|String
 name|substring
 parameter_list|(
@@ -543,6 +578,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|delete
 parameter_list|(
@@ -593,6 +629,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|insert
 parameter_list|(
@@ -668,6 +705,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|replace
 parameter_list|(
@@ -731,6 +769,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|char
 name|charAt
 parameter_list|(
@@ -738,24 +777,6 @@ name|int
 name|pos
 parameter_list|)
 block|{
-if|if
-condition|(
-name|pos
-operator|>=
-name|length_
-condition|)
-throw|throw
-operator|new
-name|StringIndexOutOfBoundsException
-argument_list|(
-name|String
-operator|.
-name|valueOf
-argument_list|(
-name|pos
-argument_list|)
-argument_list|)
-throw|;
 return|return
 name|value_
 index|[
@@ -766,6 +787,7 @@ index|]
 return|;
 block|}
 specifier|public
+specifier|final
 name|void
 name|reset
 parameter_list|()
@@ -791,6 +813,7 @@ literal|0
 expr_stmt|;
 block|}
 specifier|private
+specifier|final
 name|void
 name|ensureCapacity
 parameter_list|(
@@ -845,6 +868,21 @@ condition|)
 name|newCapacity
 operator|=
 name|capacity
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"growing "
+operator|+
+name|length_
+operator|+
+literal|" to "
+operator|+
+name|capacity
+argument_list|)
 expr_stmt|;
 name|char
 index|[]
@@ -947,6 +985,7 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.lang.CharSequence#subSequence(int, int) 	 */
 specifier|public
+specifier|final
 name|CharSequence
 name|subSequence
 parameter_list|(
@@ -974,6 +1013,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
+specifier|final
 name|XMLString
 name|transformToLower
 parameter_list|()
@@ -1022,6 +1062,7 @@ name|this
 return|;
 block|}
 specifier|public
+specifier|final
 name|int
 name|UTF8Size
 parameter_list|()
@@ -1040,6 +1081,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
+specifier|final
 name|byte
 index|[]
 name|UTF8Encode
@@ -1070,6 +1112,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
+specifier|final
 name|void
 name|toSAX
 parameter_list|(
@@ -1093,6 +1136,7 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
 specifier|public
+specifier|final
 name|int
 name|compareTo
 parameter_list|(

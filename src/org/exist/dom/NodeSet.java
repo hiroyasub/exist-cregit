@@ -538,6 +538,15 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
+comment|/** 	 * Return a new node set containing all nodes from this node set 	 * except those nodes which are also contained in the argument node set. 	 *  	 * @param other 	 * @return 	 */
+specifier|public
+name|NodeSet
+name|except
+parameter_list|(
+name|NodeSet
+name|other
+parameter_list|)
+function_decl|;
 comment|/** 	 * Return a new node set containing all the context nodes associated 	 * with the nodes in this set. 	 *  	 * @param contextNodes 	 * @param rememberContext 	 * @return 	 */
 specifier|public
 name|NodeSet

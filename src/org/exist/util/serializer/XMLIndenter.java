@@ -43,6 +43,18 @@ name|xml
 operator|.
 name|transform
 operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
 name|TransformerException
 import|;
 end_import
@@ -68,6 +80,12 @@ name|XMLIndenter
 extends|extends
 name|XMLWriter
 block|{
+specifier|private
+name|boolean
+name|indent
+init|=
+literal|false
+decl_stmt|;
 specifier|private
 name|int
 name|indentAmount
@@ -98,6 +116,14 @@ name|sameline
 init|=
 literal|false
 decl_stmt|;
+specifier|public
+name|XMLIndenter
+parameter_list|()
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** 	 * @param writer 	 */
 specifier|public
 name|XMLIndenter
@@ -207,61 +233,14 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-while|while
-condition|(
-name|length
-operator|>
-literal|0
-operator|&&
-name|isWhiteSpace
-argument_list|(
-name|chars
-operator|.
-name|charAt
-argument_list|(
-name|start
-argument_list|)
-argument_list|)
-condition|)
-block|{
-operator|--
-name|length
-expr_stmt|;
-if|if
-condition|(
-name|length
-operator|>
-literal|0
-condition|)
-operator|++
-name|start
-expr_stmt|;
-block|}
-while|while
-condition|(
-name|length
-operator|>
-literal|0
-operator|&&
-name|isWhiteSpace
-argument_list|(
-name|chars
-operator|.
-name|charAt
-argument_list|(
-name|start
-operator|+
-name|length
-operator|-
-literal|1
-argument_list|)
-argument_list|)
-condition|)
-block|{
-operator|--
-name|length
-expr_stmt|;
-block|}
+comment|//		while (length> 0&& isWhiteSpace(chars.charAt(start))) {
+comment|//			--length;
+comment|//			if(length> 0)
+comment|//				++start;
+comment|//		}
+comment|//		while (length> 0&& isWhiteSpace(chars.charAt(start + length - 1))) {
+comment|//			--length;
+comment|//		}
 if|if
 condition|(
 name|length
@@ -409,7 +388,7 @@ name|outputProperties
 argument_list|)
 expr_stmt|;
 name|String
-name|indentOpt
+name|option
 init|=
 name|outputProperties
 operator|.
@@ -430,7 +409,7 @@ name|Integer
 operator|.
 name|parseInt
 argument_list|(
-name|indentOpt
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -441,6 +420,24 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|indent
+operator|=
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|protected
 name|void
@@ -449,6 +446,12 @@ parameter_list|()
 throws|throws
 name|TransformerException
 block|{
+if|if
+condition|(
+operator|!
+name|indent
+condition|)
+return|return;
 name|int
 name|spaces
 init|=

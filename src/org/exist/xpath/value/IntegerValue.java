@@ -157,27 +157,9 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
-try|try
-block|{
-name|value
-operator|=
-operator|(
-name|long
-operator|)
-name|Double
-operator|.
-name|parseDouble
-argument_list|(
-name|stringValue
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e1
-parameter_list|)
-block|{
+comment|//			try {
+comment|//				value = (long) Double.parseDouble(stringValue);
+comment|//			} catch (NumberFormatException e1) {
 throw|throw
 operator|new
 name|XPathException
@@ -186,10 +168,15 @@ literal|"failed to convert '"
 operator|+
 name|stringValue
 operator|+
-literal|"' to an integer"
+literal|"' to an integer: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
-block|}
+comment|//			}
 block|}
 block|}
 specifier|public
@@ -228,27 +215,9 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
-try|try
-block|{
-name|value
-operator|=
-operator|(
-name|long
-operator|)
-name|Double
-operator|.
-name|parseDouble
-argument_list|(
-name|stringValue
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e1
-parameter_list|)
-block|{
+comment|//			try {
+comment|//				value = (long) Double.parseDouble(stringValue);
+comment|//			} catch (NumberFormatException e1) {
 throw|throw
 operator|new
 name|XPathException
@@ -257,10 +226,15 @@ literal|"failed to convert '"
 operator|+
 name|stringValue
 operator|+
-literal|"' to an integer"
+literal|"' to an integer: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
-block|}
+comment|//			}
 block|}
 name|checkType
 argument_list|(
@@ -866,6 +840,8 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|,
+name|type
 argument_list|)
 return|;
 else|else
@@ -930,6 +906,8 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|,
+name|type
 argument_list|)
 return|;
 else|else
@@ -994,6 +972,8 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|,
+name|type
 argument_list|)
 return|;
 else|else
@@ -1062,11 +1042,13 @@ argument_list|)
 throw|;
 return|return
 operator|new
-name|DoubleValue
+name|IntegerValue
 argument_list|(
 name|value
 operator|/
 name|ov
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1145,11 +1127,13 @@ argument_list|)
 throw|;
 return|return
 operator|new
-name|DoubleValue
+name|IntegerValue
 argument_list|(
 name|value
 operator|/
 name|ov
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1228,11 +1212,13 @@ argument_list|)
 throw|;
 return|return
 operator|new
-name|DoubleValue
+name|IntegerValue
 argument_list|(
 name|value
 operator|%
 name|ov
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1269,8 +1255,12 @@ return|return
 operator|new
 name|IntegerValue
 argument_list|(
+operator|(
 operator|-
 name|value
+operator|)
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1292,6 +1282,8 @@ name|abs
 argument_list|(
 name|value
 argument_list|)
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1368,6 +1360,8 @@ operator|)
 operator|.
 name|value
 argument_list|)
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -1443,6 +1437,8 @@ operator|)
 operator|.
 name|value
 argument_list|)
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
