@@ -105,6 +105,15 @@ name|nodeType
 expr_stmt|;
 block|}
 specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|nodeType
+return|;
+block|}
+specifier|public
 name|QName
 name|getName
 parameter_list|()

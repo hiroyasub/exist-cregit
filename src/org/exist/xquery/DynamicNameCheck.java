@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -12,20 +12,6 @@ operator|.
 name|xquery
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|parser
-operator|.
-name|XQueryAST
-import|;
-end_import
 
 begin_import
 import|import
@@ -52,6 +38,20 @@ operator|.
 name|value
 operator|.
 name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|NodeValue
 import|;
 end_import
 
@@ -97,36 +97,48 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
 begin_comment
-comment|/**  * Check a function parameter type at runtime.  *    * @author wolf  */
+comment|/**  * Check element or attribute name to match sequence type.  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|DynamicTypeCheck
+name|DynamicNameCheck
 extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+name|NameTest
+name|test
+decl_stmt|;
+specifier|private
 name|Expression
 name|expression
 decl_stmt|;
-specifier|private
-name|int
-name|requiredType
-decl_stmt|;
 specifier|public
-name|DynamicTypeCheck
+name|DynamicNameCheck
 parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|,
-name|int
-name|requiredType
+name|NameTest
+name|test
 parameter_list|,
 name|Expression
-name|expr
+name|expression
 parameter_list|)
 block|{
 name|super
@@ -136,42 +148,18 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|requiredType
+name|test
 operator|=
-name|requiredType
+name|test
 expr_stmt|;
 name|this
 operator|.
 name|expression
 operator|=
-name|expr
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
-specifier|public
-name|void
-name|analyze
-parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
 name|expression
-operator|.
-name|analyze
-argument_list|(
-name|this
-argument_list|,
-name|flags
-argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -236,7 +224,10 @@ operator|.
 name|getType
 argument_list|()
 argument_list|,
-name|requiredType
+name|test
+operator|.
+name|getType
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -257,7 +248,10 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|requiredType
+name|test
+operator|.
+name|getType
+argument_list|()
 argument_list|)
 operator|+
 literal|"; got: "
@@ -281,12 +275,109 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|Node
+name|node
+init|=
+operator|(
+operator|(
+name|NodeValue
+operator|)
+name|item
+operator|)
+operator|.
+name|getNode
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|test
+operator|.
+name|matchesName
+argument_list|(
+name|node
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|expression
+operator|.
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Type error in expression: "
+operator|+
+literal|"required node name is "
+operator|+
+name|test
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"; got: "
+operator|+
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 return|return
 name|seq
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+specifier|public
+name|int
+name|returnsType
+parameter_list|()
+block|{
+return|return
+name|test
+operator|.
+name|nodeType
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|expression
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int) 	 */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|expression
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper) 	 */
 specifier|public
 name|void
 name|dump
@@ -313,7 +404,9 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|requiredType
+name|test
+operator|.
+name|nodeType
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -348,54 +441,6 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
-specifier|public
-name|int
-name|returnsType
-parameter_list|()
-block|{
-return|return
-name|requiredType
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|expression
-operator|.
-name|getDependencies
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
-specifier|public
-name|void
-name|resetState
-parameter_list|()
-block|{
-name|expression
-operator|.
-name|resetState
-argument_list|()
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getASTNode() 	 */
-specifier|public
-name|XQueryAST
-name|getASTNode
-parameter_list|()
-block|{
-return|return
-name|expression
-operator|.
-name|getASTNode
-argument_list|()
-return|;
 block|}
 block|}
 end_class

@@ -172,7 +172,7 @@ name|getNode
 argument_list|()
 expr_stmt|;
 return|return
-name|matchesInternal
+name|matchesName
 argument_list|(
 name|node
 argument_list|)
@@ -201,15 +201,15 @@ return|return
 literal|false
 return|;
 return|return
-name|matchesInternal
+name|matchesName
 argument_list|(
 name|other
 argument_list|)
 return|;
 block|}
-specifier|private
+specifier|public
 name|boolean
-name|matchesInternal
+name|matchesName
 parameter_list|(
 name|Node
 name|other
