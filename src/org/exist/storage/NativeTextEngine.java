@@ -4619,6 +4619,7 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 		 * Remove the entries in the current list from the index. 		 */
 specifier|public
 name|void
 name|remove
@@ -4816,6 +4817,8 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|// new output list containing nodes from the
+comment|// document that should not be removed
 name|newList
 operator|=
 operator|new
@@ -4837,6 +4840,7 @@ operator|.
 name|getData
 argument_list|()
 expr_stmt|;
+comment|//					        LOG.debug("old size: " + data.length);
 name|is
 operator|=
 operator|new
@@ -4886,13 +4890,13 @@ name|doc
 operator|.
 name|getDocId
 argument_list|()
-operator|||
+operator|&&
 name|section
-operator|!=
+operator|==
 name|k
 condition|)
 block|{
-comment|// copy data to new buffer; skip
+comment|// copy data to new output list; skip
 comment|// removed nodes
 name|last
 operator|=
@@ -4933,6 +4937,8 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+comment|// add the node to the new output list if it is not found
+comment|// in the list of removed nodes
 if|if
 condition|(
 operator|!
@@ -5037,6 +5043,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|newList
+operator|.
+name|getSize
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|// save the nodes remaining in the output list for the document
 name|ids
 operator|=
 name|newList
@@ -5188,6 +5205,60 @@ operator|.
 name|l
 expr_stmt|;
 block|}
+block|}
+name|ByteArray
+name|ndata
+init|=
+name|os
+operator|.
+name|data
+argument_list|()
+decl_stmt|;
+comment|//					    LOG.debug("new size: " + ndata.size());
+if|if
+condition|(
+name|ndata
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+try|try
+block|{
+name|dbWords
+operator|.
+name|remove
+argument_list|(
+name|ref
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Error while removing fulltext entry: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 try|try
 block|{
 if|if
@@ -5233,6 +5304,7 @@ name|ReadOnlyException
 name|e
 parameter_list|)
 block|{
+block|}
 block|}
 block|}
 catch|catch
