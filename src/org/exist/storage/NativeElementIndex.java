@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -910,6 +920,22 @@ name|elementName
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io-error while updating index for element "
+operator|+
+name|elementName
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1607,6 +1633,22 @@ operator|.
 name|error
 argument_list|(
 literal|"end-of-file while updating index for element "
+operator|+
+name|elementName
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io-error while updating index for element "
 operator|+
 name|elementName
 argument_list|)

@@ -158,7 +158,7 @@ specifier|protected
 name|int
 name|indentXML
 init|=
-literal|1
+literal|0
 decl_stmt|;
 specifier|protected
 name|int

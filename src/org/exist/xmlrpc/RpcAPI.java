@@ -99,6 +99,14 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+specifier|public
+name|boolean
+name|sync
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+function_decl|;
 comment|/**      *  retrieve document by name. XML content is indented if prettyPrint is set      *  to>=0. Use supplied encoding for output. This method is provided to      *  retrieve a document with encodings other than UTF-8. Since the data is      *  handled as binary data, character encodings are preserved. byte[]-values      *  are automatically BASE64-encoded by the XMLRPC library.      *      *@param  name                           the document's name.      *@param  prettyPrint                    pretty print XML if>0.      *@param  encoding                       character encoding to use.      *@param  user                           Description of the Parameter      *@return                                The document value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
 name|byte
 index|[]

@@ -35,6 +35,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Random
@@ -310,6 +320,20 @@ block|}
 catch|catch
 parameter_list|(
 name|EOFException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Exception: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
 name|e
 parameter_list|)
 block|{

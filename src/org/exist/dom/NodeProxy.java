@@ -304,19 +304,6 @@ name|Object
 name|other
 parameter_list|)
 block|{
-if|if
-condition|(
-name|other
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"cannot compare null values"
-argument_list|)
-throw|;
 specifier|final
 name|NodeProxy
 name|p

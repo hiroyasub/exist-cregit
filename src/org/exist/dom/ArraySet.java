@@ -2192,7 +2192,14 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
-comment|//long start = System.currentTimeMillis();
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|al
 operator|.
 name|sort
@@ -2463,10 +2470,24 @@ condition|(
 name|more
 condition|)
 do|;
-comment|//		LOG.debug(
-comment|//			"getDescendants took "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"getDescendants took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

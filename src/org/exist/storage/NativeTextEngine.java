@@ -73,6 +73,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -1090,12 +1100,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|flush
-argument_list|()
-expr_stmt|;
-name|sync
-argument_list|()
-expr_stmt|;
 name|dbWords
 operator|.
 name|close
@@ -1689,6 +1693,7 @@ decl_stmt|;
 name|VariableByteInputStream
 name|is
 decl_stmt|;
+comment|//InputStream dis = null;
 name|NodeProxy
 name|p
 decl_stmt|;
@@ -1847,6 +1852,7 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
+comment|//dis = dbWords.getAsStream(ref);
 block|}
 catch|catch
 parameter_list|(
@@ -1867,6 +1873,7 @@ name|value
 operator|=
 literal|null
 expr_stmt|;
+comment|//dis = null;
 block|}
 finally|finally
 block|{
@@ -2032,6 +2039,13 @@ block|}
 catch|catch
 parameter_list|(
 name|EOFException
+name|e
+parameter_list|)
+block|{
+block|}
+catch|catch
+parameter_list|(
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -3116,15 +3130,14 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|entries
-operator|=
 name|dbWords
 operator|.
-name|findKeys
+name|removeAll
 argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
+comment|//entries = dbWords.findKeys(query);
 block|}
 catch|catch
 parameter_list|(
@@ -3156,132 +3169,26 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|entries
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"could not remove collection"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|entries
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" words."
-argument_list|)
-expr_stmt|;
-name|Value
-name|val
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|entries
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|val
-operator|=
-operator|(
-name|Value
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|this
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-name|lock
-operator|.
-name|enter
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-comment|//dbWords.remove(val);
-name|dbWords
-operator|.
-name|remove
-argument_list|(
-name|val
-operator|.
-name|getAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|dbWords
-operator|.
-name|removeValue
-argument_list|(
-name|val
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"could not acquire lock on words db"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//			if (entries == null) {
+comment|//				LOG.error("could not remove collection");
+comment|//				return;
+comment|//			}
+comment|//			LOG.debug("found " + entries.size() + " words.");
+comment|//			Value val;
+comment|//			for (Iterator i = entries.iterator(); i.hasNext();) {
+comment|//				val = (Value) i.next();
+comment|//				try {
+comment|//					lock.acquire(this, Lock.WRITE_LOCK);
+comment|//					lock.enter(this);
+comment|//					//dbWords.remove(val);
+comment|//					dbWords.remove(val.getAddress());
+comment|//					dbWords.removeValue(val);
+comment|//				} catch (LockException e) {
+comment|//					LOG.warn("could not acquire lock on words db", e);
+comment|//				} finally {
+comment|//					lock.release(this);
+comment|//				}
+comment|//			}
 name|LOG
 operator|.
 name|debug
@@ -3329,20 +3236,6 @@ operator|.
 name|warn
 argument_list|(
 name|dbe
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"database is read-only"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3735,6 +3628,13 @@ block|}
 catch|catch
 parameter_list|(
 name|EOFException
+name|e
+parameter_list|)
+block|{
+block|}
+catch|catch
+parameter_list|(
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -4705,6 +4605,13 @@ name|void
 name|remove
 parameter_list|()
 block|{
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+return|return;
 specifier|final
 name|short
 name|collectionId
@@ -5081,6 +4988,22 @@ operator|.
 name|error
 argument_list|(
 literal|"end-of-file while reading index entry for "
+operator|+
+name|word
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io-error while reading index entry for "
 operator|+
 name|word
 argument_list|)
@@ -5735,6 +5658,26 @@ argument_list|(
 literal|"end-of-file while reading index entry for "
 operator|+
 name|word
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io-error while reading index entry for "
+operator|+
+name|word
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -6734,6 +6677,24 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"eof while reading index"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"io error while reading index"
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;

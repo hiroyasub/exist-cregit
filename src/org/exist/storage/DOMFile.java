@@ -2409,8 +2409,6 @@ name|DOMFileIterator
 argument_list|(
 name|lock
 argument_list|,
-name|doc
-argument_list|,
 name|this
 argument_list|,
 name|parentPointer
@@ -3316,8 +3314,6 @@ name|DOMFileIterator
 argument_list|(
 name|owner
 argument_list|,
-name|doc
-argument_list|,
 name|this
 argument_list|,
 name|node
@@ -3375,8 +3371,6 @@ operator|new
 name|DOMFileIterator
 argument_list|(
 name|owner
-argument_list|,
-name|doc
 argument_list|,
 name|this
 argument_list|,
@@ -4310,7 +4304,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|public
 specifier|final
 class|class
 name|DOMFileIterator
@@ -4319,16 +4313,6 @@ name|Iterator
 block|{
 name|DOMFile
 name|db
-init|=
-literal|null
-decl_stmt|;
-name|DocumentImpl
-name|doc
-init|=
-literal|null
-decl_stmt|;
-name|Value
-name|nextVal
 init|=
 literal|null
 decl_stmt|;
@@ -4363,15 +4347,12 @@ decl_stmt|;
 name|Object
 name|lockKey
 decl_stmt|;
-comment|/** 		 *  Constructor for the DOMFileIterator object 		 * 		 *@param  doc                 Description of the Parameter 		 *@param  db                  Description of the Parameter 		 *@param  node                Description of the Parameter 		 *@exception  BTreeException  Description of the Exception 		 *@exception  IOException     Description of the Exception 		 */
+comment|/** 			 *  Constructor for the DOMFileIterator object 			 * 			 *@param  doc                 Description of the Parameter 			 *@param  db                  Description of the Parameter 			 *@param  node                Description of the Parameter 			 *@exception  BTreeException  Description of the Exception 			 *@exception  IOException     Description of the Exception 			 */
 specifier|public
 name|DOMFileIterator
 parameter_list|(
 name|Object
 name|lock
-parameter_list|,
-name|DocumentImpl
-name|doc
 parameter_list|,
 name|DOMFile
 name|db
@@ -4390,17 +4371,27 @@ name|db
 operator|=
 name|db
 expr_stmt|;
-name|this
-operator|.
+if|if
+condition|(
+operator|-
+literal|1
+operator|<
 name|node
+operator|.
+name|internalAddress
+condition|)
+name|startAddress
 operator|=
 name|node
+operator|.
+name|internalAddress
 expr_stmt|;
+else|else
 name|this
 operator|.
-name|doc
+name|node
 operator|=
-name|doc
+name|node
 expr_stmt|;
 name|lockKey
 operator|=
@@ -4415,15 +4406,12 @@ name|lock
 operator|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DOMFileIterator object 		 * 		 *@param  doc                 Description of the Parameter 		 *@param  db                  Description of the Parameter 		 *@param  address             Description of the Parameter 		 *@exception  BTreeException  Description of the Exception 		 *@exception  IOException     Description of the Exception 		 */
+comment|/** 			 *  Constructor for the DOMFileIterator object 			 * 			 *@param  doc                 Description of the Parameter 			 *@param  db                  Description of the Parameter 			 *@param  address             Description of the Parameter 			 *@exception  BTreeException  Description of the Exception 			 *@exception  IOException     Description of the Exception 			 */
 specifier|public
 name|DOMFileIterator
 parameter_list|(
 name|Object
 name|lock
-parameter_list|,
-name|DocumentImpl
-name|doc
 parameter_list|,
 name|DOMFile
 name|db
@@ -4448,12 +4436,6 @@ name|startAddress
 operator|=
 name|address
 expr_stmt|;
-name|this
-operator|.
-name|doc
-operator|=
-name|doc
-expr_stmt|;
 name|lockKey
 operator|=
 operator|(
@@ -4467,7 +4449,7 @@ name|lock
 operator|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the currentAddress attribute of the DOMFileIterator object 		 * 		 *@return    The currentAddress value 		 */
+comment|/** 			 *  Gets the currentAddress attribute of the DOMFileIterator object 			 * 			 *@return    The currentAddress value 			 */
 specifier|public
 name|long
 name|currentAddress
@@ -4485,7 +4467,7 @@ name|lastTID
 argument_list|)
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
+comment|/** 			 *  Description of the Method 			 * 			 *@return    Description of the Return Value 			 */
 specifier|public
 name|boolean
 name|hasNext
@@ -4563,6 +4545,7 @@ condition|)
 return|return
 literal|false
 return|;
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -4607,6 +4590,7 @@ operator|<
 name|startAddress
 condition|)
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -4677,6 +4661,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -4760,7 +4745,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
+comment|/** 			 *  Description of the Method 			 * 			 *@return    Description of the Return Value 			 */
 specifier|public
 name|Object
 name|next
@@ -4803,6 +4788,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|// position the iterator at the start of the first value
 if|if
 condition|(
 name|node
@@ -4817,6 +4803,7 @@ argument_list|(
 name|lockKey
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|addr
 init|=
@@ -4882,6 +4869,7 @@ operator|<
 name|startAddress
 condition|)
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -4948,6 +4936,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -4956,6 +4945,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+comment|// next value larger than length of the current page?
 if|if
 condition|(
 name|offset
@@ -4966,6 +4956,8 @@ name|getDataLength
 argument_list|()
 condition|)
 block|{
+comment|// load next page in chain
+specifier|final
 name|long
 name|nextPage
 init|=
@@ -5024,18 +5016,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-name|db
-operator|.
-name|buffer
-operator|.
-name|add
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-name|short
-name|tid
-init|=
+comment|// extract the value
+name|lastTID
+operator|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -5046,7 +5029,8 @@ name|data
 argument_list|,
 name|offset
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+specifier|final
 name|short
 name|l
 init|=
@@ -5063,13 +5047,7 @@ operator|+
 literal|2
 argument_list|)
 decl_stmt|;
-name|int
-name|dataStart
-init|=
-name|offset
-operator|+
-literal|4
-decl_stmt|;
+specifier|final
 name|Value
 name|nextVal
 init|=
@@ -5080,7 +5058,9 @@ name|p
 operator|.
 name|data
 argument_list|,
-name|dataStart
+name|offset
+operator|+
+literal|4
 argument_list|,
 name|l
 argument_list|)
@@ -5096,17 +5076,15 @@ name|int
 operator|)
 name|page
 argument_list|,
-name|tid
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|lastTID
-operator|=
-name|tid
+argument_list|)
+argument_list|)
 expr_stmt|;
 name|offset
 operator|=
-name|dataStart
+name|offset
+operator|+
+literal|4
 operator|+
 name|l
 expr_stmt|;
@@ -5393,7 +5371,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 		 *  Sets the to attribute of the DOMFileIterator object 		 * 		 *@param  node  The new to value 		 */
+comment|/** 			 *  Sets the to attribute of the DOMFileIterator object 			 * 			 *@param  node  The new to value 			 */
 specifier|public
 name|void
 name|setTo
@@ -5402,6 +5380,25 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|-
+literal|1
+operator|<
+name|node
+operator|.
+name|internalAddress
+condition|)
+block|{
+name|startAddress
+operator|=
+name|node
+operator|.
+name|internalAddress
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|node
@@ -5409,7 +5406,8 @@ operator|=
 name|node
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the to attribute of the DOMFileIterator object 		 * 		 *@param  address  The new to value 		 */
+block|}
+comment|/** 			 *  Sets the to attribute of the DOMFileIterator object 			 * 			 *@param  address  The new to value 			 */
 specifier|public
 name|void
 name|setTo

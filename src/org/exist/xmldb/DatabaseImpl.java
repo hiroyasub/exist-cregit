@@ -197,6 +197,22 @@ init|=
 literal|"exist"
 decl_stmt|;
 specifier|protected
+specifier|final
+specifier|static
+name|int
+name|LOCAL
+init|=
+literal|0
+decl_stmt|;
+specifier|protected
+specifier|final
+specifier|static
+name|int
+name|REMOTE
+init|=
+literal|1
+decl_stmt|;
+specifier|protected
 name|boolean
 name|autoCreate
 init|=
@@ -225,6 +241,12 @@ decl_stmt|;
 specifier|protected
 name|XmlRpcClient
 name|rpcClient
+decl_stmt|;
+specifier|protected
+name|int
+name|mode
+init|=
+literal|0
 decl_stmt|;
 specifier|public
 name|DatabaseImpl
@@ -392,7 +414,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//String pathSep = System.getProperty( "file.separator", "/" );
 name|String
 name|home
 decl_stmt|,
@@ -447,7 +468,10 @@ name|home
 operator|=
 name|f
 operator|.
-name|getParent
+name|getParentFile
+argument_list|()
+operator|.
+name|getAbsolutePath
 argument_list|()
 expr_stmt|;
 name|file
@@ -458,6 +482,25 @@ name|getName
 argument_list|()
 expr_stmt|;
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"configuring "
+operator|+
+name|dbName
+operator|+
+literal|" using "
+operator|+
+name|home
+operator|+
+literal|'/'
+operator|+
+name|file
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Configuration
@@ -584,6 +627,10 @@ literal|"///"
 argument_list|)
 condition|)
 block|{
+name|mode
+operator|=
+name|LOCAL
+expr_stmt|;
 comment|// use local database instance
 if|if
 condition|(
@@ -591,7 +638,9 @@ operator|!
 name|BrokerPool
 operator|.
 name|isConfigured
-argument_list|()
+argument_list|(
+name|dbName
+argument_list|)
 condition|)
 block|{
 if|if
@@ -827,6 +876,10 @@ argument_list|)
 condition|)
 block|{
 comment|// use remote database via XML-RPC
+name|mode
+operator|=
+name|REMOTE
+expr_stmt|;
 if|if
 condition|(
 name|user
@@ -1108,10 +1161,18 @@ argument_list|(
 literal|"database-id"
 argument_list|)
 condition|)
+block|{
 name|dbName
 operator|=
 name|value
 expr_stmt|;
+name|selector
+operator|=
+name|dbName
+operator|+
+literal|':'
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|property
@@ -1124,6 +1185,31 @@ condition|)
 name|configuration
 operator|=
 name|value
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see java.lang.Object#finalize() 	 */
+specifier|protected
+name|void
+name|finalize
+parameter_list|()
+throws|throws
+name|Throwable
+block|{
+if|if
+condition|(
+name|mode
+operator|==
+name|LOCAL
+operator|&&
+name|autoCreate
+condition|)
+comment|// cleanly shut down the database
+name|BrokerPool
+operator|.
+name|stop
+argument_list|(
+name|dbName
+argument_list|)
 expr_stmt|;
 block|}
 block|}

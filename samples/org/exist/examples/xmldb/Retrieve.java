@@ -199,15 +199,6 @@ name|col
 operator|.
 name|setProperty
 argument_list|(
-literal|"pretty"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|col
-operator|.
-name|setProperty
-argument_list|(
 literal|"encoding"
 argument_list|,
 literal|"ISO-8859-1"

@@ -71,6 +71,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|sync
+operator|.
+name|Sync
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|sync
+operator|.
+name|SyncDaemon
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|*
@@ -164,7 +192,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  minBrokers          Description of the Parameter 	 *@param  maxBrokers          Description of the Parameter 	 *@param  config              Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/** 	 *  Configure a new BrokerPool instance. Call this before calling getInstance(). 	 * 	 *@param  id The name to identify this database instance. You may have more 	 *	than one instance with different configurations. 	 *@param  minBrokers Minimum number of database brokers to start during initialization. 	 *@param  maxBrokers Maximum number of database brokers available to handle requests. 	 *@param  config The configuration object used by this instance. 	 *@exception  EXistException thrown if initialization fails. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -307,7 +335,7 @@ name|DEFAULT_INSTANCE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Singleton method. Get the BrokerPool. 	 * 	 *@return                     The instance. 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/** 	 *  Singleton method. Get the BrokerPool for a specified database instance. 	 * 	 *@return        The instance. 	 *@exception  EXistException  thrown if the instance has not been configured. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -450,6 +478,9 @@ name|void
 name|stopAll
 parameter_list|()
 block|{
+name|BrokerPool
+name|instance
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -469,7 +500,9 @@ name|hasNext
 argument_list|()
 condition|;
 control|)
-operator|(
+block|{
+name|instance
+operator|=
 operator|(
 name|BrokerPool
 operator|)
@@ -477,11 +510,21 @@ name|i
 operator|.
 name|next
 argument_list|()
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|instance
+operator|.
+name|conf
+operator|!=
+literal|null
+condition|)
+name|instance
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 name|instances
 operator|.
 name|clear
@@ -500,13 +543,13 @@ name|min
 init|=
 literal|1
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Configuration
 name|conf
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|ArrayList
 name|active
 init|=
@@ -514,13 +557,13 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|brokers
 init|=
 literal|0
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Stack
 name|pool
 init|=
@@ -541,23 +584,18 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|long
-name|lastRequest
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-specifier|private
-name|long
-name|idleTime
-init|=
-literal|900000L
-decl_stmt|;
-specifier|private
 name|String
 name|instanceId
+decl_stmt|;
+specifier|private
+name|boolean
+name|syncRequired
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|SyncDaemon
+name|syncDaemon
 decl_stmt|;
 comment|/** 	 *  Constructor for the BrokerPool object 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
@@ -616,17 +654,17 @@ argument_list|(
 literal|"db-connection.pool.max"
 argument_list|)
 decl_stmt|;
-name|Integer
-name|idleInt
+name|Long
+name|syncInt
 init|=
 operator|(
-name|Integer
+name|Long
 operator|)
 name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.idle"
+literal|"db-connection.pool.sync-period"
 argument_list|)
 decl_stmt|;
 if|if
@@ -655,20 +693,23 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+name|long
+name|syncPeriod
+init|=
+literal|120000
+decl_stmt|;
 if|if
 condition|(
-name|idleInt
+name|syncInt
 operator|!=
 literal|null
 condition|)
-name|idleTime
+name|syncPeriod
 operator|=
-name|idleInt
+name|syncInt
 operator|.
-name|intValue
+name|longValue
 argument_list|()
-operator|*
-literal|1000
 expr_stmt|;
 name|LOG
 operator|.
@@ -682,9 +723,36 @@ literal|"; max = "
 operator|+
 name|max
 operator|+
-literal|"; idle = "
+literal|"; sync = "
 operator|+
-name|idleTime
+name|syncPeriod
+argument_list|)
+expr_stmt|;
+name|syncDaemon
+operator|=
+operator|new
+name|SyncDaemon
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|syncPeriod
+operator|>
+literal|0
+condition|)
+name|syncDaemon
+operator|.
+name|executePeriodically
+argument_list|(
+name|syncPeriod
+argument_list|,
+operator|new
+name|Sync
+argument_list|(
+name|this
+argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|conf
@@ -754,7 +822,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"creating new instance of "
+literal|"database "
+operator|+
+name|instanceId
+operator|+
+literal|": creating new instance of "
 operator|+
 name|broker
 operator|.
@@ -762,6 +834,18 @@ name|getClass
 argument_list|()
 operator|.
 name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"configuration = "
+operator|+
+name|conf
+operator|.
+name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -895,6 +979,7 @@ return|return
 name|secManager
 return|;
 block|}
+comment|/** 	 * Reload the security manager. This method is called whenever the 	 * users.xml file has been changed. 	 *  	 * @param broker 	 */
 specifier|public
 name|void
 name|reloadSecurityManager
@@ -927,7 +1012,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/** 	 *  Initialize the current instance. 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|initialize
@@ -935,6 +1020,15 @@ parameter_list|()
 throws|throws
 name|EXistException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"initializing database "
+operator|+
+name|instanceId
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -989,7 +1083,6 @@ expr_stmt|;
 block|}
 comment|/** 	 *  Release a DBBroker instance into the pool. 	 *	If all active instances are in the pool (i.e. 	 * 	the database is currently not used), release 	 *  will call sync() to flush unwritten buffers  	 *  to the disk.  	 *  	 *@param  broker  Description of the Parameter 	 */
 specifier|public
-specifier|synchronized
 name|void
 name|release
 parameter_list|(
@@ -1004,6 +1097,11 @@ operator|==
 literal|null
 condition|)
 return|return;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|pool
 operator|.
 name|push
@@ -1013,41 +1111,32 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|syncRequired
+operator|&&
 name|pool
 operator|.
 name|size
 argument_list|()
 operator|==
 name|brokers
-operator|&&
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|lastRequest
-operator|)
-operator|>
-name|idleTime
 condition|)
+block|{
 name|sync
 argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-name|lastRequest
+name|syncRequired
 operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
+literal|false
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Write buffers to disk. release() calls this 	 * method after a specified period of time 	 * to flush buffers. 	 *  	 * @param broker 	 */
 specifier|public
@@ -1062,7 +1151,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"database is idle; syncing buffers to disk"
+literal|"syncing buffers to disk"
 argument_list|)
 expr_stmt|;
 name|broker
@@ -1078,6 +1167,11 @@ name|void
 name|shutdown
 parameter_list|()
 block|{
+name|syncDaemon
+operator|.
+name|shutDown
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|pool
@@ -1181,6 +1275,16 @@ name|conf
 operator|!=
 literal|null
 return|;
+block|}
+specifier|public
+name|void
+name|triggerSync
+parameter_list|()
+block|{
+name|syncRequired
+operator|=
+literal|true
+expr_stmt|;
 block|}
 specifier|protected
 class|class

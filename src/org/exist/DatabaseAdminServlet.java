@@ -759,31 +759,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|public
-name|void
-name|destroy
-parameter_list|()
-block|{
-name|this
-operator|.
-name|log
-argument_list|(
-literal|"starting database shutdown ..."
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|BrokerPool
-operator|.
-name|isConfigured
-argument_list|()
-condition|)
-name|BrokerPool
-operator|.
-name|stopAll
-argument_list|()
-expr_stmt|;
-block|}
+comment|/*public void destroy() {     	this.log("starting database shutdown ..."); 	    BrokerPool.stopAll();     }*/
 specifier|private
 name|void
 name|startup

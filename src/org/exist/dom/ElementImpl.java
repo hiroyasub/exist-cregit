@@ -111,6 +111,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -976,51 +986,6 @@ operator|++
 name|children
 expr_stmt|;
 block|}
-specifier|private
-name|NodeImpl
-name|getLastNode
-parameter_list|(
-name|NodeImpl
-name|node
-parameter_list|)
-block|{
-if|if
-condition|(
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-operator|==
-name|Node
-operator|.
-name|ELEMENT_NODE
-condition|)
-return|return
-name|node
-operator|.
-name|getChildCount
-argument_list|()
-operator|==
-literal|0
-condition|?
-name|node
-else|:
-name|getLastNode
-argument_list|(
-operator|(
-name|NodeImpl
-operator|)
-name|node
-operator|.
-name|getLastChild
-argument_list|()
-argument_list|)
-return|;
-else|else
-return|return
-name|node
-return|;
-block|}
 comment|/** 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
@@ -1167,6 +1132,8 @@ parameter_list|(
 name|int
 name|size
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 comment|// check if the tree structure needs to be changed
 name|int
@@ -1373,42 +1340,11 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|ownerDocument
-operator|.
-name|getCollection
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|INVALID_ACCESS_ERR
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|//		try {
+comment|//			ownerDocument.broker.saveCollection(ownerDocument.getCollection());
+comment|//		} catch (PermissionDeniedException e) {
+comment|//			throw new DOMException(DOMException.INVALID_ACCESS_ERR, e.getMessage());
+comment|//		}
 return|return
 name|node
 return|;
@@ -1433,6 +1369,8 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+try|try
+block|{
 name|checkTree
 argument_list|(
 name|nodes
@@ -1441,6 +1379,25 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INVALID_MODIFICATION_ERR
+argument_list|,
+literal|"max. document size exceeded"
+argument_list|)
+throw|;
+block|}
 name|children
 operator|+=
 name|nodes
@@ -1872,6 +1829,8 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|elem
 operator|.
 name|checkTree
@@ -1882,6 +1841,25 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INVALID_MODIFICATION_ERR
+argument_list|,
+literal|"max. document size exceeded"
+argument_list|)
+throw|;
+block|}
 comment|// process child nodes
 name|last
 operator|=
@@ -5018,34 +4996,12 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|ownerDocument
-operator|.
-name|getCollection
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-comment|// TODO Auto-generated catch block
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
+comment|//		try {
+comment|//			ownerDocument.broker.saveCollection(ownerDocument.getCollection());
+comment|//		} catch (PermissionDeniedException e) {
+comment|//			// TODO Auto-generated catch block
+comment|//			e.printStackTrace();
+comment|//		}
 return|return
 name|result
 return|;
@@ -5250,42 +5206,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|ownerDocument
-operator|.
-name|getCollection
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NO_MODIFICATION_ALLOWED_ERR
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
 return|return
 name|result
 return|;
@@ -5431,42 +5351,11 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|ownerDocument
-operator|.
-name|getCollection
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|INVALID_ACCESS_ERR
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|//		try {
+comment|//			ownerDocument.broker.saveCollection(ownerDocument.getCollection());
+comment|//		} catch (PermissionDeniedException e) {
+comment|//			throw new DOMException(DOMException.INVALID_ACCESS_ERR, e.getMessage());
+comment|//		}
 block|}
 comment|/** 	 * Update a child node. This method will only update the child node 	 * but not its potential descendant nodes. 	 *  	 * @param oldChild 	 * @param newChild 	 * @throws DOMException 	 */
 specifier|public

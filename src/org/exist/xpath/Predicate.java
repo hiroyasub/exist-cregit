@@ -699,12 +699,7 @@ literal|1
 expr_stmt|;
 name|set
 operator|=
-operator|(
-operator|(
-name|ArraySet
-operator|)
 name|context
-operator|)
 operator|.
 name|getRange
 argument_list|(
