@@ -178,6 +178,16 @@ return|return
 literal|"node()"
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#setType(int)      */
+specifier|public
+name|void
+name|setType
+parameter_list|(
+name|int
+name|nodeType
+parameter_list|)
+block|{
+block|}
 block|}
 end_class
 
