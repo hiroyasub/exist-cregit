@@ -666,6 +666,24 @@ name|int
 name|type
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|NodeSet
+name|getNodes
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|,
+name|NodeSet
+name|context
+parameter_list|,
+name|TermMatcher
+name|matcher
+parameter_list|,
+name|CharSequence
+name|startTerm
+parameter_list|)
+function_decl|;
 comment|/** 	 * Scan the fulltext index and return an Occurrences object for each 	 * of the index keys. 	 *  	 * Arguments start and end are used to restrict the range of keys returned. 	 * For example start="a" and end="az" will return all keywords starting 	 * with letter "a". 	 *  	 * @param user 	 * @param collection 	 * @param start 	 * @param end 	 * @param inclusive 	 * @return 	 * @throws PermissionDeniedException 	 */
 specifier|public
 specifier|abstract
@@ -690,6 +708,19 @@ name|inclusive
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+function_decl|;
+specifier|public
+specifier|abstract
+name|String
+index|[]
+name|getIndexTerms
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|,
+name|TermMatcher
+name|matcher
+parameter_list|)
 function_decl|;
 comment|/** 	 * Remove index entries for an entire collection. 	 *  	 * @param collection 	 */
 specifier|public
