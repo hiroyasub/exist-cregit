@@ -154,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements an XUpate append statement.  *   * @author Wolfgang Meier  */
+comment|/**  * Implements an XUpate append statement.  *   * Note: appending an attribute that is already present in  * an element will overwrite the old attribute value.  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class
