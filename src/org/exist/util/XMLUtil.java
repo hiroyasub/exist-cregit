@@ -886,7 +886,7 @@ specifier|static
 name|String
 name|exceptionToString
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{

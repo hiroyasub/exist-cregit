@@ -79,6 +79,7 @@ name|URI
 init|=
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
+comment|//protected static String URI = "xmldb:exist://";
 specifier|protected
 specifier|static
 name|String
@@ -329,28 +330,18 @@ operator|)
 name|i
 argument_list|)
 decl_stmt|;
-comment|//String xml = resource.getContent().toString();
-comment|//System.out.println( xml );
-name|Element
-name|elem
-init|=
-operator|(
-name|Element
-operator|)
-name|resource
-operator|.
-name|getContentAsDOM
-argument_list|()
-decl_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-name|elem
+name|resource
 operator|.
-name|getTagName
+name|getContent
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -80,7 +80,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Interface  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    21. Juni 2002  */
+comment|/**  *  Defines the methods callable through the XMLRPC interface.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    21. Juni 2002  */
 end_comment
 
 begin_interface
@@ -88,7 +88,7 @@ specifier|public
 interface|interface
 name|RpcAPI
 block|{
-comment|/** 	 * Shut down the database. This will not stop the 	 * XML-RPC server. 	 *  	 * @return boolean 	 */
+comment|/** 	 * Shut down the database. 	 *  	 * @return boolean 	 */
 specifier|public
 name|boolean
 name|shutdown
@@ -107,7 +107,7 @@ name|User
 name|user
 parameter_list|)
 function_decl|;
-comment|/**      *  retrieve document by name. XML content is indented if prettyPrint is set      *  to>=0. Use supplied encoding for output. This method is provided to      *  retrieve a document with encodings other than UTF-8. Since the data is      *  handled as binary data, character encodings are preserved. byte[]-values      *  are automatically BASE64-encoded by the XMLRPC library.      *      *@param  name                           the document's name.      *@param  prettyPrint                    pretty print XML if>0.      *@param  encoding                       character encoding to use.      *@param  user                           Description of the Parameter      *@return                                The document value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user 	 *@return   Document data as binary array.  	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|getDocument
@@ -129,6 +129,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 *  Retrieve document by name. XML content is indented if prettyPrint is set 	 *  to>=0. Use supplied encoding for output and apply the specified stylesheet.  	 *  	 *  This method is provided to retrieve a document with encodings other than UTF-8. Since the data is 	 *  handled as binary data, character encodings are preserved. byte[]-values 	 *  are automatically BASE64-encoded by the XMLRPC library. 	 * 	 *@param  name                           the document's name. 	 *@param  prettyPrint                    pretty print XML if>0. 	 *@param  encoding                       character encoding to use. 	 *@param  user                           Description of the Parameter 	 *@return                                The document value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|getDocument
@@ -153,7 +154,44 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  does the document identified by<code>name</code> exist in the      *  repository?      *      *@param  name                           Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+name|String
+name|getDocumentAsString
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|int
+name|prettyPrint
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+name|String
+name|getDocumentAsString
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|int
+name|prettyPrint
+parameter_list|,
+name|String
+name|stylesheet
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+comment|/** 	 *  Does the document identified by<code>name</code> exist in the 	 *  repository? 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|boolean
 name|hasDocument
 parameter_list|(
@@ -168,7 +206,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  get a list of all documents contained in the repository.      *      *@param  user                           Description of the Parameter      *@return                                list of document paths      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Get a list of all documents contained in the database. 	 * 	 *@param  user 	 *@return  list of document paths 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Vector
 name|getDocumentListing
 parameter_list|(
@@ -180,7 +218,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  get a list of all documents contained in the collection.      *      *@param  collection                     the collection to use.      *@param  user                           Description of the Parameter      *@return                                list of document paths      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Get a list of all documents contained in the collection. 	 * 	 *@param  collection                     the collection to use. 	 *@param  user                           Description of the Parameter 	 *@return                                list of document paths 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Vector
 name|getDocumentListing
 parameter_list|(
@@ -223,7 +261,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  describe a collection This method will return a struct with the      *  following fields:      *<tableborder="1">      *      *<tr>      *      *<td>      *        documents      *</td>      *      *<td>      *        array of all document names contained in this collection.      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        collections      *</td>      *      *<td>      *        an array containing the names of all subcollections in this      *        collection.      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        name      *</td>      *      *<td>      *        the collection's name      *</td>      *      *</tr>      *      *</table>      *      *      *@param  rootCollection                 Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The collectionDesc value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  describe a collection This method will return a struct with the 	 *  following fields: 	 *<table border="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        documents 	 *</td> 	 * 	 *<td> 	 *        array of all document names contained in this collection. 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        collections 	 *</td> 	 * 	 *<td> 	 *        an array containing the names of all subcollections in this 	 *        collection. 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        name 	 *</td> 	 * 	 *<td> 	 *        the collection's name 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 * 	 * 	 *@param  rootCollection                 Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The collectionDesc value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Hashtable
 name|getCollectionDesc
 parameter_list|(
@@ -238,7 +276,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  retrieve a single node from a document. The node is identified by it's      *  internal id.      *      *@param  doc                            the document containing the node      *@param  id                             the node's internal id      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve a single node from a document. The node is identified by it's 	 *  internal id. 	 * 	 *@param  doc                            the document containing the node 	 *@param  id                             the node's internal id 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|retrieve
@@ -257,7 +295,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  retrieve a single node from a document. The node is identified by it's      *  internal id.      *      *@param  doc                            the document containing the node      *@param  id                             the node's internal id      *@param  prettyPrint                    result is pretty printed if>0      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  retrieve a single node from a document. The node is identified by it's 	 *  internal id. 	 * 	 *@param  doc                            the document containing the node 	 *@param  id                             the node's internal id 	 *@param  prettyPrint                    result is pretty printed if>0 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|retrieve
@@ -279,7 +317,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  retrieve a single node from a document. The node is identified by it's      *  internal id.      *      *@param  doc                            the document containing the node      *@param  id                             the node's internal id      *@param  prettyPrint                    result is pretty printed if>0      *@param  encoding                       character encoding to use      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve a single node from a document. The node is identified by it's 	 *  internal id. 	 * 	 *@param  doc                            the document containing the node 	 *@param  id                             the node's internal id 	 *@param  prettyPrint                    result is pretty printed if>0 	 *@param  encoding                       character encoding to use 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|retrieve
@@ -304,7 +342,27 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *<p>      *      *  execute XPath query and return a list of results. If the result is a      *  node set, it will be returned as array of String[][2], which represents      *  a two dimensional table. Every row in this table consists of a      *  document-name / node-id pair. e.g.:</p>      *<tableborder="1">      *      *<tr>      *      *<td>      *        hamlet.xml      *</td>      *      *<td>      *        8398      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        hamlet.xml      *</td>      *      *<td>      *        8399      *</td>      *      *</tr>      *      *</table>      *<p>      *      *  You may use this information with the retrieve-call to retrieve the      *  actual nodes.</p><p>      *      *  Otherwise, if the result is a set of values, each value will be      *  converted to string. In this case the return type is an array of strings      *  String[].</p>      *      *@param  xpath                          the XPath query to execute.      *@param  user                           Description of the Parameter      *@return                                string[][2], if result is a node      *      set, string[] otherwise.      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+name|String
+name|retrieveAsString
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|doc
+parameter_list|,
+name|String
+name|id
+parameter_list|,
+name|int
+name|prettyPrint
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+comment|/** 	 *  Execute XPath query and return a list of results. If the result is a 	 *  node set, it will be returned as array of String[][2], which represents 	 *  a two dimensional table. Every row in this table consists of a 	 *  document-name / node-id pair. e.g.: 	 *  	 *<table border="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        hamlet.xml 	 *</td> 	 * 	 *<td> 	 *        8398 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        hamlet.xml 	 *</td> 	 * 	 *<td> 	 *        8399 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 *<p> 	 * 	 *  You may use this information with the retrieve-call to retrieve the 	 *  actual nodes.</p> 	 * 	 *<p>Otherwise, if the result is a set of values, each value will be 	 *  converted to string. In this case the return type is an array of strings 	 *  String[].</p> 	 * 	 *@param  xpath                          the XPath query to execute. 	 *@param  user 	 *@return                                string[][2], if result is a node 	 *      set, string[] otherwise. 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Vector
 name|query
 parameter_list|(
@@ -434,28 +492,8 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *<p>      *      *  execute XPath query and return a list of results. The query is passed as      *  base64 encoded string data. Use this method if your query contains      *  characters in an encoding other than UTF-8. If the result is a node set,      *  it will be returned as array of String[][2], which represents a two      *  dimensional table. Every row in this table consists of a document-name /      *  node-id pair. e.g.:</p>      *<tableborder="1">      *      *<tr>      *      *<td>      *        hamlet.xml      *</td>      *      *<td>      *        8398      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        hamlet.xml      *</td>      *      *<td>      *        8399      *</td>      *      *</tr>      *      *</table>      *<p>      *      *  You may use this information with the retrieve-call to retrieve the      *  actual nodes.</p><p>      *      *  Otherwise, if the result is a set of values, each value will be      *  converted to string. In this case the return type is an array of strings      *  String[].</p>      *      *@param  xpath                          the XPath query to execute.      *@param  encoding                       the character encoding used for the      *      query string.      *@param  user                           Description of the Parameter      *@return                                string[][2], if result is a node      *      set, string[] otherwise.      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
-name|Vector
-name|query
-parameter_list|(
-name|User
-name|user
-parameter_list|,
-name|byte
-index|[]
-name|xpath
-parameter_list|,
+comment|/** 	 *  execute XPath query and return the resulting node set as a new document. 	 *  howmany nodes will be included, starting at position<code>start</code>. 	 *  If<code>prettyPrint</code> is set to>0 (true), results are pretty 	 *  printed. 	 * 	 *@param  xpath                          the XPath query to execute 	 *@param  howmany                        maximum number of results to 	 *      return. 	 *@param  start                          item in the result set to start 	 *      with. 	 *@param  prettyPrint                    turn on pretty printing if>0. 	 *@param  encoding                       the character encoding to use. 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 *@depreceated                           use Vector query() or int 	 *      executeQuery() instead 	 */
 name|String
-name|encoding
-parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
-function_decl|;
-comment|/**      *  execute XPath query and return the resulting node set as a new document.      *  howmany nodes will be included, starting at position<code>start</code>.      *  If<code>prettyPrint</code> is set to>0 (true), results are pretty      *  printed.      *      *@param  xpath                          the XPath query to execute      *@param  howmany                        maximum number of results to      *      return.      *@param  start                          item in the result set to start      *      with.      *@param  prettyPrint                    turn on pretty printing if>0.      *@param  encoding                       the character encoding to use.      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      *@depreceated                           use Vector query() or int      *      executeQuery() instead      */
-name|byte
-index|[]
 name|query
 parameter_list|(
 name|User
@@ -463,9 +501,6 @@ name|user
 parameter_list|,
 name|String
 name|xpath
-parameter_list|,
-name|String
-name|encoding
 parameter_list|,
 name|int
 name|howmany
@@ -481,9 +516,8 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  execute XPath query and return howmany nodes from the result set,      *  starting at position<code>start</code>. If<code>prettyPrint</code> is      *  set to>0 (true), results are pretty printed.      *      *@param  xpath                          the XPath query to execute      *@param  howmany                        maximum number of results to      *      return.      *@param  start                          item in the result set to start      *      with.      *@param  prettyPrint                    turn on pretty printing if>0.      *@param  encoding                       the character encoding to use.      *@param  sortExpr                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      *@depreceated                           use Vector query() or int      *      executeQuery() instead      */
-name|byte
-index|[]
+comment|/** 	 *  execute XPath query and return howmany nodes from the result set, 	 *  starting at position<code>start</code>. If<code>prettyPrint</code> is 	 *  set to>0 (true), results are pretty printed. 	 * 	 *@param  xpath                          the XPath query to execute 	 *@param  howmany                        maximum number of results to 	 *      return. 	 *@param  start                          item in the result set to start 	 *      with. 	 *@param  prettyPrint                    turn on pretty printing if>0. 	 *@param  encoding                       the character encoding to use. 	 *@param  sortExpr                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 *@depreceated                           use Vector query() or int 	 *      executeQuery() instead 	 */
+name|String
 name|query
 parameter_list|(
 name|User
@@ -491,9 +525,6 @@ name|user
 parameter_list|,
 name|String
 name|xpath
-parameter_list|,
-name|String
-name|encoding
 parameter_list|,
 name|int
 name|howmany
@@ -512,7 +543,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  execute XPath query and return a summary of hits per document and hits      *  per doctype. This method returns a struct with the following fields:      *      *<tableborder="1">      *      *<tr>      *      *<td>      *        "queryTime"      *</td>      *      *<td>      *        int      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "hits"      *</td>      *      *<td>      *        int      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "documents"      *</td>      *      *<td>      *        array of array: Object[][3]      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "doctypes"      *</td>      *      *<td>      *        array of array: Object[][2]      *</td>      *      *</tr>      *      *</table>      *  Documents and doctypes represent tables where each row describes one      *  document or doctype for which hits were found. Each document entry has      *  the following structure: docId (int), docName (string), hits (int) The      *  doctype entry has this structure: doctypeName (string), hits (int)      *      *@param  xpath                          Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      *@depreceated                           use Vector query() or int      *      executeQuery() instead      */
+comment|/** 	 *  execute XPath query and return a summary of hits per document and hits 	 *  per doctype. This method returns a struct with the following fields: 	 * 	 *<tableborder="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "queryTime" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "hits" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "documents" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][3] 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "doctypes" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][2] 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 *  Documents and doctypes represent tables where each row describes one 	 *  document or doctype for which hits were found. Each document entry has 	 *  the following structure: docId (int), docName (string), hits (int) The 	 *  doctype entry has this structure: doctypeName (string), hits (int) 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 *@depreceated                           use Vector query() or int 	 *      executeQuery() instead 	 */
 name|Hashtable
 name|querySummary
 parameter_list|(
@@ -527,7 +558,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  parse an XML document and store it into the database. The document will      *  later be identified by<code>docName</code>. Some xmlrpc clients seem to      *  have problems with character encodings when sending xml content. To      *  avoid this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      *  will be replaced by the new document.      *      *@param  xmlData                        Description of the Parameter      *@param  docName                        Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Parse an XML document and store it into the database. The document will 	 *  later be identified by<code>docName</code>. Some xmlrpc clients seem to 	 *  have problems with character encodings when sending xml content. To 	 *  avoid this, parse() accepts the xml document content as byte[]. If 	 *<code>overwrite</code> is>0, an existing document with the same name 	 *  will be replaced by the new document. 	 * 	 *@param  xmlData                        Description of the Parameter 	 *@param  docName                        Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|boolean
 name|parse
 parameter_list|(
@@ -546,7 +577,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  parse an XML document and store it into the database. The document will      *  later be identified by<code>docName</code>. Some xmlrpc clients seem to      *  have problems with character encodings when sending xml content. To      *  avoid this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      *  will be replaced by the new document.      *      *@param  xmlData                        Description of the Parameter      *@param  docName                        Description of the Parameter      *@param  overwrite                      Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  parse an XML document and store it into the database. The document will 	 *  later be identified by<code>docName</code>. Some xmlrpc clients seem to 	 *  have problems with character encodings when sending xml content. To 	 *  avoid this, parse() accepts the xml document content as byte[]. If 	 *<code>overwrite</code> is>0, an existing document with the same name 	 *  will be replaced by the new document. 	 * 	 *@param  xmlData                        Description of the Parameter 	 *@param  docName                        Description of the Parameter 	 *@param  overwrite                      Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|boolean
 name|parse
 parameter_list|(
@@ -605,6 +636,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param length total length of the file  	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 name|String
 name|upload
 parameter_list|(
@@ -623,6 +655,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 * An alternative to parse() for larger XML documents. The document 	 * is first uploaded chunk by chunk using upload(), then parseLocal() is 	 * called to actually store the uploaded file. 	 *  	 * @param user 	 * @param chunk the current chunk 	 * @param length total length of the file  	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 name|String
 name|upload
 parameter_list|(
@@ -668,7 +701,7 @@ name|PermissionDeniedException
 throws|,
 name|SAXException
 function_decl|;
-comment|/**      *  remove a document from the repository.      *      *@param  docName                        Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Remove a document from the database. 	 * 	 *@param  docName path to the document to be removed 	 *@param  user                            	 *@return                                true on success. 	 *@exception  EXistException              	 *@exception  PermissionDeniedException   	 */
 name|boolean
 name|remove
 parameter_list|(
@@ -683,7 +716,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  remove a complete collection from the repository.      *      *@param  name                           Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Remove an entire collection from the database. 	 * 	 *@param  name path to the collection to be removed. 	 *@param  user 	 *@return 	 *@exception  EXistException              	 *@exception  PermissionDeniedException  	 */
 name|boolean
 name|removeCollection
 parameter_list|(
@@ -698,6 +731,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/**  	 * Create a new collection on the database. 	 *  	 * @param user 	 * @param name the path to the new collection. 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 */
 name|boolean
 name|createCollection
 parameter_list|(
@@ -712,7 +746,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Execute XPath query and return a reference to the result set. The      *  returned reference may be used later to get a summary of results or      *  retrieve the actual hits.      *      *@param  xpath                          Description of the Parameter      *@param  encoding                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Execute XPath query and return a reference to the result set. The 	 *  returned reference may be used later to get a summary of results or 	 *  retrieve the actual hits. 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  encoding                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|int
 name|executeQuery
 parameter_list|(
@@ -760,7 +794,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Retrieve a summary of the result set identified by it's result-set-id.      *  This method returns a struct with the following fields:      *      *<tableborder="1">      *      *<tr>      *      *<td>      *        "queryTime"      *</td>      *      *<td>      *        int      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "hits"      *</td>      *      *<td>      *        int      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "documents"      *</td>      *      *<td>      *        array of array: Object[][3]      *</td>      *      *</tr>      *      *<tr>      *      *<td>      *        "doctypes"      *</td>      *      *<td>      *        array of array: Object[][2]      *</td>      *      *</tr>      *      *</table>      *  Documents and doctypes represent tables where each row describes one      *  document or doctype for which hits were found. Each document entry has      *  the following structure: docId (int), docName (string), hits (int) The      *  doctype entry has this structure: doctypeName (string), hits (int)      *      *@param  resultId                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve a summary of the result set identified by it's result-set-id. 	 *  This method returns a struct with the following fields: 	 * 	 *<tableborder="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "queryTime" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "hits" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "documents" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][3] 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "doctypes" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][2] 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 *  Documents and doctypes represent tables where each row describes one 	 *  document or doctype for which hits were found. Each document entry has 	 *  the following structure: docId (int), docName (string), hits (int) The 	 *  doctype entry has this structure: doctypeName (string), hits (int) 	 * 	 *@param  resultId                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Hashtable
 name|querySummary
 parameter_list|(
@@ -789,7 +823,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Get the number of hits in the result set identified by it's      *  result-set-id.      *      *@param  resultId                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                The hits value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Get the number of hits in the result set identified by it's 	 *  result-set-id. 	 * 	 *@param  resultId                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The hits value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|int
 name|getHits
 parameter_list|(
@@ -804,7 +838,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Retrieve a single result from the result-set identified by resultId. The      *  XML fragment at position num in the result set is returned.      *      *@param  resultId                       Description of the Parameter      *@param  num                            Description of the Parameter      *@param  prettyPrint                    Description of the Parameter      *@param  encoding                       Description of the Parameter      *@param  user                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  EXistException             Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Retrieve a single result from the result-set identified by resultId. The 	 *  XML fragment at position num in the result set is returned. 	 * 	 *@param  resultId                       Description of the Parameter 	 *@param  num                            Description of the Parameter 	 *@param  prettyPrint                    Description of the Parameter 	 *@param  encoding                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|byte
 index|[]
 name|retrieve

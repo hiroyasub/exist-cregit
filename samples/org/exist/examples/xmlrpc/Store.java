@@ -101,7 +101,7 @@ name|args
 operator|.
 name|length
 operator|<
-literal|2
+literal|1
 condition|)
 name|usage
 argument_list|()
@@ -127,6 +127,13 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+name|XmlRpc
+operator|.
+name|setEncoding
+argument_list|(
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
 name|XmlRpcClient
 name|xmlrpc
 init|=

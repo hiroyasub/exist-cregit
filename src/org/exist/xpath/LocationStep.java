@@ -362,6 +362,29 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
+if|if
+condition|(
+name|node
+operator|!=
+literal|null
+condition|)
+block|{
+name|context
+operator|=
+operator|new
+name|ArraySet
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|add
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
+block|}
 name|NodeSet
 name|temp
 decl_stmt|;
@@ -745,6 +768,20 @@ argument_list|,
 name|inPredicate
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" attributes"
+argument_list|)
+expr_stmt|;
 break|break;
 default|default :
 name|Node
@@ -904,7 +941,7 @@ name|vset
 operator|.
 name|setInPredicate
 argument_list|(
-literal|true
+name|inPredicate
 argument_list|)
 expr_stmt|;
 return|return

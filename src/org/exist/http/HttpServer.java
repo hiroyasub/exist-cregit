@@ -17,9 +17,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|io
 operator|.
-name|*
+name|IOException
 import|;
 end_import
 
@@ -27,9 +27,29 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Stack
+name|InterruptedIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|ServerSocket
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|Socket
 import|;
 end_import
 
@@ -59,39 +79,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InterruptedIOException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|*
+name|Stack
 import|;
 end_import
 
@@ -113,9 +101,19 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
-name|*
+name|Configuration
 import|;
 end_import
 
@@ -125,19 +123,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|*
+name|DatabaseConfigurationException
 import|;
 end_import
 
@@ -188,6 +176,12 @@ name|getInstance
 argument_list|(
 literal|"exist.http"
 argument_list|)
+decl_stmt|;
+specifier|protected
+name|boolean
+name|stop
+init|=
+literal|false
 decl_stmt|;
 comment|/**      *  Constructor for the HttpServer object      *      *@param  conf                Description of the Parameter      *@exception  EXistException  Description of the Exception      */
 specifier|public
@@ -387,7 +381,8 @@ argument_list|)
 expr_stmt|;
 while|while
 condition|(
-literal|true
+operator|!
+name|stop
 condition|)
 try|try
 block|{
@@ -436,7 +431,6 @@ name|InterruptedIOException
 name|ie
 parameter_list|)
 block|{
-comment|/*                      *  if (System.in.available()> 0&&                      *  System.in.read() == 'q') {                      *  LOG.info("starting shutdown ...");                      *  pool.shutdown();                      *  System.exit(0);                      *  }                      */
 block|}
 block|}
 catch|catch
@@ -467,6 +461,21 @@ name|sec
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+name|stop
+operator|=
+literal|true
+expr_stmt|;
+name|pool
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 class|class
 name|ConnectionPool
@@ -797,7 +806,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"eXist version 0.5, Copyright (C) 2001 Wolfgang M. Meier"
+literal|"eXist version 0.9.2, Copyright (C) 2001 Wolfgang M. Meier"
 argument_list|)
 expr_stmt|;
 name|System

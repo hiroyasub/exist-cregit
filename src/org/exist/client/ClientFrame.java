@@ -1749,6 +1749,13 @@ argument_list|)
 expr_stmt|;
 name|shell
 operator|.
+name|setContentType
+argument_list|(
+literal|"text/plain; charset=UTF-8"
+argument_list|)
+expr_stmt|;
+name|shell
+operator|.
 name|setFont
 argument_list|(
 operator|new

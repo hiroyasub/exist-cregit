@@ -1158,13 +1158,6 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating overflow page"
-argument_list|)
-expr_stmt|;
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -1172,6 +1165,18 @@ operator|new
 name|OverflowDOMPage
 argument_list|()
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating overflow page: "
+operator|+
+name|overflow
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|overflow
 operator|.
 name|write
@@ -1266,6 +1271,8 @@ operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
+comment|//LOG.debug("trying " + value.length + " bytes to " + rec.page.getPageNum() +
+comment|//	"; offset = " + rec.offset + "; len = " + dataLen);
 comment|// insert in the middle of the page?
 if|if
 condition|(
@@ -1292,6 +1299,7 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+comment|//LOG.debug("copying data in page " + rec.page.getPageNum());
 comment|// new value fits into the page
 name|int
 name|end
@@ -1376,6 +1384,7 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
+comment|//LOG.debug("splitting " + rec.page.getPageNum() + ": new: " + splitPage.getPageNum());
 name|splitPage
 operator|.
 name|len
@@ -1512,6 +1521,25 @@ argument_list|(
 name|splitPage
 argument_list|)
 expr_stmt|;
+name|long
+name|next
+init|=
+name|splitPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|-
+literal|1
+operator|<
+name|next
+condition|)
+block|{
 name|DOMPage
 name|nextPage
 init|=
@@ -1553,6 +1581,7 @@ argument_list|(
 name|nextPage
 argument_list|)
 expr_stmt|;
+block|}
 name|rec
 operator|.
 name|page
@@ -1650,6 +1679,7 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
+comment|//LOG.debug("creating new page: " + newPage.getPageNum());
 name|newPage
 operator|.
 name|getPageHeader
@@ -1776,19 +1806,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// write the data
-if|if
-condition|(
-name|dataLen
-operator|+
-literal|4
-operator|>
-name|fileHeader
-operator|.
-name|getWorkSize
-argument_list|()
-condition|)
-block|{
-block|}
+comment|//LOG.debug("writing " + value.length + " to "+ rec.page.getPageNum() + " at " + rec.offset);
 name|short
 name|tid
 init|=
@@ -3191,6 +3209,33 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|rec
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"object at "
+operator|+
+name|StorageAddress
+operator|.
+name|toString
+argument_list|(
+name|p
+argument_list|)
+operator|+
+literal|" not found."
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 name|short
 name|l
 init|=
@@ -6384,7 +6429,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"writing overflow page"
+literal|"writing overflow page "
+operator|+
+name|firstPage
+operator|.
+name|getPageNum
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try
@@ -6487,18 +6537,6 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"next: "
-operator|+
-name|next
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 name|page
@@ -6560,7 +6598,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"reading overflow page"
+literal|"reading overflow page "
+operator|+
+name|firstPage
+operator|.
+name|getPageNum
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ByteArrayOutputStream
@@ -6641,7 +6684,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"io error while loading overflow page"
+literal|"io error while loading overflow page "
+operator|+
+name|firstPage
+operator|.
+name|getPageNum
+argument_list|()
 argument_list|,
 name|e
 argument_list|)

@@ -338,11 +338,9 @@ name|period
 operator|<=
 literal|0
 condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|()
-throw|;
+return|return
+literal|null
+return|;
 name|long
 name|firstTime
 init|=

@@ -611,6 +611,7 @@ name|parent
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|node
 operator|.
 name|copyContext
@@ -618,6 +619,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Timo Boehme: we return the ancestor which is child of context
 return|return
 name|node

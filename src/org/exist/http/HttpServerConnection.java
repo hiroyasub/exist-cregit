@@ -5254,11 +5254,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-name|broker
-operator|.
-name|shutdown
-argument_list|(  )
-expr_stmt|;
 name|pool
 operator|.
 name|release
