@@ -184,10 +184,6 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
-operator|+
-name|Dependency
-operator|.
-name|CONTEXT_ITEM
 return|;
 else|else
 return|return
