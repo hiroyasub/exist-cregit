@@ -446,7 +446,19 @@ name|XMLDBException
 block|{
 name|super
 argument_list|(
-literal|"View Document"
+literal|"View Document: "
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|'/'
+operator|+
+name|resource
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this
