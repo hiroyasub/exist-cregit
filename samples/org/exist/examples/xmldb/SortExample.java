@@ -91,14 +91,14 @@ specifier|static
 name|String
 name|query
 init|=
-literal|"//SPEECH[LINE&= 'magic']"
+literal|"//SPEECH[LINE&= 'marriage']"
 decl_stmt|;
 specifier|protected
 specifier|static
 name|String
 name|sortBy
 init|=
-literal|"/SPEAKER"
+literal|"/SPEAKER[1]"
 decl_stmt|;
 specifier|public
 specifier|static

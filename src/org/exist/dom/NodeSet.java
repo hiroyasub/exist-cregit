@@ -772,33 +772,6 @@ block|}
 block|}
 break|break;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getChildren found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
 return|return
 name|result
 return|;

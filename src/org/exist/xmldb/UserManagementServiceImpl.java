@@ -111,13 +111,13 @@ implements|implements
 name|UserManagementService
 block|{
 specifier|private
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 decl_stmt|;
 specifier|public
 name|UserManagementServiceImpl
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|collection
 parameter_list|)
 block|{
@@ -307,7 +307,7 @@ name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|res
 operator|.
@@ -454,7 +454,7 @@ name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|child
 operator|)
@@ -591,7 +591,7 @@ name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|res
 operator|.
@@ -711,7 +711,7 @@ name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|res
 operator|.
@@ -1153,7 +1153,7 @@ name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|res
 operator|.
@@ -1271,7 +1271,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// -- Constructor
 comment|/** 	 *  Gets the name attribute of the UserManagementServiceImpl object 	 * 	 *@return    The name value 	 */
 specifier|public
 name|String
@@ -1310,6 +1309,28 @@ argument_list|,
 literal|"collection is null"
 argument_list|)
 throw|;
+name|Permission
+name|perm
+init|=
+operator|(
+operator|(
+name|RemoteCollection
+operator|)
+name|coll
+operator|)
+operator|.
+name|getPermissions
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|perm
+operator|!=
+literal|null
+condition|)
+return|return
+name|perm
+return|;
 try|try
 block|{
 name|Vector
@@ -1325,7 +1346,7 @@ name|addElement
 argument_list|(
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|coll
 operator|)
@@ -1352,9 +1373,8 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
-name|Permission
 name|perm
-init|=
+operator|=
 operator|new
 name|Permission
 argument_list|(
@@ -1378,7 +1398,7 @@ argument_list|(
 literal|"group"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|perm
 operator|.
 name|setPermissions
@@ -1478,12 +1498,37 @@ argument_list|,
 literal|"resource is null"
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|(
+operator|(
+name|RemoteXMLResource
+operator|)
+name|res
+operator|)
+operator|.
+name|getPermissions
+argument_list|()
+operator|!=
+literal|null
+condition|)
+return|return
+operator|(
+operator|(
+name|RemoteXMLResource
+operator|)
+name|res
+operator|)
+operator|.
+name|getPermissions
+argument_list|()
+return|;
 name|String
 name|path
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|res
 operator|.
@@ -2583,7 +2628,7 @@ operator|.
 name|parent
 operator|=
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|collection
 expr_stmt|;

@@ -113,7 +113,7 @@ name|XmlRpcClient
 name|client
 decl_stmt|;
 specifier|protected
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 init|=
 literal|null
@@ -121,7 +121,7 @@ decl_stmt|;
 specifier|public
 name|CollectionManagementServiceImpl
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 parameter_list|,
 name|XmlRpcClient
@@ -255,16 +255,16 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-name|CollectionImpl
+name|RemoteCollection
 name|collection
 init|=
 operator|new
-name|CollectionImpl
+name|RemoteCollection
 argument_list|(
 name|client
 argument_list|,
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|parent
 argument_list|,
@@ -470,7 +470,7 @@ operator|.
 name|parent
 operator|=
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|parent
 expr_stmt|;

@@ -85,7 +85,7 @@ name|XmlRpcClient
 name|rpcClient
 decl_stmt|;
 specifier|protected
-name|CollectionImpl
+name|RemoteCollection
 name|collection
 decl_stmt|;
 specifier|protected
@@ -109,7 +109,7 @@ decl_stmt|;
 specifier|public
 name|ResourceIteratorImpl
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|col
 parameter_list|,
 name|Vector
@@ -326,7 +326,7 @@ name|XMLResource
 name|res
 init|=
 operator|new
-name|XMLResourceImpl
+name|RemoteXMLResource
 argument_list|(
 name|collection
 argument_list|,
@@ -413,7 +413,7 @@ name|XMLResource
 name|res
 init|=
 operator|new
-name|XMLResourceImpl
+name|RemoteXMLResource
 argument_list|(
 name|collection
 argument_list|,

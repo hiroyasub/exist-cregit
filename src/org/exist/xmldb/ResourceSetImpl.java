@@ -145,7 +145,7 @@ implements|implements
 name|ResourceSet
 block|{
 specifier|protected
-name|CollectionImpl
+name|RemoteCollection
 name|collection
 decl_stmt|;
 specifier|protected
@@ -178,7 +178,7 @@ decl_stmt|;
 specifier|public
 name|ResourceSetImpl
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|col
 parameter_list|)
 block|{
@@ -198,7 +198,7 @@ block|}
 specifier|public
 name|ResourceSetImpl
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|col
 parameter_list|,
 name|Vector
@@ -420,11 +420,11 @@ literal|'/'
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 init|=
 operator|new
-name|CollectionImpl
+name|RemoteCollection
 argument_list|(
 name|collection
 operator|.
@@ -440,7 +440,7 @@ name|XMLResource
 name|res
 init|=
 operator|new
-name|XMLResourceImpl
+name|RemoteXMLResource
 argument_list|(
 name|parent
 argument_list|,
@@ -499,7 +499,7 @@ name|XMLResource
 name|res
 init|=
 operator|new
-name|XMLResourceImpl
+name|RemoteXMLResource
 argument_list|(
 name|collection
 argument_list|,

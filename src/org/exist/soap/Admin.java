@@ -101,7 +101,7 @@ parameter_list|)
 throws|throws
 name|RemoteException
 function_decl|;
-comment|/** 	 * Remove the specified document. 	 *  	 * @param sessionId sessionId a unique id for the created session. 	 * @param path the full path to the document. 	 * @return true on success. 	 *  	 * @throws RemoteException 	 */
+comment|/** 	 * Remove the specified document. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param path the full path to the document. 	 * @return true on success. 	 *  	 * @throws RemoteException 	 */
 specifier|public
 name|boolean
 name|removeDocument
@@ -115,7 +115,7 @@ parameter_list|)
 throws|throws
 name|RemoteException
 function_decl|;
-comment|/** 	 * Create a new collection using the specified path. 	 *  	 * @param sessionId sessionId a unique id for the created session. 	 * @param path the full path to the collection. 	 * @return 	 * @throws RemoteException 	 */
+comment|/** 	 * Create a new collection using the specified path. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param path the full path to the collection. 	 * @return 	 * @throws RemoteException 	 */
 specifier|public
 name|boolean
 name|createCollection
@@ -125,6 +125,40 @@ name|sessionId
 parameter_list|,
 name|String
 name|path
+parameter_list|)
+throws|throws
+name|RemoteException
+function_decl|;
+comment|/** 	 * Apply a set of XUpdate modifications to a collection. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param collectionName the full path to the collection. 	 * @param xupdate the XUpdate document to be applied. 	 * @return 	 * @throws RemoteException 	 */
+specifier|public
+name|int
+name|xupdate
+parameter_list|(
+name|String
+name|sessionId
+parameter_list|,
+name|String
+name|collectionName
+parameter_list|,
+name|String
+name|xupdate
+parameter_list|)
+throws|throws
+name|RemoteException
+function_decl|;
+comment|/** 	 * Apply a set of XUpdate modifications to the specified document. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param documentName the full path to the document. 	 * @param xupdate the XUpdate document to be applied. 	 * @return 	 * @throws RemoteException 	 */
+specifier|public
+name|int
+name|xupdateResource
+parameter_list|(
+name|String
+name|sessionId
+parameter_list|,
+name|String
+name|documentName
+parameter_list|,
+name|String
+name|xupdate
 parameter_list|)
 throws|throws
 name|RemoteException

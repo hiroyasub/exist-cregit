@@ -59,9 +59,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|ShutdownListener
+name|Configuration
 import|;
 end_import
 
@@ -71,9 +71,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|xmldb
 operator|.
-name|Configuration
+name|ShutdownListener
 import|;
 end_import
 

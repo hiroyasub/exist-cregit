@@ -302,6 +302,7 @@ specifier|private
 name|String
 name|name
 decl_stmt|;
+comment|// the permissions assigned to this collection
 specifier|private
 name|Permission
 name|permissions
@@ -328,6 +329,13 @@ name|address
 init|=
 operator|-
 literal|1
+decl_stmt|;
+comment|// creation time
+specifier|private
+name|long
+name|created
+init|=
+literal|0
 decl_stmt|;
 comment|//private CollectionConfiguration configuration = null;
 specifier|public
@@ -1441,6 +1449,13 @@ argument_list|(
 name|perm
 argument_list|)
 expr_stmt|;
+name|created
+operator|=
+name|istream
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -1793,6 +1808,13 @@ name|getPermissions
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|ostream
+operator|.
+name|writeLong
+argument_list|(
+name|created
+argument_list|)
+expr_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -1884,6 +1906,28 @@ parameter_list|()
 block|{
 return|return
 name|refCount
+return|;
+block|}
+specifier|public
+name|void
+name|setCreationTime
+parameter_list|(
+name|long
+name|ms
+parameter_list|)
+block|{
+name|created
+operator|=
+name|ms
+expr_stmt|;
+block|}
+specifier|public
+name|long
+name|getCreationTime
+parameter_list|()
+block|{
+return|return
+name|created
 return|;
 block|}
 block|}

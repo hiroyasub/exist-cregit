@@ -107,7 +107,7 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
+literal|"xmldb:exist://localhost:8080/exist/xmlrpc/db"
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -121,14 +121,14 @@ specifier|static
 name|String
 name|query1
 init|=
-literal|"document(*)//rdf:Description[dc:subject&='computer']"
+literal|"document(*)//SPEECH[LINE&= 'corrupt*']"
 decl_stmt|;
 specifier|protected
 specifier|static
 name|String
 name|query2
 init|=
-literal|"/dc:title"
+literal|"/ancestor::SCENE/TITLE"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -223,15 +223,6 @@ argument_list|(
 literal|"encoding"
 argument_list|,
 literal|"ISO-8859-1"
-argument_list|)
-expr_stmt|;
-name|service
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-container-elements"
-argument_list|,
-literal|"false"
 argument_list|)
 expr_stmt|;
 comment|// execute first query
@@ -376,10 +367,27 @@ name|out
 operator|.
 name|println
 argument_list|(
+literal|"Scene: "
+operator|+
 name|xml
 argument_list|)
 expr_stmt|;
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+operator|(
+name|String
+operator|)
+name|resource
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -394,30 +402,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|/**  Description of the Method */
-specifier|protected
-specifier|static
-name|void
-name|usage
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"usage: samples.APISearch [ collection ] xpath-query"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

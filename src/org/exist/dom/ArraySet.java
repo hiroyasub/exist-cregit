@@ -1331,6 +1331,7 @@ operator|instanceof
 name|ArraySet
 operator|)
 condition|)
+block|{
 return|return
 name|super
 operator|.
@@ -1343,6 +1344,7 @@ argument_list|,
 name|rememberContext
 argument_list|)
 return|;
+block|}
 name|ArraySet
 name|al
 init|=

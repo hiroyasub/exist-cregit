@@ -146,14 +146,14 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|RemoteXUpdateQueryService
 parameter_list|(
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 parameter_list|)
 block|{

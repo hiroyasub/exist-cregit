@@ -6464,6 +6464,16 @@ name|getNextCollectionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|current
+operator|.
+name|setCreationTime
+argument_list|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|saveCollection
 argument_list|(
 name|current
@@ -6582,6 +6592,16 @@ operator|.
 name|setId
 argument_list|(
 name|getNextCollectionId
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sub
+operator|.
+name|setCreationTime
+argument_list|(
+name|System
+operator|.
+name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -10182,6 +10202,8 @@ name|toLowerCase
 argument_list|()
 expr_stmt|;
 block|}
+comment|//System.out.println("context = " + p.gid + "; context-length = " +
+comment|//	(p.getContext() == null ? -1 : p.getContext().getSize()));
 switch|switch
 condition|(
 name|truncation

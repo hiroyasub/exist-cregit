@@ -5596,13 +5596,35 @@ operator|.
 name|getNextDataPage
 argument_list|()
 expr_stmt|;
-comment|//				LOG.debug(owner.toString() +
-comment|//					": tid "
-comment|//						+ tid
-comment|//						+ " not found on "
-comment|//						+ page.page.getPageInfo()
-comment|//						+ ". Loading "
-comment|//						+ pageNr);
+if|if
+condition|(
+name|pageNr
+operator|==
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"illegal link to next page"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+comment|//			LOG.debug(
+comment|//				owner.toString()
+comment|//					+ ": tid "
+comment|//					+ tid
+comment|//					+ " not found on "
+comment|//					+ page.page.getPageInfo()
+comment|//					+ ". Loading "
+comment|//					+ pageNr);
 block|}
 name|LOG
 operator|.
@@ -6662,7 +6684,13 @@ name|isDirty
 argument_list|()
 condition|)
 return|return;
-comment|//ph.setDataLength(len);
+name|ph
+operator|.
+name|setDataLength
+argument_list|(
+name|len
+argument_list|)
+expr_stmt|;
 name|ph
 operator|.
 name|setRecordLen
@@ -6684,6 +6712,11 @@ argument_list|(
 name|page
 argument_list|,
 name|value
+argument_list|)
+expr_stmt|;
+name|setDirty
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//page.write();
@@ -7410,11 +7443,18 @@ operator|.
 name|isDirty
 argument_list|()
 condition|)
+block|{
+comment|//					LOG.debug(
+comment|//						"writing page "
+comment|//							+ page.getPageNum()
+comment|//							+ "; length = "
+comment|//							+ page.getPageHeader().getDataLength());
 name|page
 operator|.
 name|write
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

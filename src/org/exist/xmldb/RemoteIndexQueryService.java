@@ -129,7 +129,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 decl_stmt|;
 specifier|public
@@ -138,7 +138,7 @@ parameter_list|(
 name|XmlRpcClient
 name|client
 parameter_list|,
-name|CollectionImpl
+name|RemoteCollection
 name|parent
 parameter_list|)
 block|{
@@ -595,7 +595,7 @@ operator|.
 name|parent
 operator|=
 operator|(
-name|CollectionImpl
+name|RemoteCollection
 operator|)
 name|col
 expr_stmt|;

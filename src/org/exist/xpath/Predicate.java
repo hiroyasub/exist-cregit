@@ -101,6 +101,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|SingleNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -171,14 +183,7 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 name|ArraySet
 name|result
 init|=
@@ -581,14 +586,7 @@ expr_stmt|;
 name|set
 operator|=
 operator|new
-name|ArraySet
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-name|set
-operator|.
-name|add
+name|SingleNodeSet
 argument_list|(
 name|p
 argument_list|)
@@ -798,31 +796,12 @@ block|}
 block|}
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"predicate expression found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"predicate expression found "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 operator|new
 name|ValueNodeSet

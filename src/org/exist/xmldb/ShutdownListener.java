@@ -9,12 +9,12 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 package|;
 end_package
 
 begin_comment
-comment|/**  * Instances of this class can be registered with the BrokerPool to get informed if the  * database shuts down. The shutdown method is called after the database instance has  * been shut down.  *   * @author wolf  */
+comment|/**  * Instances of this class can be registered with the BrokerPool to get informed when the  * database shuts down. The shutdown method is called after the database instance has  * been shut down.  *   * @author wolf  */
 end_comment
 
 begin_interface
@@ -22,6 +22,7 @@ specifier|public
 interface|interface
 name|ShutdownListener
 block|{
+comment|/** 	 * The database instance identified by dbname has been shut down. 	 *  	 * @param dbname The name of the database instance. 	 * @param remainingInstances Number of remaining database instances. 	 */
 specifier|public
 name|void
 name|shutdown

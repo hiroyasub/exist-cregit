@@ -92,6 +92,13 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+name|query
+operator|.
+name|disconnect
+argument_list|(
+name|session
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -2446,7 +2446,12 @@ literal|"org/exist/start/start.config"
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|if
+condition|(
+name|cpcfg
+operator|==
+literal|null
+condition|)
 block|{
 name|System
 operator|.
