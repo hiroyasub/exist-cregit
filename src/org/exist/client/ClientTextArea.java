@@ -265,7 +265,7 @@ name|Font
 operator|.
 name|PLAIN
 argument_list|,
-literal|12
+literal|10
 argument_list|)
 decl_stmt|;
 specifier|public

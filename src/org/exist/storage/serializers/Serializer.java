@@ -1269,6 +1269,8 @@ operator|.
 name|getProperty
 argument_list|(
 name|key
+argument_list|,
+name|defaultValue
 argument_list|)
 decl_stmt|;
 return|return
@@ -3519,7 +3521,7 @@ name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 operator|.
 name|equals

@@ -741,24 +741,6 @@ name|boolean
 name|locked
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-operator|(
-name|locked
-condition|?
-literal|"Locking"
-else|:
-literal|"Unlocking"
-operator|)
-operator|+
-literal|" document "
-operator|+
-name|getFileName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|writeLocked
