@@ -1581,7 +1581,7 @@ name|endElement
 argument_list|(
 name|last
 argument_list|,
-literal|null
+name|currentPath
 argument_list|)
 expr_stmt|;
 name|currentPath
