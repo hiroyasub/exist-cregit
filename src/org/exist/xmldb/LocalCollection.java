@@ -3268,6 +3268,14 @@ name|res
 operator|.
 name|getMimeType
 argument_list|()
+argument_list|,
+name|res
+operator|.
+name|datecreated
+argument_list|,
+name|res
+operator|.
+name|datemodified
 argument_list|)
 decl_stmt|;
 block|}
