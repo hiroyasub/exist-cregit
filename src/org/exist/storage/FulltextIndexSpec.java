@@ -302,6 +302,16 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"INCLUDE: "
+operator|+
+name|indexAttributes
+argument_list|)
+expr_stmt|;
 name|setIncludeAttributes
 argument_list|(
 name|indexAttributes
@@ -310,8 +320,16 @@ name|equals
 argument_list|(
 literal|"true"
 argument_list|)
+operator|||
+name|indexAttributes
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|indexAlphaNum
 init|=
@@ -342,6 +360,13 @@ operator|.
 name|equals
 argument_list|(
 literal|"true"
+argument_list|)
+operator|||
+name|indexAlphaNum
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
