@@ -1920,6 +1920,12 @@ name|getPageSize
 parameter_list|()
 function_decl|;
 specifier|public
+specifier|abstract
+name|IndexConfiguration
+name|getIndexConfiguration
+parameter_list|()
+function_decl|;
+specifier|public
 name|void
 name|setId
 parameter_list|(
