@@ -208,7 +208,7 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8081/db"
+literal|"xmldb:exist:///db"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -296,12 +296,12 @@ specifier|public
 name|XPathQueryTest
 parameter_list|(
 name|String
-name|arg0
+name|name
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|arg0
+name|name
 argument_list|)
 expr_stmt|;
 block|}
