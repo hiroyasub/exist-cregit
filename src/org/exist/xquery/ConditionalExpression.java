@@ -192,6 +192,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|flags
+operator|&=
+operator|(
+operator|~
+name|IN_PREDICATE
+operator|)
+expr_stmt|;
 name|testExpr
 operator|.
 name|analyze
