@@ -1840,17 +1840,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"module "
-operator|+
-name|namespaceURI
-operator|+
-literal|" is already present"
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("module " + namespaceURI + " is already present");
 return|return
 name|module
 return|;
