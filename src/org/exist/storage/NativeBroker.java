@@ -15926,6 +15926,13 @@ argument_list|(
 name|TEMP_COLLECTION
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|temp
+operator|==
+literal|null
+condition|)
+return|return;
 try|try
 block|{
 name|removeCollection
