@@ -4185,7 +4185,7 @@ name|TerminatedException
 name|e
 parameter_list|)
 block|{
-comment|// Should never happen hear
+comment|// Should never happen here
 name|LOG
 operator|.
 name|warn
@@ -6405,8 +6405,20 @@ name|long
 name|p
 parameter_list|)
 block|{
-comment|//    	StringBuffer debug = new StringBuffer();
-comment|//    	debug.append("Removed pages: ");
+name|StringBuffer
+name|debug
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|debug
+operator|.
+name|append
+argument_list|(
+literal|"Removed pages: "
+argument_list|)
+expr_stmt|;
 name|long
 name|pnum
 init|=
@@ -6425,7 +6437,18 @@ operator|<
 name|pnum
 condition|)
 block|{
-comment|//        	debug.append(' ').append(pnum);
+name|debug
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|pnum
+argument_list|)
+expr_stmt|;
 name|DOMPage
 name|page
 init|=
@@ -6541,7 +6564,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//        LOG.debug(debug.toString());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|debug
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|String
@@ -6660,6 +6692,23 @@ name|getNextDataPage
 argument_list|()
 expr_stmt|;
 block|}
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"; Document metadata at "
+operator|+
+name|StorageAddress
+operator|.
+name|toString
+argument_list|(
+name|doc
+operator|.
+name|getAddress
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|buf
 operator|.
@@ -7382,7 +7431,7 @@ operator|!
 name|foundNext
 condition|)
 do|;
-name|short
+name|int
 name|len
 init|=
 name|ByteConversion
@@ -7471,9 +7520,6 @@ argument_list|)
 expr_stmt|;
 name|len
 operator|=
-operator|(
-name|short
-operator|)
 name|data
 operator|.
 name|length
@@ -7600,8 +7646,24 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//if (children - attributes> 1)
-comment|//	os.write((byte) 0x20);
+if|if
+condition|(
+name|children
+operator|-
+name|attributes
+operator|>
+literal|1
+condition|)
+name|os
+operator|.
+name|write
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x20
+argument_list|)
+expr_stmt|;
 block|}
 return|return;
 case|case
@@ -7735,6 +7797,12 @@ expr_stmt|;
 block|}
 break|break;
 block|}
+if|if
+condition|(
+name|len
+operator|!=
+name|OVERFLOW
+condition|)
 name|rec
 operator|.
 name|offset
