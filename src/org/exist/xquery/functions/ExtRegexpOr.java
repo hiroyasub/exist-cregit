@@ -164,7 +164,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ONE_OR_MORE
 argument_list|)
 block|}
 argument_list|,
