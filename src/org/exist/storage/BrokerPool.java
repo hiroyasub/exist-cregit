@@ -420,6 +420,8 @@ argument_list|(
 literal|"registering shutdown hook"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|Runtime
 operator|.
 name|getRuntime
@@ -430,6 +432,21 @@ argument_list|(
 name|shutdownThread
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"shutdown hook already registered"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 else|else

@@ -953,20 +953,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class

@@ -1408,6 +1408,11 @@ name|SAXException
 name|saxe
 parameter_list|)
 block|{
+name|saxe
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
