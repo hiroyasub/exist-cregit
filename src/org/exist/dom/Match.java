@@ -96,6 +96,14 @@ name|match
 operator|.
 name|nodeId
 expr_stmt|;
+name|this
+operator|.
+name|frequency
+operator|=
+name|match
+operator|.
+name|frequency
+expr_stmt|;
 block|}
 specifier|public
 name|String
