@@ -507,6 +507,8 @@ literal|"\"ordering\""
 block|,
 literal|"\"construction\""
 block|,
+literal|"\"base-uri\""
+block|,
 literal|"\"function\""
 block|,
 literal|"\"variable\""
@@ -532,6 +534,8 @@ block|,
 literal|"closing curly brace '{'"
 block|,
 literal|"\"at\""
+block|,
+literal|"\"external\""
 block|,
 literal|"\"as\""
 block|,
