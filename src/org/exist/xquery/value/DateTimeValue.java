@@ -884,7 +884,7 @@ name|DATE_TIME
 return|;
 block|}
 specifier|public
-name|DateValue
+name|DateTimeValue
 name|adjustToTimezone
 parameter_list|(
 name|int
@@ -901,7 +901,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|DateValue
+name|DateTimeValue
 argument_list|(
 name|date
 operator|.
