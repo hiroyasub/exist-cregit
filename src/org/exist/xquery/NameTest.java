@@ -122,7 +122,10 @@ name|nodeType
 decl_stmt|;
 if|if
 condition|(
-name|type
+name|proxy
+operator|.
+name|getType
+argument_list|()
 operator|==
 name|Type
 operator|.
