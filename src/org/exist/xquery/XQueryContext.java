@@ -3439,6 +3439,8 @@ argument_list|(
 name|moduleLoadPath
 argument_list|,
 name|location
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

@@ -29,6 +29,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -110,12 +120,27 @@ specifier|private
 name|SourceValidity
 name|validity
 decl_stmt|;
+specifier|private
+name|boolean
+name|checkEncoding
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|String
+name|encoding
+init|=
+literal|"UTF-8"
+decl_stmt|;
 comment|/**      *       */
 specifier|public
 name|CocoonSource
 parameter_list|(
 name|Source
 name|source
+parameter_list|,
+name|boolean
+name|checkXQEncoding
 parameter_list|)
 block|{
 name|inputSource
@@ -129,8 +154,12 @@ operator|.
 name|getValidity
 argument_list|()
 expr_stmt|;
+name|checkEncoding
+operator|=
+name|checkXQEncoding
+expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid()      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.source.Source#isValid()      */
 specifier|public
 name|int
 name|isValid
@@ -171,7 +200,7 @@ name|INVALID
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
 specifier|public
 name|int
 name|isValid
@@ -230,7 +259,7 @@ name|INVALID
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#getReader()      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.source.Source#getReader()      */
 specifier|public
 name|Reader
 name|getReader
@@ -238,6 +267,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|checkEncoding
+argument_list|()
+expr_stmt|;
 name|InputStream
 name|is
 init|=
@@ -252,7 +284,7 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|,
-literal|"UTF-8"
+name|encoding
 argument_list|)
 return|;
 block|}
@@ -263,6 +295,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|checkEncoding
+argument_list|()
+expr_stmt|;
 name|int
 name|len
 init|=
@@ -356,11 +391,11 @@ name|os
 operator|.
 name|toString
 argument_list|(
-literal|"UTF-8"
+name|encoding
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#getKey()      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.source.Source#getKey()      */
 specifier|public
 name|Object
 name|getKey
@@ -372,6 +407,52 @@ operator|.
 name|getURI
 argument_list|()
 return|;
+block|}
+specifier|private
+name|void
+name|checkEncoding
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|checkEncoding
+condition|)
+block|{
+name|String
+name|checkedEnc
+init|=
+name|guessXQueryEncoding
+argument_list|(
+name|inputSource
+operator|.
+name|getInputStream
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|checkedEnc
+operator|!=
+literal|null
+condition|)
+name|encoding
+operator|=
+name|checkedEnc
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ENCODING = "
+operator|+
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

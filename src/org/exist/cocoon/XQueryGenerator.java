@@ -1390,6 +1390,8 @@ operator|new
 name|CocoonSource
 argument_list|(
 name|inputSource
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -84,6 +84,9 @@ name|contextPath
 parameter_list|,
 name|String
 name|location
+parameter_list|,
+name|boolean
+name|checkXQEncoding
 parameter_list|)
 throws|throws
 name|MalformedURLException
@@ -178,6 +181,8 @@ argument_list|(
 name|f
 argument_list|,
 literal|"UTF-8"
+argument_list|,
+name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
