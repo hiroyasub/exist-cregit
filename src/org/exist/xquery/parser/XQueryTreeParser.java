@@ -27025,11 +27025,17 @@ literal|"XML_COMMENT_END"
 block|,
 literal|"XML_PI_END"
 block|,
+literal|"XML_CDATA"
+block|,
+literal|"XML_CDATA_END"
+block|,
 literal|"\"collection\""
 block|,
 literal|"\"preceding\""
 block|,
 literal|"XML_PI_START"
+block|,
+literal|"XML_CDATA_START"
 block|,
 literal|"LETTER"
 block|,
@@ -27089,7 +27095,7 @@ block|,
 operator|-
 literal|144115207402451832L
 block|,
-literal|17246976471L
+literal|68786584023L
 block|,
 literal|0L
 block|,

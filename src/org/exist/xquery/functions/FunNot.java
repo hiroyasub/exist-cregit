@@ -446,16 +446,10 @@ block|{
 comment|// special treatment if the context sequence is empty:
 comment|// within a predicate, we just return the empty sequence
 comment|// otherwise evaluate the argument and return a boolean result
-if|if
-condition|(
-name|inPredicate
-condition|)
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
-else|else
+comment|// TODO: why do we need this special case here?
+comment|//				if (inPredicate)
+comment|//					return Sequence.EMPTY_SEQUENCE;
+comment|//				else
 return|return
 name|evalBoolean
 argument_list|(

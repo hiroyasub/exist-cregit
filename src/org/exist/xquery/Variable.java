@@ -187,7 +187,7 @@ name|CONTEXT_SET
 operator|+
 name|Dependency
 operator|.
-name|CONTEXT_ITEM
+name|CONTEXT_VARS
 return|;
 else|else
 return|return

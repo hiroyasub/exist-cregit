@@ -168,7 +168,7 @@ name|flags
 operator|&
 name|IN_PREDICATE
 operator|)
-operator|>
+operator|!=
 literal|0
 expr_stmt|;
 name|getLeft

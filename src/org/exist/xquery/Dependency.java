@@ -45,7 +45,7 @@ name|CONTEXT_ITEM
 init|=
 literal|2
 decl_stmt|;
-comment|/** 	 * Expression depends on one or more in-scope variables.  	 */
+comment|/** 	 * Expression depends on a variable declared within the 	 * same for or let expression.  	 */
 specifier|public
 specifier|final
 specifier|static
@@ -54,13 +54,25 @@ name|LOCAL_VARS
 init|=
 literal|4
 decl_stmt|;
+comment|/** 	 * Expression depends on a variable declared in the context, i.e. 	 * an outer let or for. 	 */
 specifier|public
 specifier|final
 specifier|static
 name|int
-name|GLOBAL_VARS
+name|CONTEXT_VARS
 init|=
 literal|8
+decl_stmt|;
+comment|/** 	 * Bit mask to test if the expression depends on a variable reference. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|VARS
+init|=
+name|LOCAL_VARS
+operator|+
+name|CONTEXT_VARS
 decl_stmt|;
 comment|/** 	 * Expression evaluates the context position and thus requires 	 * that the corresponding field in the context is set. 	 */
 specifier|public

@@ -109,7 +109,16 @@ name|IN_PREDICATE
 init|=
 literal|2
 decl_stmt|;
-comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables or some type errors.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class.      *       * @throws XPathException      */
+comment|/**      * Indicates that the expression is within a where clause of a FLWOR. This      * flag will be set in addition to {@link #IN_PREDICATE}.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IN_WHERE_CLAUSE
+init|=
+literal|4
+decl_stmt|;
+comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class.      *       * @throws XPathException      */
 specifier|public
 name|void
 name|analyze

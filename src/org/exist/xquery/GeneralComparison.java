@@ -382,6 +382,12 @@ name|collationArg
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|boolean
+name|inWhereClause
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
@@ -577,13 +583,46 @@ name|right
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BinaryOp#analyze(org.exist.xquery.Expression, int)      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|parent
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+name|inWhereClause
+operator|=
+operator|(
+name|flags
+operator|&
+name|IN_WHERE_CLAUSE
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
 parameter_list|()
 block|{
-comment|// TODO: Assumes that context sequence is a node set
 if|if
 condition|(
 name|inPredicate
@@ -620,6 +659,7 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|leftDeps
 init|=
@@ -629,7 +669,6 @@ operator|.
 name|getDependencies
 argument_list|()
 decl_stmt|;
-comment|//		int rightDeps = getRight().getDependencies();
 comment|// left expression returns node set
 if|if
 condition|(
@@ -647,8 +686,8 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-comment|//	and does not depend on the context item
 operator|&&
+comment|//	and does not depend on the context item
 operator|(
 name|leftDeps
 operator|&
@@ -658,8 +697,22 @@ name|CONTEXT_ITEM
 operator|)
 operator|==
 literal|0
+operator|&&
+operator|(
+operator|!
+name|inWhereClause
+operator|||
+operator|(
+name|leftDeps
+operator|&
+name|Dependency
+operator|.
+name|CONTEXT_VARS
+operator|)
+operator|==
+literal|0
+operator|)
 condition|)
-comment|//&& (rightDeps& Dependency.LOCAL_VARS) == 0)
 block|{
 return|return
 name|Dependency
@@ -1497,19 +1550,6 @@ name|result
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|hasMixedContent
-operator|&&
-name|indexType
-operator|!=
-name|Type
-operator|.
-name|ITEM
-condition|)
-block|{
-comment|// we have a range index defined on the nodes in this sequence
 name|Item
 name|key
 init|=
@@ -1523,6 +1563,19 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|hasMixedContent
+operator|&&
+name|indexType
+operator|!=
+name|Type
+operator|.
+name|ITEM
+condition|)
+block|{
+comment|// we have a range index defined on the nodes in this sequence
 if|if
 condition|(
 name|truncation
@@ -1744,6 +1797,32 @@ return|;
 block|}
 if|else if
 condition|(
+name|key
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATOMIC
+operator|||
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|hasMixedContent
 operator|&&
@@ -1815,31 +1894,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|rightSeq
-operator|.
-name|getItemType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|)
-operator|||
-name|rightSeq
-operator|.
-name|getItemType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|ATOMIC
-condition|)
+else|else
 block|{
 comment|// no usable index found. Fall back to a sequential scan of the nodes
 name|result
@@ -1868,6 +1923,7 @@ name|contextSequence
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1898,7 +1954,7 @@ argument_list|()
 operator|&
 name|Dependency
 operator|.
-name|LOCAL_VARS
+name|VARS
 operator|)
 operator|==
 literal|0
@@ -1912,7 +1968,7 @@ argument_list|()
 operator|&
 name|Dependency
 operator|.
-name|LOCAL_VARS
+name|VARS
 operator|)
 operator|==
 literal|0
