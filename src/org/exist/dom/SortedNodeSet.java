@@ -199,7 +199,7 @@ specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/**      *  Constructor for the SortedNodeSet object      *      *@param  sortExpr  Description of the Parameter      */
+comment|/** 	 *  Constructor for the SortedNodeSet object 	 * 	 *@param  sortExpr  Description of the Parameter 	 */
 specifier|public
 name|SortedNodeSet
 parameter_list|(
@@ -223,7 +223,7 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the All attribute of the SortedNodeSet object      *      *@param  other  The feature to be added to the All attribute      */
+comment|/** 	 *  Adds a feature to the All attribute of the SortedNodeSet object 	 * 	 *@param  other  The feature to be added to the All attribute 	 */
 specifier|public
 name|void
 name|addAll
@@ -545,7 +545,7 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the All attribute of the SortedNodeSet object      *      *@param  other  The feature to be added to the All attribute      */
+comment|/** 	 *  Adds a feature to the All attribute of the SortedNodeSet object 	 * 	 *@param  other  The feature to be added to the All attribute 	 */
 specifier|public
 name|void
 name|addAll
@@ -579,7 +579,7 @@ name|other
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  doc     Description of the Parameter      *@param  nodeId  Description of the Parameter      *@return         Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  doc     Description of the Parameter 	 *@param  nodeId  Description of the Parameter 	 *@return         Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|contains
@@ -604,7 +604,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  proxy  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|contains
@@ -666,7 +666,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  pos  Description of the Parameter      *@return      Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  pos  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -691,7 +691,7 @@ operator|.
 name|proxy
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  doc     Description of the Parameter      *@param  nodeId  Description of the Parameter      *@return         Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  doc     Description of the Parameter 	 *@param  nodeId  Description of the Parameter 	 *@return         Description of the Return Value 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -767,7 +767,68 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the length attribute of the SortedNodeSet object      *      *@return    The length value      */
+specifier|public
+name|NodeProxy
+name|get
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+name|NodeProxy
+name|p
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|list
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|p
+operator|=
+operator|(
+operator|(
+name|Item
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+operator|)
+operator|.
+name|proxy
+expr_stmt|;
+if|if
+condition|(
+name|p
+operator|.
+name|compareTo
+argument_list|(
+name|proxy
+argument_list|)
+operator|==
+literal|0
+condition|)
+return|return
+name|p
+return|;
+block|}
+return|return
+literal|null
+return|;
+block|}
+comment|/** 	 *  Gets the length attribute of the SortedNodeSet object 	 * 	 *@return    The length value 	 */
 specifier|public
 name|int
 name|getLength
@@ -780,7 +841,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  pos  Description of the Parameter      *@return      Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  pos  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|Node
 name|item
@@ -825,7 +886,7 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -853,7 +914,7 @@ block|{
 name|Iterator
 name|pi
 decl_stmt|;
-comment|/**          *  Constructor for the SortedNodeSetIterator object          *          *@param  i  Description of the Parameter          */
+comment|/** 		 *  Constructor for the SortedNodeSetIterator object 		 * 		 *@param  i  Description of the Parameter 		 */
 specifier|public
 name|SortedNodeSetIterator
 parameter_list|(
@@ -866,7 +927,7 @@ operator|=
 name|i
 expr_stmt|;
 block|}
-comment|/**          *  Description of the Method          *          *@return    Description of the Return Value          */
+comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -879,7 +940,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**          *  Description of the Method          *          *@return    Description of the Return Value          */
+comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|Object
 name|next
@@ -933,7 +994,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-comment|/**          *  Constructor for the Item object          *          *@param  proxy   Description of the Parameter          *@param  broker  Description of the Parameter          */
+comment|/** 		 *  Constructor for the Item object 		 * 		 *@param  proxy   Description of the Parameter 		 *@param  broker  Description of the Parameter 		 */
 specifier|public
 name|Item
 parameter_list|(
@@ -1111,7 +1172,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|ValueSet
 name|valueSet
 init|=
@@ -1210,7 +1271,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/**          *  Description of the Method          *          *@param  other  Description of the Parameter          *@return        Description of the Return Value          */
+comment|/** 		 *  Description of the Method 		 * 		 *@param  other  Description of the Parameter 		 *@return        Description of the Return Value 		 */
 specifier|public
 name|int
 name|compareTo

@@ -430,6 +430,15 @@ argument_list|)
 condition|)
 block|{
 name|parent
+operator|=
+name|temp
+operator|.
+name|get
+argument_list|(
+name|parent
+argument_list|)
+expr_stmt|;
+name|parent
 operator|.
 name|addMatches
 argument_list|(

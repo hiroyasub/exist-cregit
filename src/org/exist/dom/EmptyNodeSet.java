@@ -217,6 +217,18 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|NodeProxy
+name|get
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

@@ -289,6 +289,15 @@ specifier|abstract
 name|NodeProxy
 name|get
 parameter_list|(
+name|NodeProxy
+name|p
+parameter_list|)
+function_decl|;
+specifier|public
+specifier|abstract
+name|NodeProxy
+name|get
+parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
