@@ -845,6 +845,33 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.CollectionManagementServiceImpl#copy(java.lang.String, java.lang.String, java.lang.String) 	 */
+specifier|public
+name|void
+name|copy
+parameter_list|(
+name|String
+name|collection
+parameter_list|,
+name|String
+name|destination
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|)
+throw|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionManagementServiceImpl#copyResource(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|void
