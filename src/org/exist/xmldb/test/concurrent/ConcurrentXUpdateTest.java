@@ -191,7 +191,7 @@ argument_list|)
 argument_list|,
 literal|10
 argument_list|,
-literal|1000
+literal|2000
 argument_list|)
 expr_stmt|;
 block|}
