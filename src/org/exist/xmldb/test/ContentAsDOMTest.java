@@ -234,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Tests XMLResource.getContentAsDOM() for resources retrieved from  * an XQuery.  *   * @author wolf  */
 end_comment
 
 begin_class
