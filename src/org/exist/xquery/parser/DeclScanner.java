@@ -421,6 +421,8 @@ literal|"ELEMENT"
 block|,
 literal|"ATTRIBUTE"
 block|,
+literal|"ATTRIBUTE_CONTENT"
+block|,
 literal|"TEXT"
 block|,
 literal|"VERSION_DECL"
@@ -471,25 +473,25 @@ literal|"COMP_DOC_CONSTRUCTOR"
 block|,
 literal|"\"xpointer\""
 block|,
-literal|"'('"
+literal|"opening parenthesis '('"
 block|,
-literal|"')'"
+literal|"closing parenthesis ')'"
 block|,
-literal|"NCNAME"
+literal|"name"
 block|,
 literal|"\"xquery\""
 block|,
 literal|"\"version\""
 block|,
-literal|"SEMICOLON"
+literal|"semicolon ';'"
 block|,
 literal|"\"module\""
 block|,
 literal|"\"namespace\""
 block|,
-literal|"EQ"
+literal|"="
 block|,
-literal|"STRING_LITERAL"
+literal|"string literal"
 block|,
 literal|"\"import\""
 block|,
@@ -521,11 +523,11 @@ literal|"\"ordered\""
 block|,
 literal|"\"unordered\""
 block|,
-literal|"DOLLAR"
+literal|"dollar sign '$'"
 block|,
-literal|"LCURLY"
+literal|"opening curly brace '{'"
 block|,
-literal|"RCURLY"
+literal|"closing curly brace '{'"
 block|,
 literal|"\"at\""
 block|,
@@ -535,11 +537,11 @@ literal|"COMMA"
 block|,
 literal|"\"empty\""
 block|,
-literal|"QUESTION"
+literal|"question mark '?'"
 block|,
-literal|"STAR"
+literal|"wildcard '*'"
 block|,
-literal|"PLUS"
+literal|"+"
 block|,
 literal|"\"item\""
 block|,
@@ -595,9 +597,9 @@ literal|"\"castable\""
 block|,
 literal|"\"cast\""
 block|,
-literal|"LT"
+literal|"<"
 block|,
-literal|"GT"
+literal|">"
 block|,
 literal|"\"eq\""
 block|,
@@ -611,23 +613,23 @@ literal|"\"gt\""
 block|,
 literal|"\"ge\""
 block|,
-literal|"NEQ"
+literal|"!="
 block|,
-literal|"GTEQ"
+literal|">="
 block|,
-literal|"LTEQ"
+literal|"<="
 block|,
 literal|"\"is\""
 block|,
 literal|"\"isnot\""
 block|,
-literal|"ANDEQ"
+literal|"fulltext operator '&='"
 block|,
-literal|"OREQ"
+literal|"fulltext operator '|='"
 block|,
 literal|"\"to\""
 block|,
-literal|"MINUS"
+literal|"-"
 block|,
 literal|"\"div\""
 block|,
@@ -637,15 +639,15 @@ literal|"\"mod\""
 block|,
 literal|"\"union\""
 block|,
-literal|"UNION"
+literal|"union"
 block|,
 literal|"\"intersect\""
 block|,
 literal|"\"except\""
 block|,
-literal|"SLASH"
+literal|"single slash '/'"
 block|,
-literal|"DSLASH"
+literal|"double slash '//'"
 block|,
 literal|"\"text\""
 block|,
@@ -661,19 +663,19 @@ literal|"\"document-node\""
 block|,
 literal|"\"document\""
 block|,
-literal|"SELF"
+literal|"."
 block|,
-literal|"XML_COMMENT"
+literal|"XML comment"
 block|,
-literal|"XML_PI"
+literal|"processing instruction"
 block|,
-literal|"LPPAREN"
+literal|"opening brace '['"
 block|,
-literal|"RPPAREN"
+literal|"closing brace ']'"
 block|,
-literal|"AT"
+literal|"@ char"
 block|,
-literal|"PARENT"
+literal|".."
 block|,
 literal|"\"child\""
 block|,
@@ -701,31 +703,33 @@ literal|"DECIMAL_LITERAL"
 block|,
 literal|"INTEGER_LITERAL"
 block|,
-literal|"END_TAG_START"
+literal|"XML end tag"
 block|,
-literal|"QUOT"
+literal|"double quote '\\\"'"
 block|,
-literal|"APOS"
+literal|"single quote '"
 block|,
-literal|"ATTRIBUTE_CONTENT"
+literal|"QUOT_ATTRIBUTE_CONTENT"
+block|,
+literal|"APOS_ATTRIBUTE_CONTENT"
 block|,
 literal|"ELEMENT_CONTENT"
 block|,
-literal|"XML_COMMENT_END"
+literal|"end of XML comment"
 block|,
-literal|"XML_PI_END"
+literal|"end of processing instruction"
 block|,
-literal|"CDATA"
+literal|"CDATA section"
 block|,
 literal|"\"collection\""
 block|,
 literal|"\"preceding\""
 block|,
-literal|"XML_PI_START"
+literal|"start of processing instruction"
 block|,
-literal|"XML_CDATA_START"
+literal|"CDATA section start"
 block|,
-literal|"XML_CDATA_END"
+literal|"end of CDATA section"
 block|,
 literal|"LETTER"
 block|,
@@ -739,9 +743,9 @@ literal|"NMCHAR"
 block|,
 literal|"WS"
 block|,
-literal|"EXPR_COMMENT"
+literal|"XQuery comment"
 block|,
-literal|"PRAGMA"
+literal|"XQuery pragma"
 block|,
 literal|"PRAGMA_CONTENT"
 block|,
