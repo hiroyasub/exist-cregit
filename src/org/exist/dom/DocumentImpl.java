@@ -151,11 +151,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|storage
 operator|.
-name|*
+name|store
+operator|.
+name|StorageAddress
 import|;
 end_import
 
@@ -163,11 +165,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|w3c
 operator|.
-name|util
+name|dom
 operator|.
-name|StorageAddress
+name|*
 import|;
 end_import
 
@@ -371,7 +373,7 @@ init|=
 operator|new
 name|int
 index|[
-literal|40
+literal|15
 index|]
 decl_stmt|;
 specifier|protected
@@ -382,7 +384,7 @@ init|=
 operator|new
 name|long
 index|[
-literal|40
+literal|15
 index|]
 decl_stmt|;
 comment|// has document-metadata been loaded?

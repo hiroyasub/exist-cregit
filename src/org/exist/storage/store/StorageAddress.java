@@ -9,7 +9,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|store
 package|;
 end_package
 
@@ -30,6 +32,30 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|VariableByteInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|VariableByteOutputStream
 import|;
 end_import
 
@@ -221,13 +247,6 @@ operator|)
 operator|)
 return|;
 block|}
-comment|//	public final static boolean equals(long p0, long p1) {
-comment|//		if(pageFromPointer(p0) != pageFromPointer(p1))
-comment|//			return false;
-comment|//		if(tidFromPointer(p0) != tidFromPointer(p1))
-comment|//			return false;
-comment|//		return true;
-comment|//	}
 specifier|public
 specifier|final
 specifier|static

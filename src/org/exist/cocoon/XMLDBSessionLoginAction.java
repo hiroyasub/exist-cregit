@@ -89,7 +89,7 @@ name|cocoon
 operator|.
 name|acting
 operator|.
-name|ComposerAction
+name|ServiceableAction
 import|;
 end_import
 
@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    9. September 2002  */
+comment|/**  *  Cocoon action to authenticate a user against the database.  *   * If authentication succeeds, user and password will be stored into  * the current session.  *  * @author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -180,11 +180,10 @@ specifier|public
 class|class
 name|XMLDBSessionLoginAction
 extends|extends
-name|ComposerAction
+name|ServiceableAction
 implements|implements
 name|ThreadSafe
 block|{
-comment|/**      *  Description of the Method      *      *@param  redirector     Description of the Parameter      *@param  resolver       Description of the Parameter      *@param  objectModel    Description of the Parameter      *@param  source         Description of the Parameter      *@param  param          Description of the Parameter      *@return                Description of the Return Value      *@exception  Exception  Description of the Exception      */
 specifier|public
 name|Map
 name|act

@@ -51,16 +51,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -199,7 +189,7 @@ name|storage
 operator|.
 name|serializers
 operator|.
-name|EXistOutputKeys
+name|Serializer
 import|;
 end_import
 
@@ -209,11 +199,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|serializers
-operator|.
-name|Serializer
+name|IncludeXMLFilter
 import|;
 end_import
 
@@ -241,18 +229,6 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|SAXSerializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|DOMStreamer
 import|;
 end_import
@@ -265,7 +241,9 @@ name|exist
 operator|.
 name|util
 operator|.
-name|IncludeXMLFilter
+name|serializer
+operator|.
+name|SAXSerializer
 import|;
 end_import
 
@@ -1292,23 +1270,6 @@ argument_list|,
 literal|"false"
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|option
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"false"
-argument_list|)
-condition|)
-name|handler
-operator|=
-operator|new
-name|IncludeXMLFilter
-argument_list|(
-name|handler
-argument_list|)
-expr_stmt|;
 name|DOMStreamer
 name|streamer
 init|=
@@ -1322,9 +1283,16 @@ argument_list|)
 decl_stmt|;
 name|streamer
 operator|.
-name|stream
+name|serialize
 argument_list|(
 name|root
+argument_list|,
+name|option
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"true"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

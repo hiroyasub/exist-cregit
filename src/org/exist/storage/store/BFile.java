@@ -353,18 +353,6 @@ name|ReentrantReadWriteLock
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StorageAddress
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Data store for variable size values.  *   * This class maps keys to values of variable size. Keys are stored  * in the b+-tree. B+-tree values are pointers to the logical storage address  * of the value in the data section. The pointer consists of the page number  * and a logical tuple identifier.   *  * If a value is larger than the internal page size (4K), it is split into  * overflow pages. Appending data to a overflow page is very fast.  * Only the first and the last data page are loaded.  *   * Data pages are buffered.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    25. Mai 2002  */
 end_comment

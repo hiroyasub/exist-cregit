@@ -452,21 +452,6 @@ operator|.
 name|gid
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|node
-operator|.
-name|gid
-operator|+
-literal|" --> "
-operator|+
-name|pid
-argument_list|)
-expr_stmt|;
 name|NodeProxy
 name|parent
 decl_stmt|;

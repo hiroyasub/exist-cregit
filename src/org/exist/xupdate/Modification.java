@@ -175,7 +175,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|store
 operator|.
 name|StorageAddress
 import|;

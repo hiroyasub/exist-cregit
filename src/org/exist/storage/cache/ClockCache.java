@@ -17,15 +17,15 @@ end_package
 
 begin_import
 import|import
-name|it
+name|org
 operator|.
-name|unimi
+name|exist
 operator|.
-name|dsi
+name|util
 operator|.
-name|fastutil
+name|hashtable
 operator|.
-name|Long2ObjectLinkedOpenHashMap
+name|Long2ObjectHashMap
 import|;
 end_import
 
@@ -41,7 +41,7 @@ implements|implements
 name|Cache
 block|{
 specifier|private
-name|Long2ObjectLinkedOpenHashMap
+name|Long2ObjectHashMap
 name|map
 decl_stmt|;
 specifier|private
@@ -93,7 +93,7 @@ expr_stmt|;
 name|map
 operator|=
 operator|new
-name|Long2ObjectLinkedOpenHashMap
+name|Long2ObjectHashMap
 argument_list|(
 name|size
 argument_list|)

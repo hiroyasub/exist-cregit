@@ -143,18 +143,6 @@ name|LockException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StorageAddress
-import|;
-end_import
-
 begin_comment
 comment|/**  * Class NodeIterator is used to iterate over nodes in the DOM storage.  * This implementation locks the DOM file to read the node and unlocks  * it afterwards. It is thus safer than DOMFileIterator, since the node's  * value will not change.   *   * @author wolf  */
 end_comment

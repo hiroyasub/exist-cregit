@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * ShutdownAction.java - Jul 30, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -75,7 +71,7 @@ name|cocoon
 operator|.
 name|acting
 operator|.
-name|ComposerAction
+name|ServiceableAction
 import|;
 end_import
 
@@ -187,12 +183,16 @@ name|XMLDBException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Cocoon action to shut down a running database instance of eXist.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
 name|ShutdownAction
 extends|extends
-name|ComposerAction
+name|ServiceableAction
 implements|implements
 name|ThreadSafe
 block|{

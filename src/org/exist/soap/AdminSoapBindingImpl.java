@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/**  *  AdminSoapBindingImpl.java This file was auto-generated from WSDL by the  *  Apache Axis Wsdl2java emitter.  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -242,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    August 2, 2002  */
+comment|/**  *  Provides the actual implementations for the methods defined in  * {@link org.exist.soap.Admin}.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class

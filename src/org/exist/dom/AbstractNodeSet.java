@@ -141,18 +141,6 @@ name|Node
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract base class for all node set implementations. A node set is a special type of sequence,  * which contains only nodes. Class NodeSet thus implements the {@link org.exist.xpath.value.Sequence}   * as well as the DOM {@link org.w3c.dom.NodeList} interfaces.  *   * Please note that a node set may or may not contain duplicate nodes. Some implementations  * (e.g. {@link org.exist.dom.ExtArrayNodeSet}) remove duplicates when sorting the set.  */
 end_comment

@@ -625,6 +625,9 @@ argument_list|(
 name|xquery
 argument_list|)
 decl_stmt|;
+name|XMLResource
+name|resource
+decl_stmt|;
 name|this
 operator|.
 name|contentHandler
@@ -650,9 +653,8 @@ name|i
 operator|++
 control|)
 block|{
-name|XMLResource
 name|resource
-init|=
+operator|=
 operator|(
 name|XMLResource
 operator|)
@@ -662,7 +664,7 @@ name|getResource
 argument_list|(
 name|i
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|resource
 operator|.
 name|getContentAsSAX

@@ -267,18 +267,6 @@ name|ReadOnlyException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StorageAddress
-import|;
-end_import
-
 begin_comment
 comment|//import org.exist.util.StorageAddress;
 end_comment

@@ -15,15 +15,11 @@ end_package
 
 begin_import
 import|import
-name|it
+name|java
 operator|.
-name|unimi
+name|util
 operator|.
-name|dsi
-operator|.
-name|fastutil
-operator|.
-name|Object2ObjectOpenHashMap
+name|ArrayList
 import|;
 end_import
 
@@ -33,7 +29,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|HashMap
 import|;
 end_import
 
@@ -83,11 +79,11 @@ block|{
 specifier|private
 specifier|final
 specifier|static
-name|Object2ObjectOpenHashMap
+name|HashMap
 name|cache
 init|=
 operator|new
-name|Object2ObjectOpenHashMap
+name|HashMap
 argument_list|()
 decl_stmt|;
 specifier|private
