@@ -234,6 +234,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Check if the resource has a user lock.      *       * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *       * @param res      * @return      * @throws XMLDBException      */
+specifier|public
+name|String
+name|hasUserLock
+parameter_list|(
+name|Resource
+name|res
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      * Unlock the specified resource.      *       * The current user has to be same who locked the resource.      * Exception: admin users can always unlock a resource.      *       * @param res      * @throws XMLDBException      */
 specifier|public
 name|void
