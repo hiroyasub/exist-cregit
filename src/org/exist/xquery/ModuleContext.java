@@ -31,6 +31,18 @@ name|DocumentSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
 end_comment
@@ -176,6 +188,19 @@ return|return
 name|parentContext
 operator|.
 name|getBaseURI
+argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.XQueryContext#getBroker()      */
+specifier|public
+name|DBBroker
+name|getBroker
+parameter_list|()
+block|{
+return|return
+name|parentContext
+operator|.
+name|getBroker
 argument_list|()
 return|;
 block|}

@@ -95,6 +95,18 @@ name|CompiledXQuery
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Global pool for pre-compiled XQuery expressions. Expressions are  * stored and retrieved from the pool by comparing the {@link org.exist.source.Source}  * objects from which they were created. For each XQuery, a maximum of   * {@link #MAX_STACK_SIZE} compiled expressions are kept in the pool.  * An XQuery expression will be removed from the pool if it has not been  * used for a pre-defined timeout. These settings can be configured in conf.xml.  *   * @author wolf  */
 end_comment
@@ -373,6 +385,9 @@ specifier|synchronized
 name|CompiledXQuery
 name|borrowCompiledXQuery
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Source
 name|source
 parameter_list|)
@@ -411,7 +426,9 @@ init|=
 name|key
 operator|.
 name|isValid
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -499,6 +516,8 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|// now check if the compiled expression is valid
+comment|// it might become invalid if an imported module has changed.
 name|CompiledXQuery
 name|query
 init|=
@@ -510,6 +529,21 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
+name|XQueryContext
+name|context
+init|=
+name|query
+operator|.
+name|getContext
+argument_list|()
+decl_stmt|;
+name|context
+operator|.
+name|setBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!

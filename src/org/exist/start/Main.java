@@ -1683,7 +1683,7 @@ condition|)
 block|{
 name|_classname
 operator|=
-literal|"org.exist.Server"
+literal|"org.exist.StandaloneServer"
 expr_stmt|;
 name|_mode
 operator|=

@@ -540,6 +540,8 @@ name|pool
 operator|.
 name|borrowCompiledXQuery
 argument_list|(
+name|broker
+argument_list|,
 name|source
 argument_list|)
 decl_stmt|;

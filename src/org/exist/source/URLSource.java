@@ -75,8 +75,20 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * A source implementation reading from an URL.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -220,7 +232,10 @@ comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#isValid() 	 */
 specifier|public
 name|int
 name|isValid
-parameter_list|()
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 block|{
 name|long
 name|modified

@@ -33,6 +33,18 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServletResponse
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -54,9 +66,9 @@ specifier|private
 name|int
 name|code
 init|=
-name|HttpServerConnection
+name|HttpServletResponse
 operator|.
-name|HTTP_OK
+name|SC_OK
 decl_stmt|;
 specifier|private
 name|String

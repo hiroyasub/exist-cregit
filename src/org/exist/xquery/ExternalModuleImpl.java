@@ -558,7 +558,12 @@ condition|(
 name|mSource
 operator|.
 name|isValid
+argument_list|(
+name|mContext
+operator|.
+name|getBroker
 argument_list|()
+argument_list|)
 operator|!=
 name|Source
 operator|.
