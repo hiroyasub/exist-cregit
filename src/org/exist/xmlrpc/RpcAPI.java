@@ -551,7 +551,8 @@ parameter_list|(
 name|User
 name|user
 parameter_list|,
-name|String
+name|byte
+index|[]
 name|xquery
 parameter_list|,
 name|int

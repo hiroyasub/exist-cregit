@@ -100,6 +100,22 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|copy
+parameter_list|(
+name|String
+name|collection
+parameter_list|,
+name|String
+name|destination
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 

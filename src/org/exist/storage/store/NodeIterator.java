@@ -620,13 +620,20 @@ name|ph
 operator|.
 name|getPrevDataPage
 argument_list|()
+operator|+
+literal|"; offset = "
+operator|+
+name|offset
+operator|+
+literal|"; lastTID = "
+operator|+
+name|lastTID
 argument_list|)
 expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
-comment|//						LOG.debug(page + " -> " + nextPage);
 name|page
 operator|=
 name|nextPage
@@ -640,6 +647,7 @@ argument_list|(
 name|nextPage
 argument_list|)
 expr_stmt|;
+comment|//						LOG.debug(" -> " + nextPage + "; len = " + p.len + "; " + p.page.getPageInfo());
 name|db
 operator|.
 name|addToBuffer
@@ -901,6 +909,18 @@ argument_list|()
 operator|.
 name|getDataLength
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|db
+operator|.
+name|debugPageContents
+argument_list|(
+name|p
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

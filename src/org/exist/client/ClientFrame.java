@@ -5124,10 +5124,19 @@ name|InteractiveClient
 operator|.
 name|CollectionName
 condition|)
-comment|//service.move(res[i].toString(), destinationPath, null);
-name|showErrorMessage
+name|service
+operator|.
+name|copy
 argument_list|(
-literal|"Copy is not yet implemented for collections"
+name|res
+index|[
+name|i
+index|]
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|destinationPath
 argument_list|,
 literal|null
 argument_list|)

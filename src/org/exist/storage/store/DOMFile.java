@@ -71,6 +71,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -82,6 +92,26 @@ operator|.
 name|util
 operator|.
 name|LinkedList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
 import|;
 end_import
 
@@ -326,6 +356,18 @@ operator|.
 name|util
 operator|.
 name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FastQSort
 import|;
 end_import
 
@@ -841,6 +883,12 @@ name|value
 operator|.
 name|length
 decl_stmt|;
+specifier|final
+name|Object
+name|myOwner
+init|=
+name|owner
+decl_stmt|;
 comment|// always append data to the end of the file
 name|DOMPage
 name|page
@@ -930,6 +978,8 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+comment|//            LOG.debug("created new page: " + newPage.getPageNum() + "; prev = " + page.getPageNum() +
+comment|//            	"; oldLen = " + page.len + "; valueLen = " + valueLen);
 name|page
 operator|=
 name|newPage
@@ -937,6 +987,19 @@ expr_stmt|;
 name|setCurrentPage
 argument_list|(
 name|newPage
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|owner
+operator|!=
+name|myOwner
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Owner changed during transaction!!!!!!!!!!!!!!!!!"
 argument_list|)
 expr_stmt|;
 block|}
@@ -959,6 +1022,8 @@ operator|.
 name|getNextTID
 argument_list|()
 decl_stmt|;
+comment|//        LOG.debug("writing to " + page.getPageNum() + "; " + page.len + "; tid = " + tid +
+comment|//        		"; len = " + valueLen + "; dataLen = " + page.data.length);
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -1928,8 +1993,7 @@ operator|.
 name|getNextTID
 argument_list|()
 decl_stmt|;
-comment|//        LOG.debug("inserting " + new String(value) + " to " + rec.page.page.getPageInfo() + "; " +
-comment|//                tid);
+comment|//        LOG.debug("inserting " + new String(value) + " to " + rec.page.page.getPageInfo() + "; " + tid);
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -2321,9 +2385,39 @@ name|splitRecordCount
 init|=
 literal|0
 decl_stmt|;
-comment|//        LOG.debug("splitting " + rec.page.getPageNum() + ": new: "
-comment|//                + nextSplitPage.getPageNum() + "; next: " +
-comment|//                rec.page.getPageHeader().getNextDataPage());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"splitting "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|": new: "
+operator|+
+name|nextSplitPage
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|"; next: "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
+argument_list|()
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -3596,19 +3690,24 @@ return|return
 name|count
 return|;
 block|}
-specifier|private
-name|void
-name|printPageContents
+specifier|public
+name|String
+name|debugPageContents
 parameter_list|(
 name|DOMPage
 name|page
 parameter_list|)
 block|{
-name|System
+name|StringBuffer
+name|buf
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|buf
 operator|.
-name|out
-operator|.
-name|print
+name|append
 argument_list|(
 literal|"Page "
 operator|+
@@ -3669,11 +3768,9 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
-name|System
+name|buf
 operator|.
-name|out
-operator|.
-name|print
+name|append
 argument_list|(
 name|currentId
 operator|+
@@ -3750,31 +3847,21 @@ literal|4
 expr_stmt|;
 block|}
 block|}
-name|System
+name|buf
 operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
+name|append
 argument_list|(
-literal|"page "
-operator|+
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" has "
+literal|"; records in page: "
 operator|+
 name|count
-operator|+
-literal|" records."
 argument_list|)
 expr_stmt|;
+return|return
+name|buf
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 specifier|public
 name|boolean
@@ -4618,12 +4705,9 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|pages
-operator|.
-name|remove
-argument_list|(
-name|owner
-argument_list|)
+comment|//        pages.remove(owner);
+name|closeDocument
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -4677,12 +4761,9 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|pages
-operator|.
-name|remove
-argument_list|(
-name|owner
-argument_list|)
+comment|//        pages.remove(owner);
+name|closeDocument
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -5276,6 +5357,34 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"new page created: "
+operator|+
+name|page
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|owner
+operator|+
+literal|"; thread: "
+operator|+
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|dataCache
 operator|.
 name|add
@@ -5350,6 +5459,8 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
+comment|//        LOG.debug("current doc closed by: " + owner +
+comment|//        		"; thread: " + Thread.currentThread().getName());
 block|}
 comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException      *                        Description of the Exception      */
 specifier|public
@@ -5952,6 +6063,7 @@ operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
+comment|//        LOG.debug(debugPageContents(rec.page));
 if|if
 condition|(
 name|rec
@@ -6261,6 +6373,8 @@ name|long
 name|p
 parameter_list|)
 block|{
+comment|//    	StringBuffer debug = new StringBuffer();
+comment|//    	debug.append("Removed pages: ");
 name|long
 name|pnum
 init|=
@@ -6279,6 +6393,7 @@ operator|<
 name|pnum
 condition|)
 block|{
+comment|//        	debug.append(' ').append(pnum);
 name|DOMPage
 name|page
 init|=
@@ -6306,6 +6421,64 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|DOMFilePageHeader
+name|ph
+init|=
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+decl_stmt|;
+name|ph
+operator|.
+name|setNextDataPage
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setPrevDataPage
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setDataLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setNextTID
+argument_list|(
+operator|(
+name|short
+operator|)
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setRecordCount
+argument_list|(
+operator|(
+name|short
+operator|)
+literal|0
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|len
+operator|=
+literal|0
+expr_stmt|;
 name|unlinkPages
 argument_list|(
 name|page
@@ -6336,6 +6509,111 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//        LOG.debug(debug.toString());
+block|}
+specifier|public
+name|String
+name|debugPages
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+name|StringBuffer
+name|buf
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"Pages used by "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|':'
+argument_list|)
+expr_stmt|;
+name|long
+name|pnum
+init|=
+name|StorageAddress
+operator|.
+name|pageFromPointer
+argument_list|(
+operator|(
+operator|(
+name|NodeImpl
+operator|)
+name|doc
+operator|.
+name|getFirstChild
+argument_list|()
+operator|)
+operator|.
+name|getInternalAddress
+argument_list|()
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+operator|-
+literal|1
+operator|<
+name|pnum
+condition|)
+block|{
+name|DOMPage
+name|page
+init|=
+name|getCurrentPage
+argument_list|(
+name|pnum
+argument_list|)
+decl_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|pnum
+argument_list|)
+expr_stmt|;
+name|pnum
+operator|=
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|buf
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 comment|/**      * Set the last page in the sequence to which nodes are currently appended.      *       * @param page      *                   The new currentPage value      */
 specifier|private
@@ -6347,7 +6625,6 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
-specifier|final
 name|long
 name|pnum
 init|=
@@ -6370,7 +6647,9 @@ name|getPageNum
 argument_list|()
 condition|)
 return|return;
-comment|//pages.remove(owner);
+comment|//        pages.remove(owner);
+comment|//        LOG.debug("current page set: " + page.page.getPageNum() + " by " + owner.hashCode() +
+comment|//        		"; thread: " + Thread.currentThread().getName());
 name|pages
 operator|.
 name|put
@@ -6407,21 +6686,12 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+comment|//    	if(owner != obj&& obj != null)
+comment|//    		LOG.debug("owner set -> " + obj.hashCode());
 name|owner
 operator|=
 name|obj
 expr_stmt|;
-block|}
-specifier|public
-specifier|final
-name|void
-name|releaseOwner
-parameter_list|(
-name|Object
-name|obj
-parameter_list|)
-block|{
-comment|//pages.remove(obj);
 block|}
 comment|/**      * Update the key/value pair.      *       * @param key      *                   Description of the Parameter      * @param value      *                   Description of the Parameter      * @return Description of the Return Value      */
 specifier|public

@@ -497,6 +497,10 @@ name|docFragmentationLimit
 init|=
 literal|25
 decl_stmt|;
+specifier|protected
+name|String
+name|id
+decl_stmt|;
 comment|/** 	 * Save the global symbol table. The global symbol table stores 	 * QNames and namespace/prefix mappings. 	 *   	 * @throws EXistException 	 */
 specifier|protected
 name|void
@@ -1460,6 +1464,26 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
+specifier|public
+specifier|abstract
+name|void
+name|copyCollection
+parameter_list|(
+name|Collection
+name|collection
+parameter_list|,
+name|Collection
+name|destination
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|LockException
+function_decl|;
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
@@ -1484,6 +1508,16 @@ specifier|public
 specifier|abstract
 name|void
 name|defrag
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+function_decl|;
+comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
+specifier|public
+specifier|abstract
+name|void
+name|checkTree
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -1717,6 +1751,39 @@ name|int
 name|getPageSize
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|setId
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{
+name|this
+operator|.
+name|id
+operator|=
+name|id
+expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getId
+parameter_list|()
+block|{
+return|return
+name|id
+return|;
+block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|id
+return|;
+block|}
 block|}
 end_class
 

@@ -4233,6 +4233,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+comment|//			broker.checkTree(document);
 name|broker
 operator|.
 name|addDocument
@@ -4251,6 +4252,13 @@ name|broker
 operator|.
 name|flush
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"document stored."
+argument_list|)
 expr_stmt|;
 comment|// if we are running in privileged mode (e.g. backup/restore)
 comment|// notify the SecurityManager about changes
