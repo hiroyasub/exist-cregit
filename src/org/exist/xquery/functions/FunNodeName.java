@@ -367,6 +367,10 @@ block|{
 if|if
 condition|(
 name|contextSequence
+operator|!=
+literal|null
+operator|&&
+name|contextSequence
 operator|.
 name|getLength
 argument_list|()
@@ -422,6 +426,20 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+name|QName
+name|qname
+init|=
+operator|(
+operator|(
+name|QNameable
+operator|)
+name|n
+operator|)
+operator|.
+name|getQName
+argument_list|()
+decl_stmt|;
+comment|/*if (qname.getPrefix() != null) {                 	    context.declareNamespace(qname.getPrefix(), qname.getNamespaceURI());                 	}*/
 name|retval
 operator|=
 operator|new
