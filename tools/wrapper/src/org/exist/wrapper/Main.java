@@ -116,11 +116,18 @@ argument_list|)
 expr_stmt|;
 name|System
 operator|.
-name|setProperty
+name|err
+operator|.
+name|println
 argument_list|(
-literal|"exist.start.debug"
-argument_list|,
-literal|"true"
+literal|"jetty.home = "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.home"
+argument_list|)
 argument_list|)
 expr_stmt|;
 try|try
@@ -283,6 +290,8 @@ name|WrapperManager
 operator|.
 name|WRAPPER_LOG_LEVEL_FATAL
 argument_list|,
+literal|"An error occurred: "
+operator|+
 name|e
 operator|.
 name|getMessage
