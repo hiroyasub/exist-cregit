@@ -3803,6 +3803,19 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|currentReader
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"No reader!"
+argument_list|)
+throw|;
 name|DocumentImpl
 name|oldDoc
 init|=

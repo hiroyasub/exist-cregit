@@ -14703,6 +14703,43 @@ name|void
 name|sync
 parameter_list|()
 block|{
+name|Runtime
+name|runtime
+init|=
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Memory: "
+operator|+
+operator|(
+name|runtime
+operator|.
+name|totalMemory
+argument_list|()
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"K total; "
+operator|+
+operator|(
+name|runtime
+operator|.
+name|freeMemory
+argument_list|()
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"K free"
+argument_list|)
+expr_stmt|;
 comment|// uncomment this to get statistics on page buffer usage
 name|elementsDb
 operator|.

@@ -135,6 +135,15 @@ name|XMLReader
 name|reader
 parameter_list|)
 block|{
+if|if
+condition|(
+name|reader
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 try|try
 block|{
 name|returnObject

@@ -2345,10 +2345,6 @@ block|{
 name|DataPage
 name|wp
 init|=
-literal|null
-decl_stmt|;
-name|wp
-operator|=
 operator|(
 name|DataPage
 operator|)
@@ -2358,7 +2354,7 @@ name|get
 argument_list|(
 name|pos
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|wp
@@ -3554,13 +3550,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|dataCache
-operator|.
-name|add
-argument_list|(
-name|page
-argument_list|)
-expr_stmt|;
+comment|//            dataCache.add(page);
 return|return
 name|StorageAddress
 operator|.

@@ -601,7 +601,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|void
+name|Object
 name|insert
 parameter_list|(
 name|long
@@ -681,7 +681,9 @@ expr_stmt|;
 operator|++
 name|items
 expr_stmt|;
-return|return;
+return|return
+literal|null
+return|;
 block|}
 if|else if
 condition|(
@@ -711,6 +713,14 @@ name|key
 condition|)
 block|{
 comment|// duplicate value
+name|Object
+name|dup
+init|=
+name|values
+index|[
+name|idx
+index|]
+decl_stmt|;
 name|values
 index|[
 name|idx
@@ -718,7 +728,9 @@ index|]
 operator|=
 name|value
 expr_stmt|;
-return|return;
+return|return
+name|dup
+return|;
 block|}
 name|int
 name|rehashVal
@@ -819,7 +831,9 @@ expr_stmt|;
 operator|++
 name|items
 expr_stmt|;
-return|return;
+return|return
+literal|null
+return|;
 block|}
 if|else if
 condition|(
@@ -832,6 +846,14 @@ name|key
 condition|)
 block|{
 comment|// duplicate value
+name|Object
+name|dup
+init|=
+name|values
+index|[
+name|idx
+index|]
+decl_stmt|;
 name|values
 index|[
 name|idx
@@ -839,7 +861,9 @@ index|]
 operator|=
 name|value
 expr_stmt|;
-return|return;
+return|return
+name|dup
+return|;
 block|}
 operator|++
 name|rehashCnt
@@ -872,7 +896,9 @@ expr_stmt|;
 operator|++
 name|items
 expr_stmt|;
-return|return;
+return|return
+literal|null
+return|;
 block|}
 throw|throw
 operator|new
