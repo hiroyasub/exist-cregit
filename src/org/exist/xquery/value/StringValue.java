@@ -2968,18 +2968,17 @@ return|return
 name|data
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.Indexable#deserialize(byte[])      */
 specifier|public
-name|void
-name|deserialize
+specifier|static
+name|String
+name|deserializeString
 parameter_list|(
 name|byte
 index|[]
 name|data
 parameter_list|)
 block|{
-name|value
-operator|=
+return|return
 operator|new
 name|String
 argument_list|(
@@ -2993,7 +2992,7 @@ name|length
 operator|-
 literal|3
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 specifier|public
 specifier|static

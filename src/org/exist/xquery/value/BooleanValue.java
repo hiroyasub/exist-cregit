@@ -816,30 +816,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.Indexable#deserialize(byte[])      */
-specifier|public
-name|void
-name|deserialize
-parameter_list|(
-name|byte
-index|[]
-name|data
-parameter_list|)
-block|{
-name|value
-operator|=
-name|data
-index|[
-literal|3
-index|]
-operator|==
-literal|0
-condition|?
-literal|false
-else|:
-literal|true
-expr_stmt|;
-block|}
 comment|/* (non-Javadoc)      * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 specifier|public
 name|int

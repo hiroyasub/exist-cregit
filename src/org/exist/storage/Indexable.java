@@ -34,15 +34,6 @@ name|short
 name|collectionId
 parameter_list|)
 function_decl|;
-specifier|public
-name|void
-name|deserialize
-parameter_list|(
-name|byte
-index|[]
-name|data
-parameter_list|)
-function_decl|;
 block|}
 end_interface
 
