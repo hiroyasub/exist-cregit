@@ -1858,7 +1858,7 @@ name|execute
 argument_list|(
 name|compiled
 argument_list|,
-literal|null
+name|contextSet
 argument_list|)
 decl_stmt|;
 name|LOG
