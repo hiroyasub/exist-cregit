@@ -223,29 +223,122 @@ name|HashtableOverflowException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|long
+index|[]
+name|copyKeys
+init|=
+name|keys
+decl_stmt|;
+name|Object
+index|[]
+name|copyValues
+init|=
+name|values
+decl_stmt|;
+comment|// enlarge the table with a prime value
+name|tabSize
+operator|=
+operator|(
+name|int
+operator|)
+name|nextPrime
 argument_list|(
-name|e
+name|tabSize
+operator|+
+name|tabSize
+operator|/
+literal|2
 argument_list|)
-throw|;
-comment|//			long[] copyKeys = keys;
-comment|//			Object[] copyValues = values;
-comment|//			// enlarge the table with a prime value
-comment|//			tabSize = (int) nextPrime(tabSize + tabSize / 2);
-comment|//			keys = new long[tabSize];
-comment|//			values = new Object[tabSize];
-comment|//			items = 0;
-comment|//
-comment|//			try {
-comment|//				for (int k = 0; k< copyValues.length; k++) {
-comment|//					if (copyValues[k] != null&& copyValues[k] != REMOVED)
-comment|//						insert(copyKeys[k], copyValues[k]);
-comment|//				}
-comment|//				duplicate = (Entry)insert(key, entry);
-comment|//			} catch (HashtableOverflowException e1) {
-comment|//			}
+expr_stmt|;
+name|keys
+operator|=
+operator|new
+name|long
+index|[
+name|tabSize
+index|]
+expr_stmt|;
+name|values
+operator|=
+operator|new
+name|Object
+index|[
+name|tabSize
+index|]
+expr_stmt|;
+name|items
+operator|=
+literal|0
+expr_stmt|;
+try|try
+block|{
+for|for
+control|(
+name|int
+name|k
+init|=
+literal|0
+init|;
+name|k
+operator|<
+name|copyValues
+operator|.
+name|length
+condition|;
+name|k
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|copyValues
+index|[
+name|k
+index|]
+operator|!=
+literal|null
+operator|&&
+name|copyValues
+index|[
+name|k
+index|]
+operator|!=
+name|REMOVED
+condition|)
+name|insert
+argument_list|(
+name|copyKeys
+index|[
+name|k
+index|]
+argument_list|,
+name|copyValues
+index|[
+name|k
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+name|duplicate
+operator|=
+operator|(
+name|Entry
+operator|)
+name|insert
+argument_list|(
+name|key
+argument_list|,
+name|entry
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|HashtableOverflowException
+name|e1
+parameter_list|)
+block|{
+block|}
 block|}
 if|if
 condition|(
