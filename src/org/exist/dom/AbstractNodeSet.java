@@ -1425,19 +1425,7 @@ name|nb
 operator|.
 name|gid
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|pa
-operator|+
-literal|" -> "
-operator|+
-name|pb
-argument_list|)
-expr_stmt|;
+comment|//			    System.out.println(pa + " -> " + pb);
 name|pb
 operator|=
 name|XMLUtil
@@ -1462,21 +1450,7 @@ name|pb
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"comparing "
-operator|+
-name|pa
-operator|+
-literal|" -> "
-operator|+
-name|pb
-argument_list|)
-expr_stmt|;
+comment|//				System.out.println("comparing " + pa + " -> " + pb);
 if|if
 condition|(
 name|pa
