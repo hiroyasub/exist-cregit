@@ -645,7 +645,6 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-comment|//&& (leftDeps& Dependency.LOCAL_VARS) == 0
 comment|//	and does not depend on the context item
 operator|&&
 operator|(
@@ -657,17 +656,8 @@ name|CONTEXT_ITEM
 operator|)
 operator|==
 literal|0
-operator|&&
-operator|(
-name|rightDeps
-operator|&
-name|Dependency
-operator|.
-name|LOCAL_VARS
-operator|)
-operator|==
-literal|0
 condition|)
+comment|//&& (rightDeps& Dependency.LOCAL_VARS) == 0)
 block|{
 return|return
 name|Dependency
@@ -1735,11 +1725,45 @@ argument_list|,
 name|collator
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+comment|// can this result be cached?
+name|boolean
+name|canCache
+init|=
 name|contextSequence
 operator|instanceof
 name|NodeSet
+operator|&&
+operator|(
+name|getRight
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+operator|&
+name|Dependency
+operator|.
+name|LOCAL_VARS
+operator|)
+operator|==
+literal|0
+operator|&&
+operator|(
+name|getLeft
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+operator|&
+name|Dependency
+operator|.
+name|LOCAL_VARS
+operator|)
+operator|==
+literal|0
+decl_stmt|;
+if|if
+condition|(
+name|canCache
 condition|)
 name|cached
 operator|=

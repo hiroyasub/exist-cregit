@@ -5490,6 +5490,10 @@ name|currentPath
 argument_list|)
 operator|)
 decl_stmt|;
+if|if
+condition|(
+name|indexText
+condition|)
 name|textEngine
 operator|.
 name|storeText

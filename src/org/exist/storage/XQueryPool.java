@@ -167,6 +167,13 @@ name|CompiledXQuery
 name|xquery
 parameter_list|)
 block|{
+if|if
+condition|(
+name|xquery
+operator|==
+literal|null
+condition|)
+return|return;
 name|Stack
 name|stack
 init|=
