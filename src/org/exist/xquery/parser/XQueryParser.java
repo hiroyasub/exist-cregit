@@ -712,14 +712,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"imaginaryTokenDefinitions"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -753,11 +745,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp79_AST
+name|tmp77_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp79_AST
+name|tmp77_AST
 operator|=
 operator|(
 name|org
@@ -786,7 +778,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp79_AST
+name|tmp77_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -803,11 +795,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp80_AST
+name|tmp78_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp80_AST
+name|tmp78_AST
 operator|=
 operator|(
 name|org
@@ -836,7 +828,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp80_AST
+name|tmp78_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -853,11 +845,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp81_AST
+name|tmp79_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp81_AST
+name|tmp79_AST
 operator|=
 operator|(
 name|org
@@ -886,7 +878,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp81_AST
+name|tmp79_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -903,11 +895,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp82_AST
+name|tmp80_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp82_AST
+name|tmp80_AST
 operator|=
 operator|(
 name|org
@@ -936,7 +928,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp82_AST
+name|tmp80_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -953,11 +945,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp83_AST
+name|tmp81_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp83_AST
+name|tmp81_AST
 operator|=
 operator|(
 name|org
@@ -986,7 +978,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp83_AST
+name|tmp81_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1003,11 +995,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp84_AST
+name|tmp82_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp84_AST
+name|tmp82_AST
 operator|=
 operator|(
 name|org
@@ -1036,7 +1028,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp84_AST
+name|tmp82_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1053,11 +1045,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp85_AST
+name|tmp83_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp85_AST
+name|tmp83_AST
 operator|=
 operator|(
 name|org
@@ -1086,7 +1078,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp85_AST
+name|tmp83_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1103,11 +1095,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp86_AST
+name|tmp84_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp86_AST
+name|tmp84_AST
 operator|=
 operator|(
 name|org
@@ -1136,7 +1128,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp86_AST
+name|tmp84_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1153,11 +1145,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp87_AST
+name|tmp85_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp87_AST
+name|tmp85_AST
 operator|=
 operator|(
 name|org
@@ -1186,7 +1178,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp87_AST
+name|tmp85_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1203,11 +1195,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp88_AST
+name|tmp86_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp88_AST
+name|tmp86_AST
 operator|=
 operator|(
 name|org
@@ -1236,7 +1228,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp88_AST
+name|tmp86_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1253,11 +1245,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp89_AST
+name|tmp87_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp89_AST
+name|tmp87_AST
 operator|=
 operator|(
 name|org
@@ -1286,7 +1278,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp89_AST
+name|tmp87_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1303,11 +1295,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp90_AST
+name|tmp88_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp90_AST
+name|tmp88_AST
 operator|=
 operator|(
 name|org
@@ -1336,7 +1328,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp90_AST
+name|tmp88_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1353,11 +1345,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp91_AST
+name|tmp89_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp91_AST
+name|tmp89_AST
 operator|=
 operator|(
 name|org
@@ -1386,7 +1378,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp91_AST
+name|tmp89_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1403,11 +1395,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp92_AST
+name|tmp90_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp92_AST
+name|tmp90_AST
 operator|=
 operator|(
 name|org
@@ -1436,7 +1428,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp92_AST
+name|tmp90_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1453,11 +1445,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp93_AST
+name|tmp91_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp93_AST
+name|tmp91_AST
 operator|=
 operator|(
 name|org
@@ -1486,7 +1478,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp93_AST
+name|tmp91_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1503,11 +1495,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp94_AST
+name|tmp92_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp94_AST
+name|tmp92_AST
 operator|=
 operator|(
 name|org
@@ -1536,7 +1528,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp94_AST
+name|tmp92_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1553,11 +1545,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp95_AST
+name|tmp93_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp95_AST
+name|tmp93_AST
 operator|=
 operator|(
 name|org
@@ -1586,7 +1578,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp95_AST
+name|tmp93_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1603,11 +1595,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp96_AST
+name|tmp94_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp96_AST
+name|tmp94_AST
 operator|=
 operator|(
 name|org
@@ -1636,7 +1628,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp96_AST
+name|tmp94_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1653,11 +1645,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp97_AST
+name|tmp95_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp97_AST
+name|tmp95_AST
 operator|=
 operator|(
 name|org
@@ -1686,7 +1678,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp97_AST
+name|tmp95_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1703,11 +1695,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp98_AST
+name|tmp96_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp98_AST
+name|tmp96_AST
 operator|=
 operator|(
 name|org
@@ -1736,7 +1728,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp98_AST
+name|tmp96_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1753,11 +1745,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp99_AST
+name|tmp97_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp99_AST
+name|tmp97_AST
 operator|=
 operator|(
 name|org
@@ -1786,7 +1778,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp99_AST
+name|tmp97_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1803,11 +1795,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp100_AST
+name|tmp98_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp100_AST
+name|tmp98_AST
 operator|=
 operator|(
 name|org
@@ -1836,7 +1828,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp100_AST
+name|tmp98_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1853,11 +1845,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp101_AST
+name|tmp99_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp101_AST
+name|tmp99_AST
 operator|=
 operator|(
 name|org
@@ -1886,7 +1878,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp101_AST
+name|tmp99_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1903,11 +1895,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp102_AST
+name|tmp100_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp102_AST
+name|tmp100_AST
 operator|=
 operator|(
 name|org
@@ -1936,7 +1928,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp102_AST
+name|tmp100_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -1953,11 +1945,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp103_AST
+name|tmp101_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp103_AST
+name|tmp101_AST
 operator|=
 operator|(
 name|org
@@ -1986,7 +1978,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp103_AST
+name|tmp101_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2003,11 +1995,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp104_AST
+name|tmp102_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp104_AST
+name|tmp102_AST
 operator|=
 operator|(
 name|org
@@ -2036,7 +2028,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp104_AST
+name|tmp102_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2053,11 +2045,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp105_AST
+name|tmp103_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp105_AST
+name|tmp103_AST
 operator|=
 operator|(
 name|org
@@ -2086,7 +2078,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp105_AST
+name|tmp103_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2103,11 +2095,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp106_AST
+name|tmp104_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp106_AST
+name|tmp104_AST
 operator|=
 operator|(
 name|org
@@ -2136,7 +2128,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp106_AST
+name|tmp104_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2153,11 +2145,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp107_AST
+name|tmp105_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp107_AST
+name|tmp105_AST
 operator|=
 operator|(
 name|org
@@ -2186,7 +2178,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp107_AST
+name|tmp105_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2203,11 +2195,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp108_AST
+name|tmp106_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp108_AST
+name|tmp106_AST
 operator|=
 operator|(
 name|org
@@ -2236,7 +2228,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp108_AST
+name|tmp106_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2253,11 +2245,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp109_AST
+name|tmp107_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp109_AST
+name|tmp107_AST
 operator|=
 operator|(
 name|org
@@ -2286,7 +2278,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp109_AST
+name|tmp107_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2303,11 +2295,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp110_AST
+name|tmp108_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp110_AST
+name|tmp108_AST
 operator|=
 operator|(
 name|org
@@ -2336,7 +2328,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp110_AST
+name|tmp108_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2366,16 +2358,6 @@ operator|=
 name|imaginaryTokenDefinitions_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"imaginaryTokenDefinitions"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -2386,14 +2368,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"xpointer"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -2470,11 +2444,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp111_AST
+name|tmp109_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp111_AST
+name|tmp109_AST
 operator|=
 operator|(
 name|org
@@ -2503,7 +2477,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp111_AST
+name|tmp109_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -2881,16 +2855,6 @@ operator|=
 name|xpointer_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"xpointer"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -2901,14 +2865,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"expr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -2971,11 +2927,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp114_AST
+name|tmp112_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp114_AST
+name|tmp112_AST
 operator|=
 operator|(
 name|org
@@ -3004,7 +2960,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp114_AST
+name|tmp112_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -3060,16 +3016,6 @@ operator|=
 name|expr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"expr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -3080,14 +3026,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"xpath"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3376,11 +3314,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp115_AST
+name|tmp113_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp115_AST
+name|tmp113_AST
 operator|=
 operator|(
 name|org
@@ -3409,7 +3347,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp115_AST
+name|tmp113_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -3470,16 +3408,6 @@ operator|=
 name|xpath_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"xpath"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -3490,14 +3418,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"module"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3694,16 +3614,6 @@ operator|=
 name|module_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"module"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -3714,14 +3624,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"libraryModule"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3792,16 +3694,6 @@ operator|=
 name|libraryModule_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"libraryModule"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -3812,14 +3704,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"mainModule"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3890,16 +3774,6 @@ operator|=
 name|mainModule_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mainModule"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -3910,14 +3784,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"prolog"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -4655,16 +4521,6 @@ operator|=
 name|prolog_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"prolog"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -4675,14 +4531,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"queryBody"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -4741,16 +4589,6 @@ operator|=
 name|queryBody_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"queryBody"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -4761,14 +4599,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"moduleDecl"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5070,16 +4900,6 @@ operator|=
 name|moduleDecl_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"moduleDecl"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -5090,14 +4910,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"version"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5149,11 +4961,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp122_AST
+name|tmp120_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp122_AST
+name|tmp120_AST
 operator|=
 operator|(
 name|org
@@ -5182,7 +4994,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp122_AST
+name|tmp120_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -5199,11 +5011,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp123_AST
+name|tmp121_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp123_AST
+name|tmp121_AST
 operator|=
 operator|(
 name|org
@@ -5232,7 +5044,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp123_AST
+name|tmp121_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -5415,16 +5227,6 @@ operator|=
 name|version_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"version"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -5435,14 +5237,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"namespaceDecl"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5512,11 +5306,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp124_AST
+name|tmp122_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp124_AST
+name|tmp122_AST
 operator|=
 operator|(
 name|org
@@ -5545,7 +5339,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp124_AST
+name|tmp122_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -5562,11 +5356,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp125_AST
+name|tmp123_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp125_AST
+name|tmp123_AST
 operator|=
 operator|(
 name|org
@@ -5595,7 +5389,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp125_AST
+name|tmp123_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -5829,16 +5623,6 @@ operator|=
 name|namespaceDecl_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"namespaceDecl"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -5849,14 +5633,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"defaultNamespaceDecl"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5926,11 +5702,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp127_AST
+name|tmp125_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp127_AST
+name|tmp125_AST
 operator|=
 operator|(
 name|org
@@ -5959,7 +5735,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp127_AST
+name|tmp125_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -5976,11 +5752,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp128_AST
+name|tmp126_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp128_AST
+name|tmp126_AST
 operator|=
 operator|(
 name|org
@@ -6009,7 +5785,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp128_AST
+name|tmp126_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -6039,11 +5815,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp129_AST
+name|tmp127_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp129_AST
+name|tmp127_AST
 operator|=
 operator|(
 name|org
@@ -6072,7 +5848,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp129_AST
+name|tmp127_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -6089,11 +5865,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp130_AST
+name|tmp128_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp130_AST
+name|tmp128_AST
 operator|=
 operator|(
 name|org
@@ -6122,7 +5898,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp130_AST
+name|tmp128_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -6300,11 +6076,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp131_AST
+name|tmp129_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp131_AST
+name|tmp129_AST
 operator|=
 operator|(
 name|org
@@ -6333,7 +6109,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp131_AST
+name|tmp129_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -6350,11 +6126,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp132_AST
+name|tmp130_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp132_AST
+name|tmp130_AST
 operator|=
 operator|(
 name|org
@@ -6383,7 +6159,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp132_AST
+name|tmp130_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -6588,16 +6364,6 @@ operator|=
 name|defaultNamespaceDecl_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"defaultNamespaceDecl"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -6608,14 +6374,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"functionDecl"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -6920,16 +6678,6 @@ operator|=
 name|functionDecl_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"functionDecl"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -6940,14 +6688,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"varDecl"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -7286,16 +7026,6 @@ operator|=
 name|varDecl_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"varDecl"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -7306,14 +7036,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"moduleImport"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -7347,11 +7069,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp141_AST
+name|tmp139_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp141_AST
+name|tmp139_AST
 operator|=
 operator|(
 name|org
@@ -7380,7 +7102,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp141_AST
+name|tmp139_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -7420,11 +7142,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp144_AST
+name|tmp142_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp144_AST
+name|tmp142_AST
 operator|=
 operator|(
 name|org
@@ -7453,7 +7175,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp144_AST
+name|tmp142_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -7501,11 +7223,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp146_AST
+name|tmp144_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp146_AST
+name|tmp144_AST
 operator|=
 operator|(
 name|org
@@ -7534,7 +7256,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp146_AST
+name|tmp144_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -7569,11 +7291,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp148_AST
+name|tmp146_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp148_AST
+name|tmp146_AST
 operator|=
 operator|(
 name|org
@@ -7602,7 +7324,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp148_AST
+name|tmp146_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -7658,16 +7380,6 @@ operator|=
 name|moduleImport_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"moduleImport"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|String
@@ -7681,14 +7393,6 @@ block|{
 name|String
 name|name
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"qName"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -7823,11 +7527,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp149_AST
+name|tmp147_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp149_AST
+name|tmp147_AST
 operator|=
 operator|(
 name|org
@@ -7856,7 +7560,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp149_AST
+name|tmp147_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -7985,16 +7689,6 @@ return|return
 name|name
 return|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"qName"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8005,14 +7699,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"typeDeclaration"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8046,11 +7732,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp150_AST
+name|tmp148_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp150_AST
+name|tmp148_AST
 operator|=
 operator|(
 name|org
@@ -8079,7 +7765,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp150_AST
+name|tmp148_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -8121,16 +7807,6 @@ operator|=
 name|typeDeclaration_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"typeDeclaration"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8141,14 +7817,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"paramList"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8283,16 +7951,6 @@ operator|=
 name|paramList_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"paramList"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8303,14 +7961,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"returnType"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8344,11 +7994,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp152_AST
+name|tmp150_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp152_AST
+name|tmp150_AST
 operator|=
 operator|(
 name|org
@@ -8377,7 +8027,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp152_AST
+name|tmp150_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -8419,16 +8069,6 @@ operator|=
 name|returnType_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"returnType"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8439,14 +8079,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"functionBody"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8493,11 +8125,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp153_AST
+name|tmp151_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp153_AST
+name|tmp151_AST
 operator|=
 operator|(
 name|org
@@ -8526,7 +8158,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp153_AST
+name|tmp151_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -8588,16 +8220,6 @@ operator|=
 name|functionBody_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"functionBody"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8608,14 +8230,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"sequenceType"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8725,11 +8339,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp155_AST
+name|tmp153_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp155_AST
+name|tmp153_AST
 operator|=
 operator|(
 name|org
@@ -8758,7 +8372,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp155_AST
+name|tmp153_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -8932,16 +8546,6 @@ operator|=
 name|sequenceType_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"sequenceType"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -8952,14 +8556,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"param"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9226,16 +8822,6 @@ operator|=
 name|param_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"param"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -9246,14 +8832,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"itemType"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9363,11 +8941,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp159_AST
+name|tmp157_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp159_AST
+name|tmp157_AST
 operator|=
 operator|(
 name|org
@@ -9396,7 +8974,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp159_AST
+name|tmp157_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -9610,16 +9188,6 @@ operator|=
 name|itemType_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"itemType"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -9630,14 +9198,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"occurrenceIndicator"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9683,11 +9243,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp162_AST
+name|tmp160_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp162_AST
+name|tmp160_AST
 operator|=
 operator|(
 name|org
@@ -9716,7 +9276,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp162_AST
+name|tmp160_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -9756,11 +9316,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp163_AST
+name|tmp161_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp163_AST
+name|tmp161_AST
 operator|=
 operator|(
 name|org
@@ -9789,7 +9349,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp163_AST
+name|tmp161_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -9829,11 +9389,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp164_AST
+name|tmp162_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp164_AST
+name|tmp162_AST
 operator|=
 operator|(
 name|org
@@ -9862,7 +9422,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp164_AST
+name|tmp162_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -9911,16 +9471,6 @@ operator|=
 name|occurrenceIndicator_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"occurrenceIndicator"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -9931,14 +9481,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"kindTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -10238,16 +9780,6 @@ operator|=
 name|kindTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"kindTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -10258,14 +9790,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"atomicType"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -10413,16 +9937,6 @@ operator|=
 name|atomicType_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"atomicType"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -10433,14 +9947,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"singleType"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -10499,11 +10005,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp165_AST
+name|tmp163_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp165_AST
+name|tmp163_AST
 operator|=
 operator|(
 name|org
@@ -10532,7 +10038,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp165_AST
+name|tmp163_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -10636,16 +10142,6 @@ operator|=
 name|singleType_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"singleType"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -10656,14 +10152,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"exprSingle"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11180,16 +10668,6 @@ operator|=
 name|exprSingle_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"exprSingle"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -11200,14 +10678,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"flworExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11349,11 +10819,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp166_AST
+name|tmp164_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp166_AST
+name|tmp164_AST
 operator|=
 operator|(
 name|org
@@ -11382,7 +10852,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp166_AST
+name|tmp164_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -11491,11 +10961,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp167_AST
+name|tmp165_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp167_AST
+name|tmp165_AST
 operator|=
 operator|(
 name|org
@@ -11524,7 +10994,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp167_AST
+name|tmp165_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -11566,16 +11036,6 @@ operator|=
 name|flworExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"flworExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -11586,14 +11046,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"quantifiedExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11640,11 +11092,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp168_AST
+name|tmp166_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp168_AST
+name|tmp166_AST
 operator|=
 operator|(
 name|org
@@ -11673,7 +11125,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp168_AST
+name|tmp166_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -11696,11 +11148,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp169_AST
+name|tmp167_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp169_AST
+name|tmp167_AST
 operator|=
 operator|(
 name|org
@@ -11729,7 +11181,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp169_AST
+name|tmp167_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -11856,16 +11308,6 @@ operator|=
 name|quantifiedExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"quantifiedExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -11876,14 +11318,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"ifExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11917,11 +11351,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp172_AST
+name|tmp170_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp172_AST
+name|tmp170_AST
 operator|=
 operator|(
 name|org
@@ -11950,7 +11384,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp172_AST
+name|tmp170_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -12036,16 +11470,6 @@ operator|=
 name|ifExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"ifExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -12056,14 +11480,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"orExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12126,11 +11542,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp177_AST
+name|tmp175_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp177_AST
+name|tmp175_AST
 operator|=
 operator|(
 name|org
@@ -12159,7 +11575,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp177_AST
+name|tmp175_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -12215,16 +11631,6 @@ operator|=
 name|orExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"orExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -12235,14 +11641,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"forClause"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12276,11 +11674,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp178_AST
+name|tmp176_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp178_AST
+name|tmp176_AST
 operator|=
 operator|(
 name|org
@@ -12309,7 +11707,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp178_AST
+name|tmp176_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -12399,16 +11797,6 @@ operator|=
 name|forClause_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"forClause"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -12419,14 +11807,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"letClause"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12460,11 +11840,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp180_AST
+name|tmp178_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp180_AST
+name|tmp178_AST
 operator|=
 operator|(
 name|org
@@ -12493,7 +11873,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp180_AST
+name|tmp178_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -12583,16 +11963,6 @@ operator|=
 name|letClause_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"letClause"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -12603,14 +11973,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"orderByClause"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12793,16 +12155,6 @@ operator|=
 name|orderByClause_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"orderByClause"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -12813,14 +12165,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"inVarBinding"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13116,16 +12460,6 @@ operator|=
 name|inVarBinding_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"inVarBinding"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -13136,14 +12470,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"letVarBinding"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13390,16 +12716,6 @@ operator|=
 name|letVarBinding_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"letVarBinding"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -13410,14 +12726,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"positionalVar"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13454,11 +12762,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp189_AST
+name|tmp187_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp189_AST
+name|tmp187_AST
 operator|=
 operator|(
 name|org
@@ -13487,7 +12795,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp189_AST
+name|tmp187_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -13618,16 +12926,6 @@ operator|=
 name|positionalVar_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"positionalVar"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -13638,14 +12936,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"orderSpecList"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13752,16 +13042,6 @@ operator|=
 name|orderSpecList_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"orderSpecList"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -13772,14 +13052,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"orderSpec"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13850,16 +13122,6 @@ operator|=
 name|orderSpec_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"orderSpec"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -13870,14 +13132,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"orderModifier"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13924,11 +13178,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp192_AST
+name|tmp190_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp192_AST
+name|tmp190_AST
 operator|=
 operator|(
 name|org
@@ -13957,7 +13211,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp192_AST
+name|tmp190_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -13980,11 +13234,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp193_AST
+name|tmp191_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp193_AST
+name|tmp191_AST
 operator|=
 operator|(
 name|org
@@ -14013,7 +13267,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp193_AST
+name|tmp191_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14075,11 +13329,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp194_AST
+name|tmp192_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp194_AST
+name|tmp192_AST
 operator|=
 operator|(
 name|org
@@ -14108,7 +13362,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp194_AST
+name|tmp192_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14138,11 +13392,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp195_AST
+name|tmp193_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp195_AST
+name|tmp193_AST
 operator|=
 operator|(
 name|org
@@ -14171,7 +13425,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp195_AST
+name|tmp193_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14194,11 +13448,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp196_AST
+name|tmp194_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp196_AST
+name|tmp194_AST
 operator|=
 operator|(
 name|org
@@ -14227,7 +13481,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp196_AST
+name|tmp194_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14306,16 +13560,6 @@ operator|=
 name|orderModifier_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"orderModifier"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -14326,14 +13570,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"quantifiedInVarBinding"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14575,16 +13811,6 @@ operator|=
 name|quantifiedInVarBinding_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"quantifiedInVarBinding"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -14595,14 +13821,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"andExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14665,11 +13883,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp199_AST
+name|tmp197_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp199_AST
+name|tmp197_AST
 operator|=
 operator|(
 name|org
@@ -14698,7 +13916,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp199_AST
+name|tmp197_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14754,16 +13972,6 @@ operator|=
 name|andExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"andExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -14774,14 +13982,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"castExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14840,11 +14040,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp200_AST
+name|tmp198_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp200_AST
+name|tmp198_AST
 operator|=
 operator|(
 name|org
@@ -14873,7 +14073,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp200_AST
+name|tmp198_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -14994,16 +14194,6 @@ operator|=
 name|castExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"castExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -15014,14 +14204,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"comparisonExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -15109,11 +14291,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp202_AST
+name|tmp200_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp202_AST
+name|tmp200_AST
 operator|=
 operator|(
 name|org
@@ -15142,7 +14324,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp202_AST
+name|tmp200_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15165,11 +14347,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp203_AST
+name|tmp201_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp203_AST
+name|tmp201_AST
 operator|=
 operator|(
 name|org
@@ -15198,7 +14380,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp203_AST
+name|tmp201_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15221,11 +14403,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp204_AST
+name|tmp202_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp204_AST
+name|tmp202_AST
 operator|=
 operator|(
 name|org
@@ -15254,7 +14436,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp204_AST
+name|tmp202_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15277,11 +14459,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp205_AST
+name|tmp203_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp205_AST
+name|tmp203_AST
 operator|=
 operator|(
 name|org
@@ -15310,7 +14492,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp205_AST
+name|tmp203_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15333,11 +14515,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp206_AST
+name|tmp204_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp206_AST
+name|tmp204_AST
 operator|=
 operator|(
 name|org
@@ -15366,7 +14548,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp206_AST
+name|tmp204_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15389,11 +14571,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp207_AST
+name|tmp205_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp207_AST
+name|tmp205_AST
 operator|=
 operator|(
 name|org
@@ -15422,7 +14604,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp207_AST
+name|tmp205_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15495,11 +14677,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp208_AST
+name|tmp206_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp208_AST
+name|tmp206_AST
 operator|=
 operator|(
 name|org
@@ -15528,7 +14710,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp208_AST
+name|tmp206_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15551,11 +14733,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp209_AST
+name|tmp207_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp209_AST
+name|tmp207_AST
 operator|=
 operator|(
 name|org
@@ -15584,7 +14766,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp209_AST
+name|tmp207_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15657,11 +14839,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp210_AST
+name|tmp208_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp210_AST
+name|tmp208_AST
 operator|=
 operator|(
 name|org
@@ -15690,7 +14872,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp210_AST
+name|tmp208_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -15713,11 +14895,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp211_AST
+name|tmp209_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp211_AST
+name|tmp209_AST
 operator|=
 operator|(
 name|org
@@ -15746,7 +14928,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp211_AST
+name|tmp209_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16313,11 +15495,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp216_AST
+name|tmp214_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp216_AST
+name|tmp214_AST
 operator|=
 operator|(
 name|org
@@ -16346,7 +15528,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp216_AST
+name|tmp214_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16369,11 +15551,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp217_AST
+name|tmp215_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp217_AST
+name|tmp215_AST
 operator|=
 operator|(
 name|org
@@ -16402,7 +15584,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp217_AST
+name|tmp215_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16425,11 +15607,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp218_AST
+name|tmp216_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp218_AST
+name|tmp216_AST
 operator|=
 operator|(
 name|org
@@ -16458,7 +15640,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp218_AST
+name|tmp216_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16481,11 +15663,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp219_AST
+name|tmp217_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp219_AST
+name|tmp217_AST
 operator|=
 operator|(
 name|org
@@ -16514,7 +15696,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp219_AST
+name|tmp217_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16537,11 +15719,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp220_AST
+name|tmp218_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp220_AST
+name|tmp218_AST
 operator|=
 operator|(
 name|org
@@ -16570,7 +15752,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp220_AST
+name|tmp218_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16593,11 +15775,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp221_AST
+name|tmp219_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp221_AST
+name|tmp219_AST
 operator|=
 operator|(
 name|org
@@ -16626,7 +15808,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp221_AST
+name|tmp219_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16709,16 +15891,6 @@ operator|=
 name|comparisonExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"comparisonExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -16729,14 +15901,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"rangeExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -16795,11 +15959,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp222_AST
+name|tmp220_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp222_AST
+name|tmp220_AST
 operator|=
 operator|(
 name|org
@@ -16828,7 +15992,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp222_AST
+name|tmp220_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -16995,16 +16159,6 @@ operator|=
 name|rangeExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"rangeExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -17015,14 +16169,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"additiveExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17105,11 +16251,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp223_AST
+name|tmp221_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp223_AST
+name|tmp221_AST
 operator|=
 operator|(
 name|org
@@ -17138,7 +16284,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp223_AST
+name|tmp221_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17161,11 +16307,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp224_AST
+name|tmp222_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp224_AST
+name|tmp222_AST
 operator|=
 operator|(
 name|org
@@ -17194,7 +16340,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp224_AST
+name|tmp222_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17270,16 +16416,6 @@ operator|=
 name|additiveExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"additiveExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -17290,14 +16426,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"multiplicativeExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17376,11 +16504,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp225_AST
+name|tmp223_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp225_AST
+name|tmp223_AST
 operator|=
 operator|(
 name|org
@@ -17409,7 +16537,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp225_AST
+name|tmp223_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17432,11 +16560,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp226_AST
+name|tmp224_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp226_AST
+name|tmp224_AST
 operator|=
 operator|(
 name|org
@@ -17465,7 +16593,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp226_AST
+name|tmp224_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17488,11 +16616,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp227_AST
+name|tmp225_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp227_AST
+name|tmp225_AST
 operator|=
 operator|(
 name|org
@@ -17521,7 +16649,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp227_AST
+name|tmp225_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17544,11 +16672,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp228_AST
+name|tmp226_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp228_AST
+name|tmp226_AST
 operator|=
 operator|(
 name|org
@@ -17577,7 +16705,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp228_AST
+name|tmp226_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -17653,16 +16781,6 @@ operator|=
 name|multiplicativeExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"multiplicativeExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -17673,14 +16791,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"unaryExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18448,16 +17558,6 @@ operator|=
 name|unaryExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"unaryExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -18468,14 +17568,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"unionExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18871,16 +17963,6 @@ operator|=
 name|unionExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"unionExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -18891,14 +17973,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"intersectExceptExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18981,11 +18055,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp231_AST
+name|tmp229_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp231_AST
+name|tmp229_AST
 operator|=
 operator|(
 name|org
@@ -19014,7 +18088,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp231_AST
+name|tmp229_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -19037,11 +18111,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp232_AST
+name|tmp230_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp232_AST
+name|tmp230_AST
 operator|=
 operator|(
 name|org
@@ -19070,7 +18144,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp232_AST
+name|tmp230_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -19146,16 +18220,6 @@ operator|=
 name|intersectExceptExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"intersectExceptExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -19166,14 +18230,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"pathExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19466,11 +18522,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp233_AST
+name|tmp231_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp233_AST
+name|tmp231_AST
 operator|=
 operator|(
 name|org
@@ -19499,7 +18555,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp233_AST
+name|tmp231_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -19751,11 +18807,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp234_AST
+name|tmp232_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp234_AST
+name|tmp232_AST
 operator|=
 operator|(
 name|org
@@ -19784,7 +18840,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp234_AST
+name|tmp232_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -19972,11 +19028,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp235_AST
+name|tmp233_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp235_AST
+name|tmp233_AST
 operator|=
 operator|(
 name|org
@@ -20005,7 +19061,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp235_AST
+name|tmp233_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -20135,16 +19191,6 @@ operator|=
 name|pathExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"pathExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -20155,14 +19201,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"relativePathExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20245,11 +19283,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp236_AST
+name|tmp234_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp236_AST
+name|tmp234_AST
 operator|=
 operator|(
 name|org
@@ -20278,7 +19316,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp236_AST
+name|tmp234_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -20301,11 +19339,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp237_AST
+name|tmp235_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp237_AST
+name|tmp235_AST
 operator|=
 operator|(
 name|org
@@ -20334,7 +19372,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp237_AST
+name|tmp235_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -20410,16 +19448,6 @@ operator|=
 name|relativePathExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"relativePathExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -20430,14 +19458,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"stepExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21046,16 +20066,6 @@ operator|=
 name|stepExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"stepExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21066,14 +20076,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"axisStep"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21146,16 +20148,6 @@ operator|=
 name|axisStep_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"axisStep"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21166,14 +20158,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"literal"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21219,11 +20203,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp238_AST
+name|tmp236_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp238_AST
+name|tmp236_AST
 operator|=
 operator|(
 name|org
@@ -21252,7 +20236,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp238_AST
+name|tmp236_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -21342,16 +20326,6 @@ operator|=
 name|literal_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"literal"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21362,14 +20336,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"filterStep"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21440,16 +20406,6 @@ operator|=
 name|filterStep_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"filterStep"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21460,14 +20416,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"forwardOrReverseStep"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21811,16 +20759,6 @@ operator|=
 name|forwardOrReverseStep_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"forwardOrReverseStep"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21831,14 +20769,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"predicates"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21928,16 +20858,6 @@ operator|=
 name|predicates_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"predicates"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -21948,14 +20868,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"predicate"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22166,16 +21078,6 @@ operator|=
 name|predicate_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"predicate"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -22186,14 +21088,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"forwardAxisSpecifier"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22239,11 +21133,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp241_AST
+name|tmp239_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp241_AST
+name|tmp239_AST
 operator|=
 operator|(
 name|org
@@ -22272,7 +21166,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp241_AST
+name|tmp239_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22312,11 +21206,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp242_AST
+name|tmp240_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp242_AST
+name|tmp240_AST
 operator|=
 operator|(
 name|org
@@ -22345,7 +21239,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp242_AST
+name|tmp240_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22385,11 +21279,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp243_AST
+name|tmp241_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp243_AST
+name|tmp241_AST
 operator|=
 operator|(
 name|org
@@ -22418,7 +21312,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp243_AST
+name|tmp241_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22458,11 +21352,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp244_AST
+name|tmp242_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp244_AST
+name|tmp242_AST
 operator|=
 operator|(
 name|org
@@ -22491,7 +21385,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp244_AST
+name|tmp242_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22531,11 +21425,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp245_AST
+name|tmp243_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp245_AST
+name|tmp243_AST
 operator|=
 operator|(
 name|org
@@ -22564,7 +21458,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp245_AST
+name|tmp243_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22604,11 +21498,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp246_AST
+name|tmp244_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp246_AST
+name|tmp244_AST
 operator|=
 operator|(
 name|org
@@ -22637,7 +21531,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp246_AST
+name|tmp244_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -22686,16 +21580,6 @@ operator|=
 name|forwardAxisSpecifier_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"forwardAxisSpecifier"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -22706,14 +21590,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"forwardAxis"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22782,16 +21658,6 @@ operator|=
 name|forwardAxis_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"forwardAxis"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -22802,14 +21668,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"nodeTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23009,16 +21867,6 @@ operator|=
 name|nodeTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"nodeTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -23029,14 +21877,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"reverseAxisSpecifier"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23082,11 +21922,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp249_AST
+name|tmp247_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp249_AST
+name|tmp247_AST
 operator|=
 operator|(
 name|org
@@ -23115,7 +21955,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp249_AST
+name|tmp247_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -23155,11 +21995,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp250_AST
+name|tmp248_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp250_AST
+name|tmp248_AST
 operator|=
 operator|(
 name|org
@@ -23188,7 +22028,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp250_AST
+name|tmp248_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -23228,11 +22068,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp251_AST
+name|tmp249_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp251_AST
+name|tmp249_AST
 operator|=
 operator|(
 name|org
@@ -23261,7 +22101,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp251_AST
+name|tmp249_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -23301,11 +22141,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp252_AST
+name|tmp250_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp252_AST
+name|tmp250_AST
 operator|=
 operator|(
 name|org
@@ -23334,7 +22174,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp252_AST
+name|tmp250_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -23383,16 +22223,6 @@ operator|=
 name|reverseAxisSpecifier_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"reverseAxisSpecifier"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -23403,14 +22233,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"reverseAxis"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23479,16 +22301,6 @@ operator|=
 name|reverseAxis_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"reverseAxis"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -23499,14 +22311,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"abbrevStep"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23718,11 +22522,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp255_AST
+name|tmp253_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp255_AST
+name|tmp253_AST
 operator|=
 operator|(
 name|org
@@ -23751,7 +22555,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp255_AST
+name|tmp253_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -23979,11 +22783,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp256_AST
+name|tmp254_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp256_AST
+name|tmp254_AST
 operator|=
 operator|(
 name|org
@@ -24012,7 +22816,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp256_AST
+name|tmp254_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -24061,16 +22865,6 @@ operator|=
 name|abbrevStep_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"abbrevStep"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -24081,14 +22875,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"nameTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -24430,16 +23216,6 @@ operator|=
 name|nameTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"nameTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -24450,14 +23226,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"wildcard"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -24993,11 +23761,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp261_AST
+name|tmp259_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp261_AST
+name|tmp259_AST
 operator|=
 operator|(
 name|org
@@ -25026,7 +23794,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp261_AST
+name|tmp259_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -25156,16 +23924,6 @@ operator|=
 name|wildcard_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"wildcard"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -25176,14 +23934,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"primaryExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -25730,16 +24480,6 @@ operator|=
 name|primaryExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"primaryExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -25750,14 +24490,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"functionCall"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -25782,6 +24514,11 @@ name|functionCall_AST
 init|=
 literal|null
 decl_stmt|;
+name|Token
+name|l
+init|=
+literal|null
+decl_stmt|;
 name|org
 operator|.
 name|exist
@@ -25791,7 +24528,7 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|q_AST
+name|l_AST
 init|=
 literal|null
 decl_stmt|;
@@ -25818,7 +24555,23 @@ operator|=
 name|qName
 argument_list|()
 expr_stmt|;
-name|q_AST
+name|astFactory
+operator|.
+name|addASTChild
+argument_list|(
+name|currentAST
+argument_list|,
+name|returnAST
+argument_list|)
+expr_stmt|;
+name|l
+operator|=
+name|LT
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+name|l_AST
 operator|=
 operator|(
 name|org
@@ -25831,15 +24584,11 @@ name|parser
 operator|.
 name|XQueryAST
 operator|)
-name|returnAST
-expr_stmt|;
 name|astFactory
 operator|.
-name|addASTChild
+name|create
 argument_list|(
-name|currentAST
-argument_list|,
-name|returnAST
+name|l
 argument_list|)
 expr_stmt|;
 name|match
@@ -26337,7 +25086,7 @@ name|functionCall_AST
 operator|.
 name|copyLexInfo
 argument_list|(
-name|q_AST
+name|l_AST
 argument_list|)
 expr_stmt|;
 block|}
@@ -26368,16 +25117,6 @@ operator|=
 name|functionCall_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"functionCall"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -26388,14 +25127,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"contextItemExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -26429,11 +25160,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp265_AST
+name|tmp262_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp265_AST
+name|tmp262_AST
 operator|=
 operator|(
 name|org
@@ -26462,7 +25193,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp265_AST
+name|tmp262_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -26492,16 +25223,6 @@ operator|=
 name|contextItemExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"contextItemExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -26512,14 +25233,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"parenthesizedExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -26967,16 +25680,6 @@ operator|=
 name|parenthesizedExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"parenthesizedExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -26987,14 +25690,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"constructor"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27154,16 +25849,6 @@ operator|=
 name|constructor_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"constructor"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -27174,14 +25859,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"numericLiteral"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27227,11 +25904,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp268_AST
+name|tmp265_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp268_AST
+name|tmp265_AST
 operator|=
 operator|(
 name|org
@@ -27260,7 +25937,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp268_AST
+name|tmp265_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27300,11 +25977,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp269_AST
+name|tmp266_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp269_AST
+name|tmp266_AST
 operator|=
 operator|(
 name|org
@@ -27333,7 +26010,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp269_AST
+name|tmp266_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27373,11 +26050,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp270_AST
+name|tmp267_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp270_AST
+name|tmp267_AST
 operator|=
 operator|(
 name|org
@@ -27406,7 +26083,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp270_AST
+name|tmp267_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27455,16 +26132,6 @@ operator|=
 name|numericLiteral_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"numericLiteral"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -27475,14 +26142,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"functionParameters"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27589,16 +26248,6 @@ operator|=
 name|functionParameters_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"functionParameters"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -27609,14 +26258,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"textTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27650,11 +26291,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp272_AST
+name|tmp269_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp272_AST
+name|tmp269_AST
 operator|=
 operator|(
 name|org
@@ -27683,7 +26324,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp272_AST
+name|tmp269_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27723,16 +26364,6 @@ operator|=
 name|textTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"textTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -27743,14 +26374,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"anyKindTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27784,11 +26407,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp275_AST
+name|tmp272_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp275_AST
+name|tmp272_AST
 operator|=
 operator|(
 name|org
@@ -27817,7 +26440,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp275_AST
+name|tmp272_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27857,16 +26480,6 @@ operator|=
 name|anyKindTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"anyKindTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -27877,14 +26490,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"elementTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27918,11 +26523,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp278_AST
+name|tmp275_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp278_AST
+name|tmp275_AST
 operator|=
 operator|(
 name|org
@@ -27951,7 +26556,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp278_AST
+name|tmp275_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -27991,16 +26596,6 @@ operator|=
 name|elementTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"elementTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -28011,14 +26606,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"attributeTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28052,11 +26639,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp281_AST
+name|tmp278_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp281_AST
+name|tmp278_AST
 operator|=
 operator|(
 name|org
@@ -28085,7 +26672,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp281_AST
+name|tmp278_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -28125,16 +26712,6 @@ operator|=
 name|attributeTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"attributeTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -28145,14 +26722,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"commentTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28186,11 +26755,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp284_AST
+name|tmp281_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp284_AST
+name|tmp281_AST
 operator|=
 operator|(
 name|org
@@ -28219,7 +26788,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp284_AST
+name|tmp281_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -28259,16 +26828,6 @@ operator|=
 name|commentTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"commentTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -28279,14 +26838,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"piTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28320,11 +26871,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp287_AST
+name|tmp284_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp287_AST
+name|tmp284_AST
 operator|=
 operator|(
 name|org
@@ -28353,7 +26904,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp287_AST
+name|tmp284_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -28393,16 +26944,6 @@ operator|=
 name|piTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"piTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -28413,14 +26954,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"documentTest"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28454,11 +26987,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp290_AST
+name|tmp287_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp290_AST
+name|tmp287_AST
 operator|=
 operator|(
 name|org
@@ -28487,7 +27020,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp290_AST
+name|tmp287_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -28527,16 +27060,6 @@ operator|=
 name|documentTest_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"documentTest"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|String
@@ -28550,14 +27073,6 @@ block|{
 name|String
 name|name
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"ncnameOrKeyword"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28890,16 +27405,6 @@ return|return
 name|name
 return|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"ncnameOrKeyword"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -28910,14 +27415,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"elementConstructor"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -29122,16 +27619,6 @@ operator|=
 name|elementConstructor_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"elementConstructor"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -29142,14 +27629,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"xmlComment"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -29183,11 +27662,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp293_AST
+name|tmp290_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp293_AST
+name|tmp290_AST
 operator|=
 operator|(
 name|org
@@ -29216,7 +27695,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp293_AST
+name|tmp290_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -29251,16 +27730,6 @@ operator|=
 name|xmlComment_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"xmlComment"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -29271,14 +27740,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"xmlPI"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -29312,11 +27773,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp295_AST
+name|tmp292_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp295_AST
+name|tmp292_AST
 operator|=
 operator|(
 name|org
@@ -29345,7 +27806,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp295_AST
+name|tmp292_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -29380,16 +27841,6 @@ operator|=
 name|xmlPI_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"xmlPI"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -29400,14 +27851,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"elementWithAttributes"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -29429,6 +27872,19 @@ name|parser
 operator|.
 name|XQueryAST
 name|elementWithAttributes_AST
+init|=
+literal|null
+decl_stmt|;
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+name|q_AST
 init|=
 literal|null
 decl_stmt|;
@@ -29472,6 +27928,21 @@ name|name
 operator|=
 name|qName
 argument_list|()
+expr_stmt|;
+name|q_AST
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+operator|)
+name|returnAST
 expr_stmt|;
 name|astFactory
 operator|.
@@ -29943,6 +28414,40 @@ throw|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|inputState
+operator|.
+name|guessing
+operator|==
+literal|0
+condition|)
+block|{
+name|elementWithAttributes_AST
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+operator|)
+name|currentAST
+operator|.
+name|root
+expr_stmt|;
+name|elementWithAttributes_AST
+operator|.
+name|copyLexInfo
+argument_list|(
+name|q_AST
+argument_list|)
+expr_stmt|;
+block|}
 name|elementWithAttributes_AST
 operator|=
 operator|(
@@ -29965,16 +28470,6 @@ operator|=
 name|elementWithAttributes_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"elementWithAttributes"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -29985,14 +28480,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"elementWithoutAttributes"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30026,6 +28513,19 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
+name|q_AST
+init|=
+literal|null
+decl_stmt|;
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
 name|content_AST
 init|=
 literal|null
@@ -30044,11 +28544,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp303_AST
+name|tmp300_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp303_AST
+name|tmp300_AST
 operator|=
 operator|(
 name|org
@@ -30077,7 +28577,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp303_AST
+name|tmp300_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -30089,6 +28589,21 @@ name|name
 operator|=
 name|qName
 argument_list|()
+expr_stmt|;
+name|q_AST
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+operator|)
+name|returnAST
 expr_stmt|;
 name|astFactory
 operator|.
@@ -30500,6 +29015,40 @@ throw|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|inputState
+operator|.
+name|guessing
+operator|==
+literal|0
+condition|)
+block|{
+name|elementWithoutAttributes_AST
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+operator|)
+name|currentAST
+operator|.
+name|root
+expr_stmt|;
+name|elementWithoutAttributes_AST
+operator|.
+name|copyLexInfo
+argument_list|(
+name|q_AST
+argument_list|)
+expr_stmt|;
+block|}
 name|elementWithoutAttributes_AST
 operator|=
 operator|(
@@ -30522,16 +29071,6 @@ operator|=
 name|elementWithoutAttributes_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"elementWithoutAttributes"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -30542,14 +29081,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"mixedElementContent"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30642,16 +29173,6 @@ operator|=
 name|mixedElementContent_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mixedElementContent"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -30662,14 +29183,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"attributeList"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30794,16 +29307,6 @@ operator|=
 name|attributeList_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"attributeList"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -30814,14 +29317,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"attributeDef"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30855,6 +29350,19 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
+name|q_AST
+init|=
+literal|null
+decl_stmt|;
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
 name|value_AST
 init|=
 literal|null
@@ -30874,6 +29382,21 @@ name|name
 operator|=
 name|qName
 argument_list|()
+expr_stmt|;
+name|q_AST
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|parser
+operator|.
+name|XQueryAST
+operator|)
+name|returnAST
 expr_stmt|;
 name|match
 argument_list|(
@@ -31045,6 +29568,13 @@ name|value_AST
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|attributeDef_AST
+operator|.
+name|copyLexInfo
+argument_list|(
+name|q_AST
+argument_list|)
+expr_stmt|;
 name|currentAST
 operator|.
 name|root
@@ -31101,16 +29631,6 @@ operator|=
 name|attributeDef_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"attributeDef"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -31121,14 +29641,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"attributeValue"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -31184,11 +29696,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp312_AST
+name|tmp309_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp312_AST
+name|tmp309_AST
 operator|=
 operator|(
 name|org
@@ -31217,7 +29729,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp312_AST
+name|tmp309_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -31308,16 +29820,6 @@ operator|=
 name|attributeValue_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"attributeValue"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -31328,14 +29830,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"attributeEnclosedExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -31369,11 +29863,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp313_AST
+name|tmp310_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp313_AST
+name|tmp310_AST
 operator|=
 operator|(
 name|org
@@ -31402,7 +29896,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp313_AST
+name|tmp310_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -31495,16 +29989,6 @@ operator|=
 name|attributeEnclosedExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"attributeEnclosedExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -31515,14 +29999,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"elementContent"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -31884,16 +30360,6 @@ operator|=
 name|elementContent_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"elementContent"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|void
@@ -31904,14 +30370,6 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
-name|traceIn
-argument_list|(
-literal|"enclosedExpr"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -31945,11 +30403,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp315_AST
+name|tmp312_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp315_AST
+name|tmp312_AST
 operator|=
 operator|(
 name|org
@@ -31978,7 +30436,7 @@ name|makeASTRoot
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp315_AST
+name|tmp312_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32082,16 +30540,6 @@ operator|=
 name|enclosedExpr_AST
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"enclosedExpr"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|public
 specifier|final
 name|String
@@ -32105,14 +30553,6 @@ block|{
 name|String
 name|name
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"reservedKeywords"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32162,11 +30602,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp317_AST
+name|tmp314_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp317_AST
+name|tmp314_AST
 operator|=
 operator|(
 name|org
@@ -32195,7 +30635,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp317_AST
+name|tmp314_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32249,11 +30689,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp318_AST
+name|tmp315_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp318_AST
+name|tmp315_AST
 operator|=
 operator|(
 name|org
@@ -32282,7 +30722,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp318_AST
+name|tmp315_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32336,11 +30776,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp319_AST
+name|tmp316_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp319_AST
+name|tmp316_AST
 operator|=
 operator|(
 name|org
@@ -32369,7 +30809,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp319_AST
+name|tmp316_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32423,11 +30863,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp320_AST
+name|tmp317_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp320_AST
+name|tmp317_AST
 operator|=
 operator|(
 name|org
@@ -32456,7 +30896,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp320_AST
+name|tmp317_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32510,11 +30950,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp321_AST
+name|tmp318_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp321_AST
+name|tmp318_AST
 operator|=
 operator|(
 name|org
@@ -32543,7 +30983,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp321_AST
+name|tmp318_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32597,11 +31037,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp322_AST
+name|tmp319_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp322_AST
+name|tmp319_AST
 operator|=
 operator|(
 name|org
@@ -32630,7 +31070,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp322_AST
+name|tmp319_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32684,11 +31124,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp323_AST
+name|tmp320_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp323_AST
+name|tmp320_AST
 operator|=
 operator|(
 name|org
@@ -32717,7 +31157,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp323_AST
+name|tmp320_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32771,11 +31211,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp324_AST
+name|tmp321_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp324_AST
+name|tmp321_AST
 operator|=
 operator|(
 name|org
@@ -32804,7 +31244,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp324_AST
+name|tmp321_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32858,11 +31298,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp325_AST
+name|tmp322_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp325_AST
+name|tmp322_AST
 operator|=
 operator|(
 name|org
@@ -32891,7 +31331,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp325_AST
+name|tmp322_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -32945,11 +31385,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp326_AST
+name|tmp323_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp326_AST
+name|tmp323_AST
 operator|=
 operator|(
 name|org
@@ -32978,7 +31418,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp326_AST
+name|tmp323_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33032,11 +31472,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp327_AST
+name|tmp324_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp327_AST
+name|tmp324_AST
 operator|=
 operator|(
 name|org
@@ -33065,7 +31505,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp327_AST
+name|tmp324_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33119,11 +31559,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp328_AST
+name|tmp325_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp328_AST
+name|tmp325_AST
 operator|=
 operator|(
 name|org
@@ -33152,7 +31592,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp328_AST
+name|tmp325_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33206,11 +31646,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp329_AST
+name|tmp326_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp329_AST
+name|tmp326_AST
 operator|=
 operator|(
 name|org
@@ -33239,7 +31679,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp329_AST
+name|tmp326_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33293,11 +31733,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp330_AST
+name|tmp327_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp330_AST
+name|tmp327_AST
 operator|=
 operator|(
 name|org
@@ -33326,7 +31766,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp330_AST
+name|tmp327_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33380,11 +31820,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp331_AST
+name|tmp328_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp331_AST
+name|tmp328_AST
 operator|=
 operator|(
 name|org
@@ -33413,7 +31853,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp331_AST
+name|tmp328_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33467,11 +31907,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp332_AST
+name|tmp329_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp332_AST
+name|tmp329_AST
 operator|=
 operator|(
 name|org
@@ -33500,7 +31940,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp332_AST
+name|tmp329_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33554,11 +31994,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp333_AST
+name|tmp330_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp333_AST
+name|tmp330_AST
 operator|=
 operator|(
 name|org
@@ -33587,7 +32027,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp333_AST
+name|tmp330_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33641,11 +32081,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp334_AST
+name|tmp331_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp334_AST
+name|tmp331_AST
 operator|=
 operator|(
 name|org
@@ -33674,7 +32114,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp334_AST
+name|tmp331_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33728,11 +32168,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp335_AST
+name|tmp332_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp335_AST
+name|tmp332_AST
 operator|=
 operator|(
 name|org
@@ -33761,7 +32201,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp335_AST
+name|tmp332_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33815,11 +32255,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp336_AST
+name|tmp333_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp336_AST
+name|tmp333_AST
 operator|=
 operator|(
 name|org
@@ -33848,7 +32288,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp336_AST
+name|tmp333_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33902,11 +32342,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp337_AST
+name|tmp334_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp337_AST
+name|tmp334_AST
 operator|=
 operator|(
 name|org
@@ -33935,7 +32375,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp337_AST
+name|tmp334_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -33989,11 +32429,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp338_AST
+name|tmp335_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp338_AST
+name|tmp335_AST
 operator|=
 operator|(
 name|org
@@ -34022,7 +32462,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp338_AST
+name|tmp335_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34076,11 +32516,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp339_AST
+name|tmp336_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp339_AST
+name|tmp336_AST
 operator|=
 operator|(
 name|org
@@ -34109,7 +32549,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp339_AST
+name|tmp336_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34163,11 +32603,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp340_AST
+name|tmp337_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp340_AST
+name|tmp337_AST
 operator|=
 operator|(
 name|org
@@ -34196,7 +32636,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp340_AST
+name|tmp337_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34250,11 +32690,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp341_AST
+name|tmp338_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp341_AST
+name|tmp338_AST
 operator|=
 operator|(
 name|org
@@ -34283,7 +32723,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp341_AST
+name|tmp338_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34337,11 +32777,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp342_AST
+name|tmp339_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp342_AST
+name|tmp339_AST
 operator|=
 operator|(
 name|org
@@ -34370,7 +32810,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp342_AST
+name|tmp339_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34424,11 +32864,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp343_AST
+name|tmp340_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp343_AST
+name|tmp340_AST
 operator|=
 operator|(
 name|org
@@ -34457,7 +32897,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp343_AST
+name|tmp340_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34511,11 +32951,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp344_AST
+name|tmp341_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp344_AST
+name|tmp341_AST
 operator|=
 operator|(
 name|org
@@ -34544,7 +32984,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp344_AST
+name|tmp341_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34598,11 +33038,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp345_AST
+name|tmp342_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp345_AST
+name|tmp342_AST
 operator|=
 operator|(
 name|org
@@ -34631,7 +33071,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp345_AST
+name|tmp342_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34685,11 +33125,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp346_AST
+name|tmp343_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp346_AST
+name|tmp343_AST
 operator|=
 operator|(
 name|org
@@ -34718,7 +33158,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp346_AST
+name|tmp343_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34772,11 +33212,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp347_AST
+name|tmp344_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp347_AST
+name|tmp344_AST
 operator|=
 operator|(
 name|org
@@ -34805,7 +33245,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp347_AST
+name|tmp344_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34859,11 +33299,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp348_AST
+name|tmp345_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp348_AST
+name|tmp345_AST
 operator|=
 operator|(
 name|org
@@ -34892,7 +33332,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp348_AST
+name|tmp345_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -34946,11 +33386,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp349_AST
+name|tmp346_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp349_AST
+name|tmp346_AST
 operator|=
 operator|(
 name|org
@@ -34979,7 +33419,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp349_AST
+name|tmp346_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35033,11 +33473,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp350_AST
+name|tmp347_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp350_AST
+name|tmp347_AST
 operator|=
 operator|(
 name|org
@@ -35066,7 +33506,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp350_AST
+name|tmp347_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35120,11 +33560,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp351_AST
+name|tmp348_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp351_AST
+name|tmp348_AST
 operator|=
 operator|(
 name|org
@@ -35153,7 +33593,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp351_AST
+name|tmp348_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35207,11 +33647,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp352_AST
+name|tmp349_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp352_AST
+name|tmp349_AST
 operator|=
 operator|(
 name|org
@@ -35240,7 +33680,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp352_AST
+name|tmp349_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35294,11 +33734,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp353_AST
+name|tmp350_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp353_AST
+name|tmp350_AST
 operator|=
 operator|(
 name|org
@@ -35327,7 +33767,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp353_AST
+name|tmp350_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35381,11 +33821,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp354_AST
+name|tmp351_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp354_AST
+name|tmp351_AST
 operator|=
 operator|(
 name|org
@@ -35414,7 +33854,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp354_AST
+name|tmp351_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35468,11 +33908,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp355_AST
+name|tmp352_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp355_AST
+name|tmp352_AST
 operator|=
 operator|(
 name|org
@@ -35501,7 +33941,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp355_AST
+name|tmp352_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35555,11 +33995,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp356_AST
+name|tmp353_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp356_AST
+name|tmp353_AST
 operator|=
 operator|(
 name|org
@@ -35588,7 +34028,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp356_AST
+name|tmp353_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35642,11 +34082,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp357_AST
+name|tmp354_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp357_AST
+name|tmp354_AST
 operator|=
 operator|(
 name|org
@@ -35675,7 +34115,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp357_AST
+name|tmp354_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35729,11 +34169,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp358_AST
+name|tmp355_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp358_AST
+name|tmp355_AST
 operator|=
 operator|(
 name|org
@@ -35762,7 +34202,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp358_AST
+name|tmp355_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35816,11 +34256,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp359_AST
+name|tmp356_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp359_AST
+name|tmp356_AST
 operator|=
 operator|(
 name|org
@@ -35849,7 +34289,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp359_AST
+name|tmp356_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35903,11 +34343,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp360_AST
+name|tmp357_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp360_AST
+name|tmp357_AST
 operator|=
 operator|(
 name|org
@@ -35936,7 +34376,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp360_AST
+name|tmp357_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -35990,11 +34430,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp361_AST
+name|tmp358_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp361_AST
+name|tmp358_AST
 operator|=
 operator|(
 name|org
@@ -36023,7 +34463,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp361_AST
+name|tmp358_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -36077,11 +34517,11 @@ operator|.
 name|parser
 operator|.
 name|XQueryAST
-name|tmp362_AST
+name|tmp359_AST
 init|=
 literal|null
 decl_stmt|;
-name|tmp362_AST
+name|tmp359_AST
 operator|=
 operator|(
 name|org
@@ -36110,7 +34550,7 @@ name|addASTChild
 argument_list|(
 name|currentAST
 argument_list|,
-name|tmp362_AST
+name|tmp359_AST
 argument_list|)
 expr_stmt|;
 name|match
@@ -36175,16 +34615,6 @@ expr_stmt|;
 return|return
 name|name
 return|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"reservedKeywords"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|public
 specifier|static

@@ -173,8 +173,10 @@ literal|2
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Function near requires two arguments"
 argument_list|)
 throw|;
@@ -202,8 +204,10 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Second argument to near is empty"
 argument_list|)
 throw|;
@@ -226,6 +230,13 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
+name|near
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|near
 operator|.
 name|addTerm
@@ -281,8 +292,10 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Distance argument to near is empty"
 argument_list|)
 throw|;
@@ -321,8 +334,10 @@ literal|2
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Function starts-with requires two arguments"
 argument_list|)
 throw|;
@@ -363,8 +378,10 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Second argument to starts-with is empty"
 argument_list|)
 throw|;
@@ -389,6 +406,13 @@ operator|.
 name|TRUNC_RIGHT
 argument_list|)
 decl_stmt|;
+name|op
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|step
 operator|=
 name|op
@@ -416,8 +440,10 @@ literal|2
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Function ends-with requires two arguments"
 argument_list|)
 throw|;
@@ -458,8 +484,10 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Second argument to ends-with is empty"
 argument_list|)
 throw|;
@@ -484,6 +512,13 @@ operator|.
 name|TRUNC_LEFT
 argument_list|)
 decl_stmt|;
+name|op
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|step
 operator|=
 name|op
@@ -511,8 +546,10 @@ literal|2
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Function contains requires two arguments"
 argument_list|)
 throw|;
@@ -553,8 +590,10 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Second argument to contains is empty"
 argument_list|)
 throw|;
@@ -579,6 +618,13 @@ operator|.
 name|TRUNC_BOTH
 argument_list|)
 decl_stmt|;
+name|op
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|step
 operator|=
 name|op
@@ -621,6 +667,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"Wrong number of arguments for constructor function"
 argument_list|)
 throw|;
@@ -664,6 +712,13 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 decl_stmt|;
+name|castExpr
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|step
 operator|=
 name|castExpr
@@ -692,6 +747,13 @@ argument_list|,
 name|qname
 argument_list|)
 decl_stmt|;
+name|call
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|call
 operator|.
 name|setArguments
@@ -771,6 +833,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"function "
 operator|+
 name|qname
@@ -848,6 +912,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ast
+argument_list|,
 literal|"function "
 operator|+
 name|qname

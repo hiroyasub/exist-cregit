@@ -1692,6 +1692,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+else|else
+break|break;
 block|}
 if|else if
 condition|(
@@ -1735,6 +1737,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+else|else
+break|break;
 comment|// equal nodes: proceed with next node
 block|}
 if|else if

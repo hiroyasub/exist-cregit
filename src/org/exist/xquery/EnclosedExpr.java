@@ -378,6 +378,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Encountered SAX exception while serializing enclosed expression: "
 operator|+
 name|pprint

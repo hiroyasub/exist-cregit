@@ -216,6 +216,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: empty sequence is not allowed here"
 argument_list|)
 throw|;
@@ -226,6 +229,8 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+try|try
+block|{
 return|return
 operator|(
 name|AtomicValue
@@ -242,6 +247,25 @@ argument_list|(
 name|requiredType
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|setASTNode
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
 specifier|public

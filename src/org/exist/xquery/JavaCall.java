@@ -237,6 +237,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Internal error: prefix "
 operator|+
 name|qname
@@ -292,6 +295,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Class: "
 operator|+
 name|namespaceURI
@@ -595,6 +601,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"no constructor found with "
 operator|+
 name|argCount
@@ -779,6 +788,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"no method matches "
 operator|+
 name|name
@@ -1135,6 +1147,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"illegal argument to constructor "
 operator|+
 name|bestMethod
@@ -1176,6 +1191,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"exception while calling constructor "
 operator|+
 name|bestMethod
@@ -1270,6 +1288,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"illegal argument to method "
 operator|+
 name|bestMethod
@@ -1311,6 +1332,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"exception while calling method "
 operator|+
 name|bestMethod
