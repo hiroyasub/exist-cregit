@@ -1122,9 +1122,9 @@ name|getCollection
 argument_list|(
 name|collectionURI
 argument_list|,
-name|user
+name|actualUser
 argument_list|,
-name|password
+name|actualPassword
 argument_list|)
 decl_stmt|;
 name|XQueryService

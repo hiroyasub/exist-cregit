@@ -3414,16 +3414,6 @@ name|SecurityManager
 operator|.
 name|GUEST_USER
 argument_list|)
-operator|&&
-operator|(
-operator|!
-name|manager
-operator|.
-name|hasAdminPrivileges
-argument_list|(
-name|user
-argument_list|)
-operator|)
 condition|)
 throw|throw
 operator|new

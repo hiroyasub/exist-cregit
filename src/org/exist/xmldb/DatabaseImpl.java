@@ -1203,7 +1203,9 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"invalid password"
+literal|"invalid password for user "
+operator|+
+name|user
 argument_list|)
 throw|;
 block|}

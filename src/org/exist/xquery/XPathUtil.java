@@ -322,7 +322,9 @@ operator|==
 literal|null
 condition|)
 return|return
-literal|null
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 return|;
 if|if
 condition|(

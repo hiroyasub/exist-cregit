@@ -121,7 +121,7 @@ operator|=
 name|client
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xmldb.DatabaseInstanceManager#shutdown() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.DatabaseInstanceManager#shutdown() 	 */
 specifier|public
 name|void
 name|shutdown
@@ -129,6 +129,47 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+name|shutdown
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * @see org.exist.xmldb.DatabaseInstanceManager#shutdown() 	 */
+specifier|public
+name|void
+name|shutdown
+parameter_list|(
+name|long
+name|delay
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+name|Vector
+name|params
+init|=
+operator|new
+name|Vector
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|delay
+operator|>
+literal|0
+condition|)
+name|params
+operator|.
+name|addElement
+argument_list|(
+operator|new
+name|Long
+argument_list|(
+name|delay
+argument_list|)
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|client
@@ -137,9 +178,7 @@ name|execute
 argument_list|(
 literal|"shutdown"
 argument_list|,
-operator|new
-name|Vector
-argument_list|()
+name|params
 argument_list|)
 expr_stmt|;
 block|}

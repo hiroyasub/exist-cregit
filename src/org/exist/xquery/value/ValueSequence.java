@@ -275,6 +275,16 @@ parameter_list|()
 block|{
 return|return
 name|itemType
+operator|==
+name|Type
+operator|.
+name|ANY_TYPE
+condition|?
+name|Type
+operator|.
+name|ITEM
+else|:
+name|itemType
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */

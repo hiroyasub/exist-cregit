@@ -481,6 +481,7 @@ name|getASTNode
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// append location of the function call to the exception message:
 name|e
 operator|.
 name|prependMessage
@@ -491,6 +492,24 @@ name|functionDef
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|" ["
+operator|+
+name|getASTNode
+argument_list|()
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|getASTNode
+argument_list|()
+operator|.
+name|getColumn
+argument_list|()
+operator|+
+literal|"]\n"
 argument_list|)
 expr_stmt|;
 throw|throw

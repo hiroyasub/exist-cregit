@@ -172,13 +172,27 @@ name|COLUMN
 init|=
 literal|"column"
 decl_stmt|;
-comment|/** 	 * Shut down the database. 	 *  	 * @return boolean 	 */
+comment|/** 	 * Shut down the database immediately. 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 */
 specifier|public
 name|boolean
 name|shutdown
 parameter_list|(
 name|User
 name|user
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+comment|/** 	 * Shut down the database after the specified delay (in milliseconds). 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 * @throws PermissionDeniedException 	 */
+specifier|public
+name|boolean
+name|shutdown
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|long
+name|delay
 parameter_list|)
 throws|throws
 name|PermissionDeniedException

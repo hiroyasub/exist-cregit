@@ -11776,9 +11776,13 @@ parameter_list|)
 block|{
 name|xpe
 operator|.
-name|setASTNode
+name|prependMessage
 argument_list|(
-name|i
+literal|"error found while loading module "
+operator|+
+name|modulePrefix
+operator|+
+literal|": "
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -13255,6 +13259,12 @@ decl_stmt|;
 name|QName
 name|qn
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|qn
+operator|=
 name|QName
 operator|.
 name|parse
@@ -13266,7 +13276,26 @@ operator|.
 name|getText
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|// throw exception with correct source location
+name|e
+operator|.
+name|setASTNode
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 name|FunctionSignature
 name|signature
 init|=

@@ -465,6 +465,24 @@ name|User
 name|user
 parameter_list|)
 block|{
+comment|// FIXME: assume guest identity if user gets lost due to a database corruption
+if|if
+condition|(
+name|user
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|owner
+operator|=
+name|SecurityManager
+operator|.
+name|GUEST_USER
+expr_stmt|;
+block|}
+else|else
 name|this
 operator|.
 name|owner
