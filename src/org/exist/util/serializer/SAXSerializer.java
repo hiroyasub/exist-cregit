@@ -323,12 +323,12 @@ name|void
 name|setOutputProperties
 parameter_list|(
 name|Properties
-name|outputProperties
+name|properties
 parameter_list|)
 block|{
 if|if
 condition|(
-name|outputProperties
+name|properties
 operator|==
 literal|null
 condition|)
@@ -336,11 +336,9 @@ name|outputProperties
 operator|=
 name|defaultProperties
 expr_stmt|;
-name|this
-operator|.
 name|outputProperties
 operator|=
-name|outputProperties
+name|properties
 expr_stmt|;
 name|receiver
 operator|.

@@ -234,6 +234,17 @@ argument_list|,
 literal|"no"
 argument_list|)
 expr_stmt|;
+name|col
+operator|.
+name|setProperty
+argument_list|(
+name|EXistOutputKeys
+operator|.
+name|PROCESS_XSL_PI
+argument_list|,
+literal|"yes"
+argument_list|)
+expr_stmt|;
 name|XMLResource
 name|res
 init|=

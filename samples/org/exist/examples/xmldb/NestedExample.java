@@ -31,7 +31,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|XPathQueryServiceImpl
 import|;
 end_import
 
@@ -226,17 +226,17 @@ name|res
 argument_list|)
 expr_stmt|;
 comment|// get query-service
-name|XQueryService
+name|XPathQueryServiceImpl
 name|service
 init|=
 operator|(
-name|XQueryService
+name|XPathQueryServiceImpl
 operator|)
 name|col
 operator|.
 name|getService
 argument_list|(
-literal|"XQueryService"
+literal|"XPathQueryService"
 argument_list|,
 literal|"1.0"
 argument_list|)

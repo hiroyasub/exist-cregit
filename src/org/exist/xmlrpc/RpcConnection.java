@@ -8246,7 +8246,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Sets the password attribute of the RpcConnection object 	 *  	 * @param user 	 *                   The new password value 	 * @param name 	 *                   The new password value 	 * @param passwd 	 *                   The new password value 	 * @param groups 	 *                   The new user value 	 * @return Description of the Return Value 	 * @exception EXistException 	 *                         Description of the Exception 	 * @exception PermissionDeniedException 	 *                         Description of the Exception 	 */
 specifier|public
 name|boolean
 name|setUser
@@ -8423,6 +8422,24 @@ argument_list|(
 name|g
 argument_list|)
 condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|manager
+operator|.
+name|hasAdminPrivileges
+argument_list|(
+name|user
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"User is not allowed to add groups"
+argument_list|)
+throw|;
 name|u
 operator|.
 name|addGroup
@@ -8430,6 +8447,7 @@ argument_list|(
 name|g
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
