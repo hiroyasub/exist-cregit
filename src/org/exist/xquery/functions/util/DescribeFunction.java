@@ -323,11 +323,16 @@ name|qname
 init|=
 name|QName
 operator|.
-name|parseFunction
+name|parse
 argument_list|(
 name|context
 argument_list|,
 name|fname
+argument_list|,
+name|context
+operator|.
+name|getDefaultFunctionNamespace
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|String

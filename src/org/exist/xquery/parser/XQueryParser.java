@@ -40331,9 +40331,9 @@ literal|"COMP_NS_CONSTRUCTOR"
 block|,
 literal|"\"xpointer\""
 block|,
-literal|"("
+literal|"'('"
 block|,
-literal|")"
+literal|"')'"
 block|,
 literal|"NCNAME"
 block|,

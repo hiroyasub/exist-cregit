@@ -17995,7 +17995,7 @@ name|qname
 operator|=
 name|QName
 operator|.
-name|parseAttribute
+name|parse
 argument_list|(
 name|context
 argument_list|,
@@ -18003,6 +18003,8 @@ name|attr
 operator|.
 name|getText
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 break|break;
@@ -24490,9 +24492,9 @@ literal|"COMP_NS_CONSTRUCTOR"
 block|,
 literal|"\"xpointer\""
 block|,
-literal|"("
+literal|"'('"
 block|,
-literal|")"
+literal|"')'"
 block|,
 literal|"NCNAME"
 block|,
