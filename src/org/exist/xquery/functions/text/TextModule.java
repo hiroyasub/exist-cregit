@@ -135,6 +135,18 @@ name|MatchCount
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|IndexTerms
+operator|.
+name|signature
+argument_list|,
+name|IndexTerms
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 comment|/** 	 * @param functions 	 */

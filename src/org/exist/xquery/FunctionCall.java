@@ -458,6 +458,35 @@ argument_list|)
 expr_stmt|;
 comment|//			System.out.println("found " + seq[i].getLength() + " for " + getArgument(i).pprint());
 block|}
+return|return
+name|evalFunction
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|,
+name|seq
+argument_list|)
+return|;
+block|}
+comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @return      * @throws XPathException      */
+specifier|public
+name|Sequence
+name|evalFunction
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
+parameter_list|,
+name|Sequence
+index|[]
+name|seq
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
 name|functionDef
 operator|.
 name|setArguments

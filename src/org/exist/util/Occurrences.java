@@ -9,8 +9,22 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|hashtable
+operator|.
+name|ObjectHashSet
+import|;
+end_import
+
 begin_comment
-comment|/**  * Class to count element and word frequencies.  *   */
+comment|/**  * Class to count element and word frequencies.  */
 end_comment
 
 begin_class
@@ -29,6 +43,16 @@ name|int
 name|occurrences
 init|=
 literal|0
+decl_stmt|;
+specifier|private
+name|ObjectHashSet
+name|docs
+init|=
+operator|new
+name|ObjectHashSet
+argument_list|(
+literal|1024
+argument_list|)
 decl_stmt|;
 specifier|public
 name|Occurrences
@@ -51,6 +75,7 @@ return|return
 name|term
 return|;
 block|}
+comment|/**      * Returns the overall frequency of this term      * in the document set.      *       * @return      */
 specifier|public
 name|int
 name|getOccurrences
@@ -72,6 +97,54 @@ name|occurrences
 operator|+=
 name|count
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|addDocument
+parameter_list|(
+name|int
+name|docId
+parameter_list|)
+block|{
+name|Integer
+name|i
+init|=
+operator|new
+name|Integer
+argument_list|(
+name|docId
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|docs
+operator|.
+name|contains
+argument_list|(
+name|i
+argument_list|)
+condition|)
+name|docs
+operator|.
+name|add
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Returns the number of documents from the set in      * which the term has been found.      *       * @return      */
+specifier|public
+name|int
+name|getDocuments
+parameter_list|()
+block|{
+return|return
+name|docs
+operator|.
+name|size
+argument_list|()
+return|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
 specifier|public
