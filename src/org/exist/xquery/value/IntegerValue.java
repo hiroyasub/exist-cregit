@@ -83,6 +83,53 @@ literal|"0"
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|BigInteger
+name|ONE_BIGINTEGER
+init|=
+operator|new
+name|BigInteger
+argument_list|(
+literal|"1"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|BigInteger
+name|MINUS_ONE_BIGINTEGER
+init|=
+operator|new
+name|BigInteger
+argument_list|(
+literal|"1"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|BigInteger
+name|LARGEST_INT
+init|=
+operator|new
+name|BigInteger
+argument_list|(
+literal|"4294967295L"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|BigInteger
+name|SMALLEST_INT
+init|=
+name|LARGEST_INT
+operator|.
+name|negate
+argument_list|()
+decl_stmt|;
+specifier|private
 name|BigInteger
 name|value
 decl_stmt|;
@@ -279,18 +326,27 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param value2 	 * @param requiredType 	 */
+comment|/** 	 * @param value 	 * @param requiredType 	 */
 specifier|public
 name|IntegerValue
 parameter_list|(
 name|BigInteger
-name|value2
+name|value
 parameter_list|,
 name|int
 name|requiredType
 parameter_list|)
 block|{
-comment|// TODO Auto-generated constructor stub
+name|this
+operator|.
+name|value
+operator|=
+name|value
+expr_stmt|;
+name|type
+operator|=
+name|requiredType
+expr_stmt|;
 block|}
 comment|/** 	 * @param integer 	 */
 specifier|public
@@ -300,11 +356,16 @@ name|BigInteger
 name|integer
 parameter_list|)
 block|{
-comment|// TODO Auto-generated constructor stub
+name|this
+operator|.
+name|value
+operator|=
+name|integer
+expr_stmt|;
 block|}
-comment|/** 	 * @param value2 	 * @param type2 	 */
+comment|/** 	 * @param value2 	 * @param type2 	 * @throws XPathException 	 */
 specifier|private
-name|void
+name|boolean
 name|checkType
 parameter_list|(
 name|BigInteger
@@ -313,8 +374,152 @@ parameter_list|,
 name|int
 name|type2
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
+switch|switch
+condition|(
+name|type
+condition|)
+block|{
+case|case
+name|Type
+operator|.
+name|LONG
+case|:
+comment|// jmv: add test LARGEST_LONG SMALLEST_LONG  ????
+case|case
+name|Type
+operator|.
+name|INTEGER
+case|:
+case|case
+name|Type
+operator|.
+name|DECIMAL
+case|:
+return|return
+literal|true
+return|;
+case|case
+name|Type
+operator|.
+name|POSITIVE_INTEGER
+case|:
+return|return
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|ZERO_BIGINTEGER
+argument_list|)
+operator|==
+literal|1
+return|;
+comment|//>0
+case|case
+name|Type
+operator|.
+name|NON_NEGATIVE_INTEGER
+case|:
+return|return
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|MINUS_ONE_BIGINTEGER
+argument_list|)
+operator|==
+literal|1
+return|;
+comment|//> -1
+case|case
+name|Type
+operator|.
+name|NEGATIVE_INTEGER
+case|:
+return|return
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|ZERO_BIGINTEGER
+argument_list|)
+operator|==
+operator|-
+literal|1
+return|;
+comment|//<0
+case|case
+name|Type
+operator|.
+name|NON_POSITIVE_INTEGER
+case|:
+return|return
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|ONE_BIGINTEGER
+argument_list|)
+operator|==
+operator|-
+literal|1
+return|;
+comment|//<1
+case|case
+name|Type
+operator|.
+name|INT
+case|:
+return|return
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|SMALLEST_INT
+argument_list|)
+operator|==
+literal|1
+operator|&&
+name|value
+operator|.
+name|compareTo
+argument_list|(
+name|LARGEST_INT
+argument_list|)
+operator|==
+operator|-
+literal|1
+return|;
+comment|//>= -4294967295L&& value<= 4294967295L;
+comment|//		case Type.SHORT :
+comment|//			return value>= -65535&& value<= 65535;
+comment|//		case Type.BYTE :
+comment|//			return value>= -255&& value<= 255;
+comment|//		case Type.UNSIGNED_LONG :
+comment|//			return value> -1;
+comment|//		case Type.UNSIGNED_INT:
+comment|//			return value> -1&& value<= 4294967295L;
+comment|//		case Type.UNSIGNED_SHORT :
+comment|//			return value> -1&& value<= 65535;
+comment|//		case Type.UNSIGNED_BYTE :
+comment|//			return value> -1&& value<= 255;
+block|}
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unknown type: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+argument_list|)
+throw|;
 block|}
 specifier|private
 specifier|final
@@ -493,9 +698,10 @@ name|POSITIVE_INTEGER
 case|:
 return|return
 name|value
-operator|>=
+operator|>
 literal|0
 return|;
+comment|// jmv>= 0;
 block|}
 throw|throw
 operator|new

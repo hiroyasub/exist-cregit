@@ -526,6 +526,36 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+literal|"min( 123456789123456789123456789, "
+operator|+
+literal|"123456789123456789123456789123456789123456789 )"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"minimum of big integers"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|,
+literal|"123456789123456789123456789"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
