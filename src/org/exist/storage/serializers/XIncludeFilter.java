@@ -1077,6 +1077,13 @@ operator|.
 name|broker
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|setStaticallyKnownDocuments
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
 name|xpointer
 operator|=
 name|checkNamespaces
