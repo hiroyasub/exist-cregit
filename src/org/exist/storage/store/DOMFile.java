@@ -4578,6 +4578,8 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
+literal|"Node "
+operator|+
 name|node
 operator|.
 name|gid
