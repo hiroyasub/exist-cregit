@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/* *  eXist Open Source Native XML Database *  Copyright (C) 2001-04 Wolfgang M. Meier (wolfgang@exist-db.org)  *  and others (see http://exist-db.org) * *  This program is free software; you can redistribute it and/or *  modify it under the terms of the GNU Lesser General Public License *  as published by the Free Software Foundation; either version 2 *  of the License, or (at your option) any later version. * *  This program is distributed in the hope that it will be useful, *  but WITHOUT ANY WARRANTY; without even the implied warranty of *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *  GNU Lesser General Public License for more details. * *  You should have received a copy of the GNU Lesser General Public License *  along with this program; if not, write to the Free Software *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *  *  $Id$ */
 end_comment
 
 begin_package
@@ -28,13 +28,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test concurrent XUpdates on the same document.  *   * @author wolf  */
+comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ConcurrentXUpdateTest
+name|ConcurrentResourceTest
 extends|extends
 name|ConcurrentTestBase
 block|{
@@ -64,7 +64,7 @@ name|TestRunner
 operator|.
 name|run
 argument_list|(
-name|ConcurrentXUpdateTest
+name|ConcurrentResourceTest
 operator|.
 name|class
 argument_list|)
@@ -74,8 +74,9 @@ specifier|private
 name|File
 name|tempFile
 decl_stmt|;
+comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
 specifier|public
-name|ConcurrentXUpdateTest
+name|ConcurrentResourceTest
 parameter_list|(
 name|String
 name|name
@@ -91,6 +92,7 @@ literal|"C1"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#setUp() 	 */
 specifier|protected
 name|void
 name|setUp
@@ -142,7 +144,7 @@ expr_stmt|;
 name|addAction
 argument_list|(
 operator|new
-name|RemoveAppendAction
+name|ReplaceResourceAction
 argument_list|(
 name|URI
 operator|+
@@ -155,26 +157,7 @@ argument_list|)
 argument_list|,
 literal|10
 argument_list|,
-literal|500
-argument_list|)
-expr_stmt|;
-name|addAction
-argument_list|(
-operator|new
-name|RemoveAppendAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|wordList
-argument_list|)
-argument_list|,
-literal|10
-argument_list|,
-literal|500
+literal|200
 argument_list|)
 expr_stmt|;
 name|addAction
@@ -191,9 +174,11 @@ argument_list|)
 argument_list|,
 literal|10
 argument_list|,
-literal|1000
+literal|500
 argument_list|)
 expr_stmt|;
+comment|// TODO: using an addition replace thread generates a deadlock condition !!!
+comment|//		addAction(new ReplaceResourceAction(URI + "/C1", "R1.xml", wordList), 10, 300);
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
 specifier|protected

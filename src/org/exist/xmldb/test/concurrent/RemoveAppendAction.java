@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes the last element from the resource and inserts a   * new element at the top.  *   * @author wolf  */
+comment|/**  * Removes the 10 last elements from the resource and inserts 10   * new elements at the top.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -192,6 +192,37 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": removing elements ..."
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|10
+condition|;
+name|i
+operator|++
+control|)
 name|service
 operator|.
 name|update
@@ -210,21 +241,65 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|String
-name|update
+name|updateOpen
 init|=
 literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
 operator|+
 literal|"<xu:append select=\"/ROOT-ELEMENT\" child=\"1\">"
+decl_stmt|;
+specifier|final
+name|String
+name|updateClose
+init|=
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": inserting elements ..."
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|10
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|String
+name|update
+init|=
+name|updateOpen
 operator|+
 name|gen
 operator|.
 name|generateElement
 argument_list|()
 operator|+
-literal|"</xu:append>"
-operator|+
-literal|"</xu:modifications>"
+name|updateClose
 decl_stmt|;
 name|service
 operator|.
@@ -233,6 +308,7 @@ argument_list|(
 name|update
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
