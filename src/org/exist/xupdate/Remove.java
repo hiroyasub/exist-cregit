@@ -149,26 +149,14 @@ name|Node
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
-comment|/**  * Append.java  *   * @author Wolfgang Meier  */
+comment|/**  * Remove.java  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|Append
+name|Remove
 extends|extends
 name|Modification
 block|{
@@ -182,14 +170,14 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|Append
+name|Remove
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Constructor for Append. 	 * @param selectStmt 	 */
+comment|/** 	 * Constructor for Remove. 	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
 specifier|public
-name|Append
+name|Remove
 parameter_list|(
 name|BrokerPool
 name|pool
@@ -211,7 +199,7 @@ name|selectStmt
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#process() 	 */
+comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet) 	 */
 specifier|public
 name|long
 name|process
@@ -257,7 +245,7 @@ operator|.
 name|getLength
 argument_list|()
 operator|+
-literal|" nodes for append"
+literal|" nodes for remove"
 argument_list|)
 expr_stmt|;
 name|NodeProxy
@@ -265,34 +253,9 @@ name|proxy
 decl_stmt|;
 name|Node
 name|node
+decl_stmt|,
+name|parent
 decl_stmt|;
-name|NodeList
-name|children
-init|=
-name|content
-operator|.
-name|getChildNodes
-argument_list|()
-decl_stmt|;
-name|int
-name|len
-init|=
-name|children
-operator|.
-name|getLength
-argument_list|()
-decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|len
-operator|+
-literal|" nodes to append"
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Iterator
@@ -387,30 +350,39 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|len
-condition|;
-name|j
-operator|++
-control|)
+name|parent
+operator|=
 name|node
 operator|.
-name|appendChild
-argument_list|(
-name|children
+name|getParentNode
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|parent
 operator|.
-name|item
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|ELEMENT_NODE
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
 argument_list|(
-name|j
+literal|"cannot remove the root node"
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|parent
+operator|.
+name|removeChild
+argument_list|(
+name|node
 argument_list|)
 expr_stmt|;
 block|}
@@ -421,13 +393,14 @@ name|getLength
 argument_list|()
 return|;
 block|}
+comment|/** 	 * @see org.exist.xupdate.Modification#getName() 	 */
 specifier|public
 name|String
 name|getName
 parameter_list|()
 block|{
 return|return
-literal|"append"
+literal|"remove"
 return|;
 block|}
 block|}

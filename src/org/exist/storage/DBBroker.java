@@ -1195,6 +1195,23 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|void
+name|removeNode
+parameter_list|(
+specifier|final
+name|NodeImpl
+name|node
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

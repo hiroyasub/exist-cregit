@@ -47,15 +47,9 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
+begin_comment
+comment|//import java.util.Arrays;
+end_comment
 
 begin_import
 import|import
@@ -307,7 +301,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//			System.out.println(nl[i].gid + "->" + pid);
+comment|//System.out.println(nl[i].doc.getDocId() + ":" + nl[i].gid + "->" + pid);
 name|nl
 index|[
 name|i
@@ -1697,9 +1691,6 @@ argument_list|(
 name|dl
 argument_list|)
 expr_stmt|;
-comment|//		System.out.println(dl[dx].doc.getDocId() + ":" + dl[dx].gid +
-comment|//			" = " + al.nodes[ax].doc.getDocId() + ':' +
-comment|//			al.nodes[ax].gid);
 while|while
 condition|(
 name|dx
@@ -1725,6 +1716,9 @@ operator|++
 expr_stmt|;
 continue|continue;
 block|}
+comment|//            System.out.println(dl[dx].doc.getDocId() + ":" + dl[dx].gid +
+comment|//                        " = " + al.nodes[ax].doc.getDocId() + ':' +
+comment|//                        al.nodes[ax].gid);
 name|cmp
 operator|=
 name|dl
@@ -2096,6 +2090,25 @@ name|int
 name|mode
 parameter_list|)
 block|{
+if|if
+condition|(
+name|al
+operator|.
+name|counter
+operator|==
+literal|0
+operator|||
+name|counter
+operator|==
+literal|0
+condition|)
+return|return
+operator|new
+name|ArraySet
+argument_list|(
+literal|1
+argument_list|)
+return|;
 name|long
 name|start
 init|=
@@ -3218,18 +3231,7 @@ operator|<
 literal|2
 condition|)
 return|return;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-comment|//quickSort(nodes, 0, counter - 1);
-name|Arrays
-operator|.
-name|sort
+name|quickSort
 argument_list|(
 name|nodes
 argument_list|,
@@ -3240,6 +3242,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+comment|//Arrays.sort(nodes, 0, counter - 1);
 name|sorted
 operator|=
 literal|true

@@ -540,7 +540,7 @@ literal|null
 decl_stmt|;
 specifier|private
 name|long
-name|lastSync
+name|lastRequest
 init|=
 name|System
 operator|.
@@ -981,7 +981,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
-name|lastSync
+name|lastRequest
 operator|)
 operator|>
 name|idleTime
@@ -990,6 +990,13 @@ name|sync
 argument_list|(
 name|broker
 argument_list|)
+expr_stmt|;
+name|lastRequest
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -1016,13 +1023,6 @@ expr_stmt|;
 name|broker
 operator|.
 name|sync
-argument_list|()
-expr_stmt|;
-name|lastSync
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
 argument_list|()
 expr_stmt|;
 block|}

@@ -100,19 +100,25 @@ specifier|static
 name|String
 name|update
 init|=
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+operator|+
 literal|"<xu:modifications version=\"1.0\""
 operator|+
 literal|"    xmlns:xu=\"http://www.xmldb.org/xupdate\">"
 operator|+
-literal|"<xu:append select=\"//ACT[1]/SCENE[1]\">"
+literal|"<xu:insert-after select=\"//SPEECH[LINE&amp;= 'cursed spite']\">"
 operator|+
 literal|"<xu:element name=\"SPEECH\">"
 operator|+
 literal|"<SPEAKER>Wolfgang</SPEAKER>"
 operator|+
+literal|"<LINE>Hallo Bienchen!</LINE>"
+operator|+
+literal|"<LINE>I love you!</LINE>"
+operator|+
 literal|"</xu:element>"
 operator|+
-literal|"</xu:append>"
+literal|"</xu:insert-after>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
@@ -175,6 +181,10 @@ operator|.
 name|getCollection
 argument_list|(
 name|URI
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|""
 argument_list|)
 decl_stmt|;
 name|col

@@ -1016,6 +1016,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|children
+operator|>
+literal|0
+condition|)
 name|gid
 operator|=
 name|XMLUtil

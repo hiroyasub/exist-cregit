@@ -102,7 +102,9 @@ name|xml
 init|=
 literal|"<addressbook>"
 operator|+
-literal|"<address><name>Dr. Jekyll</name><city>Berlin</city></address>"
+literal|"<address><name>Dr. Jekyll</name><city>Berlin</city>"
+operator|+
+literal|"<phone>054 776453</phone></address>"
 operator|+
 literal|"</addressbook>"
 decl_stmt|;
@@ -153,6 +155,58 @@ literal|"</xu:element>"
 operator|+
 literal|"</xu:insert-before>"
 comment|//+ "</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+specifier|static
+name|String
+name|updatePhone
+init|=
+literal|"<xu:modifications version=\"1.0\""
+operator|+
+literal|" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+operator|+
+literal|"<xu:append select=\"//address[name&amp;= 'fischer']\">"
+operator|+
+literal|"<xu:element name=\"phone\">"
+operator|+
+literal|"069 778695"
+operator|+
+literal|"</xu:element>"
+operator|+
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+specifier|static
+name|String
+name|remove
+init|=
+literal|"<xu:modifications version=\"1.0\""
+operator|+
+literal|" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+operator|+
+literal|"<xu:remove select=\"//address[name&amp;= 'hyde']\"/>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+specifier|static
+name|String
+name|appendNew
+init|=
+literal|"<xu:modifications version=\"1.0\""
+operator|+
+literal|" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+operator|+
+literal|"<xu:append select=\"/addressbook\">"
+operator|+
+literal|"<xu:element name=\"address\">"
+operator|+
+literal|"<name>Dr. MÃ¼ller</name><city>Darmstadt</city>"
+operator|+
+literal|"</xu:element>"
+operator|+
+literal|"</xu:append>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
@@ -288,7 +342,9 @@ literal|0
 init|;
 name|i
 operator|<
-literal|1
+name|addresses
+operator|.
+name|length
 condition|;
 name|i
 operator|++
@@ -328,6 +384,20 @@ name|updateEnd
 argument_list|)
 expr_stmt|;
 block|}
+name|xupdate
+operator|.
+name|update
+argument_list|(
+name|updatePhone
+argument_list|)
+expr_stmt|;
+name|xupdate
+operator|.
+name|update
+argument_list|(
+name|remove
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -302,7 +302,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    30. Juni 2002  */
+comment|/**  * ElementImpl.java  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -749,7 +749,6 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Adds a feature to the NamespacePrefix attribute of the DocumentImpl 	 *  object 	 * 	 *@param  prefix  The feature to be added to the NamespacePrefix attribute 	 */
 specifier|public
 name|void
 name|addNamespacePrefix
@@ -824,7 +823,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  child             Description of the Parameter 	 *@exception  DOMException  Description of the Exception 	 */
+comment|/** 	 * Append a child to this node. This method does not rearrange the      * node tree and is only used internally by the parser.      *  	 * @param child 	 * @throws DOMException 	 */
 specifier|public
 name|void
 name|appendChildInternal
@@ -899,6 +898,7 @@ return|return
 name|node
 return|;
 block|}
+comment|/** 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
 name|appendChild
@@ -991,10 +991,18 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 return|return
 name|child
 return|;
 block|}
+comment|/** 	 * Internal append.      *  	 * @param last 	 * @param child 	 * @return Node 	 * @throws DOMException 	 */
 specifier|public
 name|Node
 name|appendChild
@@ -1153,24 +1161,6 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|ownerDocument
-operator|.
-name|reindexRequired
-argument_list|()
-operator|<
-literal|0
-condition|)
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|index
-argument_list|(
-name|elem
-argument_list|)
-expr_stmt|;
 name|NodeList
 name|ch
 init|=
@@ -1210,6 +1200,23 @@ name|insertAfter
 argument_list|(
 name|last
 argument_list|,
+name|elem
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|ownerDocument
+operator|.
+name|reindex
+operator|<
+literal|0
+condition|)
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|index
+argument_list|(
 name|elem
 argument_list|)
 expr_stmt|;
@@ -1268,15 +1275,6 @@ argument_list|,
 name|temp
 argument_list|)
 expr_stmt|;
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|index
-argument_list|(
-name|last
-argument_list|)
-expr_stmt|;
 block|}
 for|for
 control|(
@@ -1317,15 +1315,6 @@ argument_list|(
 name|last
 argument_list|,
 name|temp
-argument_list|)
-expr_stmt|;
-name|ownerDocument
-operator|.
-name|broker
-operator|.
-name|index
-argument_list|(
-name|last
 argument_list|)
 expr_stmt|;
 block|}
@@ -1380,6 +1369,14 @@ argument_list|,
 name|text
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ownerDocument
+operator|.
+name|reindex
+operator|<
+literal|0
+condition|)
 name|ownerDocument
 operator|.
 name|broker
@@ -1448,6 +1445,14 @@ argument_list|,
 name|attrib
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ownerDocument
+operator|.
+name|reindex
+operator|<
+literal|0
+condition|)
 name|ownerDocument
 operator|.
 name|broker
@@ -1465,6 +1470,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1621,7 +1627,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 * @see org.exist.dom.NodeImpl#firstChildID() 	 */
 specifier|public
 name|long
 name|firstChildID
@@ -1661,7 +1667,7 @@ return|return
 name|firstChild
 return|;
 block|}
-comment|/** 	 *  Gets the attribute attribute of the ElementImpl object 	 * 	 *@param  name  Description of the Parameter 	 *@return       The attribute value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getAttribute(java.lang.String) 	 */
 specifier|public
 name|String
 name|getAttribute
@@ -1744,7 +1750,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the attributeNS attribute of the ElementImpl object 	 * 	 *@param  namespaceURI  Description of the Parameter 	 *@param  localName     Description of the Parameter 	 *@return               The attributeNS value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|String
 name|getAttributeNS
@@ -1763,7 +1769,7 @@ name|localName
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the attributeNode attribute of the ElementImpl object 	 * 	 *@param  name  Description of the Parameter 	 *@return       The attributeNode value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getAttributeNode(java.lang.String) 	 */
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -1841,7 +1847,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the attributeNodeNS attribute of the ElementImpl object 	 * 	 *@param  namespaceURI  Description of the Parameter 	 *@param  localName     Description of the Parameter 	 *@return               The attributeNodeNS value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -1860,7 +1866,7 @@ name|localName
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the attributes attribute of the ElementImpl object 	 * 	 *@return    The attributes value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getAttributes() 	 */
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -1943,7 +1949,7 @@ return|return
 name|map
 return|;
 block|}
-comment|/** 	 *  Gets the childCount attribute of the ElementImpl object 	 * 	 *@return    The childCount value 	 */
+comment|/** 	 * @see org.exist.dom.NodeImpl#getChildCount() 	 */
 specifier|public
 name|int
 name|getChildCount
@@ -1953,7 +1959,7 @@ return|return
 name|children
 return|;
 block|}
-comment|/** 	 *  Gets the childNodes attribute of the ElementImpl object 	 * 	 *@return    The childNodes value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getChildNodes() 	 */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -2019,17 +2025,6 @@ operator|.
 name|PRELOAD
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"first child: "
-operator|+
-name|first
-argument_list|)
-expr_stmt|;
 name|NodeList
 name|result
 init|=
@@ -2061,7 +2056,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 *  Gets the elementsByTagName attribute of the ElementImpl object 	 * 	 *@param  tagName  Description of the Parameter 	 *@return          The elementsByTagName value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String) 	 */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -2084,7 +2079,7 @@ name|tagName
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the elementsByTagNameNS attribute of the ElementImpl object 	 * 	 *@param  namespaceURI  Description of the Parameter 	 *@param  localName     Description of the Parameter 	 *@return               The elementsByTagNameNS value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -2132,7 +2127,7 @@ name|qname
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the firstChild attribute of the ElementImpl object 	 * 	 *@return    The firstChild value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
 specifier|public
 name|Node
 name|getFirstChild
@@ -2166,7 +2161,7 @@ argument_list|)
 return|;
 comment|/* 		 *  long last = first + children + 1; 		 *  Node n = ownerDocument.getNode(first); 		 *  while(n.getNodeType() == Node.ATTRIBUTE_NODE&& 		 *  first<= last) 		 *  n = ownerDocument.getNode(++first); 		 *  return  first == last ? null : n; 		 */
 block|}
-comment|/** 	 *  Gets the lastChild attribute of the ElementImpl object 	 * 	 *@return    The lastChild value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
 specifier|public
 name|Node
 name|getLastChild
@@ -2210,7 +2205,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Gets the nodeName attribute of the ElementImpl object 	 * 	 *@return    The nodeName value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getNodeName() 	 */
 specifier|public
 name|String
 name|getNodeName
@@ -2236,7 +2231,7 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/** 	 *  Gets the nodeValue attribute of the ElementImpl object 	 * 	 *@return                   The nodeValue value 	 *@exception  DOMException  Description of the Exception 	 */
+comment|/** 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -2266,7 +2261,7 @@ comment|//            }
 comment|//        }
 comment|//        return buf.toString();
 block|}
-comment|/** 	 *  Gets the tagName attribute of the ElementImpl object 	 * 	 *@return    The tagName value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#getTagName() 	 */
 specifier|public
 name|String
 name|getTagName
@@ -2292,7 +2287,7 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#hasAttribute(java.lang.String) 	 */
 specifier|public
 name|boolean
 name|hasAttribute
@@ -2363,7 +2358,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  namespaceURI  Description of the Parameter 	 *@param  localName     Description of the Parameter 	 *@return               Description of the Return Value 	 */
+comment|/** 	 * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -2382,7 +2377,7 @@ name|localName
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
 specifier|public
 name|boolean
 name|hasAttributes
@@ -2397,7 +2392,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -2441,7 +2436,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name              Description of the Parameter 	 *@exception  DOMException  Description of the Exception 	 */
+comment|/** 	 * @see org.w3c.dom.Element#removeAttribute(java.lang.String) 	 */
 specifier|public
 name|void
 name|removeAttribute
@@ -2453,7 +2448,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  namespaceURI      Description of the Parameter 	 *@param  name              Description of the Parameter 	 *@exception  DOMException  Description of the Exception 	 */
+comment|/** 	 * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|void
 name|removeAttributeNS
@@ -3369,7 +3364,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 * @see java.lang.Object#toString() 	 */
 specifier|public
 name|String
 name|toString
@@ -3382,7 +3377,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  top  Description of the Parameter 	 *@return      Description of the Return Value 	 */
+comment|/** 	 * @see org.exist.dom.NodeImpl#toString(boolean) 	 */
 specifier|public
 name|String
 name|toString
@@ -3404,7 +3399,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  top       Description of the Parameter 	 *@param  prefixes  Description of the Parameter 	 *@return           Description of the Return Value 	 */
+comment|/** 	 * Method toString. 	 * @param top 	 * @param prefixes 	 * @return String 	 */
 specifier|public
 name|String
 name|toString
@@ -3932,8 +3927,20 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|refChild
+operator|==
+literal|null
+condition|)
+return|return
+name|appendChild
+argument_list|(
+name|newChild
+argument_list|)
+return|;
 name|NodeImpl
-name|next
+name|ref
 init|=
 operator|(
 name|NodeImpl
@@ -3948,17 +3955,17 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|next
+name|ref
 operator|.
 name|gid
 argument_list|<
 name|first
 operator|||
-name|next
+name|ref
 operator|.
 name|gid
 argument_list|>
-name|next
+name|ref
 operator|.
 name|gid
 operator|+
@@ -3974,7 +3981,7 @@ name|DOMException
 operator|.
 name|HIERARCHY_REQUEST_ERR
 argument_list|,
-literal|"node to insert is not a child of the selected node"
+literal|"reference node is not a child of the selected node"
 argument_list|)
 throw|;
 name|Node
@@ -3982,22 +3989,7 @@ name|result
 decl_stmt|;
 if|if
 condition|(
-name|refChild
-operator|==
-literal|null
-condition|)
-name|result
-operator|=
-name|appendChild
-argument_list|(
-name|newChild
-argument_list|)
-expr_stmt|;
-else|else
-block|{
-if|if
-condition|(
-name|next
+name|ref
 operator|.
 name|gid
 operator|==
@@ -4013,17 +4005,26 @@ name|newChild
 argument_list|)
 expr_stmt|;
 else|else
+block|{
+name|NodeImpl
+name|prev
+init|=
+operator|(
+name|NodeImpl
+operator|)
+name|ref
+operator|.
+name|getPreviousSibling
+argument_list|()
+decl_stmt|;
 name|result
 operator|=
 name|appendChild
 argument_list|(
-operator|(
-name|NodeImpl
-operator|)
-name|next
-operator|.
-name|getPreviousSibling
-argument_list|()
+name|getLastNode
+argument_list|(
+name|prev
+argument_list|)
 argument_list|,
 name|newChild
 argument_list|)
@@ -4071,9 +4072,346 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;
+block|}
+specifier|public
+name|Node
+name|insertAfter
+parameter_list|(
+name|Node
+name|newChild
+parameter_list|,
+name|Node
+name|refChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|refChild
+operator|instanceof
+name|NodeImpl
+operator|)
+condition|)
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|WRONG_DOCUMENT_ERR
+argument_list|,
+literal|"wrong node type"
+argument_list|)
+throw|;
+name|DocumentImpl
+name|prevDoc
+init|=
+operator|new
+name|DocumentImpl
+argument_list|(
+name|ownerDocument
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|refChild
+operator|==
+literal|null
+condition|)
+return|return
+name|appendChild
+argument_list|(
+name|newChild
+argument_list|)
+return|;
+name|NodeImpl
+name|ref
+init|=
+operator|(
+name|NodeImpl
+operator|)
+name|refChild
+decl_stmt|;
+name|long
+name|first
+init|=
+name|firstChildID
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|ref
+operator|.
+name|gid
+argument_list|<
+name|first
+operator|||
+name|ref
+operator|.
+name|gid
+argument_list|>
+name|ref
+operator|.
+name|gid
+operator|+
+name|children
+operator|-
+literal|1
+condition|)
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|HIERARCHY_REQUEST_ERR
+argument_list|,
+literal|"reference node is not a child of the selected node"
+argument_list|)
+throw|;
+name|Node
+name|result
+init|=
+name|appendChild
+argument_list|(
+name|getLastNode
+argument_list|(
+name|ref
+argument_list|)
+argument_list|,
+name|newChild
+argument_list|)
+decl_stmt|;
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|update
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|reindex
+argument_list|(
+name|prevDoc
+argument_list|,
+name|ownerDocument
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|ownerDocument
+operator|.
+name|getCollection
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+block|}
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+comment|/** 	 * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node) 	 */
+specifier|public
+name|Node
+name|removeChild
+parameter_list|(
+name|Node
+name|oldChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|oldChild
+operator|instanceof
+name|NodeImpl
+operator|)
+condition|)
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|WRONG_DOCUMENT_ERR
+argument_list|,
+literal|"wrong node type"
+argument_list|)
+throw|;
+name|NodeImpl
+name|old
+init|=
+operator|(
+name|NodeImpl
+operator|)
+name|oldChild
+decl_stmt|;
+if|if
+condition|(
+name|old
+operator|.
+name|getParentGID
+argument_list|()
+operator|!=
+name|gid
+condition|)
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_FOUND_ERR
+argument_list|,
+literal|"node is not a child of this element"
+argument_list|)
+throw|;
+name|removeAll
+argument_list|(
+name|old
+argument_list|)
+expr_stmt|;
+operator|--
+name|children
+expr_stmt|;
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|update
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+return|return
+name|old
+return|;
+block|}
+specifier|private
+name|void
+name|removeAll
+parameter_list|(
+name|NodeImpl
+name|node
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+condition|)
+block|{
+case|case
+name|Node
+operator|.
+name|ELEMENT_NODE
+case|:
+name|NodeList
+name|children
+init|=
+name|node
+operator|.
+name|getChildNodes
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+name|children
+operator|.
+name|getLength
+argument_list|()
+operator|-
+literal|1
+init|;
+name|i
+operator|>
+operator|-
+literal|1
+condition|;
+name|i
+operator|--
+control|)
+name|removeAll
+argument_list|(
+operator|(
+name|NodeImpl
+operator|)
+name|children
+operator|.
+name|item
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|removeNode
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
+break|break;
+default|default:
+name|ownerDocument
+operator|.
+name|broker
+operator|.
+name|removeNode
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
 block|}
 block|}
 end_class

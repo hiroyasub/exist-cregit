@@ -271,11 +271,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|broker
-operator|.
-name|sync
-argument_list|()
-expr_stmt|;
+comment|//broker.sync();
 block|}
 catch|catch
 parameter_list|(

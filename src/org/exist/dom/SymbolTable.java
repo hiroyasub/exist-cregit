@@ -539,6 +539,10 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 block|}
 specifier|public
 specifier|synchronized
@@ -570,6 +574,20 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
+name|symbols
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"symbols = "
+operator|+
 name|symbols
 operator|.
 name|size
@@ -634,6 +652,10 @@ return|;
 block|}
 block|}
 argument_list|)
+expr_stmt|;
+name|changed
+operator|=
+literal|false
 expr_stmt|;
 block|}
 specifier|protected
@@ -748,6 +770,10 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 block|}
 specifier|public
 specifier|synchronized
@@ -862,6 +888,10 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -869,6 +869,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|normalized
 init|=
@@ -1305,6 +1306,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|normalized
 init|=
@@ -1341,19 +1343,14 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-comment|//charBuf.setLength( 0 );
 name|charBuf
-operator|=
-operator|new
-name|FastStringBuffer
+operator|.
+name|setLength
 argument_list|(
-literal|6
-argument_list|,
-literal|6
-argument_list|,
-literal|3
+literal|0
 argument_list|)
 expr_stmt|;
+comment|//charBuf = new FastStringBuffer( 6, 6, 3 );
 name|last
 operator|.
 name|appendChildInternal
@@ -1764,6 +1761,7 @@ name|collection
 operator|=
 name|coll
 expr_stmt|;
+specifier|final
 name|Object
 name|lock
 init|=
@@ -1781,14 +1779,9 @@ argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
+return|return
 name|store
 argument_list|()
-decl_stmt|;
-return|return
-name|doc
 return|;
 block|}
 finally|finally
@@ -1857,6 +1850,7 @@ name|collection
 operator|=
 name|collection
 expr_stmt|;
+specifier|final
 name|Object
 name|lock
 init|=
@@ -1867,6 +1861,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputSource
 name|in
 init|=
@@ -1886,14 +1881,9 @@ argument_list|,
 name|xmlFileName
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
+return|return
 name|store
 argument_list|()
-decl_stmt|;
-return|return
-name|doc
 return|;
 block|}
 finally|finally
@@ -1960,6 +1950,7 @@ name|collection
 operator|=
 name|coll
 expr_stmt|;
+specifier|final
 name|Object
 name|lock
 init|=
@@ -1970,21 +1961,16 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|StringReader
-name|sr
-init|=
-operator|new
-name|StringReader
-argument_list|(
-name|str
-argument_list|)
-decl_stmt|;
 name|scan
 argument_list|(
 operator|new
 name|InputSource
 argument_list|(
-name|sr
+operator|new
+name|StringReader
+argument_list|(
+name|str
+argument_list|)
 argument_list|)
 argument_list|,
 name|xmlFileName
@@ -2004,14 +1990,9 @@ name|str
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
+return|return
 name|store
 argument_list|()
-decl_stmt|;
-return|return
-name|doc
 return|;
 block|}
 finally|finally
@@ -2211,18 +2192,13 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 block|{
-name|InputSource
-name|in
-init|=
+name|scan
+argument_list|(
 operator|new
 name|InputSource
 argument_list|(
 name|inStream
 argument_list|)
-decl_stmt|;
-name|scan
-argument_list|(
-name|in
 argument_list|,
 name|xmlFileName
 argument_list|)
@@ -2296,6 +2272,7 @@ argument_list|(
 literal|"database is read-only"
 argument_list|)
 throw|;
+specifier|final
 name|String
 name|pathSep
 init|=
@@ -2411,6 +2388,7 @@ literal|"/db"
 operator|+
 name|fileName
 expr_stmt|;
+specifier|final
 name|int
 name|pos
 init|=
@@ -2421,6 +2399,7 @@ argument_list|(
 literal|'/'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|collName
 init|=
@@ -3032,6 +3011,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|normalized
 init|=
@@ -3067,15 +3047,10 @@ name|document
 argument_list|)
 expr_stmt|;
 name|charBuf
-operator|=
-operator|new
-name|FastStringBuffer
+operator|.
+name|setLength
 argument_list|(
-literal|6
-argument_list|,
-literal|6
-argument_list|,
-literal|3
+literal|0
 argument_list|)
 expr_stmt|;
 name|last
@@ -3382,10 +3357,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|attributes
-operator|.
-name|getLength
-argument_list|()
+name|attrLength
 condition|;
 name|i
 operator|++
@@ -3424,6 +3396,7 @@ name|attrLength
 expr_stmt|;
 else|else
 block|{
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -3646,6 +3619,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -3667,6 +3641,7 @@ argument_list|()
 expr_stmt|;
 else|else
 block|{
+specifier|final
 name|Reader
 name|cs
 init|=
@@ -3747,6 +3722,7 @@ condition|)
 block|{
 comment|// we don't know the doctype
 comment|// set it to the root node's tag name
+specifier|final
 name|DocumentTypeImpl
 name|dt
 init|=

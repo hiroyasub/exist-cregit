@@ -29,16 +29,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -1788,25 +1778,19 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|fatal
 argument_list|(
-literal|"tree-level "
+literal|"tree level "
 operator|+
 name|level
 operator|+
-literal|" does not exist."
+literal|" does not exist"
 argument_list|)
 expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|new
-name|ArrayIndexOutOfBoundsException
-argument_list|()
-throw|;
+return|return
+operator|-
+literal|1
+return|;
 block|}
 return|return
 name|treeLevelOrder
@@ -2746,6 +2730,7 @@ argument_list|(
 name|maxDepth
 argument_list|)
 expr_stmt|;
+comment|//LOG.debug("maxDepth = " + maxDepth);
 comment|//ostream.writeShort( treeLevelOrder.length );
 for|for
 control|(

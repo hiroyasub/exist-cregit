@@ -219,6 +219,17 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Query: "
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
 comment|// get root-collection
 name|Collection
 name|col

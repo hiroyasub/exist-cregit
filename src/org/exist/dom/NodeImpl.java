@@ -146,6 +146,10 @@ import|;
 end_import
 
 begin_comment
+comment|/**  * NodeImpl.java  *   * @author Wolfgang Meier  */
+end_comment
+
+begin_comment
 comment|/**  *  The base class for all DOM objects.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    8. Juli 2002  */
 end_comment
 
@@ -485,7 +489,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Reset this object to its initial state.      */
+comment|/**      * Reset this object to its initial state. Required by the      * parser to be able to reuse node objects.      */
 specifier|public
 name|void
 name|clear
@@ -512,7 +516,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  child             Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
 name|appendChild
@@ -527,7 +531,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  deep  Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
 specifier|public
 name|Node
 name|cloneNode
@@ -540,7 +544,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  obj  Description of the Parameter      *@return      Description of the Return Value      */
+comment|/** 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
 name|boolean
 name|equals
@@ -591,17 +595,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**      *  Gets the allChildCount attribute of the NodeImpl object      *      *@return    The allChildCount value      */
-specifier|public
-name|int
-name|getAllChildCount
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-comment|/**      *  Gets the attributes attribute of the NodeImpl object      *      *@return    The attributes value      */
+comment|/** 	 * @see org.w3c.dom.Node#getAttributes() 	 */
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -611,7 +605,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the attributesCount attribute of the NodeImpl object      *      *@return    The attributesCount value      */
+comment|/** 	 * Method getAttributesCount. 	 * @return short 	 */
 specifier|public
 name|short
 name|getAttributesCount
@@ -636,7 +630,7 @@ operator|.
 name|broker
 return|;
 block|}
-comment|/**      *  Gets the childCount attribute of the NodeImpl object      *      *@return    The childCount value      */
+comment|/** 	 * Method getChildCount. 	 * @return int 	 */
 specifier|public
 name|int
 name|getChildCount
@@ -661,7 +655,7 @@ name|NodeListImpl
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the firstChild attribute of the NodeImpl object      *      *@return    The firstChild value      */
+comment|/** 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
 specifier|public
 name|Node
 name|getFirstChild
@@ -671,7 +665,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the gID attribute of the NodeImpl object      *      *@return    The gID value      */
+comment|/**      *  Get the unique identifier assigned to this node      *      *@return    The gID value      */
 specifier|public
 name|long
 name|getGID
@@ -681,7 +675,7 @@ return|return
 name|gid
 return|;
 block|}
-comment|/**      *  Gets the internalAddress attribute of the NodeImpl object      *      *@return    The internalAddress value      */
+comment|/**      *  Get the internal storage address of this node      *      *@return    The internalAddress value      */
 specifier|public
 name|long
 name|getInternalAddress
@@ -691,7 +685,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      *  Gets the lastChild attribute of the NodeImpl object      *      *@return    The lastChild value      */
+comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
 specifier|public
 name|Node
 name|getLastChild
@@ -701,7 +695,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the localName attribute of the NodeImpl object      *      *@return    The localName value      */
+comment|/** 	 * @see org.w3c.dom.Node#getLocalName() 	 */
 specifier|public
 name|String
 name|getLocalName
@@ -742,7 +736,7 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/**      *  Gets the namespaceURI attribute of the NodeImpl object      *      *@return    The namespaceURI value      */
+comment|/** 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -809,7 +803,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  Gets the nextSibling attribute of the NodeImpl object      *      *@return    The nextSibling value      */
+comment|/** 	 * @see org.w3c.dom.Node#getNextSibling() 	 */
 specifier|public
 name|Node
 name|getNextSibling
@@ -847,7 +841,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the nodeName attribute of the NodeImpl object      *      *@return    The nodeName value      */
+comment|/** 	 * @see org.w3c.dom.Node#getNodeName() 	 */
 specifier|public
 name|String
 name|getNodeName
@@ -857,7 +851,7 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/**      *  Gets the nodeType attribute of the NodeImpl object      *      *@return    The nodeType value      */
+comment|/** 	 * @see org.w3c.dom.Node#getNodeType() 	 */
 specifier|public
 name|short
 name|getNodeType
@@ -867,7 +861,7 @@ return|return
 name|nodeType
 return|;
 block|}
-comment|/**      *  Gets the nodeValue attribute of the NodeImpl object      *      *@return                   The nodeValue value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -879,7 +873,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  Gets the ownerDocument attribute of the NodeImpl object      *      *@return    The ownerDocument value      */
+comment|/** 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -889,58 +883,7 @@ return|return
 name|ownerDocument
 return|;
 block|}
-comment|/**      *  Gets the parentByName attribute of the NodeImpl object      *      *@param  parentName  Description of the Parameter      *@return             The parentByName value      */
-specifier|public
-name|Node
-name|getParentByName
-parameter_list|(
-name|String
-name|parentName
-parameter_list|)
-block|{
-name|NodeImpl
-name|p
-init|=
-name|this
-decl_stmt|;
-while|while
-condition|(
-name|p
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|p
-operator|.
-name|getNodeName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|parentName
-argument_list|)
-condition|)
-return|return
-name|p
-return|;
-name|p
-operator|=
-operator|(
-name|NodeImpl
-operator|)
-name|p
-operator|.
-name|getParentNode
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
-comment|/**      *  Gets the parentGID attribute of the NodeImpl object      *      *@return    The parentGID value      */
+comment|/**      *  Get the unique node identifier of this node's parent node.      *      *@return    The parentGID value      */
 specifier|public
 name|long
 name|getParentGID
@@ -986,7 +929,7 @@ argument_list|)
 return|;
 comment|//return (gid - 2) / ownerDocument.getOrder() + 1;
 block|}
-comment|/**      *  Gets the parentNode attribute of the NodeImpl object      *      *@return    The parentNode value      */
+comment|/** 	 * @see org.w3c.dom.Node#getParentNode() 	 */
 specifier|public
 name|Node
 name|getParentNode
@@ -1016,7 +959,7 @@ name|pid
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the prefix attribute of the NodeImpl object      *      *@return    The prefix value      */
+comment|/** 	 * @see org.w3c.dom.Node#getPrefix() 	 */
 specifier|public
 name|String
 name|getPrefix
@@ -1057,7 +1000,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  Gets the previousSibling attribute of the NodeImpl object      *      *@return    The previousSibling value      */
+comment|/** 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1153,7 +1096,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
 specifier|public
 name|boolean
 name|hasAttributes
@@ -1163,7 +1106,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -1173,7 +1116,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  newChild          Description of the Parameter      *@param  refChild          Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
 name|insertBefore
@@ -1191,7 +1134,24 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the supported attribute of the NodeImpl object      *      *@param  key    Description of the Parameter      *@param  value  Description of the Parameter      *@return        The supported value      */
+specifier|public
+name|Node
+name|insertAfter
+parameter_list|(
+name|Node
+name|newChild
+parameter_list|,
+name|Node
+name|refChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/** 	 * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String) 	 */
 specifier|public
 name|boolean
 name|isSupported
@@ -1207,7 +1167,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/**      *  Get the unique node identifier of the last child of this node.      *      *@return    Description of the Return Value      */
 specifier|public
 name|long
 name|lastChildID
@@ -1217,7 +1177,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**  Description of the Method */
+comment|/** 	 * @see org.w3c.dom.Node#normalize() 	 */
 specifier|public
 name|void
 name|normalize
@@ -1225,7 +1185,7 @@ parameter_list|()
 block|{
 return|return;
 block|}
-comment|/**      *  Description of the Method      *      *@param  node              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
 name|removeChild
@@ -1240,7 +1200,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  newChild          Description of the Parameter      *@param  oldChild          Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
 specifier|public
 name|Node
 name|replaceChild
@@ -1258,7 +1218,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|byte
 index|[]
@@ -1269,7 +1228,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Sets the attributes attribute of the NodeImpl object      *      *@param  attribNum  The new attributes value      */
+comment|/**      *  Set the attributes that belong to this node.      *      *@param  attribNum  The new attributes value      */
 specifier|public
 name|void
 name|setAttributes
@@ -1283,7 +1242,7 @@ operator|=
 name|attribNum
 expr_stmt|;
 block|}
-comment|/**      *  Sets the childCount attribute of the NodeImpl object      *      *@param  count  The new childCount value      */
+comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
 specifier|protected
 name|void
 name|setChildCount
@@ -1294,7 +1253,7 @@ parameter_list|)
 block|{
 return|return;
 block|}
-comment|/**      *  Sets the gID attribute of the NodeImpl object      *      *@param  gid  The new gID value      */
+comment|/**      *  Set the unique node identifier of this node.      *      *@param  gid  The new gID value      */
 specifier|public
 name|void
 name|setGID
@@ -1310,7 +1269,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/**      *  Sets the internalAddress attribute of the NodeImpl object      *      *@param  address  The new internalAddress value      */
+comment|/**      *  Set the internal storage address of this node.      *      *@param  address  The new internalAddress value      */
 specifier|public
 name|void
 name|setInternalAddress
@@ -1324,7 +1283,7 @@ operator|=
 name|address
 expr_stmt|;
 block|}
-comment|/**      *  Sets the nodeName attribute of the NodeImpl object      *      *@param  name  The new nodeName value      */
+comment|/**      *  Set the node name.      *      *@param  name  The new nodeName value      */
 specifier|public
 name|void
 name|setNodeName
@@ -1338,7 +1297,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**      *  Sets the nodeValue attribute of the NodeImpl object      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
+comment|/**      *  Set the node value.      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|setNodeValue
@@ -1350,7 +1309,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/**      *  Sets the ownerDocument attribute of the NodeImpl object      *      *@param  doc  The new ownerDocument value      */
+comment|/**      *  Set the owner document.      *      *@param  doc  The new ownerDocument value      */
 specifier|public
 name|void
 name|setOwnerDocument
@@ -1379,7 +1338,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  feature  Description of the Parameter      *@param  version  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 * Method supports. 	 * @param feature 	 * @param version 	 * @return boolean 	 */
 specifier|public
 name|boolean
 name|supports

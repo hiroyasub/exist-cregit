@@ -3111,7 +3111,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|xslStyle
+name|stylesheet
 operator|!=
 literal|null
 condition|)
@@ -3119,7 +3119,7 @@ name|serializer
 operator|.
 name|setStylesheet
 argument_list|(
-name|xslStyle
+name|stylesheet
 argument_list|)
 expr_stmt|;
 name|HttpServer
