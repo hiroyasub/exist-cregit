@@ -3168,6 +3168,16 @@ name|String
 name|uri
 parameter_list|)
 block|{
+if|if
+condition|(
+name|uri
+operator|==
+literal|null
+condition|)
+name|baseURI
+operator|=
+literal|""
+expr_stmt|;
 name|baseURI
 operator|=
 name|uri
