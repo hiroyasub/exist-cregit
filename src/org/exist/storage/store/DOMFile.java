@@ -385,6 +385,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|sanity
+operator|.
+name|SanityCheck
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|TerminatedException
@@ -843,16 +857,14 @@ argument_list|(
 name|newPage
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+name|SanityCheck
+operator|.
+name|ASSERT
+argument_list|(
 name|owner
 operator|!=
 name|myOwner
-condition|)
-name|LOG
-operator|.
-name|error
-argument_list|(
+argument_list|,
 literal|"Owner changed during transaction!!!!!!!!!!!!!!!!!"
 argument_list|)
 expr_stmt|;
@@ -1237,9 +1249,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|TRACE
 argument_list|(
 literal|"page not found"
 argument_list|)
@@ -2889,9 +2901,9 @@ name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|error
+name|TRACE
 argument_list|(
 literal|"pos = "
 operator|+
@@ -4376,16 +4388,14 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|child
-operator|==
-literal|null
-condition|)
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|ASSERT
 argument_list|(
+name|child
+operator|!=
+literal|null
+argument_list|,
 literal|"Next node missing. gid = "
 operator|+
 name|gid
@@ -4564,9 +4574,9 @@ operator|<
 literal|1
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|TRACE
 argument_list|(
 name|node
 operator|.
@@ -4574,11 +4584,6 @@ name|gid
 operator|+
 literal|" not found."
 argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
 expr_stmt|;
 throw|throw
 operator|new
@@ -5122,9 +5127,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|TRACE
 argument_list|(
 literal|"object at "
 operator|+
@@ -5137,11 +5142,6 @@ argument_list|)
 operator|+
 literal|" not found."
 argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
 expr_stmt|;
 return|return
 literal|null
@@ -7047,17 +7047,14 @@ argument_list|(
 name|address
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|rec
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|THROW_ASSERT
 argument_list|(
+name|rec
+operator|!=
+literal|null
+argument_list|,
 literal|"Node data could not be found! Page: "
 operator|+
 name|StorageAddress
@@ -7077,18 +7074,6 @@ name|address
 argument_list|)
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Node data could not be found for node "
-operator|+
-name|proxy
-operator|.
-name|gid
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -7251,9 +7236,9 @@ operator|<
 literal|0
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|TRACE
 argument_list|(
 literal|"bad link to next page"
 argument_list|)
@@ -7849,9 +7834,9 @@ name|getPageNum
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|debug
+name|TRACE
 argument_list|(
 literal|"circular link to next page on "
 operator|+
@@ -7862,9 +7847,9 @@ return|return
 literal|null
 return|;
 block|}
-name|LOG
+name|SanityCheck
 operator|.
-name|debug
+name|TRACE
 argument_list|(
 name|owner
 operator|.

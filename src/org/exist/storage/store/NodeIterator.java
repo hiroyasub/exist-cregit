@@ -143,6 +143,20 @@ name|LockException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|sanity
+operator|.
+name|SanityCheck
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class NodeIterator is used to iterate over nodes in the DOM storage.  * This implementation locks the DOM file to read the node and unlocks  * it afterwards. It is thus safer than DOMFileIterator, since the node's  * value will not change.   *   * @author wolf  */
 end_comment
@@ -621,9 +635,9 @@ operator|<
 literal|0
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|debug
+name|TRACE
 argument_list|(
 literal|"bad link to next "
 operator|+
@@ -916,9 +930,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|SanityCheck
 operator|.
-name|warn
+name|TRACE
 argument_list|(
 literal|"illegal node on page "
 operator|+
