@@ -436,6 +436,11 @@ name|min
 operator|.
 name|min
 argument_list|(
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
+argument_list|,
 name|current
 argument_list|)
 expr_stmt|;

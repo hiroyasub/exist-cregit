@@ -453,6 +453,9 @@ specifier|abstract
 name|AtomicValue
 name|max
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)
@@ -464,6 +467,9 @@ specifier|abstract
 name|AtomicValue
 name|min
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)

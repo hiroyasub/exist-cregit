@@ -67,6 +67,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -1233,6 +1243,9 @@ name|relation
 parameter_list|,
 name|String
 name|expr
+parameter_list|,
+name|Collator
+name|collator
 parameter_list|)
 function_decl|;
 comment|/** 	 *  Get a range of nodes with given owner document from the database, 	 *  starting at first and ending at last. 	 * 	 *@param  doc    the document the nodes belong to 	 *@param  first  unique id of the first node to retrieve 	 *@param  last   unique id of the last node to retrieve 	 */

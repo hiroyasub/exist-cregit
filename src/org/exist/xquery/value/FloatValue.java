@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -761,6 +771,9 @@ specifier|public
 name|AtomicValue
 name|max
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)
@@ -821,6 +834,8 @@ operator|)
 operator|.
 name|max
 argument_list|(
+name|collator
+argument_list|,
 name|other
 argument_list|)
 return|;
@@ -829,6 +844,9 @@ specifier|public
 name|AtomicValue
 name|min
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)
@@ -889,6 +907,8 @@ operator|)
 operator|.
 name|min
 argument_list|(
+name|collator
+argument_list|,
 name|other
 argument_list|)
 return|;

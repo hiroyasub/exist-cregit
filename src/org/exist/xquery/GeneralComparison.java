@@ -1535,6 +1535,11 @@ argument_list|,
 name|relation
 argument_list|,
 name|cmp
+argument_list|,
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1832,6 +1837,11 @@ name|lv
 operator|.
 name|startsWith
 argument_list|(
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
+argument_list|,
 name|rv
 argument_list|)
 return|;
@@ -1845,6 +1855,11 @@ name|lv
 operator|.
 name|endsWith
 argument_list|(
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
+argument_list|,
 name|rv
 argument_list|)
 return|;
@@ -1858,6 +1873,11 @@ name|lv
 operator|.
 name|contains
 argument_list|(
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
+argument_list|,
 name|rv
 argument_list|)
 return|;
