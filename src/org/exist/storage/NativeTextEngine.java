@@ -721,6 +721,30 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|TerminatedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -1650,11 +1674,14 @@ specifier|public
 name|NodeSet
 name|getNodesContaining
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|String
 name|expr
@@ -1662,6 +1689,8 @@ parameter_list|,
 name|int
 name|type
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 if|if
 condition|(
@@ -1697,9 +1726,11 @@ case|:
 return|return
 name|getNodesExact
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|,
-name|context
+name|contextSet
 argument_list|,
 name|expr
 argument_list|)
@@ -1708,9 +1739,11 @@ default|default :
 return|return
 name|getNodesRegexp
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|,
-name|context
+name|contextSet
 argument_list|,
 name|expr
 argument_list|,
@@ -1724,15 +1757,20 @@ specifier|public
 name|NodeSet
 name|getNodesExact
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|String
 name|expr
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 if|if
 condition|(
@@ -1755,14 +1793,7 @@ condition|)
 return|return
 literal|null
 return|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//				long start = System.currentTimeMillis();
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -1822,7 +1853,7 @@ name|result
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|contextSet
 operator|==
 literal|null
 condition|)
@@ -2003,12 +2034,12 @@ operator|==
 literal|null
 operator|||
 operator|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 operator|&&
 operator|!
-name|context
+name|contextSet
 operator|.
 name|containsDoc
 argument_list|(
@@ -2028,13 +2059,13 @@ continue|continue;
 block|}
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)
 name|sizeHint
 operator|=
-name|context
+name|contextSet
 operator|.
 name|getSizeHint
 argument_list|(
@@ -2082,7 +2113,7 @@ operator|++
 expr_stmt|;
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)
@@ -2121,7 +2152,7 @@ operator|)
 expr_stmt|;
 name|parent
 operator|=
-name|context
+name|contextSet
 operator|.
 name|parentWithChild
 argument_list|(
@@ -2191,6 +2222,11 @@ argument_list|,
 name|term
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|proceed
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -2244,7 +2280,7 @@ block|}
 block|}
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)
@@ -2258,41 +2294,17 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|expr
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" ("
-operator|+
-name|count
-operator|+
-literal|") "
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug(
+comment|//					"found "
+comment|//						+ expr
+comment|//						+ ": "
+comment|//						+ result.getLength()
+comment|//						+ " ("
+comment|//						+ count
+comment|//						+ ") "
+comment|//						+ " in "
+comment|//						+ (System.currentTimeMillis() - start)
+comment|//						+ "ms.");
 return|return
 name|result
 return|;
@@ -2301,11 +2313,14 @@ specifier|private
 name|NodeSet
 name|getNodesRegexp
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|String
 name|expr
@@ -2313,6 +2328,8 @@ parameter_list|,
 name|int
 name|type
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 if|if
 condition|(
@@ -2410,9 +2427,11 @@ decl_stmt|;
 return|return
 name|getNodes
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|,
-name|context
+name|contextSet
 argument_list|,
 name|comparator
 argument_list|,
@@ -2436,11 +2455,14 @@ specifier|public
 name|NodeSet
 name|getNodes
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|TermMatcher
 name|matcher
@@ -2448,21 +2470,16 @@ parameter_list|,
 name|CharSequence
 name|startTerm
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|NodeSet
 name|result
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|contextSet
 operator|==
 literal|null
 condition|)
@@ -2510,11 +2527,13 @@ operator|=
 operator|new
 name|SearchCallback
 argument_list|(
+name|context
+argument_list|,
 name|matcher
 argument_list|,
 name|result
 argument_list|,
-name|context
+name|contextSet
 argument_list|,
 name|docs
 argument_list|)
@@ -2672,31 +2691,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"regexp found: "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("regexp found: " + result.getLength() + " in "
+comment|//				+ (System.currentTimeMillis() - start) + "ms.");
 return|return
 name|result
 return|;
@@ -2744,6 +2740,8 @@ init|=
 operator|new
 name|IndexCallback
 argument_list|(
+literal|null
+argument_list|,
 name|matcher
 argument_list|)
 decl_stmt|;
@@ -2846,6 +2844,20 @@ operator|.
 name|debug
 argument_list|(
 name|bte
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -3286,6 +3298,22 @@ operator|.
 name|warn
 argument_list|(
 literal|"error while reading words"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Method terminated"
 argument_list|,
 name|e
 argument_list|)
@@ -6522,9 +6550,15 @@ decl_stmt|;
 name|TermMatcher
 name|matcher
 decl_stmt|;
+name|XQueryContext
+name|context
+decl_stmt|;
 specifier|public
 name|IndexCallback
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|TermMatcher
 name|matcher
 parameter_list|)
@@ -6534,6 +6568,12 @@ operator|.
 name|matcher
 operator|=
 name|matcher
+expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|context
 expr_stmt|;
 block|}
 specifier|public
@@ -6579,7 +6619,20 @@ parameter_list|,
 name|long
 name|pointer
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
+if|if
+condition|(
+name|context
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|proceed
+argument_list|()
+expr_stmt|;
 name|String
 name|word
 decl_stmt|;
@@ -6671,11 +6724,17 @@ decl_stmt|;
 name|NodeSet
 name|result
 decl_stmt|,
+name|contextSet
+decl_stmt|;
+name|XQueryContext
 name|context
 decl_stmt|;
 specifier|public
 name|SearchCallback
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|TermMatcher
 name|comparator
 parameter_list|,
@@ -6683,7 +6742,7 @@ name|NodeSet
 name|result
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|DocumentSet
 name|docs
@@ -6709,6 +6768,12 @@ name|docs
 expr_stmt|;
 name|this
 operator|.
+name|contextSet
+operator|=
+name|contextSet
+expr_stmt|;
+name|this
+operator|.
 name|context
 operator|=
 name|context
@@ -6724,6 +6789,8 @@ parameter_list|,
 name|long
 name|pointer
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|String
 name|word
@@ -6887,6 +6954,17 @@ operator|>
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|context
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|proceed
+argument_list|()
+expr_stmt|;
 name|docId
 operator|=
 name|is
@@ -6935,13 +7013,13 @@ continue|continue;
 block|}
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)
 name|sizeHint
 operator|=
-name|context
+name|contextSet
 operator|.
 name|getSizeHint
 argument_list|(
@@ -6995,7 +7073,7 @@ name|gid
 expr_stmt|;
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)
@@ -7034,7 +7112,7 @@ operator|)
 expr_stmt|;
 name|parent
 operator|=
-name|context
+name|contextSet
 operator|.
 name|parentWithChild
 argument_list|(
@@ -7134,7 +7212,7 @@ block|}
 block|}
 if|if
 condition|(
-name|context
+name|contextSet
 operator|!=
 literal|null
 condition|)

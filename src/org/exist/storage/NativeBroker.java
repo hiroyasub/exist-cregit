@@ -809,6 +809,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|TerminatedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -2474,6 +2486,22 @@ operator|.
 name|warn
 argument_list|(
 literal|"failed to acquire lock"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Method terminated"
 argument_list|,
 name|e
 argument_list|)
@@ -8619,6 +8647,22 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"method terminated"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -9190,6 +9234,22 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"method terminated"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|lock
@@ -9388,6 +9448,22 @@ argument_list|(
 literal|"start() - "
 operator|+
 literal|"error while removing doc"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"method terminated"
 argument_list|,
 name|e
 argument_list|)

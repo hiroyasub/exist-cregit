@@ -752,6 +752,10 @@ name|shutdownListener
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|XQueryPool
+name|xqueryCache
+decl_stmt|;
 comment|/** 	 *  Constructor for the BrokerPool object 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|BrokerPool
@@ -914,6 +918,12 @@ name|conf
 operator|=
 name|config
 expr_stmt|;
+name|xqueryCache
+operator|=
+operator|new
+name|XQueryPool
+argument_list|()
+expr_stmt|;
 name|initialize
 argument_list|()
 expr_stmt|;
@@ -1015,7 +1025,6 @@ return|;
 block|}
 comment|/** 	 *  Get a DBBroker instance from the pool. 	 * 	 *@return                     Description of the Return Value 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
-specifier|synchronized
 name|DBBroker
 name|get
 parameter_list|()
@@ -1058,7 +1067,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// the thread already holds a reference to a broker object.
+comment|// the thread already holds a reference to a broker object
 name|broker
 operator|.
 name|incReferenceCount
@@ -1068,6 +1077,11 @@ return|return
 name|broker
 return|;
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 name|pool
@@ -1154,9 +1168,9 @@ return|return
 name|broker
 return|;
 block|}
+block|}
 comment|/** 	 * Get a DBBroker instance and set its current user to user. 	 *   	 * @param user 	 * @return 	 * @throws EXistException 	 */
 specifier|public
-specifier|synchronized
 name|DBBroker
 name|get
 parameter_list|(
@@ -1339,6 +1353,11 @@ block|{
 comment|// broker still has references. Keep it
 return|return;
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|threads
 operator|.
 name|remove
@@ -1349,23 +1368,6 @@ name|currentThread
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pool
-operator|.
-name|contains
-argument_list|(
-name|broker
-argument_list|)
-condition|)
-block|{
-return|return;
-block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|pool
 operator|.
 name|push
@@ -1658,6 +1660,15 @@ name|shutdownListener
 operator|=
 name|listener
 expr_stmt|;
+block|}
+specifier|public
+name|XQueryPool
+name|getXQueryPool
+parameter_list|()
+block|{
+return|return
+name|xqueryCache
+return|;
 block|}
 specifier|protected
 specifier|static

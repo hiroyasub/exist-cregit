@@ -383,6 +383,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|TerminatedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -3858,6 +3870,8 @@ operator|.
 name|KEYS
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|query
 argument_list|(
 name|query
@@ -3865,6 +3879,22 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+comment|// Should never happen hear
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Method terminated"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|cb
 operator|.
@@ -4344,6 +4374,8 @@ operator|.
 name|VALUES
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|query
 argument_list|(
 name|query
@@ -4351,6 +4383,22 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+comment|// Should never happen
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Method terminated"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|cb
 operator|.
@@ -9272,6 +9320,8 @@ parameter_list|,
 name|long
 name|pointer
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|RecordPos
 name|rec
