@@ -181,6 +181,8 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Returns the number of items in the argument sequence."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]
@@ -190,7 +192,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ATOMIC
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
