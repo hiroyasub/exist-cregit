@@ -636,8 +636,17 @@ argument_list|,
 name|rememberContext
 argument_list|)
 return|;
-comment|//		    else
-comment|//		        return quickSelectParentChild(al, mode, rememberContext);
+else|else
+return|return
+name|quickSelectParentChild
+argument_list|(
+name|al
+argument_list|,
+name|mode
+argument_list|,
+name|rememberContext
+argument_list|)
+return|;
 block|}
 name|NodeProxy
 name|n

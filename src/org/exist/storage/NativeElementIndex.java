@@ -3496,7 +3496,6 @@ argument_list|,
 name|gid
 argument_list|)
 condition|)
-block|{
 name|newList
 operator|.
 name|add
@@ -3512,7 +3511,6 @@ name|address
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

@@ -141,6 +141,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Empty sequence expected; got "
 operator|+
 name|items
@@ -166,6 +169,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Empty sequence is not allowed here"
 argument_list|)
 throw|;
@@ -189,6 +195,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Sequence with more than one item is not allowed here"
 argument_list|)
 throw|;

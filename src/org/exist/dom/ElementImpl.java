@@ -2657,6 +2657,7 @@ operator|)
 operator|&&
 name|index
 condition|)
+block|{
 name|ownerDocument
 operator|.
 name|broker
@@ -2668,6 +2669,7 @@ argument_list|,
 name|lastPath
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|attrib
 return|;

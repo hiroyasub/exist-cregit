@@ -1915,8 +1915,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// write the data
-comment|//        LOG.debug("inserting " + new String(value) + " to " + rec.page.page.getPageInfo() + "; " +
-comment|//                rec.page.page.hashCode());
 name|short
 name|tid
 init|=
@@ -1930,6 +1928,8 @@ operator|.
 name|getNextTID
 argument_list|()
 decl_stmt|;
+comment|//        LOG.debug("inserting " + new String(value) + " to " + rec.page.page.getPageInfo() + "; " +
+comment|//                tid);
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -2158,22 +2158,7 @@ operator|!
 name|requireSplit
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"page "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|": no split required"
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("page " + rec.page.getPageNum() + ": no split required");
 name|rec
 operator|.
 name|offset
@@ -3011,18 +2996,7 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating new page after split: "
-operator|+
-name|newPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                    LOG.debug("creating new page after split: " + newPage.getPageNum());
 name|rec
 operator|.
 name|page
@@ -6801,6 +6775,48 @@ argument_list|(
 name|address
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|rec
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Node data could not be found! Page: "
+operator|+
+name|StorageAddress
+operator|.
+name|pageFromPointer
+argument_list|(
+name|address
+argument_list|)
+operator|+
+literal|"; tid: "
+operator|+
+name|StorageAddress
+operator|.
+name|tidFromPointer
+argument_list|(
+name|address
+argument_list|)
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Node data could not be found for node "
+operator|+
+name|proxy
+operator|.
+name|gid
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|ByteArrayOutputStream
 name|os

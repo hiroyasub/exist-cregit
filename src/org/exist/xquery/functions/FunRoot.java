@@ -365,6 +365,7 @@ name|item
 operator|instanceof
 name|NodeProxy
 condition|)
+block|{
 return|return
 operator|new
 name|NodeProxy
@@ -385,6 +386,7 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 return|;
+block|}
 else|else
 return|return
 operator|(
