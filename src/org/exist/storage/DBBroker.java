@@ -765,6 +765,9 @@ specifier|abstract
 name|NodeSet
 name|findElementsByTagName
 parameter_list|(
+name|byte
+name|type
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,

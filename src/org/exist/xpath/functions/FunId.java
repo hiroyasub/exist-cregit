@@ -111,6 +111,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|ElementValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xpath
 operator|.
 name|Expression
@@ -336,8 +348,6 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"&"
-operator|+
 name|set
 operator|.
 name|get
@@ -374,8 +384,6 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"&"
-operator|+
 name|idval
 operator|.
 name|getStringValue
@@ -432,6 +440,10 @@ argument_list|()
 operator|.
 name|findElementsByTagName
 argument_list|(
+name|ElementValue
+operator|.
+name|ATTRIBUTE_ID
+argument_list|,
 name|docs
 argument_list|,
 name|id

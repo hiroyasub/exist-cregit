@@ -4094,11 +4094,8 @@ name|String
 name|word
 parameter_list|)
 block|{
-name|data
+name|len
 operator|=
-operator|new
-name|byte
-index|[
 name|UTF8
 operator|.
 name|encoded
@@ -4107,6 +4104,13 @@ name|word
 argument_list|)
 operator|+
 literal|2
+expr_stmt|;
+name|data
+operator|=
+operator|new
+name|byte
+index|[
+name|len
 index|]
 expr_stmt|;
 name|ByteConversion
@@ -4130,12 +4134,6 @@ name|data
 argument_list|,
 literal|2
 argument_list|)
-expr_stmt|;
-name|len
-operator|=
-name|data
-operator|.
-name|length
 expr_stmt|;
 block|}
 comment|/** 		 * @see java.lang.Object#toString() 		 */

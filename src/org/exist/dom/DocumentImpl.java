@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    21. Mai 2002  */
+comment|/**  *  Represents a persistent document object in the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    21. Mai 2002  */
 end_comment
 
 begin_class
@@ -1393,6 +1393,10 @@ name|broker
 operator|.
 name|findElementsByTagName
 argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|,
 name|docs
 argument_list|,
 name|qname
@@ -1819,6 +1823,10 @@ name|broker
 operator|.
 name|findElementsByTagName
 argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|,
 name|docs
 argument_list|,
 name|qname
