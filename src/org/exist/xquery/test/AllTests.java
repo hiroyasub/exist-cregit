@@ -88,7 +88,7 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
-name|LexerTest
+name|XPathQueryTest
 operator|.
 name|class
 argument_list|)
@@ -97,7 +97,17 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
-name|XPathQueryTest
+name|LexerTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+comment|// jmv: Note: LexerTest needs /db/test created by XPathQueryTest
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|XQueryUseCasesTest
 operator|.
 name|class
 argument_list|)
