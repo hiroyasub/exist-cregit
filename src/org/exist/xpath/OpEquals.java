@@ -1118,6 +1118,17 @@ operator|>
 literal|0
 condition|)
 block|{
+name|cmp
+operator|=
+name|cmp
+operator|.
+name|replace
+argument_list|(
+literal|'%'
+argument_list|,
+literal|'*'
+argument_list|)
+expr_stmt|;
 comment|// try to use a fulltext search expression to reduce the number
 comment|// of potential nodes to scan through
 name|SimpleTokenizer
@@ -1145,17 +1156,6 @@ name|foundNumeric
 init|=
 literal|false
 decl_stmt|;
-name|cmp
-operator|=
-name|cmp
-operator|.
-name|replace
-argument_list|(
-literal|'%'
-argument_list|,
-literal|'*'
-argument_list|)
-expr_stmt|;
 comment|// setup up an&= expression using the fulltext index
 name|containsExpr
 operator|=
