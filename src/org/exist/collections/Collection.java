@@ -3512,6 +3512,8 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|triggersEnabled
+operator|&&
 operator|!
 name|name
 operator|.
@@ -4635,6 +4637,8 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|triggersEnabled
+operator|&&
 operator|!
 name|name
 operator|.
@@ -5799,6 +5803,8 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|triggersEnabled
+operator|&&
 operator|!
 name|name
 operator|.
