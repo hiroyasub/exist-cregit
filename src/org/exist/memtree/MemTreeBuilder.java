@@ -208,7 +208,9 @@ name|doc
 operator|=
 operator|new
 name|DocumentImpl
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * End building the document. 	 */

@@ -1541,6 +1541,11 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
+name|broker
+operator|.
+name|cleanUp
+argument_list|()
+expr_stmt|;
 name|secManager
 operator|=
 operator|new

@@ -89,6 +89,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Observable
 import|;
 end_import
@@ -1780,6 +1790,39 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+comment|/** 	 * Create a temporary document in the temp collection and store the 	 * supplied data. 	 *  	 * @param data 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+specifier|public
+specifier|abstract
+name|DocumentImpl
+name|storeTemporaryDoc
+parameter_list|(
+name|String
+name|data
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|LockException
+function_decl|;
+comment|/** 	 * Clean up any temporary resources. 	 * 	 */
+specifier|public
+specifier|abstract
+name|void
+name|cleanUp
+parameter_list|()
+function_decl|;
+comment|/** 	 * Remove the temporary document fragments specified by a list 	 * of names. 	 *  	 * @param docs 	 */
+specifier|public
+specifier|abstract
+name|void
+name|removeTempDocs
+parameter_list|(
+name|List
+name|docs
+parameter_list|)
+function_decl|;
 specifier|public
 name|void
 name|readDocumentMetadata

@@ -1505,6 +1505,16 @@ condition|(
 name|declarationWritten
 condition|)
 return|return;
+if|if
+condition|(
+name|outputProperties
+operator|==
+literal|null
+condition|)
+name|outputProperties
+operator|=
+name|defaultProperties
+expr_stmt|;
 name|declarationWritten
 operator|=
 literal|true
