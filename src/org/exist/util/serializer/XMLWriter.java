@@ -222,7 +222,7 @@ operator|=
 operator|new
 name|boolean
 index|[
-literal|127
+literal|128
 index|]
 expr_stmt|;
 name|Arrays
@@ -267,7 +267,7 @@ operator|=
 operator|new
 name|boolean
 index|[
-literal|127
+literal|128
 index|]
 expr_stmt|;
 name|Arrays
