@@ -1074,6 +1074,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|p
 operator|=
 name|db
@@ -1083,6 +1084,15 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
+name|db
+operator|.
+name|addToBuffer
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+comment|//			LOG.debug("reading " + p.page.getPageNum() + "; " + p.page.hashCode());
+block|}
 else|else
 return|return
 literal|false

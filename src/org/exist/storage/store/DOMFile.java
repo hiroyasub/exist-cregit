@@ -1322,7 +1322,7 @@ argument_list|()
 condition|)
 block|{
 comment|//                LOG
-comment|//                        .debug("copying data in page " + rec.page.getPageNum()
+comment|//                        .debug("copying data in page " + rec.page.getPageNum() + "; " + rec.page.page.hashCode()
 comment|//                                + "; offset = " + rec.offset + "; dataLen = "
 comment|//                                + dataLen);
 comment|// new value fits into the page
@@ -1791,6 +1791,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// write the data
+comment|//        LOG.debug("inserting " + new String(value) + " to " + rec.page.page.getPageInfo() + "; " +
+comment|//                rec.page.page.hashCode());
 name|short
 name|tid
 init|=
@@ -5503,7 +5505,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
-comment|//        LOG.debug("removing value from " + rec.page.getPageNum());
+comment|//        LOG.debug("removing value " + rec.tid + " from " + rec.page.getPageNum() + "; " + rec.page.page.hashCode());
 name|int
 name|startOffset
 init|=
@@ -6092,6 +6094,27 @@ argument_list|()
 operator|.
 name|getNextDataPage
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"REMOVING PAGE "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|page
+operator|.
+name|page
+operator|.
+name|hashCode
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.

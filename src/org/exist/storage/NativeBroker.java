@@ -2563,15 +2563,7 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		final long start = System.currentTimeMillis();
 specifier|final
 name|ExtArrayNodeSet
 name|result
@@ -3002,7 +2994,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//		result.sort();
+name|result
+operator|.
+name|sort
+argument_list|()
+expr_stmt|;
 comment|//				LOG.debug(
 comment|//					"found "
 comment|//						+ qname
@@ -12334,6 +12330,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|address
 operator|=
 name|domDb
@@ -12347,6 +12344,7 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|NodeRef

@@ -332,6 +332,18 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"REMOVING "
+operator|+
+name|old
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|map
 operator|.
 name|remove

@@ -1144,8 +1144,6 @@ else|:
 name|prefix
 return|;
 block|}
-comment|//		if (nodeName != null&& nodeName.indexOf(':')> -1)
-comment|//			return nodeName.substring(0, nodeName.indexOf(':'));
 return|return
 literal|""
 return|;

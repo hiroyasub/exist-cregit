@@ -1395,6 +1395,8 @@ argument_list|,
 name|select
 argument_list|,
 name|child
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 block|}
@@ -1417,6 +1419,8 @@ argument_list|,
 name|documentSet
 argument_list|,
 name|select
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 if|else if
@@ -1442,6 +1446,8 @@ argument_list|,
 name|Insert
 operator|.
 name|INSERT_BEFORE
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 if|else if
@@ -1467,6 +1473,8 @@ argument_list|,
 name|Insert
 operator|.
 name|INSERT_AFTER
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 if|else if
@@ -1488,6 +1496,8 @@ argument_list|,
 name|documentSet
 argument_list|,
 name|select
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 if|else if
@@ -1509,6 +1519,8 @@ argument_list|,
 name|documentSet
 argument_list|,
 name|select
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 comment|// process commands for node creation

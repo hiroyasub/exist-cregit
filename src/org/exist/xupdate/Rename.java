@@ -11,6 +11,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -194,6 +204,9 @@ name|docs
 parameter_list|,
 name|String
 name|selectStmt
+parameter_list|,
+name|Map
+name|namespaces
 parameter_list|)
 block|{
 name|super
@@ -203,6 +216,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|selectStmt
+argument_list|,
+name|namespaces
 argument_list|)
 expr_stmt|;
 block|}
