@@ -365,21 +365,6 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Gets the data attribute of the TextImpl object      *      *@return                   The data value      *@exception  DOMException  Description of the Exception      */
-specifier|public
-name|String
-name|getData
-parameter_list|()
-throws|throws
-name|DOMException
-block|{
-return|return
-name|super
-operator|.
-name|getData
-argument_list|()
-return|;
-block|}
 comment|/**      *  Gets the length attribute of the TextImpl object      *      *@return    The length value      */
 specifier|public
 name|int
