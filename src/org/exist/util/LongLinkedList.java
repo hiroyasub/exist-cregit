@@ -49,6 +49,11 @@ literal|null
 decl_stmt|;
 specifier|public
 name|ListItem
+parameter_list|()
+block|{
+block|}
+specifier|public
+name|ListItem
 parameter_list|(
 name|long
 name|l

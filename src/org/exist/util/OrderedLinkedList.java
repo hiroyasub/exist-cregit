@@ -199,13 +199,13 @@ name|data
 return|;
 block|}
 block|}
-specifier|private
+specifier|protected
 name|Node
 name|header
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Node
 name|last
 init|=

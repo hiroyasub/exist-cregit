@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Provides static methods to set or test the status bits of a record identifier  * in the dom.dbx persistent DOM store.  *   * @author wolf  */
+comment|/**  * Provides static methods to set or test the status bits of a record identifier  * in the dom.dbx persistent DOM store.  *   * @see org.exist.storage.store.DOMFile  * @author wolf  */
 end_comment
 
 begin_class
@@ -86,6 +86,34 @@ name|id
 operator|&
 name|ID_MASK
 operator|)
+return|;
+block|}
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|matches
+parameter_list|(
+name|short
+name|id
+parameter_list|,
+name|short
+name|targetId
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|(
+name|short
+operator|)
+operator|(
+name|id
+operator|&
+name|ID_MASK
+operator|)
+operator|)
+operator|==
+name|targetId
 return|;
 block|}
 specifier|public

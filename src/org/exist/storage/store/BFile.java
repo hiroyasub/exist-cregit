@@ -8393,18 +8393,22 @@ name|SinglePage
 extends|extends
 name|DataPage
 block|{
+comment|// the raw working data of this page (without page header)
 name|byte
 index|[]
 name|data
 init|=
 literal|null
 decl_stmt|;
+comment|// the low-level page
 name|Page
 name|page
 decl_stmt|;
+comment|// the page header
 name|BFilePageHeader
 name|ph
 decl_stmt|;
+comment|// table mapping record ids (tids) to offsets
 name|short
 index|[]
 name|offsets
@@ -8684,7 +8688,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//        	Arrays.fill(offsets, -1);
 specifier|final
 name|int
 name|dlen
