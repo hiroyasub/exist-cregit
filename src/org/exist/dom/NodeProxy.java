@@ -1221,6 +1221,7 @@ name|doc
 return|;
 block|}
 specifier|public
+specifier|final
 name|DocumentImpl
 name|getDocument
 parameter_list|()

@@ -1302,8 +1302,9 @@ expr_stmt|;
 while|while
 condition|(
 name|gid
-operator|>
-literal|0
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
 name|gid
