@@ -658,26 +658,23 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"attr = "
-operator|+
-name|nextAttr
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|attrName
 operator|=
 name|nextAttr
 operator|.
 name|getName
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Attr = "
+operator|+
+name|attrName
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -738,17 +735,6 @@ literal|"xmlns:"
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found "
-operator|+
-name|attrName
-argument_list|)
-expr_stmt|;
 name|prefix
 operator|=
 name|attrName

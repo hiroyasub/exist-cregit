@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on 7 août 2004 $Id$  */
+comment|/*  * Created on 7 aoï¿½t 2004 $Id$  */
 end_comment
 
 begin_package
@@ -138,6 +138,16 @@ operator|.
 name|framework
 operator|.
 name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|textui
+operator|.
+name|TestRunner
 import|;
 end_import
 
@@ -554,6 +564,26 @@ argument_list|()
 operator|.
 name|getLength
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+specifier|static
+name|void
+name|main
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|)
+block|{
+name|TestRunner
+operator|.
+name|run
+argument_list|(
+name|DOMTestJUnit
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
