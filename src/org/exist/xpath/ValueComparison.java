@@ -154,7 +154,7 @@ comment|/** 	 * @param context 	 * @param relation 	 */
 specifier|public
 name|ValueComparison
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -173,7 +173,7 @@ comment|/** 	 * @param context 	 * @param left 	 * @param right 	 * @param relat
 specifier|public
 name|ValueComparison
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Expression

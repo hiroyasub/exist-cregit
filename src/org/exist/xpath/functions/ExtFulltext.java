@@ -199,7 +199,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -367,7 +367,7 @@ decl_stmt|;
 specifier|public
 name|ExtFulltext
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -391,7 +391,7 @@ block|}
 specifier|public
 name|ExtFulltext
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|PathExpr
@@ -465,7 +465,7 @@ specifier|protected
 name|void
 name|getSearchTerms
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String
@@ -876,7 +876,7 @@ specifier|public
 name|Sequence
 name|evalQuery
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String
@@ -1055,7 +1055,7 @@ specifier|protected
 name|NodeSet
 name|processQuery
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet

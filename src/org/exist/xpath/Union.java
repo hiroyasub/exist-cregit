@@ -77,7 +77,7 @@ block|{
 specifier|public
 name|Union
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|PathExpr

@@ -1737,14 +1737,7 @@ condition|)
 return|return
 literal|null
 return|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -2246,41 +2239,17 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|expr
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" ("
-operator|+
-name|count
-operator|+
-literal|") "
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"found "
+comment|//				+ expr
+comment|//				+ ": "
+comment|//				+ result.getLength()
+comment|//				+ " ("
+comment|//				+ count
+comment|//				+ ") "
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;
@@ -4415,7 +4384,7 @@ name|LongLinkedList
 operator|)
 name|words
 index|[
-literal|0
+literal|1
 index|]
 operator|.
 name|get

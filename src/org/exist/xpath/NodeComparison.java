@@ -102,7 +102,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|NodeComparison
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Expression
@@ -439,20 +439,6 @@ literal|"Illegal argument: unknown relation"
 argument_list|)
 throw|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"result: "
-operator|+
-name|result
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|result
 return|;

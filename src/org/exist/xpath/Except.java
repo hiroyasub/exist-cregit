@@ -81,7 +81,7 @@ block|{
 specifier|public
 name|Except
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|PathExpr

@@ -103,7 +103,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 

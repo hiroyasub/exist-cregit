@@ -183,7 +183,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|RangeExpression
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

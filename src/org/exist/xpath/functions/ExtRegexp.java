@@ -143,7 +143,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -257,6 +257,14 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"eXist-specific extension function. Tries to match each of the regular expression "
+operator|+
+literal|"strings passed in $b and all following parameters against the keywords contained in "
+operator|+
+literal|"the fulltext index. The keywords found are then compared to the node set in $a. Every "
+operator|+
+literal|"node containing all of the keywords is copied to the result sequence."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]
@@ -312,7 +320,7 @@ decl_stmt|;
 specifier|public
 name|ExtRegexp
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{
@@ -328,7 +336,7 @@ comment|/** 	 * @param type 	 */
 specifier|public
 name|ExtRegexp
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -649,7 +657,7 @@ specifier|public
 name|Sequence
 name|evalQuery
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -753,7 +761,7 @@ name|String
 index|[]
 name|getSearchTerms
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Sequence

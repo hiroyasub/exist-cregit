@@ -143,6 +143,24 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|int
+name|conversionPreference
+parameter_list|(
+name|Class
+name|javaClass
+parameter_list|)
+function_decl|;
+specifier|public
+name|Object
+name|toJavaObject
+parameter_list|(
+name|Class
+name|target
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 block|}
 end_interface
 

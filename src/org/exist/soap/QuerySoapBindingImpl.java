@@ -297,7 +297,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -1056,6 +1056,11 @@ argument_list|()
 decl_stmt|;
 name|serializer
 operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|serializer
+operator|.
 name|setProperty
 argument_list|(
 name|EXistOutputKeys
@@ -1542,11 +1547,11 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|broker
 argument_list|)
@@ -1972,6 +1977,11 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
+name|serializer
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|serializer
 operator|.
 name|setProperty
@@ -2467,6 +2477,11 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
+name|serializer
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|serializer
 operator|.
 name|setProperty

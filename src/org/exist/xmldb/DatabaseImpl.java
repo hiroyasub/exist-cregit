@@ -354,6 +354,10 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
+name|current
+operator|!=
+literal|null
+operator|&&
 name|tok
 operator|.
 name|hasMoreTokens

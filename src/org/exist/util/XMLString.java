@@ -869,21 +869,6 @@ name|newCapacity
 operator|=
 name|capacity
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"growing "
-operator|+
-name|length_
-operator|+
-literal|" to "
-operator|+
-name|capacity
-argument_list|)
-expr_stmt|;
 name|char
 index|[]
 name|temp

@@ -43,7 +43,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -108,7 +108,7 @@ index|[]
 name|prevNodeInLevel
 decl_stmt|;
 specifier|protected
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 literal|null
@@ -126,7 +126,7 @@ block|}
 specifier|public
 name|MemTreeBuilder
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

@@ -201,7 +201,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -1059,11 +1059,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|serializer
 operator|.
@@ -1539,7 +1539,7 @@ specifier|private
 name|String
 name|checkNamespaces
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String

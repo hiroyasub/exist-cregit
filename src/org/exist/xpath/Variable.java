@@ -138,7 +138,7 @@ specifier|public
 name|int
 name|getDependencies
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

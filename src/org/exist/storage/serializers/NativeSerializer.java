@@ -416,8 +416,6 @@ block|{
 name|boolean
 name|generateDocEvents
 init|=
-name|outputProperties
-operator|.
 name|getProperty
 argument_list|(
 name|Serializer

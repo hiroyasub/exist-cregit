@@ -132,7 +132,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|QuantifiedExpression
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -160,6 +160,9 @@ name|contextSequence
 parameter_list|,
 name|Item
 name|contextItem
+parameter_list|,
+name|Sequence
+name|resultSequence
 parameter_list|)
 throws|throws
 name|XPathException

@@ -282,6 +282,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+comment|// TODO: implement this
 throw|throw
 operator|new
 name|XMLDBException
@@ -406,6 +407,14 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+name|parent
+operator|.
+name|properties
+operator|=
+name|collection
+operator|.
+name|properties
+expr_stmt|;
 name|XMLResource
 name|res
 init|=

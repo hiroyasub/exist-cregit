@@ -4,6 +4,10 @@ package|package
 name|org
 operator|.
 name|exist
+operator|.
+name|http
+operator|.
+name|servlets
 package|;
 end_package
 
@@ -90,6 +94,16 @@ operator|.
 name|http
 operator|.
 name|HttpServletResponse
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
 import|;
 end_import
 
@@ -586,6 +600,23 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|BrokerPool
+operator|.
+name|isConfigured
+argument_list|()
+condition|)
+block|{
+name|this
+operator|.
+name|log
+argument_list|(
+literal|"database already started. Giving up."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|String
 name|pathSep
 init|=

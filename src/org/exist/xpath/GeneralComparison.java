@@ -291,7 +291,7 @@ decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -313,7 +313,7 @@ block|}
 specifier|public
 name|GeneralComparison
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Expression
@@ -1095,6 +1095,24 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|nodes
+operator|.
+name|getLength
+argument_list|()
+operator|<
+literal|2
+condition|)
+comment|// fall back to nodeSetCompare
+return|return
+name|nodeSetCompare
+argument_list|(
+name|nodes
+argument_list|,
+name|contextSequence
+argument_list|)
+return|;
 name|Sequence
 name|rightSeq
 init|=
@@ -1646,7 +1664,7 @@ specifier|private
 name|boolean
 name|checkArgumentTypes
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|DocumentSet

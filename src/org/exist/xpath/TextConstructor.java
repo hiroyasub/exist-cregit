@@ -77,6 +77,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|StringValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Constructor for text nodes.  *   * @author wolf  */
 end_comment
@@ -103,12 +117,14 @@ decl_stmt|;
 specifier|public
 name|TextConstructor
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String
 name|text
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|super
 argument_list|(
@@ -119,7 +135,12 @@ name|this
 operator|.
 name|text
 operator|=
+name|StringValue
+operator|.
+name|expand
+argument_list|(
 name|text
+argument_list|)
 expr_stmt|;
 for|for
 control|(

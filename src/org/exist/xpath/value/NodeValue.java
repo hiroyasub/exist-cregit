@@ -27,6 +27,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a node value. May either be an in-memory node  * or a persistent node.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -37,6 +49,8 @@ interface|interface
 name|NodeValue
 extends|extends
 name|Item
+extends|,
+name|Sequence
 block|{
 comment|/** Node is a constructed in-memory node */
 specifier|public
@@ -93,6 +107,11 @@ comment|/** 	 * Returns the implementation-type of this node, i.e. either 	 * {@
 specifier|public
 name|int
 name|getImplementationType
+parameter_list|()
+function_decl|;
+specifier|public
+name|Node
+name|getNode
 parameter_list|()
 function_decl|;
 block|}

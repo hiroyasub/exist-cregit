@@ -163,7 +163,7 @@ decl_stmt|;
 specifier|public
 name|ElementConstructor
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String

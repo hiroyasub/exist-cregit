@@ -26,7 +26,7 @@ specifier|static
 name|String
 name|EXPAND_XINCLUDES
 init|=
-literal|"{http://exist-db.org/}expand-xincludes"
+literal|"expand-xincludes"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -34,7 +34,7 @@ specifier|static
 name|String
 name|HIGHLIGHT_MATCHES
 init|=
-literal|"{http://exist-db.org/}highlight-matches"
+literal|"highlight-matches"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -42,7 +42,7 @@ specifier|static
 name|String
 name|INDENT_SPACES
 init|=
-literal|"{http://exist-db.org/}indent-spaces"
+literal|"indent-spaces"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -50,7 +50,7 @@ specifier|static
 name|String
 name|STYLESHEET
 init|=
-literal|"{http://exist-db.org/}stylesheet"
+literal|"stylesheet"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -58,7 +58,7 @@ specifier|static
 name|String
 name|STYLESHEET_PARAM
 init|=
-literal|"{http://exist-db.org/}stylesheet-param"
+literal|"stylesheet-param"
 decl_stmt|;
 block|}
 end_class

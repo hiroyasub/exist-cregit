@@ -72,7 +72,7 @@ comment|/** 	 * @param context 	 * @param axis 	 */
 specifier|public
 name|SimpleStep
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int

@@ -275,7 +275,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -2682,11 +2682,11 @@ name|SAXException
 block|{
 try|try
 block|{
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|broker
 argument_list|)

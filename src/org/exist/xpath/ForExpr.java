@@ -155,7 +155,7 @@ decl_stmt|;
 specifier|public
 name|ForExpr
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

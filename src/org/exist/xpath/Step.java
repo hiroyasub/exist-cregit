@@ -138,7 +138,7 @@ decl_stmt|;
 specifier|public
 name|Step
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -160,7 +160,7 @@ block|}
 specifier|public
 name|Step
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int

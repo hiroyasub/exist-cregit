@@ -140,7 +140,7 @@ comment|/**  Constructor for the RootNode object */
 specifier|public
 name|RootNode
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

@@ -177,6 +177,10 @@ name|XMLDBException
 import|;
 end_import
 
+begin_comment
+comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will  * be called step by step.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -231,7 +235,7 @@ decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{
@@ -620,7 +624,7 @@ name|r
 return|;
 block|}
 specifier|public
-name|StaticContext
+name|XQueryContext
 name|getContext
 parameter_list|()
 block|{

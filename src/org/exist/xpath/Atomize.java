@@ -101,7 +101,7 @@ decl_stmt|;
 specifier|public
 name|Atomize
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Expression

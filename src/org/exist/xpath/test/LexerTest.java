@@ -193,7 +193,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -495,11 +495,11 @@ literal|"/db/test/test.xml"
 argument_list|)
 expr_stmt|;
 comment|// parse the query into the internal syntax tree
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|broker
 argument_list|)

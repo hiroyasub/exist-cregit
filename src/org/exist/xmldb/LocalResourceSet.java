@@ -710,6 +710,11 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
+name|serializer
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|collection
 operator|.
 name|properties

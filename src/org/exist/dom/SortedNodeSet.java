@@ -155,7 +155,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -437,11 +437,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|broker
 argument_list|)
@@ -1239,7 +1239,7 @@ parameter_list|,
 name|DocumentSet
 name|ndocs
 parameter_list|,
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

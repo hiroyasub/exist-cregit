@@ -82,7 +82,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|Intersection
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|PathExpr

@@ -77,7 +77,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|CombiningExpression
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|PathExpr

@@ -229,7 +229,7 @@ decl_stmt|;
 specifier|public
 name|LocationStep
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -247,7 +247,7 @@ block|}
 specifier|public
 name|LocationStep
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|int
@@ -267,6 +267,13 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#returnsType() 	 */
+comment|//	public int returnsType() {
+comment|//		if(axis == Constants.SELF_AXIS)
+comment|//			return Type.ITEM;
+comment|//		else
+comment|//			return Type.NODE;
+comment|//	}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
@@ -693,7 +700,7 @@ specifier|protected
 name|NodeSet
 name|getAttributes
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -840,7 +847,7 @@ specifier|protected
 name|NodeSet
 name|getChildren
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -960,7 +967,7 @@ specifier|protected
 name|NodeSet
 name|getDescendants
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -1086,7 +1093,7 @@ specifier|protected
 name|NodeSet
 name|getSiblings
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -1340,7 +1347,7 @@ specifier|protected
 name|NodeSet
 name|getAncestors
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -1582,7 +1589,7 @@ specifier|protected
 name|NodeSet
 name|getParents
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet

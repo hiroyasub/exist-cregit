@@ -2162,6 +2162,12 @@ name|oldDoc
 init|=
 literal|null
 decl_stmt|;
+name|XMLReader
+name|reader
+decl_stmt|;
+name|InputSource
+name|source
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -2179,7 +2185,6 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|oldDoc
@@ -2521,14 +2526,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|XMLReader
 name|reader
-init|=
+operator|=
 name|getReader
 argument_list|(
 name|broker
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|reader
 operator|.
 name|setEntityResolver
@@ -2642,9 +2646,8 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
-name|InputSource
 name|source
-init|=
+operator|=
 operator|new
 name|InputSource
 argument_list|(
@@ -2654,7 +2657,7 @@ argument_list|(
 name|data
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 try|try
 block|{
 name|reader
@@ -2737,11 +2740,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -2749,7 +2747,6 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-block|}
 name|parser
 operator|.
 name|setValidating
@@ -2770,6 +2767,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// reset the input source
 name|source
 operator|=
@@ -2968,6 +2966,9 @@ name|oldDoc
 init|=
 literal|null
 decl_stmt|;
+name|XMLReader
+name|reader
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -2985,7 +2986,6 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|oldDoc
@@ -3327,14 +3327,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|XMLReader
 name|reader
-init|=
+operator|=
 name|getReader
 argument_list|(
 name|broker
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|reader
 operator|.
 name|setEntityResolver
@@ -3537,11 +3536,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -3549,7 +3543,6 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-block|}
 name|parser
 operator|.
 name|setValidating
@@ -3570,6 +3563,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// reset the input source
 try|try
 block|{
@@ -3827,6 +3821,9 @@ name|oldDoc
 init|=
 literal|null
 decl_stmt|;
+name|DOMStreamer
+name|streamer
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -3844,7 +3841,6 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|oldDoc
@@ -4176,13 +4172,12 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|DOMStreamer
 name|streamer
-init|=
+operator|=
 operator|new
 name|DOMStreamer
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|trigger
@@ -4343,11 +4338,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -4355,7 +4345,6 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-block|}
 name|parser
 operator|.
 name|setValidating
@@ -4376,6 +4365,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// second pass: store the document
 name|LOG
 operator|.

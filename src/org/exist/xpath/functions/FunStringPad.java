@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -251,7 +251,7 @@ comment|/** 	 * @param context 	 */
 specifier|public
 name|FunStringPad
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

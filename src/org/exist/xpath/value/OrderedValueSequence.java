@@ -240,20 +240,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"adding "
-operator|+
-name|other
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|other
@@ -500,23 +486,6 @@ argument_list|)
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"added "
-operator|+
-name|values
-index|[
-name|i
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 if|else if

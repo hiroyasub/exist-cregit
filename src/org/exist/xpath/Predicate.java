@@ -205,7 +205,7 @@ block|{
 specifier|public
 name|Predicate
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

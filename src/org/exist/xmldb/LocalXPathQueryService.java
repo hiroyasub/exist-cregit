@@ -211,7 +211,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -461,15 +461,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
+return|return
+operator|(
+name|String
+operator|)
+name|namespaceDecls
 operator|.
-name|NOT_IMPLEMENTED
+name|get
+argument_list|(
+name|prefix
 argument_list|)
-throw|;
+return|;
 block|}
 specifier|public
 name|String
@@ -866,7 +868,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|(
@@ -1064,11 +1066,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|StaticContext
+name|XQueryContext
 name|context
 init|=
 operator|new
-name|StaticContext
+name|XQueryContext
 argument_list|(
 name|broker
 argument_list|)

@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * CastExpression represents cast expressions as well as all type   * constructors.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -96,11 +96,11 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/** 	 * Constructor. When calling {@link #eval(Sequence, Item)}  	 * the passed expression will be cast into the required type and cardinality. 	 *  	 * @param context 	 */
 specifier|public
 name|CastExpression
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|Expression

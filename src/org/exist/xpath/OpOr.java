@@ -95,7 +95,7 @@ block|{
 specifier|public
 name|OpOr
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{

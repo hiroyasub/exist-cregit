@@ -249,7 +249,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -341,7 +341,7 @@ decl_stmt|;
 specifier|public
 name|ExtNear
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{
@@ -359,7 +359,7 @@ specifier|public
 name|Sequence
 name|evalQuery
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|String
@@ -509,7 +509,7 @@ specifier|private
 name|Sequence
 name|exactMatch
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet
@@ -778,7 +778,7 @@ specifier|private
 name|Sequence
 name|patternMatch
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|,
 name|NodeSet

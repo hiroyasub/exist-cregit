@@ -149,7 +149,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XQueryContext
 import|;
 end_import
 
@@ -293,7 +293,7 @@ comment|/** 	 * Constructor for FunId. 	 */
 specifier|public
 name|FunId
 parameter_list|(
-name|StaticContext
+name|XQueryContext
 name|context
 parameter_list|)
 block|{
