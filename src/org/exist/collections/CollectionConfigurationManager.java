@@ -724,6 +724,17 @@ name|String
 name|collectionPath
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|collectionPath
+operator|.
+name|startsWith
+argument_list|(
+name|CONFIG_COLLECTION
+argument_list|)
+condition|)
+return|return;
 name|collectionPath
 operator|=
 name|collectionPath
