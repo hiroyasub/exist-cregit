@@ -104,6 +104,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
+name|inWhereClause
+operator|&&
 name|Type
 operator|.
 name|subTypeOf

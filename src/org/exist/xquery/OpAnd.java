@@ -171,6 +171,9 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|inWhereClause
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
