@@ -463,6 +463,23 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+name|contentHandler
+operator|.
+name|characters
+argument_list|(
+name|value
+operator|.
+name|toCharArray
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|value
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#comment(char[], int, int) 	 */
 specifier|public
