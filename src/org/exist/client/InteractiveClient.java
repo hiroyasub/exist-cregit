@@ -1734,7 +1734,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/** 	 *  Register XML:DB driver and retrieve root collection. 	 * 	 *@exception  Exception  Description of the Exception 	 */
-specifier|private
+specifier|protected
 name|void
 name|connect
 parameter_list|()
@@ -10399,7 +10399,7 @@ literal|"quit."
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|protected
 specifier|final
 name|void
 name|shutdown
