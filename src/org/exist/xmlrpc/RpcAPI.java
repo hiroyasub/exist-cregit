@@ -1207,6 +1207,23 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 function_decl|;
+name|boolean
+name|copyCollection
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|String
+name|namedest
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+function_decl|;
 block|}
 end_interface
 
