@@ -1114,6 +1114,27 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|path
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Cannot read from URI: "
+operator|+
+name|uri
+operator|.
+name|toASCIIString
+argument_list|()
+argument_list|)
+throw|;
 name|File
 name|file
 init|=

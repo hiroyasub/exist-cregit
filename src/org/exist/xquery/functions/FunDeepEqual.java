@@ -706,6 +706,11 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 return|return
 literal|false
 return|;

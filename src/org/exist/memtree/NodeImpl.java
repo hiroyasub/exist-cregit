@@ -837,13 +837,9 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"annot compare persistent node with in-memory node"
-argument_list|)
-throw|;
+return|return
+literal|false
+return|;
 return|return
 name|nodeNumber
 operator|==
