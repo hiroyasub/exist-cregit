@@ -7907,61 +7907,14 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|configuration
-operator|==
-literal|null
-condition|)
-block|{
-name|String
-name|recursiv
-init|=
-name|parentHasDoc
-argument_list|(
-name|broker
-argument_list|,
-name|getName
-argument_list|()
-argument_list|,
-name|COLLECTION_CONFIG_FILE
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|recursiv
-operator|==
-literal|null
-operator|)
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|" -->Try to use conf from "
-operator|+
-name|recursiv
-argument_list|)
-expr_stmt|;
-name|configuration
-operator|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|recursiv
-argument_list|)
-operator|.
-name|readCollectionConfiguration
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//		if (configuration == null)
+comment|//		{
+comment|//			String recursiv = parentHasDoc(broker,getName(), COLLECTION_CONFIG_FILE );
+comment|//			if (!(recursiv == null)) {
+comment|//				LOG.debug (" -->Try to use conf from "+recursiv);
+comment|//				configuration = broker.getCollection( recursiv).readCollectionConfiguration(broker);
+comment|//			}
+comment|//		}
 return|return
 name|configuration
 return|;
@@ -8812,6 +8765,22 @@ name|test
 init|=
 literal|true
 decl_stmt|;
+name|CollectionCache
+name|cache
+init|=
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|cache
+init|)
+block|{
 while|while
 condition|(
 name|test
@@ -8866,6 +8835,7 @@ literal|false
 expr_stmt|;
 block|}
 comment|//				collection.release();
+block|}
 block|}
 block|}
 return|return
