@@ -553,7 +553,9 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented"
+literal|"Cannot append children to a node of type "
+operator|+
+name|nodeType
 argument_list|)
 throw|;
 block|}

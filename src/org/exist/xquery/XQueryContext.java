@@ -2091,6 +2091,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|builder
 operator|=
 operator|(
@@ -2101,6 +2102,7 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Set the base URI for the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() 	 * function. 	 *  	 * @param uri 	 */
 specifier|public

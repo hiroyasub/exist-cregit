@@ -692,15 +692,7 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//        		final long start = System.currentTimeMillis();
 specifier|final
 name|ExtArrayNodeSet
 name|result
@@ -1030,15 +1022,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"skipping doc "
-operator|+
-name|docId
-argument_list|)
-expr_stmt|;
 name|is
 operator|.
 name|skip
@@ -1197,35 +1180,14 @@ expr_stmt|;
 block|}
 block|}
 comment|//		result.sort();
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|qname
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//        				LOG.debug(
+comment|//        					"found "
+comment|//        						+ qname
+comment|//        						+ ": "
+comment|//        						+ result.getLength()
+comment|//        						+ " in "
+comment|//        						+ (System.currentTimeMillis() - start)
+comment|//        						+ "ms.");
 return|return
 name|result
 return|;

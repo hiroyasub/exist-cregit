@@ -677,7 +677,7 @@ name|nodeNr
 return|;
 block|}
 specifier|public
-name|void
+name|int
 name|addAttribute
 parameter_list|(
 name|QName
@@ -697,6 +697,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+literal|0
+operator|<
+name|lastNode
+operator|&&
 name|doc
 operator|.
 name|nodeKind
@@ -709,6 +713,8 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+name|lastNode
+operator|=
 name|characters
 argument_list|(
 name|value
@@ -717,6 +723,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|lastNode
+operator|=
 name|doc
 operator|.
 name|addAttribute
@@ -729,6 +737,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|lastNode
+return|;
 block|}
 comment|/** 	 * Create a new text node. 	 *  	 * @return the node number of the created node 	 */
 specifier|public

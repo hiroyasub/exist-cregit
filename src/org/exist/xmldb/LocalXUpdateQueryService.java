@@ -404,18 +404,6 @@ argument_list|,
 name|resource
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"updating resource "
-operator|+
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|docs
 operator|.
 name|add

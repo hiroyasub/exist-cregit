@@ -29,6 +29,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -151,6 +165,30 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeType()      */
+specifier|public
+name|short
+name|getNodeType
+parameter_list|()
+block|{
+return|return
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|ATTRIBUTE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */

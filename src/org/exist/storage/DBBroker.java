@@ -887,6 +887,15 @@ name|docFragmentationLimit
 operator|=
 literal|50
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"fragmentation = "
+operator|+
+name|docFragmentationLimit
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|pool

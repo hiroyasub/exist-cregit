@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Constructor for text nodes.  *   * @author wolf  */
+comment|/**  * Direct constructor for text nodes.  *   * @author wolf  */
 end_comment
 
 begin_class
