@@ -6399,8 +6399,13 @@ decl_stmt|;
 name|Vector
 name|entry
 decl_stmt|;
-for|for
-control|(
+if|if
+condition|(
+name|resultSet
+operator|!=
+literal|null
+condition|)
+block|{
 name|Iterator
 name|i
 init|=
@@ -6413,13 +6418,21 @@ operator|)
 operator|.
 name|iterator
 argument_list|()
-init|;
+decl_stmt|;
+if|if
+condition|(
+name|i
+operator|!=
+literal|null
+condition|)
+block|{
+while|while
+condition|(
 name|i
 operator|.
 name|hasNext
 argument_list|()
-condition|;
-control|)
+condition|)
 block|{
 name|p
 operator|=
@@ -6472,6 +6485,24 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"iterator was null. Should not!"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"result set was null. Should not!"
+argument_list|)
+expr_stmt|;
 break|break;
 default|default :
 name|ValueSet

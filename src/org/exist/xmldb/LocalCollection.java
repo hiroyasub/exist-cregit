@@ -592,18 +592,6 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"resources = "
-operator|+
-name|collection
-operator|.
-name|getDocumentCount
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|collection
