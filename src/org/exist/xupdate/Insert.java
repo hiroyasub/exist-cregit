@@ -161,6 +161,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|StorageAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -466,6 +478,32 @@ argument_list|(
 literal|"permission to remove document denied"
 argument_list|)
 throw|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"processing "
+operator|+
+name|node
+operator|.
+name|getGID
+argument_list|()
+operator|+
+literal|" ["
+operator|+
+name|StorageAddress
+operator|.
+name|toString
+argument_list|(
+name|node
+operator|.
+name|getInternalAddress
+argument_list|()
+argument_list|)
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 name|parent
 operator|=
 operator|(
@@ -475,18 +513,6 @@ name|node
 operator|.
 name|getParentNode
 argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"processing "
-operator|+
-name|parent
-operator|.
-name|getGID
-argument_list|()
-argument_list|)
 expr_stmt|;
 switch|switch
 condition|(

@@ -205,6 +205,42 @@ block|}
 specifier|public
 specifier|final
 specifier|static
+name|boolean
+name|equals
+parameter_list|(
+name|long
+name|p0
+parameter_list|,
+name|long
+name|p1
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|(
+name|p0
+operator|&
+literal|0xFFFFFFFF0000FFFFL
+operator|)
+operator|==
+operator|(
+name|p1
+operator|&
+literal|0xFFFFFFFF0000FFFFL
+operator|)
+operator|)
+return|;
+block|}
+comment|//	public final static boolean equals(long p0, long p1) {
+comment|//		if(pageFromPointer(p0) != pageFromPointer(p1))
+comment|//			return false;
+comment|//		if(tidFromPointer(p0) != tidFromPointer(p1))
+comment|//			return false;
+comment|//		return true;
+comment|//	}
+specifier|public
+specifier|final
+specifier|static
 name|void
 name|write
 parameter_list|(
@@ -283,6 +319,30 @@ name|is
 operator|.
 name|readShort
 argument_list|()
+argument_list|)
+return|;
+block|}
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|toString
+parameter_list|(
+name|long
+name|pointer
+parameter_list|)
+block|{
+return|return
+name|pageFromPointer
+argument_list|(
+name|pointer
+argument_list|)
+operator|+
+literal|":"
+operator|+
+name|tidFromPointer
+argument_list|(
+name|pointer
 argument_list|)
 return|;
 block|}

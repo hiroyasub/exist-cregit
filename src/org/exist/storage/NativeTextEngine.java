@@ -3082,7 +3082,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-comment|//entries = dbWords.findKeys(query);
 block|}
 catch|catch
 parameter_list|(
@@ -3112,26 +3111,6 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-comment|//			if (entries == null) {
-comment|//				LOG.error("could not remove collection");
-comment|//				return;
-comment|//			}
-comment|//			LOG.debug("found " + entries.size() + " words.");
-comment|//			Value val;
-comment|//			for (Iterator i = entries.iterator(); i.hasNext();) {
-comment|//				val = (Value) i.next();
-comment|//				try {
-comment|//					lock.acquire(this, Lock.WRITE_LOCK);
-comment|//					lock.enter(this);
-comment|//					//dbWords.remove(val);
-comment|//					dbWords.remove(val.getAddress());
-comment|//					dbWords.removeValue(val);
-comment|//				} catch (LockException e) {
-comment|//					LOG.warn("could not acquire lock on words db", e);
-comment|//				} finally {
-comment|//					lock.release(this);
-comment|//				}
-comment|//			}
 name|LOG
 operator|.
 name|debug
@@ -4871,9 +4850,6 @@ condition|;
 name|j
 operator|++
 control|)
-block|{
-comment|//delta = is.readLong();
-comment|//os.writeLong(delta);
 name|is
 operator|.
 name|copyTo
@@ -4881,7 +4857,6 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -5191,13 +5166,12 @@ decl_stmt|;
 name|WordRef
 name|ref
 decl_stmt|;
-name|Value
-name|val
-init|=
-literal|null
-decl_stmt|;
 name|VariableByteInputStream
 name|is
+init|=
+operator|new
+name|VariableByteInputStream
+argument_list|()
 decl_stmt|;
 name|VariableByteOutputStream
 name|os
@@ -5205,6 +5179,11 @@ init|=
 operator|new
 name|VariableByteOutputStream
 argument_list|()
+decl_stmt|;
+name|InputStream
+name|dis
+init|=
+literal|null
 decl_stmt|;
 name|Lock
 name|lock
@@ -5287,11 +5266,11 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|val
+name|dis
 operator|=
 name|dbWords
 operator|.
-name|get
+name|getAsStream
 argument_list|(
 name|ref
 argument_list|)
@@ -5330,32 +5309,24 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|val
+name|dis
 operator|!=
 literal|null
 condition|)
 block|{
 comment|// add old entries to the new list
-name|data
-operator|=
-name|val
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
 name|is
-operator|=
-operator|new
-name|VariableByteInputStream
+operator|.
+name|setInputStream
 argument_list|(
-name|data
+name|dis
 argument_list|)
 expr_stmt|;
 try|try
 block|{
 while|while
 condition|(
-name|is
+name|dis
 operator|.
 name|available
 argument_list|()
@@ -5403,36 +5374,20 @@ argument_list|(
 name|len
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|len
-condition|;
-name|j
-operator|++
-control|)
-block|{
-comment|//delta = is.readLong();
-comment|//os.writeLong(delta);
 name|is
 operator|.
 name|copyTo
 argument_list|(
 name|os
+argument_list|,
+name|len
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
 comment|// copy nodes to new list
-name|last
+name|gid
 operator|=
 literal|0
 expr_stmt|;
@@ -5459,14 +5414,8 @@ name|readLong
 argument_list|()
 expr_stmt|;
 name|gid
-operator|=
-name|last
-operator|+
+operator|+=
 name|delta
-expr_stmt|;
-name|last
-operator|=
-name|gid
 expr_stmt|;
 if|if
 condition|(
@@ -5537,17 +5486,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"end-of-file while reading index entry for "
-operator|+
-name|word
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//LOG.error("end-of-file while reading index entry for " + word, e);
 block|}
 catch|catch
 parameter_list|(
@@ -5712,7 +5651,7 @@ try|try
 block|{
 if|if
 condition|(
-name|val
+name|dis
 operator|==
 literal|null
 condition|)
@@ -5726,11 +5665,19 @@ name|data
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|dbWords
 operator|.
 name|update
 argument_list|(
-name|val
+operator|(
+operator|(
+name|BFile
+operator|.
+name|PageInputStream
+operator|)
+name|dis
+operator|)
 operator|.
 name|getAddress
 argument_list|()
@@ -5740,6 +5687,7 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -5774,7 +5722,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//words = new TreeMap();
 name|words
 operator|.
 name|clear
@@ -6066,7 +6013,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//words = new TreeMap();
 block|}
 specifier|private
 name|void

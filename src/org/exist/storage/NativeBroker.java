@@ -5003,7 +5003,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|// remove dom index
+comment|// remove old dom index
 name|Value
 name|ref
 init|=
@@ -5060,6 +5060,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ArrayList
 name|nodes
 init|=
@@ -5172,7 +5173,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//domDb.flush();
 block|}
 catch|catch
 parameter_list|(
@@ -5213,10 +5213,14 @@ name|e
 parameter_list|)
 block|{
 comment|// timed out
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|warn
+argument_list|(
+literal|"lock timed out during reindex"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 return|return;
 block|}
@@ -5228,6 +5232,7 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+comment|// reindex the nodes
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -5701,6 +5706,22 @@ operator|.
 name|ELEMENT_NODE
 case|:
 comment|// save element by calling ElementIndex
+name|tempProxy
+operator|.
+name|setHasIndex
+argument_list|(
+name|idx
+operator|==
+literal|null
+operator|||
+name|idx
+operator|.
+name|match
+argument_list|(
+name|currentPath
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|elementIndex
 operator|.
 name|setDocument
@@ -5723,6 +5744,22 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+name|tempProxy
+operator|.
+name|setHasIndex
+argument_list|(
+name|idx
+operator|==
+literal|null
+operator|||
+name|idx
+operator|.
+name|match
+argument_list|(
+name|currentPath
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|elementIndex
 operator|.
 name|setDocument
@@ -5798,13 +5835,6 @@ operator|.
 name|ID
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"storing ID"
-argument_list|)
-expr_stmt|;
 name|elementIndex
 operator|.
 name|addRow
@@ -5914,13 +5944,9 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|long
-name|firstChildId
+name|DocumentImpl
+name|doc
 init|=
-name|XMLUtil
-operator|.
-name|getFirstChildId
-argument_list|(
 operator|(
 name|DocumentImpl
 operator|)
@@ -5928,6 +5954,16 @@ name|node
 operator|.
 name|getOwnerDocument
 argument_list|()
+decl_stmt|;
+specifier|final
+name|long
+name|firstChildId
+init|=
+name|XMLUtil
+operator|.
+name|getFirstChildId
+argument_list|(
+name|doc
 argument_list|,
 name|node
 operator|.
@@ -5987,18 +6023,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|node
-operator|.
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
 name|long
 name|p
 decl_stmt|;
@@ -6023,8 +6047,6 @@ name|gid
 operator|++
 control|)
 block|{
-comment|//value = (Value) iterator.next();
-comment|//child = NodeImpl.deserialize(value.data(), value.start(), value.length(), doc);
 name|child
 operator|=
 operator|(
@@ -6042,8 +6064,6 @@ argument_list|(
 name|gid
 argument_list|)
 expr_stmt|;
-comment|//child.setOwnerDocument(doc);
-comment|//child.setInternalAddress(value.getAddress());
 name|scanNodes
 argument_list|(
 name|iterator
@@ -11349,6 +11369,18 @@ operator|.
 name|serialize
 argument_list|()
 decl_stmt|;
+specifier|final
+name|DocumentImpl
+name|doc
+init|=
+operator|(
+name|DocumentImpl
+operator|)
+name|previous
+operator|.
+name|getOwnerDocument
+argument_list|()
+decl_stmt|;
 operator|new
 name|DOMTransaction
 argument_list|(
@@ -11370,7 +11402,6 @@ operator|.
 name|getInternalAddress
 argument_list|()
 decl_stmt|;
-comment|//				LOG.debug("inserting new child after " + address);
 if|if
 condition|(
 name|address
@@ -11384,6 +11415,8 @@ name|domDb
 operator|.
 name|insertAfter
 argument_list|(
+name|doc
+argument_list|,
 name|address
 argument_list|,
 name|data
@@ -11397,15 +11430,7 @@ init|=
 operator|new
 name|NodeRef
 argument_list|(
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|previous
-operator|.
-name|getOwnerDocument
-argument_list|()
-operator|)
+name|doc
 operator|.
 name|getDocId
 argument_list|()
@@ -11422,6 +11447,8 @@ name|domDb
 operator|.
 name|insertAfter
 argument_list|(
+name|doc
+argument_list|,
 name|ref
 argument_list|,
 name|data

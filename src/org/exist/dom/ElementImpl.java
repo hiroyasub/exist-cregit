@@ -1353,11 +1353,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//		try {
-comment|//			ownerDocument.broker.saveCollection(ownerDocument.getCollection());
-comment|//		} catch (PermissionDeniedException e) {
-comment|//			throw new DOMException(DOMException.INVALID_ACCESS_ERR, e.getMessage());
-comment|//		}
 return|return
 name|node
 return|;
@@ -5009,12 +5004,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|//		try {
-comment|//			ownerDocument.broker.saveCollection(ownerDocument.getCollection());
-comment|//		} catch (PermissionDeniedException e) {
-comment|//			// TODO Auto-generated catch block
-comment|//			e.printStackTrace();
-comment|//		}
 return|return
 name|result
 return|;
