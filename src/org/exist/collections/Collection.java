@@ -4311,25 +4311,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found old doc "
-operator|+
-name|oldDoc
-operator|.
-name|getDocId
-argument_list|()
-operator|+
-literal|"; identity = "
-operator|+
-name|oldDoc
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("Found old doc " + oldDoc.getDocId() + "; identity = " + oldDoc.hashCode());
 comment|// check if the document is locked by another user
 name|User
 name|lockUser
