@@ -27,6 +27,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigInteger
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -36,6 +46,10 @@ operator|.
 name|XPathException
 import|;
 end_import
+
+begin_comment
+comment|/** [Definition:]   integer is ·derived· from decimal by fixing the value of ·fractionDigits· to be 0.   * This results in the standard mathematical concept of the integer numbers.   * The ·value space· of integer is the infinite set {...,-2,-1,0,1,2,...}.   * The ·base type· of integer is decimal.  * cf http://www.w3.org/TR/xmlschema-2/#integer   */
+end_comment
 
 begin_class
 specifier|public
@@ -57,9 +71,22 @@ literal|0
 argument_list|)
 decl_stmt|;
 specifier|private
-name|long
+specifier|static
+specifier|final
+name|BigInteger
+name|ZERO_BIGINTEGER
+init|=
+operator|new
+name|BigInteger
+argument_list|(
+literal|"0"
+argument_list|)
+decl_stmt|;
+specifier|private
+name|BigInteger
 name|value
 decl_stmt|;
+comment|// 	private long value;
 specifier|private
 name|int
 name|type
@@ -79,8 +106,14 @@ name|this
 operator|.
 name|value
 operator|=
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
 name|value
+argument_list|)
 expr_stmt|;
+comment|// new BigInteger(value);
 block|}
 specifier|public
 name|IntegerValue
@@ -143,13 +176,13 @@ try|try
 block|{
 name|value
 operator|=
-name|Long
-operator|.
-name|parseLong
+operator|new
+name|BigInteger
 argument_list|(
 name|stringValue
 argument_list|)
 expr_stmt|;
+comment|// Long.parseLong(stringValue);
 block|}
 catch|catch
 parameter_list|(
@@ -203,13 +236,13 @@ try|try
 block|{
 name|value
 operator|=
-name|Long
-operator|.
-name|parseLong
+operator|new
+name|BigInteger
 argument_list|(
 name|stringValue
 argument_list|)
 expr_stmt|;
+comment|// Long.parseLong(stringValue);
 block|}
 catch|catch
 parameter_list|(
@@ -245,6 +278,43 @@ argument_list|,
 name|type
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** 	 * @param value2 	 * @param requiredType 	 */
+specifier|public
+name|IntegerValue
+parameter_list|(
+name|BigInteger
+name|value2
+parameter_list|,
+name|int
+name|requiredType
+parameter_list|)
+block|{
+comment|// TODO Auto-generated constructor stub
+block|}
+comment|/** 	 * @param integer 	 */
+specifier|public
+name|IntegerValue
+parameter_list|(
+name|BigInteger
+name|integer
+parameter_list|)
+block|{
+comment|// TODO Auto-generated constructor stub
+block|}
+comment|/** 	 * @param value2 	 * @param type2 	 */
+specifier|private
+name|void
+name|checkType
+parameter_list|(
+name|BigInteger
+name|value2
+parameter_list|,
+name|int
+name|type2
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 specifier|private
 specifier|final
@@ -477,6 +547,9 @@ parameter_list|()
 block|{
 return|return
 name|value
+operator|.
+name|longValue
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -491,7 +564,12 @@ name|this
 operator|.
 name|value
 operator|=
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
 name|value
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
@@ -501,12 +579,11 @@ name|getStringValue
 parameter_list|()
 block|{
 return|return
-name|Long
+comment|// Long.toString(value);
+name|value
 operator|.
 name|toString
-argument_list|(
-name|value
-argument_list|)
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
@@ -643,6 +720,9 @@ operator|new
 name|DoubleValue
 argument_list|(
 name|value
+operator|.
+name|doubleValue
+argument_list|()
 argument_list|)
 return|;
 case|case
@@ -663,9 +743,15 @@ name|Type
 operator|.
 name|BOOLEAN
 case|:
+comment|// return (value == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
 return|return
 operator|(
 name|value
+operator|.
+name|compareTo
+argument_list|(
+name|ZERO_BIGINTEGER
+argument_list|)
 operator|==
 literal|0
 operator|)
@@ -703,11 +789,12 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
-name|int
-operator|)
 name|value
+operator|.
+name|intValue
+argument_list|()
 return|;
+comment|// (int) value;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getLong() 	 */
 specifier|public
@@ -719,6 +806,9 @@ name|XPathException
 block|{
 return|return
 name|value
+operator|.
+name|longValue
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getDouble() 	 */
@@ -730,11 +820,12 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
-name|double
-operator|)
 name|value
+operator|.
+name|doubleValue
+argument_list|()
 return|;
+comment|// (double) value;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
 specifier|public
@@ -745,10 +836,22 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 name|value
-operator|!=
+operator|.
+name|compareTo
+argument_list|(
+name|ZERO_BIGINTEGER
+argument_list|)
+operator|==
 literal|0
+operator|)
+condition|?
+literal|false
+else|:
+literal|true
 return|;
+comment|// value != 0;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
 specifier|public
@@ -813,12 +916,15 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+comment|// return new IntegerValue(value - ((IntegerValue) other).value, type);
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|-
+operator|.
+name|subtract
+argument_list|(
 operator|(
 operator|(
 name|IntegerValue
@@ -827,6 +933,7 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|)
 argument_list|,
 name|type
 argument_list|)
@@ -879,12 +986,15 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+comment|// return new IntegerValue(value + ((IntegerValue) other).value, type);
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|+
+operator|.
+name|add
+argument_list|(
 operator|(
 operator|(
 name|IntegerValue
@@ -893,6 +1003,7 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|)
 argument_list|,
 name|type
 argument_list|)
@@ -945,12 +1056,15 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+comment|// return new IntegerValue(value * ((IntegerValue) other).value, type);
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|*
+operator|.
+name|multiply
+argument_list|(
 operator|(
 operator|(
 name|IntegerValue
@@ -959,6 +1073,7 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|)
 argument_list|,
 name|type
 argument_list|)
@@ -984,7 +1099,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
+comment|/** The div operator performs floating-point division according to IEEE 754. 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|div
@@ -1004,6 +1119,7 @@ condition|)
 block|{
 if|if
 condition|(
+operator|!
 operator|(
 operator|(
 name|IntegerValue
@@ -1011,10 +1127,10 @@ operator|)
 name|other
 operator|)
 operator|.
-name|value
-operator|==
-literal|0
+name|effectiveBooleanValue
+argument_list|()
 condition|)
+comment|// value == 0)
 throw|throw
 operator|new
 name|XPathException
@@ -1033,11 +1149,17 @@ name|other
 operator|)
 operator|.
 name|value
+operator|.
+name|doubleValue
+argument_list|()
 decl_stmt|;
 name|double
 name|d
 init|=
 name|value
+operator|.
+name|doubleValue
+argument_list|()
 decl_stmt|;
 return|return
 operator|new
@@ -1097,7 +1219,8 @@ name|INTEGER
 argument_list|)
 condition|)
 block|{
-name|long
+comment|// long ov = ((IntegerValue) other).value.longValue();
+name|BigInteger
 name|ov
 init|=
 operator|(
@@ -1111,10 +1234,18 @@ name|value
 decl_stmt|;
 if|if
 condition|(
-name|ov
-operator|==
-literal|0
+operator|!
+operator|(
+operator|(
+name|IntegerValue
+operator|)
+name|other
+operator|)
+operator|.
+name|effectiveBooleanValue
+argument_list|()
 condition|)
+comment|// if (ov == 0)
 throw|throw
 operator|new
 name|XPathException
@@ -1127,8 +1258,11 @@ operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|/
+operator|.
+name|divide
+argument_list|(
 name|ov
+argument_list|)
 argument_list|,
 name|type
 argument_list|)
@@ -1182,7 +1316,8 @@ name|INTEGER
 argument_list|)
 condition|)
 block|{
-name|long
+comment|// long ov = ((IntegerValue) other).value.longValue();
+name|BigInteger
 name|ov
 init|=
 operator|(
@@ -1196,10 +1331,18 @@ name|value
 decl_stmt|;
 if|if
 condition|(
-name|ov
-operator|==
-literal|0
+operator|!
+operator|(
+operator|(
+name|IntegerValue
+operator|)
+name|other
+operator|)
+operator|.
+name|effectiveBooleanValue
+argument_list|()
 condition|)
+comment|// if (ov == 0)
 throw|throw
 operator|new
 name|XPathException
@@ -1212,8 +1355,11 @@ operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|%
+operator|.
+name|remainder
+argument_list|(
 name|ov
+argument_list|)
 argument_list|,
 name|type
 argument_list|)
@@ -1252,8 +1398,10 @@ return|return
 operator|new
 name|IntegerValue
 argument_list|(
-operator|-
 name|value
+operator|.
+name|negate
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1265,16 +1413,15 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|// return new IntegerValue(Math.abs(value), type);
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
-name|Math
+name|value
 operator|.
 name|abs
-argument_list|(
-name|value
-argument_list|)
+argument_list|()
 argument_list|,
 name|type
 argument_list|)
@@ -1291,32 +1438,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|other
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|INTEGER
-argument_list|)
-condition|)
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
-name|Math
+name|value
 operator|.
 name|max
 argument_list|(
-name|value
-argument_list|,
 operator|(
 operator|(
 name|IntegerValue
@@ -1326,35 +1455,6 @@ operator|)
 operator|.
 name|value
 argument_list|)
-argument_list|)
-return|;
-else|else
-return|return
-operator|new
-name|IntegerValue
-argument_list|(
-name|Math
-operator|.
-name|max
-argument_list|(
-name|value
-argument_list|,
-operator|(
-operator|(
-name|IntegerValue
-operator|)
-name|other
-operator|.
-name|convertTo
-argument_list|(
-name|type
-argument_list|)
-operator|)
-operator|.
-name|value
-argument_list|)
-argument_list|,
-name|type
 argument_list|)
 return|;
 block|}
@@ -1368,32 +1468,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|other
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|INTEGER
-argument_list|)
-condition|)
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
-name|Math
+name|value
 operator|.
 name|min
 argument_list|(
-name|value
-argument_list|,
 operator|(
 operator|(
 name|IntegerValue
@@ -1403,35 +1485,6 @@ operator|)
 operator|.
 name|value
 argument_list|)
-argument_list|)
-return|;
-else|else
-return|return
-operator|new
-name|IntegerValue
-argument_list|(
-name|Math
-operator|.
-name|min
-argument_list|(
-name|value
-argument_list|,
-operator|(
-operator|(
-name|IntegerValue
-operator|)
-name|other
-operator|.
-name|convertTo
-argument_list|(
-name|type
-argument_list|)
-operator|)
-operator|.
-name|value
-argument_list|)
-argument_list|,
-name|type
 argument_list|)
 return|;
 block|}
@@ -1644,11 +1697,15 @@ name|long
 operator|.
 name|class
 condition|)
+comment|// ?? jmv: return new Long(value);
 return|return
 operator|new
 name|Long
 argument_list|(
 name|value
+operator|.
+name|longValue
+argument_list|()
 argument_list|)
 return|;
 if|else if
@@ -1689,6 +1746,9 @@ operator|)
 name|v
 operator|.
 name|value
+operator|.
+name|intValue
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1730,6 +1790,9 @@ operator|)
 name|v
 operator|.
 name|value
+operator|.
+name|shortValue
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1771,6 +1834,9 @@ operator|)
 name|v
 operator|.
 name|value
+operator|.
+name|byteValue
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1881,13 +1947,12 @@ name|String
 operator|.
 name|class
 condition|)
+comment|// return Long.toString(value);
 return|return
-name|Long
+name|value
 operator|.
 name|toString
-argument_list|(
-name|value
-argument_list|)
+argument_list|()
 return|;
 if|else if
 condition|(
@@ -1898,12 +1963,9 @@ operator|.
 name|class
 condition|)
 return|return
-operator|new
-name|Long
-argument_list|(
 name|value
-argument_list|)
 return|;
+comment|// Long(value);
 throw|throw
 operator|new
 name|XPathException
