@@ -390,10 +390,7 @@ name|getProperty
 argument_list|(
 literal|"base-uri"
 argument_list|,
-name|collection
-operator|.
-name|getPath
-argument_list|()
+literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -409,7 +406,7 @@ name|outputProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"base-uri"
+literal|"base-collection"
 argument_list|,
 name|collection
 operator|.
@@ -883,10 +880,7 @@ name|getProperty
 argument_list|(
 literal|"base-uri"
 argument_list|,
-name|collection
-operator|.
-name|getPath
-argument_list|()
+literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -902,7 +896,7 @@ name|outputProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"base-uri"
+literal|"base-collection"
 argument_list|,
 name|collection
 operator|.
@@ -1597,10 +1591,7 @@ name|getProperty
 argument_list|(
 literal|"base-uri"
 argument_list|,
-name|collection
-operator|.
-name|getPath
-argument_list|()
+literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1616,7 +1607,7 @@ name|outputProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"base-uri"
+literal|"base-collection"
 argument_list|,
 name|collection
 operator|.
