@@ -2559,7 +2559,7 @@ init|=
 operator|(
 name|istream
 operator|.
-name|readByte
+name|readInt
 argument_list|()
 operator|&
 literal|0777
@@ -7812,11 +7812,8 @@ expr_stmt|;
 block|}
 name|ostream
 operator|.
-name|writeByte
+name|writeInt
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|permissions
 operator|.
 name|getPermissions
