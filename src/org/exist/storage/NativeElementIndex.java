@@ -165,18 +165,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|ByteArrayPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|Configuration
 import|;
 end_import
@@ -2224,7 +2212,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//elementIds = new TreeMap();
 block|}
 specifier|public
 name|void

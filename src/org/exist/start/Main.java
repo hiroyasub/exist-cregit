@@ -1589,7 +1589,7 @@ block|{
 comment|//_classname = "org.exist.client.InteractiveClient";
 name|_classname
 operator|=
-literal|"org.exist.InteractiveClient"
+literal|"org.exist.client.InteractiveClient"
 expr_stmt|;
 name|_mode
 operator|=

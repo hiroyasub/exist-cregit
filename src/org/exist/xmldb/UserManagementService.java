@@ -17,6 +17,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Group
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Permission
 import|;
 end_import
@@ -69,6 +81,34 @@ specifier|public
 name|String
 name|getVersion
 parameter_list|()
+function_decl|;
+comment|/** 	 * Set permissions for the specified collection. 	 *  	 * @param child 	 * @param perm 	 * @throws XMLDBException 	 */
+specifier|public
+name|void
+name|setPermissions
+parameter_list|(
+name|Collection
+name|child
+parameter_list|,
+name|Permission
+name|perm
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/** 	 * Set permissions for the specified resource. 	 *  	 * @param resource 	 * @param perm 	 * @throws XMLDBException 	 */
+specifier|public
+name|void
+name|setPermissions
+parameter_list|(
+name|Resource
+name|resource
+parameter_list|,
+name|Permission
+name|perm
+parameter_list|)
+throws|throws
+name|XMLDBException
 function_decl|;
 comment|/**      *  Change owner and group of the current collection.      *      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
@@ -191,6 +231,15 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @return 	 * @throws XMLDBException 	 */
+specifier|public
+name|String
+index|[]
+name|getGroups
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      *  Get a property defined by this service.      *      *@param  property            Description of the Parameter      *@return                     The property value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
@@ -272,8 +321,8 @@ specifier|public
 name|void
 name|removeUser
 parameter_list|(
-name|String
-name|name
+name|User
+name|user
 parameter_list|)
 throws|throws
 name|XMLDBException

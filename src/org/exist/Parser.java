@@ -639,8 +639,6 @@ name|int
 name|currentLine
 init|=
 literal|0
-decl_stmt|,
-name|maxLine
 decl_stmt|;
 specifier|protected
 name|StringBuffer
@@ -3153,7 +3151,7 @@ name|document
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Prepare for storing the document.  		 *  		 * The document is parsed for validation. If a document with the same  		 * name exists and updates are allowed, the old document is removed.  		 * 		 *@param  src                            InputSource 		 *@param  xmlFileName                    name of the document 		 *@exception  SAXException                		 *@exception  IOException                 		 *@exception  PermissionDeniedException   		 */
+comment|/** 		 *  Prepare for storing the document.  		 *  		 * The document is parsed for validation. If a document with the same  		 * name exists and updates are allowed, the old document is removed.  		 * 		 *@param  src                            InputSource 		 *@param  xmlFileName                    name of the document 		 *@exception  SAXException                		 *@exception  IOException                 		 *@exception  PermissionDeniedException   	*/
 specifier|public
 name|void
 name|scan

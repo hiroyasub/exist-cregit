@@ -212,6 +212,15 @@ return|return
 literal|"1.0"
 return|;
 block|}
+specifier|public
+name|boolean
+name|isLocalInstance
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/** 	 * @see org.xmldb.api.base.Service#setCollection(org.xmldb.api.base.Collection) 	 */
 specifier|public
 name|void

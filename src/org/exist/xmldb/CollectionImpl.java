@@ -2174,6 +2174,12 @@ operator|.
 name|INVALID_RESOURCE
 argument_list|,
 name|xre
+operator|==
+literal|null
+condition|?
+literal|"unknown error"
+else|:
+name|xre
 operator|.
 name|getMessage
 argument_list|()

@@ -62,6 +62,12 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Returns true if the database instance is running local, i.e. in 	 * the same thread as this service. 	 *   	 * @return 	 */
+specifier|public
+name|boolean
+name|isLocalInstance
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

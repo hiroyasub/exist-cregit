@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|StringUtil
+name|UTF8
 import|;
 end_import
 
@@ -569,9 +569,9 @@ name|ByteArrayPool
 operator|.
 name|getByteArray
 argument_list|(
-name|StringUtil
+name|UTF8
 operator|.
-name|utflen
+name|encoded
 argument_list|(
 name|value
 argument_list|)
@@ -636,10 +636,12 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|StringUtil
+name|UTF8
 operator|.
-name|utfwrite
+name|encode
 argument_list|(
+name|value
+argument_list|,
 name|data
 argument_list|,
 literal|1
@@ -650,8 +652,6 @@ name|getLength
 argument_list|(
 name|idSizeType
 argument_list|)
-argument_list|,
-name|value
 argument_list|)
 expr_stmt|;
 return|return

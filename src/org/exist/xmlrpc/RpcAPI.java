@@ -991,7 +991,17 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-specifier|public
+name|Vector
+name|getGroups
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 name|Vector
 name|getIndexedElements
 parameter_list|(
@@ -1009,7 +1019,6 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|Vector
 name|scanIndexTerms
 parameter_list|(
@@ -1033,7 +1042,6 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 function_decl|;
-specifier|public
 name|void
 name|releaseQueryResult
 parameter_list|(
@@ -1041,7 +1049,6 @@ name|int
 name|handle
 parameter_list|)
 function_decl|;
-specifier|public
 name|int
 name|xupdate
 parameter_list|(
@@ -1062,7 +1069,6 @@ name|EXistException
 throws|,
 name|SAXException
 function_decl|;
-specifier|public
 name|int
 name|xupdateResource
 parameter_list|(

@@ -341,14 +341,12 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|// is pid member of the context set?
-comment|/*// commented out by Timo Boehme: next is wrong because we have 		 * to test for current node set */
-comment|//NodeProxy parent = context.get(node.doc, pid);
-comment|// -- inserted by Timo Boehme --
-comment|// is pid member of the virutal set?
+comment|//System.out.println(node.gid + " -> " + pid);
 name|NodeProxy
 name|parent
 init|=
+name|context
+operator|.
 name|get
 argument_list|(
 name|node
@@ -363,6 +361,10 @@ condition|(
 name|parent
 operator|!=
 literal|null
+operator|&&
+name|recursions
+operator|>
+literal|0
 condition|)
 return|return
 name|first
@@ -373,7 +375,7 @@ name|parent
 else|:
 name|first
 return|;
-if|else if
+if|if
 condition|(
 name|pid
 operator|<
@@ -382,7 +384,7 @@ condition|)
 return|return
 literal|null
 return|;
-if|else if
+if|if
 condition|(
 name|axis
 operator|==
@@ -772,8 +774,26 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-comment|//if(realSet != null)
-comment|//	return super.parentWithChild(doc, gid, directParent, includeSelf);
+if|if
+condition|(
+name|realSet
+operator|!=
+literal|null
+condition|)
+return|return
+name|super
+operator|.
+name|parentWithChild
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|,
+name|directParent
+argument_list|,
+name|includeSelf
+argument_list|)
+return|;
 name|NodeProxy
 name|first
 init|=
@@ -923,10 +943,7 @@ argument_list|()
 argument_list|,
 name|proxy
 operator|.
-name|doc
-operator|.
-name|getDocumentElementId
-argument_list|()
+name|gid
 argument_list|)
 decl_stmt|;
 name|result

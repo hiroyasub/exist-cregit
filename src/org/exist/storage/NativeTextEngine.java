@@ -5681,11 +5681,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|words
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|progress
 operator|.
 name|finish
@@ -5698,6 +5693,11 @@ name|notifyObservers
 argument_list|(
 name|progress
 argument_list|)
+expr_stmt|;
+name|words
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 specifier|private
