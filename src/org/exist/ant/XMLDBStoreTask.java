@@ -495,6 +495,20 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+comment|// It's necessary to do this translation on Windows, and possibly MacOS:
+name|relDir
+operator|=
+name|relDir
+operator|.
+name|replace
+argument_list|(
+name|File
+operator|.
+name|separatorChar
+argument_list|,
+literal|'/'
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|createSubcollections
