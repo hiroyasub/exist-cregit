@@ -82,7 +82,7 @@ specifier|private
 name|long
 name|syncPeriod
 init|=
-literal|150000
+literal|15000
 decl_stmt|;
 specifier|public
 name|ClockCache
