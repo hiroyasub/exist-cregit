@@ -4075,6 +4075,12 @@ argument_list|(
 literal|512
 argument_list|)
 decl_stmt|;
+specifier|private
+name|long
+name|currentSize
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 name|InvertedIndex
 parameter_list|()

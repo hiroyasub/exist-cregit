@@ -5928,7 +5928,7 @@ name|bytesCount
 operator|=
 literal|0
 expr_stmt|;
-name|fileCount
+name|filesCount
 operator|=
 literal|0
 expr_stmt|;
@@ -5960,7 +5960,7 @@ name|println
 argument_list|(
 literal|"storing "
 operator|+
-name|fileCount
+name|filesCount
 operator|+
 literal|" files ("
 operator|+
@@ -5984,6 +5984,10 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+return|return
+name|result
+return|;
+block|}
 else|else
 name|files
 operator|=

@@ -701,6 +701,13 @@ name|FILE_BUFFER_SIZE
 init|=
 literal|131072
 decl_stmt|;
+specifier|protected
+specifier|static
+name|int
+name|MEM_LIMIT_CHECK
+init|=
+literal|10000
+decl_stmt|;
 specifier|private
 specifier|static
 name|Category
@@ -816,6 +823,12 @@ decl_stmt|;
 specifier|protected
 name|int
 name|memMinFree
+decl_stmt|;
+specifier|protected
+name|int
+name|nodesCount
+init|=
+literal|0
 decl_stmt|;
 specifier|private
 specifier|final
@@ -2303,6 +2316,10 @@ argument_list|(
 name|namespacesDb
 argument_list|)
 expr_stmt|;
+name|nodesCount
+operator|=
+literal|0
+expr_stmt|;
 block|}
 comment|/** 	 *  get all the documents in this database repository. The documents are 	 *  returned as a DocumentSet. 	 * 	 *@param  user  Description of the Parameter 	 *@return       The allDocuments value 	 */
 specifier|public
@@ -2640,6 +2657,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|//        final long start = System.currentTimeMillis();
 name|name
 operator|=
 name|normalizeCollectionName
@@ -2756,6 +2774,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2796,6 +2815,7 @@ condition|)
 return|return
 literal|null
 return|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -2841,6 +2861,8 @@ return|return
 literal|null
 return|;
 block|}
+comment|//        LOG.debug("loading collection " + name + " took " +
+comment|//            (System.currentTimeMillis() - start) + "ms.");
 return|return
 name|collection
 return|;
@@ -2985,6 +3007,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"unexpected io error"
+argument_list|,
 name|ioe
 argument_list|)
 expr_stmt|;
@@ -9782,6 +9806,9 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+operator|++
+name|nodesCount
+expr_stmt|;
 name|NodeProxy
 name|tempProxy
 init|=
@@ -9968,6 +9995,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
+specifier|final
 name|int
 name|percent
 init|=
@@ -9992,6 +10020,10 @@ operator|)
 decl_stmt|;
 if|if
 condition|(
+name|nodesCount
+operator|>
+name|MEM_LIMIT_CHECK
+operator|&&
 name|percent
 operator|<
 name|memMinFree

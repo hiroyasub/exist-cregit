@@ -783,6 +783,7 @@ operator|.
 name|readUTF
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|collLen
 init|=
@@ -806,6 +807,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|sub
 init|=
@@ -829,9 +831,6 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
 try|try
 block|{
 while|while
@@ -839,8 +838,10 @@ condition|(
 literal|true
 condition|)
 block|{
+specifier|final
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 operator|new
 name|DocumentImpl
 argument_list|(
@@ -848,7 +849,7 @@ name|broker
 argument_list|,
 name|this
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|doc
 operator|.
 name|read
@@ -1256,9 +1257,6 @@ argument_list|(
 name|ostream
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1274,8 +1272,10 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -1283,7 +1283,7 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|doc
 operator|.
 name|write

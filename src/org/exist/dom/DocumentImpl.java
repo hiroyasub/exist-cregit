@@ -2143,38 +2143,10 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|treeLevelStartPoints
-operator|=
-operator|new
-name|long
-index|[
-name|maxDepth
-index|]
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|maxDepth
-condition|;
-name|i
-operator|++
-control|)
-name|treeLevelStartPoints
-index|[
-name|i
-index|]
-operator|=
-name|istream
-operator|.
-name|readLong
-argument_list|()
-expr_stmt|;
+comment|//treeLevelStartPoints = new long[maxDepth];
+comment|//for (int i = 0; i< maxDepth; i++)
+comment|//	treeLevelStartPoints[i] = istream.readLong();
+comment|//
 name|docType
 operator|=
 operator|new
@@ -2193,13 +2165,7 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
-name|rootPage
-operator|=
-name|istream
-operator|.
-name|readLong
-argument_list|()
-expr_stmt|;
+comment|//rootPage = istream.readLong();
 name|documentRootId
 operator|=
 name|istream
@@ -2757,30 +2723,8 @@ index|]
 argument_list|)
 expr_stmt|;
 comment|//ostream.writeShort( treeLevelStartPoints.length );
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|maxDepth
-condition|;
-name|i
-operator|++
-control|)
-name|ostream
-operator|.
-name|writeLong
-argument_list|(
-name|treeLevelStartPoints
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
+comment|//for (int i = 0; i< maxDepth; i++)
+comment|//	ostream.writeLong(treeLevelStartPoints[i]);
 operator|(
 operator|(
 name|DocumentTypeImpl
@@ -2793,13 +2737,7 @@ argument_list|(
 name|ostream
 argument_list|)
 expr_stmt|;
-name|ostream
-operator|.
-name|writeLong
-argument_list|(
-name|rootPage
-argument_list|)
-expr_stmt|;
+comment|//ostream.writeLong(rootPage);
 name|ostream
 operator|.
 name|writeLong
