@@ -685,7 +685,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.suppress-whitespace-mixed-content"
+literal|"indexer.preserve-whitespace-mixed-content"
 argument_list|)
 operator|)
 operator|!=

@@ -692,7 +692,7 @@ name|p
 operator|.
 name|getAttribute
 argument_list|(
-literal|"suppress-whitespace-mixed-content"
+literal|"preserve-whitespace-mixed-content"
 argument_list|)
 decl_stmt|;
 if|if
@@ -889,7 +889,7 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.suppress-whitespace-mixed-content"
+literal|"indexer.preserve-whitespace-mixed-content"
 argument_list|,
 name|Boolean
 operator|.
