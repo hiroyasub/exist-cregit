@@ -103,6 +103,15 @@ name|class
 argument_list|)
 expr_stmt|;
 comment|// jmv: Note: LexerTest needs /db/test created by XPathQueryTest
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|DeepEqualTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|//		suite.addTestSuite(XQueryUseCasesTest.class);
 comment|//$JUnit-END$
 return|return

@@ -971,7 +971,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"false"
+literal|"true"
 argument_list|,
 name|r
 operator|.
@@ -995,7 +995,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|3
 argument_list|,
 name|result
 operator|.
@@ -1014,7 +1014,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"false"
+literal|"<string>Hello World!</string>"
 argument_list|,
 name|r
 operator|.
