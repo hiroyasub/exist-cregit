@@ -1754,8 +1754,6 @@ argument_list|,
 name|data
 operator|.
 name|length
-operator|-
-literal|1
 argument_list|,
 name|data
 argument_list|,
@@ -1773,8 +1771,6 @@ argument_list|,
 name|data
 operator|.
 name|length
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 name|node
