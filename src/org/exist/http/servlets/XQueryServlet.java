@@ -396,6 +396,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|DEFAULT_CONTENT_TYPE
+init|=
+literal|"text/html"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|DRIVER
 init|=
 literal|"org.exist.xmldb.DatabaseImpl"
@@ -433,6 +441,12 @@ decl_stmt|;
 specifier|private
 name|String
 name|encoding
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
+name|contentType
 init|=
 literal|null
 decl_stmt|;
@@ -589,6 +603,25 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+name|contentType
+operator|=
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"content-type"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contentType
+operator|==
+literal|null
+condition|)
+name|contentType
+operator|=
+name|DEFAULT_CONTENT_TYPE
+expr_stmt|;
 try|try
 block|{
 name|Class
@@ -742,7 +775,9 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/html; charset="
+name|contentType
+operator|+
+literal|"; charset="
 operator|+
 name|formEncoding
 argument_list|)
