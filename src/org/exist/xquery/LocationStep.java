@@ -405,6 +405,8 @@ argument_list|(
 name|outerSequence
 argument_list|,
 name|result
+argument_list|,
+name|axis
 argument_list|)
 expr_stmt|;
 block|}
@@ -1347,11 +1349,11 @@ expr_stmt|;
 block|}
 name|result
 operator|=
-name|contextSet
+name|currentSet
 operator|.
 name|selectSiblings
 argument_list|(
-name|currentSet
+name|contextSet
 argument_list|,
 name|axis
 operator|==
@@ -1711,11 +1713,11 @@ expr_stmt|;
 block|}
 name|result
 operator|=
-name|contextSet
+name|currentSet
 operator|.
 name|selectAncestors
 argument_list|(
-name|currentSet
+name|contextSet
 argument_list|,
 name|axis
 operator|==
@@ -1868,6 +1870,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** 	 * TODO: works only for .. 	 */
 specifier|protected
 name|NodeSet
 name|getParents

@@ -237,6 +237,10 @@ argument_list|(
 name|contextSequence
 argument_list|,
 name|result
+argument_list|,
+name|Constants
+operator|.
+name|DESCENDANT_SELF_AXIS
 argument_list|)
 expr_stmt|;
 block|}

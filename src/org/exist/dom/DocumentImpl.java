@@ -1277,6 +1277,7 @@ throw|;
 block|}
 block|}
 specifier|public
+specifier|final
 name|int
 name|compareTo
 parameter_list|(

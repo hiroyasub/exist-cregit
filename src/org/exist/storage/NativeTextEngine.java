@@ -2602,6 +2602,9 @@ name|startTerm
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|toLowerCase
+argument_list|()
 argument_list|)
 expr_stmt|;
 else|else

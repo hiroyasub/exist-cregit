@@ -565,6 +565,11 @@ name|int
 name|getState
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|pprint
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
