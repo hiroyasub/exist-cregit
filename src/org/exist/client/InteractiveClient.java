@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -2237,6 +2237,21 @@ operator|.
 name|getPermissions
 argument_list|(
 name|res
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|perm
+operator|==
+literal|null
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"null"
 argument_list|)
 expr_stmt|;
 if|if
@@ -5342,6 +5357,27 @@ argument_list|,
 literal|"= "
 argument_list|)
 decl_stmt|;
+name|String
+name|prefix
+decl_stmt|;
+if|if
+condition|(
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|startsWith
+argument_list|(
+literal|"="
+argument_list|)
+condition|)
+name|prefix
+operator|=
+literal|""
+expr_stmt|;
+else|else
+block|{
 if|if
 condition|(
 name|tok
@@ -5361,14 +5397,14 @@ return|return
 literal|true
 return|;
 block|}
-name|String
 name|prefix
-init|=
+operator|=
 name|tok
 operator|.
 name|nextToken
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
 name|String
 name|uri
 init|=

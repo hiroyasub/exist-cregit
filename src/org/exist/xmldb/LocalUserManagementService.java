@@ -1749,9 +1749,17 @@ operator|.
 name|getPermissions
 argument_list|()
 return|;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|INVALID_RESOURCE
+argument_list|,
+literal|"resource is not a local resource"
+argument_list|)
+throw|;
 block|}
 specifier|public
 name|Permission

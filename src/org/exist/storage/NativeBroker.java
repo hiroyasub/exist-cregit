@@ -1875,6 +1875,8 @@ name|collection
 operator|.
 name|getDescendants
 argument_list|(
+name|this
+argument_list|,
 name|user
 argument_list|)
 else|:
@@ -2799,6 +2801,8 @@ name|root
 operator|.
 name|allDocs
 argument_list|(
+name|this
+argument_list|,
 name|user
 argument_list|,
 literal|true
@@ -3108,13 +3112,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|collection
-operator|.
-name|setBroker
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 return|return
 name|collection
 return|;
@@ -3124,8 +3121,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|this
-argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -3204,6 +3199,8 @@ name|collection
 operator|.
 name|read
 argument_list|(
+name|this
+argument_list|,
 name|istream
 argument_list|)
 expr_stmt|;
@@ -3719,6 +3716,8 @@ name|root
 operator|.
 name|allDocs
 argument_list|(
+name|this
+argument_list|,
 name|user
 argument_list|,
 name|inclusive
@@ -6250,8 +6249,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|this
-argument_list|,
 literal|"/db"
 argument_list|)
 expr_stmt|;
@@ -6391,8 +6388,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|this
-argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
@@ -7190,7 +7185,9 @@ init|=
 name|collection
 operator|.
 name|getParent
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -9235,7 +9232,9 @@ init|=
 name|collection
 operator|.
 name|getParent
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 decl_stmt|;
 name|parent
 operator|.
@@ -9416,6 +9415,8 @@ name|collection
 operator|.
 name|write
 argument_list|(
+name|this
+argument_list|,
 name|ostream
 argument_list|)
 expr_stmt|;
@@ -9499,7 +9500,9 @@ init|=
 name|collection
 operator|.
 name|getParent
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 decl_stmt|;
 name|parent
 operator|.

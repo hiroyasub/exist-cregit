@@ -366,6 +366,8 @@ name|collection
 operator|.
 name|allDocs
 argument_list|(
+name|broker
+argument_list|,
 name|user
 argument_list|,
 literal|true

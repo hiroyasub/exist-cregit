@@ -1176,6 +1176,8 @@ name|collection
 operator|.
 name|allDocs
 argument_list|(
+name|broker
+argument_list|,
 name|session
 operator|.
 name|getUser
