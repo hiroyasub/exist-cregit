@@ -187,18 +187,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|BufferStats
 import|;
 end_import
@@ -523,9 +511,6 @@ decl_stmt|;
 specifier|public
 name|BFile
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|File
 name|file
 parameter_list|,
@@ -538,8 +523,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 name|file
 argument_list|,
 name|btreeBuffers

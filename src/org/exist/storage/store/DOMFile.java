@@ -235,18 +235,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|BufferStats
 import|;
 end_import
@@ -510,9 +498,6 @@ decl_stmt|;
 specifier|public
 name|DOMFile
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|int
 name|buffers
 parameter_list|,
@@ -522,8 +507,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 name|buffers
 argument_list|)
 expr_stmt|;
@@ -576,9 +559,6 @@ block|}
 specifier|public
 name|DOMFile
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|File
 name|file
 parameter_list|,
@@ -591,8 +571,6 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|pool
-argument_list|,
 name|buffers
 argument_list|,
 name|dataBuffers

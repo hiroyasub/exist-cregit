@@ -1375,8 +1375,6 @@ operator|=
 operator|new
 name|BFile
 argument_list|(
-name|pool
-argument_list|,
 operator|new
 name|File
 argument_list|(
@@ -1508,8 +1506,6 @@ operator|=
 operator|new
 name|DOMFile
 argument_list|(
-name|pool
-argument_list|,
 operator|new
 name|File
 argument_list|(
@@ -1646,8 +1642,6 @@ operator|=
 operator|new
 name|CollectionStore
 argument_list|(
-name|pool
-argument_list|,
 operator|new
 name|File
 argument_list|(

@@ -25,18 +25,6 @@ name|File
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -48,9 +36,6 @@ comment|/** 	 * @param file 	 * @param btreeBuffers 	 * @param dataBuffers 	 */
 specifier|public
 name|CollectionStore
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
 name|File
 name|file
 parameter_list|,
@@ -63,8 +48,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|pool
-argument_list|,
 name|file
 argument_list|,
 name|btreeBuffers
