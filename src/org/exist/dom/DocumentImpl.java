@@ -3434,13 +3434,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|ostream
-operator|.
-name|writeByte
-argument_list|(
-name|DOCUMENT_NODE_SIGNATURE
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|children
@@ -3595,30 +3588,11 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|signature
-operator|!=
-name|DOCUMENT_NODE_SIGNATURE
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not read document metadata for document "
-operator|+
-name|fileName
-operator|+
-literal|" ( "
-operator|+
-name|docId
-operator|+
-literal|"): not a metadata node."
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
+comment|//		    if(signature != DOCUMENT_NODE_SIGNATURE) {
+comment|//		        LOG.error("Could not read document metadata for document " + fileName +
+comment|//		                " ( " + docId + "): not a metadata node.");
+comment|//		        return;
+comment|//		    }
 name|childList
 operator|=
 operator|new
