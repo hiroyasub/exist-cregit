@@ -158,6 +158,9 @@ operator|+
 literal|"be specified"
 argument_list|)
 throw|;
+name|registerDatabase
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|Collection
@@ -262,6 +265,11 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|BuildException
