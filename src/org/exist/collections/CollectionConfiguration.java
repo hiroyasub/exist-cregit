@@ -244,6 +244,14 @@ init|=
 literal|null
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|String
+name|COLLECTION_CONFIG_FILE
+init|=
+literal|"collection.xconf"
+decl_stmt|;
+specifier|public
 name|CollectionConfiguration
 parameter_list|(
 name|DBBroker
@@ -610,6 +618,21 @@ name|tok
 operator|.
 name|nextToken
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Registering trigger "
+operator|+
+name|classAttr
+operator|+
+literal|" for event "
+operator|+
+name|event
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

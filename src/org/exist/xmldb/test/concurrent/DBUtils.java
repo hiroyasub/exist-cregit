@@ -474,7 +474,7 @@ name|elementCnt
 argument_list|,
 name|attrCnt
 argument_list|,
-literal|2
+literal|3
 argument_list|,
 name|wordList
 argument_list|)

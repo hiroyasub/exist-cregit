@@ -516,32 +516,12 @@ name|NativeElementIndex
 extends|extends
 name|ElementIndex
 block|{
-specifier|public
-specifier|static
-name|long
-name|accTime
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|long
-name|getTime
-parameter_list|()
-block|{
-return|return
-name|accTime
-operator|/
-name|count
-return|;
-block|}
+comment|//    public static long accTime = 0;
+comment|//    public static int count = 0;
+comment|//
+comment|//    public static long getTime() {
+comment|//        return accTime / count;
+comment|//    }
 specifier|private
 specifier|static
 name|Logger
@@ -1184,49 +1164,16 @@ block|}
 block|}
 comment|//        LOG.debug(debug.toString());
 comment|//		result.sort();
-name|count
-operator|++
-expr_stmt|;
-name|accTime
-operator|+=
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|qname
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//        count++;
+comment|//        accTime += (System.currentTimeMillis() - start);
+comment|//        LOG.debug(
+comment|//        		"found "
+comment|//        		+ qname
+comment|//				+ ": "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;

@@ -130,6 +130,18 @@ name|BOOLEAN
 init|=
 literal|5
 decl_stmt|;
+comment|// special flag to indicate that the node has mixed
+comment|// content
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MIXED_CONTENT
+init|=
+literal|0x40
+decl_stmt|;
+comment|// special flag which is set if the node has
+comment|// been fulltext indexed
 specifier|public
 specifier|final
 specifier|static
@@ -259,7 +271,7 @@ name|xpathTypes
 index|[
 name|type
 operator|&
-literal|0x7F
+literal|0x3F
 index|]
 return|;
 block|}
@@ -279,6 +291,27 @@ operator|(
 name|type
 operator|&
 name|TEXT
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
+comment|/**      * Returns true if the index type specifier has the mixed content      * flag set.      *       * @param type      * @return      */
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|hasMixedContent
+parameter_list|(
+name|int
+name|type
+parameter_list|)
+block|{
+return|return
+operator|(
+name|type
+operator|&
+name|MIXED_CONTENT
 operator|)
 operator|!=
 literal|0

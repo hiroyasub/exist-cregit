@@ -27,6 +27,18 @@ name|File
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NativeElementIndex
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -73,6 +85,20 @@ block|}
 specifier|private
 name|File
 name|tempFile
+decl_stmt|;
+specifier|private
+name|XQueryAction
+name|action0
+decl_stmt|,
+name|action1
+decl_stmt|,
+name|action2
+decl_stmt|,
+name|action3
+decl_stmt|,
+name|action4
+decl_stmt|,
+name|action5
 decl_stmt|;
 comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
 specifier|public
@@ -122,7 +148,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|5000
+literal|50000
 argument_list|,
 literal|7
 argument_list|,
@@ -144,7 +170,7 @@ expr_stmt|;
 name|String
 name|query0
 init|=
-literal|"/ROOT-ELEMENT/ELEMENT/ELEMENT-1"
+literal|"/ROOT-ELEMENT/ELEMENT/ELEMENT-1/ELEMENT-2[@attribute-3]"
 decl_stmt|;
 name|String
 name|query1
@@ -156,8 +182,8 @@ name|query2
 init|=
 literal|"/ROOT-ELEMENT//ELEMENT-1[@attribute-3]"
 decl_stmt|;
-name|addAction
-argument_list|(
+name|action0
+operator|=
 operator|new
 name|XQueryAction
 argument_list|(
@@ -169,6 +195,28 @@ literal|"R1.xml"
 argument_list|,
 name|query0
 argument_list|)
+expr_stmt|;
+name|action1
+operator|=
+operator|new
+name|XQueryAction
+argument_list|(
+name|URI
+operator|+
+literal|"/C1"
+argument_list|,
+literal|"R1.xml"
+argument_list|,
+name|query0
+argument_list|)
+expr_stmt|;
+comment|//		action2 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+comment|//		action3 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+comment|//		action4 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+comment|//		action5 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+name|addAction
+argument_list|(
+name|action0
 argument_list|,
 literal|50
 argument_list|,
@@ -179,17 +227,7 @@ argument_list|)
 expr_stmt|;
 name|addAction
 argument_list|(
-operator|new
-name|XQueryAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|query1
-argument_list|)
+name|action1
 argument_list|,
 literal|50
 argument_list|,
@@ -198,27 +236,71 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|addAction
+comment|//		addAction(action2, 50, 0, 0);
+comment|//		addAction(action3, 50, 0, 0);
+comment|//		addAction(action4, 50, 0, 0);
+comment|//		addAction(action5, 50, 0, 0);
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown()      */
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
-operator|new
-name|XQueryAction
-argument_list|(
-name|URI
+literal|"Avg. query time for "
 operator|+
-literal|"/C1"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|query2
-argument_list|)
-argument_list|,
-literal|50
-argument_list|,
-literal|0
-argument_list|,
-literal|0
+name|action0
+operator|.
+name|getQuery
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|action0
+operator|.
+name|avgExecTime
+argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Avg. query time for "
+operator|+
+name|action1
+operator|.
+name|getQuery
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|action1
+operator|.
+name|avgExecTime
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//        System.out.println("Avg. query time for " + action2.getQuery() + ": " + action2.avgExecTime());
+comment|//        System.out.println("Avg. query time for " + action3.getQuery() + ": " + action3.avgExecTime());
+comment|//        System.out.println("Avg. query time for " + action4.getQuery() + ": " + action4.avgExecTime());
+comment|//        System.out.println("Avg. query time for " + action5.getQuery() + ": " + action5.avgExecTime());
+comment|//        System.out.println("element index: " + NativeElementIndex.getTime());
 block|}
 block|}
 end_class

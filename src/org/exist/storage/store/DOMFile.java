@@ -7544,24 +7544,8 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|children
-operator|-
-name|attributes
-operator|>
-literal|1
-condition|)
-name|os
-operator|.
-name|write
-argument_list|(
-operator|(
-name|byte
-operator|)
-literal|' '
-argument_list|)
-expr_stmt|;
+comment|//	        	if (children - attributes> 1)
+comment|//	        		os.write((byte) ' ');
 block|}
 return|return;
 case|case

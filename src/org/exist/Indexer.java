@@ -1089,9 +1089,6 @@ name|String
 name|qname
 parameter_list|)
 block|{
-comment|//		if(namespace != null&& namespace.length()> 0&&
-comment|//			qname.indexOf(':')< 0)
-comment|//			qname = '#' + namespace + ':' + qname;
 specifier|final
 name|ElementImpl
 name|last
@@ -1228,16 +1225,20 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
-comment|//			currentPath = removeLastPathComponent(currentPath);
+name|broker
+operator|.
+name|endElement
+argument_list|(
+name|last
+argument_list|,
+name|currentPath
+argument_list|)
+expr_stmt|;
 name|currentPath
 operator|.
 name|removeLastComponent
 argument_list|()
 expr_stmt|;
-comment|//			currentPath.delete(
-comment|//				currentPath.lastIndexOf("/"),
-comment|//				currentPath.length());
-comment|//				currentPath.substring(0, currentPath.lastIndexOf('/'));
 if|if
 condition|(
 name|validate
@@ -1290,6 +1291,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|broker
 operator|.
 name|update
@@ -1297,6 +1299,7 @@ argument_list|(
 name|last
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|level
 operator|--

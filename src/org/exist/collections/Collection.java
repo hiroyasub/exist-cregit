@@ -646,14 +646,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|COLLECTION_CONFIG_FILE
-init|=
-literal|"collection.xconf"
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -2858,6 +2850,8 @@ name|docname
 operator|.
 name|equals
 argument_list|(
+name|CollectionConfiguration
+operator|.
 name|COLLECTION_CONFIG_FILE
 argument_list|)
 condition|)
@@ -7328,6 +7322,8 @@ name|name
 operator|.
 name|equals
 argument_list|(
+name|CollectionConfiguration
+operator|.
 name|COLLECTION_CONFIG_FILE
 argument_list|)
 condition|)
@@ -8007,6 +8003,8 @@ if|if
 condition|(
 name|hasDocument
 argument_list|(
+name|CollectionConfiguration
+operator|.
 name|COLLECTION_CONFIG_FILE
 argument_list|)
 condition|)
@@ -8018,6 +8016,8 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
+name|CollectionConfiguration
+operator|.
 name|COLLECTION_CONFIG_FILE
 argument_list|)
 decl_stmt|;
@@ -8080,6 +8080,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}

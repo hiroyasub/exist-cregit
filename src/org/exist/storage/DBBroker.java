@@ -1465,6 +1465,19 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+specifier|abstract
+name|void
+name|endElement
+parameter_list|(
+specifier|final
+name|NodeImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|)
+function_decl|;
 comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
 specifier|public
 specifier|abstract

@@ -381,6 +381,28 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[name&= 'Racing Bicycle']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[mixed = 'uneven']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|ResourceSet

@@ -1369,6 +1369,15 @@ operator|.
 name|getIndexType
 argument_list|()
 decl_stmt|;
+comment|// we can't use the index if the node has mixed content
+name|boolean
+name|hasMixedContent
+init|=
+name|nodes
+operator|.
+name|hasMixedContent
+argument_list|()
+decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -1384,6 +1393,9 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|hasMixedContent
+operator|&&
 name|indexType
 operator|!=
 name|Type
@@ -1613,6 +1625,9 @@ return|;
 block|}
 if|else if
 condition|(
+operator|!
+name|hasMixedContent
+operator|&&
 name|relation
 operator|==
 name|Constants
