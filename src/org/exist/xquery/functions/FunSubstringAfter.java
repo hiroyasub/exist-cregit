@@ -490,15 +490,6 @@ argument_list|,
 name|cmp
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"p = "
-operator|+
-name|p
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|p

@@ -1212,7 +1212,6 @@ name|k
 operator|++
 control|)
 block|{
-comment|//				LOG.debug("hits: " + terms[k] + ": " + hits[k].getLength());
 if|if
 condition|(
 name|hits

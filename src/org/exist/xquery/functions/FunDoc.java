@@ -436,36 +436,7 @@ argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
-comment|// if the path is an absolute URL that starts with the current base URI,
-comment|// we remove the base URI
-if|if
-condition|(
-name|path
-operator|.
-name|startsWith
-argument_list|(
-name|context
-operator|.
-name|getBaseURI
-argument_list|()
-argument_list|)
-condition|)
-name|path
-operator|=
-name|path
-operator|.
-name|substring
-argument_list|(
-name|context
-operator|.
-name|getBaseURI
-argument_list|()
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// relative URL: add the current base collection
+comment|// relative URL: add the current base URI
 if|if
 condition|(
 name|path
@@ -481,7 +452,7 @@ name|path
 operator|=
 name|context
 operator|.
-name|getBaseCollection
+name|getBaseURI
 argument_list|()
 operator|+
 literal|'/'
@@ -609,11 +580,14 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
+comment|//		        LOG.debug("Document " + path + " not found!");
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -688,18 +662,6 @@ condition|(
 name|lockOnLoad
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Locking document: "
-operator|+
-name|doc
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// add the document to the list of locked documents
 name|context
 operator|.

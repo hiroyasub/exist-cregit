@@ -9581,25 +9581,12 @@ name|mimeType
 operator|==
 literal|null
 condition|)
-name|messageln
-argument_list|(
-literal|"File "
-operator|+
-name|files
-index|[
-name|i
-index|]
+name|mimeType
+operator|=
+name|MimeType
 operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" has an unknown "
-operator|+
-literal|"suffix. Cannot determine file type."
-argument_list|)
+name|XML_TYPE
 expr_stmt|;
-else|else
-block|{
 name|document
 operator|=
 name|current
@@ -9722,7 +9709,6 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 name|messageln
 argument_list|(

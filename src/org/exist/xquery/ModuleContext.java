@@ -203,6 +203,22 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|setBaseURI
+parameter_list|(
+name|String
+name|uri
+parameter_list|)
+block|{
+name|parentContext
+operator|.
+name|setBaseURI
+argument_list|(
+name|uri
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.XQueryContext#getBroker()      */
 specifier|public
 name|DBBroker
