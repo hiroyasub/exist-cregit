@@ -1131,6 +1131,23 @@ return|return
 name|dbName
 return|;
 block|}
+specifier|public
+name|String
+index|[]
+name|getNames
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+operator|new
+name|String
+index|[]
+block|{
+name|dbName
+block|}
+return|;
+block|}
 comment|/** 	 * Register a ShutdownListener for the current database instance. The ShutdownListener is called 	 * after the database has shut down. You have to register a listener before any calls to getCollection(). 	 *  	 * @param listener 	 * @throws XMLDBException 	 */
 specifier|public
 name|void
