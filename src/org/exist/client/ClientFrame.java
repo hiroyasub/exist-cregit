@@ -5031,7 +5031,7 @@ block|{
 comment|//final StringWriter writer = new StringWriter();
 comment|//transformer.setResult(new StreamResult(writer));
 specifier|final
-name|XMLResource
+name|Resource
 name|res
 init|=
 name|client
@@ -5046,9 +5046,18 @@ argument_list|,
 literal|"yes"
 argument_list|)
 decl_stmt|;
-comment|//res.getContentAsSAX(view.getSerializer());
-comment|//res.getContentAsSAX(transformer);
-comment|//view.setText(writer.toString());
+if|if
+condition|(
+name|res
+operator|.
+name|getResourceType
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"XMLResource"
+argument_list|)
+condition|)
 name|view
 operator|.
 name|setText
@@ -5060,6 +5069,25 @@ name|res
 operator|.
 name|getContent
 argument_list|()
+argument_list|)
+expr_stmt|;
+else|else
+name|view
+operator|.
+name|setText
+argument_list|(
+operator|new
+name|String
+argument_list|(
+operator|(
+name|byte
+index|[]
+operator|)
+name|res
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
