@@ -248,13 +248,22 @@ name|address
 parameter_list|)
 block|{
 name|this
-argument_list|(
+operator|.
 name|doc
-argument_list|,
+operator|=
+name|doc
+expr_stmt|;
+name|this
+operator|.
 name|gid
-argument_list|,
+operator|=
+name|gid
+expr_stmt|;
+name|this
+operator|.
 name|nodeType
-argument_list|)
+operator|=
+name|nodeType
 expr_stmt|;
 name|this
 operator|.
@@ -840,7 +849,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/** 		 * Sets the storage address of this node in dom.dbx. 		 *  		 * @param internalAddress The internalAddress to set 		 */
+comment|/** 	 * Sets the storage address of this node in dom.dbx. 	 *  	 * @param internalAddress The internalAddress to set 	 */
 specifier|public
 name|void
 name|setInternalAddress

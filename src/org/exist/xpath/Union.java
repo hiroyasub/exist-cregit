@@ -212,25 +212,6 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"left "
-operator|+
-name|left
-operator|.
-name|pprint
-argument_list|()
-operator|+
-literal|" returned: "
-operator|+
-name|lval
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|rval
 init|=
@@ -247,25 +228,6 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"right "
-operator|+
-name|right
-operator|.
-name|pprint
-argument_list|()
-operator|+
-literal|" returned: "
-operator|+
-name|rval
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|lval
@@ -293,14 +255,6 @@ argument_list|(
 literal|"union operand is not a node sequence"
 argument_list|)
 throw|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -319,29 +273,6 @@ operator|)
 name|rval
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"union found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
 return|return
 name|result
 return|;

@@ -1063,12 +1063,21 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"no documents!"
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 name|result
 operator|=

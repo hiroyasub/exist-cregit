@@ -605,6 +605,8 @@ name|first
 argument_list|)
 condition|)
 block|{
+comment|//			if(directParent)
+comment|//				node = first;
 if|if
 condition|(
 name|useSelfAsContext
@@ -640,8 +642,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Timo Boehme: we return the ancestor which is child of context
+comment|// TODO
 return|return
-name|node
+name|first
 return|;
 block|}
 if|else if
@@ -868,52 +871,12 @@ name|gid
 parameter_list|,
 name|boolean
 name|directParent
-parameter_list|)
-block|{
-name|NodeProxy
-name|p
-init|=
-name|parentWithChild
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|,
-name|directParent
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|p
-operator|!=
-literal|null
-condition|)
-name|addInternal
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-return|return
-name|p
-return|;
-block|}
-specifier|public
-name|NodeProxy
-name|parentWithChild
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|,
-name|boolean
-name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|int
+name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -965,6 +928,9 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|int
+name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -1006,14 +972,12 @@ name|NodeSet
 name|getNodes
 parameter_list|()
 block|{
-name|ArraySet
+name|ExtArrayNodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-literal|100
-argument_list|)
+name|ExtArrayNodeSet
+argument_list|()
 decl_stmt|;
 name|Node
 name|p
@@ -1537,6 +1501,11 @@ operator|!=
 literal|null
 condition|)
 return|return;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 name|realSet
 operator|=
 name|getNodes
@@ -1552,6 +1521,17 @@ name|useSelfAsContext
 operator|=
 literal|true
 expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#hasIndex() 	 */
+specifier|public
+name|boolean
+name|hasIndex
+parameter_list|()
+block|{
+comment|// Always return false: there's no index
+return|return
+literal|false
+return|;
 block|}
 comment|/* the following methods are normally never called in this context, 	 * we just provide them because they are declared abstract 	 * in the super class 	 */
 specifier|public
@@ -1815,30 +1795,6 @@ name|union
 argument_list|(
 name|other
 argument_list|)
-return|;
-block|}
-specifier|public
-name|boolean
-name|hasValues
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-specifier|public
-name|int
-name|getLast
-parameter_list|()
-block|{
-name|realize
-argument_list|()
-expr_stmt|;
-return|return
-name|realSet
-operator|.
-name|getLength
-argument_list|()
 return|;
 block|}
 block|}

@@ -921,6 +921,14 @@ return|return
 name|result
 return|;
 block|}
+else|else
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"unable to determine return type of predicate expression"
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.

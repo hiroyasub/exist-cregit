@@ -1272,14 +1272,33 @@ decl_stmt|;
 comment|// TODO: not correct: should test if right is a string literal
 if|if
 condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|right
 operator|.
 name|returnsType
 argument_list|()
-operator|==
+argument_list|,
 name|Type
 operator|.
 name|STRING
+argument_list|)
+operator|||
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|right
+operator|.
+name|returnsType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
 condition|)
 block|{
 comment|// evaluate left expression
@@ -1770,6 +1789,9 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 if|if

@@ -717,14 +717,7 @@ name|n
 decl_stmt|,
 name|p
 decl_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -981,29 +974,11 @@ block|}
 block|}
 break|break;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getChildren found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"getChildren found "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start));
 name|result
 operator|.
 name|sort
@@ -1085,14 +1060,7 @@ name|n
 decl_stmt|,
 name|p
 decl_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|DocumentImpl
 name|lastDoc
 init|=
@@ -1144,6 +1112,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|// get a size hint for every new document encountered
 if|if
 condition|(
 name|lastDoc
@@ -1259,6 +1228,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|// get a size hint for every new document encountered
 if|if
 condition|(
 name|lastDoc
@@ -1345,29 +1315,11 @@ block|}
 break|break;
 block|}
 comment|//result.sort();
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getDescendants found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"getDescendants found "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
@@ -1948,7 +1900,7 @@ argument_list|)
 return|;
 block|}
 comment|/** 	 * Search for a node contained in this node set, which is an 	 * ancestor of the argument node. 	 * If directParent is true, only immediate ancestors are considered. 	 * If includeSelf is true, the method returns true even if 	 * the node itself is contained in the node set. 	 */
-specifier|protected
+specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -1973,6 +1925,26 @@ name|temp
 decl_stmt|;
 if|if
 condition|(
+name|includeSelf
+operator|&&
+operator|(
+name|temp
+operator|=
+name|get
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+return|return
+name|temp
+return|;
+if|if
+condition|(
 name|level
 operator|<
 literal|0
@@ -1995,48 +1967,48 @@ condition|)
 block|{
 if|if
 condition|(
-name|includeSelf
-operator|&&
-operator|(
-name|temp
-operator|=
-name|get
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|)
-operator|)
-operator|!=
-literal|null
+name|level
+operator|==
+literal|0
 condition|)
-return|return
-name|temp
-return|;
-name|includeSelf
+name|gid
 operator|=
-literal|false
+operator|-
+literal|1
 expr_stmt|;
+else|else
 comment|// calculate parent's gid
 name|gid
 operator|=
-name|XMLUtil
-operator|.
-name|getParentId
-argument_list|(
-name|doc
-argument_list|,
+operator|(
 name|gid
-argument_list|,
+operator|-
+name|doc
+operator|.
+name|treeLevelStartPoints
+index|[
 name|level
-argument_list|)
+index|]
+operator|)
+operator|/
+name|doc
+operator|.
+name|treeLevelOrder
+index|[
+name|level
+index|]
+operator|+
+name|doc
+operator|.
+name|treeLevelStartPoints
+index|[
+name|level
+operator|-
+literal|1
+index|]
 expr_stmt|;
 if|if
 condition|(
-name|gid
-operator|>
-literal|0
-operator|&&
 operator|(
 name|temp
 operator|=
@@ -2081,6 +2053,9 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|int
+name|level
 parameter_list|)
 block|{
 return|return
@@ -2098,8 +2073,7 @@ name|directParent
 argument_list|,
 name|includeSelf
 argument_list|,
-operator|-
-literal|1
+name|level
 argument_list|)
 return|;
 block|}
