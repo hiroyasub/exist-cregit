@@ -194,15 +194,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//        return new FileReader(new File(filePath));
 return|return
 operator|new
-name|FileReader
+name|InputStreamReader
 argument_list|(
 operator|new
-name|File
+name|FileInputStream
 argument_list|(
 name|filePath
 argument_list|)
+argument_list|,
+name|encoding
 argument_list|)
 return|;
 block|}
