@@ -4410,6 +4410,21 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|top
+operator|+
+literal|" = "
+operator|+
+name|proxy
+operator|.
+name|gid
+argument_list|)
+expr_stmt|;
 name|storedNodes
 operator|.
 name|put

@@ -308,6 +308,11 @@ argument_list|(
 name|rval
 argument_list|)
 expr_stmt|;
+name|result
+operator|.
+name|sortInDocumentOrder
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;

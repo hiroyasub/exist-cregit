@@ -1934,6 +1934,16 @@ name|Item
 name|nextItem
 parameter_list|()
 block|{
+if|if
+condition|(
+name|nodes
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+literal|null
+return|;
 name|Node
 name|currentNode
 init|=
