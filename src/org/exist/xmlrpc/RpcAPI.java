@@ -17,6 +17,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -40,16 +50,6 @@ operator|.
 name|util
 operator|.
 name|Vector
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Defines the methods callable through the XMLRPC interface.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    21. Juni 2002  */
+comment|/**  *  Defines the methods callable through the XMLRPC interface.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_interface
@@ -1351,6 +1351,46 @@ throws|,
 name|PermissionDeniedException
 throws|,
 name|IOException
+function_decl|;
+name|boolean
+name|moveCollection
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|collectionPath
+parameter_list|,
+name|String
+name|destinationPath
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+name|boolean
+name|moveResource
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|docPath
+parameter_list|,
+name|String
+name|destinationPath
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
 function_decl|;
 name|boolean
 name|reindexCollection
