@@ -3125,6 +3125,13 @@ else|else
 block|{
 comment|// if stylesheet is relative, add path to the
 comment|// current collection
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
+block|{
 name|URI
 name|base
 init|=
@@ -3165,6 +3172,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 comment|// load stylesheet from eXist
 name|DocumentImpl
 name|xsl
