@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -39,7 +39,7 @@ name|http
 operator|.
 name|servlets
 operator|.
-name|RequestWrapper
+name|SessionWrapper
 import|;
 end_import
 
@@ -100,18 +100,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathUtil
 import|;
 end_import
 
@@ -190,7 +178,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|RequestParameter
+name|InvalidateSession
 extends|extends
 name|BasicFunction
 block|{
@@ -206,7 +194,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"request-parameter"
+literal|"invalidate-session"
 argument_list|,
 name|RequestModule
 operator|.
@@ -217,26 +205,10 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the HTTP request parameter identified by $a. If the parameter could not be found, "
-operator|+
-literal|"the default value specified in $b is returned instead."
+literal|"Invalidate (remove) the current HTTP session if present"
 argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
+literal|null
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
 operator|new
 name|SequenceType
 argument_list|(
@@ -246,25 +218,13 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
+name|EMPTY
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|/**      * @param context      * @param signature      */
 specifier|public
-name|RequestParameter
+name|InvalidateSession
 parameter_list|(
 name|XQueryContext
 name|context
@@ -278,7 +238,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -308,7 +268,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $request
+comment|// session object is read from global variable $session
 name|Variable
 name|var
 init|=
@@ -318,9 +278,29 @@ name|resolveVariable
 argument_list|(
 name|RequestModule
 operator|.
-name|REQUEST_VAR
+name|SESSION_VAR
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|var
+operator|==
+literal|null
+operator|||
+name|var
+operator|.
+name|getValue
+argument_list|()
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Session not set"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|var
@@ -339,21 +319,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Variable $request is not bound to an Java object."
+literal|"Variable $session is not bound to an Java object."
 argument_list|)
 throw|;
-comment|// get parameters
-name|String
-name|param
-init|=
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
 name|JavaObjectValue
 name|value
 init|=
@@ -377,73 +345,29 @@ operator|.
 name|getObject
 argument_list|()
 operator|instanceof
-name|RequestWrapper
+name|SessionWrapper
 condition|)
 block|{
-name|String
-index|[]
-name|values
+name|SessionWrapper
+name|session
 init|=
 operator|(
-operator|(
-name|RequestWrapper
+name|SessionWrapper
 operator|)
 name|value
 operator|.
 name|getObject
 argument_list|()
-operator|)
-operator|.
-name|getParameterValues
-argument_list|(
-name|param
-argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|values
-operator|==
-literal|null
-operator|||
-name|values
+name|session
 operator|.
-name|length
-operator|==
-literal|0
-condition|)
+name|invalidate
+argument_list|()
+expr_stmt|;
 return|return
-name|args
-index|[
-literal|1
-index|]
-return|;
-if|if
-condition|(
-name|values
+name|Sequence
 operator|.
-name|length
-operator|==
-literal|1
-condition|)
-return|return
-name|XPathUtil
-operator|.
-name|javaObjectToXPath
-argument_list|(
-name|values
-index|[
-literal|0
-index|]
-argument_list|)
-return|;
-else|else
-return|return
-name|XPathUtil
-operator|.
-name|javaObjectToXPath
-argument_list|(
-name|values
-argument_list|)
+name|EMPTY_SEQUENCE
 return|;
 block|}
 else|else
@@ -451,7 +375,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Variable $request is not bound to a Request object."
+literal|"Type error: variable $session is not bound to a session object"
 argument_list|)
 throw|;
 block|}
