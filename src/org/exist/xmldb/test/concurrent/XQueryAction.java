@@ -150,6 +150,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|setName
+argument_list|(
+literal|"XQuery Thread"
+argument_list|)
+expr_stmt|;
 name|Collection
 name|col
 init|=
