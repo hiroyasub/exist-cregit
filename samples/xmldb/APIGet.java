@@ -109,6 +109,18 @@ name|ElementImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Retrieve a document from the repository. To run this example enter:  *  bin/run.sh samples.APISearch xpath-query in the root directory of the  *  distribution.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    10. Juli 2002  */
 end_comment
@@ -390,9 +402,12 @@ name|i
 operator|++
 control|)
 block|{
-name|Node
+name|ElementImpl
 name|child
 init|=
+operator|(
+name|ElementImpl
+operator|)
 name|children
 operator|.
 name|item
@@ -400,15 +415,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|child
-argument_list|)
-expr_stmt|;
 name|ElementImpl
 name|elem
 init|=

@@ -8621,15 +8621,6 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"node stored at "
-operator|+
-name|address
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -8638,6 +8629,18 @@ block|}
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"node stored at "
+operator|+
+name|node
+operator|.
+name|getInternalAddress
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
