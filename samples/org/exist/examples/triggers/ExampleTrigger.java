@@ -277,6 +277,22 @@ operator|.
 name|doc
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"doc is "
+operator|+
+name|this
+operator|.
+name|doc
+operator|.
+name|hashCode
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// IMPORTANT: temporarily disable triggers on the collection.
@@ -357,6 +373,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|TriggerException
@@ -445,6 +466,18 @@ operator|=
 literal|"contents.xml"
 expr_stmt|;
 comment|// try to retrieve the contents file
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|parent
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|doc
@@ -455,13 +488,6 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-name|parent
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|'/'
-operator|+
 name|contentsFile
 argument_list|)
 expr_stmt|;
