@@ -453,6 +453,8 @@ name|parent
 operator|.
 name|getDocument
 argument_list|(
+name|broker
+argument_list|,
 name|parent
 operator|.
 name|getName
