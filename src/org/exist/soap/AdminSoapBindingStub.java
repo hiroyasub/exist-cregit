@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * AdminSoapBindingStub.java  *  * This file was auto-generated from WSDL  * by the Apache Axis WSDL2Java emitter.  */
+comment|/**  * AdminSoapBindingStub.java  *  * This file was auto-generated from WSDL  * by the Apache Axis 1.2RC2 Nov 16, 2004 (12:19:44 EST) WSDL2Java emitter.  */
 end_comment
 
 begin_package
@@ -131,6 +131,16 @@ index|[
 literal|8
 index|]
 expr_stmt|;
+name|_initOperationDesc1
+argument_list|()
+expr_stmt|;
+block|}
+specifier|private
+specifier|static
+name|void
+name|_initOperationDesc1
+parameter_list|()
+block|{
 name|org
 operator|.
 name|apache
@@ -468,7 +478,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -485,7 +495,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -695,7 +705,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -712,7 +722,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -831,7 +841,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -848,7 +858,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -1054,7 +1064,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -1071,7 +1081,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -1277,7 +1287,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -1294,7 +1304,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -1500,7 +1510,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -1517,7 +1527,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -1780,7 +1790,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -1797,7 +1807,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -2060,7 +2070,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Style
 operator|.
@@ -2077,7 +2087,7 @@ name|apache
 operator|.
 name|axis
 operator|.
-expr|enum
+name|constants
 operator|.
 name|Use
 operator|.
@@ -2205,7 +2215,7 @@ name|service
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|protected
 name|org
 operator|.
 name|apache
@@ -2436,7 +2446,7 @@ operator|.
 name|lang
 operator|.
 name|Throwable
-name|t
+name|_t
 parameter_list|)
 block|{
 throw|throw
@@ -2451,7 +2461,7 @@ name|AxisFault
 argument_list|(
 literal|"Failure trying to get the Call object"
 argument_list|,
-name|t
+name|_t
 argument_list|)
 throw|;
 block|}
