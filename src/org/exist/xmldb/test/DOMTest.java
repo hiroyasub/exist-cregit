@@ -149,6 +149,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/**  * @author jmv  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -245,6 +249,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**  	 * - Storing XML resource from XML string 	 * - simple XQuery 	 * - removing resource 	 * - shutdown with the DatabaseInstanceManager 	 */
 specifier|public
 name|void
 name|runTest1
@@ -562,6 +567,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**  	 * - create and fill a simple document via DOM and JAXP 	 * - store it with setContentAsDOM() 	 * - simple access via getContentAsDOM() 	 * */
 specifier|public
 name|void
 name|runTest2
@@ -974,6 +980,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** like test 2 but add attribute and text as well */
 specifier|public
 name|void
 name|runTest3
@@ -1269,6 +1276,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** like test 3 but uses the DOM as input to an (identity) XSLT transform */
 specifier|public
 name|void
 name|runTest4
