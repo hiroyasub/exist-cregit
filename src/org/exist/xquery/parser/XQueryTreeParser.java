@@ -18975,7 +18975,10 @@ literal|null
 argument_list|,
 name|namespaceURI
 argument_list|,
-literal|null
+name|nc
+operator|.
+name|getText
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|test

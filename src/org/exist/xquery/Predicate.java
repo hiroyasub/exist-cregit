@@ -319,6 +319,15 @@ operator|==
 literal|null
 condition|)
 return|return;
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
 name|int
 name|type
 init|=
@@ -401,10 +410,12 @@ name|executionMode
 operator|==
 name|BOOLEAN
 condition|)
+block|{
 name|flags
 operator||=
 name|SINGLE_STEP_EXECUTION
 expr_stmt|;
+comment|// need to re-analyze:
 name|super
 operator|.
 name|analyze
@@ -414,6 +425,7 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|Sequence
