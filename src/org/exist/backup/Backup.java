@@ -552,6 +552,17 @@ name|current
 operator|.
 name|setProperty
 argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
+name|current
+operator|.
+name|setProperty
+argument_list|(
 name|EXistOutputKeys
 operator|.
 name|EXPAND_XINCLUDES

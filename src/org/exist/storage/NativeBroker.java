@@ -2409,15 +2409,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//final long start = System.currentTimeMillis();
 comment|//final ArraySet result = new ArraySet(10000);
 specifier|final
 name|ExtArrayNodeSet
@@ -2813,35 +2805,14 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|qname
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"found "
+comment|//				+ qname
+comment|//				+ ": "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;

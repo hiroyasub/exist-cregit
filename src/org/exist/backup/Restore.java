@@ -1175,9 +1175,7 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"collection requires a name "
-operator|+
-literal|"attribute"
+literal|"collection requires a name attribute"
 argument_list|)
 throw|;
 specifier|final

@@ -1078,8 +1078,17 @@ name|setBaseURI
 argument_list|(
 name|collection
 operator|.
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"base-uri"
+argument_list|,
+name|collection
+operator|.
 name|getPath
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Map

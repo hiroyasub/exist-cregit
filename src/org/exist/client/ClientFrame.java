@@ -3356,9 +3356,11 @@ block|{
 name|String
 name|command
 init|=
-literal|"mkcol "
+literal|"mkcol \""
 operator|+
 name|newCol
+operator|+
+literal|'"'
 decl_stmt|;
 name|display
 argument_list|(
@@ -3554,16 +3556,20 @@ name|CollectionName
 condition|)
 name|cmd
 operator|=
-literal|"rmcol "
+literal|"rmcol \""
 operator|+
 name|resource
+operator|+
+literal|'"'
 expr_stmt|;
 else|else
 name|cmd
 operator|=
-literal|"rm "
+literal|"rm \""
 operator|+
 name|resource
+operator|+
+literal|'"'
 expr_stmt|;
 name|v
 operator|.
@@ -4946,9 +4952,11 @@ block|{
 name|String
 name|command
 init|=
-literal|"cd "
+literal|"cd \""
 operator|+
 name|resource
+operator|+
+literal|'"'
 decl_stmt|;
 name|display
 argument_list|(

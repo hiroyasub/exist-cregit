@@ -1416,6 +1416,12 @@ operator|==
 name|Type
 operator|.
 name|ITEM
+operator|||
+name|ltype
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 block|{
 if|if
@@ -1431,6 +1437,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 name|lv
 operator|=
 name|lv
@@ -1442,6 +1449,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|rtype
@@ -1449,6 +1457,12 @@ operator|==
 name|Type
 operator|.
 name|ITEM
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 block|{
 name|lv
@@ -1495,6 +1509,12 @@ operator|==
 name|Type
 operator|.
 name|ITEM
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 block|{
 if|if
@@ -1510,6 +1530,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 name|rv
 operator|=
 name|rv
@@ -1521,6 +1542,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|rtype
@@ -1528,6 +1550,12 @@ operator|==
 name|Type
 operator|.
 name|ITEM
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 block|{
 name|lv
@@ -1626,8 +1654,30 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//		System.out.println(
-comment|//			lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|lv
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|relation
+index|]
+operator|+
+name|rv
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|lv
 operator|.
