@@ -524,6 +524,12 @@ specifier|protected
 name|ProgressIndicator
 name|progress
 decl_stmt|;
+specifier|protected
+name|boolean
+name|suppressWSmixed
+init|=
+literal|false
+decl_stmt|;
 comment|// reusable fields
 specifier|private
 name|TextImpl
@@ -664,6 +670,34 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+name|Boolean
+name|temp
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|temp
+operator|=
+operator|(
+name|Boolean
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+literal|"indexer.suppress-whitespace-mixed-content"
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+name|suppressWSmixed
+operator|=
+name|temp
+operator|.
+name|booleanValue
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -2005,14 +2039,70 @@ name|isWhitespaceOnly
 argument_list|()
 condition|)
 block|{
-comment|//					if(charBuf.length()> 0&& last.getChildCount()> 0) {
-comment|//						text.setData(charBuf);
-comment|//						text.setOwnerDocument(document);
-comment|//						last.appendChildInternal(text);
-comment|//						if (!validate)
-comment|//							broker.store(text, currentPath);
-comment|//						text.clear();
-comment|//					}
+if|if
+condition|(
+name|suppressWSmixed
+condition|)
+block|{
+if|if
+condition|(
+name|charBuf
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|text
+operator|.
+name|setData
+argument_list|(
+name|charBuf
+argument_list|)
+expr_stmt|;
+name|text
+operator|.
+name|setOwnerDocument
+argument_list|(
+name|document
+argument_list|)
+expr_stmt|;
+name|last
+operator|.
+name|appendChildInternal
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|validate
+condition|)
+name|broker
+operator|.
+name|store
+argument_list|(
+name|text
+argument_list|,
+name|currentPath
+argument_list|)
+expr_stmt|;
+name|text
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 if|else if
 condition|(
