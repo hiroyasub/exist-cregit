@@ -167,6 +167,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -367,6 +379,10 @@ operator|.
 name|doc
 argument_list|,
 literal|1
+argument_list|,
+name|Node
+operator|.
+name|ELEMENT_NODE
 argument_list|)
 return|;
 else|else
