@@ -631,7 +631,23 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"exception during sort"
+literal|"Exception during sort"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Exception during sort"
 argument_list|,
 name|e
 argument_list|)
