@@ -98,6 +98,24 @@ argument_list|,
 name|conf
 argument_list|)
 return|;
+if|else if
+condition|(
+name|dbName
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"NATIVE_CLUSTER"
+argument_list|)
+condition|)
+return|return
+operator|new
+name|NativeClusterBroker
+argument_list|(
+name|pool
+argument_list|,
+name|conf
+argument_list|)
+return|;
 else|else
 throw|throw
 operator|new
