@@ -663,7 +663,8 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-if|else if
+comment|// that else would cause some words to be ignored in the matching
+if|if
 condition|(
 name|word
 operator|.
@@ -743,7 +744,8 @@ literal|0
 expr_stmt|;
 continue|continue;
 block|}
-if|else if
+comment|// that else MAY cause the distance count to be off by one but i'm not sure
+if|if
 condition|(
 operator|-
 literal|1
