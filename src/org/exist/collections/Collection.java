@@ -923,15 +923,7 @@ name|void
 name|release
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"releasing lock on "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("releasing lock on " + name);
 name|lock
 operator|.
 name|release
@@ -2120,6 +2112,15 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 name|Lock
 name|updateLock
 init|=

@@ -2537,18 +2537,7 @@ condition|)
 block|{
 try|try
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"acquiring lock on "
-operator|+
-name|collection
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//					LOG.debug("acquiring lock on " + collection.getName());
 name|collection
 operator|.
 name|getLock
@@ -2559,13 +2548,7 @@ argument_list|(
 name|lockMode
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"lock acquired"
-argument_list|)
-expr_stmt|;
+comment|//					LOG.debug("lock acquired");
 block|}
 catch|catch
 parameter_list|(
