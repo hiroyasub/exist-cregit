@@ -93,6 +93,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -388,6 +400,8 @@ specifier|static
 name|String
 name|XQUERY
 init|=
+literal|"declare namespace f='urn:foo'; "
+operator|+
 literal|"let $a := "
 operator|+
 literal|"   ("
@@ -408,13 +422,15 @@ literal|"<title>Section 2</title>"
 operator|+
 literal|"<para>First paragraph in second section.</para>"
 operator|+
+literal|"           {collection('/db/test')//f:item[@itemno='2']/f:name}"
+operator|+
 literal|"</section>"
 operator|+
 literal|"   ) "
 operator|+
 literal|"return"
 operator|+
-literal|"   ($a/title, $a//para)"
+literal|"<result>{$a/title, $a/f:name, $a}</result>"
 decl_stmt|;
 specifier|public
 name|void
@@ -729,6 +745,24 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+name|Properties
+name|props
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+name|props
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"yes"
+argument_list|)
+expr_stmt|;
 name|SAXSerializer
 name|serializer
 init|=
@@ -737,9 +771,7 @@ name|SAXSerializer
 argument_list|(
 name|out
 argument_list|,
-operator|new
-name|Properties
-argument_list|()
+name|props
 argument_list|)
 decl_stmt|;
 name|serializer

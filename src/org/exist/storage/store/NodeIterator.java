@@ -930,9 +930,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|SanityCheck
+name|LOG
 operator|.
-name|TRACE
+name|debug
 argument_list|(
 literal|"illegal node on page "
 operator|+
@@ -989,33 +989,8 @@ name|getDataLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|db
-operator|.
-name|debugPageContents
-argument_list|(
-name|p
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|p
-operator|.
-name|dumpPage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
+comment|//					    LOG.debug(db.debugPageContents(p));
+comment|//					    LOG.debug(p.dumpPage());
 return|return
 literal|null
 return|;
