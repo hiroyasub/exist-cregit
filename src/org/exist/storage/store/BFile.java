@@ -3217,7 +3217,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  page                Description of the Parameter 	 *@param  p                   Description of the Parameter 	 *@exception  BTreeException  Description of the Exception 	 *@exception  IOException     Description of the Exception 	 */
 specifier|protected
 name|void
 name|remove
@@ -3552,17 +3551,13 @@ name|free
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|pages
 operator|.
 name|add
 argument_list|(
 name|page
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
@@ -4144,19 +4139,11 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|pages
 operator|.
 name|add
 argument_list|(
 name|page
-argument_list|,
-literal|2
 argument_list|)
 expr_stmt|;
 comment|// return pointer from pageNum and offset into page
@@ -4736,6 +4723,29 @@ name|int
 name|needed
 parameter_list|)
 block|{
+if|if
+condition|(
+name|freeList
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|100
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"free list: "
+operator|+
+name|freeList
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|FreeSpace
 name|freeSpace
 decl_stmt|;
@@ -5717,13 +5727,14 @@ literal|true
 decl_stmt|;
 comment|/**  Description of the Method */
 specifier|public
-name|void
+name|int
 name|decRefCount
 parameter_list|()
 block|{
-name|refCount
+return|return
 operator|--
-expr_stmt|;
+name|refCount
+return|;
 block|}
 comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
@@ -5781,6 +5792,27 @@ name|void
 name|incRefCount
 parameter_list|()
 block|{
+if|if
+condition|(
+name|refCount
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" max value reached"
+argument_list|)
+expr_stmt|;
 name|refCount
 operator|++
 expr_stmt|;
@@ -6618,12 +6650,6 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|pages
 operator|.
 name|add
@@ -6997,19 +7023,11 @@ name|firstPage
 condition|)
 block|{
 comment|// add link to last page
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|pages
 operator|.
 name|add
 argument_list|(
 name|page
-argument_list|,
-literal|2
 argument_list|)
 expr_stmt|;
 name|ph
@@ -7073,12 +7091,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 comment|// keep the first page in cache
 name|pages
 operator|.
@@ -7086,7 +7098,7 @@ name|add
 argument_list|(
 name|firstPage
 argument_list|,
-literal|7
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
@@ -7807,12 +7819,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|pages
 operator|.
 name|add
@@ -8417,8 +8423,6 @@ specifier|protected
 name|Long2ObjectLinkedOpenHashMap
 name|map
 decl_stmt|;
-comment|//protected LinkedList queue = new LinkedList();
-comment|/** 		 *  Constructor for the PageBuffer object 		 * 		 *@param  blockBuffers  Description of the Parameter 		 */
 specifier|public
 name|ClockPageBuffer
 parameter_list|(
@@ -8432,7 +8436,6 @@ name|blockBuffers
 operator|=
 name|blockBuffers
 expr_stmt|;
-comment|//map = new TLongObjectHashMap(blockBuffers);
 name|map
 operator|=
 operator|new
@@ -8442,7 +8445,6 @@ name|blockBuffers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  Constructor for the PageBuffer object */
 specifier|public
 name|ClockPageBuffer
 parameter_list|()
@@ -8453,7 +8455,6 @@ name|PAGE_BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  page  Description of the Parameter 		 */
 specifier|public
 name|void
 name|add
@@ -8514,7 +8515,14 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
-while|while
+name|page
+operator|.
+name|setRefCount
+argument_list|(
+name|initialRefCount
+argument_list|)
+expr_stmt|;
+if|if
 condition|(
 name|map
 operator|.
@@ -8528,14 +8536,6 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setRefCount
-argument_list|(
-name|initialRefCount
-argument_list|)
-expr_stmt|;
-comment|//queue.addLast(page);
 name|map
 operator|.
 name|put
@@ -8601,7 +8601,6 @@ operator|.
 name|write
 argument_list|()
 expr_stmt|;
-comment|//fileHeader.write();
 block|}
 catch|catch
 parameter_list|(
@@ -8663,9 +8662,12 @@ name|page
 operator|==
 literal|null
 condition|)
+block|{
+comment|//LOG.debug(getFile().getName() + " page " + pnum + " not found in buffer");
 name|fails
 operator|++
 expr_stmt|;
+block|}
 else|else
 name|hits
 operator|++
@@ -8682,9 +8684,6 @@ name|DataPage
 name|page
 parameter_list|)
 block|{
-comment|//			final int idx = queue.indexOf(page);
-comment|//			if (idx> -1)
-comment|//				queue.remove(idx);
 name|map
 operator|.
 name|remove
@@ -8746,11 +8745,7 @@ name|oldNum
 decl_stmt|,
 name|pNum
 decl_stmt|;
-while|while
-condition|(
-operator|!
-name|removed
-condition|)
+do|do
 block|{
 for|for
 control|(
@@ -8811,22 +8806,18 @@ operator|+
 literal|1
 condition|)
 continue|continue;
-name|old
-operator|.
-name|decRefCount
-argument_list|()
-expr_stmt|;
-comment|// replace old page if it has reference count< 1,
+comment|// replace old page if it has reference count< 1
 if|if
 condition|(
 name|old
 operator|.
-name|getRefCount
+name|decRefCount
 argument_list|()
 operator|<
 literal|1
 condition|)
 block|{
+comment|//LOG.debug(getFile().getName() + ": replacing page " + old.getPageNum());
 name|i
 operator|.
 name|remove
@@ -8886,6 +8877,12 @@ return|return;
 block|}
 block|}
 block|}
+do|while
+condition|(
+operator|!
+name|removed
+condition|)
+do|;
 block|}
 specifier|public
 name|int

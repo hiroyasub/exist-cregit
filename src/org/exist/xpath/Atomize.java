@@ -212,26 +212,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xpath.StaticContext) 	 */
-specifier|public
-name|DocumentSet
-name|preselect
-parameter_list|(
-name|DocumentSet
-name|in_docs
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|expression
-operator|.
-name|preselect
-argument_list|(
-name|in_docs
-argument_list|)
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
 specifier|public
 name|String
@@ -273,6 +253,18 @@ operator|.
 name|getDependencies
 argument_list|()
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|expression
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

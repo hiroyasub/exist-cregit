@@ -31,6 +31,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -287,7 +299,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|else if
+condition|(
+name|next
+operator|instanceof
+name|NodeProxy
+condition|)
 block|{
 if|if
 condition|(

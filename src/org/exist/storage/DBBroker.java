@@ -800,7 +800,10 @@ specifier|public
 specifier|abstract
 name|DocumentSet
 name|getAllDocuments
-parameter_list|()
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|)
 function_decl|;
 comment|/** 	 *  find elements by their tag name. This method is comparable to the DOM's 	 *  method call getElementsByTagName. All elements matching tagName and 	 *  belonging to one of the documents in the DocumentSet docs are returned. 	 * 	 *@param  docs  Description of the Parameter 	 *@param  name  Description of the Parameter 	 *@return       The attributesByName value 	 */
 specifier|public
@@ -930,6 +933,9 @@ name|getDocumentsByCollection
 parameter_list|(
 name|String
 name|collection
+parameter_list|,
+name|DocumentSet
+name|docs
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -942,6 +948,9 @@ name|getDocumentsByCollection
 parameter_list|(
 name|String
 name|collection
+parameter_list|,
+name|DocumentSet
+name|docs
 parameter_list|,
 name|boolean
 name|inclusive
@@ -957,6 +966,9 @@ name|getDocumentsByDoctype
 parameter_list|(
 name|String
 name|doctype
+parameter_list|,
+name|DocumentSet
+name|result
 parameter_list|)
 function_decl|;
 comment|/** 	 *  get a common prefix for a namespace URI. It should be guaranteed that 	 *  only one prefix is associated with one namespace URI throughout the 	 *  database. 	 * 	 *@param  namespace  Description of the Parameter 	 *@return            The namespacePrefix value 	 */

@@ -47,6 +47,18 @@ name|exist
 operator|.
 name|xpath
 operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
 name|Cardinality
 import|;
 end_import
@@ -168,7 +180,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"number"
+literal|"string"
 argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)

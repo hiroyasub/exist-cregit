@@ -556,15 +556,6 @@ name|docs
 init|=
 literal|null
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -617,6 +608,10 @@ operator|.
 name|allDocs
 argument_list|(
 name|broker
+argument_list|,
+operator|new
+name|DocumentSet
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
@@ -806,6 +801,15 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"query: "
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1062,7 +1066,7 @@ literal|"generated AST: "
 operator|+
 name|ast
 operator|.
-name|toStringTree
+name|toStringList
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1104,6 +1108,11 @@ name|treeParser
 operator|.
 name|getErrorMessage
 argument_list|()
+argument_list|,
+name|treeParser
+operator|.
+name|getLastException
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1134,53 +1143,11 @@ name|result
 init|=
 literal|null
 decl_stmt|;
-name|docs
-operator|=
-operator|(
-name|docs
-operator|==
-literal|null
-condition|?
-name|expr
-operator|.
-name|preselect
-argument_list|(
-name|context
-argument_list|)
-else|:
-name|expr
-operator|.
-name|preselect
-argument_list|(
-name|docs
-argument_list|)
-operator|)
-expr_stmt|;
-if|if
-condition|(
-name|docs
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|0
-condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"no documents!"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
+comment|//			docs = (docs == null ? expr.preselect() : expr.preselect(docs));
+comment|//			if (docs.getLength() == 0) {
+comment|//				result = Sequence.EMPTY_SEQUENCE;
+comment|//				LOG.info("no documents!");
+comment|//			} else
 name|result
 operator|=
 name|expr

@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * XQuery if ... then ... else expression.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -218,15 +218,6 @@ return|;
 block|}
 else|else
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"else"
-argument_list|)
-expr_stmt|;
 return|return
 name|elseExpr
 operator|.
@@ -356,6 +347,28 @@ name|Type
 operator|.
 name|ITEM
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|testExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|thenExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|elseExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

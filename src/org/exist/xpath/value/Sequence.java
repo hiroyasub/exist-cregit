@@ -124,6 +124,8 @@ specifier|public
 name|String
 name|getStringValue
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Get the effective boolean value of this sequence. Will be false if the sequence is empty, 	 * true otherwise. 	 *  	 * @return 	 * @throws XPathException 	 */
 specifier|public

@@ -106,6 +106,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|pushLocalContext
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|Variable
 name|var
 init|=
@@ -190,7 +197,9 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-return|return
+name|Sequence
+name|returnSeq
+init|=
 name|returnExpr
 operator|.
 name|eval
@@ -201,6 +210,14 @@ name|filtered
 argument_list|,
 literal|null
 argument_list|)
+decl_stmt|;
+name|context
+operator|.
+name|popLocalContext
+argument_list|()
+expr_stmt|;
+return|return
+name|returnSeq
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */

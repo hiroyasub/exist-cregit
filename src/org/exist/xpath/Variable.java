@@ -39,6 +39,10 @@ name|Sequence
 import|;
 end_import
 
+begin_comment
+comment|/**  * An XQuery/XPath variable, consisting of a QName and a value.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class

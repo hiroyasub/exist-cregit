@@ -6938,18 +6938,6 @@ index|[]
 name|read
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"reading overflow page "
-operator|+
-name|firstPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ByteArrayOutputStream
 name|os
 init|=

@@ -125,6 +125,8 @@ specifier|public
 name|String
 name|getStringValue
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

@@ -161,17 +161,6 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
-name|DocumentSet
-name|preselect
-parameter_list|(
-name|DocumentSet
-name|in_docs
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
 name|Sequence
 name|eval
 parameter_list|(

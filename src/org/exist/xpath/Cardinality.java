@@ -50,6 +50,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|EMPTY
+init|=
+name|ZERO
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|EXACTLY_ONE
 init|=
 name|ONE

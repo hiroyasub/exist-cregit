@@ -177,6 +177,13 @@ operator|.
 name|NODE
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+block|}
 block|}
 end_class
 

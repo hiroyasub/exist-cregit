@@ -113,18 +113,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xpath
 operator|.
 name|value
@@ -176,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract superclass for variable binding expressions like "for" and "let".  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Abstract superclass for the variable binding expressions "for" and "let".  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -217,6 +205,13 @@ decl_stmt|;
 specifier|protected
 name|Expression
 name|whereExpr
+decl_stmt|;
+specifier|protected
+name|OrderSpec
+name|orderSpecs
+index|[]
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|BindingExpression
@@ -281,6 +276,22 @@ block|{
 name|whereExpr
 operator|=
 name|expr
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setOrderSpecs
+parameter_list|(
+name|OrderSpec
+name|specs
+index|[]
+parameter_list|)
+block|{
+name|this
+operator|.
+name|orderSpecs
+operator|=
+name|specs
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
@@ -656,6 +667,28 @@ name|Type
 operator|.
 name|ITEM
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|inputSequence
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|whereExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|returnExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

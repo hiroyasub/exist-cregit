@@ -83,6 +83,8 @@ specifier|public
 name|String
 name|getStringValue
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Convert this item into a sequence, containing only the item. 	 *   	 * @return 	 */
 specifier|public

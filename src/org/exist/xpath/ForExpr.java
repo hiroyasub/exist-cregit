@@ -73,6 +73,20 @@ name|xpath
 operator|.
 name|value
 operator|.
+name|OrderedValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -120,7 +134,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an XQuery/XPath 2.0 "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -162,17 +176,18 @@ name|XPathException
 block|{
 name|Sequence
 name|result
-decl_stmt|;
-comment|//if (returnExpr.returnsType() == Type.NODE) {
-comment|//	result = new ExtArrayNodeSet();
-comment|//} else {
-name|result
-operator|=
+init|=
 operator|new
 name|ValueSequence
 argument_list|()
+decl_stmt|;
+name|context
+operator|.
+name|pushLocalContext
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
-comment|//}
 comment|// declare the variable
 name|Variable
 name|var
@@ -278,6 +293,36 @@ expr_stmt|;
 name|whereExpr
 operator|=
 literal|null
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|orderSpecs
+operator|!=
+literal|null
+condition|)
+block|{
+name|OrderedValueSequence
+name|ordered
+init|=
+operator|new
+name|OrderedValueSequence
+argument_list|(
+name|docs
+argument_list|,
+name|orderSpecs
+argument_list|)
+decl_stmt|;
+name|ordered
+operator|.
+name|addAll
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|in
+operator|=
+name|ordered
 expr_stmt|;
 block|}
 name|Sequence
@@ -422,6 +467,11 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|popLocalContext
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;

@@ -31,9 +31,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xpath
 operator|.
-name|NativeBroker
+name|StaticContext
 import|;
 end_import
 
@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|StaticContext
+name|XPathException
 import|;
 end_import
 
@@ -532,6 +532,8 @@ parameter_list|,
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|String
 name|prefix
@@ -568,7 +570,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
 literal|"No namespace defined for prefix "
 operator|+
@@ -622,6 +624,8 @@ parameter_list|,
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|String
 name|prefix
@@ -660,7 +664,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
 literal|"No namespace defined for prefix "
 operator|+
@@ -704,6 +708,8 @@ parameter_list|,
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|String
 name|prefix
@@ -740,7 +746,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
 literal|"No namespace defined for prefix "
 operator|+

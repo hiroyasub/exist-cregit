@@ -558,13 +558,17 @@ if|if
 condition|(
 name|Type
 operator|.
-name|isNode
+name|subTypeOf
 argument_list|(
 name|getLeft
 argument_list|()
 operator|.
 name|returnsType
 argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
 argument_list|)
 condition|)
 block|{
@@ -1563,25 +1567,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|lv
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|rv
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 return|return
 name|lv
 operator|.
@@ -1834,12 +1820,26 @@ name|buf
 operator|.
 name|append
 argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 name|Constants
 operator|.
 name|OPS
 index|[
 name|relation
 index|]
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|' '
 argument_list|)
 expr_stmt|;
 name|buf

@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * A literal value, i.e. a string, integer, decimal or double literal.  *   * This is just a wrapper around the corresponding atomic value.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -213,6 +213,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
 block|}
 block|}
 end_class

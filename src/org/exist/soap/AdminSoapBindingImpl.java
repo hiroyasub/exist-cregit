@@ -1248,6 +1248,10 @@ name|allDocs
 argument_list|(
 name|broker
 argument_list|,
+operator|new
+name|DocumentSet
+argument_list|()
+argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;

@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|xpath
-operator|.
-name|functions
 package|;
 end_package
 
@@ -79,138 +77,6 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|AtomicToString
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|Atomize
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|Cardinality
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|Dependency
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|DynamicCardinalityCheck
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|DynamicTypeCheck
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|Expression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|PathExpr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|StaticContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|UntypedValueCheck
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
 name|value
 operator|.
 name|Item
@@ -259,6 +125,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract base class for all built-in and user-defined functions.  *   * Built-in functions just extend this class. A new function instance  * will be created for each function call. In addition to the methods in this class,   * all built-in functions need to declare a public static field, called "signature",   * containing the signature of the function.  *   * User-defined functions extend class {@link org.exist.xpath.functions.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xpath.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 specifier|abstract
@@ -267,6 +137,7 @@ name|Function
 extends|extends
 name|PathExpr
 block|{
+comment|/**  	 * XQuery/XPath 2.0 function namespace. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -275,6 +146,7 @@ name|BUILTIN_FUNCTION_NS
 init|=
 literal|"http://www.w3.org/2003/05/xpath-functions"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in xmldb functions. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -283,6 +155,7 @@ name|XMLDB_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/xmldb"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in utility functions. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -291,11 +164,18 @@ name|UTIL_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/util"
 decl_stmt|;
+comment|// The signature of the function.
 specifier|private
 name|FunctionSignature
 name|mySignature
 decl_stmt|;
-specifier|public
+comment|// The parent expression from which this function is called.
+specifier|private
+name|Expression
+name|parent
+decl_stmt|;
+comment|/** 	 * Internal constructor. Subclasses should<b>always</b> call this and 	 * pass the current context and their function signature. 	 *  	 * @param context 	 * @param signature 	 */
+specifier|protected
 name|Function
 parameter_list|(
 name|StaticContext
@@ -349,6 +229,7 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Create a built-in function from the specified class. 	 *  	 * @param context 	 * @param fclass 	 * @return the created function or null if the class could not be initialized. 	 */
 specifier|public
 specifier|static
 name|Function
@@ -487,6 +368,33 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * Set the parent expression of this function, i.e. the 	 * expression from which the function is called. 	 *  	 * @param parent 	 */
+specifier|public
+name|void
+name|setParent
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|)
+block|{
+name|this
+operator|.
+name|parent
+operator|=
+name|parent
+expr_stmt|;
+block|}
+comment|/** 	 * Returns the expression from which this function 	 * gets called. 	 *  	 * @return 	 */
+specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+block|{
+return|return
+name|parent
+return|;
+block|}
+comment|/** 	 * Set the (static) arguments for this function from a list of expressions. 	 *  	 * This will also check the type and cardinality of the 	 * passed argument expressions. 	 *  	 * @param arguments 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|setArguments
@@ -623,6 +531,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Statically check an argument against the sequence type specified in 	 * the signature. 	 *  	 * @param expr 	 * @param type 	 * @return 	 * @throws XPathException 	 */
 specifier|protected
 name|Expression
 name|checkArgument
@@ -1017,6 +926,21 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|type
+operator|.
+name|getPrimaryType
+argument_list|()
+argument_list|,
+name|returnType
+argument_list|)
+operator|)
+operator|&&
 name|returnType
 operator|!=
 name|Type
@@ -1027,7 +951,14 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Supplied argument doesn't match required type: required: "
+literal|"Supplied argument "
+operator|+
+name|expr
+operator|.
+name|pprint
+argument_list|()
+operator|+
+literal|" doesn't match required type: required: "
 operator|+
 name|type
 operator|.
@@ -1099,26 +1030,6 @@ return|return
 name|expr
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#preselect(org.exist.dom.DocumentSet, org.exist.xpath.StaticContext) 	 */
-specifier|public
-name|DocumentSet
-name|preselect
-parameter_list|(
-name|DocumentSet
-name|in_docs
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|super
-operator|.
-name|preselect
-argument_list|(
-name|in_docs
-argument_list|)
-return|;
-block|}
 specifier|public
 specifier|abstract
 name|Sequence
@@ -1136,6 +1047,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos 	 * @return 	 */
 specifier|public
 name|Expression
 name|getArgument
@@ -1151,6 +1063,7 @@ name|pos
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Get the number of arguments passed to this function. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getArgumentCount
@@ -1163,6 +1076,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Return the name of this function. 	 *  	 * @return 	 */
 specifier|public
 name|QName
 name|getName
@@ -1175,6 +1089,7 @@ name|getName
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the signature of this function. 	 *  	 * @return 	 */
 specifier|public
 name|FunctionSignature
 name|getSignature

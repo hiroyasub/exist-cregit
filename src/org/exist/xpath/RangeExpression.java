@@ -45,34 +45,6 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|functions
-operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|functions
-operator|.
-name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
 name|value
 operator|.
 name|IntegerValue
@@ -150,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * An XQuery range expression, like "1 to 10".  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -338,17 +310,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"adding "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|add

@@ -122,17 +122,6 @@ name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
-name|DocumentSet
-name|preselect
-parameter_list|(
-name|DocumentSet
-name|in_docs
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
 name|String
 name|pprint
 parameter_list|()
@@ -143,6 +132,13 @@ name|int
 name|returnsType
 parameter_list|()
 function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|resetState
+parameter_list|()
+function_decl|;
+comment|/** 	 * The default cardinality is {@link Cardinality#EXACTLY_ONE}. 	 */
 specifier|public
 name|int
 name|getCardinality
@@ -155,6 +151,7 @@ name|EXACTLY_ONE
 return|;
 comment|// default cardinality
 block|}
+comment|/** 	 * Ignored. Has no effect by default. 	 */
 specifier|public
 name|void
 name|setInPredicate
@@ -163,9 +160,8 @@ name|boolean
 name|inPredicate
 parameter_list|)
 block|{
-comment|// has no effect by default
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#getDependencies() 	 */
+comment|/** 	 * Returns {@link Dependency#DEFAULT_DEPENDENCIES}. 	 *  	 * @see org.exist.xpath.Expression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies

@@ -67,6 +67,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Represents a reference to an in-scope variable.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -150,7 +154,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//this.context = context;
 return|return
 name|in_docs
 return|;
@@ -172,13 +175,6 @@ specifier|public
 name|int
 name|returnsType
 parameter_list|()
-block|{
-if|if
-condition|(
-name|context
-operator|!=
-literal|null
-condition|)
 block|{
 try|try
 block|{
@@ -205,6 +201,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|var
 operator|.
@@ -215,13 +212,13 @@ name|getItemType
 argument_list|()
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|XPathException
 name|e
 parameter_list|)
 block|{
-block|}
 block|}
 return|return
 name|Type
@@ -240,6 +237,13 @@ name|Dependency
 operator|.
 name|LOCAL_VARS
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
 block|}
 block|}
 end_class

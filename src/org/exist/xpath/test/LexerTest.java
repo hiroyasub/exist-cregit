@@ -73,18 +73,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeSet
 import|;
 end_import
@@ -637,16 +625,6 @@ expr_stmt|;
 return|return;
 block|}
 comment|// execute the query
-name|DocumentSet
-name|docs
-init|=
-name|expr
-operator|.
-name|preselect
-argument_list|(
-name|context
-argument_list|)
-decl_stmt|;
 name|Sequence
 name|result
 init|=
@@ -654,7 +632,7 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-name|docs
+literal|null
 argument_list|,
 literal|null
 argument_list|,

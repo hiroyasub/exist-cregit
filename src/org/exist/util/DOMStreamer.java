@@ -303,6 +303,11 @@ name|TransformerException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|SAXException

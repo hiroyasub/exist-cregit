@@ -407,6 +407,11 @@ argument_list|)
 operator|)
 condition|)
 block|{
+name|endNode
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
 name|nextNode
 operator|=
 literal|null
@@ -420,11 +425,6 @@ operator|=
 name|nextNode
 expr_stmt|;
 block|}
-name|endNode
-argument_list|(
-name|top
-argument_list|)
-expr_stmt|;
 block|}
 specifier|protected
 name|void
@@ -971,6 +971,13 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+if|if
+condition|(
+name|node
+operator|==
+literal|null
+condition|)
+return|return;
 if|if
 condition|(
 name|node

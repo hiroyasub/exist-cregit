@@ -210,27 +210,7 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|item
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-literal|" converting to "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|requiredType
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(item.getStringValue() + " converting to " + Type.getTypeName(requiredType));
 name|result
 operator|.
 name|add
@@ -307,6 +287,18 @@ operator|.
 name|getDependencies
 argument_list|()
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|expression
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
