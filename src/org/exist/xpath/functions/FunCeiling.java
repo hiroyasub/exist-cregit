@@ -181,6 +181,12 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Returns a value of the same type as the argument. Specifically, "
+operator|+
+literal|"returns the smallest (closest to negative infinity) number "
+operator|+
+literal|"with no fractional part that is not less than the value of the argument."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

@@ -198,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Register an XMLDB driver with the XMLDB DatabaseManager.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -226,6 +226,12 @@ name|XMLDB_FUNCTION_NS
 argument_list|,
 literal|"xmldb"
 argument_list|)
+argument_list|,
+literal|"Register an XMLDB driver class with the XMLDB Database Manager. "
+operator|+
+literal|"This is only required if you want to access a database instance different "
+operator|+
+literal|"from the one that executes the XQuery."
 argument_list|,
 operator|new
 name|SequenceType

@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|VirtualNodeSet
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|protected
 name|int
@@ -875,16 +875,7 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|realSet
-operator|.
-name|contains
-argument_list|(
-name|p
-argument_list|)
-condition|)
+comment|//if (!realSet.contains(p))
 name|realSet
 operator|.
 name|add

@@ -267,17 +267,9 @@ name|ReadOnlyException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StorageAddress
-import|;
-end_import
+begin_comment
+comment|//import org.exist.util.StorageAddress;
+end_comment
 
 begin_import
 import|import
@@ -302,10 +294,6 @@ operator|.
 name|VariableByteOutputStream
 import|;
 end_import
-
-begin_comment
-comment|/**  *  ElementIndex collects all element occurrences. It uses the name of the  *  element and the current doc_id as keys and stores all occurrences of this  *  element in a blob. This means that the blob just contains an array of gid's  *  which may be compressed if useCompression is true. Storing all occurrences  *  in one large blob is much faster than storing each of them in a single table  *  row.  *  *@author     Wolfgang Meier (meier@ifs.tu-darmstadt.de)  */
-end_comment
 
 begin_class
 specifier|public
@@ -877,13 +865,12 @@ name|gid
 expr_stmt|;
 name|address
 operator|=
-name|StorageAddress
-operator|.
-name|read
-argument_list|(
 name|is
-argument_list|)
+operator|.
+name|readFixedLong
+argument_list|()
 expr_stmt|;
+comment|//address = StorageAddress.read(is);
 if|if
 condition|(
 name|node
@@ -1093,16 +1080,15 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-name|StorageAddress
+comment|//StorageAddress.write(p.getInternalAddress(), os);
+name|os
 operator|.
-name|write
+name|writeFixedLong
 argument_list|(
 name|p
 operator|.
 name|getInternalAddress
 argument_list|()
-argument_list|,
-name|os
 argument_list|)
 expr_stmt|;
 block|}
@@ -1634,14 +1620,13 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
+comment|//address = StorageAddress.read(is);
 name|address
 operator|=
-name|StorageAddress
-operator|.
-name|read
-argument_list|(
 name|is
-argument_list|)
+operator|.
+name|readFixedLong
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -1654,7 +1639,6 @@ name|gid
 argument_list|)
 condition|)
 block|{
-comment|//address = DOMFile.createPointer(page, tid);
 name|newList
 operator|.
 name|add
@@ -1801,16 +1785,15 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-name|StorageAddress
+comment|//StorageAddress.write(p.getInternalAddress(), os);
+name|os
 operator|.
-name|write
+name|writeFixedLong
 argument_list|(
 name|p
 operator|.
 name|getInternalAddress
 argument_list|()
-argument_list|,
-name|os
 argument_list|)
 expr_stmt|;
 block|}
@@ -2213,18 +2196,17 @@ argument_list|(
 name|cid
 argument_list|)
 expr_stmt|;
-name|StorageAddress
+name|os
 operator|.
-name|write
+name|writeFixedLong
 argument_list|(
 name|proxy
 operator|.
 name|getInternalAddress
 argument_list|()
-argument_list|,
-name|os
 argument_list|)
 expr_stmt|;
+comment|//StorageAddress.write(proxy.getInternalAddress(), os);
 block|}
 if|if
 condition|(

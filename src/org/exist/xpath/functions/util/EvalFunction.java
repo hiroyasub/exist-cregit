@@ -256,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Dynamically evaluates a string argument as an XPath/Query  * expression.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -284,6 +284,16 @@ name|UTIL_FUNCTION_NS
 argument_list|,
 literal|"util"
 argument_list|)
+argument_list|,
+literal|"Dynamically evaluates its string argument as "
+operator|+
+literal|"an XPath/XQuery expression. "
+operator|+
+literal|"The argument expression will inherit the current execution context, i.e. all "
+operator|+
+literal|"namespace declarations and variable declarations are visible from within the "
+operator|+
+literal|"inner expression."
 argument_list|,
 operator|new
 name|SequenceType
@@ -373,6 +383,15 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"eval: "
+operator|+
+name|expr
+argument_list|)
+expr_stmt|;
 name|XPathLexer2
 name|lexer
 init|=

@@ -96,7 +96,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a call to a user-defined function {@see org.exist.xpath.functions.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
+comment|/**  * Represents a call to a user-defined function   * {@see org.exist.xpath.functions.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
 end_comment
 
 begin_class

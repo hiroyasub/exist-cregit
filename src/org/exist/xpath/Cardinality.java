@@ -110,6 +110,12 @@ name|cardinality
 condition|)
 block|{
 case|case
+name|EMPTY
+case|:
+return|return
+literal|"empty()"
+return|;
+case|case
 name|EXACTLY_ONE
 case|:
 return|return

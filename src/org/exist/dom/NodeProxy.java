@@ -201,7 +201,7 @@ specifier|final
 class|class
 name|NodeProxy
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 implements|implements
 name|Item
 implements|,

@@ -45,16 +45,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|TreeMap
 import|;
 end_import
@@ -963,9 +953,6 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|,
-operator|(
-name|String
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -1110,18 +1097,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"query: "
-operator|+
-name|expr
-operator|.
-name|pprint
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|long
 name|start
 init|=

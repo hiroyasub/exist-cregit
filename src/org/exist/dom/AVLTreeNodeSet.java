@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|AVLTreeNodeSet
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|private
 name|Node

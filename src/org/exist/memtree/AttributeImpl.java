@@ -204,6 +204,23 @@ name|nodeNumber
 index|]
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
+specifier|public
+name|String
+name|getNodeValue
+parameter_list|()
+throws|throws
+name|DOMException
+block|{
+return|return
+name|document
+operator|.
+name|attrValue
+index|[
+name|nodeNumber
+index|]
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#setValue(java.lang.String) 	 */
 specifier|public
 name|void

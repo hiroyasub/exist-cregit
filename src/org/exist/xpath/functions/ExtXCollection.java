@@ -119,6 +119,14 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Works like fn:collection, but does not include documents "
+operator|+
+literal|"found in subcollections of the specified collections. This "
+operator|+
+literal|"function is specific to eXist and will be moved into a seperate "
+operator|+
+literal|"module in the near future."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

@@ -267,6 +267,16 @@ argument_list|,
 literal|"xmldb"
 argument_list|)
 argument_list|,
+literal|"Store a node as a new document into the database. The first "
+operator|+
+literal|"argument specifies the collection object as returned by the collection or "
+operator|+
+literal|"create-collection functions. The second argument is the name of the new "
+operator|+
+literal|"document. The third argument represents the document root node. It will be "
+operator|+
+literal|"serialized to a SAX stream and passed to the database."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]
@@ -317,7 +327,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EMPTY
 argument_list|)
 argument_list|)
 decl_stmt|;

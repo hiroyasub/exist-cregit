@@ -155,33 +155,9 @@ name|driver
 argument_list|)
 decl_stmt|;
 comment|// create the default database
-name|Database
-name|database
-init|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
+comment|//Database database = (Database) cl.newInstance();
+comment|//database.setProperty("create-database", "true");
+comment|//DatabaseManager.registerDatabase(database);
 comment|// create a second database called "test", configured by
 comment|// configuration file "testConf.xml"
 name|Database
@@ -229,27 +205,8 @@ argument_list|(
 name|database2
 argument_list|)
 expr_stmt|;
-name|Collection
-name|collection1
-init|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-name|URI_DB1
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|)
-decl_stmt|;
-name|loadFile
-argument_list|(
-name|collection1
-argument_list|,
-literal|"samples/shakespeare/hamlet.xml"
-argument_list|)
-expr_stmt|;
+comment|//Collection collection1 = DatabaseManager.getCollection(URI_DB1, "admin", null);
+comment|//loadFile(collection1, "samples/shakespeare/hamlet.xml");
 name|Collection
 name|collection2
 init|=
@@ -271,11 +228,7 @@ argument_list|,
 literal|"samples/shakespeare/r_and_j.xml"
 argument_list|)
 expr_stmt|;
-name|shutdown
-argument_list|(
-name|collection1
-argument_list|)
-expr_stmt|;
+comment|//shutdown(collection1);
 name|shutdown
 argument_list|(
 name|collection2

@@ -184,6 +184,15 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|i

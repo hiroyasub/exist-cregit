@@ -103,6 +103,10 @@ literal|"org.exist.xpath.functions.ExtDoctype"
 block|,
 literal|"org.exist.xpath.functions.FunDistinctValues"
 block|,
+literal|"org.exist.xpath.functions.FunEmpty"
+block|,
+literal|"org.exist.xpath.functions.FunItemAt"
+block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBCollection"
 block|,
 literal|"org.exist.xpath.functions.xmldb.XMLDBStore"
@@ -118,6 +122,12 @@ block|,
 literal|"org.exist.xpath.functions.util.BuiltinFunctions"
 block|,
 literal|"org.exist.xpath.functions.util.EvalFunction"
+block|,
+literal|"org.exist.xpath.functions.request.RequestParameter"
+block|,
+literal|"org.exist.xpath.functions.request.GetSessionAttribute"
+block|,
+literal|"org.exist.xpath.functions.request.SetSessionAttribute"
 block|}
 decl_stmt|;
 block|}

@@ -143,6 +143,21 @@ return|return
 name|value
 return|;
 block|}
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|long
+name|value
+parameter_list|)
+block|{
+name|this
+operator|.
+name|value
+operator|=
+name|value
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getStringValue() 	 */
 specifier|public
 name|String

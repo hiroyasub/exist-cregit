@@ -279,6 +279,20 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Includes one or more documents "
+operator|+
+literal|"into the input sequence. This function is specific to eXist and "
+operator|+
+literal|"will be replaced with the corresponding fn:doc function. Currently, "
+operator|+
+literal|"eXist interprets each argument as an absolute path pointing to a "
+operator|+
+literal|"document in the database, as for example, '/db/shakespeare/plays/hamlet.xml'. "
+operator|+
+literal|"If no arguments are specified, the function will load all documents in the "
+operator|+
+literal|"database."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

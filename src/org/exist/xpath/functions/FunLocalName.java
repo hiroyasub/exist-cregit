@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|*
+name|Cardinality
 import|;
 end_import
 
@@ -71,7 +71,19 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Cardinality
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|FunctionSignature
 import|;
 end_import
 

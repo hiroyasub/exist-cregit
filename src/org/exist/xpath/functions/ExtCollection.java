@@ -267,6 +267,16 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Includes the documents contained in the specified collection "
+operator|+
+literal|"into the input sequence. eXist interprets the arguments as absolute paths "
+operator|+
+literal|"pointing to database collections, as for example, '/db/test'. Documents "
+operator|+
+literal|"located in subcollections of a collection are included into the input "
+operator|+
+literal|"set."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

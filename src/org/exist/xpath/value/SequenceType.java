@@ -133,6 +133,17 @@ name|String
 name|toString
 parameter_list|()
 block|{
+if|if
+condition|(
+name|cardinality
+operator|==
+name|Cardinality
+operator|.
+name|EMPTY
+condition|)
+return|return
+literal|"empty()"
+return|;
 return|return
 name|Type
 operator|.

@@ -241,6 +241,16 @@ argument_list|,
 literal|"xmldb"
 argument_list|)
 argument_list|,
+literal|"Get a reference to a collection identified by the XMLDB URI passed "
+operator|+
+literal|"as first argument. The second argument should specify the name of "
+operator|+
+literal|"a valid user, the third is the password. The method returns a Java object "
+operator|+
+literal|"type, which can then be used as argument to the create-collection or store "
+operator|+
+literal|"functions."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

@@ -243,6 +243,12 @@ argument_list|,
 literal|"xmldb"
 argument_list|)
 argument_list|,
+literal|"Create a new collection as a child of the collection object passed as "
+operator|+
+literal|"first argument. The second argument specifies the name of the new "
+operator|+
+literal|"collection."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

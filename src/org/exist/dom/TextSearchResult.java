@@ -96,7 +96,7 @@ specifier|public
 class|class
 name|TextSearchResult
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|public
 specifier|final

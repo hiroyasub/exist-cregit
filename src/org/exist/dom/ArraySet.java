@@ -92,7 +92,7 @@ specifier|public
 class|class
 name|ArraySet
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|public
 specifier|final

@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Returns a sequence containing the QNames of all built-in functions  * currently registered in the query engine.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -236,6 +236,10 @@ name|UTIL_FUNCTION_NS
 argument_list|,
 literal|"util"
 argument_list|)
+argument_list|,
+literal|"Returns a sequence containing the QNames of all built-in functions "
+operator|+
+literal|"currently known to the system."
 argument_list|,
 literal|null
 argument_list|,

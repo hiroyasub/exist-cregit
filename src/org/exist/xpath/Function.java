@@ -164,6 +164,14 @@ name|UTIL_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/util"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|REQUEST_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/request"
+decl_stmt|;
 comment|// The signature of the function.
 specifier|private
 name|FunctionSignature

@@ -68,7 +68,6 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ch                Description of the Parameter      *@param  start             Description of the Parameter      *@param  length            Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|characters
@@ -98,7 +97,6 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|endDocument
@@ -108,7 +106,6 @@ name|SAXException
 block|{
 comment|// remove
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespaceURI      Description of the Parameter      *@param  localName         Description of the Parameter      *@param  qName             Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|endElement
@@ -154,7 +151,6 @@ name|qName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  prefix            Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|endPrefixMapping
@@ -173,7 +169,6 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ch                Description of the Parameter      *@param  start             Description of the Parameter      *@param  length            Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -203,7 +198,6 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  target            Description of the Parameter      *@param  data              Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|processingInstruction
@@ -227,7 +221,6 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name              Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|skippedEntity
@@ -246,7 +239,6 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|startDocument
@@ -256,7 +248,6 @@ name|SAXException
 block|{
 comment|// remove
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespaceURI      Description of the Parameter      *@param  localName         Description of the Parameter      *@param  qName             Description of the Parameter      *@param  atts              Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|startElement
@@ -307,7 +298,6 @@ name|atts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  prefix            Description of the Parameter      *@param  uri               Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|startPrefixMapping

@@ -185,6 +185,16 @@ argument_list|,
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Returns the value of the base-uri property for the argument. "
+operator|+
+literal|"Document, element and processing-instruction nodes have a "
+operator|+
+literal|"base-uri property. If that property is non-empty, its value "
+operator|+
+literal|"is returned. The base-uri of all other node types is the empty "
+operator|+
+literal|"sequence."
+argument_list|,
 literal|null
 argument_list|,
 operator|new

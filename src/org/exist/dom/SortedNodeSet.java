@@ -252,7 +252,7 @@ specifier|public
 class|class
 name|SortedNodeSet
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|private
 specifier|static

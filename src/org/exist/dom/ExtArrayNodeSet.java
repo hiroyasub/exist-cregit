@@ -110,7 +110,7 @@ specifier|public
 class|class
 name|ExtArrayNodeSet
 extends|extends
-name|NodeSet
+name|AbstractNodeSet
 block|{
 specifier|private
 name|Int2ObjectAVLTreeMap

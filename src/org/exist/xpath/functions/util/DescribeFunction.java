@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Describe a built-in function identified by its QName.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -238,6 +238,10 @@ name|UTIL_FUNCTION_NS
 argument_list|,
 literal|"util"
 argument_list|)
+argument_list|,
+literal|"Describes a built-in function. Returns an element describing the "
+operator|+
+literal|"function signature."
 argument_list|,
 operator|new
 name|SequenceType
@@ -372,6 +376,15 @@ name|Function
 operator|.
 name|XMLDB_FUNCTION_NS
 argument_list|)
+operator|||
+name|uri
+operator|.
+name|equals
+argument_list|(
+name|Function
+operator|.
+name|REQUEST_FUNCTION_NS
+argument_list|)
 condition|)
 block|{
 name|Class
@@ -487,6 +500,27 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|attribs
+operator|.
+name|addAttribute
+argument_list|(
+literal|""
+argument_list|,
+literal|"module"
+argument_list|,
+literal|"module"
+argument_list|,
+literal|"CDATA"
+argument_list|,
+name|signature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|nodeNr
 init|=
@@ -508,6 +542,45 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|signature
+operator|.
+name|getDescription
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|builder
+operator|.
+name|startElement
+argument_list|(
+literal|""
+argument_list|,
+literal|"description"
+argument_list|,
+literal|"description"
+argument_list|,
+name|attribs
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|characters
+argument_list|(
+name|signature
+operator|.
+name|getDescription
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|endElement
+argument_list|()
+expr_stmt|;
+block|}
 name|builder
 operator|.
 name|startElement

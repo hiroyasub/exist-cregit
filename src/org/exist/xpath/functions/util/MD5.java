@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Generate an MD5 key from a string.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -200,6 +200,8 @@ name|UTIL_FUNCTION_NS
 argument_list|,
 literal|"util"
 argument_list|)
+argument_list|,
+literal|"Generates an MD5 key from a string."
 argument_list|,
 operator|new
 name|SequenceType
