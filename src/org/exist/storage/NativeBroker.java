@@ -2662,13 +2662,7 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|address
-operator|=
-name|is
-operator|.
-name|readFixedLong
-argument_list|()
-expr_stmt|;
+comment|//address = is.readFixedLong();
 name|result
 operator|.
 name|add
@@ -2684,10 +2678,15 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 argument_list|,
-name|address
+comment|//		address),
+name|StorageAddress
+operator|.
+name|read
+argument_list|(
+name|is
+argument_list|)
 argument_list|)
 argument_list|,
-comment|//StorageAddress.read(is)),
 name|len
 argument_list|)
 expr_stmt|;

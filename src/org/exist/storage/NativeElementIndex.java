@@ -267,6 +267,18 @@ name|ReadOnlyException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|StorageAddress
+import|;
+end_import
+
 begin_comment
 comment|//import org.exist.util.StorageAddress;
 end_comment
@@ -863,14 +875,16 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
+comment|//address = is.readFixedLong();
 name|address
 operator|=
-name|is
+name|StorageAddress
 operator|.
-name|readFixedLong
-argument_list|()
+name|read
+argument_list|(
+name|is
+argument_list|)
 expr_stmt|;
-comment|//address = StorageAddress.read(is);
 if|if
 condition|(
 name|node
@@ -1080,17 +1094,19 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-comment|//StorageAddress.write(p.getInternalAddress(), os);
-name|os
+name|StorageAddress
 operator|.
-name|writeFixedLong
+name|write
 argument_list|(
 name|p
 operator|.
 name|getInternalAddress
 argument_list|()
+argument_list|,
+name|os
 argument_list|)
 expr_stmt|;
+comment|//os.writeFixedLong(p.getInternalAddress());
 block|}
 comment|//data = os.toByteArray();
 try|try
@@ -1620,14 +1636,16 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
-comment|//address = StorageAddress.read(is);
 name|address
 operator|=
-name|is
+name|StorageAddress
 operator|.
-name|readFixedLong
-argument_list|()
+name|read
+argument_list|(
+name|is
+argument_list|)
 expr_stmt|;
+comment|//address = is.readFixedLong();
 if|if
 condition|(
 operator|!
@@ -1785,17 +1803,19 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-comment|//StorageAddress.write(p.getInternalAddress(), os);
-name|os
+name|StorageAddress
 operator|.
-name|writeFixedLong
+name|write
 argument_list|(
 name|p
 operator|.
 name|getInternalAddress
 argument_list|()
+argument_list|,
+name|os
 argument_list|)
 expr_stmt|;
+comment|//os.writeFixedLong(p.getInternalAddress());
 block|}
 try|try
 block|{
@@ -2196,17 +2216,19 @@ argument_list|(
 name|cid
 argument_list|)
 expr_stmt|;
-name|os
+comment|//os.writeFixedLong(proxy.getInternalAddress());
+name|StorageAddress
 operator|.
-name|writeFixedLong
+name|write
 argument_list|(
 name|proxy
 operator|.
 name|getInternalAddress
 argument_list|()
+argument_list|,
+name|os
 argument_list|)
 expr_stmt|;
-comment|//StorageAddress.write(proxy.getInternalAddress(), os);
 block|}
 if|if
 condition|(
