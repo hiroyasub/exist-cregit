@@ -1218,7 +1218,6 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 else|else
 block|{
@@ -2185,13 +2184,7 @@ argument_list|(
 name|bos
 argument_list|)
 decl_stmt|;
-name|is
-operator|.
-name|setEncoding
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
+comment|//is.setEncoding("UTF-8");
 name|scan
 argument_list|(
 name|is
@@ -2212,13 +2205,7 @@ argument_list|(
 name|bos
 argument_list|)
 expr_stmt|;
-name|is
-operator|.
-name|setEncoding
-argument_list|(
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
+comment|//is.setEncoding("UTF-8");
 return|return
 name|store
 argument_list|(
