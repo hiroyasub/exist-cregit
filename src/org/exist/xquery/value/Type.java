@@ -1525,6 +1525,10 @@ operator|||
 name|subtype
 operator|==
 name|EMPTY
+operator|||
+name|subtype
+operator|==
+name|ANY_TYPE
 condition|)
 return|return
 literal|false
