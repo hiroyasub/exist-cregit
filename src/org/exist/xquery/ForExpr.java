@@ -603,23 +603,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//		if(orderSpecs != null) {
-comment|//			// sort the result and call return for every item
-comment|//			((OrderedValueSequence)result).sort();
-comment|//			Sequence orderedResult = new ValueSequence();
-comment|//			LOG.debug("ordered: " + result.getLength());
-comment|//			p = 1;
-comment|//			for(SequenceIterator i = result.iterate(); i.hasNext(); p++) {
-comment|//				contextItem = i.nextItem();
-comment|//				contextSequence = contextItem.toSequence();
-comment|//				// set variable value to current item
-comment|//				var.setValue(contextSequence);
-comment|//				context.setContextPosition(p);
-comment|//				val = returnExpr.eval(contextSequence);
-comment|//				orderedResult.addAll(val);
-comment|//			}
-comment|//			result = orderedResult;
-comment|//		}
 if|if
 condition|(
 name|orderSpecs

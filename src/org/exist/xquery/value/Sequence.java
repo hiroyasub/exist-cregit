@@ -105,6 +105,11 @@ name|int
 name|getLength
 parameter_list|()
 function_decl|;
+specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+function_decl|;
 comment|/** 	 * Returns the item located at the specified position within 	 * this sequence. Items are counted beginning at 0. 	 *  	 * @param pos 	 * @return 	 */
 specifier|public
 name|Item

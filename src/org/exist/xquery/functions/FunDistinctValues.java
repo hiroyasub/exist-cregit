@@ -218,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Implements the fn:distinct-values standard library function.  *   * @author wolf  */
 end_comment
 
 begin_class
