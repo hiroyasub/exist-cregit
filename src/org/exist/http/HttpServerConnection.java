@@ -467,7 +467,9 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Value
+name|value
+operator|.
+name|Item
 import|;
 end_import
 
@@ -479,7 +481,23 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|ValueSet
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -2920,7 +2938,7 @@ specifier|protected
 name|String
 name|printAll
 parameter_list|(
-name|NodeList
+name|NodeSet
 name|resultSet
 parameter_list|,
 name|int
@@ -3699,7 +3717,7 @@ specifier|protected
 name|String
 name|printValues
 parameter_list|(
-name|ValueSet
+name|Sequence
 name|resultSet
 parameter_list|,
 name|int
@@ -3775,8 +3793,8 @@ argument_list|,
 name|WRONG_REQUEST
 argument_list|)
 return|;
-name|Value
-name|value
+name|Item
+name|item
 decl_stmt|;
 name|StringBuffer
 name|buf
@@ -3844,27 +3862,27 @@ name|i
 operator|++
 control|)
 block|{
-name|value
+name|item
 operator|=
 name|resultSet
 operator|.
-name|get
+name|itemAt
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
 switch|switch
 condition|(
-name|value
+name|item
 operator|.
 name|getType
-argument_list|(  )
+argument_list|()
 condition|)
 block|{
 case|case
-name|Value
+name|Type
 operator|.
-name|isNumber
+name|NUMBER
 case|:
 name|elem
 operator|=
@@ -3872,9 +3890,9 @@ literal|"exist:number"
 expr_stmt|;
 break|break;
 case|case
-name|Value
+name|Type
 operator|.
-name|isString
+name|STRING
 case|:
 name|elem
 operator|=
@@ -3882,9 +3900,9 @@ literal|"exist:string"
 expr_stmt|;
 break|break;
 case|case
-name|Value
+name|Type
 operator|.
-name|isBoolean
+name|BOOLEAN
 case|:
 name|elem
 operator|=
@@ -3900,7 +3918,7 @@ name|debug
 argument_list|(
 literal|"unknown type: "
 operator|+
-name|value
+name|item
 operator|.
 name|getType
 argument_list|(  )
@@ -3933,7 +3951,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|value
+name|item
 operator|.
 name|getStringValue
 argument_list|(  )
@@ -5521,8 +5539,8 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
-name|Value
-name|resultValue
+name|Sequence
+name|resultSequence
 init|=
 name|expr
 operator|.
@@ -5569,25 +5587,17 @@ argument_list|(  )
 expr_stmt|;
 switch|switch
 condition|(
-name|resultValue
+name|resultSequence
 operator|.
-name|getType
+name|getItemType
 argument_list|(  )
 condition|)
 block|{
 case|case
-name|Value
+name|Type
 operator|.
-name|isNodeList
+name|NODE
 case|:
-name|NodeList
-name|resultSet
-init|=
-name|resultValue
-operator|.
-name|getNodeList
-argument_list|(  )
-decl_stmt|;
 if|if
 condition|(
 name|printSummary
@@ -5596,7 +5606,10 @@ name|result
 operator|=
 name|printSummary
 argument_list|(
-name|resultSet
+operator|(
+name|NodeSet
+operator|)
+name|resultSequence
 argument_list|,
 name|queryTime
 argument_list|)
@@ -5606,7 +5619,10 @@ name|result
 operator|=
 name|printAll
 argument_list|(
-name|resultSet
+operator|(
+name|NodeSet
+operator|)
+name|resultSequence
 argument_list|,
 name|howmany
 argument_list|,
@@ -5621,19 +5637,11 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-name|ValueSet
-name|valueSet
-init|=
-name|resultValue
-operator|.
-name|getValueSet
-argument_list|(  )
-decl_stmt|;
 name|result
 operator|=
 name|printValues
 argument_list|(
-name|valueSet
+name|resultSequence
 argument_list|,
 name|howmany
 argument_list|,

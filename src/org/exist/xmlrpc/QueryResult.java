@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * QueryResult.java - Mar 28, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -21,13 +17,11 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Value
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
-
-begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment go to   * Window>Preferences>Java>Code Generation>Code and Comments  */
-end_comment
 
 begin_class
 specifier|public
@@ -39,7 +33,7 @@ name|queryTime
 init|=
 literal|0
 decl_stmt|;
-name|Value
+name|Sequence
 name|result
 decl_stmt|;
 name|long
@@ -50,7 +44,22 @@ decl_stmt|;
 specifier|public
 name|QueryResult
 parameter_list|(
-name|Value
+name|Sequence
+name|result
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|result
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|QueryResult
+parameter_list|(
+name|Sequence
 name|result
 parameter_list|,
 name|long

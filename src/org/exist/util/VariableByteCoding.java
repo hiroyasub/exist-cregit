@@ -15,6 +15,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|EOFException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -52,6 +62,8 @@ parameter_list|,
 name|int
 name|offset
 parameter_list|)
+throws|throws
+name|EOFException
 block|{
 name|long
 name|r
@@ -101,7 +113,7 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|ArrayIndexOutOfBoundsException
+name|EOFException
 argument_list|()
 throw|;
 name|more
@@ -136,6 +148,8 @@ name|is
 parameter_list|)
 throws|throws
 name|IOException
+throws|,
+name|EOFException
 block|{
 name|long
 name|r
@@ -177,7 +191,7 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|ArrayIndexOutOfBoundsException
+name|EOFException
 argument_list|()
 throw|;
 name|shift

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -20,18 +20,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|ArraySet
 import|;
 end_import
 
@@ -67,6 +55,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|ExtArrayNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -80,6 +80,48 @@ operator|.
 name|dom
 operator|.
 name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -107,9 +149,8 @@ name|SELF_AXIS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -118,18 +159,18 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|,
-name|NodeProxy
-name|contextNode
+name|Item
+name|contextItem
 parameter_list|)
 block|{
-name|ArraySet
+name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 name|docs
 operator|.
@@ -181,7 +222,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//n = new NodeProxy( doc, doc.getDocumentElementId() );
 name|result
 operator|.
 name|add
@@ -191,14 +231,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|ValueNodeSet
-argument_list|(
 name|result
-argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|pprint
@@ -206,6 +241,18 @@ parameter_list|()
 block|{
 return|return
 literal|"ROOT"
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#returnsType() 	 */
+specifier|public
+name|int
+name|returnsType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|NODE
 return|;
 block|}
 block|}

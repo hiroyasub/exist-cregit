@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -31,9 +31,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xpath
 operator|.
-name|NodeProxy
+name|value
+operator|.
+name|Item
 import|;
 end_import
 
@@ -43,9 +45,25 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xpath
 operator|.
-name|NodeSet
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -71,9 +89,9 @@ name|returnsType
 parameter_list|()
 block|{
 return|return
-name|Constants
+name|Type
 operator|.
-name|TYPE_NODELIST
+name|NODE
 return|;
 block|}
 specifier|public
@@ -116,7 +134,7 @@ name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -125,11 +143,11 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|,
-name|NodeProxy
-name|contextNode
+name|Item
+name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException

@@ -25,6 +25,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -36,16 +46,6 @@ operator|.
 name|util
 operator|.
 name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -223,31 +223,21 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Value
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
-name|ValueNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xpath
-operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
 
@@ -1035,8 +1025,8 @@ argument_list|()
 decl_stmt|;
 comment|//if (parser.foundErrors())
 comment|//	throw new XMLDBException(ErrorCodes.VENDOR_ERROR, parser.getErrorMsg());
-name|Value
-name|resultValue
+name|Sequence
+name|result
 init|=
 literal|null
 decl_stmt|;
@@ -1073,18 +1063,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-name|resultValue
+name|result
 operator|=
-operator|new
-name|ValueNodeSet
-argument_list|(
-name|NodeSet
+name|Sequence
 operator|.
-name|EMPTY_SET
-argument_list|)
+name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
-name|resultValue
+name|result
 operator|=
 name|expr
 operator|.
@@ -1110,7 +1096,7 @@ argument_list|()
 operator|+
 literal|" found: "
 operator|+
-name|resultValue
+name|result
 operator|.
 name|getLength
 argument_list|()
@@ -1130,7 +1116,7 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 name|LocalResourceSet
-name|result
+name|resultSet
 init|=
 operator|new
 name|LocalResourceSet
@@ -1141,7 +1127,7 @@ name|brokerPool
 argument_list|,
 name|collection
 argument_list|,
-name|resultValue
+name|result
 argument_list|,
 name|properties
 argument_list|,
@@ -1149,7 +1135,7 @@ name|sortExpr
 argument_list|)
 decl_stmt|;
 return|return
-name|result
+name|resultSet
 return|;
 block|}
 catch|catch
@@ -1282,7 +1268,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  resource            Description of the Parameter 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|ResourceSet
 name|queryResource
@@ -1296,31 +1281,70 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|query
-operator|=
-literal|"document('"
-operator|+
+name|DocumentSet
+name|docs
+init|=
+operator|new
+name|DocumentSet
+argument_list|()
+decl_stmt|;
+name|LocalXMLResource
+name|res
+init|=
+operator|(
+name|LocalXMLResource
+operator|)
 name|collection
 operator|.
-name|getPath
-argument_list|()
-operator|+
-literal|'/'
+name|getResource
+argument_list|(
+name|resource
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|res
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|INVALID_RESOURCE
+argument_list|,
+literal|"resource "
 operator|+
 name|resource
 operator|+
-literal|"')"
-operator|+
-name|query
+literal|" not found"
+argument_list|)
+throw|;
+name|docs
+operator|.
+name|add
+argument_list|(
+name|res
+operator|.
+name|getDocument
+argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
-name|query
+name|doQuery
 argument_list|(
 name|query
+argument_list|,
+name|docs
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  ns                  Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeNamespace
@@ -1377,7 +1401,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Sets the collection attribute of the LocalXPathQueryService object 	 * 	 *@param  col                 The new collection value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setCollection
@@ -1389,7 +1412,6 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-comment|/** 	 *  Sets the namespace attribute of the LocalXPathQueryService object 	 * 	 *@param  prefix              The new namespace value 	 *@param  namespace           The new namespace value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setNamespace
@@ -1413,7 +1435,6 @@ name|namespace
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the property attribute of the LocalXPathQueryService object 	 * 	 *@param  property            The new property value 	 *@param  value               The new property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setProperty

@@ -1686,7 +1686,7 @@ name|tokenizer
 operator|.
 name|setText
 argument_list|(
-name|t2
+name|t3
 argument_list|)
 expr_stmt|;
 name|TextToken

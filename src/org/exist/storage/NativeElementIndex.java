@@ -175,6 +175,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|XMLUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|store
@@ -288,18 +300,6 @@ operator|.
 name|util
 operator|.
 name|VariableByteOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLUtil
 import|;
 end_import
 
@@ -1064,7 +1064,8 @@ name|write
 argument_list|(
 name|p
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|,
 name|os
 argument_list|)
@@ -1734,7 +1735,8 @@ name|write
 argument_list|(
 name|p
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|,
 name|os
 argument_list|)
@@ -2147,7 +2149,8 @@ name|write
 argument_list|(
 name|proxy
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|,
 name|os
 argument_list|)

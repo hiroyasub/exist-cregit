@@ -217,7 +217,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Value
+name|XPathException
 import|;
 end_import
 
@@ -229,7 +229,9 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|XPathException
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
 
@@ -643,8 +645,8 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
-name|Value
-name|resultValue
+name|Sequence
+name|result
 init|=
 name|expr
 operator|.
@@ -666,10 +668,7 @@ init|=
 operator|(
 name|NodeSet
 operator|)
-name|resultValue
-operator|.
-name|getNodeList
-argument_list|()
+name|result
 decl_stmt|;
 name|System
 operator|.

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2001/02,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2001/02,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -629,31 +629,47 @@ parameter_list|()
 function_decl|;
 comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * This method uses MATCH_EXACT for comparing search terms. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
 specifier|public
-specifier|abstract
 name|NodeSet
-index|[]
 name|getNodesContaining
 parameter_list|(
 name|DocumentSet
 name|doc
 parameter_list|,
+name|NodeSet
+name|context
+parameter_list|,
 name|String
 name|expr
-index|[]
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|getNodesContaining
+argument_list|(
+name|doc
+argument_list|,
+name|context
+argument_list|,
+name|expr
+argument_list|,
+name|DBBroker
+operator|.
+name|MATCH_EXACT
+argument_list|)
+return|;
+block|}
 comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
-index|[]
 name|getNodesContaining
 parameter_list|(
 name|DocumentSet
 name|docs
 parameter_list|,
+name|NodeSet
+name|context
+parameter_list|,
 name|String
-index|[]
 name|expr
 parameter_list|,
 name|int

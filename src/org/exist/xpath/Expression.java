@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -25,6 +25,34 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is the base interface implemented by all classes which are part  * of an xpath-expression.  */
 end_comment
@@ -36,7 +64,7 @@ name|Expression
 block|{
 comment|/** 	 * Evaluate the expression represented by this object. 	 * 	 * Depending on the context in which this expression is executed, 	 * either context, node or both of them may be set. An implementing 	 * class should know how to handle this. Most classes only expect  	 * context to contain a list of nodes which represents the current 	 * context of this expression. 	 * 	 * @param context the static xpath context 	 * @param docs the set of documents all nodes belong to. 	 * @param contextSet the node-set which defines the current context node-set. 	 * @param node a single node, taken from context. This defines the node, 	 * the expression should work on. 	 */
 specifier|public
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -45,18 +73,18 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|,
-name|NodeProxy
-name|contextNode
+name|Item
+name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Evaluate the expression represented by this object. 	 * 	 * Depending on the context in which this expression is executed, 	 * either context, node or both of them may be set. An implementing 	 * class should know how to handle this. Most classes only expect  	 * context to contain a list of nodes which represents the current 	 * context of this expression. 	 * 	 * @param context the static xpath context 	 * @param docs the set of documents all nodes belong to. 	 * @param contextSet the node-set which defines the current context node-set. 	 */
 specifier|public
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -65,8 +93,8 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException

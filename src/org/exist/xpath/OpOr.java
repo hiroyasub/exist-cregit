@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
+name|NodeSet
 import|;
 end_import
 
@@ -43,9 +43,25 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xpath
 operator|.
-name|NodeSet
+name|value
+operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
 
@@ -141,7 +157,7 @@ name|out_docs
 return|;
 block|}
 specifier|public
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -150,11 +166,11 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|,
-name|NodeProxy
-name|contextNode
+name|Item
+name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException
@@ -167,11 +183,9 @@ operator|==
 literal|0
 condition|)
 return|return
-operator|new
-name|ValueNodeSet
-argument_list|(
-name|contextSet
-argument_list|)
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 return|;
 name|LOG
 operator|.
@@ -207,13 +221,10 @@ name|context
 argument_list|,
 name|docs
 argument_list|,
-name|contextSet
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
-operator|.
-name|getNodeList
-argument_list|()
 decl_stmt|;
 name|rl
 operator|=
@@ -221,7 +232,10 @@ name|rl
 operator|.
 name|getContextNodes
 argument_list|(
-name|contextSet
+operator|(
+name|NodeSet
+operator|)
+name|contextSequence
 argument_list|,
 name|inPredicate
 argument_list|)
@@ -273,13 +287,10 @@ name|context
 argument_list|,
 name|docs
 argument_list|,
-name|contextSet
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
-operator|.
-name|getNodeList
-argument_list|()
 expr_stmt|;
 name|rl
 operator|=
@@ -291,7 +302,10 @@ name|rr
 operator|.
 name|getContextNodes
 argument_list|(
-name|contextSet
+operator|(
+name|NodeSet
+operator|)
+name|contextSequence
 argument_list|,
 name|inPredicate
 argument_list|)
@@ -299,11 +313,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|ValueNodeSet
-argument_list|(
 name|rl
-argument_list|)
 return|;
 block|}
 specifier|public

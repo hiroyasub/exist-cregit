@@ -57,9 +57,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|dom
 operator|.
-name|XMLFilenameFilter
+name|XMLUtil
 import|;
 end_import
 
@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLUtil
+name|XMLFilenameFilter
 import|;
 end_import
 

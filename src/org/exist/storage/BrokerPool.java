@@ -1375,10 +1375,8 @@ argument_list|()
 operator|==
 literal|0
 operator|&&
-operator|(
 operator|!
 name|killed
-operator|)
 condition|)
 block|{
 name|LOG

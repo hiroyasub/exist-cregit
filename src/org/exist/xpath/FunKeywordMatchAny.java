@@ -13,10 +13,6 @@ name|xpath
 package|;
 end_package
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    7. Oktober 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -24,7 +20,6 @@ name|FunKeywordMatchAny
 extends|extends
 name|FunKeywordMatchAll
 block|{
-comment|/**  Constructor for the FunKeywordMatchAny object */
 specifier|public
 name|FunKeywordMatchAny
 parameter_list|()

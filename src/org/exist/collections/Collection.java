@@ -5188,6 +5188,16 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|observers
+operator|.
+name|contains
+argument_list|(
+name|o
+argument_list|)
+condition|)
 name|observers
 operator|.
 name|add

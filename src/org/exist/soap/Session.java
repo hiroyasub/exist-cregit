@@ -43,7 +43,9 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|Value
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
 
@@ -59,13 +61,13 @@ specifier|static
 class|class
 name|QueryResult
 block|{
-name|Value
+name|Sequence
 name|result
 decl_stmt|;
 specifier|public
 name|QueryResult
 parameter_list|(
-name|Value
+name|Sequence
 name|value
 parameter_list|)
 block|{
@@ -122,7 +124,7 @@ specifier|public
 name|void
 name|addQueryResult
 parameter_list|(
-name|Value
+name|Sequence
 name|value
 parameter_list|)
 block|{

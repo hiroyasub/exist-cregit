@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -391,6 +391,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|ExtArrayNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeImpl
 import|;
 end_import
@@ -464,6 +476,18 @@ operator|.
 name|dom
 operator|.
 name|TextImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|XMLUtil
 import|;
 end_import
 
@@ -732,18 +756,6 @@ operator|.
 name|util
 operator|.
 name|VariableByteOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLUtil
 import|;
 end_import
 
@@ -2322,14 +2334,15 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+comment|//final ArraySet result = new ArraySet(10000);
 specifier|final
-name|NodeSet
+name|ExtArrayNodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
-literal|10000
+literal|250
 argument_list|)
 decl_stmt|;
 name|DocumentImpl
@@ -2642,6 +2655,8 @@ argument_list|(
 name|is
 argument_list|)
 argument_list|)
+argument_list|,
+name|len
 argument_list|)
 expr_stmt|;
 block|}
@@ -2671,6 +2686,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|result
+operator|.
+name|sort
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -5826,60 +5846,6 @@ name|run
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  get all the nodes containing the search terms given by the array expr 	 *  using the fulltext-index. Calls to this method are normally delegated to 	 *  the associated instance of class TextSearchEngine. 	 * 	 *@param  docs      Description of the Parameter 	 *@param  termList  Description of the Parameter 	 *@param  type      Description of the Parameter 	 *@return           NodeSet[] an array of node sets, one for each search 	 *      term 	 */
-specifier|public
-name|NodeSet
-index|[]
-name|getNodesContaining
-parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
-name|String
-index|[]
-name|termList
-parameter_list|,
-name|int
-name|type
-parameter_list|)
-block|{
-return|return
-name|textEngine
-operator|.
-name|getNodesContaining
-argument_list|(
-name|docs
-argument_list|,
-name|termList
-argument_list|,
-name|type
-argument_list|)
-return|;
-block|}
-specifier|public
-name|NodeSet
-index|[]
-name|getNodesContaining
-parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|,
-name|String
-index|[]
-name|termList
-parameter_list|)
-block|{
-return|return
-name|getNodesContaining
-argument_list|(
-name|docs
-argument_list|,
-name|termList
-argument_list|,
-name|MATCH_EXACT
-argument_list|)
-return|;
-block|}
 comment|/** 	 *  This method handles left or left-and-right truncated search terms. In 	 *  these cases it is not possible to use the cdata-index, since it contains 	 *  just the first 8 bytes of every cdata-string. 	 * 	 *@param  context   Description of the Parameter 	 *@param  docs      Description of the Parameter 	 *@param  relation  Description of the Parameter 	 *@param  expr      Description of the Parameter 	 *@return           The nodesEqualTo value 	 */
 specifier|public
 name|NodeSet
@@ -6727,7 +6693,8 @@ if|if
 condition|(
 name|p
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 operator|<
 literal|0
 condition|)
@@ -6769,7 +6736,8 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -6852,7 +6820,8 @@ name|setInternalAddress
 argument_list|(
 name|p
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

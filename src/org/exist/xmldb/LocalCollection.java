@@ -574,15 +574,6 @@ name|name
 operator|=
 literal|"/db"
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"loading collection "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
 name|collection
 operator|=
 name|broker
@@ -1972,13 +1963,6 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
 name|collection
 operator|.
 name|removeDocument
@@ -2322,7 +2306,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|storeResourceO
+name|storeResourceX
 parameter_list|(
 name|Resource
 name|resource
@@ -2606,6 +2590,16 @@ name|Observer
 name|o
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|observers
+operator|.
+name|contains
+argument_list|(
+name|o
+argument_list|)
+condition|)
 name|observers
 operator|.
 name|add

@@ -95,6 +95,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|XMLUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|User
@@ -122,18 +134,6 @@ operator|.
 name|util
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLUtil
 import|;
 end_import
 

@@ -205,6 +205,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_interface
 specifier|public
 interface|interface

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Native XML Database  *  Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/*  *  eXist Native XML Database  *  Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -53,39 +53,39 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    7. Oktober 2002  */
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
 
 begin_class
 specifier|public
@@ -99,7 +99,6 @@ specifier|protected
 name|String
 name|name
 decl_stmt|;
-comment|/**      *  Constructor for the Function object      *      *@param  name  Description of the Parameter      */
 specifier|public
 name|Function
 parameter_list|(
@@ -117,7 +116,6 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**  Constructor for the Function object */
 specifier|public
 name|Function
 parameter_list|()
@@ -126,7 +124,6 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name    Description of the Parameter      *@return         Description of the Return Value      */
 specifier|public
 specifier|static
 name|Function
@@ -281,7 +278,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *  Adds a feature to the Argument attribute of the Function object      *      *@param  expr  The feature to be added to the Argument attribute      */
 specifier|public
 name|void
 name|addArgument
@@ -305,10 +301,9 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 specifier|abstract
-name|Value
+name|Sequence
 name|eval
 parameter_list|(
 name|StaticContext
@@ -317,16 +312,15 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|NodeSet
-name|contextSet
+name|Sequence
+name|contextSequence
 parameter_list|,
-name|NodeProxy
-name|contextNode
+name|Item
+name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      *  Gets the argument attribute of the Function object      *      *@param  pos  Description of the Parameter      *@return      The argument value      */
 specifier|public
 name|Expression
 name|getArgument
@@ -342,7 +336,6 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the argumentCount attribute of the Function object      *      *@return    The argumentCount value      */
 specifier|public
 name|int
 name|getArgumentCount
@@ -355,7 +348,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the name attribute of the Function object      *      *@return    The name value      */
 specifier|public
 name|String
 name|getName
@@ -365,7 +357,6 @@ return|return
 name|name
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|pprint

@@ -24,7 +24,7 @@ specifier|final
 name|int
 name|POOL_SIZE
 init|=
-literal|128
+literal|32
 decl_stmt|;
 specifier|public
 specifier|static

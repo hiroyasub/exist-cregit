@@ -335,6 +335,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|XMLUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|Permission
@@ -422,18 +434,6 @@ operator|.
 name|util
 operator|.
 name|XMLFilenameFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLUtil
 import|;
 end_import
 
