@@ -347,6 +347,14 @@ operator|+
 literal|"</test>"
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|quotes
+init|=
+literal|"<test><title>&quot;Hello&quot;</title></test>"
+decl_stmt|;
+specifier|private
 name|Collection
 name|testCollection
 decl_stmt|;
@@ -500,7 +508,7 @@ name|result
 decl_stmt|;
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -683,7 +691,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -750,7 +758,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -912,7 +920,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -1022,6 +1030,87 @@ block|}
 block|}
 specifier|public
 name|void
+name|testQuotes
+parameter_list|()
+block|{
+try|try
+block|{
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"quotes.xml"
+argument_list|,
+name|quotes
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"quotes.xml"
+argument_list|,
+literal|"/test[title = '&quot;Hello&quot;']"
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
+name|service
+operator|.
+name|declareVariable
+argument_list|(
+literal|"content"
+argument_list|,
+literal|"&quot;Hello&quot;"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"quotes.xml"
+argument_list|,
+literal|"/test[title = $content]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testQuotes(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
 name|testBoolean
 parameter_list|()
 block|{
@@ -1036,7 +1125,7 @@ argument_list|(
 literal|"Testing effective boolean value of expressions ..."
 argument_list|)
 expr_stmt|;
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -1592,7 +1681,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -1805,7 +1894,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -2161,7 +2250,7 @@ specifier|private
 name|ResourceSet
 name|queryResource
 parameter_list|(
-name|XPathQueryService
+name|XQueryService
 name|service
 parameter_list|,
 name|String
@@ -2196,7 +2285,7 @@ specifier|private
 name|ResourceSet
 name|queryResource
 parameter_list|(
-name|XPathQueryService
+name|XQueryService
 name|service
 parameter_list|,
 name|String
@@ -2261,7 +2350,7 @@ return|;
 block|}
 comment|/** 	 * @return 	 * @throws XMLDBException 	 */
 specifier|private
-name|XPathQueryService
+name|XQueryService
 name|storeXMLStringAndGetQueryService
 parameter_list|(
 name|String
@@ -2302,11 +2391,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 operator|(
-name|XPathQueryService
+name|XQueryService
 operator|)
 name|testCollection
 operator|.
@@ -2328,7 +2417,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -2345,6 +2434,15 @@ argument_list|(
 literal|"t"
 argument_list|,
 literal|"http://www.foo.com"
+argument_list|)
+expr_stmt|;
+name|service
+operator|.
+name|setNamespace
+argument_list|(
+literal|"c"
+argument_list|,
+literal|"http://www.other.com"
 argument_list|)
 expr_stmt|;
 name|ResourceSet
@@ -2492,7 +2590,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService
@@ -2834,7 +2932,7 @@ comment|//				(XPathQueryService) testCollection.getService(
 comment|//					"XPathQueryService",
 comment|//					"1.0");
 comment|//			ResourceSet result = service.query("//SPEECH[LINE&= 'marriage']");
-name|XPathQueryService
+name|XQueryService
 name|service
 init|=
 name|storeXMLStringAndGetQueryService

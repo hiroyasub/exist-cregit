@@ -353,6 +353,9 @@ name|String
 operator|)
 name|obj
 argument_list|)
+operator|.
+name|expand
+argument_list|()
 return|;
 if|else if
 condition|(
