@@ -2633,13 +2633,14 @@ name|XmlRpcException
 name|xre
 parameter_list|)
 block|{
+comment|/* the error code previously was INVALID_RESOURCE, but this was also thrown 		     * in case of insufficient persmissions. As you cannot tell here any more what the  		     * error really was, use UNKNOWN_ERROR. The reason is in XmlRpcResponseProcessor#processException 		     * which will only pass on the error message. 		     */
 throw|throw
 operator|new
 name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|INVALID_RESOURCE
+name|UNKNOWN_ERROR
 argument_list|,
 name|xre
 operator|==
