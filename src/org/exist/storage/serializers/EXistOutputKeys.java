@@ -68,6 +68,14 @@ name|STYLESHEET_PARAM
 init|=
 literal|"stylesheet-param"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COMPRESS_OUTPUT
+init|=
+literal|"compress-output"
+decl_stmt|;
 block|}
 end_class
 
