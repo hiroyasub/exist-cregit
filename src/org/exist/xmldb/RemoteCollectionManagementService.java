@@ -248,8 +248,6 @@ name|RemoteCollection
 operator|)
 name|parent
 argument_list|,
-literal|null
-argument_list|,
 name|name
 argument_list|)
 decl_stmt|;

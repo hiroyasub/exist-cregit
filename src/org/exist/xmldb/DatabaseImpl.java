@@ -362,8 +362,6 @@ name|rpcClient
 argument_list|,
 literal|null
 argument_list|,
-name|address
-argument_list|,
 name|temp
 argument_list|)
 decl_stmt|;

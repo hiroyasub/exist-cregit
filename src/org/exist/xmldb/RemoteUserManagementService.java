@@ -1907,6 +1907,17 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Retrieving permissions for "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Vector

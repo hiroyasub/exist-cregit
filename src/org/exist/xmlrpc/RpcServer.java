@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
+comment|/*<<<<<<< RpcServer.java  * eXist Open Source Native XML Database Copyright (C) 2001-03, Wolfgang M.  * Meier (meier@ifs.tu-darmstadt.de)  *   * This library is free software; you can redistribute it and/or modify it under  * the terms of the GNU Library General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This library is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more  * details.  *   * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *   * $Id$ =======  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$>>>>>>> 1.33  */
 end_comment
 
 begin_package
@@ -12,6 +12,46 @@ operator|.
 name|xmlrpc
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
 
 begin_import
 import|import
@@ -91,7 +131,7 @@ name|util
 operator|.
 name|zip
 operator|.
-name|*
+name|ZipEntry
 import|;
 end_import
 
@@ -99,9 +139,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|*
+name|zip
+operator|.
+name|ZipInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|zip
+operator|.
+name|ZipOutputStream
 import|;
 end_import
 
@@ -233,16 +287,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileOutputStream
 import|;
 end_import
@@ -292,7 +336,7 @@ specifier|protected
 name|ConnectionPool
 name|pool
 decl_stmt|;
-comment|/** 	 *  Constructor for the RpcServer object 	 * 	 *@param  conf                Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/**      * Constructor for the RpcServer object      *       * @param conf      *                   Description of the Parameter      * @exception EXistException      *                        Description of the Exception      */
 specifier|public
 name|RpcServer
 parameter_list|(
@@ -684,6 +728,146 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+name|Hashtable
+name|describeResource
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|resourceName
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
+name|RpcConnection
+name|con
+init|=
+name|pool
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+name|con
+operator|.
+name|describeResource
+argument_list|(
+name|user
+argument_list|,
+name|resourceName
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|handleException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"resource "
+operator|+
+name|resourceName
+operator|+
+literal|" not found!"
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|con
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|Hashtable
+name|describeCollection
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|rootCollection
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
+name|RpcConnection
+name|con
+init|=
+name|pool
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+name|con
+operator|.
+name|describeCollection
+argument_list|(
+name|user
+argument_list|,
+name|rootCollection
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|handleException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"collection "
+operator|+
+name|rootCollection
+operator|+
+literal|" not found!"
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|con
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
 name|byte
 index|[]
 name|getDocument
@@ -766,7 +950,8 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
-comment|//	String xml = con.getDocument(user, name, (prettyPrint> 0), encoding, null);
+comment|//	String xml = con.getDocument(user, name, (prettyPrint> 0),
+comment|// encoding, null);
 name|String
 name|xml
 init|=
@@ -954,7 +1139,8 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
-comment|//String xml = con.getDocument(user, name, (prettyPrint> 0), encoding, stylesheet);
+comment|//String xml = con.getDocument(user, name, (prettyPrint> 0),
+comment|// encoding, stylesheet);
 name|String
 name|xml
 init|=
@@ -1099,7 +1285,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|//String xml = con.getDocument(user, name, (prettyPrint> 0), "UTF-8", stylesheet);
+comment|//String xml = con.getDocument(user, name, (prettyPrint> 0),
+comment|// "UTF-8", stylesheet);
 name|Hashtable
 name|parametri
 init|=
@@ -1284,7 +1471,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Retrieve a document. The document data is returned as a string. 	 */
+comment|/**      * Retrieve a document. The document data is returned as a string.      */
 specifier|public
 name|String
 name|getDocumentAsString
@@ -2077,7 +2264,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Gets the user attribute of the RpcServer object 	 * 	 *@param  user                           Description of the Parameter 	 *@param  name                           Description of the Parameter 	 *@return                                The user value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * Gets the user attribute of the RpcServer object      *       * @param user      *                   Description of the Parameter      * @param name      *                   Description of the Parameter      * @return The user value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|Hashtable
 name|getUser
@@ -2175,7 +2362,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#getGroups(org.exist.security.User) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#getGroups(org.exist.security.User)      */
 specifier|public
 name|Vector
 name|getGroups
@@ -2418,7 +2605,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  does a document called<code>name</code> exist in the repository? 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * does a document called<code>name</code> exist in the repository?      *       * @param name      *                   Description of the Parameter      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -2481,7 +2668,69 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  parse an XML document and store it into the database. The document will 	 *  later be identified by<code>docName</code>. Some xmlrpc clients seem to 	 *  have problems with character encodings when sending xml content. To 	 *  avoid this, parse() accepts the xml document content as byte[]. 	 * 	 *@param  xmlData                        the document's XML content as UTF-8 	 *      encoded array of bytes. 	 *@param  docName                        the document's name 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+specifier|public
+name|int
+name|getResourceCount
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|collectionName
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
+name|RpcConnection
+name|con
+init|=
+name|pool
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+name|con
+operator|.
+name|getResourceCount
+argument_list|(
+name|user
+argument_list|,
+name|collectionName
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|handleException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|0
+return|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|con
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem      * to have problems with character encodings when sending xml content. To      * avoid this, parse() accepts the xml document content as byte[].      *       * @param xmlData      *                   the document's XML content as UTF-8 encoded array of bytes.      * @param docName      *                   the document's name      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|parse
@@ -2736,7 +2985,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Parse a file previously uploaded with upload. 	 *  	 * The temporary file will be removed. 	 *  	 * @param user 	 * @param localFile 	 * @throws EXistException 	 * @throws IOException 	 */
+comment|/**      * Parse a file previously uploaded with upload.      *       * The temporary file will be removed.      *       * @param user      * @param localFile      * @throws EXistException      * @throws IOException      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -3035,6 +3284,74 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#createResourceId(org.exist.security.User,      *           java.lang.String)      */
+specifier|public
+name|String
+name|createResourceId
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|collection
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
+name|RpcConnection
+name|con
+init|=
+name|pool
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+name|con
+operator|.
+name|createResourceId
+argument_list|(
+name|user
+argument_list|,
+name|collection
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|handleException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+finally|finally
+block|{
+name|con
+operator|.
+name|synchronize
+argument_list|()
+expr_stmt|;
+name|pool
+operator|.
+name|release
+argument_list|(
+name|con
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|Hashtable
 name|queryP
@@ -3256,7 +3573,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  execute XPath query and return howmany nodes from the result set, 	 *  starting at position<code>start</code>. If<code>prettyPrint</code> is 	 *  set to>0 (true), results are pretty printed. 	 * 	 */
+comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code>      * is set to>0 (true), results are pretty printed.      *        */
 specifier|public
 name|String
 name|query
@@ -3390,7 +3707,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  execute XPath query and return a summary of hits per document and hits 	 *  per doctype. This method returns a struct with the following fields: 	 * 	 *<tableborder="1"> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "queryTime" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "hits" 	 *</td> 	 * 	 *<td> 	 *        int 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "documents" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][3] 	 *</td> 	 * 	 *</tr> 	 * 	 *<tr> 	 * 	 *<td> 	 *        "doctypes" 	 *</td> 	 * 	 *<td> 	 *        array of array: Object[][2] 	 *</td> 	 * 	 *</tr> 	 * 	 *</table> 	 *  Documents and doctypes represent tables where each row describes one 	 *  document or doctype for which hits were found. Each document entry has 	 *  the following structure: docId (int), docName (string), hits (int) The 	 *  doctype entry has this structure: doctypeName (string), hits (int) 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *       *<tableborder="1">      *       *<tr>      *       *<td>"queryTime"</td>      *       *<td>int</td>      *       *</tr>      *       *<tr>      *       *<td>"hits"</td>      *       *<td>int</td>      *       *</tr>      *       *<tr>      *       *<td>"documents"</td>      *       *<td>array of array: Object[][3]</td>      *       *</tr>      *       *<tr>      *       *<td>"doctypes"</td>      *       *<td>array of array: Object[][2]</td>      *       *</tr>      *       *</table> Documents and doctypes represent tables where each row describes      * one document or doctype for which hits were found. Each document entry      * has the following structure: docId (int), docName (string), hits (int)      * The doctype entry has this structure: doctypeName (string), hits (int)      *       * @param xpath      *                   Description of the Parameter      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|Hashtable
 name|querySummary
@@ -3457,7 +3774,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  remove a document from the repository. 	 * 	 *@param  docName                        Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * remove a document from the repository.      *       * @param docName      *                   Description of the Parameter      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|remove
@@ -3641,7 +3958,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  retrieve a single node from a document. The node is identified by it's 	 *  internal id. 	 * 	 *@param  doc                            the document containing the node 	 *@param  id                             the node's internal id 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|byte
 index|[]
@@ -3674,7 +3991,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  retrieve a single node from a document. The node is identified by it's 	 *  internal id. 	 * 	 *@param  doc                            the document containing the node 	 *@param  id                             the node's internal id 	 *@param  prettyPrint                    result is pretty printed if>0 	 *@param  encoding                       character encoding to use 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param prettyPrint      *                   result is pretty printed if>0      * @param encoding      *                   character encoding to use      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|byte
 index|[]
@@ -3999,7 +4316,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#retrieveAll(org.exist.security.User, int, java.util.Hashtable) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#retrieveAll(org.exist.security.User, int,      *           java.util.Hashtable)      */
 specifier|public
 name|byte
 index|[]
@@ -4123,7 +4440,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Sets the permissions attribute of the RpcServer object 	 * 	 *@param  user                           The new permissions value 	 *@param  resource                       The new permissions value 	 *@param  permissions                    The new permissions value 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * Sets the permissions attribute of the RpcServer object      *       * @param user      *                   The new permissions value      * @param resource      *                   The new permissions value      * @param permissions      *                   The new permissions value      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -4157,7 +4474,7 @@ name|permissions
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Sets the permissions attribute of the RpcServer object 	 * 	 *@param  user                           The new permissions value 	 *@param  resource                       The new permissions value 	 *@param  permissions                    The new permissions value 	 *@param  owner                          The new permissions value 	 *@param  ownerGroup                     The new permissions value 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * Sets the permissions attribute of the RpcServer object      *       * @param user      *                   The new permissions value      * @param resource      *                   The new permissions value      * @param permissions      *                   The new permissions value      * @param owner      *                   The new permissions value      * @param ownerGroup      *                   The new permissions value      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -4239,7 +4556,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	     * @see org.exist.xmlrpc.RpcAPI#setPermissions(org.exist.security.User, java.lang.String, int) 	     */
+comment|/**      * @see org.exist.xmlrpc.RpcAPI#setPermissions(org.exist.security.User,      *           java.lang.String, int)      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -4315,7 +4632,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xmlrpc.RpcAPI#setPermissions(org.exist.security.User, java.lang.String, java.lang.String, java.lang.String, int) 	 */
+comment|/**      * @see org.exist.xmlrpc.RpcAPI#setPermissions(org.exist.security.User,      *           java.lang.String, java.lang.String, java.lang.String, int)      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -4397,7 +4714,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Sets the password attribute of the RpcServer object 	 * 	 *@param  user                           The new password value 	 *@param  name                           The new password value 	 *@param  password                       The new password value 	 *@param  groups                         The new user value 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * Sets the password attribute of the RpcServer object      *       * @param user      *                   The new password value      * @param name      *                   The new password value      * @param password      *                   The new password value      * @param groups      *                   The new user value      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|setUser
@@ -4515,7 +4832,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xmlrpc.RpcAPI#xupdate(org.exist.security.User, java.lang.String, byte[]) 		 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#xupdate(org.exist.security.User,      *           java.lang.String, byte[])      */
 specifier|public
 name|int
 name|xupdate
@@ -4601,7 +4918,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#xupdateResource(org.exist.security.User, java.lang.String, byte[]) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#xupdateResource(org.exist.security.User,      *           java.lang.String, byte[])      */
 specifier|public
 name|int
 name|xupdateResource
@@ -4636,7 +4953,7 @@ literal|"UTF-8"
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#xupdateResource(org.exist.security.User, java.lang.String, byte[]) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#xupdateResource(org.exist.security.User,      *           java.lang.String, byte[])      */
 specifier|public
 name|int
 name|xupdateResource
@@ -5653,7 +5970,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#lockResource(org.exist.security.User, java.lang.String, java.lang.String) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#lockResource(org.exist.security.User,      *           java.lang.String, java.lang.String)      */
 specifier|public
 name|boolean
 name|lockResource
@@ -5723,7 +6040,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#hasUserLock(org.exist.security.User, java.lang.String) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#hasUserLock(org.exist.security.User,      *           java.lang.String)      */
 specifier|public
 name|String
 name|hasUserLock
@@ -5786,7 +6103,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmlrpc.RpcAPI#unlockResource(org.exist.security.User, java.lang.String) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xmlrpc.RpcAPI#unlockResource(org.exist.security.User,      *           java.lang.String)      */
 specifier|public
 name|boolean
 name|unlockResource
@@ -5838,187 +6155,6 @@ argument_list|)
 expr_stmt|;
 return|return
 literal|false
-return|;
-block|}
-finally|finally
-block|{
-name|pool
-operator|.
-name|release
-argument_list|(
-name|con
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//FIXME: Check it for possible security hole. The name of file is not generated in random mode
-specifier|public
-name|Vector
-name|getDocumentChunk
-parameter_list|(
-name|User
-name|user
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|Hashtable
-name|parameters
-parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
-throws|,
-name|IOException
-block|{
-name|Vector
-name|result
-init|=
-operator|new
-name|Vector
-argument_list|()
-decl_stmt|;
-name|File
-name|file
-decl_stmt|;
-name|file
-operator|=
-name|File
-operator|.
-name|createTempFile
-argument_list|(
-literal|"rpc"
-argument_list|,
-literal|".xml"
-argument_list|)
-expr_stmt|;
-name|FileOutputStream
-name|os
-init|=
-operator|new
-name|FileOutputStream
-argument_list|(
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
-name|os
-operator|.
-name|write
-argument_list|(
-name|getDocument
-argument_list|(
-name|user
-argument_list|,
-name|name
-argument_list|,
-name|parameters
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|result
-operator|.
-name|addElement
-argument_list|(
-name|file
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|addElement
-argument_list|(
-name|Long
-operator|.
-name|toString
-argument_list|(
-name|file
-operator|.
-name|length
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|file
-operator|.
-name|deleteOnExit
-argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"The file is created with name: "
-operator|+
-name|file
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-name|result
-return|;
-block|}
-specifier|public
-name|byte
-index|[]
-name|getDocumentChunk
-parameter_list|(
-name|User
-name|user
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|int
-name|start
-parameter_list|,
-name|int
-name|len
-parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|PermissionDeniedException
-throws|,
-name|IOException
-block|{
-name|RpcConnection
-name|con
-init|=
-name|pool
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-return|return
-name|con
-operator|.
-name|getDocumentChunk
-argument_list|(
-name|user
-argument_list|,
-name|name
-argument_list|,
-name|start
-argument_list|,
-name|len
-argument_list|)
 return|;
 block|}
 finally|finally
@@ -6231,6 +6367,187 @@ operator|.
 name|toByteArray
 argument_list|()
 return|;
+block|}
+comment|//FIXME: Check it for possible security hole. The name of file is not generated in random mode
+specifier|public
+name|Vector
+name|getDocumentChunk
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|Hashtable
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+block|{
+name|Vector
+name|result
+init|=
+operator|new
+name|Vector
+argument_list|()
+decl_stmt|;
+name|File
+name|file
+decl_stmt|;
+name|file
+operator|=
+name|File
+operator|.
+name|createTempFile
+argument_list|(
+literal|"rpc"
+argument_list|,
+literal|".xml"
+argument_list|)
+expr_stmt|;
+name|FileOutputStream
+name|os
+init|=
+operator|new
+name|FileOutputStream
+argument_list|(
+name|file
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+name|os
+operator|.
+name|write
+argument_list|(
+name|getDocument
+argument_list|(
+name|user
+argument_list|,
+name|name
+argument_list|,
+name|parameters
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|result
+operator|.
+name|addElement
+argument_list|(
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|addElement
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|file
+operator|.
+name|length
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|file
+operator|.
+name|deleteOnExit
+argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"The file is created with name: "
+operator|+
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+specifier|public
+name|byte
+index|[]
+name|getDocumentChunk
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+block|{
+name|RpcConnection
+name|con
+init|=
+name|pool
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+name|con
+operator|.
+name|getDocumentChunk
+argument_list|(
+name|user
+argument_list|,
+name|name
+argument_list|,
+name|start
+argument_list|,
+name|len
+argument_list|)
+return|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|con
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

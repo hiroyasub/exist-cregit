@@ -560,6 +560,17 @@ literal|'/'
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Processing "
+operator|+
+name|doc
+argument_list|)
+expr_stmt|;
 name|RemoteCollection
 name|parent
 init|=

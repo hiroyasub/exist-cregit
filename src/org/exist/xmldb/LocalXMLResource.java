@@ -1930,7 +1930,7 @@ block|{
 return|return
 name|id
 operator|<
-literal|0
+literal|2
 condition|?
 name|docId
 else|:
