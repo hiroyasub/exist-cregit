@@ -51,6 +51,14 @@ interface|interface
 name|NodeTest
 block|{
 specifier|public
+name|void
+name|setType
+parameter_list|(
+name|int
+name|nodeType
+parameter_list|)
+function_decl|;
+specifier|public
 name|boolean
 name|matches
 parameter_list|(
