@@ -474,6 +474,21 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|cachedNode
+operator|=
+literal|null
+expr_stmt|;
+name|cachedPath
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 end_class
 
