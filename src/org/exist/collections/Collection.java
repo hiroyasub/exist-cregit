@@ -3658,13 +3658,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|broker
-operator|.
-name|checkTree
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
+comment|//			broker.checkTree(document);
 name|LOG
 operator|.
 name|debug
