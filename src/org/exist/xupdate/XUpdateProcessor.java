@@ -1193,16 +1193,27 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|//            String normalized = charBuf.toString();
+specifier|final
 name|String
 name|normalized
 init|=
+name|preserveWhitespace
+condition|?
 name|charBuf
 operator|.
 name|toString
 argument_list|()
+else|:
+name|charBuf
+operator|.
+name|getNormalizedString
+argument_list|(
+name|FastStringBuffer
+operator|.
+name|SUPPRESS_BOTH
+argument_list|)
 decl_stmt|;
-comment|//			final String normalized = preserveWhitespace ? charBuf.toString() :
-comment|//				charBuf.getNormalizedString(FastStringBuffer.SUPPRESS_BOTH);
 if|if
 condition|(
 name|normalized
@@ -1220,7 +1231,10 @@ name|doc
 operator|.
 name|createTextNode
 argument_list|(
-name|normalized
+name|charBuf
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
