@@ -2089,7 +2089,9 @@ operator|.
 name|incSplitCount
 argument_list|()
 expr_stmt|;
-comment|// check if a split is really required
+comment|// check if a split is really required. A split is not required if all records
+comment|// following the split point are already links to other pages. In this case,
+comment|// the new record is just appended to a new page linked to the old one.
 name|boolean
 name|requireSplit
 init|=
@@ -2158,7 +2160,22 @@ operator|!
 name|requireSplit
 condition|)
 block|{
-comment|//            LOG.debug("page " + rec.page.getPageNum() + ": no split required");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"page "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|": no split required"
+argument_list|)
+expr_stmt|;
 name|rec
 operator|.
 name|offset
@@ -2181,6 +2198,7 @@ operator|.
 name|getIndexListener
 argument_list|()
 decl_stmt|;
+comment|// copy the old data up to the split point into a new array
 name|int
 name|oldDataLen
 init|=
@@ -2250,6 +2268,7 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
+comment|// the old rec.page now contains a copy of the data up to the split point
 name|rec
 operator|.
 name|page
@@ -2269,6 +2288,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// create a first split page
 name|DOMPage
 name|firstSplitPage
 init|=
@@ -2312,6 +2332,8 @@ decl_stmt|,
 name|currentId
 decl_stmt|,
 name|currentLen
+decl_stmt|,
+name|realLen
 decl_stmt|;
 name|long
 name|backLink
@@ -2334,6 +2356,12 @@ operator|.
 name|getPageNum
 argument_list|()
 operator|+
+literal|" at "
+operator|+
+name|rec
+operator|.
+name|offset
+operator|+
 literal|": new: "
 operator|+
 name|nextSplitPage
@@ -2354,6 +2382,7 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// start copying records from rec.offset to the new split pages
 for|for
 control|(
 name|int
@@ -2487,13 +2516,28 @@ name|pos
 operator|+=
 literal|2
 expr_stmt|;
+comment|// if this is an overflow page, the real data length is always 8 byte
+comment|// for the page number of the overflow page
+name|realLen
+operator|=
+operator|(
+name|currentLen
+operator|==
+name|OVERFLOW
+condition|?
+literal|8
+else|:
+name|currentLen
+operator|)
+expr_stmt|;
+comment|// check if we have room in the current split page
 if|if
 condition|(
 name|nextSplitPage
 operator|.
 name|len
 operator|+
-name|currentLen
+name|realLen
 operator|+
 literal|12
 operator|>
@@ -2736,6 +2780,7 @@ argument_list|,
 name|tid
 argument_list|)
 expr_stmt|;
+comment|// save the record to the split page:
 comment|// set the relocated flag and save the item id
 name|ByteConversion
 operator|.
@@ -2807,14 +2852,7 @@ name|len
 operator|+=
 literal|8
 expr_stmt|;
-comment|// now save the data if this is not an overflow record
-if|if
-condition|(
-name|currentLen
-operator|!=
-name|OVERFLOW
-condition|)
-block|{
+comment|// now save the data
 try|try
 block|{
 name|System
@@ -2833,7 +2871,7 @@ name|nextSplitPage
 operator|.
 name|len
 argument_list|,
-name|currentLen
+name|realLen
 argument_list|)
 expr_stmt|;
 block|}
@@ -2859,7 +2897,7 @@ name|len
 operator|+
 literal|"; currentLen = "
 operator|+
-name|currentLen
+name|realLen
 operator|+
 literal|"; tid = "
 operator|+
@@ -2883,14 +2921,13 @@ name|nextSplitPage
 operator|.
 name|len
 operator|+=
-name|currentLen
+name|realLen
 expr_stmt|;
 name|pos
 operator|+=
-name|currentLen
+name|realLen
 expr_stmt|;
-block|}
-comment|// report the split to the index listener
+comment|// report the split to the index listener. Pass it the old and the new storage address.
 if|if
 condition|(
 name|idx
@@ -3026,7 +3063,18 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//                    LOG.debug("creating new page after split: " + newPage.getPageNum());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"creating new page after split: "
+operator|+
+name|newPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|rec
 operator|.
 name|page
@@ -3194,6 +3242,8 @@ literal|8
 expr_stmt|;
 block|}
 block|}
+comment|// finished copying data
+comment|// link the split pages to the original page
 if|if
 condition|(
 name|nextSplitPage
@@ -7781,6 +7831,11 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
+comment|//                	LOG.debug("following link on " + pageNr +
+comment|//                			" to page "
+comment|//                			+ StorageAddress.pageFromPointer(forwardLink)
+comment|//							+ "; tid="
+comment|//							+ StorageAddress.tidFromPointer(forwardLink));
 comment|// load the link page
 name|pageNr
 operator|=
@@ -7798,28 +7853,6 @@ operator|.
 name|tidFromPointer
 argument_list|(
 name|forwardLink
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"following link on "
-operator|+
-name|StorageAddress
-operator|.
-name|pageFromPointer
-argument_list|(
-name|forwardLink
-argument_list|)
-operator|+
-literal|" to page "
-operator|+
-name|pageNr
-operator|+
-literal|"; tid="
-operator|+
-name|targetId
 argument_list|)
 expr_stmt|;
 block|}

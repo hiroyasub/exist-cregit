@@ -168,17 +168,6 @@ name|int
 name|getLength
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Length: "
-operator|+
-name|count
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|items
@@ -353,17 +342,6 @@ argument_list|,
 name|count
 operator|-
 literal|1
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"order by took "
-operator|+
-name|execTime
 argument_list|)
 expr_stmt|;
 block|}

@@ -149,6 +149,19 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|ResourceSet
+name|execute
+parameter_list|(
+name|XMLResource
+name|res
+parameter_list|,
+name|CompiledExpression
+name|expression
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	* Returns the URI string associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* URI for the default namespace will be returned. If a mapping for the 	*<code>prefix</code> can not be found null is returned. 	* 	* @param prefix The prefix to retrieve from the namespace map. 	* @return The URI associated with<code>prefix</code> 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
 specifier|public
 name|String

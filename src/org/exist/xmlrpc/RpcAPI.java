@@ -140,6 +140,14 @@ name|BASE_URI
 init|=
 literal|"base-uri"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|STATIC_DOCUMENTS
+init|=
+literal|"static-documents"
+decl_stmt|;
 comment|/** 	 * Shut down the database. 	 *  	 * @return boolean 	 */
 specifier|public
 name|boolean

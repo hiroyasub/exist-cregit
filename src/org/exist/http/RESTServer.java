@@ -3177,110 +3177,19 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|DocumentSet
-name|docs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
-name|Collection
-name|collection
-init|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|path
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|allDocs
-argument_list|(
-name|broker
-argument_list|,
-name|docs
-argument_list|,
-literal|true
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|broker
-operator|.
-name|getDocument
-argument_list|(
-name|path
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|doc
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Not allowed to read collection"
-argument_list|)
-throw|;
-name|docs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|broker
-operator|.
-name|getAllDocuments
-argument_list|(
-name|docs
-argument_list|)
-expr_stmt|;
-block|}
+comment|//			DocumentSet docs = new DocumentSet();
+comment|//			Collection collection = broker.getCollection(path);
+comment|//			if (collection != null) {
+comment|//				collection.allDocs(broker, docs, true, true);
+comment|//			} else {
+comment|//				DocumentImpl doc = (DocumentImpl) broker.getDocument(path);
+comment|//				if (doc != null) {
+comment|//				    if(!doc.getPermissions().validate(broker.getUser(), Permission.READ))
+comment|//						throw new PermissionDeniedException("Not allowed to read collection");
+comment|//					docs.add(doc);
+comment|//				} else
+comment|//					broker.getAllDocuments(docs);
+comment|//			}
 name|Source
 name|source
 init|=
@@ -3344,7 +3253,12 @@ name|context
 operator|.
 name|setStaticallyKnownDocuments
 argument_list|(
-name|docs
+operator|new
+name|String
+index|[]
+block|{
+name|path
+block|}
 argument_list|)
 expr_stmt|;
 if|if

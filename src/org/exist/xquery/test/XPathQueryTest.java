@@ -1025,6 +1025,34 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"strings.xml"
+argument_list|,
+literal|"sum(/test/item/price)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Query should return an empty set (wrong document)"
+argument_list|,
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//			result =
+comment|//				service.queryResource(
+comment|//					"strings.xml",
+comment|//					"document()/blah[not(blah)]");
+comment|//			assertEquals(0, result.getSize());
 block|}
 catch|catch
 parameter_list|(

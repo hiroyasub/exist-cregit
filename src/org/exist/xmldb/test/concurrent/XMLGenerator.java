@@ -403,7 +403,7 @@ literal|">\n"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 name|String
 name|generateText
 parameter_list|(

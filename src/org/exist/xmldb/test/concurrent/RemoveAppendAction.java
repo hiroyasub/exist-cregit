@@ -95,9 +95,9 @@ literal|"</xu:remove>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
-specifier|private
+specifier|protected
 name|XMLGenerator
-name|gen
+name|xmlGenerator
 decl_stmt|;
 specifier|public
 name|RemoveAppendAction
@@ -120,7 +120,7 @@ argument_list|,
 name|resourceName
 argument_list|)
 expr_stmt|;
-name|gen
+name|xmlGenerator
 operator|=
 operator|new
 name|XMLGenerator
@@ -294,7 +294,7 @@ name|update
 init|=
 name|updateOpen
 operator|+
-name|gen
+name|xmlGenerator
 operator|.
 name|generateElement
 argument_list|()

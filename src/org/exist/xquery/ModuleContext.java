@@ -97,6 +97,8 @@ specifier|public
 name|DocumentSet
 name|getStaticallyKnownDocuments
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 return|return
 name|parentContext
