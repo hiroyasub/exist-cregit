@@ -1341,21 +1341,6 @@ name|effectiveBooleanValue
 argument_list|()
 argument_list|)
 return|;
-if|else if
-condition|(
-name|target
-operator|==
-name|Object
-operator|.
-name|class
-condition|)
-return|return
-operator|new
-name|Double
-argument_list|(
-name|value
-argument_list|)
-return|;
 throw|throw
 operator|new
 name|XPathException
