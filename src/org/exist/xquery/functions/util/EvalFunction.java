@@ -187,6 +187,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|EmptySequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -325,7 +339,9 @@ literal|"namespace declarations and variable declarations are visible from withi
 operator|+
 literal|"inner expression. The function accepts a second string argument to specify "
 operator|+
-literal|"the static context collection to which the expression applies."
+literal|"the static context collection to which the expression applies. It will return"
+operator|+
+literal|"an empty sequence if you pass a whitespace string."
 argument_list|,
 operator|new
 name|SequenceType
@@ -408,6 +424,23 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|expr
+operator|.
+name|trim
+argument_list|()
+argument_list|)
+condition|)
+return|return
+operator|new
+name|EmptySequence
+argument_list|()
+return|;
 comment|// check optional collection argument
 name|DocumentSet
 name|oldDocumentSet
