@@ -185,6 +185,17 @@ name|qdata
 init|=
 literal|null
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"query: "
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|qdata
@@ -245,6 +256,15 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"query finished."
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|ResourceSetImpl
@@ -398,16 +418,7 @@ name|addElement
 argument_list|(
 name|resource
 operator|.
-name|parent
-operator|.
-name|getPath
-argument_list|()
-operator|+
-literal|'/'
-operator|+
-name|resource
-operator|.
-name|docId
+name|path
 argument_list|)
 expr_stmt|;
 name|params
@@ -437,20 +448,6 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"found: "
-operator|+
-name|result
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|ResourceSetImpl
