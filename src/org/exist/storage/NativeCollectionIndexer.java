@@ -294,7 +294,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Create a new NativeCollectionIndexer. The CollectionStore      * must be initialized when calling this constructor.      *       * Refactor note: currently, DBBroker is used here, but      * this should<b>not</b> be the case in future.      *        * @param pool broker pool to use      * @param collectionsDb initialized collectionsDb      */
+comment|/**      * Create a new NativeCollectionIndexer. The CollectionStore      * must be initialized when calling this constructor.      *       * Refactor note: currently, DBBroker is used here, but      * this should<b>not</b> be the case in future.      *        * @param pool broker pool to use      * @param broker the broker to use      * @param collectionsDb initialized collectionsDb      */
 specifier|public
 name|NativeCollectionIndexer
 parameter_list|(
