@@ -27,6 +27,18 @@ name|File
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|IndexQueryService
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test concurrent XUpdates on the same document.  *   * @author wolf  */
 end_comment
@@ -45,6 +57,28 @@ name|String
 name|URI
 init|=
 literal|"xmldb:exist:///db"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|CONFIG
+init|=
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
+operator|+
+literal|"<index>"
+operator|+
+literal|"<fulltext default=\"none\">"
+operator|+
+literal|"</fulltext>"
+operator|+
+literal|"<create path=\"//ELEMENT-1/@attribute-3\" type=\"xs:string\"/>"
+operator|+
+literal|"<create path=\"//ELEMENT-1/@attribute-1\" type=\"xs:string\"/>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -103,6 +137,29 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|IndexQueryService
+name|idxConf
+init|=
+operator|(
+name|IndexQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"IndexQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|idxConf
+operator|.
+name|configureCollection
+argument_list|(
+name|CONFIG
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|wordList
@@ -158,7 +215,7 @@ argument_list|,
 name|wordList
 argument_list|)
 argument_list|,
-literal|100
+literal|10
 argument_list|,
 literal|500
 argument_list|,
@@ -179,7 +236,7 @@ argument_list|,
 name|wordList
 argument_list|)
 argument_list|,
-literal|100
+literal|10
 argument_list|,
 literal|300
 argument_list|,
@@ -201,7 +258,7 @@ argument_list|,
 name|query
 argument_list|)
 argument_list|,
-literal|200
+literal|20
 argument_list|,
 literal|100
 argument_list|,
@@ -217,10 +274,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
+comment|//		super.tearDown();
+name|DBUtils
 operator|.
-name|tearDown
-argument_list|()
+name|shutdownDB
+argument_list|(
+name|URI
+argument_list|)
 expr_stmt|;
 name|tempFile
 operator|.

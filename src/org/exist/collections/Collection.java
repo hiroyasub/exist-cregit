@@ -2836,11 +2836,11 @@ condition|(
 operator|!
 name|docname
 operator|.
-name|equals
+name|endsWith
 argument_list|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_FILE
+name|COLLECTION_CONFIG_SUFFIX
 argument_list|)
 condition|)
 block|{
@@ -7327,11 +7327,11 @@ if|if
 condition|(
 name|name
 operator|.
-name|equals
+name|endsWith
 argument_list|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_FILE
+name|COLLECTION_CONFIG_SUFFIX
 argument_list|)
 condition|)
 block|{

@@ -149,6 +149,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XUpdateQueryService
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -202,7 +216,7 @@ literal|"<create path=\"//item/stock\" type=\"xs:integer\"/>"
 operator|+
 literal|"<create path=\"//item/price\" type=\"xs:double\"/>"
 operator|+
-literal|"<create path=\"//item/prices/@specialprice\" type=\"xs:boolean\"/>"
+literal|"<create path=\"//item/price/@specialprice\" type=\"xs:boolean\"/>"
 operator|+
 literal|"<create path=\"//item/x:rating\" type=\"xs:double\"/>"
 operator|+
@@ -460,6 +474,134 @@ argument_list|,
 literal|"items.xml"
 argument_list|,
 literal|"//item[mixed = 'uneven']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testUpdates
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|append
+init|=
+literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+operator|+
+literal|"<xu:append select=\"/items\">"
+operator|+
+literal|"<item>"
+operator|+
+literal|"<itemno>10</itemno>"
+operator|+
+literal|"<name>New Item</name>"
+operator|+
+literal|"<price>55.50</price>"
+operator|+
+literal|"</item>"
+operator|+
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+name|String
+name|remove
+init|=
+literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+operator|+
+literal|"<xu:remove select=\"/items/item[itemno='10']\"/>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+name|XPathQueryService
+name|query
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|XUpdateQueryService
+name|update
+init|=
+operator|(
+name|XUpdateQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XUpdateQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|update
+operator|.
+name|updateResource
+argument_list|(
+literal|"items.xml"
+argument_list|,
+name|append
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[price = 55.50]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|update
+operator|.
+name|updateResource
+argument_list|(
+literal|"items.xml"
+argument_list|,
+name|remove
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[price = 55.50]"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|update
+operator|.
+name|updateResource
+argument_list|(
+literal|"items.xml"
+argument_list|,
+name|append
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[price = 55.50]"
 argument_list|,
 literal|1
 argument_list|)

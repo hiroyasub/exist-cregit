@@ -158,6 +158,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|COLLECTION_CONFIG_SUFFIX
+init|=
+literal|".xconf"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|NAMESPACE
 init|=
 literal|"http://exist-db.org/collection-config/1.0"
