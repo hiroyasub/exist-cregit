@@ -612,6 +612,11 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|path
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -622,6 +627,10 @@ name|sequence
 operator|.
 name|getLength
 argument_list|()
+operator|+
+literal|" for "
+operator|+
+name|expr
 argument_list|)
 expr_stmt|;
 return|return
@@ -652,27 +661,6 @@ block|}
 catch|catch
 parameter_list|(
 name|TokenStreamException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"error found while executing expression: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
 name|e
 parameter_list|)
 block|{
