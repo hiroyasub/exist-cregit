@@ -8840,15 +8840,12 @@ name|collection
 operator|=
 name|broker
 operator|.
-name|openCollection
+name|getCollection
 argument_list|(
 name|col
-argument_list|,
-name|Lock
-operator|.
-name|READ_LOCK
 argument_list|)
 expr_stmt|;
+comment|//				collection = broker.openCollection(col, Lock.READ_LOCK);
 if|if
 condition|(
 name|collection
@@ -8868,11 +8865,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-name|collection
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
+comment|//				collection.release();
 block|}
 block|}
 return|return
