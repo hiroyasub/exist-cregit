@@ -1624,7 +1624,9 @@ init|=
 name|collection
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 init|;
 name|i
 operator|.

@@ -294,6 +294,8 @@ name|collection
 operator|.
 name|getDocuments
 argument_list|(
+name|broker
+argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;

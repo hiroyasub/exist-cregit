@@ -1166,8 +1166,27 @@ name|boolean
 name|recursive
 parameter_list|)
 block|{
+if|if
+condition|(
+name|permissions
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+block|{
 name|getDocuments
 argument_list|(
+name|broker
+argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
@@ -1182,6 +1201,7 @@ argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|docs
 return|;
@@ -1286,6 +1306,8 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+name|child
+operator|.
 name|permissions
 operator|.
 name|validate
@@ -1305,6 +1327,8 @@ name|child
 operator|.
 name|getDocuments
 argument_list|(
+name|broker
+argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
@@ -1365,6 +1389,9 @@ specifier|public
 name|DocumentSet
 name|getDocuments
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|)
@@ -1399,6 +1426,8 @@ name|docs
 operator|.
 name|addAll
 argument_list|(
+name|broker
+argument_list|,
 name|documents
 operator|.
 name|values
@@ -2003,6 +2032,8 @@ block|{
 return|return
 name|getDocuments
 argument_list|(
+literal|null
+argument_list|,
 operator|new
 name|DocumentSet
 argument_list|()
@@ -2011,7 +2042,28 @@ operator|.
 name|iterator
 argument_list|()
 return|;
-comment|//return documents.values().iterator();
+block|}
+specifier|public
+name|Iterator
+name|iterator
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+return|return
+name|getDocuments
+argument_list|(
+name|broker
+argument_list|,
+operator|new
+name|DocumentSet
+argument_list|()
+argument_list|)
+operator|.
+name|iterator
+argument_list|()
+return|;
 block|}
 comment|/** 	 * Read collection contents from the stream. 	 *  	 * @param istream 	 * @throws IOException 	 */
 specifier|public
