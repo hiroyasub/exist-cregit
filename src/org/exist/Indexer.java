@@ -366,7 +366,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parser parses a given input document via SAX and stores it to  * the database. It automatically handles index-creation.  *   * @author wolf  *  */
+comment|/**  * Parses a given input document via SAX, stores it to  * the database and handles index-creation.  *   * @author wolf  *  */
 end_comment
 
 begin_class

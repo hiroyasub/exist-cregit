@@ -836,7 +836,7 @@ condition|)
 name|realSet
 operator|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|100
 argument_list|)
@@ -1501,11 +1501,6 @@ operator|!=
 literal|null
 condition|)
 return|return;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|realSet
 operator|=
 name|getNodes

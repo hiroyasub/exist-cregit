@@ -177,6 +177,19 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+return|;
+comment|// fixed value
+block|}
 specifier|public
 name|String
 name|pprint

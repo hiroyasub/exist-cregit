@@ -41,6 +41,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|Range
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xpath
 operator|.
 name|XPathException
@@ -142,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all node set implementations returned by most  * xpath expressions. It implements NodeList plus some additional  * methods needed by the xpath engine.  *  * There are three classes extending NodeSet: NodeIDSet, ArraySet  * and VirtualNodeSet. Depending on the context each of these  * implementations has its advantages and drawbacks. ArraySet  * uses a sorted array and binary search, while NodeIDSet is based  * on a HashSet. VirtualNodeSet is specifically used for steps like  * descendant::* etc..  */
+comment|/**  * Abstract base class for all node set implementations. A node set is a special type of sequence,  * which contains only nodes. Class NodeSet thus implements the {@link org.exist.xpath.value.Sequence}   * as well as the DOM {@link org.w3c.dom.NodeList} interfaces.  *   * Please note that a node set may or may not contain duplicate nodes. Some implementations  * (e.g. {@link org.exist.dom.ExtArrayNodeSet}) remove duplicates when sorting the set.  */
 end_comment
 
 begin_class
@@ -202,6 +214,7 @@ name|FOLLOWING
 init|=
 literal|3
 decl_stmt|;
+comment|/** 	 * Constant representing an empty node set. 	 */
 specifier|public
 specifier|static
 name|NodeSet
@@ -211,6 +224,7 @@ operator|new
 name|EmptyNodeSet
 argument_list|()
 decl_stmt|;
+comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 * @return 	 */
 specifier|public
 specifier|abstract
 name|Iterator
@@ -236,6 +250,7 @@ operator|.
 name|NODE
 return|;
 block|}
+comment|/** 	 * Check if this node set contains a node matching the given 	 * document and node-id. 	 *  	 * @param doc 	 * @param nodeId 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -248,6 +263,7 @@ name|long
 name|nodeId
 parameter_list|)
 function_decl|;
+comment|/** 	 * Check if this node set contains a node matching the document and 	 * node-id of the given NodeProxy object. 	 *  	 * @param proxy 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -257,6 +273,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 function_decl|;
+comment|/** 	 * Check if this node set contains nodes belonging to the given document. 	 *  	 * @param doc 	 * @return 	 */
 specifier|public
 name|boolean
 name|containsDoc
@@ -297,6 +314,7 @@ name|proxy
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Add a sequence item to the node set. The item has to be 	 * a subtype of node. 	 */
 specifier|public
 name|void
 name|add
@@ -340,6 +358,7 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Add all items from the given sequence to the node set. All items 	 * have to be a subtype of node. 	 *  	 * @param other 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|addAll
@@ -352,14 +371,20 @@ name|XPathException
 block|{
 if|if
 condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|other
 operator|.
 name|getItemType
 argument_list|()
-operator|!=
+argument_list|,
 name|Type
 operator|.
 name|NODE
+argument_list|)
 condition|)
 throw|throw
 operator|new
@@ -398,6 +423,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Add all nodes from the given node set. 	 *  	 * @param other 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -407,6 +433,7 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
+comment|/** 	 * Remove a node. By default, this method throws a 	 * RuntimeException. 	 *  	 * @param node 	 */
 specifier|public
 name|void
 name|remove
@@ -419,10 +446,17 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"not implemented"
+literal|"remove not implemented for class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/** 	 * Return the number of nodes contained in this node set. 	 */
 specifier|public
 specifier|abstract
 name|int
@@ -438,6 +472,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
+comment|/** 	 * Get the node at position pos within this node set. 	 * @param pos 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|NodeProxy
@@ -447,6 +482,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
+comment|/** 	 * Get a node from this node set matching the document and node id of 	 * the given NodeProxy. 	 *   	 * @param p 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|NodeProxy
@@ -456,6 +492,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
+comment|/** 	 * Get a node from this node set matching the document and node id. 	 *  	 * @param doc 	 * @param nodeId 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|NodeProxy
@@ -468,6 +505,7 @@ name|long
 name|nodeId
 parameter_list|)
 function_decl|;
+comment|/** 	 * Check if node has an ancestor contained in this node set. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 */
 specifier|public
 name|NodeProxy
 name|nodeHasParent
@@ -496,6 +534,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Check if node has an ancestor contained in this node set. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|nodeHasParent
@@ -527,6 +566,7 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|nodeHasParent
@@ -560,7 +600,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Check if node has a parent contained in this node set. 	 * 	 * If directParent is true, only immediate ancestors are considered. 	 * Otherwise the method will call itself recursively for the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
+comment|/** 	 * Check if node has an ancestor contained in this node set. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|nodeHasParent
@@ -676,9 +716,60 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * Get all children of the given parent node contained in this node set. 	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all children found in this node set. If mode is {@link #ANCESTOR}, 	 * the parent itself will be returned if it has child nodes in this set. 	 *  	 * @param parent 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getChildren
+name|hasChildrenInSet
+parameter_list|(
+name|NodeProxy
+name|parent
+parameter_list|,
+name|int
+name|mode
+parameter_list|,
+name|boolean
+name|rememberContext
+parameter_list|)
+block|{
+name|Range
+name|range
+init|=
+name|XMLUtil
+operator|.
+name|getChildRange
+argument_list|(
+name|parent
+operator|.
+name|doc
+argument_list|,
+name|parent
+operator|.
+name|gid
+argument_list|)
+decl_stmt|;
+return|return
+name|getRange
+argument_list|(
+name|parent
+operator|.
+name|doc
+argument_list|,
+name|range
+operator|.
+name|getStart
+argument_list|()
+argument_list|,
+name|range
+operator|.
+name|getEnd
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
+specifier|public
+name|NodeSet
+name|selectParentChild
 parameter_list|(
 name|NodeSet
 name|al
@@ -688,7 +779,7 @@ name|mode
 parameter_list|)
 block|{
 return|return
-name|getChildren
+name|selectParentChild
 argument_list|(
 name|al
 argument_list|,
@@ -698,9 +789,10 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getChildren
+name|selectParentChild
 parameter_list|(
 name|NodeSet
 name|al
@@ -712,6 +804,32 @@ name|boolean
 name|rememberContext
 parameter_list|)
 block|{
+if|if
+condition|(
+name|al
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+return|return
+name|hasChildrenInSet
+argument_list|(
+name|al
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+argument_list|,
+name|mode
+argument_list|,
+name|rememberContext
+argument_list|)
+return|;
+block|}
 name|NodeProxy
 name|n
 decl_stmt|,
@@ -742,6 +860,8 @@ name|mode
 condition|)
 block|{
 case|case
+name|NodeSet
+operator|.
 name|DESCENDANT
 case|:
 for|for
@@ -803,7 +923,7 @@ name|p
 operator|=
 name|al
 operator|.
-name|nodeHasParent
+name|parentWithChild
 argument_list|(
 name|n
 operator|.
@@ -857,6 +977,8 @@ block|}
 block|}
 break|break;
 case|case
+name|NodeSet
+operator|.
 name|ANCESTOR
 case|:
 for|for
@@ -913,6 +1035,9 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|(
 name|p
 operator|=
 name|al
@@ -934,10 +1059,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|p
+operator|)
 operator|!=
 literal|null
 condition|)
@@ -974,11 +1096,11 @@ block|}
 block|}
 break|break;
 block|}
-comment|//		LOG.debug(
-comment|//			"getChildren found "
-comment|//				+ result.getLength()
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start));
+comment|//				LOG.debug(
+comment|//					"getChildren found "
+comment|//						+ result.getLength()
+comment|//						+ " in "
+comment|//						+ (System.currentTimeMillis() - start));
 name|result
 operator|.
 name|sort
@@ -988,9 +1110,10 @@ return|return
 name|result
 return|;
 block|}
+comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getDescendants
+name|selectAncestorDescendant
 parameter_list|(
 name|NodeSet
 name|al
@@ -1000,7 +1123,7 @@ name|mode
 parameter_list|)
 block|{
 return|return
-name|getDescendants
+name|selectAncestorDescendant
 argument_list|(
 name|al
 argument_list|,
@@ -1010,9 +1133,10 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getDescendants
+name|selectAncestorDescendant
 parameter_list|(
 name|NodeSet
 name|al
@@ -1025,7 +1149,7 @@ name|includeSelf
 parameter_list|)
 block|{
 return|return
-name|getDescendants
+name|selectAncestorDescendant
 argument_list|(
 name|al
 argument_list|,
@@ -1037,10 +1161,10 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  For a given set of potential ancestor nodes, get the 	 * descendants in this node set 	 * 	 *@param  al    node set containing potential ancestors 	 *@param  mode  determines if either the ancestor or the descendant 	 * nodes should be returned. Possible values are ANCESTOR or DESCENDANT. 	 *@return 	 */
+comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getDescendants
+name|selectAncestorDescendant
 parameter_list|(
 name|NodeSet
 name|al
@@ -1147,7 +1271,7 @@ name|p
 operator|=
 name|al
 operator|.
-name|nodeHasParent
+name|parentWithChild
 argument_list|(
 name|n
 operator|.
@@ -1315,19 +1439,19 @@ block|}
 break|break;
 block|}
 comment|//result.sort();
-comment|//		LOG.debug(
-comment|//			"getDescendants found "
-comment|//				+ result.getLength()
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start));
+comment|//				LOG.debug(
+comment|//					"getDescendants found "
+comment|//						+ result.getLength()
+comment|//						+ " in "
+comment|//						+ (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
 block|}
-comment|/** 		 *  For a given set of potential ancestor nodes, get the 		 * descendants in this node set 		 * 		 *@param  al    node set containing potential ancestors 		 *@param  mode  determines if either the ancestor or the descendant 		 * nodes should be returned. Possible values are ANCESTOR or DESCENDANT. 		 *@return 		 */
+comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 *@param  al    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 *@return 	 */
 specifier|public
 name|NodeSet
-name|getAncestors
+name|selectAncestors
 parameter_list|(
 name|NodeSet
 name|al
@@ -1346,17 +1470,12 @@ name|p
 decl_stmt|,
 name|temp
 decl_stmt|;
-name|ArraySet
+name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-name|al
-operator|.
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -1398,6 +1517,8 @@ operator|.
 name|gid
 argument_list|,
 literal|false
+argument_list|,
+name|includeSelf
 argument_list|)
 expr_stmt|;
 if|if
@@ -1467,10 +1588,10 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Select all nodes from the passed node set, which 	 * are preceding or following siblings of the nodes in 	 * this set. 	 *  	 * @param siblings a node set containing potential siblings 	 * @param mode either FOLLOWING or PRECEDING 	 * @return 	 */
+comment|/** 	 * Select all nodes from the passed node set, which 	 * are preceding or following siblings of the nodes in 	 * this set. If mode is {@link #FOLLOWING}, only nodes following 	 * the context node are selected. {@link #PRECEDING} selects 	 * preceding nodes. 	 *  	 * @param siblings a node set containing potential siblings 	 * @param mode either FOLLOWING or PRECEDING 	 * @return 	 */
 specifier|public
 name|NodeSet
-name|getSiblings
+name|selectSiblings
 parameter_list|(
 name|NodeSet
 name|siblings
@@ -1498,15 +1619,12 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-name|ArraySet
+name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|Iterator
 name|ia
@@ -1835,7 +1953,121 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Search for a node contained in this node set, which is an 	 * ancestor of the argument node. 	 * If directParent is true, only immediate ancestors are considered. 	 */
+comment|/** 	 * Get all the sibling nodes of the specified node in the current set. 	 *  	 * @param doc the node's owner document 	 * @param gid the node's internal id 	 * @return 	 */
+specifier|public
+name|NodeSet
+name|getSiblings
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|long
+name|gid
+parameter_list|)
+block|{
+name|int
+name|level
+init|=
+name|doc
+operator|.
+name|getTreeLevel
+argument_list|(
+name|gid
+argument_list|)
+decl_stmt|;
+comment|// get parents id
+name|long
+name|pid
+init|=
+operator|(
+name|gid
+operator|-
+name|doc
+operator|.
+name|getLevelStartPoint
+argument_list|(
+name|level
+argument_list|)
+operator|)
+operator|/
+name|doc
+operator|.
+name|getTreeLevelOrder
+argument_list|(
+name|level
+argument_list|)
+operator|+
+name|doc
+operator|.
+name|getLevelStartPoint
+argument_list|(
+name|level
+operator|-
+literal|1
+argument_list|)
+decl_stmt|;
+comment|// get first childs id
+name|long
+name|f_gid
+init|=
+operator|(
+name|pid
+operator|-
+name|doc
+operator|.
+name|getLevelStartPoint
+argument_list|(
+name|level
+operator|-
+literal|1
+argument_list|)
+operator|)
+operator|*
+name|doc
+operator|.
+name|getTreeLevelOrder
+argument_list|(
+name|level
+argument_list|)
+operator|+
+name|doc
+operator|.
+name|getLevelStartPoint
+argument_list|(
+name|level
+argument_list|)
+decl_stmt|;
+comment|// get last childs id
+name|long
+name|e_gid
+init|=
+name|f_gid
+operator|+
+name|doc
+operator|.
+name|getTreeLevelOrder
+argument_list|(
+name|level
+argument_list|)
+decl_stmt|;
+comment|// get all nodes between first and last childs id
+name|NodeSet
+name|set
+init|=
+name|getRange
+argument_list|(
+name|doc
+argument_list|,
+name|f_gid
+argument_list|,
+name|e_gid
+argument_list|)
+decl_stmt|;
+return|return
+name|set
+return|;
+block|}
+comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1866,6 +2098,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1899,7 +2132,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Search for a node contained in this node set, which is an 	 * ancestor of the argument node. 	 * If directParent is true, only immediate ancestors are considered. 	 * If includeSelf is true, the method returns true even if 	 * the node itself is contained in the node set. 	 */
+comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -2041,6 +2274,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * Check if the given node has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -2077,20 +2311,18 @@ name|level
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Return a new node set containing the parent nodes of all nodes in the  	 * current set. 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|getParents
 parameter_list|()
 block|{
-name|ArraySet
+name|NodeSet
 name|parents
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|NodeProxy
 name|p
@@ -2170,6 +2402,7 @@ return|return
 name|parents
 return|;
 block|}
+comment|/** 	 * Returns true if all nodes in this node set are included in 	 * the fulltext index. 	 *  	 * @return 	 */
 specifier|public
 name|boolean
 name|hasIndex
@@ -2214,6 +2447,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** 	 * Return a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|getRange
@@ -2228,79 +2462,21 @@ name|long
 name|upper
 parameter_list|)
 block|{
-name|NodeProxy
-name|p
-decl_stmt|;
-name|ArraySet
-name|result
-init|=
+throw|throw
 operator|new
-name|ArraySet
+name|RuntimeException
 argument_list|(
-literal|5
+literal|"getRange is not valid for class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|p
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|p
-operator|.
-name|doc
-operator|.
-name|docId
-operator|==
-name|doc
-operator|.
-name|docId
-operator|&&
-name|p
-operator|.
-name|gid
-operator|>=
-name|lower
-operator|&&
-name|p
-operator|.
-name|gid
-operator|<=
-name|upper
-condition|)
-name|result
-operator|.
-name|add
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
+throw|;
 block|}
-return|return
-name|result
-return|;
-block|}
+comment|/** 	 * Get a hint about how many nodes in this node set belong to the  	 * specified document. This is just used for allocating new node sets. 	 * The information does not need to be exact. -1 is returned if the 	 * size cannot be determined (the default). 	 *  	 * @param doc 	 * @return 	 */
 specifier|public
 name|int
 name|getSizeHint
@@ -2314,6 +2490,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/** 	 * Return a new node set, which represents the intersection of the current 	 * node set with the given node set. 	 *  	 * @param other 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|intersection
@@ -2461,6 +2638,7 @@ return|return
 name|r
 return|;
 block|}
+comment|/** 	 * Return a new node set which represents the union of the 	 * current node set and the given node set. 	 *  	 * @param other 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|union
@@ -2571,6 +2749,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** 	 * Return a new node set containing all the context nodes associated 	 * with the nodes in this set. 	 *  	 * @param contextNodes 	 * @param rememberContext 	 * @return 	 */
 specifier|public
 name|NodeSet
 name|getContextNodes
@@ -2717,6 +2896,18 @@ block|}
 block|}
 return|return
 name|result
+return|;
+block|}
+comment|/** 	 * Always returns this. 	 *  	 * @see org.exist.xpath.value.Sequence#toNodeSet() 	 */
+specifier|public
+name|NodeSet
+name|toNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

@@ -520,7 +520,19 @@ throw|throw
 operator|new
 name|Exception
 argument_list|(
-literal|"different attribute counts..."
+literal|"different attribute counts: node1: "
+operator|+
+name|attr1
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|"; node2: "
+operator|+
+name|attr2
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 throw|;
 block|}

@@ -31,18 +31,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|ContextItem
 import|;
 end_import
@@ -229,6 +217,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|setInPredicate
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|//long start = System.currentTimeMillis();
 name|Expression
 name|inner
@@ -284,11 +277,6 @@ name|NODE
 argument_list|)
 condition|)
 block|{
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -317,16 +305,6 @@ argument_list|)
 decl_stmt|;
 name|NodeProxy
 name|current
-decl_stmt|,
-name|parent
-decl_stmt|;
-name|NodeSet
-name|contextSet
-init|=
-operator|(
-name|NodeSet
-operator|)
-name|contextSequence
 decl_stmt|;
 name|ContextItem
 name|contextNode
@@ -510,17 +488,12 @@ argument_list|)
 condition|)
 block|{
 comment|//string has no special meaning
-name|ArraySet
+name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-name|contextSequence
-operator|.
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|Item
 name|item
@@ -664,13 +637,8 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
-argument_list|(
-name|contextSequence
-operator|.
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// evaluate predicate expression for each context node
 for|for
@@ -934,12 +902,6 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-comment|//		LOG.debug(
-comment|//			"predicate expression found "
-comment|//				+ result.getLength()
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
 block|}
 specifier|public
 name|DocumentSet

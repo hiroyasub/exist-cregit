@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -140,6 +140,18 @@ operator|.
 name|util
 operator|.
 name|Vector
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
 import|;
 end_import
 
@@ -836,7 +848,9 @@ name|property
 operator|.
 name|equals
 argument_list|(
-literal|"pretty"
+name|OutputKeys
+operator|.
+name|INDENT
 argument_list|)
 condition|)
 return|return
@@ -846,9 +860,9 @@ operator|==
 literal|1
 operator|)
 condition|?
-literal|"true"
+literal|"yes"
 else|:
-literal|"false"
+literal|"no"
 return|;
 if|if
 condition|(
@@ -856,7 +870,9 @@ name|property
 operator|.
 name|equals
 argument_list|(
-literal|"encoding"
+name|OutputKeys
+operator|.
+name|ENCODING
 argument_list|)
 condition|)
 return|return
@@ -2208,7 +2224,9 @@ name|property
 operator|.
 name|equals
 argument_list|(
-literal|"pretty"
+name|OutputKeys
+operator|.
+name|INDENT
 argument_list|)
 condition|)
 name|indentXML
@@ -2218,7 +2236,7 @@ name|value
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+literal|"yes"
 argument_list|)
 condition|?
 literal|1
@@ -2233,7 +2251,9 @@ name|property
 operator|.
 name|equals
 argument_list|(
-literal|"encoding"
+name|OutputKeys
+operator|.
+name|ENCODING
 argument_list|)
 condition|)
 name|encoding

@@ -25,6 +25,10 @@ name|StaticContext
 import|;
 end_import
 
+begin_comment
+comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -98,6 +102,7 @@ name|prefix_
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Construct a QName. The prefix might be null for the default namespace or if no prefix  	 * has been defined for the QName. The namespace URI should be set to the empty  	 * string, if no namespace URI is defined. 	 *  	 * @param localName 	 * @param namespaceURI 	 * @param prefix 	 */
 specifier|public
 name|QName
 parameter_list|(
@@ -168,6 +173,7 @@ operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
+comment|/** 	 * Returns true if the QName defines a namespace URI. 	 *  	 * @return 	 */
 specifier|public
 name|boolean
 name|needsNamespaceDecl
@@ -318,6 +324,7 @@ else|:
 name|c
 return|;
 block|}
+comment|/** 	 * Extract the prefix from a QName string. 	 *   	 * @param qname 	 * @return the prefix, if found 	 * @exception IllegalArgumentException if the qname starts with a leading : 	 */
 specifier|public
 specifier|static
 name|String
@@ -370,6 +377,7 @@ name|p
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Extract the local name from a QName string. 	 *  	 * @param qname 	 * @return 	 * @exception IllegalArgumentException if the qname starts with a leading : or ends with a : 	 */
 specifier|public
 specifier|static
 name|String
@@ -438,6 +446,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * @param context 	 * @param qname 	 * @return 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
 specifier|public
 specifier|static
 name|QName
@@ -503,6 +512,88 @@ argument_list|(
 literal|""
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|namespaceURI
+operator|==
+literal|null
+condition|)
+name|namespaceURI
+operator|=
+literal|""
+expr_stmt|;
+return|return
+operator|new
+name|QName
+argument_list|(
+name|extractLocalName
+argument_list|(
+name|qname
+argument_list|)
+argument_list|,
+name|namespaceURI
+argument_list|,
+name|prefix
+argument_list|)
+return|;
+block|}
+specifier|public
+specifier|static
+name|QName
+name|parseAttribute
+parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
+name|String
+name|qname
+parameter_list|)
+block|{
+name|String
+name|prefix
+init|=
+name|extractPrefix
+argument_list|(
+name|qname
+argument_list|)
+decl_stmt|;
+name|String
+name|namespaceURI
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|prefix
+operator|!=
+literal|null
+condition|)
+block|{
+name|namespaceURI
+operator|=
+name|context
+operator|.
+name|getURIForPrefix
+argument_list|(
+name|prefix
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|namespaceURI
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"No namespace defined for prefix "
+operator|+
+name|prefix
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|namespaceURI

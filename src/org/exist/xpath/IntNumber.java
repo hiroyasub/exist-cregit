@@ -35,7 +35,7 @@ name|xpath
 operator|.
 name|value
 operator|.
-name|DecimalValue
+name|DoubleValue
 import|;
 end_import
 
@@ -117,6 +117,19 @@ operator|.
 name|DOUBLE
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+return|;
+comment|// fixed value
+block|}
 specifier|public
 name|DocumentSet
 name|preselect
@@ -153,7 +166,7 @@ name|XPathException
 block|{
 return|return
 operator|new
-name|DecimalValue
+name|DoubleValue
 argument_list|(
 name|dValue
 argument_list|)

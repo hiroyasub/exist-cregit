@@ -146,6 +146,18 @@ parameter_list|)
 block|{
 comment|// has no effect by default
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#getDependencies() 	 */
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|DEFAULT_DEPENDENCIES
+return|;
+block|}
 block|}
 end_class
 

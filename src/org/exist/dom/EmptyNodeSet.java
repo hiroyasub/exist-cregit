@@ -82,13 +82,23 @@ name|EmptyNodeSet
 extends|extends
 name|NodeSet
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|EmptyNodeSetIterator
+name|EMPTY_ITERATOR
+init|=
+operator|new
+name|EmptyNodeSetIterator
+argument_list|()
+decl_stmt|;
 specifier|public
 name|Iterator
 name|iterator
 parameter_list|()
 block|{
 return|return
-literal|null
+name|EMPTY_ITERATOR
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
@@ -270,6 +280,42 @@ block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|private
+specifier|final
+specifier|static
+class|class
+name|EmptyNodeSetIterator
+implements|implements
+name|Iterator
+block|{
+comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
+specifier|public
+name|void
+name|remove
+parameter_list|()
+block|{
+block|}
+comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+specifier|public
+name|boolean
+name|hasNext
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+specifier|public
+name|Object
+name|next
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 block|}
 end_class

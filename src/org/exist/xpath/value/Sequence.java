@@ -21,17 +21,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xpath
 operator|.
 name|XPathException
 import|;
 end_import
 
+begin_comment
+comment|/**  * This interface represents a sequence as defined in the XPath 2.0 specification.  *   * A sequence is a sequence of items. Each item is either an atomic value or a  * node. A single item is also a sequence, containing only the item. The base classes for   * {@link org.exist.xpath.value.AtomicValue atomic values} and {@link org.exist.dom.NodeProxy  * nodes} thus implement the Sequence interface.  *   * Also, a {@link org.exist.dom.NodeSet node set} is a special type of sequence, where all   * items are of type node.    */
+end_comment
+
 begin_interface
 specifier|public
 interface|interface
 name|Sequence
 block|{
+comment|/** 	 * Constant representing an empty sequence, i.e. a sequence with no item. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -42,6 +59,7 @@ operator|new
 name|EmptySequence
 argument_list|()
 decl_stmt|;
+comment|/** 	 * Add an item to the current sequence. An {@link XPathException} may be thrown 	 * if the item's type is incompatible with this type of sequence (e.g. if the sequence 	 * is a node set). 	 *  	 * The sequence may or may not allow duplicate values. 	 *  	 * @param item 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|add
@@ -52,21 +70,36 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Add all items of the other sequence to this item. An {@link XPathException} may 	 * be thrown if the type of the items in the other sequence is incompatible with 	 * the primary type of this sequence. 	 *  	 * @param other 	 * @throws XPathException 	 */
+specifier|public
+name|void
+name|addAll
+parameter_list|(
+name|Sequence
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+comment|/** 	 * Return the primary type to which all items in this sequence belong. This is 	 * {@link org.exist.xpath.value.Type#NODE} for node sets, {@link Type#ITEM} 	 * for other sequences with mixed items. 	 *  	 * @return the primary type of the items in this sequence. 	 */
 specifier|public
 name|int
 name|getItemType
 parameter_list|()
 function_decl|;
+comment|/** 	 * Returns an iterator over all items in the sequence. 	 *  	 * @return 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
 function_decl|;
+comment|/** 	 * Returns the number of items contained in the sequence. 	 * @return 	 */
 specifier|public
 name|int
 name|getLength
 parameter_list|()
 function_decl|;
+comment|/** 	 * Returns the item located at the specified position within 	 * this sequence. Items are counted beginning at 0. 	 *  	 * @param pos 	 * @return 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -75,6 +108,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
+comment|/** 	 * Try to convert the sequence into an atomic value. The target type should be specified by 	 * using one of the constants defined in class {@link Type}. An {@link XPathException} 	 * is thrown if the conversion is impossible. 	 *  	 * @param requiredType one of the type constants defined in class {@link Type} 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -85,10 +119,27 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Convert the sequence to a string. 	 *  	 * @return 	 */
 specifier|public
 name|String
 name|getStringValue
 parameter_list|()
+function_decl|;
+comment|/** 	 * Get the effective boolean value of this sequence. Will be false if the sequence is empty, 	 * true otherwise. 	 *  	 * @return 	 * @throws XPathException 	 */
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+function_decl|;
+comment|/** 	 * Convert the sequence into a NodeSet. If the sequence contains items 	 * which are not nodes, an XPathException is thrown. 	 * @return 	 * @throws XPathException if the sequence contains items which are not nodes. 	 */
+specifier|public
+name|NodeSet
+name|toNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 block|}
 end_interface

@@ -2035,7 +2035,10 @@ name|broker
 operator|.
 name|setUser
 argument_list|(
-name|user
+name|getUser
+argument_list|(
+name|DBA_USER
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Collection

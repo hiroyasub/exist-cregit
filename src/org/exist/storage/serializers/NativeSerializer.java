@@ -279,10 +279,6 @@ name|AttributesImpl
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    13. April 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -328,7 +324,6 @@ operator|new
 name|Perl5Util
 argument_list|()
 decl_stmt|;
-comment|/** 	 *  Constructor for the NativeSerializer object 	 * 	 *@param  broker  Description of the Parameter 	 *@param  pool    Description of the Parameter 	 */
 specifier|public
 name|NativeSerializer
 parameter_list|(
@@ -399,7 +394,6 @@ name|EXIST_ID_NONE
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@param  queryTime         Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -646,7 +640,6 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc               Description of the Parameter 	 *@param  generateDocEvent  Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -846,7 +839,6 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  n                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -899,7 +891,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  p                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -918,7 +909,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  p                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -998,7 +988,6 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1031,7 +1020,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  node              Description of the Parameter 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1077,7 +1065,6 @@ name|match
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  node              Description of the Parameter 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@param  prefixes          Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1295,7 +1282,8 @@ block|{
 if|if
 condition|(
 operator|(
-name|highlightMatches
+name|getHighlightingMode
+argument_list|()
 operator|&
 name|TAG_ATTRIBUTE_MATCHES
 operator|)
@@ -1807,7 +1795,8 @@ block|}
 if|if
 condition|(
 operator|(
-name|highlightMatches
+name|getHighlightingMode
+argument_list|()
 operator|&
 name|TAG_ELEMENT_MATCHES
 operator|)
@@ -1941,7 +1930,8 @@ block|}
 if|if
 condition|(
 operator|(
-name|highlightMatches
+name|getHighlightingMode
+argument_list|()
 operator|&
 name|TAG_ATTRIBUTE_MATCHES
 operator|)
@@ -2034,7 +2024,8 @@ block|{
 if|if
 condition|(
 operator|(
-name|highlightMatches
+name|getHighlightingMode
+argument_list|()
 operator|&
 name|TAG_ATTRIBUTE_MATCHES
 operator|)

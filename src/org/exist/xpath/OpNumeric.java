@@ -59,7 +59,7 @@ name|xpath
 operator|.
 name|value
 operator|.
-name|DecimalValue
+name|DoubleValue
 import|;
 end_import
 
@@ -308,7 +308,7 @@ name|lvalue
 init|=
 operator|(
 operator|(
-name|DecimalValue
+name|DoubleValue
 operator|)
 name|getLeft
 argument_list|()
@@ -338,7 +338,7 @@ name|rvalue
 init|=
 operator|(
 operator|(
-name|DecimalValue
+name|DoubleValue
 operator|)
 name|getRight
 argument_list|()
@@ -375,7 +375,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|DecimalValue
+name|DoubleValue
 argument_list|(
 name|result
 argument_list|)

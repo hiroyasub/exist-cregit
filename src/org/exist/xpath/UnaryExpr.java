@@ -35,7 +35,7 @@ name|xpath
 operator|.
 name|value
 operator|.
-name|DecimalValue
+name|DoubleValue
 import|;
 end_import
 
@@ -166,11 +166,11 @@ argument_list|(
 literal|"unary expression requires an operand"
 argument_list|)
 throw|;
-name|DecimalValue
+name|DoubleValue
 name|value
 init|=
 operator|(
-name|DecimalValue
+name|DoubleValue
 operator|)
 name|getExpression
 argument_list|(

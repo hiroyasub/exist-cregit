@@ -1290,15 +1290,6 @@ name|proxy
 operator|=
 name|proxy
 expr_stmt|;
-name|NodeSet
-name|contextSet
-init|=
-operator|new
-name|SingleNodeSet
-argument_list|(
-name|proxy
-argument_list|)
-decl_stmt|;
 try|try
 block|{
 name|Sequence
@@ -1312,7 +1303,7 @@ name|context
 argument_list|,
 name|ndocs
 argument_list|,
-name|contextSet
+name|proxy
 argument_list|,
 literal|null
 argument_list|)

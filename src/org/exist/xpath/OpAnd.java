@@ -21,7 +21,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
+name|DocumentSet
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|ExtArrayNodeSet
 import|;
 end_import
 
@@ -444,13 +444,8 @@ condition|)
 name|result
 operator|=
 operator|new
-name|ArraySet
-argument_list|(
-name|contextSequence
-operator|.
-name|getLength
+name|ExtArrayNodeSet
 argument_list|()
-argument_list|)
 expr_stmt|;
 else|else
 name|result

@@ -347,18 +347,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|AVLTreeNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|AttrImpl
 import|;
 end_import
@@ -1032,7 +1020,9 @@ argument_list|)
 argument_list|,
 name|buffers
 argument_list|,
-literal|128
+name|buffers
+operator|/
+literal|2
 argument_list|)
 expr_stmt|;
 if|if
@@ -1745,14 +1735,7 @@ condition|)
 return|return
 literal|null
 return|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -2214,41 +2197,12 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|expr
-operator|+
-literal|": "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" ("
-operator|+
-name|count
-operator|+
-literal|") "
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"found " + expr + ": "
+comment|//				+ result.getLength() + " (" + count + ") "
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;
@@ -2271,14 +2225,7 @@ name|int
 name|type
 parameter_list|)
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 name|NodeSet
 name|result
 decl_stmt|;
@@ -2631,31 +2578,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"regexp found: "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"regexp found: "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;

@@ -235,6 +235,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -820,7 +832,7 @@ name|xslStyle
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Constructor for the HttpServerConnection object      *      * @param config Description of the Parameter      * @param pool Description of the Parameter      */
+comment|/** 	 * Constructor for the HttpServerConnection object 	 * 	 * @param config Description of the Parameter 	 * @param pool Description of the Parameter 	 */
 specifier|public
 name|HttpServerConnection
 parameter_list|(
@@ -874,7 +886,7 @@ init|=
 name|DocumentBuilderFactory
 operator|.
 name|newInstance
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|docFactory
 operator|.
@@ -889,7 +901,7 @@ init|=
 name|SAXParserFactory
 operator|.
 name|newInstance
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 try|try
 block|{
@@ -898,14 +910,14 @@ operator|=
 name|docFactory
 operator|.
 name|newDocumentBuilder
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|sax
 operator|=
 name|saxFactory
 operator|.
 name|newSAXParser
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -961,7 +973,7 @@ operator|=
 name|pool
 operator|.
 name|getSecurityManager
-argument_list|(  )
+argument_list|()
 operator|.
 name|getUser
 argument_list|(
@@ -994,7 +1006,7 @@ return|return
 name|user
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param parameters Description of the Parameter      * @param name Description of the Parameter      * @param len Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param parameters Description of the Parameter 	 * @param name Description of the Parameter 	 * @param len Description of the Parameter 	 */
 specifier|protected
 name|void
 name|doGet
@@ -1291,7 +1303,7 @@ operator|+
 name|parent
 operator|.
 name|getName
-argument_list|(  )
+argument_list|()
 operator|+
 literal|"')"
 operator|+
@@ -1366,7 +1378,7 @@ init|=
 name|docs
 operator|.
 name|getNames
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|data
 operator|=
@@ -1420,53 +1432,12 @@ init|=
 name|broker
 operator|.
 name|getSerializer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|serializer
 operator|.
 name|reset
-argument_list|(  )
-expr_stmt|;
-name|Map
-name|properties
-init|=
-operator|new
-name|TreeMap
 argument_list|()
-decl_stmt|;
-name|properties
-operator|.
-name|put
-argument_list|(
-name|Serializer
-operator|.
-name|ENCODING
-argument_list|,
-name|encoding
-argument_list|)
-expr_stmt|;
-name|properties
-operator|.
-name|put
-argument_list|(
-name|Serializer
-operator|.
-name|PRETTY_PRINT
-argument_list|,
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|indent
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|setProperties
-argument_list|(
-name|properties
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -1487,6 +1458,39 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|Map
+name|properties
+init|=
+operator|new
+name|TreeMap
+argument_list|()
+decl_stmt|;
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|ENCODING
+argument_list|,
+name|encoding
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+name|indent
+condition|?
+literal|"yes"
+else|:
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|data
 operator|=
 name|serializer
@@ -1521,7 +1525,7 @@ operator|+
 name|saxe
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|OUTPUT_ERROR
 argument_list|)
@@ -1546,7 +1550,7 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|OUTPUT_ERROR
 argument_list|)
@@ -1577,7 +1581,7 @@ argument_list|(
 name|sock
 operator|.
 name|getOutputStream
-argument_list|(  )
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1640,12 +1644,12 @@ expr_stmt|;
 name|out
 operator|.
 name|flush
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|out
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -1665,7 +1669,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Description of the Method      *      * @param request Description of the Parameter      * @param name Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param request Description of the Parameter 	 * @param name Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|doPost
@@ -1695,7 +1699,7 @@ operator|(
 name|name
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 operator|-
 literal|1
 operator|)
@@ -1783,7 +1787,7 @@ init|=
 name|doc
 operator|.
 name|getDocumentElement
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 comment|// process<exist:request>
 if|if
@@ -1791,7 +1795,7 @@ condition|(
 name|root
 operator|.
 name|getTagName
-argument_list|(  )
+argument_list|()
 operator|.
 name|equals
 argument_list|(
@@ -1816,7 +1820,7 @@ condition|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -1838,7 +1842,7 @@ operator|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 operator|)
@@ -1849,7 +1853,7 @@ condition|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1985,7 +1989,7 @@ condition|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2049,47 +2053,32 @@ init|=
 name|broker
 operator|.
 name|getSerializer
-argument_list|(  )
-decl_stmt|;
-name|Map
-name|properties
-init|=
-operator|new
-name|TreeMap
 argument_list|()
 decl_stmt|;
-name|properties
+name|serializer
 operator|.
-name|put
+name|setProperty
 argument_list|(
-name|Serializer
+name|OutputKeys
 operator|.
 name|ENCODING
 argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
-name|properties
-operator|.
-name|put
-argument_list|(
-name|Serializer
-operator|.
-name|PRETTY_PRINT
-argument_list|,
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|indent
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|serializer
 operator|.
-name|setProperties
+name|setProperty
 argument_list|(
-name|properties
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+name|indent
+condition|?
+literal|"yes"
+else|:
+literal|"no"
 argument_list|)
 expr_stmt|;
 return|return
@@ -2118,7 +2107,7 @@ condition|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2144,14 +2133,14 @@ operator|)
 name|temp
 operator|.
 name|getFirstChild
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|query
 operator|=
 name|text
 operator|.
 name|getData
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -2188,7 +2177,7 @@ operator|(
 name|name
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 operator|)
@@ -2229,7 +2218,7 @@ condition|(
 name|tmpList
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2372,10 +2361,10 @@ argument_list|(
 name|e
 operator|.
 name|getException
-argument_list|(  )
+argument_list|()
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|WRONG_REQUEST
 argument_list|)
@@ -2399,7 +2388,7 @@ expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|result
 operator|=
@@ -2408,7 +2397,7 @@ argument_list|(
 name|e
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|WRONG_REQUEST
 argument_list|)
@@ -2418,7 +2407,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param code Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param code Description of the Parameter 	 */
 specifier|protected
 name|void
 name|errorReply
@@ -2435,7 +2424,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Description of the Method      *      * @param code Description of the Parameter      * @param message Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param code Description of the Parameter 	 * @param message Description of the Parameter 	 */
 specifier|protected
 name|void
 name|errorReply
@@ -2452,7 +2441,7 @@ name|content
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|content
 operator|.
@@ -2488,7 +2477,7 @@ name|msg
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|msg
 operator|.
@@ -2525,7 +2514,7 @@ argument_list|(
 name|content
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|msg
@@ -2565,7 +2554,7 @@ argument_list|(
 name|sock
 operator|.
 name|getOutputStream
-argument_list|(  )
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2576,18 +2565,18 @@ argument_list|(
 name|msg
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|flush
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|out
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2607,7 +2596,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Description of the Method      *      * @param message Description of the Parameter      * @param status Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param message Description of the Parameter 	 * @param status Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|formatErrorMsg
@@ -2624,7 +2613,7 @@ name|buf
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|buf
 operator|.
@@ -2709,10 +2698,10 @@ return|return
 name|buf
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param name Description of the Parameter      * @param len Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param name Description of the Parameter 	 * @param len Description of the Parameter 	 */
 specifier|protected
 name|void
 name|get
@@ -2796,7 +2785,7 @@ name|parameters
 operator|=
 operator|new
 name|HashMap
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|doGet
 argument_list|(
@@ -2808,7 +2797,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Description of the Method      *      * @param input Description of the Parameter      * @param name Description of the Parameter      * @param len Description of the Parameter      * @param contentType Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param input Description of the Parameter 	 * @param name Description of the Parameter 	 * @param len Description of the Parameter 	 * @param contentType Description of the Parameter 	 */
 specifier|protected
 name|void
 name|post
@@ -2857,7 +2846,7 @@ argument_list|(
 name|sock
 operator|.
 name|getOutputStream
-argument_list|(  )
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2876,7 +2865,7 @@ operator|+
 name|result
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 operator|+
 literal|"\n\n"
 argument_list|)
@@ -2908,12 +2897,12 @@ expr_stmt|;
 name|out
 operator|.
 name|flush
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|out
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2933,7 +2922,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Description of the Method      *      * @param resultSet Description of the Parameter      * @param howmany Description of the Parameter      * @param start Description of the Parameter      * @param queryTime Description of the Parameter      * @param indent Description of the Parameter      * @param stylesheet Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param resultSet Description of the Parameter 	 * @param howmany Description of the Parameter 	 * @param start Description of the Parameter 	 * @param queryTime Description of the Parameter 	 * @param indent Description of the Parameter 	 * @param stylesheet Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|printAll
@@ -2962,7 +2951,7 @@ condition|(
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -2994,7 +2983,7 @@ operator|>
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|)
 operator|||
 operator|(
@@ -3008,7 +2997,7 @@ operator|=
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -3024,7 +3013,7 @@ operator|>
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|)
 condition|)
 return|return
@@ -3041,42 +3030,12 @@ init|=
 name|broker
 operator|.
 name|getSerializer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|serializer
 operator|.
 name|reset
-argument_list|(  )
-expr_stmt|;
-name|Map
-name|properties
-init|=
-operator|new
-name|TreeMap
 argument_list|()
-decl_stmt|;
-name|properties
-operator|.
-name|put
-argument_list|(
-name|Serializer
-operator|.
-name|PRETTY_PRINT
-argument_list|,
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|indent
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|setProperties
-argument_list|(
-name|properties
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -3093,6 +3052,32 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|ENCODING
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+name|indent
+condition|?
+literal|"yes"
+else|:
+literal|"no"
+argument_list|)
+expr_stmt|;
 return|return
 name|serializer
 operator|.
@@ -3134,14 +3119,14 @@ operator|+
 name|saxe
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|OUTPUT_ERROR
 argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Description of the Method      *      * @param collection Description of the Parameter      * @param names Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param collection Description of the Parameter 	 * @param names Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|printCollection
@@ -3159,7 +3144,7 @@ name|buf
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|buf
 operator|.
@@ -3249,10 +3234,10 @@ return|return
 name|buf
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param resultSet Description of the Parameter      * @param queryTime Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param resultSet Description of the Parameter 	 * @param queryTime Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|printSummary
@@ -3269,7 +3254,7 @@ condition|(
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -3286,14 +3271,14 @@ name|map
 init|=
 operator|new
 name|HashMap
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|HashMap
 name|doctypes
 init|=
 operator|new
 name|HashMap
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|NodeProxy
 name|p
@@ -3323,12 +3308,12 @@ name|resultSet
 operator|)
 operator|.
 name|iterator
-argument_list|(  )
+argument_list|()
 init|;
 name|i
 operator|.
 name|hasNext
-argument_list|(  )
+argument_list|()
 condition|;
 control|)
 block|{
@@ -3340,7 +3325,7 @@ operator|)
 name|i
 operator|.
 name|next
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|docName
 operator|=
@@ -3349,7 +3334,7 @@ operator|.
 name|doc
 operator|.
 name|getFileName
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|doctype
 operator|=
@@ -3358,7 +3343,7 @@ operator|.
 name|doc
 operator|.
 name|getDoctype
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -3385,7 +3370,7 @@ expr_stmt|;
 name|counter
 operator|.
 name|inc
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -3426,7 +3411,7 @@ argument_list|(
 name|doctype
 operator|.
 name|getName
-argument_list|(  )
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -3442,13 +3427,13 @@ argument_list|(
 name|doctype
 operator|.
 name|getName
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|doctypeCounter
 operator|.
 name|inc
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -3468,7 +3453,7 @@ argument_list|(
 name|doctype
 operator|.
 name|getName
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|doctypeCounter
 argument_list|)
@@ -3483,7 +3468,7 @@ name|buf
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|buf
 operator|.
@@ -3506,7 +3491,7 @@ argument_list|(
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3538,15 +3523,15 @@ init|=
 name|map
 operator|.
 name|values
-argument_list|(  )
+argument_list|()
 operator|.
 name|iterator
-argument_list|(  )
+argument_list|()
 init|;
 name|i
 operator|.
 name|hasNext
-argument_list|(  )
+argument_list|()
 condition|;
 control|)
 block|{
@@ -3558,7 +3543,7 @@ operator|)
 name|i
 operator|.
 name|next
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|buf
 operator|.
@@ -3576,7 +3561,7 @@ operator|.
 name|doc
 operator|.
 name|getFileName
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3595,7 +3580,7 @@ operator|.
 name|doc
 operator|.
 name|getDocId
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3633,15 +3618,15 @@ init|=
 name|doctypes
 operator|.
 name|values
-argument_list|(  )
+argument_list|()
 operator|.
 name|iterator
-argument_list|(  )
+argument_list|()
 init|;
 name|i
 operator|.
 name|hasNext
-argument_list|(  )
+argument_list|()
 condition|;
 control|)
 block|{
@@ -3653,7 +3638,7 @@ operator|)
 name|i
 operator|.
 name|next
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|buf
 operator|.
@@ -3671,7 +3656,7 @@ operator|.
 name|doctype
 operator|.
 name|getName
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3709,10 +3694,10 @@ return|return
 name|buf
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param resultSet Description of the Parameter      * @param howmany Description of the Parameter      * @param start Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param resultSet Description of the Parameter 	 * @param howmany Description of the Parameter 	 * @param start Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|printValues
@@ -3732,7 +3717,7 @@ condition|(
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -3752,7 +3737,7 @@ operator|>
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|)
 operator|||
 operator|(
@@ -3766,7 +3751,7 @@ operator|=
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -3782,7 +3767,7 @@ operator|>
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|)
 condition|)
 return|return
@@ -3801,7 +3786,7 @@ name|buf
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|buf
 operator|.
@@ -3824,7 +3809,7 @@ argument_list|(
 name|resultSet
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3909,7 +3894,7 @@ operator|=
 literal|"exist:boolean"
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|HttpServer
 operator|.
 name|LOG
@@ -3921,7 +3906,7 @@ operator|+
 name|item
 operator|.
 name|getType
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -3954,7 +3939,7 @@ argument_list|(
 name|item
 operator|.
 name|getStringValue
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
@@ -3976,10 +3961,10 @@ return|return
 name|buf
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param sock Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param sock Description of the Parameter 	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -3996,10 +3981,10 @@ operator|=
 name|sock
 expr_stmt|;
 name|notifyAll
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Description of the Method      *      * @param args Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param args Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|HashMap
 name|processParameters
@@ -4022,7 +4007,7 @@ name|parameters
 init|=
 operator|new
 name|HashMap
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|String
 name|param
@@ -4046,7 +4031,7 @@ init|=
 name|args
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 while|while
 condition|(
@@ -4209,7 +4194,7 @@ return|return
 name|parameters
 return|;
 block|}
-comment|/**      * Description of the Method      *      * @param tempFile Description of the Parameter      * @param name Description of the Parameter      * @param len Description of the Parameter      */
+comment|/** 	 * Description of the Method 	 * 	 * @param tempFile Description of the Parameter 	 * @param name Description of the Parameter 	 * @param len Description of the Parameter 	 */
 specifier|protected
 name|void
 name|put
@@ -4294,7 +4279,7 @@ expr_stmt|;
 name|broker
 operator|.
 name|flush
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|result
 operator|=
@@ -4325,21 +4310,21 @@ operator|+
 name|e
 operator|.
 name|getLineNumber
-argument_list|(  )
+argument_list|()
 operator|+
 literal|":"
 operator|+
 name|e
 operator|.
 name|getColumnNumber
-argument_list|(  )
+argument_list|()
 operator|+
 literal|"\n"
 operator|+
 name|e
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|PARSE_ERROR
 argument_list|)
@@ -4357,12 +4342,12 @@ init|=
 name|e
 operator|.
 name|getException
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|o
 operator|.
 name|printStackTrace
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|result
 operator|=
@@ -4371,7 +4356,7 @@ argument_list|(
 name|o
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|PARSE_ERROR
 argument_list|)
@@ -4386,7 +4371,7 @@ block|{
 name|e
 operator|.
 name|printStackTrace
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|result
 operator|=
@@ -4395,7 +4380,7 @@ argument_list|(
 name|e
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|PARSE_ERROR
 argument_list|)
@@ -4415,7 +4400,7 @@ argument_list|(
 name|sock
 operator|.
 name|getOutputStream
-argument_list|(  )
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4434,7 +4419,7 @@ operator|+
 name|result
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 operator|+
 literal|"\n\n"
 argument_list|)
@@ -4466,12 +4451,12 @@ expr_stmt|;
 name|out
 operator|.
 name|flush
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|out
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -4491,11 +4476,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Main processing method for the HttpServerConnection object      *      * @throws RuntimeException DOCUMENT ME!      */
+comment|/** 	 * Main processing method for the HttpServerConnection object 	 * 	 * @throws RuntimeException DOCUMENT ME! 	 */
 specifier|public
 name|void
 name|run
-parameter_list|(  )
+parameter_list|()
 block|{
 name|String
 name|req
@@ -4541,7 +4526,7 @@ name|input
 init|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|File
 name|tempFile
@@ -4560,7 +4545,7 @@ operator|=
 name|BrokerPool
 operator|.
 name|getInstance
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -4576,7 +4561,7 @@ argument_list|(
 name|e
 operator|.
 name|getMessage
-argument_list|(  )
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -4637,7 +4622,7 @@ argument_list|(
 name|sock
 operator|.
 name|getInputStream
-argument_list|(  )
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4661,7 +4646,7 @@ operator|=
 name|in
 operator|.
 name|readLine
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -4687,7 +4672,7 @@ operator|!
 name|tok
 operator|.
 name|hasMoreTokens
-argument_list|(  )
+argument_list|()
 condition|)
 break|break;
 name|first
@@ -4695,7 +4680,7 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -4716,7 +4701,7 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -4738,7 +4723,7 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -4760,7 +4745,7 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -4782,7 +4767,7 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -4790,7 +4775,7 @@ condition|(
 name|req
 operator|.
 name|toUpperCase
-argument_list|(  )
+argument_list|()
 operator|.
 name|startsWith
 argument_list|(
@@ -4809,7 +4794,7 @@ argument_list|(
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -4840,7 +4825,7 @@ condition|(
 name|req
 operator|.
 name|toUpperCase
-argument_list|(  )
+argument_list|()
 operator|.
 name|startsWith
 argument_list|(
@@ -4852,14 +4837,14 @@ operator|=
 name|tok
 operator|.
 name|nextToken
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 if|else if
 condition|(
 name|req
 operator|.
 name|toUpperCase
-argument_list|(  )
+argument_list|()
 operator|.
 name|startsWith
 argument_list|(
@@ -4877,11 +4862,11 @@ argument_list|(
 literal|"AUTHORIZATION:"
 operator|.
 name|length
-argument_list|(  )
+argument_list|()
 argument_list|)
 operator|.
 name|trim
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|byte
 index|[]
@@ -4899,7 +4884,7 @@ literal|6
 argument_list|)
 operator|.
 name|getBytes
-argument_list|(  )
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|String
@@ -5068,7 +5053,7 @@ do|;
 name|fout
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -5141,7 +5126,7 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|broker
 operator|.
@@ -5164,7 +5149,7 @@ argument_list|(
 name|e
 operator|.
 name|getMessage
-argument_list|(  )
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5213,7 +5198,7 @@ argument_list|(
 name|input
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|name
 argument_list|,
@@ -5236,7 +5221,7 @@ name|len
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|errorReply
 argument_list|(
 name|BAD_REQUEST
@@ -5266,13 +5251,13 @@ block|}
 name|in
 operator|.
 name|close
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 name|input
 operator|=
 operator|new
 name|StringBuffer
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -5315,7 +5300,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Description of the Method      *      * @param query Description of the Parameter      * @param howmany Description of the Parameter      * @param start Description of the Parameter      * @param printSummary Description of the Parameter      * @param indent Description of the Parameter      * @param stylesheet Description of the Parameter      *      * @return Description of the Return Value      */
+comment|/** 	 * Description of the Method 	 * 	 * @param query Description of the Parameter 	 * @param howmany Description of the Parameter 	 * @param start Description of the Parameter 	 * @param printSummary Description of the Parameter 	 * @param indent Description of the Parameter 	 * @param stylesheet Description of the Parameter 	 * 	 * @return Description of the Return Value 	 */
 specifier|protected
 name|String
 name|search
@@ -5405,7 +5390,7 @@ argument_list|(
 name|parser
 operator|.
 name|getErrorMessage
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|SYNTAX_ERROR
 argument_list|)
@@ -5463,7 +5448,7 @@ argument_list|(
 name|treeParser
 operator|.
 name|getErrorMessage
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|SYNTAX_ERROR
 argument_list|)
@@ -5488,7 +5473,7 @@ condition|(
 name|parser
 operator|.
 name|foundErrors
-argument_list|(  )
+argument_list|()
 condition|)
 return|return
 name|formatErrorMsg
@@ -5496,7 +5481,7 @@ argument_list|(
 name|parser
 operator|.
 name|getErrorMessage
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|SYNTAX_ERROR
 argument_list|)
@@ -5507,7 +5492,7 @@ init|=
 name|System
 operator|.
 name|currentTimeMillis
-argument_list|(  )
+argument_list|()
 decl_stmt|;
 name|DocumentSet
 name|ndocs
@@ -5524,7 +5509,7 @@ condition|(
 name|ndocs
 operator|.
 name|getLength
-argument_list|(  )
+argument_list|()
 operator|==
 literal|0
 condition|)
@@ -5561,7 +5546,7 @@ init|=
 name|System
 operator|.
 name|currentTimeMillis
-argument_list|(  )
+argument_list|()
 operator|-
 name|startTime
 decl_stmt|;
@@ -5583,14 +5568,14 @@ operator|=
 name|System
 operator|.
 name|currentTimeMillis
-argument_list|(  )
+argument_list|()
 expr_stmt|;
 switch|switch
 condition|(
 name|resultSequence
 operator|.
 name|getItemType
-argument_list|(  )
+argument_list|()
 condition|)
 block|{
 case|case
@@ -5636,7 +5621,7 @@ name|stylesheet
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|result
 operator|=
 name|printValues
@@ -5667,7 +5652,7 @@ argument_list|(
 name|e
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -5679,7 +5664,7 @@ argument_list|(
 name|e
 operator|.
 name|toString
-argument_list|(  )
+argument_list|()
 argument_list|,
 name|UNKNOWN_ERROR
 argument_list|)
@@ -5689,11 +5674,11 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Description of the Method      */
+comment|/** 	 * Description of the Method 	 */
 specifier|public
 name|void
 name|terminate
-parameter_list|(  )
+parameter_list|()
 block|{
 name|terminate
 operator|=
@@ -5711,7 +5696,7 @@ decl_stmt|;
 name|DocumentType
 name|doctype
 decl_stmt|;
-comment|/**          * Constructor for the DoctypeCount object          *          * @param doctype Description of the Parameter          */
+comment|/** 		 * Constructor for the DoctypeCount object 		 * 		 * @param doctype Description of the Parameter 		 */
 specifier|public
 name|DoctypeCount
 parameter_list|(
@@ -5726,11 +5711,11 @@ operator|=
 name|doctype
 expr_stmt|;
 block|}
-comment|/**          * Description of the Method          */
+comment|/** 		 * Description of the Method 		 */
 specifier|public
 name|void
 name|inc
-parameter_list|(  )
+parameter_list|()
 block|{
 name|count
 operator|++
@@ -5748,7 +5733,7 @@ decl_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
-comment|/**          * Constructor for the NodeCount object          *          * @param doc Description of the Parameter          */
+comment|/** 		 * Constructor for the NodeCount object 		 * 		 * @param doc Description of the Parameter 		 */
 specifier|public
 name|NodeCount
 parameter_list|(
@@ -5763,11 +5748,11 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**          * Description of the Method          */
+comment|/** 		 * Description of the Method 		 */
 specifier|public
 name|void
 name|inc
-parameter_list|(  )
+parameter_list|()
 block|{
 name|count
 operator|++
