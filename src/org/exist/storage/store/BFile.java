@@ -17,20 +17,6 @@ end_package
 
 begin_import
 import|import
-name|it
-operator|.
-name|unimi
-operator|.
-name|dsi
-operator|.
-name|fastutil
-operator|.
-name|Long2ObjectLinkedOpenHashMap
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -202,6 +188,76 @@ operator|.
 name|storage
 operator|.
 name|BufferStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|Cache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|Cacheable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|ClockCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|GClockCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|LRDCache
 import|;
 end_import
 
@@ -410,12 +466,6 @@ init|=
 literal|23
 decl_stmt|;
 specifier|protected
-name|boolean
-name|compressPages
-init|=
-literal|false
-decl_stmt|;
-specifier|protected
 name|BFileHeader
 name|fileHeader
 decl_stmt|;
@@ -424,8 +474,8 @@ name|int
 name|minFree
 decl_stmt|;
 specifier|protected
-name|ClockPageBuffer
-name|pages
+name|Cache
+name|dataCache
 init|=
 literal|null
 decl_stmt|;
@@ -442,7 +492,12 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**  Constructor for the BFile object */
+specifier|private
+name|int
+name|overflow
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 name|BFile
 parameter_list|()
@@ -463,7 +518,6 @@ operator|=
 name|PAGE_MIN_FREE
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the BFile object 	 * 	 *@param  file  Description of the Parameter 	 */
 specifier|public
 name|BFile
 parameter_list|(
@@ -484,12 +538,24 @@ operator|)
 name|getFileHeader
 argument_list|()
 expr_stmt|;
-comment|//		pages = new LRUPageBuffer();
-name|pages
+name|dataCache
 operator|=
 operator|new
-name|ClockPageBuffer
+name|LRDCache
+argument_list|(
+literal|256
+argument_list|)
+expr_stmt|;
+name|dataCache
+operator|.
+name|setFileName
+argument_list|(
+name|getFile
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|minFree
 operator|=
@@ -507,7 +573,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the BFile object 	 * 	 *@param  file     Description of the Parameter 	 *@param  buffers  Description of the Parameter 	 */
 specifier|public
 name|BFile
 parameter_list|(
@@ -533,12 +598,23 @@ operator|)
 name|getFileHeader
 argument_list|()
 expr_stmt|;
-name|pages
+name|dataCache
 operator|=
 operator|new
-name|ClockPageBuffer
+name|LRDCache
 argument_list|(
 name|buffers
+argument_list|)
+expr_stmt|;
+name|dataCache
+operator|.
+name|setFileName
+argument_list|(
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|minFree
@@ -557,7 +633,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the BFile object 	 * 	 *@param  file          Description of the Parameter 	 *@param  btreeBuffers  Description of the Parameter 	 *@param  dataBuffers   Description of the Parameter 	 */
 specifier|public
 name|BFile
 parameter_list|(
@@ -586,19 +661,23 @@ operator|)
 name|getFileHeader
 argument_list|()
 expr_stmt|;
-comment|//		pages = new LRUPageBuffer(dataBuffers);
-if|if
-condition|(
-name|dataBuffers
-operator|>
-literal|0
-condition|)
-name|pages
+name|dataCache
 operator|=
 operator|new
-name|ClockPageBuffer
+name|LRDCache
 argument_list|(
 name|dataBuffers
+argument_list|)
+expr_stmt|;
+name|dataCache
+operator|.
+name|setFileName
+argument_list|(
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|minFree
@@ -617,7 +696,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*private final static long createPointer(int page, int offset) { 		if(page == Integer.MAX_VALUE) { 			LOG.error("page num< 0"); 			throw new IllegalArgumentException("page num< 0"); 		} 		if(offset == Short.MAX_VALUE) { 			LOG.error("offset< 0"); 			throw new IllegalArgumentException("offset< 0"); 		} 		long p = (page& 0xffff); 		long o = (offset& 0xffff); 		return page | (o<< 32); 	}  	private final static int offsetFromPointer(long pointer) { 		return (int) ((pointer>>> 32)& 0xffff); 	}  	private final static int pageFromPointer(long pointer) { 		return (int) (pointer& 0xffff); 	}*/
 comment|/** 	 * Returns the Lock object responsible for this BFile. 	 *  	 * @return Lock 	 */
 specifier|public
 name|Lock
@@ -1018,7 +1096,6 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|close
@@ -1035,7 +1112,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|containsKey
@@ -1073,7 +1149,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|create
@@ -1123,21 +1198,15 @@ name|page
 init|=
 operator|new
 name|SinglePage
-argument_list|(
-name|compressPages
-argument_list|)
+argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
 name|page
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 return|return
@@ -1162,7 +1231,6 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -1176,7 +1244,6 @@ name|PAGE_SIZE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  read             Description of the Parameter 	 *@return                  Description of the Return Value 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -1195,7 +1262,6 @@ name|PAGE_SIZE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pageCount  Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -1212,7 +1278,6 @@ name|PAGE_SIZE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pageCount  Description of the Parameter 	 *@param  pageSize   Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -1232,7 +1297,6 @@ name|pageSize
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|PageHeader
 name|createPageHeader
@@ -1244,7 +1308,6 @@ name|BFilePageHeader
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query               Description of the Parameter 	 *@param  callback            Description of the Parameter 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|void
 name|filter
@@ -1341,7 +1404,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|findEntries
@@ -1379,7 +1441,6 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|findKeys
@@ -1602,13 +1663,7 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|flush
 argument_list|()
@@ -1629,7 +1684,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|pages
+name|dataCache
 operator|!=
 literal|null
 condition|)
@@ -1637,22 +1692,22 @@ return|return
 operator|new
 name|BufferStats
 argument_list|(
-name|pages
+name|dataCache
 operator|.
 name|getBuffers
 argument_list|()
 argument_list|,
-name|pages
+name|dataCache
 operator|.
 name|getUsedBuffers
 argument_list|()
 argument_list|,
-name|pages
+name|dataCache
 operator|.
 name|getHits
 argument_list|()
 argument_list|,
-name|pages
+name|dataCache
 operator|.
 name|getFails
 argument_list|()
@@ -1672,13 +1727,6 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-block|{
 name|StringBuffer
 name|buf
 init|=
@@ -1706,7 +1754,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|pages
+name|dataCache
 operator|.
 name|getBuffers
 argument_list|()
@@ -1721,7 +1769,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|pages
+name|dataCache
 operator|.
 name|getUsedBuffers
 argument_list|()
@@ -1736,7 +1784,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|pages
+name|dataCache
 operator|.
 name|getHits
 argument_list|()
@@ -1751,7 +1799,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|pages
+name|dataCache
 operator|.
 name|getFails
 argument_list|()
@@ -1767,7 +1815,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|Value
@@ -2047,17 +2094,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
 name|page
+operator|.
+name|getFirstPage
+argument_list|()
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2124,133 +2170,6 @@ name|pointer
 argument_list|)
 return|;
 block|}
-specifier|public
-name|int
-name|getValueSize
-parameter_list|(
-name|Value
-name|key
-parameter_list|)
-block|{
-try|try
-block|{
-name|long
-name|p
-init|=
-name|findValue
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-name|long
-name|pnum
-init|=
-name|StorageAddress
-operator|.
-name|pageFromPointer
-argument_list|(
-name|p
-argument_list|)
-decl_stmt|;
-name|DataPage
-name|page
-init|=
-name|getDataPage
-argument_list|(
-name|pnum
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getStatus
-argument_list|()
-operator|==
-name|MULTI_PAGE
-condition|)
-return|return
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getDataLength
-argument_list|()
-return|;
-else|else
-block|{
-name|short
-name|tid
-init|=
-name|StorageAddress
-operator|.
-name|tidFromPointer
-argument_list|(
-name|p
-argument_list|)
-decl_stmt|;
-name|int
-name|offset
-init|=
-name|findValuePosition
-argument_list|(
-name|page
-argument_list|,
-name|tid
-argument_list|)
-decl_stmt|;
-name|byte
-index|[]
-name|data
-init|=
-name|page
-operator|.
-name|getData
-argument_list|()
-decl_stmt|;
-return|return
-name|ByteConversion
-operator|.
-name|byteToInt
-argument_list|(
-name|data
-argument_list|,
-name|offset
-argument_list|)
-return|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|BTreeException
-name|b
-parameter_list|)
-block|{
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-operator|-
-literal|1
-return|;
-block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  p  Description of the Parameter 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Value
 name|get
@@ -2464,17 +2383,14 @@ return|return
 literal|null
 return|;
 block|}
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
 name|page
+operator|.
+name|getFirstPage
+argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2519,15 +2435,12 @@ name|wp
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
 name|wp
 operator|=
-name|pages
+operator|(
+name|DataPage
+operator|)
+name|dataCache
 operator|.
 name|get
 argument_list|(
@@ -2601,8 +2514,6 @@ argument_list|(
 name|page
 argument_list|,
 name|data
-argument_list|,
-name|compressPages
 argument_list|)
 return|;
 else|else
@@ -2613,8 +2524,6 @@ argument_list|(
 name|page
 argument_list|,
 name|data
-argument_list|,
-name|compressPages
 argument_list|)
 return|;
 block|}
@@ -2642,7 +2551,6 @@ return|return
 name|wp
 return|;
 block|}
-comment|/** 	 *  Gets the entries attribute of the BFile object 	 * 	 *@return                     The entries value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|getEntries
@@ -2690,7 +2598,6 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Gets the keys attribute of the BFile object 	 * 	 *@return                     The keys value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|getKeys
@@ -2738,7 +2645,6 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Gets the values attribute of the BFile object 	 * 	 *@return                     The values value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|getValues
@@ -2786,7 +2692,6 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|open
@@ -2845,7 +2750,6 @@ name|overwrite
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|long
 name|put
@@ -2870,7 +2774,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key        Description of the Parameter 	 *@param  value      Description of the Parameter 	 *@param  overwrite  Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|long
 name|put
@@ -3058,7 +2961,6 @@ literal|1
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key  Description of the Parameter 	 */
 specifier|public
 name|void
 name|remove
@@ -3253,19 +3155,6 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
-operator|.
-name|remove
-argument_list|(
-name|page
-argument_list|)
-expr_stmt|;
 return|return;
 block|}
 name|short
@@ -3454,13 +3343,7 @@ argument_list|(
 name|free
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|remove
 argument_list|(
@@ -3551,7 +3434,7 @@ name|free
 argument_list|)
 expr_stmt|;
 block|}
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -3618,21 +3501,6 @@ name|space
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the compression attribute of the BFile object 	 * 	 *@param  compress  The new compression value 	 */
-specifier|public
-name|void
-name|setCompression
-parameter_list|(
-name|boolean
-name|compress
-parameter_list|)
-block|{
-name|compressPages
-operator|=
-name|compress
-expr_stmt|;
-block|}
-comment|/** 	 *  Sets the location attribute of the BFile object 	 * 	 *@param  location  The new location value 	 */
 specifier|public
 name|void
 name|setLocation
@@ -3767,7 +3635,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//pages.add( page );
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|page
+argument_list|)
+expr_stmt|;
 return|return
 name|StorageAddress
 operator|.
@@ -4139,7 +4013,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -4510,7 +4384,6 @@ name|np
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
 specifier|private
 specifier|final
 specifier|static
@@ -4532,7 +4405,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** 		 *  Constructor for the FreeSpace object 		 * 		 *@param  pageNum  Description of the Parameter 		 *@param  space    Description of the Parameter 		 */
 specifier|public
 name|FreeSpace
 parameter_list|(
@@ -4552,7 +4424,6 @@ operator|=
 name|space
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  obj  Description of the Parameter 		 *@return      Description of the Return Value 		 */
 specifier|public
 name|int
 name|compareTo
@@ -4597,7 +4468,6 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** 		 *  Gets the free attribute of the FreeSpace object 		 * 		 *@return    The free value 		 */
 specifier|public
 name|int
 name|getFree
@@ -4607,7 +4477,6 @@ return|return
 name|free
 return|;
 block|}
-comment|/** 		 *  Gets the page attribute of the FreeSpace object 		 * 		 *@return    The page value 		 */
 specifier|public
 name|long
 name|getPage
@@ -4617,7 +4486,6 @@ return|return
 name|page
 return|;
 block|}
-comment|/** 		 *  Sets the free attribute of the FreeSpace object 		 * 		 *@param  space  The new free value 		 */
 specifier|public
 name|void
 name|setFree
@@ -4631,7 +4499,6 @@ operator|=
 name|space
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|String
 name|toString
@@ -4647,7 +4514,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -4685,7 +4551,6 @@ name|MAX_FREE_LIST_LEN
 init|=
 literal|128
 decl_stmt|;
-comment|/**  Constructor for the BFileHeader object */
 specifier|public
 name|BFileHeader
 parameter_list|(
@@ -4697,7 +4562,6 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Adds a feature to the FreeSpace attribute of the BFileHeader object 		 * 		 *@param  freeSpace  The feature to be added to the FreeSpace attribute 		 */
 specifier|public
 name|void
 name|addFreeSpace
@@ -4714,7 +4578,6 @@ name|freeSpace
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  needed  Description of the Parameter 		 *@return         Description of the Return Value 		 */
 specifier|public
 name|FreeSpace
 name|findFreeSpace
@@ -4793,7 +4656,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 		 *  Gets the freeSpace attribute of the BFileHeader object 		 * 		 *@param  page  Description of the Parameter 		 *@return       The freeSpace value 		 */
 specifier|public
 name|FreeSpace
 name|getFreeSpace
@@ -4849,7 +4711,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 		 *  Gets the lastDataPage attribute of the BFileHeader object 		 * 		 *@return    The lastDataPage value 		 */
 specifier|public
 name|long
 name|getLastDataPage
@@ -4859,7 +4720,6 @@ return|return
 name|lastDataPage
 return|;
 block|}
-comment|/** 		 *  Gets the maxFreeSpace attribute of the BFileHeader object 		 * 		 *@return    The maxFreeSpace value 		 */
 specifier|public
 name|FreeSpace
 name|getMaxFreeSpace
@@ -4925,7 +4785,6 @@ return|return
 name|max
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|printFreeSpace
@@ -5008,7 +4867,6 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  raf              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|read
@@ -5096,7 +4954,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  space  Description of the Parameter 		 */
 specifier|public
 name|void
 name|removeFreeSpace
@@ -5120,7 +4977,6 @@ name|space
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the lastDataPage attribute of the BFileHeader object 		 * 		 *@param  last  The new lastDataPage value 		 */
 specifier|public
 name|void
 name|setLastDataPage
@@ -5134,7 +4990,6 @@ operator|=
 name|last
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  raf              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|write
@@ -5263,7 +5118,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -5306,7 +5160,6 @@ name|records
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Constructor for the BFilePageHeader object */
 specifier|public
 name|BFilePageHeader
 parameter_list|()
@@ -5315,7 +5168,6 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the BFilePageHeader object 		 * 		 *@param  dis              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|BFilePageHeader
 parameter_list|(
@@ -5337,7 +5189,6 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|decRecordCount
@@ -5347,7 +5198,6 @@ name|records
 operator|--
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the dataLength attribute of the BFilePageHeader object 		 * 		 *@return    The dataLength value 		 */
 specifier|public
 name|int
 name|getDataLength
@@ -5357,7 +5207,6 @@ return|return
 name|dataLen
 return|;
 block|}
-comment|/** 		 *  Gets the lastChunk attribute of the BFilePageHeader object 		 * 		 *@return    The lastChunk value 		 */
 specifier|public
 name|long
 name|getLastInChain
@@ -5367,7 +5216,6 @@ return|return
 name|lastInChain
 return|;
 block|}
-comment|/** 		 *  Gets the nextPageBlock attribute of the BFilePageHeader object 		 * 		 *@return    The nextPageBlock value 		 */
 specifier|public
 name|long
 name|getNextInChain
@@ -5377,7 +5225,6 @@ return|return
 name|nextInChain
 return|;
 block|}
-comment|/** 		 *  Gets the nextTID attribute of the BFilePageHeader object 		 * 		 *@return    The nextTID value 		 */
 specifier|public
 name|short
 name|getNextTID
@@ -5409,7 +5256,6 @@ operator|++
 name|nextTID
 return|;
 block|}
-comment|/** 		 *  Gets the recordCount attribute of the BFilePageHeader object 		 * 		 *@return    The recordCount value 		 */
 specifier|public
 name|short
 name|getRecordCount
@@ -5419,7 +5265,6 @@ return|return
 name|records
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|incRecordCount
@@ -5429,7 +5274,6 @@ name|records
 operator|++
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  dis              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|int
 name|read
@@ -5532,7 +5376,6 @@ operator|+
 literal|8
 return|;
 block|}
-comment|/** 		 *  Sets the dataLength attribute of the BFilePageHeader object 		 * 		 *@param  len  The new dataLength value 		 */
 specifier|public
 name|void
 name|setDataLength
@@ -5546,7 +5389,6 @@ operator|=
 name|len
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the lastChunk attribute of the BFilePageHeader object 		 * 		 *@param  p  The new lastChunk value 		 */
 specifier|public
 name|void
 name|setLastInChain
@@ -5560,7 +5402,6 @@ operator|=
 name|p
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the nextPageBlock attribute of the BFilePageHeader object 		 * 		 *@param  b  The new nextPageBlock value 		 */
 specifier|public
 name|void
 name|setNextInChain
@@ -5574,7 +5415,6 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the recordCount attribute of the BFilePageHeader object 		 * 		 *@param  recs  The new recordCount value 		 */
 specifier|public
 name|void
 name|setRecordCount
@@ -5588,7 +5428,6 @@ operator|=
 name|recs
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the tID attribute of the BFilePageHeader object 		 * 		 *@param  tid  The new tID value 		 */
 specifier|public
 name|void
 name|setTID
@@ -5604,7 +5443,6 @@ operator|=
 name|tid
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  dos              Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|int
 name|write
@@ -5714,9 +5552,16 @@ class|class
 name|DataPage
 implements|implements
 name|Comparable
+implements|,
+name|Cacheable
 block|{
 name|int
 name|refCount
+init|=
+literal|0
+decl_stmt|;
+name|int
+name|timestamp
 init|=
 literal|0
 decl_stmt|;
@@ -5725,18 +5570,6 @@ name|saved
 init|=
 literal|true
 decl_stmt|;
-comment|/**  Description of the Method */
-specifier|public
-name|int
-name|decRefCount
-parameter_list|()
-block|{
-return|return
-operator|--
-name|refCount
-return|;
-block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 specifier|abstract
 name|void
@@ -5745,7 +5578,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** 		 *  Gets the data attribute of the DataPage object 		 * 		 *@return    The data value 		 */
 specifier|public
 specifier|abstract
 name|byte
@@ -5755,71 +5587,82 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** 		 *  Gets the pageHeader attribute of the DataPage object 		 * 		 *@return    The pageHeader value 		 */
 specifier|public
 specifier|abstract
 name|BFilePageHeader
 name|getPageHeader
 parameter_list|()
 function_decl|;
-comment|/** 		 *  Gets the pageInfo attribute of the DataPage object 		 * 		 *@return    The pageInfo value 		 */
 specifier|public
 specifier|abstract
 name|String
 name|getPageInfo
 parameter_list|()
 function_decl|;
-comment|/** 		 *  Gets the pageNum attribute of the DataPage object 		 * 		 *@return    The pageNum value 		 */
 specifier|public
 specifier|abstract
 name|long
 name|getPageNum
 parameter_list|()
 function_decl|;
-comment|/** 		 *  Gets the refCount attribute of the DataPage object 		 * 		 *@return    The refCount value 		 */
+specifier|public
+name|long
+name|getKey
+parameter_list|()
+block|{
+return|return
+name|getPageNum
+argument_list|()
+return|;
+block|}
 specifier|public
 name|int
-name|getRefCount
+name|getReferenceCount
 parameter_list|()
 block|{
 return|return
 name|refCount
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
-name|void
-name|incRefCount
+name|int
+name|incReferenceCount
 parameter_list|()
 block|{
 if|if
 condition|(
 name|refCount
-operator|==
-name|Integer
+operator|<
+name|Cacheable
 operator|.
-name|MAX_VALUE
+name|MAX_REF
 condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" max value reached"
-argument_list|)
-expr_stmt|;
-name|refCount
 operator|++
+name|refCount
 expr_stmt|;
+return|return
+name|refCount
+return|;
+block|}
+specifier|public
+name|int
+name|decReferenceCount
+parameter_list|()
+block|{
+return|return
+name|refCount
+operator|>
+literal|0
+condition|?
+operator|--
+name|refCount
+else|:
+literal|0
+return|;
 block|}
 specifier|public
 name|void
-name|setRefCount
+name|setReferenceCount
 parameter_list|(
 name|int
 name|count
@@ -5830,7 +5673,69 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the dirty attribute of the DataPage object 		 * 		 *@return    The dirty value 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 		 */
+specifier|public
+name|void
+name|setTimestamp
+parameter_list|(
+name|int
+name|timestamp
+parameter_list|)
+block|{
+name|this
+operator|.
+name|timestamp
+operator|=
+name|timestamp
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
+specifier|public
+name|int
+name|getTimestamp
+parameter_list|()
+block|{
+return|return
+name|timestamp
+return|;
+block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.storage.cache.Cacheable#release() 		 */
+specifier|public
+name|void
+name|release
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isDirty
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|write
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"IO exception occurred while saving page "
+operator|+
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 specifier|public
 name|boolean
 name|isDirty
@@ -5841,7 +5746,6 @@ operator|!
 name|saved
 return|;
 block|}
-comment|/** 		 *  Sets the data attribute of the DataPage object 		 * 		 *@param  buf  The new data value 		 */
 specifier|public
 specifier|abstract
 name|void
@@ -5858,7 +5762,6 @@ name|SinglePage
 name|getFirstPage
 parameter_list|()
 function_decl|;
-comment|/** 		 *  Sets the dirty attribute of the DataPage object 		 * 		 *@param  dirty  The new dirty value 		 */
 specifier|public
 name|void
 name|setDirty
@@ -5881,7 +5784,6 @@ name|dirty
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 specifier|abstract
 name|void
@@ -5941,7 +5843,6 @@ literal|1
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -5952,7 +5853,6 @@ block|{
 name|BFileCallback
 name|callback
 decl_stmt|;
-comment|/** 		 *  Constructor for the FilterCallback object 		 * 		 *@param  callback  Description of the Parameter 		 */
 specifier|public
 name|FilterCallback
 parameter_list|(
@@ -5967,7 +5867,6 @@ operator|=
 name|callback
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  value    Description of the Parameter 		 *@param  pointer  Description of the Parameter 		 *@return          Description of the Return Value 		 */
 specifier|public
 name|boolean
 name|indexInfo
@@ -6104,7 +6003,6 @@ return|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -6112,7 +6010,6 @@ name|FindCallback
 implements|implements
 name|BTreeCallback
 block|{
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -6121,7 +6018,6 @@ name|BOTH
 init|=
 literal|2
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -6130,7 +6026,6 @@ name|KEYS
 init|=
 literal|1
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -6157,7 +6052,6 @@ name|values
 init|=
 literal|null
 decl_stmt|;
-comment|/** 		 *  Constructor for the FindCallback object 		 * 		 *@param  mode  Description of the Parameter 		 */
 specifier|public
 name|FindCallback
 parameter_list|(
@@ -6198,7 +6092,6 @@ operator|=
 name|callback
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the values attribute of the FindCallback object 		 * 		 *@return    The values value 		 */
 specifier|public
 name|ArrayList
 name|getValues
@@ -6208,7 +6101,6 @@ return|return
 name|values
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  value    Description of the Parameter 		 *@param  pointer  Description of the Parameter 		 *@return          Description of the Return Value 		 */
 specifier|public
 name|boolean
 name|indexInfo
@@ -6277,17 +6169,14 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
 name|page
+operator|.
+name|getFirstPage
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|offset
@@ -6447,13 +6336,7 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -6584,7 +6467,6 @@ decl_stmt|;
 name|SinglePage
 name|firstPage
 decl_stmt|;
-comment|/** 		 *  Constructor for the SinglePage object 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|OverflowPage
 parameter_list|()
@@ -6650,7 +6532,7 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -6660,7 +6542,6 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the OverflowPage object 		 * 		 *@param  page  Description of the Parameter 		 */
 specifier|public
 name|OverflowPage
 parameter_list|(
@@ -6676,7 +6557,6 @@ operator|)
 name|page
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the SinglePage object 		 * 		 *@param  p                Description of the Parameter 		 *@param  compress         Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|OverflowPage
 parameter_list|(
@@ -6686,9 +6566,6 @@ parameter_list|,
 name|byte
 index|[]
 name|data
-parameter_list|,
-name|boolean
-name|compress
 parameter_list|)
 throws|throws
 name|IOException
@@ -6701,8 +6578,6 @@ argument_list|(
 name|p
 argument_list|,
 name|data
-argument_list|,
-name|compress
 argument_list|)
 expr_stmt|;
 name|firstPage
@@ -6928,19 +6803,12 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
-operator|.
-name|add
-argument_list|(
 name|page
-argument_list|)
+operator|.
+name|write
+argument_list|()
 expr_stmt|;
+comment|//dataCache.add(page);
 name|page
 operator|=
 name|nextPage
@@ -7023,7 +6891,7 @@ name|firstPage
 condition|)
 block|{
 comment|// add link to last page
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7092,7 +6960,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// keep the first page in cache
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7102,7 +6970,6 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|delete
@@ -7153,13 +7020,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|remove
 argument_list|(
@@ -7214,7 +7075,6 @@ name|pointer
 argument_list|)
 return|;
 block|}
-comment|/** 		 *  Gets the data attribute of the OverflowPage object 		 * 		 *@return    The data value 		 */
 specifier|public
 name|byte
 index|[]
@@ -7334,13 +7194,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7410,7 +7264,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/** 		 *  Gets the firstPage attribute of the OverflowPage object 		 * 		 *@return    The firstPage value 		 */
 specifier|public
 name|SinglePage
 name|getFirstPage
@@ -7420,7 +7273,6 @@ return|return
 name|firstPage
 return|;
 block|}
-comment|/** 		 *  Gets the pageHeader attribute of the OverflowPage object 		 * 		 *@return    The pageHeader value 		 */
 specifier|public
 name|BFilePageHeader
 name|getPageHeader
@@ -7433,7 +7285,6 @@ name|getPageHeader
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Gets the pageInfo attribute of the OverflowPage object 		 * 		 *@return    The pageInfo value 		 */
 specifier|public
 name|String
 name|getPageInfo
@@ -7448,7 +7299,6 @@ name|getPageInfo
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Gets the pageNum attribute of the SinglePage object 		 * 		 *@return    The pageNum value 		 */
 specifier|public
 name|long
 name|getPageNum
@@ -7461,7 +7311,6 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Sets the data attribute of the OverflowPage object 		 * 		 *@param  data  The new data value 		 */
 specifier|public
 name|void
 name|setData
@@ -7498,7 +7347,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|write
@@ -7663,13 +7511,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7729,13 +7571,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7774,13 +7610,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7819,7 +7649,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -7878,13 +7708,7 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|remove
 argument_list|(
@@ -8034,17 +7858,13 @@ operator|.
 name|getWorkSize
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
 name|first
+argument_list|,
+literal|3
 argument_list|)
 expr_stmt|;
 name|address_
@@ -8155,13 +7975,7 @@ name|offset_
 operator|=
 literal|0
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -8338,13 +8152,7 @@ name|offset_
 operator|=
 literal|0
 expr_stmt|;
-if|if
-condition|(
-name|pages
-operator|!=
-literal|null
-condition|)
-name|pages
+name|dataCache
 operator|.
 name|add
 argument_list|(
@@ -8391,552 +8199,7 @@ literal|1
 expr_stmt|;
 block|}
 block|}
-specifier|protected
-class|class
-name|ClockPageBuffer
-block|{
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|PAGE_BUFFER_SIZE
-init|=
-literal|32
-decl_stmt|;
-specifier|protected
-name|int
-name|blockBuffers
-decl_stmt|;
-specifier|protected
-name|int
-name|fails
-init|=
-literal|0
-decl_stmt|;
-specifier|protected
-name|int
-name|hits
-init|=
-literal|0
-decl_stmt|;
-specifier|protected
-name|Long2ObjectLinkedOpenHashMap
-name|map
-decl_stmt|;
-specifier|public
-name|ClockPageBuffer
-parameter_list|(
-name|int
-name|blockBuffers
-parameter_list|)
-block|{
-name|this
-operator|.
-name|blockBuffers
-operator|=
-name|blockBuffers
-expr_stmt|;
-name|map
-operator|=
-operator|new
-name|Long2ObjectLinkedOpenHashMap
-argument_list|(
-name|blockBuffers
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|ClockPageBuffer
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|PAGE_BUFFER_SIZE
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|DataPage
-name|page
-parameter_list|)
-block|{
-name|add
-argument_list|(
-name|page
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|DataPage
-name|page
-parameter_list|,
-name|int
-name|initialRefCount
-parameter_list|)
-block|{
-if|if
-condition|(
-name|page
-operator|instanceof
-name|OverflowPage
-condition|)
-name|page
-operator|=
-name|page
-operator|.
-name|getFirstPage
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|map
-operator|.
-name|containsKey
-argument_list|(
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|page
-operator|.
-name|incRefCount
-argument_list|()
-expr_stmt|;
-return|return;
-block|}
-name|page
-operator|.
-name|setRefCount
-argument_list|(
-name|initialRefCount
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|map
-operator|.
-name|size
-argument_list|()
-operator|>=
-name|blockBuffers
-condition|)
-name|removeOne
-argument_list|(
-name|page
-argument_list|)
-expr_stmt|;
-name|map
-operator|.
-name|put
-argument_list|(
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|,
-name|page
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|flush
-parameter_list|()
-block|{
-name|DataPage
-name|page
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|map
-operator|.
-name|values
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|page
-operator|=
-operator|(
-name|DataPage
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|page
-operator|.
-name|isDirty
-argument_list|()
-condition|)
-try|try
-block|{
-name|page
-operator|.
-name|write
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|ioe
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-specifier|public
-name|DataPage
-name|get
-parameter_list|(
-name|Page
-name|page
-parameter_list|)
-block|{
-return|return
-name|get
-argument_list|(
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-return|;
-block|}
-specifier|public
-name|DataPage
-name|get
-parameter_list|(
-name|long
-name|pnum
-parameter_list|)
-block|{
-specifier|final
-name|DataPage
-name|page
-init|=
-operator|(
-name|DataPage
-operator|)
-name|map
-operator|.
-name|get
-argument_list|(
-name|pnum
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|page
-operator|==
-literal|null
-condition|)
-block|{
-comment|//LOG.debug(getFile().getName() + " page " + pnum + " not found in buffer");
-name|fails
-operator|++
-expr_stmt|;
-block|}
-else|else
-name|hits
-operator|++
-expr_stmt|;
-return|return
-name|page
-return|;
-block|}
-specifier|public
-name|void
-name|remove
-parameter_list|(
-name|DataPage
-name|page
-parameter_list|)
-block|{
-name|map
-operator|.
-name|remove
-argument_list|(
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|page
-operator|.
-name|isDirty
-argument_list|()
-condition|)
-try|try
-block|{
-name|page
-operator|.
-name|write
-argument_list|()
-expr_stmt|;
-comment|//fileHeader.write();
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|ioe
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-specifier|private
-specifier|final
-name|void
-name|removeOne
-parameter_list|(
-name|DataPage
-name|page
-parameter_list|)
-block|{
-name|DataPage
-name|old
-decl_stmt|;
-name|boolean
-name|removed
-init|=
-literal|false
-decl_stmt|;
-name|long
-name|oldNum
-decl_stmt|,
-name|pNum
-decl_stmt|;
-do|do
-block|{
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|map
-operator|.
-name|values
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|old
-operator|=
-operator|(
-name|DataPage
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-name|oldNum
-operator|=
-name|old
-operator|.
-name|getPageNum
-argument_list|()
-expr_stmt|;
-name|pNum
-operator|=
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-expr_stmt|;
-comment|// don't replace the page we are trying to store
-comment|// and don't replace consecutive pages
-if|if
-condition|(
-name|oldNum
-operator|==
-name|pNum
-operator|||
-name|oldNum
-operator|==
-name|pNum
-operator|+
-literal|1
-condition|)
-continue|continue;
-comment|// replace old page if it has reference count< 1
-if|if
-condition|(
-name|old
-operator|.
-name|decRefCount
-argument_list|()
-operator|<
-literal|1
-condition|)
-block|{
-comment|//LOG.debug(getFile().getName() + ": replacing page " + old.getPageNum());
-name|i
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-comment|//map.remove(oldNum);
-name|removed
-operator|=
-literal|true
-expr_stmt|;
-if|if
-condition|(
-name|old
-operator|.
-name|isDirty
-argument_list|()
-condition|)
-try|try
-block|{
-name|old
-operator|.
-name|write
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"error while writing page: "
-operator|+
-name|old
-operator|.
-name|getPageInfo
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|old
-operator|=
-literal|null
-expr_stmt|;
-return|return;
-block|}
-block|}
-block|}
-do|while
-condition|(
-operator|!
-name|removed
-condition|)
-do|;
-block|}
-specifier|public
-name|int
-name|getBuffers
-parameter_list|()
-block|{
-return|return
-name|blockBuffers
-return|;
-block|}
-specifier|public
-name|int
-name|getUsedBuffers
-parameter_list|()
-block|{
-return|return
-name|map
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-specifier|public
-name|int
-name|getSize
-parameter_list|()
-block|{
-return|return
-name|map
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-specifier|public
-name|int
-name|getFails
-parameter_list|()
-block|{
-return|return
-name|fails
-return|;
-block|}
-specifier|public
-name|int
-name|getHits
-parameter_list|()
-block|{
-return|return
-name|hits
-return|;
-block|}
-block|}
-comment|/** 	 *  wrapper class around a page of data. 	 * 	 *@author     Wolfgang Meier<wolfgang@exist-db.org> 	 *@created    25. Mai 2002 	 */
+comment|/** 	 *  Represents a single data page.. 	 * 	 *@author     Wolfgang Meier<wolfgang@exist-db.org> 	 *@created    25. Mai 2002 	 */
 specifier|private
 specifier|final
 class|class
@@ -8944,11 +8207,6 @@ name|SinglePage
 extends|extends
 name|DataPage
 block|{
-name|boolean
-name|compress
-init|=
-literal|false
-decl_stmt|;
 name|byte
 index|[]
 name|data
@@ -8961,7 +8219,6 @@ decl_stmt|;
 name|BFilePageHeader
 name|ph
 decl_stmt|;
-comment|/** 		 *  Constructor for the DataPage object 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|SinglePage
 parameter_list|()
@@ -8974,7 +8231,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DataPage object 		 * 		 *@param  compress         Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|SinglePage
 parameter_list|(
@@ -8984,12 +8240,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
-name|compress
-operator|=
-name|compress
-expr_stmt|;
 name|page
 operator|=
 name|getFreePage
@@ -9060,7 +8310,6 @@ argument_list|()
 index|]
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the DataPage object 		 * 		 *@param  p                Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|SinglePage
 parameter_list|(
@@ -9070,33 +8319,6 @@ parameter_list|,
 name|byte
 index|[]
 name|data
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|p
-argument_list|,
-name|data
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** 		 *  Constructor for the DataPage object 		 * 		 *@param  p                Description of the Parameter 		 *@param  compress         Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
-specifier|public
-name|SinglePage
-parameter_list|(
-name|Page
-name|p
-parameter_list|,
-name|byte
-index|[]
-name|data
-parameter_list|,
-name|boolean
-name|compress
 parameter_list|)
 throws|throws
 name|IOException
@@ -9174,12 +8396,6 @@ name|data
 operator|=
 name|data
 expr_stmt|;
-name|this
-operator|.
-name|compress
-operator|=
-name|compress
-expr_stmt|;
 name|page
 operator|=
 name|p
@@ -9195,7 +8411,6 @@ name|getPageHeader
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|delete
@@ -9248,7 +8463,7 @@ operator|)
 literal|0
 argument_list|)
 expr_stmt|;
-name|setRefCount
+name|setReferenceCount
 argument_list|(
 literal|0
 argument_list|)
@@ -9275,7 +8490,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/** 		 *  Gets the data attribute of the DataPage object 		 * 		 *@return    The data value 		 */
 specifier|public
 name|byte
 index|[]
@@ -9286,7 +8500,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/** 		 *  Gets the pageHeader attribute of the DataPage object 		 * 		 *@return    The pageHeader value 		 */
 specifier|public
 name|BFilePageHeader
 name|getPageHeader
@@ -9296,7 +8509,6 @@ return|return
 name|ph
 return|;
 block|}
-comment|/** 		 *  Gets the pageInfo attribute of the SinglePage object 		 * 		 *@return    The pageInfo value 		 */
 specifier|public
 name|String
 name|getPageInfo
@@ -9309,7 +8521,6 @@ name|getPageInfo
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Gets the pageNum attribute of the SinglePage object 		 * 		 *@return    The pageNum value 		 */
 specifier|public
 name|long
 name|getPageNum
@@ -9322,7 +8533,6 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Sets the data attribute of the DataPage object 		 * 		 *@param  buf  The new data value 		 */
 specifier|public
 name|void
 name|setData
@@ -9337,7 +8547,6 @@ operator|=
 name|buf
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
 name|write
@@ -9345,6 +8554,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//LOG.debug(getFile().getName() + " writing page " + getPageNum());
 name|writeValue
 argument_list|(
 name|page

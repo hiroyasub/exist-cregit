@@ -212,10 +212,13 @@ name|int
 name|pos
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"unsupported method: itemAt"
+argument_list|)
+throw|;
 block|}
 specifier|public
 specifier|final
@@ -226,6 +229,13 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+if|if
+condition|(
+name|proxy
+operator|==
+literal|null
+condition|)
+return|return;
 if|if
 condition|(
 name|root

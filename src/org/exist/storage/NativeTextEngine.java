@@ -873,7 +873,7 @@ literal|0
 condition|)
 name|buffers
 operator|=
-literal|1024
+literal|128
 expr_stmt|;
 if|if
 condition|(
@@ -1041,13 +1041,6 @@ name|dbWords
 operator|.
 name|open
 argument_list|()
-expr_stmt|;
-name|dbWords
-operator|.
-name|setCompression
-argument_list|(
-name|compress
-argument_list|)
 expr_stmt|;
 name|config
 operator|.

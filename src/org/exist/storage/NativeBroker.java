@@ -832,7 +832,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  NativeBroker.  *  *@author     Wolfgang Meier  *@created    15. Mai 2002  */
+comment|/**  *  Main class for the native XML storage backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  *@created    15. Mai 2002  */
 end_comment
 
 begin_class
@@ -968,7 +968,6 @@ operator|.
 name|getRuntime
 argument_list|()
 decl_stmt|;
-comment|/** 	 *  Constructor for the NativeBroker object 	 * 	 *@param  config              Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|NativeBroker
 parameter_list|(
@@ -1219,7 +1218,7 @@ argument_list|)
 argument_list|,
 name|elementsBuffers
 operator|>>
-literal|1
+literal|2
 argument_list|,
 name|elementsBuffers
 argument_list|)
@@ -1252,13 +1251,6 @@ name|elementsDb
 operator|.
 name|open
 argument_list|()
-expr_stmt|;
-name|elementsDb
-operator|.
-name|setCompression
-argument_list|(
-name|compress
-argument_list|)
 expr_stmt|;
 name|config
 operator|.
@@ -1476,13 +1468,6 @@ name|collectionsDb
 operator|.
 name|open
 argument_list|()
-expr_stmt|;
-name|collectionsDb
-operator|.
-name|setCompression
-argument_list|(
-name|compress
-argument_list|)
 expr_stmt|;
 name|config
 operator|.
