@@ -2742,6 +2742,31 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|/**      	 * Set stylesheet parameter     	 **/
+specifier|public
+name|void
+name|setStylesheetParamameter
+parameter_list|(
+name|String
+name|valore
+parameter_list|,
+name|String
+name|valore1
+parameter_list|)
+block|{
+name|xslHandler
+operator|.
+name|getTransformer
+argument_list|()
+operator|.
+name|setParameter
+argument_list|(
+name|valore
+argument_list|,
+name|valore1
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**  Sets the xSLHandler attribute of the Serializer object */
 specifier|protected
 name|void
