@@ -1124,8 +1124,6 @@ name|context
 operator|.
 name|setBaseURI
 argument_list|(
-name|collection
-operator|.
 name|properties
 operator|.
 name|getProperty

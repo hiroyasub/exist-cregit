@@ -410,14 +410,14 @@ name|void
 name|setOutputProperties
 parameter_list|(
 name|Properties
-name|outputProperties
+name|properties
 parameter_list|)
 block|{
 name|super
 operator|.
 name|setOutputProperties
 argument_list|(
-name|outputProperties
+name|properties
 argument_list|)
 expr_stmt|;
 name|String

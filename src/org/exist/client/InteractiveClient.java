@@ -1944,6 +1944,16 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
+literal|"lock resource        put a write lock on the specified resource."
+argument_list|)
+expr_stmt|;
+name|messageln
+argument_list|(
+literal|"unlock resource      remove a write lock from the specified resource."
+argument_list|)
+expr_stmt|;
+name|messageln
+argument_list|(
 literal|"quit                 quit the program"
 argument_list|)
 expr_stmt|;

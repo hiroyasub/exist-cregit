@@ -2101,6 +2101,10 @@ name|prefix
 operator|=
 operator|(
 name|ns
+operator|!=
+literal|null
+operator|&&
+name|ns
 operator|.
 name|equals
 argument_list|(

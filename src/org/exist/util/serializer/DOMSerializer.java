@@ -836,6 +836,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// output attributes
+name|String
+name|name
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -866,6 +869,23 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+name|name
+operator|=
+name|nextAttr
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|name
+operator|.
+name|startsWith
+argument_list|(
+literal|"xmlns"
+argument_list|)
+condition|)
+continue|continue;
 name|receiver
 operator|.
 name|attribute

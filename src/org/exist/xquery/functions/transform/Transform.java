@@ -1018,16 +1018,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
-else|else
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Cannot read stylesheet from "
-operator|+
-name|stylesheet
-argument_list|)
-throw|;
 block|}
 block|}
 name|CachedStylesheet
