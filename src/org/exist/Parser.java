@@ -578,7 +578,7 @@ specifier|static
 name|int
 name|SPARSE_IDENTIFIERS
 init|=
-literal|10
+literal|15
 decl_stmt|;
 specifier|private
 specifier|final

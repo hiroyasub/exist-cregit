@@ -147,16 +147,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|ownerObject
-argument_list|,
 name|mode
-argument_list|)
-expr_stmt|;
-name|lock
-operator|.
-name|enter
-argument_list|(
-name|ownerObject
 argument_list|)
 expr_stmt|;
 block|}
@@ -200,9 +191,7 @@ block|{
 name|lock
 operator|.
 name|release
-argument_list|(
-name|ownerObject
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 return|return

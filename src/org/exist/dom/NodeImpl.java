@@ -374,7 +374,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  data  Description of the Parameter 	 *@param  doc   Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 *  Deserialize a node from a byte array. 	 * 	 *@param  data  Description of the Parameter 	 *@param  doc   Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 specifier|static
 name|NodeImpl
@@ -384,11 +384,16 @@ name|byte
 index|[]
 name|data
 parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
-comment|//short type = (short)data[0];
 name|short
 name|type
 init|=
@@ -398,7 +403,7 @@ name|getType
 argument_list|(
 name|data
 index|[
-literal|0
+name|start
 index|]
 argument_list|)
 decl_stmt|;
@@ -418,6 +423,10 @@ operator|.
 name|deserialize
 argument_list|(
 name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
 argument_list|)
 return|;
 case|case
@@ -431,6 +440,10 @@ operator|.
 name|deserialize
 argument_list|(
 name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
 argument_list|,
 name|doc
 argument_list|)
@@ -447,6 +460,10 @@ name|deserialize
 argument_list|(
 name|data
 argument_list|,
+name|start
+argument_list|,
+name|len
+argument_list|,
 name|doc
 argument_list|)
 return|;
@@ -461,6 +478,10 @@ operator|.
 name|deserialize
 argument_list|(
 name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
 argument_list|)
 return|;
 case|case
@@ -474,6 +495,10 @@ operator|.
 name|deserialize
 argument_list|(
 name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
 argument_list|)
 return|;
 default|default :

@@ -1192,6 +1192,9 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|NodeProxy
 name|p
 init|=
@@ -1252,6 +1255,9 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|int
 name|pos
 init|=
@@ -1300,6 +1306,9 @@ name|NodeProxy
 name|p
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|int
 name|pos
 init|=
@@ -3178,6 +3187,7 @@ block|{
 comment|//this.sorted = sorted;
 block|}
 specifier|public
+specifier|final
 name|void
 name|sort
 parameter_list|()

@@ -534,6 +534,22 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|Iterator
+name|getNodeIterator
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"not implemented for this storage backend"
+argument_list|)
+throw|;
+block|}
 comment|/**      *  return the type of database this broker is connected to.      *      *@return    one of the constants defined above.      */
 specifier|public
 specifier|abstract

@@ -1168,7 +1168,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the parentId attribute of the XMLUtil class 	 * 	 *@param  doc  Description of the Parameter 	 *@param  gid  Description of the Parameter 	 *@return      The parentId value 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1206,7 +1205,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"unable to determine level"
+literal|"unable to determine level for "
+operator|+
+name|gid
 argument_list|)
 expr_stmt|;
 return|return

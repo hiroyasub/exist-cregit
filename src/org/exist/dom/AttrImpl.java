@@ -272,6 +272,12 @@ name|byte
 index|[]
 name|data
 parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -285,7 +291,7 @@ operator|)
 operator|(
 name|data
 index|[
-literal|0
+name|start
 index|]
 operator|&
 literal|0x3
@@ -305,6 +311,8 @@ name|idSizeType
 argument_list|,
 name|data
 argument_list|,
+name|start
+operator|+
 literal|1
 argument_list|)
 decl_stmt|;
@@ -318,7 +326,7 @@ operator|(
 operator|(
 name|data
 index|[
-literal|0
+name|start
 index|]
 operator|&
 literal|0x4
@@ -352,6 +360,8 @@ name|String
 argument_list|(
 name|data
 argument_list|,
+name|start
+operator|+
 literal|1
 operator|+
 name|Signatures
@@ -361,9 +371,7 @@ argument_list|(
 name|idSizeType
 argument_list|)
 argument_list|,
-name|data
-operator|.
-name|length
+name|len
 operator|-
 literal|1
 operator|-
@@ -391,13 +399,13 @@ name|String
 argument_list|(
 name|data
 argument_list|,
+name|start
+operator|+
 literal|1
 operator|+
 name|idSizeType
 argument_list|,
-name|data
-operator|.
-name|length
+name|len
 operator|-
 literal|1
 operator|-
