@@ -341,6 +341,19 @@ operator|=
 name|predicate
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#getDocumentSet() 	 */
+specifier|public
+name|DocumentSet
+name|getDocumentSet
+parameter_list|()
+block|{
+return|return
+name|context
+operator|.
+name|getDocumentSet
+argument_list|()
+return|;
+block|}
 specifier|protected
 name|NodeProxy
 name|getFirstParent
@@ -1530,6 +1543,7 @@ operator|!=
 literal|null
 condition|)
 return|return;
+comment|//Thread.dumpStack();
 name|realSet
 operator|=
 name|getNodes

@@ -96,7 +96,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Represents a quantified expression: "some ... in ... satisfies",   * "every ... in ... satisfies".  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -204,25 +204,6 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|inputSequence
-operator|.
-name|pprint
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|inSeq
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|satisfiesSeq
 decl_stmt|;
@@ -279,18 +260,6 @@ argument_list|(
 name|contextItem
 operator|.
 name|toSequence
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|contextItem
-operator|.
-name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;

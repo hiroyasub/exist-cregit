@@ -830,6 +830,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|messages
+operator|.
+name|setLineWrap
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|JScrollPane
 name|scroll
 init|=
@@ -844,7 +851,7 @@ name|VERTICAL_SCROLLBAR_ALWAYS
 argument_list|,
 name|JScrollPane
 operator|.
-name|HORIZONTAL_SCROLLBAR_NEVER
+name|HORIZONTAL_SCROLLBAR_AS_NEEDED
 argument_list|)
 decl_stmt|;
 name|scroll

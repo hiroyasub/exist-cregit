@@ -277,7 +277,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ONE_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;

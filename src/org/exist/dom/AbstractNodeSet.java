@@ -2788,6 +2788,12 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|c
+operator|!=
+literal|null
+condition|)
 name|c
 operator|.
 name|addMatches

@@ -299,11 +299,16 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|itemType
-operator|==
+argument_list|,
 name|Type
 operator|.
 name|NODE
+argument_list|)
 condition|)
 block|{
 name|NodeSet

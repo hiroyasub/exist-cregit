@@ -385,6 +385,9 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// case 1: if the argument expression returns a node set,
+comment|// subtract the set from the context node set and return
+comment|// the remaining set
 if|if
 condition|(
 name|Type
@@ -611,6 +614,7 @@ expr_stmt|;
 return|return
 name|result
 return|;
+comment|// case 2: simply invert the boolean value
 block|}
 else|else
 block|{
@@ -634,11 +638,11 @@ argument_list|()
 condition|?
 name|BooleanValue
 operator|.
-name|TRUE
+name|FALSE
 else|:
 name|BooleanValue
 operator|.
-name|FALSE
+name|TRUE
 return|;
 block|}
 block|}

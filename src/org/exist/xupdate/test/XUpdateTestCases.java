@@ -49,20 +49,15 @@ name|test
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|test
 operator|=
 name|test
-expr_stmt|;
-name|super
-operator|.
-name|setName
-argument_list|(
-name|name
-argument_list|)
 expr_stmt|;
 block|}
 comment|// TestCases Start

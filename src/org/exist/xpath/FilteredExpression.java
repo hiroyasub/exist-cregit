@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * FilteredExpression represents a primary expression with a predicate. Examples:  * for $i in (1 to 10)[$i mod 2 = 0], $a[1], (doc("test.xml")//section)[2]. Other predicate  * expressions are handled by class {@link org.exist.xpath.LocationStep}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -184,7 +184,9 @@ operator|==
 literal|0
 condition|)
 return|return
-name|seq
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 return|;
 name|setContext
 argument_list|(
@@ -230,8 +232,10 @@ name|result
 operator|=
 name|pred
 operator|.
-name|eval
+name|evalPredicate
 argument_list|(
+name|contextSequence
+argument_list|,
 name|result
 argument_list|)
 expr_stmt|;

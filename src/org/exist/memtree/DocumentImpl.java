@@ -1264,7 +1264,6 @@ name|DocumentType
 name|getDoctype
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -1275,7 +1274,6 @@ name|DOMImplementation
 name|getImplementation
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
