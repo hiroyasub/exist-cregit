@@ -488,6 +488,16 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
+name|parent
+operator|.
+name|addMatches
+argument_list|(
+name|l
+operator|.
+name|matches
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
@@ -495,6 +505,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result

@@ -1219,6 +1219,13 @@ argument_list|(
 name|handler
 argument_list|)
 expr_stmt|;
+name|serializer
+operator|.
+name|setCreateContainerElements
+argument_list|(
+name|createContainerElements
+argument_list|)
+expr_stmt|;
 name|String
 name|xml
 decl_stmt|;
