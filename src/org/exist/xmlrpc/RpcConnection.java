@@ -2557,6 +2557,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
 name|Hashtable
 name|describeResource
 parameter_list|(
@@ -2585,6 +2586,15 @@ name|DocumentImpl
 name|doc
 init|=
 literal|null
+decl_stmt|;
+name|Hashtable
+name|hash
+init|=
+operator|new
+name|Hashtable
+argument_list|(
+literal|5
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -2622,13 +2632,9 @@ operator|+
 literal|" not found!"
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"document not found"
-argument_list|)
-throw|;
+return|return
+name|hash
+return|;
 block|}
 if|if
 condition|(
@@ -2659,20 +2665,6 @@ literal|"Not allowed to read collection"
 argument_list|)
 throw|;
 block|}
-name|Hashtable
-name|desc
-init|=
-operator|new
-name|Hashtable
-argument_list|()
-decl_stmt|;
-name|Vector
-name|collections
-init|=
-operator|new
-name|Vector
-argument_list|()
-decl_stmt|;
 name|Permission
 name|perms
 init|=
@@ -2680,15 +2672,6 @@ name|doc
 operator|.
 name|getPermissions
 argument_list|()
-decl_stmt|;
-name|Hashtable
-name|hash
-init|=
-operator|new
-name|Hashtable
-argument_list|(
-literal|5
-argument_list|)
 decl_stmt|;
 name|hash
 operator|.

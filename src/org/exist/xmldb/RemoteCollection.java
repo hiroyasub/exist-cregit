@@ -1635,6 +1635,16 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|docName
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+comment|// resource does not exist!
 name|int
 name|p
 decl_stmt|;
