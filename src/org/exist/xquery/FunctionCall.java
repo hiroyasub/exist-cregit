@@ -468,10 +468,10 @@ if|if
 condition|(
 name|e
 operator|.
-name|getASTNode
+name|getLine
 argument_list|()
 operator|==
-literal|null
+literal|0
 condition|)
 name|e
 operator|.
