@@ -241,10 +241,13 @@ init|=
 literal|1
 decl_stmt|;
 specifier|private
+specifier|transient
 name|NodeIndexListener
 name|listener
 init|=
-literal|null
+name|NullNodeIndexListener
+operator|.
+name|INSTANCE
 decl_stmt|;
 specifier|protected
 specifier|final
@@ -265,6 +268,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|protected
+specifier|transient
 name|DBBroker
 name|broker
 init|=
@@ -272,12 +276,14 @@ literal|null
 decl_stmt|;
 comment|// number of child nodes
 specifier|protected
+specifier|transient
 name|int
 name|children
 init|=
 literal|0
 decl_stmt|;
 specifier|protected
+specifier|transient
 name|LinkedList
 name|childList
 init|=
@@ -287,6 +293,7 @@ argument_list|()
 decl_stmt|;
 comment|// the collection this document belongs to
 specifier|protected
+specifier|transient
 name|Collection
 name|collection
 init|=
@@ -302,6 +309,7 @@ literal|1
 decl_stmt|;
 comment|// document's document type
 specifier|protected
+specifier|transient
 name|DocumentType
 name|docType
 init|=
@@ -340,6 +348,7 @@ decl_stmt|;
 comment|// if set to> -1, the document needs to be partially reindexed
 comment|// - beginning at the tree-level defined by reindex
 specifier|protected
+specifier|transient
 name|int
 name|reindex
 init|=
@@ -377,6 +386,7 @@ literal|15
 index|]
 decl_stmt|;
 specifier|protected
+specifier|transient
 name|long
 name|treeLevelStartPoints
 index|[]
@@ -389,6 +399,7 @@ index|]
 decl_stmt|;
 comment|// has document-metadata been loaded?
 specifier|private
+specifier|transient
 name|boolean
 name|complete
 init|=
@@ -396,12 +407,14 @@ literal|true
 decl_stmt|;
 comment|// true while a write operation is in progress
 specifier|private
+specifier|transient
 name|boolean
 name|writeLocked
 init|=
 literal|false
 decl_stmt|;
 specifier|private
+specifier|transient
 name|User
 name|lockOwner
 init|=
@@ -1003,42 +1016,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|private
-name|void
-name|checkRange
-parameter_list|(
-name|int
-name|level
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-if|if
-condition|(
-name|treeLevelStartPoints
-index|[
-name|level
-index|]
-operator|<
-literal|0
-operator|||
-name|treeLevelStartPoints
-index|[
-name|level
-operator|+
-literal|1
-index|]
-operator|<
-literal|0
-condition|)
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"index out of range"
-argument_list|)
-throw|;
-block|}
+comment|// jmv - PMD - Avoid unused private methods
+comment|//	private void checkRange(int level) throws EXistException {
+comment|//		if (treeLevelStartPoints[level]< 0 || treeLevelStartPoints[level + 1]< 0)
+comment|//			throw new EXistException("index out of range");
+comment|//	}
 specifier|public
 name|int
 name|compareTo
@@ -2694,6 +2676,7 @@ name|String
 name|enc
 parameter_list|)
 block|{
+comment|// allways  "UTF-8"  !?
 block|}
 specifier|public
 name|void
@@ -3492,7 +3475,9 @@ parameter_list|()
 block|{
 name|listener
 operator|=
-literal|null
+name|NullNodeIndexListener
+operator|.
+name|INSTANCE
 expr_stmt|;
 block|}
 specifier|public
@@ -4183,14 +4168,8 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-name|String
-name|ns
-decl_stmt|,
-name|prefix
-decl_stmt|;
-name|Attr
-name|attr
-decl_stmt|;
+comment|// String ns, prefix;
+comment|// Attr attr;
 switch|switch
 condition|(
 name|child
@@ -4322,56 +4301,16 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|private
-name|void
-name|checkTree
-parameter_list|(
-name|int
-name|size
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-comment|// check if the tree structure needs to be changed
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|treeLevelOrder
-index|[
-literal|0
-index|]
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|treeLevelOrder
-index|[
-literal|0
-index|]
-operator|<
-name|children
-operator|+
-name|size
-condition|)
-block|{
-comment|// recompute the order of the tree
-name|treeLevelOrder
-index|[
-literal|0
-index|]
-operator|=
-name|children
-operator|+
-name|size
-expr_stmt|;
-name|calculateTreeLevelStartPoints
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+comment|// jmv - PMD - Avoid unused private methods
+comment|//	private void checkTree(int size) throws EXistException {
+comment|//		// check if the tree structure needs to be changed
+comment|//		System.out.println(treeLevelOrder[0]);
+comment|//		if (treeLevelOrder[0]< children + size) {
+comment|//			// recompute the order of the tree
+comment|//			treeLevelOrder[0] = children + size;
+comment|//			calculateTreeLevelStartPoints();
+comment|//		}
+comment|//	}
 comment|/** 	 * @return 	 */
 specifier|public
 name|long
