@@ -852,16 +852,6 @@ operator|(
 name|current
 operator|!=
 literal|null
-operator|&&
-operator|(
-operator|(
-name|LocalCollection
-operator|)
-name|current
-operator|)
-operator|.
-name|isValid
-argument_list|()
 operator|)
 condition|?
 name|current

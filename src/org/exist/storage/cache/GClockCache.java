@@ -425,7 +425,7 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|protected
-name|void
+name|Cacheable
 name|removeOne
 parameter_list|(
 name|Cacheable
@@ -434,6 +434,8 @@ parameter_list|)
 block|{
 name|Cacheable
 name|old
+init|=
+literal|null
 decl_stmt|;
 name|boolean
 name|removed
@@ -575,6 +577,9 @@ operator|!
 name|removed
 condition|)
 do|;
+return|return
+name|old
+return|;
 block|}
 specifier|public
 name|int

@@ -628,7 +628,8 @@ name|docs
 operator|=
 name|collection
 operator|.
-name|collection
+name|getCollection
+argument_list|()
 operator|.
 name|allDocs
 argument_list|(
@@ -896,11 +897,13 @@ name|docs
 operator|==
 literal|null
 condition|)
+block|{
 name|docs
 operator|=
 name|collection
 operator|.
-name|collection
+name|getCollection
+argument_list|()
 operator|.
 name|allDocs
 argument_list|(
@@ -913,6 +916,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|expression
 operator|.
 name|reset
@@ -950,6 +954,18 @@ operator|.
 name|setStaticallyKnownDocuments
 argument_list|(
 name|docs
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"docs: "
+operator|+
+name|docs
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Map

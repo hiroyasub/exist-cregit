@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * LocalIndexQueryService.java - Mar 5, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -125,10 +121,6 @@ name|XMLDBException
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment go to   * Window>Preferences>Java>Code Generation>Code and Comments  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -219,7 +211,8 @@ name|scanIndexedElements
 argument_list|(
 name|parent
 operator|.
-name|collection
+name|getCollection
+argument_list|()
 argument_list|,
 name|inclusive
 argument_list|)
@@ -423,7 +416,8 @@ name|user
 argument_list|,
 name|parent
 operator|.
-name|collection
+name|getCollection
+argument_list|()
 argument_list|,
 name|start
 argument_list|,

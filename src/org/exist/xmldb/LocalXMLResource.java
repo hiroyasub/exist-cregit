@@ -1364,6 +1364,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+comment|// case 1: content is an external DOM node
 if|if
 condition|(
 name|root
@@ -1462,6 +1463,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|// case 2: content is an atomic value
 block|}
 if|else if
 condition|(
@@ -1547,6 +1549,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+comment|// case 3: content is an internal node or a document
 block|}
 else|else
 block|{

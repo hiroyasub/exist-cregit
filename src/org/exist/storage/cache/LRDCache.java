@@ -224,7 +224,7 @@ block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.LFUCache#removeOne(org.exist.storage.cache.Cacheable) 	 */
 specifier|protected
-name|void
+name|Cacheable
 name|removeOne
 parameter_list|(
 name|Cacheable
@@ -380,6 +380,9 @@ argument_list|,
 name|item
 argument_list|)
 expr_stmt|;
+return|return
+name|old
+return|;
 block|}
 comment|/** 	 * Periodically adjust items with large reference counts to give 	 * younger items a chance to survive. 	 */
 specifier|protected

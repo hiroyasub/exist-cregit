@@ -51,7 +51,7 @@ specifier|final
 name|int
 name|COLLECTION_BUFFER_SIZE
 init|=
-literal|64
+literal|128
 decl_stmt|;
 specifier|private
 name|CollectionCache

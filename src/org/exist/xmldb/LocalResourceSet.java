@@ -1074,7 +1074,8 @@ literal|null
 operator|||
 name|coll
 operator|.
-name|collection
+name|getCollection
+argument_list|()
 operator|.
 name|getId
 argument_list|()
@@ -1106,6 +1107,9 @@ operator|.
 name|doc
 operator|.
 name|getCollection
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
