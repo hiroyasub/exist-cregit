@@ -209,7 +209,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns document owner"
+literal|"Returns the owner of a collection. "
+operator|+
+literal|"The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType
@@ -258,7 +262,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns document owner"
+literal|"Returns the owner of the specified resource $b in collection $a. "
+operator|+
+literal|"The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType

@@ -255,7 +255,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get a reference to a collection identified by the XMLDB URI passed "
+literal|"Get a reference to a collection. The collection is identified by the first argument, "
+operator|+
+literal|"which is either a collection path like '/db' or an XMLDB URI like 'xmldb:exist://localhost:8081/db'. "
 operator|+
 literal|"as first argument. The second argument should specify the name of "
 operator|+

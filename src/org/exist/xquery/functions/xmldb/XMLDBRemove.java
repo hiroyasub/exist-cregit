@@ -211,15 +211,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Remove a resource from the collection. The first "
+literal|"Remove a collection. The collection can be specified either as "
 operator|+
-literal|"argument specifies the collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. The second argument is the name of the resource "
-operator|+
-literal|"to be removed. The resource name may be absolute or relative, but it"
-operator|+
-literal|"should always point to a child resource of the current collection."
+literal|"a simple collection path, an XMLDB URI or a collection object."
 argument_list|,
 operator|new
 name|SequenceType
@@ -268,15 +262,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Remove a resource from the collection. The first "
+literal|"Remove a resource from the collection specified in $a. The collection "
 operator|+
-literal|"argument specifies the collection object as returned by the collection or "
+literal|"can be either specified as a simple collection path, an XMLDB URI or "
 operator|+
-literal|"create-collection functions. The second argument is the name of the resource "
-operator|+
-literal|"to be removed. The resource name may be absolute or relative, but it"
-operator|+
-literal|"should always point to a child resource of the current collection."
+literal|"a collection object."
 argument_list|,
 operator|new
 name|SequenceType

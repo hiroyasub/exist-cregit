@@ -221,9 +221,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the name of the user that holds a write lock on the document of the "
+literal|"Returns the name of the user that holds a write lock on the resource specified in $b in the collection $a.  "
 operator|+
-literal|"specified node. If no lock is in place, the empty sequence is returned."
+literal|"If no lock is in place, the empty sequence is returned. "
+operator|+
+literal|"The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType

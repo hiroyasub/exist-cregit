@@ -263,15 +263,23 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Store a node as a new document into the database. The first "
+literal|"Store a new resource into the database. The first "
 operator|+
-literal|"argument specifies the collection object as returned by the collection or "
+literal|"argument denotes the collection where the resource should be stored. "
+operator|+
+literal|"The collection can be either specified as a simple collection path, "
+operator|+
+literal|"an XMLDB URI, or a collection object as returned by the collection or "
 operator|+
 literal|"create-collection functions. The second argument is the name of the new "
 operator|+
-literal|"document. The third argument is either a node or a string. A node will be "
+literal|"resource. The third argument is either a node, a string or an xs:anyURI. "
 operator|+
-literal|"serialized to SAX. It becomes the root node of the new document."
+literal|"A node will be serialized to SAX. It becomes the root node of the new "
+operator|+
+literal|"document. If the argument is of type xs:anyURI, the resource is loaded "
+operator|+
+literal|"from that URI. Currently, the URI should point to a file on the server."
 argument_list|,
 operator|new
 name|SequenceType

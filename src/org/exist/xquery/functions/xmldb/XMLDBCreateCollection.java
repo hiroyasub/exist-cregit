@@ -209,9 +209,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new collection as a child of the collection object passed as "
+literal|"Create a new collection as a child of the collection specified in the "
 operator|+
-literal|"first argument. The second argument specifies the name of the new "
+literal|"first argument. The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or as a collection object (obtained from the collection function)."
+operator|+
+literal|"The second argument specifies the name of the new "
 operator|+
 literal|"collection."
 argument_list|,

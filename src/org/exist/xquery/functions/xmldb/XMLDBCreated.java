@@ -35,18 +35,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 import|;
 end_import
@@ -69,9 +57,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|xmldb
 operator|.
-name|BasicFunction
+name|EXistResource
 import|;
 end_import
 
@@ -133,7 +121,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|NodeValue
+name|DateTimeValue
 import|;
 end_import
 
@@ -183,32 +171,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|DateTimeValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -216,20 +178,6 @@ operator|.
 name|base
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
 import|;
 end_import
 
@@ -251,11 +199,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
-name|EXistResource
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
 import|;
 end_import
 
@@ -295,7 +245,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date"
+literal|"Returns the creation date of a resource in the collection specified by $a. "
+operator|+
+literal|"The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType
@@ -356,7 +310,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date"
+literal|"Returns the creation date of a collection. The collection can be passed as a simple collection "
+operator|+
+literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType

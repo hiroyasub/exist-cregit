@@ -205,7 +205,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the subcolls of collection"
+literal|"Returns a sequence of strings containing all the child collections of the collection specified in "
+operator|+
+literal|"$a. The collection parameter can either be a simple collection path, an XMLDB URI or a collection "
+operator|+
+literal|"object as returned by the xmldb:collection function."
 argument_list|,
 operator|new
 name|SequenceType

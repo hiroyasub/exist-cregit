@@ -235,7 +235,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the permissions assigned to the specified collection."
+literal|"Returns the permissions assigned to the collection. "
+operator|+
+literal|"The collection can be specified as a simple collection path, "
+operator|+
+literal|"an XMLDB URI or a collection object."
 argument_list|,
 operator|new
 name|SequenceType
@@ -284,9 +288,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the permissions assigned to the resource specified in $b which is a child of the collection "
+literal|"Returns the permissions assigned to the resource specified in $b "
 operator|+
-literal|"$a."
+literal|"which is a child of the collection $a. The collection can be specified "
+operator|+
+literal|"as a simple collection path, an XMLDB URI or a collection object."
 argument_list|,
 operator|new
 name|SequenceType

@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_class
@@ -205,9 +205,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the name of the user that holds a write lock on the document of the "
+literal|"Format the resource or collection permissions passed as an integer "
 operator|+
-literal|"specified node. If no lock is in place, the empty sequence is returned."
+literal|"value into a string. The returned string shows the permissions following "
+operator|+
+literal|"the usual Unix conventions, i.e. all permissions set is returned as "
+operator|+
+literal|"rwurwurwu, where the first three chars are for user permissions, "
+operator|+
+literal|"followed by group and world. 'r' denotes read, 'w' write and 'u' update "
+operator|+
+literal|"permissions"
 argument_list|,
 operator|new
 name|SequenceType
