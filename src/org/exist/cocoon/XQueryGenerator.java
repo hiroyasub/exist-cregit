@@ -1138,16 +1138,6 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|String
-name|user
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|password
-init|=
-literal|null
-decl_stmt|;
 comment|// check if user and password can be read from the session
 if|if
 condition|(
