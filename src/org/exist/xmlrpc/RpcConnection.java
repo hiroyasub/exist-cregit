@@ -6311,6 +6311,18 @@ condition|)
 return|return
 name|ret
 return|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found "
+operator|+
+name|resultSeq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|sortBy
@@ -6421,17 +6433,6 @@ operator|(
 name|NodeProxy
 operator|)
 name|next
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|p
-operator|.
-name|gid
-argument_list|)
 expr_stmt|;
 name|entry
 operator|.
