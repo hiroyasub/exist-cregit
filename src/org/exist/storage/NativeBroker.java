@@ -2722,8 +2722,13 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// jmv: if (dis == null)
+comment|// wolf: dis == null if no matching element has been found in the index
 if|if
 condition|(
+name|dis
+operator|==
+literal|null
+operator|||
 name|exceptionOcurred
 condition|)
 continue|continue;

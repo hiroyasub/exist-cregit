@@ -644,9 +644,6 @@ name|int
 name|getLength
 parameter_list|()
 block|{
-name|sortInDocumentOrder
-argument_list|()
-expr_stmt|;
 return|return
 name|size
 return|;
@@ -660,6 +657,9 @@ name|int
 name|pos
 parameter_list|)
 block|{
+name|sortInDocumentOrder
+argument_list|()
+expr_stmt|;
 name|NodeProxy
 name|p
 init|=
@@ -853,6 +853,9 @@ name|int
 name|pos
 parameter_list|)
 block|{
+name|sortInDocumentOrder
+argument_list|()
+expr_stmt|;
 return|return
 name|get
 argument_list|(
@@ -1092,6 +1095,7 @@ comment|//		System.out.println("sort took " + (System.currentTimeMillis() -
 comment|// start) + "ms.");
 block|}
 specifier|public
+specifier|final
 name|void
 name|sortInDocumentOrder
 parameter_list|()
