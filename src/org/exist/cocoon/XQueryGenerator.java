@@ -795,15 +795,6 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
 name|DatabaseManager
 operator|.
 name|registerDatabase
