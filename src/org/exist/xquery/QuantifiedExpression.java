@@ -279,6 +279,18 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"satisfies returned: "
+operator|+
+name|satisfiesSeq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|returnExpr

@@ -243,9 +243,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Change properties of an existing user. Requires username, password, "
+literal|"Change properties of an existing user. Parameters are: username, password, "
 operator|+
-literal|"and at least one group name."
+literal|"group memberships, home collection."
 argument_list|,
 operator|new
 name|SequenceType

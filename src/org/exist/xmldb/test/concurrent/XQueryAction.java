@@ -184,7 +184,7 @@ name|result
 init|=
 name|DBUtils
 operator|.
-name|query
+name|xquery
 argument_list|(
 name|col
 argument_list|,

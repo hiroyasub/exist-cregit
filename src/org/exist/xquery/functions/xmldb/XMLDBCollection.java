@@ -259,7 +259,7 @@ literal|"Get a reference to a collection. The collection is identified by the fi
 operator|+
 literal|"which is either a collection path like '/db' or an XMLDB URI like 'xmldb:exist://localhost:8081/db'. "
 operator|+
-literal|"as first argument. The second argument should specify the name of "
+literal|"The second argument should specify the name of "
 operator|+
 literal|"a valid user, the third is the password. The method returns a Java object "
 operator|+

@@ -205,7 +205,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the resource of collection"
+literal|"Returns all child resources in the specified collection."
 argument_list|,
 operator|new
 name|SequenceType

@@ -229,7 +229,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user in the database. Requires username, password, and at least one group name."
+literal|"Create a new user in the database. Arguments are: username, password, group memberships,"
+operator|+
+literal|"home collection."
 argument_list|,
 operator|new
 name|SequenceType

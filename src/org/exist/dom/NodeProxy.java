@@ -2174,6 +2174,16 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
+name|void
+name|clearContext
+parameter_list|()
+block|{
+name|context
+operator|=
+literal|null
+expr_stmt|;
+block|}
+specifier|public
 name|ContextItem
 name|getContext
 parameter_list|()

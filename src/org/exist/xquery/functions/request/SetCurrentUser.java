@@ -271,7 +271,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Encodes the specified URL with the current HTTP session-id."
+literal|"Change the user identity for the current HTTP session. Subsequent XQueries in the session will run with the "
+operator|+
+literal|"new user identity."
 argument_list|,
 operator|new
 name|SequenceType

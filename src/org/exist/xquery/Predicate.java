@@ -419,13 +419,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"evalBoolean"
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|result
 init|=

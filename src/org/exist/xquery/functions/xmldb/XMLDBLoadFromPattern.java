@@ -370,7 +370,11 @@ literal|"an XMLDB URI, or a collection object as returned by the collection or "
 operator|+
 literal|"create-collection functions. The function returns a sequence of all document paths added "
 operator|+
-literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
+literal|"to the db. These can be directly passed to fn:doc() to retrieve the document. The final argument $d is used to specify a mime-type.  If the mime-type "
+operator|+
+literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
+operator|+
+literal|"a binary resource."
 argument_list|,
 operator|new
 name|SequenceType
