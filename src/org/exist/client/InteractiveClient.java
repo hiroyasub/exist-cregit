@@ -12920,13 +12920,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
