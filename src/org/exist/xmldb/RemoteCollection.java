@@ -2436,6 +2436,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+else|else
+name|store
+argument_list|(
+operator|(
+name|RemoteXMLResource
+operator|)
+name|res
+argument_list|)
+expr_stmt|;
 name|resources
 operator|.
 name|add

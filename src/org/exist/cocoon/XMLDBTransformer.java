@@ -1193,7 +1193,7 @@ decl_stmt|;
 name|boolean
 name|highlightElementMatches
 init|=
-literal|false
+literal|true
 decl_stmt|;
 if|if
 condition|(
@@ -1645,7 +1645,7 @@ decl_stmt|;
 name|boolean
 name|highlightElementMatches
 init|=
-literal|false
+literal|true
 decl_stmt|;
 if|if
 condition|(

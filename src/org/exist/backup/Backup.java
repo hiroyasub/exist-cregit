@@ -665,7 +665,7 @@ literal|"xml"
 argument_list|,
 literal|"UTF-8"
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// serializer writes to __contents__.xml

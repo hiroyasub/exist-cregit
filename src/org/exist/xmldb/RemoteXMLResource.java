@@ -2078,15 +2078,6 @@ literal|null
 condition|)
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"returning content"
-argument_list|)
-expr_stmt|;
 return|return
 name|content
 operator|.
