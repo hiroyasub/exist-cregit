@@ -2011,64 +2011,14 @@ name|isWhitespaceOnly
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-operator|&&
-name|last
-operator|.
-name|getChildCount
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|text
-operator|.
-name|setData
-argument_list|(
-name|charBuf
-argument_list|)
-expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-name|broker
-operator|.
-name|store
-argument_list|(
-name|text
-argument_list|,
-name|currentPath
-argument_list|)
-expr_stmt|;
-name|text
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+comment|//					if(charBuf.length()> 0&& last.getChildCount()> 0) {
+comment|//						text.setData(charBuf);
+comment|//						text.setOwnerDocument(document);
+comment|//						last.appendChildInternal(text);
+comment|//						if (!validate)
+comment|//							broker.store(text, currentPath);
+comment|//						text.clear();
+comment|//					}
 block|}
 if|else if
 condition|(

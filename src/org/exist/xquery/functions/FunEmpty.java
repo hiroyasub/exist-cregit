@@ -302,6 +302,18 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"empty: "
+operator|+
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|seq
 operator|.
