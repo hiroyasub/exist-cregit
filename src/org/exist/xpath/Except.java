@@ -164,7 +164,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"intersect operand is not a node sequence"
+literal|"except operand is not a node sequence"
 argument_list|)
 throw|;
 name|NodeSet

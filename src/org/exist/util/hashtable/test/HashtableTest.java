@@ -76,7 +76,7 @@ specifier|private
 name|int
 name|tabSize
 init|=
-literal|1000000
+literal|10000
 decl_stmt|;
 specifier|private
 name|Int2ObjectHashMap

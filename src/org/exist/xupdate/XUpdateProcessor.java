@@ -540,7 +540,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XUpdateProcessor.java  *   * @author Wolfgang Meier  *   * TODO:  *   xupdate:processing-instruction  *   xupdate:comment  */
+comment|/**  * XUpdateProcessor.java  *   * @author Wolfgang Meier  *   */
 end_comment
 
 begin_class
@@ -2691,6 +2691,13 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|setStaticallyKnownDocuments
+argument_list|(
+name|documentSet
+argument_list|)
+expr_stmt|;
 name|Map
 operator|.
 name|Entry

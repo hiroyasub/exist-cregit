@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for the XQuery/XPath combining operators "union", "intersect"  * and "except".  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
