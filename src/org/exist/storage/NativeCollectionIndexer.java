@@ -145,18 +145,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|io
@@ -262,10 +250,10 @@ specifier|final
 class|class
 name|NativeCollectionIndexer
 block|{
-comment|/**      * TODO section follows (must be initialized)      */
-specifier|protected
-name|User
-name|user
+comment|/**      * Temporary DBBroker instance.      */
+specifier|private
+name|DBBroker
+name|broker
 init|=
 literal|null
 decl_stmt|;
@@ -306,12 +294,15 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Create a new NativeCollectionIndexer. The CollectionStore      * must be initialized when calling this constructor.      *       * @param pool broker pool to use      * @param collectionsDb initialized collectionsDb      */
+comment|/**      * Create a new NativeCollectionIndexer. The CollectionStore      * must be initialized when calling this constructor.      *       * Refactor note: currently, DBBroker is used here, but      * this should<b>not</b> be the case in future.      *        * @param pool broker pool to use      * @param collectionsDb initialized collectionsDb      */
 specifier|public
 name|NativeCollectionIndexer
 parameter_list|(
 name|BrokerPool
 name|pool
+parameter_list|,
+name|DBBroker
+name|broker
 parameter_list|,
 name|CollectionStore
 name|collectionsDb
@@ -329,6 +320,12 @@ name|collectionsDb
 operator|=
 name|collectionsDb
 expr_stmt|;
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
+expr_stmt|;
 block|}
 comment|/**      * Set read-only if any of the backend datastores      * are set read-only.      *       * @param readOnly true, if one backend db is read-only      */
 specifier|public
@@ -345,20 +342,6 @@ name|readOnly
 operator|=
 name|readOnly
 expr_stmt|;
-block|}
-comment|//  TODO
-name|boolean
-name|removeCollection
-parameter_list|(
-name|Collection
-name|collection
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-return|return
-literal|false
-return|;
 block|}
 specifier|public
 name|void
@@ -526,7 +509,32 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|/*             try {                 // TODO collection.read(this, is);             } catch (IOException ioe) {                 LOG.warn(ioe);             }*/
+try|try
+block|{
+name|collection
+operator|.
+name|read
+argument_list|(
+name|broker
+argument_list|,
+name|is
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|ioe
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1217,7 +1225,15 @@ argument_list|(
 literal|8
 argument_list|)
 decl_stmt|;
-comment|// TODO collection.write(this, ostream);
+name|collection
+operator|.
+name|write
+argument_list|(
+name|broker
+argument_list|,
+name|ostream
+argument_list|)
+expr_stmt|;
 specifier|final
 name|long
 name|addr
@@ -1524,7 +1540,10 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|current
@@ -1534,7 +1553,10 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 operator|.
 name|getPrimaryGroup
 argument_list|()
@@ -1624,7 +1646,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -1675,7 +1700,10 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sub
@@ -1685,7 +1713,10 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 operator|.
 name|getPrimaryGroup
 argument_list|()
@@ -2003,7 +2034,15 @@ condition|)
 return|return
 literal|null
 return|;
-comment|// TODO collection.read(this, is);
+name|collection
+operator|.
+name|read
+argument_list|(
+name|broker
+argument_list|,
+name|is
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2191,7 +2230,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -2220,7 +2262,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|broker
+operator|.
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -2325,6 +2370,8 @@ condition|)
 block|{
 try|try
 block|{
+name|broker
+operator|.
 name|removeCollection
 argument_list|(
 name|old
