@@ -109,9 +109,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|storage
 operator|.
-name|SecurityManager
+name|BrokerPool
 import|;
 end_import
 
@@ -210,8 +210,8 @@ init|=
 literal|"/db/system/config"
 decl_stmt|;
 specifier|private
-name|SecurityManager
-name|secman
+name|BrokerPool
+name|pool
 decl_stmt|;
 specifier|private
 name|Map
@@ -232,14 +232,11 @@ name|EXistException
 block|{
 name|this
 operator|.
-name|secman
+name|pool
 operator|=
 name|broker
 operator|.
 name|getBrokerPool
-argument_list|()
-operator|.
-name|getSecurityManager
 argument_list|()
 expr_stmt|;
 name|checkConfigCollection
@@ -248,8 +245,8 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Add a new collection configuration. The XML document is passed as a string. 	 *  	 * @param broker 	 * @param collection the collection to which the configuration applies. 	 * @param config the xconf document as a string. 	 * @throws CollectionConfigurationException 	 */
 specifier|public
-specifier|synchronized
 name|void
 name|addConfiguration
 parameter_list|(
@@ -475,7 +472,6 @@ block|}
 block|}
 comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @param collectionPath      * @return      * @throws CollectionConfigurationException      */
 specifier|protected
-specifier|synchronized
 name|CollectionConfiguration
 name|getConfiguration
 parameter_list|(
@@ -698,6 +694,21 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|// we synchronize on the global CollectionCache to avoid deadlocks.
+comment|// the calling code does mostly already hold a lock on CollectionCache.
+name|CollectionCache
+name|collectionCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|collectionCache
+init|)
+block|{
 name|cache
 operator|.
 name|put
@@ -710,13 +721,13 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|conf
 return|;
 block|}
 comment|/**      * Notify the manager that a collection.xconf file has changed. All cached configurations      * for the corresponding collection and its sub-collections will be cleared.       *       * @param collectionPath      */
 specifier|protected
-specifier|synchronized
 name|void
 name|invalidateAll
 parameter_list|(
@@ -747,6 +758,21 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// we synchronize on the global CollectionCache to avoid deadlocks.
+comment|// the calling code does mostly already hold a lock on CollectionCache.
+name|CollectionCache
+name|collectionCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|collectionCache
+init|)
+block|{
 name|Map
 operator|.
 name|Entry
@@ -835,9 +861,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      */
 specifier|protected
-specifier|synchronized
 name|void
 name|invalidate
 parameter_list|(
@@ -868,6 +894,19 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|CollectionCache
+name|collectionCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|collectionCache
+init|)
+block|{
 name|CollectionConfiguration
 name|config
 init|=
@@ -905,6 +944,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/** 	 * Check if the config collection exists below /db/system. If not, create it. 	 *  	 * @param broker 	 * @throws EXistException 	 */
 specifier|private
 name|void
 name|checkConfigCollection

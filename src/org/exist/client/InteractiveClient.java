@@ -1042,7 +1042,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Command-line client based on the XML:DB API.  *   * @author wolf @created April 2, 2002  */
+comment|/**  * Command-line client based on the XML:DB API.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -10475,6 +10475,21 @@ argument_list|,
 name|mimeType
 operator|.
 name|getXMLDBType
+argument_list|()
+argument_list|)
+expr_stmt|;
+operator|(
+operator|(
+name|EXistResource
+operator|)
+name|document
+operator|)
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
