@@ -318,6 +318,10 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|failed
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|assertFalse
 argument_list|(

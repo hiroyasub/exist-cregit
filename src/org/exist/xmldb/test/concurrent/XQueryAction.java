@@ -174,16 +174,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|setName
-argument_list|(
-literal|"XQuery Thread"
-argument_list|)
-expr_stmt|;
 name|long
 name|start
 init|=
@@ -270,7 +260,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//		DefaultHandler handler = new DefaultHandler();
-comment|//		for (int i = 0; i< 1; i++) {
+comment|//		for (int i = 0; i< result.getSize(); i++) {
 comment|//			XMLResource next = (XMLResource) result.getResource((long)i);
 comment|//			next.getContentAsSAX(handler);
 comment|//		}
@@ -288,6 +278,23 @@ operator|)
 expr_stmt|;
 name|called
 operator|++
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": XQuery completed."
+argument_list|)
 expr_stmt|;
 return|return
 literal|false
