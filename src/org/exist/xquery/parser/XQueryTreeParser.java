@@ -6559,14 +6559,14 @@ argument_list|)
 decl_stmt|;
 name|or
 operator|.
-name|add
+name|addPath
 argument_list|(
 name|left
 argument_list|)
 expr_stmt|;
 name|or
 operator|.
-name|add
+name|addPath
 argument_list|(
 name|right
 argument_list|)
@@ -6697,14 +6697,14 @@ argument_list|)
 decl_stmt|;
 name|and
 operator|.
-name|add
+name|addPath
 argument_list|(
 name|left
 argument_list|)
 expr_stmt|;
 name|and
 operator|.
-name|add
+name|addPath
 argument_list|(
 name|right
 argument_list|)
@@ -17193,7 +17193,7 @@ name|EXistException
 argument_list|(
 literal|"No namespace defined for prefix "
 operator|+
-name|nc
+name|nc3
 operator|.
 name|getText
 argument_list|()

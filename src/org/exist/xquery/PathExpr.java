@@ -245,6 +245,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Add an arbitrary expression to this object's list of       * child-expressions.      *       * @param s      */
 specifier|public
 name|void
 name|add
@@ -261,6 +262,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Add all the child-expressions from another PathExpr       * to this object's child-expressions.      *        * @param path      */
 specifier|public
 name|void
 name|add
@@ -324,6 +326,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Add another PathExpr to this object's expression list.      * @param path      */
 specifier|public
 name|void
 name|addPath
@@ -340,6 +343,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Add a predicate expression to the list of expressions.      * The predicate is added to the last expression in the      * list.      *       * @param pred      */
 specifier|public
 name|void
 name|addPredicate

@@ -1488,6 +1488,7 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
+comment|//LOG.debug("AST: " + ast.toStringTree());
 name|PathExpr
 name|expr
 init|=
@@ -1550,6 +1551,7 @@ name|start
 operator|)
 argument_list|)
 expr_stmt|;
+comment|//LOG.debug("query:\n " + expr.pprint());
 return|return
 name|expr
 return|;
