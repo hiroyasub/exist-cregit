@@ -1374,7 +1374,15 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//System.setProperty("xml.catalog.verbosity", "10");
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"xml.catalog.verbosity"
+argument_list|,
+literal|"10"
+argument_list|)
+expr_stmt|;
 name|config
 operator|.
 name|put

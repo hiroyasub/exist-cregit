@@ -277,7 +277,14 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"fn:zero-or-one called with a sequence containing more than one item"
+literal|"fn:zero-or-one called with a sequence containing "
+operator|+
+name|seq
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" items"
 argument_list|)
 throw|;
 return|return

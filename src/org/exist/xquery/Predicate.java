@@ -1385,13 +1385,6 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Clearing cached result"
-argument_list|)
-expr_stmt|;
 name|super
 operator|.
 name|resetState

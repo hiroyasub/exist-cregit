@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -83,7 +79,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -95,7 +91,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -155,14 +151,28 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
+import|;
+end_import
+
 begin_comment
-comment|/**  * Implements function fn:zero-or-more.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements the fn:reverse function.  *  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|FunExactlyOne
+name|FunReverse
 extends|extends
 name|Function
 block|{
@@ -178,16 +188,16 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"exactly-one"
+literal|"reverse"
 argument_list|,
 name|Module
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the argument sequence if it contains exactly one item. Otherwise, "
+literal|"Reverses the order of items in a sequence.  If the argument is an empty"
 operator|+
-literal|"raises an error."
+literal|"sequence, the empty sequence is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -215,13 +225,12 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
-name|FunExactlyOne
+name|FunReverse
 parameter_list|(
 name|XQueryContext
 name|context
@@ -235,7 +244,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -252,17 +260,15 @@ block|{
 name|Sequence
 name|seq
 init|=
-name|getArgument
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|eval
+name|getArguments
 argument_list|(
 name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+index|[
+literal|0
+index|]
 decl_stmt|;
 if|if
 condition|(
@@ -270,25 +276,56 @@ name|seq
 operator|.
 name|getLength
 argument_list|()
-operator|!=
-literal|1
+operator|==
+literal|0
 condition|)
-throw|throw
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+name|Sequence
+name|result
+init|=
 operator|new
-name|XPathException
-argument_list|(
-literal|"fn:exactly-one called with a sequence containing "
-operator|+
+name|ValueSequence
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
 name|seq
 operator|.
 name|getLength
 argument_list|()
-operator|+
-literal|" items"
-argument_list|)
-throw|;
-return|return
+operator|-
+literal|1
+init|;
+name|i
+operator|>=
+literal|0
+condition|;
+name|i
+operator|--
+control|)
+block|{
+name|result
+operator|.
+name|add
+argument_list|(
 name|seq
+operator|.
+name|itemAt
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|result
 return|;
 block|}
 block|}
