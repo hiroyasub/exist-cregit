@@ -362,6 +362,60 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#mult(org.exist.xquery.value.NumericValue) 	 */
+specifier|public
+name|ComputableValue
+name|mult
+parameter_list|(
+name|ComputableValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"multiplication is not supported for type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#div(org.exist.xquery.value.NumericValue) 	 */
+specifier|public
+name|ComputableValue
+name|div
+parameter_list|(
+name|ComputableValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"division is not supported for type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
