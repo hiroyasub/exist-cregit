@@ -2342,7 +2342,7 @@ literal|"Create blank document"
 argument_list|,
 name|KeyEvent
 operator|.
-name|VK_N
+name|VK_B
 argument_list|)
 expr_stmt|;
 name|item
