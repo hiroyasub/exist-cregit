@@ -862,7 +862,7 @@ operator|.
 name|ASSERT
 argument_list|(
 name|owner
-operator|!=
+operator|==
 name|myOwner
 argument_list|,
 literal|"Owner changed during transaction!!!!!!!!!!!!!!!!!"
