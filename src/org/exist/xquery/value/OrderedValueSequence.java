@@ -63,6 +63,20 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
 begin_comment
 comment|/**  * A sequence that sorts its entries in the order specified by the order specs of  * an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *   * Contrary to class {@link org.exist.xquery.value.PreorderedValueSequence},  * all order expressions are evaluated once for each item in the sequence   *<b>while</b> items are added.  *   * @author wolf  */
 end_comment
@@ -535,6 +549,10 @@ name|XPathException
 argument_list|(
 literal|"expected a single value for order expression "
 operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
 name|orderSpecs
 index|[
 name|i
@@ -542,9 +560,7 @@ index|]
 operator|.
 name|getSortExpression
 argument_list|()
-operator|.
-name|pprint
-argument_list|()
+argument_list|)
 operator|+
 literal|" ; found: "
 operator|+

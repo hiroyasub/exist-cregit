@@ -651,6 +651,15 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|expr
+operator|.
+name|analyze
+argument_list|(
+literal|null
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 comment|// execute the query
 name|Sequence
 name|result

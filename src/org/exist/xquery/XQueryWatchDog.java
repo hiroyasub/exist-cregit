@@ -69,6 +69,20 @@ name|Configuration
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -490,10 +504,12 @@ name|elapsed
 operator|+
 literal|"ms.): "
 operator|+
-name|expr
+name|ExpressionDumper
 operator|.
-name|pprint
-argument_list|()
+name|dump
+argument_list|(
+name|expr
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|cleanUp
@@ -562,10 +578,12 @@ name|warn
 argument_list|(
 literal|"Query exceeded predefined limit for document fragments: "
 operator|+
-name|expr
+name|ExpressionDumper
 operator|.
-name|pprint
-argument_list|()
+name|dump
+argument_list|(
+name|expr
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|cleanUp

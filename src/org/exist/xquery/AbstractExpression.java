@@ -91,12 +91,6 @@ name|contextDocSet
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
-name|Expression
-name|parent
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|AbstractExpression
 parameter_list|(
@@ -130,6 +124,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
 name|Sequence
@@ -144,18 +139,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
-specifier|abstract
-name|String
-name|pprint
-parameter_list|()
-function_decl|;
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 specifier|abstract
 name|int
 name|returnsType
 parameter_list|()
 function_decl|;
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -195,30 +186,6 @@ return|return
 name|Dependency
 operator|.
 name|DEFAULT_DEPENDENCIES
-return|;
-block|}
-specifier|public
-name|void
-name|setParent
-parameter_list|(
-name|Expression
-name|parent
-parameter_list|)
-block|{
-name|this
-operator|.
-name|parent
-operator|=
-name|parent
-expr_stmt|;
-block|}
-specifier|public
-name|Expression
-name|getParent
-parameter_list|()
-block|{
-return|return
-name|parent
 return|;
 block|}
 specifier|public

@@ -47,6 +47,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -76,6 +90,28 @@ specifier|public
 interface|interface
 name|Expression
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|SINGLE_STEP_EXECUTION
+init|=
+literal|1
+decl_stmt|;
+comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables or some type errors.      * @param parent      * @param flags      *       * @throws XPathException      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 comment|/** 	 * Evaluate the expression represented by this object. 	 * 	 * Depending on the context in which this expression is executed, 	 * either the context sequence, the context item or both of them may  	 * be set. An implementing class should know how to handle this. 	 *  	 * The general contract is as follows: if the {@link Dependency#CONTEXT_ITEM} 	 * bit is set in the bit field returned by {@link #getDependencies()}, the eval method will 	 * be called once for every item in the context sequence. The<b>contextItem</b> 	 * parameter will be set to the current item. Otherwise, the eval method will only be called 	 * once for the whole context sequence and<b>contextItem</b> will be null. 	 *  	 * eXist tries to process the entire context set in one, single step whenever 	 * possible. Thus, most classes only expect context to contain a list of  	 * nodes which represents the current context of the expression.  	 *  	 * The position() function in XPath is an example for an expression, 	 * which requires both, context sequence and context item to be set. 	 * 	 * The context sequence might be a node set, a sequence of atomic values or a single 	 * node or atomic value.  	 *  	 * @param docs the set of documents all nodes belong to. 	 * @param contextSequence the current context sequence. 	 * @param contextItem a single item, taken from context. This defines the item, 	 * the expression should work on. 	 */
 specifier|public
 name|Sequence
@@ -100,21 +136,6 @@ name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
-function_decl|;
-comment|/** 	 * Set the parent expression of this expression. 	 *  	 * @param parent 	 */
-specifier|public
-name|void
-name|setParent
-parameter_list|(
-name|Expression
-name|parent
-parameter_list|)
-function_decl|;
-comment|/** 	 * Returns the parent expression of this expression. 	 *  	 * @return 	 */
-specifier|public
-name|Expression
-name|getParent
-parameter_list|()
 function_decl|;
 specifier|public
 name|void
@@ -157,11 +178,14 @@ name|boolean
 name|inPredicate
 parameter_list|)
 function_decl|;
-comment|/** 	 * Return a readable representation of this expression. 	 * 	 * This method is called whenever the xpath-query should be 	 * displayed to the user. 	 */
+comment|/** 	 * Write a diagnostic dump of the expression to the passed 	 * {@link ExpressionDumper}. 	 *   	 * @param dumper the expression dumper to write to 	 */
 specifier|public
-name|String
-name|pprint
-parameter_list|()
+name|void
+name|dump
+parameter_list|(
+name|ExpressionDumper
+name|dumper
+parameter_list|)
 function_decl|;
 specifier|public
 name|void

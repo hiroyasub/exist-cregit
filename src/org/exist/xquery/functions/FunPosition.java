@@ -305,15 +305,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-specifier|public
-name|String
-name|pprint
-parameter_list|()
-block|{
-return|return
-literal|"position()"
-return|;
-block|}
 block|}
 end_class
 

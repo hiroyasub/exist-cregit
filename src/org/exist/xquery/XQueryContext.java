@@ -2151,7 +2151,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//		variables.put(var.getQName(), var);
 if|if
 condition|(
 name|lastVar
@@ -2176,7 +2175,6 @@ operator|=
 name|var
 expr_stmt|;
 block|}
-comment|//		var.setStackPosition(variableStack.size());
 name|var
 operator|.
 name|setStackPosition
@@ -3407,6 +3405,15 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|path
+operator|.
+name|analyze
+argument_list|(
+literal|null
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 name|ExternalModule
 name|modExternal
 init|=

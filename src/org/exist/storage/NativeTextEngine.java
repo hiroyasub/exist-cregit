@@ -3941,7 +3941,7 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|IndexPaths
+name|FulltextIndexSpec
 name|idx
 parameter_list|,
 name|AttrImpl
@@ -4076,7 +4076,7 @@ specifier|public
 name|void
 name|storeText
 parameter_list|(
-name|IndexPaths
+name|FulltextIndexSpec
 name|idx
 parameter_list|,
 name|TextImpl

@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -228,6 +238,20 @@ parameter_list|(
 name|String
 name|path
 parameter_list|)
+function_decl|;
+comment|/** 	 * Return a diagnostic dump of the query. The query should have been executed 	 * before calling this function. 	 *  	 * @param expression 	 * @param writer 	 * @throws XMLDBException 	 */
+specifier|public
+name|void
+name|dump
+parameter_list|(
+name|CompiledExpression
+name|expression
+parameter_list|,
+name|Writer
+name|writer
+parameter_list|)
+throws|throws
+name|XMLDBException
 function_decl|;
 block|}
 end_interface

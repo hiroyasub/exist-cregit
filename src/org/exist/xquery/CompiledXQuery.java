@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -50,6 +60,7 @@ name|CompiledXQuery
 extends|extends
 name|CompiledExpression
 block|{
+comment|/**      * Set the compile time for this query. Used to check      * if a query is still valid or should be recompiled from      * its source.      *       * @param created      */
 specifier|public
 name|void
 name|setCreationTime
@@ -58,21 +69,25 @@ name|long
 name|created
 parameter_list|)
 function_decl|;
+comment|/**      * Returns the compile time of the query.      *       * @return      */
 specifier|public
 name|long
 name|getCreationTime
 parameter_list|()
 function_decl|;
+comment|/**      * Reset the compiled expression tree. Discard all      * temporary expression results.      */
 specifier|public
 name|void
 name|reset
 parameter_list|()
 function_decl|;
+comment|/**      * @return the {@link XQueryContext} used to create this query      */
 specifier|public
 name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
+comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *       * @param contextSequence      * @return      * @throws XPathException      */
 specifier|public
 name|Sequence
 name|eval
@@ -83,10 +98,20 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/**      * Is the compiled expression still valid? Returns false if, for example,      * the source code of one of the imported modules has changed.      *       * @return      */
 specifier|public
 name|boolean
 name|isValid
 parameter_list|()
+function_decl|;
+comment|/**      * Writes a diagnostic dump of the expression structure to the      * specified writer.      */
+specifier|public
+name|void
+name|dump
+parameter_list|(
+name|Writer
+name|writer
+parameter_list|)
 function_decl|;
 block|}
 end_interface

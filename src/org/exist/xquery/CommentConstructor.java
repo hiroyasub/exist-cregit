@@ -57,6 +57,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -112,6 +126,21 @@ operator|=
 name|data
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
@@ -166,16 +195,35 @@ return|return
 name|node
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
-name|String
-name|pprint
-parameter_list|()
+name|void
+name|dump
+parameter_list|(
+name|ExpressionDumper
+name|dumper
+parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+name|dumper
+operator|.
+name|nl
+argument_list|()
+operator|.
+name|display
+argument_list|(
+literal|"<!-- "
+argument_list|)
+operator|.
+name|display
+argument_list|(
+name|data
+argument_list|)
+operator|.
+name|display
+argument_list|(
+literal|"-->"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -862,13 +862,6 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
-name|call
-operator|.
-name|setParent
-argument_list|(
-name|parent
-argument_list|)
-expr_stmt|;
 name|step
 operator|=
 name|call
@@ -977,13 +970,6 @@ operator|.
 name|setArguments
 argument_list|(
 name|params
-argument_list|)
-expr_stmt|;
-name|func
-operator|.
-name|setParent
-argument_list|(
-name|parent
 argument_list|)
 expr_stmt|;
 name|step

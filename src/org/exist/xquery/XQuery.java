@@ -131,6 +131,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Sequence
@@ -407,14 +421,30 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Query:\n"
+literal|"Query diagnostics:\n"
 operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|expr
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|expr
 operator|.
-name|pprint
-argument_list|()
-operator|+
-literal|"\nCompilation took "
+name|analyze
+argument_list|(
+literal|null
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Compilation took "
 operator|+
 operator|(
 name|System

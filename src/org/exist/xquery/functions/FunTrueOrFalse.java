@@ -278,26 +278,6 @@ operator|.
 name|FALSE
 return|;
 block|}
-specifier|public
-name|String
-name|pprint
-parameter_list|()
-block|{
-if|if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"true"
-argument_list|)
-condition|)
-return|return
-literal|"true()"
-return|;
-else|else
-return|return
-literal|"false()"
-return|;
-block|}
 block|}
 end_class
 

@@ -67,6 +67,20 @@ name|XQueryWatchDog
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class to keep track of all running queries in a database instance. The main  * purpose of this class is to signal running queries that the database is going to  * shut down. This is done through the {@link org.exist.xquery.XQueryWatchDog}  * registered by each query. It is up to the query to check the watchdog's state.  * If it simply ignores the terminate signal, it will be killed after the shutdown  * timeout is reached.  *   * @author wolf  */
 end_comment
@@ -183,6 +197,10 @@ name|debug
 argument_list|(
 literal|"Killing query: "
 operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
 name|watchdog
 operator|.
 name|getContext
@@ -190,9 +208,7 @@ argument_list|()
 operator|.
 name|getRootExpression
 argument_list|()
-operator|.
-name|pprint
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|watchdog

@@ -816,7 +816,7 @@ specifier|abstract
 name|void
 name|storeText
 parameter_list|(
-name|IndexPaths
+name|FulltextIndexSpec
 name|idx
 parameter_list|,
 name|TextImpl
@@ -832,7 +832,7 @@ specifier|abstract
 name|void
 name|storeAttribute
 parameter_list|(
-name|IndexPaths
+name|FulltextIndexSpec
 name|idx
 parameter_list|,
 name|AttrImpl

@@ -666,6 +666,25 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 * Returns a diagnostic dump of the expression structure after 	 * compiling the query. The query is read from the query cache 	 * if it has already been run before. 	 *  	 * @param user 	 * @param query 	 * @return 	 * @throws EXistException 	 */
+specifier|public
+name|String
+name|printDiagnostics
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|query
+parameter_list|,
+name|Hashtable
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 name|String
 name|createResourceId
 parameter_list|(

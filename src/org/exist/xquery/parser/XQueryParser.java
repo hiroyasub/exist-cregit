@@ -402,7 +402,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The XQuery parser. eXist uses two steps to parse an XQuery expression:  * in the first step, the XQueryParser generates an abstract syntax tree (AST),  * which is - in the second step - passed to {@link XQueryTreeParser} for  * analysis. XQueryTreeParser finally creates an internal representation of  * the query.  */
+comment|/**  * The XQuery parser. eXist uses two steps to parse an XQuery expression:  * in the first step, the XQueryParser generates an abstract syntax tree (AST),  * which is - in the second step - passed to {@link XQueryTreeParser} for  * analysis. XQueryTreeParser finally creates an internal representation of  * the query from the tree of AST nodes.  */
 end_comment
 
 begin_class

@@ -376,6 +376,48 @@ operator|=
 name|specs
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int)      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|analyze
+argument_list|(
+name|parent
+argument_list|,
+name|flags
+argument_list|,
+name|orderSpecs
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+specifier|abstract
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|,
+name|OrderSpec
+name|orderBy
+index|[]
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
@@ -919,13 +961,6 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
-specifier|public
-specifier|abstract
-name|String
-name|pprint
-parameter_list|()
-function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int

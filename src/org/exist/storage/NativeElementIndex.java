@@ -393,18 +393,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|FastQSort
 import|;
 end_import
@@ -518,7 +506,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The indexing occurs in this class. That is, during the loading of a document  * into the database, the process of associating a long gid with each element,  * and the subsequent storing of the {@link NodeProxy} on disk.  * {@link reIndex} is the main method.  */
+comment|/** The indexing occurs in this class. That is, during the loading of a document  * into the database, the process of associating a long gid with each element,  * and the subsequent storing of the {@link NodeProxy} on disk.  */
 end_comment
 
 begin_class
@@ -563,9 +551,6 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|Configuration
-name|config
-parameter_list|,
 name|BFile
 name|dbElement
 parameter_list|)
@@ -573,8 +558,6 @@ block|{
 name|super
 argument_list|(
 name|broker
-argument_list|,
-name|config
 argument_list|)
 expr_stmt|;
 name|this
@@ -584,6 +567,7 @@ operator|=
 name|dbElement
 expr_stmt|;
 block|}
+comment|/**      * Add an index entry for the given QName and NodeProxy.      * Added entries are written to the list of pending entries. Call      * {@link #flush()} to flush all pending entries.      */
 specifier|public
 name|void
 name|addRow
@@ -1728,6 +1712,7 @@ name|result
 argument_list|)
 return|;
 block|}
+comment|/**      * Drop all index entries for the given collection.      *       * @param collection      */
 specifier|public
 name|void
 name|dropIndex
@@ -2494,6 +2479,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Drop all index entries for the given document.      *       * @param doc      * @throws ReadOnlyException      */
 specifier|public
 name|void
 name|dropIndex
@@ -2602,7 +2588,6 @@ name|byte
 index|[]
 name|data
 decl_stmt|;
-comment|// byte[] ndata;
 name|VariableByteArrayInput
 name|is
 decl_stmt|;
@@ -4421,6 +4406,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**      * Flush all pending index entries. This method is called while      * a document is stored.      */
 specifier|public
 name|void
 name|flush
@@ -4467,10 +4453,6 @@ literal|1
 decl_stmt|,
 name|len
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
 name|String
 name|name
 decl_stmt|;
@@ -4488,9 +4470,6 @@ name|prevId
 decl_stmt|;
 name|long
 name|cid
-decl_stmt|;
-name|long
-name|addr
 decl_stmt|;
 name|short
 name|collectionId

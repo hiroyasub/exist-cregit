@@ -1269,22 +1269,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-specifier|public
-name|String
-name|pprint
-parameter_list|()
-block|{
-return|return
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-operator|+
-literal|":"
-operator|+
-name|gid
-return|;
-block|}
 comment|/** 		 * Sets the nodeType. 		 * @param nodeType The nodeType to set 		 */
 specifier|public
 name|void

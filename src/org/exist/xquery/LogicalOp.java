@@ -249,13 +249,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
-specifier|public
-specifier|abstract
-name|String
-name|pprint
-parameter_list|()
-function_decl|;
 block|}
 end_class
 

@@ -107,6 +107,39 @@ operator|=
 name|right
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|left
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+name|right
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
@@ -121,13 +154,6 @@ name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException
-function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
-specifier|public
-specifier|abstract
-name|String
-name|pprint
-parameter_list|()
 function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public

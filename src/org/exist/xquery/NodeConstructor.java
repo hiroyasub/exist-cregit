@@ -155,13 +155,6 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
-specifier|public
-specifier|abstract
-name|String
-name|pprint
-parameter_list|()
-function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
