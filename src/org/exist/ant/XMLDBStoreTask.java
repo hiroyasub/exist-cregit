@@ -537,6 +537,11 @@ name|relDir
 expr_stmt|;
 block|}
 block|}
+else|else
+name|collection
+operator|=
+name|root
+expr_stmt|;
 name|resourceType
 operator|=
 name|type
