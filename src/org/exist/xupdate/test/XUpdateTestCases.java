@@ -265,6 +265,23 @@ literal|"address.xml"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|namespaces
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|test
+operator|.
+name|doTest
+argument_list|(
+literal|"namespaces"
+argument_list|,
+literal|"namespaces.xml"
+argument_list|)
+expr_stmt|;
+block|}
 comment|//<add a new TestCase Method here>
 comment|// TestCases End
 block|}
