@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -95,7 +105,7 @@ name|Main
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Start the included Jetty server using reflection. The ClassLoader is set up through eXist's 	 * bootstrap loader, so the wrapper doesn't need to know all jars. 	 *  	 * @see org.tanukisoftware.wrapper.WrapperListener#start(java.lang.String[]) 	 */
+comment|/** 	 * Start the included Jetty server using reflection. The ClassLoader is set up through eXist's 	 * bootstrap loader, so the wrapper doesn't need to know all jars. 	 *  	 * The first argument passed to this method determines the run mode. It should 	 * be either "jetty" or "standalone". 	 *  	 * @see org.tanukisoftware.wrapper.WrapperListener#start(java.lang.String[]) 	 */
 specifier|public
 name|Integer
 name|start
@@ -132,6 +142,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// use the bootstrap loader to autodetect EXIST_HOME and
+comment|// construct a correct classpath
 name|org
 operator|.
 name|exist
@@ -150,7 +162,10 @@ name|start
 operator|.
 name|Main
 argument_list|(
-literal|"jetty"
+name|args
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 name|File
@@ -193,6 +208,19 @@ argument_list|(
 name|cl
 argument_list|)
 expr_stmt|;
+comment|// determine class to load
+if|if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|equals
+argument_list|(
+literal|"jetty"
+argument_list|)
+condition|)
 name|klazz
 operator|=
 name|cl
@@ -202,6 +230,17 @@ argument_list|(
 literal|"org.exist.JettyStart"
 argument_list|)
 expr_stmt|;
+else|else
+name|klazz
+operator|=
+name|cl
+operator|.
+name|loadClass
+argument_list|(
+literal|"org.exist.StandaloneServer"
+argument_list|)
+expr_stmt|;
+comment|// find the run() method in the class
 name|Class
 index|[]
 name|methodParamTypes
@@ -234,12 +273,55 @@ argument_list|,
 name|methodParamTypes
 argument_list|)
 decl_stmt|;
+comment|// create a new instance and invoke the run() method
 name|app
 operator|=
 name|klazz
 operator|.
 name|newInstance
 argument_list|()
+expr_stmt|;
+name|String
+index|[]
+name|myArgs
+init|=
+operator|new
+name|String
+index|[
+name|args
+operator|.
+name|length
+operator|-
+literal|1
+index|]
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|args
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|myArgs
+index|[
+name|i
+operator|-
+literal|1
+index|]
+operator|=
+name|args
+index|[
+name|i
+index|]
 expr_stmt|;
 name|Object
 index|[]
@@ -256,7 +338,7 @@ index|[
 literal|0
 index|]
 operator|=
-name|args
+name|myArgs
 expr_stmt|;
 name|method
 operator|.
