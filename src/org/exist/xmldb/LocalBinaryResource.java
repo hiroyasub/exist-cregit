@@ -243,6 +243,18 @@ name|rawData
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|Date
+name|datecreated
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
+name|Date
+name|datemodified
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|LocalBinaryResource
