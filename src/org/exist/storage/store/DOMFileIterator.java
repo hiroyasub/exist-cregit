@@ -413,11 +413,6 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|offset
