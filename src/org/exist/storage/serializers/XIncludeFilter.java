@@ -541,7 +541,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName) 	 */
+comment|/** 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName) 	 */
 specifier|public
 name|void
 name|endElement
@@ -619,6 +619,36 @@ argument_list|(
 name|target
 argument_list|,
 name|data
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * @see org.exist.util.serializer.Receiver#cdataSection(char[], int, int)      */
+specifier|public
+name|void
+name|cdataSection
+parameter_list|(
+name|char
+index|[]
+name|ch
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|)
+throws|throws
+name|SAXException
+block|{
+name|receiver
+operator|.
+name|cdataSection
+argument_list|(
+name|ch
+argument_list|,
+name|start
+argument_list|,
+name|len
 argument_list|)
 expr_stmt|;
 block|}

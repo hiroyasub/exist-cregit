@@ -49,7 +49,6 @@ interface|interface
 name|Receiver
 block|{
 specifier|public
-specifier|abstract
 name|void
 name|startDocument
 parameter_list|()
@@ -57,7 +56,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|endDocument
 parameter_list|()
@@ -88,7 +86,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|startElement
 parameter_list|(
@@ -102,7 +99,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|endElement
 parameter_list|(
@@ -113,7 +109,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|characters
 parameter_list|(
@@ -124,7 +119,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|attribute
 parameter_list|(
@@ -138,7 +132,6 @@ throws|throws
 name|SAXException
 function_decl|;
 specifier|public
-specifier|abstract
 name|void
 name|comment
 parameter_list|(
@@ -151,6 +144,23 @@ name|start
 parameter_list|,
 name|int
 name|length
+parameter_list|)
+throws|throws
+name|SAXException
+function_decl|;
+specifier|public
+name|void
+name|cdataSection
+parameter_list|(
+name|char
+index|[]
+name|ch
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 throws|throws
 name|SAXException
