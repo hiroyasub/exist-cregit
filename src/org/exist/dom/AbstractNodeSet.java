@@ -3190,7 +3190,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
-comment|//		long start = System.currentTimeMillis();
+comment|//ExtArrayNodeSet r = new ExtArrayNodeSet();
 name|AVLTreeNodeSet
 name|r
 init|=
@@ -3361,7 +3361,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//		LOG.debug("deep intersection took " + (System.currentTimeMillis() - start));
 return|return
 name|r
 return|;
@@ -3742,17 +3741,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|current
-operator|.
-name|gid
-argument_list|)
-expr_stmt|;
 name|contextNode
 operator|=
 name|current
@@ -3779,19 +3767,6 @@ operator|.
 name|addMatches
 argument_list|(
 name|current
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"context: "
-operator|+
-name|context
-operator|.
-name|gid
 argument_list|)
 expr_stmt|;
 if|if
