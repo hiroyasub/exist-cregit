@@ -1906,6 +1906,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|Date
+name|getDate
+parameter_list|()
+block|{
+return|return
+name|calendar
+operator|.
+name|getTime
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
