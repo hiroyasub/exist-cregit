@@ -2106,12 +2106,19 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+comment|//TODO does the next line have to be this complicated?
 name|Schema
 name|schema
 init|=
 operator|(
 operator|new
 name|SchemaReader
+argument_list|(
+operator|new
+name|InputSource
+argument_list|(
+operator|new
+name|StringReader
 argument_list|(
 operator|(
 name|String
@@ -2120,6 +2127,8 @@ name|resource
 operator|.
 name|getContent
 argument_list|()
+argument_list|)
+argument_list|)
 argument_list|)
 operator|)
 operator|.
@@ -2469,7 +2478,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 return|return
 name|updateService
 return|;
