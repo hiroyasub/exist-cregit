@@ -420,6 +420,11 @@ literal|"!"
 argument_list|)
 throw|;
 block|}
+name|int
+name|c
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|contextNode
@@ -427,6 +432,9 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|c
+operator|++
+expr_stmt|;
 name|next
 operator|=
 name|contextNode
