@@ -516,6 +516,32 @@ name|NativeElementIndex
 extends|extends
 name|ElementIndex
 block|{
+specifier|public
+specifier|static
+name|long
+name|accTime
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|static
+name|long
+name|getTime
+parameter_list|()
+block|{
+return|return
+name|accTime
+operator|/
+name|count
+return|;
+block|}
 specifier|private
 specifier|static
 name|Logger
@@ -693,7 +719,15 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
-comment|//    	final long start = System.currentTimeMillis();
+specifier|final
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 specifier|final
 name|ExtArrayNodeSet
 name|result
@@ -1150,14 +1184,49 @@ block|}
 block|}
 comment|//        LOG.debug(debug.toString());
 comment|//		result.sort();
-comment|//        LOG.debug(
-comment|//        		"found "
-comment|//        		+ qname
-comment|//				+ ": "
-comment|//				+ result.getLength()
-comment|//				+ " in "
-comment|//				+ (System.currentTimeMillis() - start)
-comment|//				+ "ms.");
+name|count
+operator|++
+expr_stmt|;
+name|accTime
+operator|+=
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found "
+operator|+
+name|qname
+operator|+
+literal|": "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|"ms."
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

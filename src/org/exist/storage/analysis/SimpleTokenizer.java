@@ -719,6 +719,11 @@ parameter_list|)
 block|{
 try|try
 block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 name|TextToken
 name|token
 init|=
@@ -1183,12 +1188,8 @@ return|return
 name|token
 return|;
 default|default :
-return|return
-name|nextToken
-argument_list|(
-name|wildcards
-argument_list|)
-return|;
+comment|// fall through to start of while loop
+block|}
 block|}
 block|}
 catch|catch
