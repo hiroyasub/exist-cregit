@@ -27,16 +27,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -323,22 +313,17 @@ operator|+
 literal|"attribute 'src'"
 argument_list|)
 throw|;
-comment|// save system properties
-name|Properties
-name|props
+name|String
+name|origProperty
 init|=
 name|System
 operator|.
-name|getProperties
-argument_list|()
+name|getProperty
+argument_list|(
+literal|"javax.xml.transform.TransformerFactory"
+argument_list|)
 decl_stmt|;
-name|String
-name|oldProp
-init|=
-operator|(
-name|String
-operator|)
-name|props
+name|System
 operator|.
 name|setProperty
 argument_list|(
@@ -346,7 +331,7 @@ literal|"javax.xml.transform.TransformerFactory"
 argument_list|,
 literal|"net.sf.joost.trax.TransformerFactoryImpl"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|factory
 operator|=
 operator|(
@@ -360,25 +345,17 @@ expr_stmt|;
 comment|// reset property to previous setting
 if|if
 condition|(
-name|oldProp
+name|origProperty
 operator|!=
 literal|null
 condition|)
-name|props
+name|System
 operator|.
 name|setProperty
 argument_list|(
 literal|"javax.xml.transform.TransformerFactory"
 argument_list|,
-name|oldProp
-argument_list|)
-expr_stmt|;
-else|else
-name|props
-operator|.
-name|remove
-argument_list|(
-literal|"javax.xml.transform.TransformerFactory"
+name|origProperty
 argument_list|)
 expr_stmt|;
 name|getLogger
