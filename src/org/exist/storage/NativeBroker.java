@@ -3406,6 +3406,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
 name|collection
 operator|.
 name|release
