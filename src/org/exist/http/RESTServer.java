@@ -3299,13 +3299,6 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
-name|startTime
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
 return|return
 name|printResults
 argument_list|(

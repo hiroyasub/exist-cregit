@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000,  Wolfgang Meier (wolfgang@exist-db.org)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id  *   */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang Meier (wolfgang@exist-db.org)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  *   */
 end_comment
 
 begin_package
@@ -111,10 +111,6 @@ name|AttributesImpl
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    27. Juni 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -147,7 +143,6 @@ name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CharacterDataImpl object      *      *@param  nodeType  Description of the Parameter      *@param  gid       Description of the Parameter      */
 specifier|public
 name|CharacterDataImpl
 parameter_list|(
@@ -170,7 +165,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CharacterDataImpl object      *      *@param  nodeType  Description of the Parameter      *@param  gid       Description of the Parameter      *@param  data      Description of the Parameter      */
 specifier|public
 name|CharacterDataImpl
 parameter_list|(
@@ -207,7 +201,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CharacterDataImpl object      *      *@param  nodeType  Description of the Parameter      *@param  data      Description of the Parameter      */
 specifier|public
 name|CharacterDataImpl
 parameter_list|(
@@ -239,7 +232,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CharacterDataImpl object      *      *@param  nodeType  Description of the Parameter      *@param  data      Description of the Parameter      *@param  start     Description of the Parameter      *@param  howmany   Description of the Parameter      */
 specifier|public
 name|CharacterDataImpl
 parameter_list|(
@@ -290,7 +282,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|appendData
@@ -327,7 +318,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data              Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|appendData
@@ -376,7 +366,6 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|deleteData
@@ -406,7 +395,6 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Gets the data attribute of the CharacterDataImpl object      *      *@return                   The data value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|String
 name|getData
@@ -467,7 +455,6 @@ name|toLowerCase
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the length attribute of the CharacterDataImpl object      *      *@return    The length value      */
 specifier|public
 name|int
 name|getLength
@@ -480,7 +467,6 @@ name|length
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the nodeValue attribute of the CharacterDataImpl object      *      *@return    The nodeValue value      */
 specifier|public
 name|String
 name|getNodeValue
@@ -493,7 +479,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|insertData
@@ -535,7 +520,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|replaceData
@@ -581,7 +565,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Sets the data attribute of the CharacterDataImpl object      *      *@param  data              The new data value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|setData
@@ -643,7 +626,6 @@ operator|=
 name|data
 expr_stmt|;
 block|}
-comment|/**      *  Sets the data attribute of the CharacterDataImpl object      *      *@param  data              The new data value      *@param  start             The new data value      *@param  howmany           The new data value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|setData
@@ -692,7 +674,6 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|String
 name|substringData
@@ -734,7 +715,6 @@ name|count
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  contentHandler    Description of the Parameter      *@param  lexicalHandler    Description of the Parameter      *@param  first             Description of the Parameter      *@param  prefixes          Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|toSAX
@@ -878,7 +858,6 @@ literal|"exist:text"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|toString
@@ -900,6 +879,23 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+comment|/**      * Release all resources hold by this object.      */
+specifier|public
+name|void
+name|release
+parameter_list|()
+block|{
+name|cdata
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

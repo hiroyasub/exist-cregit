@@ -327,6 +327,13 @@ argument_list|,
 name|qn
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|attributes
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// parse attributes
 name|String
 name|attrPrefix
@@ -464,6 +471,7 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// update links
@@ -613,22 +621,6 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"appending attribute as text; last = "
-operator|+
-name|doc
-operator|.
-name|nodeKind
-index|[
-name|lastNode
-index|]
-argument_list|)
-expr_stmt|;
 name|characters
 argument_list|(
 name|value

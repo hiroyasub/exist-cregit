@@ -375,7 +375,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// process the remaining attributes
+comment|// process the remaining attributesCharArr
 for|for
 control|(
 name|Iterator

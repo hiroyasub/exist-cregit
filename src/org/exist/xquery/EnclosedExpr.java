@@ -224,9 +224,7 @@ decl_stmt|;
 name|StringBuffer
 name|buf
 init|=
-operator|new
-name|StringBuffer
-argument_list|()
+literal|null
 decl_stmt|;
 while|while
 condition|(
@@ -255,6 +253,18 @@ argument_list|)
 condition|)
 block|{
 if|if
+condition|(
+name|buf
+operator|==
+literal|null
+condition|)
+name|buf
+operator|=
+operator|new
+name|StringBuffer
+argument_list|()
+expr_stmt|;
+if|else if
 condition|(
 name|buf
 operator|.
@@ -308,6 +318,10 @@ block|{
 if|if
 condition|(
 name|buf
+operator|!=
+literal|null
+operator|&&
+name|buf
 operator|.
 name|length
 argument_list|()
@@ -353,6 +367,10 @@ block|}
 block|}
 if|if
 condition|(
+name|buf
+operator|!=
+literal|null
+operator|&&
 name|buf
 operator|.
 name|length

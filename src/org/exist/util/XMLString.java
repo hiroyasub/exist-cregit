@@ -993,13 +993,12 @@ literal|0xA
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#finalize() 	 */
-specifier|protected
+comment|/** 	 * Release all resources hold by this XMLString. 	 */
+specifier|public
+specifier|final
 name|void
-name|finalize
+name|release
 parameter_list|()
-throws|throws
-name|Throwable
 block|{
 name|CharArrayPool
 operator|.

@@ -68,9 +68,9 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|size
-operator|<
 name|MAX
+operator|>
+name|size
 condition|)
 block|{
 specifier|final
@@ -94,15 +94,16 @@ control|(
 name|int
 name|i
 init|=
+literal|0
+init|;
+name|i
+operator|<
 name|pool
 operator|.
 name|length
-init|;
-name|i
-operator|--
-operator|>
-literal|0
 condition|;
+name|i
+operator|++
 control|)
 block|{
 if|if
@@ -124,7 +125,6 @@ operator|==
 name|size
 condition|)
 block|{
-comment|//System.out.println("found char[" + size + "]");
 name|char
 index|[]
 name|b
@@ -180,7 +180,6 @@ operator|>
 name|MAX
 condition|)
 return|return;
-comment|//System.out.println("releasing char[" + b.length + "]");
 specifier|final
 name|char
 index|[]
@@ -202,15 +201,16 @@ control|(
 name|int
 name|i
 init|=
+literal|0
+init|;
+name|i
+operator|<
 name|pool
 operator|.
 name|length
-init|;
-name|i
-operator|--
-operator|>
-literal|0
 condition|;
+name|i
+operator|++
 control|)
 block|{
 if|if

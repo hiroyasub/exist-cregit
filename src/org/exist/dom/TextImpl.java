@@ -110,7 +110,6 @@ name|TEXT_NODE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the TextImpl object      *      *@param  gid  Description of the Parameter      */
 specifier|public
 name|TextImpl
 parameter_list|(
@@ -128,7 +127,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the TextImpl object      *      *@param  data  Description of the Parameter      */
 specifier|public
 name|TextImpl
 parameter_list|(
@@ -146,7 +144,6 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the TextImpl object      *      *@param  gid   Description of the Parameter      *@param  data  Description of the Parameter      */
 specifier|public
 name|TextImpl
 parameter_list|(
@@ -169,7 +166,6 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the TextImpl object      *      *@param  data     Description of the Parameter      *@param  start    Description of the Parameter      *@param  howmany  Description of the Parameter      */
 specifier|public
 name|TextImpl
 parameter_list|(
@@ -212,18 +208,42 @@ name|start
 parameter_list|,
 name|int
 name|len
+parameter_list|,
+name|boolean
+name|pooled
 parameter_list|)
 block|{
-specifier|final
 name|TextImpl
 name|text
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|pooled
+condition|)
+name|text
+operator|=
+operator|(
+name|TextImpl
+operator|)
+name|NodeObjectPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|borrowNode
+argument_list|(
+name|TextImpl
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+else|else
+name|text
+operator|=
 operator|new
 name|TextImpl
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
+argument_list|()
+expr_stmt|;
 name|text
 operator|.
 name|cdata
@@ -243,12 +263,19 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+name|text
+operator|.
+name|nodeName
+operator|=
+name|QName
+operator|.
+name|TEXT_QNAME
+expr_stmt|;
 comment|/*try {              text.appendData(new String( data, start + 1, len - 1, "UTF-8" ));         } catch ( UnsupportedEncodingException uee ) {             text.appendData(new String( data, start + 1, len - 1 ));         }*/
 return|return
 name|text
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|appendData
@@ -267,7 +294,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data              Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|appendData
@@ -297,7 +323,6 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|deleteData
@@ -321,7 +346,6 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Gets the length attribute of the TextImpl object      *      *@return    The length value      */
 specifier|public
 name|int
 name|getLength
@@ -334,7 +358,6 @@ name|getLength
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the nodeValue attribute of the TextImpl object      *      *@return    The nodeValue value      */
 specifier|public
 name|String
 name|getNodeValue
@@ -347,7 +370,6 @@ name|getNodeValue
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|insertData
@@ -371,7 +393,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@param  arg               Description of the Parameter      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|replaceData
@@ -400,7 +421,6 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|byte
 index|[]
@@ -452,7 +472,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      *  Sets the nodeValue attribute of the TextImpl object      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|void
 name|setNodeValue
@@ -471,7 +490,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|Text
 name|splitText
@@ -486,7 +504,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  offset            Description of the Parameter      *@param  count             Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
 specifier|public
 name|String
 name|substringData
@@ -511,7 +528,6 @@ name|count
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  top  Description of the Parameter      *@return      Description of the Return Value      */
 specifier|public
 name|String
 name|toString
@@ -612,7 +628,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|toString

@@ -5276,7 +5276,6 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-comment|// TODO: 10 is wrong
 name|int
 name|end
 init|=
@@ -5880,18 +5879,6 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"previous = "
-operator|+
-name|ph
-operator|.
-name|getPrevDataPage
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|ph
@@ -5914,18 +5901,6 @@ name|getPrevDataPage
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"previous = "
-operator|+
-name|prev
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|prev
 operator|.
 name|getPageHeader
@@ -5962,13 +5937,6 @@ name|setNextDataPage
 argument_list|(
 operator|-
 literal|1
-argument_list|)
-expr_stmt|;
-name|ph
-operator|.
-name|setDataLength
-argument_list|(
-literal|0
 argument_list|)
 expr_stmt|;
 name|ph
@@ -6301,6 +6269,14 @@ operator|+
 literal|"< "
 operator|+
 name|l
+operator|+
+literal|": "
+operator|+
+operator|new
+name|String
+argument_list|(
+name|value
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|System

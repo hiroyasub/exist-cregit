@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000,  Wolfgang Meier (meier@ifs.tu-darmstadt.de)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang Meier (meier@ifs.tu-darmstadt.de)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -51,7 +51,7 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|Category
+name|Logger
 import|;
 end_import
 
@@ -191,19 +191,16 @@ block|{
 specifier|private
 specifier|final
 specifier|static
-name|Category
+name|Logger
 name|LOG
 init|=
-name|Category
+name|Logger
 operator|.
-name|getInstance
+name|getLogger
 argument_list|(
 name|NodeImpl
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -230,13 +227,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|int
-name|nodeNameRef
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|protected
 name|short
 name|nodeType
 init|=
@@ -248,13 +238,11 @@ name|ownerDocument
 init|=
 literal|null
 decl_stmt|;
-comment|/**  Constructor for the NodeImpl object */
-specifier|public
+specifier|private
 name|NodeImpl
 parameter_list|()
 block|{
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -272,7 +260,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  n  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -311,7 +298,6 @@ name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  gid  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -340,7 +326,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  gid       Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -369,7 +354,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  nodeName  Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -390,7 +374,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the NodeImpl object 	 * 	 *@param  nodeType  Description of the Parameter 	 *@param  nodeName  Description of the Parameter 	 *@param  gid       Description of the Parameter 	 */
 specifier|public
 name|NodeImpl
 parameter_list|(
@@ -461,7 +444,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/** 	 *  Deserialize a node from a byte array. 	 * 	 *@param  data  Description of the Parameter 	 *@param  doc   Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
 specifier|public
 specifier|static
 name|NodeImpl
@@ -479,6 +462,9 @@ name|len
 parameter_list|,
 name|DocumentImpl
 name|doc
+parameter_list|,
+name|boolean
+name|pooled
 parameter_list|)
 block|{
 name|short
@@ -514,6 +500,8 @@ argument_list|,
 name|start
 argument_list|,
 name|len
+argument_list|,
+name|pooled
 argument_list|)
 return|;
 case|case
@@ -533,6 +521,8 @@ argument_list|,
 name|len
 argument_list|,
 name|doc
+argument_list|,
+name|pooled
 argument_list|)
 return|;
 case|case
@@ -552,6 +542,8 @@ argument_list|,
 name|len
 argument_list|,
 name|doc
+argument_list|,
+name|pooled
 argument_list|)
 return|;
 case|case
@@ -569,6 +561,8 @@ argument_list|,
 name|start
 argument_list|,
 name|len
+argument_list|,
+name|pooled
 argument_list|)
 return|;
 case|case
@@ -586,6 +580,8 @@ argument_list|,
 name|start
 argument_list|,
 name|len
+argument_list|,
+name|pooled
 argument_list|)
 return|;
 default|default :
@@ -600,6 +596,41 @@ return|return
 literal|null
 return|;
 block|}
+block|}
+comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
+specifier|public
+specifier|static
+name|NodeImpl
+name|deserialize
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|,
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+return|return
+name|deserialize
+argument_list|(
+name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
+argument_list|,
+name|doc
+argument_list|,
+literal|false
+argument_list|)
+return|;
 block|}
 comment|/** 	 * Reset this object to its initial state. Required by the 	 * parser to be able to reuse node objects. 	 */
 specifier|public
@@ -728,7 +759,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|long
 name|firstChildID
@@ -748,7 +778,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Method getAttributesCount. 	 * @return short 	 */
 specifier|public
 name|short
 name|getAttributesCount
@@ -758,7 +787,7 @@ return|return
 name|attributes
 return|;
 block|}
-comment|/** 	 *  Gets the broker attribute of the NodeImpl object 	 * 	 *@return    The broker value 	 */
+comment|/** 	 * Return the broker instance used to create this node. 	 *  	 * @return 	 */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -773,7 +802,6 @@ operator|.
 name|broker
 return|;
 block|}
-comment|/** 	 * Method getChildCount. 	 * @return int 	 */
 specifier|public
 name|int
 name|getChildCount
@@ -783,7 +811,6 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** 	 *  Gets the childNodes attribute of the NodeImpl object 	 * 	 *@return    The childNodes value 	 */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -808,7 +835,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Get the unique identifier assigned to this node 	 * 	 *@return    The gID value 	 */
+comment|/** 	 *  Get the unique identifier assigned to this node. 	 * 	 *@return 	 */
 specifier|public
 name|long
 name|getGID
@@ -1665,7 +1692,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  contentHandler    Description of the Parameter 	 *@param  lexicalHandler    Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -1696,7 +1722,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  contentHandler    Description of the Parameter 	 *@param  lexicalHandler    Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@param  prefixes          Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -1717,7 +1742,6 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|toString
@@ -1763,7 +1787,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  top  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|String
 name|toString
@@ -1776,32 +1799,6 @@ return|return
 name|toString
 argument_list|()
 return|;
-block|}
-comment|/** 	* Returns the nodeNameRef. 	* @return int 	*/
-specifier|public
-name|int
-name|getNodeNameRef
-parameter_list|()
-block|{
-return|return
-name|nodeNameRef
-return|;
-block|}
-comment|/** 	 * Sets the nodeNameRef. 	 * @param nodeNameRef The nodeNameRef to set 	 */
-specifier|public
-name|void
-name|setNodeNameRef
-parameter_list|(
-name|int
-name|nodeNameRef
-parameter_list|)
-block|{
-name|this
-operator|.
-name|nodeNameRef
-operator|=
-name|nodeNameRef
-expr_stmt|;
 block|}
 specifier|protected
 name|NodeImpl
@@ -1951,12 +1948,6 @@ return|return
 name|node
 return|;
 block|}
-comment|//	protected NodeImpl getLastNode(NodeImpl node) {
-comment|//		if (node.getNodeType() == Node.ELEMENT_NODE)
-comment|//			return node.getChildCount() == 0 ? node : getLastNode((NodeImpl) node.getLastChild());
-comment|//		else
-comment|//			return node;
-comment|//	}
 comment|/** 		 * Update a child node. This method will only update the child node 		 * but not its potential descendant nodes. 		 *  		 * @param oldChild 		 * @param newChild 		 * @throws DOMException 		 */
 specifier|public
 name|void
@@ -1982,6 +1973,26 @@ argument_list|,
 literal|"method not allowed on this node type"
 argument_list|)
 throw|;
+block|}
+comment|/** 	 * Release all memory resources hold by this node.  	 */
+specifier|public
+name|void
+name|release
+parameter_list|()
+block|{
+name|clear
+argument_list|()
+expr_stmt|;
+name|NodeObjectPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|returnNode
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

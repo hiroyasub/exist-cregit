@@ -46,7 +46,11 @@ name|DocumentFragmentImpl
 parameter_list|()
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|Node
+operator|.
+name|DOCUMENT_FRAGMENT_NODE
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public

@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  *  CommentImpl.java  *  *  Created on 14. Mai 2001, 12:09  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -107,10 +103,6 @@ name|LexicalHandler
 import|;
 end_import
 
-begin_comment
-comment|/**  *@author     klaus  *@created    9. Juli 2002  *@version  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -120,7 +112,18 @@ name|CharacterDataImpl
 implements|implements
 name|Comment
 block|{
-comment|/**      *  Constructor for the CommentImpl object      *      *@param  gid  Description of the Parameter      */
+specifier|public
+name|CommentImpl
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|Node
+operator|.
+name|COMMENT_NODE
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|CommentImpl
 parameter_list|(
@@ -138,7 +141,6 @@ name|gid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CommentImpl object      *      *@param  gid   Description of the Parameter      *@param  data  Description of the Parameter      */
 specifier|public
 name|CommentImpl
 parameter_list|(
@@ -161,7 +163,6 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CommentImpl object      *      *@param  data  Description of the Parameter      */
 specifier|public
 name|CommentImpl
 parameter_list|(
@@ -179,7 +180,6 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the CommentImpl object      *      *@param  data     Description of the Parameter      *@param  start    Description of the Parameter      *@param  howmany  Description of the Parameter      */
 specifier|public
 name|CommentImpl
 parameter_list|(
@@ -208,7 +208,6 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|String
 name|toString
@@ -249,7 +248,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  contentHandler    Description of the Parameter      *@param  lexicalHandler    Description of the Parameter      *@param  first             Description of the Parameter      *@param  prefixes          Description of the Parameter      *@exception  SAXException  Description of the Exception      */
 specifier|public
 name|void
 name|toSAX
@@ -303,7 +301,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
 specifier|public
 name|byte
 index|[]
@@ -397,7 +394,6 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@return       Description of the Return Value      */
 specifier|public
 specifier|static
 name|NodeImpl
@@ -412,6 +408,9 @@ name|start
 parameter_list|,
 name|int
 name|len
+parameter_list|,
+name|boolean
+name|pooled
 parameter_list|)
 block|{
 name|String
@@ -463,19 +462,49 @@ expr_stmt|;
 block|}
 name|CommentImpl
 name|comment
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|pooled
+condition|)
+name|comment
+operator|=
+operator|(
+name|CommentImpl
+operator|)
+name|NodeObjectPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|borrowNode
+argument_list|(
+name|CommentImpl
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+else|else
+name|comment
+operator|=
 operator|new
 name|CommentImpl
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
+argument_list|()
+expr_stmt|;
 name|comment
 operator|.
 name|appendData
 argument_list|(
 name|cdata
 argument_list|)
+expr_stmt|;
+name|comment
+operator|.
+name|nodeName
+operator|=
+name|QName
+operator|.
+name|COMMENT_QNAME
 expr_stmt|;
 return|return
 name|comment

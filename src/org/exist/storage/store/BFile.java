@@ -2080,24 +2080,6 @@ operator|<
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"no data found at tid "
-operator|+
-name|tid
-operator|+
-literal|"; page "
-operator|+
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|IOException
@@ -4978,7 +4960,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"removing "
 operator|+
@@ -4995,17 +4977,31 @@ literal|" free pages."
 argument_list|)
 expr_stmt|;
 comment|// no: remove some smaller entries to make it fit
-name|skip
-operator|=
+comment|//				skip = freeList.size() - MAX_FREE_LIST_LEN;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
 name|freeList
 operator|.
 name|size
 argument_list|()
 operator|-
 name|MAX_FREE_LIST_LEN
+condition|;
+name|i
+operator|++
+control|)
+name|freeList
+operator|.
+name|removeFirst
+argument_list|()
 expr_stmt|;
-comment|//				for (int i = 0; i< freeList.size() - MAX_FREE_LIST_LEN; i++)
-comment|//					freeList.removeFirst();
 block|}
 name|super
 operator|.
@@ -5045,32 +5041,9 @@ name|iterator
 argument_list|()
 decl_stmt|;
 comment|// skip
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|skip
-operator|&&
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-block|}
+comment|//			for(int j = 0; j< skip&& i.hasNext(); j++) {
+comment|//				i.next();
+comment|//			}
 while|while
 condition|(
 name|i

@@ -424,13 +424,16 @@ name|namespaceMappings
 init|=
 literal|null
 decl_stmt|;
-comment|/**  Constructor for the ElementImpl object */
 specifier|public
 name|ElementImpl
 parameter_list|()
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|Node
+operator|.
+name|ELEMENT_NODE
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 *  Constructor for the ElementImpl object 	 * 	 *@param  gid  Description of the Parameter 	 */
@@ -544,6 +547,9 @@ name|len
 parameter_list|,
 name|DocumentImpl
 name|doc
+parameter_list|,
+name|boolean
+name|pooled
 parameter_list|)
 block|{
 name|byte
@@ -781,23 +787,53 @@ argument_list|)
 decl_stmt|;
 name|ElementImpl
 name|node
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|pooled
+condition|)
+name|node
+operator|=
+operator|(
+name|ElementImpl
+operator|)
+name|NodeObjectPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|borrowNode
+argument_list|(
+name|ElementImpl
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+else|else
+name|node
+operator|=
 operator|new
 name|ElementImpl
+argument_list|()
+expr_stmt|;
+name|node
+operator|.
+name|nodeName
+operator|=
+name|doc
+operator|.
+name|getSymbols
+argument_list|()
+operator|.
+name|getQName
 argument_list|(
-literal|0
-argument_list|,
-operator|new
-name|QName
-argument_list|(
-name|name
-argument_list|,
 name|namespace
+argument_list|,
+name|name
 argument_list|,
 name|prefix
 argument_list|)
-argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|node
 operator|.
 name|children
@@ -943,23 +979,6 @@ block|}
 block|}
 return|return
 name|node
-return|;
-block|}
-specifier|public
-name|int
-name|getSymbol
-parameter_list|()
-block|{
-return|return
-name|ownerDocument
-operator|.
-name|getSymbols
-argument_list|()
-operator|.
-name|getSymbol
-argument_list|(
-name|this
-argument_list|)
 return|;
 block|}
 specifier|public
@@ -2407,27 +2426,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
-comment|//	public String getNamespaceURI() {
-comment|//
-comment|//		if (nodeName != null&& nodeName.indexOf(':')< 0&& declaresNamespacePrefixes()) {
-comment|//			// check for default namespaces
-comment|//			String ns;
-comment|//			for (Iterator i = prefixes.iterator(); i.hasNext();) {
-comment|//				ns = (String) i.next();
-comment|//				if (ns.startsWith("#"))
-comment|//					return ownerDocument.broker.getNamespaceURI(ns);
-comment|//			}
-comment|//		}
-comment|//		if (nodeName != null&& nodeName.indexOf(':')> -1) {
-comment|//			String prefix = nodeName.substring(0, nodeName.indexOf(':'));
-comment|//			if (!prefix.equals("xml")) {
-comment|//				return ownerDocument.broker.getNamespaceURI(prefix);
-comment|//			}
-comment|//		}
-comment|//		return "";
-comment|//	}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|declaresNamespacePrefixes
@@ -3163,10 +3161,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getNodeName() 	 */
-comment|//	public String getNodeName() {
-comment|//		return nodeName;
-comment|//	}
 comment|/** 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
 specifier|public
 name|String
@@ -3178,24 +3172,6 @@ block|{
 return|return
 literal|null
 return|;
-comment|//        if ( !loaded )
-comment|//            loaded = ownerDocument.broker.elementWith( this );
-comment|//
-comment|//        StringBuffer buf = new StringBuffer();
-comment|//        long start = firstChildID();
-comment|//        Node child;
-comment|//        String childData;
-comment|//        for ( long i = start; i< start + children; i++ ) {
-comment|//            child = ownerDocument.getNode( i );
-comment|//            if ( child.getNodeType() == Node.TEXT_NODE ||
-comment|//                child.getNodeType() == Node.ELEMENT_NODE ) {
-comment|//                childData = child.getNodeValue();
-comment|//                if ( childData != null )
-comment|//                    buf.append( childData );
-comment|//
-comment|//            }
-comment|//        }
-comment|//        return buf.toString();
 block|}
 comment|/** 	 * @see org.w3c.dom.Element#getTagName() 	 */
 specifier|public
@@ -3455,7 +3431,6 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  oldAttr           Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Attr
 name|removeAttributeNode
@@ -3470,7 +3445,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|byte
 index|[]
@@ -3982,7 +3956,6 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 *  Sets the attribute attribute of the ElementImpl object 	 * 	 *@param  name              The new attribute value 	 *@param  value             The new attribute value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setAttribute
@@ -3997,7 +3970,6 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** 	 *  Sets the attributeNS attribute of the ElementImpl object 	 * 	 *@param  namespaceURI      The new attributeNS value 	 *@param  qualifiedName     The new attributeNS value 	 *@param  value             The new attributeNS value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setAttributeNS
@@ -4015,7 +3987,6 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** 	 *  Sets the attributeNode attribute of the ElementImpl object 	 * 	 *@param  newAttr           The new attributeNode value 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Attr
 name|setAttributeNode
@@ -4030,7 +4001,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Sets the attributeNodeNS attribute of the ElementImpl object 	 * 	 *@param  newAttr  The new attributeNodeNS value 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|Attr
 name|setAttributeNodeNS
@@ -4043,7 +4013,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Sets the childCount attribute of the ElementImpl object 	 * 	 *@param  count  The new childCount value 	 */
 specifier|public
 name|void
 name|setChildCount
@@ -4057,7 +4026,6 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the nodeName attribute of the ElementImpl object 	 * 	 *@param  name  The new nodeName value 	 */
 specifier|public
 name|void
 name|setNodeName
@@ -4071,7 +4039,6 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the prefixes attribute of the ElementImpl object 	 * 	 *@param  pfx  The new prefixes value 	 */
 specifier|public
 name|void
 name|setNamespaceMappings
@@ -4168,7 +4135,6 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  contentHandler    Description of the Parameter 	 *@param  lexicalHandler    Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@param  prefixes          Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX

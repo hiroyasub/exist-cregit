@@ -222,6 +222,12 @@ specifier|private
 name|Object
 name|lockKey
 decl_stmt|;
+specifier|private
+name|boolean
+name|useNodePool
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|NodeIterator
 parameter_list|(
@@ -233,6 +239,9 @@ name|db
 parameter_list|,
 name|NodeProxy
 name|node
+parameter_list|,
+name|boolean
+name|poolable
 parameter_list|)
 throws|throws
 name|BTreeException
@@ -252,6 +261,12 @@ operator|=
 name|node
 operator|.
 name|doc
+expr_stmt|;
+name|this
+operator|.
+name|useNodePool
+operator|=
+name|poolable
 expr_stmt|;
 if|if
 condition|(
@@ -778,6 +793,8 @@ operator|.
 name|length
 argument_list|,
 name|doc
+argument_list|,
+name|useNodePool
 argument_list|)
 expr_stmt|;
 comment|// normal node
@@ -799,6 +816,8 @@ argument_list|,
 name|l
 argument_list|,
 name|doc
+argument_list|,
+name|useNodePool
 argument_list|)
 expr_stmt|;
 name|offset
@@ -835,7 +854,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("Next: " + nextNode.getNodeName() + " [" + page + "]");
+comment|//					System.out.println("Next: " + nextNode.getNodeName() + " [" + page + "]");
 block|}
 do|while
 condition|(

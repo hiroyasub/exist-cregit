@@ -199,7 +199,6 @@ operator|*=
 operator|-
 literal|1
 expr_stmt|;
-comment|//		System.out.println("adding " + value + " to " + idx + "; size: " + items);
 name|int
 name|bucket
 init|=

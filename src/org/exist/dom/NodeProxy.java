@@ -2537,48 +2537,28 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-if|if
-condition|(
-name|nodeType
-operator|==
-name|Node
-operator|.
-name|ATTRIBUTE_NODE
-condition|)
-block|{
-name|AttrImpl
-name|attr
+name|Serializer
+name|serializer
 init|=
-operator|(
-name|AttrImpl
-operator|)
-name|getNode
+name|broker
+operator|.
+name|getSerializer
 argument_list|()
 decl_stmt|;
-name|receiver
+name|serializer
 operator|.
-name|attribute
+name|toReceiver
 argument_list|(
-name|attr
-operator|.
-name|getQName
-argument_list|()
-argument_list|,
-name|attr
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|toSAX
-argument_list|(
-name|broker
+name|this
 argument_list|,
 name|receiver
 argument_list|)
 expr_stmt|;
+comment|//		if (nodeType == Node.ATTRIBUTE_NODE) {
+comment|//			AttrImpl attr = (AttrImpl) getNode();
+comment|//			receiver.attribute(attr.getQName(), attr.getValue());
+comment|//		} else
+comment|//			toSAX(broker, receiver);
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
