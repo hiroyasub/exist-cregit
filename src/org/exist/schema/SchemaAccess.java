@@ -114,6 +114,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|//void getElement(String xpath) throws XMLDBException;
 name|AttributeDecl
 name|getAttribute
 parameter_list|(
