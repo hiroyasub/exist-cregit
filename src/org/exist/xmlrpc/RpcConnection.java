@@ -2091,7 +2091,10 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|baseURI
+name|context
+operator|.
+name|getBaseCollection
+argument_list|()
 operator|!=
 literal|null
 condition|)
@@ -2104,7 +2107,10 @@ operator|new
 name|String
 index|[]
 block|{
-name|baseURI
+name|context
+operator|.
+name|getBaseCollection
+argument_list|()
 block|}
 argument_list|)
 expr_stmt|;
