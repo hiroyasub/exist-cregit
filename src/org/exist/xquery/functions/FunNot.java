@@ -299,6 +299,12 @@ name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|private
+name|boolean
+name|inWhereClause
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|FunNot
 parameter_list|(
@@ -312,6 +318,40 @@ name|context
 argument_list|,
 name|signature
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#analyze(org.exist.xquery.Expression, int)      */
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|,
+name|int
+name|flags
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|parent
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
+name|inWhereClause
+operator|=
+operator|(
+name|flags
+operator|&
+name|IN_WHERE_CLAUSE
+operator|)
+operator|!=
+literal|0
 expr_stmt|;
 block|}
 specifier|public
@@ -443,13 +483,22 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// special treatment if the context sequence is empty:
+comment|// TODO: special treatment if the context sequence is empty:
 comment|// within a predicate, we just return the empty sequence
 comment|// otherwise evaluate the argument and return a boolean result
-comment|// TODO: why do we need this special case here?
-comment|//				if (inPredicate)
-comment|//					return Sequence.EMPTY_SEQUENCE;
-comment|//				else
+if|if
+condition|(
+name|inPredicate
+operator|&&
+operator|!
+name|inWhereClause
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+else|else
 return|return
 name|evalBoolean
 argument_list|(

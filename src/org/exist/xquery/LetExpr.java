@@ -220,6 +220,8 @@ argument_list|,
 name|flags
 operator||
 name|IN_PREDICATE
+operator||
+name|IN_WHERE_CLAUSE
 argument_list|)
 expr_stmt|;
 block|}
