@@ -146,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Jan Hlavaty (hlavac@code.cz)  * @author Wolfgang Meier (meier@ifs.tu-darmstadt.de)  * @version $Revision$    TODO:    - finish possible jetty.home locations    - use File.toURI.toURL() on JDK 1.4+    - better handling of errors (i.e. when jetty.home cannot be autodetected...)    - include entries from lib _when needed_  */
+comment|/**  * @author Jan Hlavaty (hlavac@code.cz)  * @author Wolfgang Meier (meier@ifs.tu-darmstadt.de)  * @version $Revision$  *<p/>  *          TODO:  *          - finish possible jetty.home locations  *          - use File.toURI.toURL() on JDK 1.4+  *          - better handling of errors (i.e. when jetty.home cannot be autodetected...)  *          - include entries from lib _when needed_  */
 end_comment
 
 begin_class
@@ -165,6 +165,11 @@ name|String
 name|_mode
 init|=
 literal|"jetty"
+decl_stmt|;
+specifier|private
+specifier|static
+name|Main
+name|exist
 decl_stmt|;
 specifier|private
 name|boolean
@@ -189,8 +194,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-operator|new
-name|Main
+name|getMain
 argument_list|()
 operator|.
 name|run
@@ -211,6 +215,40 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Singleton Factory Method      * @return      */
+specifier|public
+specifier|static
+name|Main
+name|getMain
+parameter_list|()
+block|{
+if|if
+condition|(
+name|exist
+operator|==
+literal|null
+condition|)
+name|exist
+operator|=
+operator|new
+name|Main
+argument_list|()
+expr_stmt|;
+return|return
+name|exist
+return|;
+block|}
+specifier|public
+name|String
+name|getMode
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|_mode
+return|;
 block|}
 specifier|private
 name|Main
@@ -1719,6 +1757,28 @@ operator|=
 literal|"other"
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|equals
+argument_list|(
+literal|"cluster"
+argument_list|)
+condition|)
+block|{
+name|_classname
+operator|=
+literal|"org.exist.ClusterStart"
+expr_stmt|;
+name|_mode
+operator|=
+literal|"cluster"
+expr_stmt|;
+block|}
 else|else
 block|{
 name|_classname
@@ -1874,6 +1934,13 @@ operator|.
 name|equals
 argument_list|(
 literal|"jetty"
+argument_list|)
+operator||
+name|_mode
+operator|.
+name|equals
+argument_list|(
+literal|"cluster"
 argument_list|)
 condition|)
 block|{
@@ -2249,7 +2316,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|File
 name|detectHome
@@ -2642,7 +2709,7 @@ return|return
 name|_home_dir
 return|;
 block|}
-comment|/** 	 * @param args 	 */
+comment|/**      * @param args      */
 specifier|public
 name|Classpath
 name|constructClasspath
