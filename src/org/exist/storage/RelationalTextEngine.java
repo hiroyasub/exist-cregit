@@ -604,6 +604,9 @@ name|token
 operator|.
 name|getText
 argument_list|(  )
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
 if|if
 condition|(

@@ -31,7 +31,7 @@ parameter_list|,
 name|int
 name|len
 parameter_list|,
-name|FastStringBuffer
+name|XMLString
 name|s
 parameter_list|)
 block|{
@@ -428,7 +428,7 @@ specifier|static
 name|int
 name|utflen
 parameter_list|(
-name|FastStringBuffer
+name|XMLString
 name|s
 parameter_list|)
 block|{

@@ -237,7 +237,7 @@ parameter_list|(
 name|InputStream
 name|in
 parameter_list|,
-name|FastByteBuffer
+name|ByteArray
 name|out
 parameter_list|)
 throws|throws
@@ -287,7 +287,7 @@ parameter_list|(
 name|InputStream
 name|in
 parameter_list|,
-name|FastByteBuffer
+name|ByteArray
 name|out
 parameter_list|,
 name|int
@@ -538,7 +538,7 @@ specifier|static
 name|void
 name|encode
 parameter_list|(
-name|FastByteBuffer
+name|ByteArray
 name|buf
 parameter_list|,
 name|long
@@ -596,7 +596,7 @@ specifier|static
 name|void
 name|encodeFixed
 parameter_list|(
-name|FastByteBuffer
+name|ByteArray
 name|buf
 parameter_list|,
 name|long
