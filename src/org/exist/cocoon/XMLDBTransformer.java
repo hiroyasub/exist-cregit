@@ -540,7 +540,7 @@ specifier|final
 name|String
 name|PREFIX
 init|=
-literal|"xmldb:"
+literal|"xdb:"
 decl_stmt|;
 specifier|public
 specifier|static
