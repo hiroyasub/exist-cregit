@@ -5357,34 +5357,8 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"new page created: "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" by "
-operator|+
-name|owner
-operator|+
-literal|"; thread: "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("new page created: " + page.page.getPageNum() + " by " + owner +
+comment|//            		"; thread: " + Thread.currentThread().getName());
 name|dataCache
 operator|.
 name|add
