@@ -1471,24 +1471,9 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|nodes
-operator|.
-name|getLength
-argument_list|()
-operator|<
-literal|2
-condition|)
-comment|// fall back to nodeSetCompare if we just have to check a single node
-return|return
-name|nodeSetCompare
-argument_list|(
-name|nodes
-argument_list|,
-name|contextSequence
-argument_list|)
-return|;
+comment|//		if(nodes.getLength()< 2)
+comment|//			// fall back to nodeSetCompare if we just have to check a single node
+comment|//			return nodeSetCompare(nodes, contextSequence);
 comment|// evaluate right expression
 name|Sequence
 name|rightSeq
