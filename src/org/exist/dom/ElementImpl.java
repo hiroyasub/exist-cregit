@@ -15,6 +15,164 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NodePath
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|Signatures
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ByteArrayPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|UTF8
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ContentHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ext
+operator|.
+name|LexicalHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|helpers
+operator|.
+name|AttributesImpl
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -123,262 +281,8 @@ name|TreeSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|NodePath
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|Signatures
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ByteArrayPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ByteConversion
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|UTF8
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Attr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Comment
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NamedNodeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|ProcessingInstruction
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Text
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ContentHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ext
-operator|.
-name|LexicalHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|helpers
-operator|.
-name|AttributesImpl
-import|;
-end_import
-
 begin_comment
-comment|/**  * ElementImpl.java  *   * @author Wolfgang Meier  */
+comment|/**  * ElementImpl.java  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -427,7 +331,7 @@ name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the ElementImpl object 	 * 	 *@param  gid  Description of the Parameter 	 */
+comment|/**      * Constructor for the ElementImpl object      *      * @param gid Description of the Parameter      */
 specifier|public
 name|ElementImpl
 parameter_list|(
@@ -447,7 +351,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the ElementImpl object 	 * 	 *@param  nodeName  Description of the Parameter 	 */
+comment|/**      * Constructor for the ElementImpl object      *      * @param nodeName Description of the Parameter      */
 specifier|public
 name|ElementImpl
 parameter_list|(
@@ -471,7 +375,7 @@ operator|=
 name|nodeName
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the ElementImpl object 	 * 	 *@param  gid       Description of the Parameter 	 *@param  nodeName  Description of the Parameter 	 */
+comment|/**      * Constructor for the ElementImpl object      *      * @param gid      Description of the Parameter      * @param nodeName Description of the Parameter      */
 specifier|public
 name|ElementImpl
 parameter_list|(
@@ -494,7 +398,7 @@ name|nodeName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Reset this element to its initial state. 	 *  	 * @see org.exist.dom.NodeImpl#clear() 	 */
+comment|/**      * Reset this element to its initial state.      *      * @see org.exist.dom.NodeImpl#clear()      */
 specifier|public
 name|void
 name|clear
@@ -1046,7 +950,7 @@ name|ns
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Append a child to this node. This method does not rearrange the 	 * node tree and is only used internally by the parser. 	 *  	 * @param child 	 * @throws DOMException 	 */
+comment|/**      * Append a child to this node. This method does not rearrange the      * node tree and is only used internally by the parser.      *      * @param child      * @throws DOMException      */
 specifier|public
 name|void
 name|appendChildInternal
@@ -1172,7 +1076,7 @@ operator|++
 name|children
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
+comment|/**      * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|appendChild
@@ -1960,7 +1864,7 @@ return|return
 name|node
 return|;
 block|}
-comment|/** 	 * Internal append. 	 *  	 * @param last 	 * @param child 	 * @return Node 	 * @throws DOMException 	 */
+comment|/**      * Internal append.      *      * @return Node      * @throws DOMException      */
 specifier|protected
 name|Node
 name|appendChildren
@@ -2908,7 +2812,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/** 	 * @see org.exist.dom.NodeImpl#firstChildID() 	 */
+comment|/**      * @see org.exist.dom.NodeImpl#firstChildID()      */
 specifier|public
 name|long
 name|firstChildID
@@ -2957,7 +2861,7 @@ return|return
 name|attributes
 return|;
 block|}
-comment|/** 	 *  Set the attributes that belong to this node. 	 * 	 *@param  attribNum  The new attributes value 	 */
+comment|/**      * Set the attributes that belong to this node.      *      * @param attribNum The new attributes value      */
 specifier|public
 name|void
 name|setAttributes
@@ -2971,7 +2875,7 @@ operator|=
 name|attribNum
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getAttribute(java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getAttribute(java.lang.String)      */
 specifier|public
 name|String
 name|getAttribute
@@ -3054,7 +2958,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|String
 name|getAttributeNS
@@ -3160,7 +3064,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getAttributeNode(java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getAttributeNode(java.lang.String)      */
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -3308,7 +3212,7 @@ return|return
 name|attr
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -3411,7 +3315,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getAttributes() 	 */
+comment|/**      * @see org.w3c.dom.Node#getAttributes()      */
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -3494,7 +3398,7 @@ return|return
 name|map
 return|;
 block|}
-comment|/** 	 * @see org.exist.dom.NodeImpl#getChildCount() 	 */
+comment|/**      * @see org.exist.dom.NodeImpl#getChildCount()      */
 specifier|public
 name|int
 name|getChildCount
@@ -3504,7 +3408,7 @@ return|return
 name|children
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getChildNodes() 	 */
+comment|/**      * @see org.w3c.dom.Node#getChildNodes()      */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -3579,7 +3483,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -3615,7 +3519,7 @@ name|qname
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -3654,7 +3558,7 @@ name|qname
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+comment|/**      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
 name|Node
 name|getFirstChild
@@ -3693,7 +3597,7 @@ name|first
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
+comment|/**      * @see org.w3c.dom.Node#getLastChild()      */
 specifier|public
 name|Node
 name|getLastChild
@@ -3718,7 +3622,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
+comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
 specifier|public
 name|String
 name|getNodeValue
@@ -3730,7 +3634,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#getTagName() 	 */
+comment|/**      * @see org.w3c.dom.Element#getTagName()      */
 specifier|public
 name|String
 name|getTagName
@@ -3743,7 +3647,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#hasAttribute(java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#hasAttribute(java.lang.String)      */
 specifier|public
 name|boolean
 name|hasAttribute
@@ -3814,7 +3718,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -3910,7 +3814,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
+comment|/**      * @see org.w3c.dom.Node#hasAttributes()      */
 specifier|public
 name|boolean
 name|hasAttributes
@@ -3925,7 +3829,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
+comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -3961,7 +3865,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#removeAttribute(java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#removeAttribute(java.lang.String)      */
 specifier|public
 name|void
 name|removeAttribute
@@ -3973,7 +3877,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** 	 * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/**      * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|removeAttributeNS
@@ -5143,7 +5047,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see java.lang.Object#toString() 	 */
+comment|/**      * @see java.lang.Object#toString()      */
 specifier|public
 name|String
 name|toString
@@ -5156,7 +5060,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see org.exist.dom.NodeImpl#toString(boolean) 	 */
+comment|/**      * @see org.exist.dom.NodeImpl#toString(boolean)      */
 specifier|public
 name|String
 name|toString
@@ -5176,7 +5080,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Method toString. 	 * @param top 	 * @param prefixes 	 * @return String 	 */
+comment|/**      * Method toString.      *      */
 specifier|public
 name|String
 name|toString
@@ -5574,15 +5478,10 @@ name|attributes
 operator|.
 name|append
 argument_list|(
-operator|(
-operator|(
-name|Attr
-operator|)
+name|escapeXml
+argument_list|(
 name|child
-operator|)
-operator|.
-name|getValue
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|attributes
@@ -5714,7 +5613,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+comment|/**      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|insertBefore
@@ -5924,7 +5823,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Insert a list of nodes at the position before the reference 	 * child. 	 *  	 */
+comment|/**      * Insert a list of nodes at the position before the reference      * child.      */
 specifier|public
 name|Node
 name|insertBefore
@@ -6170,7 +6069,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Insert a list of nodes at the position following the reference 	 * child. 	 */
+comment|/**      * Insert a list of nodes at the position following the reference      * child.      */
 specifier|public
 name|Node
 name|insertAfter
@@ -6380,7 +6279,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Update the contents of this element. The passed list of nodes  	 * becomes the new content. 	 *   	 * @param newContent 	 * @throws DOMException 	 */
+comment|/**      * Update the contents of this element. The passed list of nodes      * becomes the new content.      *      * @param newContent      * @throws DOMException      */
 specifier|public
 name|void
 name|update
@@ -6587,7 +6486,7 @@ comment|//		} catch (PermissionDeniedException e) {
 comment|//			throw new DOMException(DOMException.INVALID_ACCESS_ERR, e.getMessage());
 comment|//		}
 block|}
-comment|/** 	 * Update a child node. This method will only update the child node 	 * but not its potential descendant nodes. 	 *  	 * @param oldChild 	 * @param newChild 	 * @throws DOMException 	 */
+comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
 specifier|public
 name|void
 name|updateChild
@@ -6743,7 +6642,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node) 	 */
+comment|/**      * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|removeChild
@@ -7038,7 +6937,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|replaceChild
@@ -7228,6 +7127,202 @@ throw|;
 block|}
 return|return
 name|newChild
+return|;
+block|}
+specifier|private
+name|String
+name|escapeXml
+parameter_list|(
+name|Node
+name|child
+parameter_list|)
+block|{
+specifier|final
+name|String
+name|str
+init|=
+operator|(
+operator|(
+name|Attr
+operator|)
+name|child
+operator|)
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+name|StringBuffer
+name|buffer
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|entity
+init|=
+literal|null
+decl_stmt|;
+name|char
+name|ch
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|str
+operator|.
+name|length
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|ch
+operator|=
+name|str
+operator|.
+name|charAt
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+switch|switch
+condition|(
+name|ch
+condition|)
+block|{
+case|case
+literal|'"'
+case|:
+name|entity
+operator|=
+literal|"&quot;"
+expr_stmt|;
+break|break;
+case|case
+literal|'<'
+case|:
+name|entity
+operator|=
+literal|"&lt;"
+expr_stmt|;
+break|break;
+case|case
+literal|'>'
+case|:
+name|entity
+operator|=
+literal|"&gt;"
+expr_stmt|;
+break|break;
+case|case
+literal|'\''
+case|:
+name|entity
+operator|=
+literal|"&apos;"
+expr_stmt|;
+break|break;
+default|default :
+name|entity
+operator|=
+literal|null
+expr_stmt|;
+break|break;
+block|}
+if|if
+condition|(
+name|buffer
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|entity
+operator|!=
+literal|null
+condition|)
+block|{
+name|buffer
+operator|=
+operator|new
+name|StringBuffer
+argument_list|(
+name|str
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|20
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|str
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|entity
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|entity
+operator|==
+literal|null
+condition|)
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|ch
+argument_list|)
+expr_stmt|;
+else|else
+name|buffer
+operator|.
+name|append
+argument_list|(
+name|entity
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+operator|(
+name|buffer
+operator|==
+literal|null
+operator|)
+condition|?
+name|str
+else|:
+name|buffer
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
