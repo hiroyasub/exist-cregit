@@ -90,6 +90,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

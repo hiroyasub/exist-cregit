@@ -339,6 +339,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 comment|/**      *  Gets the argument attribute of the Function object      *      *@param  pos  Description of the Parameter      *@return      The argument value      */
 specifier|public

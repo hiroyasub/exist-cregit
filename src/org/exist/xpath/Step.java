@@ -206,6 +206,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 name|int
@@ -351,6 +353,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|DocumentSet
 name|out_docs

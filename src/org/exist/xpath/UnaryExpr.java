@@ -133,6 +133,8 @@ parameter_list|,
 name|NodeProxy
 name|node
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -157,7 +159,7 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
 literal|"unary expression requires an operand"
 argument_list|)

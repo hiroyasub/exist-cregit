@@ -215,6 +215,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -395,6 +407,8 @@ specifier|public
 name|void
 name|testQuery
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 comment|//String query = "document(*)//p[.&= '\uB2E8\uACC4']";
 name|String

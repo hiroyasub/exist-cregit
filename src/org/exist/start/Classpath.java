@@ -29,9 +29,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Vector
+name|File
 import|;
 end_import
 
@@ -49,33 +49,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_comment
-comment|// 1.2
-end_comment
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
-name|URLClassLoader
+name|MalformedURLException
 import|;
 end_import
 
@@ -93,6 +69,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URLClassLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|StringTokenizer
@@ -103,19 +89,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|FilenameFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
+name|Vector
 import|;
 end_import
 

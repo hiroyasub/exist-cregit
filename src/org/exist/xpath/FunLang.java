@@ -25,16 +25,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|StringTokenizer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -193,6 +183,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

@@ -183,6 +183,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|Expression
 name|path
@@ -646,6 +648,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|int
 name|j
@@ -843,6 +847,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|terms
 operator|=
@@ -909,7 +915,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|XPathException
 argument_list|(
 literal|"no search terms"
 argument_list|)
@@ -980,11 +986,15 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"An error occurred while evaluating expression"
+argument_list|,
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{

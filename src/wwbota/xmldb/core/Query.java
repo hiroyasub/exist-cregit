@@ -19,7 +19,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Collection
 import|;
 end_import
 
@@ -29,14 +29,22 @@ name|java
 operator|.
 name|util
 operator|.
-name|regex
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|*
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Utility to translate a simple Query à la Google into an XPath constraints string.  * Modelizes a Query on an XML database.  *</p>  *<p>  * Basic use:  *</p>  *<pre>  * import wwbota.xmldb.core.*;  * Query q = Database.createQuery();  * StringBuffer comment = new StringBuffer();  * q.setPlainQuery(&quot;leaves:glabrous petals:5,yellow&quot;, comment);  * q.setXPathPrefix( "/ * / *" );  * q.setRubricXPath( " * [@*[local-name()='source']] / * / *" );  * String xpath = q.getXPath();  * // launch xpath query to XML database  * // add comment to the response page  *</pre>  *<p>  *</p>  */
+comment|/**  *<p>  * Utility to translate a simple Query ï¿½ la Google into an XPath constraints string.  * Modelizes a Query on an XML database.  *</p>  *<p>  * Basic use:  *</p>  *<pre>  * import wwbota.xmldb.core.*;  * Query q = Database.createQuery();  * StringBuffer comment = new StringBuffer();  * q.setPlainQuery(&quot;leaves:glabrous petals:5,yellow&quot;, comment);  * q.setXPathPrefix( "/ * / *" );  * q.setRubricXPath( " * [@*[local-name()='source']] / * / *" );  * String xpath = q.getXPath();  * // launch xpath query to XML database  * // add comment to the response page  *</pre>  *<p>  *</p>  */
 end_comment
 
 begin_class

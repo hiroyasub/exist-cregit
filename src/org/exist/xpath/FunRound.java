@@ -21,18 +21,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|DocumentSet
 import|;
 end_import
@@ -85,18 +73,6 @@ name|BrokerPool
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -137,6 +113,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 return|return
 name|getArgument
@@ -166,6 +144,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|double
 name|val
@@ -284,6 +264,13 @@ name|NumberFormatException
 name|nfe
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Argument is not a number"
+argument_list|)
+throw|;
 block|}
 block|}
 return|return

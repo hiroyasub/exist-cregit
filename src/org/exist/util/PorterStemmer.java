@@ -13,16 +13,6 @@ name|util
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * Stemmer, implementing the Porter Stemming Algorithm  *  * The Stemmer class transforms a word into its root form.  The input  * word can be provided a character at time (by calling add()), or at once  * by calling one of the various stem(something) methods.    */
 end_comment

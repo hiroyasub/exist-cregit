@@ -204,6 +204,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -214,7 +216,7 @@ literal|1
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
 literal|"function id requires one argument"
 argument_list|)

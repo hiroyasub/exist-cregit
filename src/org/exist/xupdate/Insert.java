@@ -131,6 +131,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -262,6 +274,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
+throws|,
+name|XPathException
 block|{
 name|NodeImpl
 index|[]

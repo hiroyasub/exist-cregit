@@ -402,6 +402,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|ArraySet
 name|result
@@ -789,6 +791,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -1019,6 +1023,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|NodeSet
 name|result
@@ -1322,11 +1328,15 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"An error occurred while processing expression"
+argument_list|,
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{
@@ -1695,6 +1705,8 @@ parameter_list|(
 name|DocumentSet
 name|docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|DBBroker
 name|broker
@@ -1830,6 +1842,15 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"An error occurred while processing expression"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{
@@ -1865,6 +1886,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|ArraySet
 name|result
@@ -2079,6 +2102,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|LOG
 operator|.

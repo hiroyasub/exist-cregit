@@ -185,6 +185,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 comment|//long start = System.currentTimeMillis();
 name|ArraySet
@@ -326,14 +328,13 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
-literal|"context node is missing!"
+literal|"Internal evaluation error: context node is missing!"
 argument_list|)
-expr_stmt|;
-break|break;
+throw|;
 block|}
 for|for
 control|(
@@ -832,6 +833,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|DocumentSet
 name|docs
@@ -891,6 +894,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

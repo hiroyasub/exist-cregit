@@ -51,6 +51,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Evaluate the expression represented by this object. 	 * 	 * Depending on the context in which this expression is executed, 	 * either context, node or both of them may be set. An implementing 	 * class should know how to handle this. Most classes only expect  	 * context to contain a list of nodes which represents the current 	 * context of this expression. 	 * 	 * @param context the static xpath context 	 * @param docs the set of documents all nodes belong to. 	 * @param contextSet the node-set which defines the current context node-set. 	 */
 specifier|public
@@ -66,6 +68,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Determine the documents, taken from in_docs, for which this expression 	 * will possibly yield a result. An expression does not have to do 	 * anything here. It may simply return in_docs. 	 * 	 * This method is used to restrict the range of documents in question for 	 * a given xpath-expression. It is called before the xpath-expression is 	 * actually executed. 	 */
 specifier|public
@@ -75,6 +79,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * The type of value, this expression returns. 	 * 	 * Depending on the type of expression, this method should 	 * return one of the constants defined in class Constants, e.g. 	 * TYPE_NODELIST, TYPE_STRING, TYPE_NUM, TYPE_BOOL. 	 */
 specifier|public

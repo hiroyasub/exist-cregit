@@ -445,9 +445,6 @@ block|{
 return|return
 name|SelectorUtils
 operator|.
-name|getInstance
-argument_list|()
-operator|.
 name|matchPath
 argument_list|(
 name|pattern
@@ -471,9 +468,6 @@ parameter_list|)
 block|{
 return|return
 name|SelectorUtils
-operator|.
-name|getInstance
-argument_list|()
 operator|.
 name|matchPatternStart
 argument_list|(

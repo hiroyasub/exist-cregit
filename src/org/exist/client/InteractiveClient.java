@@ -99,16 +99,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -310,16 +300,6 @@ operator|.
 name|util
 operator|.
 name|TreeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|JOptionPane
 import|;
 end_import
 
@@ -5678,7 +5658,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
-name|frame
+name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(
@@ -10396,7 +10376,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-name|frame
+name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(

@@ -33,18 +33,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|DocumentSet
 import|;
 end_import
@@ -106,18 +94,6 @@ operator|.
 name|storage
 operator|.
 name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
 import|;
 end_import
 
@@ -245,6 +221,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -321,6 +299,8 @@ parameter_list|,
 name|NodeProxy
 name|node
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

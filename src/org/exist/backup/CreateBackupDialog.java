@@ -133,16 +133,6 @@ name|javax
 operator|.
 name|swing
 operator|.
-name|JEditorPane
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
 name|JFileChooser
 import|;
 end_import

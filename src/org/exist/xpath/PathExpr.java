@@ -335,6 +335,8 @@ parameter_list|,
 name|NodeProxy
 name|contextNode
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -697,6 +699,8 @@ specifier|public
 name|DocumentSet
 name|preselect
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 return|return
 name|preselect
@@ -712,6 +716,8 @@ parameter_list|(
 name|DocumentSet
 name|in_docs
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|DocumentSet
 name|docs
