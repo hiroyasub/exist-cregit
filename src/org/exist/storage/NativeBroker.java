@@ -299,6 +299,18 @@ name|exist
 operator|.
 name|collections
 operator|.
+name|CollectionCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
 name|triggers
 operator|.
 name|TriggerException
@@ -672,6 +684,18 @@ operator|.
 name|util
 operator|.
 name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|CollectionScanner
 import|;
 end_import
 
@@ -1630,6 +1654,13 @@ argument_list|,
 literal|"dba"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
 name|getOrCreateCollection
 argument_list|(
 name|ROOT_COLLECTION
@@ -2286,6 +2317,14 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|collectionsCache
@@ -2498,7 +2537,18 @@ condition|)
 block|{
 try|try
 block|{
-comment|//			LOG.debug("acquiring lock on " + collection.getName());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"acquiring lock on "
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|collection
 operator|.
 name|getLock
@@ -2509,7 +2559,13 @@ argument_list|(
 name|lockMode
 argument_list|)
 expr_stmt|;
-comment|//			Thread.dumpStack();
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"lock acquired"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -8856,6 +8912,15 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|collectionsCache
@@ -10085,6 +10150,15 @@ argument_list|(
 literal|"not allowed to remove collection"
 argument_list|)
 throw|;
+specifier|final
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|collectionsCache
@@ -11669,7 +11743,10 @@ argument_list|(
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
-name|collectionsCache
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
 operator|.
 name|add
 argument_list|(
@@ -12892,6 +12969,15 @@ init|=
 name|collection
 operator|.
 name|getName
+argument_list|()
+decl_stmt|;
+specifier|final
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
 argument_list|()
 decl_stmt|;
 synchronized|synchronized

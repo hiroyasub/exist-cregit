@@ -923,7 +923,15 @@ name|void
 name|release
 parameter_list|()
 block|{
-comment|//		LOG.debug("releasing lock on " + name);
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"releasing lock on "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
 name|lock
 operator|.
 name|release
@@ -1352,6 +1360,9 @@ name|CollectionCache
 name|cache
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getCollectionsCache
 argument_list|()
