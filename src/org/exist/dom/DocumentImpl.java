@@ -960,7 +960,8 @@ name|docType
 operator|=
 name|other
 operator|.
-name|docType
+name|getDoctype
+argument_list|()
 expr_stmt|;
 name|treeLevelOrder
 operator|=
@@ -983,7 +984,8 @@ name|lastModified
 operator|=
 name|other
 operator|.
-name|lastModified
+name|getLastModified
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

@@ -765,6 +765,13 @@ name|nodeName
 operator|.
 name|getPrefix
 argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|nodeName
+operator|.
+name|getPrefix
+argument_list|()
 operator|.
 name|length
 argument_list|()
@@ -962,6 +969,13 @@ literal|2
 expr_stmt|;
 if|if
 condition|(
+name|nodeName
+operator|.
+name|getPrefix
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 name|nodeName
 operator|.
 name|getPrefix
