@@ -1075,7 +1075,6 @@ argument_list|(
 literal|"no search terms"
 argument_list|)
 throw|;
-comment|//		if(contextSet instanceof VirtualNodeSet) {
 name|NodeSet
 name|hits
 index|[]
@@ -1216,25 +1215,6 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-comment|//		} else {
-comment|//			NodeSet result = null, hits;
-comment|//			for (int k = 0; k< terms.length; k++) {
-comment|//				hits =
-comment|//					context.getBroker().getTextEngine().getNodesContaining(
-comment|//						contextSet.getDocumentSet(),
-comment|//						contextSet,
-comment|//						terms[k]);
-comment|//				if(hits != null) {
-comment|//					if(result == null)
-comment|//						result = hits;
-comment|//					else if(type == Constants.FULLTEXT_AND)
-comment|//						result = result.intersection(hits);
-comment|//					else
-comment|//						result.addAll(hits);
-comment|//				}
-comment|//			}
-comment|//			return result == null ? NodeSet.EMPTY_SET : result;
-comment|//		}
 block|}
 specifier|public
 name|int

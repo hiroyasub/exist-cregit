@@ -644,6 +644,10 @@ name|int
 name|getLength
 parameter_list|()
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
+comment|// sort to remove duplicates
 return|return
 name|size
 return|;
