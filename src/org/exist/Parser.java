@@ -688,7 +688,7 @@ name|normalize
 init|=
 name|XMLString
 operator|.
-name|SUPPRESS_NONE
+name|SUPPRESS_BOTH
 decl_stmt|;
 specifier|protected
 name|XMLReader
@@ -3812,12 +3812,46 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// mixed element content: don't normalize the text node
+comment|// mixed element content: don't normalize the text node, just check
+comment|// if there is any text at all
+specifier|final
+name|XMLString
+name|normalized
+init|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|normalized
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|text
 operator|.
 name|setData
 argument_list|(
 name|charBuf
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|text
+operator|.
+name|getData
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|text
@@ -3858,6 +3892,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
