@@ -207,7 +207,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Catches the specified exceptions."
+literal|"This function corresponds to a try-catch statement in Java. The code block "
+operator|+
+literal|"in $b will be put inside a try-catch statement. If an exception is thrown while executing "
+operator|+
+literal|"$b, the function checks the name of the exception and calls $c if it matches one of "
+operator|+
+literal|"the fully qualified Java class names specified in $a"
 argument_list|,
 operator|new
 name|SequenceType
