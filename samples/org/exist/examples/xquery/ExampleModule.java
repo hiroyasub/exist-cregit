@@ -115,6 +115,15 @@ return|return
 name|PREFIX
 return|;
 block|}
+specifier|public
+name|String
+name|getDescription
+parameter_list|()
+block|{
+return|return
+literal|"A simple example module"
+return|;
+block|}
 block|}
 end_class
 
