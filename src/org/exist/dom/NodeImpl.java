@@ -689,6 +689,9 @@ name|appendChildren
 parameter_list|(
 name|NodeList
 name|nodes
+parameter_list|,
+name|int
+name|child
 parameter_list|)
 throws|throws
 name|DOMException

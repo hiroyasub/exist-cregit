@@ -1328,6 +1328,17 @@ argument_list|(
 literal|"append"
 argument_list|)
 condition|)
+block|{
+name|String
+name|child
+init|=
+name|atts
+operator|.
+name|getValue
+argument_list|(
+literal|"child"
+argument_list|)
+decl_stmt|;
 name|modification
 operator|=
 operator|new
@@ -1338,8 +1349,11 @@ argument_list|,
 name|documentSet
 argument_list|,
 name|select
+argument_list|,
+name|child
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|localName
