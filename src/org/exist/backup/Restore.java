@@ -754,6 +754,20 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"restoring "
+operator|+
+name|contents
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|parse
@@ -957,6 +971,11 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -1185,6 +1204,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|dialog
+operator|!=
+literal|null
+condition|)
 name|dialog
 operator|.
 name|setResource
