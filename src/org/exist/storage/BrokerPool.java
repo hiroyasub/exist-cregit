@@ -1336,13 +1336,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Broker still has references. Keep it."
-argument_list|)
-expr_stmt|;
+comment|// broker still has references. Keep it
 return|return;
 block|}
 name|threads

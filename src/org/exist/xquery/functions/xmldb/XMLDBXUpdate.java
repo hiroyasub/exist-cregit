@@ -647,6 +647,14 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|context
+operator|.
+name|getRootExpression
+argument_list|()
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|IntegerValue

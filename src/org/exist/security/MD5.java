@@ -37,13 +37,9 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|Category
+name|Logger
 import|;
 end_import
-
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. August 2002  */
-end_comment
 
 begin_class
 specifier|public
@@ -93,22 +89,18 @@ decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
-name|Category
+name|Logger
 name|LOG
 init|=
-name|Category
+name|Logger
 operator|.
-name|getInstance
+name|getLogger
 argument_list|(
 name|MD5
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**      *  Description of the Method      *      *@param  passwd  Description of the Parameter      *@return         Description of the Return Value      */
 specifier|public
 specifier|static
 name|String
@@ -264,7 +256,6 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  b  Description of the Parameter      *@return    Description of the Return Value      */
 specifier|public
 specifier|static
 name|String

@@ -1263,6 +1263,9 @@ operator|.
 name|append
 argument_list|(
 name|content
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try

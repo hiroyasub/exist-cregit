@@ -8377,6 +8377,13 @@ name|XQueryAST
 operator|)
 name|_t
 decl_stmt|;
+name|context
+operator|.
+name|setRootExpression
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// for error handling

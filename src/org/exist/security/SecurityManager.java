@@ -41,7 +41,7 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|Category
+name|Logger
 import|;
 end_import
 
@@ -263,19 +263,16 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|Category
+name|Logger
 name|LOG
 init|=
-name|Category
+name|Logger
 operator|.
-name|getInstance
+name|getLogger
 argument_list|(
 name|SecurityManager
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|private

@@ -5648,28 +5648,8 @@ argument_list|(
 name|idxLevel
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|node
-operator|==
-literal|null
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"reindexing level "
-operator|+
-name|idxLevel
-operator|+
-literal|" of document "
-operator|+
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		if (node == null)
+comment|//			LOG.debug("reindexing level " + idxLevel + " of document " + doc.getDocId());
 specifier|final
 name|long
 name|start
@@ -6806,6 +6786,39 @@ name|iterator
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|child
+operator|==
+literal|null
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"child "
+operator|+
+name|gid
+operator|+
+literal|" not found for node: "
+operator|+
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|"; last = "
+operator|+
+name|lastChildId
+operator|+
+literal|"; children = "
+operator|+
+name|node
+operator|.
+name|getChildCount
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|child
 operator|.
@@ -10781,7 +10794,11 @@ comment|//	"total memory: " + run.totalMemory() + "; free: " + run.freeMemory())
 name|flush
 argument_list|()
 expr_stmt|;
-comment|//System.gc();
+name|System
+operator|.
+name|gc
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|info

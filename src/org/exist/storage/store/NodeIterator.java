@@ -593,6 +593,13 @@ name|page
 operator|.
 name|getPageInfo
 argument_list|()
+operator|+
+literal|"; previous: "
+operator|+
+name|ph
+operator|.
+name|getPrevDataPage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -638,35 +645,6 @@ argument_list|,
 name|offset
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|ItemId
-operator|.
-name|getId
-argument_list|(
-name|lastTID
-argument_list|)
-operator|<
-literal|0
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"tid< 0: "
-operator|+
-name|lastTID
-operator|+
-literal|" at "
-operator|+
-name|p
-operator|.
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|offset
 operator|+=
 literal|2
@@ -683,10 +661,26 @@ argument_list|)
 condition|)
 block|{
 comment|// skip this
+name|long
+name|link
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|p
+operator|.
+name|data
+argument_list|,
+name|offset
+argument_list|)
+decl_stmt|;
 name|offset
 operator|+=
 literal|8
 expr_stmt|;
+comment|//System.out.println("skipping link on p " + page + " -> " +
+comment|//		StorageAddress.pageFromPointer(link));
 continue|continue;
 block|}
 comment|// read data length
@@ -841,6 +835,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+comment|// System.out.println("Next: " + nextNode.getNodeName() + " [" + page + "]");
 block|}
 do|while
 condition|(

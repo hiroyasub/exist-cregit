@@ -632,6 +632,21 @@ name|old
 operator|.
 name|collection
 expr_stmt|;
+if|if
+condition|(
+name|old
+operator|.
+name|collection
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Collection == null"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|children

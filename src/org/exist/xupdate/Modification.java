@@ -545,18 +545,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"modification select: "
-operator|+
-name|expr
-operator|.
-name|pprint
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|long
 name|start
 init|=
@@ -900,6 +888,7 @@ argument_list|,
 name|address
 argument_list|)
 condition|)
+block|{
 name|nodes
 index|[
 name|i
@@ -907,6 +896,7 @@ index|]
 operator|=
 name|node
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.dom.NodeIndexListener#nodeChanged(long, long) 		 */

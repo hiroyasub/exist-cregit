@@ -2188,6 +2188,20 @@ argument_list|(
 name|pass1
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Pass = "
+operator|+
+name|user
+operator|.
+name|getPassword
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|user
 operator|.
 name|setHome

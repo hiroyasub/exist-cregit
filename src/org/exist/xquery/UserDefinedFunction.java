@@ -119,7 +119,7 @@ specifier|private
 name|boolean
 name|isReset
 init|=
-literal|true
+literal|false
 decl_stmt|;
 specifier|public
 name|UserDefinedFunction
@@ -286,11 +286,9 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
-name|isReset
-operator|=
-literal|false
-expr_stmt|;
-return|return
+name|Sequence
+name|result
+init|=
 name|body
 operator|.
 name|eval
@@ -299,6 +297,9 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#pprint() 	 */
@@ -433,9 +434,10 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
 name|isReset
 condition|)
-return|return;
+block|{
 name|isReset
 operator|=
 literal|true
@@ -445,6 +447,11 @@ operator|.
 name|resetState
 argument_list|()
 expr_stmt|;
+name|isReset
+operator|=
+literal|false
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
