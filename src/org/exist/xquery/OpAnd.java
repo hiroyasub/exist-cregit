@@ -262,11 +262,11 @@ argument_list|)
 expr_stmt|;
 name|rl
 operator|=
-name|rl
+name|rr
 operator|.
 name|intersection
 argument_list|(
-name|rr
+name|rl
 argument_list|)
 expr_stmt|;
 return|return

@@ -633,15 +633,6 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"releasing query results"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|Vector
