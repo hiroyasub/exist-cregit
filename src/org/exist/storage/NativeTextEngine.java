@@ -1752,9 +1752,6 @@ decl_stmt|;
 name|long
 name|last
 decl_stmt|;
-name|long
-name|delta
-decl_stmt|;
 name|int
 name|freq
 init|=

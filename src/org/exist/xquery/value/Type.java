@@ -514,6 +514,15 @@ name|JAVA_OBJECT
 init|=
 literal|100
 decl_stmt|;
+comment|/** 	 * Special type constant to indicate that an item has been 	 * fulltext indexed. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IDX_FULLTEXT
+init|=
+literal|200
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static

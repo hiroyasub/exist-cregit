@@ -53,6 +53,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -360,10 +374,10 @@ name|boolean
 name|rememberContext
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if all nodes in this node set are included in 	 * the fulltext index. 	 *  	 * @return 	 */
+comment|/** 	 * If all nodes in this set have an index, returns the common 	 * supertype used to build the index, e.g. xs:integer or xs:string. 	 * If the nodes have different index types or no node has been indexed, 	 * returns {@link Type#ITEM}. 	 *  	 * @see org.exist.xquery.GeneralComparison 	 * @see org.exist.xquery.ValueComparison 	 * @return 	 */
 specifier|public
-name|boolean
-name|hasIndex
+name|int
+name|getIndexType
 parameter_list|()
 function_decl|;
 comment|/** 	 * Return a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */

@@ -97,6 +97,15 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
+name|ValueIndexTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
 name|LexerTest
 operator|.
 name|class

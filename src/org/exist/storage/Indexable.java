@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This interface should be implemented by all basic types  * that can be used as keys in a typed value index.  *   * @see org.exist.storage.NativeValueIndex  * @author wolf  */
+comment|/**  * This interface should be implemented by all basic types  * to be used as keys in a value index.  *   * @see org.exist.storage.NativeValueIndex  * @author wolf  */
 end_comment
 
 begin_interface
@@ -32,6 +32,15 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|deserialize
+parameter_list|(
+name|byte
+index|[]
+name|data
 parameter_list|)
 function_decl|;
 block|}

@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a (virtual) storage address in the paged file, consisting  * of page number, offset (tuple id) and flags.  */
+comment|/**  * Represents a (virtual) storage address in the paged file, consisting  * of page number, tuple id and type indicator.  *   * The format of a storage address is as follows:  *   *<pre>  * | page    | type | tid |  * | 1 2 3 4 | 5 6   | 7 8 |  *</pre>  */
 end_comment
 
 begin_class
@@ -145,7 +145,7 @@ operator|<<
 literal|32
 return|;
 block|}
-comment|/** 	 *  Get the tid (tuple id) from a virtual address 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
+comment|/** 	 *  Get the tid (tuple id) from a virtual address. 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -167,7 +167,7 @@ literal|0xFFFFL
 operator|)
 return|;
 block|}
-comment|/** 	 *  Get the page from a virtual address 	 * 	 *@param  pointer   	 *@return          the page encoded in this address 	 */
+comment|/** 	 *  Get the page from a virtual address. 	 * 	 *@param  pointer   	 *@return          the page encoded in this address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -193,11 +193,12 @@ literal|0xFFFFFFFFL
 operator|)
 return|;
 block|}
+comment|/** 	 * Get the type indicator from a virtual address. 	 *  	 * Returns a short corresponding to the type constants defined 	 * in {@link org.exist.xquery.value.Type}. 	 *  	 * @param pointer 	 * @return 	 */
 specifier|public
 specifier|final
 specifier|static
 name|short
-name|flagsFromPointer
+name|indexTypeFromPointer
 parameter_list|(
 name|long
 name|pointer
@@ -218,6 +219,37 @@ literal|0xFFFFL
 operator|)
 return|;
 block|}
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|setIndexType
+parameter_list|(
+name|long
+name|pointer
+parameter_list|,
+name|short
+name|type
+parameter_list|)
+block|{
+return|return
+name|pointer
+operator||
+operator|(
+operator|(
+name|long
+operator|)
+operator|(
+name|type
+operator|<<
+literal|16
+operator|)
+operator|&
+literal|0xFFFF0000L
+operator|)
+return|;
+block|}
+comment|/** 	 * Returns true if the page number and tid of the two storage 	 * addresses is equal. The type indicator is ignored. 	 *  	 * @param p0 	 * @param p1 	 * @return 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -284,7 +316,7 @@ name|os
 operator|.
 name|writeShort
 argument_list|(
-name|flagsFromPointer
+name|indexTypeFromPointer
 argument_list|(
 name|pointer
 argument_list|)
