@@ -340,15 +340,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"no user "
-argument_list|)
-expr_stmt|;
 comment|// try to read parameters from sitemap
 name|user
 operator|=
