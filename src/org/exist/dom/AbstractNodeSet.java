@@ -992,6 +992,8 @@ name|al
 argument_list|,
 name|mode
 argument_list|,
+name|includeSelf
+argument_list|,
 name|rememberContext
 argument_list|)
 return|;
@@ -1281,6 +1283,9 @@ name|int
 name|mode
 parameter_list|,
 name|boolean
+name|includeSelf
+parameter_list|,
+name|boolean
 name|rememberContext
 parameter_list|)
 block|{
@@ -1338,6 +1343,20 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|// check if one of the node sets is empty
+if|if
+condition|(
+name|na
+operator|==
+literal|null
+operator|||
+name|nb
+operator|==
+literal|null
+condition|)
+return|return
+name|result
+return|;
 name|long
 name|pa
 decl_stmt|,
@@ -1462,6 +1481,13 @@ argument_list|(
 name|pb
 argument_list|)
 decl_stmt|;
+name|boolean
+name|foundSelf
+init|=
+name|la
+operator|==
+name|lb
+decl_stmt|;
 while|while
 condition|(
 name|la
@@ -1546,6 +1572,14 @@ else|else
 block|{
 if|if
 condition|(
+operator|!
+name|foundSelf
+operator|||
+name|includeSelf
+condition|)
+block|{
+if|if
+condition|(
 name|mode
 operator|==
 name|NodeSet
@@ -1608,6 +1642,7 @@ argument_list|(
 name|na
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1719,6 +1754,20 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|// check if one of the node sets is empty
+if|if
+condition|(
+name|na
+operator|==
+literal|null
+operator|||
+name|nb
+operator|==
+literal|null
+condition|)
+return|return
+name|result
+return|;
 name|long
 name|pa
 decl_stmt|,
