@@ -883,13 +883,14 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//		    DocumentSet docs = contextSet.getDocumentSet();
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1031,13 +1032,14 @@ return|;
 block|}
 else|else
 block|{
+comment|//		    DocumentSet docs = contextSet.getDocumentSet();
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1166,11 +1168,12 @@ block|{
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
+comment|//		    DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -1283,11 +1286,12 @@ block|{
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
+comment|//			DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -1548,11 +1552,12 @@ block|{
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
+comment|//			DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -1642,13 +1647,14 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+comment|//			DocumentSet docs = contextSet.getDocumentSet();
 name|DocumentSet
 name|docs
 init|=
-name|contextSet
-operator|.
 name|getDocumentSet
-argument_list|()
+argument_list|(
+name|contextSet
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1877,6 +1883,37 @@ name|contextSet
 operator|.
 name|getParents
 argument_list|()
+return|;
+block|}
+specifier|protected
+name|DocumentSet
+name|getDocumentSet
+parameter_list|(
+name|NodeSet
+name|contextSet
+parameter_list|)
+block|{
+name|DocumentSet
+name|ds
+init|=
+name|getContextDocSet
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|ds
+operator|==
+literal|null
+condition|)
+name|ds
+operator|=
+name|contextSet
+operator|.
+name|getDocumentSet
+argument_list|()
+expr_stmt|;
+return|return
+name|ds
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#resetState() 	 */

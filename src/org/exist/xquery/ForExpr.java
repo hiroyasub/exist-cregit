@@ -21,7 +21,31 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSet
 import|;
 end_import
 
@@ -275,6 +299,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+comment|// assign to the bound variable
 name|var
 operator|.
 name|setValue
@@ -282,6 +307,34 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|in
+operator|instanceof
+name|NodeSet
+condition|)
+block|{
+name|DocumentSet
+name|contextDocs
+init|=
+operator|(
+operator|(
+name|NodeSet
+operator|)
+name|in
+operator|)
+operator|.
+name|getDocumentSet
+argument_list|()
+decl_stmt|;
+name|var
+operator|.
+name|setContextDocs
+argument_list|(
+name|contextDocs
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|whereExpr
@@ -355,6 +408,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+comment|// if there's an order by clause, wrap the result into
+comment|// an OrderedValueSequence
 if|if
 condition|(
 name|resultSequence
