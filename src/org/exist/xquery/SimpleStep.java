@@ -54,7 +54,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Represents a primary expression in a simple path step like  * foo//$x. The class is mainly used to wrap variable references inside  * a path expression.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -145,18 +145,6 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|set
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|set

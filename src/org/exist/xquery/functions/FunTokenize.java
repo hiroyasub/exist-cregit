@@ -522,6 +522,16 @@ name|flags
 operator|!=
 name|prevFlags
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Compiling pattern "
+operator|+
+name|pattern
+argument_list|)
+expr_stmt|;
 name|pat
 operator|=
 name|compiler
@@ -533,6 +543,7 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
+block|}
 name|prevPattern
 operator|=
 name|pattern

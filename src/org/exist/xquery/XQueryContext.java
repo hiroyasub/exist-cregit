@@ -472,12 +472,12 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|// Static namespace/prefix mappings
-specifier|private
+specifier|protected
 name|HashMap
 name|namespaces
 decl_stmt|;
 comment|// Local in-scope namespace/prefix mappings in the current context
-specifier|private
+specifier|protected
 name|HashMap
 name|inScopeNamespaces
 init|=
@@ -486,12 +486,12 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|// Static prefix/namespace mappings
-specifier|private
+specifier|protected
 name|HashMap
 name|prefixes
 decl_stmt|;
 comment|// Local prefix/namespace mappings in the current context
-specifier|private
+specifier|protected
 name|HashMap
 name|inScopePrefixes
 init|=
@@ -500,7 +500,7 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|// Local namespace stack
-specifier|private
+specifier|protected
 name|Stack
 name|namespaceStack
 init|=
@@ -509,7 +509,7 @@ name|Stack
 argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
-specifier|private
+specifier|protected
 name|TreeMap
 name|declaredFunctions
 init|=
@@ -518,7 +518,7 @@ name|TreeMap
 argument_list|()
 decl_stmt|;
 comment|// Globally declared variables
-specifier|private
+specifier|protected
 name|TreeMap
 name|globalVariables
 init|=
@@ -527,21 +527,21 @@ name|TreeMap
 argument_list|()
 decl_stmt|;
 comment|// The last element in the linked list of local in-scope variables
-specifier|private
+specifier|protected
 name|LocalVariable
 name|lastVar
 init|=
 literal|null
 decl_stmt|;
 comment|// The current size of the variable stack
-specifier|private
+specifier|protected
 name|int
 name|variableStackSize
 init|=
 literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
-specifier|private
+specifier|protected
 name|Stack
 name|forwardReferences
 init|=
@@ -549,18 +549,18 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
-specifier|private
+specifier|protected
 name|List
 name|pragmas
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|XQueryWatchDog
 name|watchdog
 decl_stmt|;
 comment|/** 	 * Loaded modules. 	 */
-specifier|private
+specifier|protected
 name|HashMap
 name|modules
 init|=
@@ -569,14 +569,14 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|/**  	 * The set of statically known documents. 	 */
-specifier|private
+specifier|protected
 name|String
 index|[]
 name|staticDocumentPaths
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|DocumentSet
 name|staticDocuments
 init|=
@@ -586,19 +586,19 @@ specifier|protected
 name|DBBroker
 name|broker
 decl_stmt|;
-specifier|private
+specifier|protected
 name|String
 name|baseURI
 init|=
 literal|""
 decl_stmt|;
-specifier|private
+specifier|protected
 name|String
 name|moduleLoadPath
 init|=
 literal|"."
 decl_stmt|;
-specifier|private
+specifier|protected
 name|String
 name|defaultFunctionNamespace
 init|=
@@ -673,16 +673,6 @@ specifier|protected
 name|XQueryContext
 parameter_list|()
 block|{
-name|this
-operator|.
-name|watchdog
-operator|=
-operator|new
-name|XQueryWatchDog
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 name|builder
 operator|=
 operator|new
@@ -3696,6 +3686,16 @@ name|void
 name|loadDefaults
 parameter_list|()
 block|{
+name|this
+operator|.
+name|watchdog
+operator|=
+operator|new
+name|XQueryWatchDog
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|SymbolTable
 name|syms
 init|=

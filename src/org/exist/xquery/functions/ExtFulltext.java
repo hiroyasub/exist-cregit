@@ -1018,10 +1018,12 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+comment|//		return Dependency.CONTEXT_SET;
 return|return
-name|Dependency
+name|path
 operator|.
-name|CONTEXT_SET
+name|getDependencies
+argument_list|()
 return|;
 block|}
 specifier|public

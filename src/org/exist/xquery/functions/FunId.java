@@ -658,6 +658,25 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Found "
+operator|+
+name|attribs
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" for id "
+operator|+
+name|id
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|NodeProxy
 name|n
 decl_stmt|,

@@ -603,17 +603,7 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-comment|//	and has no dependency on global vars
-operator|&&
-operator|(
-name|leftDeps
-operator|&
-name|Dependency
-operator|.
-name|LOCAL_VARS
-operator|)
-operator|==
-literal|0
+comment|//&& (leftDeps& Dependency.LOCAL_VARS) == 0
 comment|//	and does not depend on the context item
 operator|&&
 operator|(
@@ -671,6 +661,19 @@ throws|throws
 name|XPathException
 block|{
 comment|//        long start = System.currentTimeMillis();
+if|if
+condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+name|contextSequence
+operator|=
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|result
 init|=
@@ -920,6 +923,25 @@ return|;
 block|}
 else|else
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"left: "
+operator|+
+name|ls
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|"; right: "
+operator|+
+name|rs
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -946,6 +968,18 @@ argument_list|()
 operator|.
 name|atomize
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"left: "
+operator|+
+name|lv
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

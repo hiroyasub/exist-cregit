@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * Created on Jul 15, 2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -35,20 +31,8 @@ name|DocumentSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|MemTreeBuilder
-import|;
-end_import
-
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -85,8 +69,19 @@ name|broker
 operator|=
 name|parentContext
 operator|.
-name|getBroker
-argument_list|()
+name|broker
+expr_stmt|;
+name|baseURI
+operator|=
+name|parentContext
+operator|.
+name|baseURI
+expr_stmt|;
+name|moduleLoadPath
+operator|=
+name|parentContext
+operator|.
+name|moduleLoadPath
 expr_stmt|;
 name|loadDefaults
 argument_list|()
@@ -116,13 +111,33 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-return|return
+name|Module
+name|module
+init|=
+name|super
+operator|.
+name|getModule
+argument_list|(
+name|namespaceURI
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|module
+operator|==
+literal|null
+condition|)
+name|module
+operator|=
 name|parentContext
 operator|.
 name|getModule
 argument_list|(
 name|namespaceURI
 argument_list|)
+expr_stmt|;
+return|return
+name|module
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getModules() 	 */

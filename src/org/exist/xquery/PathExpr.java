@@ -658,6 +658,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|r
 operator|=
 name|expr
@@ -667,6 +668,7 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|r
