@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -671,6 +681,9 @@ specifier|public
 name|boolean
 name|compareTo
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|int
 name|operator
 parameter_list|,
@@ -810,6 +823,9 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)
@@ -915,6 +931,8 @@ condition|)
 return|return
 name|compareTo
 argument_list|(
+literal|null
+argument_list|,
 name|other
 argument_list|)
 operator|>
@@ -928,6 +946,8 @@ else|else
 return|return
 name|compareTo
 argument_list|(
+literal|null
+argument_list|,
 name|other
 operator|.
 name|convertTo
@@ -970,6 +990,8 @@ condition|)
 return|return
 name|compareTo
 argument_list|(
+literal|null
+argument_list|,
 name|other
 argument_list|)
 operator|<
@@ -983,6 +1005,8 @@ else|else
 return|return
 name|compareTo
 argument_list|(
+literal|null
+argument_list|,
 name|other
 operator|.
 name|convertTo

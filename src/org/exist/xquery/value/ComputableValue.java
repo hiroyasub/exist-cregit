@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -66,6 +76,9 @@ specifier|abstract
 name|boolean
 name|compareTo
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|int
 name|operator
 parameter_list|,
@@ -81,6 +94,9 @@ specifier|abstract
 name|int
 name|compareTo
 parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
 name|AtomicValue
 name|other
 parameter_list|)

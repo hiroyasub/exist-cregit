@@ -1867,6 +1867,11 @@ name|lv
 operator|.
 name|compareTo
 argument_list|(
+name|context
+operator|.
+name|getDefaultCollator
+argument_list|()
+argument_list|,
 name|relation
 argument_list|,
 name|rv

@@ -168,6 +168,17 @@ name|int
 name|getLength
 parameter_list|()
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Length: "
+operator|+
+name|count
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|items
@@ -729,6 +740,14 @@ name|a
 operator|.
 name|compareTo
 argument_list|(
+name|orderSpecs
+index|[
+name|i
+index|]
+operator|.
+name|getCollator
+argument_list|()
+argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
@@ -813,6 +832,7 @@ name|pos
 operator|<
 name|count
 condition|)
+block|{
 return|return
 name|items
 index|[
@@ -822,6 +842,7 @@ index|]
 operator|.
 name|item
 return|;
+block|}
 return|return
 literal|null
 return|;

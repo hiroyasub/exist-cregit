@@ -700,6 +700,14 @@ name|a
 operator|.
 name|compareTo
 argument_list|(
+name|orderSpecs
+index|[
+name|i
+index|]
+operator|.
+name|getCollator
+argument_list|()
+argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
