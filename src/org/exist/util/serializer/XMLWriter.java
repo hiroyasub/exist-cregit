@@ -1448,6 +1448,15 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+if|if
+condition|(
+name|tagIsOpen
+condition|)
+name|closeStartTag
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|writer
