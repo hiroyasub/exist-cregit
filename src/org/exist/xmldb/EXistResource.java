@@ -113,6 +113,8 @@ function_decl|;
 name|String
 name|getMimeType
 parameter_list|()
+throws|throws
+name|XMLDBException
 function_decl|;
 block|}
 end_interface

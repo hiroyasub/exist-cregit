@@ -173,6 +173,12 @@ name|mimeType
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|boolean
+name|isNewResource
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|AbstractEXistResource
 parameter_list|(
@@ -307,6 +313,8 @@ specifier|public
 name|String
 name|getMimeType
 parameter_list|()
+throws|throws
+name|XMLDBException
 block|{
 return|return
 name|mimeType
