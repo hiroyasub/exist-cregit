@@ -9575,6 +9575,7 @@ name|String
 name|currentPath
 parameter_list|)
 block|{
+specifier|final
 name|IndexPaths
 name|idx
 init|=
@@ -9599,12 +9600,18 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+specifier|final
+name|long
+name|gid
+init|=
 name|node
 operator|.
 name|getGID
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|gid
 operator|<
 literal|0
 condition|)
@@ -9614,10 +9621,7 @@ name|debug
 argument_list|(
 literal|"illegal node: "
 operator|+
-name|node
-operator|.
-name|getGID
-argument_list|()
+name|gid
 operator|+
 literal|"; "
 operator|+
@@ -9634,15 +9638,6 @@ init|=
 name|node
 operator|.
 name|getNodeType
-argument_list|()
-decl_stmt|;
-specifier|final
-name|long
-name|gid
-init|=
-name|node
-operator|.
-name|getGID
 argument_list|()
 decl_stmt|;
 specifier|final

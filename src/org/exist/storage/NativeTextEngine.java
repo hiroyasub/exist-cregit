@@ -4091,7 +4091,7 @@ name|long
 name|gid
 parameter_list|)
 block|{
-name|OrderedLongLinkedList
+name|LongLinkedList
 name|buf
 decl_stmt|;
 if|if
