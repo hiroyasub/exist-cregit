@@ -990,19 +990,6 @@ operator|<
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|p
-operator|.
-name|gid
-operator|+
-literal|" not found"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
