@@ -392,9 +392,7 @@ specifier|protected
 name|Lock
 name|lock
 init|=
-operator|new
-name|ReentrantReadWriteLock
-argument_list|()
+literal|null
 decl_stmt|;
 specifier|public
 name|int
@@ -456,6 +454,17 @@ name|minFree
 operator|=
 name|PAGE_MIN_FREE
 expr_stmt|;
+name|lock
+operator|=
+operator|new
+name|ReentrantReadWriteLock
+argument_list|(
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 *  Constructor for the BFile object 	 * 	 *@param  file     Description of the Parameter 	 *@param  buffers  Description of the Parameter 	 */
 specifier|public
@@ -495,6 +504,17 @@ expr_stmt|;
 name|minFree
 operator|=
 name|PAGE_MIN_FREE
+expr_stmt|;
+name|lock
+operator|=
+operator|new
+name|ReentrantReadWriteLock
+argument_list|(
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 *  Constructor for the BFile object 	 * 	 *@param  file          Description of the Parameter 	 *@param  btreeBuffers  Description of the Parameter 	 *@param  dataBuffers   Description of the Parameter 	 */
@@ -538,6 +558,17 @@ expr_stmt|;
 name|minFree
 operator|=
 name|PAGE_MIN_FREE
+expr_stmt|;
+name|lock
+operator|=
+operator|new
+name|ReentrantReadWriteLock
+argument_list|(
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 specifier|private

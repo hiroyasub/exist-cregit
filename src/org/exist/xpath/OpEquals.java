@@ -206,7 +206,7 @@ name|containsExpr
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Constructor for the OpEquals object      *      *@param  relation  Description of the Parameter      */
+comment|/** 	 *  Constructor for the OpEquals object 	 * 	 *@param  relation  Description of the Parameter 	 */
 specifier|public
 name|OpEquals
 parameter_list|(
@@ -229,7 +229,7 @@ operator|=
 name|relation
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the OpEquals object      *      *@param  left      Description of the Parameter      *@param  right     Description of the Parameter      *@param  relation  Description of the Parameter      */
+comment|/** 	 *  Constructor for the OpEquals object 	 * 	 *@param  left      Description of the Parameter 	 *@param  right     Description of the Parameter 	 *@param  relation  Description of the Parameter 	 */
 specifier|public
 name|OpEquals
 parameter_list|(
@@ -336,7 +336,7 @@ name|right
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Left argument is boolean: Convert right argument to a bool.      *      *@param  left     Description of the Parameter      *@param  right    Description of the Parameter      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Left argument is boolean: Convert right argument to a bool. 	 * 	 *@param  left     Description of the Parameter 	 *@param  right    Description of the Parameter 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|Value
 name|booleanCompare
@@ -492,7 +492,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  left   Description of the Parameter      *@param  right  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  left   Description of the Parameter 	 *@param  right  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|protected
 name|boolean
 name|cmpBooleans
@@ -538,7 +538,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  left   Description of the Parameter      *@param  right  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  left   Description of the Parameter 	 *@param  right  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|protected
 name|boolean
 name|cmpNumbers
@@ -632,7 +632,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  left   Description of the Parameter      *@param  right  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  left   Description of the Parameter 	 *@param  right  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|protected
 name|boolean
 name|compareStrings
@@ -736,7 +736,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Compare left and right statement. Comparison is done like described in      *  the spec. If one argument returns a node set, we handle that first.      *  Otherwise if one argument is a number, process that. Third follows      *  string, boolean is last. If necessary move right to left and left to      *  right.      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Compare left and right statement. Comparison is done like described in 	 *  the spec. If one argument returns a node set, we handle that first. 	 *  Otherwise if one argument is a number, process that. Third follows 	 *  string, boolean is last. If necessary move right to left and left to 	 *  right. 	 * 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|Value
 name|eval
@@ -960,7 +960,7 @@ literal|"syntax error"
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Left argument is a node set. If right arg is a string-literal, call      *  broker.getNodesEqualTo - which is fast. If it is a number, convert it.      *  If it is a boolean, get the part of context which matches the left      *  expression, get the right value for every node of context and compare it      *  with the left-part.      *      *@param  left     Description of the Parameter      *@param  right    Description of the Parameter      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Left argument is a node set. If right arg is a string-literal, call 	 *  broker.getNodesEqualTo - which is fast. If it is a number, convert it. 	 *  If it is a boolean, get the part of context which matches the left 	 *  expression, get the right value for every node of context and compare it 	 *  with the left-part. 	 * 	 *@param  left     Description of the Parameter 	 *@param  right    Description of the Parameter 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|Value
 name|nodeSetCompare
@@ -1042,18 +1042,106 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-literal|'*'
-argument_list|,
 literal|'%'
+argument_list|,
+literal|'*'
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|containsExpr
-operator|!=
-literal|null
+name|getLeft
+argument_list|()
+operator|.
+name|returnsType
+argument_list|()
+operator|==
+name|Constants
+operator|.
+name|TYPE_NODELIST
+operator|&&
+name|relation
+operator|==
+name|Constants
+operator|.
+name|EQ
+operator|&&
+name|nodes
+operator|.
+name|hasIndex
+argument_list|()
 condition|)
 block|{
+name|SimpleTokenizer
+name|tokenizer
+init|=
+operator|new
+name|SimpleTokenizer
+argument_list|()
+decl_stmt|;
+name|tokenizer
+operator|.
+name|setText
+argument_list|(
+name|cmp
+argument_list|)
+expr_stmt|;
+name|TextToken
+name|token
+decl_stmt|;
+name|String
+name|term
+decl_stmt|;
+name|containsExpr
+operator|=
+operator|new
+name|FunContains
+argument_list|(
+name|pool
+argument_list|,
+name|Constants
+operator|.
+name|FULLTEXT_AND
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|5
+operator|&&
+operator|(
+name|token
+operator|=
+name|tokenizer
+operator|.
+name|nextToken
+argument_list|(
+literal|true
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|containsExpr
+operator|.
+name|addTerm
+argument_list|(
+name|token
+operator|.
+name|getText
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|Value
 name|temp
 init|=
@@ -1107,6 +1195,13 @@ argument_list|,
 name|relation
 argument_list|,
 name|cmp
+operator|.
+name|replace
+argument_list|(
+literal|'*'
+argument_list|,
+literal|'%'
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1472,7 +1567,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Left argument is a number: Convert right argument to a number for every      *  node in context.      *      *@param  left     Description of the Parameter      *@param  right    Description of the Parameter      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Left argument is a number: Convert right argument to a number for every 	 *  node in context. 	 * 	 *@param  left     Description of the Parameter 	 *@param  right    Description of the Parameter 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|Value
 name|numberCompare
@@ -1595,7 +1690,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|pprint
@@ -1649,7 +1744,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  check relevant documents. if right operand is a string literal and right      *  returns a node set, we check which documents contain it at all. in other      *  cases do nothing.      *      *@param  in_docs  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  check relevant documents. if right operand is a string literal and right 	 *  returns a node set, we check which documents contain it at all. in other 	 *  cases do nothing. 	 * 	 *@param  in_docs  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -1658,27 +1753,11 @@ name|DocumentSet
 name|in_docs
 parameter_list|)
 block|{
-comment|// use the fulltext index if one operand is a literal and the
-comment|// relation is =
-comment|//		if(getLeft().returnsType() == Constants.TYPE_NODELIST&&
-comment|//			getRight() instanceof Literal&&
-comment|//			relation == Constants.EQ) {
-comment|//			String cmp = ((Literal)getRight()).literalValue;
-comment|//			SimpleTokenizer tokenizer = new SimpleTokenizer();
-comment|//			tokenizer.setText(cmp);
-comment|//			TextToken token;
-comment|//			String term;
-comment|//			containsExpr = new FunContains(pool, Constants.FULLTEXT_AND);
-comment|//			for(int i = 0; i< 5&& (token = tokenizer.nextToken()) != null; i++) {
-comment|//				containsExpr.addTerm(token.getText());
-comment|//			}
-comment|//			return containsExpr.preselect( in_docs );
-comment|//		} else
 return|return
 name|in_docs
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|int
 name|returnsType
@@ -1690,7 +1769,7 @@ operator|.
 name|TYPE_NODELIST
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  left     Description of the Parameter      *@param  right    Description of the Parameter      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  left     Description of the Parameter 	 *@param  right    Description of the Parameter 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|Value
 name|stringCompare

@@ -227,6 +227,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|StorageAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|VariableByteInputStream
 import|;
 end_import
@@ -478,11 +490,6 @@ name|gid
 decl_stmt|,
 name|address
 decl_stmt|;
-name|int
-name|page
-decl_stmt|,
-name|tid
-decl_stmt|;
 try|try
 block|{
 comment|// iterate through elements
@@ -706,7 +713,7 @@ name|j
 operator|<
 name|len
 operator|*
-literal|3
+literal|4
 condition|;
 name|j
 operator|++
@@ -719,12 +726,6 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
-comment|//									delta = is.readLong();
-comment|//									page = is.readInt();
-comment|//									tid = is.readInt();
-comment|//									os.writeLong(delta);
-comment|//									os.writeInt(page);
-comment|//									os.writeInt(tid);
 block|}
 block|}
 else|else
@@ -766,19 +767,14 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
-name|page
+name|address
 operator|=
-name|is
+name|StorageAddress
 operator|.
-name|readInt
-argument_list|()
-expr_stmt|;
-name|tid
-operator|=
+name|read
+argument_list|(
 name|is
-operator|.
-name|readInt
-argument_list|()
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -799,17 +795,6 @@ name|reindexRequired
 argument_list|()
 condition|)
 block|{
-name|address
-operator|=
-name|DOMFile
-operator|.
-name|createPointer
-argument_list|(
-name|page
-argument_list|,
-name|tid
-argument_list|)
-expr_stmt|;
 name|idList
 operator|.
 name|add
@@ -861,17 +846,6 @@ name|gid
 argument_list|)
 condition|)
 block|{
-name|address
-operator|=
-name|DOMFile
-operator|.
-name|createPointer
-argument_list|(
-name|page
-argument_list|,
-name|tid
-argument_list|)
-expr_stmt|;
 name|oldList
 operator|.
 name|add
@@ -1032,34 +1006,15 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-name|address
-operator|=
+name|StorageAddress
+operator|.
+name|write
+argument_list|(
 name|p
 operator|.
 name|internalAddress
-expr_stmt|;
+argument_list|,
 name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|pageFromPointer
-argument_list|(
-name|address
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|tidFromPointer
-argument_list|(
-name|address
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1245,11 +1200,6 @@ name|gid
 decl_stmt|,
 name|address
 decl_stmt|;
-name|int
-name|page
-decl_stmt|,
-name|tid
-decl_stmt|;
 try|try
 block|{
 comment|// iterate through elements
@@ -1473,7 +1423,7 @@ name|j
 operator|<
 name|len
 operator|*
-literal|3
+literal|4
 condition|;
 name|j
 operator|++
@@ -1486,12 +1436,6 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
-comment|//									delta = is.readLong();
-comment|//									page = is.readInt();
-comment|//									tid = is.readInt();
-comment|//									os.writeLong(delta);
-comment|//									os.writeInt(page);
-comment|//									os.writeInt(tid);
 block|}
 block|}
 else|else
@@ -1533,19 +1477,14 @@ name|last
 operator|=
 name|gid
 expr_stmt|;
-name|page
+name|address
 operator|=
-name|is
+name|StorageAddress
 operator|.
-name|readInt
-argument_list|()
-expr_stmt|;
-name|tid
-operator|=
+name|read
+argument_list|(
 name|is
-operator|.
-name|readInt
-argument_list|()
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -1558,17 +1497,7 @@ name|gid
 argument_list|)
 condition|)
 block|{
-name|address
-operator|=
-name|DOMFile
-operator|.
-name|createPointer
-argument_list|(
-name|page
-argument_list|,
-name|tid
-argument_list|)
-expr_stmt|;
+comment|//address = DOMFile.createPointer(page, tid);
 name|newList
 operator|.
 name|add
@@ -1715,34 +1644,15 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-name|address
-operator|=
+name|StorageAddress
+operator|.
+name|write
+argument_list|(
 name|p
 operator|.
 name|internalAddress
-expr_stmt|;
+argument_list|,
 name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|pageFromPointer
-argument_list|(
-name|address
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|tidFromPointer
-argument_list|(
-name|address
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1950,9 +1860,6 @@ decl_stmt|;
 name|Value
 name|ref
 decl_stmt|;
-name|Value
-name|val
-decl_stmt|;
 name|Map
 operator|.
 name|Entry
@@ -2154,34 +2061,15 @@ argument_list|(
 name|cid
 argument_list|)
 expr_stmt|;
-name|addr
-operator|=
+name|StorageAddress
+operator|.
+name|write
+argument_list|(
 name|proxy
 operator|.
 name|internalAddress
-expr_stmt|;
+argument_list|,
 name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|pageFromPointer
-argument_list|(
-name|addr
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|writeInt
-argument_list|(
-name|DOMFile
-operator|.
-name|tidFromPointer
-argument_list|(
-name|addr
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2362,27 +2250,6 @@ decl_stmt|;
 return|return
 name|ref
 return|;
-comment|//        IndexQuery query =
-comment|//                new IndexQuery(null, IndexQuery.TRUNC_RIGHT, ref);
-comment|//        synchronized (dbElement) {
-comment|//            try {
-comment|//                ArrayList partitions = dbElement.findKeys(query);
-comment|//                Value next;
-comment|//                int size;
-comment|//                for(Iterator i = partitions.iterator(); i.hasNext(); ) {
-comment|//                    next = (Value) i.next();
-comment|//                    size = dbElement.getValueSize( next );
-comment|//                    if( size + len< PARTITION_SIZE ) {
-comment|//                        return next;
-comment|//		    }
-comment|//                }
-comment|//            } catch(IOException e) {
-comment|//                LOG.warn(e);
-comment|//            } catch(BTreeException e) {
-comment|//                LOG.warn(e);
-comment|//            }
-comment|//            return null;
-comment|//        }
 block|}
 comment|/**  Description of the Method */
 specifier|public

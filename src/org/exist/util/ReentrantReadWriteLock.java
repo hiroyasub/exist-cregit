@@ -25,6 +25,12 @@ implements|implements
 name|Lock
 block|{
 specifier|protected
+name|String
+name|id_
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
 name|Thread
 name|owner_
 init|=
@@ -50,6 +56,18 @@ name|timeOut_
 init|=
 literal|60000L
 decl_stmt|;
+specifier|public
+name|ReentrantReadWriteLock
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{
+name|id_
+operator|=
+name|id
+expr_stmt|;
+block|}
 specifier|public
 name|boolean
 name|acquire
@@ -115,6 +133,8 @@ name|mode_
 operator|=
 name|mode
 expr_stmt|;
+comment|//				System.out.println("thread " + caller.getName() + " acquired lock on " + id_ +
+comment|//					"; locks held = " + holds_);
 return|return
 literal|true
 return|;
@@ -138,6 +158,7 @@ name|mode_
 operator|=
 name|mode
 expr_stmt|;
+comment|//				System.out.println("thread " + caller.getName() + " acquired lock on " + id_);
 return|return
 literal|true
 return|;
@@ -184,6 +205,8 @@ name|mode_
 operator|=
 name|mode
 expr_stmt|;
+comment|//							System.out.println("thread " + caller.getName() + " acquired lock on " + id_ +
+comment|//								"; locks held = " + holds_);
 return|return
 literal|true
 return|;
@@ -207,6 +230,8 @@ name|mode_
 operator|=
 name|mode
 expr_stmt|;
+comment|//							System.out.println("thread " + caller.getName() + " acquired lock on " + id_ +
+comment|//								"; locks held = " + holds_);
 return|return
 literal|true
 return|;
@@ -243,6 +268,20 @@ operator|.
 name|READ_LOCK
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"releasing blocking thread "
+operator|+
+name|owner_
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|owner_
 operator|=
 name|caller
@@ -255,6 +294,8 @@ name|mode_
 operator|=
 name|mode
 expr_stmt|;
+comment|//									System.out.println("thread " + caller.getName() + " acquired lock on " + id_ +
+comment|//										"; locks held = " + holds_);
 return|return
 literal|true
 return|;
@@ -311,7 +352,16 @@ throw|throw
 operator|new
 name|Error
 argument_list|(
-literal|"Illegal Lock usage"
+literal|"Illegal lock usage. Thread "
+operator|+
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|+
+literal|" tried to release lock on "
+operator|+
+name|id_
 argument_list|)
 throw|;
 if|if
@@ -322,6 +372,8 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|//			System.out.println("thread " + owner_.getName() + " released lock on " + id_ +
+comment|//				"; locks held = " + holds_);
 name|owner_
 operator|=
 literal|null

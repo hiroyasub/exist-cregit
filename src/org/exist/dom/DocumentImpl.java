@@ -125,6 +125,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|StorageAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|SyntaxException
 import|;
 end_import
@@ -2185,7 +2197,7 @@ argument_list|()
 expr_stmt|;
 name|address
 operator|=
-name|DOMFile
+name|StorageAddress
 operator|.
 name|createPointer
 argument_list|(
@@ -2196,7 +2208,7 @@ argument_list|()
 argument_list|,
 name|istream
 operator|.
-name|readInt
+name|readShort
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2841,7 +2853,7 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|DOMFile
+name|StorageAddress
 operator|.
 name|pageFromPointer
 argument_list|(
@@ -2851,9 +2863,9 @@ argument_list|)
 expr_stmt|;
 name|ostream
 operator|.
-name|writeInt
+name|writeShort
 argument_list|(
-name|DOMFile
+name|StorageAddress
 operator|.
 name|tidFromPointer
 argument_list|(

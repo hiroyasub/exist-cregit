@@ -159,6 +159,18 @@ name|LockException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|StorageAddress
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class DOMFileIterator is used to iterate over nodes in the DOM storage.  * This implementation returns the raw value of the node. You have to call  * Node.deserialize() to read the node from the value data.  *   * The DOM file is locked to locate the data and released afterwards. Before  * working with the returned data, you should get a copy by calling value.getData().   *   * @author wolf  */
 end_comment
@@ -331,7 +343,7 @@ name|currentAddress
 parameter_list|()
 block|{
 return|return
-name|DOMFile
+name|StorageAddress
 operator|.
 name|createPointer
 argument_list|(
@@ -939,7 +951,7 @@ name|nextVal
 operator|.
 name|setAddress
 argument_list|(
-name|DOMFile
+name|StorageAddress
 operator|.
 name|createPointer
 argument_list|(
