@@ -1654,6 +1654,13 @@ literal|"Not allowed to read collection"
 argument_list|)
 throw|;
 comment|// return a listing of the collection contents
+name|response
+operator|.
+name|setContentType
+argument_list|(
+literal|"text/xml"
+argument_list|)
+expr_stmt|;
 name|writeResponse
 argument_list|(
 name|response
@@ -5729,10 +5736,38 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//        response.setCharacterEncoding(encoding);
+name|String
+name|contentType
+init|=
 name|response
 operator|.
-name|setCharacterEncoding
+name|getContentType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|contentType
+operator|!=
+literal|null
+operator|&&
+name|contentType
+operator|.
+name|indexOf
 argument_list|(
+literal|';'
+argument_list|)
+operator|<
+literal|0
+condition|)
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|contentType
+operator|+
+literal|"; charset="
+operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
