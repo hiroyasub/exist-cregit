@@ -37238,15 +37238,6 @@ name|inAttributeContent
 operator|=
 literal|true
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"in attribute..."
-argument_list|)
-expr_stmt|;
 block|}
 name|attributeValue
 argument_list|()

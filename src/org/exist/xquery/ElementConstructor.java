@@ -385,19 +385,6 @@ name|String
 name|uri
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|prefix
-operator|+
-literal|"="
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|namespaceDecls
@@ -829,6 +816,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// add namespace declaration nodes
 name|int
 name|nodeNr
 init|=
