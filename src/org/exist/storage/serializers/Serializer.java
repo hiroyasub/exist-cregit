@@ -2223,6 +2223,21 @@ operator|=
 name|toSAX
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setReceiver
+parameter_list|(
+name|Receiver
+name|receiver
+parameter_list|)
+block|{
+name|this
+operator|.
+name|receiver
+operator|=
+name|receiver
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.xml.sax.XMLReader#setContentHandler(org.xml.sax.ContentHandler) 	 */
 specifier|public
 name|void
