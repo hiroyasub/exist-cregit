@@ -12,7 +12,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  This is the default class used by the fulltext indexer for  * tokenizing a string into words. Known token types are defined  * by class Token.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    July 30, 2002  */
+comment|/**  *  This is the default class used by the fulltext indexer for  * tokenizing a string into words. Known token types are defined  * by class Token.  *  *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -350,14 +350,6 @@ operator|||
 name|ch
 operator|==
 literal|'*'
-operator|||
-name|ch
-operator|==
-literal|'['
-operator|||
-name|ch
-operator|==
-literal|']'
 condition|)
 return|return
 literal|true
