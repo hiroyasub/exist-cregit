@@ -5364,7 +5364,7 @@ index|[]
 name|xml
 parameter_list|,
 name|String
-name|docName
+name|path
 parameter_list|,
 name|boolean
 name|replace
@@ -5391,7 +5391,7 @@ expr_stmt|;
 name|int
 name|p
 init|=
-name|docName
+name|path
 operator|.
 name|lastIndexOf
 argument_list|(
@@ -5406,7 +5406,7 @@ literal|0
 operator|||
 name|p
 operator|==
-name|docName
+name|path
 operator|.
 name|length
 argument_list|()
@@ -5423,7 +5423,7 @@ throw|;
 name|String
 name|collectionName
 init|=
-name|docName
+name|path
 operator|.
 name|substring
 argument_list|(
@@ -5432,9 +5432,10 @@ argument_list|,
 name|p
 argument_list|)
 decl_stmt|;
+name|String
 name|docName
-operator|=
-name|docName
+init|=
+name|path
 operator|.
 name|substring
 argument_list|(
@@ -5442,7 +5443,7 @@ name|p
 operator|+
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Collection
 name|collection
 init|=
@@ -5483,7 +5484,7 @@ name|collection
 operator|.
 name|getDocument
 argument_list|(
-name|docName
+name|path
 argument_list|)
 decl_stmt|;
 if|if
@@ -5541,7 +5542,7 @@ name|debug
 argument_list|(
 literal|"parsing "
 operator|+
-name|docName
+name|path
 operator|+
 literal|" took "
 operator|+
