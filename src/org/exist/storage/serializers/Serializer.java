@@ -3508,6 +3508,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|wrap
+condition|)
+block|{
 name|attrs
 operator|=
 operator|new
@@ -3540,6 +3545,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|receiver
@@ -3572,6 +3578,11 @@ name|e
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|wrap
+condition|)
+block|{
 name|receiver
 operator|.
 name|endElement
@@ -3579,6 +3590,7 @@ argument_list|(
 name|ELEM_VALUE_QNAME
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if

@@ -14827,68 +14827,14 @@ name|valore
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|idxSpec
-operator|!=
-literal|null
-condition|)
-block|{
-name|ValueIndexSpec
-name|spec
-init|=
-name|idxSpec
-operator|.
-name|getIndexByPath
-argument_list|(
-name|currentPath
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|spec
-operator|!=
-literal|null
-condition|)
-block|{
-name|tempProxy
-operator|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|,
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|valueIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|valueIndex
-operator|.
-name|storeText
-argument_list|(
-name|spec
-argument_list|,
-operator|(
-name|TextImpl
-operator|)
-name|node
-argument_list|,
-name|tempProxy
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//					if (idxSpec != null) {
+comment|//					    ValueIndexSpec spec = idxSpec.getIndexByPath(currentPath);
+comment|//					    if(spec != null) {
+comment|//					        tempProxy = new NodeProxy(doc, gid, node.getInternalAddress());
+comment|//					        valueIndex.setDocument(doc);
+comment|//					        valueIndex.storeText(spec, (TextImpl) node, tempProxy);
+comment|//					    }
+comment|//					}
 block|}
 break|break;
 block|}
