@@ -323,6 +323,10 @@ decl_stmt|;
 if|if
 condition|(
 name|var
+operator|==
+literal|null
+operator|||
+name|var
 operator|.
 name|getValue
 argument_list|()

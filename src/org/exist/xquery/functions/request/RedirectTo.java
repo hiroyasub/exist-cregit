@@ -322,6 +322,19 @@ decl_stmt|;
 if|if
 condition|(
 name|var
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"No response object found in the current XQuery context."
+argument_list|)
+throw|;
+if|if
+condition|(
+name|var
 operator|.
 name|getValue
 argument_list|()
