@@ -750,6 +750,10 @@ name|currentSet
 operator|==
 literal|null
 operator|||
+name|currentDocs
+operator|==
+literal|null
+operator|||
 operator|!
 operator|(
 name|docs
@@ -886,6 +890,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|currentSet
+operator|==
+literal|null
+operator|||
 name|currentDocs
 operator|==
 literal|null
@@ -1002,6 +1010,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|currentSet
+operator|==
+literal|null
+operator|||
 name|currentDocs
 operator|==
 literal|null
@@ -1098,6 +1110,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|currentSet
+operator|==
+literal|null
+operator|||
 name|currentDocs
 operator|==
 literal|null
@@ -1348,6 +1364,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|currentSet
+operator|==
+literal|null
+operator|||
 name|currentDocs
 operator|==
 literal|null

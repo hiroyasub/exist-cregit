@@ -8938,10 +8938,7 @@ name|elementIndex
 operator|.
 name|addRow
 argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
+name|qname
 argument_list|,
 name|tempProxy
 argument_list|)
@@ -9006,23 +9003,10 @@ name|idx
 operator|==
 literal|null
 operator|||
-operator|(
 name|idx
 operator|.
 name|getIncludeAttributes
 argument_list|()
-operator|&&
-name|idx
-operator|.
-name|match
-argument_list|(
-name|currentPath
-operator|+
-literal|"/@"
-operator|+
-name|nodeName
-argument_list|)
-operator|)
 condition|)
 name|textEngine
 operator|.
@@ -9102,19 +9086,7 @@ name|TEXT_NODE
 case|:
 comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
-if|if
-condition|(
-name|idx
-operator|==
-literal|null
-operator|||
-name|idx
-operator|.
-name|match
-argument_list|(
-name|currentPath
-argument_list|)
-condition|)
+comment|// if (idx == null || idx.match(currentPath))
 name|textEngine
 operator|.
 name|storeText

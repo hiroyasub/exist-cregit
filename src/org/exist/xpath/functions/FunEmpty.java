@@ -254,6 +254,10 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
+operator||
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */

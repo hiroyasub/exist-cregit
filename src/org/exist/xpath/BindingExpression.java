@@ -621,6 +621,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"SINGLE"
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|innerSeq
 init|=
