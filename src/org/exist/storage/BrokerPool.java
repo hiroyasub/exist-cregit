@@ -866,7 +866,7 @@ return|return
 name|broker
 return|;
 block|}
-comment|/** 	 *  Gets the securityManager attribute of the BrokerPool object 	 * 	 *@return    The securityManager value 	 */
+comment|/** 	 *  Returns the security manager responsible for this pool 	 * 	 *@return    The securityManager value 	 */
 specifier|public
 name|org
 operator|.
@@ -881,6 +881,38 @@ block|{
 return|return
 name|secManager
 return|;
+block|}
+specifier|public
+name|void
+name|reloadSecurityManager
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"reloading security manager"
+argument_list|)
+expr_stmt|;
+name|secManager
+operator|=
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+argument_list|(
+name|this
+argument_list|,
+name|broker
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|protected

@@ -13,6 +13,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Vector
@@ -27,7 +37,19 @@ name|apache
 operator|.
 name|xmlrpc
 operator|.
-name|*
+name|XmlRpcClient
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|xmlrpc
+operator|.
+name|XmlRpcException
 import|;
 end_import
 
@@ -41,7 +63,63 @@ name|api
 operator|.
 name|base
 operator|.
-name|*
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ResourceIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ResourceSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
 import|;
 end_import
 
@@ -55,13 +133,9 @@ name|api
 operator|.
 name|modules
 operator|.
-name|*
+name|XMLResource
 import|;
 end_import
-
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     wolf  *@created    24. April 2002  */
-end_comment
 
 begin_class
 specifier|public
@@ -87,6 +161,13 @@ init|=
 literal|1
 decl_stmt|;
 specifier|protected
+name|int
+name|handle
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|protected
 name|Vector
 name|resources
 decl_stmt|;
@@ -94,7 +175,6 @@ specifier|protected
 name|XmlRpcClient
 name|rpcClient
 decl_stmt|;
-comment|/**      *  Constructor for the ResourceSetImpl object      *      *@param  col  Description of the Parameter      */
 specifier|public
 name|ResourceSetImpl
 parameter_list|(
@@ -115,7 +195,6 @@ name|Vector
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the ResourceSetImpl object      *      *@param  col        Description of the Parameter      *@param  resources  Description of the Parameter      *@param  indentXML  Description of the Parameter      *@param  encoding   Description of the Parameter      */
 specifier|public
 name|ResourceSetImpl
 parameter_list|(
@@ -126,12 +205,21 @@ name|Vector
 name|resources
 parameter_list|,
 name|int
+name|handle
+parameter_list|,
+name|int
 name|indentXML
 parameter_list|,
 name|String
 name|encoding
 parameter_list|)
 block|{
+name|this
+operator|.
+name|handle
+operator|=
+name|handle
+expr_stmt|;
 name|this
 operator|.
 name|resources
@@ -157,7 +245,6 @@ operator|=
 name|encoding
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the Resource attribute of the ResourceSetImpl object      *      *@param  resource  The feature to be added to the Resource attribute      */
 specifier|public
 name|void
 name|addResource
@@ -174,7 +261,6 @@ name|resource
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|clear
@@ -188,7 +274,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Gets the iterator attribute of the ResourceSetImpl object      *      *@return                     The iterator value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|ResourceIterator
 name|getIterator
@@ -202,7 +287,6 @@ name|NewResourceIterator
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the iterator attribute of the ResourceSetImpl object      *      *@param  start               Description of the Parameter      *@return                     The iterator value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|ResourceIterator
 name|getIterator
@@ -221,7 +305,6 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the membersAsResource attribute of the ResourceSetImpl object      *      *@return                     The membersAsResource value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Resource
 name|getMembersAsResource
@@ -239,7 +322,6 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the resource attribute of the ResourceSetImpl object      *      *@param  pos                 Description of the Parameter      *@return                     The resource value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Resource
 name|getResource
@@ -329,6 +411,13 @@ name|XMLResourceImpl
 argument_list|(
 name|collection
 argument_list|,
+name|handle
+argument_list|,
+operator|(
+name|int
+operator|)
+name|pos
+argument_list|,
 name|doc
 argument_list|,
 name|s_id
@@ -381,6 +470,13 @@ name|XMLResourceImpl
 argument_list|(
 name|collection
 argument_list|,
+name|handle
+argument_list|,
+operator|(
+name|int
+operator|)
+name|pos
+argument_list|,
 name|Long
 operator|.
 name|toString
@@ -415,7 +511,6 @@ name|res
 return|;
 block|}
 block|}
-comment|/**      *  Gets the size attribute of the ResourceSetImpl object      *      *@return                     The size value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|long
 name|getSize
@@ -424,6 +519,12 @@ throws|throws
 name|XMLDBException
 block|{
 return|return
+name|resources
+operator|==
+literal|null
+condition|?
+literal|0
+else|:
 operator|(
 name|long
 operator|)
@@ -433,7 +534,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  pos                 Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|removeResource
@@ -455,7 +555,6 @@ name|pos
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Class      *      *@author     wolf      *@created    24. April 2002      */
 class|class
 name|NewResourceIterator
 implements|implements
@@ -466,13 +565,11 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Constructor for the NewResourceIterator object */
 specifier|public
 name|NewResourceIterator
 parameter_list|()
 block|{
 block|}
-comment|/**          *  Constructor for the NewResourceIterator object          *          *@param  start  Description of the Parameter          */
 specifier|public
 name|NewResourceIterator
 parameter_list|(
@@ -485,7 +582,6 @@ operator|=
 name|start
 expr_stmt|;
 block|}
-comment|/**          *  Description of the Method          *          *@return                     Description of the Return Value          *@exception  XMLDBException  Description of the Exception          */
 specifier|public
 name|boolean
 name|hasMoreResources
@@ -494,6 +590,12 @@ throws|throws
 name|XMLDBException
 block|{
 return|return
+name|resources
+operator|==
+literal|null
+condition|?
+literal|false
+else|:
 name|pos
 operator|<
 name|resources
@@ -502,7 +604,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**          *  Description of the Method          *          *@return                     Description of the Return Value          *@exception  XMLDBException  Description of the Exception          */
 specifier|public
 name|Resource
 name|nextResource
@@ -517,6 +618,80 @@ name|pos
 operator|++
 argument_list|)
 return|;
+block|}
+block|}
+comment|/* (non-Javadoc) 	 * @see java.lang.Object#finalize() 	 */
+specifier|protected
+name|void
+name|finalize
+parameter_list|()
+throws|throws
+name|Throwable
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"releasing query results"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|Vector
+name|params
+init|=
+operator|new
+name|Vector
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+name|params
+operator|.
+name|addElement
+argument_list|(
+operator|new
+name|Integer
+argument_list|(
+name|handle
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|rpcClient
+operator|.
+name|execute
+argument_list|(
+literal|"releaseQueryResult"
+argument_list|,
+name|params
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XmlRpcException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

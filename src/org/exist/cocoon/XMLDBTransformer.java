@@ -1057,6 +1057,14 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|each
+operator|.
+name|currentResource
+operator|!=
+literal|null
+condition|)
 name|each
 operator|.
 name|currentResource
@@ -1073,12 +1081,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-comment|// TODO Auto-generated catch block
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 specifier|protected
@@ -1411,6 +1413,16 @@ operator|=
 name|xpath
 expr_stmt|;
 name|String
+name|sortExpr
+init|=
+name|attribs
+operator|.
+name|getValue
+argument_list|(
+literal|"sort-by"
+argument_list|)
+decl_stmt|;
+name|String
 name|pFrom
 init|=
 name|attribs
@@ -1636,6 +1648,8 @@ operator|.
 name|query
 argument_list|(
 name|xpath
+argument_list|,
+name|sortExpr
 argument_list|)
 else|:
 name|service
@@ -1645,6 +1659,8 @@ argument_list|(
 name|resource
 argument_list|,
 name|xpath
+argument_list|,
+name|sortExpr
 argument_list|)
 expr_stmt|;
 if|if
@@ -1667,6 +1683,7 @@ name|queryResult
 operator|==
 literal|null
 condition|)
+block|{
 name|reportError
 argument_list|(
 name|WARNING
@@ -1674,6 +1691,8 @@ argument_list|,
 literal|"query returned null"
 argument_list|)
 expr_stmt|;
+return|return;
+block|}
 name|each
 operator|.
 name|queryResult
@@ -1718,7 +1737,7 @@ operator|||
 name|each
 operator|.
 name|to
-operator|>
+operator|>=
 name|size
 condition|)
 name|each
@@ -1726,6 +1745,8 @@ operator|.
 name|to
 operator|=
 name|size
+operator|-
+literal|1
 expr_stmt|;
 if|if
 condition|(
@@ -2366,7 +2387,7 @@ init|;
 name|each
 operator|.
 name|current
-operator|<
+operator|<=
 name|each
 operator|.
 name|to

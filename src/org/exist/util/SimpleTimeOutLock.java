@@ -354,10 +354,31 @@ name|currentKey
 operator|=
 literal|null
 expr_stmt|;
-name|notifyAll
+name|notify
 argument_list|()
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|referenceCount
+operator|<
+literal|0
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": negative reference count"
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{

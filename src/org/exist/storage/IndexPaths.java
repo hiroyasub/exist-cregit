@@ -21,7 +21,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Object2ObjectOpenHashMap
 import|;

@@ -3000,17 +3000,6 @@ name|String
 name|stylesheet
 parameter_list|)
 block|{
-name|HttpServer
-operator|.
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"indent="
-operator|+
-name|indent
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|resultSet
@@ -3120,17 +3109,6 @@ operator|.
 name|setStylesheet
 argument_list|(
 name|stylesheet
-argument_list|)
-expr_stmt|;
-name|HttpServer
-operator|.
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"start = "
-operator|+
-name|start
 argument_list|)
 expr_stmt|;
 try|try

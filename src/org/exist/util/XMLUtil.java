@@ -1192,6 +1192,16 @@ argument_list|(
 name|gid
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|level
+operator|<
+literal|0
+condition|)
+return|return
+operator|-
+literal|1
+return|;
 return|return
 operator|(
 name|gid

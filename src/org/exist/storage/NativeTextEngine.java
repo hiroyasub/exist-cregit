@@ -21,7 +21,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Object2ObjectAVLTreeMap
 import|;
@@ -35,7 +35,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Object2ObjectRBTreeMap
 import|;
@@ -4608,12 +4608,13 @@ init|=
 literal|false
 decl_stmt|;
 comment|//protected TreeMap words = new TreeMap();
+comment|//private Object2ObjectRBTreeMap words = new Object2ObjectRBTreeMap();
 specifier|private
-name|Object2ObjectRBTreeMap
+name|Object2ObjectAVLTreeMap
 name|words
 init|=
 operator|new
-name|Object2ObjectRBTreeMap
+name|Object2ObjectAVLTreeMap
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -4658,19 +4659,7 @@ parameter_list|)
 block|{
 name|LongLinkedList
 name|buf
-decl_stmt|;
-if|if
-condition|(
-name|words
-operator|.
-name|containsKey
-argument_list|(
-name|word
-argument_list|)
-condition|)
-block|{
-name|buf
-operator|=
+init|=
 operator|(
 name|OrderedLongLinkedList
 operator|)
@@ -4680,9 +4669,13 @@ name|get
 argument_list|(
 name|word
 argument_list|)
-expr_stmt|;
-block|}
-else|else
+decl_stmt|;
+if|if
+condition|(
+name|buf
+operator|==
+literal|null
+condition|)
 block|{
 name|buf
 operator|=

@@ -300,6 +300,12 @@ init|=
 literal|true
 decl_stmt|;
 specifier|protected
+name|boolean
+name|matchTagging
+init|=
+literal|true
+decl_stmt|;
+specifier|protected
 name|User
 name|user
 decl_stmt|;
@@ -428,6 +434,22 @@ literal|"true"
 else|:
 literal|"false"
 return|;
+if|if
+condition|(
+name|property
+operator|.
+name|equals
+argument_list|(
+literal|"match-tagging"
+argument_list|)
+condition|)
+return|return
+name|matchTagging
+condition|?
+literal|"true"
+else|:
+literal|"false"
+return|;
 return|return
 literal|null
 return|;
@@ -453,6 +475,52 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+return|return
+name|query
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+specifier|public
+name|ResourceSet
+name|query
+parameter_list|(
+name|XMLResource
+name|res
+parameter_list|,
+name|String
+name|query
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+return|return
+name|query
+argument_list|(
+name|res
+argument_list|,
+name|query
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+specifier|public
+name|ResourceSet
+name|query
+parameter_list|(
+name|String
+name|query
+parameter_list|,
+name|String
+name|sortBy
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
 if|if
 condition|(
 operator|!
@@ -469,6 +537,13 @@ operator|.
 name|startsWith
 argument_list|(
 literal|"collection("
+argument_list|)
+operator|||
+name|query
+operator|.
+name|startsWith
+argument_list|(
+literal|"xcollection("
 argument_list|)
 operator|)
 condition|)
@@ -524,6 +599,8 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|sortBy
 argument_list|)
 return|;
 block|}
@@ -536,6 +613,9 @@ name|res
 parameter_list|,
 name|String
 name|query
+parameter_list|,
+name|String
+name|sortBy
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -635,6 +715,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|set
+argument_list|,
+name|sortBy
 argument_list|)
 return|;
 block|}
@@ -650,6 +732,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|context
+parameter_list|,
+name|String
+name|sortExpr
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -836,6 +921,10 @@ argument_list|,
 name|saxDocumentEvents
 argument_list|,
 name|createContainerElements
+argument_list|,
+name|matchTagging
+argument_list|,
+name|sortExpr
 argument_list|)
 decl_stmt|;
 return|return
@@ -939,7 +1028,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  resource            Description of the Parameter      *@param  query               Description of the Parameter      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  resource            Description of the Parameter 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|ResourceSet
 name|queryResource
@@ -977,7 +1066,7 @@ name|query
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ns                  Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ns                  Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeNamespace
@@ -998,7 +1087,7 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Sets the collection attribute of the LocalXPathQueryService object      *      *@param  col                 The new collection value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Sets the collection attribute of the LocalXPathQueryService object 	 * 	 *@param  col                 The new collection value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setCollection
@@ -1010,7 +1099,7 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-comment|/**      *  Sets the namespace attribute of the LocalXPathQueryService object      *      *@param  prefix              The new namespace value      *@param  namespace           The new namespace value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Sets the namespace attribute of the LocalXPathQueryService object 	 * 	 *@param  prefix              The new namespace value 	 *@param  namespace           The new namespace value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setNamespace
@@ -1034,7 +1123,7 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Sets the property attribute of the LocalXPathQueryService object      *      *@param  property            The new property value      *@param  value               The new property value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Sets the property attribute of the LocalXPathQueryService object 	 * 	 *@param  property            The new property value 	 *@param  value               The new property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setProperty
@@ -1118,6 +1207,24 @@ literal|"create-container-elements"
 argument_list|)
 condition|)
 name|createContainerElements
+operator|=
+name|value
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|property
+operator|.
+name|equals
+argument_list|(
+literal|"match-tagging"
+argument_list|)
+condition|)
+name|matchTagging
 operator|=
 name|value
 operator|.

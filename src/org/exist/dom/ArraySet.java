@@ -47,10 +47,6 @@ name|Iterator
 import|;
 end_import
 
-begin_comment
-comment|//import java.util.Arrays;
-end_comment
-
 begin_import
 import|import
 name|org
@@ -65,6 +61,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -74,10 +80,6 @@ operator|.
 name|Value
 import|;
 end_import
-
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    22. Juli 2002  */
-end_comment
 
 begin_class
 specifier|public
@@ -175,13 +177,21 @@ block|{
 name|int
 name|level
 decl_stmt|;
-name|long
-name|pid
-decl_stmt|;
 name|boolean
 name|foundValid
 init|=
 literal|false
+decl_stmt|;
+specifier|final
+name|int
+name|len
+init|=
+name|nl
+operator|.
+name|length
+decl_stmt|;
+name|long
+name|pid
 decl_stmt|;
 for|for
 control|(
@@ -192,9 +202,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|nl
-operator|.
-name|length
+name|len
 condition|;
 name|i
 operator|++
@@ -251,6 +259,25 @@ operator|.
 name|gid
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|level
+operator|==
+literal|0
+condition|)
+block|{
+name|nl
+index|[
+name|i
+index|]
+operator|.
+name|gid
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+continue|continue;
+block|}
 comment|// calculate parent's gid
 name|pid
 operator|=
@@ -269,10 +296,10 @@ index|]
 operator|.
 name|doc
 operator|.
-name|getLevelStartPoint
-argument_list|(
+name|treeLevelStartPoints
+index|[
 name|level
-argument_list|)
+index|]
 operator|)
 operator|/
 name|nl
@@ -282,10 +309,10 @@ index|]
 operator|.
 name|doc
 operator|.
-name|getTreeLevelOrder
-argument_list|(
+name|treeLevelOrder
+index|[
 name|level
-argument_list|)
+index|]
 operator|+
 name|nl
 index|[
@@ -294,12 +321,12 @@ index|]
 operator|.
 name|doc
 operator|.
-name|getLevelStartPoint
-argument_list|(
+name|treeLevelStartPoints
+index|[
 name|level
 operator|-
 literal|1
-argument_list|)
+index|]
 expr_stmt|;
 comment|//System.out.println(nl[i].doc.getDocId() + ":" + nl[i].gid + "->" + pid);
 name|nl
@@ -313,7 +340,12 @@ name|pid
 expr_stmt|;
 if|if
 condition|(
-name|pid
+name|nl
+index|[
+name|i
+index|]
+operator|.
+name|gid
 operator|>
 literal|0
 condition|)
@@ -327,7 +359,7 @@ name|foundValid
 return|;
 block|}
 comment|/** 	 *  QuickSort - sorting is needed once before we do binary search 	 * 	 *@param  list  Description of the Parameter 	 *@param  low   Description of the Parameter 	 *@param  high  Description of the Parameter 	 */
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|void
@@ -361,6 +393,7 @@ name|right_index
 init|=
 name|high
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|pivot
 init|=
@@ -1120,13 +1153,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|//    protected void finalize() throws Throwable {
-comment|//        System.out.println( "releasing nodes ...");
-comment|//        for( int i = 0; i< counter; i++ ) {
-comment|//            NodeProxyFactory.release( nodes[i] );
-comment|//            nodes[i] = null;
-comment|//        }
-comment|//    }
 comment|/**  Description of the Method */
 specifier|public
 name|void
@@ -1612,14 +1638,7 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|sort
 argument_list|()
 expr_stmt|;
@@ -1684,6 +1703,7 @@ name|dl
 operator|=
 name|nodes
 expr_stmt|;
+specifier|final
 name|ArraySet
 name|result
 init|=
@@ -1705,6 +1725,14 @@ name|dx
 init|=
 literal|0
 decl_stmt|;
+specifier|final
+name|int
+name|dlen
+init|=
+name|dl
+operator|.
+name|length
+decl_stmt|;
 name|int
 name|cmp
 decl_stmt|;
@@ -1717,9 +1745,7 @@ while|while
 condition|(
 name|dx
 operator|<
-name|dl
-operator|.
-name|length
+name|dlen
 condition|)
 block|{
 if|if
@@ -1738,9 +1764,14 @@ operator|++
 expr_stmt|;
 continue|continue;
 block|}
-comment|//            System.out.println(dl[dx].doc.getDocId() + ":" + dl[dx].gid +
-comment|//                        " = " + al.nodes[ax].doc.getDocId() + ':' +
-comment|//                        al.nodes[ax].gid);
+comment|//			System.out.println(
+comment|//				dl[dx].doc.getDocId()
+comment|//					+ ":"
+comment|//					+ dl[dx].gid
+comment|//					+ " = "
+comment|//					+ al.nodes[ax].doc.getDocId()
+comment|//					+ ':'
+comment|//					+ al.nodes[ax].gid);
 name|cmp
 operator|=
 name|dl
@@ -1865,24 +1896,8 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getChildren took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"getChildren took " + (System.currentTimeMillis() - start) + "ms.");
 return|return
 name|result
 return|;
@@ -2165,14 +2180,7 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 name|al
 operator|.
 name|sort
@@ -2243,8 +2251,6 @@ init|=
 operator|new
 name|ArraySet
 argument_list|(
-name|al
-operator|.
 name|counter
 argument_list|)
 decl_stmt|;
@@ -2256,6 +2262,14 @@ name|dx
 decl_stmt|;
 name|int
 name|cmp
+decl_stmt|;
+specifier|final
+name|int
+name|dlen
+init|=
+name|dl
+operator|.
+name|length
 decl_stmt|;
 name|boolean
 name|more
@@ -2286,9 +2300,7 @@ while|while
 condition|(
 name|dx
 operator|<
-name|dl
-operator|.
-name|length
+name|dlen
 condition|)
 block|{
 if|if
@@ -2439,24 +2451,10 @@ condition|(
 name|more
 condition|)
 do|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getDescendants took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"getDescendants took "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|result
 return|;
@@ -2907,7 +2905,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  test  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|int
 name|position
@@ -2950,7 +2947,6 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|int
 name|position
@@ -2977,7 +2973,6 @@ name|proxy
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|void
 name|remove
@@ -3093,7 +3088,6 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  position  Description of the Parameter 	 *@param  doc       Description of the Parameter 	 *@param  nodeId    Description of the Parameter 	 */
 specifier|public
 name|void
 name|set
@@ -3140,7 +3134,6 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the isSorted attribute of the ArraySet object 	 * 	 *@param  sorted  The new isSorted value 	 */
 specifier|public
 name|void
 name|setIsSorted
@@ -3151,7 +3144,6 @@ parameter_list|)
 block|{
 comment|//this.sorted = sorted;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|sort
@@ -3168,7 +3160,10 @@ operator|<
 literal|2
 condition|)
 return|return;
-name|quickSort
+comment|//quickSort(nodes, 0, counter - 1);
+name|Arrays
+operator|.
+name|sort
 argument_list|(
 name|nodes
 argument_list|,
@@ -3179,13 +3174,11 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//Arrays.sort(nodes, 0, counter - 1);
 name|sorted
 operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Class 	 * 	 *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 *@created    22. Juli 2002 	 */
 specifier|public
 class|class
 name|ArraySetIterator
@@ -3198,7 +3191,6 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -3216,7 +3208,6 @@ else|:
 literal|false
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|Object
 name|next
@@ -3235,7 +3226,6 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|remove

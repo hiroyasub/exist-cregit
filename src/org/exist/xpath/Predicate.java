@@ -238,14 +238,6 @@ operator|.
 name|getNodeList
 argument_list|()
 decl_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
 name|NodeProxy
 name|l
 decl_stmt|;
@@ -360,24 +352,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"merging predicate values took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
 break|break;
 block|}
 case|case
@@ -798,7 +772,6 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  in_docs  Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 name|DocumentSet
 name|preselect

@@ -47,9 +47,31 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|parser
 operator|.
-name|*
+name|XPathLexer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|parser
+operator|.
+name|XPathParser
 import|;
 end_import
 
@@ -85,7 +107,19 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|*
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
 import|;
 end_import
 
@@ -97,7 +131,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|*
+name|OrderedLinkedList
 import|;
 end_import
 
@@ -109,7 +143,7 @@ name|exist
 operator|.
 name|xpath
 operator|.
-name|*
+name|PathExpr
 import|;
 end_import
 
@@ -119,7 +153,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
+name|xpath
+operator|.
+name|Value
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|ValueSet
 import|;
 end_import
 
@@ -146,10 +194,6 @@ operator|.
 name|NodeList
 import|;
 end_import
-
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    28. August 2002  */
-end_comment
 
 begin_class
 specifier|public
@@ -199,12 +243,20 @@ specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/** 	 *  Constructor for the SortedNodeSet object 	 * 	 *@param  sortExpr  Description of the Parameter 	 */
+specifier|private
+name|User
+name|user
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|SortedNodeSet
 parameter_list|(
 name|BrokerPool
 name|pool
+parameter_list|,
+name|User
+name|user
 parameter_list|,
 name|String
 name|sortExpr
@@ -222,8 +274,13 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+name|this
+operator|.
+name|user
+operator|=
+name|user
+expr_stmt|;
 block|}
-comment|/** 	 *  Adds a feature to the All attribute of the SortedNodeSet object 	 * 	 *@param  other  The feature to be added to the All attribute 	 */
 specifier|public
 name|void
 name|addAll
@@ -313,15 +370,7 @@ name|XPathParser
 argument_list|(
 name|pool
 argument_list|,
-operator|new
-name|User
-argument_list|(
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|,
-literal|"dba"
-argument_list|)
+name|user
 argument_list|,
 name|lexer
 argument_list|)
@@ -339,18 +388,6 @@ operator|.
 name|expr
 argument_list|(
 name|expr
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"query: "
-operator|+
-name|expr
-operator|.
-name|pprint
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -489,6 +526,10 @@ argument_list|(
 name|broker
 argument_list|,
 name|p
+argument_list|,
+name|expr
+argument_list|,
+name|ndocs
 argument_list|)
 expr_stmt|;
 name|list
@@ -530,7 +571,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"sort-expression took "
+literal|"sort-expression found "
+operator|+
+name|list
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" in "
 operator|+
 operator|(
 name|System
@@ -545,7 +593,6 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Adds a feature to the All attribute of the SortedNodeSet object 	 * 	 *@param  other  The feature to be added to the All attribute 	 */
 specifier|public
 name|void
 name|addAll
@@ -579,7 +626,6 @@ name|other
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc     Description of the Parameter 	 *@param  nodeId  Description of the Parameter 	 *@return         Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|contains
@@ -604,7 +650,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  proxy  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|contains
@@ -666,7 +711,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pos  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -675,8 +719,10 @@ name|int
 name|pos
 parameter_list|)
 block|{
-return|return
-operator|(
+specifier|final
+name|Item
+name|item
+init|=
 operator|(
 name|Item
 operator|)
@@ -686,12 +732,19 @@ name|get
 argument_list|(
 name|pos
 argument_list|)
-operator|)
+decl_stmt|;
+return|return
+name|item
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|item
 operator|.
 name|proxy
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc     Description of the Parameter 	 *@param  nodeId  Description of the Parameter 	 *@return         Description of the Return Value 	 */
 specifier|public
 name|NodeProxy
 name|get
@@ -828,7 +881,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Gets the length attribute of the SortedNodeSet object 	 * 	 *@return    The length value 	 */
 specifier|public
 name|int
 name|getLength
@@ -841,7 +893,6 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pos  Description of the Parameter 	 *@return      Description of the Return Value 	 */
 specifier|public
 name|Node
 name|item
@@ -886,7 +937,6 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -914,7 +964,6 @@ block|{
 name|Iterator
 name|pi
 decl_stmt|;
-comment|/** 		 *  Constructor for the SortedNodeSetIterator object 		 * 		 *@param  i  Description of the Parameter 		 */
 specifier|public
 name|SortedNodeSetIterator
 parameter_list|(
@@ -927,7 +976,6 @@ operator|=
 name|i
 expr_stmt|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -940,7 +988,6 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@return    Description of the Return Value 		 */
 specifier|public
 name|Object
 name|next
@@ -971,7 +1018,6 @@ operator|.
 name|proxy
 return|;
 block|}
-comment|/**  Description of the Method */
 specifier|public
 name|void
 name|remove
@@ -980,6 +1026,7 @@ block|{
 block|}
 block|}
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|Item
@@ -994,7 +1041,6 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-comment|/** 		 *  Constructor for the Item object 		 * 		 *@param  proxy   Description of the Parameter 		 *@param  broker  Description of the Parameter 		 */
 specifier|public
 name|Item
 parameter_list|(
@@ -1003,6 +1049,12 @@ name|broker
 parameter_list|,
 name|NodeProxy
 name|proxy
+parameter_list|,
+name|PathExpr
+name|expr
+parameter_list|,
+name|DocumentSet
+name|ndocs
 parameter_list|)
 block|{
 name|this
@@ -1271,7 +1323,6 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/** 		 *  Description of the Method 		 * 		 *@param  other  Description of the Parameter 		 *@return        Description of the Return Value 		 */
 specifier|public
 name|int
 name|compareTo

@@ -404,6 +404,12 @@ init|=
 literal|true
 decl_stmt|;
 specifier|protected
+name|boolean
+name|matchTagging
+init|=
+literal|true
+decl_stmt|;
+specifier|protected
 name|User
 name|user
 decl_stmt|;
@@ -866,6 +872,13 @@ argument_list|(
 name|createContainerElements
 argument_list|)
 expr_stmt|;
+name|serializer
+operator|.
+name|setHighlightMatches
+argument_list|(
+name|matchTagging
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|id
@@ -1224,6 +1237,13 @@ operator|.
 name|setCreateContainerElements
 argument_list|(
 name|createContainerElements
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
+name|setHighlightMatches
+argument_list|(
+name|matchTagging
 argument_list|)
 expr_stmt|;
 name|String
@@ -1602,26 +1622,6 @@ name|root
 operator|=
 name|root
 expr_stmt|;
-comment|//		OutputFormat format = new OutputFormat("xml", encoding, false);
-comment|//		InternalXMLSerializer xmlout = new InternalXMLSerializer(format);
-comment|//		try {
-comment|//            switch(root.getNodeType()) {
-comment|//                case Node.ELEMENT_NODE:
-comment|//                    xmlout.serialize((Element)root);
-comment|//                    break;
-comment|//                case Node.DOCUMENT_NODE:
-comment|//                    xmlout.serialize((Document)root);
-comment|//                    break;
-comment|//                case Node.DOCUMENT_FRAGMENT_NODE:
-comment|//                    xmlout.serialize((DocumentFragment)root);
-comment|//                    break;
-comment|//                default:
-comment|//                    throw new XMLDBException(ErrorCodes.WRONG_CONTENT_TYPE,
-comment|//                        "argument should be an Element, Document or DocumentFragment");
-comment|//            }
-comment|//		} catch (IOException ioe) {
-comment|//			throw new XMLDBException(ErrorCodes.VENDOR_ERROR, ioe.getMessage(), ioe);
-comment|//		}
 block|}
 specifier|public
 name|ContentHandler
@@ -1709,6 +1709,19 @@ operator|=
 name|process
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setMatchTagging
+parameter_list|(
+name|boolean
+name|tagging
+parameter_list|)
+block|{
+name|matchTagging
+operator|=
+name|tagging
+expr_stmt|;
+block|}
 specifier|private
 class|class
 name|InternalXMLSerializer
@@ -1771,7 +1784,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.modules.XMLResource#getSAXFeature(java.lang.String) 	 */
 specifier|public
 name|boolean
 name|getSAXFeature
@@ -1788,7 +1800,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.modules.XMLResource#setSAXFeature(java.lang.String, boolean) 	 */
 specifier|public
 name|void
 name|setSAXFeature

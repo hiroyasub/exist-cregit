@@ -505,7 +505,8 @@ literal|0
 expr_stmt|;
 name|internalAddress
 operator|=
-literal|0
+operator|-
+literal|1
 expr_stmt|;
 name|nodeName
 operator|=

@@ -21,7 +21,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Int2ObjectAVLTreeMap
 import|;
@@ -35,7 +35,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|ObjectAVLTreeSet
 import|;

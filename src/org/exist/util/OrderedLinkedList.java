@@ -10,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/* eXist xml document repository and xpath implementation  * Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
+comment|/* eXist Native XML Database  * Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
 end_comment
 
 begin_import
@@ -450,6 +450,7 @@ block|{
 if|if
 condition|(
 name|count
+operator|++
 operator|==
 name|pos
 condition|)
@@ -731,19 +732,20 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Iterator
+name|int
 name|i
 init|=
-name|list
-operator|.
-name|iterator
-argument_list|()
+literal|0
 init|;
 name|i
+operator|<
+name|list
 operator|.
-name|hasNext
+name|size
 argument_list|()
 condition|;
+name|i
+operator|++
 control|)
 name|System
 operator|.
@@ -751,13 +753,12 @@ name|out
 operator|.
 name|println
 argument_list|(
-operator|(
-name|String
-operator|)
-name|i
+name|list
 operator|.
-name|next
-argument_list|()
+name|get
+argument_list|(
+name|i
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

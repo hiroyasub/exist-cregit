@@ -15,6 +15,20 @@ end_package
 
 begin_import
 import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|Object2ObjectRBTreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -69,7 +83,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedList
+name|Collections
 import|;
 end_import
 
@@ -137,7 +151,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|SecurityManager
 import|;
 end_import
 
@@ -149,7 +163,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
+name|User
 import|;
 end_import
 
@@ -161,7 +175,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|*
+name|DBBroker
 import|;
 end_import
 
@@ -243,11 +257,11 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|private
-name|LinkedList
+name|Object2ObjectRBTreeMap
 name|documents
 init|=
 operator|new
-name|LinkedList
+name|Object2ObjectRBTreeMap
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -265,12 +279,17 @@ literal|0755
 argument_list|)
 decl_stmt|;
 specifier|private
-name|ArrayList
+name|List
 name|subcollections
 init|=
+name|Collections
+operator|.
+name|synchronizedList
+argument_list|(
 operator|new
 name|ArrayList
 argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|public
 name|Collection
@@ -309,6 +328,7 @@ name|name
 expr_stmt|;
 block|}
 comment|/** 	 *  Adds a feature to the Collection attribute of the Collection object 	 * 	 *@param  name  The feature to be added to the Collection attribute 	 */
+specifier|synchronized
 specifier|public
 name|void
 name|addCollection
@@ -336,6 +356,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 *  Adds a feature to the Document attribute of the Collection object 	 * 	 *@param  doc  The feature to be added to the Document attribute 	 */
+specifier|synchronized
 specifier|public
 name|void
 name|addDocument
@@ -361,6 +382,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 *  Adds a feature to the Document attribute of the Collection object 	 * 	 *@param  user  The feature to be added to the Document attribute 	 *@param  doc   The feature to be added to the Document attribute 	 */
+specifier|synchronized
 specifier|public
 name|void
 name|addDocument
@@ -393,15 +415,21 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//documents.put(doc.getFileName(), doc);
 name|documents
 operator|.
-name|add
+name|put
 argument_list|(
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+comment|//documents.add(doc);
 block|}
+specifier|synchronized
 specifier|public
 name|void
 name|renameDocument
@@ -415,47 +443,17 @@ parameter_list|)
 block|{
 name|DocumentImpl
 name|doc
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
 init|=
-name|documents
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|doc
-operator|=
 operator|(
 name|DocumentImpl
 operator|)
-name|i
+name|documents
 operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-operator|.
-name|equals
+name|remove
 argument_list|(
 name|oldName
 argument_list|)
-condition|)
-block|{
+decl_stmt|;
 name|doc
 operator|.
 name|setFileName
@@ -463,18 +461,35 @@ argument_list|(
 name|newName
 argument_list|)
 expr_stmt|;
-return|return;
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
+name|documents
+operator|.
+name|put
+argument_list|(
+name|newName
+argument_list|,
+name|doc
+argument_list|)
+expr_stmt|;
 block|}
-block|}
-block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 *  Return an iterator over all subcollections. 	 *  	 * The list of subcollections is copied first, so modifications 	 * via the iterator have no affect. 	 * 	 *@return    Description of the Return Value 	 */
+specifier|synchronized
 specifier|public
 name|Iterator
 name|collectionIterator
 parameter_list|()
 block|{
 return|return
+operator|new
+name|ArrayList
+argument_list|(
 name|subcollections
+argument_list|)
 operator|.
 name|iterator
 argument_list|()
@@ -602,6 +617,9 @@ name|allDocs
 parameter_list|(
 name|User
 name|user
+parameter_list|,
+name|boolean
+name|recursive
 parameter_list|)
 block|{
 name|DocumentSet
@@ -616,6 +634,10 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|recursive
+condition|)
 name|allDocs
 argument_list|(
 name|user
@@ -744,6 +766,9 @@ name|i
 init|=
 name|documents
 operator|.
+name|values
+argument_list|()
+operator|.
 name|iterator
 argument_list|()
 init|;
@@ -867,57 +892,24 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|//return (DocumentImpl) documents.get(name);
-comment|//return null;
-name|DocumentImpl
-name|doc
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|documents
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|doc
-operator|=
+return|return
 operator|(
 name|DocumentImpl
 operator|)
-name|i
+name|documents
 operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-operator|.
-name|equals
+name|get
 argument_list|(
 name|name
 argument_list|)
-condition|)
-return|return
-name|doc
 return|;
-block|}
-return|return
-literal|null
-return|;
+comment|//		DocumentImpl doc;
+comment|//		for (Iterator i = documents.iterator(); i.hasNext();) {
+comment|//			doc = (DocumentImpl) i.next();
+comment|//			if (doc.getFileName().equals(name))
+comment|//				return doc;
+comment|//		}
+comment|//		return null;
 block|}
 comment|/** 	 *  Gets the documentCount attribute of the Collection object 	 * 	 *@return    The documentCount value 	 */
 specifier|public
@@ -1073,6 +1065,9 @@ parameter_list|()
 block|{
 return|return
 name|documents
+operator|.
+name|values
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -1276,10 +1271,14 @@ specifier|final
 name|int
 name|perm
 init|=
+operator|(
 name|istream
 operator|.
 name|readByte
 argument_list|()
+operator|&
+literal|0777
+operator|)
 decl_stmt|;
 if|if
 condition|(
@@ -1408,6 +1407,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
+specifier|synchronized
 specifier|public
 name|void
 name|removeDocument
@@ -1416,57 +1416,21 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|DocumentImpl
-name|doc
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
 name|documents
 operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|doc
-operator|=
-operator|(
-name|DocumentImpl
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-operator|.
-name|equals
+name|remove
 argument_list|(
 name|name
 argument_list|)
-condition|)
-block|{
-name|i
-operator|.
-name|remove
-argument_list|()
 expr_stmt|;
-return|return;
-block|}
-block|}
+comment|//		DocumentImpl doc;
+comment|//		for (Iterator i = documents.iterator(); i.hasNext();) {
+comment|//			doc = (DocumentImpl) i.next();
+comment|//			if (doc.getFileName().equals(name)) {
+comment|//				i.remove();
+comment|//				return;
+comment|//			}
+comment|//		}
 block|}
 comment|/** 	 *  Sets the id attribute of the Collection object 	 * 	 *@param  id  The new id value 	 */
 specifier|public

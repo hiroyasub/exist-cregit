@@ -21,7 +21,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Long2ObjectLinkedOpenHashMap
 import|;
@@ -327,7 +327,7 @@ specifier|static
 name|int
 name|PAGE_MIN_FREE
 init|=
-literal|128
+literal|64
 decl_stmt|;
 comment|// page signatures
 specifier|public

@@ -21,7 +21,7 @@ name|unimi
 operator|.
 name|dsi
 operator|.
-name|fastUtil
+name|fastutil
 operator|.
 name|Int2ObjectRBTreeMap
 import|;
@@ -338,7 +338,6 @@ argument_list|(
 name|sysCollection
 argument_list|)
 expr_stmt|;
-block|}
 name|sysCollection
 operator|.
 name|setPermissions
@@ -346,6 +345,7 @@ argument_list|(
 literal|0770
 argument_list|)
 expr_stmt|;
+block|}
 name|Document
 name|acl
 init|=
@@ -600,6 +600,20 @@ argument_list|(
 literal|"user"
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found "
+operator|+
+name|ul
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" users"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -636,6 +650,18 @@ operator|new
 name|User
 argument_list|(
 name|node
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"registered user "
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|users
@@ -1529,6 +1555,8 @@ name|getUser
 argument_list|(
 name|DBA_USER
 argument_list|)
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)

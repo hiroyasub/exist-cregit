@@ -191,20 +191,6 @@ name|api
 operator|.
 name|base
 operator|.
-name|Resource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
 name|XMLDBException
 import|;
 end_import
@@ -390,6 +376,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
+comment|// get resources and permissions
 name|String
 index|[]
 name|resources
@@ -443,6 +430,7 @@ argument_list|(
 name|current
 argument_list|)
 decl_stmt|;
+comment|// create directory and open __contents__.xml
 name|File
 name|file
 init|=
@@ -501,6 +489,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+comment|// serializer writes to __contents__.xml
 name|XMLSerializer
 name|serializer
 init|=
@@ -526,6 +515,7 @@ argument_list|,
 name|NS
 argument_list|)
 expr_stmt|;
+comment|// write<collection> element
 name|AttributesImpl
 name|attr
 init|=
@@ -623,6 +613,7 @@ argument_list|,
 name|attr
 argument_list|)
 expr_stmt|;
+comment|// scan through resources
 name|XMLResource
 name|resource
 decl_stmt|;
@@ -731,6 +722,7 @@ literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// write resource to contentSerializer
 name|contentSerializer
 operator|=
 operator|new
@@ -870,6 +862,7 @@ literal|"resource"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// write subcollections
 name|String
 index|[]
 name|collections
@@ -896,6 +889,29 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|current
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"db"
+argument_list|)
+operator|&&
+name|collections
+index|[
+name|i
+index|]
+operator|.
+name|equals
+argument_list|(
+literal|"system"
+argument_list|)
+condition|)
+continue|continue;
 name|attr
 operator|.
 name|clear
@@ -944,6 +960,7 @@ literal|"subcollection"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// close<collection>
 name|serializer
 operator|.
 name|endElement
@@ -972,6 +989,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// descend into subcollections
 name|Collection
 name|child
 decl_stmt|;

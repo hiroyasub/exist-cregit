@@ -332,6 +332,8 @@ operator|.
 name|allDocs
 argument_list|(
 name|user
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|System

@@ -229,6 +229,19 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|NodeSet
+name|value
+parameter_list|)
+block|{
+name|nodes
+operator|=
+name|value
+expr_stmt|;
+block|}
 block|}
 end_class
 

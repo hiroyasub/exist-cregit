@@ -1303,13 +1303,12 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//elementIds.clear();
 name|elementIds
-operator|=
-operator|new
-name|TreeMap
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
+comment|//elementIds = new TreeMap();
 block|}
 specifier|private
 name|Value

@@ -165,10 +165,6 @@ name|Node
 import|;
 end_import
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    30. September 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -205,7 +201,6 @@ name|keepVirtual
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 *  Constructor for the LocationStep object 	 * 	 *@param  axis  Description of the Parameter 	 */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -224,7 +219,6 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the LocationStep object 	 * 	 *@param  axis  Description of the Parameter 	 *@param  test  Description of the Parameter 	 */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -248,7 +242,6 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|protected
 name|NodeSet
 name|applyPredicate
@@ -319,7 +312,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@param  node       Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
 name|Value
 name|eval
@@ -449,7 +441,6 @@ name|temp
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the attributes attribute of the LocationStep object 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@return            The attributes value 	 */
 specifier|protected
 name|NodeSet
 name|getAttributes
@@ -589,13 +580,6 @@ expr_stmt|;
 return|return
 name|result
 return|;
-comment|//NodeProxy p;
-comment|//for (Iterator iter = buf.iterator(); iter.hasNext();) {
-comment|//	p = (NodeProxy) iter.next();
-comment|//	if (context.nodeHasParent(p.doc, p.gid, true, true))
-comment|//		result.add(p);
-comment|//}
-comment|//break;
 default|default :
 name|Node
 name|n
@@ -699,7 +683,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 *  Gets the children attribute of the LocationStep object 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@return            The children value 	 */
 specifier|protected
 name|NodeSet
 name|getChildren
@@ -776,20 +759,69 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|long
-name|start
-init|=
-name|System
+if|if
+condition|(
+name|context
 operator|.
-name|currentTimeMillis
+name|getLength
 argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+name|NodeProxy
+name|n
+init|=
+name|context
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
+name|NodeProxy
+name|p
+init|=
+name|buf
+operator|.
+name|parentWithChild
+argument_list|(
+name|n
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|p
+operator|!=
+literal|null
+condition|)
+block|{
 name|ArraySet
 name|result
+init|=
+operator|new
+name|ArraySet
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
-comment|/*if (context instanceof VirtualNodeSet) { 					result = new ArraySet(buf.getLength()); 					NodeProxy p; 					for (Iterator iter = buf.iterator(); iter.hasNext();) { 						p = (NodeProxy) iter.next(); 						if (p.gid == p.doc.getDocumentElementId() 							|| context.nodeHasParent(p, true)) 							result.add(p); 					} 				} else {*/
 name|result
-operator|=
+operator|.
+name|add
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+block|}
+return|return
 name|buf
 operator|.
 name|getChildren
@@ -800,36 +832,6 @@ name|NodeSet
 operator|.
 name|DESCENDANT
 argument_list|)
-expr_stmt|;
-comment|//}
-comment|// for every node in the list of element-occurrences, check if it has
-comment|// a parent in the context node-set:
-comment|//
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getChildren found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
-return|return
-name|result
 return|;
 block|}
 catch|catch
@@ -859,7 +861,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  Gets the descendants attribute of the LocationStep object 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@return            The descendants value 	 */
 specifier|protected
 name|NodeSet
 name|getDescendants
@@ -920,14 +921,69 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+name|NodeProxy
+name|n
+init|=
+name|context
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|NodeProxy
+name|p
+init|=
+name|buf
+operator|.
+name|parentWithChild
+argument_list|(
+name|n
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|p
+operator|!=
+literal|null
+condition|)
+block|{
 name|ArraySet
 name|result
 init|=
-literal|null
+operator|new
+name|ArraySet
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
-comment|/*if (context instanceof VirtualNodeSet) { 					long start = System.currentTimeMillis(); 					NodeProxy current; 					result = new ArraySet(buf.getLength()); 					//( (ArraySet) result ).setIsSorted( true ); 					for (Iterator iter = buf.iterator(); iter.hasNext();) { 						current = (NodeProxy) iter.next(); 						if (current != null&& context.nodeHasParent( 								current.doc, 								current.gid, 								false)) 							result.add(current); 					} 					LOG.debug( 						"getDescendants found " 							+ result.getLength() 							+ " in " 							+ (System.currentTimeMillis() - start)); 				} else {*/
 name|result
-operator|=
+operator|.
+name|add
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+block|}
+return|return
 operator|(
 operator|(
 name|ArraySet
@@ -946,10 +1002,6 @@ name|ArraySet
 operator|.
 name|DESCENDANT
 argument_list|)
-expr_stmt|;
-comment|//}
-return|return
-name|result
 return|;
 block|}
 catch|catch
@@ -994,7 +1046,6 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the parents attribute of the LocationStep object 	 * 	 *@param  documents  Description of the Parameter 	 *@param  context    Description of the Parameter 	 *@return            The parents value 	 */
 specifier|protected
 name|NodeSet
 name|getParents
@@ -1013,7 +1064,6 @@ name|getParents
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  in_docs  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -1032,12 +1082,10 @@ argument_list|(
 name|in_docs
 argument_list|)
 decl_stmt|;
-comment|/* 		 *  if this is a name test and axis is child or descendant, we are 		 *  able to restrict the range of valid documents 		 *  if(out_docs.getLength() == in_docs.getLength()&& 		 *  test.getType() == NodeTest.NAME_TEST&& 		 *  (axis == Constants.CHILD_AXIS || axis == Constants.DESCENDANT_AXIS)) { 		 *  buf = broker.findElementsByTagName(out_docs, test.getName()); 		 *  out_docs = new DocumentSet(); 		 *  NodeProxy p; 		 *  for(Iterator i = buf.iterator(); i.hasNext(); ) { 		 *  p = (NodeProxy)i.next(); 		 *  if(!out_docs.contains(p.doc.getDocId())) 		 *  out_docs.add(p.doc); 		 *  } 		 *  } 		 */
 return|return
 name|out_docs
 return|;
 block|}
-comment|/** 	 *  Sets the keepVirtual attribute of the LocationStep object 	 * 	 *@param  virtual  The new keepVirtual value 	 */
 specifier|public
 name|void
 name|setKeepVirtual

@@ -807,6 +807,9 @@ name|appendChild
 parameter_list|(
 name|NodeImpl
 name|child
+parameter_list|,
+name|boolean
+name|validate
 parameter_list|)
 throws|throws
 name|DOMException
@@ -814,9 +817,30 @@ block|{
 operator|++
 name|children
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|validate
+condition|)
 name|child
 operator|.
 name|setGID
+argument_list|(
+name|children
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|child
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+condition|)
+name|setDocumentElement
 argument_list|(
 name|children
 argument_list|)
@@ -841,6 +865,8 @@ operator|new
 name|long
 index|[
 name|maxDepth
+operator|+
+literal|1
 index|]
 expr_stmt|;
 comment|// we know the start point of the root element (which is always 1)
@@ -871,8 +897,6 @@ init|;
 name|i
 operator|<
 name|maxDepth
-operator|-
-literal|1
 condition|;
 name|i
 operator|++
@@ -1248,64 +1272,28 @@ argument_list|,
 name|tagName
 argument_list|)
 decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|iter
-init|=
+return|return
 name|temp
 operator|.
-name|iterator
-argument_list|()
-init|;
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|p
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
+name|getDescendants
+argument_list|(
 name|context
-operator|.
-name|nodeHasParent
-argument_list|(
-name|p
-operator|.
-name|doc
 argument_list|,
-name|p
+name|NodeSet
 operator|.
-name|gid
-argument_list|,
-literal|true
+name|DESCENDANT
 argument_list|)
-condition|)
-name|result
-operator|.
-name|add
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
 return|;
+comment|//		NodeProxy p;
+comment|//		for (Iterator iter = temp.iterator(); iter.hasNext();) {
+comment|//			p = (NodeProxy) iter.next();
+comment|//			if (context.nodeHasParent(p.doc, p.gid, true)) {
+comment|//				LOG.debug("adding " + p.doc.getDocId() + ":" + p.gid);
+comment|//				result.add(p);
+comment|//			} else
+comment|//				LOG.debug("skipping " + p.doc.getDocId() + ":" + p.gid);
+comment|//		}
+comment|//		return result;
 block|}
 comment|/** 	 *  Gets the childCount attribute of the DocumentImpl object 	 * 	 *@return    The childCount value 	 */
 specifier|public
@@ -1645,7 +1633,7 @@ block|{
 if|if
 condition|(
 name|level
-operator|>=
+operator|>
 name|maxDepth
 operator|||
 name|level
@@ -1831,10 +1819,8 @@ block|{
 if|if
 condition|(
 name|level
-operator|>=
-name|treeLevelOrder
-operator|.
-name|length
+operator|>
+name|maxDepth
 condition|)
 block|{
 name|LOG
@@ -2188,6 +2174,8 @@ operator|new
 name|int
 index|[
 name|maxDepth
+operator|+
+literal|1
 index|]
 expr_stmt|;
 for|for
@@ -2204,6 +2192,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|treeLevelOrder
 index|[
 name|i
@@ -2214,6 +2203,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+block|}
 specifier|final
 name|SecurityManager
 name|secman
@@ -2248,10 +2238,14 @@ specifier|final
 name|int
 name|perm
 init|=
+operator|(
 name|istream
 operator|.
 name|readByte
 argument_list|()
+operator|&
+literal|0777
+operator|)
 decl_stmt|;
 if|if
 condition|(
