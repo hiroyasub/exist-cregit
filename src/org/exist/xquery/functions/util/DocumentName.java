@@ -199,6 +199,10 @@ argument_list|,
 name|ModuleImpl
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the name of the document to which the passed node belongs."
