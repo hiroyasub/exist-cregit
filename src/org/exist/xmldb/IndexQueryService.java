@@ -93,6 +93,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Returns frequency statistics on all elements and attributes contained in the      * structure index for the current collection.      *       * @param inclusive      * @return      * @throws XMLDBException      */
 specifier|public
 name|Occurrences
 index|[]
@@ -104,6 +105,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Queries the fulltext index to retrieve information on indexed words contained 	 * in the index for the current collection. Returns a list of {@link Occurrences} for all  	 * words contained in the index. If {@param end} is null, all words starting with  	 * the string sequence {@param start} are returned. Otherwise, the method  	 * returns all words that come after start and before end in lexical order. 	 *  	 * @param start 	 * @param end 	 * @param inclusive 	 * @return 	 * @throws XMLDBException 	 */
 specifier|public
 name|Occurrences
 index|[]
@@ -117,6 +119,24 @@ name|end
 parameter_list|,
 name|boolean
 name|inclusive
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/** 	 * Queries the fulltext index to retrieve information on indexed words occurring within 	 * the set of nodes identified by a given XPath expression. Returns a list of {@link Occurrences} for all  	 * words contained in the index. If {@param end} is null, all words starting with  	 * the string sequence {@param start} are returned. Otherwise, the method  	 * returns all words that come after start and before end in lexical order. 	 *  	 * @param start 	 * @param end 	 * @param inclusive 	 * @return 	 * @throws XMLDBException 	 */
+specifier|public
+name|Occurrences
+index|[]
+name|scanIndexTerms
+parameter_list|(
+name|String
+name|xpath
+parameter_list|,
+name|String
+name|start
+parameter_list|,
+name|String
+name|end
 parameter_list|)
 throws|throws
 name|XMLDBException
