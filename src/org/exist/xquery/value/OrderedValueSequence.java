@@ -398,6 +398,14 @@ literal|"Operation not supported"
 argument_list|)
 throw|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// TODO: is this ever relevant?
+block|}
 specifier|private
 class|class
 name|Entry

@@ -111,12 +111,19 @@ name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the number of items contained in the sequence. 	 * @return 	 */
+comment|/** 	 * Returns the number of items contained in the sequence. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getLength
 parameter_list|()
 function_decl|;
+comment|/** 	 * Explicitely remove all duplicate nodes from this sequence. 	 */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+function_decl|;
+comment|/** 	 * Returns the cardinality of this sequence. The returned 	 * value is a combination of flags as defined in 	 * {@link org.exist.xquery.Cardinality}. 	 *  	 * @see org.exist.xquery.Cardinality 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getCardinality
@@ -166,6 +173,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Returns the set of documents from which the node items in this sequence 	 * have been selected. This is for internal use only. 	 *  	 * @return 	 */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -197,7 +205,7 @@ name|boolean
 name|isCached
 parameter_list|()
 function_decl|;
-comment|/** 	 * Indicates that the sequence  is the result of a previous operation 	 * and has not been recomputed. 	 *   	 * @param cached 	 */
+comment|/** 	 * Indicates that the sequence is the result of a previous operation 	 * and has not been recomputed. 	 *   	 * @param cached 	 */
 specifier|public
 name|void
 name|setIsCached

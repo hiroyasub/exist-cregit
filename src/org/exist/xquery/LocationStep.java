@@ -768,6 +768,12 @@ name|temp
 argument_list|)
 expr_stmt|;
 block|}
+comment|// remove duplicate nodes
+name|temp
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 return|return
 operator|(
 name|predicates

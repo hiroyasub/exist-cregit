@@ -331,9 +331,7 @@ name|SequenceIterator
 name|iterate
 parameter_list|()
 block|{
-name|removeDuplicates
-argument_list|()
-expr_stmt|;
+comment|//		removeDuplicates();
 return|return
 operator|new
 name|ValueSequenceIterator
@@ -346,9 +344,7 @@ name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 block|{
-name|removeDuplicates
-argument_list|()
-expr_stmt|;
+comment|//		removeDuplicates();
 return|return
 operator|new
 name|ValueSequenceIterator
@@ -361,9 +357,7 @@ name|int
 name|getLength
 parameter_list|()
 block|{
-name|removeDuplicates
-argument_list|()
-expr_stmt|;
+comment|//		removeDuplicates();
 return|return
 name|size
 operator|+
@@ -586,7 +580,7 @@ name|newValues
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|public
 name|void
 name|removeDuplicates
 parameter_list|()

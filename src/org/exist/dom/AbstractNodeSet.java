@@ -391,6 +391,15 @@ name|int
 name|getLength
 parameter_list|()
 function_decl|;
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// all instances of NodeSet will automatically remove duplicates
+comment|// upon a call to getLength() or iterate()
+block|}
 specifier|public
 specifier|abstract
 name|Node

@@ -997,10 +997,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: currently fails because duplicate nodes are removed
-comment|//	public void testInsertNodes4() throws XMLDBException {
-comment|//		createDocument("foo", "<top><x><a/><b/></x><y><c/><d/></y></top>");
-comment|//		assertSeq(new String[]{"<a/>", "<a/>", "<b/>", "<b/>"}, "insert-before(/top/x/*, 2, /top/x/*)");
-comment|//	}
+specifier|public
+name|void
+name|testInsertNodes4
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|createDocument
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|"<top><x><a/><b/></x><y><c/><d/></y></top>"
+argument_list|)
+expr_stmt|;
+name|assertSeq
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|"<a/>"
+block|,
+literal|"<a/>"
+block|,
+literal|"<b/>"
+block|,
+literal|"<b/>"
+block|}
+argument_list|,
+literal|"insert-before(/top/x/*, 2, /top/x/*)"
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|testInsertMixed1
@@ -1033,10 +1062,41 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: currently fails because duplicate nodes are removed
-comment|//	public void testInsertMixed2() throws XMLDBException {
-comment|//		createDocument("foo", "<top><x><a/><b/></x><y><c/><d/></y></top>");
-comment|//		assertSeq(new String[]{"<a/>", "<a/>", "<b/>", "<b/>", "c"}, "insert-before((/top/x/*, 'c'), 2, /top/x/*)");
-comment|//	}
+specifier|public
+name|void
+name|testInsertMixed2
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|createDocument
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|"<top><x><a/><b/></x><y><c/><d/></y></top>"
+argument_list|)
+expr_stmt|;
+name|assertSeq
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|"<a/>"
+block|,
+literal|"<a/>"
+block|,
+literal|"<b/>"
+block|,
+literal|"<b/>"
+block|,
+literal|"c"
+block|}
+argument_list|,
+literal|"insert-before((/top/x/*, 'c'), 2, /top/x/*)"
+argument_list|)
+expr_stmt|;
+block|}
 specifier|private
 name|void
 name|assertSeq

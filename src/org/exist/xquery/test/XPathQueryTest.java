@@ -289,6 +289,36 @@ operator|+
 literal|"</RootElement>"
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|ids
+init|=
+literal|"<!DOCTYPE test ["
+operator|+
+literal|"<!ELEMENT test (a*, b*)>"
+operator|+
+literal|"<!ELEMENT a EMPTY>"
+operator|+
+literal|"<!ELEMENT b (name)>"
+operator|+
+literal|"<!ELEMENT name (#PCDATA)>"
+operator|+
+literal|"<!ATTLIST a ref IDREF #IMPLIED>"
+operator|+
+literal|"<!ATTLIST b id ID #IMPLIED>]>"
+operator|+
+literal|"<test>"
+operator|+
+literal|"<a ref=\"id1\"/>"
+operator|+
+literal|"<a ref=\"id1\"/>"
+operator|+
+literal|"<b id=\"id1\"><name>one</name></b>"
+operator|+
+literal|"</test>"
+decl_stmt|;
+specifier|private
 name|Collection
 name|testCollection
 decl_stmt|;
@@ -1721,6 +1751,110 @@ operator|.
 name|println
 argument_list|(
 literal|"testStrings(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testIds
+parameter_list|()
+block|{
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"ids.xml"
+argument_list|,
+name|ids
+argument_list|)
+decl_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"ids.xml"
+argument_list|,
+literal|"//a/id(@ref)"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"ids.xml"
+argument_list|,
+literal|"id(//a/@ref)"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"ids.xml"
+argument_list|,
+literal|"//a/id(@ref)/name"
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
+name|Resource
+name|r
+init|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"<name>one</name>"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testIds(): XMLDBException: "
 operator|+
 name|e
 argument_list|)

@@ -669,6 +669,22 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|1
+condition|)
+comment|// remove duplicate nodes if this is a path
+comment|// expression with more than one step
+name|r
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 block|}
 return|return
 name|r

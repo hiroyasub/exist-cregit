@@ -503,6 +503,14 @@ return|return
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// TODO: is this ever relevant?
+block|}
 specifier|private
 name|void
 name|sort

@@ -340,6 +340,13 @@ operator|.
 name|EXACTLY_ONE
 return|;
 block|}
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// this is a single value, so there are no duplicates to remove
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator

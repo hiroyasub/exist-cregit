@@ -2148,6 +2148,14 @@ parameter_list|)
 block|{
 comment|// ignore
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// do nothing: this is a single node
+block|}
 block|}
 end_class
 

@@ -196,6 +196,14 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+specifier|public
+name|void
+name|removeDuplicates
+parameter_list|()
+block|{
+comment|// nothing to do
+block|}
 block|}
 end_class
 

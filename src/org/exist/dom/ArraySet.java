@@ -2820,7 +2820,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|removeDuplicates
+name|removeDuplicateNodes
 argument_list|()
 expr_stmt|;
 name|this
@@ -2857,7 +2857,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|removeDuplicates
+name|removeDuplicateNodes
 argument_list|()
 expr_stmt|;
 name|this
@@ -2870,7 +2870,7 @@ block|}
 specifier|private
 specifier|final
 name|void
-name|removeDuplicates
+name|removeDuplicateNodes
 parameter_list|()
 block|{
 name|int
