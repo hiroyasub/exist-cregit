@@ -549,13 +549,13 @@ name|XPathException
 block|{
 if|if
 condition|(
-name|target
-operator|.
-name|isAssignableFrom
-argument_list|(
 name|Sequence
 operator|.
 name|class
+operator|.
+name|isAssignableFrom
+argument_list|(
+name|target
 argument_list|)
 condition|)
 block|{
