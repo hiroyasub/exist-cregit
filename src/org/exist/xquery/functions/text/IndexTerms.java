@@ -283,17 +283,29 @@ argument_list|)
 argument_list|,
 literal|"This function can be used to collect some information on the distribution "
 operator|+
-literal|"of index terms within a set of collections. For each distinct collection in $a "
+literal|"of index terms within a set of nodes. The set of nodes is specified in the first "
 operator|+
-literal|"and every term in the collection that starts with substring $b, "
+literal|"argument $a. The function returns term frequencies for all terms in the index found "
 operator|+
-literal|"the function $c is called with three arguments: 1) the term as found in the index, "
+literal|"in descendants of the nodes in $a. The second argument $b specifies "
 operator|+
-literal|"2) the overall frequency of the term within the collection, 3) the number of documents "
+literal|"a start string. Only terms starting with the specified character sequence are returned. "
 operator|+
-literal|"the term occurs in. The function pointer to be passed in the third argument can be "
+literal|"$c is a function reference, which points to a callback function that will be called "
 operator|+
-literal|"created with the util:function function. The functions should have an arity of 3."
+literal|"for every term occurrence. $d defines the maximum number of terms that should be "
+operator|+
+literal|"reported. The function reference for $c can be created with the util:function "
+operator|+
+literal|"function. It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
+operator|+
+literal|"1) the current term as found in the index as xs:string, 2) a sequence containing three int "
+operator|+
+literal|"values: a) the overall frequency of the term within the node set, b) the number of distinct "
+operator|+
+literal|"documents in the node set the term occurs in, c) the current position of the term in the whole "
+operator|+
+literal|"list of terms returned."
 argument_list|,
 operator|new
 name|SequenceType
