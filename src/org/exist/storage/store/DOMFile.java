@@ -4173,7 +4173,7 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
-comment|//            LOG.debug("New page: " + page.getPageNum());
+comment|//            SanityCheck.TRACE("New page: " + page.getPageNum());
 return|return
 name|page
 return|;
@@ -4805,10 +4805,6 @@ expr_stmt|;
 name|dataCache
 operator|.
 name|flush
-argument_list|()
-expr_stmt|;
-comment|//        pages.remove(owner);
-name|closeDocument
 argument_list|()
 expr_stmt|;
 try|try
@@ -5478,7 +5474,7 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
-comment|//        LOG.debug("current doc closed by: " + owner +
+comment|//        SanityCheck.TRACE("current doc closed by: " + owner +
 comment|//        		"; thread: " + Thread.currentThread().getName());
 block|}
 comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException      *                        Description of the Exception      */
