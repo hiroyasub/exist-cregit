@@ -960,6 +960,10 @@ decl_stmt|;
 while|while
 condition|(
 name|parent
+operator|!=
+literal|null
+operator|&&
+name|parent
 operator|.
 name|getNodeType
 argument_list|()
