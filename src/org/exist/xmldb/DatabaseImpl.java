@@ -787,6 +787,7 @@ name|u
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -802,6 +803,7 @@ operator|+
 literal|" does not exist"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -812,6 +814,7 @@ argument_list|(
 name|password
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -823,6 +826,7 @@ argument_list|,
 literal|"invalid password"
 argument_list|)
 throw|;
+block|}
 block|}
 try|try
 block|{
