@@ -3831,6 +3831,20 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+name|startGUI
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"command not supported in GUI mode. Please use the \"Edit users\" menu option."
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 try|try
 block|{
 name|UserManagementService
@@ -4206,6 +4220,20 @@ literal|"passwd"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|startGUI
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"command not supported in GUI mode. Please use the \"Edit users\" menu option."
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 name|args
@@ -5160,6 +5188,20 @@ literal|"xupdate"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|startGUI
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"command not supported in GUI mode."
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 name|String
 name|lastLine
 decl_stmt|,

@@ -1139,18 +1139,7 @@ operator|new
 name|OverflowDOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating overflow page: "
-operator|+
-name|overflow
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("creating overflow page: " + overflow.getPageNum());
 name|overflow
 operator|.
 name|write
@@ -1258,36 +1247,15 @@ operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"trying "
-operator|+
-name|value
-operator|.
-name|length
-operator|+
-literal|" bytes to "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|"; offset = "
-operator|+
-name|rec
-operator|.
-name|offset
-operator|+
-literal|"; len = "
-operator|+
-name|dataLen
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"trying "
+comment|//				+ value.length
+comment|//				+ " bytes to "
+comment|//				+ rec.page.getPageNum()
+comment|//				+ "; offset = "
+comment|//				+ rec.offset
+comment|//				+ "; len = "
+comment|//				+ dataLen);
 comment|// insert in the middle of the page?
 if|if
 condition|(
@@ -1314,30 +1282,13 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"copying data in page "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|"; offset = "
-operator|+
-name|rec
-operator|.
-name|offset
-operator|+
-literal|"; dataLen = "
-operator|+
-name|dataLen
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug(
+comment|//					"copying data in page "
+comment|//						+ rec.page.getPageNum()
+comment|//						+ "; offset = "
+comment|//						+ rec.offset
+comment|//						+ "; dataLen = "
+comment|//						+ dataLen);
 comment|// new value fits into the page
 name|int
 name|end
@@ -1422,27 +1373,8 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"splitting "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|": new: "
-operator|+
-name|splitPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug(
+comment|//					"splitting " + rec.page.getPageNum() + ": new: " + splitPage.getPageNum());
 name|splitPage
 operator|.
 name|len
@@ -1900,18 +1832,7 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"creating new page: "
-operator|+
-name|newPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("creating new page: " + newPage.getPageNum());
 name|newPage
 operator|.
 name|getPageHeader
@@ -2038,32 +1959,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// write the data
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"writing "
-operator|+
-name|value
-operator|.
-name|length
-operator|+
-literal|" to "
-operator|+
-name|rec
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|" at "
-operator|+
-name|rec
-operator|.
-name|offset
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("writing " + value.length + " to " + rec.page.getPageNum() + " at " + rec.offset);
 name|short
 name|tid
 init|=

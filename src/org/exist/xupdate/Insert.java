@@ -488,6 +488,16 @@ operator|.
 name|clearIndexListener
 argument_list|()
 expr_stmt|;
+name|doc
+operator|.
+name|setLastModified
+argument_list|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|prevCollection
 operator|=
 name|collection
