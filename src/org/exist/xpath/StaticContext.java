@@ -1160,7 +1160,9 @@ name|builder
 operator|=
 operator|new
 name|MemTreeBuilder
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|builder
 operator|.

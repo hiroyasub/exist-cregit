@@ -1282,6 +1282,7 @@ argument_list|(
 name|stopwordFile
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|sf
@@ -1298,7 +1299,6 @@ argument_list|,
 name|stopwordFile
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|CatalogResolver
 name|resolver

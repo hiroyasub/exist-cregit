@@ -129,7 +129,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|TreeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeSet
 import|;
 end_import
 
@@ -1251,7 +1271,7 @@ specifier|protected
 name|void
 name|collect
 parameter_list|(
-name|HashSet
+name|Set
 name|words
 parameter_list|,
 name|Iterator
@@ -3321,11 +3341,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|HashSet
+name|TreeSet
 name|words
 init|=
 operator|new
-name|HashSet
+name|TreeSet
 argument_list|()
 decl_stmt|;
 name|NodeList
@@ -3479,6 +3499,15 @@ name|iter
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"removing "
+operator|+
+name|word
+argument_list|)
 expr_stmt|;
 name|ref
 operator|=

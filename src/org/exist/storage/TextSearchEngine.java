@@ -471,16 +471,6 @@ argument_list|(
 literal|"stopwords"
 argument_list|)
 operator|)
-operator|==
-literal|null
-condition|)
-name|stopword
-operator|=
-literal|null
-expr_stmt|;
-if|if
-condition|(
-name|stopword
 operator|!=
 literal|null
 condition|)

@@ -3888,6 +3888,15 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
+name|qr
+operator|.
+name|timestamp
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|qr
@@ -7530,6 +7539,15 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
+name|qr
+operator|.
+name|timestamp
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
 name|Item
 name|item
 init|=
@@ -9213,6 +9231,15 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
+name|qr
+operator|.
+name|timestamp
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
 name|Hashtable
 name|result
 init|=

@@ -1124,6 +1124,17 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|hits
+operator|==
+literal|null
+condition|)
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
+if|if
+condition|(
 name|type
 operator|==
 name|Constants

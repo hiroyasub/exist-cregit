@@ -783,9 +783,9 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 argument_list|(
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 operator|.
 name|KEYS
 argument_list|)
@@ -798,9 +798,9 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 argument_list|(
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 operator|.
 name|VALUES
 argument_list|)
@@ -1132,7 +1132,7 @@ return|;
 block|}
 specifier|protected
 class|class
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 extends|extends
 name|HashtableIterator
 block|{
@@ -1142,7 +1142,7 @@ init|=
 literal|0
 decl_stmt|;
 specifier|public
-name|Long2ObjectIterator
+name|Int2ObjectIterator
 parameter_list|(
 name|int
 name|type
@@ -1280,9 +1280,24 @@ name|void
 name|remove
 parameter_list|()
 block|{
+if|if
+condition|(
+name|idx
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"remove called before next"
+argument_list|)
+throw|;
 name|values
 index|[
 name|idx
+operator|-
+literal|1
 index|]
 operator|=
 name|REMOVED

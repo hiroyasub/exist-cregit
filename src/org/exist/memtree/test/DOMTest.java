@@ -65,6 +65,18 @@ name|exist
 operator|.
 name|memtree
 operator|.
+name|MemTreeBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
 name|Receiver
 import|;
 end_import
@@ -80,6 +92,18 @@ operator|.
 name|serializer
 operator|.
 name|DOMSerializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xpath
+operator|.
+name|StaticContext
 import|;
 end_import
 

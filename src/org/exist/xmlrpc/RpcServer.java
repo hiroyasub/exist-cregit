@@ -276,7 +276,6 @@ name|conf
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                           Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|createCollection
@@ -341,7 +340,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  collection                     Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|String
 name|createId
@@ -389,7 +387,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|int
 name|executeQuery
@@ -458,7 +455,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  encoding                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|int
 name|executeQuery
@@ -546,7 +542,6 @@ name|namespaces
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|int
 name|executeQuery
@@ -5043,7 +5038,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                           Source dir 	 *@param  namedest                       Destination dir 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 *@author Giulio 	 */
+comment|/** 	*  Description of the Method 	* 	*@param  name                           Source dir 	*@param  namedest                       Destination dir 	*@param  user                           Description of the Parameter 	*@return                                Description of the Return Value 	*@exception  EXistException             Description of the Exception 	*@exception  PermissionDeniedException  Description of the Exception 	*@author Giulio 	*/
 specifier|public
 name|boolean
 name|copyCollection
