@@ -1253,7 +1253,7 @@ name|listener
 operator|.
 name|setHost
 argument_list|(
-literal|"localhost"
+literal|null
 argument_list|)
 expr_stmt|;
 name|listener
