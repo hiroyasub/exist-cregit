@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Utility functions to have an indexed access for inserting and deletion  * of array items.  */
+comment|/**  * Utility methods to have indexed access for insertion and deletion  * of array items.  *   * Based on original code from dbXML.  */
 end_comment
 
 begin_class
@@ -22,7 +22,7 @@ specifier|public
 class|class
 name|ArrayUtils
 block|{
-comment|/**      * Delete an integer inside an array of integers.      *       * @param vals array of integers      * @param idx index of integer to delete      * @return the array without the deleted integer      */
+comment|/**      * Delete an integer.      *       * @param vals array of integers      * @param idx index of integer to delete      * @return the array without the deleted integer      */
 specifier|public
 specifier|static
 name|int
@@ -57,6 +57,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -72,6 +73,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|idx
@@ -80,6 +82,7 @@ name|newVals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -101,11 +104,12 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
 block|}
-comment|/**      * Delete an long inside an array of longs.      *       * @param vals array of longs      * @param idx index of long to delete      * @return the array without the deleted long      */
+comment|/**      * Delete a long.      *       * @param vals array of longs      * @param idx index of long to delete      * @return the array without the deleted long      */
 specifier|public
 specifier|static
 name|long
@@ -140,6 +144,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -155,6 +160,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|idx
@@ -163,6 +169,7 @@ name|newVals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -184,11 +191,12 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
 block|}
-comment|/**      *       * @param vals      * @param idx      * @return      */
+comment|/**      * Delete a short.      *       * @param vals array of shorts      * @param idx index of short to delete      * @return the array without the deleted short      */
 specifier|public
 specifier|static
 name|short
@@ -223,6 +231,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -238,6 +247,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|idx
@@ -246,6 +256,7 @@ name|newVals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -267,11 +278,12 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
 block|}
-comment|/**      *       * @param vals      * @param val      * @param idx      * @return      */
+comment|/**      * Insert a integer.      *       * @param vals array of integers      * @param val integer to insert      * @param idx index of insertion      * @return the array with added integer      */
 specifier|public
 specifier|static
 name|int
@@ -309,6 +321,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -324,6 +337,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 name|newVals
 index|[
 name|idx
@@ -339,6 +353,7 @@ name|vals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -360,11 +375,12 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
 block|}
-comment|/**      *       * @param vals      * @param val      * @param idx      * @return      */
+comment|/**      * Insert a long.      *       * @param vals array of longs      * @param val long to insert      * @param idx index of insertion      * @return the array with added long      */
 specifier|public
 specifier|static
 name|long
@@ -402,6 +418,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -417,6 +434,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 name|newVals
 index|[
 name|idx
@@ -432,6 +450,7 @@ name|vals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -453,11 +472,12 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
 block|}
-comment|/**      *       * @param vals      * @param val      * @param idx      * @return      */
+comment|/**      * Insert a short.      *       * @param vals array of shorts      * @param val short to insert      * @param idx index of insertion      * @return the array with added short      */
 specifier|public
 specifier|static
 name|short
@@ -495,6 +515,7 @@ name|idx
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -510,6 +531,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 name|newVals
 index|[
 name|idx
@@ -525,6 +547,7 @@ name|vals
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -546,6 +569,7 @@ operator|-
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|newVals
 return|;
