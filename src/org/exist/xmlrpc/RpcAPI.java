@@ -780,7 +780,6 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|Vector
 name|getUsers
 parameter_list|(
