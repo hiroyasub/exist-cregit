@@ -607,7 +607,6 @@ end_comment
 
 begin_class
 specifier|public
-specifier|final
 class|class
 name|Collection
 extends|extends
@@ -619,6 +618,11 @@ name|EntityResolver
 implements|,
 name|Cacheable
 block|{
+specifier|public
+name|Collection
+parameter_list|()
+block|{
+block|}
 specifier|private
 specifier|final
 specifier|static
