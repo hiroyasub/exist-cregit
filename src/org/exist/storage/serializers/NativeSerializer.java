@@ -81,11 +81,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|serializers
-operator|.
-name|*
+name|XMLUtil
 import|;
 end_import
 
@@ -138,7 +136,13 @@ name|NativeSerializer
 extends|extends
 name|Serializer
 block|{
-comment|/**      *  Constructor for the NativeSerializer object      *      *@param  broker  Description of the Parameter      *@param  pool    Description of the Parameter      */
+specifier|private
+name|boolean
+name|showId
+init|=
+literal|false
+decl_stmt|;
+comment|/** 	 *  Constructor for the NativeSerializer object 	 * 	 *@param  broker  Description of the Parameter 	 *@param  pool    Description of the Parameter 	 */
 specifier|public
 name|NativeSerializer
 parameter_list|(
@@ -156,8 +160,36 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
+name|String
+name|showIdParam
+init|=
+operator|(
+name|String
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+literal|"serialization.add-exist-id"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|showIdParam
+operator|!=
+literal|null
+condition|)
+name|showId
+operator|=
+name|showIdParam
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@param  queryTime         Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@param  queryTime         Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -396,7 +428,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  doc               Description of the Parameter      *@param  generateDocEvent  Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  doc               Description of the Parameter 	 *@param  generateDocEvent  Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -580,7 +612,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  n                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  n                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -633,7 +665,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  p                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  p                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -652,7 +684,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  p                  Description of the Parameter      *@param  generateDocEvents  Description of the Parameter      *@exception  SAXException   Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  p                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -729,7 +761,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  iter              Description of the Parameter      *@param  doc               Description of the Parameter      *@param  gid               Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -760,7 +792,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  node              Description of the Parameter      *@param  iter              Description of the Parameter      *@param  doc               Description of the Parameter      *@param  gid               Description of the Parameter      *@param  first             Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  node              Description of the Parameter 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -801,7 +833,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  node              Description of the Parameter      *@param  iter              Description of the Parameter      *@param  doc               Description of the Parameter      *@param  gid               Description of the Parameter      *@param  first             Description of the Parameter      *@param  prefixes          Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  node              Description of the Parameter 	 *@param  iter              Description of the Parameter 	 *@param  doc               Description of the Parameter 	 *@param  gid               Description of the Parameter 	 *@param  first             Description of the Parameter 	 *@param  prefixes          Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -932,6 +964,69 @@ operator|new
 name|AttributesImpl
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|first
+operator|||
+name|showId
+condition|)
+block|{
+name|attributes
+operator|.
+name|addAttribute
+argument_list|(
+literal|"http://exist.sourceforge.net/NS/exist"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"exist:id"
+argument_list|,
+literal|"CDATA"
+argument_list|,
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|gid
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|first
+condition|)
+block|{
+name|attributes
+operator|.
+name|addAttribute
+argument_list|(
+literal|"http://exist.sourceforge.net/NS/exist"
+argument_list|,
+literal|"source"
+argument_list|,
+literal|"exist:source"
+argument_list|,
+literal|"CDATA"
+argument_list|,
+name|doc
+operator|.
+name|getFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|gid
+operator|=
+name|XMLUtil
+operator|.
+name|getFirstChildId
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|count
@@ -1018,53 +1113,12 @@ expr_stmt|;
 name|count
 operator|++
 expr_stmt|;
+name|gid
+operator|++
+expr_stmt|;
 block|}
 else|else
 break|break;
-block|}
-if|if
-condition|(
-name|first
-condition|)
-block|{
-name|attributes
-operator|.
-name|addAttribute
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|,
-literal|"id"
-argument_list|,
-literal|"exist:id"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-name|Long
-operator|.
-name|toString
-argument_list|(
-name|gid
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|attributes
-operator|.
-name|addAttribute
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|,
-literal|"source"
-argument_list|,
-literal|"exist:source"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 name|ArrayList
 name|myPrefixes
@@ -1252,6 +1306,7 @@ argument_list|,
 name|doc
 argument_list|,
 name|gid
+operator|++
 argument_list|,
 literal|false
 argument_list|,

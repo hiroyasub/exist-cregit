@@ -67,6 +67,15 @@ argument_list|(
 literal|"http://localhost:8080/exist/xmlrpc"
 argument_list|)
 decl_stmt|;
+name|xmlrpc
+operator|.
+name|setBasicAuthentication
+argument_list|(
+literal|"admin"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
 comment|// execute query and retrieve an id for the generated result set
 name|Vector
 name|params

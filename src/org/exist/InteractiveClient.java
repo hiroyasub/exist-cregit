@@ -611,6 +611,14 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
+name|int
+name|RECURSE_DIRS_OPT
+init|=
+literal|'d'
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|CLOptionDescriptor
 name|OPTIONS
 index|[]
@@ -878,6 +886,20 @@ name|THREADS_OPT
 argument_list|,
 literal|"number of parallel threads to test with (use with -f)."
 argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"recurse-dirs"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_DISALLOWED
+argument_list|,
+name|RECURSE_DIRS_OPT
+argument_list|,
+literal|"recurse into subdirectories during index?"
+argument_list|)
 block|}
 decl_stmt|;
 comment|// ANSI colors for ls display
@@ -1120,6 +1142,12 @@ decl_stmt|;
 specifier|protected
 name|boolean
 name|verbose
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
+name|boolean
+name|recurseDirs
 init|=
 literal|false
 decl_stmt|;
@@ -5644,7 +5672,7 @@ block|}
 else|else
 block|{
 name|long
-name|start
+name|start1
 init|=
 name|System
 operator|.
@@ -5727,7 +5755,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
-name|start
+name|start1
 operator|)
 operator|+
 literal|"ms."
@@ -5831,6 +5859,11 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
+if|if
+condition|(
+name|recurseDirs
+condition|)
 return|return
 name|findRecursive
 argument_list|(
@@ -5841,6 +5874,19 @@ argument_list|,
 name|path
 argument_list|)
 return|;
+else|else
+name|files
+operator|=
+name|file
+operator|.
+name|listFiles
+argument_list|(
+operator|new
+name|XMLFilenameFilter
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 block|{
 name|files
@@ -6217,6 +6263,10 @@ operator|=
 name|c
 expr_stmt|;
 block|}
+name|path
+operator|=
+name|p
+expr_stmt|;
 block|}
 comment|// Reads user password from given input stream.
 specifier|private
@@ -6871,6 +6921,14 @@ operator|.
 name|getArgument
 argument_list|()
 argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|RECURSE_DIRS_OPT
+case|:
+name|recurseDirs
+operator|=
+literal|true
 expr_stmt|;
 break|break;
 case|case

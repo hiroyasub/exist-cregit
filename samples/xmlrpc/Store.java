@@ -132,6 +132,15 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+name|xmlrpc
+operator|.
+name|setBasicAuthentication
+argument_list|(
+literal|"admin"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
 comment|// read the file into a string
 name|BufferedReader
 name|f

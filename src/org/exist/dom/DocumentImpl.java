@@ -216,6 +216,15 @@ name|maxDepth
 init|=
 literal|0
 decl_stmt|;
+comment|// if set to> -1, the document needs to be partially reindexed
+comment|// - beginning at the tree-level defined by reindex
+specifier|protected
+name|int
+name|reindex
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|protected
 name|Permission
 name|permissions
@@ -257,7 +266,7 @@ index|[
 literal|25
 index|]
 decl_stmt|;
-comment|/**      *  Constructor for the DocumentImpl object      *      *@param  broker      Description of the Parameter      *@param  collection  Description of the Parameter      */
+comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker      Description of the Parameter 	 *@param  collection  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -303,7 +312,7 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the DocumentImpl object      *      *@param  broker  Description of the Parameter      */
+comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -321,7 +330,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the DocumentImpl object      *      *@param  broker    Description of the Parameter      *@param  fileName  Description of the Parameter      */
+comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker    Description of the Parameter 	 *@param  fileName  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -348,7 +357,7 @@ operator|=
 name|fileName
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the DocumentImpl object      *      *@param  broker      Description of the Parameter      *@param  fileName    Description of the Parameter      *@param  collection  Description of the Parameter      */
+comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker      Description of the Parameter 	 *@param  fileName    Description of the Parameter 	 *@param  collection  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -403,7 +412,190 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  gid   Description of the Parameter      *@param  type  Description of the Parameter      *@return       Description of the Return Value      */
+specifier|public
+name|DocumentImpl
+parameter_list|(
+name|DocumentImpl
+name|old
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|Node
+operator|.
+name|DOCUMENT_NODE
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|broker
+operator|=
+name|old
+operator|.
+name|broker
+expr_stmt|;
+name|this
+operator|.
+name|fileName
+operator|=
+name|old
+operator|.
+name|fileName
+expr_stmt|;
+name|this
+operator|.
+name|ownerDocument
+operator|=
+name|this
+expr_stmt|;
+name|this
+operator|.
+name|collection
+operator|=
+name|old
+operator|.
+name|collection
+expr_stmt|;
+name|this
+operator|.
+name|children
+operator|=
+name|old
+operator|.
+name|children
+expr_stmt|;
+name|this
+operator|.
+name|maxDepth
+operator|=
+name|old
+operator|.
+name|maxDepth
+expr_stmt|;
+name|this
+operator|.
+name|docId
+operator|=
+name|old
+operator|.
+name|docId
+expr_stmt|;
+name|this
+operator|.
+name|documentRootId
+operator|=
+name|old
+operator|.
+name|documentRootId
+expr_stmt|;
+name|this
+operator|.
+name|docType
+operator|=
+name|old
+operator|.
+name|docType
+expr_stmt|;
+name|this
+operator|.
+name|permissions
+operator|=
+name|old
+operator|.
+name|permissions
+expr_stmt|;
+name|this
+operator|.
+name|rootPage
+operator|=
+name|old
+operator|.
+name|rootPage
+expr_stmt|;
+name|treeLevelOrder
+operator|=
+operator|new
+name|int
+index|[
+name|old
+operator|.
+name|treeLevelOrder
+operator|.
+name|length
+index|]
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|treeLevelOrder
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|treeLevelOrder
+index|[
+name|i
+index|]
+operator|=
+name|old
+operator|.
+name|treeLevelOrder
+index|[
+name|i
+index|]
+expr_stmt|;
+name|treeLevelStartPoints
+operator|=
+operator|new
+name|long
+index|[
+name|old
+operator|.
+name|treeLevelStartPoints
+operator|.
+name|length
+index|]
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|treeLevelStartPoints
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+name|treeLevelStartPoints
+index|[
+name|i
+index|]
+operator|=
+name|old
+operator|.
+name|treeLevelStartPoints
+index|[
+name|i
+index|]
+expr_stmt|;
+block|}
+comment|/** 	 *  Description of the Method 	 * 	 *@param  gid   Description of the Parameter 	 *@param  type  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|protected
 specifier|static
 name|NodeImpl
@@ -466,7 +658,7 @@ name|gid
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|LOG
 operator|.
 name|debug
@@ -483,7 +675,7 @@ return|return
 name|node
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  gid       Description of the Parameter      *@param  type      Description of the Parameter      *@param  name      Description of the Parameter      *@param  data      Description of the Parameter      *@param  children  Description of the Parameter      *@return           Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  gid       Description of the Parameter 	 *@param  type      Description of the Parameter 	 *@param  name      Description of the Parameter 	 *@param  data      Description of the Parameter 	 *@param  children  Description of the Parameter 	 *@return           Description of the Return Value 	 */
 specifier|protected
 specifier|static
 name|NodeImpl
@@ -552,7 +744,7 @@ name|children
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|node
 operator|=
 literal|null
@@ -562,7 +754,7 @@ return|return
 name|node
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  node              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  node              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Node
 name|adoptNode
@@ -577,7 +769,7 @@ return|return
 name|node
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  child             Description of the Parameter      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  child             Description of the Parameter 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|void
 name|appendChild
@@ -686,7 +878,7 @@ name|i
 index|]
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  other  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  other  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|int
 name|compareTo
@@ -749,7 +941,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Attr
 name|createAttribute
@@ -782,7 +974,7 @@ return|return
 name|attr
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespaceURI      Description of the Parameter      *@param  qualifiedName     Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  namespaceURI      Description of the Parameter 	 *@param  qualifiedName     Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Attr
 name|createAttributeNS
@@ -803,7 +995,7 @@ name|qualifiedName
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  data              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|CDATASection
 name|createCDATASection
@@ -818,7 +1010,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  data  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|Comment
 name|createComment
@@ -831,7 +1023,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|DocumentFragment
 name|createDocumentFragment
@@ -843,7 +1035,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  tagName           Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  tagName           Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Element
 name|createElement
@@ -874,7 +1066,7 @@ return|return
 name|element
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespaceURI      Description of the Parameter      *@param  qualifiedName     Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  namespaceURI      Description of the Parameter 	 *@param  qualifiedName     Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Element
 name|createElementNS
@@ -895,7 +1087,7 @@ name|qualifiedName
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|EntityReference
 name|createEntityReference
@@ -910,7 +1102,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  target            Description of the Parameter      *@param  data              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  target            Description of the Parameter 	 *@param  data              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
@@ -928,7 +1120,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data  Description of the Parameter      *@return       Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  data  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|Text
 name|createTextNode
@@ -957,7 +1149,7 @@ return|return
 name|text
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  root     Description of the Parameter      *@param  tagName  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  root     Description of the Parameter 	 *@param  tagName  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|NodeList
 name|findElementsByTagName
@@ -1082,7 +1274,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      *  Gets the childCount attribute of the DocumentImpl object      *      *@return    The childCount value      */
+comment|/** 	 *  Gets the childCount attribute of the DocumentImpl object 	 * 	 *@return    The childCount value 	 */
 specifier|public
 name|int
 name|getChildCount
@@ -1092,8 +1284,8 @@ return|return
 name|children
 return|;
 block|}
-comment|/*      *  methods of NodeImpl      */
-comment|/**      *  Gets the childNodes attribute of the DocumentImpl object      *      *@return    The childNodes value      */
+comment|/* 	 *  methods of NodeImpl 	 */
+comment|/** 	 *  Gets the childNodes attribute of the DocumentImpl object 	 * 	 *@return    The childNodes value 	 */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -1134,7 +1326,7 @@ return|return
 name|list
 return|;
 block|}
-comment|/**      *  Gets the collection attribute of the DocumentImpl object      *      *@return    The collection value      */
+comment|/** 	 *  Gets the collection attribute of the DocumentImpl object 	 * 	 *@return    The collection value 	 */
 specifier|public
 name|Collection
 name|getCollection
@@ -1144,7 +1336,7 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**      *  Gets the docId attribute of the DocumentImpl object      *      *@return    The docId value      */
+comment|/** 	 *  Gets the docId attribute of the DocumentImpl object 	 * 	 *@return    The docId value 	 */
 specifier|public
 name|int
 name|getDocId
@@ -1154,7 +1346,7 @@ return|return
 name|docId
 return|;
 block|}
-comment|/**      *  Gets the doctype attribute of the DocumentImpl object      *      *@return    The doctype value      */
+comment|/** 	 *  Gets the doctype attribute of the DocumentImpl object 	 * 	 *@return    The doctype value 	 */
 specifier|public
 name|DocumentType
 name|getDoctype
@@ -1164,8 +1356,8 @@ return|return
 name|docType
 return|;
 block|}
-comment|/*      *  W3C Document-Methods      */
-comment|/**      *  Gets the documentElement attribute of the DocumentImpl object      *      *@return    The documentElement value      */
+comment|/* 	 *  W3C Document-Methods 	 */
+comment|/** 	 *  Gets the documentElement attribute of the DocumentImpl object 	 * 	 *@return    The documentElement value 	 */
 specifier|public
 name|Element
 name|getDocumentElement
@@ -1249,7 +1441,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the documentElementId attribute of the DocumentImpl object      *      *@return    The documentElementId value      */
+comment|/** 	 *  Gets the documentElementId attribute of the DocumentImpl object 	 * 	 *@return    The documentElementId value 	 */
 specifier|public
 name|long
 name|getDocumentElementId
@@ -1277,7 +1469,7 @@ return|return
 name|documentRootId
 return|;
 block|}
-comment|/**      *  Gets the elementById attribute of the DocumentImpl object      *      *@param  elementId  Description of the Parameter      *@return            The elementById value      */
+comment|/** 	 *  Gets the elementById attribute of the DocumentImpl object 	 * 	 *@param  elementId  Description of the Parameter 	 *@return            The elementById value 	 */
 specifier|public
 name|Element
 name|getElementById
@@ -1290,7 +1482,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the elementsByTagName attribute of the DocumentImpl object      *      *@param  tagname  Description of the Parameter      *@return          The elementsByTagName value      */
+comment|/** 	 *  Gets the elementsByTagName attribute of the DocumentImpl object 	 * 	 *@param  tagname  Description of the Parameter 	 *@return          The elementsByTagName value 	 */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -1324,7 +1516,7 @@ name|tagname
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the elementsByTagNameNS attribute of the DocumentImpl object      *      *@param  namespaceURI  Description of the Parameter      *@param  localName     Description of the Parameter      *@return               The elementsByTagNameNS value      */
+comment|/** 	 *  Gets the elementsByTagNameNS attribute of the DocumentImpl object 	 * 	 *@param  namespaceURI  Description of the Parameter 	 *@param  localName     Description of the Parameter 	 *@return               The elementsByTagNameNS value 	 */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -1340,7 +1532,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the encoding attribute of the DocumentImpl object      *      *@return    The encoding value      */
+comment|/** 	 *  Gets the encoding attribute of the DocumentImpl object 	 * 	 *@return    The encoding value 	 */
 specifier|public
 name|String
 name|getEncoding
@@ -1350,7 +1542,7 @@ return|return
 literal|"UTF-8"
 return|;
 block|}
-comment|/**      *  Gets the fileName attribute of the DocumentImpl object      *      *@return    The fileName value      */
+comment|/** 	 *  Gets the fileName attribute of the DocumentImpl object 	 * 	 *@return    The fileName value 	 */
 specifier|public
 name|String
 name|getFileName
@@ -1360,7 +1552,7 @@ return|return
 name|fileName
 return|;
 block|}
-comment|/**      *  Gets the implementation attribute of the DocumentImpl object      *      *@return    The implementation value      */
+comment|/** 	 *  Gets the implementation attribute of the DocumentImpl object 	 * 	 *@return    The implementation value 	 */
 specifier|public
 name|org
 operator|.
@@ -1376,7 +1568,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the levelStartPoint attribute of the DocumentImpl object      *      *@param  level  Description of the Parameter      *@return        The levelStartPoint value      */
+comment|/** 	 *  Gets the levelStartPoint attribute of the DocumentImpl object 	 * 	 *@param  level  Description of the Parameter 	 *@return        The levelStartPoint value 	 */
 specifier|public
 name|long
 name|getLevelStartPoint
@@ -1406,7 +1598,7 @@ name|level
 index|]
 return|;
 block|}
-comment|/**      *  Gets the maxDepth attribute of the DocumentImpl object      *      *@return    The maxDepth value      */
+comment|/** 	 *  Gets the maxDepth attribute of the DocumentImpl object 	 * 	 *@return    The maxDepth value 	 */
 specifier|public
 name|int
 name|getMaxDepth
@@ -1416,7 +1608,7 @@ return|return
 name|maxDepth
 return|;
 block|}
-comment|/**      *  Gets the node attribute of the DocumentImpl object      *      *@param  gid  Description of the Parameter      *@return      The node value      */
+comment|/** 	 *  Gets the node attribute of the DocumentImpl object 	 * 	 *@param  gid  Description of the Parameter 	 *@return      The node value 	 */
 specifier|public
 name|Node
 name|getNode
@@ -1436,7 +1628,7 @@ name|gid
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the privileges attribute of the DocumentImpl object      *      *@return    The privileges value      */
+comment|/** 	 *  Gets the privileges attribute of the DocumentImpl object 	 * 	 *@return    The privileges value 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -1446,7 +1638,7 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      *  Gets the range attribute of the DocumentImpl object      *      *@param  first  Description of the Parameter      *@param  last   Description of the Parameter      *@return        The range value      */
+comment|/** 	 *  Gets the range attribute of the DocumentImpl object 	 * 	 *@param  first  Description of the Parameter 	 *@param  last   Description of the Parameter 	 *@return        The range value 	 */
 specifier|public
 name|NodeList
 name|getRange
@@ -1471,7 +1663,7 @@ name|last
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the rootPage attribute of the DocumentImpl object      *      *@return    The rootPage value      */
+comment|/** 	 *  Gets the rootPage attribute of the DocumentImpl object 	 * 	 *@return    The rootPage value 	 */
 specifier|public
 name|long
 name|getRootPage
@@ -1481,7 +1673,7 @@ return|return
 name|rootPage
 return|;
 block|}
-comment|/**      *  Gets the standalone attribute of the DocumentImpl object      *      *@return    The standalone value      */
+comment|/** 	 *  Gets the standalone attribute of the DocumentImpl object 	 * 	 *@return    The standalone value 	 */
 specifier|public
 name|boolean
 name|getStandalone
@@ -1491,7 +1683,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Gets the strictErrorChecking attribute of the DocumentImpl object      *      *@return    The strictErrorChecking value      */
+comment|/** 	 *  Gets the strictErrorChecking attribute of the DocumentImpl object 	 * 	 *@return    The strictErrorChecking value 	 */
 specifier|public
 name|boolean
 name|getStrictErrorChecking
@@ -1501,7 +1693,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Gets the symbols attribute of the DocumentImpl object      *      *@return    The symbols value      */
+comment|/** 	 *  Gets the symbols attribute of the DocumentImpl object 	 * 	 *@return    The symbols value 	 */
 specifier|public
 name|SymbolTable
 name|getSymbols
@@ -1515,7 +1707,7 @@ name|getSymbols
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the treeLevel attribute of the DocumentImpl object      *      *@param  gid  Description of the Parameter      *@return      The treeLevel value      */
+comment|/** 	 *  Gets the treeLevel attribute of the DocumentImpl object 	 * 	 *@param  gid  Description of the Parameter 	 *@return      The treeLevel value 	 */
 specifier|public
 name|int
 name|getTreeLevel
@@ -1576,7 +1768,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      *  Gets the treeLevelOrder attribute of the DocumentImpl object      *      *@param  level  Description of the Parameter      *@return        The treeLevelOrder value      */
+comment|/** 	 *  Gets the treeLevelOrder attribute of the DocumentImpl object 	 * 	 *@param  level  Description of the Parameter 	 *@return        The treeLevelOrder value 	 */
 specifier|public
 name|int
 name|getTreeLevelOrder
@@ -1605,6 +1797,11 @@ operator|+
 literal|" does not exist."
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -1618,7 +1815,7 @@ name|level
 index|]
 return|;
 block|}
-comment|/**      *  Gets the treeLevelOrder attribute of the DocumentImpl object      *      *@param  gid  Description of the Parameter      *@return      The treeLevelOrder value      */
+comment|/** 	 *  Gets the treeLevelOrder attribute of the DocumentImpl object 	 * 	 *@param  gid  Description of the Parameter 	 *@return      The treeLevelOrder value 	 */
 specifier|public
 name|int
 name|getTreeLevelOrder
@@ -1678,7 +1875,7 @@ return|return
 name|order
 return|;
 block|}
-comment|/**      *  Gets the version attribute of the DocumentImpl object      *      *@return    The version value      */
+comment|/** 	 *  Gets the version attribute of the DocumentImpl object 	 * 	 *@return    The version value 	 */
 specifier|public
 name|String
 name|getVersion
@@ -1688,7 +1885,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  importedNode      Description of the Parameter      *@param  deep              Description of the Parameter      *@return                   Description of the Return Value      *@exception  DOMException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  importedNode      Description of the Parameter 	 *@param  deep              Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  DOMException  Description of the Exception 	 */
 specifier|public
 name|Node
 name|importNode
@@ -1706,7 +1903,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the supported attribute of the DocumentImpl object      *      *@param  type   Description of the Parameter      *@param  value  Description of the Parameter      *@return        The supported value      */
+comment|/** 	 *  Gets the supported attribute of the DocumentImpl object 	 * 	 *@param  type   Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        The supported value 	 */
 specifier|public
 name|boolean
 name|isSupported
@@ -1722,7 +1919,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  istream          Description of the Parameter      *@exception  IOException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  istream          Description of the Parameter 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|void
 name|read
@@ -2037,7 +2234,7 @@ name|calculateTreeLevelStartPoints
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Sets the broker attribute of the DocumentImpl object      *      *@param  broker  The new broker value      */
+comment|/** 	 *  Sets the broker attribute of the DocumentImpl object 	 * 	 *@param  broker  The new broker value 	 */
 specifier|public
 name|void
 name|setBroker
@@ -2053,7 +2250,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/**      *  Sets the childCount attribute of the DocumentImpl object      *      *@param  count  The new childCount value      */
+comment|/** 	 *  Sets the childCount attribute of the DocumentImpl object 	 * 	 *@param  count  The new childCount value 	 */
 specifier|public
 name|void
 name|setChildCount
@@ -2067,7 +2264,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/**      *  Sets the docId attribute of the DocumentImpl object      *      *@param  docId  The new docId value      */
+comment|/** 	 *  Sets the docId attribute of the DocumentImpl object 	 * 	 *@param  docId  The new docId value 	 */
 specifier|public
 name|void
 name|setDocId
@@ -2083,7 +2280,7 @@ operator|=
 name|docId
 expr_stmt|;
 block|}
-comment|/**      *  Sets the documentElement attribute of the DocumentImpl object      *      *@param  gid  The new documentElement value      */
+comment|/** 	 *  Sets the documentElement attribute of the DocumentImpl object 	 * 	 *@param  gid  The new documentElement value 	 */
 specifier|public
 name|void
 name|setDocumentElement
@@ -2097,7 +2294,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/**      *  Sets the documentType attribute of the DocumentImpl object      *      *@param  docType  The new documentType value      */
+comment|/** 	 *  Sets the documentType attribute of the DocumentImpl object 	 * 	 *@param  docType  The new documentType value 	 */
 specifier|public
 name|void
 name|setDocumentType
@@ -2113,7 +2310,7 @@ operator|=
 name|docType
 expr_stmt|;
 block|}
-comment|/**      *  Sets the encoding attribute of the DocumentImpl object      *      *@param  enc  The new encoding value      */
+comment|/** 	 *  Sets the encoding attribute of the DocumentImpl object 	 * 	 *@param  enc  The new encoding value 	 */
 specifier|public
 name|void
 name|setEncoding
@@ -2123,7 +2320,7 @@ name|enc
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Sets the fileName attribute of the DocumentImpl object      *      *@param  fileName  The new fileName value      */
+comment|/** 	 *  Sets the fileName attribute of the DocumentImpl object 	 * 	 *@param  fileName  The new fileName value 	 */
 specifier|public
 name|void
 name|setFileName
@@ -2139,7 +2336,7 @@ operator|=
 name|fileName
 expr_stmt|;
 block|}
-comment|/**      *  Sets the maxDepth attribute of the DocumentImpl object      *      *@param  depth  The new maxDepth value      */
+comment|/** 	 *  Sets the maxDepth attribute of the DocumentImpl object 	 * 	 *@param  depth  The new maxDepth value 	 */
 specifier|public
 name|void
 name|setMaxDepth
@@ -2153,7 +2350,66 @@ operator|=
 name|depth
 expr_stmt|;
 block|}
-comment|/**      *  Sets the permissions attribute of the DocumentImpl object      *      *@param  mode  The new permissions value      */
+specifier|public
+name|void
+name|incMaxDepth
+parameter_list|()
+block|{
+operator|++
+name|maxDepth
+expr_stmt|;
+if|if
+condition|(
+name|treeLevelOrder
+operator|.
+name|length
+operator|<
+name|maxDepth
+condition|)
+block|{
+name|int
+name|temp
+index|[]
+init|=
+operator|new
+name|int
+index|[
+name|maxDepth
+index|]
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|treeLevelOrder
+argument_list|,
+literal|0
+argument_list|,
+name|temp
+argument_list|,
+literal|0
+argument_list|,
+name|maxDepth
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|treeLevelOrder
+operator|=
+name|temp
+expr_stmt|;
+name|treeLevelOrder
+index|[
+name|maxDepth
+operator|-
+literal|1
+index|]
+operator|=
+literal|0
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 *  Sets the permissions attribute of the DocumentImpl object 	 * 	 *@param  mode  The new permissions value 	 */
 specifier|public
 name|void
 name|setPermissions
@@ -2170,7 +2426,7 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Sets the permissions attribute of the DocumentImpl object      *      *@param  mode                 The new permissions value      *@exception  SyntaxException  Description of the Exception      */
+comment|/** 	 *  Sets the permissions attribute of the DocumentImpl object 	 * 	 *@param  mode                 The new permissions value 	 *@exception  SyntaxException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setPermissions
@@ -2202,7 +2458,7 @@ operator|=
 name|perm
 expr_stmt|;
 block|}
-comment|/**      *  Sets the rootPage attribute of the DocumentImpl object      *      *@param  root  The new rootPage value      */
+comment|/** 	 *  Sets the rootPage attribute of the DocumentImpl object 	 * 	 *@param  root  The new rootPage value 	 */
 specifier|public
 name|void
 name|setRootPage
@@ -2216,7 +2472,7 @@ operator|=
 name|root
 expr_stmt|;
 block|}
-comment|/**      *  Sets the standalone attribute of the DocumentImpl object      *      *@param  alone  The new standalone value      */
+comment|/** 	 *  Sets the standalone attribute of the DocumentImpl object 	 * 	 *@param  alone  The new standalone value 	 */
 specifier|public
 name|void
 name|setStandalone
@@ -2226,7 +2482,7 @@ name|alone
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Sets the strictErrorChecking attribute of the DocumentImpl object      *      *@param  strict  The new strictErrorChecking value      */
+comment|/** 	 *  Sets the strictErrorChecking attribute of the DocumentImpl object 	 * 	 *@param  strict  The new strictErrorChecking value 	 */
 specifier|public
 name|void
 name|setStrictErrorChecking
@@ -2236,7 +2492,7 @@ name|strict
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Sets the treeLevelOrder attribute of the DocumentImpl object      *      *@param  level  The new treeLevelOrder value      *@param  order  The new treeLevelOrder value      */
+comment|/** 	 *  Sets the treeLevelOrder attribute of the DocumentImpl object 	 * 	 *@param  level  The new treeLevelOrder value 	 *@param  order  The new treeLevelOrder value 	 */
 specifier|public
 name|void
 name|setTreeLevelOrder
@@ -2256,7 +2512,7 @@ operator|=
 name|order
 expr_stmt|;
 block|}
-comment|/**      *  Sets the version attribute of the DocumentImpl object      *      *@param  version  The new version value      */
+comment|/** 	 *  Sets the version attribute of the DocumentImpl object 	 * 	 *@param  version  The new version value 	 */
 specifier|public
 name|void
 name|setVersion
@@ -2266,7 +2522,7 @@ name|version
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  node  Description of the Parameter      *@param  path  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  node  Description of the Parameter 	 *@param  path  Description of the Parameter 	 */
 specifier|public
 name|void
 name|store
@@ -2295,7 +2551,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ostream          Description of the Parameter      *@exception  IOException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ostream          Description of the Parameter 	 *@exception  IOException  Description of the Exception 	 */
 specifier|public
 name|void
 name|write
@@ -2574,6 +2830,15 @@ name|ostream
 argument_list|)
 expr_stmt|;
 comment|//symbols.write( ostream );
+block|}
+specifier|public
+name|int
+name|reindexRequired
+parameter_list|()
+block|{
+return|return
+name|reindex
+return|;
 block|}
 block|}
 end_class

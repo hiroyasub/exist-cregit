@@ -1413,14 +1413,14 @@ name|id
 operator|<
 literal|0
 condition|?
+name|docId
+else|:
 name|Long
 operator|.
 name|toString
 argument_list|(
 name|id
 argument_list|)
-else|:
-name|docId
 return|;
 block|}
 specifier|public
