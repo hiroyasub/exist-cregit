@@ -230,8 +230,9 @@ block|}
 comment|// Currently (2003-04-02) fires an exception in FunPosition:
 name|XPathPrefix
 operator|=
-literal|"document('/db/test/hamlet.xml')/*/*"
+literal|"document('/db/test/shakes.xsl')/*/*"
 expr_stmt|;
+comment|// "document('/db/test/macbeth.xml')/*/*";
 name|query1
 operator|=
 name|XPathPrefix
@@ -246,7 +247,7 @@ literal|"[position()<=10]"
 expr_stmt|;
 name|expected
 operator|=
-literal|6
+literal|87
 expr_stmt|;
 comment|// This validates OK:
 comment|//   XPathPrefix = "document('/db/test/hamlet.xml')//LINE";
