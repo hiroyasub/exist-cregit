@@ -587,90 +587,21 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Runnable
-name|syncAction
-init|=
-operator|new
-name|Runnable
-argument_list|()
-block|{
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-if|if
-condition|(
-name|dataCache
-operator|.
-name|hasDirtyItems
-argument_list|()
-condition|)
-block|{
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-name|dataCache
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-decl_stmt|;
-name|pool
-operator|.
-name|getSyncDaemon
-argument_list|()
-operator|.
-name|executePeriodically
-argument_list|(
-name|getDataSyncPeriod
-argument_list|()
-argument_list|,
-name|syncAction
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
+comment|//        Runnable syncAction = new Runnable() {
+comment|//            public void run() {
+comment|//                if(dataCache.hasDirtyItems()) {
+comment|//	                try {
+comment|//	                    lock.acquire(Lock.WRITE_LOCK);
+comment|//	                    dataCache.flush();
+comment|//	                } catch (LockException e) {
+comment|//	                    LOG.warn("Failed to acquire lock on " + getFile().getName());
+comment|//	                } finally {
+comment|//	                    lock.release();
+comment|//	                }
+comment|//                }
+comment|//            }
+comment|//        };
+comment|//        pool.getSyncDaemon().executePeriodically(getDataSyncPeriod(), syncAction, false);
 block|}
 comment|/**      * @return      */
 specifier|public

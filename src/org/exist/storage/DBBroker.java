@@ -1606,12 +1606,14 @@ throws|throws
 name|EXistException
 function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|sync
-parameter_list|()
-block|{
-comment|/* 		 *  do nothing 		 */
-block|}
+parameter_list|(
+name|int
+name|syncEvent
+parameter_list|)
+function_decl|;
 comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|void
