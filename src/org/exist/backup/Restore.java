@@ -1121,7 +1121,6 @@ literal|"resource"
 argument_list|)
 condition|)
 block|{
-specifier|final
 name|String
 name|type
 init|=
@@ -1132,6 +1131,16 @@ argument_list|(
 literal|"type"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|type
+operator|==
+literal|null
+condition|)
+name|type
+operator|=
+literal|"XMLResource"
+expr_stmt|;
 specifier|final
 name|String
 name|name

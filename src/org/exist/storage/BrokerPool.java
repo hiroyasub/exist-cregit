@@ -925,7 +925,6 @@ return|return
 name|conf
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                     Description of the Return Value 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|protected
 name|DBBroker
 name|createBroker
