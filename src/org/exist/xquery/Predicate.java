@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public  *  License along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public  *  License along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -192,7 +192,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Handles predicate expressions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  *  Handles predicate expressions.  *  *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -202,6 +202,12 @@ name|Predicate
 extends|extends
 name|PathExpr
 block|{
+specifier|protected
+name|CachedResult
+name|cached
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|Predicate
 parameter_list|(
@@ -366,6 +372,31 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+comment|/* if the predicate expression returns results from the cache 			 * we can also return the cached result.  			 */
+if|if
+condition|(
+name|cached
+operator|!=
+literal|null
+operator|&&
+name|cached
+operator|.
+name|isValid
+argument_list|(
+name|contextSequence
+argument_list|)
+operator|&&
+name|nodes
+operator|.
+name|isCached
+argument_list|()
+condition|)
+return|return
+name|cached
+operator|.
+name|getResult
+argument_list|()
+return|;
 name|NodeProxy
 name|current
 decl_stmt|;
@@ -530,6 +561,25 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|contextSequence
+operator|instanceof
+name|NodeSet
+condition|)
+name|cached
+operator|=
+operator|new
+name|CachedResult
+argument_list|(
+operator|(
+name|NodeSet
+operator|)
+name|contextSequence
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

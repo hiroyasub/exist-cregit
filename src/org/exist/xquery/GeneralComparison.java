@@ -308,6 +308,12 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 decl_stmt|;
+specifier|protected
+name|CachedResult
+name|cached
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
@@ -1193,6 +1199,28 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|cached
+operator|!=
+literal|null
+operator|&&
+name|cached
+operator|.
+name|isValid
+argument_list|(
+name|contextSequence
+argument_list|)
+condition|)
+block|{
+comment|//			LOG.debug("Returning cached result for " + pprint());
+return|return
+name|cached
+operator|.
+name|getResult
+argument_list|()
+return|;
+block|}
 comment|//	evaluate left expression
 name|NodeSet
 name|nodes
@@ -1528,7 +1556,9 @@ name|cmpCopy
 expr_stmt|;
 block|}
 comment|// now compare the input node set to the search expression
-return|return
+name|NodeSet
+name|result
+init|=
 name|context
 operator|.
 name|getBroker
@@ -1549,6 +1579,28 @@ operator|.
 name|getDefaultCollator
 argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|instanceof
+name|NodeSet
+condition|)
+name|cached
+operator|=
+operator|new
+name|CachedResult
+argument_list|(
+operator|(
+name|NodeSet
+operator|)
+name|contextSequence
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
@@ -2360,6 +2412,22 @@ literal|0
 condition|)
 name|switchOperands
 argument_list|()
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|super
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|cached
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}

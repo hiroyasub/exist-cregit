@@ -265,6 +265,9 @@ name|docs
 parameter_list|,
 name|QName
 name|qname
+parameter_list|,
+name|NodeSelector
+name|selector
 parameter_list|)
 function_decl|;
 specifier|public

@@ -656,6 +656,9 @@ name|docs
 parameter_list|,
 name|QName
 name|qname
+parameter_list|,
+name|NodeSelector
+name|selector
 parameter_list|)
 block|{
 name|qname
@@ -681,7 +684,7 @@ name|docs
 argument_list|,
 name|qname
 argument_list|,
-literal|null
+name|selector
 argument_list|)
 decl_stmt|;
 return|return

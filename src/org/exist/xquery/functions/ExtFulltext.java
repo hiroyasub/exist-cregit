@@ -623,6 +623,12 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+comment|//		long start = System.currentTimeMillis();
+name|NodeSet
+name|result
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 operator|(
@@ -674,7 +680,8 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-return|return
+name|result
+operator|=
 name|evalQuery
 argument_list|(
 name|context
@@ -683,7 +690,10 @@ name|arg
 argument_list|,
 name|nodes
 argument_list|)
-return|;
+operator|.
+name|toNodeSet
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -698,13 +708,12 @@ name|nodes
 init|=
 literal|null
 decl_stmt|;
-name|NodeSet
 name|result
-init|=
+operator|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|Sequence
 name|temp
 decl_stmt|;
@@ -796,7 +805,6 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
-comment|//				long start = System.currentTimeMillis();
 if|if
 condition|(
 operator|!
@@ -846,18 +854,16 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
-comment|//				LOG.debug(
-comment|//					"found "
-comment|//						+ temp.getLength()
-comment|//						+ " for "
-comment|//						+ arg
-comment|//						+ " in "
-comment|//						+ (System.currentTimeMillis() - start));
 block|}
+block|}
+comment|//		LOG.debug(
+comment|//				"found "
+comment|//					+ result.getLength()
+comment|//					+ " in "
+comment|//					+ (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
-block|}
 block|}
 specifier|public
 name|Sequence
