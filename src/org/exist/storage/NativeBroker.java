@@ -14357,23 +14357,7 @@ name|data
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Document metadata stored to "
-operator|+
-name|StorageAddress
-operator|.
-name|toString
-argument_list|(
-name|doc
-operator|.
-name|getAddress
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("Document metadata stored to " + StorageAddress.toString(doc.getAddress()));
 return|return
 literal|null
 return|;
