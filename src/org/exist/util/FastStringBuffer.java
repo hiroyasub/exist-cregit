@@ -14,13 +14,15 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  Copied this class from Xalan and adopted it for eXist. Bare-bones, unsafe,  *  fast string buffer. No thread-safety, no parameter range checking, exposed  *  fields. Note that in typical applications, thread-safety of a StringBuffer  *  is a somewhat dubious concept in any case.<p>  *  *  Note that Stree and DTM used a single FastStringBuffer as a string pool, by  *  recording start and length indices within this single buffer. This minimizes  *  heap overhead, but of course requires more work when retrieving the data.  *<p>  *  *  FastStringBuffer operates as a "chunked buffer". Doing so reduces the need  *  to recopy existing information when an append exceeds the space available;  *  we just allocate another chunk and flow across to it. (The array of chunks  *  may need to grow, admittedly, but that's a much smaller object.) Some excess  *  recopying may arise when we extract Strings which cross chunk boundaries;  *  larger chunks make that less frequent.<p>  *  *  The size values are parameterized, to allow tuning this code. In theory,  *  Result Tree Fragments might want to be tuned differently from the main  *  document's text.<p>  *  *  %REVIEW% An experiment in self-tuning is included in the code (using nested  *  FastStringBuffers to achieve variation in chunk sizes), but this  *  implementation has proven to be problematic when data may be being copied  *  from the FSB into itself. We should either re-architect that to make this  *  safe (if possible) or remove that code and clean up for  *  performance/maintainability reasons.<p>  *  *  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    27. Juni 2002  */
+comment|/**  *  Copied this class from Xalan and adopted it for eXist. Bare-bones, unsafe,  *  fast string buffer. No thread-safety, no parameter range checking, exposed  *  fields. Note that in typical applications, thread-safety of a StringBuffer  *  is a somewhat dubious concept in any case.<p>  *  *  Note that Stree and DTM used a single FastStringBuffer as a string pool, by  *  recording start and length indices within this single buffer. This minimizes  *  heap overhead, but of course requires more work when retrieving the data.  *<p>  *  *  FastStringBuffer operates as a "chunked buffer". Doing so reduces the need  *  to recopy existing information when an append exceeds the space available;  *  we just allocate another chunk and flow across to it. (The array of chunks  *  may need to grow, admittedly, but that's a much smaller object.) Some excess  *  recopying may arise when we extract Strings which cross chunk boundaries;  *  larger chunks make that less frequent.<p>  *  *  The size values are parameterized, to allow tuning this code. In theory,  *  Result Tree Fragments might want to be tuned differently from the main  *  document's text.<p>  *  *  %REVIEW% An experiment in self-tuning is included in the code (using nested  *  FastStringBuffers to achieve variation in chunk sizes), but this  *  implementation has proven to be problematic when data may be being copied  *  from the FSB into itself. We should either re-architect that to make this  *  safe (if possible) or remove that code and clean up for  *  performance/maintainability reasons.<p>  *  *  *  *  *@created    27. Juni 2002  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|FastStringBuffer
+implements|implements
+name|CharSequence
 block|{
 comment|// If nonzero, forces the inial chunk size.
 comment|/*      *      */
@@ -132,6 +134,14 @@ name|FastStringBuffer
 name|m_innerFSB
 init|=
 literal|null
+decl_stmt|;
+specifier|private
+name|StringBuffer
+name|tempBuf
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
 decl_stmt|;
 comment|/**      *  Construct a FastStringBuffer, with allocation policy as per parameters.      *<p>      *      *  For coding convenience, I've expressed both allocation sizes in terms of      *  a number of bits. That's needed for the final size of a chunk, to permit      *  fast and efficient shift-and-mask addressing. It's less critical for the      *  inital size, and may be reconsidered.<p>      *      *  An alternative would be to accept integer sizes and round to powers of      *  two; that really doesn't seem to buy us much, if anything.      *      *@param  initChunkBits  Length in characters of the initial allocation of a      *      chunk, expressed in log-base-2. (That is, 10 means allocate 1024      *      characters.) Later chunks will use larger allocation units, to trade      *      off allocation speed of large document against storage efficiency of      *      small ones.      *@param  maxChunkBits   Number of character-offset bits that should be used      *      for addressing within a chunk. Maximum length of a chunk is      *      2^chunkBits characters.      *@param  rebundleBits   Number of character-offset bits that addressing      *      should advance before we attempt to take a step from initChunkBits      *      to maxChunkBits      */
 specifier|public
@@ -606,14 +616,17 @@ operator|)
 operator|+
 name|m_firstFree
 decl_stmt|;
+name|tempBuf
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 return|return
 name|getString
 argument_list|(
-operator|new
-name|StringBuffer
-argument_list|(
-name|length
-argument_list|)
+name|tempBuf
 argument_list|,
 literal|0
 argument_list|,
@@ -1971,14 +1984,17 @@ name|int
 name|length
 parameter_list|)
 block|{
+name|tempBuf
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 return|return
 name|getString
 argument_list|(
-operator|new
-name|StringBuffer
-argument_list|(
-name|length
-argument_list|)
+name|tempBuf
 argument_list|,
 name|start
 operator|>>>
@@ -2002,17 +2018,17 @@ name|StringBuffer
 name|getString
 parameter_list|()
 block|{
-name|StringBuffer
-name|buf
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
+name|tempBuf
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 return|return
 name|getString
 argument_list|(
-name|buf
+name|tempBuf
 argument_list|)
 return|;
 block|}
@@ -2285,17 +2301,18 @@ name|int
 name|mode
 parameter_list|)
 block|{
-name|StringBuffer
-name|buf
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
+comment|//StringBuffer buf = new StringBuffer();
+name|tempBuf
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 return|return
 name|getNormalizedString
 argument_list|(
-name|buf
+name|tempBuf
 argument_list|,
 name|mode
 argument_list|)
@@ -2978,6 +2995,29 @@ name|m_chunkSize
 operator|-
 literal|1
 expr_stmt|;
+block|}
+comment|/** 	 * @see java.lang.CharSequence#subSequence(int, int) 	 */
+specifier|public
+name|CharSequence
+name|subSequence
+parameter_list|(
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
+parameter_list|)
+block|{
+return|return
+name|getString
+argument_list|(
+name|start
+argument_list|,
+name|end
+operator|-
+name|start
+argument_list|)
+return|;
 block|}
 block|}
 end_class
