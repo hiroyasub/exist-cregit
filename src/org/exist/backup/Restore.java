@@ -1040,7 +1040,7 @@ name|atts
 operator|.
 name|getValue
 argument_list|(
-literal|"name"
+literal|"filename"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1186,6 +1186,17 @@ argument_list|(
 literal|"mode"
 argument_list|)
 decl_stmt|;
+specifier|final
+name|String
+name|filename
+init|=
+name|atts
+operator|.
+name|getValue
+argument_list|(
+literal|"filename"
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|name
@@ -1218,7 +1229,7 @@ name|File
 operator|.
 name|separatorChar
 operator|+
-name|name
+name|filename
 argument_list|)
 decl_stmt|;
 try|try
