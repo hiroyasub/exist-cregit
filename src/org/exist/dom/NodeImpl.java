@@ -155,6 +155,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|UserDataHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -1913,6 +1925,180 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+specifier|public
+name|String
+name|getBaseURI
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+specifier|public
+name|short
+name|compareDocumentPosition
+parameter_list|(
+name|Node
+name|other
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|0
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+specifier|public
+name|String
+name|getTextContent
+parameter_list|()
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+specifier|public
+name|void
+name|setTextContent
+parameter_list|(
+name|String
+name|textContent
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+specifier|public
+name|boolean
+name|isSameNode
+parameter_list|(
+name|Node
+name|other
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+specifier|public
+name|String
+name|lookupPrefix
+parameter_list|(
+name|String
+name|namespaceURI
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+specifier|public
+name|boolean
+name|isDefaultNamespace
+parameter_list|(
+name|String
+name|namespaceURI
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+specifier|public
+name|String
+name|lookupNamespaceURI
+parameter_list|(
+name|String
+name|prefix
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+specifier|public
+name|boolean
+name|isEqualNode
+parameter_list|(
+name|Node
+name|arg
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+specifier|public
+name|Object
+name|getFeature
+parameter_list|(
+name|String
+name|feature
+parameter_list|,
+name|String
+name|version
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+specifier|public
+name|Object
+name|setUserData
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|Object
+name|data
+parameter_list|,
+name|UserDataHandler
+name|handler
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+specifier|public
+name|Object
+name|getUserData
+parameter_list|(
+name|String
+name|key
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class

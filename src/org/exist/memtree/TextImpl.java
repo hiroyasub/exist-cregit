@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -34,6 +46,30 @@ operator|.
 name|dom
 operator|.
 name|Text
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ContentHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
 import|;
 end_import
 
@@ -234,6 +270,44 @@ throws|throws
 name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
+block|}
+comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace() 	 */
+specifier|public
+name|boolean
+name|isElementContentWhitespace
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Text#getWholeText() 	 */
+specifier|public
+name|String
+name|getWholeText
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String) 	 */
+specifier|public
+name|Text
+name|replaceWholeText
+parameter_list|(
+name|String
+name|content
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class

@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|Serializer
@@ -184,6 +196,18 @@ operator|.
 name|dom
 operator|.
 name|Comment
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMConfiguration
 import|;
 end_import
 
@@ -316,6 +340,18 @@ operator|.
 name|dom
 operator|.
 name|Text
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ContentHandler
 import|;
 end_import
 
@@ -3738,6 +3774,177 @@ name|storeTemporaryDoc
 argument_list|(
 name|data
 argument_list|)
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
+specifier|public
+name|String
+name|getInputEncoding
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#getXmlEncoding() 	 */
+specifier|public
+name|String
+name|getXmlEncoding
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#getXmlStandalone() 	 */
+specifier|public
+name|boolean
+name|getXmlStandalone
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean) 	 */
+specifier|public
+name|void
+name|setXmlStandalone
+parameter_list|(
+name|boolean
+name|xmlStandalone
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Document#getXmlVersion() 	 */
+specifier|public
+name|String
+name|getXmlVersion
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String) 	 */
+specifier|public
+name|void
+name|setXmlVersion
+parameter_list|(
+name|String
+name|xmlVersion
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Document#getStrictErrorChecking() 	 */
+specifier|public
+name|boolean
+name|getStrictErrorChecking
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|false
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#setStrictErrorChecking(boolean) 	 */
+specifier|public
+name|void
+name|setStrictErrorChecking
+parameter_list|(
+name|boolean
+name|strictErrorChecking
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Document#getDocumentURI() 	 */
+specifier|public
+name|String
+name|getDocumentURI
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
+specifier|public
+name|void
+name|setDocumentURI
+parameter_list|(
+name|String
+name|documentURI
+parameter_list|)
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node) 	 */
+specifier|public
+name|Node
+name|adoptNode
+parameter_list|(
+name|Node
+name|source
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#getDomConfig() 	 */
+specifier|public
+name|DOMConfiguration
+name|getDomConfig
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
+return|;
+block|}
+comment|/** ? @see org.w3c.dom.Document#normalizeDocument() 	 */
+specifier|public
+name|void
+name|normalizeDocument
+parameter_list|()
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+block|}
+comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String) 	 */
+specifier|public
+name|Node
+name|renameNode
+parameter_list|(
+name|Node
+name|n
+parameter_list|,
+name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|qualifiedName
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// maybe TODO - new DOM interfaces - Java 5.0
+return|return
+literal|null
 return|;
 block|}
 block|}
