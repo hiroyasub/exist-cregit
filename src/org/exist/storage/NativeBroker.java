@@ -840,7 +840,31 @@ name|NativeBroker
 extends|extends
 name|DBBroker
 block|{
-comment|// default buffer size setting
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DATABASE_IS_READ_ONLY
+init|=
+literal|"database is read-only"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|ROOT_COLLECTION
+init|=
+literal|"/db"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|EXCEPTION_DURING_REINDEX
+init|=
+literal|"exception during reindex"
+decl_stmt|;
+comment|/** default buffer size setting */
 specifier|protected
 specifier|final
 specifier|static
@@ -849,7 +873,7 @@ name|BUFFERS
 init|=
 literal|256
 decl_stmt|;
-comment|// check available memory after storing MEM_LIMIT_CHECK nodes
+comment|/** check available memory after storing MEM_LIMIT_CHECK nodes */
 specifier|protected
 specifier|static
 name|int
@@ -1623,7 +1647,7 @@ argument_list|)
 expr_stmt|;
 name|getOrCreateCollection
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}
@@ -2460,21 +2484,19 @@ name|collectionId
 decl_stmt|;
 name|long
 name|gid
-decl_stmt|,
-name|address
 decl_stmt|;
+comment|// , address;
 name|VariableByteInputStream
 name|is
 decl_stmt|;
 name|ElementValue
 name|ref
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
+comment|// byte[] data;
 name|InputStream
 name|dis
+init|=
+literal|null
 decl_stmt|;
 name|short
 name|sym
@@ -2621,6 +2643,11 @@ name|nsSym
 argument_list|)
 expr_stmt|;
 block|}
+name|boolean
+name|exceptionOcurred
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 name|lock
@@ -2657,9 +2684,10 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|dis
+comment|// jmv: dis = null;
+name|exceptionOcurred
 operator|=
-literal|null
+literal|true
 expr_stmt|;
 block|}
 catch|catch
@@ -2679,9 +2707,10 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|dis
+comment|// jmv: dis = null;
+name|exceptionOcurred
 operator|=
-literal|null
+literal|true
 expr_stmt|;
 block|}
 finally|finally
@@ -2692,11 +2721,10 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+comment|// jmv: if (dis == null)
 if|if
 condition|(
-name|dis
-operator|==
-literal|null
+name|exceptionOcurred
 condition|)
 continue|continue;
 name|is
@@ -2950,7 +2978,7 @@ name|root
 init|=
 name|getCollection
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
 name|root
@@ -3109,12 +3137,12 @@ name|name
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|name
 operator|=
-literal|"/db"
+name|ROOT_COLLECTION
 operator|+
 name|name
 expr_stmt|;
@@ -3795,12 +3823,12 @@ name|collection
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|collection
 operator|=
-literal|"/db"
+name|ROOT_COLLECTION
 operator|+
 name|collection
 expr_stmt|;
@@ -5470,7 +5498,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"exception during reindex"
+name|EXCEPTION_DURING_REINDEX
 argument_list|,
 name|e
 argument_list|)
@@ -5486,7 +5514,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"exception during reindex"
+name|EXCEPTION_DURING_REINDEX
 argument_list|,
 name|e
 argument_list|)
@@ -6129,20 +6157,13 @@ condition|)
 block|{
 name|NodeIndexListener
 name|listener
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|listener
-operator|=
+init|=
 name|doc
 operator|.
 name|getIndexListener
 argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
+decl_stmt|;
+comment|// jmv if ((listener = doc.getIndexListener()) != null)
 name|listener
 operator|.
 name|nodeChanged
@@ -6216,7 +6237,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"exception during reindex"
+name|EXCEPTION_DURING_REINDEX
 argument_list|,
 name|e
 argument_list|)
@@ -6232,7 +6253,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"exception during reindex"
+name|EXCEPTION_DURING_REINDEX
 argument_list|,
 name|e
 argument_list|)
@@ -6674,12 +6695,8 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|long
-name|p
-decl_stmt|;
-name|Value
-name|value
-decl_stmt|;
+comment|// ong p;
+comment|// Value value;
 name|NodeImpl
 name|child
 decl_stmt|;
@@ -6791,9 +6808,7 @@ name|expr
 parameter_list|)
 block|{
 comment|//		long start = System.currentTimeMillis();
-name|NodeSet
-name|temp
-decl_stmt|;
+comment|// NodeSet temp;
 name|int
 name|truncation
 init|=
@@ -6984,12 +6999,12 @@ name|name
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|name
 operator|=
-literal|"/db"
+name|ROOT_COLLECTION
 operator|+
 name|name
 expr_stmt|;
@@ -7067,7 +7082,7 @@ decl_stmt|;
 name|String
 name|path
 init|=
-literal|"/db"
+name|ROOT_COLLECTION
 decl_stmt|;
 name|Collection
 name|sub
@@ -7076,7 +7091,7 @@ name|current
 operator|=
 name|getCollection
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 if|if
@@ -7100,7 +7115,7 @@ name|Collection
 argument_list|(
 name|collectionsDb
 argument_list|,
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|current
@@ -7769,7 +7784,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 try|try
@@ -7781,12 +7796,12 @@ name|name
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|name
 operator|=
-literal|"/db"
+name|ROOT_COLLECTION
 operator|+
 name|name
 expr_stmt|;
@@ -7930,7 +7945,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|saveCollection
@@ -7992,7 +8007,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|collectionsDb
@@ -8516,7 +8531,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 expr_stmt|;
 block|}
@@ -8542,7 +8557,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 try|try
@@ -8606,7 +8621,7 @@ operator|.
 name|getDocId
 argument_list|()
 operator|+
-literal|"..."
+literal|" ..."
 argument_list|)
 expr_stmt|;
 comment|// drop element-index
@@ -8696,10 +8711,7 @@ name|byte
 index|[]
 name|data
 decl_stmt|;
-name|byte
-index|[]
-name|ndata
-decl_stmt|;
+comment|// byte[] ndata;
 name|VariableByteInputStream
 name|is
 decl_stmt|;
@@ -9280,7 +9292,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 expr_stmt|;
 block|}
@@ -9927,7 +9939,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 block|{
@@ -9984,7 +9996,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 expr_stmt|;
 block|}
@@ -10029,7 +10041,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 name|Lock
@@ -10194,7 +10206,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 block|{
@@ -10262,7 +10274,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 expr_stmt|;
 block|}
@@ -10330,36 +10342,15 @@ decl_stmt|;
 name|String
 name|content
 decl_stmt|;
-name|StringBuffer
-name|buf
-init|=
-operator|new
-name|StringBuffer
-argument_list|(
-literal|128
-argument_list|)
-decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
-name|long
-name|filePos
-decl_stmt|;
-name|int
-name|offset
-decl_stmt|;
-name|NodeRef
-name|nodeRef
-decl_stmt|;
+comment|// StringBuffer buf = new StringBuffer(128);
+comment|// byte[] data;
+comment|// long filePos;
+comment|// int offset;
+comment|// NodeRef nodeRef;
 name|String
 name|cmp
 decl_stmt|;
-name|Iterator
-name|domIterator
-init|=
-literal|null
-decl_stmt|;
+comment|// Iterator domIterator = null;
 name|Pattern
 name|regexp
 init|=
@@ -10898,15 +10889,7 @@ operator|.
 name|getNodeName
 argument_list|()
 decl_stmt|;
-specifier|final
-name|String
-name|localName
-init|=
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-decl_stmt|;
+comment|// final String localName = node.getLocalName();
 specifier|final
 name|int
 name|depth
@@ -11565,7 +11548,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"database is read-only"
+name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 name|LOG
