@@ -473,6 +473,8 @@ operator|.
 name|encode
 argument_list|(
 literal|"doc('/db/test/test.xml')//para[. = 'Ã¤Ã¤Ã¼Ã¼Ã¶Ã¶ÃÃÃÃÃÃ']/text()"
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 name|HttpURLConnection

@@ -533,9 +533,9 @@ literal|"opening curly brace '{'"
 block|,
 literal|"closing curly brace '{'"
 block|,
-literal|"\"at\""
-block|,
 literal|"\"external\""
+block|,
+literal|"\"at\""
 block|,
 literal|"\"as\""
 block|,

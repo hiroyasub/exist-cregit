@@ -51,7 +51,7 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|Category
+name|Logger
 import|;
 end_import
 
@@ -146,12 +146,12 @@ name|AuthenticatedXmlRpcHandler
 block|{
 specifier|private
 specifier|static
-name|Category
+name|Logger
 name|LOG
 init|=
-name|Category
+name|Logger
 operator|.
-name|getInstance
+name|getLogger
 argument_list|(
 name|AuthenticatedXmlRpcHandler
 operator|.

@@ -1757,7 +1757,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|public
 specifier|final
 name|void
 name|realize

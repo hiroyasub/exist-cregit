@@ -11861,6 +11861,8 @@ name|getProperty
 argument_list|(
 literal|"uri"
 argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;

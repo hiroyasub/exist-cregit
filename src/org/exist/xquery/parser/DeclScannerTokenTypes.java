@@ -399,12 +399,12 @@ init|=
 literal|75
 decl_stmt|;
 name|int
-name|LITERAL_at
+name|LITERAL_external
 init|=
 literal|76
 decl_stmt|;
 name|int
-name|LITERAL_external
+name|LITERAL_at
 init|=
 literal|77
 decl_stmt|;

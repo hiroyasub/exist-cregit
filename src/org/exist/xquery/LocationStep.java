@@ -149,34 +149,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|sanity
-operator|.
-name|SanityCheck
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|util
-operator|.
-name|ExpressionDumper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|value
@@ -966,6 +938,16 @@ return|;
 block|}
 else|else
 block|{
+comment|//                NodeSet result = new ExtArrayNodeSet();
+comment|//                NodeProxy p;
+comment|//                for (Iterator i = contextSet.iterator(); i.hasNext(); ) {
+comment|//                    p = (NodeProxy) i.next();
+comment|//                    if (test.matches(p)) {
+comment|//                        result.add(p);
+comment|//                        p.addContextNode(p);
+comment|//                    }
+comment|//                }
+comment|//                return result;
 name|VirtualNodeSet
 name|vset
 init|=
