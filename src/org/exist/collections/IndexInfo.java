@@ -100,7 +100,7 @@ operator|=
 name|indexer
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 name|Indexer
 name|getIndexer
 parameter_list|()
