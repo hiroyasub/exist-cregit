@@ -738,6 +738,12 @@ name|privileged
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|String
+name|ignorePrefix
+init|=
+literal|null
+decl_stmt|;
 comment|// reusable fields
 specifier|private
 name|TextImpl
@@ -1732,6 +1738,27 @@ name|String
 name|prefix
 parameter_list|)
 block|{
+if|if
+condition|(
+name|ignorePrefix
+operator|!=
+literal|null
+operator|&&
+name|prefix
+operator|.
+name|equals
+argument_list|(
+name|ignorePrefix
+argument_list|)
+condition|)
+block|{
+name|ignorePrefix
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
 name|prefix
 operator|=
 operator|(
@@ -1742,6 +1769,7 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -4125,7 +4153,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-comment|// skip xmlns-attributes
+comment|// skip xmlns-attributes and attributes in eXist's namespace
 if|if
 condition|(
 name|attrQName
@@ -4133,6 +4161,13 @@ operator|.
 name|startsWith
 argument_list|(
 literal|"xmlns"
+argument_list|)
+operator|||
+name|attrNS
+operator|.
+name|equals
+argument_list|(
+literal|"http://exist.sourceforge.net/NS/exist"
 argument_list|)
 condition|)
 operator|--
@@ -4286,6 +4321,23 @@ name|String
 name|uri
 parameter_list|)
 block|{
+comment|// skip the eXist namespace
+if|if
+condition|(
+name|uri
+operator|.
+name|equals
+argument_list|(
+literal|"http://exist.sourceforge.net/NS/exist"
+argument_list|)
+condition|)
+block|{
+name|ignorePrefix
+operator|=
+name|prefix
+expr_stmt|;
+return|return;
+block|}
 comment|// get the prefix for this namespace if one has been stored
 comment|// before
 name|String
