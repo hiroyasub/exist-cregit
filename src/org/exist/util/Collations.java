@@ -63,6 +63,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Locale
@@ -139,7 +149,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * The default unicode codepoint collation URI as defined by the XQuery spec. 	 */
+comment|/**      * The default unicode codepoint collation URI as defined by the XQuery      * spec.      */
 specifier|public
 specifier|final
 specifier|static
@@ -148,7 +158,7 @@ name|CODEPOINT
 init|=
 literal|"http://www.w3.org/2004/07/xpath-functions/collation/codepoint"
 decl_stmt|;
-comment|/** 	 * Short string to select the default codepoint collation 	 */
+comment|/**      * Short string to select the default codepoint collation      */
 specifier|public
 specifier|final
 specifier|static
@@ -157,7 +167,7 @@ name|CODEPOINT_SHORT
 init|=
 literal|"codepoint"
 decl_stmt|;
-comment|/** 	 * The URI used to select collations in eXist. 	 */
+comment|/**      * The URI used to select collations in eXist.      */
 specifier|public
 specifier|final
 specifier|static
@@ -166,7 +176,7 @@ name|EXIST_COLLATION_URI
 init|=
 literal|"http://exist-db.org/collation"
 decl_stmt|;
-comment|/** 	 * Get a {@link Comparator} from the specified URI. 	 *  	 * The original code is from saxon (@linkplain http://saxon.sf.net). 	 *  	 * @param uri 	 * @return 	 * @throws XPathException 	 */
+comment|/**      * Get a {@link Comparator}from the specified URI.      *       * The original code is from saxon (@linkplain http://saxon.sf.net).      *       * @param uri      * @return      * @throws XPathException      */
 specifier|public
 specifier|final
 specifier|static
@@ -238,9 +248,9 @@ name|strength
 init|=
 literal|null
 decl_stmt|;
-comment|/* 			 * Check if the db broker is configured to be case insensitive. 			 * If yes, we assume "primary" strength unless the user specified 			 * something different. 			 *  			 * TODO: bad idea: using primary strength as default also ignores 			 * German Umlaute. 			 */
-comment|//			if(!context.getBroker().isCaseSensitive())
-comment|//				strength = "primary";
+comment|/*              * Check if the db broker is configured to be case insensitive. If              * yes, we assume "primary" strength unless the user specified              * something different.              *               * TODO: bad idea: using primary strength as default also ignores              * German Umlaute.              */
+comment|// if(!context.getBroker().isCaseSensitive())
+comment|// strength = "primary";
 if|if
 condition|(
 name|query
@@ -417,7 +427,8 @@ literal|"java:"
 argument_list|)
 condition|)
 block|{
-comment|// java class specified: this should be a subclass of java.text.RuleBasedCollator
+comment|// java class specified: this should be a subclass of
+comment|// java.text.RuleBasedCollator
 name|uri
 operator|=
 name|uri
@@ -1181,7 +1192,7 @@ expr_stmt|;
 comment|// loop round to try again
 block|}
 block|}
-comment|/** 	 * @param lang 	 * @param strength 	 * @param decomposition 	 * @return 	 */
+comment|/**      * @param lang      * @param strength      * @param decomposition      * @return      */
 specifier|private
 specifier|static
 name|Collator
@@ -1218,6 +1229,58 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|lang
+operator|.
+name|equals
+argument_list|(
+literal|"sme-SE"
+argument_list|)
+condition|)
+block|{
+comment|// Collation rules contained in a String object.
+comment|// Codes for the representation of names of languages:
+comment|// http://www.loc.gov/standards/iso639-2/englangn.html
+comment|// UTF-8 characters from:
+comment|// http://chouette.info/entities/table-utf8.php
+name|String
+name|Samisk
+init|=
+literal|"< a,A< \u00E1,\u00C1< b,B< c,C"
+operator|+
+literal|"< \u010d,\u010c< d,D< \u0111,\u0110< e,E"
+operator|+
+literal|"< f,F< g,G< h,H< i,I< j,J< k,K< l,L< m,M"
+operator|+
+literal|"< n,N< \u014b,\u014a< o,O< p,P< r,R< s,S"
+operator|+
+literal|"< \u0161,\u0160< t,T< \u0167,\u0166< u,U"
+operator|+
+literal|"< v,V< z,Z< \u017e,\u017d"
+decl_stmt|;
+try|try
+block|{
+name|collator
+operator|=
+operator|new
+name|RuleBasedCollator
+argument_list|(
+name|Samisk
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|pe
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 else|else
 block|{
@@ -1429,7 +1492,7 @@ return|return
 name|collator
 return|;
 block|}
-comment|/** 	 * @param lang 	 * @return 	 */
+comment|/**      * @param lang      * @return      */
 specifier|private
 specifier|static
 name|Locale
