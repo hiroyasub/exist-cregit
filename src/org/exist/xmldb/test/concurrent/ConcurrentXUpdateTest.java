@@ -120,7 +120,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|1000
+literal|500
 argument_list|,
 literal|10
 argument_list|,

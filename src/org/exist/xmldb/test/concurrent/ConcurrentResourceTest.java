@@ -136,7 +136,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|1000
+literal|500
 argument_list|,
 literal|10
 argument_list|,
@@ -191,25 +191,7 @@ argument_list|,
 name|tempFile
 argument_list|)
 expr_stmt|;
-name|addAction
-argument_list|(
-operator|new
-name|ReplaceResourceAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1/C1-C2"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|wordList
-argument_list|)
-argument_list|,
-literal|20
-argument_list|,
-literal|200
-argument_list|)
-expr_stmt|;
+comment|//		addAction(new ReplaceResourceAction(URI + "/C1/C1-C2", "R1.xml", wordList), 20, 200);
 name|addAction
 argument_list|(
 operator|new
@@ -224,28 +206,10 @@ argument_list|)
 argument_list|,
 literal|20
 argument_list|,
-literal|1000
+literal|500
 argument_list|)
 expr_stmt|;
-name|addAction
-argument_list|(
-operator|new
-name|ReplaceResourceAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1/C1-C3"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|wordList
-argument_list|)
-argument_list|,
-literal|20
-argument_list|,
-literal|200
-argument_list|)
-expr_stmt|;
+comment|//		addAction(new ReplaceResourceAction(URI + "/C1/C1-C3", "R1.xml", wordList), 20, 200);
 name|addAction
 argument_list|(
 operator|new
@@ -260,7 +224,7 @@ argument_list|)
 argument_list|,
 literal|20
 argument_list|,
-literal|1000
+literal|500
 argument_list|)
 expr_stmt|;
 comment|// TODO: using a second replace thread on the same resource generates a deadlock condition !!!
