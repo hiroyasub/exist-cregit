@@ -395,6 +395,9 @@ name|Node
 name|node
 parameter_list|)
 block|{
+operator|--
+name|size
+expr_stmt|;
 if|if
 condition|(
 name|node
@@ -472,9 +475,6 @@ operator|.
 name|prev
 expr_stmt|;
 block|}
-name|size
-operator|--
-expr_stmt|;
 block|}
 specifier|public
 name|Node

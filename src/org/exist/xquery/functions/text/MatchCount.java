@@ -426,10 +426,15 @@ name|nextMatch
 operator|!=
 literal|null
 condition|;
-name|count
-operator|++
 control|)
 block|{
+name|count
+operator|+=
+name|nextMatch
+operator|.
+name|getFrequency
+argument_list|()
+expr_stmt|;
 name|nextMatch
 operator|=
 name|nextMatch

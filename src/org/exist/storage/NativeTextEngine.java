@@ -4842,11 +4842,13 @@ name|gid
 operator|==
 name|gid
 condition|)
+block|{
 name|o
 operator|.
 name|frequency
 operator|++
 expr_stmt|;
+block|}
 else|else
 block|{
 name|o
