@@ -5387,7 +5387,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"validating document "
+literal|"checking document "
 operator|+
 name|name
 argument_list|)

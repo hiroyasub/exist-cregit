@@ -158,7 +158,7 @@ argument_list|,
 name|wordList
 argument_list|)
 argument_list|,
-literal|10
+literal|100
 argument_list|,
 literal|500
 argument_list|,
@@ -179,7 +179,7 @@ argument_list|,
 name|wordList
 argument_list|)
 argument_list|,
-literal|10
+literal|100
 argument_list|,
 literal|300
 argument_list|,
@@ -201,7 +201,7 @@ argument_list|,
 name|query
 argument_list|)
 argument_list|,
-literal|20
+literal|200
 argument_list|,
 literal|100
 argument_list|,

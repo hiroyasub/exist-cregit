@@ -135,6 +135,18 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Execute all following queries in a protected environment. 	 * Protected means: it is guaranteed that documents referenced by the 	 * query or the result set are not modified by other threads 	 * until {@link #endProtected} is called. 	 */
+specifier|public
+name|void
+name|beginProtected
+parameter_list|()
+function_decl|;
+comment|/** 	 * Close the protected environment. All locks held 	 * by the current thread are released. The result set 	 * is no longer guaranteed to be stable. 	 */
+specifier|public
+name|void
+name|endProtected
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

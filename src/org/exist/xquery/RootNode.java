@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04 The eXist Team  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -152,7 +152,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents the document root node in an expression.  *   * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * Reads a set of document root nodes from the context. Used for  * absolute path expression that do not start with fn:doc() or fn:collection().  *   * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -205,6 +205,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// get statically known documents from the context
 name|DocumentSet
 name|ds
 init|=
@@ -231,16 +232,8 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-try|try
-block|{
-comment|// wait for pending updates
-name|ds
-operator|.
-name|lock
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
+comment|// if the expression occurs in a nested context, we might have cached the
+comment|// document set
 if|if
 condition|(
 name|cachedDocs
@@ -257,6 +250,25 @@ condition|)
 return|return
 name|cached
 return|;
+comment|// check if the loaded documents should remain locked
+name|boolean
+name|lockOnLoad
+init|=
+name|context
+operator|.
+name|lockDocumentsOnLoad
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+comment|// wait for pending updates
+name|ds
+operator|.
+name|lock
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -270,7 +282,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|DocumentImpl
-name|d
+name|doc
 decl_stmt|;
 for|for
 control|(
@@ -289,7 +301,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|d
+name|doc
 operator|=
 operator|(
 name|DocumentImpl
@@ -301,7 +313,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|d
+name|doc
 operator|.
 name|getResourceType
 argument_list|()
@@ -310,6 +322,7 @@ name|DocumentImpl
 operator|.
 name|XML_FILE
 condition|)
+block|{
 comment|// skip binary resources
 name|result
 operator|.
@@ -318,13 +331,42 @@ argument_list|(
 operator|new
 name|NodeProxy
 argument_list|(
-name|d
+name|doc
 argument_list|,
 operator|-
 literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lockOnLoad
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Locking document: "
+operator|+
+name|doc
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getLockedDocuments
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 name|cached
 operator|=
@@ -357,6 +399,12 @@ throw|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|lockOnLoad
+condition|)
+comment|// release all locks
 name|ds
 operator|.
 name|unlock

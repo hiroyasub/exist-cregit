@@ -1623,6 +1623,22 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.XPathQueryServiceImpl#beginProtected()      */
+specifier|public
+name|void
+name|beginProtected
+parameter_list|()
+block|{
+comment|// not yet supported
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.XPathQueryServiceImpl#endProtected()      */
+specifier|public
+name|void
+name|endProtected
+parameter_list|()
+block|{
+comment|// not yet supported
+block|}
 block|}
 end_class
 
