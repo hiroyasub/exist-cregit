@@ -7942,28 +7942,11 @@ argument_list|(
 name|forwardLink
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"following link on "
-operator|+
-name|StorageAddress
-operator|.
-name|pageFromPointer
-argument_list|(
-name|forwardLink
-argument_list|)
-operator|+
-literal|" to page "
-operator|+
-name|pageNr
-operator|+
-literal|"; tid="
-operator|+
-name|targetId
-argument_list|)
-expr_stmt|;
+comment|//                            LOG.debug("following link on " + StorageAddress.pageFromPointer(forwardLink) +
+comment|//                            		" to page "
+comment|//                                    + pageNr
+comment|//                                    + "; tid="
+comment|//                                    + targetId);
 continue|continue
 name|outerLoop
 continue|;
@@ -8088,40 +8071,14 @@ return|return
 literal|null
 return|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|owner
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|": tid "
-operator|+
-name|targetId
-operator|+
-literal|" not found on "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-operator|+
-literal|". Loading "
-operator|+
-name|pageNr
-operator|+
-literal|"; contents: "
-operator|+
-name|debugPageContents
-argument_list|(
-name|page
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//                LOG.debug(
+comment|//                		owner.toString()
+comment|//						+ ": tid "
+comment|//						+ targetId
+comment|//						+ " not found on "
+comment|//						+ page.page.getPageInfo()
+comment|//						+ ". Loading "
+comment|//						+ pageNr + "; contents: " + debugPageContents(page));
 block|}
 return|return
 literal|null
