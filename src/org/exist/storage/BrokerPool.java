@@ -271,6 +271,13 @@ init|=
 literal|30000L
 decl_stmt|;
 specifier|private
+specifier|static
+name|boolean
+name|registerShutdownHook
+init|=
+literal|true
+decl_stmt|;
+specifier|private
 specifier|final
 specifier|static
 name|ShutdownThread
@@ -297,6 +304,22 @@ name|DEFAULT_INSTANCE
 init|=
 literal|"exist"
 decl_stmt|;
+comment|/** 	 * Should a shutdown hook be registered with the JVM? If set to true, method 	 * {@link #configure(String, int, int, Configuration)} will register a shutdown thread 	 * which takes care to shut down the database if the application receives a kill or term 	 * signal. However, this is unnecessary if the calling application has already registered 	 * a shutdown hook. 	 *   	 * @param register 	 */
+specifier|public
+specifier|final
+specifier|static
+name|void
+name|setRegisterShutdownHook
+parameter_list|(
+name|boolean
+name|register
+parameter_list|)
+block|{
+name|registerShutdownHook
+operator|=
+name|register
+expr_stmt|;
+block|}
 specifier|public
 specifier|final
 specifier|static
@@ -413,6 +436,11 @@ operator|==
 literal|1
 condition|)
 block|{
+if|if
+condition|(
+name|registerShutdownHook
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -446,6 +474,7 @@ argument_list|(
 literal|"shutdown hook already registered"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

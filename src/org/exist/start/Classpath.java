@@ -443,7 +443,10 @@ block|}
 specifier|public
 name|ClassLoader
 name|getClassLoader
-parameter_list|()
+parameter_list|(
+name|ClassLoader
+name|parent
+parameter_list|)
 block|{
 name|int
 name|cnt
@@ -511,9 +514,14 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|ClassLoader
+if|if
+condition|(
 name|parent
-init|=
+operator|==
+literal|null
+condition|)
+name|parent
+operator|=
 name|Thread
 operator|.
 name|currentThread
@@ -521,7 +529,7 @@ argument_list|()
 operator|.
 name|getContextClassLoader
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|parent

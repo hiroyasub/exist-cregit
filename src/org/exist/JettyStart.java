@@ -146,6 +146,35 @@ index|[]
 name|args
 parameter_list|)
 block|{
+name|JettyStart
+name|start
+init|=
+operator|new
+name|JettyStart
+argument_list|()
+decl_stmt|;
+name|start
+operator|.
+name|run
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|JettyStart
+parameter_list|()
+block|{
+block|}
+specifier|public
+name|void
+name|run
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|)
+block|{
 if|if
 condition|(
 name|args
@@ -166,6 +195,16 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|boolean
+name|registerShutdownHook
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"exist.register-shutdown-hook"
+argument_list|)
+decl_stmt|;
 comment|// configure database
 name|String
 name|home
@@ -211,6 +250,15 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// we register our own shutdown hook
+name|BrokerPool
+operator|.
+name|setRegisterShutdownHook
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// configure the database instance
 name|Configuration
 name|config
 init|=
@@ -322,6 +370,11 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|registerShutdownHook
+condition|)
+block|{
 comment|// register a shutdown hook for the server
 name|Thread
 name|hook
@@ -398,6 +451,7 @@ name|hook
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|Exception
@@ -410,6 +464,19 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+name|BrokerPool
+operator|.
+name|stopAll
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * This class gets called after the database received a shutdown request. 	 *   	 * @author wolf 	 */
 specifier|private
