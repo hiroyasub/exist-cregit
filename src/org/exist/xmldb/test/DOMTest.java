@@ -320,6 +320,14 @@ argument_list|)
 decl_stmt|;
 name|cms
 operator|.
+name|createCollection
+argument_list|(
+literal|"A"
+argument_list|)
+expr_stmt|;
+comment|// jmv
+name|cms
+operator|.
 name|removeCollection
 argument_list|(
 literal|"A"
@@ -540,7 +548,7 @@ parameter_list|)
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
