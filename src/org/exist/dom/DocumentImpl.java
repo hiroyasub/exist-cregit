@@ -3580,14 +3580,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|byte
-name|signature
-init|=
-name|istream
-operator|.
-name|readByte
-argument_list|()
-decl_stmt|;
+comment|//		    byte signature = istream.readByte();
 comment|//		    if(signature != DOCUMENT_NODE_SIGNATURE) {
 comment|//		        LOG.error("Could not read document metadata for document " + fileName +
 comment|//		                " ( " + docId + "): not a metadata node.");
