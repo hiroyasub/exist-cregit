@@ -1726,7 +1726,7 @@ argument_list|,
 name|inPredicate
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug("getAncestors found " + r.getLength());
+comment|//			LOG.debug("getAncestors found " + result.getLength());
 block|}
 else|else
 block|{

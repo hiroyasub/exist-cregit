@@ -440,6 +440,27 @@ name|int
 name|level
 parameter_list|)
 function_decl|;
+comment|/** 	 * Return all nodes contained in this node set that are ancestors of the node 	 * identified by doc and gid. 	 *   	 */
+specifier|public
+name|NodeSet
+name|ancestorsForChild
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|long
+name|gid
+parameter_list|,
+name|boolean
+name|directParent
+parameter_list|,
+name|boolean
+name|includeSelf
+parameter_list|,
+name|int
+name|level
+parameter_list|)
+function_decl|;
 comment|/** 	 * Return a new node set containing the parent nodes of all nodes in the  	 * current set. 	 * @return 	 */
 specifier|public
 name|NodeSet
