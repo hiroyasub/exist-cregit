@@ -3915,6 +3915,16 @@ literal|null
 return|;
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+specifier|public
+name|boolean
+name|isPersistentSet
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_class
 

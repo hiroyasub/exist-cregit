@@ -11407,11 +11407,6 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 block|}
 name|elementIndex
 operator|.

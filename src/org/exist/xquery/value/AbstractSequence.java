@@ -831,6 +831,17 @@ parameter_list|)
 block|{
 comment|// ignore by default
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+specifier|public
+name|boolean
+name|isPersistentSet
+parameter_list|()
+block|{
+comment|// always return false by default
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

@@ -219,6 +219,11 @@ name|void
 name|setSelfAsContext
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|isPersistentSet
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

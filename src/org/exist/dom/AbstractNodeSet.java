@@ -2433,6 +2433,17 @@ return|return
 name|hasMixedContent
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#isPersistentSet()      */
+specifier|public
+name|boolean
+name|isPersistentSet
+parameter_list|()
+block|{
+comment|// node sets are always persistent
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_class
 
