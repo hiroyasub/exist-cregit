@@ -230,12 +230,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|Vector
-name|result
-init|=
-operator|(
-name|Vector
-operator|)
 name|rpcClient
 operator|.
 name|execute
@@ -244,7 +238,7 @@ literal|"reindexCollection"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
