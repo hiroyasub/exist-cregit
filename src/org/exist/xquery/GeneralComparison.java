@@ -2640,7 +2640,14 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-name|super
+name|getLeft
+argument_list|()
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|getRight
+argument_list|()
 operator|.
 name|resetState
 argument_list|()

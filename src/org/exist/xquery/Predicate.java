@@ -1392,6 +1392,11 @@ argument_list|(
 literal|"Clearing cached result"
 argument_list|)
 expr_stmt|;
+name|super
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 name|cached
 operator|=
 literal|null
