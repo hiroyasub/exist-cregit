@@ -137,18 +137,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|ExtArrayNodeSet
 import|;
 end_import
@@ -249,7 +237,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -261,7 +249,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -475,7 +463,7 @@ operator|++
 control|)
 block|{
 name|hasWildcards
-operator|=
+operator||=
 name|NativeTextEngine
 operator|.
 name|containsWildcards
@@ -674,9 +662,8 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-continue|continue;
 block|}
-if|if
+if|else if
 condition|(
 name|word
 operator|.
@@ -741,7 +728,7 @@ block|{
 comment|// first search term found: start again
 name|j
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 name|term
 operator|=
@@ -752,8 +739,7 @@ index|]
 expr_stmt|;
 name|distance
 operator|=
-operator|-
-literal|1
+literal|0
 expr_stmt|;
 continue|continue;
 block|}
@@ -1099,7 +1085,7 @@ block|{
 comment|// first search term found: start again
 name|j
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 name|term
 operator|=
@@ -1110,8 +1096,7 @@ index|]
 expr_stmt|;
 name|distance
 operator|=
-operator|-
-literal|1
+literal|0
 expr_stmt|;
 continue|continue;
 block|}
