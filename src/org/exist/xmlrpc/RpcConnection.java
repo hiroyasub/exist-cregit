@@ -2303,6 +2303,8 @@ name|compiled
 operator|==
 literal|null
 condition|)
+name|compiled
+operator|=
 name|compile
 argument_list|(
 name|user
