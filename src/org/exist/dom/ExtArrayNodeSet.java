@@ -136,6 +136,12 @@ init|=
 literal|false
 decl_stmt|;
 specifier|private
+name|boolean
+name|isInDocumentOrder
+init|=
+literal|false
+decl_stmt|;
+specifier|private
 name|int
 name|lastDoc
 init|=
@@ -245,6 +251,10 @@ name|isSorted
 operator|=
 literal|false
 expr_stmt|;
+name|isInDocumentOrder
+operator|=
+literal|false
+expr_stmt|;
 name|setHasChanged
 argument_list|()
 expr_stmt|;
@@ -290,6 +300,10 @@ operator|++
 name|size
 expr_stmt|;
 name|isSorted
+operator|=
+literal|false
+expr_stmt|;
+name|isInDocumentOrder
 operator|=
 literal|false
 expr_stmt|;
@@ -630,6 +644,9 @@ name|int
 name|getLength
 parameter_list|()
 block|{
+name|sortInDocumentOrder
+argument_list|()
+expr_stmt|;
 return|return
 name|size
 return|;
@@ -1067,6 +1084,10 @@ name|isSorted
 operator|=
 literal|true
 expr_stmt|;
+name|isInDocumentOrder
+operator|=
+literal|false
+expr_stmt|;
 comment|//		System.out.println("sort took " + (System.currentTimeMillis() -
 comment|// start) + "ms.");
 block|}
@@ -1076,6 +1097,11 @@ name|sortInDocumentOrder
 parameter_list|()
 block|{
 comment|//		long start = System.currentTimeMillis();
+if|if
+condition|(
+name|isInDocumentOrder
+condition|)
+return|return;
 name|Part
 name|part
 decl_stmt|;
@@ -1126,6 +1152,10 @@ block|}
 name|isSorted
 operator|=
 literal|false
+expr_stmt|;
+name|isInDocumentOrder
+operator|=
+literal|true
 expr_stmt|;
 comment|//		System.out.println("in-document-order sort took " +
 comment|// (System.currentTimeMillis() - start) + "ms.");
