@@ -193,6 +193,18 @@ name|XPathQueryService
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NativeTextEngine
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -1167,6 +1179,17 @@ expr_stmt|;
 name|xml
 operator|+=
 name|tail
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"XML:\n"
+operator|+
+name|xml
+argument_list|)
 expr_stmt|;
 return|return
 name|large

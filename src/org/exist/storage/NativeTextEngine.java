@@ -756,6 +756,17 @@ name|TEXT_SECTION
 init|=
 literal|0
 decl_stmt|;
+comment|/**    * Limit the length of the words to be indexed.    * Default is 512 characters for words in attributes and elements.     */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_WORD_LENGTH
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 specifier|protected
 name|BFile
 name|dbWords
@@ -3695,15 +3706,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|word
-operator|+
-literal|" not found in the index. This should not happen!"
-argument_list|)
-expr_stmt|;
 continue|continue;
 block|}
 name|os
@@ -4107,7 +4109,7 @@ operator|.
 name|length
 argument_list|()
 operator|>
-literal|512
+name|MAX_WORD_LENGTH
 condition|)
 block|{
 continue|continue;
@@ -4284,7 +4286,7 @@ operator|.
 name|length
 argument_list|()
 operator|>
-literal|1024
+name|MAX_WORD_LENGTH
 condition|)
 block|{
 continue|continue;
