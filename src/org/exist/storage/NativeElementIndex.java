@@ -783,7 +783,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
 name|dbElement
 operator|.
 name|put
@@ -792,6 +791,8 @@ name|ref
 argument_list|,
 name|data
 argument_list|)
+operator|<
+literal|0
 condition|)
 name|LOG
 operator|.
@@ -1219,7 +1220,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
 name|dbElement
 operator|.
 name|append
@@ -1228,6 +1228,8 @@ name|ref
 argument_list|,
 name|data
 argument_list|)
+operator|<
+literal|0
 condition|)
 block|{
 name|LOG

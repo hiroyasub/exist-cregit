@@ -3771,7 +3771,6 @@ else|else
 block|{
 if|if
 condition|(
-operator|!
 name|dbWords
 operator|.
 name|put
@@ -3780,6 +3779,8 @@ name|ref
 argument_list|,
 name|ndata
 argument_list|)
+operator|<
+literal|0
 condition|)
 name|LOG
 operator|.

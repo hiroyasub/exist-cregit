@@ -606,7 +606,7 @@ name|lock
 return|;
 block|}
 specifier|public
-name|boolean
+name|long
 name|append
 parameter_list|(
 name|Value
@@ -634,7 +634,8 @@ literal|"key is null"
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 try|try
@@ -642,7 +643,6 @@ block|{
 try|try
 block|{
 comment|// check if key exists already
-specifier|final
 name|long
 name|p
 init|=
@@ -781,7 +781,8 @@ name|offset
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 if|if
@@ -828,7 +829,8 @@ operator|)
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 specifier|final
@@ -880,6 +882,8 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|p
+operator|=
 name|update
 argument_list|(
 name|p
@@ -893,7 +897,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|true
+name|p
 return|;
 block|}
 catch|catch
@@ -918,6 +922,9 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+return|return
+name|p
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -950,9 +957,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 catch|catch
 parameter_list|(
@@ -972,12 +976,10 @@ argument_list|(
 name|bte
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 return|return
-literal|true
+operator|-
+literal|1
 return|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
@@ -2385,7 +2387,7 @@ return|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
-name|boolean
+name|long
 name|put
 parameter_list|(
 name|Value
@@ -2411,7 +2413,7 @@ return|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@param  key        Description of the Parameter 	 *@param  value      Description of the Parameter 	 *@param  overwrite  Description of the Parameter 	 *@return            Description of the Return Value 	 */
 specifier|public
-name|boolean
+name|long
 name|put
 parameter_list|(
 name|Value
@@ -2442,7 +2444,8 @@ literal|"key is null"
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 try|try
@@ -2477,7 +2480,8 @@ return|;
 block|}
 else|else
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 catch|catch
@@ -2502,6 +2506,9 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+return|return
+name|p
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -2514,6 +2521,10 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+operator|-
+literal|1
+return|;
 block|}
 block|}
 catch|catch
@@ -2535,7 +2546,8 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 catch|catch
@@ -2557,12 +2569,10 @@ name|bte
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
-return|return
-literal|true
-return|;
 block|}
 comment|/** 	 *  Description of the Method 	 * 	 *@param  key  Description of the Parameter 	 */
 specifier|public
@@ -3589,7 +3599,7 @@ return|;
 block|}
 comment|/** 	 *  Update a key/value pair. 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
-name|boolean
+name|long
 name|update
 parameter_list|(
 name|Value
@@ -3652,12 +3662,13 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 comment|/** 	 *  Update the key/value pair found at the logical address p. 	 * 	 *@param  p      Description of the Parameter 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|protected
-name|boolean
+name|long
 name|update
 parameter_list|(
 name|long
@@ -3694,6 +3705,7 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
+return|return
 name|update
 argument_list|(
 name|p
@@ -3704,9 +3716,6 @@ name|key
 argument_list|,
 name|value
 argument_list|)
-expr_stmt|;
-return|return
-literal|true
 return|;
 block|}
 catch|catch
@@ -3723,7 +3732,8 @@ name|bte
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 catch|catch
@@ -3740,13 +3750,14 @@ name|ioe
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+operator|-
+literal|1
 return|;
 block|}
 block|}
 comment|/** 	 *  Update the key/value pair with logical address p and 	 *  stored in page. 	 * 	 *@param  p                   Description of the Parameter 	 *@param  page                Description of the Parameter 	 *@param  key                 Description of the Parameter 	 *@param  value               Description of the Parameter 	 *@exception  BTreeException  Description of the Exception 	 *@exception  IOException     Description of the Exception 	 */
 specifier|protected
-name|void
+name|long
 name|update
 parameter_list|(
 name|long
@@ -3820,6 +3831,9 @@ argument_list|,
 name|np
 argument_list|)
 expr_stmt|;
+return|return
+name|np
+return|;
 block|}
 else|else
 block|{
@@ -3892,6 +3906,9 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+return|return
+name|p
+return|;
 block|}
 block|}
 else|else
@@ -3918,6 +3935,9 @@ argument_list|,
 name|np
 argument_list|)
 expr_stmt|;
+return|return
+name|np
+return|;
 block|}
 block|}
 comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    28. Mai 2002 	 */

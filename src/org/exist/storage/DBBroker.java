@@ -482,6 +482,21 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+specifier|public
+name|Collection
+name|getCollection
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|long
+name|address
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/**      *  get the configuration.      *      *@return    The configuration value      */
 specifier|public
 name|Configuration

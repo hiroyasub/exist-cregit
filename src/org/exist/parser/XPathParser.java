@@ -1466,11 +1466,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 name|includeDocs
-operator|.
-name|addAll
-argument_list|(
+operator|=
 name|temp
-argument_list|)
 expr_stmt|;
 block|}
 catch|catch
