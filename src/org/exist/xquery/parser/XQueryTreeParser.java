@@ -13430,7 +13430,7 @@ name|setPrimaryType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|TEXT
 argument_list|)
 expr_stmt|;
 name|_t
