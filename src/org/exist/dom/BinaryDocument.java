@@ -137,14 +137,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|byte
-name|XQUERY
-init|=
-literal|0
-decl_stmt|;
 specifier|private
 name|long
 name|pageNr
@@ -198,6 +190,21 @@ name|docName
 argument_list|,
 name|collection
 argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setSignature
+parameter_list|(
+name|byte
+name|signature
+parameter_list|)
+block|{
+name|this
+operator|.
+name|signature
+operator|=
+name|signature
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.DocumentImpl#getResourceType() 	 */

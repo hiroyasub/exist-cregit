@@ -86,6 +86,12 @@ name|void
 name|sync
 parameter_list|()
 function_decl|;
+comment|/** 	 * Is it safe to unload the Cacheable from the cache? 	 *  	 * Called before an object is actually removed. Return 	 * false to avoid being removed. 	 *  	 * @return 	 */
+specifier|public
+name|boolean
+name|allowUnload
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

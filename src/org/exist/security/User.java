@@ -901,6 +901,31 @@ return|return
 name|home
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+name|User
+name|other
+init|=
+operator|(
+name|User
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|uid
+operator|==
+name|other
+operator|.
+name|uid
+return|;
+block|}
 block|}
 end_class
 

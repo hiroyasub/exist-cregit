@@ -729,6 +729,15 @@ name|documentSet
 operator|=
 name|docs
 expr_stmt|;
+name|namespaces
+operator|.
+name|put
+argument_list|(
+literal|"xml"
+argument_list|,
+literal|"http://www.w3.org/XML/1998/namespace"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * Parse the input source into a set of modifications. 	 *  	 * @param is 	 * @return an array of type Modification 	 * @throws ParserConfigurationException 	 * @throws IOException 	 * @throws SAXException 	 */
 specifier|public
@@ -1566,6 +1575,7 @@ name|namespace
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1575,6 +1585,7 @@ operator|+
 name|prefix
 argument_list|)
 throw|;
+block|}
 block|}
 name|Element
 name|elem

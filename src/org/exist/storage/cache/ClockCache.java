@@ -282,6 +282,11 @@ name|getReferenceCount
 argument_list|()
 operator|==
 literal|0
+operator|&&
+name|old
+operator|.
+name|allowUnload
+argument_list|()
 condition|)
 block|{
 if|if

@@ -2124,6 +2124,11 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+name|expr
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

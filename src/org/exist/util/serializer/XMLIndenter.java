@@ -341,6 +341,10 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+name|afterTag
+operator|=
+literal|false
+expr_stmt|;
 name|super
 operator|.
 name|characters

@@ -5672,6 +5672,15 @@ name|saved
 return|;
 block|}
 specifier|public
+name|boolean
+name|allowUnload
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
 specifier|abstract
 name|void
 name|setData

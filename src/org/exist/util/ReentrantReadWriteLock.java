@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*   File: ReentrantLock.java    Originally written by Doug Lea and released into the public domain.   This may be used for any purposes whatsoever without acknowledgment.   Thanks for the assistance and support of Sun Microsystems Labs,   and everyone contributing, testing, and using this code.    History:   Date       Who                What   11Jun1998  dl               Create public version    5Aug1998  dl               replaced int counters with longs */
+comment|/*   File: ReentrantLock.java    Originally written by Doug Lea and released into the public domain.   This may be used for any purposes whatsoever without acknowledgment.   Thanks for the assistance and support of Sun Microsystems Labs,   and everyone contributing, testing, and using this code.  */
 end_comment
 
 begin_package
@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A lock with the same semantics as builtin  * Java synchronized locks: Once a thread has a lock, it  * can re-obtain it any number of times without blocking.  * The lock is made available to other threads when  * as many releases as acquires have occurred.  *<p>[<a href="http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html"> Introduction to this package.</a>] **/
+comment|/**  * A lock with the same semantics as builtin  * Java synchronized locks: Once a thread has a lock, it  * can re-obtain it any number of times without blocking.  * The lock is made available to other threads when  * as many releases as acquires have occurred.  *   * The lock has a timeout: a read lock will be released if the  * timeout is reached. */
 end_comment
 
 begin_class

@@ -818,7 +818,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Main class for the native XML storage backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  *@created    15. Mai 2002  */
+comment|/**  *  Main class for the native XML storage backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -3201,6 +3201,8 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
+name|collectionsDb
+argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -3323,7 +3325,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collection store"
+literal|"failed to acquire lock on collections.dbx"
 argument_list|)
 expr_stmt|;
 return|return
@@ -7044,6 +7046,8 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
+name|collectionsDb
+argument_list|,
 literal|"/db"
 argument_list|)
 expr_stmt|;
@@ -7196,6 +7200,8 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
+name|collectionsDb
+argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
@@ -8537,62 +8543,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-if|if
-condition|(
-operator|!
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"write access to collection denied; user="
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"permission to remove document denied"
-argument_list|)
-throw|;
 name|LOG
 operator|.
 name|info
@@ -9792,17 +9742,13 @@ block|{
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -11568,62 +11514,6 @@ operator|new
 name|PermissionDeniedException
 argument_list|(
 literal|"database is read-only"
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|blob
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"write access to collection denied; user="
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|blob
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|user
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"permission to remove document denied"
 argument_list|)
 throw|;
 name|LOG

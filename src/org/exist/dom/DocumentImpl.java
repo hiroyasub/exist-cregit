@@ -210,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents a persistent document object in the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    21. Mai 2002  */
+comment|/**  *  Represents a persistent document object in the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -394,7 +394,19 @@ name|complete
 init|=
 literal|true
 decl_stmt|;
-comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker      Description of the Parameter 	 *@param  collection  Description of the Parameter 	 */
+comment|// true while a write operation is in progress
+specifier|private
+name|boolean
+name|writeLocked
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|User
+name|lockOwner
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -440,7 +452,6 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -458,7 +469,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker    Description of the Parameter 	 *@param  fileName  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -485,7 +495,6 @@ operator|=
 name|fileName
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DocumentImpl object 	 * 	 *@param  broker      Description of the Parameter 	 *@param  fileName    Description of the Parameter 	 *@param  collection  Description of the Parameter 	 */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -722,6 +731,48 @@ parameter_list|()
 block|{
 return|return
 name|XML_FILE
+return|;
+block|}
+specifier|public
+name|void
+name|setWriteLock
+parameter_list|(
+name|boolean
+name|locked
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+operator|(
+name|locked
+condition|?
+literal|"Locking"
+else|:
+literal|"Unlocking"
+operator|)
+operator|+
+literal|" document "
+operator|+
+name|getFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|writeLocked
+operator|=
+name|locked
+expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|isLockedForWrite
+parameter_list|()
+block|{
+return|return
+name|writeLocked
 return|;
 block|}
 specifier|protected
@@ -2540,6 +2591,32 @@ argument_list|(
 name|perm
 argument_list|)
 expr_stmt|;
+specifier|final
+name|int
+name|lockId
+init|=
+name|istream
+operator|.
+name|readInt
+argument_list|()
+decl_stmt|;
+name|lockOwner
+operator|=
+operator|(
+name|lockId
+operator|>
+literal|0
+condition|?
+name|secman
+operator|.
+name|getUser
+argument_list|(
+name|lockId
+argument_list|)
+else|:
+literal|null
+operator|)
+expr_stmt|;
 try|try
 block|{
 name|calculateTreeLevelStartPoints
@@ -2772,6 +2849,28 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|setUserLock
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+block|{
+name|lockOwner
+operator|=
+name|user
+expr_stmt|;
+block|}
+specifier|public
+name|User
+name|getUserLock
+parameter_list|()
+block|{
+return|return
+name|lockOwner
+return|;
 block|}
 specifier|public
 name|void
@@ -3069,6 +3168,30 @@ name|permissions
 operator|.
 name|getPermissions
 argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|lockOwner
+operator|!=
+literal|null
+condition|)
+name|ostream
+operator|.
+name|writeInt
+argument_list|(
+name|lockOwner
+operator|.
+name|getUID
+argument_list|()
+argument_list|)
+expr_stmt|;
+else|else
+name|ostream
+operator|.
+name|writeInt
+argument_list|(
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

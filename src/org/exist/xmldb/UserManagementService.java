@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  An eXist-specific service which provides methods to manage users and  *  permissions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. August 2002  */
+comment|/**  *  An eXist-specific service which provides methods to manage users and  *  permissions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_interface
@@ -206,6 +206,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Change permissions for the specified resource.      *       */
 specifier|public
 name|void
 name|chmod
@@ -215,6 +216,31 @@ name|resource
 parameter_list|,
 name|int
 name|mode
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Lock the specified resource for the specified user.      *       * A locked resource cannot be changed by other users (except      * users in group DBA) until the lock is released. Users with admin      * privileges can always change a resource.      *       * @param res      * @param u      * @throws XMLDBException      */
+specifier|public
+name|void
+name|lockResource
+parameter_list|(
+name|Resource
+name|res
+parameter_list|,
+name|User
+name|u
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Unlock the specified resource.      *       * The current user has to be same who locked the resource.      * Exception: admin users can always unlock a resource.      *       * @param res      * @throws XMLDBException      */
+specifier|public
+name|void
+name|unlockResource
+parameter_list|(
+name|Resource
+name|res
 parameter_list|)
 throws|throws
 name|XMLDBException

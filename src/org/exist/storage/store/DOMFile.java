@@ -6867,6 +6867,16 @@ name|write
 argument_list|()
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.storage.cache.Cacheable#allowUnload() 		 */
+specifier|public
+name|boolean
+name|allowUnload
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/* (non-Javadoc) 		 * @see java.lang.Object#equals(java.lang.Object) 		 */
 specifier|public
 name|boolean

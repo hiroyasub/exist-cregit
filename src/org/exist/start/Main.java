@@ -1757,11 +1757,11 @@ else|else
 block|{
 name|_classname
 operator|=
-literal|"org.exist.JettyStart"
+literal|"org.exist.client.InteractiveClient"
 expr_stmt|;
 name|_mode
 operator|=
-literal|"jetty"
+literal|"client"
 expr_stmt|;
 block|}
 if|if

@@ -1691,6 +1691,11 @@ argument_list|,
 name|sortExpr
 argument_list|)
 decl_stmt|;
+name|expr
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 return|return
 name|resultSet
 return|;

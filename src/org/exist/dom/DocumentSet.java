@@ -411,6 +411,14 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|doc
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
 name|put
 argument_list|(
 name|doc

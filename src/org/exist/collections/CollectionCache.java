@@ -215,6 +215,13 @@ argument_list|(
 name|item
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|old
+operator|!=
+literal|null
+condition|)
+block|{
 name|names
 operator|.
 name|remove
@@ -230,6 +237,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|old
 return|;
