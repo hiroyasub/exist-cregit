@@ -17,18 +17,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BFile
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|BrokerPool
 import|;
 end_import
@@ -41,7 +29,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DOMFile
+name|IndexStats
 import|;
 end_import
 
@@ -53,7 +41,23 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|IndexStats
+name|store
+operator|.
+name|BFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|store
+operator|.
+name|DOMFile
 import|;
 end_import
 

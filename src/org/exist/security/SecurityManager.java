@@ -95,7 +95,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|collections
 operator|.
 name|Collection
 import|;

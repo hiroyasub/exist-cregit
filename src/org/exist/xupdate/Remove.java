@@ -67,7 +67,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|collections
 operator|.
 name|Collection
 import|;
@@ -392,13 +392,15 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
+throw|throw
+operator|new
+name|EXistException
 argument_list|(
-literal|"cannot remove the root node"
+literal|"you cannot remove the document element. Use update "
+operator|+
+literal|"instead"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 else|else
 name|parent

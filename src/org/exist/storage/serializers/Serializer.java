@@ -37,13 +37,93 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
 operator|.
 name|transform
 operator|.
-name|*
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Templates
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|URIResolver
 import|;
 end_import
 
@@ -57,7 +137,49 @@ name|transform
 operator|.
 name|sax
 operator|.
-name|*
+name|SAXResult
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|sax
+operator|.
+name|SAXSource
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|sax
+operator|.
+name|SAXTransformerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|sax
+operator|.
+name|TransformerHandler
 import|;
 end_import
 
@@ -71,7 +193,21 @@ name|transform
 operator|.
 name|stream
 operator|.
-name|*
+name|StreamResult
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|stream
+operator|.
+name|StreamSource
 import|;
 end_import
 
@@ -97,7 +233,21 @@ name|xml
 operator|.
 name|serialize
 operator|.
-name|*
+name|OutputFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|xml
+operator|.
+name|serialize
+operator|.
+name|XMLSerializer
 import|;
 end_import
 
@@ -109,7 +259,43 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSet
 import|;
 end_import
 
@@ -121,7 +307,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|*
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|User
 import|;
 end_import
 
@@ -145,7 +343,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLUtil
+name|Configuration
 import|;
 end_import
 
@@ -157,7 +355,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|XMLUtil
 import|;
 end_import
 
@@ -169,7 +367,43 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|*
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|ProcessingInstruction
 import|;
 end_import
 
@@ -181,7 +415,103 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|*
+name|ContentHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|DTDHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|EntityResolver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ErrorHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXNotRecognizedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXNotSupportedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|XMLReader
 import|;
 end_import
 
@@ -195,7 +525,7 @@ name|sax
 operator|.
 name|ext
 operator|.
-name|*
+name|LexicalHandler
 import|;
 end_import
 
@@ -209,7 +539,7 @@ name|sax
 operator|.
 name|helpers
 operator|.
-name|*
+name|AttributesImpl
 import|;
 end_import
 
@@ -280,6 +610,46 @@ name|TAG_BOTH
 init|=
 literal|0x4
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PRETTY_PRINT
+init|=
+literal|"pretty"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|GENERATE_DOC_EVENTS
+init|=
+literal|"sax-document-events"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ENCODING
+init|=
+literal|"encoding"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|EXPAND_XINCLUDES
+init|=
+literal|"expand-xincludes"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|HIGHLIGHT_MATCHES
+init|=
+literal|"highlight-matches"
+decl_stmt|;
 specifier|protected
 name|DBBroker
 name|broker
@@ -331,6 +701,12 @@ init|=
 literal|false
 decl_stmt|;
 specifier|protected
+name|boolean
+name|generateDocEvents
+init|=
+literal|true
+decl_stmt|;
+specifier|protected
 name|int
 name|highlightMatches
 init|=
@@ -374,7 +750,7 @@ name|user
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Constructor for the Serializer object      *      *@param  broker  Description of the Parameter      *@param  pool    Description of the Parameter      */
+comment|/** 	 *  Constructor for the Serializer object 	 * 	 *@param  broker  Description of the Parameter 	 *@param  pool    Description of the Parameter 	 */
 specifier|public
 name|Serializer
 parameter_list|(
@@ -564,7 +940,232 @@ name|highlightMatches
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  If an XSL stylesheet is present, plug it into 	 *  the chain.      *      *@return StringWriter containing the generated XML      */
+specifier|public
+name|void
+name|setProperties
+parameter_list|(
+name|Map
+name|properties
+parameter_list|)
+block|{
+if|if
+condition|(
+name|properties
+operator|==
+literal|null
+condition|)
+return|return;
+name|Map
+operator|.
+name|Entry
+name|entry
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|properties
+operator|.
+name|entrySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|entry
+operator|=
+operator|(
+name|Map
+operator|.
+name|Entry
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|PRETTY_PRINT
+argument_list|)
+condition|)
+name|indent
+operator|=
+name|entry
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|ENCODING
+argument_list|)
+condition|)
+name|encoding
+operator|=
+operator|(
+name|String
+operator|)
+name|entry
+operator|.
+name|getValue
+argument_list|()
+expr_stmt|;
+if|else if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|EXPAND_XINCLUDES
+argument_list|)
+condition|)
+name|processXInclude
+operator|=
+name|entry
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|HIGHLIGHT_MATCHES
+argument_list|)
+condition|)
+block|{
+name|String
+name|tagging
+init|=
+operator|(
+name|String
+operator|)
+name|entry
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|tagging
+operator|.
+name|equals
+argument_list|(
+literal|"none"
+argument_list|)
+condition|)
+name|highlightMatches
+operator|=
+name|TAG_NONE
+expr_stmt|;
+if|else if
+condition|(
+name|tagging
+operator|.
+name|equals
+argument_list|(
+literal|"both"
+argument_list|)
+condition|)
+name|highlightMatches
+operator|=
+name|TAG_BOTH
+expr_stmt|;
+if|else if
+condition|(
+name|tagging
+operator|.
+name|equals
+argument_list|(
+literal|"elements"
+argument_list|)
+condition|)
+name|highlightMatches
+operator|=
+name|TAG_ELEMENT_MATCHES
+expr_stmt|;
+if|else if
+condition|(
+name|tagging
+operator|.
+name|equals
+argument_list|(
+literal|"attributes"
+argument_list|)
+condition|)
+name|highlightMatches
+operator|=
+name|TAG_ATTRIBUTE_MATCHES
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|GENERATE_DOC_EVENTS
+argument_list|)
+condition|)
+name|generateDocEvents
+operator|=
+name|entry
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 * 	 *@return StringWriter containing the generated XML 	 */
 specifier|protected
 name|StringWriter
 name|applyXSLHandler
@@ -617,7 +1218,7 @@ return|return
 name|sout
 return|;
 block|}
-comment|/**      *  Return the current ContentHandler      *      *@return    The contentHandler value      */
+comment|/** 	 *  Return the current ContentHandler 	 * 	 *@return    The contentHandler value 	 */
 specifier|public
 name|ContentHandler
 name|getContentHandler
@@ -627,7 +1228,7 @@ return|return
 name|contentHandler
 return|;
 block|}
-comment|/**      *  Return the current DTDHandler      *      *@return    The dTDHandler value      */
+comment|/** 	 *  Return the current DTDHandler 	 * 	 *@return    The dTDHandler value 	 */
 specifier|public
 name|DTDHandler
 name|getDTDHandler
@@ -637,7 +1238,7 @@ return|return
 name|dtdHandler
 return|;
 block|}
-comment|/**      *  Return my internal EntityResolver      *      *@return    The entityResolver value      */
+comment|/** 	 *  Return my internal EntityResolver 	 * 	 *@return    The entityResolver value 	 */
 specifier|public
 name|EntityResolver
 name|getEntityResolver
@@ -647,7 +1248,7 @@ return|return
 name|entityResolver
 return|;
 block|}
-comment|/**      *  Return my ErrorHandler      *      *@return    The errorHandler value      */
+comment|/** 	 *  Return my ErrorHandler 	 * 	 *@return    The errorHandler value 	 */
 specifier|public
 name|ErrorHandler
 name|getErrorHandler
@@ -683,7 +1284,7 @@ return|return
 name|user
 return|;
 block|}
-comment|/**      *  Gets the feature attribute of the Serializer object      *      *@param  name                           Description of the Parameter      *@return                                The feature value      *@exception  SAXNotRecognizedException  Description of the Exception      *@exception  SAXNotSupportedException   Description of the Exception      */
+comment|/** 	 *  Gets the feature attribute of the Serializer object 	 * 	 *@param  name                           Description of the Parameter 	 *@return                                The feature value 	 *@exception  SAXNotRecognizedException  Description of the Exception 	 *@exception  SAXNotSupportedException   Description of the Exception 	 */
 specifier|public
 name|boolean
 name|getFeature
@@ -727,7 +1328,7 @@ name|name
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the property attribute of the Serializer object      *      *@param  name                           Description of the Parameter      *@return                                The property value      *@exception  SAXNotRecognizedException  Description of the Exception      *@exception  SAXNotSupportedException   Description of the Exception      */
+comment|/** 	 *  Gets the property attribute of the Serializer object 	 * 	 *@param  name                           Description of the Parameter 	 *@return                                The property value 	 *@exception  SAXNotRecognizedException  Description of the Exception 	 *@exception  SAXNotSupportedException   Description of the Exception 	 */
 specifier|public
 name|Object
 name|getProperty
@@ -760,7 +1361,7 @@ name|name
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  input             Description of the Parameter      *@exception  IOException   Description of the Exception      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  input             Description of the Parameter 	 *@exception  IOException   Description of the Exception 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|parse
@@ -817,7 +1418,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  systemId          Description of the Parameter      *@exception  IOException   Description of the Exception      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  systemId          Description of the Parameter 	 *@exception  IOException   Description of the Exception 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|parse
@@ -938,7 +1539,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      *  Serialize a set of nodes      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a set of nodes 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|String
 name|serialize
@@ -968,7 +1569,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      *  Serialize a set of nodes      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@param  queryTime         Description of the Parameter      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a set of nodes 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@param  queryTime         Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|String
 name|serialize
@@ -1028,7 +1629,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Serialize a document      *      *@param  doc               Description of the Parameter      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a document 	 * 	 *@param  doc               Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|String
 name|serialize
@@ -1105,7 +1706,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Serialize a single node      *      *@param  n                 Description of the Parameter      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a single node 	 * 	 *@param  n                 Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|String
 name|serialize
@@ -1152,7 +1753,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Serialize a single NodeProxy      *      *@param  p                 Description of the Parameter      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a single NodeProxy 	 * 	 *@param  p                 Description of the Parameter 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|String
 name|serialize
@@ -1199,7 +1800,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Serialize a document to a SAX stream      *      *@param  doc               Description of the Parameter      *@param  generateDocEvent  Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a document to a SAX stream 	 * 	 *@param  doc               Description of the Parameter 	 *@param  generateDocEvent  Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1326,7 +1927,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Serialize a NodeSet to the SAX stream      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@param  queryTime         Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize a NodeSet to the SAX stream 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@param  queryTime         Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1533,7 +2134,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Serialize a single Node to the SAX stream      *      *@param  n                  Description of the Parameter      *@param  generateDocEvents  Description of the Parameter      *@exception  SAXException   Description of the Exception      */
+comment|/** 	 *  Serialize a single Node to the SAX stream 	 * 	 *@param  n                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1609,7 +2210,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Serialize a single NodeProxy to the SAX stream      *      *@param  p                  Description of the Parameter      *@param  generateDocEvents  Description of the Parameter      *@exception  SAXException   Description of the Exception      */
+comment|/** 	 *  Serialize a single NodeProxy to the SAX stream 	 * 	 *@param  p                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|protected
 name|void
 name|serializeToSAX
@@ -1645,7 +2246,7 @@ name|generateDocEvents
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Set the ContentHandler to be used during serialization.      *      *@param  contentHandler  The new contentHandler value      */
+comment|/** 	 *  Set the ContentHandler to be used during serialization. 	 * 	 *@param  contentHandler  The new contentHandler value 	 */
 specifier|public
 name|void
 name|setContentHandler
@@ -1658,6 +2259,7 @@ if|if
 condition|(
 name|processXInclude
 condition|)
+block|{
 name|xinclude
 operator|.
 name|setContentHandler
@@ -1665,13 +2267,18 @@ argument_list|(
 name|handler
 argument_list|)
 expr_stmt|;
+name|contentHandler
+operator|=
+name|xinclude
+expr_stmt|;
+block|}
 else|else
 name|contentHandler
 operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/**      *  Set the DTDHandler to be used during serialization.      *      *@param  handler  The new dTDHandler value      */
+comment|/** 	 *  Set the DTDHandler to be used during serialization. 	 * 	 *@param  handler  The new dTDHandler value 	 */
 specifier|public
 name|void
 name|setDTDHandler
@@ -1685,35 +2292,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/**      *  Set the encoding. This will be written to the XML 	 *  declaration.      *      *@param  enc  The new encoding value      */
-specifier|public
-name|void
-name|setEncoding
-parameter_list|(
-name|String
-name|enc
-parameter_list|)
-block|{
-name|encoding
-operator|=
-name|enc
-expr_stmt|;
-block|}
-comment|/** 	 * Should XInclude elements be expanded? 	 */
-specifier|public
-name|void
-name|setProcessXInclude
-parameter_list|(
-name|boolean
-name|process
-parameter_list|)
-block|{
-name|processXInclude
-operator|=
-name|process
-expr_stmt|;
-block|}
-comment|/**      *  Sets the entityResolver attribute of the Serializer object      *      *@param  resolver  The new entityResolver value      */
+comment|/** 	 *  Sets the entityResolver attribute of the Serializer object 	 * 	 *@param  resolver  The new entityResolver value 	 */
 specifier|public
 name|void
 name|setEntityResolver
@@ -1727,7 +2306,7 @@ operator|=
 name|resolver
 expr_stmt|;
 block|}
-comment|/**      *  Sets the errorHandler attribute of the Serializer object      *      *@param  handler  The new errorHandler value      */
+comment|/** 	 *  Sets the errorHandler attribute of the Serializer object 	 * 	 *@param  handler  The new errorHandler value 	 */
 specifier|public
 name|void
 name|setErrorHandler
@@ -1741,7 +2320,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/**      *  Sets the feature attribute of the Serializer object      *      *@param  name                           The new feature value      *@param  value                          The new feature value      *@exception  SAXNotRecognizedException  Description of the Exception      *@exception  SAXNotSupportedException   Description of the Exception      */
+comment|/** 	 *  Sets the feature attribute of the Serializer object 	 * 	 *@param  name                           The new feature value 	 *@param  value                          The new feature value 	 *@exception  SAXNotRecognizedException  Description of the Exception 	 *@exception  SAXNotSupportedException   Description of the Exception 	 */
 specifier|public
 name|void
 name|setFeature
@@ -1788,23 +2367,7 @@ name|name
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Sets the indent attribute of the Serializer object      *      *@param  indent  The new indent value      */
-specifier|public
-name|void
-name|setIndent
-parameter_list|(
-name|boolean
-name|indent
-parameter_list|)
-block|{
-name|this
-operator|.
-name|indent
-operator|=
-name|indent
-expr_stmt|;
-block|}
-comment|/**      *  Sets the lexicalHandler attribute of the Serializer object      *      *@param  lexicalHandler  The new lexicalHandler value      */
+comment|/** 	 *  Sets the lexicalHandler attribute of the Serializer object 	 * 	 *@param  lexicalHandler  The new lexicalHandler value 	 */
 specifier|public
 name|void
 name|setLexicalHandler
@@ -1820,7 +2383,7 @@ operator|=
 name|lexicalHandler
 expr_stmt|;
 block|}
-comment|/**      *  Sets the prettyPrinter attribute of the Serializer object      *      *@param  xmlDecl  The new prettyPrinter value      *@return          Description of the Return Value      */
+comment|/** 	 *  Sets the prettyPrinter attribute of the Serializer object 	 * 	 *@param  xmlDecl  The new prettyPrinter value 	 *@return          Description of the Return Value 	 */
 specifier|protected
 name|StringWriter
 name|setPrettyPrinter
@@ -1846,7 +2409,7 @@ literal|"xml"
 argument_list|,
 name|encoding
 argument_list|,
-name|indent
+literal|false
 argument_list|)
 decl_stmt|;
 name|format
@@ -1864,11 +2427,32 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|indent
+condition|)
+block|{
+name|format
+operator|.
+name|setIndenting
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|format
 operator|.
 name|setLineWidth
 argument_list|(
 literal|60
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|format
+operator|.
+name|setPreserveSpace
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|XMLSerializer
@@ -1896,7 +2480,7 @@ return|return
 name|sout
 return|;
 block|}
-comment|/**      *  Sets the property attribute of the Serializer object      *      *@param  name                           The new property value      *@param  value                          The new property value      *@exception  SAXNotRecognizedException  Description of the Exception      *@exception  SAXNotSupportedException   Description of the Exception      */
+comment|/** 	 *  Sets the property attribute of the Serializer object 	 * 	 *@param  name                           The new property value 	 *@param  value                          The new property value 	 *@exception  SAXNotRecognizedException  Description of the Exception 	 *@exception  SAXNotSupportedException   Description of the Exception 	 */
 specifier|public
 name|void
 name|setProperty
@@ -1952,7 +2536,7 @@ name|stylesheet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Sets the stylesheet attribute of the Serializer object      *      *@param  stylesheet                             The new stylesheet value      *@exception  SAXException                       Description of the      *      Exception      *@exception  TransformerConfigurationException  Description of the      *      Exception      */
+comment|/** 	 *  Sets the stylesheet attribute of the Serializer object 	 * 	 *@param  stylesheet                             The new stylesheet value 	 *@exception  SAXException                       Description of the 	 *      Exception 	 *@exception  TransformerConfigurationException  Description of the 	 *      Exception 	 */
 specifier|public
 name|void
 name|setStylesheet
@@ -2320,7 +2904,7 @@ name|xslHandler
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -2349,7 +2933,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  set               Description of the Parameter      *@param  start             Description of the Parameter      *@param  howmany           Description of the Parameter      *@param  queryTime         Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  set               Description of the Parameter 	 *@param  start             Description of the Parameter 	 *@param  howmany           Description of the Parameter 	 *@param  queryTime         Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
@@ -2384,16 +2968,13 @@ name|queryTime
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Serialize document to SAX stream      *      *@param  doc               Description of the Parameter      *@param  generateDocEvent  call start-document, end-document      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Serialize document to SAX stream 	 * 	 *@param  doc               Description of the Parameter 	 *@param  generateDocEvent  call start-document, end-document 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
 parameter_list|(
 name|Document
 name|doc
-parameter_list|,
-name|boolean
-name|generateDocEvent
 parameter_list|)
 throws|throws
 name|SAXException
@@ -2435,39 +3016,17 @@ name|serializeToSAX
 argument_list|(
 name|doc
 argument_list|,
-name|generateDocEvent
+name|generateDocEvents
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  doc               Description of the Parameter      *@exception  SAXException  Description of the Exception      */
-specifier|public
-name|void
-name|toSAX
-parameter_list|(
-name|Document
-name|doc
-parameter_list|)
-throws|throws
-name|SAXException
-block|{
-name|toSAX
-argument_list|(
-name|doc
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      *  Description of the Method      *      *@param  n                  Description of the Parameter      *@param  generateDocEvents  Description of the Parameter      *@exception  SAXException   Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  n                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
 parameter_list|(
 name|Node
 name|n
-parameter_list|,
-name|boolean
-name|generateDocEvents
 parameter_list|)
 throws|throws
 name|SAXException
@@ -2483,35 +3042,13 @@ name|generateDocEvents
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  p                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  p                  Description of the Parameter 	 *@param  generateDocEvents  Description of the Parameter 	 *@exception  SAXException   Description of the Exception 	 */
 specifier|public
 name|void
 name|toSAX
 parameter_list|(
 name|NodeProxy
 name|p
-parameter_list|)
-throws|throws
-name|SAXException
-block|{
-name|toSAX
-argument_list|(
-name|p
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      *  Description of the Method      *      *@param  p                  Description of the Parameter      *@param  generateDocEvents  Description of the Parameter      *@exception  SAXException   Description of the Exception      */
-specifier|public
-name|void
-name|toSAX
-parameter_list|(
-name|NodeProxy
-name|p
-parameter_list|,
-name|boolean
-name|generateDocEvents
 parameter_list|)
 throws|throws
 name|SAXException
@@ -2684,7 +3221,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  URIResolver is called by the XSL transformer to handle<xsl:include>,      *<xsl:import> ...      *      *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>      *@created    20. April 2002      */
+comment|/** 	 *  URIResolver is called by the XSL transformer to handle<xsl:include>, 	 *<xsl:import> ... 	 * 	 *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 *@created    20. April 2002 	 */
 specifier|private
 class|class
 name|InternalURIResolver
@@ -2697,7 +3234,7 @@ name|collectionId
 init|=
 literal|null
 decl_stmt|;
-comment|/**          *  Constructor for the InternalURIResolver object          *          *@param  collection  Description of the Parameter          */
+comment|/** 		 *  Constructor for the InternalURIResolver object 		 * 		 *@param  collection  Description of the Parameter 		 */
 specifier|public
 name|InternalURIResolver
 parameter_list|(
@@ -2710,7 +3247,7 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
-comment|/**          *  Description of the Method          *          *@param  href                      Description of the Parameter          *@param  base                      Description of the Parameter          *@return                           Description of the Return Value          *@exception  TransformerException  Description of the Exception          */
+comment|/** 		 *  Description of the Method 		 * 		 *@param  href                      Description of the Parameter 		 *@param  base                      Description of the Parameter 		 *@return                           Description of the Return Value 		 *@exception  TransformerException  Description of the Exception 		 */
 specifier|public
 name|Source
 name|resolve
@@ -2808,35 +3345,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-block|}
-comment|/**      * Sets the createContainerElements.      * @param createContainerElements The createContainerElements to set      */
-specifier|public
-name|void
-name|setCreateContainerElements
-parameter_list|(
-name|boolean
-name|createContainerElements
-parameter_list|)
-block|{
-name|this
-operator|.
-name|createContainerElements
-operator|=
-name|createContainerElements
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setHighlightMatches
-parameter_list|(
-name|int
-name|mode
-parameter_list|)
-block|{
-name|highlightMatches
-operator|=
-name|mode
-expr_stmt|;
 block|}
 block|}
 end_class

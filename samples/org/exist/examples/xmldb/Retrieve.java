@@ -88,6 +88,7 @@ name|URI
 init|=
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
+comment|//protected static String URI = "xmldb:exist://";
 specifier|protected
 specifier|static
 name|void
@@ -202,6 +203,15 @@ argument_list|(
 literal|"encoding"
 argument_list|,
 literal|"ISO-8859-1"
+argument_list|)
+expr_stmt|;
+name|col
+operator|.
+name|setProperty
+argument_list|(
+literal|"pretty"
+argument_list|,
+literal|"false"
 argument_list|)
 expr_stmt|;
 name|XMLResource

@@ -1029,12 +1029,7 @@ operator|.
 name|getDoc
 argument_list|()
 argument_list|,
-name|proxy
-operator|.
-name|doc
-operator|.
-name|getDocumentElementId
-argument_list|()
+literal|1
 argument_list|)
 decl_stmt|;
 name|result
@@ -1447,6 +1442,15 @@ name|void
 name|realize
 parameter_list|()
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"realizing node set ..."
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|realSet

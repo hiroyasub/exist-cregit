@@ -99,15 +99,15 @@ name|conf
 argument_list|)
 return|;
 else|else
-return|return
+throw|throw
 operator|new
-name|RelationalBroker
+name|EXistException
 argument_list|(
-name|pool
-argument_list|,
-name|conf
+literal|"no database backend found for "
+operator|+
+name|dbName
 argument_list|)
-return|;
+throw|;
 block|}
 block|}
 end_class

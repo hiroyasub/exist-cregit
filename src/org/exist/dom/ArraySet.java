@@ -844,7 +844,6 @@ name|proxy
 expr_stmt|;
 else|else
 block|{
-specifier|final
 name|int
 name|grow
 init|=

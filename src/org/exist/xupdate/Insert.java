@@ -11,36 +11,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -67,7 +37,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|collections
 operator|.
 name|Collection
 import|;
@@ -154,18 +124,6 @@ operator|.
 name|storage
 operator|.
 name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|StorageAddress
 import|;
 end_import
 
@@ -478,32 +436,6 @@ argument_list|(
 literal|"permission to remove document denied"
 argument_list|)
 throw|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"processing "
-operator|+
-name|node
-operator|.
-name|getGID
-argument_list|()
-operator|+
-literal|" ["
-operator|+
-name|StorageAddress
-operator|.
-name|toString
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-operator|+
-literal|"]"
-argument_list|)
-expr_stmt|;
 name|parent
 operator|=
 operator|(

@@ -1285,7 +1285,9 @@ name|resolver
 init|=
 operator|new
 name|CatalogResolver
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|config
 operator|.

@@ -39,7 +39,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|collections
 operator|.
 name|Collection
 import|;
@@ -228,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. Mai 2002  */
+comment|/**  * This is the base class for all database backends. All other components rely  * on the methods defined here.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. Mai 2002  */
 end_comment
 
 begin_class
@@ -239,16 +239,6 @@ name|DBBroker
 extends|extends
 name|Observable
 block|{
-comment|/**  Description of the Field */
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|DBM
-init|=
-literal|3
-decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -257,7 +247,6 @@ name|MATCH_EXACT
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -275,7 +264,6 @@ init|=
 literal|2
 decl_stmt|;
 comment|// constants for database type
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -284,7 +272,6 @@ name|MYSQL
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -293,7 +280,6 @@ name|NATIVE
 init|=
 literal|4
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -302,7 +288,6 @@ name|ORACLE
 init|=
 literal|1
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -310,6 +295,14 @@ name|int
 name|POSTGRESQL
 init|=
 literal|2
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DBM
+init|=
+literal|3
 decl_stmt|;
 specifier|protected
 name|boolean
@@ -377,13 +370,6 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/**      *  lock this broker instance for writing. The broker instance is      *  responsible for locking underlying files. Right now, BDBBroker has no      *  clean locking mechanism, so all files will be locked when this method is      *  called. Class RelationalBroker is safe and will ignore calls to      *  acquireWriteLock().      *      *@return    Description of the Return Value      */
-specifier|public
-specifier|abstract
-name|Object
-name|acquireWriteLock
-parameter_list|()
-function_decl|;
 comment|/**      *  load all fields of element from the database. Note that loading of nodes      *  is sometimes deferred until information is really needed. Method      *  objectWith will only load fields common to all node types. elementWith      *  is called by ElementImpl if needed.      *      *@param  element  Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
 name|boolean
@@ -949,16 +935,6 @@ parameter_list|)
 block|{
 comment|// do nothing
 block|}
-comment|/**      *  release a lock. The parameter object should be the one returned by a      *  previous call to acquireWriteLock().      *      *@param  lock  Description of the Parameter      */
-specifier|public
-specifier|abstract
-name|void
-name|releaseWriteLock
-parameter_list|(
-name|Object
-name|lock
-parameter_list|)
-function_decl|;
 comment|/**      *  Description of the Method      *      *@param  name                           Description of the Parameter      *@return                                Description of the Return Value      *@exception  PermissionDeniedException  Description of the Exception      */
 specifier|public
 name|boolean
@@ -1086,16 +1062,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  set the retrieval-mode used by all subsequent requests. The retrieval      *  mode setting is only used by RelationalBroker. There are two retrieval      *  modes: RelationalBroker.SINGLE and RelationalBroker.PRELOAD. With      *  retrieval mode set to PRELOAD, the broker will try to do a read ahead      *  when retrieving nodes. This means, that it will not only retrieve the      *  actual nodes, but also their children. The additional nodes will be put      *  into the ObjectPool where they will be found by subsequent calls to      *  objectWith. The advantage is that we need less sql-statements to      *  retrieve a certain portion of the document. On the other hand, nodes may      *  be read which are not really needed.      *      *@param  mode  one of RelationalBroker.SINGLE or RelationalBroker.PRELOAD      */
-specifier|public
-specifier|abstract
-name|void
-name|setRetrvMode
-parameter_list|(
-name|int
-name|mode
-parameter_list|)
-function_decl|;
 comment|/**      *  shutdown the broker. All open files, jdbc connections etc. should be      *  closed.      */
 specifier|public
 name|void

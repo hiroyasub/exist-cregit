@@ -29,9 +29,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|collections
 operator|.
-name|AttrImpl
+name|Collection
 import|;
 end_import
 
@@ -43,7 +43,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|Collection
+name|AttrImpl
 import|;
 end_import
 

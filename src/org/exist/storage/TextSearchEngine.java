@@ -103,6 +103,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|*
@@ -161,6 +173,10 @@ name|SimpleTokenizer
 import|;
 end_import
 
+begin_comment
+comment|/**  * This is the base class for all classes providing access to the fulltext index.  *   * The class has methods to add text and attribute nodes to the fulltext index,  * or to search for nodes matching selected search terms.  *    * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 specifier|abstract
@@ -170,6 +186,7 @@ extends|extends
 name|Observable
 block|{
 specifier|private
+specifier|final
 specifier|static
 name|Category
 name|LOG
@@ -224,6 +241,7 @@ name|stemmer
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Construct a new instance and configure it. 	 *  	 * @param broker 	 * @param conf 	 */
 specifier|public
 name|TextSearchEngine
 parameter_list|(
@@ -561,6 +579,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** 	 * Returns the Tokenizer used for tokenizing strings into 	 * words. 	 *  	 * @return 	 */
 specifier|public
 name|Tokenizer
 name|getTokenizer
@@ -570,6 +589,7 @@ return|return
 name|tokenizer
 return|;
 block|}
+comment|/** 	 * Tokenize and index the given text node. 	 *  	 * @param idx 	 * @param text 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -582,25 +602,19 @@ name|TextImpl
 name|text
 parameter_list|)
 function_decl|;
+comment|/** 	 * Tokenize and index the given attribute node. 	 *  	 * @param idx 	 * @param text 	 */
 specifier|public
+specifier|abstract
 name|void
 name|storeAttribute
 parameter_list|(
 name|IndexPaths
 name|idx
 parameter_list|,
-name|TextImpl
+name|AttrImpl
 name|text
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 specifier|public
 specifier|abstract
 name|void
@@ -613,6 +627,7 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
+comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * This method uses MATCH_EXACT for comparing search terms. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -627,7 +642,27 @@ name|expr
 index|[]
 parameter_list|)
 function_decl|;
+comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
 specifier|public
+specifier|abstract
+name|NodeSet
+index|[]
+name|getNodesContaining
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|,
+name|String
+index|[]
+name|expr
+parameter_list|,
+name|int
+name|type
+parameter_list|)
+function_decl|;
+comment|/** 	 * Scan the fulltext index and return an Occurrences object for each 	 * of the index keys. 	 *  	 * Arguments start and end are used to restrict the range of keys returned. 	 * For example start="a" and end="az" will return all keywords starting 	 * with letter "a". 	 *  	 * @param user 	 * @param collection 	 * @param start 	 * @param end 	 * @param inclusive 	 * @return 	 * @throws PermissionDeniedException 	 */
+specifier|public
+specifier|abstract
 name|Occurrences
 index|[]
 name|scanIndexTerms
@@ -649,15 +684,40 @@ name|inclusive
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implement for this storage backend"
-argument_list|)
-throw|;
-block|}
+function_decl|;
+comment|/** 	 * Remove index entries for an entire collection. 	 *  	 * @param collection 	 */
+specifier|public
+specifier|abstract
+name|void
+name|removeCollection
+parameter_list|(
+name|Collection
+name|collection
+parameter_list|)
+function_decl|;
+comment|/** 	 * Remove all index entries for the given document. 	 *  	 * @param doc 	 */
+specifier|public
+specifier|abstract
+name|void
+name|removeDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+function_decl|;
+comment|/** 	 * Reindex a document or node. 	 *  	 * If node is null, all levels of the document tree starting with 	 * DocumentImpl.reindexRequired() will be reindexed. 	 *   	 * @param oldDoc 	 * @param node 	 */
+specifier|public
+specifier|abstract
+name|void
+name|reindex
+parameter_list|(
+name|DocumentImpl
+name|oldDoc
+parameter_list|,
+name|NodeImpl
+name|node
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

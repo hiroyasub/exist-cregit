@@ -50,6 +50,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|SUPPRESS_NONE
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|SUPPRESS_LEADING_WS
 init|=
 literal|0x01
@@ -377,6 +385,15 @@ operator|!=
 literal|0
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"skipping ws"
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|start_
@@ -406,6 +423,15 @@ operator|!=
 literal|0
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"skipping ws"
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|end
