@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * Created on 10.10.2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
 end_comment
 
 begin_package
@@ -21,9 +21,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|text
 operator|.
-name|IOException
+name|Collator
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|Locale
 import|;
 end_import
 
@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -69,7 +69,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|Cardinality
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -105,9 +105,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
-operator|.
-name|Item
+name|XQueryContext
 import|;
 end_import
 
@@ -149,6 +147,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|StringValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Type
 import|;
 end_import
@@ -163,20 +175,20 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|ValueSequence
 import|;
 end_import
 
 begin_comment
-comment|/**  * Return the eXist version  *   * @author wolf  */
+comment|/**  * Library function to return all collation locales currently known to the system.  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ExistVersion
+name|Collations
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -190,7 +202,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"eXist-version"
+literal|"collations"
 argument_list|,
 name|UtilModule
 operator|.
@@ -201,7 +213,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the version of eXist running this query."
+literal|"Returns a sequence of strings containing all collation locales that might be "
+operator|+
+literal|"specified in the '?lang=' parameter of a collation URI."
 argument_list|,
 name|FunctionSignature
 operator|.
@@ -216,12 +230,13 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|ExistVersion
+name|Collations
 parameter_list|(
 name|XQueryContext
 name|context
@@ -235,72 +250,108 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSequence
+index|[]
+name|args
 parameter_list|,
-name|Item
-name|contextItem
+name|Sequence
+name|contextSequence
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
-name|Properties
-name|sysProperties
+name|ValueSequence
+name|result
 init|=
 operator|new
-name|Properties
+name|ValueSequence
 argument_list|()
 decl_stmt|;
-try|try
+name|Locale
+index|[]
+name|locales
+init|=
+name|Collator
+operator|.
+name|getAvailableLocales
+argument_list|()
+decl_stmt|;
+name|String
+name|locale
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|locales
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
 block|{
-name|sysProperties
+name|locale
+operator|=
+name|locales
+index|[
+name|i
+index|]
 operator|.
-name|load
-argument_list|(
-name|ExistVersion
+name|getLanguage
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|locales
+index|[
+name|i
+index|]
 operator|.
-name|class
-operator|.
-name|getClassLoader
+name|getCountry
 argument_list|()
 operator|.
-name|getResourceAsStream
-argument_list|(
-literal|"org/exist/system.properties"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+name|locale
+operator|+=
+literal|'-'
+operator|+
+name|locales
+index|[
+name|i
+index|]
 operator|.
-name|debug
+name|getCountry
+argument_list|()
+expr_stmt|;
+name|result
+operator|.
+name|add
 argument_list|(
-literal|"Unable to load system.properties from class loader"
+operator|new
+name|StringValue
+argument_list|(
+name|locale
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|StringValue
-argument_list|(
-name|sysProperties
-operator|.
-name|getProperty
-argument_list|(
-literal|"product-version"
-argument_list|,
-literal|"unknown version"
-argument_list|)
-argument_list|)
+name|result
 return|;
 block|}
 block|}

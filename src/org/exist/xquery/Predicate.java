@@ -616,18 +616,7 @@ argument_list|,
 name|item
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"innerSeq = "
-operator|+
-name|innerSeq
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("innerSeq = " + innerSeq.effectiveBooleanValue());
 if|if
 condition|(
 name|innerSeq

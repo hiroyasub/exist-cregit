@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * Created on 10.10.2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
 end_comment
 
 begin_package
@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -69,7 +69,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|Cardinality
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -105,9 +105,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
-operator|.
-name|Item
+name|XQueryContext
 import|;
 end_import
 
@@ -136,20 +134,6 @@ operator|.
 name|value
 operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
 import|;
 end_import
 
@@ -167,16 +151,30 @@ name|StringValue
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
-comment|/**  * Return the eXist version  *   * @author wolf  */
+comment|/**  * Libary function to retrieve the value of a system property.  * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ExistVersion
+name|SystemProperty
 extends|extends
-name|Function
+name|BasicFunction
 block|{
 specifier|public
 specifier|final
@@ -190,7 +188,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"eXist-version"
+literal|"system-property"
 argument_list|,
 name|UtilModule
 operator|.
@@ -201,12 +199,16 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the version of eXist running this query."
+literal|"Returns the value of a system property. Similar to the corresponding XSLT function. "
+operator|+
+literal|"Predefined properties are: vendor, vendor-url, product-name, product-version, product-build, and all Java "
+operator|+
+literal|"system properties."
 argument_list|,
-name|FunctionSignature
-operator|.
-name|NO_ARGS
-argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
 operator|new
 name|SequenceType
 argument_list|(
@@ -218,13 +220,36 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|private
+name|Properties
+name|sysProperties
+init|=
+literal|null
+decl_stmt|;
+comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|ExistVersion
+name|SystemProperty
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|FunctionSignature
+name|signature
 parameter_list|)
 block|{
 name|super
@@ -235,25 +260,34 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-name|contextSequence
+index|[]
+name|args
 parameter_list|,
-name|Item
-name|contextItem
+name|Sequence
+name|contextSequence
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
-name|Properties
+if|if
+condition|(
 name|sysProperties
-init|=
+operator|==
+literal|null
+condition|)
+block|{
+name|sysProperties
+operator|=
 operator|new
 name|Properties
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 try|try
 block|{
 name|sysProperties
@@ -288,18 +322,56 @@ literal|"Unable to load system.properties from class loader"
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-operator|new
-name|StringValue
-argument_list|(
+block|}
+name|String
+name|key
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+name|String
+name|value
+init|=
 name|sysProperties
 operator|.
 name|getProperty
 argument_list|(
-literal|"product-version"
-argument_list|,
-literal|"unknown version"
+name|key
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+name|value
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+return|return
+name|value
+operator|==
+literal|null
+condition|?
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+else|:
+operator|new
+name|StringValue
+argument_list|(
+name|value
 argument_list|)
 return|;
 block|}
