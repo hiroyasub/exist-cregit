@@ -1489,8 +1489,9 @@ argument_list|,
 literal|"permission denied to read resource"
 argument_list|)
 throw|;
-if|if
-condition|(
+name|String
+name|option
+init|=
 name|parent
 operator|.
 name|properties
@@ -1500,10 +1501,10 @@ argument_list|(
 name|Serializer
 operator|.
 name|GENERATE_DOC_EVENTS
+argument_list|,
+literal|"false"
 argument_list|)
-operator|==
-literal|null
-condition|)
+decl_stmt|;
 name|parent
 operator|.
 name|properties
@@ -1514,7 +1515,7 @@ name|Serializer
 operator|.
 name|GENERATE_DOC_EVENTS
 argument_list|,
-literal|"true"
+name|option
 argument_list|)
 expr_stmt|;
 name|Serializer

@@ -1041,19 +1041,6 @@ name|pPassword
 operator|=
 name|password
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|pUser
-operator|+
-literal|"; "
-operator|+
-name|pPassword
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|collection
