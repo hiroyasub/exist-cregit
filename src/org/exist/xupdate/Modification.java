@@ -1281,53 +1281,13 @@ name|long
 name|newAddress
 parameter_list|)
 block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nodes
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|StorageAddress
-operator|.
-name|equals
-argument_list|(
-name|nodes
-index|[
-name|i
-index|]
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|,
-name|oldAddress
-argument_list|)
-condition|)
-block|{
-name|nodes
-index|[
-name|i
-index|]
-operator|.
-name|setInternalAddress
-argument_list|(
-name|newAddress
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|// Ignore the address change
+comment|// TODO: is this really save?
+comment|//			for (int i = 0; i< nodes.length; i++) {
+comment|//				if (StorageAddress.equals(nodes[i].getInternalAddress(), oldAddress)) {
+comment|//					nodes[i].setInternalAddress(newAddress);
+comment|//				}
+comment|//			}
 block|}
 block|}
 specifier|final
