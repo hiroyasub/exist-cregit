@@ -686,15 +686,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
-name|contentHandler
-operator|.
-name|startPrefixMapping
-argument_list|(
-literal|"exist"
-argument_list|,
-name|EXIST_NS
-argument_list|)
-expr_stmt|;
+comment|//contentHandler.startPrefixMapping("exist", EXIST_NS);
 comment|// iterate through children
 for|for
 control|(
@@ -822,13 +814,7 @@ name|start
 operator|)
 argument_list|)
 expr_stmt|;
-name|contentHandler
-operator|.
-name|endPrefixMapping
-argument_list|(
-literal|"exist"
-argument_list|)
-expr_stmt|;
+comment|//contentHandler.endPrefixMapping("exist");
 if|if
 condition|(
 name|generateDocEvent
