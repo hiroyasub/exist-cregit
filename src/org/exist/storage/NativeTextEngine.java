@@ -2750,6 +2750,9 @@ decl_stmt|;
 name|short
 name|collectionId
 decl_stmt|;
+name|byte
+name|section
+decl_stmt|;
 name|Collection
 name|current
 decl_stmt|;
@@ -2985,6 +2988,13 @@ operator|=
 name|is
 operator|.
 name|readInt
+argument_list|()
+expr_stmt|;
+name|section
+operator|=
+name|is
+operator|.
+name|readByte
 argument_list|()
 expr_stmt|;
 name|len

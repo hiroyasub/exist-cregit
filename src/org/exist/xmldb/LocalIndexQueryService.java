@@ -231,7 +231,6 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-comment|// TODO: handle exception
 throw|throw
 operator|new
 name|XMLDBException

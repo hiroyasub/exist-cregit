@@ -69,6 +69,23 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/* Alternative methods, especially to be used from jsp */
+specifier|public
+name|String
+index|[]
+name|getChildCollections
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
+specifier|public
+name|String
+index|[]
+name|getResources
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 

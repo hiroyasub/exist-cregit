@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    18. August 2002  */
+comment|/**  *  Represents a user within the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class

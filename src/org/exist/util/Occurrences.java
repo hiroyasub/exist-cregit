@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * ElementOccurrences.java - Mar 5, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -14,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment go to   * Window>Preferences>Java>Code Generation>Code and Comments  */
+comment|/**  * Class to count element and word frequencies.  *   */
 end_comment
 
 begin_class
@@ -25,7 +21,7 @@ implements|implements
 name|Comparable
 block|{
 specifier|private
-name|String
+name|Comparable
 name|term
 decl_stmt|;
 specifier|private
@@ -37,7 +33,7 @@ decl_stmt|;
 specifier|public
 name|Occurrences
 parameter_list|(
-name|String
+name|Comparable
 name|name
 parameter_list|)
 block|{
@@ -47,7 +43,7 @@ name|name
 expr_stmt|;
 block|}
 specifier|public
-name|String
+name|Comparable
 name|getTerm
 parameter_list|()
 block|{
@@ -77,7 +73,7 @@ operator|+=
 name|count
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
 specifier|public
 name|int
 name|compareTo

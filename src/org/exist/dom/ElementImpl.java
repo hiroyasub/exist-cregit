@@ -527,7 +527,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  data  Description of the Parameter 	 *@param  doc   Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 specifier|static
 name|NodeImpl
