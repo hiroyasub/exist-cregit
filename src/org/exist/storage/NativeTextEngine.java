@@ -763,9 +763,7 @@ specifier|static
 name|int
 name|MAX_WORD_LENGTH
 init|=
-name|Integer
-operator|.
-name|MAX_VALUE
+literal|2048
 decl_stmt|;
 specifier|protected
 name|BFile

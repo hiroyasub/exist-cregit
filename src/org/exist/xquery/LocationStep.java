@@ -485,7 +485,13 @@ name|timestamp
 argument_list|)
 condition|)
 block|{
-comment|//				LOG.debug("returning cached result");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"returning cached result"
+argument_list|)
+expr_stmt|;
 name|cachedResult
 operator|.
 name|setIsCached
@@ -514,7 +520,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|//		LOG.debug("processing " + pprint());
 name|Sequence
 name|temp
 decl_stmt|;

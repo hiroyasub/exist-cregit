@@ -644,6 +644,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//        long start = System.currentTimeMillis();
+name|Sequence
+name|result
+init|=
+literal|null
+decl_stmt|;
 comment|/*  		 * If we are inside a predicate and one of the arguments is a node set,  		 * we try to speed up the query by returning nodes from the context set. 		 * This works only inside a predicate. 		 */
 if|if
 condition|(
@@ -735,32 +741,45 @@ literal|0
 condition|)
 block|{
 comment|// lookup search terms in the fulltext index
-return|return
+name|result
+operator|=
 name|quickNodeSetCompare
 argument_list|(
 name|contextSequence
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
-return|return
+name|result
+operator|=
 name|nodeSetCompare
 argument_list|(
 name|contextSequence
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
 comment|// Fall back to the generic compare process
-return|return
+name|result
+operator|=
 name|genericCompare
 argument_list|(
 name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+expr_stmt|;
+comment|//        LOG.debug("comparison took " + (System.currentTimeMillis() - start));
+return|return
+name|result
 return|;
 block|}
 specifier|protected
@@ -1253,18 +1272,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 return|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"quick compare: "
-operator|+
-name|cmp
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("quick compare: " + cmp.length());
 name|DocumentSet
 name|docs
 init|=

@@ -1196,6 +1196,28 @@ name|k
 operator|++
 control|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"hits: "
+operator|+
+name|terms
+index|[
+name|k
+index|]
+operator|+
+literal|": "
+operator|+
+name|hits
+index|[
+name|k
+index|]
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|hits

@@ -1558,6 +1558,18 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"reading collection "
+operator|+
+name|staticDocumentPaths
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
 name|collection
 operator|.
 name|allDocs

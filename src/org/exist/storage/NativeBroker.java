@@ -3268,17 +3268,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"document "
-operator|+
-name|docPath
-operator|+
-literal|" not found!"
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("document " + docPath + " not found!");
 return|return
 literal|null
 return|;

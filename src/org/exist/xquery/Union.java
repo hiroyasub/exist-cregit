@@ -249,22 +249,7 @@ name|toNodeSet
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Union took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("Union took " + (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;

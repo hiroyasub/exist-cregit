@@ -472,7 +472,7 @@ name|URLEncoder
 operator|.
 name|encode
 argument_list|(
-literal|"//para[. = 'Ã¤Ã¤Ã¼Ã¼Ã¶Ã¶ÃÃÃÃÃÃ']/text()"
+literal|"doc('/db/test/test.xml')//para[. = 'Ã¤Ã¤Ã¼Ã¼Ã¶Ã¶ÃÃÃÃÃÃ']/text()"
 argument_list|)
 decl_stmt|;
 name|HttpURLConnection

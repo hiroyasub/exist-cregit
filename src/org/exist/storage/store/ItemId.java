@@ -90,6 +90,17 @@ operator|)
 literal|0x2
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|short
+name|MAX_ID
+init|=
+operator|(
+name|short
+operator|)
+literal|0x3FFE
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|byte
