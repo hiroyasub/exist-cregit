@@ -226,7 +226,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//		service.beginProtected();
+name|service
+operator|.
+name|beginProtected
+argument_list|()
+expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -308,7 +312,11 @@ name|handler
 argument_list|)
 expr_stmt|;
 block|}
-comment|//		service.endProtected();
+name|service
+operator|.
+name|endProtected
+argument_list|()
+expr_stmt|;
 name|runningTime
 operator|+=
 operator|(

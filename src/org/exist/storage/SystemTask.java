@@ -15,11 +15,33 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
 operator|.
 name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
 import|;
 end_import
 
@@ -32,6 +54,18 @@ specifier|public
 interface|interface
 name|SystemTask
 block|{
+name|void
+name|configure
+parameter_list|(
+name|Configuration
+name|config
+parameter_list|,
+name|Properties
+name|properties
+parameter_list|)
+throws|throws
+name|EXistException
+function_decl|;
 comment|/** 	 * Execute this task. 	 *  	 * @param pool the BrokerPool for this database instance. 	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException 	 */
 name|void
 name|execute
