@@ -362,9 +362,6 @@ parameter_list|(
 name|StaticContext
 name|context
 parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
 name|String
 name|searchArg
 parameter_list|,

@@ -3500,15 +3500,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removing "
-operator|+
-name|word
-argument_list|)
-expr_stmt|;
 name|ref
 operator|=
 operator|new
