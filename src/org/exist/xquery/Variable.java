@@ -413,8 +413,16 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-comment|//        if (value.getLength() == 0)
-comment|//            return;
+if|if
+condition|(
+name|value
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return;
 name|int
 name|requiredType
 init|=
