@@ -321,7 +321,7 @@ name|collectionName
 init|=
 name|args
 index|[
-literal|0
+literal|1
 index|]
 operator|.
 name|getStringValue

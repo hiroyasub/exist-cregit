@@ -3110,6 +3110,12 @@ condition|(
 operator|!
 name|hasChildNodes
 argument_list|()
+operator|||
+name|getChildCount
+argument_list|()
+operator|==
+name|getAttributesCount
+argument_list|()
 condition|)
 return|return
 literal|null
@@ -3131,7 +3137,6 @@ argument_list|(
 name|first
 argument_list|)
 return|;
-comment|/* 		 *  long last = first + children + 1; 		 *  Node n = ownerDocument.getNode(first); 		 *  while(n.getNodeType() == Node.ATTRIBUTE_NODE&& 		 *  first<= last) 		 *  n = ownerDocument.getNode(++first); 		 *  return  first == last ? null : n; 		 */
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
 specifier|public
@@ -3393,20 +3398,12 @@ name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
-if|if
-condition|(
+return|return
 name|children
 operator|>
 literal|0
-condition|)
-return|return
-literal|true
-return|;
-return|return
-literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|long
 name|lastChildID
