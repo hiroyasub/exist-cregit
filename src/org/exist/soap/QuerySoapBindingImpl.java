@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/**  *  QueryServiceSoapBindingImpl.java This file was auto-generated from WSDL by  *  the Apache Axis Wsdl2java emitter.  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -382,7 +378,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    30. April 2002  */
+comment|/**  *  Provides the actual implementations for the methods defined in  * {@link org.exist.soap.Query}.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -414,7 +410,6 @@ specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/**  Constructor for the QuerySoapBindingImpl object */
 specifier|public
 name|QuerySoapBindingImpl
 parameter_list|()
@@ -971,7 +966,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Gets the resource attribute of the QuerySoapBindingImpl object 	 * 	 *@param  name                          Description of the Parameter 	 *@param  prettyPrint                   Description of the Parameter 	 *@param  encoding                      Description of the Parameter 	 *@return                               The resource value 	 *@exception  java.rmi.RemoteException  Description of the Exception 	 */
 specifier|public
 name|String
 name|getResource
@@ -1174,7 +1168,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  path                 Description of the Parameter 	 *@return                      Description of the Return Value 	 *@exception  RemoteException  Description of the Exception 	 */
 specifier|public
 name|Collection
 name|listCollection
@@ -1476,7 +1469,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query                         Description of the Parameter 	 *@return                               Description of the Return Value 	 *@exception  java.rmi.RemoteException  Description of the Exception 	 */
 specifier|public
 name|org
 operator|.
@@ -1517,31 +1509,6 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|query
-operator|.
-name|startsWith
-argument_list|(
-literal|"document("
-argument_list|)
-operator|||
-name|query
-operator|.
-name|startsWith
-argument_list|(
-literal|"collection("
-argument_list|)
-operator|)
-condition|)
-name|query
-operator|=
-literal|"document()"
-operator|+
-name|query
-expr_stmt|;
 name|QueryResponse
 name|resp
 init|=
@@ -1830,7 +1797,6 @@ return|return
 name|resp
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  resultId                      Description of the Parameter 	 *@param  num                           Description of the Parameter 	 *@param  encoding                      Description of the Parameter 	 *@param  prettyPrint                   Description of the Parameter 	 *@return                               Description of the Return Value 	 *@exception  java.rmi.RemoteException  Description of the Exception 	 */
 specifier|public
 name|String
 index|[]
@@ -2770,25 +2736,6 @@ name|getName
 argument_list|()
 argument_list|,
 name|documents
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"added "
-operator|+
-name|p
-operator|.
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
