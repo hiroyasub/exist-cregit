@@ -920,7 +920,9 @@ literal|14
 expr_stmt|;
 name|dataBuffers
 operator|=
-name|indexBuffers
+name|buffers
+operator|*
+literal|12
 expr_stmt|;
 block|}
 else|else

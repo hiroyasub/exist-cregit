@@ -1181,7 +1181,7 @@ name|dataBuffers
 operator|=
 name|buffers
 operator|*
-literal|11
+literal|10
 expr_stmt|;
 block|}
 else|else
@@ -1320,6 +1320,8 @@ expr_stmt|;
 name|dataBuffers
 operator|=
 name|buffers
+operator|*
+literal|8
 expr_stmt|;
 block|}
 name|LOG
@@ -1446,13 +1448,13 @@ name|indexBuffers
 operator|=
 name|buffers
 operator|*
-literal|8
+literal|6
 expr_stmt|;
 name|dataBuffers
 operator|=
 name|buffers
 operator|*
-literal|8
+literal|6
 expr_stmt|;
 block|}
 else|else
