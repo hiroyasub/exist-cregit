@@ -10,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A pool for char arrays.  *   * This pool is used by class XMLString. Whenever an XMLString needs to  * reallocate the backing char[], the old array is released into the pool. However,  * only char[] with length&lt; MAX are kept in the pool.  *   * The pool is bound to the current thread.  */
+comment|/**  * A pool for char arrays.  *   * This pool is used by class XMLString. Whenever an XMLString needs to  * reallocate the backing char[], the old array is released into the pool. However,  * only char[] with length&lt; MAX are kept in the pool. Larger char[] are rarely reused.  *   * The pool is bound to the current thread.  */
 end_comment
 
 begin_class

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000/01,  Wolfgang Meier (meier@ifs.tu-darmstadt.de)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000/01,  Wolfgang Meier (wolfgang@exist-db.org)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    11. September 2002  */
+comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    11. September 2002  */
 end_comment
 
 begin_class
@@ -279,10 +279,12 @@ specifier|static
 name|int
 name|byteToInt
 parameter_list|(
+specifier|final
 name|byte
 name|data
 index|[]
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -352,10 +354,12 @@ specifier|static
 name|long
 name|byteToLong
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -523,10 +527,12 @@ specifier|static
 name|short
 name|byteToShort
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -1221,13 +1227,16 @@ name|byte
 index|[]
 name|intToByte
 parameter_list|(
+specifier|final
 name|int
 name|v
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -1322,6 +1331,7 @@ name|byte
 index|[]
 name|intToByte
 parameter_list|(
+specifier|final
 name|int
 name|v
 parameter_list|)
@@ -1472,13 +1482,16 @@ name|byte
 index|[]
 name|longToByte
 parameter_list|(
+specifier|final
 name|long
 name|v
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -1653,6 +1666,7 @@ name|byte
 index|[]
 name|longToByte
 parameter_list|(
+specifier|final
 name|long
 name|v
 parameter_list|)
@@ -1823,13 +1837,16 @@ name|byte
 index|[]
 name|shortToByte
 parameter_list|(
+specifier|final
 name|short
 name|v
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|)
@@ -1884,6 +1901,7 @@ name|byte
 index|[]
 name|shortToByte
 parameter_list|(
+specifier|final
 name|short
 name|v
 parameter_list|)

@@ -12,7 +12,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
 end_comment
 
 begin_import
@@ -388,7 +388,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  DOMFile represents the central storage file for DOM nodes.  *   * Nodes are stored in sequential order to allow fast access when  * serializing a document or fragment. Pages have previous-page/next-page  * links. Each node has a virtual address,  * which consists of a page-number/tid pair. The tid is a virtual offset  * into the page. A node may be moved to a new page on node insertions.  * However, the tid will always remain the same.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    25. Mai 2002  */
+comment|/**  *  DOMFile represents the central storage file for DOM nodes.  *   * Nodes are stored in sequential order to allow fast access when  * serializing a document or fragment. Pages have previous-page/next-page  * links. Each node has a virtual address,  * which consists of a page-number/tid pair. The tid is a virtual offset  * into the page. A node may be moved to a new page on node insertions.  * However, the tid will always remain the same.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    25. Mai 2002  */
 end_comment
 
 begin_class
@@ -5383,6 +5383,9 @@ decl_stmt|;
 name|short
 name|vlen
 decl_stmt|;
+name|int
+name|dlen
+decl_stmt|;
 while|while
 condition|(
 name|pageNr
@@ -5409,10 +5412,8 @@ name|pos
 operator|=
 literal|0
 expr_stmt|;
-specifier|final
-name|int
 name|dlen
-init|=
+operator|=
 name|page
 operator|.
 name|getPageHeader
@@ -5420,7 +5421,7 @@ argument_list|()
 operator|.
 name|getDataLength
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|//System.out.println(pos + "< " + dlen);
 while|while
 condition|(
@@ -5429,10 +5430,9 @@ operator|<
 name|dlen
 condition|)
 block|{
-specifier|final
-name|short
-name|current
-init|=
+comment|//System.out.println(current + " = " + tid);
+if|if
+condition|(
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -5443,11 +5443,6 @@ name|data
 argument_list|,
 name|pos
 argument_list|)
-decl_stmt|;
-comment|//System.out.println(current + " = " + tid);
-if|if
-condition|(
-name|current
 operator|==
 name|tid
 condition|)
@@ -5477,54 +5472,18 @@ operator|+
 literal|2
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+name|pos
+operator|+=
 name|vlen
 operator|==
 name|OVERFLOW
-condition|)
-name|pos
-operator|+=
+condition|?
 literal|12
-expr_stmt|;
-else|else
-name|pos
-operator|=
-name|pos
-operator|+
+else|:
 name|vlen
 operator|+
 literal|4
 expr_stmt|;
-if|if
-condition|(
-name|vlen
-operator|<
-literal|0
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"illegal data length: "
-operator|+
-name|vlen
-operator|+
-literal|"; "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
 block|}
 name|pageNr
 operator|=
@@ -5557,14 +5516,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|//			LOG.debug(
-comment|//				owner.toString()
-comment|//					+ ": tid "
-comment|//					+ tid
-comment|//					+ " not found on "
-comment|//					+ page.page.getPageInfo()
-comment|//					+ ". Loading "
-comment|//					+ pageNr);
+comment|/*LOG.debug( 							owner.toString() 								+ ": tid " 								+ tid 								+ " not found on " 								+ page.page.getPageInfo() 								+ ". Loading " 								+ pageNr);*/
 block|}
 name|LOG
 operator|.
@@ -7090,7 +7042,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** 	 *  Cache for data pages. Pages are put on top of a stack. If the stack size 	 *  exceeds blockBuffers, the last page in the stack will be removed and 	 *  saved to disk. When a page is removed, it's dirty flag is check to 	 *  determine if the page needs to be saved. If the page is dirty, the page 	 *  is saved. 	 * 	 *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 *@created    25. Mai 2002 	 */
+comment|/** 	 *  Cache for data pages. Pages are put on top of a stack. If the stack size 	 *  exceeds blockBuffers, the last page in the stack will be removed and 	 *  saved to disk. When a page is removed, it's dirty flag is check to 	 *  determine if the page needs to be saved. If the page is dirty, the page 	 *  is saved. 	 * 	 *@author     Wolfgang Meier<wolfgang@exist-db.org> 	 *@created    25. Mai 2002 	 */
 specifier|protected
 class|class
 name|ClockPageBuffer

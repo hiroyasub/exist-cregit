@@ -281,7 +281,9 @@ expr_stmt|;
 name|BrokerPool
 operator|.
 name|stopAll
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 try|try
 block|{

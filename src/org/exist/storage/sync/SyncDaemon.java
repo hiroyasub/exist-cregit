@@ -29,6 +29,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|util
@@ -46,6 +58,21 @@ specifier|public
 class|class
 name|SyncDaemon
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|SyncDaemon
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|/** tasks are maintained in a standard priority queue **/
 specifier|protected
 specifier|final
@@ -230,7 +257,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**     * Execute the given command at the given time.    * @param date -- the absolute time to run the command, expressed    * as a java.util.Date.    * @param command -- the command to run at the given time.    * @return taskID -- an opaque reference that can be used to cancel execution request    **/
+comment|/**  	 * Execute the given command at the given time. 	 * @param date -- the absolute time to run the command, expressed 	 * as a java.util.Date. 	 * @param command -- the command to run at the given time. 	 * @return taskID -- an opaque reference that can be used to cancel execution request 	 **/
 specifier|public
 name|Object
 name|executeAt
@@ -270,7 +297,7 @@ return|return
 name|task
 return|;
 block|}
-comment|/**     * Excecute the given command after waiting for the given delay.    *<p>    *<b>Sample Usage.</b>    * You can use a ClockDaemon to arrange timeout callbacks to break out    * of stuck IO. For example (code sketch):    *<pre>    * class X {   ...    *     *   ClockDaemon timer = ...    *   Thread readerThread;    *   FileInputStream datafile;    *     *   void startReadThread() {    *     datafile = new FileInputStream("data", ...);    *     *     readerThread = new Thread(new Runnable() {    *      public void run() {    *        for(;;) {    *          // try to gracefully exit before blocking    *         if (Thread.currentThread().isInterrupted()) {    *           quietlyWrapUpAndReturn();    *         }    *         else {    *           try {    *             int c = datafile.read();    *             if (c == -1) break;    *             else process(c);    *           }    *           catch (IOException ex) {    *            cleanup();    *            return;    *          }    *       }    *     } };    *    *    readerThread.start();    *    *    // establish callback to cancel after 60 seconds    *    timer.executeAfterDelay(60000, new Runnable() {    *      readerThread.interrupt();    // try to interrupt thread    *      datafile.close(); // force thread to lose its input file     *    });    *   }     * }    *</pre>    * @param millisecondsToDelay -- the number of milliseconds    * from now to run the command.    * @param command -- the command to run after the delay.    * @return taskID -- an opaque reference that can be used to cancel execution request    **/
+comment|/**  	 * Excecute the given command after waiting for the given delay. 	 *<p> 	 *<b>Sample Usage.</b> 	 * You can use a ClockDaemon to arrange timeout callbacks to break out 	 * of stuck IO. For example (code sketch): 	 *<pre> 	 * class X {   ... 	 *  	 *   ClockDaemon timer = ... 	 *   Thread readerThread; 	 *   FileInputStream datafile; 	 *  	 *   void startReadThread() { 	 *     datafile = new FileInputStream("data", ...); 	 *  	 *     readerThread = new Thread(new Runnable() { 	 *      public void run() { 	 *        for(;;) { 	 *          // try to gracefully exit before blocking 	 *         if (Thread.currentThread().isInterrupted()) { 	 *           quietlyWrapUpAndReturn(); 	 *         } 	 *         else { 	 *           try { 	 *             int c = datafile.read(); 	 *             if (c == -1) break; 	 *             else process(c); 	 *           } 	 *           catch (IOException ex) { 	 *            cleanup(); 	 *            return; 	 *          } 	 *       } 	 *     } }; 	 * 	 *    readerThread.start(); 	 * 	 *    // establish callback to cancel after 60 seconds 	 *    timer.executeAfterDelay(60000, new Runnable() { 	 *      readerThread.interrupt();    // try to interrupt thread 	 *      datafile.close(); // force thread to lose its input file  	 *    }); 	 *   }  	 * } 	 *</pre> 	 * @param millisecondsToDelay -- the number of milliseconds 	 * from now to run the command. 	 * @param command -- the command to run after the delay. 	 * @return taskID -- an opaque reference that can be used to cancel execution request 	 **/
 specifier|public
 name|Object
 name|executeAfterDelay
@@ -317,7 +344,7 @@ return|return
 name|task
 return|;
 block|}
-comment|/**     * Execute the given command every<code>period</code> milliseconds.    * If<code>startNow</code> is true, execution begins immediately,    * otherwise, it begins after the first<code>period</code> delay.    *<p>    *<b>Sample Usage</b>. Here is one way    * to update Swing components acting as progress indicators for    * long-running actions.    *<pre>    * class X {    *   JLabel statusLabel = ...;    *    *   int percentComplete = 0;    *   synchronized int  getPercentComplete() { return percentComplete; }    *   synchronized void setPercentComplete(int p) { percentComplete = p; }    *    *   ClockDaemon cd = ...;    *     *   void startWorking() {    *     Runnable showPct = new Runnable() {    *       public void run() {    *          SwingUtilities.invokeLater(new Runnable() {    *            public void run() {    *              statusLabel.setText(getPercentComplete() + "%");    *            }     *          }     *       }     *     };    *    *     final Object updater = cd.executePeriodically(500, showPct, true);    *    *     Runnable action = new Runnable() {    *       public void run() {    *         for (int i = 0; i< 100; ++i) {    *           work();    *           setPercentComplete(i);    *         }    *         cd.cancel(updater);    *       }    *     };    *    *     new Thread(action).start();    *   }    * }      *</pre>    * @param period -- the period, in milliseconds. Periods are    *  measured from start-of-task to the next start-of-task. It is    * generally a bad idea to use a period that is shorter than     * the expected task duration.    * @param command -- the command to run at each cycle    * @param startNow -- true if the cycle should start with execution    * of the task now. Otherwise, the cycle starts with a delay of    *<code>period</code> milliseconds.    * @exception IllegalArgumentException if period less than or equal to zero.    * @return taskID -- an opaque reference that can be used to cancel execution request    **/
+comment|/**  	 * Execute the given command every<code>period</code> milliseconds. 	 * If<code>startNow</code> is true, execution begins immediately, 	 * otherwise, it begins after the first<code>period</code> delay. 	 *<p> 	 *<b>Sample Usage</b>. Here is one way 	 * to update Swing components acting as progress indicators for 	 * long-running actions. 	 *<pre> 	 * class X { 	 *   JLabel statusLabel = ...; 	 * 	 *   int percentComplete = 0; 	 *   synchronized int  getPercentComplete() { return percentComplete; } 	 *   synchronized void setPercentComplete(int p) { percentComplete = p; } 	 * 	 *   ClockDaemon cd = ...; 	 *  	 *   void startWorking() { 	 *     Runnable showPct = new Runnable() { 	 *       public void run() { 	 *          SwingUtilities.invokeLater(new Runnable() { 	 *            public void run() { 	 *              statusLabel.setText(getPercentComplete() + "%"); 	 *            }  	 *          }  	 *       }  	 *     }; 	 * 	 *     final Object updater = cd.executePeriodically(500, showPct, true); 	 * 	 *     Runnable action = new Runnable() { 	 *       public void run() { 	 *         for (int i = 0; i< 100; ++i) { 	 *           work(); 	 *           setPercentComplete(i); 	 *         } 	 *         cd.cancel(updater); 	 *       } 	 *     }; 	 * 	 *     new Thread(action).start(); 	 *   } 	 * }   	 *</pre> 	 * @param period -- the period, in milliseconds. Periods are 	 *  measured from start-of-task to the next start-of-task. It is 	 * generally a bad idea to use a period that is shorter than  	 * the expected task duration. 	 * @param command -- the command to run at each cycle 	 * @param startNow -- true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 * @exception IllegalArgumentException if period less than or equal to zero. 	 * @return taskID -- an opaque reference that can be used to cancel execution request 	 **/
 specifier|public
 name|Object
 name|executePeriodically
@@ -341,6 +368,13 @@ condition|)
 return|return
 literal|null
 return|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"adding command for periodic execution"
+argument_list|)
+expr_stmt|;
 name|long
 name|firstTime
 init|=
@@ -385,7 +419,7 @@ return|return
 name|task
 return|;
 block|}
-comment|/**     * Cancel a scheduled task that has not yet been run.     * The task will be cancelled    * upon the<em>next</em> opportunity to run it. This has no effect if    * this is a one-shot task that has already executed.    * Also, if an execution is in progress, it will complete normally.    * (It may however be interrupted via getThread().interrupt()).    * But if it is a periodic task, future iterations are cancelled.     * @param taskID -- a task reference returned by one of    * the execute commands    * @exception ClassCastException if the taskID argument is not     * of the type returned by an execute command.    **/
+comment|/**  	 * Cancel a scheduled task that has not yet been run.  	 * The task will be cancelled 	 * upon the<em>next</em> opportunity to run it. This has no effect if 	 * this is a one-shot task that has already executed. 	 * Also, if an execution is in progress, it will complete normally. 	 * (It may however be interrupted via getThread().interrupt()). 	 * But if it is a periodic task, future iterations are cancelled.  	 * @param taskID -- a task reference returned by one of 	 * the execute commands 	 * @exception ClassCastException if the taskID argument is not  	 * of the type returned by an execute command. 	 **/
 specifier|public
 specifier|static
 name|void
@@ -411,7 +445,7 @@ specifier|protected
 name|Thread
 name|thread_
 decl_stmt|;
-comment|/**    * Return the thread being used to process commands, or    * null if there is no such thread. You can use this    * to invoke any special methods on the thread, for    * example, to interrupt it.    **/
+comment|/** 	 * Return the thread being used to process commands, or 	 * null if there is no such thread. You can use this 	 * to invoke any special methods on the thread, for 	 * example, to interrupt it. 	 **/
 specifier|public
 specifier|synchronized
 name|Thread
@@ -434,7 +468,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * Start (or restart) a thread to process commands, or wake    * up an existing thread if one is already running. This    * method can be invoked if the background thread crashed    * due to an unrecoverable exception in an executed command.    **/
+comment|/** 	 * Start (or restart) a thread to process commands, or wake 	 * up an existing thread if one is already running. This 	 * method can be invoked if the background thread crashed 	 * due to an unrecoverable exception in an executed command. 	 **/
 specifier|public
 specifier|synchronized
 name|void
@@ -467,7 +501,7 @@ name|notify
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Cancel all tasks and interrupt the background thread executing    * the current task, if any.    * A new background thread will be started if new execution    * requests are encountered. If the currently executing task    * does not repsond to interrupts, the current thread may persist, even    * if a new thread is started via restart().    **/
+comment|/** 	 * Cancel all tasks and interrupt the background thread executing 	 * the current task, if any. 	 * A new background thread will be started if new execution 	 * requests are encountered. If the currently executing task 	 * does not repsond to interrupts, the current thread may persist, even 	 * if a new thread is started via restart(). 	 **/
 specifier|public
 specifier|synchronized
 name|void
@@ -485,11 +519,20 @@ name|thread_
 operator|!=
 literal|null
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"shutting down sync thread"
+argument_list|)
+expr_stmt|;
 name|thread_
 operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+block|}
 name|thread_
 operator|=
 literal|null
@@ -647,25 +690,27 @@ literal|null
 return|;
 comment|// on interrupt
 block|}
-comment|/**    * The runloop is isolated in its own Runnable class    * just so that the main     * class need not implement Runnable,  which would    * allow others to directly invoke run, which is not supported.    **/
+comment|/** 	 * The runloop is isolated in its own Runnable class 	 * just so that the main  	 * class need not implement Runnable,  which would 	 * allow others to directly invoke run, which is not supported. 	 **/
 specifier|protected
 class|class
 name|RunLoop
 implements|implements
 name|Runnable
 block|{
+name|boolean
+name|cont
+init|=
+literal|true
+decl_stmt|;
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
-try|try
-block|{
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+name|cont
+condition|)
 block|{
 name|TaskNode
 name|task
@@ -678,6 +723,8 @@ condition|(
 name|task
 operator|!=
 literal|null
+operator|&&
+name|cont
 condition|)
 name|task
 operator|.
@@ -687,15 +734,27 @@ name|run
 argument_list|()
 expr_stmt|;
 else|else
-break|break;
-block|}
-block|}
-finally|finally
 block|{
-name|clearThread
-argument_list|()
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"exiting"
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
+block|}
+block|}
+specifier|public
+name|void
+name|stop
+parameter_list|()
+block|{
+name|cont
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 specifier|protected
@@ -703,7 +762,7 @@ specifier|final
 name|RunLoop
 name|runLoop_
 decl_stmt|;
-comment|/**     * Create a new ClockDaemon     **/
+comment|/**  	 * Create a new ClockDaemon  	 **/
 specifier|public
 name|SyncDaemon
 parameter_list|()

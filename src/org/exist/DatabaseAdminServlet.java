@@ -340,7 +340,9 @@ block|{
 name|BrokerPool
 operator|.
 name|stopAll
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 name|output
 operator|.
@@ -759,7 +761,26 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/*public void destroy() {     	this.log("starting database shutdown ..."); 	    BrokerPool.stopAll();     }*/
+specifier|public
+name|void
+name|destroy
+parameter_list|()
+block|{
+name|this
+operator|.
+name|log
+argument_list|(
+literal|"starting database shutdown ..."
+argument_list|)
+expr_stmt|;
+name|BrokerPool
+operator|.
+name|stopAll
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 specifier|private
 name|void
 name|startup

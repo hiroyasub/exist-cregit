@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id:  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id:  */
 end_comment
 
 begin_package
@@ -100,14 +100,12 @@ name|matches
 init|=
 literal|null
 decl_stmt|;
-comment|//public long backupId = -1;
-comment|//public boolean valid = true;
 specifier|public
 name|NodeProxy
 parameter_list|()
 block|{
 block|}
-comment|/**      *  Constructor for the NodeProxy object      *      *@param  doc      Description of the Parameter      *@param  gid      Description of the Parameter      *@param  address  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeProxy object 	 * 	 *@param  doc      Description of the Parameter 	 *@param  gid      Description of the Parameter 	 *@param  address  Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -140,7 +138,7 @@ operator|=
 name|address
 expr_stmt|;
 block|}
-comment|/**      *  Construct a node proxy with unique id gid and owned by document doc.      *      *@param  doc  Description of the Parameter      *@param  gid  Description of the Parameter      */
+comment|/** 	 *  Construct a node proxy with unique id gid and owned by document doc. 	 * 	 *@param  doc  Description of the Parameter 	 *@param  gid  Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -164,7 +162,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|/**      *  as above, but a hint is given about the node type of this proxy-object.      *      *@param  doc       Description of the Parameter      *@param  gid       Description of the Parameter      *@param  nodeType  Description of the Parameter      */
+comment|/** 	 *  as above, but a hint is given about the node type of this proxy-object. 	 * 	 *@param  doc       Description of the Parameter 	 *@param  gid       Description of the Parameter 	 *@param  nodeType  Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -197,7 +195,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeProxy object      *      *@param  doc       Description of the Parameter      *@param  gid       Description of the Parameter      *@param  nodeType  Description of the Parameter      *@param  address   Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeProxy object 	 * 	 *@param  doc       Description of the Parameter 	 *@param  gid       Description of the Parameter 	 *@param  nodeType  Description of the Parameter 	 *@param  address   Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -239,7 +237,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/**      *  Constructor for the NodeProxy object      *      *@param  p  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeProxy object 	 * 	 *@param  p  Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -287,9 +285,8 @@ name|p
 operator|.
 name|matches
 expr_stmt|;
-comment|//this.backupId = p.backupId;
 block|}
-comment|/**      *  Constructor for the NodeProxy object      *      *@param  node  Description of the Parameter      */
+comment|/** 	 *  Constructor for the NodeProxy object 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -338,6 +335,124 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|contextNodes
+operator|=
+literal|null
+expr_stmt|;
+name|matches
+operator|=
+literal|null
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|copy
+parameter_list|(
+name|NodeProxy
+name|other
+parameter_list|)
+block|{
+name|this
+operator|.
+name|gid
+operator|=
+name|other
+operator|.
+name|gid
+expr_stmt|;
+name|this
+operator|.
+name|doc
+operator|=
+name|other
+operator|.
+name|doc
+expr_stmt|;
+name|this
+operator|.
+name|internalAddress
+operator|=
+name|other
+operator|.
+name|internalAddress
+expr_stmt|;
+name|this
+operator|.
+name|nodeType
+operator|=
+name|other
+operator|.
+name|nodeType
+expr_stmt|;
+name|this
+operator|.
+name|matches
+operator|=
+name|other
+operator|.
+name|matches
+expr_stmt|;
+name|this
+operator|.
+name|contextNodes
+operator|=
+name|other
+operator|.
+name|contextNodes
+expr_stmt|;
+block|}
+specifier|public
+name|int
+name|compareTo
+parameter_list|(
+name|NodeProxy
+name|other
+parameter_list|)
+block|{
+specifier|final
+name|int
+name|diff
+init|=
+name|doc
+operator|.
+name|docId
+operator|-
+name|other
+operator|.
+name|doc
+operator|.
+name|docId
+decl_stmt|;
+return|return
+name|diff
+operator|==
+literal|0
+condition|?
+operator|(
+name|gid
+operator|<
+name|other
+operator|.
+name|gid
+condition|?
+operator|-
+literal|1
+else|:
+operator|(
+name|gid
+operator|>
+name|other
+operator|.
+name|gid
+condition|?
+literal|1
+else|:
+literal|0
+operator|)
+operator|)
+else|:
+name|diff
+return|;
 block|}
 specifier|public
 name|int
@@ -477,7 +592,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Gets the brokerType attribute of the NodeProxy object      *      *@return    The brokerType value      */
+comment|/** 	 *  Gets the brokerType attribute of the NodeProxy object 	 * 	 *@return    The brokerType value 	 */
 specifier|public
 name|int
 name|getBrokerType
@@ -492,7 +607,7 @@ name|getDatabaseType
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the doc attribute of the NodeProxy object      *      *@return    The doc value      */
+comment|/** 	 *  Gets the doc attribute of the NodeProxy object 	 * 	 *@return    The doc value 	 */
 specifier|public
 name|DocumentImpl
 name|getDoc
@@ -502,7 +617,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/**      *  Gets the gID attribute of the NodeProxy object      *      *@return    The gID value      */
+comment|/** 	 *  Gets the gID attribute of the NodeProxy object 	 * 	 *@return    The gID value 	 */
 specifier|public
 name|long
 name|getGID
@@ -512,7 +627,7 @@ return|return
 name|gid
 return|;
 block|}
-comment|/**      *  Gets the node attribute of the NodeProxy object      *      *@return    The node value      */
+comment|/** 	 *  Gets the node attribute of the NodeProxy object 	 * 	 *@return    The node value 	 */
 specifier|public
 name|Node
 name|getNode
@@ -527,7 +642,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the nodeType attribute of the NodeProxy object      *      *@return    The nodeType value      */
+comment|/** 	 *  Gets the nodeType attribute of the NodeProxy object 	 * 	 *@return    The nodeType value 	 */
 specifier|public
 name|short
 name|getNodeType
@@ -537,7 +652,7 @@ return|return
 name|nodeType
 return|;
 block|}
-comment|/**      *  Gets the nodeValue attribute of the NodeProxy object      *      *@return    The nodeValue value      */
+comment|/** 	 *  Gets the nodeValue attribute of the NodeProxy object 	 * 	 *@return    The nodeValue value 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -555,7 +670,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**      *  Sets the node-identifier of this node.      *      *@param  gid  The new gID value      */
+comment|/** 	 *  Sets the node-identifier of this node. 	 * 	 *@param  gid  The new gID value 	 */
 specifier|public
 name|void
 name|setGID
@@ -741,7 +856,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**      * Returns the storage address of this node in dom.dbx.      * @return long      */
+comment|/** 	 * Returns the storage address of this node in dom.dbx. 	 * @return long 	 */
 specifier|public
 name|long
 name|getInternalAddress
@@ -751,7 +866,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      * Sets the doc this node belongs to.      * @param doc The doc to set      */
+comment|/** 	 * Sets the doc this node belongs to. 	 * @param doc The doc to set 	 */
 specifier|public
 name|void
 name|setDoc
@@ -767,7 +882,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/**      * Sets the storage address of this node in dom.dbx.      *       * @param internalAddress The internalAddress to set      */
+comment|/** 	 * Sets the storage address of this node in dom.dbx. 	 *  	 * @param internalAddress The internalAddress to set 	 */
 specifier|public
 name|void
 name|setInternalAddress
@@ -824,7 +939,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**      * Sets the nodeType.      * @param nodeType The nodeType to set      */
+comment|/** 	 * Sets the nodeType. 	 * @param nodeType The nodeType to set 	 */
 specifier|public
 name|void
 name|setNodeType
