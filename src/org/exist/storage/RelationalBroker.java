@@ -11131,6 +11131,20 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.DBBroker#objectWith(org.exist.dom.NodeProxy) 	 */
+specifier|public
+name|Node
+name|objectWith
+parameter_list|(
+name|NodeProxy
+name|p
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
