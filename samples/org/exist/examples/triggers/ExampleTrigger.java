@@ -493,6 +493,8 @@ argument_list|,
 name|contentsFile
 argument_list|,
 literal|"<?xml version=\"1.0\"?><contents></contents>"
+argument_list|,
+literal|"text/xml"
 argument_list|)
 expr_stmt|;
 block|}
