@@ -2698,7 +2698,7 @@ block|}
 comment|// write out the updated list
 name|ids
 operator|=
-name|idList
+name|newList
 operator|.
 name|getData
 argument_list|()
