@@ -53,6 +53,18 @@ name|FunctionDef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -308,10 +320,34 @@ decl_stmt|;
 specifier|public
 name|RequestModule
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 name|super
 argument_list|(
 name|functions
+argument_list|)
+expr_stmt|;
+comment|// predefined module global variables:
+name|declareVariable
+argument_list|(
+name|REQUEST_VAR
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|declareVariable
+argument_list|(
+name|RESPONSE_VAR
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|declareVariable
+argument_list|(
+name|SESSION_VAR
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
