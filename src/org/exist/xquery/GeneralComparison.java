@@ -629,15 +629,7 @@ operator|.
 name|getDependencies
 argument_list|()
 decl_stmt|;
-name|int
-name|rightDeps
-init|=
-name|getRight
-argument_list|()
-operator|.
-name|getDependencies
-argument_list|()
-decl_stmt|;
+comment|//		int rightDeps = getRight().getDependencies();
 comment|// left expression returns node set
 if|if
 condition|(
