@@ -1154,6 +1154,10 @@ argument_list|,
 name|NodeSet
 operator|.
 name|DESCENDANT
+argument_list|,
+literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 break|break;

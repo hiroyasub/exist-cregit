@@ -246,7 +246,7 @@ specifier|public
 class|class
 name|SortedNodeSet
 extends|extends
-name|AbstractNodeSetBase
+name|AbstractNodeSet
 block|{
 specifier|private
 name|PathExpr

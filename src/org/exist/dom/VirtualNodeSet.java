@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|VirtualNodeSet
 extends|extends
-name|AbstractNodeSetBase
+name|AbstractNodeSet
 block|{
 specifier|protected
 name|int
@@ -1110,7 +1110,7 @@ name|NodeProxy
 argument_list|(
 name|proxy
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 argument_list|,
 literal|1

@@ -4486,7 +4486,7 @@ name|DocumentImpl
 operator|)
 name|node
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 decl_stmt|;
 specifier|final

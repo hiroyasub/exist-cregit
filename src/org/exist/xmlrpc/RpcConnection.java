@@ -8938,7 +8938,7 @@ name|addElement
 argument_list|(
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -8951,7 +8951,7 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getFileName
@@ -11993,7 +11993,7 @@ name|docName
 operator|=
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -12006,7 +12006,7 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getFileName
@@ -12016,7 +12016,7 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getDoctype
@@ -12059,7 +12059,7 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12590,7 +12590,7 @@ name|docName
 operator|=
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -12603,7 +12603,7 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getFileName
@@ -12613,7 +12613,7 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getDoctype
@@ -12656,7 +12656,7 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;

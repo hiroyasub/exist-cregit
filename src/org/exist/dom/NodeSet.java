@@ -108,6 +108,7 @@ literal|3
 decl_stmt|;
 comment|/** 	 * Constant representing an empty node set. 	 */
 specifier|public
+specifier|final
 specifier|static
 name|NodeSet
 name|EMPTY_SET
@@ -121,18 +122,6 @@ specifier|public
 name|Iterator
 name|iterator
 parameter_list|()
-function_decl|;
-comment|/** 	 * Check if this node set contains a node matching the given 	 * document and node-id. 	 *  	 * @param doc 	 * @param nodeId 	 * @return 	 */
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
 function_decl|;
 comment|/** 	 * Check if this node set contains a node matching the document and 	 * node-id of the given NodeProxy object. 	 *  	 * @param proxy 	 * @return 	 */
 specifier|public
@@ -187,15 +176,6 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove a node. By default, this method throws a 	 * RuntimeException. 	 *  	 * @param node 	 */
-specifier|public
-name|void
-name|remove
-parameter_list|(
-name|NodeProxy
-name|node
-parameter_list|)
-function_decl|;
 comment|/** 	 * Return the number of nodes contained in this node set. 	 */
 specifier|public
 name|int
@@ -232,21 +212,6 @@ name|long
 name|nodeId
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get all children of the given parent node contained in this node set. 	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all children found in this node set. If mode is {@link #ANCESTOR}, 	 * the parent itself will be returned if it has child nodes in this set. 	 *  	 * @param parent 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|hasChildrenInSet
-parameter_list|(
-name|NodeProxy
-name|parent
-parameter_list|,
-name|int
-name|mode
-parameter_list|,
-name|boolean
-name|rememberContext
-parameter_list|)
-function_decl|;
 comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
 specifier|public
 name|NodeSet
@@ -272,33 +237,6 @@ name|mode
 parameter_list|,
 name|boolean
 name|rememberContext
-parameter_list|)
-function_decl|;
-comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|selectAncestorDescendant
-parameter_list|(
-name|NodeSet
-name|al
-parameter_list|,
-name|int
-name|mode
-parameter_list|)
-function_decl|;
-comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|selectAncestorDescendant
-parameter_list|(
-name|NodeSet
-name|al
-parameter_list|,
-name|int
-name|mode
-parameter_list|,
-name|boolean
-name|includeSelf
 parameter_list|)
 function_decl|;
 comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 * @return 	 */
@@ -356,33 +294,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Get all the sibling nodes of the specified node in the current set. 	 *  	 * @param doc the node's owner document 	 * @param gid the node's internal id 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|getSiblings
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|)
-function_decl|;
-comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 */
-specifier|public
-name|NodeProxy
-name|parentWithChild
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|,
-name|boolean
-name|directParent
-parameter_list|)
-function_decl|;
 comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
@@ -429,27 +340,6 @@ name|parentWithChild
 parameter_list|(
 name|NodeProxy
 name|proxy
-parameter_list|,
-name|boolean
-name|directParent
-parameter_list|,
-name|boolean
-name|includeSelf
-parameter_list|,
-name|int
-name|level
-parameter_list|)
-function_decl|;
-comment|/** 	 * Return all nodes contained in this node set that are ancestors of the node 	 * identified by doc and gid. 	 *   	 */
-specifier|public
-name|NodeSet
-name|ancestorsForChild
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
 parameter_list|,
 name|boolean
 name|directParent
@@ -534,18 +424,6 @@ name|except
 parameter_list|(
 name|NodeSet
 name|other
-parameter_list|)
-function_decl|;
-comment|/** 	 * Return a new node set containing all the context nodes associated 	 * with the nodes in this set. 	 *  	 * @param contextNodes 	 * @param rememberContext 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|getContextNodes
-parameter_list|(
-name|NodeSet
-name|contextNodes
-parameter_list|,
-name|boolean
-name|rememberContext
 parameter_list|)
 function_decl|;
 specifier|public

@@ -116,7 +116,7 @@ specifier|public
 class|class
 name|ExtArrayNodeSet
 extends|extends
-name|AbstractNodeSetBase
+name|AbstractNodeSet
 block|{
 specifier|private
 name|TreeMap

@@ -307,12 +307,13 @@ operator|)
 name|seq
 argument_list|)
 expr_stmt|;
+return|return
 name|result
 operator|.
-name|remove
+name|except
 argument_list|(
 operator|(
-name|NodeProxy
+name|NodeSet
 operator|)
 name|seq
 operator|.
@@ -321,9 +322,6 @@ argument_list|(
 name|pos
 argument_list|)
 argument_list|)
-expr_stmt|;
-return|return
-name|result
 return|;
 block|}
 else|else

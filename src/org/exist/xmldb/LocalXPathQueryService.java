@@ -722,7 +722,7 @@ index|[]
 block|{
 name|node
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getName
@@ -865,7 +865,7 @@ index|[]
 block|{
 name|node
 operator|.
-name|getDoc
+name|getDocument
 argument_list|()
 operator|.
 name|getName
