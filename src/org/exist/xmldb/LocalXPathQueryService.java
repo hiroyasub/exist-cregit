@@ -541,6 +541,15 @@ name|docs
 init|=
 literal|null
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"query: "
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -929,6 +938,16 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|parser
+operator|.
+name|getErrorMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
