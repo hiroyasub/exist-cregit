@@ -347,9 +347,6 @@ specifier|public
 name|Sequence
 name|evalQuery
 parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
 name|String
 name|searchArg
 parameter_list|,
