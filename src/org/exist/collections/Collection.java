@@ -1752,12 +1752,30 @@ name|this
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+operator|-
+literal|1
+case|:
+return|return;
+comment|// EOF found
 default|default :
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"unknown resource type: "
+operator|+
+name|resourceType
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"unable to determine document type"
+literal|"unable to determine resource type while reading collection "
+operator|+
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
