@@ -1280,10 +1280,13 @@ block|}
 if|else if
 condition|(
 name|page
-operator|>
+operator|==
 operator|-
 literal|1
 condition|)
+return|return
+literal|false
+return|;
 name|p
 operator|=
 name|db
