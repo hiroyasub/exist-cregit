@@ -601,6 +601,11 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|collectionLocked
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 name|broker
@@ -701,6 +706,11 @@ name|getCollection
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+name|collectionLocked
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -778,6 +788,8 @@ condition|(
 name|collection
 operator|!=
 literal|null
+operator|&&
+name|collectionLocked
 condition|)
 name|collection
 operator|.
