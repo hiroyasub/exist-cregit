@@ -248,13 +248,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Various functions to get information about users.  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|XMLDBExistsUser
+name|XMLDBUserAccess
 extends|extends
 name|BasicFunction
 block|{
@@ -427,7 +427,7 @@ argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|XMLDBExistsUser
+name|XMLDBUserAccess
 parameter_list|(
 name|XQueryContext
 name|context

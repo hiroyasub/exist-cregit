@@ -2730,6 +2730,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
+comment|/** 	 * Set the path to a base directory where modules should 	 * be loaded from. Relative module paths will be resolved against 	 * this directory. The property is usually set by the XQueryServlet or 	 * XQueryGenerator, but can also be specified manually.  	 *  	 * @param path 	 */
 specifier|public
 name|void
 name|setModuleLoadPath
@@ -2744,6 +2745,15 @@ name|moduleLoadPath
 operator|=
 name|path
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getModuleLoadPath
+parameter_list|()
+block|{
+return|return
+name|moduleLoadPath
+return|;
 block|}
 comment|/** 	 * Get the base URI of the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() function. 	 *  	 * @return 	 */
 specifier|public
