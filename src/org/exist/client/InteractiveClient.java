@@ -2598,20 +2598,6 @@ name|j
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Loading "
-operator|+
-name|childResources
-index|[
-name|j
-index|]
-argument_list|)
-expr_stmt|;
 name|res
 operator|=
 name|current
