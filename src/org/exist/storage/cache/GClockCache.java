@@ -73,7 +73,7 @@ specifier|protected
 name|long
 name|syncPeriod
 init|=
-literal|30000
+literal|20000
 decl_stmt|;
 specifier|protected
 name|long
@@ -117,7 +117,6 @@ argument_list|(
 name|size
 argument_list|)
 expr_stmt|;
-comment|//this.map = new Long2ObjectOpenHashMap(size);
 block|}
 specifier|public
 name|void

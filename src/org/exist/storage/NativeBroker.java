@@ -1665,7 +1665,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|DBException
 name|e
 parameter_list|)
 block|{
@@ -1673,14 +1673,51 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"failed to initialize database: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"failed to initialize database: "
+operator|+
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 specifier|protected
@@ -9974,40 +10011,11 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|equals
-argument_list|(
-name|ROOT_COLLECTION
-argument_list|)
-condition|)
-block|{
-name|Collection
-name|parent
-init|=
-name|collection
-operator|.
-name|getParent
-argument_list|(
-name|this
-argument_list|)
-decl_stmt|;
-name|parent
-operator|.
-name|update
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-name|saveCollection
-argument_list|(
-name|parent
-argument_list|)
-expr_stmt|;
-block|}
+comment|//			if (!name.equals(ROOT_COLLECTION)) {
+comment|//				Collection parent = collection.getParent(this);
+comment|//				parent.update(collection);
+comment|//				saveCollection(parent);
+comment|//			}
 name|ostream
 operator|.
 name|close
@@ -10241,40 +10249,11 @@ argument_list|(
 name|addr
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|equals
-argument_list|(
-name|ROOT_COLLECTION
-argument_list|)
-condition|)
-block|{
-name|Collection
-name|parent
-init|=
-name|collection
-operator|.
-name|getParent
-argument_list|(
-name|this
-argument_list|)
-decl_stmt|;
-name|parent
-operator|.
-name|update
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-name|saveCollection
-argument_list|(
-name|parent
-argument_list|)
-expr_stmt|;
-block|}
+comment|//				if (!name.equals(ROOT_COLLECTION)) {
+comment|//					Collection parent = collection.getParent(this);
+comment|//					parent.update(collection);
+comment|//					saveCollection(parent);
+comment|//				}
 name|collectionsDb
 operator|.
 name|getCollectionCache

@@ -404,6 +404,14 @@ name|BTree
 implements|implements
 name|Lockable
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|FILE_FORMAT_VERSION_ID
+init|=
+literal|1
+decl_stmt|;
 comment|// page types
 specifier|public
 specifier|final
@@ -627,6 +635,16 @@ parameter_list|()
 block|{
 return|return
 name|dataCache
+return|;
+block|}
+comment|/** 	 * @return 	 */
+specifier|public
+name|short
+name|getFileVersion
+parameter_list|()
+block|{
+return|return
+name|FILE_FORMAT_VERSION_ID
 return|;
 block|}
 comment|/** 	 *  Append a value to the current page  	 * 	 *@param  value  the value to append 	 *@return        the virtual storage address of the value 	 */
@@ -3967,7 +3985,9 @@ condition|(
 name|super
 operator|.
 name|open
-argument_list|()
+argument_list|(
+name|FILE_FORMAT_VERSION_ID
+argument_list|)
 condition|)
 return|return
 literal|true
@@ -5561,10 +5581,6 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
-name|pos
-operator|=
-literal|0
-expr_stmt|;
 name|dlen
 operator|=
 name|page
@@ -5575,13 +5591,17 @@ operator|.
 name|getDataLength
 argument_list|()
 expr_stmt|;
-comment|//System.out.println(pos + "< " + dlen);
-while|while
-condition|(
+for|for
+control|(
+name|pos
+operator|=
+literal|0
+init|;
 name|pos
 operator|<
 name|dlen
-condition|)
+condition|;
+control|)
 block|{
 comment|//System.out.println(current + " = " + tid);
 if|if
@@ -5669,13 +5689,15 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*LOG.debug( 				owner.toString() 					+ ": tid " 					+ tid 					+ " not found on " 					+ page.page.getPageInfo() 					+ ". Loading " 					+ pageNr);*/
+comment|//			LOG.debug(
+comment|//				owner.toString()
+comment|//					+ ": tid "
+comment|//					+ tid
+comment|//					+ " not found on "
+comment|//					+ page.page.getPageInfo()
+comment|//					+ ". Loading "
+comment|//					+ pageNr);
 block|}
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
 name|debug

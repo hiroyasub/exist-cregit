@@ -342,7 +342,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Data store for variable size values.  *   * This class maps keys to values of variable size. Keys are stored  * in the b+-tree. B+-tree values are pointers to the logical storage address  * of the value in the data section. The pointer consists of the page number  * and a logical tuple identifier.   *  * If a value is larger than the internal page size (4K), it is split into  * overflow pages. Appending data to a overflow page is very fast.  * Only the first and the last data page are loaded.  *   * Data pages are buffered.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    25. Mai 2002  */
+comment|/**  *  Data store for variable size values.  *   * This class maps keys to values of variable size. Keys are stored  * in the b+-tree. B+-tree values are pointers to the logical storage address  * of the value in the data section. The pointer consists of the page number  * and a logical tuple identifier.   *  * If a value is larger than the internal page size (4K), it is split into  * overflow pages. Appending data to a overflow page is very fast.  * Only the first and the last data page are loaded.  *   * Data pages are buffered.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -352,6 +352,14 @@ name|BFile
 extends|extends
 name|BTree
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|FILE_FORMAT_VERSION_ID
+init|=
+literal|2
+decl_stmt|;
 comment|// minimum free space a page should have to be
 comment|// considered for reusing
 specifier|public
@@ -625,6 +633,16 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** 	 * @return 	 */
+specifier|public
+name|short
+name|getFileVersion
+parameter_list|()
+block|{
+return|return
+name|FILE_FORMAT_VERSION_ID
+return|;
 block|}
 comment|/** 	 * Returns the Lock object responsible for this BFile. 	 *  	 * @return Lock 	 */
 specifier|public
@@ -2061,6 +2079,48 @@ argument_list|,
 name|tid
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|offset
+operator|<
+literal|0
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"no data found at tid "
+operator|+
+name|tid
+operator|+
+literal|"; page "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"no data found at tid "
+operator|+
+name|tid
+operator|+
+literal|"; page "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|byte
 index|[]
@@ -2633,7 +2693,9 @@ return|return
 name|super
 operator|.
 name|open
-argument_list|()
+argument_list|(
+name|FILE_FORMAT_VERSION_ID
+argument_list|)
 return|;
 block|}
 specifier|public
