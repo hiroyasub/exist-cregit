@@ -845,6 +845,37 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionManagementServiceImpl#copyResource(java.lang.String, java.lang.String, java.lang.String)      */
+specifier|public
+name|void
+name|copyResource
+parameter_list|(
+name|String
+name|resourcePath
+parameter_list|,
+name|String
+name|destinationPath
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|,
+literal|"copyResource is not yet implemented for "
+operator|+
+literal|"remote resources"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
