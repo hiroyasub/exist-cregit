@@ -1144,7 +1144,7 @@ name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract
-name|Document
+name|DocumentImpl
 name|openDocument
 parameter_list|(
 name|String

@@ -199,11 +199,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-name|dumpHeaders
-argument_list|(
-name|request
-argument_list|)
-expr_stmt|;
+comment|//		dumpHeaders(request);
 name|webdav
 operator|.
 name|process

@@ -235,7 +235,9 @@ condition|)
 return|return
 operator|new
 name|Head
-argument_list|()
+argument_list|(
+name|pool
+argument_list|)
 return|;
 if|else if
 condition|(
