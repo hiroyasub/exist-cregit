@@ -1335,6 +1335,8 @@ argument_list|,
 name|group
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|service
 operator|.
 name|chown
@@ -1346,6 +1348,31 @@ argument_list|,
 name|group
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e1
+parameter_list|)
+block|{
+if|if
+condition|(
+name|dialog
+operator|!=
+literal|null
+condition|)
+name|dialog
+operator|.
+name|displayMessage
+argument_list|(
+literal|"failed to change owner on document "
+operator|+
+name|name
+operator|+
+literal|"; skipping ..."
+argument_list|)
+expr_stmt|;
+block|}
 name|service
 operator|.
 name|chmod
