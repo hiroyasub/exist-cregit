@@ -465,7 +465,7 @@ name|EXistOutputKeys
 operator|.
 name|EXPAND_XINCLUDES
 argument_list|,
-literal|"no"
+literal|"yes"
 argument_list|)
 expr_stmt|;
 name|defaultProperties

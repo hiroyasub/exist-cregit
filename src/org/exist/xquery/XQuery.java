@@ -407,7 +407,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"compilation took "
+literal|"Query:\n"
+operator|+
+name|expr
+operator|.
+name|pprint
+argument_list|()
+operator|+
+literal|"\nCompilation took "
 operator|+
 operator|(
 name|System
