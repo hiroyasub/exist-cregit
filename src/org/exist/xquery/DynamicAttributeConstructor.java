@@ -192,16 +192,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|pprint
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|MemTreeBuilder
 name|builder
 init|=
