@@ -393,10 +393,6 @@ comment|// get the query expression
 name|String
 name|expr
 init|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
 name|getArgument
 argument_list|(
 literal|0
@@ -411,7 +407,6 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// check optional collection argument
 name|DocumentSet

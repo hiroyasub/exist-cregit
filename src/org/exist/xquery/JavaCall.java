@@ -938,7 +938,18 @@ break|break;
 block|}
 block|}
 block|}
-comment|//		LOG.debug("calling method " + bestMethod.toString());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"calling method "
+operator|+
+name|bestMethod
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Class
 name|paramTypes
 index|[]

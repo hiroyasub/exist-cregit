@@ -1077,6 +1077,19 @@ argument_list|(
 literal|"no search terms"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|terms
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
 name|NodeSet
 name|hits
 index|[]
