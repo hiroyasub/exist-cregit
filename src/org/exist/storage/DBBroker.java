@@ -1921,7 +1921,7 @@ parameter_list|()
 function_decl|;
 specifier|public
 specifier|abstract
-name|IndexConfiguration
+name|IndexSpec
 name|getIndexConfiguration
 parameter_list|()
 function_decl|;
