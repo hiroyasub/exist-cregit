@@ -3224,21 +3224,25 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|Collection
+name|collection
+init|=
+literal|null
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|collections
 init|)
 block|{
-name|Collection
 name|collection
-init|=
+operator|=
 name|collections
 operator|.
 name|get
 argument_list|(
 name|name
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|collection
@@ -3249,6 +3253,7 @@ block|{
 return|return
 name|collection
 return|;
+block|}
 block|}
 name|collection
 operator|=
@@ -3389,6 +3394,11 @@ return|return
 literal|null
 return|;
 block|}
+synchronized|synchronized
+init|(
+name|collections
+init|)
+block|{
 name|collections
 operator|.
 name|add
@@ -3396,6 +3406,7 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 comment|//			LOG.debug(
 comment|//				"loading collection "
 comment|//					+ name
@@ -3405,7 +3416,6 @@ comment|//					+ "ms.");
 return|return
 name|collection
 return|;
-block|}
 block|}
 specifier|public
 specifier|static
