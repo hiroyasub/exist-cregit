@@ -1661,6 +1661,21 @@ return|return
 name|stripWhitespace
 return|;
 block|}
+specifier|public
+name|void
+name|setStripWhitespace
+parameter_list|(
+name|boolean
+name|strip
+parameter_list|)
+block|{
+name|this
+operator|.
+name|stripWhitespace
+operator|=
+name|strip
+expr_stmt|;
+block|}
 comment|/** 	 * Return an iterator over all built-in modules currently 	 * registered. 	 *  	 * @return 	 */
 specifier|public
 name|Iterator
