@@ -13,30 +13,6 @@ name|dom
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
 begin_comment
 comment|/**  * A node with a QName, i.e. an element or attribute.  *   * @author wolf  */
 end_comment
