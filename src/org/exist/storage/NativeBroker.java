@@ -2594,6 +2594,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
+comment|// don't cache the collection during initialization: SecurityManager is not yet online
 name|collectionsCache
 operator|.
 name|add
@@ -11762,6 +11771,15 @@ argument_list|(
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
+comment|// don't cache the collection during initialization: SecurityManager is not yet online
 name|pool
 operator|.
 name|getCollectionsCache

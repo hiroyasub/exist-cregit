@@ -987,6 +987,11 @@ operator|.
 name|getLastModified
 argument_list|()
 expr_stmt|;
+comment|// reset pageCount: will be updated during storage
+name|pageCount
+operator|=
+literal|0
+expr_stmt|;
 block|}
 specifier|public
 name|void

@@ -546,6 +546,12 @@ name|Type
 operator|.
 name|DOCUMENT
 argument_list|)
+operator|||
+name|p
+operator|.
+name|gid
+operator|<
+literal|0
 condition|)
 block|{
 name|serializeToReceiver

@@ -1231,7 +1231,7 @@ literal|"database "
 operator|+
 name|instanceId
 operator|+
-literal|": creating new instance of "
+literal|": created new instance of "
 operator|+
 name|broker
 operator|.
@@ -1526,26 +1526,9 @@ name|initializing
 operator|=
 literal|true
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|min
-condition|;
-name|i
-operator|++
-control|)
+comment|// create a first broker to initialize the security manager
 name|createBroker
 argument_list|()
-expr_stmt|;
-name|initializing
-operator|=
-literal|false
 expr_stmt|;
 name|DBBroker
 name|broker
@@ -1573,6 +1556,28 @@ name|this
 argument_list|,
 name|broker
 argument_list|)
+expr_stmt|;
+name|initializing
+operator|=
+literal|false
+expr_stmt|;
+comment|// now create remaining brokers
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|min
+condition|;
+name|i
+operator|++
+control|)
+name|createBroker
+argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
