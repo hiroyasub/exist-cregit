@@ -2618,7 +2618,8 @@ argument_list|)
 expr_stmt|;
 comment|// read stylesheet from the database
 block|}
-if|else
+else|else
+block|{
 comment|// if stylesheet is relative, add path to the
 comment|// current collection
 if|if
@@ -2809,6 +2810,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
