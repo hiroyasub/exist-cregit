@@ -111,6 +111,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ext
+operator|.
+name|LexicalHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -894,6 +908,16 @@ block|{
 return|return
 name|contentLen
 return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#setLexicalHandler(org.xml.sax.ext.LexicalHandler) 	 */
+specifier|public
+name|void
+name|setLexicalHandler
+parameter_list|(
+name|LexicalHandler
+name|handler
+parameter_list|)
+block|{
 block|}
 block|}
 end_class

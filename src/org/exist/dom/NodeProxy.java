@@ -2568,9 +2568,11 @@ argument_list|)
 expr_stmt|;
 name|serializer
 operator|.
-name|setContentHandler
+name|setSAXHandlers
 argument_list|(
 name|handler
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|serializer

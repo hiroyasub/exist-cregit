@@ -1933,10 +1933,13 @@ block|}
 comment|/** 	 *  Set the ContentHandler to be used during serialization. 	 * 	 *@param  contentHandler  The new contentHandler value 	 */
 specifier|public
 name|void
-name|setContentHandler
+name|setSAXHandlers
 parameter_list|(
 name|ContentHandler
-name|handler
+name|contentHandler
+parameter_list|,
+name|LexicalHandler
+name|lexicalHandler
 parameter_list|)
 block|{
 name|ReceiverToSAX
@@ -1945,7 +1948,7 @@ init|=
 operator|new
 name|ReceiverToSAX
 argument_list|(
-name|handler
+name|contentHandler
 argument_list|)
 decl_stmt|;
 name|toSAX
@@ -1988,6 +1991,23 @@ else|else
 name|receiver
 operator|=
 name|toSAX
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.xml.sax.XMLReader#setContentHandler(org.xml.sax.ContentHandler) 	 */
+specifier|public
+name|void
+name|setContentHandler
+parameter_list|(
+name|ContentHandler
+name|handler
+parameter_list|)
+block|{
+name|setSAXHandlers
+argument_list|(
+name|handler
+argument_list|,
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * Required by interface XMLReader. Always returns null. 	 *  	 * @see org.xml.sax.XMLReader#getContentHandler() 	 */
@@ -2074,22 +2094,6 @@ argument_list|(
 name|name
 argument_list|)
 throw|;
-block|}
-comment|/** 	 *  Sets the lexicalHandler attribute of the Serializer object 	 * 	 *@param  lexicalHandler  The new lexicalHandler value 	 */
-specifier|public
-name|void
-name|setLexicalHandler
-parameter_list|(
-name|LexicalHandler
-name|lexicalHandler
-parameter_list|)
-block|{
-name|this
-operator|.
-name|lexicalHandler
-operator|=
-name|lexicalHandler
-expr_stmt|;
 block|}
 specifier|protected
 name|StringWriter
