@@ -1069,8 +1069,6 @@ operator|(
 name|short
 operator|)
 name|fixedKeyLen
-argument_list|,
-name|lock
 argument_list|)
 condition|)
 block|{
@@ -2534,8 +2532,6 @@ operator|.
 name|open
 argument_list|(
 name|FILE_FORMAT_VERSION_ID
-argument_list|,
-name|lock
 argument_list|)
 return|;
 block|}

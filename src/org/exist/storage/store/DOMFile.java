@@ -3986,8 +3986,6 @@ operator|(
 name|short
 operator|)
 literal|12
-argument_list|,
-name|lock
 argument_list|)
 condition|)
 return|return
@@ -5489,23 +5487,13 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
+return|return
 name|super
 operator|.
 name|open
 argument_list|(
 name|FILE_FORMAT_VERSION_ID
-argument_list|,
-name|lock
 argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-else|else
-return|return
-literal|false
 return|;
 block|}
 comment|/**      * Put a new key/value pair.      *       * @param key      *                   Description of the Parameter      * @param value      *                   Description of the Parameter      * @return Description of the Return Value      */
