@@ -1382,7 +1382,7 @@ return|;
 block|}
 comment|/** 	 * Add all documents to the specified document set. 	 *   	 * @param docs 	 */
 specifier|public
-name|void
+name|DocumentSet
 name|getDocuments
 parameter_list|(
 name|DocumentSet
@@ -1453,6 +1453,9 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+return|return
+name|docs
+return|;
 block|}
 comment|/** 	 * Check if this collection may be safely removed from the 	 * cache. Returns false if there are ongoing write operations, 	 * i.e. one or more of the documents is locked for 	 * write. 	 *  	 * @return 	 */
 specifier|public
@@ -2018,14 +2021,17 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|documents
-operator|.
-name|values
+name|getDocuments
+argument_list|(
+operator|new
+name|DocumentSet
 argument_list|()
+argument_list|)
 operator|.
 name|iterator
 argument_list|()
 return|;
+comment|//return documents.values().iterator();
 block|}
 comment|/** 	 * Read collection contents from the stream. 	 *  	 * @param istream 	 * @throws IOException 	 */
 specifier|public
