@@ -194,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * Implements the fn:node-name library function.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -261,8 +261,6 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|/**      * @param context      * @param signature      */
@@ -319,14 +317,6 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|getArgumentCount
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
 name|NodeSet
 name|result
 init|=
@@ -361,46 +351,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|contextSequence
-operator|!=
-literal|null
-operator|&&
-name|contextSequence
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
-operator|&&
-name|contextSequence
-operator|.
-name|getItemType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|NODE
-condition|)
-name|n
-operator|=
-operator|(
-operator|(
-name|NodeSet
-operator|)
-name|contextSequence
-operator|)
-operator|.
-name|item
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|n

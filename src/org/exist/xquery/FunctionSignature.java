@@ -279,6 +279,14 @@ name|int
 name|getArgumentCount
 parameter_list|()
 block|{
+if|if
+condition|(
+name|isOverloaded
+condition|)
+return|return
+operator|-
+literal|1
+return|;
 return|return
 name|arguments
 operator|!=
