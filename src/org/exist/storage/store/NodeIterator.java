@@ -752,35 +752,8 @@ operator|.
 name|OVERFLOW
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"unexpected overflow page at "
-operator|+
-name|p
-operator|.
-name|getPageNum
-argument_list|()
-operator|+
-literal|"; tid = "
-operator|+
-name|ItemId
-operator|.
-name|getId
-argument_list|(
-name|lastTID
-argument_list|)
-operator|+
-literal|"; offset = "
-operator|+
-name|offset
-operator|+
-literal|"; skipped = "
-operator|+
-name|skipped
-argument_list|)
-expr_stmt|;
+comment|//					    LOG.warn("unexpected overflow page at " + p.getPageNum() + "; tid = " +
+comment|//					            ItemId.getId(lastTID) + "; offset = " + offset + "; skipped = " + skipped);
 name|l
 operator|=
 literal|8
