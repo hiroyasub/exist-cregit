@@ -465,7 +465,10 @@ comment|/** 	 * Return a new node set containing the parent nodes of all nodes i
 specifier|public
 name|NodeSet
 name|getParents
-parameter_list|()
+parameter_list|(
+name|boolean
+name|rememberContext
+parameter_list|)
 function_decl|;
 comment|/** 	 * Returns true if all nodes in this node set are included in 	 * the fulltext index. 	 *  	 * @return 	 */
 specifier|public
