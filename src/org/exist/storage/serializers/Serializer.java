@@ -2966,7 +2966,7 @@ name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 operator|.
 name|equals

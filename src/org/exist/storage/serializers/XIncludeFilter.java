@@ -516,9 +516,9 @@ block|{
 if|if
 condition|(
 name|namespaceURI
-operator|!=
+operator|==
 literal|null
-operator|&&
+operator|||
 operator|(
 operator|!
 name|namespaceURI
