@@ -275,8 +275,9 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-continue|continue;
 block|}
+else|else
+block|{
 comment|// calculate parent's gid
 name|pid
 operator|=
@@ -337,17 +338,9 @@ name|gid
 operator|=
 name|pid
 expr_stmt|;
-if|if
-condition|(
-name|nl
-index|[
-name|i
-index|]
-operator|.
-name|gid
-operator|>
-literal|0
-condition|)
+block|}
+comment|//if (nl[i].gid> 0)
+comment|// continue until all nodes are set to null
 name|foundValid
 operator|=
 literal|true
@@ -2223,6 +2216,28 @@ return|return
 name|result
 return|;
 block|}
+specifier|public
+name|ArraySet
+name|getDescendants
+parameter_list|(
+name|NodeSet
+name|other
+parameter_list|,
+name|int
+name|mode
+parameter_list|)
+block|{
+return|return
+name|getDescendants
+argument_list|(
+name|other
+argument_list|,
+name|mode
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
 comment|/** 	 *  For a given set of potential ancestor nodes, get the 	 * descendants in this node set 	 * 	 *@param  al    Description of the Parameter 	 *@param  mode  Description of the Parameter 	 *@return       The descendants value 	 */
 specifier|public
 name|ArraySet
@@ -2233,6 +2248,9 @@ name|other
 parameter_list|,
 name|int
 name|mode
+parameter_list|,
+name|boolean
+name|includeSelf
 parameter_list|)
 block|{
 if|if
@@ -2382,20 +2400,20 @@ decl_stmt|;
 name|boolean
 name|more
 init|=
-literal|false
-decl_stmt|;
-do|do
-block|{
-comment|// calculate parent id for each node in the
-comment|// descendant set. Returns false if no more
-comment|// valid nodes are found
-name|more
-operator|=
+name|includeSelf
+condition|?
+literal|true
+else|:
 name|getParentSet
 argument_list|(
 name|dl
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+while|while
+condition|(
+name|more
+condition|)
+block|{
 name|ax
 operator|=
 literal|0
@@ -2404,6 +2422,7 @@ name|dx
 operator|=
 literal|0
 expr_stmt|;
+comment|//more = getParentSet(dl);
 while|while
 condition|(
 name|dx
@@ -2427,7 +2446,7 @@ operator|++
 expr_stmt|;
 continue|continue;
 block|}
-comment|//System.out.println(dl[dx].gid + " = " + al.nodes[ax].gid);
+comment|//System.out.println(dl[dx].gid + " == " + al.nodes[ax].gid);
 name|cmp
 operator|=
 name|dl
@@ -2488,18 +2507,19 @@ block|{
 case|case
 name|ANCESTOR
 case|:
-name|dl
-index|[
-name|dx
-index|]
-operator|.
-name|addMatches
-argument_list|(
+comment|// remember the ancestor-node
 name|al
 operator|.
 name|nodes
 index|[
 name|ax
+index|]
+operator|.
+name|addMatches
+argument_list|(
+name|dl
+index|[
+name|dx
 index|]
 operator|.
 name|matches
@@ -2509,16 +2529,20 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|dl
+name|al
+operator|.
+name|nodes
 index|[
-name|dx
+name|ax
 index|]
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("found: " + al.nodes[ax]);
 break|break;
 case|case
 name|DESCENDANT
 case|:
+comment|// remember the descendant-node
 name|nodes
 index|[
 name|dx
@@ -2553,12 +2577,17 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-block|}
-do|while
-condition|(
+comment|// calculate parent id for each node in the
+comment|// descendant set. Returns false if no more
+comment|// valid nodes are found
 name|more
-condition|)
-do|;
+operator|=
+name|getParentSet
+argument_list|(
+name|dl
+argument_list|)
+expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
