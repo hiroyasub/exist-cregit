@@ -354,14 +354,6 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
-name|Properties
-name|properties
-init|=
-operator|new
-name|Properties
-argument_list|()
-decl_stmt|;
-specifier|protected
 name|BrokerPool
 name|brokerPool
 decl_stmt|;
@@ -476,6 +468,8 @@ throws|throws
 name|XMLDBException
 block|{
 return|return
+name|collection
+operator|.
 name|properties
 operator|.
 name|getProperty
@@ -1205,8 +1199,6 @@ name|collection
 argument_list|,
 name|result
 argument_list|,
-name|properties
-argument_list|,
 name|sortExpr
 argument_list|)
 decl_stmt|;
@@ -1524,6 +1516,8 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|collection
+operator|.
 name|properties
 operator|.
 name|setProperty

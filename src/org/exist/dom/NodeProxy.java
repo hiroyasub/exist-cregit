@@ -1869,13 +1869,6 @@ argument_list|()
 decl_stmt|;
 name|serializer
 operator|.
-name|setContentHandler
-argument_list|(
-name|handler
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
 name|setProperty
 argument_list|(
 name|Serializer
@@ -1883,6 +1876,13 @@ operator|.
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
+name|setContentHandler
+argument_list|(
+name|handler
 argument_list|)
 expr_stmt|;
 name|serializer
