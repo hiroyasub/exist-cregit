@@ -528,6 +528,8 @@ argument_list|,
 name|parent
 argument_list|,
 name|did
+argument_list|,
+literal|"text/xml"
 argument_list|)
 expr_stmt|;
 block|}

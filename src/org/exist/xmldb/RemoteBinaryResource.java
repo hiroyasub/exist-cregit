@@ -199,6 +199,12 @@ name|String
 name|path
 decl_stmt|;
 specifier|private
+name|String
+name|mimeType
+init|=
+literal|"application/octet-stream"
+decl_stmt|;
+specifier|private
 name|RemoteCollection
 name|parent
 decl_stmt|;
@@ -918,6 +924,32 @@ name|LexicalHandler
 name|handler
 parameter_list|)
 block|{
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.EXistResource#setMimeType(java.lang.String)      */
+specifier|public
+name|void
+name|setMimeType
+parameter_list|(
+name|String
+name|mime
+parameter_list|)
+block|{
+name|this
+operator|.
+name|mimeType
+operator|=
+name|mime
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.EXistResource#getMimeType()      */
+specifier|public
+name|String
+name|getMimeType
+parameter_list|()
+block|{
+return|return
+name|mimeType
+return|;
 block|}
 block|}
 end_class

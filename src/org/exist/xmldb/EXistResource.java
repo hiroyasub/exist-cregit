@@ -103,6 +103,17 @@ name|LexicalHandler
 name|handler
 parameter_list|)
 function_decl|;
+name|void
+name|setMimeType
+parameter_list|(
+name|String
+name|mime
+parameter_list|)
+function_decl|;
+name|String
+name|getMimeType
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

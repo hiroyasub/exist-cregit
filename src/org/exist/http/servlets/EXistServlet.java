@@ -407,6 +407,10 @@ name|XMLDBException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements the REST-style interface if eXist is running within  * a servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -731,9 +735,7 @@ name|HttpServletResponse
 operator|.
 name|SC_FORBIDDEN
 argument_list|,
-literal|"Permission denied: unknown user "
-operator|+
-literal|"or password"
+literal|"Permission denied: unknown user or password"
 argument_list|)
 expr_stmt|;
 return|return;

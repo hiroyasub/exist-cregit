@@ -2357,6 +2357,26 @@ else|:
 name|outputProperties
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.EXistResource#setMimeType(java.lang.String)      */
+specifier|public
+name|void
+name|setMimeType
+parameter_list|(
+name|String
+name|mime
+parameter_list|)
+block|{
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.EXistResource#getMimeType()      */
+specifier|public
+name|String
+name|getMimeType
+parameter_list|()
+block|{
+return|return
+literal|"text/xml"
+return|;
+block|}
 block|}
 end_class
 

@@ -3161,6 +3161,11 @@ name|res
 operator|.
 name|getContent
 argument_list|()
+argument_list|,
+name|res
+operator|.
+name|getMimeType
+argument_list|()
 argument_list|)
 decl_stmt|;
 block|}

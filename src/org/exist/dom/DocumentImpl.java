@@ -615,7 +615,7 @@ literal|15
 index|]
 decl_stmt|;
 comment|// has document-metadata been loaded?
-specifier|private
+specifier|protected
 specifier|transient
 name|boolean
 name|complete
@@ -1058,6 +1058,15 @@ parameter_list|()
 block|{
 return|return
 name|XML_FILE
+return|;
+block|}
+specifier|public
+name|String
+name|getMimeType
+parameter_list|()
+block|{
+return|return
+literal|"text/xml"
 return|;
 block|}
 comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 * @return 	 */
@@ -2414,7 +2423,7 @@ operator|+
 name|fileName
 return|;
 block|}
-specifier|private
+specifier|protected
 name|void
 name|checkAvail
 parameter_list|()

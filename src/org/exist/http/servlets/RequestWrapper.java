@@ -75,16 +75,6 @@ name|Enumeration
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -122,14 +112,6 @@ name|getContextPath
 parameter_list|()
 function_decl|;
 specifier|public
-name|long
-name|getDateHeader
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-function_decl|;
-specifier|public
 name|String
 name|getHeader
 parameter_list|(
@@ -149,16 +131,6 @@ parameter_list|(
 name|String
 name|arg0
 parameter_list|)
-function_decl|;
-specifier|public
-name|Locale
-name|getLocale
-parameter_list|()
-function_decl|;
-specifier|public
-name|Enumeration
-name|getLocales
-parameter_list|()
 function_decl|;
 specifier|public
 name|String

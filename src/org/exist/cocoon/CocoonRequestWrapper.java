@@ -99,16 +99,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -371,24 +361,6 @@ return|;
 block|}
 comment|/** 	 * @param arg0 	 * @return 	 */
 specifier|public
-name|long
-name|getDateHeader
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-return|return
-name|request
-operator|.
-name|getDateHeader
-argument_list|(
-name|arg0
-argument_list|)
-return|;
-block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
-specifier|public
 name|String
 name|getHeader
 parameter_list|(
@@ -434,32 +406,6 @@ name|getHeaders
 argument_list|(
 name|arg0
 argument_list|)
-return|;
-block|}
-comment|/** 	 * @return 	 */
-specifier|public
-name|Locale
-name|getLocale
-parameter_list|()
-block|{
-return|return
-name|request
-operator|.
-name|getLocale
-argument_list|()
-return|;
-block|}
-comment|/** 	 * @return 	 */
-specifier|public
-name|Enumeration
-name|getLocales
-parameter_list|()
-block|{
-return|return
-name|request
-operator|.
-name|getLocales
-argument_list|()
 return|;
 block|}
 comment|/** 	 * @return 	 */

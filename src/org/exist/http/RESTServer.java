@@ -602,7 +602,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @author wolf  *  */
+comment|/**  *   * @author wolf  *   */
 end_comment
 
 begin_class
@@ -726,6 +726,7 @@ name|RESTServer
 parameter_list|()
 block|{
 block|}
+comment|/**      * Handle GET request. In the simplest case just returns the document      * or binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned.      *       * The method also recognizes a number of predefined parameters:      *       *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the current      * resource or collection.</li>      *       *<li>_howmany: defines how many items from the query result will be returned.</li>      *       *<li>_start: a start offset into the result set.</li>      *       *<li>_wrap: if set to "yes", the query results will be wrapped into a exist:result element.</li>      *       *<li>_indent: if set to "yes", the returned XML will be pretty-printed.</li>      *       *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to the returned XML.</li>      *       * @param broker      * @param parameters      * @param path      * @return      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
 specifier|public
 name|Response
 name|doGet
@@ -746,6 +747,7 @@ name|PermissionDeniedException
 throws|,
 name|NotFoundException
 block|{
+comment|// Process special parameters
 name|int
 name|howmany
 init|=
@@ -1074,6 +1076,7 @@ name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+comment|// Process the request
 name|Response
 name|response
 init|=
@@ -1088,6 +1091,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// query parameter specified
 try|try
 block|{
 name|response
@@ -1154,6 +1158,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// no query parameter: try to load a document from the specified path
 name|DocumentImpl
 name|d
 init|=
@@ -1174,6 +1179,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// no document: check if path points to a collection
 name|Collection
 name|collection
 init|=
@@ -1218,6 +1224,7 @@ argument_list|(
 literal|"Not allowed to read collection"
 argument_list|)
 throw|;
+comment|// return a listing of the collection contents
 name|response
 operator|=
 operator|new
@@ -1249,6 +1256,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// document found: serialize it
 if|if
 condition|(
 operator|!
@@ -1288,6 +1296,17 @@ operator|.
 name|BINARY_FILE
 condition|)
 block|{
+comment|// binary resource
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|d
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|setContent
@@ -1306,6 +1325,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// xml resource
 name|Serializer
 name|serializer
 init|=
@@ -2348,7 +2368,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|//	FD : Returns an XML doc
+comment|// FD : Returns an XML doc
 name|response
 operator|=
 operator|new
@@ -2810,6 +2830,8 @@ name|os
 operator|.
 name|toByteArray
 argument_list|()
+argument_list|,
+name|contentType
 argument_list|)
 expr_stmt|;
 name|response
@@ -3229,7 +3251,7 @@ return|return
 name|response
 return|;
 block|}
-comment|/** 	 * TODO: pass request and response objects to XQuery. 	 * @throws XPathException 	 */
+comment|/**      * TODO: pass request and response objects to XQuery.      *       * @throws XPathException      */
 specifier|protected
 name|String
 name|search
@@ -3466,7 +3488,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. 	 * If yes, copy the corresponding settings to the current set of output properties. 	 *  	 * @param context 	 */
+comment|/**      * Check if the XQuery contains pragmas that define serialization settings.      * If yes, copy the corresponding settings to the current set of output      * properties.      *       * @param context      */
 specifier|protected
 name|void
 name|checkPragmas
@@ -4392,39 +4414,6 @@ argument_list|,
 name|wrap
 argument_list|)
 expr_stmt|;
-comment|//			AttributesImpl attrs = new AttributesImpl();
-comment|//			attrs.addAttribute("", "hits", "hits", "CDATA", Integer.toString(rlen));
-comment|//			attrs.addAttribute("", "start", "start", "CDATA", Integer.toString(start));
-comment|//			attrs.addAttribute("", "count", "count", "CDATA", Integer.toString(howmany));
-comment|//			if (enclose == 1) {
-comment|//				sax.startPrefixMapping("exist", NS);
-comment|//				sax.startElement(NS, "result", "exist:result", attrs);
-comment|//	    	}
-comment|//
-comment|//			Item item;
-comment|//			for (int i = --start; i< start + howmany; i++) {
-comment|//				item = results.itemAt(i);
-comment|//				if (item == null) {
-comment|//					LOG.debug("item " + i + " not found");
-comment|//					continue;
-comment|//				}
-comment|//				if (Type.subTypeOf(item.getType(), Type.NODE)) {
-comment|//					NodeValue node = (NodeValue) item;
-comment|//					serializer.toSAX(node);
-comment|//				} else {
-comment|//					attrs.clear();
-comment|//					attrs.addAttribute("", "type", "type", "CDATA", Type.getTypeName(item.getType()));
-comment|//					sax.startElement(NS, "value", "exist:value", attrs);
-comment|//					item.toSAX(broker, sax);
-comment|//					sax.endElement(NS, "value", "exist:value");
-comment|//				}
-comment|//			}
-comment|//
-comment|//			if (enclose == 1) {
-comment|//				sax.endElement(NS, "result", "exist:result");
-comment|//				sax.endPrefixMapping("exist");
-comment|//            }
-comment|//			sax.endDocument();
 return|return
 name|writer
 operator|.

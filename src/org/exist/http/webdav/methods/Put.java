@@ -711,6 +711,8 @@ name|os
 operator|.
 name|toByteArray
 argument_list|()
+argument_list|,
+name|contentType
 argument_list|)
 expr_stmt|;
 block|}

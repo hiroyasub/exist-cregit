@@ -7462,6 +7462,9 @@ parameter_list|,
 name|byte
 index|[]
 name|data
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|EXistException
@@ -7509,6 +7512,13 @@ argument_list|,
 name|name
 argument_list|,
 name|this
+argument_list|)
+expr_stmt|;
+name|blob
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
 argument_list|)
 expr_stmt|;
 try|try

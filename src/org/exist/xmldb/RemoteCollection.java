@@ -2633,6 +2633,16 @@ name|params
 operator|.
 name|addElement
 argument_list|(
+name|res
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|addElement
+argument_list|(
 name|Boolean
 operator|.
 name|TRUE

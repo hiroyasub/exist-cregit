@@ -7929,6 +7929,9 @@ parameter_list|,
 name|String
 name|docName
 parameter_list|,
+name|String
+name|mimeType
+parameter_list|,
 name|boolean
 name|replace
 parameter_list|)
@@ -8105,6 +8108,8 @@ argument_list|,
 name|docName
 argument_list|,
 name|data
+argument_list|,
+name|mimeType
 argument_list|)
 expr_stmt|;
 block|}

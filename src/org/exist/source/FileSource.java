@@ -350,17 +350,6 @@ name|encoding
 operator|=
 name|checkedEnc
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ENCODING = "
-operator|+
-name|encoding
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

@@ -269,6 +269,8 @@ argument_list|,
 name|collection
 argument_list|,
 name|docId
+argument_list|,
+literal|"application/octet-stream"
 argument_list|)
 expr_stmt|;
 block|}

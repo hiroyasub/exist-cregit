@@ -896,6 +896,9 @@ parameter_list|,
 name|String
 name|docName
 parameter_list|,
+name|String
+name|mimeType
+parameter_list|,
 name|boolean
 name|replace
 parameter_list|)
