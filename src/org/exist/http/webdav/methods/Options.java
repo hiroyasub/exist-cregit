@@ -162,7 +162,7 @@ name|addHeader
 argument_list|(
 literal|"Allow"
 argument_list|,
-literal|"OPTIONS, GET, HEAD, PUT, PROPFIND"
+literal|"OPTIONS, GET, HEAD, PUT, PROPFIND,MKCOL"
 argument_list|)
 expr_stmt|;
 comment|// MS specific
