@@ -495,7 +495,7 @@ name|currentDocument
 init|=
 literal|null
 decl_stmt|;
-specifier|public
+specifier|protected
 name|DOMFile
 parameter_list|(
 name|int
