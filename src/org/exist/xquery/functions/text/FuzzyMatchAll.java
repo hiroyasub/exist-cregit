@@ -484,6 +484,8 @@ argument_list|()
 operator|.
 name|getNodes
 argument_list|(
+name|context
+argument_list|,
 name|nodes
 operator|.
 name|getDocumentSet

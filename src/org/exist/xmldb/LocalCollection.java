@@ -2084,7 +2084,9 @@ expr_stmt|;
 name|String
 name|path
 init|=
-name|getPath
+name|collection
+operator|.
+name|getName
 argument_list|()
 operator|+
 literal|'/'

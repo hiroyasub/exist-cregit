@@ -496,6 +496,13 @@ name|p
 operator|++
 control|)
 block|{
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|contextItem
 operator|=
 name|i

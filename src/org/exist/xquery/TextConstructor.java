@@ -216,6 +216,15 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|,
+name|builder
+argument_list|)
+expr_stmt|;
 name|int
 name|nodeNr
 init|=

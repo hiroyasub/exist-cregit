@@ -171,7 +171,7 @@ operator|=
 operator|new
 name|Int2ObjectHashMap
 argument_list|(
-literal|512
+literal|17
 argument_list|)
 expr_stmt|;
 block|}

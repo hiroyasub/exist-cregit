@@ -1018,12 +1018,7 @@ name|this
 operator|.
 name|value
 operator|=
-name|XMLUtil
-operator|.
-name|encodeAttrMarkup
-argument_list|(
 name|value
-argument_list|)
 expr_stmt|;
 block|}
 specifier|public

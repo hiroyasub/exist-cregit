@@ -179,12 +179,24 @@ expr_stmt|;
 block|}
 comment|/** 	 * Returns the created document object. 	 *  	 * @return 	 */
 specifier|public
-name|Document
+name|DocumentImpl
 name|getDocument
 parameter_list|()
 block|{
 return|return
 name|doc
+return|;
+block|}
+specifier|public
+name|int
+name|getSize
+parameter_list|()
+block|{
+return|return
+name|doc
+operator|.
+name|getSize
+argument_list|()
 return|;
 block|}
 comment|/** 	 * Start building the document. 	 */
@@ -199,15 +211,7 @@ name|doc
 operator|=
 operator|new
 name|DocumentImpl
-argument_list|(
-literal|500
-argument_list|,
-literal|50
-argument_list|,
-literal|1000
-argument_list|,
-literal|50
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	 * End building the document. 	 */

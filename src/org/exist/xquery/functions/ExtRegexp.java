@@ -782,6 +782,8 @@ argument_list|()
 operator|.
 name|getNodesContaining
 argument_list|(
+name|context
+argument_list|,
 name|nodes
 operator|.
 name|getDocumentSet

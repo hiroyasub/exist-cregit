@@ -162,50 +162,6 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
-specifier|public
-name|Object
-name|getAttribute
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-return|return
-name|request
-operator|.
-name|getAttribute
-argument_list|(
-name|arg0
-argument_list|)
-return|;
-block|}
-comment|/** 	 * @return 	 */
-specifier|public
-name|Enumeration
-name|getAttributeNames
-parameter_list|()
-block|{
-return|return
-name|request
-operator|.
-name|getAttributeNames
-argument_list|()
-return|;
-block|}
-comment|/** 	 * @return 	 */
-specifier|public
-name|String
-name|getAuthType
-parameter_list|()
-block|{
-return|return
-name|request
-operator|.
-name|getAuthType
-argument_list|()
-return|;
-block|}
 comment|/** 	 * @return 	 */
 specifier|public
 name|String

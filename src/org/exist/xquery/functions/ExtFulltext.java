@@ -1061,6 +1061,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -1119,6 +1121,8 @@ argument_list|()
 operator|.
 name|getNodesContaining
 argument_list|(
+name|context
+argument_list|,
 name|contextSet
 operator|.
 name|getDocumentSet

@@ -459,29 +459,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"distinct-values found "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"distinct-values found "
+comment|//				+ result.getLength()
+comment|//				+ " in "
+comment|//				+ (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;

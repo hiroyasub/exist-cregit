@@ -669,6 +669,15 @@ operator|.
 name|getFileName
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|docId
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|docId

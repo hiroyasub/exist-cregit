@@ -235,6 +235,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|,
+name|builder
+argument_list|)
+expr_stmt|;
 comment|// if item is an atomic value, collect the string values of all
 comment|// following atomic values and seperate them by a space.
 if|if

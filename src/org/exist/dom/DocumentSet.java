@@ -195,7 +195,9 @@ name|DocumentSet
 parameter_list|()
 block|{
 name|super
-argument_list|()
+argument_list|(
+literal|29
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
