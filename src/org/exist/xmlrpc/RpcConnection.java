@@ -7495,6 +7495,18 @@ literal|"Old document exists and overwrite is not allowed"
 argument_list|)
 throw|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Storing binary resource to collection "
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|doc
 operator|=
 name|collection

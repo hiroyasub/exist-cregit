@@ -17,16 +17,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|URI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -938,7 +928,11 @@ name|ErrorCodes
 operator|.
 name|NO_SUCH_COLLECTION
 argument_list|,
-literal|"collection not found"
+literal|"Collection "
+operator|+
+name|path
+operator|+
+literal|" not found"
 argument_list|)
 throw|;
 name|collection

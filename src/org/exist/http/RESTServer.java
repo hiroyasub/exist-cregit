@@ -3177,19 +3177,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//			DocumentSet docs = new DocumentSet();
-comment|//			Collection collection = broker.getCollection(path);
-comment|//			if (collection != null) {
-comment|//				collection.allDocs(broker, docs, true, true);
-comment|//			} else {
-comment|//				DocumentImpl doc = (DocumentImpl) broker.getDocument(path);
-comment|//				if (doc != null) {
-comment|//				    if(!doc.getPermissions().validate(broker.getUser(), Permission.READ))
-comment|//						throw new PermissionDeniedException("Not allowed to read collection");
-comment|//					docs.add(doc);
-comment|//				} else
-comment|//					broker.getAllDocuments(docs);
-comment|//			}
 name|Source
 name|source
 init|=
