@@ -2451,6 +2451,10 @@ name|seq
 operator|.
 name|getLength
 argument_list|()
+operator|-
+name|start
+operator|+
+literal|1
 expr_stmt|;
 name|String
 name|xml
