@@ -1983,14 +1983,12 @@ if|if
 condition|(
 name|last
 operator|.
-name|getAttributeNS
+name|hasAttributeNS
 argument_list|(
 name|namespace
 argument_list|,
 name|name
 argument_list|)
-operator|!=
-literal|null
 condition|)
 throw|throw
 operator|new
