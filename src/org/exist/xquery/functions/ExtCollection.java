@@ -528,6 +528,12 @@ argument_list|(
 name|next
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|coll
+operator|!=
+literal|null
+condition|)
 name|coll
 operator|.
 name|allDocs
