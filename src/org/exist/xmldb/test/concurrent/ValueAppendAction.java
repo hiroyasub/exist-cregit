@@ -404,7 +404,7 @@ name|queryResource
 argument_list|(
 name|resourceName
 argument_list|,
-literal|"/items/item[@id='1']/name[.='abcdefg']/text()"
+literal|"/items/item[@id=1]/name[.='abcdefg']/text()"
 argument_list|)
 expr_stmt|;
 name|Assert
