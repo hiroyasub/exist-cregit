@@ -502,6 +502,16 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|pool
+operator|.
+name|getConfigurationManager
+argument_list|()
+operator|!=
+literal|null
+condition|)
+comment|// might be null during db initialization
 name|pool
 operator|.
 name|getConfigurationManager
