@@ -222,7 +222,7 @@ name|pprint
 parameter_list|()
 block|{
 return|return
-literal|"/"
+literal|"ROOT"
 return|;
 block|}
 block|}

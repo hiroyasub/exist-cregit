@@ -247,7 +247,7 @@ literal|null
 decl_stmt|;
 comment|// in some cases, we use a fulltext expression to preselect nodes
 specifier|protected
-name|FunContains
+name|ExtFulltext
 name|containsExpr
 init|=
 literal|null
@@ -1162,7 +1162,7 @@ comment|// setup up an&= expression using the fulltext index
 name|containsExpr
 operator|=
 operator|new
-name|FunContains
+name|ExtFulltext
 argument_list|(
 name|pool
 argument_list|,
@@ -2080,6 +2080,18 @@ name|NodeSet
 name|contextSet
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"comparing "
+operator|+
+name|docs
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|ArraySet
 name|result
 init|=

@@ -313,20 +313,6 @@ operator|==
 literal|null
 condition|)
 return|return;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"adding "
-operator|+
-name|expr
-operator|.
-name|pprint
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|steps
 operator|.
 name|add

@@ -519,6 +519,8 @@ name|val
 decl_stmt|;
 name|short
 name|sym
+decl_stmt|,
+name|nsSym
 decl_stmt|;
 name|short
 name|collectionId
@@ -597,7 +599,7 @@ argument_list|()
 expr_stmt|;
 name|sym
 operator|=
-name|NativeBroker
+name|DBBroker
 operator|.
 name|getSymbols
 argument_list|()
@@ -607,6 +609,21 @@ argument_list|(
 name|qname
 operator|.
 name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|nsSym
+operator|=
+name|DBBroker
+operator|.
+name|getSymbols
+argument_list|()
+operator|.
+name|getNSSymbol
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -620,6 +637,8 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|sym
+argument_list|,
+name|nsSym
 argument_list|)
 expr_stmt|;
 comment|// try to retrieve old index entry for the element
@@ -1166,8 +1185,8 @@ operator|.
 name|Entry
 name|entry
 decl_stmt|;
-name|String
-name|elementName
+name|QName
+name|qname
 decl_stmt|;
 name|List
 name|newList
@@ -1201,6 +1220,8 @@ name|val
 decl_stmt|;
 name|short
 name|sym
+decl_stmt|,
+name|nsSym
 decl_stmt|;
 name|short
 name|collectionId
@@ -1267,10 +1288,10 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
-name|elementName
+name|qname
 operator|=
 operator|(
-name|String
+name|QName
 operator|)
 name|entry
 operator|.
@@ -1279,14 +1300,32 @@ argument_list|()
 expr_stmt|;
 name|sym
 operator|=
-name|NativeBroker
+name|DBBroker
 operator|.
 name|getSymbols
 argument_list|()
 operator|.
 name|getSymbol
 argument_list|(
-name|elementName
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|nsSym
+operator|=
+name|DBBroker
+operator|.
+name|getSymbols
+argument_list|()
+operator|.
+name|getNSSymbol
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ref
@@ -1299,6 +1338,8 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|sym
+argument_list|,
+name|nsSym
 argument_list|)
 expr_stmt|;
 comment|// try to retrieve old index entry for the element
@@ -1335,7 +1376,7 @@ name|error
 argument_list|(
 literal|"could not acquire lock for index on "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1551,7 +1592,7 @@ name|error
 argument_list|(
 literal|"end-of-file while updating index for element "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 block|}
@@ -1567,7 +1608,7 @@ name|error
 argument_list|(
 literal|"io-error while updating index for element "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 block|}

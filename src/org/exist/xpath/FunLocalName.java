@@ -86,18 +86,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: string(object)  *  */
+comment|/**  * xpath-library function: local-name(object)  *  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|FunName
+name|FunLocalName
 extends|extends
 name|Function
 block|{
 specifier|public
-name|FunName
+name|FunLocalName
 parameter_list|(
 name|BrokerPool
 name|pool
@@ -107,7 +107,7 @@ name|super
 argument_list|(
 name|pool
 argument_list|,
-literal|"name"
+literal|"local-name"
 argument_list|)
 expr_stmt|;
 block|}
@@ -260,7 +260,7 @@ name|ValueString
 argument_list|(
 name|n
 operator|.
-name|getNodeName
+name|getLocalName
 argument_list|()
 argument_list|)
 return|;
@@ -275,7 +275,7 @@ name|ValueString
 argument_list|(
 name|n
 operator|.
-name|getNodeName
+name|getLocalName
 argument_list|()
 argument_list|)
 return|;

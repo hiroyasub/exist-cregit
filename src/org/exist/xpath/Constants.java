@@ -384,6 +384,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|MOD
+init|=
+literal|12
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|OPS
@@ -412,6 +420,8 @@ block|,
 literal|"*"
 block|,
 literal|"div"
+block|,
+literal|"mod"
 block|}
 decl_stmt|;
 specifier|public

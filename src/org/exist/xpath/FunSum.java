@@ -179,20 +179,6 @@ operator|.
 name|getNodeList
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found "
-operator|+
-name|args
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" nodes for sum"
-argument_list|)
-expr_stmt|;
 name|String
 name|nval
 decl_stmt|;
@@ -227,15 +213,6 @@ argument_list|)
 operator|.
 name|getNodeValue
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|nval
-argument_list|)
 expr_stmt|;
 name|val
 operator|=

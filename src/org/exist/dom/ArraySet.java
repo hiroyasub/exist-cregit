@@ -1332,7 +1332,12 @@ operator|.
 name|counter
 operator|==
 literal|0
+operator|||
+name|counter
+operator|==
+literal|0
 condition|)
+block|{
 return|return
 operator|new
 name|ArraySet
@@ -1340,6 +1345,7 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
+block|}
 comment|//long start = System.currentTimeMillis();
 name|sort
 argument_list|()
@@ -1447,14 +1453,14 @@ operator|==
 name|dlen
 condition|)
 break|break;
-comment|//          System.out.println(
-comment|//              dl[dx].doc.getDocId()
-comment|//                  + ":"
-comment|//                  + dl[dx].gid
-comment|//                  + " = "
-comment|//                  + al.nodes[ax].doc.getDocId()
-comment|//                  + ':'
-comment|//                  + al.nodes[ax].gid);
+comment|//			          System.out.println(
+comment|//			              dl[dx].doc.getDocId()
+comment|//			                  + ":"
+comment|//			                  + dl[dx].gid
+comment|//			                  + " = "
+comment|//			                  + al.nodes[ax].doc.getDocId()
+comment|//			                  + ':'
+comment|//			                  + al.nodes[ax].gid);
 name|cmp
 operator|=
 name|dl
@@ -2628,12 +2634,8 @@ decl_stmt|;
 return|return
 name|p
 operator|.
-name|doc
-operator|.
 name|getNode
-argument_list|(
-name|p
-argument_list|)
+argument_list|()
 return|;
 block|}
 specifier|public

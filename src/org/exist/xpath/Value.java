@@ -114,6 +114,16 @@ name|getStringValue
 parameter_list|()
 function_decl|;
 specifier|public
+name|String
+name|getStringValueConcat
+parameter_list|()
+block|{
+return|return
+name|getStringValue
+argument_list|()
+return|;
+block|}
+specifier|public
 specifier|abstract
 name|double
 name|getNumericValue

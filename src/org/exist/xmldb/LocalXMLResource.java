@@ -1417,6 +1417,9 @@ name|NodeProxy
 name|getNode
 parameter_list|()
 block|{
+name|getDocument
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|id
@@ -1425,11 +1428,14 @@ literal|0
 condition|)
 comment|// this XMLResource represents a document
 return|return
-literal|null
+operator|new
+name|NodeProxy
+argument_list|(
+name|document
+argument_list|,
+literal|1
+argument_list|)
 return|;
-name|getDocument
-argument_list|()
-expr_stmt|;
 return|return
 name|proxy
 operator|==

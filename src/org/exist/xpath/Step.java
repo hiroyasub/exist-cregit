@@ -232,7 +232,8 @@ if|if
 condition|(
 name|axis
 operator|>
-literal|0
+operator|-
+literal|1
 condition|)
 name|buf
 operator|.

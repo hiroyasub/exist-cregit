@@ -433,7 +433,7 @@ name|id
 argument_list|,
 name|attr
 operator|.
-name|getName
+name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -509,6 +509,22 @@ name|String
 name|name
 parameter_list|)
 block|{
+if|if
+condition|(
+name|name
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"name is empty"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|nameSymbols
@@ -635,19 +651,6 @@ expr_stmt|;
 name|changed
 operator|=
 literal|true
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ns
-operator|+
-literal|" = "
-operator|+
-name|id
-argument_list|)
 expr_stmt|;
 return|return
 name|id

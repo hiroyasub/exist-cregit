@@ -121,14 +121,14 @@ specifier|static
 name|String
 name|query1
 init|=
-literal|"document(*)//SPEECH[LINE&= 'corrupt*']"
+literal|"document()//SPEECH[LINE&= 'corrupt*']"
 decl_stmt|;
 specifier|protected
 specifier|static
 name|String
 name|query2
 init|=
-literal|"/ancestor::SCENE/TITLE"
+literal|"ancestor::SCENE/TITLE"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -272,18 +272,13 @@ literal|0
 init|;
 name|i
 operator|<
-operator|(
-name|int
-operator|)
-name|result
-operator|.
-name|getSize
-argument_list|()
+literal|2
 condition|;
 name|i
 operator|++
 control|)
 block|{
+comment|//for ( int i = 0; i< (int) result.getSize(); i++ ) {
 name|resource
 operator|=
 operator|(

@@ -2854,6 +2854,18 @@ name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"searching attrib "
+operator|+
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -5981,6 +5993,19 @@ operator|.
 name|TRUNC_RIGHT
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|isCaseSensitive
+argument_list|()
+condition|)
+name|expr
+operator|=
+name|expr
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -9750,13 +9775,6 @@ operator|.
 name|toLowerCase
 argument_list|()
 expr_stmt|;
-name|expr
-operator|=
-name|expr
-operator|.
-name|toLowerCase
-argument_list|()
-expr_stmt|;
 block|}
 comment|//System.out.println("context = " + p.gid + "; context-length = " +
 comment|//	(p.getContext() == null ? -1 : p.getContext().getSize()));
@@ -10498,6 +10516,18 @@ argument_list|,
 literal|""
 argument_list|,
 literal|null
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"found ID: "
+operator|+
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|elementIndex
