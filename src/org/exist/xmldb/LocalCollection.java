@@ -1268,9 +1268,6 @@ argument_list|,
 name|this
 argument_list|,
 name|id
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 if|else if
@@ -1860,9 +1857,6 @@ argument_list|,
 name|this
 argument_list|,
 name|id
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 if|else if

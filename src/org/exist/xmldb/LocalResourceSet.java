@@ -973,9 +973,6 @@ argument_list|,
 name|collection
 argument_list|,
 literal|""
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 decl_stmt|;
 name|res
@@ -1159,9 +1156,6 @@ argument_list|,
 name|collection
 argument_list|,
 literal|""
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 name|res
@@ -1194,9 +1188,6 @@ argument_list|,
 name|collection
 argument_list|,
 literal|""
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 expr_stmt|;
 name|res
