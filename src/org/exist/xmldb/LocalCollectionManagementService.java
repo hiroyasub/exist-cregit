@@ -1657,6 +1657,25 @@ literal|'/'
 operator|+
 name|destinationPath
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Copying "
+operator|+
+name|collectionPath
+operator|+
+literal|" to "
+operator|+
+name|destinationPath
+operator|+
+literal|" as "
+operator|+
+name|newName
+argument_list|)
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1867,7 +1886,7 @@ name|destination
 operator|!=
 literal|null
 condition|)
-name|collection
+name|destination
 operator|.
 name|release
 argument_list|()
