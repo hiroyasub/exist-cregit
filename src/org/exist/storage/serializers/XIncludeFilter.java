@@ -894,6 +894,15 @@ literal|'/'
 operator|+
 name|docName
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Document: "
+operator|+
+name|document
+argument_list|)
+expr_stmt|;
 comment|// retrieve the document
 name|LOG
 operator|.

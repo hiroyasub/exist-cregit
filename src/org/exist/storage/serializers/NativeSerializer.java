@@ -517,6 +517,14 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+name|setDocument
+argument_list|(
+name|p
+operator|.
+name|getDocument
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|generateDocEvent
