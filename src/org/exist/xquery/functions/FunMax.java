@@ -27,6 +27,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -428,7 +438,7 @@ name|iter
 init|=
 name|arg
 operator|.
-name|iterate
+name|unorderedIterator
 argument_list|()
 decl_stmt|;
 name|AtomicValue
