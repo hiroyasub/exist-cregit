@@ -6717,6 +6717,7 @@ condition|;
 name|gid
 operator|++
 control|)
+block|{
 name|result
 operator|.
 name|add
@@ -6729,6 +6730,7 @@ name|gid
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

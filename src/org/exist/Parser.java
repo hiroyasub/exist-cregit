@@ -3649,6 +3649,44 @@ throw|throw
 name|e
 throw|;
 block|}
+name|document
+operator|.
+name|setMaxDepth
+argument_list|(
+name|document
+operator|.
+name|getMaxDepth
+argument_list|()
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|document
+operator|.
+name|calculateTreeLevelStartPoints
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e1
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SAXException
+argument_list|(
+literal|"the nesting-level of your document is too high. It "
+operator|+
+literal|"does not fit into the indexing-scheme. Please split the document into "
+operator|+
+literal|"several parts and try to reduce the nesting-level."
+argument_list|)
+throw|;
+block|}
 comment|// new document is valid: remove old document
 if|if
 condition|(

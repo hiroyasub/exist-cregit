@@ -974,7 +974,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
-comment|//System.out.println(treeLevelStartPoints[i + 1] + "; k = " + treeLevelOrder[i]);
+comment|//			System.out.println(treeLevelStartPoints[i + 1] + "; k = " + treeLevelOrder[i]);
 block|}
 block|}
 specifier|private

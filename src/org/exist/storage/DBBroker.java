@@ -77,18 +77,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ElementImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeImpl
 import|;
 end_import
@@ -369,19 +357,6 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
-block|}
-comment|/**      *  load all fields of element from the database. Note that loading of nodes      *  is sometimes deferred until information is really needed. Method      *  objectWith will only load fields common to all node types. elementWith      *  is called by ElementImpl if needed.      *      *@param  element  Description of the Parameter      *@return          Description of the Return Value      */
-specifier|public
-name|boolean
-name|elementWith
-parameter_list|(
-name|ElementImpl
-name|element
-parameter_list|)
-block|{
-return|return
-literal|true
-return|;
 block|}
 comment|/**      *  find elements by their tag name. This method is comparable to the DOM's      *  method call getElementsByTagName. All elements matching tagName and      *  belonging to one of the documents in the DocumentSet docs are returned.      *      *@param  docs     Description of the Parameter      *@param  tagName  Description of the Parameter      *@return          Description of the Return Value      */
 specifier|public
