@@ -487,7 +487,6 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-comment|//LOG.debug("scanning " + hits.getLength() + " matches ...");
 name|boolean
 name|hasWildcards
 init|=
@@ -805,7 +804,7 @@ name|distance
 expr_stmt|;
 block|}
 block|}
-comment|//LOG.debug("found " + r.getLength());
+comment|//		LOG.debug("found " + r.getLength());
 return|return
 name|r
 return|;
@@ -980,7 +979,7 @@ name|value
 operator|=
 name|current
 operator|.
-name|getNodeValue
+name|getNodeValueSeparated
 argument_list|()
 expr_stmt|;
 name|tok
