@@ -1977,6 +1977,7 @@ operator|.
 name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
+specifier|final
 name|LocalXMLResource
 name|res
 init|=
@@ -1985,6 +1986,7 @@ name|LocalXMLResource
 operator|)
 name|resource
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -2017,6 +2019,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Parser
 name|parser
 init|=
@@ -2087,9 +2090,6 @@ name|getDocumentId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
 if|if
 condition|(
 name|res
@@ -2098,7 +2098,9 @@ name|file
 operator|!=
 literal|null
 condition|)
-name|doc
+name|res
+operator|.
+name|document
 operator|=
 name|parser
 operator|.
@@ -2117,7 +2119,9 @@ name|name
 argument_list|)
 expr_stmt|;
 else|else
-name|doc
+name|res
+operator|.
+name|document
 operator|=
 name|parser
 operator|.

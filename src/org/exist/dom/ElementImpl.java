@@ -823,7 +823,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Append a child to this node. This method does not rearrange the      * node tree and is only used internally by the parser.      *  	 * @param child 	 * @throws DOMException 	 */
+comment|/** 	 * Append a child to this node. This method does not rearrange the 	 * node tree and is only used internally by the parser. 	 *  	 * @param child 	 * @throws DOMException 	 */
 specifier|public
 name|void
 name|appendChildInternal
@@ -1002,7 +1002,7 @@ return|return
 name|child
 return|;
 block|}
-comment|/** 	 * Internal append.      *  	 * @param last 	 * @param child 	 * @return Node 	 * @throws DOMException 	 */
+comment|/** 	 * Internal append. 	 *  	 * @param last 	 * @param child 	 * @return Node 	 * @throws DOMException 	 */
 specifier|public
 name|Node
 name|appendChild
@@ -4400,7 +4400,7 @@ name|node
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
+default|default :
 name|ownerDocument
 operator|.
 name|broker

@@ -516,7 +516,15 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
-comment|/**      *  Constructor for the Parser object      *      *@param  broker              Description of the Parameter      *@param  user                Description of the Parameter      *@param  replace             Description of the Parameter      *@exception  EXistException  Description of the Exception      */
+specifier|private
+name|FastStringBuffer
+name|temp
+init|=
+operator|new
+name|FastStringBuffer
+argument_list|()
+decl_stmt|;
+comment|/** 	 *  Constructor for the Parser object 	 * 	 *@param  broker              Description of the Parameter 	 *@param  user                Description of the Parameter 	 *@param  replace             Description of the Parameter 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|Parser
 parameter_list|(
@@ -791,7 +799,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ch      Description of the Parameter      *@param  start   Description of the Parameter      *@param  length  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ch      Description of the Parameter 	 *@param  start   Description of the Parameter 	 *@param  length  Description of the Parameter 	 */
 specifier|public
 name|void
 name|characters
@@ -1051,7 +1059,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  ch      Description of the Parameter      *@param  start   Description of the Parameter      *@param  length  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ch      Description of the Parameter 	 *@param  start   Description of the Parameter 	 *@param  length  Description of the Parameter 	 */
 specifier|public
 name|void
 name|comment
@@ -1249,7 +1257,7 @@ name|endDocument
 parameter_list|()
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespace  Description of the Parameter      *@param  name       Description of the Parameter      *@param  qname      Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  namespace  Description of the Parameter 	 *@param  name       Description of the Parameter 	 *@param  qname      Description of the Parameter 	 */
 specifier|public
 name|void
 name|endElement
@@ -1508,7 +1516,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 name|void
 name|endEntity
@@ -1518,7 +1526,7 @@ name|name
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  prefix  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  prefix  Description of the Parameter 	 */
 specifier|public
 name|void
 name|endPrefixMapping
@@ -1538,7 +1546,7 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  e                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  e                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|error
@@ -1571,7 +1579,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  e                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  e                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|fatalError
@@ -1609,7 +1617,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the currentPath attribute of the Parser object      *      *@return    The currentPath value      */
+comment|/** 	 *  Gets the currentPath attribute of the Parser object 	 * 	 *@return    The currentPath value 	 */
 specifier|private
 specifier|final
 name|String
@@ -1625,14 +1633,14 @@ condition|)
 return|return
 name|previousPath
 return|;
-specifier|final
-name|StringBuffer
-name|buf
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
+comment|//final StringBuffer buf = new StringBuffer();
+name|temp
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 name|ElementImpl
 name|current
 decl_stmt|;
@@ -1653,7 +1661,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|buf
+name|temp
 operator|.
 name|append
 argument_list|(
@@ -1670,7 +1678,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|buf
+name|temp
 operator|.
 name|append
 argument_list|(
@@ -1683,7 +1691,7 @@ expr_stmt|;
 block|}
 name|previousPath
 operator|=
-name|buf
+name|temp
 operator|.
 name|toString
 argument_list|()
@@ -1692,7 +1700,7 @@ return|return
 name|previousPath
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  ch      Description of the Parameter      *@param  start   Description of the Parameter      *@param  length  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  ch      Description of the Parameter 	 *@param  start   Description of the Parameter 	 *@param  length  Description of the Parameter 	 */
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -1709,7 +1717,7 @@ name|length
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  src                            Description of the Parameter      *@return                                Description of the Return Value      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  src                            Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|DocumentImpl
 name|parse
@@ -1823,7 +1831,7 @@ name|xmlFileName
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  file                           Description of the Parameter      *@param  xmlFileName                    Description of the Parameter      *@return                                Description of the Return Value      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  file                           Description of the Parameter 	 *@param  xmlFileName                    Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|DocumentImpl
 name|parse
@@ -1925,7 +1933,7 @@ name|xmlFileName
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  str                            Description of the Parameter      *@param  xmlFileName                    Description of the Parameter      *@return                                Description of the Return Value      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  str                            Description of the Parameter 	 *@param  xmlFileName                    Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|DocumentImpl
 name|parse
@@ -2006,7 +2014,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  target  Description of the Parameter      *@param  data    Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  target  Description of the Parameter 	 *@param  data    Description of the Parameter 	 */
 specifier|public
 name|void
 name|processingInstruction
@@ -2174,7 +2182,7 @@ name|currentPath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  inStream                       Description of the Parameter      *@param  xmlFileName                    Description of the Parameter      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  inStream                       Description of the Parameter 	 *@param  xmlFileName                    Description of the Parameter 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|void
 name|scan
@@ -2204,7 +2212,7 @@ name|xmlFileName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  src                            Description of the Parameter      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  src                            Description of the Parameter 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|void
 name|scan
@@ -2227,7 +2235,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  src                            Description of the Parameter      *@param  xmlFileName                    Description of the Parameter      *@exception  SAXException               Description of the Exception      *@exception  IOException                Description of the Exception      *@exception  PermissionDeniedException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  src                            Description of the Parameter 	 *@param  xmlFileName                    Description of the Parameter 	 *@exception  SAXException               Description of the Exception 	 *@exception  IOException                Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 specifier|public
 name|void
 name|scan
@@ -2536,28 +2544,6 @@ operator|+
 literal|"is not allowed"
 argument_list|)
 throw|;
-name|broker
-operator|.
-name|removeDocument
-argument_list|(
-name|collName
-operator|+
-literal|'/'
-operator|+
-name|fileName
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
-name|removeDocument
-argument_list|(
-name|collName
-operator|+
-literal|'/'
-operator|+
-name|fileName
-argument_list|)
-expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -2588,55 +2574,6 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
-if|if
-condition|(
-name|broker
-operator|.
-name|getDatabaseType
-argument_list|()
-operator|==
-name|DBBroker
-operator|.
-name|DBM
-operator|||
-name|broker
-operator|.
-name|getDatabaseType
-argument_list|()
-operator|==
-name|DBBroker
-operator|.
-name|NATIVE
-condition|)
-block|{
-comment|// use temporary file name for native broker
-comment|// and rename later to avoid database corruption
-name|document
-operator|=
-operator|new
-name|DocumentImpl
-argument_list|(
-name|broker
-argument_list|,
-name|collName
-operator|+
-literal|"/__"
-operator|+
-name|fileName
-argument_list|,
-name|collection
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
-name|addDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|document
 operator|=
 operator|new
@@ -2660,7 +2597,6 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|oldDoc
@@ -2793,8 +2729,26 @@ throw|throw
 name|e
 throw|;
 block|}
+comment|// new document is valid: remove old document
+if|if
+condition|(
+name|oldDoc
+operator|!=
+literal|null
+condition|)
+name|broker
+operator|.
+name|removeDocument
+argument_list|(
+name|collName
+operator|+
+literal|'/'
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**      *  Sets the documentLocator attribute of the Parser object      *      *@param  locator  The new documentLocator value      */
+comment|/** 	 *  Sets the documentLocator attribute of the Parser object 	 * 	 *@param  locator  The new documentLocator value 	 */
 specifier|public
 name|void
 name|setDocumentLocator
@@ -2810,7 +2764,7 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|/**      *  set SAX parser feature. This method will catch (and ignore) exceptions      *  if the used parser does not support a feature.      *      *@param  factory  The new feature value      *@param  feature  The new feature value      *@param  value    The new feature value      */
+comment|/** 	 *  set SAX parser feature. This method will catch (and ignore) exceptions 	 *  if the used parser does not support a feature. 	 * 	 *@param  factory  The new feature value 	 *@param  feature  The new feature value 	 *@param  value    The new feature value 	 */
 specifier|private
 name|void
 name|setFeature
@@ -2880,7 +2834,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 name|void
 name|skippedEntity
@@ -2899,7 +2853,7 @@ block|{
 block|}
 comment|// Methods of interface LexicalHandler
 comment|// used to determine Doctype
-comment|/**      *  Description of the Method      *      *@param  name      Description of the Parameter      *@param  publicId  Description of the Parameter      *@param  systemId  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name      Description of the Parameter 	 *@param  publicId  Description of the Parameter 	 *@param  systemId  Description of the Parameter 	 */
 specifier|public
 name|void
 name|startDTD
@@ -2946,7 +2900,7 @@ name|startDocument
 parameter_list|()
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  namespace   Description of the Parameter      *@param  name        Description of the Parameter      *@param  qname       Description of the Parameter      *@param  attributes  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  namespace   Description of the Parameter 	 *@param  name        Description of the Parameter 	 *@param  qname       Description of the Parameter 	 *@param  attributes  Description of the Parameter 	 */
 specifier|public
 name|void
 name|startElement
@@ -3516,7 +3470,7 @@ operator|=
 name|currentPath
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name  Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name  Description of the Parameter 	 */
 specifier|public
 name|void
 name|startEntity
@@ -3526,7 +3480,7 @@ name|name
 parameter_list|)
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  prefix  Description of the Parameter      *@param  uri     Description of the Parameter      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  prefix  Description of the Parameter 	 *@param  uri     Description of the Parameter 	 */
 specifier|public
 name|void
 name|startPrefixMapping
@@ -3600,7 +3554,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@return                   Description of the Return Value      *@exception  SAXException  Description of the Exception      *@exception  IOException   Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return                   Description of the Return Value 	 *@exception  SAXException  Description of the Exception 	 *@exception  IOException   Description of the Exception 	 */
 specifier|public
 name|DocumentImpl
 name|store
@@ -3817,29 +3771,6 @@ operator|.
 name|NATIVE
 condition|)
 block|{
-name|collection
-operator|.
-name|renameDocument
-argument_list|(
-name|collection
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"/__"
-operator|+
-name|fileName
-argument_list|,
-name|collection
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|'/'
-operator|+
-name|fileName
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|addDocument
@@ -3893,7 +3824,7 @@ throw|;
 block|}
 block|}
 comment|// Methods of interface ErrorHandler
-comment|/**      *  Description of the Method      *      *@param  e                 Description of the Parameter      *@exception  SAXException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  e                 Description of the Parameter 	 *@exception  SAXException  Description of the Exception 	 */
 specifier|public
 name|void
 name|warning

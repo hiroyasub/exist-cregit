@@ -65,26 +65,6 @@ end_import
 
 begin_import
 import|import
-name|gnu
-operator|.
-name|trove
-operator|.
-name|TIntObjectHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|gnu
-operator|.
-name|trove
-operator|.
-name|TObjectProcedure
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|w3c

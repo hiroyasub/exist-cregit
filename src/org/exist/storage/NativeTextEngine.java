@@ -15,6 +15,20 @@ end_package
 
 begin_import
 import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastUtil
+operator|.
+name|Object2ObjectRBTreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -110,16 +124,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
 import|;
 end_import
 
@@ -1527,14 +1531,7 @@ index|[]
 name|expr
 parameter_list|)
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 name|ArraySet
 index|[]
 name|result
@@ -1916,34 +1913,12 @@ block|{
 block|}
 block|}
 comment|//( (ArraySet) result[i] ).setIsSorted( true );
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"found: "
-operator|+
-name|result
-index|[
-name|i
-index|]
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug(
+comment|//				"found: "
+comment|//					+ result[i].getLength()
+comment|//					+ " in "
+comment|//					+ (System.currentTimeMillis() - start)
+comment|//					+ "ms.");
 block|}
 return|return
 name|result
@@ -3956,7 +3931,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 			 * @see org.dbxml.core.data.Value#streamTo(java.io.OutputStream) 			 */
+comment|/** 		 * @see org.dbxml.core.data.Value#streamTo(java.io.OutputStream) 		 */
 specifier|public
 name|void
 name|streamTo
@@ -3975,7 +3950,7 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 			 * @see java.lang.Object#toString() 			 */
+comment|/** 		 * @see java.lang.Object#toString() 		 */
 specifier|public
 name|String
 name|toString
@@ -4049,12 +4024,13 @@ name|flushed
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
-name|TreeMap
+comment|//protected TreeMap words = new TreeMap();
+specifier|private
+name|Object2ObjectRBTreeMap
 name|words
 init|=
 operator|new
-name|TreeMap
+name|Object2ObjectRBTreeMap
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -4583,10 +4559,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//words = new TreeMap();
 name|words
-operator|=
-operator|new
-name|TreeMap
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}

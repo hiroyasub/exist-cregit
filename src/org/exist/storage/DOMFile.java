@@ -15,105 +15,29 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|it
 operator|.
-name|dbxml
+name|unimi
 operator|.
-name|core
+name|dsi
 operator|.
-name|*
+name|fastUtil
+operator|.
+name|Long2ObjectLinkedOpenHashMap
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|it
 operator|.
-name|dbxml
+name|unimi
 operator|.
-name|core
+name|dsi
 operator|.
-name|filer
+name|fastUtil
 operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|dbxml
-operator|.
-name|core
-operator|.
-name|indexer
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|dbxml
-operator|.
-name|core
-operator|.
-name|data
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
+name|Object2LongOpenHashMap
 import|;
 end_import
 
@@ -139,6 +63,56 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedList
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -151,21 +125,13 @@ end_import
 
 begin_import
 import|import
-name|gnu
+name|org
 operator|.
-name|trove
+name|dbxml
 operator|.
-name|TLongObjectHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|gnu
+name|core
 operator|.
-name|trove
-operator|.
-name|TObjectLongHashMap
+name|DBException
 import|;
 end_import
 
@@ -173,11 +139,69 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|dbxml
 operator|.
-name|util
+name|core
 operator|.
-name|*
+name|data
+operator|.
+name|Value
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|dbxml
+operator|.
+name|core
+operator|.
+name|filer
+operator|.
+name|BTree
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|dbxml
+operator|.
+name|core
+operator|.
+name|filer
+operator|.
+name|BTreeCallback
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|dbxml
+operator|.
+name|core
+operator|.
+name|filer
+operator|.
+name|BTreeException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|dbxml
+operator|.
+name|core
+operator|.
+name|indexer
+operator|.
+name|IndexQuery
 import|;
 end_import
 
@@ -189,12 +213,120 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Lockable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ReadOnlyException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SimpleTimeOutLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|XMLUtil
 import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    25. Mai 2002  */
+comment|/**  *  DOMFile represents the central storage file for DOM nodes.  *   * Nodes are stored in sequential order to allow fast access when  * serializing a document or fragment. Pages have previous-page/next-page  * links. Each node has a virtual address,  * which consists of a page-number/tid pair. The tid is a virtual offset  * into the page. A node may be moved to a new page on node insertions.  * However, the tid will always remain the same.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    25. Mai 2002  */
 end_comment
 
 begin_class
@@ -277,14 +409,14 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|TObjectLongHashMap
+name|Object2LongOpenHashMap
 name|pages
 init|=
 operator|new
-name|TObjectLongHashMap
+name|Object2LongOpenHashMap
 argument_list|()
 decl_stmt|;
-comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  buffers      Description of the Parameter 	 *@param  dataBuffers  Description of the Parameter 	 */
+comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  buffers      the number of btree buffers to use 	 *@param  dataBuffers  the number of data page buffers 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -331,7 +463,7 @@ name|dataBuffers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file  Description of the Parameter 	 */
+comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file  the file to use 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -352,7 +484,7 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file     Description of the Parameter 	 *@param  buffers  Description of the Parameter 	 */
+comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file     the file to use 	 *@param  buffers  size of the data page buffer 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -376,7 +508,7 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file         Description of the Parameter 	 *@param  buffers      Description of the Parameter 	 *@param  dataBuffers  Description of the Parameter 	 */
+comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file         the file to use  	 *@param  buffers      size of the buffer for btree pages 	 *@param  dataBuffers  size of the buffer for data pages 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -403,7 +535,7 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Constructor for the DOMFile object 	 * 	 *@param  file     Description of the Parameter 	 *@param  buffers  Description of the Parameter 	 *@param  keyLen   Description of the Parameter 	 */
+comment|/** 	 *  Constructor for the DOMFile object.      *       * Use this constructor if all keys have the same length. 	 * 	 *@param  file     the file to use 	 *@param  buffers  size of the data page buffer 	 *@param  keyLen   key size if all keys have the same length 	 */
 specifier|public
 name|DOMFile
 parameter_list|(
@@ -432,7 +564,7 @@ name|keyLen
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  page    Description of the Parameter 	 *@param  offset  Description of the Parameter 	 *@return         Description of the Return Value 	 */
+comment|/** 	 *  Create virtual address from page number and offset (tid) 	 * 	 *@param  page    page number 	 *@param  offset  offset (tid) 	 *@return         new virtual address in a long 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -474,7 +606,7 @@ literal|32
 operator|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pointer  Description of the Parameter 	 *@return          Description of the Return Value 	 */
+comment|/** 	 *  Get the tid from a virtual address 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -500,7 +632,7 @@ literal|0xffff
 operator|)
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  pointer  Description of the Parameter 	 *@return          Description of the Return Value 	 */
+comment|/** 	 *  Get the page from a virtual address 	 * 	 *@param  pointer   	 *@return          the page encoded in this address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -518,7 +650,7 @@ operator|)
 name|pointer
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
+comment|/** 	 *  Append a value to the current page  	 * 	 *@param  value  the value to append 	 *@return        the virtual storage address of the value 	 */
 specifier|public
 name|long
 name|add
@@ -629,7 +761,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//page.write();
+name|buffer
+operator|.
+name|add
+argument_list|(
+name|page
+argument_list|)
+expr_stmt|;
 block|}
 name|page
 operator|=
@@ -642,6 +780,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// save tuple identifier
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -650,6 +789,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|tid
 init|=
@@ -794,6 +934,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -1898,6 +2039,7 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -1945,6 +2087,7 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|long
 name|firstChildId
 init|=
@@ -1975,6 +2118,7 @@ condition|)
 return|return
 literal|0
 return|;
+specifier|final
 name|long
 name|lastChildId
 init|=
@@ -2091,7 +2235,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  first               Description of the Parameter 	 *@param  last                Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/** 	 *  Retrieve a range of nodes, starting at first and including last. 	 * 	 *@param  first               the first node to retrieve 	 *@param  last                the last node to retrieve 	 *@return                     list of nodes 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|findRange
@@ -2107,6 +2251,7 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -2124,6 +2269,7 @@ argument_list|,
 name|last
 argument_list|)
 decl_stmt|;
+specifier|final
 name|RangeCallback
 name|cb
 init|=
@@ -2160,6 +2306,7 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2171,6 +2318,7 @@ operator|.
 name|getDoc
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NativeBroker
 operator|.
 name|NodeRef
@@ -2297,6 +2445,7 @@ parameter_list|)
 block|{
 block|}
 block|}
+specifier|final
 name|long
 name|firstChildId
 init|=
@@ -2309,6 +2458,7 @@ argument_list|,
 name|id
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Iterator
 name|iter
 init|=
@@ -2324,6 +2474,7 @@ argument_list|,
 name|parentPointer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Value
 name|value
 init|=
@@ -2335,6 +2486,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -2357,6 +2509,7 @@ argument_list|(
 name|id
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|address
 init|=
@@ -2383,7 +2536,7 @@ name|address
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/** 	 *  Find matching nodes for the given query.  	 * 	 *@param  query               Description of the Parameter 	 *@return                     Description of the Return Value 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|ArrayList
 name|findValues
@@ -2421,7 +2574,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
+comment|/** 	 *  Flush all buffers to disk. 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|flush
@@ -2429,6 +2582,7 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+comment|//super.flush();
 name|buffer
 operator|.
 name|flush
@@ -2440,11 +2594,6 @@ name|remove
 argument_list|(
 name|owner
 argument_list|)
-expr_stmt|;
-name|super
-operator|.
-name|flush
-argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -2488,6 +2637,11 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+name|super
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 name|buffer
 operator|.
 name|clear
@@ -2499,11 +2653,6 @@ name|remove
 argument_list|(
 name|owner
 argument_list|)
-expr_stmt|;
-name|super
-operator|.
-name|flush
-argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -2553,7 +2702,7 @@ name|printStatistics
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key  Description of the Parameter 	 *@return      Description of the Return Value 	 */
+comment|/** 	 *  Retrieve a node by key 	 * 	 *@param  key   	 *@return      Description of the Return Value 	 */
 specifier|public
 name|Value
 name|get
@@ -2617,7 +2766,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 *  Retrieve a node described by the given NodeProxy. 	 * 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|Value
 name|get
@@ -2682,7 +2831,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  p  Description of the Parameter 	 *@return    Description of the Return Value 	 */
+comment|/** 	 *  Retrieve node at virtual address p. 	 * 	 *@param  p  Description of the Parameter 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|Value
 name|get
@@ -2866,6 +3015,7 @@ operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
+comment|//System.out.println(pos + "< " + dlen);
 while|while
 condition|(
 name|pos
@@ -2888,6 +3038,7 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
+comment|//System.out.println(current + " = " + tid);
 if|if
 condition|(
 name|current
@@ -2947,7 +3098,9 @@ literal|" not found on page "
 operator|+
 name|page
 operator|.
-name|getPageNum
+name|page
+operator|.
+name|getPageInfo
 argument_list|()
 operator|+
 literal|". Loading "
@@ -3036,7 +3189,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/** 	 *  Gets the currentPage attribute of the DOMFile object 	 * 	 *@return    The currentPage value 	 */
+comment|/** 	 *  Retrieve the last page in the current sequence. 	 * 	 *@return    The currentPage value 	 */
 specifier|private
 specifier|final
 name|DOMPage
@@ -3087,7 +3240,7 @@ name|getCurrentPage
 argument_list|(
 name|pages
 operator|.
-name|get
+name|getLong
 argument_list|(
 name|owner
 argument_list|)
@@ -3095,7 +3248,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 *  Gets the currentPage attribute of the DOMFile object 	 * 	 *@param  p  Description of the Parameter 	 *@return    The currentPage value 	 */
+comment|/** 	 *  Retrieve the page with page number p 	 * 	 *@param  p  Description of the Parameter 	 *@return    The currentPage value 	 */
 specifier|private
 specifier|final
 name|DOMPage
@@ -3158,7 +3311,7 @@ comment|//            e.printStackTrace();
 comment|//            return null;
 comment|//        }
 comment|//    }
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc   Description of the Parameter 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
+comment|/** 	 *  Get a node iterator starting at the address of the given      * NodeProxy. 	 * 	 *@param  doc   Description of the Parameter 	 *@param  node  Description of the Parameter 	 *@return       Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -3218,7 +3371,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  doc      Description of the Parameter 	 *@param  address  Description of the Parameter 	 *@return          Description of the Return Value 	 */
+comment|/** 	 *  Get a node iterator starting at the given address. 	 * 	 *@param  doc      Description of the Parameter 	 *@param  address  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|Iterator
 name|iterator
@@ -3278,7 +3431,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
+comment|/** 	 *  Open the file. 	 * 	 *@return                  Description of the Return Value 	 *@exception  DBException  Description of the Exception 	 */
 specifier|public
 name|boolean
 name|open
@@ -3301,7 +3454,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
+comment|/** 	 *  Put a new key/value pair. 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|long
 name|put
@@ -3374,7 +3527,7 @@ return|return
 name|p
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key  Description of the Parameter 	 */
+comment|/** 	 *  Remove a key/value pair. 	 * 	 *@param  key  Description of the Parameter 	 */
 specifier|public
 name|void
 name|remove
@@ -3433,7 +3586,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  p  Description of the Parameter 	 */
+comment|/** 	 *  Remove the value at address p. 	 * 	 *@param  p  Description of the Parameter 	 */
 specifier|public
 name|void
 name|remove
@@ -3567,6 +3720,14 @@ name|setDataLength
 argument_list|(
 name|len
 argument_list|)
+expr_stmt|;
+name|rec
+operator|.
+name|page
+operator|.
+name|len
+operator|=
+name|len
 expr_stmt|;
 name|rec
 operator|.
@@ -3740,7 +3901,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the currentPage attribute of the DOMFile object 	 * 	 *@param  page  The new currentPage value 	 */
+comment|/** 	 *  Set the last page in the sequence to which nodes are      * currently appended. 	 * 	 *@param  page  The new currentPage value 	 */
 specifier|private
 specifier|final
 name|void
@@ -3756,7 +3917,7 @@ name|pnum
 init|=
 name|pages
 operator|.
-name|get
+name|getLong
 argument_list|(
 name|owner
 argument_list|)
@@ -3795,6 +3956,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Get the active Lock object for this file.      *  	 * @see org.exist.util.Lockable#getLock() 	 */
 specifier|public
 specifier|final
 name|Lock
@@ -3805,7 +3967,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/** 	 *  Sets the location attribute of the DOMFile object 	 * 	 *@param  location  The new location value 	 */
+comment|/** 	 *  Set the file location for this DOMFile. 	 * 	 *@param  location  The new location value 	 */
 specifier|public
 name|void
 name|setLocation
@@ -3826,7 +3988,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Sets the ownerObject attribute of the DOMFile object 	 * 	 *@param  obj  The new ownerObject value 	 */
+comment|/** 	 *  The current object owning this file.      *  	 * 	 *@param  obj  The new ownerObject value 	 */
 specifier|public
 specifier|final
 name|void
@@ -3858,7 +4020,7 @@ comment|//        if (currentDoc != null)
 comment|//            currentDoc.setRootPage(rootNode.page.getPageNum());
 comment|//        cache.add(rootNode);
 comment|//    }
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
+comment|/** 	 *  Update the key/value pair. 	 * 	 *@param  key    Description of the Parameter 	 *@param  value  Description of the Parameter 	 *@return        Description of the Return Value 	 */
 specifier|public
 name|boolean
 name|update
@@ -3946,7 +4108,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  key    Description of the Parameter 	 *@param  p      Description of the Parameter 	 *@param  value  Description of the Parameter 	 */
+comment|/** 	 *  Update the key/value pair where the value is found at      * address p. 	 * 	 *@param  key    Description of the Parameter 	 *@param  p      Description of the Parameter 	 *@param  value  Description of the Parameter 	 */
 specifier|public
 name|void
 name|update
@@ -4000,6 +4162,13 @@ name|l
 condition|)
 block|{
 comment|// value is smaller than before
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"shrinking value"
+argument_list|)
+expr_stmt|;
 name|int
 name|next
 init|=
@@ -4105,6 +4274,26 @@ operator|-
 name|next
 argument_list|)
 expr_stmt|;
+name|rec
+operator|.
+name|page
+operator|.
+name|len
+operator|=
+name|rec
+operator|.
+name|page
+operator|.
+name|len
+operator|-
+operator|(
+name|l
+operator|-
+name|value
+operator|.
+name|length
+operator|)
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -4151,6 +4340,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|rec
 operator|.
 name|page
@@ -4160,7 +4350,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|private
 specifier|final
@@ -5648,8 +5837,8 @@ name|getNextTID
 parameter_list|()
 block|{
 return|return
-name|tid
 operator|++
+name|tid
 return|;
 block|}
 specifier|public
@@ -5878,6 +6067,10 @@ argument_list|(
 name|tid
 argument_list|)
 expr_stmt|;
+comment|//            if(dataLen == 0) {
+comment|//                LOG.debug("dataLen == 0");
+comment|//                Thread.dumpStack();
+comment|//            }
 block|}
 block|}
 comment|/** 	 *  Description of the Class 	 * 	 *@author     wolf 	 *@created    3. Juni 2002 	 */
@@ -6211,13 +6404,7 @@ name|isDirty
 argument_list|()
 condition|)
 return|return;
-name|ph
-operator|.
-name|setDataLength
-argument_list|(
-name|len
-argument_list|)
-expr_stmt|;
+comment|//ph.setDataLength(len);
 name|ph
 operator|.
 name|setRecordLen
@@ -6274,8 +6461,9 @@ name|hits
 init|=
 literal|0
 decl_stmt|;
+comment|//protected TLongObjectHashMap map;
 specifier|protected
-name|TLongObjectHashMap
+name|Long2ObjectLinkedOpenHashMap
 name|map
 decl_stmt|;
 specifier|protected
@@ -6284,14 +6472,7 @@ name|misses
 init|=
 literal|0
 decl_stmt|;
-specifier|protected
-name|LinkedList
-name|queue
-init|=
-operator|new
-name|LinkedList
-argument_list|()
-decl_stmt|;
+comment|//protected LinkedList queue = new LinkedList();
 comment|/** 		 *  Constructor for the PageBuffer object 		 * 		 *@param  blockBuffers  Description of the Parameter 		 */
 specifier|public
 name|ClockPageBuffer
@@ -6306,10 +6487,11 @@ name|blockBuffers
 operator|=
 name|blockBuffers
 expr_stmt|;
+comment|//map = new TLongObjectHashMap(blockBuffers);
 name|map
 operator|=
 operator|new
-name|TLongObjectHashMap
+name|Long2ObjectLinkedOpenHashMap
 argument_list|(
 name|blockBuffers
 argument_list|)
@@ -6359,7 +6541,7 @@ return|return;
 block|}
 while|while
 condition|(
-name|queue
+name|map
 operator|.
 name|size
 argument_list|()
@@ -6383,7 +6565,10 @@ control|(
 name|Iterator
 name|i
 init|=
-name|queue
+name|map
+operator|.
+name|values
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -6436,18 +6621,7 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
-name|map
-operator|.
-name|remove
-argument_list|(
-name|old
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//map.remove(old.page.getPageNum());
 if|if
 condition|(
 name|old
@@ -6469,13 +6643,7 @@ block|}
 block|}
 block|}
 block|}
-name|queue
-operator|.
-name|add
-argument_list|(
-name|page
-argument_list|)
-expr_stmt|;
+comment|//queue.add(page);
 name|map
 operator|.
 name|put
@@ -6505,7 +6673,10 @@ control|(
 name|Iterator
 name|i
 init|=
-name|queue
+name|map
+operator|.
+name|values
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -6549,11 +6720,7 @@ block|{
 name|flush
 argument_list|()
 expr_stmt|;
-name|queue
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
+comment|//queue.clear();
 name|map
 operator|.
 name|clear
@@ -6627,32 +6794,9 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
-name|int
-name|idx
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|idx
-operator|=
-name|queue
-operator|.
-name|indexOf
-argument_list|(
-name|page
-argument_list|)
-operator|)
-operator|>
-operator|-
-literal|1
-condition|)
-name|queue
-operator|.
-name|remove
-argument_list|(
-name|idx
-argument_list|)
-expr_stmt|;
+comment|//			int idx;
+comment|//			while ((idx = queue.indexOf(page))> -1)
+comment|//				queue.remove(idx);
 name|map
 operator|.
 name|remove

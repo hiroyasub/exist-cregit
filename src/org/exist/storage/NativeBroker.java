@@ -764,7 +764,6 @@ argument_list|(
 literal|50
 argument_list|)
 decl_stmt|;
-comment|//protected BFile docsDb = null;
 specifier|protected
 name|BFile
 name|elementsDb
@@ -2266,7 +2265,7 @@ init|)
 block|{
 name|domDb
 operator|.
-name|flush
+name|sync
 argument_list|()
 expr_stmt|;
 block|}
@@ -3349,14 +3348,7 @@ operator|new
 name|DocumentSet
 argument_list|()
 decl_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//long start = System.currentTimeMillis();
 if|if
 condition|(
 name|collection
@@ -3583,35 +3575,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"loading "
-operator|+
-name|docs
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" documents from collection "
-operator|+
-name|collection
-operator|+
-literal|" took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug(
+comment|//			"loading "
+comment|//				+ docs.getLength()
+comment|//				+ " documents from collection "
+comment|//				+ collection
+comment|//				+ " took "
+comment|//				+ (System.currentTimeMillis() - start)
+comment|//				+ "ms.");
 return|return
 name|docs
 return|;
@@ -9600,6 +9571,18 @@ name|currentPath
 parameter_list|)
 block|{
 specifier|final
+name|DocumentImpl
+name|doc
+init|=
+operator|(
+name|DocumentImpl
+operator|)
+name|node
+operator|.
+name|getOwnerDocument
+argument_list|()
+decl_stmt|;
+specifier|final
 name|IndexPaths
 name|idx
 init|=
@@ -9610,12 +9593,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexScheme."
+literal|'@'
 operator|+
-name|node
-operator|.
-name|getOwnerDocument
-argument_list|()
+name|doc
 operator|.
 name|getDoctype
 argument_list|()
@@ -9671,18 +9651,6 @@ init|=
 name|node
 operator|.
 name|getNodeName
-argument_list|()
-decl_stmt|;
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|node
-operator|.
-name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -9769,6 +9737,7 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
+comment|//LOG.debug("adding " + gid + " to dom.dbx");
 name|address
 operator|=
 name|domDb

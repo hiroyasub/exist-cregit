@@ -4118,7 +4118,7 @@ name|args
 operator|.
 name|length
 operator|<
-literal|4
+literal|3
 condition|)
 block|{
 name|System
@@ -4127,7 +4127,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Usage: chown username group resource"
+literal|"Usage: chown username group [resource]"
 argument_list|)
 expr_stmt|;
 return|return
@@ -4136,7 +4136,17 @@ return|;
 block|}
 name|Collection
 name|temp
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|4
+condition|)
+name|temp
+operator|=
 name|current
 operator|.
 name|getChildCollection
@@ -4146,7 +4156,12 @@ index|[
 literal|3
 index|]
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+else|else
+name|temp
+operator|=
+name|current
+expr_stmt|;
 if|if
 condition|(
 name|temp
@@ -5645,9 +5660,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"creating "
+literal|"entering directory "
 operator|+
-name|next
+name|temp
+index|[
+name|i
+index|]
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|c
@@ -5725,7 +5746,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|messageln
+name|message
 argument_list|(
 literal|"storing document "
 operator|+
@@ -5736,6 +5757,18 @@ index|]
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|i
+operator|+
+literal|" of "
+operator|+
+name|temp
+operator|.
+name|length
+operator|+
+literal|") "
 operator|+
 literal|" to "
 operator|+
@@ -5796,7 +5829,7 @@ name|filesCount
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"storing "
+literal|"stored "
 operator|+
 name|temp
 index|[
@@ -5806,7 +5839,7 @@ operator|.
 name|length
 argument_list|()
 operator|+
-literal|" bytes took "
+literal|" bytes in "
 operator|+
 operator|(
 name|System

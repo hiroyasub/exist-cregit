@@ -150,7 +150,7 @@ specifier|private
 name|User
 name|user
 decl_stmt|;
-comment|/**      *  Constructor for the UserAdminService object      *      *@param  pool        Description of the Parameter      *@param  collection  Description of the Parameter      *@param  user        Description of the Parameter      */
+comment|/** 	 *  Constructor for the UserAdminService object 	 * 	 *@param  pool        Description of the Parameter 	 *@param  collection  Description of the Parameter 	 *@param  user        Description of the Parameter 	 */
 specifier|public
 name|LocalUserManagementService
 parameter_list|(
@@ -183,7 +183,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      *  Adds a feature to the User attribute of the LocalUserManagementService      *  object      *      *@param  u                   The feature to be added to the User attribute      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Adds a feature to the User attribute of the LocalUserManagementService 	 *  object 	 * 	 *@param  u                   The feature to be added to the User attribute 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|addUser
@@ -267,7 +267,7 @@ name|u
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  modeStr             Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  modeStr             Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chmod
@@ -447,7 +447,319 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  resource            Description of the Parameter      *@param  modeStr             Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+specifier|public
+name|void
+name|chmod
+parameter_list|(
+name|Resource
+name|resource
+parameter_list|,
+name|int
+name|mode
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+name|manager
+init|=
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+decl_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+name|DocumentImpl
+name|document
+init|=
+operator|(
+operator|(
+name|LocalXMLResource
+operator|)
+name|resource
+operator|)
+operator|.
+name|getDocument
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|document
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|getOwner
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|user
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|&&
+operator|!
+name|manager
+operator|.
+name|hasAdminPrivileges
+argument_list|(
+name|user
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+literal|"you are not the owner of this resource"
+argument_list|)
+throw|;
+name|document
+operator|.
+name|setPermissions
+argument_list|(
+name|mode
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|collection
+operator|.
+name|getCollection
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|chmod
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+name|manager
+init|=
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|collection
+operator|.
+name|checkOwner
+argument_list|(
+name|user
+argument_list|)
+operator|&&
+operator|!
+name|manager
+operator|.
+name|hasAdminPrivileges
+argument_list|(
+name|user
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+literal|"you are not the owner of this collection"
+argument_list|)
+throw|;
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|Collection
+name|coll
+init|=
+name|collection
+operator|.
+name|getCollection
+argument_list|()
+decl_stmt|;
+name|coll
+operator|.
+name|setPermissions
+argument_list|(
+name|mode
+argument_list|)
+expr_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|coll
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 *  Description of the Method 	 * 	 *@param  resource            Description of the Parameter 	 *@param  modeStr             Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chmod
@@ -557,11 +869,6 @@ name|getCollection
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|broker
-operator|.
-name|sync
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -632,7 +939,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  u                   Description of the Parameter 	 *@param  group               Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chown
@@ -796,7 +1103,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Description of the Method      *      *@param  res                 Description of the Parameter      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  res                 Description of the Parameter 	 *@param  u                   Description of the Parameter 	 *@param  group               Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|chown
@@ -981,7 +1288,7 @@ literal|"resource not found"
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the name attribute of the UserAdminService object      *      *@return    The name value      */
+comment|/** 	 *  Gets the name attribute of the UserAdminService object 	 * 	 *@return    The name value 	 */
 specifier|public
 name|String
 name|getName
@@ -991,7 +1298,7 @@ return|return
 literal|"UserManagementService"
 return|;
 block|}
-comment|/**      *  Gets the permissions attribute of the LocalUserManagementService object      *      *@param  coll                Description of the Parameter      *@return                     The permissions value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Gets the permissions attribute of the LocalUserManagementService object 	 * 	 *@param  coll                Description of the Parameter 	 *@return                     The permissions value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -1026,7 +1333,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the permissions attribute of the LocalUserManagementService object      *      *@param  resource            Description of the Parameter      *@return                     The permissions value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Gets the permissions attribute of the LocalUserManagementService object 	 * 	 *@param  resource            Description of the Parameter 	 *@return                     The permissions value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|Permission
 name|getPermissions
@@ -1338,7 +1645,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Gets the property attribute of the LocalUserManagementService object      *      *@param  property            Description of the Parameter      *@return                     The property value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Gets the property attribute of the LocalUserManagementService object 	 * 	 *@param  property            Description of the Parameter 	 *@return                     The property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|String
 name|getProperty
@@ -1353,7 +1660,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the user attribute of the LocalUserManagementService object      *      *@param  name                Description of the Parameter      *@return                     The user value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Gets the user attribute of the LocalUserManagementService object 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|User
 name|getUser
@@ -1387,7 +1694,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the users attribute of the LocalUserManagementService object      *      *@return                     The users value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Gets the users attribute of the LocalUserManagementService object 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|User
 index|[]
@@ -1417,7 +1724,7 @@ name|getUsers
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the version attribute of the UserAdminService object      *      *@return    The version value      */
+comment|/** 	 *  Gets the version attribute of the UserAdminService object 	 * 	 *@return    The version value 	 */
 specifier|public
 name|String
 name|getVersion
@@ -1427,7 +1734,7 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  name                Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  name                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeUser
@@ -1481,7 +1788,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Sets the collection attribute of the LocalUserManagementService object      *      *@param  collection          The new collection value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Sets the collection attribute of the LocalUserManagementService object 	 * 	 *@param  collection          The new collection value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setCollection
@@ -1502,7 +1809,7 @@ operator|)
 name|collection
 expr_stmt|;
 block|}
-comment|/**      *  Sets the property attribute of the LocalUserManagementService object      *      *@param  property            The new property value      *@param  value               The new property value      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Sets the property attribute of the LocalUserManagementService object 	 * 	 *@param  property            The new property value 	 *@param  value               The new property value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|setProperty
@@ -1517,7 +1824,7 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-comment|/**      *  Description of the Method      *      *@param  u                   Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  u                   Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|updateUser
