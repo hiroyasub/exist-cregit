@@ -6860,11 +6860,8 @@ name|e
 argument_list|)
 expr_stmt|;
 else|else
-name|System
-operator|.
-name|err
-operator|.
-name|println
+block|{
+name|messageln
 argument_list|(
 name|getExceptionMessage
 argument_list|(
@@ -6872,6 +6869,12 @@ name|e
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
