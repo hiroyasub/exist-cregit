@@ -254,6 +254,26 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.DatabaseInstanceManager#getConfiguration() 	 */
+specifier|public
+name|DatabaseStatus
+name|getStatus
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|,
+literal|"this method is not available for remote connections"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

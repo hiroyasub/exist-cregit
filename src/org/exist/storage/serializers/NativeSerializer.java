@@ -2085,7 +2085,7 @@ name|expr
 operator|.
 name|append
 argument_list|(
-literal|"s/("
+literal|"s/\\b("
 argument_list|)
 expr_stmt|;
 block|}
@@ -2096,7 +2096,7 @@ operator|.
 name|length
 argument_list|()
 operator|>
-literal|3
+literal|5
 condition|)
 name|expr
 operator|.
@@ -2130,7 +2130,7 @@ name|expr
 operator|.
 name|append
 argument_list|(
-literal|")/||$1||/gi"
+literal|")\\b/||$1||/gi"
 argument_list|)
 expr_stmt|;
 name|data

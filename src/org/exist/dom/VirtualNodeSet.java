@@ -43,18 +43,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|XMLUtil
@@ -385,7 +373,9 @@ name|first
 return|;
 if|else if
 condition|(
-name|pid
+name|node
+operator|.
+name|gid
 operator|<
 literal|0
 condition|)
@@ -614,6 +604,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -634,6 +625,12 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|!=
+literal|null
+condition|)
 name|addInternal
 argument_list|(
 name|p
@@ -659,6 +656,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -673,6 +671,12 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|!=
+literal|null
+condition|)
 name|addInternal
 argument_list|(
 name|p
@@ -768,26 +772,8 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-if|if
-condition|(
-name|realSet
-operator|!=
-literal|null
-condition|)
-return|return
-name|super
-operator|.
-name|parentWithChild
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|,
-name|directParent
-argument_list|,
-name|includeSelf
-argument_list|)
-return|;
+comment|//if(realSet != null)
+comment|//	return super.parentWithChild(doc, gid, directParent, includeSelf);
 name|NodeProxy
 name|first
 init|=

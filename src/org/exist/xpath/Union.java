@@ -222,7 +222,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"left returned: "
+literal|"left "
+operator|+
+name|left
+operator|.
+name|pprint
+argument_list|()
+operator|+
+literal|" returned: "
 operator|+
 name|lval
 operator|.
@@ -254,7 +261,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"right returned: "
+literal|"right "
+operator|+
+name|right
+operator|.
+name|pprint
+argument_list|()
+operator|+
+literal|" returned: "
 operator|+
 name|rval
 operator|.

@@ -222,6 +222,8 @@ operator|=
 operator|new
 name|BrokerPool
 argument_list|(
+name|id
+argument_list|,
 name|minBrokers
 argument_list|,
 name|maxBrokers
@@ -553,10 +555,17 @@ name|idleTime
 init|=
 literal|900000L
 decl_stmt|;
+specifier|private
+name|String
+name|instanceId
+decl_stmt|;
 comment|/** 	 *  Constructor for the BrokerPool object 	 * 	 *@exception  EXistException  Description of the Exception 	 */
 specifier|public
 name|BrokerPool
 parameter_list|(
+name|String
+name|id
+parameter_list|,
 name|int
 name|minBrokers
 parameter_list|,
@@ -569,6 +578,10 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+name|instanceId
+operator|=
+name|id
+expr_stmt|;
 name|min
 operator|=
 name|minBrokers
@@ -1145,6 +1158,15 @@ parameter_list|()
 block|{
 return|return
 name|max
+return|;
+block|}
+specifier|public
+name|String
+name|getId
+parameter_list|()
+block|{
+return|return
+name|instanceId
 return|;
 block|}
 comment|/** 	 *  Has this BrokerPool been configured? 	 * 	 *@return    The configured value 	 */

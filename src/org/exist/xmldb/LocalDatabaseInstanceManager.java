@@ -154,6 +154,21 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|DatabaseStatus
+name|getStatus
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+operator|new
+name|DatabaseStatus
+argument_list|(
+name|pool
+argument_list|)
+return|;
+block|}
 comment|/** 	 * @see org.xmldb.api.base.Service#getName() 	 */
 specifier|public
 name|String

@@ -732,6 +732,17 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|XmlRpc
+operator|.
+name|debug
+condition|)
+name|t
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
 name|t
 operator|instanceof
 name|XmlRpcException

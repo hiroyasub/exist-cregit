@@ -55,6 +55,13 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|DatabaseStatus
+name|getStatus
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 

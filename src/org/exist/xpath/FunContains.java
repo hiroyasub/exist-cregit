@@ -314,7 +314,7 @@ operator|=
 operator|new
 name|ArraySet
 argument_list|(
-literal|100
+literal|200
 argument_list|)
 expr_stmt|;
 for|for
