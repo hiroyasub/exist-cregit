@@ -3847,7 +3847,10 @@ name|removeNode
 argument_list|(
 name|old
 argument_list|,
-literal|"/"
+name|old
+operator|.
+name|getPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker
@@ -3893,7 +3896,10 @@ name|removeNode
 argument_list|(
 name|old
 argument_list|,
-literal|"/"
+name|old
+operator|.
+name|getPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker
