@@ -488,15 +488,6 @@ literal|'/'
 operator|+
 name|path
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Loading document: "
-operator|+
-name|path
-argument_list|)
-expr_stmt|;
 comment|// check if the loaded documents should remain locked
 name|boolean
 name|lockOnLoad
