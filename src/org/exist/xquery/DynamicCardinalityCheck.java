@@ -212,14 +212,10 @@ name|pprint
 parameter_list|()
 block|{
 return|return
-literal|"#cardinality("
-operator|+
 name|expression
 operator|.
 name|pprint
 argument_list|()
-operator|+
-literal|')'
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */

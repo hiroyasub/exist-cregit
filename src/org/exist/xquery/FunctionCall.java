@@ -485,11 +485,11 @@ name|e
 operator|.
 name|prependMessage
 argument_list|(
-literal|"In call to function "
+literal|"in call to function "
 operator|+
-name|expression
+name|functionDef
 operator|.
-name|pprint
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -259,15 +259,6 @@ name|expression
 operator|.
 name|pprint
 argument_list|()
-operator|+
-literal|" treat as "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|requiredType
-argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
