@@ -427,9 +427,9 @@ expr_stmt|;
 comment|// TODO: don't use returnsType here
 if|if
 condition|(
-name|whereExpr
+name|filtered
 operator|.
-name|returnsType
+name|getItemType
 argument_list|()
 operator|==
 name|Type
