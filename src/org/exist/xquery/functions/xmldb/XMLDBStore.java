@@ -651,6 +651,8 @@ argument_list|()
 decl_stmt|;
 name|binary
 operator|=
+operator|!
+operator|(
 literal|"text/xml"
 operator|.
 name|equals
@@ -664,6 +666,7 @@ name|equals
 argument_list|(
 name|mimeType
 argument_list|)
+operator|)
 expr_stmt|;
 block|}
 name|Item
