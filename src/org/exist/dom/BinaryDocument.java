@@ -146,15 +146,6 @@ name|BinaryDocument
 extends|extends
 name|DocumentImpl
 block|{
-specifier|public
-specifier|final
-specifier|static
-name|byte
-name|DATA
-init|=
-operator|-
-literal|1
-decl_stmt|;
 specifier|private
 name|long
 name|pageNr

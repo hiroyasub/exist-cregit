@@ -1135,7 +1135,9 @@ name|xqueryCache
 operator|=
 operator|new
 name|XQueryPool
-argument_list|()
+argument_list|(
+name|conf
+argument_list|)
 expr_stmt|;
 name|monitor
 operator|=

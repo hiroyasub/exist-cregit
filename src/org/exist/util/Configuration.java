@@ -344,7 +344,8 @@ argument_list|,
 literal|"/"
 argument_list|)
 decl_stmt|;
-comment|// first try to read the configuration from a file within the classpath
+comment|// first try to read the configuration from a file within the
+comment|// classpath
 name|InputStream
 name|is
 init|=
@@ -383,7 +384,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// try to read configuration from file. Guess the location if necessary
+comment|// try to read configuration from file. Guess the location if
+comment|// necessary
 name|File
 name|f
 init|=
@@ -609,14 +611,14 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-comment|//			DocumentBuilderFactory factory =
-comment|//				DocumentBuilderFactory.newInstance();
-comment|//			factory.setNamespaceAware(true);
+comment|// DocumentBuilderFactory factory =
+comment|// DocumentBuilderFactory.newInstance();
+comment|// factory.setNamespaceAware(true);
 comment|//
-comment|//			builder = factory.newDocumentBuilder();
-comment|//			builder.setErrorHandler(this);
-comment|//			InputSource src = new InputSource(is);
-comment|//			Document doc = builder.parse(src);
+comment|// builder = factory.newDocumentBuilder();
+comment|// builder.setErrorHandler(this);
+comment|// InputSource src = new InputSource(is);
+comment|// Document doc = builder.parse(src);
 name|Element
 name|root
 init|=
@@ -1949,6 +1951,157 @@ block|{
 block|}
 block|}
 name|NodeList
+name|queryPoolConf
+init|=
+name|con
+operator|.
+name|getElementsByTagName
+argument_list|(
+literal|"query-pool"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|queryPoolConf
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|Element
+name|queryPool
+init|=
+operator|(
+name|Element
+operator|)
+name|queryPoolConf
+operator|.
+name|item
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|String
+name|maxStackSize
+init|=
+name|queryPool
+operator|.
+name|getAttribute
+argument_list|(
+literal|"max-stack-size"
+argument_list|)
+decl_stmt|;
+name|String
+name|timeout
+init|=
+name|queryPool
+operator|.
+name|getAttribute
+argument_list|(
+literal|"timeout"
+argument_list|)
+decl_stmt|;
+name|String
+name|timeoutCheckInterval
+init|=
+name|queryPool
+operator|.
+name|getAttribute
+argument_list|(
+literal|"timeout-check-interval"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|maxStackSize
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|config
+operator|.
+name|put
+argument_list|(
+literal|"db-connection.query-pool.max-stack-size"
+argument_list|,
+operator|new
+name|Integer
+argument_list|(
+name|maxStackSize
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+block|}
+if|if
+condition|(
+name|timeout
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|config
+operator|.
+name|put
+argument_list|(
+literal|"db-connection.query-pool.timeout"
+argument_list|,
+operator|new
+name|Long
+argument_list|(
+name|timeout
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+block|}
+if|if
+condition|(
+name|timeoutCheckInterval
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|config
+operator|.
+name|put
+argument_list|(
+literal|"db-connection.query-pool.timeout-check-interval"
+argument_list|,
+operator|new
+name|Long
+argument_list|(
+name|timeoutCheckInterval
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+block|}
+block|}
+name|NodeList
 name|watchConf
 init|=
 name|con
@@ -2613,7 +2766,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|fatalError
@@ -2648,7 +2801,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|warning
