@@ -281,13 +281,21 @@ condition|)
 throw|throw
 operator|new
 name|XPathException
+argument_list|(
+name|getASTNode
 argument_list|()
+argument_list|,
+literal|"The query generated an error"
+argument_list|)
 throw|;
 else|else
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|arg
 operator|.
 name|getStringValue
