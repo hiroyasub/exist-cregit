@@ -3410,17 +3410,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Collection "
-operator|+
-name|name
-operator|+
-literal|" found in cache"
-argument_list|)
-expr_stmt|;
 return|return
 name|collection
 return|;
