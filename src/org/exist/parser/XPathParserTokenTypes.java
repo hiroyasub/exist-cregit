@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR : "XPathParser.g" -> "XPathLexer.java"$
+comment|// $ANTLR 2.7.2: "XPathParser.g" -> "XPathLexer.java"$
 end_comment
 
 begin_package
@@ -309,108 +309,108 @@ init|=
 literal|27
 decl_stmt|;
 name|int
-name|LITERAL_text
-init|=
-literal|28
-decl_stmt|;
-comment|// "starts-with" = 29
-comment|// "ends-with" = 30
-name|int
-name|LITERAL_contains
-init|=
-literal|31
-decl_stmt|;
-name|int
-name|LITERAL_match
-init|=
-literal|32
-decl_stmt|;
-name|int
-name|LITERAL_near
-init|=
-literal|33
-decl_stmt|;
-name|int
 name|SLASH
 init|=
-literal|34
+literal|28
 decl_stmt|;
 name|int
 name|DSLASH
 init|=
-literal|35
+literal|29
 decl_stmt|;
 name|int
 name|AT
 init|=
-literal|36
+literal|30
 decl_stmt|;
 name|int
 name|ATTRIB_STAR
 init|=
-literal|37
+literal|31
 decl_stmt|;
 name|int
 name|LITERAL_node
 init|=
-literal|38
+literal|32
 decl_stmt|;
 name|int
 name|PARENT
 init|=
-literal|39
+literal|33
 decl_stmt|;
 name|int
 name|SELF
 init|=
-literal|40
+literal|34
 decl_stmt|;
 name|int
 name|COLON
 init|=
-literal|41
+literal|35
 decl_stmt|;
 name|int
 name|LITERAL_descendant
 init|=
-literal|42
+literal|36
 decl_stmt|;
-comment|// "descendant-or-self" = 43
+comment|// "descendant-or-self" = 37
 name|int
 name|LITERAL_child
 init|=
-literal|44
+literal|38
 decl_stmt|;
 name|int
 name|LITERAL_parent
 init|=
-literal|45
+literal|39
 decl_stmt|;
 name|int
 name|LITERAL_self
 init|=
-literal|46
+literal|40
 decl_stmt|;
 name|int
 name|LITERAL_attribute
 init|=
-literal|47
+literal|41
 decl_stmt|;
 name|int
 name|LITERAL_ancestor
 init|=
-literal|48
+literal|42
 decl_stmt|;
-comment|// "ancestor-or-self" = 49
-comment|// "following-sibling" = 50
-comment|// "preceding-sibling" = 51
+comment|// "ancestor-or-self" = 43
+comment|// "following-sibling" = 44
+comment|// "preceding-sibling" = 45
 name|int
 name|LPPAREN
+init|=
+literal|46
+decl_stmt|;
+name|int
+name|RPPAREN
+init|=
+literal|47
+decl_stmt|;
+name|int
+name|LITERAL_text
+init|=
+literal|48
+decl_stmt|;
+comment|// "starts-with" = 49
+comment|// "ends-with" = 50
+name|int
+name|LITERAL_contains
+init|=
+literal|51
+decl_stmt|;
+name|int
+name|LITERAL_match
 init|=
 literal|52
 decl_stmt|;
 name|int
-name|RPPAREN
+name|LITERAL_near
 init|=
 literal|53
 decl_stmt|;

@@ -1047,18 +1047,6 @@ return|return
 name|p
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|ioe
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1066,15 +1054,14 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"io error while appending value "
+operator|+
+name|key
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
@@ -1085,15 +1072,12 @@ name|BTreeException
 name|bte
 parameter_list|)
 block|{
-name|bte
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"btree exception while appending value"
+argument_list|,
 name|bte
 argument_list|)
 expr_stmt|;
@@ -2720,12 +2704,9 @@ operator|+
 literal|": "
 operator|+
 name|ioe
-argument_list|)
-expr_stmt|;
+argument_list|,
 name|ioe
-operator|.
-name|printStackTrace
-argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
@@ -5808,6 +5789,14 @@ operator|=
 operator|!
 name|dirty
 expr_stmt|;
+name|getPageHeader
+argument_list|()
+operator|.
+name|setDirty
+argument_list|(
+name|dirty
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
@@ -7432,7 +7421,6 @@ operator|=
 name|remaining
 expr_stmt|;
 comment|// copy next chunk of data to the page
-comment|//if(!Arrays.equals(data, current, page.getData(), 0, chunkSize)) {
 name|System
 operator|.
 name|arraycopy
@@ -7474,7 +7462,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//}
 name|remaining
 operator|-=
 name|chunkSize
@@ -8653,6 +8640,30 @@ operator|<
 literal|1
 condition|)
 block|{
+if|if
+condition|(
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"words.dbx"
+argument_list|)
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"removing page "
+operator|+
+name|oldNum
+argument_list|)
+expr_stmt|;
 name|i
 operator|.
 name|remove
@@ -8974,7 +8985,15 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"not a data-page"
+literal|"not a data-page: "
+operator|+
+name|p
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getStatus
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -9138,34 +9157,6 @@ operator|=
 name|buf
 expr_stmt|;
 block|}
-comment|/** 		 *  Sets the dirty attribute of the SinglePage object 		 * 		 *@param  dirty  The new dirty value 		 */
-specifier|public
-name|void
-name|setDirty
-parameter_list|(
-name|boolean
-name|dirty
-parameter_list|)
-block|{
-name|super
-operator|.
-name|setDirty
-argument_list|(
-name|dirty
-argument_list|)
-expr_stmt|;
-name|ph
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|saved
-operator|=
-literal|false
-expr_stmt|;
-block|}
 comment|/** 		 *  Description of the Method 		 * 		 *@exception  IOException  Description of the Exception 		 */
 specifier|public
 name|void
@@ -9174,13 +9165,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|ph
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|Value
 name|value
 init|=
@@ -9197,9 +9181,10 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
-name|saved
-operator|=
-literal|true
+name|setDirty
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 block|}

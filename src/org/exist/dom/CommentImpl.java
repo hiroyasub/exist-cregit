@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -263,8 +273,8 @@ parameter_list|,
 name|boolean
 name|first
 parameter_list|,
-name|ArrayList
-name|prefixes
+name|Set
+name|namespaces
 parameter_list|)
 throws|throws
 name|SAXException

@@ -33,6 +33,16 @@ name|Vector
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Hashtable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Execute a query using XMLRPC.  */
 end_comment
@@ -145,6 +155,15 @@ name|Integer
 argument_list|(
 literal|1
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|addElement
+argument_list|(
+operator|new
+name|Hashtable
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|System

@@ -162,14 +162,17 @@ specifier|public
 name|Value
 name|eval
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|NodeProxy
-name|node
+name|contextNode
 parameter_list|)
 block|{
 name|Node
@@ -189,7 +192,7 @@ init|=
 operator|new
 name|SingleNodeSet
 argument_list|(
-name|node
+name|contextNode
 argument_list|)
 decl_stmt|;
 name|NodeSet
@@ -205,6 +208,8 @@ argument_list|)
 operator|.
 name|eval
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|,
 name|set
@@ -228,7 +233,7 @@ block|}
 else|else
 name|n
 operator|=
-name|node
+name|contextNode
 operator|.
 name|getNode
 argument_list|()

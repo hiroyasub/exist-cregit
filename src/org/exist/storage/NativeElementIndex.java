@@ -163,6 +163,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|store
@@ -370,8 +382,8 @@ specifier|public
 name|void
 name|addRow
 parameter_list|(
-name|String
-name|elementName
+name|QName
+name|qname
 parameter_list|,
 name|NodeProxy
 name|proxy
@@ -386,7 +398,7 @@ name|elementIds
 operator|.
 name|containsKey
 argument_list|(
-name|elementName
+name|qname
 argument_list|)
 condition|)
 name|buf
@@ -398,7 +410,7 @@ name|elementIds
 operator|.
 name|get
 argument_list|(
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 else|else
@@ -415,7 +427,7 @@ name|elementIds
 operator|.
 name|put
 argument_list|(
-name|elementName
+name|qname
 argument_list|,
 name|buf
 argument_list|)
@@ -463,8 +475,8 @@ operator|.
 name|Entry
 name|entry
 decl_stmt|;
-name|String
-name|elementName
+name|QName
+name|qname
 decl_stmt|;
 name|List
 name|oldList
@@ -573,10 +585,10 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
-name|elementName
+name|qname
 operator|=
 operator|(
-name|String
+name|QName
 operator|)
 name|entry
 operator|.
@@ -592,7 +604,10 @@ argument_list|()
 operator|.
 name|getSymbol
 argument_list|(
-name|elementName
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ref
@@ -642,7 +657,7 @@ name|error
 argument_list|(
 literal|"could not acquire lock for index on "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 return|return;
@@ -891,7 +906,7 @@ name|error
 argument_list|(
 literal|"io-error while updating index for element "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 block|}
@@ -1844,8 +1859,8 @@ decl_stmt|;
 name|NodeProxy
 name|proxy
 decl_stmt|;
-name|String
-name|elementName
+name|QName
+name|qname
 decl_stmt|;
 name|ArrayList
 name|idList
@@ -1946,10 +1961,10 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|elementName
+name|qname
 operator|=
 operator|(
-name|String
+name|QName
 operator|)
 name|entry
 operator|.
@@ -2085,7 +2100,26 @@ argument_list|()
 operator|.
 name|getSymbol
 argument_list|(
-name|elementName
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|short
+name|nsSym
+init|=
+name|NativeBroker
+operator|.
+name|getSymbols
+argument_list|()
+operator|.
+name|getNSSymbol
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|ref
@@ -2098,6 +2132,8 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|sym
+argument_list|,
+name|nsSym
 argument_list|)
 expr_stmt|;
 try|try
@@ -2134,7 +2170,7 @@ name|warn
 argument_list|(
 literal|"could not save index for element "
 operator|+
-name|elementName
+name|qname
 argument_list|)
 expr_stmt|;
 continue|continue;

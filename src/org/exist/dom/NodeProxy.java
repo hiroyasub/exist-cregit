@@ -100,6 +100,8 @@ name|matches
 init|=
 literal|null
 decl_stmt|;
+comment|//public long backupId = -1;
+comment|//public boolean valid = true;
 specifier|public
 name|NodeProxy
 parameter_list|()
@@ -285,6 +287,7 @@ name|p
 operator|.
 name|matches
 expr_stmt|;
+comment|//this.backupId = p.backupId;
 block|}
 comment|/**      *  Constructor for the NodeProxy object      *      *@param  node  Description of the Parameter      */
 specifier|public

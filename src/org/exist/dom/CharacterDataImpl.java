@@ -79,6 +79,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|xml
@@ -170,6 +180,10 @@ block|{
 name|super
 argument_list|(
 name|nodeType
+argument_list|,
+name|QName
+operator|.
+name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 block|}
@@ -188,7 +202,9 @@ name|super
 argument_list|(
 name|nodeType
 argument_list|,
-literal|""
+name|QName
+operator|.
+name|TEXT_QNAME
 argument_list|,
 name|gid
 argument_list|)
@@ -212,7 +228,9 @@ name|super
 argument_list|(
 name|nodeType
 argument_list|,
-literal|""
+name|QName
+operator|.
+name|TEXT_QNAME
 argument_list|,
 name|gid
 argument_list|)
@@ -244,7 +262,9 @@ name|super
 argument_list|(
 name|nodeType
 argument_list|,
-literal|""
+name|QName
+operator|.
+name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 name|cdata
@@ -281,7 +301,9 @@ name|super
 argument_list|(
 name|nodeType
 argument_list|,
-literal|""
+name|QName
+operator|.
+name|TEXT_QNAME
 argument_list|)
 expr_stmt|;
 name|cdata
@@ -766,8 +788,8 @@ parameter_list|,
 name|boolean
 name|first
 parameter_list|,
-name|ArrayList
-name|prefixes
+name|Set
+name|namespaces
 parameter_list|)
 throws|throws
 name|SAXException

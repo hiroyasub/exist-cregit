@@ -39,6 +39,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Vector
 import|;
 end_import
@@ -431,6 +441,9 @@ parameter_list|,
 name|byte
 index|[]
 name|xpath
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -450,6 +463,9 @@ parameter_list|,
 name|byte
 index|[]
 name|sortExpr
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -475,6 +491,9 @@ parameter_list|,
 name|byte
 index|[]
 name|sortExpr
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -496,6 +515,9 @@ name|docName
 parameter_list|,
 name|String
 name|s_id
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -520,6 +542,9 @@ name|start
 parameter_list|,
 name|int
 name|prettyPrint
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -544,6 +569,9 @@ name|start
 parameter_list|,
 name|int
 name|prettyPrint
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|,
 name|String
 name|sortExpr
@@ -769,6 +797,9 @@ name|xpath
 parameter_list|,
 name|String
 name|encoding
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -784,6 +815,9 @@ parameter_list|,
 name|byte
 index|[]
 name|xpath
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException
@@ -798,6 +832,9 @@ name|user
 parameter_list|,
 name|String
 name|xpath
+parameter_list|,
+name|Hashtable
+name|namespaces
 parameter_list|)
 throws|throws
 name|EXistException

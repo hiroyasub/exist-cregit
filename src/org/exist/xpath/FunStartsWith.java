@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id:  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id:  */
 end_comment
 
 begin_package
@@ -134,14 +134,17 @@ specifier|public
 name|Value
 name|eval
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|NodeProxy
-name|node
+name|contextNode
 parameter_list|)
 block|{
 name|ArraySet
@@ -157,7 +160,7 @@ name|set
 operator|.
 name|add
 argument_list|(
-name|node
+name|contextNode
 argument_list|)
 expr_stmt|;
 name|DocumentSet
@@ -171,7 +174,7 @@ name|dset
 operator|.
 name|add
 argument_list|(
-name|node
+name|contextNode
 operator|.
 name|doc
 argument_list|)
@@ -183,11 +186,13 @@ name|arg1
 operator|.
 name|eval
 argument_list|(
+name|context
+argument_list|,
 name|dset
 argument_list|,
 name|set
 argument_list|,
-name|node
+name|contextNode
 argument_list|)
 operator|.
 name|getStringValue
@@ -200,11 +205,13 @@ name|arg2
 operator|.
 name|eval
 argument_list|(
+name|context
+argument_list|,
 name|dset
 argument_list|,
 name|set
 argument_list|,
-name|node
+name|contextNode
 argument_list|)
 operator|.
 name|getStringValue

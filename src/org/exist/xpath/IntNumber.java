@@ -53,8 +53,8 @@ begin_class
 specifier|public
 class|class
 name|IntNumber
-implements|implements
-name|Expression
+extends|extends
+name|AbstractExpression
 block|{
 specifier|protected
 name|double
@@ -101,14 +101,17 @@ specifier|public
 name|Value
 name|eval
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|NodeProxy
-name|node
+name|contextNode
 parameter_list|)
 block|{
 return|return
@@ -132,16 +135,6 @@ argument_list|(
 name|dValue
 argument_list|)
 return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
-specifier|public
-name|void
-name|setInPredicate
-parameter_list|(
-name|boolean
-name|inPredicate
-parameter_list|)
-block|{
 block|}
 block|}
 end_class

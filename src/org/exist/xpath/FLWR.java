@@ -81,8 +81,8 @@ begin_class
 specifier|public
 class|class
 name|FLWR
-implements|implements
-name|Expression
+extends|extends
+name|AbstractExpression
 block|{
 specifier|protected
 name|HashMap
@@ -235,11 +235,14 @@ specifier|public
 name|Value
 name|eval
 parameter_list|(
+name|StaticContext
+name|context
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
 name|NodeSet
-name|context
+name|contextSet
 parameter_list|,
 name|NodeProxy
 name|node
@@ -289,6 +292,8 @@ name|r
 operator|.
 name|eval
 argument_list|(
+name|context
+argument_list|,
 name|docs
 argument_list|,
 literal|null
