@@ -319,7 +319,7 @@ operator|(
 name|value
 operator|==
 literal|0.0
-operator|&&
+operator|||
 name|value
 operator|==
 name|Double

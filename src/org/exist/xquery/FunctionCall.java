@@ -509,7 +509,7 @@ operator|.
 name|getColumn
 argument_list|()
 operator|+
-literal|"]\n"
+literal|"]"
 argument_list|)
 expr_stmt|;
 throw|throw

@@ -703,7 +703,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"error found while executing expression: "
+literal|"error found while executing eval expression: "
 operator|+
 name|e
 operator|.
@@ -711,6 +711,14 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -724,8 +732,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"error found while executing expression: "
-operator|+
+name|getASTNode
+argument_list|()
+argument_list|,
 name|e
 operator|.
 name|getMessage

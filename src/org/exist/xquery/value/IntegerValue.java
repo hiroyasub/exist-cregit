@@ -1179,7 +1179,6 @@ name|Type
 operator|.
 name|BOOLEAN
 case|:
-comment|// return (value == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
 return|return
 operator|(
 name|value
