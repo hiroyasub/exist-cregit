@@ -35,6 +35,18 @@ name|DocumentSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|MemTreeBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
 end_comment
@@ -59,18 +71,25 @@ name|parentContext
 parameter_list|)
 block|{
 name|super
-argument_list|(
-name|parentContext
-operator|.
-name|getBroker
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|parentContext
 operator|=
 name|parentContext
+expr_stmt|;
+name|this
+operator|.
+name|broker
+operator|=
+name|parentContext
+operator|.
+name|getBroker
+argument_list|()
+expr_stmt|;
+name|loadDefaults
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getStaticallyKnownDocuments() 	 */
