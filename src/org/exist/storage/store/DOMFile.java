@@ -3350,15 +3350,6 @@ name|firstSplitPage
 argument_list|)
 expr_stmt|;
 block|}
-comment|//	        long next = nextSplitPage.getPageHeader().getNextDataPage();
-comment|//	        if (-1< next) {
-comment|//	            DOMPage nextPage = getCurrentPage(nextSplitPage.getPageHeader()
-comment|//	                    .getNextDataPage());
-comment|//	            nextPage.getPageHeader()
-comment|//	                    .setPrevDataPage(nextSplitPage.getPageNum());
-comment|//	            nextPage.setDirty(true);
-comment|//	            dataCache.add(nextPage);
-comment|//	        }
 block|}
 name|long
 name|next
@@ -3483,6 +3474,10 @@ name|page
 operator|.
 name|len
 expr_stmt|;
+comment|//        if(currentDocument != null) {
+comment|//        	currentDocument.incSplitCount();
+comment|//        	System.out.println(currentDocument.getFileName() + " split: " + currentDocument.getSplitCount());
+comment|//        }
 return|return
 name|rec
 return|;

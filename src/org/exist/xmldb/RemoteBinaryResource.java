@@ -179,7 +179,9 @@ block|{
 specifier|private
 name|String
 name|documentName
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|String
 name|path
 decl_stmt|;
 specifier|private

@@ -27,7 +27,9 @@ name|int
 name|pos_
 init|=
 literal|0
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|int
 name|last_
 init|=
 literal|0

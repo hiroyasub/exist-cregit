@@ -64,7 +64,9 @@ name|int
 name|hits
 init|=
 literal|0
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|int
 name|fails
 init|=
 literal|0

@@ -70,7 +70,9 @@ block|{
 specifier|protected
 name|PathExpr
 name|left
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|PathExpr
 name|right
 decl_stmt|;
 comment|/** 	 * @param context 	 */

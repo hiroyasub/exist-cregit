@@ -474,9 +474,13 @@ decl_stmt|;
 specifier|protected
 name|String
 name|id
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|String
 name|documentName
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|String
 name|path
 init|=
 literal|null

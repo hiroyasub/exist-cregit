@@ -335,7 +335,9 @@ name|boolean
 name|indexNumbers
 init|=
 literal|false
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|boolean
 name|stem
 init|=
 literal|false
@@ -861,7 +863,7 @@ comment|/** 	 * Remove all index entries for the given document. 	 *  	 * @param
 specifier|public
 specifier|abstract
 name|void
-name|removeDocument
+name|dropIndex
 parameter_list|(
 name|DocumentImpl
 name|doc

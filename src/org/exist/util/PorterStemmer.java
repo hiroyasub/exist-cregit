@@ -30,12 +30,18 @@ decl_stmt|;
 specifier|private
 name|int
 name|i
-decl_stmt|,
+decl_stmt|;
 comment|/* offset into b */
+specifier|private
+name|int
 name|j
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|int
 name|k
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|int
 name|k0
 decl_stmt|;
 specifier|private

@@ -600,6 +600,14 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|Sequence
 name|sequence
 init|=
@@ -621,7 +629,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"found "
+literal|"Found "
 operator|+
 name|sequence
 operator|.
@@ -631,6 +639,22 @@ operator|+
 literal|" for "
 operator|+
 name|expr
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Query took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
 argument_list|)
 expr_stmt|;
 return|return

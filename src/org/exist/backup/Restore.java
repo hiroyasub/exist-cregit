@@ -145,6 +145,18 @@ name|exist
 operator|.
 name|xmldb
 operator|.
+name|CollectionImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
 name|UserManagementService
 import|;
 end_import
@@ -311,7 +323,7 @@ name|XMLReader
 name|reader
 decl_stmt|;
 specifier|private
-name|Collection
+name|CollectionImpl
 name|current
 decl_stmt|;
 specifier|private
@@ -1396,7 +1408,7 @@ block|}
 block|}
 specifier|private
 specifier|final
-name|Collection
+name|CollectionImpl
 name|mkcol
 parameter_list|(
 name|String
@@ -1542,6 +1554,9 @@ name|c
 expr_stmt|;
 block|}
 return|return
+operator|(
+name|CollectionImpl
+operator|)
 name|current
 return|;
 block|}

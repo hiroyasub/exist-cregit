@@ -204,7 +204,8 @@ literal|null
 decl_stmt|;
 name|int
 name|offset
-decl_stmt|,
+decl_stmt|;
+name|int
 name|lastOffset
 init|=
 literal|0

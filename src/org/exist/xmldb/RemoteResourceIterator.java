@@ -97,7 +97,9 @@ name|int
 name|pos
 init|=
 literal|0
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|int
 name|indentXML
 decl_stmt|;
 specifier|protected

@@ -3518,7 +3518,7 @@ block|}
 comment|/** 	 * Remove all index entries for the specified document 	 *  	 * @param doc 	 *                The document 	 */
 specifier|public
 name|void
-name|removeDocument
+name|dropIndex
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -3702,7 +3702,7 @@ name|acquire
 argument_list|(
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 name|is
@@ -3714,59 +3714,6 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"removeDocument(DocumentImpl) - "
-operator|+
-literal|"could not acquire lock on words db"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-name|is
-operator|=
-literal|null
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"removeDocument(DocumentImpl) - "
-operator|+
-literal|"io error while reading words"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-name|is
-operator|=
-literal|null
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|is
@@ -3908,17 +3855,6 @@ condition|(
 name|changed
 condition|)
 block|{
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|os
@@ -3957,9 +3893,7 @@ argument_list|()
 argument_list|)
 operator|<
 literal|0
-condition|)
-if|if
-condition|(
+operator|&&
 name|LOG
 operator|.
 name|isDebugEnabled
@@ -3980,6 +3914,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|LockException
@@ -3997,6 +3932,32 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+name|is
+operator|=
+literal|null
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"removeDocument(DocumentImpl) - "
+operator|+
+literal|"io error while reading words"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|is
+operator|=
+literal|null
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -4005,7 +3966,6 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 if|if
@@ -6728,7 +6688,8 @@ name|matcher
 decl_stmt|;
 name|NodeSet
 name|result
-decl_stmt|,
+decl_stmt|;
+name|NodeSet
 name|contextSet
 decl_stmt|;
 name|XQueryContext

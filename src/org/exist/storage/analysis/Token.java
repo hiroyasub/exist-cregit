@@ -33,11 +33,20 @@ comment|/**    * beginLine and beginColumn describe the position of the first ch
 specifier|public
 name|int
 name|beginLine
-decl_stmt|,
+decl_stmt|;
+comment|/**    * beginLine and beginColumn describe the position of the first character    * of this token; endLine and endColumn describe the position of the    * last character of this token.    */
+specifier|public
+name|int
 name|beginColumn
-decl_stmt|,
+decl_stmt|;
+comment|/**    * beginLine and beginColumn describe the position of the first character    * of this token; endLine and endColumn describe the position of the    * last character of this token.    */
+specifier|public
+name|int
 name|endLine
-decl_stmt|,
+decl_stmt|;
+comment|/**    * beginLine and beginColumn describe the position of the first character    * of this token; endLine and endColumn describe the position of the    * last character of this token.    */
+specifier|public
+name|int
 name|endColumn
 decl_stmt|;
 comment|/**    * The string image of the token.    */

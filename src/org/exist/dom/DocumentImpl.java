@@ -512,6 +512,7 @@ name|pageCount
 init|=
 literal|0
 decl_stmt|;
+comment|//	protected transient int splitCount = 0;
 comment|// number of levels in this DOM tree
 specifier|protected
 name|int
@@ -964,6 +965,27 @@ name|internalAddress
 operator|=
 operator|-
 literal|1
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|copyChildren
+parameter_list|(
+name|DocumentImpl
+name|other
+parameter_list|)
+block|{
+name|childList
+operator|=
+name|other
+operator|.
+name|childList
+expr_stmt|;
+name|children
+operator|=
+name|other
+operator|.
+name|children
 expr_stmt|;
 block|}
 comment|/** 	 * Returns the type of this resource, either  {@link #XML_FILE} or  	 * {@link #BINARY_FILE}. 	 *  	 * @return 	 */
@@ -4655,6 +4677,17 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
+comment|//	public void incSplitCount() {
+comment|//		splitCount++;
+comment|//	}
+comment|//
+comment|//	public int getSplitCount() {
+comment|//		return splitCount;
+comment|//	}
+comment|//
+comment|//	public void setSplitCount(int count) {
+comment|//		splitCount = count;
+comment|//	}
 block|}
 end_class
 

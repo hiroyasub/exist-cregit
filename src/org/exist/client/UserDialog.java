@@ -382,7 +382,8 @@ name|allGroups
 decl_stmt|;
 name|DefaultListModel
 name|groupsModel
-decl_stmt|,
+decl_stmt|;
+name|DefaultListModel
 name|allGroupsModel
 decl_stmt|;
 name|JTable

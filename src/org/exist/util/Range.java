@@ -21,7 +21,9 @@ block|{
 specifier|private
 name|long
 name|start_
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|long
 name|end_
 decl_stmt|;
 specifier|public

@@ -2301,9 +2301,11 @@ name|data
 decl_stmt|;
 name|Node
 name|parent
-decl_stmt|,
+decl_stmt|;
+name|Node
 name|leftChild
-decl_stmt|,
+decl_stmt|;
+name|Node
 name|rightChild
 decl_stmt|;
 name|int

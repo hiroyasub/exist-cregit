@@ -1718,7 +1718,9 @@ decl_stmt|;
 specifier|protected
 name|File
 name|queryHistoryFile
-decl_stmt|,
+decl_stmt|;
+specifier|protected
+name|File
 name|historyFile
 decl_stmt|;
 specifier|protected

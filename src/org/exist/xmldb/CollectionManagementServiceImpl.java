@@ -84,6 +84,22 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|copyResource
+parameter_list|(
+name|String
+name|resourcePath
+parameter_list|,
+name|String
+name|destinationPath
+parameter_list|,
+name|String
+name|newName
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 

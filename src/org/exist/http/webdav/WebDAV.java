@@ -382,7 +382,9 @@ decl_stmt|;
 specifier|private
 name|Authenticator
 name|digestAuth
-decl_stmt|,
+decl_stmt|;
+specifier|private
+name|Authenticator
 name|basicAuth
 decl_stmt|;
 specifier|private
