@@ -1409,7 +1409,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Store a document into the database. This method will save the document 	 * metadata and add the document to the collection. 	 * 	 *@param  doc 	 */
+comment|/** 	 *  Store a document into the database. This method will save the document 	 * metadata. 	 * 	 *@param  doc 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1418,6 +1418,19 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|)
+function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|updateDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+throws|throws
+name|LockException
+throws|,
+name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract

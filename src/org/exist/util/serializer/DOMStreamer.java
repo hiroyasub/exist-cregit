@@ -1249,6 +1249,20 @@ expr_stmt|;
 block|}
 break|break;
 default|default :
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found node: "
+operator|+
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+expr_stmt|;
 break|break;
 block|}
 block|}

@@ -6405,20 +6405,8 @@ name|long
 name|p
 parameter_list|)
 block|{
-name|StringBuffer
-name|debug
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
-name|debug
-operator|.
-name|append
-argument_list|(
-literal|"Removed pages: "
-argument_list|)
-expr_stmt|;
+comment|//    	StringBuffer debug = new StringBuffer();
+comment|//    	debug.append("Removed pages: ");
 name|long
 name|pnum
 init|=
@@ -6437,18 +6425,7 @@ operator|<
 name|pnum
 condition|)
 block|{
-name|debug
-operator|.
-name|append
-argument_list|(
-literal|' '
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|pnum
-argument_list|)
-expr_stmt|;
+comment|//        	debug.append(' ').append(pnum);
 name|DOMPage
 name|page
 init|=
@@ -6564,16 +6541,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|debug
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug(debug.toString());
 block|}
 specifier|public
 name|String
@@ -7661,7 +7629,7 @@ argument_list|(
 operator|(
 name|byte
 operator|)
-literal|0x20
+literal|' '
 argument_list|)
 expr_stmt|;
 block|}

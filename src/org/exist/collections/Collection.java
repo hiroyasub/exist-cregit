@@ -1661,6 +1661,20 @@ block|}
 return|return
 literal|true
 return|;
+comment|//		try {
+comment|//			lock.acquire(Lock.WRITE_LOCK);
+comment|//			for (Iterator i = documents.values().iterator(); i.hasNext(); ) {
+comment|//				DocumentImpl doc = (DocumentImpl) i.next();
+comment|//				if (doc.isLockedForWrite())
+comment|//					return false;
+comment|//			}
+comment|//			return true;
+comment|//		} catch (LockException e) {
+comment|//			LOG.warn("Failed to acquire lock on collection: " + getName(), e);
+comment|//		} finally {
+comment|//			lock.release();
+comment|//		}
+comment|//		return false;
 block|}
 specifier|public
 name|int
@@ -3280,7 +3294,20 @@ name|reader
 decl_stmt|;
 name|InputSource
 name|source
-init|=
+decl_stmt|;
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+name|source
+operator|=
 operator|new
 name|InputSource
 argument_list|(
@@ -3289,15 +3316,6 @@ name|StringReader
 argument_list|(
 name|data
 argument_list|)
-argument_list|)
-decl_stmt|;
-name|oldDoc
-operator|=
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|name
 argument_list|)
 expr_stmt|;
 name|document
@@ -3319,6 +3337,18 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|oldDoc
+operator|=
+operator|(
+name|DocumentImpl
+operator|)
+name|documents
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 comment|// first pass: parse the document to determine tree structure
 name|document
 operator|=
@@ -3337,6 +3367,15 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+block|}
 comment|// reset the input source
 name|source
 operator|=
@@ -3397,6 +3436,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -3404,7 +3444,6 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-comment|//			broker.checkTree(document);
 name|broker
 operator|.
 name|addDocument
@@ -3414,6 +3453,17 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|broker
+operator|.
+name|updateDocument
+argument_list|(
+name|document
+argument_list|)
+expr_stmt|;
+block|}
 name|broker
 operator|.
 name|closeDocument
@@ -3424,6 +3474,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+comment|//			broker.checkTree(document);
 name|LOG
 operator|.
 name|debug
@@ -3705,6 +3756,8 @@ name|oldDoc
 argument_list|)
 expr_stmt|;
 else|else
+block|{
+comment|//					broker.checkTree(oldDoc);
 name|broker
 operator|.
 name|removeDocument
@@ -3722,6 +3775,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// we continue to use the old document object and just replace its contents
 name|oldDoc
 operator|.
@@ -3901,14 +3955,6 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
 block|}
 return|return
 name|document
@@ -4258,29 +4304,32 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
-name|hasDocument
-argument_list|(
-name|name
-argument_list|)
-operator|&&
-operator|(
 name|oldDoc
-operator|)
 operator|!=
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Found old doc "
+operator|+
+name|oldDoc
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|"; identity = "
+operator|+
+name|oldDoc
+operator|.
+name|hashCode
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// check if the document is locked by another user
 name|User
 name|lockUser
@@ -4320,15 +4369,10 @@ argument_list|()
 argument_list|)
 throw|;
 comment|// check if the document is currently being changed by someone else
-name|Lock
-name|oldLock
-init|=
 name|oldDoc
 operator|.
 name|getUpdateLock
 argument_list|()
-decl_stmt|;
-name|oldLock
 operator|.
 name|acquire
 argument_list|(
@@ -4528,6 +4572,17 @@ decl_stmt|;
 name|XMLReader
 name|reader
 decl_stmt|;
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|oldDoc
 operator|=
 name|getDocument
@@ -4574,6 +4629,15 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+block|}
 comment|// reset the input source
 try|try
 block|{
@@ -4677,6 +4741,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -4693,6 +4758,17 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|broker
+operator|.
+name|updateDocument
+argument_list|(
+name|document
+argument_list|)
+expr_stmt|;
+block|}
 name|broker
 operator|.
 name|closeDocument
@@ -4875,6 +4951,17 @@ decl_stmt|;
 name|DOMStreamer
 name|streamer
 decl_stmt|;
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|oldDoc
 operator|=
 name|getDocument
@@ -4896,8 +4983,6 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|checkPermissions
 argument_list|(
 name|broker
@@ -5363,6 +5448,7 @@ name|oldDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|addDocument
 argument_list|(
 name|broker
@@ -5379,6 +5465,17 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|broker
+operator|.
+name|updateDocument
+argument_list|(
+name|document
+argument_list|)
+expr_stmt|;
+block|}
 name|broker
 operator|.
 name|closeDocument

@@ -1281,16 +1281,95 @@ index|]
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"the document is too complex/irregularily structured "
+literal|"The document is too complex/irregularily structured "
 operator|+
-literal|"to be mapped into eXist's numbering scheme"
+literal|"to be mapped into eXist's numbering scheme. Number of children per level of the "
+operator|+
+literal|"tree: "
+operator|+
+name|printTreeLevelOrder
+argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+block|}
+specifier|public
+name|String
+name|printTreeLevelOrder
+parameter_list|()
+block|{
+name|StringBuffer
+name|buf
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"[ "
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|maxDepth
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|i
+operator|>
+literal|0
+condition|)
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|treeLevelOrder
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|" ]"
+argument_list|)
+expr_stmt|;
+return|return
+name|buf
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 specifier|public
 specifier|final
@@ -3727,11 +3806,26 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"io error while reading document data for document "
+literal|"IO error while reading document data for document "
 operator|+
 name|fileName
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Document address is "
+operator|+
+name|StorageAddress
+operator|.
+name|toString
+argument_list|(
+name|getAddress
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

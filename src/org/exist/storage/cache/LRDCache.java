@@ -295,6 +295,7 @@ operator|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|minRd
 operator|<
 literal|0
@@ -302,6 +303,12 @@ operator|||
 name|rd
 operator|<
 name|minRd
+operator|)
+operator|&&
+name|old
+operator|.
+name|allowUnload
+argument_list|()
 condition|)
 block|{
 name|minRd

@@ -1182,6 +1182,19 @@ argument_list|(
 name|startAddress
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|rec
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Node not found at specified address."
+argument_list|)
+throw|;
 name|page
 operator|=
 name|rec
