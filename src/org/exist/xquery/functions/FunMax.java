@@ -261,6 +261,9 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
+argument_list|,
+literal|true
+comment|/* overloaded=true jmv */
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
