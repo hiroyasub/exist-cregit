@@ -433,12 +433,26 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|Map
+name|ThreadLocal
 name|cache
 init|=
 operator|new
+name|ThreadLocal
+argument_list|()
+block|{
+comment|/* (non-Javadoc) 		 * @see java.lang.ThreadLocal#initialValue() 		 */
+specifier|protected
+name|Object
+name|initialValue
+parameter_list|()
+block|{
+return|return
+operator|new
 name|HashMap
 argument_list|()
+return|;
+block|}
+block|}
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
@@ -1119,7 +1133,15 @@ init|=
 operator|(
 name|CachedQuery
 operator|)
+operator|(
+operator|(
+name|Map
+operator|)
 name|cache
+operator|.
+name|get
+argument_list|()
+operator|)
 operator|.
 name|get
 argument_list|(
@@ -1168,7 +1190,15 @@ argument_list|,
 name|compiled
 argument_list|)
 expr_stmt|;
+operator|(
+operator|(
+name|Map
+operator|)
 name|cache
+operator|.
+name|get
+argument_list|()
+operator|)
 operator|.
 name|put
 argument_list|(
@@ -1179,6 +1209,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|compiled
 operator|=
 name|cached
@@ -1186,6 +1217,7 @@ operator|.
 name|getExpression
 argument_list|()
 expr_stmt|;
+block|}
 name|ResourceSet
 name|result
 init|=

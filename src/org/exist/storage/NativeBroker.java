@@ -6169,6 +6169,12 @@ name|getIndexListener
 argument_list|()
 decl_stmt|;
 comment|// jmv if ((listener = doc.getIndexListener()) != null)
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
 name|listener
 operator|.
 name|nodeChanged

@@ -813,7 +813,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"eXist version 0.9.2, Copyright (C) 2001 Wolfgang M. Meier"
+literal|"eXist version 1.0beta1, Copyright (C) 2001 Wolfgang M. Meier"
 argument_list|)
 expr_stmt|;
 name|System

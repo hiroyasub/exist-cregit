@@ -1732,6 +1732,21 @@ return|return
 name|broker
 return|;
 block|}
+specifier|public
+name|void
+name|setBroker
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
+expr_stmt|;
+block|}
 comment|/** 	 * Get the user which executes the current query. 	 *  	 * @return 	 */
 specifier|public
 name|User

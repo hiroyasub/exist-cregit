@@ -161,7 +161,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**      *  Constructor for the LocalCollectionManagementService object      *      *@param  pool    Description of the Parameter      *@param  parent  Description of the Parameter      *@param  user    Description of the Parameter      */
 specifier|public
 name|LocalCollectionManagementService
 parameter_list|(
@@ -205,7 +204,6 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  collName            Description of the Parameter      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Collection
 name|createCollection
@@ -360,7 +358,6 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the name attribute of the LocalCollectionManagementService object      *      *@return                     The name value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getName
@@ -372,7 +369,6 @@ return|return
 literal|"CollectionManagementService"
 return|;
 block|}
-comment|/**      *  Gets the property attribute of the LocalCollectionManagementService      *  object      *      *@param  property  Description of the Parameter      *@return           The property value      */
 specifier|public
 name|String
 name|getProperty
@@ -385,7 +381,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the version attribute of the LocalCollectionManagementService      *  object      *      *@return                     The version value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getVersion
@@ -397,7 +392,6 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  collName            Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|removeCollection
@@ -525,7 +519,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Sets the collection attribute of the LocalCollectionManagementService      *  object      *      *@param  parent              The new collection value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|setCollection
@@ -546,7 +539,6 @@ operator|)
 name|parent
 expr_stmt|;
 block|}
-comment|/**      *  Sets the property attribute of the LocalCollectionManagementService      *  object      *      *@param  property  The new property value      *@param  value     The new property value      */
 specifier|public
 name|void
 name|setProperty
