@@ -285,6 +285,18 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|d
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|XML_FILE
+condition|)
+comment|// skip binary resources
 name|result
 operator|.
 name|add

@@ -394,23 +394,27 @@ decl_stmt|;
 for|for
 control|(
 name|Enumeration
-name|enum
-type|= 				((
+name|e
+init|=
+operator|(
+operator|(
 name|SessionWrapper
-control|)
+operator|)
 name|value
 operator|.
 name|getObject
 argument_list|()
-block_content|)
-block|.getAttributeNames(
-block_content|)
-function|;
-enum_decl|enum.
+operator|)
+operator|.
+name|getAttributeNames
+argument_list|()
+init|;
+name|e
+operator|.
 name|hasMoreElements
-parameter_list|()
-constructor_decl|;
-block|)
+argument_list|()
+condition|;
+control|)
 block|{
 name|String
 name|param
@@ -418,7 +422,7 @@ init|=
 operator|(
 name|String
 operator|)
-expr|enum
+name|e
 operator|.
 name|nextElement
 argument_list|()
@@ -435,16 +439,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-end_class
-
-begin_return
 return|return
 name|result
 return|;
-end_return
-
-begin_throw
-unit|} else
+block|}
+else|else
 throw|throw
 operator|new
 name|XPathException
@@ -463,8 +462,9 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
-end_throw
+block|}
+block|}
+end_class
 
-unit|} }
 end_unit
 

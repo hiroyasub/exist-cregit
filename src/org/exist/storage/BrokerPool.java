@@ -1146,22 +1146,20 @@ name|initialize
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  Number of active Brokers in this pool. 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 *  Number of database instances currently active, i.e. busy. 	 * 	 *@return 	 */
 specifier|public
 name|int
 name|active
 parameter_list|()
 block|{
 return|return
-name|max
-operator|-
-name|pool
+name|threads
 operator|.
 name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Number of available Brokers for the current database instance. 	 */
+comment|/** 	 *  Number of database instances currently available to serve requests. 	 */
 specifier|public
 name|int
 name|available
