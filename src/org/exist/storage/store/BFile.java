@@ -358,7 +358,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|2
+literal|3
 decl_stmt|;
 comment|// minimum free space a page should have to be
 comment|// considered for reusing
@@ -429,12 +429,6 @@ name|fixedKeyLen
 init|=
 operator|-
 literal|1
-decl_stmt|;
-specifier|private
-name|int
-name|overflow
-init|=
-literal|0
 decl_stmt|;
 specifier|public
 name|BFile
@@ -2453,16 +2447,6 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
-specifier|final
-name|byte
-index|[]
-name|data
-init|=
-name|page
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|page
@@ -2485,6 +2469,16 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|page
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|page
@@ -4520,13 +4514,6 @@ init|=
 operator|new
 name|OrderedLinkedList
 argument_list|()
-decl_stmt|;
-specifier|private
-name|long
-name|freeSpacePage
-init|=
-operator|-
-literal|1
 decl_stmt|;
 specifier|private
 name|long
@@ -7729,6 +7716,7 @@ function_decl|;
 block|}
 specifier|private
 specifier|final
+specifier|static
 class|class
 name|SimplePageInputStream
 extends|extends
@@ -7785,6 +7773,7 @@ block|}
 block|}
 comment|/** 	 * An input stream for overflow pages. 	 *  	 * @author wolf 	 */
 specifier|private
+specifier|final
 class|class
 name|MultiPageInputStream
 extends|extends
@@ -7795,13 +7784,6 @@ block|{
 specifier|private
 name|SinglePage
 name|nextPage_
-decl_stmt|;
-specifier|private
-name|int
-name|len_
-init|=
-operator|-
-literal|1
 decl_stmt|;
 specifier|private
 name|int
@@ -7832,17 +7814,6 @@ block|{
 name|nextPage_
 operator|=
 name|first
-expr_stmt|;
-name|len_
-operator|=
-name|first
-operator|.
-name|ph
-operator|.
-name|getDataLength
-argument_list|()
-operator|-
-literal|6
 expr_stmt|;
 name|offset_
 operator|=
@@ -8193,11 +8164,6 @@ block|{
 name|nextPage_
 operator|=
 literal|null
-expr_stmt|;
-name|len_
-operator|=
-operator|-
-literal|1
 expr_stmt|;
 block|}
 block|}

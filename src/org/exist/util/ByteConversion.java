@@ -520,7 +520,6 @@ literal|0xffL
 operator|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  data   Description of the Parameter      *@param  start  Description of the Parameter      *@return        Description of the Return Value      */
 specifier|public
 specifier|final
 specifier|static

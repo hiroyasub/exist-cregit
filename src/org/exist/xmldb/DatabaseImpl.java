@@ -1143,8 +1143,9 @@ literal|"create-database"
 argument_list|)
 condition|)
 return|return
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|autoCreate
 argument_list|)

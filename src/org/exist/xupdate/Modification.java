@@ -508,18 +508,6 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"generated AST: "
-operator|+
-name|ast
-operator|.
-name|toStringTree
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|PathExpr
 name|expr
 init|=

@@ -465,7 +465,9 @@ expr_stmt|;
 return|return
 operator|new
 name|ExtArrayIterator
-argument_list|()
+argument_list|(
+name|map
+argument_list|)
 return|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
@@ -480,7 +482,9 @@ expr_stmt|;
 return|return
 operator|new
 name|ExtArrayIterator
-argument_list|()
+argument_list|(
+name|map
+argument_list|)
 return|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
@@ -495,7 +499,9 @@ expr_stmt|;
 return|return
 operator|new
 name|ExtArrayIterator
-argument_list|()
+argument_list|(
+name|map
+argument_list|)
 return|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.dom.NodeSet#containsDoc(org.exist.dom.DocumentImpl) 	 */
@@ -2516,6 +2522,7 @@ block|}
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|ExtArrayIterator
 implements|implements
@@ -2542,7 +2549,10 @@ init|=
 literal|null
 decl_stmt|;
 name|ExtArrayIterator
-parameter_list|()
+parameter_list|(
+name|Int2ObjectHashMap
+name|map
+parameter_list|)
 block|{
 name|docsIterator
 operator|=

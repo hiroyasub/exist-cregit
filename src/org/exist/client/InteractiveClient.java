@@ -11255,7 +11255,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-return|return;
 block|}
 if|else if
 condition|(

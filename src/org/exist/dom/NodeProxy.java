@@ -1288,6 +1288,7 @@ implements|implements
 name|Comparator
 block|{
 specifier|public
+specifier|final
 specifier|static
 name|NodeProxyComparator
 name|instance

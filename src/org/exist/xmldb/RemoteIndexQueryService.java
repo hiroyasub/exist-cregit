@@ -202,8 +202,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|inclusive
 argument_list|)
@@ -441,8 +442,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|inclusive
 argument_list|)

@@ -128,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Append.java  *   * @author Wolfgang Meier  */
+comment|/**  * Implements an XUpate append statement.  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class

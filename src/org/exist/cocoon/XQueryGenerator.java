@@ -1485,15 +1485,11 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|String
-argument_list|(
 name|os
 operator|.
 name|toString
 argument_list|(
 literal|"UTF-8"
-argument_list|)
 argument_list|)
 return|;
 block|}

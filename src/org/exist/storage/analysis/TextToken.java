@@ -11,10 +11,6 @@ name|analysis
 package|;
 end_package
 
-begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    10. Oktober 2002  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -141,7 +137,6 @@ argument_list|(
 name|EOF
 argument_list|)
 decl_stmt|;
-comment|/**  Description of the Field */
 specifier|public
 specifier|final
 specifier|static
@@ -343,7 +338,7 @@ operator|==
 name|ALPHA
 return|;
 block|}
-comment|/**  Description of the Method */
+comment|/**      * Consume the next character in the current buffer by incrementing      * the end offset.      */
 specifier|public
 name|void
 name|consumeNext
@@ -353,7 +348,6 @@ name|end
 operator|++
 expr_stmt|;
 block|}
-comment|/**      *  Gets the char attribute of the Token object      *      *@return    The char value      */
 specifier|public
 name|char
 name|getChar
@@ -368,7 +362,6 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the text attribute of the Token object      *      *@return    The text value      */
 specifier|public
 name|String
 name|getText
@@ -421,7 +414,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the type attribute of the Token object      *      *@return    The type value      */
 specifier|public
 name|int
 name|getType
@@ -444,7 +436,6 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**      *  Sets the text attribute of the Token object      *      *@param  text  The new text value      */
 specifier|public
 name|void
 name|setText

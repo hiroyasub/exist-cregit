@@ -993,14 +993,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"user "
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" not found"
+literal|"user not found"
 argument_list|)
 expr_stmt|;
 name|DBBroker

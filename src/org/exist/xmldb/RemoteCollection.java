@@ -2711,11 +2711,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Boolean
-argument_list|(
-literal|true
-argument_list|)
+operator|.
+name|TRUE
 argument_list|)
 expr_stmt|;
 try|try
@@ -2937,11 +2935,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Boolean
-argument_list|(
-literal|true
-argument_list|)
+operator|.
+name|TRUE
 argument_list|)
 expr_stmt|;
 name|rpcClient

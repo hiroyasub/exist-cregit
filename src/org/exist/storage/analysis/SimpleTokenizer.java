@@ -29,12 +29,6 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
-name|int
-name|previous
-init|=
-literal|0
-decl_stmt|;
-specifier|private
 name|boolean
 name|stem
 init|=
@@ -219,8 +213,12 @@ condition|)
 block|{
 break|break;
 block|}
-if|if
+if|else if
 condition|(
+name|ch
+operator|>
+literal|'\u2E80'
+operator|&&
 name|singleCharToken
 argument_list|(
 name|ch

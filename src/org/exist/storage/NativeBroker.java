@@ -887,6 +887,7 @@ literal|256
 decl_stmt|;
 comment|/** check available memory after storing MEM_LIMIT_CHECK nodes */
 specifier|protected
+specifier|final
 specifier|static
 name|int
 name|MEM_LIMIT_CHECK
@@ -2329,7 +2330,7 @@ index|[
 literal|1
 index|]
 operator|.
-name|length
+name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5165,6 +5166,7 @@ return|return
 name|nextDocId
 return|;
 block|}
+comment|/** 	 * Index a single node, which has been added through an XUpdate 	 * operation. This method is only called if inserting the node is possible 	 * without changing the node identifiers of sibling or parent nodes. In other  	 * cases, reindex will be called. 	 */
 specifier|public
 name|void
 name|index
@@ -5604,6 +5606,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Reindex the nodes in the document. This method will either reindex all 	 * descendant nodes of the passed node, or all nodes below some level of 	 * the document if node is null. 	 */
 specifier|public
 name|void
 name|reindex
@@ -5676,7 +5679,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|// remove old dom index
+comment|// remove all old index keys from the btree
 name|Value
 name|ref
 init|=
@@ -5903,7 +5906,7 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-comment|// reindex the nodes
+comment|// now reindex the nodes
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -6080,6 +6083,7 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Reindex the given node after the DOM tree has been  	 * modified by an XUpdate. 	 *  	 * @param node 	 * @param currentPath 	 */
 specifier|private
 name|void
 name|reindex
@@ -6639,6 +6643,7 @@ break|break;
 block|}
 block|}
 block|}
+comment|/** 	 * Called by reindex to walk through all nodes in the tree and reindex them 	 * if necessary. 	 *  	 * @param iterator 	 * @param node 	 * @param currentPath 	 */
 specifier|private
 name|void
 name|scanNodes
@@ -6774,8 +6779,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-comment|// ong p;
-comment|// Value value;
 name|NodeImpl
 name|child
 decl_stmt|;
@@ -10773,33 +10776,12 @@ operator|<
 name|memMinFree
 condition|)
 block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"total memory: "
-operator|+
-name|run
-operator|.
-name|totalMemory
-argument_list|()
-operator|+
-literal|"; free: "
-operator|+
-name|run
-operator|.
-name|freeMemory
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.info(
+comment|//	"total memory: " + run.totalMemory() + "; free: " + run.freeMemory());
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
+comment|//System.gc();
 name|LOG
 operator|.
 name|info
@@ -11849,11 +11831,6 @@ name|dbe
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -11953,10 +11930,28 @@ parameter_list|()
 throws|throws
 name|ReadOnlyException
 block|{
-specifier|final
-name|NodeRef
-name|ref
-init|=
+if|if
+condition|(
+operator|-
+literal|1
+operator|<
+name|internalAddress
+condition|)
+name|domDb
+operator|.
+name|update
+argument_list|(
+name|internalAddress
+argument_list|,
+name|data
+argument_list|)
+expr_stmt|;
+else|else
+block|{
+name|domDb
+operator|.
+name|update
+argument_list|(
 operator|new
 name|NodeRef
 argument_list|(
@@ -11970,35 +11965,11 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|-
-literal|1
-operator|<
-name|internalAddress
-condition|)
-name|domDb
-operator|.
-name|update
-argument_list|(
-name|ref
-argument_list|,
-name|internalAddress
 argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
-else|else
-name|domDb
-operator|.
-name|update
-argument_list|(
-name|ref
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -12047,6 +12018,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Physically insert a node into the DOM storage. 	 */
 specifier|public
 name|void
 name|insertAfter

@@ -1304,20 +1304,7 @@ argument_list|,
 name|module
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"module "
-operator|+
-name|module
-operator|.
-name|getNamespaceURI
-argument_list|()
-operator|+
-literal|" loaded successfully."
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug("module " + module.getNamespaceURI() + " loaded successfully.");
 block|}
 catch|catch
 parameter_list|(

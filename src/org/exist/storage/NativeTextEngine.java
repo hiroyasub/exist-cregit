@@ -4456,12 +4456,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|boolean
-name|flushed
-init|=
-literal|false
-decl_stmt|;
-specifier|private
 name|Map
 name|words
 index|[]
@@ -6385,20 +6379,6 @@ operator|==
 literal|0
 condition|)
 return|return;
-comment|// if data has already been written to the table,
-comment|// we may need to do updates.
-specifier|final
-name|WordRef
-name|ref
-init|=
-operator|new
-name|WordRef
-argument_list|(
-name|collectionId
-argument_list|,
-name|word
-argument_list|)
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -6424,7 +6404,13 @@ name|dbWords
 operator|.
 name|append
 argument_list|(
-name|ref
+operator|new
+name|WordRef
+argument_list|(
+name|collectionId
+argument_list|,
+name|word
+argument_list|)
 argument_list|,
 name|data
 argument_list|)

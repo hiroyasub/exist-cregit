@@ -170,30 +170,36 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
 name|DOMFile
 name|db
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|NodeProxy
 name|node
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|doc
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|int
 name|offset
 decl_stmt|;
+specifier|private
 name|short
 name|lastTID
 init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|private
 name|DOMFile
 operator|.
 name|DOMPage
@@ -201,15 +207,18 @@ name|p
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|long
 name|page
 decl_stmt|;
+specifier|private
 name|long
 name|startAddress
 init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|private
 name|Object
 name|lockKey
 decl_stmt|;
@@ -344,7 +353,12 @@ name|int
 operator|)
 name|page
 argument_list|,
+name|ItemId
+operator|.
+name|getId
+argument_list|(
 name|lastTID
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -479,7 +493,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Returns the raw data of the next node in the sequence. 	 * 	 *@return    Description of the Return Value 	 */
+comment|/** 	 *  Returns the next node in document order.  	 */
 specifier|public
 name|Object
 name|next
@@ -528,7 +542,8 @@ name|gotoNextPosition
 argument_list|()
 condition|)
 block|{
-specifier|final
+do|do
+block|{
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
@@ -551,7 +566,6 @@ argument_list|()
 condition|)
 block|{
 comment|// load next page in chain
-specifier|final
 name|long
 name|nextPage
 init|=
@@ -610,7 +624,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// extract the value
+comment|// extract the tid
 name|lastTID
 operator|=
 name|ByteConversion
@@ -624,6 +638,58 @@ argument_list|,
 name|offset
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ItemId
+operator|.
+name|getId
+argument_list|(
+name|lastTID
+argument_list|)
+operator|<
+literal|0
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"tid< 0: "
+operator|+
+name|lastTID
+operator|+
+literal|" at "
+operator|+
+name|p
+operator|.
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|offset
+operator|+=
+literal|2
+expr_stmt|;
+comment|//	check if this is just a link to a relocated node
+if|if
+condition|(
+name|ItemId
+operator|.
+name|isLink
+argument_list|(
+name|lastTID
+argument_list|)
+condition|)
+block|{
+comment|// skip this
+name|offset
+operator|+=
+literal|8
+expr_stmt|;
+continue|continue;
+block|}
+comment|// read data length
 name|short
 name|l
 init|=
@@ -636,10 +702,29 @@ operator|.
 name|data
 argument_list|,
 name|offset
-operator|+
-literal|2
 argument_list|)
 decl_stmt|;
+name|offset
+operator|+=
+literal|2
+expr_stmt|;
+if|if
+condition|(
+name|ItemId
+operator|.
+name|isRelocated
+argument_list|(
+name|lastTID
+argument_list|)
+condition|)
+block|{
+comment|// found a relocated node. Skip the next 8 bytes
+name|offset
+operator|+=
+literal|8
+expr_stmt|;
+block|}
+comment|//	overflow page? load the overflow value
 if|if
 condition|(
 name|l
@@ -649,7 +734,6 @@ operator|.
 name|OVERFLOW
 condition|)
 block|{
-comment|// overflow page: load the overflow value
 name|l
 operator|=
 literal|8
@@ -667,10 +751,12 @@ operator|.
 name|data
 argument_list|,
 name|offset
-operator|+
-literal|4
 argument_list|)
 decl_stmt|;
+name|offset
+operator|+=
+literal|8
+expr_stmt|;
 specifier|final
 name|byte
 index|[]
@@ -700,6 +786,7 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+comment|// normal node
 block|}
 else|else
 block|{
@@ -714,13 +801,15 @@ operator|.
 name|data
 argument_list|,
 name|offset
-operator|+
-literal|4
 argument_list|,
 name|l
 argument_list|,
 name|doc
 argument_list|)
+expr_stmt|;
+name|offset
+operator|+=
+name|l
 expr_stmt|;
 block|}
 name|nextNode
@@ -736,7 +825,12 @@ name|int
 operator|)
 name|page
 argument_list|,
+name|ItemId
+operator|.
+name|getId
+argument_list|(
 name|lastTID
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -747,14 +841,14 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|offset
-operator|=
-name|offset
-operator|+
-literal|4
-operator|+
-name|l
-expr_stmt|;
+block|}
+do|while
+condition|(
+name|nextNode
+operator|==
+literal|null
+condition|)
+do|;
 block|}
 return|return
 name|nextNode
@@ -766,15 +860,15 @@ name|BTreeException
 name|e
 parameter_list|)
 block|{
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
@@ -789,6 +883,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
@@ -860,7 +959,7 @@ name|rec
 init|=
 name|db
 operator|.
-name|findValuePosition
+name|findRecord
 argument_list|(
 name|addr
 argument_list|)
@@ -909,7 +1008,7 @@ name|rec
 init|=
 name|db
 operator|.
-name|findValuePosition
+name|findRecord
 argument_list|(
 name|startAddress
 argument_list|)

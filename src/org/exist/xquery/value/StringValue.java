@@ -1282,8 +1282,9 @@ name|class
 condition|)
 block|{
 return|return
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|effectiveBooleanValue
 argument_list|()

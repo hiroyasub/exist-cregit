@@ -1277,8 +1277,9 @@ operator|.
 name|class
 condition|)
 return|return
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|effectiveBooleanValue
 argument_list|()

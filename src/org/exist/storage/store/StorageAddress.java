@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  * StorageAddress.java - May 25, 2003  *   * @author wolf  */
-end_comment
-
 begin_package
 package|package
 name|org
