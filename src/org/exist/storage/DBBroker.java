@@ -354,7 +354,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the base class for all database backends. All other components rely  * on the methods defined here.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the base class for all database backends. All the basic database operations like storing,  * removing or index access are provided by subclasses of this class.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -492,6 +492,13 @@ init|=
 literal|1
 decl_stmt|;
 specifier|protected
+name|int
+name|docFragmentationLimit
+init|=
+literal|25
+decl_stmt|;
+comment|/** 	 * Save the global symbol table. The global symbol table stores 	 * QNames and namespace/prefix mappings. 	 *   	 * @throws EXistException 	 */
+specifier|protected
 name|void
 name|saveSymbols
 parameter_list|()
@@ -597,6 +604,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** 	 * Read the global symbol table. The global symbol table stores 	 * QNames and namespace/prefix mappings. 	 *   	 * @throws EXistException 	 */
 specifier|protected
 name|void
 name|loadSymbols
@@ -860,6 +868,25 @@ name|xupdateGrowthFactor
 operator|=
 literal|1
 expr_stmt|;
+if|if
+condition|(
+operator|(
+name|docFragmentationLimit
+operator|=
+name|config
+operator|.
+name|getInteger
+argument_list|(
+literal|"xupdate.fragmentation"
+argument_list|)
+operator|)
+operator|<
+literal|0
+condition|)
+name|docFragmentationLimit
+operator|=
+literal|50
+expr_stmt|;
 name|this
 operator|.
 name|pool
@@ -875,6 +902,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Set the user that is currently using this DBBroker object. 	 *  	 * @param user 	 */
 specifier|public
 name|void
 name|setUser
@@ -890,6 +918,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
+comment|/** 	 * Get the user that is currently using this DBBroker object. 	 *  	 * @return 	 */
 specifier|public
 name|User
 name|getUser
@@ -899,6 +928,7 @@ return|return
 name|user
 return|;
 block|}
+comment|/** 	 * Returns a reference to the global {@link XQuery} service. 	 *  	 * @return 	 */
 specifier|public
 name|XQuery
 name|getXQueryService
@@ -1247,6 +1277,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/** 	 * Reindex a collection. 	 *  	 * @param collectionName 	 * @throws PermissionDeniedException 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1308,9 +1339,33 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|boolean
+name|index
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Store a document into the database. 	 * 	 *@param  doc  Description of the Parameter 	 */
+specifier|public
+name|void
+name|store
+parameter_list|(
+name|NodeImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|)
+block|{
+name|store
+argument_list|(
+name|node
+argument_list|,
+name|currentPath
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 *  Store a document into the database. This method will save the document 	 * metadata and add the document to the collection. 	 * 	 *@param  doc 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1376,6 +1431,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1395,6 +1451,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1422,8 +1479,6 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|)
-throws|throws
-name|PermissionDeniedException
 function_decl|;
 specifier|public
 name|void
@@ -1432,7 +1487,7 @@ parameter_list|()
 block|{
 comment|/* 		 *  do nothing 		 */
 block|}
-comment|/** 	 *  Update a node's data. This method is only used by the NativeBroker. To 	 *  keep nodes in a correct sequential order, it sometimes needs to update a 	 *  previous written node. Warning: don't use it for other purposes. 	 *  RelationalBroker does not implement this method. 	 * 	 *@param  node  Description of the Parameter 	 */
+comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|void
 name|update
@@ -1589,7 +1644,7 @@ name|doc
 parameter_list|)
 block|{
 block|}
-comment|/** 	 *  get all the documents in this database matching the given  document-type's name.@param  doctypeName  Description of the Parameter@param  user         Description of the Parameter@return              The documentsByDoctype value   	 */
+comment|/** 	 *    	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
@@ -1636,6 +1691,15 @@ parameter_list|()
 block|{
 return|return
 name|xupdateGrowthFactor
+return|;
+block|}
+specifier|public
+name|int
+name|getFragmentationLimit
+parameter_list|()
+block|{
+return|return
+name|docFragmentationLimit
 return|;
 block|}
 specifier|public

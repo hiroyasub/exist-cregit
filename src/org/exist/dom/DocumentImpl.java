@@ -512,7 +512,13 @@ name|pageCount
 init|=
 literal|0
 decl_stmt|;
-comment|//	protected transient int splitCount = 0;
+specifier|protected
+specifier|transient
+name|int
+name|splitCount
+init|=
+literal|0
+decl_stmt|;
 comment|// number of levels in this DOM tree
 specifier|protected
 name|int
@@ -540,8 +546,6 @@ argument_list|(
 literal|0754
 argument_list|)
 decl_stmt|;
-comment|// storage address for the document metadata
-comment|//	protected long address = -1;
 comment|// arity of the tree at every level
 specifier|protected
 name|int
@@ -4623,6 +4627,7 @@ operator|--
 name|pageCount
 expr_stmt|;
 block|}
+comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 * @return 	 */
 specifier|public
 name|int
 name|getContentLength
@@ -4639,6 +4644,32 @@ operator|.
 name|getPageSize
 argument_list|()
 return|;
+block|}
+comment|/** 	 * Returns the number of pages currently occupied by this document. 	 *  	 * @return 	 */
+specifier|public
+name|int
+name|getPageCount
+parameter_list|()
+block|{
+name|checkAvail
+argument_list|()
+expr_stmt|;
+return|return
+name|pageCount
+return|;
+block|}
+specifier|public
+name|void
+name|setPageCount
+parameter_list|(
+name|int
+name|count
+parameter_list|)
+block|{
+name|pageCount
+operator|=
+name|count
+expr_stmt|;
 block|}
 specifier|private
 name|void
@@ -4683,17 +4714,37 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
-comment|//	public void incSplitCount() {
-comment|//		splitCount++;
-comment|//	}
-comment|//
-comment|//	public int getSplitCount() {
-comment|//		return splitCount;
-comment|//	}
-comment|//
-comment|//	public void setSplitCount(int count) {
-comment|//		splitCount = count;
-comment|//	}
+specifier|public
+name|void
+name|incSplitCount
+parameter_list|()
+block|{
+name|splitCount
+operator|++
+expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getSplitCount
+parameter_list|()
+block|{
+return|return
+name|splitCount
+return|;
+block|}
+specifier|public
+name|void
+name|setSplitCount
+parameter_list|(
+name|int
+name|count
+parameter_list|)
+block|{
+name|splitCount
+operator|=
+name|count
+expr_stmt|;
+block|}
 block|}
 end_class
 

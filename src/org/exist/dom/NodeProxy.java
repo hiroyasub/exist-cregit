@@ -2179,6 +2179,16 @@ name|Type
 operator|.
 name|COMMENT
 return|;
+case|case
+name|Node
+operator|.
+name|DOCUMENT_NODE
+case|:
+return|return
+name|Type
+operator|.
+name|DOCUMENT
+return|;
 default|default :
 return|return
 name|Type

@@ -2078,6 +2078,17 @@ name|RecordPos
 name|rec
 parameter_list|)
 block|{
+if|if
+condition|(
+name|currentDocument
+operator|!=
+literal|null
+condition|)
+name|currentDocument
+operator|.
+name|incSplitCount
+argument_list|()
+expr_stmt|;
 comment|// check if a split is really required
 name|boolean
 name|requireSplit
@@ -3474,10 +3485,6 @@ name|page
 operator|.
 name|len
 expr_stmt|;
-comment|//        if(currentDocument != null) {
-comment|//        	currentDocument.incSplitCount();
-comment|//        	System.out.println(currentDocument.getFileName() + " split: " + currentDocument.getSplitCount());
-comment|//        }
 return|return
 name|rec
 return|;

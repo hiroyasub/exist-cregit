@@ -321,6 +321,13 @@ name|prevCollection
 init|=
 literal|null
 decl_stmt|;
+name|DocumentSet
+name|modifiedDocs
+init|=
+operator|new
+name|DocumentSet
+argument_list|()
+decl_stmt|;
 name|int
 name|len
 init|=
@@ -435,6 +442,13 @@ argument_list|(
 literal|"permission to remove document denied"
 argument_list|)
 throw|;
+name|modifiedDocs
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|parent
 operator|=
 operator|(
@@ -516,6 +530,11 @@ operator|.
 name|saveCollection
 argument_list|(
 name|collection
+argument_list|)
+expr_stmt|;
+name|checkFragmentation
+argument_list|(
+name|modifiedDocs
 argument_list|)
 expr_stmt|;
 return|return

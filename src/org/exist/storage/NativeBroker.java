@@ -3269,6 +3269,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** 	 * Release the collection id assigned to a collection so it can be 	 * reused later. 	 *  	 * @param id 	 * @throws PermissionDeniedException 	 */
 specifier|protected
 name|void
 name|freeCollection
@@ -3463,6 +3464,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Get the next free collection id. If a collection is removed, its collection id 	 * is released so it can be reused. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
 specifier|protected
 name|short
 name|getFreeCollectionId
@@ -3642,6 +3644,7 @@ return|return
 name|freeCollectionId
 return|;
 block|}
+comment|/** 	 * Get the next available unique collection id. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
 specifier|protected
 name|short
 name|getNextCollectionId
@@ -3793,6 +3796,7 @@ return|return
 name|nextCollectionId
 return|;
 block|}
+comment|/** 	 * Release the document id reserved for a document so it 	 * can be reused. 	 *  	 * @param id 	 * @throws PermissionDeniedException 	 */
 specifier|protected
 name|void
 name|freeDocument
@@ -3987,6 +3991,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
 specifier|protected
 name|int
 name|getFreeDocId
@@ -6964,6 +6969,8 @@ name|NodePath
 argument_list|()
 argument_list|,
 name|newDoc
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -6997,8 +7004,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
-throws|throws
-name|PermissionDeniedException
 block|{
 name|LOG
 operator|.
@@ -7025,13 +7030,6 @@ try|try
 block|{
 comment|// dropping old index
 name|elementIndex
-operator|.
-name|dropIndex
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|textEngine
 operator|.
 name|dropIndex
 argument_list|(
@@ -7200,6 +7198,16 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|tempDoc
+operator|.
+name|setDocId
+argument_list|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -7281,18 +7289,13 @@ name|NodePath
 argument_list|()
 argument_list|,
 name|tempDoc
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
 name|flush
 argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Removing old dom..."
-argument_list|)
 expr_stmt|;
 operator|new
 name|DOMTransaction
@@ -7344,6 +7347,48 @@ argument_list|(
 name|tempDoc
 argument_list|)
 expr_stmt|;
+name|doc
+operator|.
+name|setSplitCount
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setAddress
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setPageCount
+argument_list|(
+name|tempDoc
+operator|.
+name|getPageCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"New doc size: "
+operator|+
+name|doc
+operator|.
+name|getContentLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|storeDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|saveCollection
 argument_list|(
 name|doc
@@ -7377,13 +7422,31 @@ name|ReadOnlyException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 name|DATABASE_IS_READ_ONLY
+argument_list|,
+name|e
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|DATABASE_IS_READ_ONLY
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|private
@@ -7401,6 +7464,9 @@ name|currentPath
 parameter_list|,
 name|DocumentImpl
 name|newDoc
+parameter_list|,
+name|boolean
+name|index
 parameter_list|)
 block|{
 if|if
@@ -7456,6 +7522,24 @@ argument_list|(
 name|node
 argument_list|,
 name|currentPath
+argument_list|,
+name|index
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|node
+operator|.
+name|getGID
+argument_list|()
+operator|==
+literal|1
+condition|)
+name|newDoc
+operator|.
+name|appendChild
+argument_list|(
+name|node
 argument_list|)
 expr_stmt|;
 name|node
@@ -7618,6 +7702,8 @@ argument_list|,
 name|currentPath
 argument_list|,
 name|newDoc
+argument_list|,
+name|index
 argument_list|)
 expr_stmt|;
 block|}
@@ -12277,6 +12363,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|boolean
+name|index
 parameter_list|)
 block|{
 comment|// first, check available memory
@@ -12741,10 +12830,12 @@ comment|// by calling IndexPaths.match(path)
 name|boolean
 name|indexAttribs
 init|=
-literal|true
+name|index
 decl_stmt|;
 if|if
 condition|(
+name|index
+operator|&&
 name|idx
 operator|!=
 literal|null
@@ -12873,6 +12964,9 @@ comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
 if|if
 condition|(
+name|index
+operator|&&
+operator|(
 name|idx
 operator|==
 literal|null
@@ -12883,6 +12977,7 @@ name|match
 argument_list|(
 name|currentPath
 argument_list|)
+operator|)
 condition|)
 block|{
 name|boolean

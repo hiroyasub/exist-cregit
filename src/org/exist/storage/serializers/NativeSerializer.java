@@ -726,9 +726,6 @@ argument_list|()
 decl_stmt|;
 name|setDocument
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|)
 expr_stmt|;

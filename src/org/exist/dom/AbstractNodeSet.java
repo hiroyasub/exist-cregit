@@ -1313,15 +1313,7 @@ init|=
 name|iterator
 argument_list|()
 decl_stmt|;
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		final long start = System.currentTimeMillis();
 name|NodeProxy
 name|na
 init|=
@@ -1666,22 +1658,7 @@ break|break;
 block|}
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"quickSelect took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("quickSelect took " + (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
@@ -1724,15 +1701,7 @@ init|=
 name|iterator
 argument_list|()
 decl_stmt|;
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		final long start = System.currentTimeMillis();
 name|NodeProxy
 name|na
 init|=
@@ -2035,22 +2004,7 @@ break|break;
 block|}
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"quickSelect took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("quickSelect took " + (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
