@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * FilteredExpression represents a primary expression with a predicate. Examples:  * for $i in (1 to 10)[$i mod 2 = 0], $a[1], (doc("test.xml")//section)[2]. Other predicate  * expressions are handled by class {@link org.exist.xpath.LocationStep}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * FilteredExpression represents a primary expression with a predicate. Examples:  * for $i in (1 to 10)[$i mod 2 = 0], $a[1], (doc("test.xml")//section)[2]. Other predicate  * expressions are handled by class {@link org.exist.xquery.LocationStep}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -135,7 +135,7 @@ name|pred
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -244,7 +244,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -324,7 +324,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -337,7 +337,7 @@ name|returnsType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
 specifier|public
 name|void
 name|resetState
@@ -383,7 +383,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -400,7 +400,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies

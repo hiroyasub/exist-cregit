@@ -791,7 +791,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -803,7 +803,7 @@ operator|.
 name|DATE_TIME
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -1181,7 +1181,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -1273,7 +1273,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(int, org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean
 name|compareTo
@@ -1410,7 +1410,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|int
 name|compareTo
@@ -1466,7 +1466,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|max
@@ -1539,7 +1539,7 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#min(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|min
@@ -1612,7 +1612,7 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.ComputableValue#minus(org.exist.xpath.value.ComputableValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#minus(org.exist.xquery.value.ComputableValue) 	 */
 specifier|public
 name|ComputableValue
 name|minus
@@ -1628,7 +1628,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.ComputableValue#plus(org.exist.xpath.value.ComputableValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#plus(org.exist.xquery.value.ComputableValue) 	 */
 specifier|public
 name|ComputableValue
 name|plus
@@ -1644,7 +1644,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.ComputableValue#mult(org.exist.xpath.value.ComputableValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#mult(org.exist.xquery.value.ComputableValue) 	 */
 specifier|public
 name|ComputableValue
 name|mult
@@ -1660,7 +1660,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.ComputableValue#div(org.exist.xpath.value.ComputableValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.ComputableValue#div(org.exist.xquery.value.ComputableValue) 	 */
 specifier|public
 name|ComputableValue
 name|div

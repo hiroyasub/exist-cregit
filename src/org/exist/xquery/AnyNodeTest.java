@@ -56,7 +56,7 @@ name|AnyNodeTest
 implements|implements
 name|NodeTest
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#getName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#getName() 	 */
 specifier|public
 name|QName
 name|getName
@@ -66,7 +66,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#isWildcardTest() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#isWildcardTest() 	 */
 specifier|public
 name|boolean
 name|isWildcardTest
@@ -76,7 +76,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#matches(org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.w3c.dom.Node) 	 */
 specifier|public
 name|boolean
 name|matches
@@ -89,7 +89,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#matches(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|boolean
 name|matches

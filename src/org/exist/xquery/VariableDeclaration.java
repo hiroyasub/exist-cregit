@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A global variable declaration (with: declare variable). Variable bindings within  * for and let expressions are handled by {@link org.exist.xpath.ForExpr} and  * {@link org.exist.xpath.LetExpr}.  *   * @author wolf  */
+comment|/**  * A global variable declaration (with: declare variable). Variable bindings within  * for and let expressions are handled by {@link org.exist.xquery.ForExpr} and  * {@link org.exist.xquery.LetExpr}.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -137,7 +137,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -261,7 +261,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -271,7 +271,7 @@ return|return
 literal|""
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -284,7 +284,7 @@ name|returnsType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -297,7 +297,7 @@ name|getDependencies
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
 specifier|public
 name|int
 name|getCardinality
@@ -310,7 +310,7 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
 name|resetState

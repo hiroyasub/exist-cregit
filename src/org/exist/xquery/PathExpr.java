@@ -871,7 +871,7 @@ return|return
 name|rtype
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -1106,7 +1106,7 @@ return|return
 name|ast
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
 specifier|public
 name|void
 name|setInPredicate
@@ -1148,7 +1148,7 @@ name|inPredicate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -1184,7 +1184,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
 name|resetState

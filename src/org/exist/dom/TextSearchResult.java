@@ -990,7 +990,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt

@@ -146,7 +146,7 @@ operator|=
 name|expr
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -239,7 +239,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -254,7 +254,7 @@ operator|+
 literal|" cast as xs:string"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -266,7 +266,7 @@ operator|.
 name|STRING
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#preselect(org.exist.dom.DocumentSet) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#preselect(org.exist.dom.DocumentSet) 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -281,7 +281,7 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
 name|resetState

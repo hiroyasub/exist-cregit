@@ -184,7 +184,7 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Function#setArguments(java.util.List) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#setArguments(java.util.List) 	 */
 specifier|public
 name|void
 name|setArguments
@@ -203,7 +203,7 @@ operator|=
 name|args
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -302,7 +302,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -406,7 +406,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -426,7 +426,7 @@ operator|.
 name|CONTEXT_POSITION
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState

@@ -129,6 +129,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|DocumentFragment
 import|;
 end_import
@@ -214,18 +226,6 @@ operator|.
 name|dom
 operator|.
 name|Text
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
 import|;
 end_import
 

@@ -255,7 +255,7 @@ name|functions
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -265,7 +265,7 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
 specifier|public
 name|String
 name|getDefaultPrefix

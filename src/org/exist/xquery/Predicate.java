@@ -215,7 +215,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies

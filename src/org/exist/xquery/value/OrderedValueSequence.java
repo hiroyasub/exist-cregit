@@ -120,7 +120,7 @@ name|size
 index|]
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
 specifier|public
 name|int
 name|getItemType
@@ -132,7 +132,7 @@ operator|.
 name|ATOMIC
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -144,7 +144,7 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AbstractSequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#unorderedIterator() 	 */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -156,7 +156,7 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
 specifier|public
 name|int
 name|getLength
@@ -174,7 +174,7 @@ else|:
 name|count
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#add(org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void
 name|add
@@ -239,7 +239,7 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AbstractSequence#addAll(org.exist.xpath.value.Sequence) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#addAll(org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|void
 name|addAll
@@ -339,7 +339,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -376,7 +376,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -751,7 +751,7 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#hasNext() 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#hasNext() 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -763,7 +763,7 @@ operator|<
 name|count
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item
 name|nextItem

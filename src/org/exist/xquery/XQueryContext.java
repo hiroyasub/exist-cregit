@@ -654,6 +654,35 @@ name|uri
 operator|=
 literal|""
 expr_stmt|;
+specifier|final
+name|String
+name|prevURI
+init|=
+operator|(
+name|String
+operator|)
+name|namespaces
+operator|.
+name|get
+argument_list|(
+name|prefix
+argument_list|)
+decl_stmt|;
+comment|// remove any namespace URI that has been previously declared
+comment|// for the prefix
+if|if
+condition|(
+name|prevURI
+operator|!=
+literal|null
+condition|)
+name|prefixes
+operator|.
+name|remove
+argument_list|(
+name|prevURI
+argument_list|)
+expr_stmt|;
 name|namespaces
 operator|.
 name|put
@@ -1301,7 +1330,7 @@ literal|"failed to load module. "
 operator|+
 name|moduleClass
 operator|+
-literal|" is not an instance of org.exist.xpath.Module."
+literal|" is not an instance of org.exist.xquery.Module."
 argument_list|)
 expr_stmt|;
 return|return;

@@ -305,7 +305,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval

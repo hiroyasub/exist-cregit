@@ -223,7 +223,7 @@ return|return
 name|axis
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -423,7 +423,7 @@ operator|=
 name|inPredicate
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
 name|resetState

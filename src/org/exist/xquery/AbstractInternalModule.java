@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for an {@link org.exist.xpath.InternalModule}.   * The constructor expects an array of {@link org.exist.xpath.FunctionDef}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for an {@link org.exist.xquery.InternalModule}.   * The constructor expects an array of {@link org.exist.xquery.FunctionDef}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -144,7 +144,7 @@ name|AbstractInternalModule
 parameter_list|()
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#isInternalModule() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#isInternalModule() 	 */
 specifier|public
 name|boolean
 name|isInternalModule
@@ -154,21 +154,21 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
 specifier|public
 specifier|abstract
 name|String
 name|getNamespaceURI
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
 specifier|public
 specifier|abstract
 name|String
 name|getDefaultPrefix
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#listFunctions() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#listFunctions() 	 */
 specifier|public
 name|FunctionSignature
 index|[]
@@ -257,7 +257,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getClassForFunction(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getClassForFunction(org.exist.dom.QName) 	 */
 specifier|public
 name|Class
 name|getClassForFunction
@@ -367,7 +367,7 @@ return|return
 name|var
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#resolveVariable(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName) 	 */
 specifier|public
 name|Variable
 name|resolveVariable

@@ -202,7 +202,7 @@ operator|=
 name|var
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -690,7 +690,7 @@ return|return
 name|resultSequence
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -857,7 +857,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType

@@ -46,7 +46,7 @@ name|EmptySequence
 extends|extends
 name|AbstractSequence
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
 specifier|public
 name|int
 name|getItemType
@@ -58,7 +58,7 @@ operator|.
 name|EMPTY
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -70,7 +70,7 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AbstractSequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#unorderedIterator() 	 */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -82,7 +82,7 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
 specifier|public
 name|int
 name|getLength
@@ -182,7 +182,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
 specifier|public
 name|NodeSet
 name|toNodeSet

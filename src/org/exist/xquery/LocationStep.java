@@ -280,14 +280,14 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#returnsType() 	 */
 comment|//	public int returnsType() {
 comment|//		if(axis == Constants.SELF_AXIS)
 comment|//			return Type.ITEM;
 comment|//		else
 comment|//			return Type.NODE;
 comment|//	}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -1917,7 +1917,7 @@ return|return
 name|ds
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#resetState() 	 */
 specifier|public
 name|void
 name|resetState

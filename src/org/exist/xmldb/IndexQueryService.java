@@ -57,6 +57,13 @@ extends|extends
 name|Service
 block|{
 specifier|public
+name|void
+name|reindexCollection
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
+specifier|public
 name|Occurrences
 index|[]
 name|getIndexedElements

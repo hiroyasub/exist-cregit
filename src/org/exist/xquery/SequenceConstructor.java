@@ -149,7 +149,7 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -221,7 +221,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 name|String
 name|pprint
@@ -293,7 +293,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -305,7 +305,7 @@ operator|.
 name|ITEM
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
 specifier|public
 name|int
 name|getCardinality
@@ -317,7 +317,7 @@ operator|.
 name|ZERO_OR_MORE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
 name|resetState

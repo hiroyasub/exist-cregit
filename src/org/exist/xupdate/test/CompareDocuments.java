@@ -222,7 +222,10 @@ literal|"["
 operator|+
 name|node1
 operator|.
-name|getNodeType
+name|getChildNodes
+argument_list|()
+operator|.
+name|getLength
 argument_list|()
 operator|+
 literal|"]<==> "
@@ -264,7 +267,10 @@ literal|"["
 operator|+
 name|node2
 operator|.
-name|getNodeType
+name|getChildNodes
+argument_list|()
+operator|.
+name|getLength
 argument_list|()
 operator|+
 literal|"]"
@@ -610,7 +616,14 @@ throw|throw
 operator|new
 name|Exception
 argument_list|(
-literal|"different child node counts("
+literal|"different child node counts for node "
+operator|+
+name|node1
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|" ("
 operator|+
 name|list1
 operator|.

@@ -109,7 +109,7 @@ name|int
 name|axis
 parameter_list|)
 function_decl|;
-comment|/** 	 * The static return type of the expression. 	 * 	 * This method should return one of the type constants defined in class  	 * {@link org.exist.xpath.value.Type}. If the return type cannot be determined 	 * statically, return Type.ITEM. 	 */
+comment|/** 	 * The static return type of the expression. 	 * 	 * This method should return one of the type constants defined in class  	 * {@link org.exist.xquery.value.Type}. If the return type cannot be determined 	 * statically, return Type.ITEM. 	 */
 specifier|public
 name|int
 name|returnsType

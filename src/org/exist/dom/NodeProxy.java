@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Placeholder class for DOM nodes.   *   * NodeProxy is an internal proxy class, acting as a placeholder for all types of XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.   * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper   * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain   * the real node for a proxy, simply call {@link #getNode()}.   *   * All sets of type NodeSet operate on NodeProxys. A node set is a special type of   * sequence, so NodeProxy does also implement {@link org.exist.xpath.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also   * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Placeholder class for DOM nodes.   *   * NodeProxy is an internal proxy class, acting as a placeholder for all types of XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.   * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper   * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain   * the real node for a proxy, simply call {@link #getNode()}.   *   * All sets of type NodeSet operate on NodeProxys. A node set is a special type of   * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also   * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -493,7 +493,7 @@ name|getInternalAddress
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#getImplementation() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getImplementation() 	 */
 specifier|public
 name|int
 name|getImplementationType
@@ -1908,7 +1908,7 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Add a node to the list of context nodes for this node. 	 *  	 * NodeProxy internally stores the context nodes of the XPath context, for which  	 * this node has been selected during a previous processing step. 	 *  	 * Since eXist tries to process many expressions in one, single processing step, 	 * the context information is required to resolve predicate expressions. For 	 * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'], 	 * we have to remember the SCENE nodes for which the equality expression 	 * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the 	 * SCENE nodes become context items of the SPEECH nodes and this context 	 * information is preserved through all following steps. 	 *  	 * To process the predicate expression, {@link org.exist.xpath.Predicate} will take the 	 * context nodes returned by the filter expression and compare them to its context 	 * node set. 	 */
+comment|/** 	 * Add a node to the list of context nodes for this node. 	 *  	 * NodeProxy internally stores the context nodes of the XPath context, for which  	 * this node has been selected during a previous processing step. 	 *  	 * Since eXist tries to process many expressions in one, single processing step, 	 * the context information is required to resolve predicate expressions. For 	 * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'], 	 * we have to remember the SCENE nodes for which the equality expression 	 * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the 	 * SCENE nodes become context items of the SPEECH nodes and this context 	 * information is preserved through all following steps. 	 *  	 * To process the predicate expression, {@link org.exist.xquery.Predicate} will take the 	 * context nodes returned by the filter expression and compare them to its context 	 * node set. 	 */
 specifier|public
 name|void
 name|addContextNode
@@ -2102,7 +2102,7 @@ name|context
 return|;
 block|}
 comment|//	methods of interface Item
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -2172,7 +2172,7 @@ return|;
 comment|// unknown type
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toSequence() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
 specifier|public
 name|Sequence
 name|toSequence
@@ -2182,7 +2182,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -2193,7 +2193,7 @@ name|getNodeValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -2218,7 +2218,7 @@ name|requiredType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#atomize() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#atomize() 	 */
 specifier|public
 name|AtomicValue
 name|atomize
@@ -2264,7 +2264,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -2389,7 +2389,7 @@ name|getNode
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -2582,7 +2582,7 @@ expr_stmt|;
 comment|//	    Serializer serializer = broker.getSerializer();
 comment|//	    serializer.toReceiver(this, receiver);
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -2789,7 +2789,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject
@@ -2942,7 +2942,7 @@ literal|"not supported"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item
 name|nextItem

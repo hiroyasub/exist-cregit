@@ -430,7 +430,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Function#getName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#getName() 	 */
 specifier|public
 name|QName
 name|getName
@@ -440,7 +440,7 @@ return|return
 name|qname
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Function#setArguments(java.util.List) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#setArguments(java.util.List) 	 */
 specifier|public
 name|void
 name|setArguments
@@ -804,7 +804,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -1355,7 +1355,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Function#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType

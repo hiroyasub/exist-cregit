@@ -81,7 +81,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
 name|Sequence
@@ -96,7 +96,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.BinaryOp#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -174,7 +174,7 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -205,7 +205,7 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
 specifier|public
 name|void
 name|setInPredicate
@@ -249,7 +249,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 specifier|abstract
 name|String

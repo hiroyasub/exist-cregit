@@ -86,7 +86,7 @@ operator|=
 name|bool
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -98,7 +98,7 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -114,7 +114,7 @@ else|:
 literal|"false"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -198,7 +198,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(int, org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean
 name|compareTo
@@ -351,7 +351,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -372,7 +372,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|max
@@ -505,7 +505,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -579,7 +579,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject

@@ -480,7 +480,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -654,7 +654,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
 specifier|public
 name|int
 name|getLength
@@ -860,7 +860,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -1173,7 +1173,7 @@ expr_stmt|;
 comment|//		System.out.println("in-document-order sort took " +
 comment|// (System.currentTimeMillis() - start) + "ms.");
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xpath.value.AbstractSequence#setSelfAsContext() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.value.AbstractSequence#setSelfAsContext() 	 */
 specifier|public
 name|void
 name|setSelfAsContext
@@ -2774,7 +2774,7 @@ return|return
 name|n
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item
 name|nextItem

@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of an {@link org.exist.xpath.ExternalModule}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Default implementation of an {@link org.exist.xquery.ExternalModule}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -141,7 +141,7 @@ name|qname
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.ExternalModule#declareFunction(org.exist.xpath.UserDefinedFunction) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.ExternalModule#declareFunction(org.exist.xquery.UserDefinedFunction) 	 */
 specifier|public
 name|void
 name|declareFunction
@@ -166,7 +166,7 @@ name|func
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -176,7 +176,7 @@ return|return
 name|mNamespaceURI
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -186,7 +186,7 @@ return|return
 name|mPrefix
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#isInternalModule() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#isInternalModule() 	 */
 specifier|public
 name|boolean
 name|isInternalModule
@@ -196,7 +196,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#listFunctions() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#listFunctions() 	 */
 specifier|public
 name|FunctionSignature
 index|[]
@@ -266,7 +266,7 @@ return|return
 name|signatures
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#getSignatureForFunction(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getSignatureForFunction(org.exist.dom.QName) 	 */
 specifier|public
 name|FunctionSignature
 name|getSignatureForFunction
@@ -304,7 +304,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#declareVariable(org.exist.dom.QName, java.lang.Object) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#declareVariable(org.exist.dom.QName, java.lang.Object) 	 */
 specifier|public
 name|Variable
 name|declareVariable
@@ -400,7 +400,7 @@ name|decl
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Module#resolveVariable(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName) 	 */
 specifier|public
 name|Variable
 name|resolveVariable

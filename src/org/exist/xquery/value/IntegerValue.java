@@ -442,7 +442,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -494,7 +494,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -509,7 +509,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -694,7 +694,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#getInt() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getInt() 	 */
 specifier|public
 name|int
 name|getInt
@@ -709,7 +709,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#getLong() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getLong() 	 */
 specifier|public
 name|long
 name|getLong
@@ -721,7 +721,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#getDouble() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getDouble() 	 */
 specifier|public
 name|double
 name|getDouble
@@ -736,7 +736,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -750,7 +750,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#ceiling() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
 specifier|public
 name|NumericValue
 name|ceiling
@@ -762,7 +762,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#floor() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#floor() 	 */
 specifier|public
 name|NumericValue
 name|floor
@@ -774,7 +774,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#round() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round() 	 */
 specifier|public
 name|NumericValue
 name|round
@@ -786,7 +786,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#minus(org.exist.xpath.value.NumericValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|minus
@@ -852,7 +852,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#plus(org.exist.xpath.value.NumericValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|plus
@@ -918,7 +918,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#mult(org.exist.xpath.value.NumericValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|mult
@@ -984,7 +984,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#div(org.exist.xpath.value.NumericValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|div
@@ -1154,7 +1154,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#mod(org.exist.xpath.value.NumericValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|NumericValue
 name|mod
@@ -1240,7 +1240,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#unaryMinus() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#unaryMinus() 	 */
 specifier|public
 name|NumericValue
 name|negate
@@ -1257,7 +1257,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#abs() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#abs() 	 */
 specifier|public
 name|NumericValue
 name|abs
@@ -1280,7 +1280,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NumericValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|max
@@ -1435,7 +1435,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -1605,7 +1605,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject

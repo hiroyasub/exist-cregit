@@ -290,7 +290,7 @@ return|return
 literal|"ROOT"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -302,7 +302,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Step#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#resetState() 	 */
 specifier|public
 name|void
 name|resetState

@@ -404,7 +404,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -700,7 +700,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.ExtFulltext#evalQuery(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, java.lang.String, org.exist.dom.NodeSet) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.ExtFulltext#evalQuery(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, java.lang.String, org.exist.dom.NodeSet) 	 */
 specifier|public
 name|Sequence
 name|evalQuery

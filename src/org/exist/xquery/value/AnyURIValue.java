@@ -140,7 +140,7 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -152,7 +152,7 @@ operator|.
 name|ANY_URI
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -164,7 +164,7 @@ return|return
 name|uri
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -227,7 +227,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(int, org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean
 name|compareTo
@@ -332,7 +332,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|int
 name|compareTo
@@ -389,7 +389,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|max
@@ -408,7 +408,7 @@ literal|"max is not supported for values of type xs:anyURI"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#min(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|min
@@ -427,7 +427,7 @@ literal|"min is not supported for values of type xs:anyURI"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -506,7 +506,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject

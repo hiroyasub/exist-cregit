@@ -502,7 +502,7 @@ else|:
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.DurationValue#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.DurationValue#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -514,7 +514,7 @@ operator|.
 name|YEAR_MONTH_DURATION
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.DurationValue#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.DurationValue#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -590,7 +590,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.DurationValue#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.DurationValue#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -666,7 +666,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(int, org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean
 name|compareTo
@@ -805,7 +805,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|int
 name|compareTo
@@ -890,7 +890,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|max
@@ -945,7 +945,7 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|AtomicValue
 name|min
@@ -1000,7 +1000,7 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.DurationValue#plus(org.exist.xpath.value.ComputableValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.DurationValue#plus(org.exist.xquery.value.ComputableValue) 	 */
 specifier|public
 name|ComputableValue
 name|plus

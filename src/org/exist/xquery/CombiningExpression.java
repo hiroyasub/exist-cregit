@@ -105,7 +105,7 @@ operator|=
 name|right
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
 name|Sequence
@@ -120,14 +120,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#pprint() 	 */
 specifier|public
 specifier|abstract
 name|String
 name|pprint
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -139,7 +139,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
 specifier|public
 name|void
 name|resetState
@@ -156,7 +156,7 @@ name|resetState
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -180,7 +180,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
 specifier|public
 name|void
 name|setInPredicate

@@ -995,7 +995,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -1246,7 +1246,7 @@ operator|=
 name|path
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.Expression#setInPredicate(boolean) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#setInPredicate(boolean) 	 */
 specifier|public
 name|void
 name|setInPredicate
@@ -1269,7 +1269,7 @@ name|inPredicate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState

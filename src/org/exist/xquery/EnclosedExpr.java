@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xpath.AttributeConstructor}.  *    * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents an enclosed expression<code>{expr}</code> inside element  * content. Enclosed expressions within attribute values are processed by  * {@link org.exist.xquery.AttributeConstructor}.  *    * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -130,7 +130,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#eval(org.exist.xpath.StaticContext, org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -438,7 +438,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#pprint() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#pprint() 	 */
 specifier|public
 name|String
 name|pprint

@@ -1930,9 +1930,18 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"key not found"
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|long
 name|pnum

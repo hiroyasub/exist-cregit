@@ -142,7 +142,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all node set implementations. A node set is a special type of sequence,  * which contains only nodes. Class NodeSet thus implements the {@link org.exist.xpath.value.Sequence}   * as well as the DOM {@link org.w3c.dom.NodeList} interfaces.  *   * Please note that a node set may or may not contain duplicate nodes. Some implementations  * (e.g. {@link org.exist.dom.ExtArrayNodeSet}) remove duplicates when sorting the set.  */
+comment|/**  * Abstract base class for all node set implementations. A node set is a special type of sequence,  * which contains only nodes. Class NodeSet thus implements the {@link org.exist.xquery.value.Sequence}   * as well as the DOM {@link org.w3c.dom.NodeList} interfaces.  *   * Please note that a node set may or may not contain duplicate nodes. Some implementations  * (e.g. {@link org.exist.dom.ExtArrayNodeSet}) remove duplicates when sorting the set.  */
 end_comment
 
 begin_class
@@ -182,21 +182,21 @@ name|Iterator
 name|iterator
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 specifier|abstract
 name|SequenceIterator
 name|iterate
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
 specifier|public
 specifier|abstract
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
 specifier|public
 name|int
 name|getItemType

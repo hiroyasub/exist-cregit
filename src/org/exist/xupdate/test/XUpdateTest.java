@@ -546,6 +546,15 @@ name|referenceXML
 argument_list|)
 expr_stmt|;
 comment|//compare
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
 operator|new
 name|CompareDocuments
 argument_list|()

@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract implementation of {@link org.exist.xpath.value.Sequence} with  * default implementations for some methods.  */
+comment|/**  * An abstract implementation of {@link org.exist.xquery.value.Sequence} with  * default implementations for some methods.  */
 end_comment
 
 begin_class
@@ -270,7 +270,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#add(org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -317,7 +317,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 specifier|abstract
 name|Item
@@ -327,7 +327,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -434,7 +434,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -506,7 +506,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject

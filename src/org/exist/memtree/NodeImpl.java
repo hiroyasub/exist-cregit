@@ -354,7 +354,7 @@ return|return
 name|nodeNumber
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#getImplementation() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getImplementation() 	 */
 specifier|public
 name|int
 name|getImplementationType
@@ -366,7 +366,7 @@ operator|.
 name|IN_MEMORY_NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#getNode() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getNode() 	 */
 specifier|public
 name|Node
 name|getNode
@@ -670,7 +670,7 @@ operator|.
 name|nodeNumber
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#equals(org.exist.xpath.value.NodeValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#equals(org.exist.xquery.value.NodeValue) 	 */
 specifier|public
 name|boolean
 name|equals
@@ -712,7 +712,7 @@ operator|.
 name|nodeNumber
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#after(org.exist.xpath.value.NodeValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#after(org.exist.xquery.value.NodeValue) 	 */
 specifier|public
 name|boolean
 name|after
@@ -754,7 +754,7 @@ operator|.
 name|nodeNumber
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.NodeValue#before(org.exist.xpath.value.NodeValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#before(org.exist.xquery.value.NodeValue) 	 */
 specifier|public
 name|boolean
 name|before
@@ -883,6 +883,15 @@ comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
 specifier|public
 name|Document
 name|getOwnerDocument
+parameter_list|()
+block|{
+return|return
+name|document
+return|;
+block|}
+specifier|public
+name|DocumentImpl
+name|getDocument
 parameter_list|()
 block|{
 return|return
@@ -1061,7 +1070,7 @@ literal|false
 return|;
 block|}
 comment|/* 	 * Methods of interface Item 	 */
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
 specifier|public
 name|int
 name|getType
@@ -1146,7 +1155,7 @@ name|NODE
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
 specifier|public
 name|String
 name|getStringValue
@@ -1259,7 +1268,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toSequence() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
 specifier|public
 name|Sequence
 name|toSequence
@@ -1269,7 +1278,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -1294,7 +1303,7 @@ name|requiredType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#atomize() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#atomize() 	 */
 specifier|public
 name|AtomicValue
 name|atomize
@@ -1312,7 +1321,7 @@ argument_list|)
 return|;
 block|}
 comment|/* 	 * Methods of interface Sequence 	 */
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#add(org.exist.xpath.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void
 name|add
@@ -1324,7 +1333,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#addAll(org.exist.xpath.value.Sequence) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|void
 name|addAll
@@ -1336,7 +1345,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
 specifier|public
 name|int
 name|getItemType
@@ -1348,7 +1357,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -1362,7 +1371,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -1376,7 +1385,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
 specifier|public
 name|int
 name|getLength
@@ -1398,7 +1407,7 @@ operator|.
 name|EXACTLY_ONE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -1417,7 +1426,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -1429,7 +1438,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -1466,7 +1475,7 @@ operator|=
 name|node
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#hasNext() 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#hasNext() 		 */
 specifier|public
 name|boolean
 name|hasNext
@@ -1478,7 +1487,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xpath.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item
 name|nextItem
@@ -1498,7 +1507,7 @@ name|next
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler) 	 */
 specifier|public
 name|void
 name|toSAX
@@ -1633,7 +1642,7 @@ name|receiver
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -1840,7 +1849,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
 specifier|public
 name|Object
 name|toJavaObject
@@ -1912,7 +1921,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#setSelfAsContext() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext() 	 */
 specifier|public
 name|void
 name|setSelfAsContext

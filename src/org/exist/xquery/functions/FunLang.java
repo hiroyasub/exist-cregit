@@ -635,7 +635,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.functions.Function#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies

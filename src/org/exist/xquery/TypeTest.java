@@ -192,7 +192,7 @@ operator|+
 literal|"()"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#matches(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|boolean
 name|matches
@@ -300,7 +300,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.NodeTest#isWildcardTest() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#isWildcardTest() 	 */
 specifier|public
 name|boolean
 name|isWildcardTest

@@ -128,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all built-in and user-defined functions.  *   * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *   * User-defined functions extend class {@link org.exist.xpath.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xpath.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *   * @author wolf  */
+comment|/**  * Abstract base class for all built-in and user-defined functions.  *   * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *   * User-defined functions extend class {@link org.exist.xquery.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xquery.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -226,7 +226,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#returnsType() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#returnsType() 	 */
 specifier|public
 name|int
 name|returnsType
@@ -265,7 +265,7 @@ name|getPrimaryType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
 specifier|public
 name|int
 name|getCardinality
@@ -1290,7 +1290,7 @@ return|return
 name|mySignature
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies

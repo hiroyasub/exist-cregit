@@ -167,6 +167,24 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.IndexQueryService#reindexCollection()      */
+specifier|public
+name|void
+name|reindexCollection
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NOT_IMPLEMENTED
+argument_list|)
+throw|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.IndexQueryService#getIndexedElements(boolean) 	 */
 specifier|public
 name|Occurrences

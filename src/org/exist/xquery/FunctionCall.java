@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a call to a user-defined function   * {@see org.exist.xpath.functions.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
+comment|/**  * Represents a call to a user-defined function   * {@link org.exist.xquery.functions.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
 end_comment
 
 begin_class
@@ -364,7 +364,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**  	 * Evaluates all arguments, then forwards them to the user-defined function. 	 *  	 * The return value of the user-defined function will be checked against the 	 * provided function signature. 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xpath.value.Sequence, org.exist.xpath.value.Item) 	 */
+comment|/**  	 * Evaluates all arguments, then forwards them to the user-defined function. 	 *  	 * The return value of the user-defined function will be checked against the 	 * provided function signature. 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -492,7 +492,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.PathExpr#resetState() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState

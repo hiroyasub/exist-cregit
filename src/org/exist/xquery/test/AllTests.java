@@ -80,7 +80,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Test for org.exist.xpath.test"
+literal|"Test for org.exist.xquery.test"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$

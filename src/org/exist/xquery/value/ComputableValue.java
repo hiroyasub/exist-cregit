@@ -39,7 +39,7 @@ name|ComputableValue
 extends|extends
 name|AtomicValue
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
 specifier|public
 specifier|abstract
 name|String
@@ -48,7 +48,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 specifier|abstract
 name|AtomicValue
@@ -60,7 +60,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(int, org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -75,7 +75,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#compareTo(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 specifier|abstract
 name|int
@@ -87,7 +87,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#max(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 specifier|abstract
 name|AtomicValue
@@ -99,7 +99,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xpath.value.AtomicValue#min(org.exist.xpath.value.AtomicValue) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 specifier|abstract
 name|AtomicValue
