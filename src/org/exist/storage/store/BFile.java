@@ -1029,6 +1029,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/**      * Close the BFile.      *       * @throws DBException      * @return always true      */
 specifier|public
 name|boolean
 name|close
@@ -1045,6 +1046,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * Check, if key is contained in BFile.      *       * @param key key to look for      * @return true, if key exists      */
 specifier|public
 name|boolean
 name|containsKey
