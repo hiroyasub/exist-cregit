@@ -2305,7 +2305,11 @@ name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Can not write query to file "
+literal|"Can not write "
+operator|+
+name|fileCategory
+operator|+
+literal|" to file "
 operator|+
 name|file
 operator|.
