@@ -239,11 +239,6 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|setUser
 argument_list|(
 name|user
 argument_list|)

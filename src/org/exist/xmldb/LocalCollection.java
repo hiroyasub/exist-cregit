@@ -560,7 +560,9 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -572,6 +574,15 @@ name|name
 operator|=
 literal|"/db"
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"loading collection "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
 name|collection
 operator|=
 name|broker
@@ -579,6 +590,18 @@ operator|.
 name|getCollection
 argument_list|(
 name|name
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"resources = "
+operator|+
+name|collection
+operator|.
+name|getDocumentCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -706,7 +729,9 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -1085,7 +1110,9 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|org
 operator|.
@@ -1953,7 +1980,9 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -2152,11 +2181,6 @@ operator|=
 name|brokerPool
 operator|.
 name|get
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|setUser
 argument_list|(
 name|user
 argument_list|)

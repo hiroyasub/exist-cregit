@@ -342,7 +342,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|DocumentImpl
 name|document
@@ -360,6 +362,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
+operator|(
 name|document
 operator|.
 name|getPermissions
@@ -375,14 +378,14 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-operator|&&
-operator|!
+operator|||
 name|manager
 operator|.
 name|hasAdminPrivileges
 argument_list|(
 name|user
 argument_list|)
+operator|)
 condition|)
 throw|throw
 operator|new
@@ -392,7 +395,15 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"you are not the owner of this resource"
+literal|"you are not the owner of this resource; owner = "
+operator|+
+name|document
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|getOwner
+argument_list|()
 argument_list|)
 throw|;
 name|document
@@ -559,7 +570,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -743,7 +756,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -855,7 +870,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|DocumentImpl
 name|document
@@ -1064,7 +1081,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -1175,7 +1194,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|DocumentImpl
 name|document
@@ -1415,7 +1436,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -1588,7 +1611,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -1925,7 +1950,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|String
 name|child

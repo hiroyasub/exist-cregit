@@ -408,7 +408,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 return|return
 name|broker

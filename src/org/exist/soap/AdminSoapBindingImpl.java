@@ -487,11 +487,6 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|setUser
 argument_list|(
 name|session
 operator|.
@@ -1493,7 +1488,12 @@ operator|=
 name|pool
 operator|.
 name|get
+argument_list|(
+name|session
+operator|.
+name|getUser
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|Document
 name|doc
