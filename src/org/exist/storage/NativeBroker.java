@@ -14906,6 +14906,17 @@ operator|+
 operator|(
 name|runtime
 operator|.
+name|maxMemory
+argument_list|()
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"K max; "
+operator|+
+operator|(
+name|runtime
+operator|.
 name|freeMemory
 argument_list|()
 operator|/
