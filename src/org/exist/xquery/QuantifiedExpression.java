@@ -253,6 +253,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+name|contextSequence
+operator|=
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
 name|LocalVariable
 name|mark
 init|=
@@ -293,7 +306,7 @@ name|inputSequence
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|)
 decl_stmt|;
 name|Sequence
@@ -349,7 +362,7 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|)
 expr_stmt|;
 comment|//			LOG.debug("satisfies returned: " + satisfiesSeq.getLength());
