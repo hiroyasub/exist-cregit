@@ -1568,6 +1568,16 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+name|boolean
+name|dataBackup
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|dest
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
