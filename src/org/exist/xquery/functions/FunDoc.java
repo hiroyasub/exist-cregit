@@ -701,6 +701,14 @@ name|cachedPath
 operator|=
 literal|null
 expr_stmt|;
+name|getArgument
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
