@@ -995,11 +995,11 @@ operator|.
 name|nodeNumber
 condition|)
 return|return
+operator|-
 literal|1
 return|;
 else|else
 return|return
-operator|-
 literal|1
 return|;
 block|}
