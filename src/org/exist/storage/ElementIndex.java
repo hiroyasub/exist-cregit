@@ -165,6 +165,10 @@ name|NodeSelector
 import|;
 end_import
 
+begin_comment
+comment|/** base class for {@link org.exist.storage.NativeElementIndex} */
+end_comment
+
 begin_class
 specifier|public
 specifier|abstract
@@ -177,6 +181,7 @@ specifier|protected
 name|DBBroker
 name|broker
 decl_stmt|;
+comment|/** maps a qname to a List of  NodeProxy - should be renamed ? */
 specifier|protected
 name|TreeMap
 name|elementIds
