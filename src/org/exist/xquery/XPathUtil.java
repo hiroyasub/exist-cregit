@@ -95,6 +95,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FloatValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -278,7 +292,7 @@ name|Float
 condition|)
 return|return
 operator|new
-name|DoubleValue
+name|FloatValue
 argument_list|(
 operator|(
 operator|(
@@ -287,7 +301,7 @@ operator|)
 name|obj
 operator|)
 operator|.
-name|doubleValue
+name|floatValue
 argument_list|()
 argument_list|)
 return|;
@@ -329,8 +343,12 @@ operator|)
 name|obj
 operator|)
 operator|.
-name|longValue
+name|shortValue
 argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|SHORT
 argument_list|)
 return|;
 if|else if
@@ -350,8 +368,12 @@ operator|)
 name|obj
 operator|)
 operator|.
-name|longValue
+name|intValue
 argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|INT
 argument_list|)
 return|;
 if|else if
@@ -373,6 +395,10 @@ operator|)
 operator|.
 name|longValue
 argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|LONG
 argument_list|)
 return|;
 if|else if
