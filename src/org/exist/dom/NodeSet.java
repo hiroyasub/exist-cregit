@@ -1007,6 +1007,8 @@ argument_list|()
 decl_stmt|;
 name|NodeProxy
 name|l
+decl_stmt|,
+name|p
 decl_stmt|;
 for|for
 control|(
@@ -1042,6 +1044,7 @@ argument_list|(
 name|l
 argument_list|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -1049,6 +1052,7 @@ argument_list|(
 name|l
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 for|for
 control|(
@@ -1094,6 +1098,7 @@ name|l
 argument_list|)
 operator|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -1101,6 +1106,7 @@ argument_list|(
 name|l
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|r
@@ -1138,6 +1144,8 @@ argument_list|)
 expr_stmt|;
 name|NodeProxy
 name|p
+decl_stmt|,
+name|c
 decl_stmt|;
 for|for
 control|(

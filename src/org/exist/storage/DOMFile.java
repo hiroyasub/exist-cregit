@@ -2510,18 +2510,15 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-comment|//super.flush();
-name|buffer
+name|super
 operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|pages
+name|buffer
 operator|.
-name|remove
-argument_list|(
-name|owner
-argument_list|)
+name|flush
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -4987,7 +4984,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"offset out of range "
+literal|"bad link to next "
 operator|+
 name|p
 operator|.

@@ -132,7 +132,7 @@ literal|"match-keywords"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  docs     Description of the Parameter      *@param  context  Description of the Parameter      *@param  node     Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  docs     Description of the Parameter 	 *@param  context  Description of the Parameter 	 *@param  node     Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|Value
 name|eval
@@ -454,23 +454,39 @@ condition|(
 name|parent
 operator|!=
 literal|null
-operator|&&
-operator|(
-operator|!
+condition|)
+block|{
+if|if
+condition|(
 name|temp
 operator|.
 name|contains
 argument_list|(
-name|current
-operator|.
-name|doc
-argument_list|,
+name|parent
+argument_list|)
+condition|)
+block|{
 name|parent
 operator|.
-name|gid
+name|addMatches
+argument_list|(
+name|current
+operator|.
+name|matches
 argument_list|)
-operator|)
-condition|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|parent
+operator|.
+name|addMatches
+argument_list|(
+name|current
+operator|.
+name|matches
+argument_list|)
+expr_stmt|;
 name|temp
 operator|.
 name|add
@@ -478,6 +494,8 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 name|hits
@@ -528,7 +546,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
-comment|/*              *  for(int k = 1; k< hits[j].length; k++)              *  t1 = t1.union(hits[j][k]);              */
+comment|/* 			 *  for(int k = 1; k< hits[j].length; k++) 			 *  t1 = t1.union(hits[j][k]); 			 */
 if|if
 condition|(
 name|t0
@@ -588,7 +606,7 @@ name|t0
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the operatorType attribute of the FunKeywordMatch object      *      *@return    The operatorType value      */
+comment|/** 	 *  Gets the operatorType attribute of the FunKeywordMatch object 	 * 	 *@return    The operatorType value 	 */
 specifier|protected
 name|int
 name|getOperatorType
@@ -600,7 +618,7 @@ operator|.
 name|FULLTEXT_AND
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|pprint
@@ -684,7 +702,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  in_docs  Description of the Parameter      *@return          Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@param  in_docs  Description of the Parameter 	 *@return          Description of the Return Value 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -697,7 +715,7 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|int
 name|returnsType

@@ -1137,12 +1137,9 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|VENDOR_ERROR
+name|INVALID_COLLECTION
 argument_list|,
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
+literal|"an io error occurred"
 argument_list|,
 name|ioe
 argument_list|)

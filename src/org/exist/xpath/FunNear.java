@@ -492,23 +492,39 @@ condition|(
 name|parent
 operator|!=
 literal|null
-operator|&&
-operator|(
-operator|!
+condition|)
+block|{
+if|if
+condition|(
 name|temp
 operator|.
 name|contains
 argument_list|(
-name|current
-operator|.
-name|doc
-argument_list|,
+name|parent
+argument_list|)
+condition|)
+block|{
 name|parent
 operator|.
-name|gid
+name|addMatches
+argument_list|(
+name|current
+operator|.
+name|matches
 argument_list|)
-operator|)
-condition|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|parent
+operator|.
+name|addMatches
+argument_list|(
+name|current
+operator|.
+name|matches
+argument_list|)
+expr_stmt|;
 name|temp
 operator|.
 name|add
@@ -516,6 +532,8 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 name|hits
@@ -1001,7 +1019,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+comment|/** 	 *  Description of the Method 	 * 	 *@return    Description of the Return Value 	 */
 specifier|public
 name|String
 name|pprint
@@ -1108,7 +1126,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      *  Sets the distance attribute of the FunNear object      *      *@param  distance  The new distance value      */
+comment|/** 	 *  Sets the distance attribute of the FunNear object 	 * 	 *@param  distance  The new distance value 	 */
 specifier|public
 name|void
 name|setDistance

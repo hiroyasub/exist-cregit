@@ -80,7 +80,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|APISearch
+name|ExampleSearch
 block|{
 specifier|protected
 specifier|static
@@ -433,7 +433,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"usage: samples.APISearch [ collection ] xpath-query"
+literal|"usage: samples.ExampleSearch [ collection ] xpath-query"
 argument_list|)
 expr_stmt|;
 name|System

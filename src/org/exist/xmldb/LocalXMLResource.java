@@ -207,42 +207,6 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DocumentFragment
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
 name|Node
 import|;
 end_import
@@ -452,6 +416,12 @@ decl_stmt|;
 specifier|protected
 name|File
 name|file
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
+name|Node
+name|root
 init|=
 literal|null
 decl_stmt|;
@@ -1619,123 +1589,32 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|OutputFormat
-name|format
-init|=
-operator|new
-name|OutputFormat
-argument_list|(
-literal|"xml"
-argument_list|,
-name|encoding
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|InternalXMLSerializer
-name|xmlout
-init|=
-operator|new
-name|InternalXMLSerializer
-argument_list|(
-name|format
-argument_list|)
-decl_stmt|;
-try|try
-block|{
-switch|switch
-condition|(
+name|this
+operator|.
 name|root
-operator|.
-name|getNodeType
-argument_list|()
-condition|)
-block|{
-case|case
-name|Node
-operator|.
-name|ELEMENT_NODE
-case|:
-name|xmlout
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|Element
-operator|)
+operator|=
 name|root
-argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|Node
-operator|.
-name|DOCUMENT_NODE
-case|:
-name|xmlout
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|Document
-operator|)
-name|root
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Node
-operator|.
-name|DOCUMENT_FRAGMENT_NODE
-case|:
-name|xmlout
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|DocumentFragment
-operator|)
-name|root
-argument_list|)
-expr_stmt|;
-break|break;
-default|default:
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|WRONG_CONTENT_TYPE
-argument_list|,
-literal|"argument should be an Element, Document or DocumentFragment"
-argument_list|)
-throw|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|VENDOR_ERROR
-argument_list|,
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ioe
-argument_list|)
-throw|;
-block|}
+comment|//		OutputFormat format = new OutputFormat("xml", encoding, false);
+comment|//		InternalXMLSerializer xmlout = new InternalXMLSerializer(format);
+comment|//		try {
+comment|//            switch(root.getNodeType()) {
+comment|//                case Node.ELEMENT_NODE:
+comment|//                    xmlout.serialize((Element)root);
+comment|//                    break;
+comment|//                case Node.DOCUMENT_NODE:
+comment|//                    xmlout.serialize((Document)root);
+comment|//                    break;
+comment|//                case Node.DOCUMENT_FRAGMENT_NODE:
+comment|//                    xmlout.serialize((DocumentFragment)root);
+comment|//                    break;
+comment|//                default:
+comment|//                    throw new XMLDBException(ErrorCodes.WRONG_CONTENT_TYPE,
+comment|//                        "argument should be an Element, Document or DocumentFragment");
+comment|//            }
+comment|//		} catch (IOException ioe) {
+comment|//			throw new XMLDBException(ErrorCodes.VENDOR_ERROR, ioe.getMessage(), ioe);
+comment|//		}
 block|}
 specifier|public
 name|ContentHandler
@@ -1873,6 +1752,15 @@ name|writer
 operator|.
 name|toString
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|content
+argument_list|)
 expr_stmt|;
 block|}
 block|}

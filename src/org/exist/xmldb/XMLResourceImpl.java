@@ -1534,7 +1534,6 @@ name|SAXNotRecognizedException
 throws|,
 name|SAXNotSupportedException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -1555,7 +1554,6 @@ name|SAXNotRecognizedException
 throws|,
 name|SAXNotSupportedException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

@@ -72,7 +72,7 @@ argument_list|(
 operator|new
 name|TestSuite
 argument_list|(
-name|ResourceTest
+name|XPathQueryTest
 operator|.
 name|class
 argument_list|)
@@ -85,7 +85,7 @@ argument_list|(
 operator|new
 name|TestSuite
 argument_list|(
-name|XPathQueryTest
+name|ResourceTest
 operator|.
 name|class
 argument_list|)
