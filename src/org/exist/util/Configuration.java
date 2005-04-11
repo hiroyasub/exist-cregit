@@ -425,11 +425,22 @@ name|DatabaseConfigurationException
 block|{
 try|try
 block|{
-comment|// first try to read the configuration from a file within the
-comment|// classpath
 name|InputStream
 name|is
 init|=
+literal|null
+decl_stmt|;
+comment|// first try to read the configuration from a file within the
+comment|// classpath
+if|if
+condition|(
+name|file
+operator|==
+literal|null
+condition|)
+block|{
+name|is
+operator|=
 name|Configuration
 operator|.
 name|class
@@ -441,7 +452,7 @@ name|getResourceAsStream
 argument_list|(
 name|file
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|is
@@ -456,14 +467,19 @@ argument_list|(
 literal|"Reading configuration from classloader"
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|file
-operator|=
-name|file
-expr_stmt|;
 block|}
 else|else
+name|file
+operator|=
+literal|"conf.xml"
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|is
+operator|==
+literal|null
+condition|)
 block|{
 comment|// try to read configuration from file. Guess the location if
 comment|// necessary
