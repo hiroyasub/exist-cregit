@@ -1220,7 +1220,7 @@ name|stylesheet
 operator|=
 name|context
 operator|.
-name|getBaseURI
+name|getModuleLoadPath
 argument_list|()
 operator|+
 name|File
