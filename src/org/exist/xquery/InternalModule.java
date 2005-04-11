@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -46,6 +56,15 @@ name|qname
 parameter_list|,
 name|int
 name|argCount
+parameter_list|)
+function_decl|;
+comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return 	 */
+specifier|public
+name|List
+name|getFunctionsByName
+parameter_list|(
+name|QName
+name|qname
 parameter_list|)
 function_decl|;
 block|}

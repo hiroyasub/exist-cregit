@@ -556,6 +556,17 @@ name|message
 operator|=
 literal|""
 expr_stmt|;
+name|message
+operator|=
+name|message
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\r?\n"
+argument_list|,
+literal|"<br/>"
+argument_list|)
+expr_stmt|;
 name|buf
 operator|.
 name|append
