@@ -402,26 +402,6 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|var
-operator|.
-name|getQName
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|in
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|var
 operator|.
 name|checkType
