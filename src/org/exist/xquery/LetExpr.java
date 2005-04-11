@@ -174,6 +174,15 @@ operator|.
 name|markLocalVariables
 argument_list|()
 decl_stmt|;
+name|inputSequence
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
 comment|// Declare the iteration variable
 name|LocalVariable
 name|inVar
@@ -205,15 +214,6 @@ operator|.
 name|declareVariable
 argument_list|(
 name|inVar
-argument_list|)
-expr_stmt|;
-name|inputSequence
-operator|.
-name|analyze
-argument_list|(
-name|this
-argument_list|,
-name|flags
 argument_list|)
 expr_stmt|;
 if|if
@@ -344,6 +344,19 @@ operator|.
 name|markLocalVariables
 argument_list|()
 decl_stmt|;
+comment|// evaluate input sequence
+name|Sequence
+name|in
+init|=
+name|inputSequence
+operator|.
+name|eval
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 comment|// Declare the iteration variable
 name|LocalVariable
 name|var
@@ -377,18 +390,6 @@ argument_list|(
 name|var
 argument_list|)
 expr_stmt|;
-name|Sequence
-name|in
-init|=
-name|inputSequence
-operator|.
-name|eval
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
-decl_stmt|;
 name|clearContext
 argument_list|(
 name|in
@@ -399,6 +400,26 @@ operator|.
 name|setValue
 argument_list|(
 name|in
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|var
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" = "
+operator|+
+name|in
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|var

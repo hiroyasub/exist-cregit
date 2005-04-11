@@ -258,6 +258,15 @@ operator|.
 name|markLocalVariables
 argument_list|()
 decl_stmt|;
+name|inputSequence
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
 comment|// Declare the iteration variable
 name|LocalVariable
 name|inVar
@@ -332,15 +341,6 @@ name|posVar
 argument_list|)
 expr_stmt|;
 block|}
-name|inputSequence
-operator|.
-name|analyze
-argument_list|(
-name|this
-argument_list|,
-name|flags
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|whereExpr
@@ -473,6 +473,24 @@ operator|.
 name|markLocalVariables
 argument_list|()
 decl_stmt|;
+comment|// Evaluate the "in" expression
+name|Sequence
+name|in
+init|=
+name|inputSequence
+operator|.
+name|eval
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|clearContext
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 comment|// Declare the iteration variable
 name|LocalVariable
 name|var
@@ -551,24 +569,6 @@ name|at
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Evaluate the "in" expression
-name|Sequence
-name|in
-init|=
-name|inputSequence
-operator|.
-name|eval
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
-decl_stmt|;
-name|clearContext
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
 comment|// Assign the whole input sequence to the bound variable.
 comment|// This is required if we process the "where" or "order by" clause
 comment|// in one step.
