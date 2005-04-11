@@ -242,6 +242,15 @@ name|test
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RemoveAppendTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|/*          * create new TestCase          * -------------------          * add the following line:          *          * suite.addTest(new XUpdateTests(<TestName>, exist));          *           * Param: TestName is the filename of the XUpdateStatement xml file (without '.xml').          *           */
 comment|//$JUnit-END$
 return|return
