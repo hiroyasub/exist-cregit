@@ -2039,7 +2039,10 @@ operator|>=
 name|ItemId
 operator|.
 name|DEFRAG_LIMIT
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|doc
 operator|!=
 literal|null
@@ -2049,6 +2052,15 @@ operator|.
 name|triggerDefrag
 argument_list|()
 expr_stmt|;
+else|else
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"DOCUEMNT is null"
+argument_list|)
+throw|;
+block|}
 comment|//        LOG.debug(debugPageContents(rec.page));
 name|dataCache
 operator|.
@@ -2488,10 +2500,8 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getNextTID
+name|getCurrentTID
 argument_list|()
-operator|-
-literal|1
 operator|)
 argument_list|)
 expr_stmt|;
@@ -2818,10 +2828,8 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getNextTID
+name|getCurrentTID
 argument_list|()
-operator|-
-literal|1
 operator|)
 argument_list|)
 expr_stmt|;
@@ -3268,10 +3276,8 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getNextTID
+name|getCurrentTID
 argument_list|()
-operator|-
-literal|1
 operator|)
 argument_list|)
 expr_stmt|;
