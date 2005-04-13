@@ -505,6 +505,11 @@ argument_list|(
 name|collection
 argument_list|)
 decl_stmt|;
+name|boolean
+name|configFound
+init|=
+literal|false
+decl_stmt|;
 name|String
 name|path
 init|=
@@ -661,6 +666,10 @@ argument_list|,
 name|confDoc
 argument_list|)
 expr_stmt|;
+name|configFound
+operator|=
+literal|true
+expr_stmt|;
 break|break;
 block|}
 block|}
@@ -694,6 +703,22 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|configFound
+condition|)
+comment|// use default configuration
+name|conf
+operator|.
+name|setIndexConfiguration
+argument_list|(
+name|broker
+operator|.
+name|getIndexConfiguration
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// we synchronize on the global CollectionCache to avoid deadlocks.
 comment|// the calling code does mostly already hold a lock on CollectionCache.
 name|CollectionCache

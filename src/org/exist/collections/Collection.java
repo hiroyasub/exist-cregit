@@ -8773,12 +8773,14 @@ name|conf
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|broker
 operator|.
 name|getIndexConfiguration
 argument_list|()
 return|;
+block|}
 else|else
 block|{
 return|return
