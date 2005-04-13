@@ -641,7 +641,7 @@ name|test
 operator|.
 name|matches
 argument_list|(
-name|first
+name|node
 argument_list|)
 condition|)
 block|{
