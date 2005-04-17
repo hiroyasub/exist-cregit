@@ -159,6 +159,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|Variable
+name|declareVariable
+parameter_list|(
+name|Variable
+name|var
+parameter_list|)
+function_decl|;
 comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
 specifier|public
 name|void
