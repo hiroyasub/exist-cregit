@@ -108,7 +108,12 @@ operator|.
 name|moduleLoadPath
 expr_stmt|;
 name|loadDefaults
+argument_list|(
+name|broker
+operator|.
+name|getConfiguration
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getStaticallyKnownDocuments() 	 */

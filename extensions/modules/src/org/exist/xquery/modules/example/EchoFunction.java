@@ -9,9 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|examples
-operator|.
 name|xquery
+operator|.
+name|modules
+operator|.
+name|example
 package|;
 end_package
 
