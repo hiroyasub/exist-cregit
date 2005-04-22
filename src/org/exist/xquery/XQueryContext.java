@@ -4900,6 +4900,13 @@ argument_list|(
 literal|"xquery.modules"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|modules
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -4951,6 +4958,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
