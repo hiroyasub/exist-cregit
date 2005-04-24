@@ -1645,117 +1645,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-if|else if
-condition|(
-name|test
-operator|.
-name|matches
-argument_list|(
-name|node
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-operator|(
-name|axis
-operator|==
-name|Constants
-operator|.
-name|CHILD_AXIS
-operator|||
-name|axis
-operator|==
-name|Constants
-operator|.
-name|ATTRIBUTE_AXIS
-operator|)
-operator|&&
-name|recursions
-operator|>
-literal|0
-condition|)
-return|return;
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-operator|.
-name|ownerDocument
-argument_list|,
-name|node
-operator|.
-name|gid
-argument_list|,
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|node
-operator|.
-name|internalAddress
-argument_list|)
-expr_stmt|;
-name|p
-operator|.
-name|setMatches
-argument_list|(
-name|contextNode
-operator|.
-name|getMatches
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|add
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-name|p
-operator|.
-name|copyContext
-argument_list|(
-name|contextNode
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|useSelfAsContext
-operator|&&
-name|inPredicate
-condition|)
-block|{
-name|p
-operator|.
-name|addContextNode
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|inPredicate
-condition|)
-name|p
-operator|.
-name|addContextNode
-argument_list|(
-name|contextNode
-argument_list|)
-expr_stmt|;
-block|}
+comment|//		} else if (test.matches(node)) {
+comment|//			if((axis == Constants.CHILD_AXIS || axis == Constants.ATTRIBUTE_AXIS)
+comment|//&& recursions> 0)
+comment|//				return;
+comment|//			NodeProxy p = new NodeProxy(node.ownerDocument, node.gid, node.getNodeType());
+comment|//			p.setInternalAddress(node.internalAddress);
+comment|//			p.setMatches(contextNode.getMatches());
+comment|//			result.add(p);
+comment|//			p.copyContext(contextNode);
+comment|//			if (useSelfAsContext&& inPredicate) {
+comment|//				p.addContextNode(p);
+comment|//			} else if (inPredicate)
+comment|//				p.addContextNode(contextNode);
+comment|//		}
 block|}
 specifier|public
 specifier|final
