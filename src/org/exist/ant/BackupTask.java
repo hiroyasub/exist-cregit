@@ -56,7 +56,7 @@ name|dir
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see org.apache.tools.ant.Task#execute() 	 */
+comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
 specifier|public
 name|void
 name|execute
@@ -93,6 +93,13 @@ throw|;
 name|registerDatabase
 argument_list|()
 expr_stmt|;
+name|log
+argument_list|(
+literal|"Creating backup of collection: "
+operator|+
+name|uri
+argument_list|)
+expr_stmt|;
 name|Backup
 name|backup
 init|=
@@ -108,13 +115,6 @@ argument_list|,
 name|uri
 argument_list|)
 decl_stmt|;
-name|log
-argument_list|(
-literal|"Creating backup of collection: "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
 name|log
 argument_list|(
 literal|"Backup directory: "
@@ -161,7 +161,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @param dir 	 */
+comment|/**    * @param dir    */
 specifier|public
 name|void
 name|setDir

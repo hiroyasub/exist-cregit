@@ -37,6 +37,20 @@ name|tools
 operator|.
 name|ant
 operator|.
+name|Project
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|tools
+operator|.
+name|ant
+operator|.
 name|Task
 import|;
 end_import
@@ -109,16 +123,13 @@ name|createDatabase
 init|=
 literal|false
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see org.apache.tools.ant.Task#execute() 	 */
-specifier|public
-specifier|abstract
-name|void
-name|execute
-parameter_list|()
-throws|throws
-name|BuildException
-function_decl|;
-comment|/** 		 * @param driver 		 */
+specifier|protected
+name|boolean
+name|failonerror
+init|=
+literal|true
+decl_stmt|;
+comment|/**    * @param driver    */
 specifier|public
 name|void
 name|setDriver
@@ -134,7 +145,7 @@ operator|=
 name|driver
 expr_stmt|;
 block|}
-comment|/** 	 * @param password 	 */
+comment|/**    * @param password    */
 specifier|public
 name|void
 name|setPassword
@@ -150,7 +161,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/** 	 * @param user 	 */
+comment|/**    * @param user    */
 specifier|public
 name|void
 name|setUser
@@ -166,7 +177,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/** 	* @param uri 	*/
+comment|/**    * @param uri    */
 specifier|public
 name|void
 name|setUri
@@ -182,7 +193,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
-comment|/** 	 * @param createDatabase 	 */
+comment|/**    * @param create    */
 specifier|public
 name|void
 name|setInitdb
@@ -198,6 +209,21 @@ operator|=
 name|create
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setFailonerror
+parameter_list|(
+name|boolean
+name|failonerror
+parameter_list|)
+block|{
+name|this
+operator|.
+name|failonerror
+operator|=
+name|failonerror
+expr_stmt|;
+block|}
 specifier|protected
 name|void
 name|registerDatabase
@@ -207,6 +233,15 @@ name|BuildException
 block|{
 try|try
 block|{
+name|log
+argument_list|(
+literal|"Registering database"
+argument_list|,
+name|Project
+operator|.
+name|MSG_DEBUG
+argument_list|)
+expr_stmt|;
 name|Database
 name|dbs
 index|[]

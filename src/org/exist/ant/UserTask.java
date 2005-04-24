@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/**  * Created by IntelliJ IDEA.  * User: pak  * Date: Apr 17, 2005  * Time: 7:48:40 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
 
 begin_package
@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|DatabaseInstanceManager
+name|UserManagementService
 import|;
 end_import
 
@@ -94,16 +94,29 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to shutdown a XMLDB database  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *<p/>  *         slightly modified by:  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * abstract base class for all user-related tasks  *  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
 specifier|public
+specifier|abstract
 class|class
-name|XMLDBShutdownTask
+name|UserTask
 extends|extends
 name|AbstractXMLDBTask
 block|{
+specifier|protected
+name|UserManagementService
+name|service
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
+name|Collection
+name|base
+init|=
+literal|null
+decl_stmt|;
 comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
 specifier|public
 name|void
@@ -141,9 +154,8 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
-name|Collection
-name|root
-init|=
+name|base
+operator|=
 name|DatabaseManager
 operator|.
 name|getCollection
@@ -154,35 +166,37 @@ name|user
 argument_list|,
 name|password
 argument_list|)
-decl_stmt|;
-name|DatabaseInstanceManager
-name|mgr
-init|=
+expr_stmt|;
+if|if
+condition|(
+name|base
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|BuildException
+argument_list|(
+literal|"collection "
+operator|+
+name|uri
+operator|+
+literal|" not found"
+argument_list|)
+throw|;
+name|service
+operator|=
 operator|(
-name|DatabaseInstanceManager
+name|UserManagementService
 operator|)
-name|root
+name|base
 operator|.
 name|getService
 argument_list|(
-literal|"DatabaseInstanceManager"
+literal|"UserManagementService"
 argument_list|,
 literal|"1.0"
 argument_list|)
-decl_stmt|;
-name|log
-argument_list|(
-literal|"Shutdown database instance"
-argument_list|,
-name|Project
-operator|.
-name|MSG_INFO
-argument_list|)
-expr_stmt|;
-name|mgr
-operator|.
-name|shutdown
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -195,7 +209,7 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"Error during database shutdown: "
+literal|"XMLDB exception caught: "
 operator|+
 name|e
 operator|.

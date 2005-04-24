@@ -45,6 +45,24 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|tools
+operator|.
+name|ant
+operator|.
+name|taskdefs
+operator|.
+name|condition
+operator|.
+name|Condition
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -95,30 +113,18 @@ name|XMLDBException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
-
 begin_comment
-comment|/**  * an ant task to remove a collection or resource  *  * @author wolf  *<p/>  *         modified by  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to check for the existance of a collection or resource  * to be used as a ant condition  *  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|XMLDBRemoveTask
+name|XMLDBExistTask
 extends|extends
 name|AbstractXMLDBTask
+implements|implements
+name|Condition
 block|{
 specifier|private
 name|String
@@ -126,20 +132,19 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|String
-name|collection
-init|=
-literal|null
-decl_stmt|;
-comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
+comment|/**    * @return    * @throws BuildException    * @see org.apache.tools.ant.taskdefs.condition.Condition#eval()    */
 specifier|public
-name|void
-name|execute
+name|boolean
+name|eval
 parameter_list|()
 throws|throws
 name|BuildException
 block|{
+name|boolean
+name|exist
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|uri
@@ -153,23 +158,6 @@ argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
 throw|;
-if|if
-condition|(
-name|resource
-operator|==
-literal|null
-operator|&&
-name|collection
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|BuildException
-argument_list|(
-literal|"Missing parameter: either resource or collection should be specified"
-argument_list|)
-throw|;
 name|registerDatabase
 argument_list|()
 expr_stmt|;
@@ -177,13 +165,13 @@ try|try
 block|{
 name|log
 argument_list|(
-literal|"Get base collection: "
+literal|"Checking collection: "
 operator|+
 name|uri
 argument_list|,
 name|Project
 operator|.
-name|MSG_DEBUG
+name|MSG_INFO
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -202,6 +190,31 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|base
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+argument_list|(
+literal|"Base collection found"
+argument_list|,
+name|Project
+operator|.
+name|MSG_DEBUG
+argument_list|)
+expr_stmt|;
+name|exist
+operator|=
+literal|true
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|base
+operator|!=
+literal|null
+operator|&&
 name|resource
 operator|!=
 literal|null
@@ -209,7 +222,7 @@ condition|)
 block|{
 name|log
 argument_list|(
-literal|"Removing resource: "
+literal|"Checking resource: "
 operator|+
 name|resource
 argument_list|,
@@ -234,60 +247,21 @@ name|res
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|BuildException
-argument_list|(
-literal|"Resource "
-operator|+
-name|resource
-operator|+
-literal|" not found."
-argument_list|)
-throw|;
-name|base
-operator|.
-name|removeResource
-argument_list|(
-name|res
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|log
 argument_list|(
-literal|"Removing collection: "
-operator|+
-name|collection
+literal|"Resource not found"
 argument_list|,
 name|Project
 operator|.
-name|MSG_INFO
+name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
-name|CollectionManagementService
-name|service
-init|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|base
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|service
-operator|.
-name|removeCollection
-argument_list|(
-name|collection
-argument_list|)
+name|exist
+operator|=
+literal|false
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -296,37 +270,24 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|BuildException
+comment|// ignore is false already
+name|log
 argument_list|(
-literal|"XMLDB exception during remove: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+literal|"Resource or collection cannot be retrieved"
 argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-comment|/**    * @param collection    */
-specifier|public
-name|void
-name|setCollection
-parameter_list|(
-name|String
-name|collection
-parameter_list|)
-block|{
-name|this
+name|Project
 operator|.
-name|collection
-operator|=
-name|collection
+name|MSG_DEBUG
+argument_list|)
 expr_stmt|;
+name|exist
+operator|=
+literal|false
+expr_stmt|;
+block|}
+return|return
+name|exist
+return|;
 block|}
 comment|/**    * @param resource    */
 specifier|public
