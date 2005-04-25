@@ -166,6 +166,15 @@ operator|.
 name|QNAME
 return|;
 block|}
+specifier|public
+name|QName
+name|getQName
+parameter_list|()
+block|{
+return|return
+name|qname
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
 specifier|public
 name|String
