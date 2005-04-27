@@ -1245,6 +1245,11 @@ operator|.
 name|getFunction
 argument_list|(
 name|qname
+argument_list|,
+name|params
+operator|.
+name|size
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1317,6 +1322,11 @@ operator|.
 name|resolveFunction
 argument_list|(
 name|qname
+argument_list|,
+name|params
+operator|.
+name|size
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|FunctionCall

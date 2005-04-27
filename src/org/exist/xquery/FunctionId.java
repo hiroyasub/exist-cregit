@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Used to uniquely identify a function by its function name and arity.  *   * @author wolf  */
 end_comment
 
 begin_class

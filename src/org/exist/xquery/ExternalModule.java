@@ -64,6 +64,9 @@ name|getFunction
 parameter_list|(
 name|QName
 name|qname
+parameter_list|,
+name|int
+name|arity
 parameter_list|)
 function_decl|;
 specifier|public

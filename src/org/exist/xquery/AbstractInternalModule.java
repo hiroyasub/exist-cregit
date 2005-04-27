@@ -360,7 +360,7 @@ name|QName
 name|qname
 parameter_list|,
 name|int
-name|argCount
+name|arity
 parameter_list|)
 block|{
 specifier|final
@@ -372,7 +372,7 @@ name|FunctionId
 argument_list|(
 name|qname
 argument_list|,
-name|argCount
+name|arity
 argument_list|)
 decl_stmt|;
 return|return

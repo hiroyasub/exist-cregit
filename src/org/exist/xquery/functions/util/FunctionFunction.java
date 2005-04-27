@@ -430,6 +430,8 @@ operator|.
 name|resolveFunction
 argument_list|(
 name|qname
+argument_list|,
+name|arity
 argument_list|)
 expr_stmt|;
 block|}
@@ -464,6 +466,8 @@ operator|.
 name|getFunction
 argument_list|(
 name|qname
+argument_list|,
+name|arity
 argument_list|)
 expr_stmt|;
 block|}
