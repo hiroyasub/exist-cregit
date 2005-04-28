@@ -87,7 +87,11 @@ name|formatMessage
 argument_list|(
 name|messageId
 argument_list|,
-literal|null
+operator|new
+name|Object
+index|[
+literal|0
+index|]
 argument_list|)
 return|;
 block|}
