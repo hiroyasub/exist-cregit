@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -203,20 +203,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|SequenceType
 import|;
 end_import
@@ -276,13 +262,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dynamically evaluates a string argument as an XPath/Query  * expression.  *   * @author wolf  */
+comment|/**  * @author wolf  *  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|EvalFunction
+name|EvalInline
 extends|extends
 name|BasicFunction
 block|{
@@ -291,19 +277,14 @@ specifier|final
 specifier|static
 name|FunctionSignature
 name|signature
-index|[]
 init|=
 operator|new
 name|FunctionSignature
-index|[]
-block|{
-operator|new
-name|FunctionSignature
 argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"eval"
+literal|"eval-inline"
 argument_list|,
 name|UtilModule
 operator|.
@@ -314,15 +295,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
+literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
 operator|+
-literal|"The argument expression will inherit the current execution context, i.e. all "
+literal|"the current instance of the query engine. The evaluation context is taken from "
 operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. It will return"
-operator|+
-literal|"an empty sequence if you pass a whitespace string."
+literal|"argument $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -333,68 +310,11 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|, 			}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
-argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"eval"
-argument_list|,
-name|UtilModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|UtilModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
-operator|+
-literal|"The argument expression will inherit the current execution context, i.e. all "
-operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. The function accepts a second string argument to specify "
-operator|+
-literal|"the static context collection to which the expression applies."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
 argument_list|)
 block|,
 operator|new
@@ -415,24 +335,20 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|EvalFunction
+name|EvalInline
 parameter_list|(
 name|XQueryContext
 name|context
-parameter_list|,
-name|FunctionSignature
-name|signature
 parameter_list|)
 block|{
 name|super
@@ -443,6 +359,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -457,6 +374,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// the current expression context
+name|Sequence
+name|exprContext
+init|=
+name|args
+index|[
+literal|0
+index|]
+decl_stmt|;
 comment|// get the query expression
 name|String
 name|expr
@@ -467,7 +393,7 @@ name|expand
 argument_list|(
 name|args
 index|[
-literal|0
+literal|1
 index|]
 operator|.
 name|getStringValue
@@ -491,68 +417,28 @@ operator|new
 name|EmptySequence
 argument_list|()
 return|;
-comment|// check optional collection argument
-name|DocumentSet
-name|oldDocumentSet
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|>
-literal|1
-condition|)
-block|{
-name|oldDocumentSet
-operator|=
-name|context
-operator|.
-name|getStaticallyKnownDocuments
-argument_list|()
-expr_stmt|;
-name|Sequence
-name|collectionArgs
-init|=
-name|args
-index|[
-literal|1
-index|]
-decl_stmt|;
-if|if
-condition|(
-name|collectionArgs
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
-condition|)
-name|context
-operator|.
-name|setStaticallyKnownDocuments
-argument_list|(
-name|getCollectionContext
-argument_list|(
-name|collectionArgs
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|// save some context properties
 name|context
 operator|.
 name|pushNamespaceContext
 argument_list|()
 expr_stmt|;
-name|LOG
+name|DocumentSet
+name|oldDocs
+init|=
+name|context
 operator|.
-name|debug
+name|getStaticallyKnownDocuments
+argument_list|()
+decl_stmt|;
+name|context
+operator|.
+name|setStaticallyKnownDocuments
 argument_list|(
-literal|"eval: "
-operator|+
-name|expr
+name|exprContext
+operator|.
+name|getDocumentSet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|XQueryLexer
@@ -703,7 +589,7 @@ name|path
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|exprContext
 argument_list|,
 literal|null
 argument_list|)
@@ -804,7 +690,7 @@ finally|finally
 block|{
 if|if
 condition|(
-name|oldDocumentSet
+name|oldDocs
 operator|!=
 literal|null
 condition|)
@@ -812,7 +698,7 @@ name|context
 operator|.
 name|setStaticallyKnownDocuments
 argument_list|(
-name|oldDocumentSet
+name|oldDocs
 argument_list|)
 expr_stmt|;
 name|context
@@ -821,77 +707,6 @@ name|popNamespaceContext
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-specifier|private
-name|String
-index|[]
-name|getCollectionContext
-parameter_list|(
-name|Sequence
-name|arg
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|String
-name|collections
-index|[]
-init|=
-operator|new
-name|String
-index|[
-name|arg
-operator|.
-name|getLength
-argument_list|()
-index|]
-decl_stmt|;
-name|int
-name|j
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|SequenceIterator
-name|i
-init|=
-name|arg
-operator|.
-name|iterate
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|String
-name|collection
-init|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-name|collections
-index|[
-name|j
-index|]
-operator|=
-name|collection
-expr_stmt|;
-block|}
-return|return
-name|collections
-return|;
 block|}
 block|}
 end_class
