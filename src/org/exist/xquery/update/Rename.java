@@ -438,6 +438,11 @@ name|newName
 init|=
 name|contentSeq
 operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
