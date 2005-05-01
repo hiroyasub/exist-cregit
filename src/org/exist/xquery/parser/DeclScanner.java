@@ -577,9 +577,9 @@ literal|"\"with\""
 block|,
 literal|"\"into\""
 block|,
-literal|"\"before\""
+literal|"\"preceding\""
 block|,
-literal|"\"after\""
+literal|"\"following\""
 block|,
 literal|"\"where\""
 block|,
@@ -713,8 +713,6 @@ literal|"\"descendant-or-self\""
 block|,
 literal|"\"following-sibling\""
 block|,
-literal|"\"following\""
-block|,
 literal|"\"parent\""
 block|,
 literal|"\"ancestor\""
@@ -748,8 +746,6 @@ block|,
 literal|"CDATA section"
 block|,
 literal|"\"collection\""
-block|,
-literal|"\"preceding\""
 block|,
 literal|"start of processing instruction"
 block|,
