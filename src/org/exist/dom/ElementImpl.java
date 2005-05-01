@@ -1352,6 +1352,10 @@ name|ownerDocument
 operator|.
 name|getMaxDepth
 argument_list|()
+operator|+
+literal|"; current = "
+operator|+
+name|level
 argument_list|)
 expr_stmt|;
 block|}
@@ -2036,7 +2040,12 @@ name|DOMException
 operator|.
 name|INVALID_MODIFICATION_ERR
 argument_list|,
-literal|"max. document size exceeded"
+literal|"max. document size exceeded: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}

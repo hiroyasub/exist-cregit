@@ -26,17 +26,6 @@ name|NodeImpl
 name|node
 parameter_list|)
 function_decl|;
-comment|/** 	 * The storage address of a node has changed. This occurrs if 	 * a dom page is split during a modification. 	 *  	 * @param oldAddress 	 * @param newAddress 	 */
-name|void
-name|nodeChanged
-parameter_list|(
-name|long
-name|oldAddress
-parameter_list|,
-name|long
-name|newAddress
-parameter_list|)
-function_decl|;
 block|}
 end_interface
 

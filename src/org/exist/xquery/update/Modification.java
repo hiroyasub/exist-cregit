@@ -515,6 +515,8 @@ argument_list|(
 name|this
 argument_list|,
 name|flags
+operator||
+name|IN_UPDATE
 argument_list|)
 expr_stmt|;
 if|if
@@ -530,6 +532,8 @@ argument_list|(
 name|this
 argument_list|,
 name|flags
+operator||
+name|IN_UPDATE
 argument_list|)
 expr_stmt|;
 block|}
@@ -853,6 +857,7 @@ operator|.
 name|expand
 argument_list|()
 expr_stmt|;
+comment|//                        System.out.println(context.getBroker().getSerializer().serialize((NodeValue)item));
 block|}
 block|}
 name|out
@@ -1021,7 +1026,6 @@ name|NodeImpl
 name|node
 parameter_list|)
 block|{
-specifier|final
 name|long
 name|address
 init|=
@@ -1074,26 +1078,6 @@ name|node
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.dom.NodeIndexListener#nodeChanged(long, long) 		 */
-specifier|public
-name|void
-name|nodeChanged
-parameter_list|(
-name|long
-name|oldAddress
-parameter_list|,
-name|long
-name|newAddress
-parameter_list|)
-block|{
-comment|// Ignore the address change
-comment|// TODO: is this really save?
-comment|//			for (int i = 0; i< nodes.length; i++) {
-comment|//				if (StorageAddress.equals(nodes[i].getInternalAddress(), oldAddress)) {
-comment|//					nodes[i].setInternalAddress(newAddress);
-comment|//				}
-comment|//			}
 block|}
 block|}
 block|}

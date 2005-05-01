@@ -189,18 +189,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeIndexListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -2214,14 +2202,7 @@ return|return
 name|rec
 return|;
 block|}
-name|NodeIndexListener
-name|idx
-init|=
-name|doc
-operator|.
-name|getIndexListener
-argument_list|()
-decl_stmt|;
+comment|//        NodeIndexListener idx = doc.getIndexListener();
 comment|// copy the old data up to the split point into a new array
 name|int
 name|oldDataLen
@@ -3180,47 +3161,11 @@ name|pos
 operator|+=
 name|realLen
 expr_stmt|;
-comment|// report the split to the index listener. Pass it the old and the new storage address.
-if|if
-condition|(
-name|idx
-operator|!=
-literal|null
-condition|)
-block|{
-name|idx
-operator|.
-name|nodeChanged
-argument_list|(
-name|StorageAddress
-operator|.
-name|createPointer
-argument_list|(
-operator|(
-name|int
-operator|)
-name|oldPageNum
-argument_list|,
-name|tid
-argument_list|)
-argument_list|,
-name|StorageAddress
-operator|.
-name|createPointer
-argument_list|(
-operator|(
-name|int
-operator|)
-name|nextSplitPage
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|,
-name|tid
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|//            // report the split to the index listener. Pass it the old and the new storage address.
+comment|//            if(idx != null) {
+comment|//	            idx.nodeChanged(StorageAddress.createPointer((int) oldPageNum, tid), StorageAddress.createPointer(
+comment|//	                    (int) nextSplitPage.getPageNum(), tid));
+comment|//            }
 comment|// save a link pointer in the original page if the record has not been
 comment|// relocated before.
 if|if

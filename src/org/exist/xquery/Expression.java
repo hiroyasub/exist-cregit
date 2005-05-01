@@ -118,6 +118,15 @@ name|IN_WHERE_CLAUSE
 init|=
 literal|4
 decl_stmt|;
+comment|/**      * Indicates that the expression is used within an update statement. Subexpressions      * should not cache any relevant data as it may be subject to change.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IN_UPDATE
+init|=
+literal|8
+decl_stmt|;
 comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class.      *       * @throws XPathException      */
 specifier|public
 name|void
