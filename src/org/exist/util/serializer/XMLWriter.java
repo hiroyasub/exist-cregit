@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Write XML to a writer. This class defines methods similar to SAX.  * It deals with opening and closing tags, writing attributes and so on.  *   * @author wolf  */
+comment|/**  * Write XML to a writer. This class defines methods similar to SAX. It deals  * with opening and closing tags, writing attributes and so on.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -242,7 +242,7 @@ index|]
 operator|=
 literal|true
 expr_stmt|;
-comment|//		textSpecialChars['\r'] = true;
+comment|// textSpecialChars['\r'] = true;
 name|textSpecialChars
 index|[
 literal|'&'
@@ -387,7 +387,7 @@ name|encoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Set a new writer. Calling this method will reset the state 	 * of the object. 	 *  	 * @param writer 	 */
+comment|/** 	 * Set a new writer. Calling this method will reset the state of the object. 	 *  	 * @param writer 	 */
 specifier|public
 name|void
 name|setWriter
@@ -961,7 +961,8 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return;
-comment|//				throw new TransformerException("Found an attribute outside an element");
+comment|// throw new TransformerException("Found an attribute outside an
+comment|// element");
 block|}
 name|writer
 operator|.
@@ -1046,7 +1047,8 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return;
-comment|//				throw new TransformerException("Found an attribute outside an element");
+comment|// throw new TransformerException("Found an attribute outside an
+comment|// element");
 block|}
 name|writer
 operator|.
@@ -1499,6 +1501,123 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|void
+name|documentType
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|publicId
+parameter_list|,
+name|String
+name|systemId
+parameter_list|)
+throws|throws
+name|TransformerException
+block|{
+if|if
+condition|(
+operator|!
+name|declarationWritten
+condition|)
+name|writeDeclaration
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|publicId
+operator|==
+literal|null
+operator|&&
+name|systemId
+operator|==
+literal|null
+condition|)
+return|return;
+try|try
+block|{
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|"<!DOCTYPE "
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|write
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|publicId
+operator|!=
+literal|null
+condition|)
+block|{
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|" PUBLIC \""
+operator|+
+name|publicId
+operator|+
+literal|"\""
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|systemId
+operator|!=
+literal|null
+condition|)
+block|{
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|" \""
+operator|+
+name|systemId
+operator|+
+literal|"\""
+argument_list|)
+expr_stmt|;
+block|}
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|">"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|TransformerException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 specifier|protected
 name|void
 name|closeStartTag
@@ -1867,7 +1986,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
-comment|//	        writer.write(s.subSequence(pos, i).toString());
+comment|// writer.write(s.subSequence(pos, i).toString());
 if|if
 condition|(
 name|i

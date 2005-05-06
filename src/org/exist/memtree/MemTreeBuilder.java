@@ -1070,6 +1070,41 @@ return|return
 name|nodeNr
 return|;
 block|}
+specifier|public
+name|int
+name|documentType
+parameter_list|(
+name|String
+name|publicId
+parameter_list|,
+name|String
+name|systemId
+parameter_list|)
+block|{
+comment|//		int nodeNr = doc.addNode(Node.DOCUMENT_TYPE_NODE, level, null);
+comment|//		doc.addChars(nodeNr, data);
+comment|//		linkNode(nodeNr);
+comment|//		return nodeNr;
+return|return
+operator|-
+literal|1
+return|;
+block|}
+specifier|public
+name|void
+name|documentType
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|publicId
+parameter_list|,
+name|String
+name|systemId
+parameter_list|)
+block|{
+block|}
 specifier|private
 name|void
 name|linkNode

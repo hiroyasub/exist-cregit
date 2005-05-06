@@ -665,6 +665,34 @@ name|SAXException
 block|{
 comment|// TODO Ignored
 block|}
+specifier|public
+name|void
+name|documentType
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|publicId
+parameter_list|,
+name|String
+name|systemId
+parameter_list|)
+throws|throws
+name|SAXException
+block|{
+name|builder
+operator|.
+name|documentType
+argument_list|(
+name|name
+argument_list|,
+name|publicId
+argument_list|,
+name|systemId
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)      */
 specifier|public
 name|void

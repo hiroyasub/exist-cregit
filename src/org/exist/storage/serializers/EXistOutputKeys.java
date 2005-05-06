@@ -24,6 +24,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|OUPUT_DOCTYPE
+init|=
+literal|"output-doctype"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|EXPAND_XINCLUDES
 init|=
 literal|"expand-xincludes"

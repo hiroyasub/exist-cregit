@@ -178,6 +178,22 @@ parameter_list|)
 throws|throws
 name|SAXException
 function_decl|;
+specifier|public
+name|void
+name|documentType
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|publicId
+parameter_list|,
+name|String
+name|systemId
+parameter_list|)
+throws|throws
+name|SAXException
+function_decl|;
 block|}
 end_interface
 
