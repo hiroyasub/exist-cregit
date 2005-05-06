@@ -598,11 +598,6 @@ init|=
 literal|8088
 decl_stmt|;
 name|int
-name|rpcPort
-init|=
-literal|8081
-decl_stmt|;
-name|int
 name|threads
 init|=
 literal|5
