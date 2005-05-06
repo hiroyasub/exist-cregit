@@ -1578,6 +1578,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|publicId
+operator|==
+literal|null
+condition|)
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|" SYSTEM"
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|write
