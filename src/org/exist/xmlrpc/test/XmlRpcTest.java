@@ -134,7 +134,7 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"http://localhost:8081"
+literal|"http://localhost:8088/xmlrpc"
 decl_stmt|;
 specifier|private
 specifier|final
