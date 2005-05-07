@@ -258,7 +258,7 @@ index|[]
 init|=
 block|{
 operator|new
-name|XMLIndenter
+name|IndentingXMLWriter
 argument_list|()
 block|,
 operator|new

@@ -82,7 +82,7 @@ specifier|public
 class|class
 name|XHTMLWriter
 extends|extends
-name|XMLIndenter
+name|IndentingXMLWriter
 block|{
 specifier|private
 specifier|static

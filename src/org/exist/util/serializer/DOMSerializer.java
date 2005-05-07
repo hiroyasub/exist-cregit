@@ -204,7 +204,7 @@ operator|.
 name|receiver
 operator|=
 operator|new
-name|XMLIndenter
+name|IndentingXMLWriter
 argument_list|()
 expr_stmt|;
 block|}
@@ -246,7 +246,7 @@ operator|.
 name|receiver
 operator|=
 operator|new
-name|XMLIndenter
+name|IndentingXMLWriter
 argument_list|(
 name|writer
 argument_list|)
