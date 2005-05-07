@@ -443,6 +443,8 @@ literal|"FUNCTION_DECL"
 block|,
 literal|"PROLOG"
 block|,
+literal|"OPTION"
+block|,
 literal|"ATOMIC_TYPE"
 block|,
 literal|"MODULE"
@@ -508,6 +510,8 @@ block|,
 literal|"\"construction\""
 block|,
 literal|"\"base-uri\""
+block|,
+literal|"\"option\""
 block|,
 literal|"\"function\""
 block|,
