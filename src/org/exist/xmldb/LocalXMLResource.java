@@ -253,7 +253,7 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|DOMStreamerPool
+name|SAXSerializer
 import|;
 end_import
 
@@ -267,7 +267,7 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|SAXSerializer
+name|SerializerPool
 import|;
 end_import
 
@@ -1236,13 +1236,20 @@ decl_stmt|;
 name|DOMStreamer
 name|streamer
 init|=
-name|DOMStreamerPool
+operator|(
+name|DOMStreamer
+operator|)
+name|SerializerPool
 operator|.
 name|getInstance
 argument_list|()
 operator|.
-name|borrowDOMStreamer
-argument_list|()
+name|borrowObject
+argument_list|(
+name|DOMStreamer
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 name|streamer
 operator|.
@@ -1272,12 +1279,12 @@ literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|DOMStreamerPool
+name|SerializerPool
 operator|.
 name|getInstance
 argument_list|()
 operator|.
-name|returnDOMStreamer
+name|returnObject
 argument_list|(
 name|streamer
 argument_list|)

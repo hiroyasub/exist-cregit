@@ -123,7 +123,7 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|DOMStreamerPool
+name|Receiver
 import|;
 end_import
 
@@ -137,7 +137,7 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|Receiver
+name|SerializerPool
 import|;
 end_import
 
@@ -1840,7 +1840,7 @@ argument_list|)
 expr_stmt|;
 name|streamer
 operator|=
-name|DOMStreamerPool
+name|SerializerPool
 operator|.
 name|getInstance
 argument_list|()
@@ -1873,12 +1873,12 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|DOMStreamerPool
+name|SerializerPool
 operator|.
 name|getInstance
 argument_list|()
 operator|.
-name|returnDOMStreamer
+name|returnObject
 argument_list|(
 name|streamer
 argument_list|)

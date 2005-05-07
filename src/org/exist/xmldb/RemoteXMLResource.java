@@ -1974,13 +1974,10 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
-name|setWriter
+name|setOutput
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|setOutputProperties
-argument_list|(
+argument_list|,
 name|emptyProperties
 argument_list|)
 expr_stmt|;

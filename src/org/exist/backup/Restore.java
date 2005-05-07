@@ -1359,7 +1359,7 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"collection requires a name attribute"
+literal|"resource requires a name attribute"
 argument_list|)
 throw|;
 specifier|final
@@ -1522,6 +1522,11 @@ name|XPathException
 name|e2
 parameter_list|)
 block|{
+name|e2
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1554,6 +1559,11 @@ name|XPathException
 name|e2
 parameter_list|)
 block|{
+name|e2
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
 name|current
 operator|.
@@ -1670,6 +1680,11 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|SAXException
