@@ -962,9 +962,11 @@ argument_list|()
 decl_stmt|;
 name|serializer
 operator|.
-name|setWriter
+name|setOutput
 argument_list|(
 name|writer
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|item
