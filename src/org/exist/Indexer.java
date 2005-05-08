@@ -540,7 +540,7 @@ init|=
 operator|new
 name|int
 index|[
-literal|0x8000
+literal|0x1000
 index|]
 decl_stmt|;
 comment|//    private int childCnt[] = null;

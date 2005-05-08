@@ -2355,13 +2355,6 @@ operator|!=
 name|type
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
 name|indexType
 operator|=
 name|Type
