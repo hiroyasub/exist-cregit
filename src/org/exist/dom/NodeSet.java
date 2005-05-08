@@ -308,6 +308,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|NodeSet
+name|selectPreceding
+parameter_list|(
+name|NodeSet
+name|preceding
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
 specifier|public
 name|NodeProxy
