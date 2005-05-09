@@ -4753,11 +4753,6 @@ name|XPathException
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|DocumentImpl
 name|targetDoc
 init|=
