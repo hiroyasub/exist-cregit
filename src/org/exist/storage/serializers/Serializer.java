@@ -769,7 +769,7 @@ specifier|static
 name|int
 name|TAG_BOTH
 init|=
-literal|0x4
+literal|0x3
 decl_stmt|;
 specifier|public
 specifier|final
