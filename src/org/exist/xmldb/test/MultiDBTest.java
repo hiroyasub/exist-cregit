@@ -250,7 +250,7 @@ specifier|static
 name|int
 name|INSTANCE_COUNT
 init|=
-literal|20
+literal|5
 decl_stmt|;
 specifier|private
 specifier|final
@@ -605,6 +605,16 @@ argument_list|(
 literal|"exist.home"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|homeDir
+operator|==
+literal|null
+condition|)
+name|homeDir
+operator|=
+literal|"."
+expr_stmt|;
 name|File
 name|testDir
 init|=
