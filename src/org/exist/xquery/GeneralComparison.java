@@ -354,6 +354,7 @@ name|GeneralComparison
 extends|extends
 name|BinaryOp
 block|{
+comment|/** 	 * The type of operator used for the comparison, i.e. =, !=,&lt;,&gt; ... 	 * One of the constants declared in class {@link Constants}. 	 */
 specifier|protected
 name|int
 name|relation
@@ -362,6 +363,7 @@ name|Constants
 operator|.
 name|EQ
 decl_stmt|;
+comment|/** 	 * Truncation flags: when comparing with a string value, the search 	 * string may be truncated with a single * wildcard. See the constants declared 	 * in class {@link Constants}. 	 *  	 * The standard functions starts-with, ends-with and contains are 	 * transformed into a general comparison with wildcard. Hence the need 	 * to consider wildcards here. 	 */
 specifier|protected
 name|int
 name|truncation
@@ -370,18 +372,21 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 decl_stmt|;
+comment|/** 	 * The class might cache the entire results of a previous execution. 	 */
 specifier|protected
 name|CachedResult
 name|cached
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Extra argument (to standard functions starts-with/contains etc.) 	 * to indicate the collation to be used for string comparisons. 	 */
 specifier|protected
 name|Expression
 name|collationArg
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Set to true if this expression is called within the where clause 	 * of a FLWOR expression. 	 */
 specifier|protected
 name|boolean
 name|inWhereClause
