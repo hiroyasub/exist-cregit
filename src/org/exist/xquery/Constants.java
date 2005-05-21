@@ -13,11 +13,16 @@ name|xquery
 package|;
 end_package
 
+begin_comment
+comment|/**  * Declares various constants and flags used by the query engine:  * axis specifiers, operators.  *   * @author wolf  */
+end_comment
+
 begin_interface
 specifier|public
 interface|interface
 name|Constants
 block|{
+comment|/** Axis names */
 specifier|public
 specifier|final
 specifier|static
@@ -55,6 +60,7 @@ block|,
 literal|"attribute-descendant"
 block|}
 decl_stmt|;
+comment|/*      * XPath axis constants:      */
 comment|// Reverse axes
 specifier|public
 specifier|final
@@ -204,6 +210,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/*      * Node types      */
 specifier|public
 specifier|final
 specifier|static
@@ -268,6 +275,7 @@ name|PROCESSING_NODE
 init|=
 literal|7
 decl_stmt|;
+comment|/*      * Comparison operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -332,6 +340,7 @@ name|REGEXP
 init|=
 literal|7
 decl_stmt|;
+comment|/*      * String truncation operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -365,6 +374,7 @@ name|TRUNC_BOTH
 init|=
 literal|2
 decl_stmt|;
+comment|/*      * Arithmetic operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -413,6 +423,7 @@ name|IDIV
 init|=
 literal|13
 decl_stmt|;
+comment|/* 	 * Identity operators 	 */
 specifier|public
 specifier|final
 specifier|static
