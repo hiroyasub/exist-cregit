@@ -2297,7 +2297,7 @@ name|remove
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  get all the documents in this database repository. The documents are 	 *  returned as a DocumentSet. 	 * 	 *@param  docs TODO 	 */
+comment|/** 	 *  Adds all the documents in the database to the specified DocumentSet. 	 * 	 * @param docs a (possibly empty) document set to which the found      *  documents are added. 	 */
 specifier|public
 name|DocumentSet
 name|getAllDocuments
@@ -2842,7 +2842,7 @@ name|collection
 return|;
 block|}
 block|}
-comment|/** TODO ?? */
+comment|/**       * Called by class {@link Collection} to update its current      * status. Reloads the list of child collections and resources      * by calling {@link Collection#read(DBBroker, VariableByteInput)}.      *       * @param collection the Collection to be reloaded      */
 specifier|public
 name|void
 name|reloadCollection
@@ -3560,6 +3560,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * Appends all documents found in collection to the given DocumentSet.      *       * @param collection the collection path.      * @param docs a non-null DocumentSet object.      */
 specifier|public
 name|DocumentSet
 name|getDocumentsByCollection
@@ -3584,7 +3585,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** appends documents in given collection to given DocumentSet. TODO wolf, is this so ? */
+comment|/**      * Appends all documents found in collection to the given DocumentSet.      * If inclusive is true, the method will also include documents found in      * sub-collections of the current collection.      *       * @param collection the collection path.      * @param docs a non-null DocumentSet object.      * @param inclusive include documents from sub-collections?      */
 specifier|public
 name|DocumentSet
 name|getDocumentsByCollection
@@ -12304,7 +12305,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** TODO javadoc - at which moment in the life cycle of the collection is it called ? */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called. 	 */
 specifier|public
 name|void
 name|saveCollection
@@ -15268,7 +15269,7 @@ block|}
 break|break;
 block|}
 block|}
-comment|/** TODO javadoc */
+comment|/**      * Update indexes for the given element node. This method is called when the indexer      * encounters a closing element tag. It updates any range indexes defined on the      * element value and adds the element id to the structural index.      *       * @param node the current element node      * @param currentPath node path leading to the element      * @param content contains the string value of the element. Needed if a range index      * is defined on it. 	 */
 specifier|public
 name|void
 name|endElement

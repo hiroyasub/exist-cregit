@@ -991,7 +991,7 @@ parameter_list|()
 block|{
 comment|/* 		 *  do nothing 		 */
 block|}
-comment|/** 	 *  Get all the documents currently in the database. The documents are 	 *  returned as a DocumentSet. 	 * 	 */
+comment|/** 	 *  Adds all the documents in the database to the specified DocumentSet.      *        *  @param docs a (possibly empty) document set to which the found      *  documents are added. 	 * 	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
@@ -1370,7 +1370,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Store a collection into the database.      *       * @param collection to store 	 */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      */
 specifier|public
 specifier|abstract
 name|void
@@ -1382,6 +1382,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Append a new document to the specified collection. The document data      * will be appended to the collection data.      *       * @param collection      * @param doc      * @throws PermissionDeniedException      */
 specifier|public
 name|void
 name|addDocument
@@ -1446,6 +1447,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Update indexes for the given element node. This method is called when the indexer      * encounters a closing element tag. It updates any range indexes defined on the      * element value and adds the element id to the structural index.      *       * @param node the current element node      * @param currentPath node path leading to the element      * @param content contains the string value of the element. Needed if a range index      * is defined on it.      */
 specifier|public
 specifier|abstract
 name|void
