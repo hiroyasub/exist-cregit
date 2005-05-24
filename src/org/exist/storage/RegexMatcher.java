@@ -133,6 +133,10 @@ name|EXistException
 import|;
 end_import
 
+begin_comment
+comment|/**  * A {@link org.exist.storage.TermMatcher} that matches index entries against a  * regular expression. Used by {@link org.exist.storage.NativeTextEngine} and  * {@link org.exist.storage.NativeValueIndex}.  *   * @author wolf  *  */
+end_comment
+
 begin_class
 class|class
 name|RegexMatcher
@@ -175,6 +179,9 @@ name|expr
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|EXistException
@@ -196,9 +203,7 @@ name|compile
 argument_list|(
 name|expr
 argument_list|,
-name|Perl5Compiler
-operator|.
-name|CASE_INSENSITIVE_MASK
+name|flags
 argument_list|)
 else|:
 name|globCompiler

@@ -3073,6 +3073,9 @@ name|expr
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|TerminatedException
@@ -3081,6 +3084,21 @@ name|EXistException
 block|{
 comment|// if the regexp starts with a char sequence, we restrict the index scan to entries starting with
 comment|// the same sequence. Otherwise, we have to scan the whole index.
+name|StringValue
+name|startTerm
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|expr
+operator|.
+name|startsWith
+argument_list|(
+literal|"^"
+argument_list|)
+condition|)
+block|{
 name|StringBuffer
 name|term
 init|=
@@ -3093,7 +3111,7 @@ control|(
 name|int
 name|j
 init|=
-literal|0
+literal|1
 init|;
 name|j
 operator|<
@@ -3133,11 +3151,6 @@ argument_list|)
 expr_stmt|;
 else|else
 break|break;
-name|StringValue
-name|startTerm
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|term
@@ -3160,6 +3173,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|TermMatcher
 name|comparator
 init|=
@@ -3169,6 +3183,8 @@ argument_list|(
 name|expr
 argument_list|,
 name|type
+argument_list|,
+name|flags
 argument_list|)
 decl_stmt|;
 name|NodeSet
