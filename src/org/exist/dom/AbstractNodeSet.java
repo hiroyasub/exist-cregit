@@ -2335,13 +2335,11 @@ name|p
 operator|.
 name|doc
 operator|.
-name|getName
+name|getCollection
 argument_list|()
 operator|.
-name|startsWith
-argument_list|(
-literal|"/db/system/temp"
-argument_list|)
+name|isTempCollection
+argument_list|()
 condition|)
 block|{
 name|indexType

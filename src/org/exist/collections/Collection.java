@@ -546,6 +546,13 @@ name|userReader
 init|=
 literal|null
 decl_stmt|;
+comment|/** is this a temporary collection? */
+specifier|private
+name|boolean
+name|isTempCollection
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
@@ -556,11 +563,10 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|this
-operator|.
+name|setName
+argument_list|(
 name|name
-operator|=
-name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -585,6 +591,17 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|isTempCollection
+operator|=
+name|name
+operator|.
+name|equals
+argument_list|(
+name|DBBroker
+operator|.
+name|TEMP_COLLECTION
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|name
@@ -681,6 +698,16 @@ name|contains
 argument_list|(
 name|name
 argument_list|)
+return|;
+block|}
+comment|/**      * Returns true if this is a temporary collection. By default,      * the temporary collection is in /db/system/temp.      *       * @return      */
+specifier|public
+name|boolean
+name|isTempCollection
+parameter_list|()
+block|{
+return|return
+name|isTempCollection
 return|;
 block|}
 comment|/** 	 * Closes the collection, i.e. releases the lock held by  	 * the current thread. This is a shortcut for getLock().release(). 	 */
