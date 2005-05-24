@@ -425,6 +425,14 @@ name|NATIVE_CLUSTER
 init|=
 literal|1
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TEMP_COLLECTION
+init|=
+literal|"/db/system/temp"
+decl_stmt|;
 specifier|protected
 specifier|final
 specifier|static
