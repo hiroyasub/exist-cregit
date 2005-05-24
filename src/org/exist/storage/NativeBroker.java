@@ -918,7 +918,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Main class for the native XML storage backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  */
+comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -1018,7 +1018,7 @@ name|MEM_LIMIT_CHECK
 init|=
 literal|10000
 decl_stmt|;
-comment|// the database files
+comment|/** the database files */
 specifier|protected
 name|CollectionStore
 name|collectionsDb
@@ -1087,7 +1087,7 @@ specifier|protected
 name|int
 name|memMinFree
 decl_stmt|;
-comment|// used to count the nodes inserted after the last memory check
+comment|/** used to count the nodes inserted after the last memory check */
 specifier|protected
 name|int
 name|nodesCount
@@ -1108,6 +1108,7 @@ operator|.
 name|getRuntime
 argument_list|()
 decl_stmt|;
+comment|/** initialize database; read configuration, etc. */
 specifier|public
 name|NativeBroker
 parameter_list|(
@@ -1961,6 +1962,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** changes // into /  */
 specifier|protected
 specifier|final
 specifier|static
@@ -2273,6 +2275,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/** Takes care of actually remove entries from the indices; 	 * must be called after one or more call to {@link #removeNode()}. */
 specifier|public
 name|void
 name|endRemove
@@ -2294,7 +2297,7 @@ name|remove
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  get all the documents in this database repository. The documents are 	 *  returned as a DocumentSet. 	 * 	 *@param  user  Description of the Parameter 	 *@return       The allDocuments value 	 */
+comment|/** 	 *  get all the documents in this database repository. The documents are 	 *  returned as a DocumentSet. 	 * 	 *@param  docs TODO 	 */
 specifier|public
 name|DocumentSet
 name|getAllDocuments
@@ -2467,7 +2470,7 @@ name|lockMode
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Get collection object. If the collection does not exist, null is 	 *  returned. 	 * 	 *@param  name  Description of the Parameter 	 *@return       The collection value 	 */
+comment|/** 	 *  Get collection object. If the collection does not exist, null is 	 *  returned. 	 * 	 *@param  name  collection name 	 *@return       The collection value 	 */
 specifier|public
 name|Collection
 name|openCollection
@@ -2839,6 +2842,7 @@ name|collection
 return|;
 block|}
 block|}
+comment|/** TODO ?? */
 specifier|public
 name|void
 name|reloadCollection
@@ -3174,7 +3178,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  get a document by it's file name. The document's file name is used to 	 *  identify a document. File names are stored without the leading path. 	 * 	 *@param  fileName                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                The document value 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/** 	 *  get a document by its file name. The document's file name is used to 	 *  identify a document. 	 * 	 *@param  fileName                       absolute file name in the database; name can be given with or without the leading path /db . 	 *@return                                The document value 	 *@exception  PermissionDeniedException   	 */
 specifier|public
 name|Document
 name|getDocument
@@ -3580,6 +3584,7 @@ literal|true
 argument_list|)
 return|;
 block|}
+comment|/** appends documents in given collection to given DocumentSet. TODO wolf, is this so ? */
 specifier|public
 name|DocumentSet
 name|getDocumentsByCollection
@@ -4757,6 +4762,7 @@ return|return
 name|freeDocId
 return|;
 block|}
+comment|/** get next Free Doc Id */
 specifier|public
 name|int
 name|getNextDocId
@@ -7162,7 +7168,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Reindex the nodes in the document. This method will either reindex all 	 * descendant nodes of the passed node, or all nodes below some level of 	 * the document if node is null. 	 */
+comment|/** Reindex the nodes in the document. */
 specifier|private
 name|void
 name|reindex
@@ -8698,6 +8704,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** consistency Check of the database; useful after XUpdates; 	 * called if xupdate.consistency-checks is true in configuration */
 specifier|public
 name|void
 name|consistencyCheck
@@ -8733,6 +8740,7 @@ expr_stmt|;
 comment|//			elementIndex.consistencyCheck(doc);
 block|}
 block|}
+comment|/** consistency Check of the database; useful after XUpdates; 	 * called by {@link #consistencyCheck()} */
 specifier|public
 name|void
 name|checkTree
@@ -9661,6 +9669,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** @return all nodes whose global unique id's are in given interval. */
 specifier|public
 name|NodeList
 name|getRange
@@ -9776,6 +9785,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/** @return node with given global unique id. */
 specifier|public
 name|Node
 name|objectWith
@@ -11535,6 +11545,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Removes the Node Reference from the database. 	 * The index will be updated later, i.e. after all nodes have been physically  	 * removed. See {@link #endRemove()}.  	 * removeNode() just adds the node ids to the list in elementIndex  	 * for later removal. 	 */
 specifier|public
 name|void
 name|removeNode
@@ -12293,6 +12304,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** TODO javadoc - at which moment in the life cycle of the collection is it called ? */
 specifier|public
 name|void
 name|saveCollection
@@ -15256,6 +15268,7 @@ block|}
 break|break;
 block|}
 block|}
+comment|/** TODO javadoc */
 specifier|public
 name|void
 name|endElement
@@ -16428,6 +16441,7 @@ return|return
 name|readOnly
 return|;
 block|}
+comment|/** store into the temporary collection of the database a given in-memory Document */
 specifier|public
 name|DocumentImpl
 name|storeTemporaryDoc
@@ -16635,6 +16649,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** remove from the temporary collection of the database a given list of Documents. */
 specifier|public
 name|void
 name|removeTempDocs
@@ -16753,6 +16768,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** remove temporary collection */
 specifier|public
 name|void
 name|cleanUpAll
@@ -16803,6 +16819,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** remove all documents from temporary collection */
 specifier|public
 name|void
 name|cleanUp
@@ -16957,6 +16974,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** create temporary collection */
 specifier|private
 name|Collection
 name|createTempCollection
@@ -17057,6 +17075,7 @@ name|u
 expr_stmt|;
 block|}
 block|}
+comment|/** TODO javadoc */
 specifier|public
 specifier|final
 specifier|static
