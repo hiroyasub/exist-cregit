@@ -135,6 +135,10 @@ name|Element
 import|;
 end_import
 
+begin_comment
+comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *   * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.DBBroker#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *   * @author wolf  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -155,6 +159,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** Maps local node names to an integer id */
 specifier|protected
 name|Object2IntHashMap
 name|nameSymbols
@@ -165,6 +170,7 @@ argument_list|(
 literal|200
 argument_list|)
 decl_stmt|;
+comment|/** Maps int ids to local node names */
 specifier|protected
 name|Int2ObjectHashMap
 name|names
@@ -175,6 +181,7 @@ argument_list|(
 literal|200
 argument_list|)
 decl_stmt|;
+comment|/** Maps namespace URIs to an integer id */
 specifier|protected
 name|Object2IntHashMap
 name|nsSymbols
@@ -185,6 +192,7 @@ argument_list|(
 literal|200
 argument_list|)
 decl_stmt|;
+comment|/** Maps int ids to namespace URIs */
 specifier|protected
 name|Int2ObjectHashMap
 name|namespaces
@@ -195,6 +203,7 @@ argument_list|(
 literal|200
 argument_list|)
 decl_stmt|;
+comment|/**      * Contains default prefix-to-namespace mappings. For convenience, eXist tracks      * the first prefix-to-namespace mapping it finds in a document. If an undefined prefix      * is found in a query, the query engine will first look up the prefix in this table before      * throwing an error.      */
 specifier|protected
 name|Object2IntHashMap
 name|defaultMappings
@@ -205,6 +214,7 @@ argument_list|(
 literal|200
 argument_list|)
 decl_stmt|;
+comment|/**      * Temporary name pool to share QName instances during indexing.      */
 specifier|protected
 name|QNamePool
 name|namePool
@@ -213,24 +223,28 @@ operator|new
 name|QNamePool
 argument_list|()
 decl_stmt|;
+comment|/** contains the next local name id to be used */
 specifier|protected
 name|short
 name|max
 init|=
 literal|0
 decl_stmt|;
+comment|/** contains the next namespace URI id to be used */
 specifier|protected
 name|short
 name|nsMax
 init|=
 literal|0
 decl_stmt|;
+comment|/** set to true if the symbol table needs to be saved */
 specifier|protected
 name|boolean
 name|changed
 init|=
 literal|false
 decl_stmt|;
+comment|/** the underlying symbols.dbx file */
 specifier|protected
 name|File
 name|file
@@ -249,6 +263,7 @@ operator|=
 name|file
 expr_stmt|;
 block|}
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *       * @param namespaceURI      * @param localName      * @param prefix      * @return      */
 specifier|public
 specifier|synchronized
 name|QName
@@ -277,6 +292,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
+comment|/**      * Return a unique id for the local node name of the specified element.      *       * @param element      * @return      */
 specifier|public
 specifier|synchronized
 name|short
@@ -404,6 +420,7 @@ return|return
 name|id
 return|;
 block|}
+comment|/**      * Return a unique id for the local node name of the specified attribute.      *       * @param attr      * @return      */
 specifier|public
 specifier|synchronized
 name|short
@@ -536,6 +553,7 @@ return|return
 name|id
 return|;
 block|}
+comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *       * @param name      * @return      */
 specifier|public
 specifier|synchronized
 name|short
@@ -615,6 +633,7 @@ return|return
 name|id
 return|;
 block|}
+comment|/**      * Returns a unique id for the specified namespace URI.      *       * @param ns      * @return      */
 specifier|public
 specifier|synchronized
 name|short
@@ -696,6 +715,7 @@ return|return
 name|id
 return|;
 block|}
+comment|/**      * Returns the namespace URI registered for the id or null      * if the namespace URI is not known. Returns the empty string      * if the namespace is empty.      *       * @param id      * @return      */
 specifier|public
 specifier|synchronized
 name|String
@@ -723,6 +743,7 @@ name|id
 argument_list|)
 return|;
 block|}
+comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      *       * @return      */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -733,6 +754,7 @@ return|return
 name|changed
 return|;
 block|}
+comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *       * @param id      * @return      */
 specifier|public
 specifier|synchronized
 name|String
@@ -754,67 +776,7 @@ name|id
 argument_list|)
 return|;
 block|}
-specifier|public
-name|String
-index|[]
-name|getSymbols
-parameter_list|()
-block|{
-name|String
-index|[]
-name|result
-init|=
-operator|new
-name|String
-index|[
-name|nameSymbols
-operator|.
-name|size
-argument_list|()
-index|]
-decl_stmt|;
-name|int
-name|j
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|nameSymbols
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|result
-index|[
-name|j
-index|]
-operator|=
-operator|(
-name|String
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|result
-return|;
-block|}
+comment|/**      * Returns a namespace URI for the given prefix if there's      * a default mapping.      *       * @param prefix      * @return      */
 specifier|public
 specifier|synchronized
 name|String
@@ -851,6 +813,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * Returns a list of default prefixes registered.      *       * @return      */
 specifier|public
 specifier|synchronized
 name|String
@@ -911,6 +874,7 @@ return|return
 name|prefixes
 return|;
 block|}
+comment|/**      * Write the symbol table to persistent storage.      *       * @param ostream      * @throws IOException      */
 specifier|public
 specifier|synchronized
 name|void
@@ -1168,6 +1132,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|/**      * Read the symbol table.      *       * @param istream      * @throws IOException      */
 specifier|public
 specifier|synchronized
 name|void
