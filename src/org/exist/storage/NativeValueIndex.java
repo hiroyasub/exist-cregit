@@ -523,14 +523,17 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** Data base broker associated to this value index - 1 to 1 association */
 specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
+comment|/** Data storage associated to this value index - 1 to 1 association */
 specifier|private
 name|BFile
 name|db
 decl_stmt|;
+comment|/** pending modifications */
 specifier|private
 name|TreeMap
 name|pending
@@ -539,10 +542,12 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|/** the current document */
 specifier|private
 name|DocumentImpl
 name|doc
 decl_stmt|;
+comment|/** work Output Stream; it is cleared before each use */
 specifier|private
 name|VariableByteOutputStream
 name|os
@@ -574,6 +579,7 @@ operator|=
 name|valuesDb
 expr_stmt|;
 block|}
+comment|/** store and index given element into this value index */
 specifier|public
 name|void
 name|storeElement
@@ -659,6 +665,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** store and index given attribute into this value index */
 specifier|public
 name|void
 name|storeAttribute
@@ -762,6 +769,7 @@ operator|=
 name|document
 expr_stmt|;
 block|}
+comment|/** writes the pending items into the BFile, for the current document's collection */
 specifier|public
 name|void
 name|flush
@@ -1076,6 +1084,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** triggers a cache sync, i.e. forces BFile to write out all cached pages.	 	sync() is called from time to time by the background sync daemon. */
 specifier|public
 name|void
 name|sync
@@ -1474,6 +1483,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+comment|// copy data to new buffer if not in given document
 if|if
 condition|(
 name|docId
@@ -1484,7 +1494,6 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
-comment|// copy data to new buffer
 name|os
 operator|.
 name|writeInt
@@ -1740,6 +1749,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** TODO document */
 specifier|public
 name|void
 name|reindex
@@ -2319,6 +2329,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** remove all pending modifications from the value index,  	 * for the current document. */
 specifier|public
 name|void
 name|remove
@@ -2402,7 +2413,7 @@ name|gid
 decl_stmt|;
 try|try
 block|{
-comment|// iterate through elements
+comment|// iterate through pending elements
 for|for
 control|(
 name|Iterator
@@ -2524,6 +2535,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// iterate through indexed nodes
 while|while
 condition|(
 name|is
@@ -2866,6 +2878,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** find 	 * @param relation binary operator used for the comparison 	 * @param value right hand comparison value */
 specifier|public
 name|NodeSet
 name|find
@@ -3058,6 +3071,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** Regular expression search 	 * @param type  like type argument for {@link RegexMatcher} constructor 	 * @param flags like flags argument for {@link RegexMatcher} constructor 	 *  */
 specifier|public
 name|NodeSet
 name|match
@@ -3492,6 +3506,7 @@ return|return
 name|indexOp
 return|;
 block|}
+comment|/** compute a key for the "pending" map */
 specifier|private
 name|AtomicValue
 name|convertToAtomic
@@ -3610,6 +3625,7 @@ return|return
 name|atomic
 return|;
 block|}
+comment|/** TODO document */
 specifier|private
 class|class
 name|SearchCallback
@@ -3937,6 +3953,7 @@ literal|false
 return|;
 block|}
 block|}
+comment|/** TODO document */
 specifier|private
 class|class
 name|RegexCallback
@@ -3979,7 +3996,7 @@ operator|=
 name|matcher
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.storage.NativeValueIndex.SearchCallback#indexInfo(org.dbxml.core.data.Value, long) 		 */
+comment|/** 		 * @see org.exist.storage.NativeValueIndex.SearchCallback#indexInfo(org.dbxml.core.data.Value, long) 		 */
 specifier|public
 name|boolean
 name|indexInfo
