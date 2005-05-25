@@ -500,7 +500,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains an index on typed node values.  *   * TODO: Check correct types during validation.  *   * @author wolf  */
+comment|/**  * Maintains an index on typed node values.  *   * TODO: Check correct types during validation.  *   * In the BTree single BFile, the keys are :  * (collectionId, indexType, indexData)  * and the values are : gid1, gid2-gid1, ...  *<b></b>  *<p>Algorithm:</p>  * When a node is stored, an entry is added or updated in the {@link #pending} map,   * with given String content and basic type as key.  * This way, the index entries are easily put in the persistent BFile storage by   * {@link #flush()} .  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -533,7 +533,7 @@ specifier|private
 name|BFile
 name|db
 decl_stmt|;
-comment|/** pending modifications */
+comment|/** Pending modifications; the keys are AtomicValue objects implementing Indexable  	 * (StringValue or numeric values, IntegerValue etc),  	 * which are the index entries, 	 * and the values are LongLinkedList objects  	 * whose entries are gid (global identifiers) matching the index entries. 	 * Do not confuse these keys with the keys used in persistent storage, created with 	 * {@link Indexable#serialize(short) */
 specifier|private
 name|TreeMap
 name|pending
@@ -754,6 +754,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** set the current document; generally called before calling an operation */
 specifier|public
 name|void
 name|setDocument
