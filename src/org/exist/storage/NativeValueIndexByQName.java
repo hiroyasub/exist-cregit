@@ -154,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Jean-Marc Vanel http://jmvanel.free.fr/  */
+comment|/** The new index by QName that will make queries like<pre> / root [ key = 123 ]</pre> very quick.  It is used by an Xquery extension function with this signature :<pre> qname-index-lookup( $qname as xs:string,                      $key as xs:string) as node*</pre>  that can be used this way :<pre> $key := index-lookup( "key", "123") $user := $key / parent::root</pre>  The way of indexing is the same as current range indices {@link NativeValueIndex},  except that for each QName like<key> mentioned above, the QName will be stored .    * @author Jean-Marc Vanel http://jmvanel.free.fr/  */
 end_comment
 
 begin_class
@@ -179,7 +179,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param broker 	 * @param valuesDb 	 */
 specifier|public
 name|NativeValueIndexByQName
 parameter_list|(
@@ -198,7 +197,7 @@ name|valuesDb
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** ? @see org.exist.storage.NativeValueIndex#storeAttribute(org.exist.storage.ValueIndexSpec, org.exist.dom.AttrImpl) 	 */
+comment|/** @see org.exist.storage.NativeValueIndex#storeAttribute(org.exist.storage.ValueIndexSpec, org.exist.dom.AttrImpl) 	 */
 specifier|public
 name|void
 name|storeAttribute
@@ -253,7 +252,7 @@ name|indexable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** ? @see org.exist.storage.NativeValueIndex#storeElement(int, org.exist.dom.ElementImpl, java.lang.String) 	 */
+comment|/** @see org.exist.storage.NativeValueIndex#storeElement(int, org.exist.dom.ElementImpl, java.lang.String) 	 */
 specifier|public
 name|void
 name|storeElement
@@ -305,7 +304,7 @@ name|indexable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param node 	 * @param indexable 	 */
+comment|/** an entry is added or updated in the {@link #pending} map 	 * @param node the DOM node 	 * @param indexable a {@link QNameIndexable} 	 */
 specifier|private
 name|void
 name|updatePendingIndexEntry
@@ -378,7 +377,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** compute a key for the "pending" map */
+comment|/** compute a key for the {@link #pending} map */
 specifier|private
 name|Indexable
 name|computeTemporaryKey
@@ -524,6 +523,7 @@ return|return
 name|ret
 return|;
 block|}
+comment|/** key for the {@link #pending} map ; the order is lexicographic on  	 * qname first, indexable second */
 specifier|private
 class|class
 name|QNameIndexable
@@ -531,12 +531,12 @@ implements|implements
 name|Indexable
 block|{
 specifier|private
-name|Indexable
-name|indexable
-decl_stmt|;
-specifier|private
 name|QName
 name|qname
+decl_stmt|;
+specifier|private
+name|Indexable
+name|indexable
 decl_stmt|;
 specifier|public
 name|QNameIndexable
@@ -574,6 +574,21 @@ comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|void
+name|serializeQName
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|offset
+parameter_list|)
+block|{
+comment|// pb: comment récupérer les id à partir de l'objet QName et de SymbolTable ?
+comment|// broker.getSymbols().;
 block|}
 comment|/** @return negative value<==> this object is less than other */
 specifier|public
