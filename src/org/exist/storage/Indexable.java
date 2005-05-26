@@ -24,7 +24,7 @@ name|Indexable
 extends|extends
 name|Comparable
 block|{
-comment|/**      * Serialize the value to an array of bytes.      *       * The returned byte array has the following format:      *       * (short: collectionId, byte type, byte[] value)      *       * @param collectionId the collection id to use      * @return      */
+comment|/**      * Serialize the value to an array of bytes.      *       * The returned byte array has the following format:      *       * (short: collectionId, byte type, byte[] value)      *       * @param collectionId the collection id to use      * @param caseSensitive only relevant for string values: if set to false,      * strings should be serialized in lower case      * @return      */
 specifier|public
 name|byte
 index|[]
@@ -32,6 +32,9 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|,
+name|boolean
+name|caseSensitive
 parameter_list|)
 function_decl|;
 block|}

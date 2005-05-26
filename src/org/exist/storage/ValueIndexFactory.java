@@ -197,13 +197,9 @@ name|start
 operator|+
 literal|3
 argument_list|,
-name|data
-operator|.
-name|length
+name|len
 operator|-
 literal|3
-operator|-
-name|start
 argument_list|)
 decl_stmt|;
 return|return

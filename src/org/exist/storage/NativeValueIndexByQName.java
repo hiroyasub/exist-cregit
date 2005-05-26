@@ -209,23 +209,6 @@ name|AttrImpl
 name|node
 parameter_list|)
 block|{
-name|QName
-name|qname
-init|=
-operator|new
-name|QName
-argument_list|(
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|Indexable
 name|indexable
 init|=
@@ -241,7 +224,10 @@ operator|.
 name|getValue
 argument_list|()
 argument_list|,
-name|qname
+name|node
+operator|.
+name|getQName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|updatePendingIndexEntry
@@ -267,23 +253,6 @@ name|String
 name|content
 parameter_list|)
 block|{
-name|QName
-name|qname
-init|=
-operator|new
-name|QName
-argument_list|(
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|Indexable
 name|indexable
 init|=
@@ -293,7 +262,10 @@ name|xpathType
 argument_list|,
 name|content
 argument_list|,
-name|qname
+name|node
+operator|.
+name|getQName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|updatePendingIndexEntry
@@ -568,6 +540,9 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|,
+name|boolean
+name|caseSensitive
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
@@ -587,7 +562,7 @@ name|int
 name|offset
 parameter_list|)
 block|{
-comment|// pb: comment récupérer les id à partir de l'objet QName et de SymbolTable ?
+comment|// pb: comment rï¿½cupï¿½rer les id ï¿½ partir de l'objet QName et de SymbolTable ?
 comment|// broker.getSymbols().;
 block|}
 comment|/** @return negative value<==> this object is less than other */

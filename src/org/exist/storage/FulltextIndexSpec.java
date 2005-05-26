@@ -82,7 +82,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * IndexPaths contains information about which parts of a document should be  * fulltext-indexed for a specified doctype. It basically keeps a list of paths  * to include and exclude from indexing. Paths are specified using  * simple XPath syntax, e.g. //SPEECH will select any SPEECH elements,  * //title/@id will select all id attributes being children of title elements.  *  * @author Wolfgang Meier  */
+comment|/**  * Contains information about which parts of a document should be  * fulltext-indexed for a specified doctype. It basically keeps a list of paths  * to include and exclude from indexing. Paths are specified using  * simple XPath syntax, e.g. //SPEECH will select any SPEECH elements,  * //title/@id will select all id attributes being children of title elements.  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class

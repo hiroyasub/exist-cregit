@@ -1708,6 +1708,30 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using value index for key: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|": "
+operator|+
+name|key
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|result
@@ -1741,10 +1765,6 @@ argument_list|,
 name|DBBroker
 operator|.
 name|MATCH_WILDCARDS
-argument_list|,
-name|Perl5Compiler
-operator|.
-name|DEFAULT_MASK
 argument_list|)
 expr_stmt|;
 block|}

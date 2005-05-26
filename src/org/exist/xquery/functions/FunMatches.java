@@ -905,8 +905,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|caseSensitive
-operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -958,6 +956,8 @@ operator|.
 name|MATCH_REGEXP
 argument_list|,
 name|flags
+argument_list|,
+name|caseSensitive
 argument_list|)
 return|;
 block|}

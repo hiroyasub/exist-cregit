@@ -992,14 +992,6 @@ name|ROOT_COLLECTION
 init|=
 literal|"/db"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|TEMP_COLLECTION
-init|=
-literal|"/db/system/temp"
-decl_stmt|;
 comment|/** default buffer size setting */
 specifier|protected
 specifier|final

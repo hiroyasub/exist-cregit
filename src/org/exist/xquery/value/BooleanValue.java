@@ -764,6 +764,9 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|,
+name|boolean
+name|caseSensitive
 parameter_list|)
 block|{
 name|byte
