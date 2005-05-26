@@ -234,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  */
+comment|/**  * @author wolf  *   */
 end_comment
 
 begin_class
@@ -269,29 +269,23 @@ argument_list|)
 argument_list|,
 literal|"Can be used to query existing range indexes defined on a set of nodes. "
 operator|+
-literal|"The node set is specified in the first "
+literal|"All index keys defined for the given node set are reported to a callback function. "
 operator|+
-literal|"argument $a. The function returns all index keys found for the node set $a in the range index. "
+literal|"The node set is specified in the first argument. The second argument specifies a start "
 operator|+
-literal|"The second argument $b specifies "
+literal|"value. Only index keys being greater than $b will be reported. "
 operator|+
-literal|"a start string. Only keys starting with the specified character sequence are returned. "
+literal|"The third arguments is a function reference as created by the util:function function. "
 operator|+
-literal|"$c is a function reference, which points to a callback function that will be called "
+literal|"It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
-literal|"for every term occurrence. $d defines the maximum number of terms that should be "
+literal|"1) the current index key as found in the range index as an atomic value, 2) a sequence "
 operator|+
-literal|"reported. The function reference for $c can be created with the util:function "
+literal|"containing three int values: a) the overall frequency of the key within the node set, "
 operator|+
-literal|"function. It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
+literal|"b) the number of distinct documents in the node set the key occurs in, "
 operator|+
-literal|"1) the current term as found in the index as xs:string, 2) a sequence containing three int "
-operator|+
-literal|"values: a) the overall frequency of the term within the node set, b) the number of distinct "
-operator|+
-literal|"documents in the node set the term occurs in, c) the current position of the term in the whole "
-operator|+
-literal|"list of terms returned."
+literal|"c) the current position of the key in the whole list of keys returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -375,7 +369,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      *      org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
