@@ -267,15 +267,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"This function can be used to collect some information on the distribution "
+literal|"Can be used to query existing range indexes defined on a set of nodes. "
 operator|+
-literal|"of index terms within a set of nodes. The set of nodes is specified in the first "
+literal|"The node set is specified in the first "
 operator|+
-literal|"argument $a. The function returns term frequencies for all terms in the index found "
+literal|"argument $a. The function returns all index keys found for the node set $a in the range index. "
 operator|+
-literal|"in descendants of the nodes in $a. The second argument $b specifies "
+literal|"The second argument $b specifies "
 operator|+
-literal|"a start string. Only terms starting with the specified character sequence are returned. "
+literal|"a start string. Only keys starting with the specified character sequence are returned. "
 operator|+
 literal|"$c is a function reference, which points to a callback function that will be called "
 operator|+
