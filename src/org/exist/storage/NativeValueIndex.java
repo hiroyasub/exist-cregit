@@ -524,7 +524,6 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/** Data base broker associated to this value index - 1 to 1 association */
-specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
@@ -534,7 +533,7 @@ name|BFile
 name|db
 decl_stmt|;
 comment|/** Pending modifications; the keys are AtomicValue objects implementing Indexable  	 * (StringValue or numeric values, IntegerValue etc),  	 * which are the index entries, 	 * and the values are LongLinkedList objects  	 * whose entries are gid (global identifiers) matching the index entries. 	 * Do not confuse these keys with the keys used in persistent storage, created with 	 * {@link Indexable#serialize(short) */
-specifier|private
+specifier|protected
 name|TreeMap
 name|pending
 init|=
