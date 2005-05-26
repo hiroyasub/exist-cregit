@@ -314,7 +314,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
@@ -424,17 +424,6 @@ init|=
 name|nodes
 operator|.
 name|getDocumentSet
-argument_list|()
-decl_stmt|;
-name|String
-name|start
-init|=
-name|args
-index|[
-literal|1
-index|]
-operator|.
-name|getStringValue
 argument_list|()
 decl_stmt|;
 name|FunctionReference
