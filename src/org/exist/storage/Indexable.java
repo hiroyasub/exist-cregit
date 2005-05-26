@@ -24,7 +24,7 @@ name|Indexable
 extends|extends
 name|Comparable
 block|{
-comment|/**      * Serialize the value to an array of bytes.      *       * The returned byte array has the following format:      *       * (short: collectionId, byte type, byte[] value)      *       * @param collectionId the collection id to use      * @param caseSensitive only relevant for string values: if set to false,      * strings should be serialized in lower case      * @return      */
+comment|/**      * Serialize the value plus collection and possibly element information      * to an array of bytes.      * @deprecated use following function instead; this API should be local       * to value index class like {@link NativeValueIndex}      *       * The returned byte array has the following format:      *       * (short: collectionId, byte type, byte[] value)      *       * @param collectionId the collection id to use      * @param caseSensitive only relevant for string values: if set to false,      * strings should be serialized in lower case      * @return      */
 specifier|public
 name|byte
 index|[]
@@ -32,6 +32,18 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|,
+name|boolean
+name|caseSensitive
+parameter_list|)
+function_decl|;
+comment|/** Serialize the value to an array of bytes for the persistant storage.      *       * The returned byte array has the following format:      *       * (offset-1 free bytes, byte type, byte[] value)      *       * @param offset, starting index for writing in array data      * @return the size actually writen in the array argument      */
+name|byte
+index|[]
+name|serializeValue
+parameter_list|(
+name|int
+name|offset
 parameter_list|,
 name|boolean
 name|caseSensitive

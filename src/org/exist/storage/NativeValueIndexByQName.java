@@ -79,11 +79,35 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|SymbolTable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|store
 operator|.
 name|BFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ByteConversion
 import|;
 end_import
 
@@ -154,7 +178,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The new index by QName that will make queries like<pre> / root [ key = 123 ]</pre> very quick.  It is used by an Xquery extension function with this signature :<pre> qname-index-lookup( $qname as xs:string,                      $key as xs:string) as node*</pre>  that can be used this way :<pre> $key := index-lookup( "key", "123") $user := $key / parent::root</pre>  The way of indexing is the same as current range indices {@link NativeValueIndex},  except that for each QName like<key> mentioned above, the QName will be stored .    * @author Jean-Marc Vanel http://jmvanel.free.fr/  */
+comment|/** The new index by QName that will make queries like<pre> / root [ key = 123 ]</pre> very quick.  It is used by an Xquery extension function with this signature :<pre> qname-index-lookup( $qname as xs:string,                      $key as xs:string ) as node*</pre>  that can be used this way :<pre> $key := qname-index-lookup( "key", "123") $user := $key / parent::root</pre>  The way of indexing is the same as current range indices {@link NativeValueIndex},  except that for each QName like<key> mentioned above, the QName will be stored .    * @author Jean-Marc Vanel http://jmvanel.free.fr/  */
 end_comment
 
 begin_class
@@ -276,7 +300,7 @@ name|indexable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** an entry is added or updated in the {@link #pending} map 	 * @param node the DOM node 	 * @param indexable a {@link QNameIndexable} 	 */
+comment|/** adds or updates an entry in the {@link #pending} map 	 * @param node the DOM node 	 * @param indexable a {@link QNameIndexable} 	 */
 specifier|private
 name|void
 name|updatePendingIndexEntry
@@ -495,7 +519,7 @@ return|return
 name|ret
 return|;
 block|}
-comment|/** key for the {@link #pending} map ; the order is lexicographic on  	 * qname first, indexable second */
+comment|/** key for the {@link #pending} map ; the order is lexicographic on  	 * qname first, indexable second ; 	 * this class also provides through serialize() the persistant storage key : 	 * (collectionId, qname, indexType, indexData) 	 */
 specifier|private
 class|class
 name|QNameIndexable
@@ -533,6 +557,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+comment|/** the one that is called from {@link NativeValueIndex} */
 specifier|public
 name|byte
 index|[]
@@ -545,12 +570,45 @@ name|boolean
 name|caseSensitive
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// key (collectionId, qname, indexType, indexData)
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|indexable
+operator|.
+name|serializeValue
+argument_list|(
+literal|4
+argument_list|,
+name|caseSensitive
+argument_list|)
+decl_stmt|;
+name|ByteConversion
+operator|.
+name|shortToByte
+argument_list|(
+name|collectionId
+argument_list|,
+name|data
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|serializeQName
+argument_list|(
+name|data
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
 return|return
-literal|null
+name|data
 return|;
 block|}
-specifier|public
+comment|/** serialize the QName field on the persistant storage */
+specifier|private
 name|void
 name|serializeQName
 parameter_list|(
@@ -562,8 +620,62 @@ name|int
 name|offset
 parameter_list|)
 block|{
-comment|// pb: comment rï¿½cupï¿½rer les id ï¿½ partir de l'objet QName et de SymbolTable ?
-comment|// broker.getSymbols().;
+name|SymbolTable
+name|symbols
+init|=
+name|broker
+operator|.
+name|getSymbols
+argument_list|()
+decl_stmt|;
+name|short
+name|namespaceId
+init|=
+name|symbols
+operator|.
+name|getNSSymbol
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|short
+name|localNameId
+init|=
+name|symbols
+operator|.
+name|getSymbol
+argument_list|(
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|data
+index|[
+name|offset
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|namespaceId
+expr_stmt|;
+name|data
+index|[
+name|offset
+operator|+
+literal|1
+index|]
+operator|=
+operator|(
+name|byte
+operator|)
+name|localNameId
+expr_stmt|;
 block|}
 comment|/** @return negative value<==> this object is less than other */
 specifier|public
@@ -641,6 +753,23 @@ block|}
 block|}
 return|return
 name|ret
+return|;
+block|}
+comment|/** unused */
+specifier|public
+name|byte
+index|[]
+name|serializeValue
+parameter_list|(
+name|int
+name|offset
+parameter_list|,
+name|boolean
+name|caseSensitive
+parameter_list|)
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}
