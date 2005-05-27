@@ -399,7 +399,19 @@ name|IndexKeys
 operator|.
 name|class
 argument_list|)
-block|}
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|QNameIndexLookup
+operator|.
+name|signature
+argument_list|,
+name|QNameIndexLookup
+operator|.
+name|class
+argument_list|)
+block|, 	}
 decl_stmt|;
 specifier|public
 specifier|final

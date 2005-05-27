@@ -528,7 +528,7 @@ name|DBBroker
 name|broker
 decl_stmt|;
 comment|/** Data storage associated to this value index - 1 to 1 association */
-specifier|private
+specifier|protected
 name|BFile
 name|db
 decl_stmt|;
@@ -555,7 +555,7 @@ operator|new
 name|VariableByteOutputStream
 argument_list|()
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|caseSensitive
 init|=
@@ -3824,7 +3824,7 @@ name|result
 argument_list|)
 return|;
 block|}
-specifier|private
+specifier|protected
 name|int
 name|checkRelationOp
 parameter_list|(
@@ -4038,7 +4038,6 @@ name|atomic
 return|;
 block|}
 comment|/** TODO document */
-specifier|private
 class|class
 name|SearchCallback
 implements|implements

@@ -1066,8 +1066,9 @@ specifier|private
 name|boolean
 name|qnameValueIndexation
 init|=
-literal|false
+literal|true
 decl_stmt|;
+comment|// false;
 specifier|protected
 name|Serializer
 name|xmlSerializer
