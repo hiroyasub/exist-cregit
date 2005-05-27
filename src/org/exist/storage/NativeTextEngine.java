@@ -135,17 +135,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
-operator|.
-name|oro
-operator|.
-name|text
+name|util
 operator|.
 name|regex
 operator|.
-name|Perl5Compiler
+name|Pattern
 import|;
 end_import
 
@@ -2231,9 +2227,13 @@ name|expr
 argument_list|,
 name|type
 argument_list|,
-name|Perl5Compiler
+name|Pattern
 operator|.
-name|CASE_INSENSITIVE_MASK
+name|CASE_INSENSITIVE
+operator||
+name|Pattern
+operator|.
+name|UNICODE_CASE
 argument_list|)
 decl_stmt|;
 return|return

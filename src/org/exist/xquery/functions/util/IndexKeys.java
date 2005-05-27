@@ -273,7 +273,7 @@ literal|"All index keys defined for the given node set are reported to a callbac
 operator|+
 literal|"The node set is specified in the first argument. The second argument specifies a start "
 operator|+
-literal|"value. Only index keys being greater than $b will be reported. "
+literal|"value. Only index keys of the same type but being greater than $b will be reported. "
 operator|+
 literal|"The third arguments is a function reference as created by the util:function function. "
 operator|+

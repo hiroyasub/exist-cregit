@@ -343,18 +343,6 @@ condition|(
 name|lockOnLoad
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Locking document: "
-operator|+
-name|doc
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|context
 operator|.
 name|getLockedDocuments
@@ -375,6 +363,18 @@ expr_stmt|;
 name|cachedDocs
 operator|=
 name|ds
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Docs: "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
 name|result

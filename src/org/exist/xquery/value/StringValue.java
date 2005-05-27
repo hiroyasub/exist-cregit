@@ -27,17 +27,25 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|oro
+name|regex
 operator|.
-name|text
+name|Matcher
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|perl
+name|util
 operator|.
-name|Perl5Util
+name|regex
+operator|.
+name|Pattern
 import|;
 end_import
 
@@ -156,6 +164,37 @@ operator|new
 name|StringValue
 argument_list|(
 literal|""
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|langRegex
+init|=
+literal|"/(([a-z]|[A-Z])([a-z]|[A-Z])|"
+comment|// ISO639Code
+operator|+
+literal|"([iI]-([a-z]|[A-Z])+)|"
+comment|// IanaCode
+operator|+
+literal|"([xX]-([a-z]|[A-Z])+))"
+comment|// UserCode
+operator|+
+literal|"(-([a-z]|[A-Z])+)*/"
+decl_stmt|;
+comment|// Subcode
+specifier|private
+specifier|final
+specifier|static
+name|Pattern
+name|langPattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|langRegex
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -293,39 +332,23 @@ name|Type
 operator|.
 name|LANGUAGE
 case|:
-name|Perl5Util
-name|util
+name|Matcher
+name|matcher
 init|=
-operator|new
-name|Perl5Util
-argument_list|()
+name|langPattern
+operator|.
+name|matcher
+argument_list|(
+name|value
+argument_list|)
 decl_stmt|;
-name|String
-name|regex
-init|=
-literal|"/(([a-z]|[A-Z])([a-z]|[A-Z])|"
-comment|// ISO639Code
-operator|+
-literal|"([iI]-([a-z]|[A-Z])+)|"
-comment|// IanaCode
-operator|+
-literal|"([xX]-([a-z]|[A-Z])+))"
-comment|// UserCode
-operator|+
-literal|"(-([a-z]|[A-Z])+)*/"
-decl_stmt|;
-comment|// Subcode
 if|if
 condition|(
 operator|!
-name|util
+name|matcher
 operator|.
-name|match
-argument_list|(
-name|regex
-argument_list|,
-name|value
-argument_list|)
+name|matches
+argument_list|()
 condition|)
 throw|throw
 operator|new
