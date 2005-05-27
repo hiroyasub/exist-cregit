@@ -123,7 +123,7 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8081/exist/xmlrpc"
+literal|"xmldb:exist://localhost:8088/xmlrpc"
 decl_stmt|;
 specifier|private
 specifier|final
