@@ -135,6 +135,10 @@ name|SAXException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Represents an atomic value. All simple values that are not nodes extend AtomicValue.  * As every single item is also a sequence, this class implements both: Item and Sequence.  *   * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 specifier|abstract
@@ -145,6 +149,7 @@ name|Item
 implements|,
 name|Sequence
 block|{
+comment|/** An empty atomic value */
 specifier|public
 specifier|final
 specifier|static
@@ -246,6 +251,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @return      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|startsWith
@@ -275,6 +281,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @return      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|endsWith
@@ -304,6 +311,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @return      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|contains
@@ -484,6 +492,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.memtree.DocumentBuilderReceiver) 	 */
 specifier|public
 name|void
 name|copyTo
@@ -541,6 +550,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|void
 name|addAll
@@ -620,6 +630,7 @@ operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
 block|}
+comment|/**      * Dump a string representation of this value to the given       * ExpressionDumper.      *  	 * @param dumper 	 */
 specifier|public
 name|void
 name|dump
