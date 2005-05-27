@@ -484,7 +484,7 @@ operator|.
 name|getValueIndex
 argument_list|()
 operator|.
-name|scanIndexTerms
+name|scanIndexKeys
 argument_list|(
 name|docs
 argument_list|,
