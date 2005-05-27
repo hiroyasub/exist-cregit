@@ -238,6 +238,8 @@ name|start
 operator|+
 literal|3
 argument_list|)
+operator|^
+literal|0x8000000000000000L
 argument_list|)
 return|;
 block|}
@@ -287,6 +289,8 @@ name|start
 operator|+
 literal|3
 argument_list|)
+operator|^
+literal|0x80000000
 decl_stmt|;
 name|float
 name|f
@@ -328,6 +332,8 @@ name|start
 operator|+
 literal|3
 argument_list|)
+operator|^
+literal|0x8000000000000000L
 decl_stmt|;
 name|double
 name|d
