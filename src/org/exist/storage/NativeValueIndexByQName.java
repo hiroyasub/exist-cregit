@@ -1017,6 +1017,7 @@ name|Constants
 operator|.
 name|EQ
 decl_stmt|;
+return|return
 name|find
 argument_list|(
 name|relation
@@ -1027,9 +1028,6 @@ name|contextSet
 argument_list|,
 name|indexable
 argument_list|)
-expr_stmt|;
-return|return
-literal|null
 return|;
 block|}
 comment|/** find 	 * @param relation binary operator used for the comparison 	 * @param value right hand comparison value */

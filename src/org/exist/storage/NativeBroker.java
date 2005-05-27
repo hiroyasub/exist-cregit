@@ -1473,6 +1473,8 @@ argument_list|,
 name|VALUES_DB_FILE
 argument_list|,
 name|buffers
+argument_list|,
+literal|"db-connection.values"
 argument_list|)
 expr_stmt|;
 if|if
@@ -1497,6 +1499,8 @@ argument_list|,
 name|VALUES_DB_QNAME_FILE
 argument_list|,
 name|buffers
+argument_list|,
+literal|"db-connection2.values"
 argument_list|)
 expr_stmt|;
 else|else
@@ -1948,6 +1952,9 @@ name|dataFile
 parameter_list|,
 name|int
 name|buffers
+parameter_list|,
+name|String
+name|propertyName
 parameter_list|)
 throws|throws
 name|DBException
@@ -1985,7 +1992,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.values"
+name|propertyName
 argument_list|)
 operator|)
 operator|==
@@ -2071,7 +2078,7 @@ name|config
 operator|.
 name|setProperty
 argument_list|(
-literal|"db-connection.values"
+name|propertyName
 argument_list|,
 name|valuesDb
 argument_list|)
