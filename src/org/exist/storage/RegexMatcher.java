@@ -179,7 +179,7 @@ specifier|public
 name|boolean
 name|matches
 parameter_list|(
-name|String
+name|CharSequence
 name|term
 parameter_list|)
 block|{

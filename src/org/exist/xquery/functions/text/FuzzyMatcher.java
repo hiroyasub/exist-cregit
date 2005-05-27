@@ -91,7 +91,7 @@ specifier|public
 name|boolean
 name|matches
 parameter_list|(
-name|String
+name|CharSequence
 name|text
 parameter_list|)
 block|{
@@ -99,7 +99,7 @@ if|if
 condition|(
 name|searchTerm
 operator|.
-name|equalsIgnoreCase
+name|equals
 argument_list|(
 name|text
 argument_list|)
@@ -223,7 +223,7 @@ specifier|final
 name|int
 name|editDistance
 parameter_list|(
-name|String
+name|CharSequence
 name|s
 parameter_list|,
 name|String
