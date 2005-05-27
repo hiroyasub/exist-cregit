@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Wrapper class around a {@link org.exist.dom.QName} value which extends  * {@link org.exist.xquery.value.AtomicValue}.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -92,6 +92,7 @@ specifier|private
 name|QName
 name|qname
 decl_stmt|;
+comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *       * @param context      * @param name      * @throws XPathException      */
 specifier|public
 name|QNameValue
 parameter_list|(
@@ -166,6 +167,7 @@ operator|.
 name|QNAME
 return|;
 block|}
+comment|/**      * Returns the wrapped QName object.      * @return      */
 specifier|public
 name|QName
 name|getQName
