@@ -233,8 +233,8 @@ name|AttrImpl
 name|node
 parameter_list|)
 block|{
-name|Indexable
-name|indexable
+name|ValueIndexKeyFactory
+name|keyFactory
 init|=
 name|computeTemporaryKey
 argument_list|(
@@ -258,7 +258,7 @@ name|updatePendingIndexEntry
 argument_list|(
 name|node
 argument_list|,
-name|indexable
+name|keyFactory
 argument_list|)
 expr_stmt|;
 block|}
@@ -277,8 +277,8 @@ name|String
 name|content
 parameter_list|)
 block|{
-name|Indexable
-name|indexable
+name|ValueIndexKeyFactory
+name|keyFactory
 init|=
 name|computeTemporaryKey
 argument_list|(
@@ -296,11 +296,11 @@ name|updatePendingIndexEntry
 argument_list|(
 name|node
 argument_list|,
-name|indexable
+name|keyFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** adds or updates an entry in the {@link #pending} map 	 * @param node the DOM node 	 * @param indexable a {@link QNameIndexable} 	 */
+comment|/** adds or updates an entry in the {@link #pending} map 	 * @param node the DOM node 	 * @param keyFactory a {@link QNameValueIndexKeyFactory} 	 */
 specifier|private
 name|void
 name|updatePendingIndexEntry
@@ -308,13 +308,13 @@ parameter_list|(
 name|NodeImpl
 name|node
 parameter_list|,
-name|Indexable
-name|indexable
+name|ValueIndexKeyFactory
+name|keyFactory
 parameter_list|)
 block|{
 if|if
 condition|(
-name|indexable
+name|keyFactory
 operator|==
 literal|null
 condition|)
@@ -329,7 +329,7 @@ name|pending
 operator|.
 name|containsKey
 argument_list|(
-name|indexable
+name|keyFactory
 argument_list|)
 condition|)
 name|buf
@@ -341,7 +341,7 @@ name|pending
 operator|.
 name|get
 argument_list|(
-name|indexable
+name|keyFactory
 argument_list|)
 expr_stmt|;
 else|else
@@ -356,7 +356,7 @@ name|pending
 operator|.
 name|put
 argument_list|(
-name|indexable
+name|keyFactory
 argument_list|,
 name|buf
 argument_list|)
@@ -375,7 +375,7 @@ expr_stmt|;
 block|}
 comment|/** compute a key for the {@link #pending} map */
 specifier|private
-name|Indexable
+name|ValueIndexKeyFactory
 name|computeTemporaryKey
 parameter_list|(
 name|int
@@ -403,7 +403,7 @@ name|atomic
 init|=
 literal|null
 decl_stmt|;
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 name|ret
 init|=
 literal|null
@@ -481,7 +481,7 @@ condition|)
 name|ret
 operator|=
 operator|new
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 argument_list|(
 operator|(
 name|Indexable
@@ -522,9 +522,12 @@ block|}
 comment|/** key for the {@link #pending} map ; the order is lexicographic on  	 * qname first, indexable second ; 	 * this class also provides through serialize() the persistant storage key : 	 * (collectionId, qname, indexType, indexData) 	 */
 specifier|private
 class|class
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 implements|implements
+name|ValueIndexKeyFactory
+implements|,
 name|Indexable
+comment|// TODO  "ValueIndexKeyFactory" refactoring: remove after refactoring NativeValueIndex
 block|{
 specifier|private
 name|QName
@@ -535,7 +538,7 @@ name|Indexable
 name|indexable
 decl_stmt|;
 specifier|public
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 parameter_list|(
 name|Indexable
 name|indexable
@@ -557,7 +560,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/** the one that is called from {@link NativeValueIndex} */
+comment|/** called from {@link NativeValueIndex}; 		 * provides the persistant storage key : 		 * (collectionId, qname, indexType, indexData) */
 specifier|public
 name|byte
 index|[]
@@ -570,7 +573,6 @@ name|boolean
 name|caseSensitive
 parameter_list|)
 block|{
-comment|// key (collectionId, qname, indexType, indexData)
 specifier|final
 name|byte
 index|[]
@@ -695,14 +697,14 @@ if|if
 condition|(
 name|other
 operator|instanceof
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 condition|)
 block|{
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 name|otherIndexable
 init|=
 operator|(
-name|QNameIndexable
+name|QNameValueIndexKeyFactory
 operator|)
 name|other
 decl_stmt|;
@@ -755,7 +757,7 @@ return|return
 name|ret
 return|;
 block|}
-comment|/** unused */
+comment|/** unused - TODO "ValueIndexKeyFactory" refactoring: remove after refactoring NativeValueIndex */
 specifier|public
 name|byte
 index|[]
