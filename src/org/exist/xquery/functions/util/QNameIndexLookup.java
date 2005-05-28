@@ -726,8 +726,33 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// TODO error message& log :
-comment|// "The comparison Criterium must be an Indexable: boolean, numeric, string, and not ...
+name|String
+name|message
+init|=
+literal|"The comparison criterium must be an Indexable: "
+operator|+
+literal|"boolean, numeric, string; instead your criterium has type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|comparisonCriterium
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+decl_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+name|message
+argument_list|)
+throw|;
 block|}
 return|return
 name|result
