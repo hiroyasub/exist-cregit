@@ -969,8 +969,8 @@ parameter_list|(
 name|QName
 name|qname
 parameter_list|,
-name|String
-name|content
+name|AtomicValue
+name|comparisonCriterium
 parameter_list|,
 name|Sequence
 name|contextSequence
@@ -1001,11 +1001,10 @@ init|=
 operator|new
 name|QNameValueIndexKeyFactory
 argument_list|(
-operator|new
-name|StringValue
-argument_list|(
-name|content
-argument_list|)
+operator|(
+name|Indexable
+operator|)
+name|comparisonCriterium
 argument_list|,
 name|qname
 argument_list|)
