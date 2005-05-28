@@ -229,7 +229,7 @@ block|}
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 specifier|static
 name|String
 name|formatMessage
