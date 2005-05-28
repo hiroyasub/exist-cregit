@@ -3003,6 +3003,8 @@ argument_list|,
 name|contextSet
 argument_list|,
 name|result
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|Lock
@@ -4093,6 +4095,9 @@ decl_stmt|;
 name|NodeSet
 name|result
 decl_stmt|;
+name|boolean
+name|returnAncestor
+decl_stmt|;
 specifier|public
 name|SearchCallback
 parameter_list|(
@@ -4104,6 +4109,9 @@ name|contextSet
 parameter_list|,
 name|NodeSet
 name|result
+parameter_list|,
+name|boolean
+name|returnAncestor
 parameter_list|)
 block|{
 name|this
@@ -4123,6 +4131,12 @@ operator|.
 name|result
 operator|=
 name|result
+expr_stmt|;
+name|this
+operator|.
+name|returnAncestor
+operator|=
+name|returnAncestor
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.dbxml.core.filer.BTreeCallback#indexInfo(org.dbxml.core.data.Value, long)          */
@@ -4317,7 +4331,7 @@ name|gid
 argument_list|)
 expr_stmt|;
 comment|// if a context set is specified, we can directly check if the
-comment|// matching text node is a descendant of one of the nodes
+comment|// matching node is a descendant of one of the nodes
 comment|// in the context set.
 if|if
 condition|(
@@ -4353,13 +4367,17 @@ name|result
 operator|.
 name|add
 argument_list|(
+name|returnAncestor
+condition|?
 name|parent
+else|:
+name|current
 argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
 block|}
-comment|// otherwise, we add all text nodes without check
+comment|// otherwise, we add all nodes without check
 block|}
 else|else
 block|{
@@ -4449,6 +4467,8 @@ argument_list|,
 name|contextSet
 argument_list|,
 name|result
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|this
