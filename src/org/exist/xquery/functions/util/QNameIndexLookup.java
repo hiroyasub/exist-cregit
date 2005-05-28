@@ -416,7 +416,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// wrap arguments into a cardinality check, so an error will be generated if
-comment|// an empty sequence is passed to the function
+comment|// one of the arguments returns an empty sequence
 name|Expression
 name|arg
 init|=
