@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|ValueIndexSpec
+name|RangeIndexSpec
 import|;
 end_import
 
@@ -1405,7 +1405,7 @@ name|getIndexType
 parameter_list|()
 block|{
 return|return
-name|ValueIndexSpec
+name|RangeIndexSpec
 operator|.
 name|indexTypeToXPath
 argument_list|(
@@ -1424,7 +1424,7 @@ name|hasTextIndex
 parameter_list|()
 block|{
 return|return
-name|ValueIndexSpec
+name|RangeIndexSpec
 operator|.
 name|hasFulltextIndex
 argument_list|(
@@ -1443,7 +1443,7 @@ name|hasMixedContent
 parameter_list|()
 block|{
 return|return
-name|ValueIndexSpec
+name|RangeIndexSpec
 operator|.
 name|hasMixedContent
 argument_list|(

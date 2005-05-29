@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|RangeIndexSpec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|Signatures
 import|;
 end_import
@@ -91,7 +103,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|ValueIndexSpec
+name|GeneralRangeIndexSpec
 import|;
 end_import
 
@@ -347,7 +359,7 @@ specifier|protected
 name|int
 name|indexType
 init|=
-name|ValueIndexSpec
+name|RangeIndexSpec
 operator|.
 name|NO_INDEX
 decl_stmt|;
@@ -7535,7 +7547,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|ValueIndexSpec
+name|GeneralRangeIndexSpec
 name|spec
 init|=
 name|idxSpec

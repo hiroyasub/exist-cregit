@@ -396,7 +396,7 @@ return|return
 name|localName_
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+comment|/** 	 * Compares two QNames by comparing namespace URI 	 * and local names. The prefixes are not relevant. 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
 specifier|public
 name|int
 name|compareTo
@@ -498,7 +498,7 @@ else|:
 name|c
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/**  	 * Checks two QNames for equality. Two QNames are equal 	 * if their namespace URIs, local names and prefixes are equal. 	 *  	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
 name|boolean
 name|equals

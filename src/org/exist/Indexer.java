@@ -227,7 +227,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|ValueIndexSpec
+name|GeneralRangeIndexSpec
 import|;
 end_import
 
@@ -1190,7 +1190,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|ValueIndexSpec
+name|GeneralRangeIndexSpec
 operator|.
 name|hasRangeIndex
 argument_list|(
@@ -2911,7 +2911,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ValueIndexSpec
+name|GeneralRangeIndexSpec
 operator|.
 name|hasRangeIndex
 argument_list|(

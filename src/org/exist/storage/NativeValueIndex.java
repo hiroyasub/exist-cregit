@@ -742,7 +742,7 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|ValueIndexSpec
+name|RangeIndexSpec
 name|spec
 parameter_list|,
 name|AttrImpl

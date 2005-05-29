@@ -455,12 +455,12 @@ name|valuesDb
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @see org.exist.storage.NativeValueIndex#storeAttribute(org.exist.storage.ValueIndexSpec, org.exist.dom.AttrImpl) 	 */
+comment|/** @see org.exist.storage.NativeValueIndex#storeAttribute(org.exist.storage.RangeIndexSpec, org.exist.dom.AttrImpl) 	 */
 specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|ValueIndexSpec
+name|RangeIndexSpec
 name|spec
 parameter_list|,
 name|AttrImpl
