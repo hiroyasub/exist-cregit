@@ -60,8 +60,7 @@ block|,
 literal|"attribute-descendant"
 block|}
 decl_stmt|;
-comment|/*      * XPath axis constants:      */
-comment|// Reverse axes
+comment|/**      * XPath axis constants:      *<br>     * Reverse axes */
 specifier|public
 specifier|final
 specifier|static
@@ -102,7 +101,7 @@ name|PRECEDING_SIBLING_AXIS
 init|=
 literal|4
 decl_stmt|;
-comment|// Forward axes
+comment|/** Forward axes */
 specifier|public
 specifier|final
 specifier|static
@@ -210,7 +209,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/*      * Node types      */
+comment|/**      * Node types      */
 specifier|public
 specifier|final
 specifier|static
@@ -275,7 +274,7 @@ name|PROCESSING_NODE
 init|=
 literal|7
 decl_stmt|;
-comment|/*      * Comparison operators      */
+comment|/**      * Comparison operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -340,7 +339,7 @@ name|REGEXP
 init|=
 literal|7
 decl_stmt|;
-comment|/*      * String truncation operators      */
+comment|/**      * String truncation operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -374,7 +373,7 @@ name|TRUNC_BOTH
 init|=
 literal|2
 decl_stmt|;
-comment|/*      * Arithmetic operators      */
+comment|/**      * Arithmetic operators      */
 specifier|public
 specifier|final
 specifier|static
@@ -423,7 +422,7 @@ name|IDIV
 init|=
 literal|13
 decl_stmt|;
-comment|/* 	 * Identity operators 	 */
+comment|/** 	 * Identity operators 	 */
 specifier|public
 specifier|final
 specifier|static
