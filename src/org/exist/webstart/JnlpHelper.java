@@ -253,7 +253,7 @@ name|_startUrl
 operator|=
 name|_existBaseUrl
 operator|.
-name|replace
+name|replaceFirst
 argument_list|(
 literal|"http:"
 argument_list|,
