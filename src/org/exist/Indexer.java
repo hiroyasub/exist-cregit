@@ -1192,7 +1192,7 @@ if|if
 condition|(
 name|GeneralRangeIndexSpec
 operator|.
-name|hasRangeIndex
+name|hasQNameOrValueIndex
 argument_list|(
 name|last
 operator|.
@@ -2913,7 +2913,7 @@ if|if
 condition|(
 name|GeneralRangeIndexSpec
 operator|.
-name|hasRangeIndex
+name|hasQNameOrValueIndex
 argument_list|(
 name|node
 operator|.
