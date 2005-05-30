@@ -487,7 +487,15 @@ name|qnIdx
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|else if
+condition|(
+name|elem
+operator|.
+name|hasAttribute
+argument_list|(
+name|PATH_ATTRIB
+argument_list|)
+condition|)
 block|{
 name|String
 name|path
@@ -517,6 +525,34 @@ argument_list|(
 name|valueIdx
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|String
+name|error_message
+init|=
+literal|"Configuration error: element "
+operator|+
+name|elem
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|" must have attribute "
+operator|+
+name|PATH_ATTRIB
+operator|+
+literal|" or "
+operator|+
+name|QNAME_ATTRIB
+decl_stmt|;
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+name|error_message
+argument_list|)
+throw|;
 block|}
 block|}
 if|else if
