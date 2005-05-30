@@ -336,13 +336,17 @@ literal|"<!ATTLIST a ref IDREF #IMPLIED>"
 operator|+
 literal|"<!ATTLIST b id ID #IMPLIED>]>"
 operator|+
-literal|"<test>"
+literal|"<test xml:space=\"preserve\">"
 operator|+
 literal|"<a ref=\"id1\"/>"
 operator|+
 literal|"<a ref=\"id1\"/>"
+operator|+
+literal|"<d ref=\"id2\"/>"
 operator|+
 literal|"<b id=\"id1\"><name>one</name></b>"
+operator|+
+literal|"<c xml:id=\"     id2     \"><name>two</name></c>"
 operator|+
 literal|"</test>"
 decl_stmt|;
@@ -2126,6 +2130,41 @@ decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"<name>one</name>"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"ids.xml"
+argument_list|,
+literal|"//d/id(@ref)/name"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"<name>two</name>"
 argument_list|,
 name|r
 operator|.
