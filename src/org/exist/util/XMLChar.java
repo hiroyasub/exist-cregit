@@ -2190,6 +2190,26 @@ literal|0xDFFF
 operator|)
 return|;
 block|}
+comment|/**      * Return whether a given char (codepoint) is a surrogate (high or low)      */
+specifier|static
+specifier|public
+name|boolean
+name|isSurrogate
+parameter_list|(
+name|char
+name|c
+parameter_list|)
+block|{
+return|return
+operator|(
+name|c
+operator|&
+literal|0xF800
+operator|)
+operator|==
+literal|0xD800
+return|;
+block|}
 comment|/**      * Returns true if the specified character is valid. This method      * also checks the surrogate character range from 0x10000 to 0x10FFFF.      *<p>      * If the program chooses to apply the mask directly to the      *<code>CHARS</code> array, then they are responsible for checking      * the surrogate character range.      *      * @param c The character to check.      */
 specifier|public
 specifier|static

@@ -422,6 +422,8 @@ decl_stmt|;
 name|String
 name|pattern
 init|=
+name|translateRegexp
+argument_list|(
 name|getArgument
 argument_list|(
 literal|1
@@ -436,6 +438,7 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|flags
