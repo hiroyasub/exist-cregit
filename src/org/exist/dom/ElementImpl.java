@@ -2934,6 +2934,10 @@ expr_stmt|;
 if|if
 condition|(
 name|ns
+operator|!=
+literal|null
+operator|&&
+name|ns
 operator|.
 name|equals
 argument_list|(
@@ -7427,6 +7431,13 @@ condition|)
 block|{
 if|if
 condition|(
+name|newNode
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 name|XQueryContext
 operator|.
 name|XML_NS
