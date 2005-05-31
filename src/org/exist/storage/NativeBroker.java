@@ -7027,8 +7027,6 @@ operator|=
 operator|new
 name|QName
 argument_list|(
-literal|"&"
-operator|+
 operator|(
 operator|(
 name|AttrImpl
@@ -7044,6 +7042,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+comment|//LOG.debug("found ID: " + qname.getLocalName());
 name|qname
 operator|.
 name|setNameType
