@@ -948,6 +948,18 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|indexable
+operator|.
+name|getType
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** called from the special XQuery function util:qname-index-lookup() */
 specifier|public
