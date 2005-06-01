@@ -49,6 +49,11 @@ name|boolean
 name|caseSensitive
 parameter_list|)
 function_decl|;
+comment|/**      * Returns the type of the Indexable as one of the constants defined      * in {@link org.exist.xquery.value.Type}.      *       * @return      */
+name|int
+name|getType
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
