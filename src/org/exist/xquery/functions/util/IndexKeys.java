@@ -497,8 +497,6 @@ name|args
 index|[
 literal|1
 index|]
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|int
