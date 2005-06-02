@@ -215,7 +215,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NodePath
+name|GeneralRangeIndexSpec
 import|;
 end_import
 
@@ -227,7 +227,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|GeneralRangeIndexSpec
+name|NodePath
 import|;
 end_import
 
@@ -276,18 +276,6 @@ operator|.
 name|util
 operator|.
 name|XMLString
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
 import|;
 end_import
 
@@ -444,6 +432,14 @@ name|LexicalHandler
 implements|,
 name|ErrorHandler
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|ATTR_ID_TYPE
+init|=
+literal|"ID"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -2757,7 +2753,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-literal|"ID"
+name|ATTR_ID_TYPE
 argument_list|)
 condition|)
 block|{
@@ -2773,14 +2769,19 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|attrNS
+name|attr
 operator|.
-name|equals
+name|getQName
+argument_list|()
+operator|.
+name|compareTo
 argument_list|(
-name|XQueryContext
+name|AttrImpl
 operator|.
-name|XML_NS
+name|XML_ID_QNAME
 argument_list|)
+operator|==
+literal|0
 condition|)
 block|{
 comment|// an xml:id attribute. Normalize the attribute and set its type to ID
