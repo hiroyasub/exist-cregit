@@ -1141,6 +1141,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|dialog
+operator|!=
+literal|null
+condition|)
+block|{
 name|showErrorMessage
 argument_list|(
 literal|"An unrecoverable error occurred while restoring\ncollection '"
@@ -1152,6 +1159,25 @@ operator|+
 literal|"Aborting restore!"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"An unrecoverable error occurred while restoring\ncollection '"
+operator|+
+name|name
+operator|+
+literal|"'. "
+operator|+
+literal|"Aborting restore!"
+argument_list|)
+expr_stmt|;
+block|}
 name|e
 operator|.
 name|printStackTrace
