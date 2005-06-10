@@ -27,13 +27,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|exist
+name|framework
 operator|.
-name|xmldb
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
 operator|.
-name|RemoteCollection
+name|textui
+operator|.
+name|TestRunner
 import|;
 end_import
 
@@ -149,26 +157,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -176,15 +164,15 @@ name|StorageStressTest
 extends|extends
 name|TestCase
 block|{
-comment|//    protected final static String URI = "xmldb:exist://localhost:8088/xmlrpc";
 specifier|protected
 specifier|final
 specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
+literal|"xmldb:exist://localhost:8088/xmlrpc"
 decl_stmt|;
+comment|//    protected final static String URI = "xmldb:exist://";
 specifier|public
 specifier|final
 specifier|static
@@ -234,7 +222,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|1250
+literal|50000
 condition|;
 name|i
 operator|++
@@ -472,7 +460,7 @@ name|collection
 operator|.
 name|createResource
 argument_list|(
-literal|"test.xml"
+literal|"test1.xml"
 argument_list|,
 literal|"XMLResource"
 argument_list|)

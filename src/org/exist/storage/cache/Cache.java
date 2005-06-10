@@ -27,6 +27,18 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|CacheManager
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
 end_comment
@@ -84,6 +96,7 @@ name|Cacheable
 name|item
 parameter_list|)
 function_decl|;
+comment|/**      * Returns true if the cache contains any dirty      * items that need to be written to disk.      *       * @return      */
 specifier|public
 name|boolean
 name|hasDirtyItems
@@ -101,6 +114,30 @@ name|int
 name|getBuffers
 parameter_list|()
 function_decl|;
+comment|/**      * Returns the factor by which the cache should grow      * if it can be resized. The returned factor f will be      * between 0 and 2. A value smaller or equal to 1 means the cache      * can't grow, 1.5 means it grows by 50 percent. A cache with      * growth factor&lt;= 1.0 can also not be shrinked.      *       * A cache is resized by the {@link CacheManager}.      *       * @return      */
+specifier|public
+name|double
+name|getGrowthFactor
+parameter_list|()
+function_decl|;
+comment|/**      * Resize the cache. This method is called by the      * {@link CacheManager}. The newSize parameter      * can either be larger or smaller than the current      * cache size.      *       * @param newSize the new size of the cache.      */
+specifier|public
+name|void
+name|resize
+parameter_list|(
+name|int
+name|newSize
+parameter_list|)
+function_decl|;
+comment|/**      * Set the CacheManager object that controls this cache.      *       * @param manager      */
+specifier|public
+name|void
+name|setCacheManager
+parameter_list|(
+name|CacheManager
+name|manager
+parameter_list|)
+function_decl|;
 comment|/** 	 * Get the number of buffers currently used. 	 *  	 * @return 	 */
 specifier|public
 name|int
@@ -117,6 +154,11 @@ comment|/** 	 * Get the number of times where an object could not be 	 * found i
 specifier|public
 name|int
 name|getFails
+parameter_list|()
+function_decl|;
+specifier|public
+name|int
+name|getLoad
 parameter_list|()
 function_decl|;
 specifier|public
