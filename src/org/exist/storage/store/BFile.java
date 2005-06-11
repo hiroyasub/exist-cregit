@@ -4162,10 +4162,7 @@ name|valueLen
 operator|+
 literal|6
 operator|<
-name|fileHeader
-operator|.
-name|getWorkSize
-argument_list|()
+name|maxValueSize
 condition|)
 block|{
 comment|// yes: remove the overflow page
@@ -4198,6 +4195,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//                LOG.debug("Replacing overflow value on page: " + page.getPageNum() + ": " + value.size());
 comment|// this is an overflow page: simply replace the value
 specifier|final
 name|byte
@@ -6115,6 +6113,20 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
+name|int
+name|newLen
+init|=
+name|ph
+operator|.
+name|getDataLength
+argument_list|()
+operator|+
+name|chunk
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
 comment|// get the last page and fill it
 name|long
 name|next
@@ -6209,8 +6221,14 @@ argument_list|,
 name|chunkSize
 argument_list|)
 expr_stmt|;
-comment|//System.arraycopy(chunk, 0, page.getData(), ph.getDataLength(),
-comment|// chunkSize);
+comment|//            LOG.debug("Appending to " + firstPage.getPageNum() + "; " + firstPage.ph.getDataLength() + ": " + chunkLen +
+comment|//                    "; chunk: " + chunkSize);
+if|if
+condition|(
+name|page
+operator|!=
+name|firstPage
+condition|)
 name|ph
 operator|.
 name|setDataLength
@@ -6274,6 +6292,7 @@ operator|)
 name|createDataPage
 argument_list|()
 expr_stmt|;
+comment|//                    LOG.debug("nextPage: " + nextPage.getPageNum() + "; remaining = " + remaining);
 name|nextPage
 operator|.
 name|setData
@@ -6308,7 +6327,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//page.write();
 name|dataCache
 operator|.
 name|add
@@ -6347,8 +6365,6 @@ argument_list|,
 name|chunkSize
 argument_list|)
 expr_stmt|;
-comment|//System.arraycopy(chunk, current, page.getData(), 0,
-comment|// chunkSize);
 name|page
 operator|.
 name|setDirty
@@ -6416,18 +6432,6 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
-operator|.
-name|setDataLength
-argument_list|(
-name|ph
-operator|.
-name|getDataLength
-argument_list|()
-operator|+
-name|chunkLen
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 name|ph
@@ -6438,17 +6442,18 @@ literal|0L
 argument_list|)
 expr_stmt|;
 comment|// adjust length field in first page
+name|ph
+operator|.
+name|setDataLength
+argument_list|(
+name|newLen
+argument_list|)
+expr_stmt|;
 name|ByteConversion
 operator|.
 name|intToByte
 argument_list|(
-name|firstPage
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getDataLength
-argument_list|()
+name|newLen
 operator|-
 literal|6
 argument_list|,
@@ -6460,6 +6465,7 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+comment|//            LOG.debug("First page " + firstPage.getPageNum() + " len: " + (newLen - 6) + "; ph: " + firstPage.ph.getDataLength());
 name|firstPage
 operator|.
 name|setDirty
@@ -6734,6 +6740,7 @@ operator|.
 name|toByteArray
 argument_list|()
 expr_stmt|;
+comment|//            LOG.debug("Read data from page " + firstPage.getPageNum() + "; len = " + data.length);
 if|if
 condition|(
 name|data
@@ -6903,25 +6910,11 @@ name|next
 init|=
 literal|0L
 decl_stmt|;
-name|byte
-index|[]
-name|chunk
-decl_stmt|;
 name|SinglePage
 name|page
 init|=
 name|firstPage
 decl_stmt|;
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|setDataLength
-argument_list|(
-name|remaining
-argument_list|)
-expr_stmt|;
 name|SinglePage
 name|nextPage
 decl_stmt|;
@@ -6942,6 +6935,11 @@ condition|)
 name|chunkSize
 operator|=
 name|remaining
+expr_stmt|;
+name|page
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 comment|// copy next chunk of data to the page
 name|System
@@ -7053,6 +7051,7 @@ operator|)
 name|createDataPage
 argument_list|()
 expr_stmt|;
+comment|//                        LOG.debug("New page: " + nextPage.getPageNum() + "; write: " + remaining);
 name|nextPage
 operator|.
 name|setData
@@ -7162,44 +7161,7 @@ literal|0L
 argument_list|)
 expr_stmt|;
 comment|// adjust length field in first page
-name|ByteConversion
-operator|.
-name|intToByte
-argument_list|(
-name|firstPage
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|getDataLength
-argument_list|()
-operator|-
-literal|6
-argument_list|,
-name|firstPage
-operator|.
-name|getData
-argument_list|()
-argument_list|,
-literal|2
-argument_list|)
-expr_stmt|;
-name|firstPage
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|dataCache
-operator|.
-name|add
-argument_list|(
-name|firstPage
-argument_list|,
-literal|3
-argument_list|)
-expr_stmt|;
+comment|//                    ByteConversion.intToByte(data.length - 6, firstPage.getData(), 2);
 block|}
 block|}
 if|if
@@ -7252,6 +7214,7 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+comment|//                    LOG.debug("Removing " + nextPage.getPageNum());
 name|dataCache
 operator|.
 name|remove
@@ -7261,6 +7224,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|firstPage
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setDataLength
+argument_list|(
+name|data
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|firstPage
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|firstPage
+argument_list|,
+literal|3
+argument_list|)
+expr_stmt|;
+comment|//            LOG.debug(firstPage.getPageNum() + " data length: " + firstPage.ph.getDataLength());
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.storage.store.BFile.DataPage#findValuePosition(short) 		 */
 specifier|public
@@ -8981,6 +8973,24 @@ comment|//        		LOG.warn("TID size: " + ph.nextTID);
 return|return
 name|tid
 return|;
+block|}
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|data
+argument_list|,
+operator|(
+name|byte
+operator|)
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|String
