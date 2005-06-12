@@ -1214,6 +1214,12 @@ name|pool
 operator|.
 name|getCacheManager
 argument_list|()
+argument_list|,
+literal|1.25
+argument_list|,
+literal|100
+argument_list|,
+literal|500
 argument_list|)
 expr_stmt|;
 if|if
@@ -1710,6 +1716,12 @@ name|pool
 operator|.
 name|getCacheManager
 argument_list|()
+argument_list|,
+literal|1.25
+argument_list|,
+literal|50
+argument_list|,
+literal|1000
 argument_list|)
 expr_stmt|;
 if|if

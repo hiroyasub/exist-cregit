@@ -801,6 +801,12 @@ argument_list|()
 operator|.
 name|getCacheManager
 argument_list|()
+argument_list|,
+literal|1.5
+argument_list|,
+literal|10
+argument_list|,
+literal|1000
 argument_list|)
 expr_stmt|;
 if|if
