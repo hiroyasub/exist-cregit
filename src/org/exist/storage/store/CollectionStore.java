@@ -60,6 +60,12 @@ argument_list|(
 name|file
 argument_list|,
 name|cacheManager
+argument_list|,
+literal|1.25
+argument_list|,
+literal|100
+argument_list|,
+literal|1000
 argument_list|)
 expr_stmt|;
 block|}

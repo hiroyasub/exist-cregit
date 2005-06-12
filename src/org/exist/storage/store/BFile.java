@@ -532,6 +532,15 @@ name|file
 parameter_list|,
 name|CacheManager
 name|cacheManager
+parameter_list|,
+name|double
+name|cacheGrowth
+parameter_list|,
+name|int
+name|thresholdBTree
+parameter_list|,
+name|int
+name|thresholdData
 parameter_list|)
 block|{
 name|super
@@ -540,7 +549,7 @@ name|cacheManager
 argument_list|,
 name|file
 argument_list|,
-literal|100
+name|thresholdBTree
 argument_list|)
 expr_stmt|;
 name|fileHeader
@@ -558,9 +567,9 @@ name|LRUCache
 argument_list|(
 literal|64
 argument_list|,
-literal|1.5
+name|cacheGrowth
 argument_list|,
-literal|500
+name|thresholdData
 argument_list|)
 expr_stmt|;
 name|dataCache
