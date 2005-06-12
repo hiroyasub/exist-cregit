@@ -2348,10 +2348,13 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testExternalVars(): XMLDBException: "
-operator|+
-name|e
+literal|"testExternalVars(): XMLDBException"
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
