@@ -433,7 +433,9 @@ literal|"A node will be serialized to SAX. It becomes the root node of the new "
 operator|+
 literal|"document. If the argument is of type xs:anyURI, the resource is loaded "
 operator|+
-literal|"from that URI."
+literal|"from that URI. The functions returns the path to the new document as an xs:string or "
+operator|+
+literal|" - if the document could not be stored - the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -526,7 +528,9 @@ literal|"from that URI. The final argument $d is used to specify a mime-type.  I
 operator|+
 literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
 operator|+
-literal|"a binary resource."
+literal|"a binary resource. The functions returns the path to the new document as an xs:string or "
+operator|+
+literal|"- if the document could not be stored - the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType

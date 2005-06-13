@@ -79,6 +79,18 @@ name|apache
 operator|.
 name|log4j
 operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
 name|xml
 operator|.
 name|DOMConfigurator
@@ -104,6 +116,11 @@ parameter_list|()
 throws|throws
 name|ServletException
 block|{
+name|LogManager
+operator|.
+name|resetConfiguration
+argument_list|()
+expr_stmt|;
 comment|// Get data from web.xml
 name|String
 name|file
