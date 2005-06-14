@@ -2165,22 +2165,6 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing "
-operator|+
-name|params
-operator|.
-name|elementAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|rpcClient
