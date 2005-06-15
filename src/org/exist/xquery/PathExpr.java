@@ -251,12 +251,6 @@ name|inPredicate
 init|=
 literal|false
 decl_stmt|;
-specifier|private
-name|long
-name|creationTime
-init|=
-literal|0
-decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
@@ -1309,30 +1303,6 @@ block|{
 name|resetState
 argument_list|()
 expr_stmt|;
-block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.CompiledXQuery#setCreationTime(long)      */
-specifier|public
-name|void
-name|setCreationTime
-parameter_list|(
-name|long
-name|created
-parameter_list|)
-block|{
-name|creationTime
-operator|=
-name|created
-expr_stmt|;
-block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.CompiledXQuery#getCreationTime()      */
-specifier|public
-name|long
-name|getCreationTime
-parameter_list|()
-block|{
-return|return
-name|creationTime
-return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#isValid() 	 */
 specifier|public
