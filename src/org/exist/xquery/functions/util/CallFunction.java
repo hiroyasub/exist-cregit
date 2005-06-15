@@ -451,6 +451,15 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
+name|call
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 comment|// Evaluate the function
 return|return
 name|call
