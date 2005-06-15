@@ -62,21 +62,6 @@ name|CompiledXQuery
 extends|extends
 name|CompiledExpression
 block|{
-comment|/**      * Set the compile time for this query. Used to check      * if a query is still valid or should be recompiled from      * its source.      *       * @param created      */
-specifier|public
-name|void
-name|setCreationTime
-parameter_list|(
-name|long
-name|created
-parameter_list|)
-function_decl|;
-comment|/**      * Returns the compile time of the query.      *       * @return      */
-specifier|public
-name|long
-name|getCreationTime
-parameter_list|()
-function_decl|;
 comment|/**      * Reset the compiled expression tree. Discard all      * temporary expression results.      */
 specifier|public
 name|void
