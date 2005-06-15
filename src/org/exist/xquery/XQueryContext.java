@@ -5063,21 +5063,7 @@ name|i
 operator|++
 control|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Loading module "
-operator|+
-name|modules
-index|[
-name|i
-index|]
-index|[
-literal|0
-index|]
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("Loading module " + modules[i][0]);
 name|loadBuiltInModule
 argument_list|(
 name|modules

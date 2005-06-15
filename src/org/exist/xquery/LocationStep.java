@@ -2163,7 +2163,6 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
-comment|//			DocumentSet docs = contextSet.getDocumentSet();
 name|DocumentSet
 name|docs
 init|=
@@ -2172,36 +2171,37 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|currentSet
-operator|==
-literal|null
-operator|||
-name|currentDocs
-operator|==
-literal|null
-operator|||
-operator|!
-operator|(
-name|docs
-operator|.
-name|equals
+comment|//			if (currentSet == null || currentDocs == null || !(docs.equals(currentDocs))) {
+comment|//				currentDocs = docs;
+comment|//				currentSet =
+comment|//					(NodeSet) context.getBroker().getElementIndex().findElementsByTagName(
+comment|//						ElementValue.ELEMENT, currentDocs,
+comment|//						test.getName(), null);
+comment|//			}
+comment|//			result =
+comment|//				currentSet.selectAncestors(
+comment|//					contextSet,
+comment|//					axis == Constants.ANCESTOR_SELF_AXIS,
+comment|//					inPredicate);
+name|NodeSelector
+name|selector
+init|=
+operator|new
+name|AncestorSelector
 argument_list|(
-name|currentDocs
+name|contextSet
+argument_list|,
+name|inPredicate
+argument_list|,
+name|axis
+operator|==
+name|Constants
+operator|.
+name|ANCESTOR_SELF_AXIS
 argument_list|)
-operator|)
-condition|)
-block|{
-name|currentDocs
+decl_stmt|;
+name|result
 operator|=
-name|docs
-expr_stmt|;
-name|currentSet
-operator|=
-operator|(
-name|NodeSet
-operator|)
 name|context
 operator|.
 name|getBroker
@@ -2216,32 +2216,14 @@ name|ElementValue
 operator|.
 name|ELEMENT
 argument_list|,
-name|currentDocs
+name|docs
 argument_list|,
 name|test
 operator|.
 name|getName
 argument_list|()
 argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-name|result
-operator|=
-name|currentSet
-operator|.
-name|selectAncestors
-argument_list|(
-name|contextSet
-argument_list|,
-name|axis
-operator|==
-name|Constants
-operator|.
-name|ANCESTOR_SELF_AXIS
-argument_list|,
-name|inPredicate
+name|selector
 argument_list|)
 expr_stmt|;
 comment|//			LOG.debug("getAncestors found " + result.getLength());
