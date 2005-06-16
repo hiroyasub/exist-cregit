@@ -95,16 +95,6 @@ name|javax
 operator|.
 name|swing
 operator|.
-name|BorderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
 name|JDialog
 import|;
 end_import
@@ -1632,10 +1622,14 @@ name|XPathException
 name|e2
 parameter_list|)
 block|{
-name|e2
+name|System
 operator|.
-name|printStackTrace
-argument_list|()
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Illegal creation date. Skipping ..."
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -1669,10 +1663,14 @@ name|XPathException
 name|e2
 parameter_list|)
 block|{
-name|e2
+name|System
 operator|.
-name|printStackTrace
-argument_list|()
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Illegal modification date. Skipping ..."
+argument_list|)
 expr_stmt|;
 block|}
 name|current
