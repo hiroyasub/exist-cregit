@@ -128,9 +128,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|inWhereClause
-operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -197,6 +194,15 @@ else|else
 name|optimize
 operator|=
 literal|false
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"optimize = "
+operator|+
+name|optimize
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
