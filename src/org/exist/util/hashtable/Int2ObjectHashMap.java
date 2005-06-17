@@ -595,17 +595,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|key
-operator|+
-literal|" not found for remove"
-argument_list|)
-expr_stmt|;
+comment|//			System.out.println(key + " not found for remove");
 return|return
 literal|null
 return|;
@@ -699,17 +689,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|key
-operator|+
-literal|" not found for remove"
-argument_list|)
-expr_stmt|;
+comment|//				System.out.println(key + " not found for remove");
 return|return
 literal|null
 return|;

@@ -819,6 +819,14 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+if|if
+condition|(
+name|handle
+operator|==
+operator|-
+literal|1
+condition|)
+return|return;
 try|try
 block|{
 name|Vector
