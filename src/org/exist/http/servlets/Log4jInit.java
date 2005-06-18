@@ -79,18 +79,6 @@ name|apache
 operator|.
 name|log4j
 operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
 name|xml
 operator|.
 name|DOMConfigurator
@@ -108,7 +96,18 @@ name|Log4jInit
 extends|extends
 name|HttpServlet
 block|{
-comment|/**      * Initialize servlet for log4j purposes.      */
+specifier|private
+name|String
+name|existHome
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"exist.home"
+argument_list|)
+decl_stmt|;
+comment|/**      * Initialize servlet for log4j purposes in servlet container (war file).      */
 specifier|public
 name|void
 name|init
@@ -116,11 +115,29 @@ parameter_list|()
 throws|throws
 name|ServletException
 block|{
-name|LogManager
-operator|.
-name|resetConfiguration
+comment|// We need to check how eXist is running. If eXist is started in a
+comment|// servlet container like Tomcat, then initialization *is* needed.
+comment|//
+comment|// If eXist is started in its own jetty server, the logging is
+comment|// already initialized. All can, must and shall be skipped then.
+if|if
+condition|(
+operator|!
+name|isInWarFile
 argument_list|()
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Logging already initialized. Skipping..."
+argument_list|)
 expr_stmt|;
+return|return;
+block|}
 comment|// Get data from web.xml
 name|String
 name|file
@@ -222,6 +239,40 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      *  Check wether exist runs in Servlet container (as war file).      * @return TRUE if exist runs in servlet container.      */
+specifier|public
+name|boolean
+name|isInWarFile
+parameter_list|()
+block|{
+name|boolean
+name|retVal
+init|=
+literal|true
+decl_stmt|;
+if|if
+condition|(
+operator|new
+name|File
+argument_list|(
+name|existHome
+argument_list|,
+literal|"lib/core"
+argument_list|)
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
+name|retVal
+operator|=
+literal|false
+expr_stmt|;
+block|}
+return|return
+name|retVal
+return|;
 block|}
 comment|/**      *  Empty method.      *      * @param req HTTP Request object      * @param res HTTP Response object      */
 specifier|public
