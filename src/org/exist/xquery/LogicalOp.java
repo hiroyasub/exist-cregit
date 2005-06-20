@@ -195,15 +195,6 @@ name|optimize
 operator|=
 literal|false
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"optimize = "
-operator|+
-name|optimize
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|int
