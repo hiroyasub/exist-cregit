@@ -1636,6 +1636,15 @@ name|size
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|setPrimaryAxis
+parameter_list|(
+name|int
+name|axis
+parameter_list|)
+block|{
+block|}
 comment|/** 	 * Return the name of this function. 	 *  	 * @return 	 */
 specifier|public
 name|QName
