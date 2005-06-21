@@ -10905,30 +10905,6 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
-if|if
-condition|(
-name|num
-operator|<
-literal|1
-operator|||
-name|num
-operator|>
-name|qr
-operator|.
-name|result
-operator|.
-name|getLength
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"position parameter out of bounds in call to retrieve: "
-operator|+
-name|num
-argument_list|)
-throw|;
 name|qr
 operator|.
 name|timestamp
@@ -10948,8 +10924,6 @@ operator|.
 name|itemAt
 argument_list|(
 name|num
-operator|-
-literal|1
 argument_list|)
 decl_stmt|;
 if|if
