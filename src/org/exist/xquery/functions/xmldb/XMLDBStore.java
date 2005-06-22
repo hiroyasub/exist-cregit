@@ -1319,11 +1319,12 @@ name|File
 operator|.
 name|createTempFile
 argument_list|(
-literal|"exist"
+literal|"existDBS"
 argument_list|,
 literal|".xml"
 argument_list|)
 decl_stmt|;
+comment|// This is deleted later; is this necessary?
 name|temp
 operator|.
 name|deleteOnExit
@@ -1394,6 +1395,11 @@ argument_list|)
 expr_stmt|;
 block|}
 name|is
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|os
 operator|.
 name|close
 argument_list|()

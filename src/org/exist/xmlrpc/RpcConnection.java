@@ -4174,7 +4174,7 @@ name|File
 operator|.
 name|createTempFile
 argument_list|(
-literal|"eXist"
+literal|"eXistRPCC"
 argument_list|,
 literal|".xml"
 argument_list|)
@@ -4581,6 +4581,11 @@ name|readFully
 argument_list|(
 name|data
 argument_list|)
+expr_stmt|;
+name|raf
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 return|return
 name|data

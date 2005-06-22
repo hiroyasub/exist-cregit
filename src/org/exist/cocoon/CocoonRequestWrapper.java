@@ -915,7 +915,7 @@ name|File
 operator|.
 name|createTempFile
 argument_list|(
-literal|"exist"
+literal|"existCRW"
 argument_list|,
 literal|".xml"
 argument_list|)
