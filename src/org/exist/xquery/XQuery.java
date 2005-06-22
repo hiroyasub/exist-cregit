@@ -310,7 +310,9 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-return|return
+name|CompiledXQuery
+name|compiled
+init|=
 name|compile
 argument_list|(
 name|context
@@ -319,6 +321,14 @@ name|reader
 argument_list|,
 name|xpointer
 argument_list|)
+decl_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+name|compiled
 return|;
 block|}
 specifier|public
