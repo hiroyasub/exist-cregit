@@ -1589,6 +1589,17 @@ condition|(
 name|includeSelf
 condition|)
 block|{
+if|if
+condition|(
+name|rememberContext
+condition|)
+name|p
+operator|.
+name|addContextNode
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|ancestors
 operator|.
 name|add
