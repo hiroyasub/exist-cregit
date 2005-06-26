@@ -2902,6 +2902,13 @@ expr_stmt|;
 if|if
 condition|(
 name|idx
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|idx
 operator|.
 name|isSelective
 argument_list|()
@@ -2920,6 +2927,7 @@ condition|)
 return|return
 literal|true
 return|;
+block|}
 block|}
 block|}
 return|return
