@@ -14597,6 +14597,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|qnameValueIndexation
+condition|)
+name|valuesDbQname
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|collectionsDb
 operator|.
 name|close
