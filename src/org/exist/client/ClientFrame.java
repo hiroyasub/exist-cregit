@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  *     * Copyright (C) 2001-03 Wolfgang M. Meier wolfgang@exist-db.org  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  *  * Copyright (C) 2001-03 Wolfgang M. Meier wolfgang@exist-db.org  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -301,6 +301,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Date
 import|;
 end_import
@@ -312,6 +332,16 @@ operator|.
 name|util
 operator|.
 name|Enumeration
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -1131,7 +1161,7 @@ specifier|private
 name|Properties
 name|properties
 decl_stmt|;
-comment|/** 	 * @throws java.awt.HeadlessException 	 */
+comment|/**      * @throws java.awt.HeadlessException      */
 specifier|public
 name|ClientFrame
 parameter_list|(
@@ -3932,9 +3962,7 @@ specifier|protected
 name|void
 name|setResources
 parameter_list|(
-name|Object
-index|[]
-index|[]
+name|List
 name|rows
 parameter_list|)
 block|{
@@ -3985,7 +4013,7 @@ name|enabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)      */
 specifier|public
 name|void
 name|keyPressed
@@ -4004,7 +4032,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)      */
 specifier|public
 name|void
 name|keyReleased
@@ -4023,7 +4051,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)      */
 specifier|public
 name|void
 name|keyTyped
@@ -4263,7 +4291,7 @@ block|}
 break|break;
 block|}
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)      */
 specifier|public
 name|void
 name|actionPerformed
@@ -4474,18 +4502,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**      * Returns an array of user-selected resources.      */
 specifier|private
-name|void
-name|removeAction
-parameter_list|(
-name|ActionEvent
-name|ev
-parameter_list|)
+name|ResourceDescriptor
+index|[]
+name|getSelectedResources
+parameter_list|()
 block|{
 specifier|final
 name|int
 index|[]
-name|rows
+name|selectedRows
 init|=
 name|fileman
 operator|.
@@ -4493,14 +4520,14 @@ name|getSelectedRows
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Object
+name|ResourceDescriptor
 index|[]
 name|res
 init|=
 operator|new
-name|Object
+name|ResourceDescriptor
 index|[
-name|rows
+name|selectedRows
 operator|.
 name|length
 index|]
@@ -4514,7 +4541,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|rows
+name|selectedRows
 operator|.
 name|length
 condition|;
@@ -4529,17 +4556,35 @@ index|]
 operator|=
 name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
-name|rows
+name|selectedRows
 index|[
 name|i
 index|]
-argument_list|,
-literal|3
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|res
+return|;
+block|}
+specifier|private
+name|void
+name|removeAction
+parameter_list|(
+name|ActionEvent
+name|ev
+parameter_list|)
+block|{
+specifier|final
+name|ResourceDescriptor
+index|[]
+name|res
+init|=
+name|getSelectedResources
+argument_list|()
+decl_stmt|;
 name|String
 name|cmd
 decl_stmt|;
@@ -4595,7 +4640,7 @@ literal|""
 argument_list|,
 literal|1
 argument_list|,
-name|rows
+name|res
 operator|.
 name|length
 argument_list|)
@@ -4623,7 +4668,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|rows
+name|res
 operator|.
 name|length
 condition|;
@@ -4631,7 +4676,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|ResourceDescriptor
 name|resource
 init|=
 name|res
@@ -4642,10 +4687,9 @@ decl_stmt|;
 if|if
 condition|(
 name|resource
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 block|{
 try|try
@@ -4673,7 +4717,7 @@ name|removeCollection
 argument_list|(
 name|resource
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4711,7 +4755,7 @@ name|getResource
 argument_list|(
 name|resource
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4809,63 +4853,13 @@ name|ev
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|ResourceDescriptor
 index|[]
-name|rows
+name|res
 init|=
-name|fileman
-operator|.
-name|getSelectedRows
+name|getSelectedResources
 argument_list|()
 decl_stmt|;
-specifier|final
-name|Object
-index|[]
-name|res
-init|=
-operator|new
-name|Object
-index|[
-name|rows
-operator|.
-name|length
-index|]
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|rows
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|res
-index|[
-name|i
-index|]
-operator|=
-name|resources
-operator|.
-name|getValueAt
-argument_list|(
-name|rows
-index|[
-name|i
-index|]
-argument_list|,
-literal|3
-argument_list|)
-expr_stmt|;
-block|}
 name|String
 index|[]
 name|collections
@@ -5033,7 +5027,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 operator|+
 literal|" to "
@@ -5049,10 +5043,9 @@ name|res
 index|[
 name|i
 index|]
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 name|service
 operator|.
@@ -5063,7 +5056,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|,
 name|destinationPath
@@ -5081,7 +5074,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|,
 name|destinationPath
@@ -5140,63 +5133,13 @@ name|ev
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|ResourceDescriptor
 index|[]
-name|rows
+name|res
 init|=
-name|fileman
-operator|.
-name|getSelectedRows
+name|getSelectedResources
 argument_list|()
 decl_stmt|;
-specifier|final
-name|Object
-index|[]
-name|res
-init|=
-operator|new
-name|Object
-index|[
-name|rows
-operator|.
-name|length
-index|]
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|rows
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|res
-index|[
-name|i
-index|]
-operator|=
-name|resources
-operator|.
-name|getValueAt
-argument_list|(
-name|rows
-index|[
-name|i
-index|]
-argument_list|,
-literal|3
-argument_list|)
-expr_stmt|;
-block|}
 name|String
 index|[]
 name|collections
@@ -5364,7 +5307,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 operator|+
 literal|" to "
@@ -5380,10 +5323,9 @@ name|res
 index|[
 name|i
 index|]
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 name|service
 operator|.
@@ -5394,7 +5336,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|,
 name|destinationPath
@@ -5412,7 +5354,7 @@ index|[
 name|i
 index|]
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|,
 name|destinationPath
@@ -5549,20 +5491,20 @@ block|{
 specifier|final
 name|int
 index|[]
-name|rows
+name|selRows
 init|=
 name|fileman
 operator|.
 name|getSelectedRows
 argument_list|()
 decl_stmt|;
-name|Object
+name|ResourceDescriptor
 index|[]
 name|res
 decl_stmt|;
 if|if
 condition|(
-name|rows
+name|selRows
 operator|.
 name|length
 operator|==
@@ -5572,7 +5514,7 @@ block|{
 name|res
 operator|=
 operator|new
-name|Object
+name|ResourceDescriptor
 index|[
 literal|1
 index|]
@@ -5583,9 +5525,9 @@ literal|0
 index|]
 operator|=
 operator|new
-name|InteractiveClient
+name|ResourceDescriptor
 operator|.
-name|CollectionName
+name|Collection
 argument_list|(
 name|client
 operator|.
@@ -5598,9 +5540,9 @@ block|{
 name|res
 operator|=
 operator|new
-name|Object
+name|ResourceDescriptor
 index|[
-name|rows
+name|selRows
 operator|.
 name|length
 index|]
@@ -5614,7 +5556,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|rows
+name|selRows
 operator|.
 name|length
 condition|;
@@ -5629,14 +5571,12 @@ index|]
 operator|=
 name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
-name|rows
+name|selRows
 index|[
 name|i
 index|]
-argument_list|,
-literal|3
 argument_list|)
 expr_stmt|;
 if|if
@@ -5647,10 +5587,9 @@ name|res
 index|[
 name|i
 index|]
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 operator|)
 condition|)
 block|{
@@ -5696,7 +5635,7 @@ name|YES_OPTION
 condition|)
 block|{
 specifier|final
-name|Object
+name|ResourceDescriptor
 name|collections
 index|[]
 init|=
@@ -5768,16 +5707,9 @@ name|i
 operator|++
 control|)
 block|{
-name|InteractiveClient
-operator|.
-name|CollectionName
+name|ResourceDescriptor
 name|next
 init|=
-operator|(
-name|InteractiveClient
-operator|.
-name|CollectionName
-operator|)
 name|collections
 index|[
 name|i
@@ -5798,7 +5730,7 @@ name|reindexCollection
 argument_list|(
 name|next
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6652,37 +6584,31 @@ operator|.
 name|getSelectedRow
 argument_list|()
 decl_stmt|;
-name|Object
-name|obj
+name|ResourceDescriptor
+name|desc
 init|=
-operator|(
-name|Object
-operator|)
 name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
 name|row
-argument_list|,
-literal|3
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|obj
-operator|instanceof
-name|InteractiveClient
-operator|.
-name|CollectionName
-condition|)
-block|{
 name|name
 operator|=
-name|obj
+name|desc
 operator|.
-name|toString
+name|getName
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|desc
+operator|.
+name|isCollection
+argument_list|()
+condition|)
+block|{
 name|Collection
 name|coll
 init|=
@@ -6717,13 +6643,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|name
-operator|=
-operator|(
-name|String
-operator|)
-name|obj
-expr_stmt|;
 name|Resource
 name|res
 init|=
@@ -6864,31 +6783,25 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
-name|obj
+name|ResourceDescriptor
+name|desc
 init|=
-operator|(
-name|Object
-operator|)
 name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
 name|rows
 index|[
 name|i
 index|]
-argument_list|,
-literal|3
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|obj
-operator|instanceof
-name|InteractiveClient
+name|desc
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 block|{
 name|Collection
@@ -6898,9 +6811,9 @@ name|collection
 operator|.
 name|getChildCollection
 argument_list|(
-name|obj
+name|desc
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -6925,10 +6838,10 @@ name|collection
 operator|.
 name|getResource
 argument_list|(
-operator|(
-name|String
-operator|)
-name|obj
+name|desc
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|service
@@ -7333,28 +7246,22 @@ name|getSelectedRow
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Object
+name|ResourceDescriptor
 name|resource
 init|=
-operator|(
-name|Object
-operator|)
 name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
 name|row
-argument_list|,
-literal|3
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|resource
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 block|{
 comment|// cd into collection
@@ -7364,6 +7271,9 @@ init|=
 literal|"cd \""
 operator|+
 name|resource
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|'"'
 decl_stmt|;
@@ -7413,7 +7323,7 @@ name|retrieve
 argument_list|(
 name|resource
 operator|.
-name|toString
+name|getName
 argument_list|()
 argument_list|,
 name|properties
@@ -7708,6 +7618,83 @@ block|}
 block|}
 block|}
 block|}
+comment|/**      * Compares resources according to their name, ensuring that collections      * always are before documents.      * @author gpothier      */
+specifier|private
+specifier|static
+class|class
+name|ResourceComparator
+implements|implements
+name|Comparator
+block|{
+specifier|public
+name|int
+name|compare
+parameter_list|(
+name|Object
+name|aO1
+parameter_list|,
+name|Object
+name|aO2
+parameter_list|)
+block|{
+name|ResourceDescriptor
+name|desc1
+init|=
+operator|(
+name|ResourceDescriptor
+operator|)
+name|aO1
+decl_stmt|;
+name|ResourceDescriptor
+name|desc2
+init|=
+operator|(
+name|ResourceDescriptor
+operator|)
+name|aO2
+decl_stmt|;
+if|if
+condition|(
+name|desc1
+operator|.
+name|isCollection
+argument_list|()
+operator|!=
+name|desc2
+operator|.
+name|isCollection
+argument_list|()
+condition|)
+block|{
+return|return
+name|desc1
+operator|.
+name|isCollection
+argument_list|()
+condition|?
+operator|-
+literal|1
+else|:
+literal|1
+return|;
+block|}
+else|else
+return|return
+name|desc1
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|desc2
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+return|;
+block|}
+block|}
 class|class
 name|ProcessThread
 extends|extends
@@ -7816,7 +7803,7 @@ operator|==
 literal|null
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.lang.Runnable#run() 		 */
+comment|/*          * (non-Javadoc)          *          * @see java.lang.Runnable#run()          */
 specifier|public
 name|void
 name|run
@@ -7906,9 +7893,7 @@ literal|"Resource"
 block|}
 decl_stmt|;
 specifier|private
-name|Object
-index|[]
-index|[]
+name|List
 name|rows
 init|=
 literal|null
@@ -7917,12 +7902,21 @@ specifier|public
 name|void
 name|setData
 parameter_list|(
-name|Object
-index|[]
-index|[]
+name|List
 name|rows
 parameter_list|)
 block|{
+name|Collections
+operator|.
+name|sort
+argument_list|(
+name|rows
+argument_list|,
+operator|new
+name|ResourceComparator
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|rows
@@ -7933,7 +7927,27 @@ name|fireTableDataChanged
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see javax.swing.table.TableModel#getColumnCount() 		 */
+specifier|public
+name|ResourceDescriptor
+name|getRow
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+block|{
+return|return
+operator|(
+name|ResourceDescriptor
+operator|)
+name|rows
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+return|;
+block|}
+comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getColumnCount()          */
 specifier|public
 name|int
 name|getColumnCount
@@ -7945,7 +7959,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see javax.swing.table.TableModel#getColumnName(int) 		 */
+comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getColumnName(int)          */
 specifier|public
 name|String
 name|getColumnName
@@ -7961,7 +7975,7 @@ name|column
 index|]
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see javax.swing.table.TableModel#getRowCount() 		 */
+comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getRowCount()          */
 specifier|public
 name|int
 name|getRowCount
@@ -7976,10 +7990,11 @@ literal|0
 else|:
 name|rows
 operator|.
-name|length
+name|size
+argument_list|()
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see javax.swing.table.TableModel#getValueAt(int, int) 		 */
+comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getValueAt(int, int)          */
 specifier|public
 name|Object
 name|getValueAt
@@ -7991,15 +8006,64 @@ name|int
 name|columnIndex
 parameter_list|)
 block|{
-return|return
-name|rows
-index|[
+name|ResourceDescriptor
+name|row
+init|=
+name|getRow
+argument_list|(
 name|rowIndex
-index|]
-index|[
+argument_list|)
+decl_stmt|;
+switch|switch
+condition|(
 name|columnIndex
-index|]
+condition|)
+block|{
+case|case
+literal|0
+case|:
+return|return
+name|row
+operator|.
+name|getPermissions
+argument_list|()
 return|;
+case|case
+literal|1
+case|:
+return|return
+name|row
+operator|.
+name|getOwner
+argument_list|()
+return|;
+case|case
+literal|2
+case|:
+return|return
+name|row
+operator|.
+name|getGroup
+argument_list|()
+return|;
+case|case
+literal|3
+case|:
+return|return
+name|row
+operator|.
+name|getName
+argument_list|()
+return|;
+default|default:
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Column does not eXist!"
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 specifier|protected
@@ -8315,7 +8379,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.WindowFocusListener#windowGainedFocus(java.awt.event.WindowEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.WindowFocusListener#windowGainedFocus(java.awt.event.WindowEvent)      */
 specifier|public
 name|void
 name|windowGainedFocus
@@ -8328,7 +8392,7 @@ name|toFront
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.WindowFocusListener#windowLostFocus(java.awt.event.WindowEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.WindowFocusListener#windowLostFocus(java.awt.event.WindowEvent)      */
 specifier|public
 name|void
 name|windowLostFocus
@@ -8338,7 +8402,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)      */
 specifier|public
 name|void
 name|mouseClicked
@@ -8348,7 +8412,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)      */
 specifier|public
 name|void
 name|mouseEntered
@@ -8358,7 +8422,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)      */
 specifier|public
 name|void
 name|mouseExited
@@ -8368,7 +8432,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)      */
 specifier|public
 name|void
 name|mousePressed
@@ -8410,7 +8474,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent) 	 */
+comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)      */
 specifier|public
 name|void
 name|mouseReleased
@@ -9017,7 +9081,7 @@ operator|new
 name|DefaultTableCellRenderer
 argument_list|()
 decl_stmt|;
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see javax.swing.table.TableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, 		 *           java.lang.Object, boolean, boolean, int, int) 		 */
+comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableCellRenderer#getTableCellRendererComponent(javax.swing.JTable,          *           java.lang.Object, boolean, boolean, int, int)          */
 specifier|public
 name|Component
 name|getTableCellRendererComponent
@@ -9078,6 +9142,17 @@ name|foreground
 decl_stmt|,
 name|background
 decl_stmt|;
+name|ResourceTableModel
+name|resources
+init|=
+operator|(
+name|ResourceTableModel
+operator|)
+name|table
+operator|.
+name|getModel
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|isSelected
@@ -9094,18 +9169,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|table
+name|resources
 operator|.
-name|getValueAt
+name|getRow
 argument_list|(
 name|row
-argument_list|,
-literal|3
 argument_list|)
-operator|instanceof
-name|InteractiveClient
 operator|.
-name|CollectionName
+name|isCollection
+argument_list|()
 condition|)
 block|{
 name|foreground
@@ -9176,7 +9248,7 @@ name|BinaryFileFilter
 extends|extends
 name|FileFilter
 block|{
-comment|/* (non-Javadoc) 		 * @see javax.swing.filechooser.FileFilter#getDescription() 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#getDescription()          */
 specifier|public
 name|String
 name|getDescription
@@ -9186,7 +9258,7 @@ return|return
 literal|"Binary resources"
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see javax.swing.filechooser.FileFilter#accept(java.io.File) 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
 specifier|public
 name|boolean
 name|accept
@@ -9227,7 +9299,7 @@ name|XMLFileFilter
 extends|extends
 name|FileFilter
 block|{
-comment|/* (non-Javadoc) 		 * @see javax.swing.filechooser.FileFilter#getDescription() 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#getDescription()          */
 specifier|public
 name|String
 name|getDescription
@@ -9237,7 +9309,7 @@ return|return
 literal|"XML files"
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see javax.swing.filechooser.FileFilter#accept(java.io.File) 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
 specifier|public
 name|boolean
 name|accept
