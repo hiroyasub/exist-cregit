@@ -1507,6 +1507,8 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+block|{
 name|resource
 operator|=
 name|current
@@ -2000,6 +2002,35 @@ argument_list|,
 literal|"resource"
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Failed to backup resource "
+operator|+
+name|resources
+index|[
+name|i
+index|]
+operator|+
+literal|" from collection "
+operator|+
+name|current
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|// write subcollections
 name|String
