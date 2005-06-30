@@ -7597,7 +7597,28 @@ operator|+
 literal|"collection and update is denied"
 argument_list|)
 throw|;
-name|collection
+if|if
+condition|(
+name|oldDoc
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+condition|)
+name|destination
+operator|.
+name|removeBinaryResource
+argument_list|(
+name|this
+argument_list|,
+name|oldDoc
+argument_list|)
+expr_stmt|;
+else|else
+name|destination
 operator|.
 name|removeDocument
 argument_list|(
@@ -13070,7 +13091,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
-name|collection
+name|destination
 operator|.
 name|removeBinaryResource
 argument_list|(
@@ -13080,7 +13101,7 @@ name|oldDoc
 argument_list|)
 expr_stmt|;
 else|else
-name|collection
+name|destination
 operator|.
 name|removeDocument
 argument_list|(
