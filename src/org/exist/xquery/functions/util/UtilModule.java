@@ -411,7 +411,19 @@ name|QNameIndexLookup
 operator|.
 name|class
 argument_list|)
-block|, 	}
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Serialize
+operator|.
+name|signature
+argument_list|,
+name|Serialize
+operator|.
+name|class
+argument_list|)
+block|}
 decl_stmt|;
 specifier|public
 specifier|final
