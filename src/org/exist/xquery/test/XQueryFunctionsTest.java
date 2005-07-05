@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on 17.03.2005  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/*  * Created on 17.03.2005 - $Id$  */
 end_comment
 
 begin_package
@@ -142,7 +142,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author jens  */
+comment|/** Tests for various standart XQuery functions  * @author jens  */
 end_comment
 
 begin_class
@@ -214,7 +214,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* Tests the XQuery-/XPath-function fn:round-half-to-even 	 * with the rounding value typed xs:integer 	 */
+comment|/** Tests the XQuery-/XPath-function fn:round-half-to-even 	 * with the rounding value typed xs:integer 	 */
 specifier|public
 name|void
 name|testRoundHtE_INTEGER
@@ -372,7 +372,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* Tests the XQuery-/XPath-function fn:round-half-to-even 	 * with the rounding value typed xs:double 	 */
+comment|/** Tests the XQuery-/XPath-function fn:round-half-to-even 	 * with the rounding value typed xs:double 	 */
 specifier|public
 name|void
 name|testRoundHtE_DOUBLE
@@ -548,6 +548,116 @@ operator|.
 name|println
 argument_list|(
 literal|"testRoundHtE_DOUBLE(): "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** Tests the XQuery-XPath function fn:tokenize() */
+specifier|public
+name|void
+name|testTokenize
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+name|ResourceSet
+name|result
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|r
+init|=
+literal|""
+decl_stmt|;
+try|try
+block|{
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"count ( tokenize('a/b' , '/') )"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"2"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"count ( tokenize('a/b/' , '/') )"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testTokenize(): "
 operator|+
 name|e
 argument_list|)
