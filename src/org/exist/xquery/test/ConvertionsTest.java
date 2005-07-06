@@ -153,16 +153,6 @@ extends|extends
 name|TestCase
 block|{
 specifier|private
-name|String
-index|[]
-name|testvalues
-decl_stmt|;
-specifier|private
-name|String
-index|[]
-name|resultvalues
-decl_stmt|;
-specifier|private
 name|XPathQueryService
 name|service
 decl_stmt|;
@@ -214,10 +204,10 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** test conversion from QName to string  *>>>>>> currently crashes; when you will want to solve the bug ,   * just change bugtestQName2string in testQName2string<<<<<<<  * org.apache.cocoon.ProcessingException: XMLDBException occurred: A QName cannot be converted to xs:string [at line 201, column 12] In call to function: f:eval(xs:string) [201, 12] f:main() [224, 11]: org.xmldb.api.base.XMLDBException: A QName cannot be converted to xs:string [at line 201, column 12] In call to function: f:eval(xs:string) [201, 12] f:main() [224, 11]  */
+comment|/** test conversion from QName to string */
 specifier|public
 name|void
-name|bugtestQName2string
+name|testQName2string
 parameter_list|()
 throws|throws
 name|XPathException
@@ -241,11 +231,13 @@ try|try
 block|{
 name|query
 operator|=
-literal|"let $a := ( xs:QName('foo:bar'), xs:QName('foo:john'), xs:QName('foo:doe') )"
+literal|"declare namespace foo = 'http://foo'; \n"
 operator|+
-literal|"for $b in $a"
+literal|"let $a := ( xs:QName('foo:bar'), xs:QName('foo:john'), xs:QName('foo:doe') )\n"
 operator|+
-literal|"return"
+literal|"for $b in $a \n"
+operator|+
+literal|"return \n"
 operator|+
 literal|"<blah>{string($b)}</blah>"
 expr_stmt|;
@@ -276,7 +268,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"foo:bar"
+literal|"<blah>foo:bar</blah>"
 argument_list|,
 name|r
 argument_list|)
