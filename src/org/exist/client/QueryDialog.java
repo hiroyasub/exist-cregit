@@ -2483,7 +2483,7 @@ operator|=
 name|query
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.lang.Thread#run() 		 */
+comment|/** 		 * @see java.lang.Thread#run() 		 */
 specifier|public
 name|void
 name|run
@@ -2559,6 +2559,14 @@ literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|CompiledExpression
 name|compiled
 init|=
@@ -2569,6 +2577,21 @@ argument_list|(
 name|xpath
 argument_list|)
 decl_stmt|;
+name|long
+name|t1
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
+name|long
+name|tCompiled
+init|=
+name|t1
+operator|-
+name|t0
+decl_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -2578,6 +2601,16 @@ name|execute
 argument_list|(
 name|compiled
 argument_list|)
+decl_stmt|;
+name|long
+name|tResult
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|t1
 decl_stmt|;
 name|StringWriter
 name|writer
@@ -2780,6 +2813,16 @@ name|getSize
 argument_list|()
 operator|+
 literal|" items."
+operator|+
+literal|" Compilation: "
+operator|+
+name|tCompiled
+operator|+
+literal|"ms, Execution: "
+operator|+
+name|tResult
+operator|+
+literal|"ms"
 argument_list|)
 expr_stmt|;
 block|}
