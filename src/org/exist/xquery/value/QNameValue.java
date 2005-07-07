@@ -284,9 +284,7 @@ return|return
 operator|new
 name|StringValue
 argument_list|(
-name|qname
-operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 return|;
