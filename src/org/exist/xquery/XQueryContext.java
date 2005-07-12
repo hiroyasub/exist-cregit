@@ -3021,11 +3021,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"variable "
+literal|"variable $\""
 operator|+
 name|qname
 operator|+
-literal|" is not bound"
+literal|"\" is not bound"
 argument_list|)
 throw|;
 return|return
