@@ -865,14 +865,6 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|pool
-operator|.
-name|getCollectionsCache
-argument_list|()
-init|)
-block|{
 try|try
 block|{
 name|broker
@@ -884,6 +876,14 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+init|)
+block|{
 comment|// open the collection or resource specified in the path
 name|collection
 operator|=
@@ -1599,15 +1599,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"response:\n"
-operator|+
-name|content
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug("response:\n" + content);
 name|writeResponse
 argument_list|(
 name|response
@@ -1615,6 +1607,7 @@ argument_list|,
 name|content
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1694,7 +1687,6 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|private
