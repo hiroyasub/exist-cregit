@@ -2754,6 +2754,92 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** test involving ancestor:: 	*>>>>>>> currently this produces variable corruption : 	* 			The result is the ancestor<<<<<<<<<< */
+specifier|public
+name|void
+name|bugtestAncestor
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+try|try
+block|{
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|numbers
+argument_list|)
+decl_stmt|;
+name|query
+operator|=
+literal|"let $all_items := /test/item "
+operator|+
+literal|"(: Note: variable non used but computed anyway :)"
+operator|+
+literal|"let $unused_variable :="
+operator|+
+literal|"	for $one_item in $all_items "
+operator|+
+literal|"			/ ancestor::*	(:<<<<< if you remove this line all is normal :)"
+operator|+
+literal|"		return 'foo'"
+operator|+
+literal|"return $all_items"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testAncestor(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|private
 name|ResourceSet
 name|queryResource
