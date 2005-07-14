@@ -109,6 +109,9 @@ specifier|public
 name|QName
 name|add
 parameter_list|(
+name|byte
+name|type
+parameter_list|,
 name|String
 name|namespaceURI
 parameter_list|,
@@ -138,6 +141,13 @@ operator|.
 name|setPrefix
 argument_list|(
 name|prefix
+argument_list|)
+expr_stmt|;
+name|temp
+operator|.
+name|setNameType
+argument_list|(
+name|type
 argument_list|)
 expr_stmt|;
 try|try

@@ -934,6 +934,10 @@ argument_list|()
 operator|.
 name|getQName
 argument_list|(
+name|Node
+operator|.
+name|ELEMENT_NODE
+argument_list|,
 name|namespace
 argument_list|,
 name|name
