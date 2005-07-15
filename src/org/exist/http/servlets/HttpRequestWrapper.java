@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -242,7 +242,7 @@ name|params
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/**      *      */
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -291,7 +291,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param request2 	 */
+comment|/**      * @param request2      */
 specifier|private
 name|void
 name|parseMultipartContent
@@ -466,7 +466,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.RequestWrapper#getInputStream() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.http.servlets.RequestWrapper#getInputStream()          */
 specifier|public
 name|InputStream
 name|getInputStream
@@ -481,7 +481,7 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getCharacterEncoding
@@ -494,7 +494,7 @@ name|getCharacterEncoding
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|int
 name|getContentLength
@@ -507,7 +507,7 @@ name|getContentLength
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getContentType
@@ -520,7 +520,7 @@ name|getContentType
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getContextPath
@@ -533,7 +533,7 @@ name|getContextPath
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|String
 name|getHeader
@@ -551,7 +551,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|Enumeration
 name|getHeaderNames
@@ -564,7 +564,7 @@ name|getHeaderNames
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|Enumeration
 name|getHeaders
@@ -582,7 +582,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getMethod
@@ -595,7 +595,7 @@ name|getMethod
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|String
 name|getParameter
@@ -812,9 +812,11 @@ name|params
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Object
 name|o
 init|=
@@ -831,9 +833,11 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|FileItem
 name|item
 init|=
@@ -849,26 +853,86 @@ operator|.
 name|isFormField
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
-name|File
-name|f
+block|}
+comment|// Get filename from FileItem
+name|String
+name|itemName
 init|=
-operator|new
-name|File
-argument_list|(
 name|item
 operator|.
 name|getName
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|itemName
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|// Several browsers, e.g. MSIE send a full path of the LOCALLY stored
+comment|// file instead of the filename alone.
+comment|// Jakarta's Commons FileUpload package does not repair this
+comment|// so we should remove all supplied path information.
+comment|// If there are (back) slashes in the Filename, we have
+comment|// a full path. Find the last (back) slash, take remaining text
+name|int
+name|lastFileSepPos
+init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|itemName
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|"/"
+argument_list|)
+argument_list|,
+name|itemName
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|"\\"
+argument_list|)
 argument_list|)
 decl_stmt|;
-return|return
-name|f
+name|String
+name|documentName
+init|=
+name|itemName
+decl_stmt|;
+if|if
+condition|(
+name|lastFileSepPos
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|documentName
+operator|=
+name|itemName
 operator|.
-name|getName
-argument_list|()
+name|substring
+argument_list|(
+name|lastFileSepPos
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|documentName
 return|;
 block|}
 specifier|private
@@ -973,7 +1037,7 @@ name|value
 return|;
 block|}
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|Enumeration
 name|getParameterNames
@@ -1001,7 +1065,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|String
 index|[]
@@ -1264,7 +1328,7 @@ name|values
 return|;
 block|}
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getPathInfo
@@ -1277,7 +1341,7 @@ name|getPathInfo
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getPathTranslated
@@ -1290,7 +1354,7 @@ name|getPathTranslated
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getProtocol
@@ -1303,7 +1367,7 @@ name|getProtocol
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getQueryString
@@ -1316,7 +1380,7 @@ name|getQueryString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getRemoteAddr
@@ -1329,7 +1393,7 @@ name|getRemoteAddr
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getRemoteHost
@@ -1342,7 +1406,7 @@ name|getRemoteHost
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getRemoteUser
@@ -1355,7 +1419,7 @@ name|getRemoteUser
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getRequestedSessionId
@@ -1368,7 +1432,7 @@ name|getRequestedSessionId
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getRequestURI
@@ -1381,7 +1445,7 @@ name|getRequestURI
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getScheme
@@ -1394,7 +1458,7 @@ name|getScheme
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getServerName
@@ -1407,7 +1471,7 @@ name|getServerName
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|int
 name|getServerPort
@@ -1420,7 +1484,7 @@ name|getServerPort
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|String
 name|getServletPath
@@ -1433,7 +1497,7 @@ name|getServletPath
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -1465,7 +1529,7 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -1502,7 +1566,7 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|Principal
 name|getUserPrincipal
@@ -1515,7 +1579,7 @@ name|getUserPrincipal
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromCookie
@@ -1528,7 +1592,7 @@ name|isRequestedSessionIdFromCookie
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromURL
@@ -1541,7 +1605,7 @@ name|isRequestedSessionIdFromURL
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdValid
@@ -1554,7 +1618,7 @@ name|isRequestedSessionIdValid
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**      * @return      */
 specifier|public
 name|boolean
 name|isSecure
@@ -1567,7 +1631,7 @@ name|isSecure
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**      * @param arg0      * @return      */
 specifier|public
 name|boolean
 name|isUserInRole
@@ -1585,7 +1649,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 */
+comment|/**      * @param arg0      */
 specifier|public
 name|void
 name|removeAttribute
@@ -1602,7 +1666,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/**      * @param arg0      * @param arg1      */
 specifier|public
 name|void
 name|setAttribute
@@ -1624,7 +1688,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @throws java.io.UnsupportedEncodingException 	 */
+comment|/**      * @param arg0      * @throws java.io.UnsupportedEncodingException      */
 specifier|public
 name|void
 name|setCharacterEncoding
