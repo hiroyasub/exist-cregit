@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * LoginPanel.java  *  * Copyright 2005 by O2 IT Engineering  * Zurich,  Switzerland (CH)  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+comment|/**  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 end_comment
 
 begin_package
@@ -390,7 +390,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the graphical login panel used to log into  * local and remote eXist database instances.  *   * @author Tobias Wunden  */
+comment|/**  * This class implements the graphical login panel used to log into  * local and remote eXist database instances.  *   * @author Wolfgang M. Meier<wolfgang@exist-db.org>  * @author Tobias Wunden<tobias.wunden@o2it.ch>  */
 end_comment
 
 begin_class
@@ -400,6 +400,7 @@ name|LoginPanel
 extends|extends
 name|JPanel
 block|{
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -407,6 +408,7 @@ name|TYPE_REMOTE
 init|=
 literal|0
 decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -414,6 +416,7 @@ name|TYPE_LOCAL
 init|=
 literal|1
 decl_stmt|;
+comment|/** Uri for local connections */
 specifier|public
 specifier|static
 specifier|final
@@ -422,6 +425,7 @@ name|URI_LOCAL
 init|=
 literal|"xmldb:exist://"
 decl_stmt|;
+comment|/** Default uri for remote connections */
 specifier|public
 specifier|static
 specifier|final
@@ -430,6 +434,7 @@ name|URI_REMOTE
 init|=
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
+comment|/** Connection prefix for the properties file */
 specifier|public
 specifier|final
 specifier|static
@@ -438,6 +443,7 @@ name|CONNECTION_PREFIX
 init|=
 literal|"connection."
 decl_stmt|;
+comment|/** Properties file name */
 specifier|public
 specifier|final
 specifier|static
@@ -446,6 +452,14 @@ name|FAVOURITES_FILE
 init|=
 literal|"connections.properties"
 decl_stmt|;
+comment|/** Favourites connection settings */
+specifier|protected
+name|File
+name|favouritesFile
+init|=
+literal|null
+decl_stmt|;
+comment|/** Ui components */
 name|JTextField
 name|username
 decl_stmt|;
@@ -476,6 +490,7 @@ decl_stmt|;
 name|JButton
 name|btnLoadFavourite
 decl_stmt|;
+comment|/**      * Creates a new login panel with the given user and uri.      *       * @param defaultUser the initial user      * @param uri the uri to connect to      */
 specifier|public
 name|LoginPanel
 parameter_list|(
@@ -499,6 +514,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Sets up the graphical components.      *       * @param defaultUser the initial user      * @param uri the uri to connect to      */
 specifier|private
 name|void
 name|setupComponents
@@ -860,6 +876,15 @@ name|type
 operator|.
 name|setSelectedIndex
 argument_list|(
+name|uri
+operator|.
+name|equals
+argument_list|(
+name|URI_LOCAL
+argument_list|)
+condition|?
+name|TYPE_LOCAL
+else|:
 name|TYPE_REMOTE
 argument_list|)
 expr_stmt|;
@@ -912,7 +937,17 @@ name|cur_url
 operator|.
 name|setText
 argument_list|(
+operator|!
 name|uri
+operator|.
+name|equals
+argument_list|(
+name|URI_LOCAL
+argument_list|)
+condition|?
+name|uri
+else|:
+name|URI_REMOTE
 argument_list|)
 expr_stmt|;
 name|cur_url
@@ -1032,6 +1067,19 @@ argument_list|(
 name|uri
 argument_list|,
 literal|20
+argument_list|)
+expr_stmt|;
+name|cur_url
+operator|.
+name|setEnabled
+argument_list|(
+operator|!
+name|uri
+operator|.
+name|equals
+argument_list|(
+name|URI_LOCAL
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|c
@@ -2294,6 +2342,8 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+comment|// Check if "exist.home" has been defined. If so, this is the home directory
+comment|// for the connection settings. Otherwhise, "user.home" will be used.
 name|String
 name|home
 init|=
@@ -2304,40 +2354,38 @@ argument_list|(
 literal|"exist.home"
 argument_list|)
 decl_stmt|;
-name|File
-name|propFile
-decl_stmt|;
 if|if
 condition|(
 name|home
 operator|==
 literal|null
 condition|)
-name|propFile
+block|{
+name|home
 operator|=
-operator|new
-name|File
+name|System
+operator|.
+name|getProperty
 argument_list|(
-name|FAVOURITES_FILE
+literal|"user.home"
 argument_list|)
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|".eXist"
 expr_stmt|;
-else|else
-name|propFile
+block|}
+comment|// Try to load the file contents. If it cannot been found at the expected location,
+comment|// see if the classloader can do anything about it:
+name|favouritesFile
 operator|=
 operator|new
 name|File
 argument_list|(
 name|home
-operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"file.separator"
 argument_list|,
-literal|"/"
-argument_list|)
-operator|+
 name|FAVOURITES_FILE
 argument_list|)
 expr_stmt|;
@@ -2346,7 +2394,6 @@ name|pin
 init|=
 literal|null
 decl_stmt|;
-comment|// Try to load from file
 try|try
 block|{
 name|pin
@@ -2354,7 +2401,7 @@ operator|=
 operator|new
 name|FileInputStream
 argument_list|(
-name|propFile
+name|favouritesFile
 argument_list|)
 expr_stmt|;
 block|}
@@ -2364,16 +2411,6 @@ name|FileNotFoundException
 name|ex
 parameter_list|)
 block|{
-comment|// File not found, no exception handling
-block|}
-if|if
-condition|(
-name|pin
-operator|==
-literal|null
-condition|)
-block|{
-comment|// Try to load via classloader
 name|pin
 operator|=
 name|InteractiveClient
@@ -2386,14 +2423,22 @@ name|FAVOURITES_FILE
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If we were unable to load anything, just return an empty array.
 if|if
 condition|(
 name|pin
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
-comment|// Try to load properties from stream
+return|return
+operator|new
+name|Favourite
+index|[]
+block|{}
+return|;
+block|}
+comment|// Try to load the properties
 try|try
 block|{
 name|connectionProps
@@ -2415,7 +2460,6 @@ name|IOException
 name|ex
 parameter_list|)
 block|{
-block|}
 block|}
 name|Map
 name|favourites
@@ -2673,64 +2717,40 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|String
-name|home
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
-name|File
-name|propFile
-decl_stmt|;
-if|if
-condition|(
-name|home
-operator|==
-literal|null
-condition|)
-name|propFile
-operator|=
-operator|new
-name|File
-argument_list|(
-literal|"connections.properties"
-argument_list|)
-expr_stmt|;
-else|else
-name|propFile
-operator|=
-operator|new
-name|File
-argument_list|(
-name|home
-operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"file.separator"
-argument_list|,
-literal|"/"
-argument_list|)
-operator|+
-literal|"connections.properties"
-argument_list|)
-expr_stmt|;
 name|OutputStream
 name|os
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|favouritesFile
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|favouritesFile
+operator|.
+name|getParentFile
+argument_list|()
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
+name|favouritesFile
+operator|.
+name|createNewFile
+argument_list|()
+expr_stmt|;
+block|}
 name|os
 operator|=
 operator|new
 name|FileOutputStream
 argument_list|(
-name|propFile
+name|favouritesFile
 argument_list|)
 expr_stmt|;
 name|connectionProps
@@ -2778,6 +2798,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Returns the username that is used to connect to the database.      *       * @return the username      */
 specifier|public
 name|String
 name|getUsername
@@ -2790,6 +2811,7 @@ name|getText
 argument_list|()
 return|;
 block|}
+comment|/**      * Returns the password that is used to connect to the database.      *       * @return the password      */
 specifier|public
 name|String
 name|getPassword
@@ -2806,6 +2828,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**      * Returns the database uri.      *       * @return the uri      */
 specifier|public
 name|String
 name|getUri
@@ -2993,12 +3016,13 @@ return|return
 name|url
 return|;
 block|}
+comment|/**     	 * Compares<code>o</code> to this favourite by comparing the     	 * connection names to the object's toString() output.     	 *      	 * @see java.util.Comparator#compareTo(Object)     	 */
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
 name|Object
-name|o2
+name|o
 parameter_list|)
 block|{
 return|return
@@ -3006,7 +3030,7 @@ name|name
 operator|.
 name|compareTo
 argument_list|(
-name|o2
+name|o
 operator|.
 name|toString
 argument_list|()
