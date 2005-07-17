@@ -289,6 +289,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|XMLUtil
 import|;
 end_import
@@ -545,6 +557,8 @@ begin_class
 specifier|public
 class|class
 name|NativeValueIndex
+implements|implements
+name|ContentLoadingObserver
 block|{
 specifier|private
 specifier|final
@@ -651,7 +665,7 @@ name|booleanValue
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** store and index given element into this value index */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#storeElement(int, org.exist.dom.ElementImpl, java.lang.String) 	 */
 specifier|public
 name|void
 name|storeElement
@@ -737,7 +751,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** store and index given attribute into this value index */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#storeAttribute(org.exist.storage.RangeIndexSpec, org.exist.dom.AttrImpl) 	 */
 specifier|public
 name|void
 name|storeAttribute
@@ -826,7 +840,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** set the current document; generally called before calling an operation */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#setDocument(org.exist.dom.DocumentImpl) 	 */
 specifier|public
 name|void
 name|setDocument
@@ -842,7 +856,7 @@ operator|=
 name|document
 expr_stmt|;
 block|}
-comment|/** writes the pending items into the BFile, for the current document's collection */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#flush() 	 */
 specifier|public
 name|void
 name|flush
@@ -1159,7 +1173,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** triggers a cache sync, i.e. forces BFile to write out all cached pages.	 	sync() is called from time to time by the background sync daemon. */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#sync() 	 */
 specifier|public
 name|void
 name|sync
@@ -1232,7 +1246,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Drop all index entries for the given collection.      *       * @param collection      */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.collections.Collection) 	 */
 specifier|public
 name|void
 name|dropIndex
@@ -1363,7 +1377,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Drop all index entries for the given document.      *       * @param doc      * @throws ReadOnlyException      */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl) 	 */
 specifier|public
 name|void
 name|dropIndex
@@ -1824,7 +1838,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** TODO document */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl) 	 */
 specifier|public
 name|void
 name|reindex
@@ -2406,7 +2420,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** remove all pending modifications from the value index,  	 * for the current document. */
+comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#remove() 	 */
 specifier|public
 name|void
 name|remove
@@ -5030,6 +5044,18 @@ return|return
 literal|true
 return|;
 block|}
+block|}
+specifier|public
+name|void
+name|addRow
+parameter_list|(
+name|QName
+name|qname
+parameter_list|,
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
 block|}
 block|}
 end_class
