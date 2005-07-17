@@ -846,7 +846,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  *@author     Wolfgang Meier  */
+comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *   * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  * @link org.exist.storage.NativeElementIndex,  * @link org.exist.storage.NativeTextEngine,  * @link org.exist.storage.NativeValueIndex,   * @link org.exist.storage.NativeValueIndexByQName  *   * This class dispatches the various events (defined by the methods   * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  *   *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -1537,6 +1537,7 @@ if|if
 condition|(
 name|qnameValueIndexation
 condition|)
+block|{
 name|qnameValueIndex
 operator|=
 operator|new
@@ -1547,6 +1548,12 @@ argument_list|,
 name|valuesDbQname
 argument_list|)
 expr_stmt|;
+name|addContentLoadingObserver
+argument_list|(
+name|qnameValueIndex
+argument_list|)
+expr_stmt|;
+block|}
 name|xmlSerializer
 operator|=
 operator|new
@@ -1565,6 +1572,21 @@ argument_list|(
 name|this
 argument_list|,
 name|elementsDb
+argument_list|)
+expr_stmt|;
+name|addContentLoadingObserver
+argument_list|(
+name|textEngine
+argument_list|)
+expr_stmt|;
+name|addContentLoadingObserver
+argument_list|(
+name|valueIndex
+argument_list|)
+expr_stmt|;
+name|addContentLoadingObserver
+argument_list|(
+name|elementIndex
 argument_list|)
 expr_stmt|;
 name|user
@@ -1775,6 +1797,98 @@ return|return
 name|valuesDb
 return|;
 block|}
+comment|/** Observer Design Pattern: List of ContentLoadingObserver objects */
+specifier|private
+name|List
+name|contentLoadingObservers
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
+comment|/** Observer Design Pattern: add an observer. */
+specifier|public
+name|void
+name|addContentLoadingObserver
+parameter_list|(
+name|ContentLoadingObserver
+name|observer
+parameter_list|)
+block|{
+name|contentLoadingObservers
+operator|.
+name|add
+argument_list|(
+name|observer
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Observer Design Pattern: remove an observer. */
+specifier|public
+name|void
+name|removeContentLoadingObserver
+parameter_list|(
+name|ContentLoadingObserver
+name|observer
+parameter_list|)
+block|{
+name|contentLoadingObservers
+operator|.
+name|remove
+argument_list|(
+name|observer
+argument_list|)
+expr_stmt|;
+block|}
+comment|// ============ dispatch the various events to indexing classes ==========
+specifier|private
+name|void
+name|notifyDropIndex
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+throws|throws
+name|ReadOnlyException
+block|{
+for|for
+control|(
+name|Iterator
+name|iter
+init|=
+name|contentLoadingObservers
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|iter
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|ContentLoadingObserver
+name|observer
+init|=
+operator|(
+name|ContentLoadingObserver
+operator|)
+name|iter
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|observer
+operator|.
+name|dropIndex
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// etc ... TODO for all methods of ContentLoadingObserver
 comment|/** changes // into /  */
 specifier|protected
 specifier|final
