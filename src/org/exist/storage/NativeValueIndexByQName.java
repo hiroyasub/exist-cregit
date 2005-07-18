@@ -375,6 +375,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** switch to activate/deactivate the feature "new index by QName" */
+specifier|private
+name|boolean
+name|qnameValueIndexation
+init|=
+literal|true
+decl_stmt|;
+comment|// false;
 specifier|public
 name|NativeValueIndexByQName
 parameter_list|(

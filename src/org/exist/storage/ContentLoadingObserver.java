@@ -110,7 +110,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Receives callback event during document(s) loading;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subjet (alias observable). */
+comment|/** Receives callback event during document(s) loading;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subject (alias observable). */
 end_comment
 
 begin_interface
