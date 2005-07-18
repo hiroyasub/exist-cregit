@@ -5746,6 +5746,11 @@ argument_list|(
 name|currentPath
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|indexText
+condition|)
+block|{
 name|boolean
 name|valore
 init|=
@@ -5768,10 +5773,6 @@ name|currentPath
 argument_list|)
 operator|)
 decl_stmt|;
-if|if
-condition|(
-name|indexText
-condition|)
 name|textEngine
 operator|.
 name|storeText
@@ -5786,6 +5787,7 @@ argument_list|,
 name|valore
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 if|if
@@ -7094,18 +7096,33 @@ name|TEXT_NODE
 case|:
 comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
+name|boolean
+name|indexText
+init|=
+literal|true
+decl_stmt|;
 if|if
 condition|(
 name|ftIdx
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
+name|currentPath
+operator|!=
+literal|null
+condition|)
+name|indexText
+operator|=
 name|ftIdx
 operator|.
 name|match
 argument_list|(
 name|currentPath
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|indexText
 condition|)
 block|{
 name|boolean
@@ -7113,6 +7130,10 @@ name|valore
 init|=
 operator|(
 name|ftIdx
+operator|==
+literal|null
+operator|||
+name|currentPath
 operator|==
 literal|null
 condition|?
