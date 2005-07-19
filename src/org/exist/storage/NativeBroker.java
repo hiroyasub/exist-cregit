@@ -5256,7 +5256,7 @@ name|NodePath
 name|currentPath
 parameter_list|,
 name|boolean
-name|index2
+name|index
 parameter_list|)
 block|{
 name|this
