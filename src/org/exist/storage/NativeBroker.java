@@ -5062,7 +5062,7 @@ return|return
 name|nextDocId
 return|;
 block|}
-comment|/** Delegate for Node Processings : index */
+comment|/** Delegate for Node Processings : indexing */
 specifier|private
 class|class
 name|NodeProcessor
@@ -5108,7 +5108,7 @@ specifier|private
 name|int
 name|level
 decl_stmt|;
-comment|/** overall switch to activate fulltest indexation */
+comment|/** overall switch to activate fulltext indexation */
 specifier|private
 name|boolean
 name|index
@@ -5320,6 +5320,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// --move to-- NativeValueIndex
 name|RangeIndexSpec
 name|spec
 init|=
@@ -5356,6 +5357,7 @@ name|getQName
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// --move to-- NativeValueIndexByQName
 if|if
 condition|(
 name|qnIdx
@@ -5373,6 +5375,7 @@ name|QNAME_INDEX
 expr_stmt|;
 block|}
 block|}
+comment|// --move to-- NativeTextEngine
 if|if
 condition|(
 name|ftIdx
@@ -5418,6 +5421,8 @@ operator|.
 name|MIXED_CONTENT
 expr_stmt|;
 block|}
+comment|// --move to-- NativeValueIndex NativeValueIndexByQName NativeTextEngine
+comment|// CAUTION TODO setIndexType( newIndexType | getIndexType() );
 operator|(
 operator|(
 name|ElementImpl
@@ -5436,80 +5441,12 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-name|QName
-name|idxQName
-init|=
-operator|new
-name|QName
-argument_list|(
-literal|'@'
-operator|+
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|currentPath
-operator|!=
-literal|null
-condition|)
-name|currentPath
-operator|.
-name|addComponent
-argument_list|(
-name|idxQName
-argument_list|)
-expr_stmt|;
-name|GeneralRangeIndexSpec
-name|valSpec
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|idxSpec
-operator|!=
-literal|null
-condition|)
-block|{
-name|valSpec
-operator|=
-name|idxSpec
-operator|.
-name|getIndexByPath
-argument_list|(
-name|currentPath
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|valSpec
-operator|!=
-literal|null
-condition|)
-block|{
-name|indexType
-operator|=
-name|valSpec
-operator|.
-name|getIndexType
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 name|boolean
 name|indexAttribs
 init|=
 literal|false
 decl_stmt|;
+comment|// --move to-- NativeElementIndex NativeValueIndex NativeTextEngine
 if|if
 condition|(
 name|index
@@ -5543,6 +5480,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// --move to-- NativeElementIndex
+comment|// TODO : elementIndex.markNode(node, currentPath, index);
 name|elementIndex
 operator|.
 name|setDocument
@@ -5596,6 +5535,45 @@ argument_list|,
 name|tempProxy
 argument_list|)
 expr_stmt|;
+comment|// --move to-- NativeValueIndex
+comment|// TODO : valueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
+name|GeneralRangeIndexSpec
+name|valSpec
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|idxSpec
+operator|!=
+literal|null
+condition|)
+block|{
+name|valSpec
+operator|=
+name|idxSpec
+operator|.
+name|getIndexByPath
+argument_list|(
+name|currentPath
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|valSpec
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexType
+operator|=
+name|valSpec
+operator|.
+name|getIndexType
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|valSpec
@@ -5623,6 +5601,8 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+comment|// --move to-- NativeValueIndexByQName
+comment|// TODO : qnameValueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
 if|if
 condition|(
 name|idxSpec
@@ -5632,6 +5612,38 @@ operator|&&
 name|qnameValueIndexation
 condition|)
 block|{
+name|QName
+name|idxQName
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|'@'
+operator|+
+name|node
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|currentPath
+operator|!=
+literal|null
+condition|)
+name|currentPath
+operator|.
+name|addComponent
+argument_list|(
+name|idxQName
+argument_list|)
+expr_stmt|;
 name|RangeIndexSpec
 name|qnIdx
 init|=
@@ -5670,6 +5682,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// --move to-- NativeTextEngine
+comment|// TODO : textEngine.storeAttribute( (AttrImpl)node, currentPath, index);
 if|if
 condition|(
 name|indexAttribs
@@ -5689,6 +5703,8 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
+comment|// --move to-- NativeElementIndex
+comment|// TODO : elementIndex.markNode(node, currentPath, index);
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if
@@ -5748,6 +5764,7 @@ name|tempProxy
 argument_list|)
 expr_stmt|;
 block|}
+comment|// --move to-- ???
 if|if
 condition|(
 name|currentPath
@@ -5765,6 +5782,8 @@ name|Node
 operator|.
 name|TEXT_NODE
 case|:
+comment|// --move to-- NativeTextEngine
+comment|// TODO textEngine.storeText( (TextImpl) node, currentPath, index);
 comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
 name|boolean
@@ -5841,7 +5860,7 @@ block|}
 break|break;
 block|}
 block|}
-comment|/** Stores this node into the database */
+comment|/** Stores this node into the database, if it's an element */
 specifier|public
 name|void
 name|store
@@ -11309,7 +11328,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Removes the Node Reference from the database. 	 * The index will be updated later, i.e. after all nodes have been physically  	 * removed. See {@link #endRemove()}.  	 * removeNode() just adds the node ids to the list in elementIndex  	 * for later removal. 	 */
+comment|/** Removes the Node Reference from the database. 	 * The index will be updated later, i.e. after all nodes have been physically  	 * removed. See {@link #endRemove()}.  	 * removeNode() just adds the node ids to the list in elementIndex  	 * for later removal. 	 *<br> 	 * Note: We need the content string to be able to remove the index entry based on that content. 	 */
 specifier|public
 name|void
 name|removeNode
@@ -11498,6 +11517,8 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+comment|// --move to-- NativeElementIndex
+comment|// TODO elementIndex.markNode(node, currentPath, true );
 comment|// save element by calling ElementIndex
 name|qname
 operator|=
@@ -11538,6 +11559,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// --move to-- NativeValueIndex
+comment|// TODO : valueIndex.markNode(node, currentPath, true );
 name|GeneralRangeIndexSpec
 name|spec
 init|=
@@ -11580,6 +11603,8 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
+comment|// --move to-- NativeValueIndexByQName
+comment|// TODO : qnameValueIndex.markNode(node, currentPath, true );
 name|RangeIndexSpec
 name|qnIdx
 init|=
@@ -11634,6 +11659,8 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+comment|// --move to-- NativeElementIndex
+comment|// TODO elementIndex.markNode(node, currentPath, true );
 name|QName
 name|idxQName
 init|=
@@ -11692,6 +11719,8 @@ argument_list|,
 name|tempProxy
 argument_list|)
 expr_stmt|;
+comment|// --move to-- NativeTextEngine
+comment|// TODO : textEngine.storeAttribute( (AttrImpl)node, currentPath, true);
 comment|// check if attribute value should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
 name|boolean
@@ -11732,6 +11761,8 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
+comment|// --move to-- NativeValueIndex
+comment|// TODO : valueIndex.storeAttribute( (AttrImpl)node, currentPath, true);
 if|if
 condition|(
 name|idxSpec
@@ -11776,6 +11807,8 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+comment|// --move to-- NativeValueIndexByQName
+comment|// TODO : qnameValueIndex.storeAttribute( (AttrImpl)node, currentPath, true);
 name|RangeIndexSpec
 name|qnIdx
 init|=
@@ -11816,6 +11849,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// --move to-- NativeElementIndex
+comment|// TODO : elementIndex.markNode( (AttrImpl)node, currentPath);
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if
@@ -11885,6 +11920,8 @@ name|Node
 operator|.
 name|TEXT_NODE
 case|:
+comment|// --move to-- NativeTextEngine
+comment|// TODO : textEngine.storeText( (AttrImpl)node, currentPath, true);
 comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
 if|if
@@ -14321,7 +14358,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 *@param index overall switch to activate fulltest indexation 	 */
+comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 *@param index overall switch to activate fulltext indexation 	 */
 specifier|public
 name|void
 name|store

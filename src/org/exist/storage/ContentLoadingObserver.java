@@ -33,18 +33,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|AttrImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -79,30 +67,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|ReadOnlyException
@@ -110,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Receives callback event during document(s) loading;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subject (alias observable). */
+comment|/** Receives callback event during document(s) loading;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subject (alias observable).  *   * Note: when we will have more than one runtime switch , we will refactor   * fullTextIndexSwitch into an object */
 end_comment
 
 begin_interface
@@ -135,30 +99,14 @@ name|content
 parameter_list|)
 function_decl|;
 comment|/** store and index given attribute */
-specifier|public
-specifier|abstract
-name|void
-name|storeAttribute
-parameter_list|(
-name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|AttrImpl
-name|node
-parameter_list|)
-function_decl|;
-comment|/** Add an index entry for the given QName and NodeProxy.      * Added entries are written to the list of pending entries. Call      * {@link #flush()} to flush all pending entries.      */
-specifier|public
-name|void
-name|addRow
-parameter_list|(
-name|QName
-name|qname
-parameter_list|,
-name|NodeProxy
-name|proxy
-parameter_list|)
-function_decl|;
+comment|// TODO public abstract void storeAttribute( AttrImpl node, NodePath currentPath, boolean fullTextIndexSwitch );
+comment|/** store and index given text node */
+comment|// TODO public abstract void storeText( TextImpl node, NodePath currentPath, boolean fullTextIndexSwitch );
+comment|/** Mark given Element; 	 * added entries are written to the list of pending entries. Call      * {@link #flush()} to flush all pending entries. 	 *<br> 	 * Notes: changed name from storeElement() */
+comment|// TODO public abstract void markElement( ElementImpl node, NodePath currentPath, String content );
+comment|/** Mark given Node; 	 * add an index entry for the given node.      * Added entries are written to the list of pending entries. Call      * {@link #flush()} to flush all pending entries.      * Note: changed name from addRow()      */
+comment|// public void addRow(QName qname, NodeProxy proxy);
+comment|// TODO public void markNode(NodeImpl node, NodePath currentPath, boolean fullTextIndexSwitch);
 comment|/** set the current document; generally called before calling an operation */
 specifier|public
 specifier|abstract
