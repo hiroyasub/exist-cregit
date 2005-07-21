@@ -441,6 +441,8 @@ name|values
 index|[
 literal|0
 index|]
+argument_list|,
+literal|null
 argument_list|)
 return|;
 else|else
@@ -450,6 +452,8 @@ operator|.
 name|javaObjectToXPath
 argument_list|(
 name|values
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}

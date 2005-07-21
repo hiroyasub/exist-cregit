@@ -1289,6 +1289,9 @@ operator|.
 name|javaObjectToXPath
 argument_list|(
 name|result
+argument_list|,
+name|getContext
+argument_list|()
 argument_list|)
 return|;
 block|}

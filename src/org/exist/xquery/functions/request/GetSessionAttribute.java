@@ -481,6 +481,8 @@ operator|.
 name|javaObjectToXPath
 argument_list|(
 name|o
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}

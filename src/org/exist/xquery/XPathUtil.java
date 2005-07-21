@@ -311,6 +311,9 @@ name|javaObjectToXPath
 parameter_list|(
 name|Object
 name|obj
+parameter_list|,
+name|XQueryContext
+name|context
 parameter_list|)
 throws|throws
 name|XPathException
@@ -528,7 +531,9 @@ name|builder
 init|=
 operator|new
 name|MemTreeBuilder
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|builder
 operator|.
@@ -723,6 +728,8 @@ name|i
 operator|.
 name|next
 argument_list|()
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1028,6 +1035,8 @@ name|array
 index|[
 name|i
 index|]
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 expr_stmt|;

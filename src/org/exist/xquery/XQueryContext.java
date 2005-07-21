@@ -2849,6 +2849,8 @@ operator|.
 name|javaObjectToXPath
 argument_list|(
 name|value
+argument_list|,
+name|this
 argument_list|)
 decl_stmt|;
 name|var
