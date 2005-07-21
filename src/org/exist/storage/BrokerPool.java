@@ -2636,6 +2636,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|triggerCheckpoint
+parameter_list|()
+block|{
+comment|// TODO jmv
+block|}
 block|}
 end_class
 

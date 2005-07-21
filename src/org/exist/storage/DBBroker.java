@@ -1032,7 +1032,7 @@ name|long
 name|address
 parameter_list|)
 function_decl|;
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/system. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.util.Lock} 	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/system. It will be loaded and locked according to the 	 * lockMode argument.  	 *           * The caller should take care to release the collection lock properly.          *           * @param name the collection path          * @param lockMode one of the modes specified in class {@link org.exist.util.Lock}          * @return collection or null if no collection matches the path          */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1045,7 +1045,7 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/system. 	 *  	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/system.          *           * @return collection or null if no collection matches the path          */
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -1079,7 +1079,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/** 	 *  Return a {@link org.exist.storage.store.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
+comment|/**          *  Return a {@link org.exist.storage.store.DOMFileIterator} starting          * at the specified node.          *          */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1099,7 +1099,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Return a {@link org.exist.storage.store.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
+comment|/**          *  Return a {@link org.exist.storage.store.DOMFileIterator} starting          * at the specified node.          *          */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1116,7 +1116,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Return a {@link org.exist.storage.store.NodeIterator} starting 	 * at the specified node. 	 *  	 * @param proxy 	 * @return 	 */
+comment|/**          * Return a {@link org.exist.storage.store.NodeIterator} starting          * at the specified node.          *           * @param proxy 	 * @return 	 */
 specifier|public
 name|Iterator
 name|getNodeIterator
@@ -1192,7 +1192,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Get a new document id that does not yet exist within the collection. 	 */
+comment|/**          * Get a new document id that does not yet exist within the collection.          */
 specifier|public
 specifier|abstract
 name|int
@@ -1202,7 +1202,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
+comment|/**          * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -1360,7 +1360,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove the collection and all its subcollections from 	 * the database. 	 *  	 */
+comment|/** 	 * Remove the collection and all its subcollections from          * the database.          *           */
 specifier|public
 specifier|abstract
 name|boolean
@@ -1372,7 +1372,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Remove a document from the database. 	 * 	 */
+comment|/**          *  Remove a document from the database.          *          */
 specifier|public
 name|void
 name|removeDocument
@@ -1417,7 +1417,15 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      */
+specifier|protected
+specifier|abstract
+name|void
+name|repair
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.          */
 specifier|public
 specifier|abstract
 name|void
@@ -1457,7 +1465,7 @@ name|shutdown
 parameter_list|()
 block|{
 block|}
-comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 */
+comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by          *      the Broker to determine if a node's content should be          *      fulltext-indexed).          */
 specifier|public
 specifier|abstract
 name|void
@@ -1511,7 +1519,7 @@ name|String
 name|content
 parameter_list|)
 function_decl|;
-comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
+comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}).          *          * @param doc the document's metadata to store.          */
 specifier|public
 specifier|abstract
 name|void
@@ -1574,7 +1582,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 */
+comment|/**          * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move          * @param destination the destination collection          * @param newName the new name the collection should have in the destination collection          */
 specifier|public
 specifier|abstract
 name|void
@@ -1594,7 +1602,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move          * @param destination the destination collection          * @param new Name the new name the resource should have in the destination collection          */
 specifier|public
 specifier|abstract
 name|void
@@ -1614,7 +1622,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move          * @param destination the destination collection          * @param new Name the new name the resource should have in the destination collection          */
 specifier|public
 specifier|abstract
 name|void
@@ -1634,7 +1642,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection          * @throws PermissionDeniedException          * @throws LockException          */
 specifier|public
 specifier|abstract
 name|void
@@ -1664,7 +1672,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
+comment|/**          * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1695,7 +1703,7 @@ name|int
 name|syncEvent
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
+comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes.          *          *@param  node  Description of the Parameter          */
 specifier|public
 name|void
 name|update
