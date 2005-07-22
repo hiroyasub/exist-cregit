@@ -1458,9 +1458,6 @@ name|cur
 operator|.
 name|getCreationTime
 argument_list|()
-operator|.
-name|getTime
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1896,9 +1893,6 @@ name|ris
 operator|.
 name|getCreationTime
 argument_list|()
-operator|.
-name|getTime
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1922,9 +1916,6 @@ argument_list|(
 name|ris
 operator|.
 name|getLastModificationTime
-argument_list|()
-operator|.
-name|getTime
 argument_list|()
 argument_list|)
 argument_list|)

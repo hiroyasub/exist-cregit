@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -14,16 +10,6 @@ operator|.
 name|functions
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
 
 begin_import
 import|import
@@ -64,13 +50,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|FunCurrentDateTime
+name|FunImplicitTimezone
 extends|extends
 name|Function
 block|{
@@ -86,18 +72,14 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"current-dateTime"
+literal|"implicit-timezone"
 argument_list|,
 name|Module
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the xs:dateTime (with timezone) that is current at some time "
-operator|+
-literal|"during the evaluation of a query or transformation in which fn:current-dateTime() "
-operator|+
-literal|"is executed."
+literal|"Returns the value of the implicit timezone property from the dynamic context."
 argument_list|,
 literal|null
 argument_list|,
@@ -106,7 +88,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|DATE_TIME
+name|DAY_TIME_DURATION
 argument_list|,
 name|Cardinality
 operator|.
@@ -115,7 +97,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
-name|FunCurrentDateTime
+name|FunImplicitTimezone
 parameter_list|(
 name|XQueryContext
 name|context
@@ -144,19 +126,15 @@ name|XPathException
 block|{
 return|return
 operator|new
-name|DateTimeValue
+name|DayTimeDurationValue
 argument_list|(
-operator|new
-name|Date
-argument_list|(
-name|context
+name|TimeUtils
 operator|.
-name|getWatchDog
+name|getInstance
 argument_list|()
 operator|.
-name|getStartTime
+name|getLocalTimezoneOffsetMillis
 argument_list|()
-argument_list|)
 argument_list|)
 return|;
 block|}

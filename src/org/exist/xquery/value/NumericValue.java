@@ -453,6 +453,17 @@ name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
+name|IntegerValue
+name|idiv
+parameter_list|(
+name|NumericValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+specifier|public
+specifier|abstract
 name|NumericValue
 name|abs
 parameter_list|()

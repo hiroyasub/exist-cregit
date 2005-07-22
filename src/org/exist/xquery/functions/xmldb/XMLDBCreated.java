@@ -537,9 +537,6 @@ operator|new
 name|DateTimeValue
 argument_list|(
 name|date
-operator|.
-name|getTime
-argument_list|()
 argument_list|)
 return|;
 block|}
