@@ -1425,7 +1425,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.          */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      *      * @param collection to store          */
 specifier|public
 specifier|abstract
 name|void
