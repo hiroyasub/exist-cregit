@@ -292,6 +292,28 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testAtomic6
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"deep-equal( 1. , xs:integer(1) )"
+argument_list|)
+expr_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"deep-equal( xs:double(1) , xs:integer(1) )"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testEmptySeq
 parameter_list|()
 throws|throws
