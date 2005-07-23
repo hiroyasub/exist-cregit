@@ -806,25 +806,6 @@ condition|)
 block|{
 if|if
 condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Read start of transaction: "
-operator|+
-name|next
-operator|.
-name|getTransactionId
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
 name|runningTxns
 operator|.
 name|get

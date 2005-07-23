@@ -427,18 +427,6 @@ name|int
 name|mode
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Releasing lock: "
-operator|+
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 switch|switch
 condition|(
 name|mode

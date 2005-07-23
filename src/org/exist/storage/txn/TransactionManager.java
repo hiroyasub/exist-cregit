@@ -260,8 +260,6 @@ specifier|public
 name|Txn
 name|beginTransaction
 parameter_list|()
-throws|throws
-name|TransactionException
 block|{
 if|if
 condition|(
@@ -277,6 +275,8 @@ init|=
 name|nextTxnId
 operator|++
 decl_stmt|;
+try|try
+block|{
 name|logManager
 operator|.
 name|writeToLog
@@ -288,6 +288,23 @@ name|txnId
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TransactionException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to create transaction. Error writing to log file."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 operator|new
 name|Txn
@@ -334,7 +351,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        txn.releaseAll();
+name|txn
+operator|.
+name|releaseAll
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -344,7 +365,11 @@ name|Txn
 name|txn
 parameter_list|)
 block|{
-comment|//        txn.releaseAll();
+name|txn
+operator|.
+name|releaseAll
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * Create a new checkpoint. A checkpoint fixes the current database state. All dirty pages      * are written to disk and the log file is cleaned.      *       * This method is called from       * {@link org.exist.storage.BrokerPool} within pre-defined periods. It      * should not be called from somewhere else. The database needs to      * be in a stable state (all transactions completed, no operations running).      *       * @throws TransactionException      */
 specifier|public

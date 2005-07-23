@@ -309,6 +309,7 @@ expr_stmt|;
 block|}
 comment|/**      * Write a log entry to the log.      *       * @param loggable      * @throws TransactionException      */
 specifier|public
+specifier|synchronized
 name|void
 name|writeToLog
 parameter_list|(
@@ -328,6 +329,7 @@ argument_list|,
 literal|"Write to log during recovery. Should not happen!"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -336,6 +338,7 @@ operator|.
 name|getLogSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|required
 init|=
@@ -364,6 +367,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|long
 name|lsn
 init|=
@@ -470,6 +474,7 @@ block|}
 block|}
 comment|/**      * Flush the current log buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync      * @throws TransactionException      */
 specifier|public
+specifier|synchronized
 name|void
 name|flushToLog
 parameter_list|(

@@ -285,6 +285,7 @@ operator|-
 literal|2
 argument_list|)
 expr_stmt|;
+specifier|final
 name|short
 name|prevLink
 init|=
@@ -294,6 +295,7 @@ name|getShort
 argument_list|()
 decl_stmt|;
 comment|// position the channel to the start of the previous entry and mark it
+specifier|final
 name|int
 name|prevStart
 init|=
@@ -313,6 +315,7 @@ argument_list|(
 name|prevStart
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -339,6 +342,7 @@ parameter_list|()
 throws|throws
 name|LogException
 block|{
+specifier|final
 name|long
 name|lsn
 init|=
@@ -348,9 +352,6 @@ name|create
 argument_list|(
 name|fileNumber
 argument_list|,
-operator|(
-name|int
-operator|)
 name|mapped
 operator|.
 name|position
@@ -359,6 +360,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 name|entryType
 init|=
@@ -367,6 +369,7 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|transactId
 init|=
@@ -375,6 +378,7 @@ operator|.
 name|getLong
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|size
 init|=
@@ -404,6 +408,7 @@ argument_list|(
 literal|"Invalid length"
 argument_list|)
 throw|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -464,6 +469,7 @@ argument_list|(
 name|mapped
 argument_list|)
 expr_stmt|;
+specifier|final
 name|short
 name|prevLink
 init|=
@@ -564,6 +570,10 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|mapped
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
