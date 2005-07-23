@@ -8736,6 +8736,17 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|files
+index|[
+name|i
+index|]
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+continue|continue;
 name|start
 operator|=
 name|System
@@ -8771,7 +8782,7 @@ name|mimeType
 operator|=
 name|MimeType
 operator|.
-name|XML_TYPE
+name|BINARY_TYPE
 expr_stmt|;
 name|document
 operator|=
