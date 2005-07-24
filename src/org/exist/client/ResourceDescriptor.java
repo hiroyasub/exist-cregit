@@ -13,6 +13,16 @@ name|client
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
 begin_comment
 comment|/**  * Description of a resource, suitable for display by the graphical  * client for instance.  *  * @author gpothier  */
 end_comment
@@ -39,6 +49,10 @@ specifier|private
 name|String
 name|permissions
 decl_stmt|;
+specifier|private
+name|Date
+name|date
+decl_stmt|;
 specifier|public
 name|ResourceDescriptor
 parameter_list|(
@@ -53,6 +67,9 @@ name|aGroup
 parameter_list|,
 name|String
 name|aPermissions
+parameter_list|,
+name|Date
+name|date
 parameter_list|)
 block|{
 name|name
@@ -70,6 +87,12 @@ expr_stmt|;
 name|permissions
 operator|=
 name|aPermissions
+expr_stmt|;
+name|this
+operator|.
+name|date
+operator|=
+name|date
 expr_stmt|;
 block|}
 specifier|public
@@ -109,6 +132,15 @@ name|permissions
 return|;
 block|}
 specifier|public
+name|Date
+name|getDate
+parameter_list|()
+block|{
+return|return
+name|date
+return|;
+block|}
+specifier|public
 specifier|abstract
 name|boolean
 name|isCollection
@@ -135,6 +167,9 @@ name|aGroup
 parameter_list|,
 name|String
 name|aPermissions
+parameter_list|,
+name|Date
+name|date
 parameter_list|)
 block|{
 name|super
@@ -146,6 +181,8 @@ argument_list|,
 name|aGroup
 argument_list|,
 name|aPermissions
+argument_list|,
+name|date
 argument_list|)
 expr_stmt|;
 block|}
@@ -182,6 +219,8 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -199,6 +238,9 @@ name|aGroup
 parameter_list|,
 name|String
 name|aPermissions
+parameter_list|,
+name|Date
+name|date
 parameter_list|)
 block|{
 name|super
@@ -210,6 +252,8 @@ argument_list|,
 name|aGroup
 argument_list|,
 name|aPermissions
+argument_list|,
+name|date
 argument_list|)
 expr_stmt|;
 block|}

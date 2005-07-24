@@ -271,6 +271,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -1011,14 +1021,7 @@ class|class
 name|InteractiveClient
 block|{
 comment|// ANSI colors for ls display
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|ANSI_BLUE
-init|=
-literal|"\033[0;34m"
-decl_stmt|;
+comment|// private final static String ANSI_BLUE = "\033[0;34m";
 specifier|private
 specifier|final
 specifier|static
@@ -2040,6 +2043,9 @@ name|perm
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+literal|null
+comment|/*lastModificationTime*/
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2174,6 +2180,28 @@ index|[
 name|j
 index|]
 expr_stmt|;
+name|Date
+name|lastModificationTime
+init|=
+operator|(
+operator|(
+name|EXistResource
+operator|)
+name|res
+operator|)
+operator|.
+name|getLastModificationTime
+argument_list|()
+decl_stmt|;
+name|resources
+index|[
+name|i
+index|]
+operator|+=
+literal|"\t"
+operator|+
+name|lastModificationTime
+expr_stmt|;
 if|if
 condition|(
 name|startGUI
@@ -2207,6 +2235,8 @@ name|perm
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|lastModificationTime
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2234,7 +2264,7 @@ name|tableData
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Display document on screen.      *      * @param str      *                   Description of the Parameter      */
+comment|/**      * Display document on screen, by 24 lines.      *      * @param str string containing the document.      */
 specifier|protected
 name|void
 name|more
@@ -2259,11 +2289,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
+comment|// int count = 0;
 name|int
 name|ch
 decl_stmt|;
@@ -2496,11 +2522,7 @@ argument_list|(
 literal|3
 argument_list|)
 decl_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
+comment|// int i = 0;
 name|int
 name|token
 decl_stmt|;
@@ -7000,6 +7022,7 @@ name|sortBy
 argument_list|)
 return|;
 block|}
+comment|/** unused, for testing purposes ?? */
 specifier|private
 specifier|final
 name|void
@@ -7213,9 +7236,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Collection
-name|collection
-init|=
+comment|// Collection collection =
 name|DatabaseManager
 operator|.
 name|getCollection
@@ -7243,7 +7264,7 @@ argument_list|(
 literal|"password"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|XPathQueryService
 name|service
 init|=
@@ -8553,9 +8574,7 @@ decl_stmt|;
 name|Resource
 name|document
 decl_stmt|;
-name|String
-name|xml
-decl_stmt|;
+comment|// String xml;
 name|File
 name|files
 index|[]
@@ -9965,7 +9984,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// Reads user password from given input stream.
+comment|/** NEVER USED !!! Reads user password from given input stream. */
 specifier|private
 name|char
 index|[]
@@ -9985,9 +10004,7 @@ name|char
 index|[]
 name|buf
 decl_stmt|;
-name|int
-name|i
-decl_stmt|;
+comment|// int i;
 name|buf
 operator|=
 name|lineBuffer
@@ -11330,9 +11347,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|String
-name|data
-decl_stmt|;
+comment|// String data;
 if|if
 condition|(
 name|res
@@ -12209,7 +12224,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Main processing method for the InteractiveClient object      *      * @param args      *                   Description of the Parameter      */
+comment|/**      * Main processing method for the InteractiveClient object      *      * @param args arguments from main()      */
 specifier|public
 name|void
 name|run
@@ -12358,18 +12373,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|String
-name|pathSep
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"file.separator"
-argument_list|,
-literal|"/"
-argument_list|)
-decl_stmt|;
 name|String
 name|home
 init|=
@@ -13526,7 +13529,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|// TODO: handle exception
 name|System
 operator|.
 name|err

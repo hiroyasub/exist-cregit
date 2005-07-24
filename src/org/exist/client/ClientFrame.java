@@ -935,6 +935,10 @@ name|OutputKeys
 import|;
 end_import
 
+begin_comment
+comment|/** Main frame of the eXist GUI */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -950,6 +954,14 @@ name|ActionListener
 implements|,
 name|MouseListener
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -3963,7 +3975,7 @@ name|enabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)      */
+comment|/** @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent) */
 specifier|public
 name|void
 name|keyPressed
@@ -3982,7 +3994,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)      */
+comment|/** @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent) */
 specifier|public
 name|void
 name|keyReleased
@@ -4241,7 +4253,7 @@ block|}
 break|break;
 block|}
 block|}
-comment|/*      * (non-Javadoc)      *      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)      */
+comment|/** @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent) */
 specifier|public
 name|void
 name|actionPerformed
@@ -4535,9 +4547,7 @@ init|=
 name|getSelectedResources
 argument_list|()
 decl_stmt|;
-name|String
-name|cmd
-decl_stmt|;
+comment|// String cmd;
 if|if
 condition|(
 name|JOptionPane
@@ -7824,6 +7834,14 @@ extends|extends
 name|AbstractTableModel
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
+specifier|private
 specifier|final
 name|String
 index|[]
@@ -7840,6 +7858,8 @@ block|,
 literal|"Group"
 block|,
 literal|"Resource"
+block|,
+literal|"Date"
 block|}
 decl_stmt|;
 specifier|private
@@ -8003,6 +8023,15 @@ return|return
 name|row
 operator|.
 name|getName
+argument_list|()
+return|;
+case|case
+literal|4
+case|:
+return|return
+name|row
+operator|.
+name|getDate
 argument_list|()
 return|;
 default|default:
