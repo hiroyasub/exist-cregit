@@ -308,7 +308,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances. You may  * have multiple instances defined, each using its own configuration,  * database directory etc.. To define multiple instances, pass an  * identification string to the static method configure() and use  * getInstance(id) to retrieve an instance.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * This class controls all available instances of the database. Use it to  * configure, start and stop database instances. You may have multiple instances  * defined, each using its own configuration, database directory etc.. To define  * multiple instances, pass an identification string to the static method  * configure() and use getInstance(id) to retrieve an instance.  *   *   * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -358,7 +358,7 @@ operator|new
 name|ShutdownThread
 argument_list|()
 decl_stmt|;
-comment|/**	size of the internal buffer for collection objects */
+comment|/** size of the internal buffer for collection objects */
 specifier|public
 specifier|final
 specifier|static
@@ -390,7 +390,7 @@ name|FORCE_CORRUPTION
 init|=
 literal|false
 decl_stmt|;
-comment|/**          * Should a shutdown hook be registered with the JVM? If set to true, method          * {@link #configure(String, int, int, Configuration)} will register a shutdown thread 	 * which takes care to shut down the database if the application receives a kill or term 	 * signal. However, this is unnecessary if the calling application has already registered 	 * a shutdown hook. 	 *   	 * @param register 	 */
+comment|/**      * Should a shutdown hook be registered with the JVM? If set to true, method      * {@link #configure(String, int, int, Configuration)} will register a      * shutdown thread which takes care to shut down the database if the      * application receives a kill or term signal. However, this is unnecessary      * if the calling application has already registered a shutdown hook.      *       * @param register      */
 specifier|public
 specifier|final
 specifier|static
@@ -436,7 +436,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Configure a new BrokerPool instance. Call this before calling getInstance(). 	 * 	 *@param  id The name to identify this database instance. You may have more 	 *	than one instance with different configurations. 	 *@param  minBrokers Minimum number of database brokers to start during initialization. 	 *@param  maxBrokers Maximum number of database brokers available to handle requests. 	 *@param  config The configuration object used by this instance. 	 *@exception  EXistException thrown if initialization fails. 	 */
+comment|/**      * Configure a new BrokerPool instance. Call this before calling      * getInstance().      *       * @param id      *            The name to identify this database instance. You may have more      *            than one instance with different configurations.      * @param minBrokers      *            Minimum number of database brokers to start during      *            initialization.      * @param maxBrokers      *            Maximum number of database brokers available to handle      *            requests.      * @param config      *            The configuration object used by this instance.      * @exception EXistException      *                thrown if initialization fails.      */
 specifier|public
 specifier|final
 specifier|static
@@ -630,7 +630,7 @@ name|DEFAULT_INSTANCE
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Singleton method. Get the BrokerPool for a specified database instance. 	 * 	 *@return        The instance. 	 *@exception  EXistException  thrown if the instance has not been configured. 	 */
+comment|/**      * Singleton method. Get the BrokerPool for a specified database instance.      *       * @return The instance.      * @exception EXistException      *                thrown if the instance has not been configured.      */
 specifier|public
 specifier|final
 specifier|static
@@ -678,7 +678,7 @@ literal|" has not been configured yet"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns the default database instance, i.e. the instance configured for id      * {@link #DEFAULT_INSTANCE}.      *       * @return      * @throws EXistException      */
+comment|/**      * Returns the default database instance, i.e. the instance configured for      * id {@link #DEFAULT_INSTANCE}.      *       * @return      * @throws EXistException      */
 specifier|public
 specifier|final
 specifier|static
@@ -712,7 +712,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Shutdown running brokers. After calling this method, the BrokerPool is 	 *  no longer configured. You have to configure it again by calling 	 *  configure(). 	 */
+comment|/**      * Shutdown running brokers. After calling this method, the BrokerPool is no      * longer configured. You have to configure it again by calling configure().      */
 specifier|public
 specifier|final
 specifier|static
@@ -958,16 +958,16 @@ specifier|private
 name|boolean
 name|isTransactional
 init|=
-literal|true
+literal|false
 decl_stmt|;
-comment|/**          * During shutdown: max. time to wait (in ms.) for running jobs to return          */
+comment|/**      * During shutdown: max. time to wait (in ms.) for running jobs to return      */
 specifier|private
 name|long
 name|maxShutdownWait
 init|=
 name|MAX_SHUTDOWN_WAIT
 decl_stmt|;
-comment|/**      * The security manager for this database instance.       *        * @uml.property name="secManager"      * @uml.associationEnd multiplicity="(1 1)"      */
+comment|/**      * The security manager for this database instance.      *       * @uml.property name="secManager"      * @uml.associationEnd multiplicity="(1 1)"      */
 specifier|private
 name|SecurityManager
 name|secManager
@@ -992,12 +992,12 @@ specifier|private
 name|CacheManager
 name|cacheManager
 decl_stmt|;
-comment|/** 	 * SyncDaemon is a daemon thread which periodically triggers a cache sync. 	 */
+comment|/**      * SyncDaemon is a daemon thread which periodically triggers a cache sync.      */
 specifier|private
 name|SyncDaemon
 name|syncDaemon
 decl_stmt|;
-comment|/** 	 * Stack for pending system maintenance tasks. 	 */
+comment|/**      * Stack for pending system maintenance tasks.      */
 specifier|private
 name|Stack
 name|waitingTasks
@@ -1006,7 +1006,7 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
-comment|/** 	 * ShutdownListener will be notified when the database instance shuts down.          */
+comment|/**      * ShutdownListener will be notified when the database instance shuts down.      */
 specifier|private
 name|ShutdownListener
 name|shutdownListener
@@ -1014,7 +1014,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// --------------- Global pools: --------------------------
-comment|/**          * The global pool for compiled XQuery expressions.      *       * @uml.associationEnd multiplicity="(1 1)"          */
+comment|/**      * The global pool for compiled XQuery expressions.      *       * @uml.associationEnd multiplicity="(1 1)"      */
 specifier|private
 name|XQueryPool
 name|xqueryCache
@@ -1023,12 +1023,12 @@ specifier|private
 name|XQueryMonitor
 name|monitor
 decl_stmt|;
-comment|/**          * The global collection cache.      *       * @uml.associationEnd multiplicity="(1 1)"          */
+comment|/**      * The global collection cache.      *       * @uml.associationEnd multiplicity="(1 1)"      */
 specifier|protected
 name|CollectionCache
 name|collectionsCache
 decl_stmt|;
-comment|/** 	 * Global pool for SAX XMLReader instances. 	 */
+comment|/**      * Global pool for SAX XMLReader instances.      */
 specifier|protected
 name|XMLReaderPool
 name|xmlReaderPool
@@ -1043,7 +1043,7 @@ argument_list|(
 literal|"xupdate"
 argument_list|)
 decl_stmt|;
-comment|/** 	 *  Constructor for the BrokerPool object 	 * 	 *@exception  EXistException  Description of the Exception 	 */
+comment|/**      * Constructor for the BrokerPool object      *       * @exception EXistException      *                Description of the Exception      */
 specifier|public
 name|BrokerPool
 parameter_list|(
@@ -1215,11 +1215,13 @@ name|conf
 operator|=
 name|config
 expr_stmt|;
-comment|//        cacheManager = new CacheManager(config);
-comment|//                xqueryCache = new XQueryPool(conf);
-comment|//                monitor = new XQueryMonitor();
-comment|//                collectionsCache = new CollectionCache(this, COLLECTION_BUFFER_SIZE, 20);
-comment|//                xmlReaderPool = new XMLReaderPool(new XMLReaderObjectFactory(this), 5, 0);
+comment|// cacheManager = new CacheManager(config);
+comment|// xqueryCache = new XQueryPool(conf);
+comment|// monitor = new XQueryMonitor();
+comment|// collectionsCache = new CollectionCache(this, COLLECTION_BUFFER_SIZE,
+comment|// 20);
+comment|// xmlReaderPool = new XMLReaderPool(new XMLReaderObjectFactory(this),
+comment|// 5, 0);
 name|syncDaemon
 operator|=
 operator|new
@@ -1262,7 +1264,7 @@ return|return
 name|instanceId
 return|;
 block|}
-comment|/** 	 *  Number of database instances currently active, i.e. busy. 	 * 	 *@return 	 */
+comment|/**      * Number of database instances currently active, i.e. busy.      *       * @return      */
 specifier|public
 name|int
 name|active
@@ -1275,7 +1277,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Number of database instances currently available to serve requests. 	 */
+comment|/**      * Number of database instances currently available to serve requests.      */
 specifier|public
 name|int
 name|available
@@ -1288,7 +1290,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Returns the configuration object for this database 	 * instance. 	 */
+comment|/**      * Returns the configuration object for this database instance.      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -1298,7 +1300,7 @@ return|return
 name|conf
 return|;
 block|}
-comment|/** 	 * Returns the global collections cache. Collection objects 	 * are shared within one database instance. 	 *  	 * @return 	 */
+comment|/**      * Returns the global collections cache. Collection objects are shared      * within one database instance.      *       * @return      */
 specifier|public
 name|CollectionCache
 name|getCollectionsCache
@@ -1363,7 +1365,7 @@ return|return
 name|txnManager
 return|;
 block|}
-comment|/**      * Returns the global update lock for this database instance.      * This lock is used by XUpdate operations to avoid that      * concurrent XUpdate requests modify the database until all      * document locks have been correctly set.      *        * @return      */
+comment|/**      * Returns the global update lock for this database instance. This lock is      * used by XUpdate operations to avoid that concurrent XUpdate requests      * modify the database until all document locks have been correctly set.      *       * @return      */
 specifier|public
 name|Lock
 name|getGlobalUpdateLock
@@ -1373,7 +1375,7 @@ return|return
 name|globalXUpdateLock
 return|;
 block|}
-comment|/**      *  Returns the security manager responsible for this pool      *      *@return    The securityManager value      */
+comment|/**      * Returns the security manager responsible for this pool      *       * @return The securityManager value      */
 specifier|public
 name|org
 operator|.
@@ -1430,7 +1432,7 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
-comment|//Thread.dumpStack();
+comment|// Thread.dumpStack();
 name|LOG
 operator|.
 name|debug
@@ -1481,7 +1483,7 @@ return|return
 name|broker
 return|;
 block|}
-comment|/** 	 *  Get a DBBroker instance from the pool. 	 */
+comment|/**      * Get a DBBroker instance from the pool.      */
 specifier|public
 name|DBBroker
 name|get
@@ -1627,7 +1629,7 @@ name|broker
 return|;
 block|}
 block|}
-comment|/** 	 * Get a DBBroker instance and set its current user to user. 	 *   	 * @param user 	 * @return 	 * @throws EXistException 	 */
+comment|/**      * Get a DBBroker instance and set its current user to user.      *       * @param user      * @return      * @throws EXistException      */
 specifier|public
 name|DBBroker
 name|get
@@ -1655,7 +1657,7 @@ return|return
 name|broker
 return|;
 block|}
-comment|/** 	 * Reload the security manager. This method is called whenever the 	 * users.xml file has been changed. 	 *  	 * @param broker 	 */
+comment|/**      * Reload the security manager. This method is called whenever the users.xml      * file has been changed.      *       * @param broker      */
 specifier|public
 name|void
 name|reloadSecurityManager
@@ -1688,7 +1690,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Initialize the data directory. If the directory does not exist, try to create      * one. Switch to read-only mode if creation fails or write is not allowed.      *       * @throws EXistException      */
+comment|/**      * Initialize the data directory. If the directory does not exist, try to      * create one. Switch to read-only mode if creation fails or write is not      * allowed.      *       * @throws EXistException      */
 specifier|protected
 name|File
 name|initDataDir
@@ -1843,7 +1845,7 @@ return|return
 name|dir
 return|;
 block|}
-comment|/**          *  Initialize the current instance.          *          *@exception  EXistException  Description of the Exception          */
+comment|/**      * Initialize the current instance.      *       * @exception EXistException      *                Description of the Exception      */
 specifier|protected
 name|void
 name|initialize
@@ -1903,7 +1905,8 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// initialize the data directory to see if we have to run in read-only mode
+comment|// initialize the data directory to see if we have to run in read-only
+comment|// mode
 name|File
 name|dataDir
 init|=
@@ -1972,7 +1975,8 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|// jmv collectionsCache = new CollectionCache(this, COLLECTION_BUFFER_SIZE, 20);
+comment|// jmv collectionsCache = new CollectionCache(this,
+comment|// COLLECTION_BUFFER_SIZE, 20);
 if|if
 condition|(
 operator|!
@@ -1993,7 +1997,7 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
-comment|/* txn,*/
+comment|/* txn, */
 literal|"/db"
 argument_list|)
 expr_stmt|;
@@ -2139,7 +2143,7 @@ literal|" initialized."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true while the database is initializing 	 * the database files and the security manager. 	 *  	 * @return 	 */
+comment|/**      * Returns true while the database is initializing the database files and      * the security manager.      *       * @return      */
 specifier|protected
 name|boolean
 name|isInitializing
@@ -2149,7 +2153,7 @@ return|return
 name|initializing
 return|;
 block|}
-comment|/** 	 * Release a DBBroker instance into the pool. 	 *  	 * If there are pending system maintenance tasks, 	 * the method will block until these tasks have finished.  	 *  	 *@param  broker  the DBBroker object to release 	 */
+comment|/**      * Release a DBBroker instance into the pool.      *       * If there are pending system maintenance tasks, the method will block      * until these tasks have finished.      *       * @param broker      *            the DBBroker object to release      */
 specifier|public
 name|void
 name|release
@@ -2250,7 +2254,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Write buffers to disk. release() calls this 	 * method after a specified period of time 	 * to flush buffers. 	 *  	 * @param broker 	 */
+comment|/**      * Write buffers to disk. release() calls this method after a specified      * period of time to flush buffers.      *       * @param broker      */
 specifier|public
 name|void
 name|sync
@@ -2345,7 +2349,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  Shutdown all brokers. */
+comment|/** Shutdown all brokers. */
 specifier|public
 specifier|synchronized
 name|void
@@ -2589,7 +2593,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Returns maximum of concurrent Brokers. 		 * 		 *@return    The max value 		 */
+comment|/**      * Returns maximum of concurrent Brokers.      *       * @return The max value      */
 specifier|public
 name|int
 name|getMax
@@ -2599,7 +2603,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/** 	 *  Has this BrokerPool been configured? 	 * 	 *@return    The configured value 	 */
+comment|/**      * Has this BrokerPool been configured?      *       * @return The configured value      */
 specifier|public
 specifier|final
 name|boolean
@@ -2612,7 +2616,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * Trigger a synchronize event. If the database is idle, 	 * the sync will be run immediately. Otherwise, we wait 	 * until all running threads have returned. 	 *  	 * @param event 	 */
+comment|/**      * Trigger a synchronize event. If the database is idle, the sync will be      * run immediately. Otherwise, we wait until all running threads have      * returned.      *       * @param event      */
 specifier|public
 name|void
 name|triggerSync
@@ -2721,7 +2725,7 @@ operator|=
 name|listener
 expr_stmt|;
 block|}
-comment|/**      * Schedule a system maintenance task for execution.      * The task will be executed immediately if the database      * is currently idle. Otherwise, the task will be registered      * and called by {@link #release(DBBroker)} once all running       * threads have returned.      *       * @param task      */
+comment|/**      * Schedule a system maintenance task for execution. The task will be      * executed immediately if the database is currently idle. Otherwise, the      * task will be registered and called by {@link #release(DBBroker)} once all      * running threads have returned.      *       * @param task      */
 specifier|public
 name|void
 name|triggerSystemTask
@@ -2823,7 +2827,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Executes a waiting maintenance task. The database will be stopped      * during its execution.      */
+comment|/**      * Executes a waiting maintenance task. The database will be stopped during      * its execution.      */
 specifier|private
 name|void
 name|runSystemTask
@@ -3109,7 +3113,7 @@ operator|=
 name|task
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see java.lang.Runnable#run()          */
+comment|/*          * (non-Javadoc)          *           * @see java.lang.Runnable#run()          */
 specifier|public
 name|void
 name|run
@@ -3131,7 +3135,7 @@ name|ShutdownThread
 extends|extends
 name|Thread
 block|{
-comment|/**  Constructor for the ShutdownThread object */
+comment|/** Constructor for the ShutdownThread object */
 specifier|public
 name|ShutdownThread
 parameter_list|()
@@ -3140,7 +3144,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**  Main processing method for the ShutdownThread object */
+comment|/** Main processing method for the ShutdownThread object */
 specifier|public
 name|void
 name|run
@@ -3162,12 +3166,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *        * @uml.property name="transactionManager"      * @uml.associationEnd multiplicity="(0 1)" inverse="brokerPool:org.exist.storage.txn.TransactionManager"      */
+comment|/**      *       * @uml.property name="transactionManager"      * @uml.associationEnd multiplicity="(0 1)"      *                     inverse="brokerPool:org.exist.storage.txn.TransactionManager"      */
 specifier|private
 name|TransactionManager
 name|transactionManager
 decl_stmt|;
-comment|/**      *        * @uml.property name="transactionManager"      */
+comment|/**      *       * @uml.property name="transactionManager"      */
 specifier|public
 name|void
 name|setTransactionManager
