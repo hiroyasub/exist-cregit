@@ -312,6 +312,12 @@ name|TransactionException
 block|{
 if|if
 condition|(
+operator|!
+name|enabled
+condition|)
+return|return;
+if|if
+condition|(
 name|enabled
 condition|)
 block|{
