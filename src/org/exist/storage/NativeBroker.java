@@ -5792,7 +5792,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug("found ID: " + qname.getLocalName());
+comment|//						LOG.debug("found ID: " + qname.toString());
 name|qname
 operator|.
 name|setNameType
@@ -15255,6 +15255,8 @@ name|domDb
 operator|.
 name|addBinary
 argument_list|(
+name|blob
+argument_list|,
 name|data
 argument_list|)
 argument_list|)

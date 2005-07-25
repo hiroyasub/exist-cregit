@@ -572,6 +572,13 @@ argument_list|(
 name|mimeType
 argument_list|)
 expr_stmt|;
+name|ostream
+operator|.
+name|writeInt
+argument_list|(
+name|pageCount
+argument_list|)
+expr_stmt|;
 specifier|final
 name|byte
 index|[]
@@ -650,6 +657,13 @@ operator|=
 name|istream
 operator|.
 name|readUTF
+argument_list|()
+expr_stmt|;
+name|pageCount
+operator|=
+name|istream
+operator|.
+name|readInt
 argument_list|()
 expr_stmt|;
 block|}
