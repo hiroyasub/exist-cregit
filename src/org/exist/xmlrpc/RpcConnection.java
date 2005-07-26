@@ -13591,14 +13591,11 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|saveCollection
+name|storeDocument
 argument_list|(
 name|transaction
 argument_list|,
 name|doc
-operator|.
-name|getCollection
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|transact
