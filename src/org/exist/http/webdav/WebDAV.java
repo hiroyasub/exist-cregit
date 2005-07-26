@@ -225,9 +225,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|serializers
+name|lock
 operator|.
-name|EXistOutputKeys
+name|Lock
 import|;
 end_import
 
@@ -237,9 +237,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|Lock
+name|serializers
+operator|.
+name|EXistOutputKeys
 import|;
 end_import
 

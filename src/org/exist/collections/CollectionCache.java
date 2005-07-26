@@ -55,7 +55,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|lock
 operator|.
 name|Lock
 import|;
@@ -90,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global cache for {@link org.exist.collections.Collection} objects. The  * cache is owned by {@link org.exist.storage.store.CollectionStore}. It is not  * synchronized. Thus a lock should be obtained on the collection store before  * accessing the cache.  *   * @author wolf  */
+comment|/**  * Global cache for {@link org.exist.collections.Collection} objects. The  * cache is owned by {@link org.exist.storage.index.CollectionStore}. It is not  * synchronized. Thus a lock should be obtained on the collection store before  * accessing the cache.  *   * @author wolf  */
 end_comment
 
 begin_class

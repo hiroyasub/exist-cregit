@@ -307,6 +307,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -1032,7 +1046,7 @@ name|long
 name|address
 parameter_list|)
 function_decl|;
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/system. It will be loaded and locked according to the 	 * lockMode argument.  	 *           * The caller should take care to release the collection lock properly.          *           * @param name the collection path          * @param lockMode one of the modes specified in class {@link org.exist.util.Lock}          * @return collection or null if no collection matches the path          */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/system. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1045,11 +1059,14 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/system.          *           * @return collection or null if no collection matches the path          */
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/system. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -1060,15 +1077,6 @@ return|return
 literal|null
 return|;
 block|}
-specifier|public
-specifier|abstract
-name|void
-name|reloadCollection
-parameter_list|(
-name|Collection
-name|collection
-parameter_list|)
-function_decl|;
 comment|/** 	 *  Returns the configuration object used to initialize the  	 * current database instance. 	 *  	 */
 specifier|public
 name|Configuration
@@ -1079,7 +1087,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/**          *  Return a {@link org.exist.storage.store.DOMFileIterator} starting          * at the specified node.          *          */
+comment|/** 	 *  Return a {@link org.exist.storage.dom.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1099,7 +1107,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**          *  Return a {@link org.exist.storage.store.DOMFileIterator} starting          * at the specified node.          *          */
+comment|/** 	 *  Return a {@link org.exist.storage.dom.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1116,7 +1124,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**          * Return a {@link org.exist.storage.store.NodeIterator} starting          * at the specified node.          *           * @param proxy 	 * @return 	 */
+comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting 	 * at the specified node. 	 *  	 * @param proxy 	 * @return 	 */
 specifier|public
 name|Iterator
 name|getNodeIterator
@@ -1159,50 +1167,20 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Returns a DocumentSet containing all the documents found in the 	 * specified collection. The collection should be specified with its full path. 	 */
-specifier|public
-specifier|abstract
-name|DocumentSet
-name|getDocumentsByCollection
-parameter_list|(
-name|String
-name|collection
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-function_decl|;
-comment|/** 	 *  Returns a DocumentSet containing all the documents found in the 	 * specified collection. The collection should be specified with its full path. 	 *  	 * @param inclusive if true, recursively include documents in subcollections.  	 */
-specifier|public
-specifier|abstract
-name|DocumentSet
-name|getDocumentsByCollection
-parameter_list|(
-name|String
-name|collection
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
-name|boolean
-name|inclusive
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-function_decl|;
-comment|/**          * Get a new document id that does not yet exist within the collection.          */
+comment|/** 	 * Get a new document id that does not yet exist within the collection. 	 */
 specifier|public
 specifier|abstract
 name|int
 name|getNextDocId
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/**          * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
+comment|/** 	 * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -1360,23 +1338,29 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove the collection and all its subcollections from          * the database.          *           */
+comment|/** 	 * Remove the collection and all its subcollections from 	 * the database. 	 *  	 */
 specifier|public
 specifier|abstract
 name|boolean
 name|removeCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**          *  Remove a document from the database.          *          */
+comment|/** 	 *  Remove a document from the database. 	 * 	 */
 specifier|public
 name|void
 name|removeDocument
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -1385,6 +1369,8 @@ name|PermissionDeniedException
 block|{
 name|removeDocument
 argument_list|(
+name|transaction
+argument_list|,
 name|document
 argument_list|,
 literal|true
@@ -1396,6 +1382,9 @@ specifier|abstract
 name|void
 name|removeDocument
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|,
@@ -1425,33 +1414,21 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      *      * @param collection to store          */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      *      * @param collection to store 	 */
 specifier|public
 specifier|abstract
 name|void
 name|saveCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Append a new document to the specified collection. The document data      * will be appended to the collection data.      *       * @param collection      * @param doc      * @throws PermissionDeniedException      */
-specifier|public
-name|void
-name|addDocument
-parameter_list|(
-name|Collection
-name|collection
-parameter_list|,
-name|DocumentImpl
-name|doc
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-block|}
 specifier|public
 name|void
 name|closeDocument
@@ -1465,12 +1442,15 @@ name|shutdown
 parameter_list|()
 block|{
 block|}
-comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by          *      the Broker to determine if a node's content should be          *      fulltext-indexed).          */
+comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 */
 specifier|public
 specifier|abstract
 name|void
 name|store
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|,
@@ -1485,6 +1465,9 @@ specifier|public
 name|void
 name|store
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|,
@@ -1494,6 +1477,8 @@ parameter_list|)
 block|{
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|node
 argument_list|,
 name|currentPath
@@ -1519,29 +1504,27 @@ name|String
 name|content
 parameter_list|)
 function_decl|;
-comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}).          *          * @param doc the document's metadata to store.          */
+comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
 specifier|public
 specifier|abstract
 name|void
 name|storeDocument
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Stores the document (descriptor) and it's parent collection.      *       * @param doc the document to store      * @throws LockException if document is write locked      * @throws PermissionDeniedException if you don't have the right to do this      */
 specifier|public
 specifier|abstract
 name|void
-name|updateDocument
+name|readDocuments
 parameter_list|(
-name|DocumentImpl
-name|doc
+name|Collection
+name|collection
 parameter_list|)
-throws|throws
-name|LockException
-throws|,
-name|PermissionDeniedException
 function_decl|;
 comment|/**      * Stores the given data under the given binary resource descriptor       * (BinaryDocument).      *       * @param blob the binary document descriptor      * @param data the document binary data      */
 specifier|public
@@ -1549,6 +1532,9 @@ specifier|abstract
 name|void
 name|storeBinaryResource
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|BinaryDocument
 name|blob
 parameter_list|,
@@ -1564,7 +1550,6 @@ name|byte
 index|[]
 name|getBinaryResourceData
 parameter_list|(
-specifier|final
 name|BinaryDocument
 name|blob
 parameter_list|)
@@ -1575,19 +1560,24 @@ specifier|abstract
 name|void
 name|removeBinaryResource
 parameter_list|(
-specifier|final
+name|Txn
+name|transaction
+parameter_list|,
 name|BinaryDocument
 name|blob
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**          * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move          * @param destination the destination collection          * @param newName the new name the collection should have in the destination collection          */
+comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
 name|moveCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|,
@@ -1602,12 +1592,15 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move          * @param destination the destination collection          * @param new Name the new name the resource should have in the destination collection          */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
 name|moveResource
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -1622,12 +1615,15 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move          * @param destination the destination collection          * @param new Name the new name the resource should have in the destination collection          */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
 name|copyCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|,
@@ -1642,12 +1638,15 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection          * @throws PermissionDeniedException          * @throws LockException          */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
 name|void
 name|copyResource
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -1668,11 +1667,14 @@ specifier|abstract
 name|void
 name|defrag
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**          * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
+comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * This checks if the DOM tree is consistent. 	 *  	 * @param doc 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1703,11 +1705,14 @@ name|int
 name|syncEvent
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes.          *          *@param  node  Description of the Parameter          */
+comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
 name|void
 name|update
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|)
@@ -1740,9 +1745,13 @@ name|pool
 return|;
 block|}
 specifier|public
+specifier|abstract
 name|void
 name|insertAfter
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 specifier|final
 name|NodeImpl
 name|previous
@@ -1751,19 +1760,14 @@ specifier|final
 name|NodeImpl
 name|node
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 specifier|public
 name|void
 name|reindex
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|oldDoc
 parameter_list|,
@@ -1786,12 +1790,17 @@ specifier|public
 name|void
 name|index
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|)
 block|{
 name|index
 argument_list|(
+name|transaction
+argument_list|,
 name|node
 argument_list|,
 literal|null
@@ -1802,6 +1811,9 @@ specifier|public
 name|void
 name|index
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|,
@@ -1821,7 +1833,9 @@ specifier|public
 name|void
 name|removeNode
 parameter_list|(
-specifier|final
+name|Txn
+name|transaction
+parameter_list|,
 name|NodeImpl
 name|node
 parameter_list|,
@@ -1899,16 +1913,6 @@ name|List
 name|docs
 parameter_list|)
 function_decl|;
-specifier|public
-name|void
-name|readDocumentMetadata
-parameter_list|(
-specifier|final
-name|DocumentImpl
-name|doc
-parameter_list|)
-block|{
-block|}
 comment|/** 	 *    	 */
 specifier|public
 specifier|abstract

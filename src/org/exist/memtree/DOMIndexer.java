@@ -179,6 +179,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -231,6 +245,10 @@ name|DBBroker
 name|broker
 decl_stmt|;
 specifier|private
+name|Txn
+name|transaction
+decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -266,6 +284,9 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -284,6 +305,12 @@ operator|.
 name|broker
 operator|=
 name|broker
+expr_stmt|;
+name|this
+operator|.
+name|transaction
+operator|=
+name|transaction
 expr_stmt|;
 name|this
 operator|.
@@ -532,6 +559,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|elem
 argument_list|,
 name|path
@@ -796,6 +825,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|elem
 argument_list|,
 name|currentPath
@@ -854,6 +885,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|elem
 argument_list|,
 name|currentPath
@@ -957,6 +990,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|text
 argument_list|,
 literal|null
@@ -1037,6 +1072,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|comment
 argument_list|,
 literal|null
@@ -1074,6 +1111,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|comment
 argument_list|,
 literal|null
@@ -1185,6 +1224,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|pi
 argument_list|,
 literal|null
@@ -1222,6 +1263,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|pi
 argument_list|,
 literal|null
@@ -1529,6 +1572,8 @@ name|broker
 operator|.
 name|store
 argument_list|(
+name|transaction
+argument_list|,
 name|attrib
 argument_list|,
 name|path

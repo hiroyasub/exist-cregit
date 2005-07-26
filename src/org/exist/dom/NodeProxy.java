@@ -67,9 +67,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|serializers
-operator|.
-name|Serializer
+name|StorageAddress
 import|;
 end_import
 
@@ -81,9 +79,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|store
+name|serializers
 operator|.
-name|StorageAddress
+name|Serializer
 import|;
 end_import
 

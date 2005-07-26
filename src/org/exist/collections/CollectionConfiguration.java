@@ -253,6 +253,7 @@ index|[
 literal|3
 index|]
 decl_stmt|;
+comment|/**      * @uml.associationEnd multiplicity="(0 1)"      */
 specifier|private
 name|IndexSpec
 name|indexSpec

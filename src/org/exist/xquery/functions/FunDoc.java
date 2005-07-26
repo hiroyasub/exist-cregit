@@ -81,7 +81,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
+operator|.
+name|lock
 operator|.
 name|Lock
 import|;

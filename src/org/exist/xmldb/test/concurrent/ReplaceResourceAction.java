@@ -224,7 +224,7 @@ name|addXMLResource
 argument_list|(
 name|col
 argument_list|,
-literal|"R1.xml"
+name|resourceName
 argument_list|,
 name|xml
 argument_list|)
@@ -234,9 +234,11 @@ name|result
 init|=
 name|DBUtils
 operator|.
-name|query
+name|queryResource
 argument_list|(
 name|col
+argument_list|,
+name|resourceName
 argument_list|,
 name|TEST_QUERY1
 argument_list|)
@@ -274,9 +276,11 @@ name|result
 operator|=
 name|DBUtils
 operator|.
-name|query
+name|queryResource
 argument_list|(
 name|col
+argument_list|,
+name|resourceName
 argument_list|,
 name|TEST_QUERY2
 argument_list|)
@@ -297,9 +301,11 @@ name|result
 operator|=
 name|DBUtils
 operator|.
-name|query
+name|queryResource
 argument_list|(
 name|col
+argument_list|,
+name|resourceName
 argument_list|,
 name|TEST_QUERY3
 argument_list|)

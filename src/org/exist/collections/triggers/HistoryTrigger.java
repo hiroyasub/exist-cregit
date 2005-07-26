@@ -286,6 +286,8 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
+literal|null
+argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
@@ -293,6 +295,8 @@ name|broker
 operator|.
 name|saveCollection
 argument_list|(
+literal|null
+argument_list|,
 name|destination
 argument_list|)
 expr_stmt|;
@@ -300,6 +304,8 @@ name|broker
 operator|.
 name|copyResource
 argument_list|(
+literal|null
+argument_list|,
 name|doc
 argument_list|,
 name|destination

@@ -45,9 +45,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|store
+name|dom
 operator|.
-name|BFile
+name|DOMFile
 import|;
 end_import
 
@@ -59,9 +59,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|store
+name|index
 operator|.
-name|DOMFile
+name|BFile
 import|;
 end_import
 

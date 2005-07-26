@@ -331,6 +331,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Collations
@@ -346,18 +360,6 @@ operator|.
 name|util
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Lock
 import|;
 end_import
 
@@ -710,7 +712,7 @@ name|pragmas
 init|=
 literal|null
 decl_stmt|;
-comment|// the watchdog object assigned to this query
+comment|/**      * the watchdog object assigned to this query      *        * @uml.property name="watchdog"      * @uml.associationEnd multiplicity="(1 1)"      */
 specifier|protected
 name|XQueryWatchDog
 name|watchdog

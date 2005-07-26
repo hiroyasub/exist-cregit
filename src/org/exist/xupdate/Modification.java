@@ -211,6 +211,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|StorageAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|XQueryPool
 import|;
 end_import
@@ -223,9 +235,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|store
+name|lock
 operator|.
-name|StorageAddress
+name|Lock
 import|;
 end_import
 
@@ -235,9 +247,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|Lock
+name|txn
+operator|.
+name|Txn
 import|;
 end_import
 
@@ -464,7 +478,10 @@ specifier|public
 specifier|abstract
 name|long
 name|process
-parameter_list|()
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
@@ -1042,6 +1059,9 @@ specifier|protected
 name|void
 name|checkFragmentation
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|)
@@ -1092,6 +1112,8 @@ name|broker
 operator|.
 name|defrag
 argument_list|(
+name|transaction
+argument_list|,
 name|next
 argument_list|)
 expr_stmt|;

@@ -21,9 +21,23 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|store
+name|dom
 operator|.
-name|*
+name|DOMFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|index
+operator|.
+name|BFile
 import|;
 end_import
 

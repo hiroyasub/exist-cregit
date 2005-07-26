@@ -41,6 +41,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|serializer
@@ -62,7 +76,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Internal class used to track some required fields when calling  * {@link org.exist.collections.Collection#validate(DBBroker, String, Node)} and  * {@link org.exist.collections.Collection#store(DBBroker, IndexInfo, Node, boolean)}.  * This class is not publicly readable.  *   * @author wolf  */
+comment|/**  * Internal class used to track required fields between calls to  * {@link org.exist.collections.Collection#validate(Txn, DBBroker, String, InputSource)} and  * {@link org.exist.collections.Collection#store(DBBroker, IndexInfo, InputSource, boolean)}.  *   * @author wolf  */
 end_comment
 
 begin_class

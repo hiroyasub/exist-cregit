@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    11. September 2002  */
+comment|/**  *  Static methods to deal with the signature of a node stored  *  in the first byte of the node data in the persistent dom.  */
 end_comment
 
 begin_class
@@ -115,7 +115,7 @@ name|ShortContent
 init|=
 literal|0x2
 decl_stmt|;
-comment|/**      *  Gets the length attribute of the Signatures class      *      *@param  type  Description of the Parameter      *@return       The length value      */
+comment|/**      *  Returns the storage size of the given type as      *  number of bytes required.      */
 specifier|public
 specifier|final
 specifier|static
@@ -154,7 +154,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**      *  Gets the sizeType attribute of the Signatures class      *      *@param  length  Description of the Parameter      *@return         The sizeType value      */
+comment|/**      *  Returns one of IntContent, ShortContent, ByteContent      *  or NoContent based on the number of bytes required      *  to store the integer value given in length.      */
 specifier|public
 specifier|final
 specifier|static
@@ -201,7 +201,7 @@ return|return
 name|NoContent
 return|;
 block|}
-comment|/**      *  Gets the type attribute of the Signatures class      *      *@param  signature  Description of the Parameter      *@return            The type value      */
+comment|/**      *  From the signature in byte 0 of the node data,      *  extract the node type and return a constant      *  as defined in {@link Node}.      */
 specifier|public
 specifier|final
 specifier|static
@@ -288,7 +288,6 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  type  Description of the Parameter      *@param  data  Description of the Parameter      *@param  pos   Description of the Parameter      *@return       Description of the Return Value      */
 specifier|public
 specifier|final
 specifier|static
@@ -360,7 +359,6 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@param  type  Description of the Parameter      *@param  size  Description of the Parameter      *@param  data  Description of the Parameter      *@param  pos   Description of the Parameter      */
 specifier|public
 specifier|final
 specifier|static

@@ -185,9 +185,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|serializers
+name|lock
 operator|.
-name|Serializer
+name|Lock
 import|;
 end_import
 
@@ -197,9 +197,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|Lock
+name|serializers
+operator|.
+name|Serializer
 import|;
 end_import
 
