@@ -5594,6 +5594,20 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+if|if
+condition|(
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getStatus
+argument_list|()
+operator|==
+name|UNUSED
+condition|)
+comment|// page is obviously deleted later
+return|return;
 specifier|final
 name|byte
 index|[]
