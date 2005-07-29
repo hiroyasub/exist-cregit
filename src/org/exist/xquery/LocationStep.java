@@ -252,6 +252,19 @@ name|inUpdate
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+name|boolean
+name|profilingEnabled
+init|=
+literal|false
+decl_stmt|;
+comment|// true;
+specifier|private
+name|long
+name|profilingThreshold
+init|=
+literal|5
+decl_stmt|;
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -602,6 +615,24 @@ block|}
 name|Sequence
 name|temp
 decl_stmt|;
+name|long
+name|t0
+init|=
+literal|0
+decl_stmt|;
+if|if
+condition|(
+name|profilingEnabled
+condition|)
+block|{
+name|t0
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|axis
@@ -798,6 +829,59 @@ argument_list|(
 literal|"Unsupported axis specified"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|profilingEnabled
+condition|)
+block|{
+comment|// TODO: add indentation
+name|long
+name|elapsedTime
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|t0
+decl_stmt|;
+if|if
+condition|(
+name|elapsedTime
+operator|>
+name|profilingThreshold
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"profiler>> "
+operator|+
+name|elapsedTime
+operator|+
+literal|"ms "
+operator|+
+literal|" LocationStep"
+operator|+
+literal|", "
+operator|+
+name|Constants
+operator|.
+name|AXISSPECIFIERS
+index|[
+name|axis
+index|]
+operator|+
+literal|"::"
+operator|+
+name|test
+operator|+
+literal|", inPredicate: "
+operator|+
+name|inPredicate
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
