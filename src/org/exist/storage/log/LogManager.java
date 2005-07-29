@@ -1204,6 +1204,11 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|latch
+init|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
@@ -1255,6 +1260,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|public
