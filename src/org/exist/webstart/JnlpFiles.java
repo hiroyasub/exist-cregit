@@ -114,7 +114,7 @@ literal|"libreadline-java\\.jar"
 block|,
 literal|"log4j-.*\\.jar"
 block|,
-literal|"xml-commons-resolver-.*\\.jar"
+literal|"resolver.*\\.jar"
 block|,
 literal|"xmldb\\.jar"
 block|,
