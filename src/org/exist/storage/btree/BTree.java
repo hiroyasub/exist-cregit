@@ -742,6 +742,24 @@ name|cache
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|closeAndRemove
+parameter_list|()
+block|{
+name|super
+operator|.
+name|closeAndRemove
+argument_list|()
+expr_stmt|;
+name|cacheManager
+operator|.
+name|deregisterCache
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 *  addValue adds a Value to the BTree and associates a pointer with it. The 	 *  pointer can be used for referencing any type of data, it just so happens 	 *  that dbXML uses it for referencing pages of associated data in the BTree 	 *  file or other files. 	 * 	 *@param  value               The Value to add 	 *@param  pointer             The pointer to associate with it 	 *@return                     The previous value for the pointer (or -1) 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
 specifier|public
 name|long

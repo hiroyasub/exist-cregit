@@ -419,7 +419,7 @@ specifier|static
 name|String
 name|directory
 init|=
-literal|"/home/wolf/xml/shakespeare"
+literal|"samples/shakespeare"
 decl_stmt|;
 specifier|private
 specifier|static

@@ -1257,6 +1257,16 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Initializing broker "
+operator|+
+name|hashCode
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|(
@@ -1690,6 +1700,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating words.dbx ....\n\n"
+argument_list|)
+expr_stmt|;
 name|dbWords
 operator|=
 operator|new
@@ -1735,21 +1752,6 @@ name|dbWords
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"words.dbx size: "
-operator|+
-name|dbWords
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|textEngine
 operator|=
 operator|new
@@ -1930,6 +1932,18 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
+comment|/** Remove all observers */
+specifier|public
+name|void
+name|clearContentLoadingObservers
+parameter_list|()
+block|{
+name|contentLoadingObservers
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** Observer Design Pattern: add an observer. */
 specifier|public
 name|void
@@ -6826,18 +6840,7 @@ name|boolean
 name|repairMode
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Reindexing document "
-operator|+
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("Reindexing document " + doc.getFileName());
 if|if
 condition|(
 name|doc
@@ -6862,15 +6865,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		final long start = System.currentTimeMillis();
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -6986,24 +6981,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"reindex took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|"ms."
-argument_list|)
-expr_stmt|;
+comment|//		LOG.debug("reindex took " + (System.currentTimeMillis() - start) + "ms.");
 block|}
 specifier|public
 name|void
@@ -10634,6 +10612,9 @@ argument_list|(
 literal|"Removing index files ..."
 argument_list|)
 expr_stmt|;
+name|clearContentLoadingObservers
+argument_list|()
+expr_stmt|;
 name|elementsDb
 operator|.
 name|closeAndRemove
@@ -10730,6 +10711,13 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Reindexing database files ..."
+argument_list|)
+expr_stmt|;
 name|reindex
 argument_list|(
 literal|null
