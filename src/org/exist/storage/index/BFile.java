@@ -5693,6 +5693,16 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|page
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|page
@@ -5705,18 +5715,10 @@ argument_list|()
 operator|==
 name|UNUSED
 condition|)
+block|{
 comment|// page is obviously deleted later
 return|return;
-specifier|final
-name|byte
-index|[]
-name|data
-init|=
-name|page
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
+block|}
 name|wp
 operator|=
 operator|new
@@ -6085,6 +6087,11 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+name|page
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|page
@@ -7513,7 +7520,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Len: "
+literal|"Storage error in page: "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|"; len: "
 operator|+
 name|len
 operator|+
@@ -7944,6 +7958,15 @@ argument_list|(
 name|newPage
 argument_list|)
 decl_stmt|;
+name|byte
+index|[]
+name|data
+init|=
+name|page
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|page
@@ -8004,10 +8027,8 @@ name|getWorkSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|byte
-index|[]
 name|data
-init|=
+operator|=
 operator|new
 name|byte
 index|[
@@ -8016,7 +8037,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 index|]
-decl_stmt|;
+expr_stmt|;
 name|ph
 operator|.
 name|nextTID
@@ -8038,15 +8059,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|byte
-index|[]
-name|data
-init|=
-name|page
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
 name|dp
 operator|=
 operator|new

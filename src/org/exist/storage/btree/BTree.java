@@ -1876,6 +1876,11 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+name|p
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 operator|(

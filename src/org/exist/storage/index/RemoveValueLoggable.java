@@ -325,7 +325,11 @@ operator|.
 name|dump
 argument_list|()
 operator|+
-literal|" - remove value from page "
+literal|" - remove value with tid "
+operator|+
+name|tid
+operator|+
+literal|" from page "
 operator|+
 name|page
 return|;

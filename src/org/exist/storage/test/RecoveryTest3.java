@@ -389,7 +389,7 @@ name|length
 operator|&&
 name|i
 operator|<
-literal|500
+literal|2000
 condition|;
 name|i
 operator|++
@@ -525,6 +525,12 @@ init|=
 name|startDB
 argument_list|()
 decl_stmt|;
+name|BrokerPool
+operator|.
+name|FORCE_CORRUPTION
+operator|=
+literal|true
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -560,12 +566,6 @@ name|SecurityManager
 operator|.
 name|SYSTEM_USER
 argument_list|)
-expr_stmt|;
-name|BrokerPool
-operator|.
-name|FORCE_CORRUPTION
-operator|=
-literal|true
 expr_stmt|;
 name|TransactionManager
 name|transact
@@ -697,7 +697,7 @@ name|length
 operator|&&
 name|i
 operator|<
-literal|500
+literal|2000
 condition|;
 name|i
 operator|++

@@ -365,7 +365,11 @@ operator|.
 name|dump
 argument_list|()
 operator|+
-literal|" - stored value on page "
+literal|" - stored value with tid "
+operator|+
+name|tid
+operator|+
+literal|" on page "
 operator|+
 name|page
 return|;
