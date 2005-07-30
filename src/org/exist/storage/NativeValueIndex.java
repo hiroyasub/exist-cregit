@@ -4150,7 +4150,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"The specified type: "
+literal|"The specified type: '"
 operator|+
 name|Type
 operator|.
@@ -4159,7 +4159,13 @@ argument_list|(
 name|xpathType
 argument_list|)
 operator|+
-literal|" cannot be used as index key. It does not implement interface Indexable."
+literal|"' and value '"
+operator|+
+name|value
+operator|+
+literal|"'"
+operator|+
+literal|" cannot be used as index key. It is null or does not implement interface Indexable."
 argument_list|)
 expr_stmt|;
 name|atomic

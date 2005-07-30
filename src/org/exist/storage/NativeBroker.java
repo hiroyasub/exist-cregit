@@ -5272,6 +5272,38 @@ name|indexAttribs
 init|=
 literal|false
 decl_stmt|;
+name|QName
+name|idxQName
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|'@'
+operator|+
+name|node
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|currentPath
+operator|!=
+literal|null
+condition|)
+name|currentPath
+operator|.
+name|addComponent
+argument_list|(
+name|idxQName
+argument_list|)
+expr_stmt|;
 comment|// --move to-- NativeElementIndex NativeValueIndex NativeTextEngine
 if|if
 condition|(
@@ -5525,8 +5557,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//                    // --move to-- ???
-comment|//                    if (currentPath != null)
-comment|//                        currentPath.removeLastComponent();
+if|if
+condition|(
+name|currentPath
+operator|!=
+literal|null
+condition|)
+name|currentPath
+operator|.
+name|removeLastComponent
+argument_list|()
+expr_stmt|;
 break|break;
 case|case
 name|Node
@@ -7622,10 +7663,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
 name|qnameValueIndex
 operator|.
 name|dropIndex
