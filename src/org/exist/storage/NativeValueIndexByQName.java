@@ -189,6 +189,20 @@ name|storage
 operator|.
 name|btree
 operator|.
+name|DBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|btree
+operator|.
 name|IndexQuery
 import|;
 end_import
@@ -268,6 +282,18 @@ operator|.
 name|util
 operator|.
 name|LongLinkedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ReadOnlyException
 import|;
 end_import
 
@@ -692,7 +718,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"The specified type: "
+literal|"The specified type: '"
 operator|+
 name|Type
 operator|.
@@ -701,7 +727,13 @@ argument_list|(
 name|xpathType
 argument_list|)
 operator|+
-literal|" cannot be used as index key. It does not implement interface Indexable."
+literal|"' and value '"
+operator|+
+name|value
+operator|+
+literal|"'"
+operator|+
+literal|" cannot be used as index key. It is null or does not implement interface Indexable."
 argument_list|)
 expr_stmt|;
 name|atomic
@@ -1317,8 +1349,6 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// if (currentPath != null)
-comment|// currentPath.addComponent(idxQName);
 name|RangeIndexSpec
 name|qnIdx
 init|=
@@ -1457,6 +1487,45 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+specifier|public
+name|void
+name|dropIndex
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+throws|throws
+name|ReadOnlyException
+block|{
+if|if
+condition|(
+name|qnameValueIndexation
+condition|)
+name|super
+operator|.
+name|dropIndex
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|DBException
+block|{
+if|if
+condition|(
+name|qnameValueIndexation
+condition|)
+name|db
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

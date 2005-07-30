@@ -10605,7 +10605,7 @@ condition|(
 name|qnameValueIndexation
 condition|)
 block|{
-name|valuesDb
+name|valuesDbQname
 operator|.
 name|closeAndRemove
 argument_list|()
@@ -11079,38 +11079,15 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-name|textEngine
-operator|.
-name|dropIndex
+name|notifyDropIndex
 argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-name|elementIndex
-operator|.
-name|dropIndex
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-name|valueIndex
-operator|.
-name|dropIndex
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
-name|qnameValueIndex
-operator|.
-name|dropIndex
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
+comment|//            textEngine.dropIndex(collection);
+comment|//            elementIndex.dropIndex(collection);
+comment|//            valueIndex.dropIndex(collection);
+comment|//            qnameValueIndex.dropIndex(collection);
 name|LOG
 operator|.
 name|debug
@@ -12252,46 +12229,26 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
-name|RangeIndexSpec
-name|qnIdx
-init|=
-name|idxSpec
-operator|.
-name|getIndexByQName
-argument_list|(
-name|idxQName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|qnIdx
-operator|!=
-literal|null
-operator|&&
-name|qnameValueIndexation
-condition|)
-block|{
-name|qnameValueIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//					RangeIndexSpec qnIdx = idxSpec.getIndexByQName(idxQName);
+comment|//					if (qnIdx != null&& qnameValueIndexation) {
+comment|//						qnameValueIndex.setDocument(doc);
+comment|//						qnameValueIndex.storeAttribute(qnIdx, (AttrImpl) node);
+comment|//					}
+block|}
 name|qnameValueIndex
 operator|.
 name|storeAttribute
 argument_list|(
-name|qnIdx
-argument_list|,
 operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+name|currentPath
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if
@@ -14657,11 +14614,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
-name|valuesDbQname
+comment|//            if (qnameValueIndexation)
+comment|//                valuesDbQname.close();
+name|qnameValueIndex
 operator|.
 name|close
 argument_list|()
@@ -15078,20 +15033,8 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
-name|IndexSpec
-name|idxSpec
-init|=
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getIdxConf
-argument_list|(
-name|this
-argument_list|)
-decl_stmt|;
+comment|//	    final IndexSpec idxSpec =
+comment|//		    doc.getCollection().getIdxConf(this);
 specifier|final
 name|int
 name|indexType
@@ -15190,19 +15133,7 @@ name|indexType
 argument_list|)
 condition|)
 block|{
-name|RangeIndexSpec
-name|qnIdx
-init|=
-name|idxSpec
-operator|.
-name|getIndexByQName
-argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
-argument_list|)
-decl_stmt|;
+comment|//			RangeIndexSpec qnIdx = idxSpec.getIndexByQName(node.getQName());
 if|if
 condition|(
 name|content
@@ -15218,31 +15149,21 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+comment|//			qnameValueIndex.setDocument(doc);
+comment|//			qnameValueIndex.storeElement(qnIdx.getType(),
+comment|//					(ElementImpl) node, content.toString());
 name|qnameValueIndex
 operator|.
-name|setDocument
+name|markElement
 argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|qnameValueIndex
-operator|.
-name|storeElement
-argument_list|(
-name|qnIdx
-operator|.
-name|getType
-argument_list|()
-argument_list|,
 operator|(
 name|ElementImpl
 operator|)
 name|node
 argument_list|,
+name|currentPath
+argument_list|,
 name|content
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
