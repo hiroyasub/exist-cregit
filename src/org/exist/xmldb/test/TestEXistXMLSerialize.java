@@ -518,6 +518,11 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|resource
+argument_list|)
+expr_stmt|;
 name|Node
 name|node
 init|=
@@ -738,6 +743,11 @@ name|resource
 operator|.
 name|getId
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|resource
 argument_list|)
 expr_stmt|;
 name|Node
@@ -1004,6 +1014,11 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|resource
+argument_list|)
+expr_stmt|;
 name|Node
 name|node
 init|=
@@ -1209,6 +1224,11 @@ name|resource
 operator|.
 name|getId
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|resource
 argument_list|)
 expr_stmt|;
 name|Node
