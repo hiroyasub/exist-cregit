@@ -929,18 +929,6 @@ name|NodeList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *   * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  * @link org.exist.storage.NativeElementIndex,  * @link org.exist.storage.NativeTextEngine,  * @link org.exist.storage.NativeValueIndex,   * @link org.exist.storage.NativeValueIndexByQName  *   * This class dispatches the various events (defined by the methods   * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  *   *@author     Wolfgang Meier  */
 end_comment
@@ -1056,14 +1044,7 @@ name|TEMP_FRAGMENT_REMOVE_ERROR
 init|=
 literal|"Could not remove temporary fragment"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|TEMP_STORE_ERROR
-init|=
-literal|"An error occurred while storing temporary data: "
-decl_stmt|;
+comment|// private static final String TEMP_STORE_ERROR = "An error occurred while storing temporary data: ";
 specifier|private
 specifier|static
 specifier|final
@@ -5446,87 +5427,21 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
-comment|// --move to-- NativeValueIndexByQName
-comment|// TODO : qnameValueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
-if|if
-condition|(
-name|idxSpec
-operator|!=
-literal|null
-operator|&&
-name|qnameValueIndexation
-condition|)
-block|{
-name|QName
-name|idxQName
-init|=
-operator|new
-name|QName
-argument_list|(
-literal|'@'
-operator|+
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|currentPath
-operator|!=
-literal|null
-condition|)
-name|currentPath
-operator|.
-name|addComponent
-argument_list|(
-name|idxQName
-argument_list|)
-expr_stmt|;
-name|RangeIndexSpec
-name|qnIdx
-init|=
-name|idxSpec
-operator|.
-name|getIndexByQName
-argument_list|(
-name|idxQName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|qnIdx
-operator|!=
-literal|null
-condition|)
-block|{
-name|qnameValueIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|// --move to-- NativeValueIndexByQName - DONE :
 name|qnameValueIndex
 operator|.
 name|storeAttribute
 argument_list|(
-name|qnIdx
-argument_list|,
 operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+name|currentPath
+argument_list|,
+name|index
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 comment|// --move to-- NativeTextEngine
 comment|// TODO : textEngine.storeAttribute( (AttrImpl)node, currentPath, index);
 if|if
@@ -5609,18 +5524,9 @@ name|tempProxy
 argument_list|)
 expr_stmt|;
 block|}
-comment|// --move to-- ???
-if|if
-condition|(
-name|currentPath
-operator|!=
-literal|null
-condition|)
-name|currentPath
-operator|.
-name|removeLastComponent
-argument_list|()
-expr_stmt|;
+comment|//                    // --move to-- ???
+comment|//                    if (currentPath != null)
+comment|//                        currentPath.removeLastComponent();
 break|break;
 case|case
 name|Node
@@ -7666,10 +7572,10 @@ comment|//        Writer writer = new StringWriter();
 comment|//        try {
 comment|//            domDb.dump(writer);
 comment|//        } catch (BTreeException e1) {
-comment|//            // TODO Auto-generated catch block
+comment|//            //  Auto-generated catch block
 comment|//            e1.printStackTrace();
 comment|//        } catch (IOException e1) {
-comment|//            // TODO Auto-generated catch block
+comment|//            //  Auto-generated catch block
 comment|//            e1.printStackTrace();
 comment|//        }
 comment|//        System.out.println(writer.toString());
@@ -7688,7 +7594,7 @@ comment|//			checkTree(doc);
 comment|//            try {
 comment|//                domDb.printFreeSpaceList();
 comment|//            } catch (IOException e1) {
-comment|//                // TODO Auto-generated catch block
+comment|//                // Auto-generated catch block
 comment|//                e1.printStackTrace();
 comment|//            }
 comment|// remember this for later remove
@@ -11945,15 +11851,7 @@ operator|.
 name|getNodeType
 argument_list|()
 decl_stmt|;
-specifier|final
-name|String
-name|nodeName
-init|=
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-decl_stmt|;
+comment|//		final String nodeName = node.getNodeName();
 operator|new
 name|DOMTransaction
 argument_list|(
@@ -12154,54 +12052,21 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
-name|RangeIndexSpec
-name|qnIdx
-init|=
-name|idxSpec
-operator|.
-name|getIndexByQName
-argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|qnIdx
-operator|!=
-literal|null
-operator|&&
-name|qnameValueIndexation
-condition|)
-block|{
+block|}
 name|qnameValueIndex
 operator|.
-name|setDocument
+name|markElement
 argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|qnameValueIndex
-operator|.
-name|storeElement
-argument_list|(
-name|qnIdx
-operator|.
-name|getType
-argument_list|()
-argument_list|,
 operator|(
 name|ElementImpl
 operator|)
 name|node
 argument_list|,
+name|currentPath
+argument_list|,
 name|content
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 break|break;
 case|case
 name|Node
@@ -14820,23 +14685,7 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-specifier|final
-name|boolean
-name|isTemp
-init|=
-name|TEMP_COLLECTION
-operator|.
-name|equals
-argument_list|(
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-decl_stmt|;
+comment|//        final boolean isTemp = TEMP_COLLECTION.equals(doc.getCollection().getName());
 specifier|final
 name|IndexSpec
 name|idxSpec
@@ -14851,21 +14700,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-specifier|final
-name|FulltextIndexSpec
-name|ftIdx
-init|=
-name|idxSpec
-operator|!=
-literal|null
-condition|?
-name|idxSpec
-operator|.
-name|getFulltextIndexSpec
-argument_list|()
-else|:
-literal|null
-decl_stmt|;
+comment|//        final FulltextIndexSpec ftIdx = idxSpec != null ? idxSpec.getFulltextIndexSpec() : null;
 specifier|final
 name|long
 name|gid
@@ -17446,21 +17281,7 @@ extends|extends
 name|Value
 block|{
 comment|/**          * Log4J Logger for this class          */
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|NodeRef
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//        private static final Logger LOG = Logger.getLogger(NodeRef.class);
 specifier|public
 name|NodeRef
 parameter_list|()
