@@ -65,9 +65,9 @@ comment|//    	"<create path=\"//item/stock\" type=\"xs:integer\"/>" +
 comment|//    	"<create path=\"//item/price\" type=\"xs:double\"/>" +
 comment|//    	"<create path=\"//item/price/@specialprice\" type=\"xs:boolean\"/>" +
 comment|//    	"<create path=\"//item/x:rating\" type=\"xs:double\"/>" +
-literal|"<create qname='xx:test' type='xs:integer' />"
+literal|"<create qname='@xx:test' type='xs:integer' />"
 operator|+
-literal|"<create path='mixed' type='xs:string' />"
+literal|"<create qname='mixed' type='xs:string' />"
 operator|+
 literal|"</index>"
 operator|+
