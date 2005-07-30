@@ -4224,6 +4224,15 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|addDocument
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|document
+argument_list|)
+expr_stmt|;
 block|}
 name|indexer
 operator|.
