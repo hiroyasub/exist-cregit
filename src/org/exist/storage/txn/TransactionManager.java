@@ -454,6 +454,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+if|if
+condition|(
+name|enabled
+condition|)
+name|logManager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
