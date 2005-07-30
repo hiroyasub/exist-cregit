@@ -2529,6 +2529,7 @@ condition|(
 operator|!
 name|FORCE_CORRUPTION
 condition|)
+block|{
 name|txnManager
 operator|.
 name|checkpoint
@@ -2536,6 +2537,12 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|txnManager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
