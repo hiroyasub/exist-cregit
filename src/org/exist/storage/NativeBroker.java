@@ -5261,6 +5261,20 @@ argument_list|(
 name|indexType
 argument_list|)
 expr_stmt|;
+name|qnameValueIndex
+operator|.
+name|startElement
+argument_list|(
+operator|(
+name|ElementImpl
+operator|)
+name|node
+argument_list|,
+name|currentPath
+argument_list|,
+name|index
+argument_list|)
+expr_stmt|;
 break|break;
 case|case
 name|Node
@@ -5339,7 +5353,7 @@ literal|true
 expr_stmt|;
 block|}
 comment|// --move to-- NativeElementIndex
-comment|// TODO : elementIndex.markNode(node, currentPath, index);
+comment|// TODO : elementIndex.storeAttribute(node, currentPath, index);
 name|elementIndex
 operator|.
 name|setDocument
@@ -5459,7 +5473,6 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
-comment|// --move to-- NativeValueIndexByQName - DONE :
 name|qnameValueIndex
 operator|.
 name|storeAttribute
@@ -5496,7 +5509,7 @@ name|node
 argument_list|)
 expr_stmt|;
 comment|// --move to-- NativeElementIndex
-comment|// TODO : elementIndex.markNode(node, currentPath, index);
+comment|// TODO : elementIndex.storeAttribute(node, currentPath, index);
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if
@@ -12069,7 +12082,7 @@ block|}
 block|}
 name|qnameValueIndex
 operator|.
-name|markElement
+name|removeElement
 argument_list|(
 operator|(
 name|ElementImpl
@@ -14642,7 +14655,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 */
+comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed).  @param index switch to activate fulltext indexation 	 */
 specifier|public
 name|void
 name|store
@@ -15068,6 +15081,7 @@ operator|.
 name|ELEMENT
 argument_list|)
 expr_stmt|;
+comment|// TODO move_to NativeValueIndexByQName
 if|if
 condition|(
 name|RangeIndexSpec
@@ -15123,6 +15137,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO move_to NativeValueIndex
 if|if
 condition|(
 name|RangeIndexSpec
@@ -15154,7 +15169,7 @@ comment|//			qnameValueIndex.storeElement(qnIdx.getType(),
 comment|//					(ElementImpl) node, content.toString());
 name|qnameValueIndex
 operator|.
-name|markElement
+name|endElement
 argument_list|(
 operator|(
 name|ElementImpl
@@ -15167,6 +15182,7 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
+comment|//		 TODO move_to NativeValueIndex; name change (See ContentLoadingObserver ): addRow() --> endElement()
 comment|// save element by calling ElementIndex
 name|elementIndex
 operator|.
@@ -15188,6 +15204,7 @@ name|tempProxy
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** store Document entry into its collection. */
 specifier|public
 name|void
 name|storeDocument
@@ -15873,6 +15890,11 @@ name|printStatistics
 argument_list|()
 expr_stmt|;
 name|domDb
+operator|.
+name|printStatistics
+argument_list|()
+expr_stmt|;
+name|valuesDbQname
 operator|.
 name|printStatistics
 argument_list|()

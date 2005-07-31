@@ -273,18 +273,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|TextImpl
 import|;
 end_import
@@ -1405,10 +1393,7 @@ decl_stmt|;
 name|Value
 name|ref
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
+comment|//		byte[] data;
 name|long
 name|gid
 decl_stmt|;
@@ -2325,14 +2310,7 @@ name|TermMatcher
 name|matcher
 parameter_list|)
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//		long start = System.currentTimeMillis();
 name|Value
 name|ref
 decl_stmt|;
@@ -3036,9 +3014,7 @@ block|}
 name|String
 name|word
 decl_stmt|;
-name|Value
-name|val
-decl_stmt|;
+comment|//			Value val;
 name|WordRef
 name|ref
 decl_stmt|;
@@ -3056,9 +3032,7 @@ decl_stmt|;
 name|int
 name|docId
 decl_stmt|;
-name|long
-name|delta
-decl_stmt|;
+comment|//			long delta;
 name|byte
 name|section
 decl_stmt|;
@@ -3574,7 +3548,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Index a text node 	 *  	 * @param idx 	 *                IndexPaths object passed in by the broker 	 * @param text 	 *                the text node to be indexed 	 * @return boolean indicates if all of the text content has been added to 	 *            the index 	 */
+comment|/** 	 * Index a text node 	 *  	 * @param idx 	 *                IndexPaths object passed in by the broker 	 * @param text 	 *                the text node to be indexed 	 * @param onetoken 	 *                if true, given text is indexed as a whole 	 *                if false, it is indexed token by token 	 * @return boolean indicates if all of the text content has been added to 	 *            the index 	 */
 specifier|public
 name|void
 name|storeText
@@ -3632,8 +3606,6 @@ decl_stmt|;
 if|if
 condition|(
 name|onetoken
-operator|==
-literal|true
 condition|)
 block|{
 name|invIdx
@@ -4117,18 +4089,15 @@ name|data
 decl_stmt|;
 name|long
 name|last
-decl_stmt|,
-name|gid
 decl_stmt|;
+comment|// , gid;
 name|long
 name|delta
 decl_stmt|;
 name|byte
 name|section
 decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
+comment|//			NodeProxy p;
 name|WordRef
 name|ref
 decl_stmt|;
@@ -4846,9 +4815,7 @@ decl_stmt|;
 name|byte
 name|section
 decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
+comment|//		    NodeProxy p;
 name|WordRef
 name|ref
 decl_stmt|;
@@ -5560,21 +5527,14 @@ decl_stmt|;
 name|TermFrequencyList
 name|idList
 decl_stmt|;
-name|TermFrequencyList
-operator|.
-name|TermFreq
-name|id
-decl_stmt|;
+comment|//			TermFrequencyList.TermFreq id;
 name|TermFrequencyList
 operator|.
 name|TermFreq
 index|[]
 name|ids
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
+comment|//			byte[] data;
 name|long
 name|prevId
 decl_stmt|;
@@ -6383,11 +6343,7 @@ condition|)
 return|return
 literal|true
 return|;
-name|int
-name|k
-init|=
-literal|0
-decl_stmt|;
+comment|//				int k = 0;
 name|int
 name|docId
 decl_stmt|;
@@ -6921,9 +6877,7 @@ block|{
 name|int
 name|docId
 decl_stmt|;
-name|byte
-name|section
-decl_stmt|;
+comment|//				byte section;
 name|int
 name|len
 decl_stmt|;
@@ -6963,8 +6917,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|section
-operator|=
+comment|//					section =
 name|is
 operator|.
 name|readByte
@@ -7627,7 +7580,77 @@ block|}
 block|}
 specifier|public
 name|void
-name|storeElement
+name|storeAttribute
+parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
+name|AttrImpl
+name|node
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stu
+block|}
+specifier|public
+name|void
+name|setDocument
+parameter_list|(
+name|DocumentImpl
+name|document
+parameter_list|)
+block|{
+block|}
+specifier|public
+name|void
+name|storeAttribute
+parameter_list|(
+name|AttrImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|storeText
+parameter_list|(
+name|TextImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|startElement
+parameter_list|(
+name|ElementImpl
+name|impl
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|index
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|endElement
 parameter_list|(
 name|int
 name|xpathType
@@ -7643,37 +7666,19 @@ comment|// TODO Auto-generated method stub
 block|}
 specifier|public
 name|void
-name|storeAttribute
+name|removeElement
 parameter_list|(
-name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|AttrImpl
+name|ElementImpl
 name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|String
+name|content
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
-block|}
-specifier|public
-name|void
-name|addRow
-parameter_list|(
-name|QName
-name|qname
-parameter_list|,
-name|NodeProxy
-name|proxy
-parameter_list|)
-block|{
-block|}
-specifier|public
-name|void
-name|setDocument
-parameter_list|(
-name|DocumentImpl
-name|document
-parameter_list|)
-block|{
 block|}
 block|}
 end_class

@@ -245,6 +245,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|TextImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|XMLUtil
 import|;
 end_import
@@ -589,7 +601,7 @@ operator|=
 name|dbElement
 expr_stmt|;
 block|}
-comment|/**      * Add an index entry for the given QName and NodeProxy.      * Added entries are written to the list of pending entries. Call      * {@link #flush()} to flush all pending entries.      */
+comment|/**      * Add an index entry for the given QName and NodeProxy.      * Added entries are written to the list of pending entries.      * {@link #flush()} is called later to flush all pending entries.      */
 specifier|public
 name|void
 name|addRow
@@ -718,15 +730,7 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
-specifier|final
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//    	final long start = System.currentTimeMillis();
 specifier|final
 name|ExtArrayNodeSet
 name|result
@@ -1284,9 +1288,7 @@ decl_stmt|;
 name|VariableByteArrayInput
 name|is
 decl_stmt|;
-name|int
-name|docId
-decl_stmt|;
+comment|//        int docId;
 name|int
 name|len
 decl_stmt|;
@@ -1589,8 +1591,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|docId
-operator|=
+comment|//                            docId =
 name|is
 operator|.
 name|readInt
@@ -2617,9 +2618,7 @@ block|}
 name|Value
 name|key
 decl_stmt|;
-name|Value
-name|value
-decl_stmt|;
+comment|//            Value value;
 name|VariableByteInput
 name|is
 decl_stmt|;
@@ -2632,12 +2631,8 @@ decl_stmt|;
 name|int
 name|docId
 decl_stmt|;
-name|long
-name|delta
-decl_stmt|;
-name|long
-name|address
-decl_stmt|;
+comment|//            long delta;
+comment|//            long address;
 name|boolean
 name|changed
 decl_stmt|;
@@ -2984,16 +2979,11 @@ name|len
 decl_stmt|,
 name|docId
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
+comment|//        byte[] data;
 name|Value
 name|ref
 decl_stmt|;
-name|Value
-name|val
-decl_stmt|;
+comment|//        Value val;
 name|short
 name|sym
 decl_stmt|,
@@ -4416,9 +4406,7 @@ literal|1
 decl_stmt|,
 name|len
 decl_stmt|;
-name|String
-name|name
-decl_stmt|;
+comment|//        String name;
 name|ElementValue
 name|ref
 decl_stmt|;
@@ -4944,7 +4932,55 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|storeElement
+name|storeAttribute
+parameter_list|(
+name|AttrImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|storeText
+parameter_list|(
+name|TextImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|startElement
+parameter_list|(
+name|ElementImpl
+name|impl
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|index
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|endElement
 parameter_list|(
 name|int
 name|xpathType
@@ -4956,7 +4992,23 @@ name|String
 name|content
 parameter_list|)
 block|{
-comment|//	TODO
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|removeElement
+parameter_list|(
+name|ElementImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|String
+name|content
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

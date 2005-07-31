@@ -221,7 +221,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|TextImpl
 import|;
 end_import
 
@@ -1480,9 +1480,7 @@ decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
-name|long
-name|address
-decl_stmt|;
+comment|//            long address;
 name|boolean
 name|changed
 decl_stmt|;
@@ -1895,21 +1893,12 @@ name|len
 decl_stmt|,
 name|docId
 decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
+comment|//        byte[] data;
 name|Value
 name|ref
 decl_stmt|;
-name|Value
-name|val
-decl_stmt|;
-name|short
-name|sym
-decl_stmt|,
-name|nsSym
-decl_stmt|;
+comment|//        Value val;
+comment|//        short sym, nsSym;
 name|short
 name|collectionId
 init|=
@@ -2483,11 +2472,7 @@ decl_stmt|;
 name|Value
 name|val
 decl_stmt|;
-name|short
-name|sym
-decl_stmt|,
-name|nsSym
-decl_stmt|;
+comment|//        short sym, nsSym;
 name|short
 name|collectionId
 init|=
@@ -5057,15 +5042,83 @@ block|}
 block|}
 specifier|public
 name|void
-name|addRow
+name|storeAttribute
 parameter_list|(
-name|QName
-name|qname
+name|AttrImpl
+name|node
 parameter_list|,
-name|NodeProxy
-name|proxy
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
 parameter_list|)
 block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|storeText
+parameter_list|(
+name|TextImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|startElement
+parameter_list|(
+name|ElementImpl
+name|impl
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|index
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|endElement
+parameter_list|(
+name|int
+name|xpathType
+parameter_list|,
+name|ElementImpl
+name|node
+parameter_list|,
+name|String
+name|content
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|removeElement
+parameter_list|(
+name|ElementImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|String
+name|content
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class
