@@ -502,6 +502,14 @@ name|separatorChar
 operator|+
 name|logDir
 expr_stmt|;
+name|f
+operator|=
+operator|new
+name|File
+argument_list|(
+name|logDir
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -523,7 +531,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Log directory does not exist. Creating "
+literal|"Output directory for journal files does not exist. Creating "
 operator|+
 name|f
 operator|.
@@ -549,7 +557,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Failed to create log output directory: "
+literal|"Failed to create output directory: "
 operator|+
 name|f
 operator|.
@@ -574,7 +582,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Cannot write to log output directory: "
+literal|"Cannot write to journal output directory: "
 operator|+
 name|f
 operator|.
@@ -601,7 +609,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Using log directory: "
+literal|"Using directory for the journal: "
 operator|+
 name|dir
 operator|.
