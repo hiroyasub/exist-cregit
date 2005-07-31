@@ -300,6 +300,13 @@ name|currentFile
 init|=
 literal|0
 decl_stmt|;
+comment|/** used to keep track of the current position in the file */
+specifier|private
+name|int
+name|inFilePos
+init|=
+literal|0
+decl_stmt|;
 comment|/** temp buffer */
 specifier|private
 name|ByteBuffer
@@ -709,8 +716,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|currentLsn
 operator|=
 name|Lsn
@@ -719,13 +724,7 @@ name|create
 argument_list|(
 name|currentFile
 argument_list|,
-operator|(
-name|int
-operator|)
-name|channel
-operator|.
-name|position
-argument_list|()
+name|inFilePos
 operator|+
 name|currentBuffer
 operator|.
@@ -797,23 +796,6 @@ name|currentLsn
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|TransactionException
-argument_list|(
-literal|"Failed to write to log"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
 comment|/**      * Flush the current log buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @throws TransactionException      */
 specifier|public
 name|void
@@ -881,6 +863,16 @@ expr_stmt|;
 name|currentBuffer
 operator|.
 name|clear
+argument_list|()
+expr_stmt|;
+name|inFilePos
+operator|=
+operator|(
+name|int
+operator|)
+name|channel
+operator|.
+name|position
 argument_list|()
 expr_stmt|;
 block|}
@@ -1270,6 +1262,10 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|inFilePos
+operator|=
+literal|0
+expr_stmt|;
 block|}
 specifier|public
 name|void
