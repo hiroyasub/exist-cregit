@@ -174,7 +174,7 @@ index|[
 name|i
 index|]
 operator|.
-name|equals
+name|equalsSimple
 argument_list|(
 name|name
 argument_list|)
