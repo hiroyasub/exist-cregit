@@ -5170,36 +5170,11 @@ operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
-name|RangeIndexSpec
-name|qnIdx
-init|=
-name|idxSpec
-operator|.
-name|getIndexByQName
-argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// --move to-- NativeValueIndexByQName
-if|if
-condition|(
-name|qnIdx
-operator|!=
-literal|null
-operator|&&
-name|qnameValueIndexation
-condition|)
-block|{
-name|indexType
-operator||=
-name|RangeIndexSpec
-operator|.
-name|QNAME_INDEX
-expr_stmt|;
-block|}
+comment|//                        // --move to-- NativeValueIndexByQName
+comment|//                        RangeIndexSpec qnIdx = idxSpec.getIndexByQName(node.getQName());
+comment|//                        if (qnIdx != null&& qnameValueIndexation) {
+comment|//                            indexType |= RangeIndexSpec.QNAME_INDEX;
+comment|//                        }
 block|}
 comment|// --move to-- NativeTextEngine
 if|if
@@ -5247,8 +5222,7 @@ operator|.
 name|MIXED_CONTENT
 expr_stmt|;
 block|}
-comment|// --move to-- NativeValueIndex NativeValueIndexByQName NativeTextEngine
-comment|// CAUTION TODO setIndexType( newIndexType | getIndexType() );
+comment|// --move to-- NativeValueIndex NativeTextEngine
 operator|(
 operator|(
 name|ElementImpl
