@@ -155,7 +155,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** Guessing last modification time for an XQuery result;       *  the HTTP header Last-Modified is filled with most recent time stamp among all       *  XQuery documents appearing in the actual response.      *  Note however, that the actual response can be influenced, through tests in the query,      *  by documents more recent. */
+comment|/** Feature "Guess last modification time for an XQuery result";       *  the HTTP header Last-Modified is filled with most recent time stamp among all       *  XQuery documents appearing in the actual response.      *  Note however, that the actual response can be influenced, through tests in the query,      *  by documents more recent. */
 specifier|public
 specifier|static
 name|void
@@ -336,6 +336,12 @@ argument_list|()
 operator|instanceof
 name|ResponseWrapper
 condition|)
+block|{
+comment|// have to take in account that if the header has allready been explicitely set
+comment|// by the XQuery script, we should not modify it .
+name|ResponseWrapper
+name|responseWrapper
+init|=
 operator|(
 operator|(
 name|ResponseWrapper
@@ -345,6 +351,19 @@ operator|.
 name|getObject
 argument_list|()
 operator|)
+decl_stmt|;
+if|if
+condition|(
+name|responseWrapper
+operator|.
+name|getDateHeader
+argument_list|(
+literal|"Last-Modified"
+argument_list|)
+operator|!=
+literal|0
+condition|)
+name|responseWrapper
 operator|.
 name|setDateHeader
 argument_list|(
@@ -353,6 +372,7 @@ argument_list|,
 name|mostRecentDocumentTime
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
