@@ -360,7 +360,7 @@ name|getDateHeader
 argument_list|(
 literal|"Last-Modified"
 argument_list|)
-operator|!=
+operator|==
 literal|0
 condition|)
 name|responseWrapper

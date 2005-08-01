@@ -165,6 +165,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** @return the value of Date Header corresponding to given name, 	 * 0 if none has been set. */
 specifier|public
 name|long
 name|getDateHeader
