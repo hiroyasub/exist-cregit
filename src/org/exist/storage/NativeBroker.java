@@ -11851,15 +11851,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-name|SanityCheck
-operator|.
-name|THROW_ASSERT
-argument_list|(
-name|transaction
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// remove document metadata
 name|Lock
 name|lock
