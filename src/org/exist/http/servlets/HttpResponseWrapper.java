@@ -271,9 +271,8 @@ name|put
 argument_list|(
 name|name
 argument_list|,
+operator|new
 name|Long
-operator|.
-name|valueOf
 argument_list|(
 name|arg1
 argument_list|)
