@@ -103,9 +103,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
-name|LogException
+name|Journal
 import|;
 end_import
 
@@ -117,9 +117,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
-name|LogManager
+name|LogException
 import|;
 end_import
 
@@ -168,10 +168,9 @@ name|nextTxnId
 init|=
 literal|0
 decl_stmt|;
-comment|/**      *        * @uml.property name="logManager"      * @uml.associationEnd multiplicity="(1 1)"      */
 specifier|private
-name|LogManager
-name|logManager
+name|Journal
+name|journal
 decl_stmt|;
 specifier|private
 name|boolean
@@ -201,10 +200,10 @@ if|if
 condition|(
 name|enabled
 condition|)
-name|logManager
+name|journal
 operator|=
 operator|new
-name|LogManager
+name|Journal
 argument_list|(
 name|pool
 argument_list|,
@@ -231,7 +230,7 @@ name|RecoveryManager
 argument_list|(
 name|broker
 argument_list|,
-name|logManager
+name|journal
 argument_list|)
 decl_stmt|;
 return|return
@@ -263,7 +262,7 @@ operator|++
 decl_stmt|;
 try|try
 block|{
-name|logManager
+name|journal
 operator|.
 name|writeToLog
 argument_list|(
@@ -321,7 +320,7 @@ condition|(
 name|enabled
 condition|)
 block|{
-name|logManager
+name|journal
 operator|.
 name|writeToLog
 argument_list|(
@@ -335,7 +334,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|logManager
+name|journal
 operator|.
 name|flushToLog
 argument_list|(
@@ -363,13 +362,13 @@ name|releaseAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Create a new checkpoint. A checkpoint fixes the current database state. All dirty pages      * are written to disk and the log file is cleaned.      *       * This method is called from       * {@link org.exist.storage.BrokerPool} within pre-defined periods. It      * should not be called from somewhere else. The database needs to      * be in a stable state (all transactions completed, no operations running).      *       * @throws TransactionException      */
+comment|/**      * Create a new checkpoint. A checkpoint fixes the current database state. All dirty pages      * are written to disk and the journal file is cleaned.      *       * This method is called from       * {@link org.exist.storage.BrokerPool} within pre-defined periods. It      * should not be called from somewhere else. The database needs to      * be in a stable state (all transactions completed, no operations running).      *       * @throws TransactionException      */
 specifier|public
 name|void
 name|checkpoint
 parameter_list|(
 name|boolean
-name|switchLogFiles
+name|switchFiles
 parameter_list|)
 throws|throws
 name|TransactionException
@@ -386,23 +385,23 @@ init|=
 name|nextTxnId
 operator|++
 decl_stmt|;
-name|logManager
+name|journal
 operator|.
 name|checkpoint
 argument_list|(
 name|txnId
 argument_list|,
-name|switchLogFiles
+name|switchFiles
 argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|LogManager
-name|getLogManager
+name|Journal
+name|getJournal
 parameter_list|()
 block|{
 return|return
-name|logManager
+name|journal
 return|;
 block|}
 specifier|public
@@ -463,7 +462,7 @@ if|if
 condition|(
 name|enabled
 condition|)
-name|logManager
+name|journal
 operator|.
 name|shutdown
 argument_list|()

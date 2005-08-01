@@ -11,7 +11,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Sync the current log file by calling {@link java.nio.channels.FileChannel#force(boolean)}.  * This operation is quite expensive, so we delegate it to a background thread. The main  * logging thread can continue to write into the log buffer and does not need to wait until  * the force operation returns.   *   * However, we have to make sure that only one sync operation is running at a time. So if  * the main logging thread triggers another sync while one is already in progress, it has to  * wait until the sync operation has finished.  *   * @author wolf  *  */
+comment|/**  * Sync the current journal file by calling {@link java.nio.channels.FileChannel#force(boolean)}.  * This operation is quite expensive, so we delegate it to a background thread. The main  * logging thread can continue to write into the log buffer and does not need to wait until  * the force operation returns.   *   * However, we have to make sure that only one sync operation is running at a time. So if  * the main logging thread triggers another sync while one is already in progress, it has to  * wait until the sync operation has finished.  *   * @author wolf  *  */
 end_comment
 
 begin_class
@@ -86,7 +86,7 @@ operator|=
 name|latch
 expr_stmt|;
 block|}
-comment|/**      * Set the channel opened on the current journal file.      * Called by {@link LogManager} when it switches to      * a new file.      *       * @param channel      */
+comment|/**      * Set the channel opened on the current journal file.      * Called by {@link Journal} when it switches to      * a new file.      *       * @param channel      */
 specifier|public
 name|void
 name|setChannel

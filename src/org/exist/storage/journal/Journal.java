@@ -11,7 +11,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
@@ -178,13 +178,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages the journalling log. The database uses one central log file for  * all data files. If the file exceeds the predefined maximum size, a new file is created.  * Every log file has a unique log number, which keeps growing during the lifetime of the db.  * The name of the log file is the log file number. The file with the highest log file  * number will be used for recovery.  *   * A buffer is used to temporarily buffer log entries. To guarantee log consistency, the buffer will be flushed  * and the log file is synched after every commit or whenever a db page is written to disk.  *   * Each log entry has the structure:  *   *<pre>[byte: entryType, long: transactionId, short length, byte[] data, short backLink]</pre>  *   *<ul>  *<li>entryType is a unique id that identifies the log record. Entry types are registered via the   * {@link org.exist.storage.log.LogEntryTypes} class.</li>  *<li>transactionId: the id of the transaction that created the record.</li>  *<li>length: the length of the log entry data.</li>  *<li>data: the payload data provided by the {@link org.exist.storage.log.Loggable} object.</li>  *<li>backLink: offset to the start of the record. Used when scanning the log file backwards.</li>  *</ul>  *   * @author wolf  */
+comment|/**  * Manages the journalling log. The database uses one central journal for  * all data files. If the journal exceeds the predefined maximum size, a new file is created.  * Every journal file has a unique number, which keeps growing during the lifetime of the db.  * The name of the file corresponds to the file number. The file with the highest  * number will be used for recovery.  *   * A buffer is used to temporarily buffer journal entries. To guarantee consistency, the buffer will be flushed  * and the journal is synched after every commit or whenever a db page is written to disk.  *   * Each entry has the structure:  *   *<pre>[byte: entryType, long: transactionId, short length, byte[] data, short backLink]</pre>  *   *<ul>  *<li>entryType is a unique id that identifies the log record. Entry types are registered via the   * {@link org.exist.storage.journal.LogEntryTypes} class.</li>  *<li>transactionId: the id of the transaction that created the record.</li>  *<li>length: the length of the log entry data.</li>  *<li>data: the payload data provided by the {@link org.exist.storage.journal.Loggable} object.</li>  *<li>backLink: offset to the start of the record. Used when scanning the log file backwards.</li>  *</ul>  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|LogManager
+name|Journal
 block|{
 comment|/**      * Logger for this class      */
 specifier|private
@@ -197,7 +197,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|LogManager
+name|Journal
 operator|.
 name|class
 argument_list|)
@@ -218,7 +218,7 @@ name|BAK_FILE_SUFFIX
 init|=
 literal|".bak"
 decl_stmt|;
-comment|/** the length of the header of each log entry: entryType + transactionId + length */
+comment|/** the length of the header of each entry: entryType + transactionId + length */
 specifier|public
 specifier|final
 specifier|static
@@ -243,7 +243,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|DEFAULT_MAX_LOG_SIZE
+name|DEFAULT_MAX_SIZE
 init|=
 literal|10
 operator|*
@@ -256,18 +256,18 @@ specifier|private
 specifier|static
 specifier|final
 name|long
-name|MIN_LOG_REPLACE
+name|MIN_REPLACE
 init|=
 literal|1024
 operator|*
 literal|1024
 decl_stmt|;
-comment|/**       * size limit for the log file. A checkpoint will be triggered if the log file      * exceeds this size limit.      */
+comment|/**       * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
 specifier|private
 name|int
-name|logSizeLimit
+name|journalSizeLimit
 init|=
-name|DEFAULT_MAX_LOG_SIZE
+name|DEFAULT_MAX_SIZE
 decl_stmt|;
 comment|/** the current output channel */
 specifier|private
@@ -288,12 +288,12 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/** the data directory where log files are written to */
+comment|/** the data directory where journal files are written to */
 specifier|private
 name|File
 name|dir
 decl_stmt|;
-comment|/** the current log file number */
+comment|/** the current file number */
 specifier|private
 name|int
 name|currentFile
@@ -312,7 +312,7 @@ specifier|private
 name|ByteBuffer
 name|currentBuffer
 decl_stmt|;
-comment|/** the last LSN written by the LogManager */
+comment|/** the last LSN written by the JournalManager */
 specifier|private
 name|long
 name|currentLsn
@@ -321,7 +321,7 @@ name|Lsn
 operator|.
 name|LSN_INVALID
 decl_stmt|;
-comment|/** stores the current LSN of the last file sync on the log file */
+comment|/** stores the current LSN of the last file sync on the file */
 specifier|private
 name|long
 name|lastSyncLsn
@@ -337,7 +337,7 @@ name|inRecovery
 init|=
 literal|false
 decl_stmt|;
-comment|/** the {@link BrokerPool} that created this log manager */
+comment|/** the {@link BrokerPool} that created this manager */
 specifier|private
 name|BrokerPool
 name|pool
@@ -350,7 +350,7 @@ init|=
 literal|true
 decl_stmt|;
 specifier|public
-name|LogManager
+name|Journal
 parameter_list|(
 name|BrokerPool
 name|pool
@@ -646,7 +646,7 @@ name|sizeOpt
 operator|!=
 literal|null
 condition|)
-name|logSizeLimit
+name|journalSizeLimit
 operator|=
 name|sizeOpt
 operator|.
@@ -658,7 +658,7 @@ operator|*
 literal|1024
 expr_stmt|;
 block|}
-comment|/**      * Write a log entry to the log.      *       * @param loggable      * @throws TransactionException      */
+comment|/**      * Write a log entry to the journalling log.      *       * @param loggable      * @throws TransactionException      */
 specifier|public
 specifier|synchronized
 name|void
@@ -796,7 +796,7 @@ name|currentLsn
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flush the current log buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @throws TransactionException      */
 specifier|public
 name|void
 name|flushToLog
@@ -813,7 +813,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flush the current log buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
 specifier|public
 specifier|synchronized
 name|void
@@ -928,7 +928,7 @@ operator|.
 name|size
 argument_list|()
 operator|>=
-name|logSizeLimit
+name|journalSizeLimit
 condition|)
 name|pool
 operator|.
@@ -953,7 +953,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Write a checkpoint record to the log and flush it. If switchLogFiles is true,      * a new log file will be started, but only if the log file is larger than      * {@link #MIN_LOG_REPLACE}. The old log is removed.      *       * @param txnId      * @param switchLogFiles      * @throws TransactionException      */
+comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *       * @param txnId      * @param switchLogFiles      * @throws TransactionException      */
 specifier|public
 name|void
 name|checkpoint
@@ -994,7 +994,7 @@ operator|.
 name|position
 argument_list|()
 operator|>
-name|MIN_LOG_REPLACE
+name|MIN_REPLACE
 condition|)
 block|{
 name|int
@@ -1018,7 +1018,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to create new log file: "
+literal|"Failed to create new journal: "
 operator|+
 name|e
 operator|.
@@ -1061,7 +1061,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set the log file number of the last log file used.      *       * @param fileNum the log file number      */
+comment|/**      * Set the file number of the last file used.      *       * @param fileNum the log file number      */
 specifier|public
 name|void
 name|setCurrentFileNum
@@ -1075,7 +1075,7 @@ operator|=
 name|fileNum
 expr_stmt|;
 block|}
-comment|/**      * Create a new log file with a larger log file number      * than the previous file.      *       * @throws LogException      */
+comment|/**      * Create a new journal with a larger file number      * than the previous file.      *       * @throws LogException      */
 specifier|public
 name|void
 name|switchFiles
@@ -1124,7 +1124,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Log file "
+literal|"Journal file "
 operator|+
 name|file
 operator|.
@@ -1196,7 +1196,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Creating new log file: "
+literal|"Creating new journal: "
 operator|+
 name|file
 operator|.
@@ -1250,7 +1250,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Failed to open new log file: "
+literal|"Failed to open new journal: "
 operator|+
 name|file
 operator|.
@@ -1297,7 +1297,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to close journal file"
+literal|"Failed to close journal"
 argument_list|,
 name|e
 argument_list|)
@@ -1305,7 +1305,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Find the log file with the highest log file number.      *       * @param files      * @return      */
+comment|/**      * Find the journal file with the highest file number.      *       * @param files      * @return      */
 specifier|public
 specifier|final
 specifier|static
@@ -1415,7 +1415,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**      * Returns all log files found in the data directory.      *       * @return      */
+comment|/**      * Returns all journal files found in the data directory.      *       * @return      */
 specifier|public
 name|File
 index|[]
@@ -1461,7 +1461,7 @@ return|return
 name|files
 return|;
 block|}
-comment|/**      * Returns the file corresponding to the specified      * log file number.      *       * @param fileNum      * @return      */
+comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      * @return      */
 specifier|public
 name|File
 name|getFile
@@ -1494,7 +1494,7 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Called to signal that the db is currently in      * recovery phase, so no log output should be written.      *       * @param value      */
+comment|/**      * Called to signal that the db is currently in      * recovery phase, so no output should be written.      *       * @param value      */
 specifier|public
 name|void
 name|setInRecovery
@@ -1508,7 +1508,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      * Translate a log file number into a file name.      *       * @param fileNum      * @return      */
+comment|/**      * Translate a file number into a file name.      *       * @param fileNum      * @return      */
 specifier|private
 specifier|static
 name|String

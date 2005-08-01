@@ -11,12 +11,12 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
 begin_comment
-comment|/**  * Log Sequence Number: identifies a log record within the log file.  * A LSN is represented by a Java long and consists of the file number  * of the log file and an offset into the file.  *   * @author wolf  */
+comment|/**  * Log Sequence Number: identifies a log record within the journal file.  * A LSN is represented by a Java long and consists of the file number  * of the journal file and an offset into the file.  *   * @author wolf  */
 end_comment
 
 begin_class

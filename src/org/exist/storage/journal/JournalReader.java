@@ -11,7 +11,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
@@ -92,13 +92,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read log entries from a log file. This class is used during recovery to scan the  * last log file. It uses a memory-mapped byte buffer on the file.  * Log entries can be read forward (during redo) or backward (during undo).   *   * @author wolf  *  */
+comment|/**  * Read log entries from the journal file. This class is used during recovery to scan the  * last journal file. It uses a memory-mapped byte buffer on the file.  * Journal entries can be read forward (during redo) or backward (during undo).   *   * @author wolf  *  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|LogReader
+name|JournalReader
 block|{
 specifier|private
 specifier|static
@@ -110,7 +110,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|LogReader
+name|JournalReader
 operator|.
 name|class
 argument_list|)
@@ -133,7 +133,7 @@ name|broker
 decl_stmt|;
 comment|/**      * Opens the specified file for reading.      *       * @param broker      * @param file      * @param fileNumber      * @throws LogException      */
 specifier|public
-name|LogReader
+name|JournalReader
 parameter_list|(
 name|DBBroker
 name|broker
@@ -235,7 +235,7 @@ operator|.
 name|position
 argument_list|()
 operator|+
-name|LogManager
+name|Journal
 operator|.
 name|LOG_ENTRY_BASE_LEN
 operator|>
@@ -484,7 +484,7 @@ name|prevLink
 operator|!=
 name|size
 operator|+
-name|LogManager
+name|Journal
 operator|.
 name|LOG_ENTRY_HEADER_LEN
 condition|)

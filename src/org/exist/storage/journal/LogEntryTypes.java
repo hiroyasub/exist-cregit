@@ -11,7 +11,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
@@ -96,7 +96,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Registry for log entry types. All classes that can be read from or written to the log  * have to be registered here. The recovery manager uses this information to create  * the correct {@link org.exist.storage.log.Loggable} object when reading the log.  *   * @author wolf  */
+comment|/**  * Registry for log entry types. All classes that can be read from or written to the journal  * have to be registered here. The recovery manager uses this information to create  * the correct {@link org.exist.storage.journal.Loggable} object when reading the log.  *   * @author wolf  */
 end_comment
 
 begin_class

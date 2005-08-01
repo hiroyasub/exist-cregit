@@ -565,7 +565,7 @@ argument_list|)
 expr_stmt|;
 name|mgr
 operator|.
-name|getLogManager
+name|getJournal
 argument_list|()
 operator|.
 name|flushToLog

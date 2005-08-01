@@ -11,12 +11,12 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 package|;
 end_package
 
 begin_comment
-comment|/**  * @author wolf  *  */
+comment|/**  * Abstract implementation of the Loggable interface.  *   * @author wolf  *  */
 end_comment
 
 begin_class
@@ -39,6 +39,7 @@ specifier|protected
 name|long
 name|lsn
 decl_stmt|;
+comment|/**      * Default constructor: initialize entry type and transaction id.      *       * @param type      * @param transactionId      */
 specifier|public
 name|AbstractLoggable
 parameter_list|(
@@ -122,6 +123,7 @@ name|LogException
 block|{
 comment|// do nothing
 block|}
+comment|/**      * Default implementation returns the current LSN plus the      * class name of the Loggable instance.       */
 specifier|public
 name|String
 name|dump

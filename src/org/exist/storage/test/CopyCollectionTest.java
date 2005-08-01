@@ -837,7 +837,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 operator|.
-name|getLogManager
+name|getJournal
 argument_list|()
 operator|.
 name|flushToLog

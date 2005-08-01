@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
 name|AbstractLoggable
 import|;
@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
 name|LogException
 import|;

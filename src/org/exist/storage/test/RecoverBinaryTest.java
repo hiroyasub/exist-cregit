@@ -365,7 +365,7 @@ comment|//            transaction = transact.beginTransaction();
 comment|//            root.removeBinaryResource(transaction, broker, doc);
 name|transact
 operator|.
-name|getLogManager
+name|getJournal
 argument_list|()
 operator|.
 name|flushToLog

@@ -141,7 +141,21 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
+operator|.
+name|Journal
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|journal
 operator|.
 name|LogEntryTypes
 import|;
@@ -155,7 +169,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
 name|LogException
 import|;
@@ -169,21 +183,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
-operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|log
+name|journal
 operator|.
 name|Loggable
 import|;
@@ -441,7 +441,7 @@ name|fileHeader
 decl_stmt|;
 comment|/** The LogManager for writing the transaction log */
 specifier|protected
-name|LogManager
+name|Journal
 name|logManager
 decl_stmt|;
 specifier|protected
@@ -538,7 +538,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 operator|.
-name|getLogManager
+name|getJournal
 argument_list|()
 expr_stmt|;
 block|}
@@ -4114,7 +4114,12 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"Invalid Page Type In addValue"
+literal|"Invalid Page Type In addValue: "
+operator|+
+name|ph
+operator|.
+name|getStatus
+argument_list|()
 argument_list|)
 throw|;
 block|}

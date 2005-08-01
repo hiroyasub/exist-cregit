@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|log
+name|journal
 operator|.
 name|LogException
 import|;

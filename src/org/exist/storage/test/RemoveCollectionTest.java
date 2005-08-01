@@ -410,7 +410,7 @@ argument_list|)
 expr_stmt|;
 name|transact
 operator|.
-name|getLogManager
+name|getJournal
 argument_list|()
 operator|.
 name|flushToLog
