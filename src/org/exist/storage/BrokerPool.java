@@ -1761,7 +1761,7 @@ try|try
 block|{
 name|dir
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 block|}

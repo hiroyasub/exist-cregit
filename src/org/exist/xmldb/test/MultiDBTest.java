@@ -684,7 +684,7 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 name|File

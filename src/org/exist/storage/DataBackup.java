@@ -297,7 +297,7 @@ throw|;
 else|else
 name|f
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 name|dest

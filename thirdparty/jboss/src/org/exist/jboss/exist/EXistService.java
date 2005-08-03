@@ -326,7 +326,7 @@ argument_list|)
 expr_stmt|;
 name|dataDir
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 block|}
