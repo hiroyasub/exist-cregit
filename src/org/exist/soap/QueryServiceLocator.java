@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * QueryServiceLocator.java  *  * This file was auto-generated from WSDL  * by the Apache Axis 1.2RC2 Nov 16, 2004 (12:19:44 EST) WSDL2Java emitter.  */
+comment|/**  * QueryServiceLocator.java  *  * This file was auto-generated from WSDL  * by the Apache Axis 1.2.1 Jun 14, 2005 (09:15:57 EDT) WSDL2Java emitter.  */
 end_comment
 
 begin_package
@@ -57,6 +57,42 @@ block|{
 name|super
 argument_list|(
 name|config
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|QueryServiceLocator
+parameter_list|(
+name|java
+operator|.
+name|lang
+operator|.
+name|String
+name|wsdlLoc
+parameter_list|,
+name|javax
+operator|.
+name|xml
+operator|.
+name|namespace
+operator|.
+name|QName
+name|sName
+parameter_list|)
+throws|throws
+name|javax
+operator|.
+name|xml
+operator|.
+name|rpc
+operator|.
+name|ServiceException
+block|{
+name|super
+argument_list|(
+name|wsdlLoc
+argument_list|,
+name|sName
 argument_list|)
 expr_stmt|;
 block|}
