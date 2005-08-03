@@ -2855,14 +2855,12 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|compareTo
+name|equalsSimple
 argument_list|(
 name|AttrImpl
 operator|.
 name|XML_ID_QNAME
 argument_list|)
-operator|==
-literal|0
 condition|)
 block|{
 comment|// an xml:id attribute. Normalize the attribute and set its type to ID
