@@ -3,9 +3,17 @@ begin_comment
 comment|//$Id$
 end_comment
 
-begin_comment
-comment|// package org.exist.cluster.journal;
-end_comment
+begin_package
+package|package
+name|org
+operator|.
+name|exist
+operator|.
+name|cluster
+operator|.
+name|journal
+package|;
+end_package
 
 begin_import
 import|import
