@@ -53,6 +53,36 @@ name|XMLResource
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|DataOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by Francesco Mondora.  *  * @author Francesco Mondora aka Makkina  *         Date: Aug 30, 2004  *         Time: 3:45:03 PM  *         Revision $Revision$  */
 end_comment
@@ -80,6 +110,14 @@ decl_stmt|;
 specifier|private
 name|String
 name|content
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0L
 decl_stmt|;
 specifier|public
 name|StoreClusterEvent
@@ -116,36 +154,14 @@ parameter_list|()
 throws|throws
 name|ClusterException
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Storing document "
-argument_list|)
-expr_stmt|;
-comment|//if (content!=null) {
 try|try
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"1 storing document "
-argument_list|)
-expr_stmt|;
 name|Collection
 name|collection
 init|=
 name|getCollection
 argument_list|()
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"2 storing document "
-argument_list|)
-expr_stmt|;
 name|XMLResource
 name|document
 init|=
@@ -161,13 +177,6 @@ argument_list|,
 literal|"XMLResource"
 argument_list|)
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"3 storing document "
-argument_list|)
-expr_stmt|;
 name|document
 operator|.
 name|setContent
@@ -175,18 +184,14 @@ argument_list|(
 name|content
 argument_list|)
 expr_stmt|;
+comment|/**              * Silent premature end of file              */
+comment|//if(!ClusterChannel.hasToBePublished(String.valueOf(this.hashCode())))
+comment|//    return;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"4 storing document "
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"5 Storing document "
+literal|"Storing document "
 operator|+
 name|document
 operator|.

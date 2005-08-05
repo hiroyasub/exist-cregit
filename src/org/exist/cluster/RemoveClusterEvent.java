@@ -39,6 +39,36 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|DataOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by Francesco Mondora.  *  * @author Francesco Mondora aka Makkina  * @author Michele Danieli aka cinde  *         Date: Aug 30, 2004  *         Time: 5:46:10 PM  *         Revision $Revision$  */
 end_comment
@@ -71,7 +101,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|public
 name|RemoveClusterEvent
 parameter_list|(
 name|String
