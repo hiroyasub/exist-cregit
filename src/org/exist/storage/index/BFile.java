@@ -5237,8 +5237,8 @@ argument_list|()
 operator|.
 name|getStatus
 argument_list|()
-operator|==
-name|UNUSED
+operator|<
+name|RECORD
 condition|)
 return|return
 literal|null
@@ -5358,8 +5358,8 @@ argument_list|()
 operator|.
 name|getStatus
 argument_list|()
-operator|==
-name|UNUSED
+operator|<
+name|RECORD
 condition|)
 return|return
 literal|null
@@ -5713,8 +5713,8 @@ argument_list|()
 operator|.
 name|getStatus
 argument_list|()
-operator|==
-name|UNUSED
+operator|<
+name|RECORD
 condition|)
 block|{
 comment|// page is obviously deleted later
@@ -5939,8 +5939,8 @@ argument_list|()
 operator|.
 name|getStatus
 argument_list|()
-operator|==
-name|UNUSED
+operator|<
+name|RECORD
 condition|)
 return|return;
 name|wp
@@ -7265,8 +7265,8 @@ argument_list|()
 operator|.
 name|getStatus
 argument_list|()
-operator|==
-name|UNUSED
+operator|<
+name|RECORD
 condition|)
 return|return;
 name|wp
