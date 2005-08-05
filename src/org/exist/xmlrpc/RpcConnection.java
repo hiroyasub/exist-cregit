@@ -825,6 +825,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|HTTPUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -2268,6 +2282,16 @@ argument_list|,
 name|contextSet
 argument_list|)
 decl_stmt|;
+comment|// pass last modified date to the HTTP response
+name|HTTPUtils
+operator|.
+name|addLastModifiedHeader
+argument_list|(
+name|result
+argument_list|,
+name|context
+argument_list|)
+expr_stmt|;
 name|LOG
 operator|.
 name|info
