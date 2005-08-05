@@ -9,9 +9,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|http
+name|xquery
 operator|.
-name|servlets
+name|util
 package|;
 end_package
 
@@ -48,6 +48,20 @@ operator|.
 name|dom
 operator|.
 name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
+name|servlets
+operator|.
+name|ResponseWrapper
 import|;
 end_import
 
@@ -235,25 +249,8 @@ argument_list|,
 name|mostRecentDocumentTime
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"getFileName: "
-operator|+
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-operator|+
-literal|", "
-operator|+
-name|doc
-operator|.
-name|getLastModified
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//					LOG.debug("getFileName: " + doc.getFileName() + ", "
+comment|//							+ doc.getLastModified());
 block|}
 block|}
 name|LOG

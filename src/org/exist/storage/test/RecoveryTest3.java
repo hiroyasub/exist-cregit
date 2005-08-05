@@ -209,6 +209,10 @@ name|SAXException
 import|;
 end_import
 
+begin_comment
+comment|/**  * TestCase: add a larger number of documents into a collection,  * crash the database, restart, remove the collection and add some  * more documents.  *   * This test needs quite a few documents to be in the collection. Change  * the directory path below to point to a directory with at least 1000 docs.  *   * @author wolf  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -241,7 +245,7 @@ specifier|static
 name|String
 name|directory
 init|=
-literal|"/home/wolf/xml/movies"
+literal|"s:/xml/movies"
 decl_stmt|;
 specifier|private
 specifier|static

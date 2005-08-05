@@ -2918,6 +2918,25 @@ operator|.
 name|ID
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|attr
+operator|.
+name|getValue
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"BRIEFE"
+argument_list|)
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Indexing BRIEFE"
+argument_list|)
+expr_stmt|;
 block|}
 name|node
 operator|.
