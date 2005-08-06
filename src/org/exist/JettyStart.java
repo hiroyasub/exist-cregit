@@ -519,7 +519,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * This class gets called after the database received a shutdown request. 	 *   	 * @author wolf 	 */
+comment|/** 	 * This class gets called after the database received a shutdown request. 	 * 	 * @author wolf 	 */
 specifier|private
 specifier|static
 class|class
@@ -681,7 +681,7 @@ name|database
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"NATIVE-CLUSTER"
+literal|"NATIVE_CLUSTER"
 argument_list|)
 condition|)
 return|return;
