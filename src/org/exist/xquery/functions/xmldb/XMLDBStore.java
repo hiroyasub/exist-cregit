@@ -753,6 +753,7 @@ name|mime
 operator|!=
 literal|null
 condition|)
+block|{
 name|mimeType
 operator|=
 name|mime
@@ -760,6 +761,15 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+name|binary
+operator|=
+operator|!
+name|mime
+operator|.
+name|isXMLType
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|Item
 name|item
