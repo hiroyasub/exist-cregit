@@ -684,7 +684,7 @@ decl_stmt|;
 name|boolean
 name|binary
 init|=
-literal|false
+literal|true
 decl_stmt|;
 if|if
 condition|(
