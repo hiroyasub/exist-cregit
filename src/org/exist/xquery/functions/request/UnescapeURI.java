@@ -201,7 +201,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns an un-escaped URL escaped string identified by $a with the encoding scheme indicated by the string $b (e.g. UTF-8). Decodes encoded sensitive characters from a URL, for example '%2F' becomes '/', e.g. does the oposite to escape-uri()"
+literal|"Returns an un-escaped URL escaped string identified by $a with the encoding scheme indicated by the string $b (e.g. \"UTF-8\"). Decodes encoded sensitive characters from a URL, for example \"%2F\" becomes \"/\", i.e. does the oposite to escape-uri()"
 argument_list|,
 operator|new
 name|SequenceType
