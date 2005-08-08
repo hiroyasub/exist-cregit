@@ -398,6 +398,9 @@ name|SendEmail
 extends|extends
 name|BasicFunction
 block|{
+comment|//TODO: Feature - Add an option to execute the function Asynchronously as Socket operations for SMTP can be slow (Sendmail seems fast enough). Will require placing the SMTP code in a thread.
+comment|//TODO: Feature - Add a facility for the user to add their own message headers.
+comment|//TODO: Feature - Add attachment support, will need base64 encoding etc...
 specifier|public
 specifier|final
 specifier|static
@@ -421,7 +424,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sends an email $a through the SMTP Server $b, or if $b is () tries to use the local sendmail program. $a is the email in the following format<mail><from/><to/><cc/><bcc/><subject/><message><text/><xhtml/></message></mail>."
+literal|"Sends an email $a through the SMTP Server $b, or if $b is () tries to use the local sendmail program. $a is the email in the following format<mail><from/><to/><cc/><bcc/><subject/><message><text/><xhtml/></message></mail>. $c defines the charset value used in the \"Content-Type\" message header (Defaults to UTF-8)"
 argument_list|,
 operator|new
 name|SequenceType
@@ -437,6 +440,18 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
 argument_list|)
 block|,
 operator|new
@@ -551,6 +566,14 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|,
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -571,6 +594,14 @@ condition|(
 name|SendSendmail
 argument_list|(
 name|theMail
+argument_list|,
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -621,6 +652,9 @@ name|SendSendmail
 parameter_list|(
 name|mail
 name|aMail
+parameter_list|,
+name|String
+name|ContentType_Charset
 parameter_list|)
 block|{
 try|try
@@ -824,6 +858,8 @@ argument_list|(
 name|out
 argument_list|,
 name|aMail
+argument_list|,
+name|ContentType_Charset
 argument_list|)
 expr_stmt|;
 comment|//Close the stdOut
@@ -875,6 +911,9 @@ name|aMail
 parameter_list|,
 name|String
 name|SMTPServer
+parameter_list|,
+name|String
+name|ContentType_Charset
 parameter_list|)
 block|{
 specifier|final
@@ -1448,6 +1487,8 @@ argument_list|(
 name|out
 argument_list|,
 name|aMail
+argument_list|,
+name|ContentType_Charset
 argument_list|)
 expr_stmt|;
 comment|//Get end message response, should be "250 blah blah"
@@ -1539,6 +1580,9 @@ name|out
 parameter_list|,
 name|mail
 name|aMail
+parameter_list|,
+name|String
+name|ContentType_Charset
 parameter_list|)
 throws|throws
 name|IOException
@@ -1777,6 +1821,13 @@ operator|+
 name|MultipartBoundary
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ContentType_Charset
+operator|==
+literal|""
+condition|)
+block|{
 name|out
 operator|.
 name|println
@@ -1784,6 +1835,19 @@ argument_list|(
 literal|"Content-Type: text/plain; charset=UTF-8"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Content-Type: text/plain; charset="
+operator|+
+name|ContentType_Charset
+argument_list|)
+expr_stmt|;
+block|}
 name|out
 operator|.
 name|println
@@ -1811,13 +1875,33 @@ operator|+
 name|MultipartBoundary
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ContentType_Charset
+operator|==
+literal|""
+condition|)
+block|{
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/html; charset=UTF-8"
+literal|"Content-Type: text/plain; charset=UTF-8"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Content-Type: text/plain; charset="
+operator|+
+name|ContentType_Charset
+argument_list|)
+expr_stmt|;
+block|}
 name|out
 operator|.
 name|println
@@ -1869,13 +1953,33 @@ argument_list|)
 condition|)
 block|{
 comment|//Yes, text email
+if|if
+condition|(
+name|ContentType_Charset
+operator|==
+literal|""
+condition|)
+block|{
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/plain; charset=\"UTF-8\""
+literal|"Content-Type: text/plain; charset=UTF-8"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Content-Type: text/plain; charset="
+operator|+
+name|ContentType_Charset
+argument_list|)
+expr_stmt|;
+block|}
 name|out
 operator|.
 name|println
@@ -1903,13 +2007,33 @@ block|}
 else|else
 block|{
 comment|//No, HTML email
+if|if
+condition|(
+name|ContentType_Charset
+operator|==
+literal|""
+condition|)
+block|{
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/html; charset=\"UTF-8\""
+literal|"Content-Type: text/plain; charset=UTF-8"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Content-Type: text/plain; charset="
+operator|+
+name|ContentType_Charset
+argument_list|)
+expr_stmt|;
+block|}
 name|out
 operator|.
 name|println
