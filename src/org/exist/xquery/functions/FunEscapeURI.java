@@ -201,7 +201,7 @@ literal|"This function applies the URI escaping rules defined in section 2 "
 operator|+
 literal|"of [RFC 2396] as amended by [RFC 2732], with one exception, to "
 operator|+
-literal|"the string supplied as $uri-part, which typically represents all or part "
+literal|"the string supplied as $a, which typically represents all or part "
 operator|+
 literal|"of a URI. The effect of the function is to escape a set of identified "
 operator|+
@@ -213,7 +213,7 @@ literal|"as a sequence of octets in UTF-8, and then representing each of these "
 operator|+
 literal|"octets in the form %HH, where HH is the hexadecimal representation "
 operator|+
-literal|"of the octet."
+literal|"of the octet. $b indicates whether to escape reserved characters."
 argument_list|,
 operator|new
 name|SequenceType
