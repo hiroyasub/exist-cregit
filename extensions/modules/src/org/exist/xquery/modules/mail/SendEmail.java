@@ -401,6 +401,7 @@ block|{
 comment|//TODO: Feature - Add an option to execute the function Asynchronously as Socket operations for SMTP can be slow (Sendmail seems fast enough). Will require placing the SMTP code in a thread.
 comment|//TODO: Feature - Add a facility for the user to add their own message headers.
 comment|//TODO: Feature - Add attachment support, will need base64 encoding etc...
+comment|//TODO: Read the location of sendmail from the configuration file. Can vary from system to system
 specifier|public
 specifier|final
 specifier|static
