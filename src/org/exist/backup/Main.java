@@ -428,7 +428,7 @@ literal|"restore"
 argument_list|,
 name|CLOptionDescriptor
 operator|.
-name|ARGUMENT_OPTIONAL
+name|ARGUMENT_REQUIRED
 argument_list|,
 name|RESTORE_OPT
 argument_list|,
