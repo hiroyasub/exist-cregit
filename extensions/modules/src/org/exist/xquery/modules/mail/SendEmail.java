@@ -883,11 +883,9 @@ operator|)
 return|;
 block|}
 comment|//Message Sent Succesfully
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"send-email() message sent using Sendmail "
 operator|+
@@ -1007,11 +1005,9 @@ literal|"220"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - SMTP Server not ready!"
 argument_list|)
@@ -1072,11 +1068,9 @@ literal|"250"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - SMTP HELO Failed: "
 operator|+
@@ -1196,11 +1190,9 @@ literal|"250"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - SMTP MAIL FROM failed: "
 operator|+
@@ -1410,11 +1402,9 @@ literal|"250"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - SMTP RCPT TO failed: "
 operator|+
@@ -1465,11 +1455,9 @@ literal|"354"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - SMTP DATA failed: "
 operator|+
@@ -1521,11 +1509,9 @@ literal|"250"
 argument_list|)
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Error - Message not accepted: "
 operator|+
@@ -1552,11 +1538,9 @@ operator|)
 return|;
 block|}
 comment|//Message Sent Succesfully
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"send-email() message sent using SMTP "
 operator|+
