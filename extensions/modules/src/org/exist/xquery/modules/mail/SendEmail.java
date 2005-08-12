@@ -388,7 +388,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -402,6 +402,7 @@ comment|//TODO: Feature - Add an option to execute the function Asynchronously a
 comment|//TODO: Feature - Add a facility for the user to add their own message headers.
 comment|//TODO: Feature - Add attachment support, will need base64 encoding etc...
 comment|//TODO: Read the location of sendmail from the configuration file. Can vary from system to system
+comment|//TODO: Include a<!DOCTYPE declaration at the start of the HTML - XHTML 1.1 ?
 specifier|public
 specifier|final
 specifier|static
