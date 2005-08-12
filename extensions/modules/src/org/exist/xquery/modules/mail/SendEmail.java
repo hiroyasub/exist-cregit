@@ -1871,7 +1871,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/plain; charset=UTF-8"
+literal|"Content-Type: text/html; charset=UTF-8"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1881,7 +1881,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/plain; charset="
+literal|"Content-Type: text/html; charset="
 operator|+
 name|ContentType_Charset
 argument_list|)
@@ -1991,7 +1991,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//No, HTML email
+comment|//No, its a HTML email
 if|if
 condition|(
 name|ContentType_Charset
@@ -2003,7 +2003,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/plain; charset=UTF-8"
+literal|"Content-Type: text/html; charset=UTF-8"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2013,7 +2013,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Type: text/plain; charset="
+literal|"Content-Type: text/html; charset="
 operator|+
 name|ContentType_Charset
 argument_list|)
