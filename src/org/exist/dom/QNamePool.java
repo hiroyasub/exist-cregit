@@ -324,6 +324,7 @@ name|idx
 index|]
 return|;
 block|}
+comment|//		System.out.println("Hash collision: " + value + " with " + values[idx]);
 name|int
 name|rehashVal
 init|=
