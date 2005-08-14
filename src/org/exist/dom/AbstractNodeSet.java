@@ -1196,6 +1196,25 @@ name|mode
 argument_list|)
 return|;
 block|}
+specifier|public
+name|NodeSet
+name|directSelectAttribute
+parameter_list|(
+name|QName
+name|qname
+parameter_list|)
+block|{
+return|return
+name|NodeSetHelper
+operator|.
+name|directSelectAttributes
+argument_list|(
+name|this
+argument_list|,
+name|qname
+argument_list|)
+return|;
+block|}
 comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 */
 specifier|public
 name|NodeProxy
