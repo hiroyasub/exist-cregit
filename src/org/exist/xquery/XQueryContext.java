@@ -844,11 +844,28 @@ name|lockDocumentsOnLoad
 init|=
 literal|false
 decl_stmt|;
+comment|/**      * Documents locked during the query.      */
 specifier|private
 name|DocumentSet
 name|lockedDocuments
 init|=
 literal|null
+decl_stmt|;
+comment|/**      * Is profiling enabled?      */
+specifier|private
+name|boolean
+name|profile
+init|=
+literal|false
+decl_stmt|;
+comment|/**      * The profiler instance used by this context.      */
+specifier|private
+name|Profiler
+name|profiler
+init|=
+operator|new
+name|Profiler
+argument_list|()
 decl_stmt|;
 specifier|protected
 name|XQueryContext
@@ -892,6 +909,26 @@ name|getConfiguration
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * @return true if profiling is enabled for this context.      */
+specifier|public
+name|boolean
+name|isProfilingEnabled
+parameter_list|()
+block|{
+return|return
+name|profile
+return|;
+block|}
+comment|/**      * Returns the {@link Profiler} instance of this context       * if profiling is enabled.      *       * @return the profiler instance.      */
+specifier|public
+name|Profiler
+name|getProfiler
+parameter_list|()
+block|{
+return|return
+name|profiler
+return|;
 block|}
 comment|/** 	 * Called from the XQuery compiler to set the root expression 	 * for this context. 	 *  	 * @param expr 	 */
 specifier|public
@@ -2114,6 +2151,11 @@ name|Stack
 argument_list|()
 expr_stmt|;
 name|watchdog
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|profiler
 operator|.
 name|reset
 argument_list|()
@@ -4630,6 +4672,36 @@ if|if
 condition|(
 name|Pragma
 operator|.
+name|PROFILE_QNAME
+operator|.
+name|compareTo
+argument_list|(
+name|qn
+argument_list|)
+operator|==
+literal|0
+condition|)
+block|{
+comment|// configure profiling
+name|profiler
+operator|.
+name|configure
+argument_list|(
+name|pragma
+argument_list|)
+expr_stmt|;
+name|profile
+operator|=
+name|profiler
+operator|.
+name|isEnabled
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|Pragma
+operator|.
 name|TIMEOUT_QNAME
 operator|.
 name|compareTo
@@ -4646,7 +4718,7 @@ argument_list|(
 name|pragma
 argument_list|)
 expr_stmt|;
-if|if
+if|else if
 condition|(
 name|Pragma
 operator|.
