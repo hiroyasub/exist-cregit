@@ -3829,7 +3829,7 @@ name|words
 index|[]
 init|=
 operator|new
-name|HashMap
+name|TreeMap
 index|[
 literal|2
 index|]
@@ -3857,10 +3857,8 @@ literal|0
 index|]
 operator|=
 operator|new
-name|HashMap
-argument_list|(
-literal|2048
-argument_list|)
+name|TreeMap
+argument_list|()
 expr_stmt|;
 name|words
 index|[
@@ -3868,10 +3866,8 @@ literal|1
 index|]
 operator|=
 operator|new
-name|HashMap
-argument_list|(
-literal|2048
-argument_list|)
+name|TreeMap
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
