@@ -252,19 +252,6 @@ name|inUpdate
 init|=
 literal|false
 decl_stmt|;
-specifier|private
-name|boolean
-name|profilingEnabled
-init|=
-literal|false
-decl_stmt|;
-comment|// true;
-specifier|private
-name|long
-name|profilingThreshold
-init|=
-literal|5
-decl_stmt|;
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -1203,6 +1190,13 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+operator|!
+operator|(
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
 name|contextSet
 operator|.
 name|getLength
