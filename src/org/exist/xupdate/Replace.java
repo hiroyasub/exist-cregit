@@ -485,6 +485,21 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|parent
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"The root element of a document can not be replaced with 'xu:replace'. "
+operator|+
+literal|"Please consider removing the document or use 'xu:update' to just replace the children of the root."
+argument_list|)
+throw|;
 switch|switch
 condition|(
 name|node
