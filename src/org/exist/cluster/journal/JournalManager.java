@@ -99,6 +99,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -110,16 +120,6 @@ operator|.
 name|util
 operator|.
 name|TreeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -399,7 +399,27 @@ index|[
 literal|2
 index|]
 expr_stmt|;
+name|checkNewJournal
+argument_list|()
+expr_stmt|;
 block|}
+block|}
+specifier|private
+name|void
+name|checkNewJournal
+parameter_list|()
+block|{
+if|if
+condition|(
+name|lastIdSaved
+operator|==
+operator|-
+literal|1
+condition|)
+name|isNewJournal
+operator|=
+literal|true
+expr_stmt|;
 block|}
 specifier|private
 name|void
@@ -480,6 +500,8 @@ return|;
 if|else if
 condition|(
 name|isNewJournal
+operator|||
+name|journalDisabled
 condition|)
 return|return
 operator|-
@@ -512,6 +534,8 @@ return|;
 if|else if
 condition|(
 name|isNewJournal
+operator|||
+name|journalDisabled
 condition|)
 return|return
 operator|-
@@ -544,6 +568,8 @@ return|;
 if|else if
 condition|(
 name|isNewJournal
+operator|||
+name|journalDisabled
 condition|)
 return|return
 literal|1
@@ -648,6 +674,13 @@ name|ClusterEvent
 name|event
 parameter_list|)
 block|{
+if|if
+condition|(
+name|journalDisabled
+condition|)
+return|return
+literal|false
+return|;
 name|int
 name|id
 init|=
@@ -1547,6 +1580,13 @@ name|Integer
 name|start
 parameter_list|)
 block|{
+if|if
+condition|(
+name|journalDisabled
+condition|)
+return|return
+literal|null
+return|;
 name|System
 operator|.
 name|out
@@ -1716,7 +1756,6 @@ index|[]
 name|myHeader
 parameter_list|)
 block|{
-comment|//TODO ... problema di fissare il max escludendo nuovi eventi
 name|ArrayList
 name|events
 init|=
