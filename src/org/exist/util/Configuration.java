@@ -917,7 +917,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|configureClister
+name|configureCluster
 argument_list|(
 operator|(
 name|Element
@@ -1020,7 +1020,7 @@ block|}
 block|}
 specifier|private
 name|void
-name|configureClister
+name|configureCluster
 parameter_list|(
 name|Element
 name|cluster
