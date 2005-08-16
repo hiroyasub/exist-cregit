@@ -681,6 +681,24 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|parent
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"The root element of a document can not be replaced with 'update replace'. "
+operator|+
+literal|"Please consider removing the document or use 'update value' to just replace the children of the root."
+argument_list|)
+throw|;
 switch|switch
 condition|(
 name|node
