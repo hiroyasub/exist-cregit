@@ -1202,6 +1202,9 @@ name|directSelectAttribute
 parameter_list|(
 name|QName
 name|qname
+parameter_list|,
+name|boolean
+name|rememberContext
 parameter_list|)
 block|{
 return|return
@@ -1212,6 +1215,8 @@ argument_list|(
 name|this
 argument_list|,
 name|qname
+argument_list|,
+name|rememberContext
 argument_list|)
 return|;
 block|}

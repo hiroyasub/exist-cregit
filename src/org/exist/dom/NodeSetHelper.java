@@ -1652,6 +1652,9 @@ name|set
 parameter_list|,
 name|QName
 name|qname
+parameter_list|,
+name|boolean
+name|rememberContext
 parameter_list|)
 block|{
 name|NodeSet
@@ -1698,6 +1701,8 @@ operator|.
 name|directSelectAttribute
 argument_list|(
 name|qname
+argument_list|,
+name|rememberContext
 argument_list|)
 argument_list|)
 expr_stmt|;

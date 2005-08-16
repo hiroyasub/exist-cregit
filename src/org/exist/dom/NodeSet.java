@@ -401,6 +401,9 @@ name|directSelectAttribute
 parameter_list|(
 name|QName
 name|qname
+parameter_list|,
+name|boolean
+name|rememberContext
 parameter_list|)
 function_decl|;
 comment|/** 	 * If all nodes in this set have an index, returns the common 	 * supertype used to build the index, e.g. xs:integer or xs:string. 	 * If the nodes have different index types or no node has been indexed, 	 * returns {@link Type#ITEM}. 	 *  	 * @see org.exist.xquery.GeneralComparison 	 * @see org.exist.xquery.ValueComparison 	 * @return 	 */
