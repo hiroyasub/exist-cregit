@@ -1197,6 +1197,12 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+name|axis
+operator|==
+name|Constants
+operator|.
+name|ATTRIBUTE_AXIS
+operator|&&
 operator|!
 operator|(
 name|contextSet
