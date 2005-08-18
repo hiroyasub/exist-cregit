@@ -222,6 +222,8 @@ literal|"</fulltext>"
 operator|+
 literal|"<create path=\"//item/itemno\" type=\"xs:integer\"/>"
 operator|+
+literal|"<create path=\"//item/@id\" type=\"xs:string\"/>"
+operator|+
 literal|"<create path=\"//item/name\" type=\"xs:string\"/>"
 operator|+
 literal|"<create path=\"//item/stock\" type=\"xs:integer\"/>"
@@ -425,6 +427,17 @@ name|service
 argument_list|,
 literal|"items.xml"
 argument_list|,
+literal|"//item[@id = 'i2']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
 literal|"//item[name = 'Racing Bicycle']"
 argument_list|,
 literal|1
@@ -599,7 +612,7 @@ literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1
 operator|+
 literal|"<xu:append select=\"/items\">"
 operator|+
-literal|"<item>"
+literal|"<item id=\"i100\">"
 operator|+
 literal|"<itemno>10</itemno>"
 operator|+
@@ -678,6 +691,17 @@ argument_list|,
 literal|"items.xml"
 argument_list|,
 literal|"//item[price = 55.50]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[@id = 'i100']"
 argument_list|,
 literal|1
 argument_list|)

@@ -5327,6 +5327,7 @@ name|spec
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexType
 operator|=
 name|spec
@@ -5334,6 +5335,7 @@ operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
+block|}
 comment|//                        // --move to-- NativeValueIndexByQName
 comment|//                        RangeIndexSpec qnIdx = idxSpec.getIndexByQName(node.getQName());
 comment|//                        if (qnIdx != null&& qnameValueIndexation) {
@@ -5423,24 +5425,15 @@ name|indexAttribs
 init|=
 literal|false
 decl_stmt|;
+comment|//    				QName idxQName = new QName('@' + node.getLocalName(), node
+comment|//    						.getNamespaceURI());
 name|QName
-name|idxQName
+name|qname
 init|=
-operator|new
-name|QName
-argument_list|(
-literal|'@'
-operator|+
 name|node
 operator|.
-name|getLocalName
+name|getQName
 argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -5452,7 +5445,7 @@ name|currentPath
 operator|.
 name|addComponent
 argument_list|(
-name|idxQName
+name|qname
 argument_list|)
 expr_stmt|;
 comment|// --move to-- NativeElementIndex NativeValueIndex NativeTextEngine
@@ -5489,61 +5482,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// --move to-- NativeElementIndex
-comment|// TODO : elementIndex.storeAttribute(node, currentPath, index);
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|NodeProxy
-name|tempProxy
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|doc
-argument_list|,
-name|gid
-argument_list|,
-name|address
-argument_list|)
-decl_stmt|;
-name|tempProxy
-operator|.
-name|setIndexType
-argument_list|(
-name|indexType
-argument_list|)
-expr_stmt|;
-name|QName
-name|qname
-init|=
-name|node
-operator|.
-name|getQName
-argument_list|()
-decl_stmt|;
-name|qname
-operator|.
-name|setNameType
-argument_list|(
-name|ElementValue
-operator|.
-name|ATTRIBUTE
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|addRow
-argument_list|(
-name|qname
-argument_list|,
-name|tempProxy
-argument_list|)
-expr_stmt|;
 comment|// --move to-- NativeValueIndex
 comment|// TODO : valueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
 name|GeneralRangeIndexSpec
@@ -5575,7 +5513,7 @@ literal|null
 condition|)
 block|{
 name|indexType
-operator|=
+operator||=
 name|valSpec
 operator|.
 name|getIndexType
@@ -5642,6 +5580,53 @@ operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|)
+expr_stmt|;
+comment|//                  --move to-- NativeElementIndex
+comment|// TODO : elementIndex.storeAttribute(node, currentPath, index);
+name|elementIndex
+operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|NodeProxy
+name|tempProxy
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|,
+name|address
+argument_list|)
+decl_stmt|;
+name|tempProxy
+operator|.
+name|setIndexType
+argument_list|(
+name|indexType
+argument_list|)
+expr_stmt|;
+name|qname
+operator|.
+name|setNameType
+argument_list|(
+name|ElementValue
+operator|.
+name|ATTRIBUTE
+argument_list|)
+expr_stmt|;
+name|elementIndex
+operator|.
+name|addRow
+argument_list|(
+name|qname
+argument_list|,
+name|tempProxy
 argument_list|)
 expr_stmt|;
 comment|// --move to-- NativeElementIndex
@@ -12239,30 +12224,14 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-name|QName
-name|idxQName
-init|=
-operator|new
-name|QName
-argument_list|(
-literal|'@'
-operator|+
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|currentPath
 operator|.
 name|addComponent
 argument_list|(
-name|idxQName
+name|node
+operator|.
+name|getQName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|elementIndex
