@@ -953,6 +953,15 @@ name|STRING
 argument_list|)
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using xs:string index for fn:matches. Regex: "
+operator|+
+name|pattern
+argument_list|)
+expr_stmt|;
 name|DocumentSet
 name|docs
 init|=
