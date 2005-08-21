@@ -12,7 +12,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  *  dbXML License, Version 1.0  *  *  Copyright (c) 1999-2001 The dbXML Group, L.L.C.  *  All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by  *  The dbXML Group (http://www.dbxml.com/)."  *  Alternately, this acknowledgment may appear in the software  *  itself, if and wherever such third-party acknowledgments normally  *  appear.  *  *  4. The names "dbXML" and "The dbXML Group" must not be used to  *  endorse or promote products derived from this software without  *  prior written permission. For written permission, please contact  *  info@dbxml.com.  *  *  5. Products derived from this software may not be called "dbXML",  *  nor may "dbXML" appear in their name, without prior written  *  permission of The dbXML Group.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE DBXML GROUP OR ITS CONTRIBUTORS  *  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,  *  OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR  *  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING  *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-05 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  *    *  This file is in part based on code from the dbXML Group. The original license  *  statement is included below:  *    *  -------------------------------------------------------------------------------------------------  *  dbXML License, Version 1.0  *  *  Copyright (c) 1999-2001 The dbXML Group, L.L.C.  *  All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by  *  The dbXML Group (http://www.dbxml.com/)."  *  Alternately, this acknowledgment may appear in the software  *  itself, if and wherever such third-party acknowledgments normally  *  appear.  *  *  4. The names "dbXML" and "The dbXML Group" must not be used to  *  endorse or promote products derived from this software without  *  prior written permission. For written permission, please contact  *  info@dbxml.com.  *  *  5. Products derived from this software may not be called "dbXML",  *  nor may "dbXML" appear in their name, without prior written  *  permission of The dbXML Group.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE DBXML GROUP OR ITS CONTRIBUTORS  *  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,  *  OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR  *  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING  *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  */
 end_comment
 
 begin_import
@@ -215,18 +215,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|ArrayUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|ByteConversion
 import|;
 end_import
@@ -244,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  BTree represents a Variable Magnitude Simple-Prefix B+Tree File. A BTree is  *  a bit flexible in that it can be used for set or map-based indexing.  *  HashFiler uses the BTree as a set for producing RecordSet entries. The  *  Indexers use BTree as a map for indexing entity and attribute values in  *  Documents.<br>  *<br>  *  For those who don't know how a Simple-Prefix B+Tree works, the primary  *  distinction is that instead of promoting actual keys to branch pages, when  *  leaves are split, a shortest-possible separator is generated at the pivot.  *  That separator is what is promoted to the parent branch (and continuing up  *  the list). As a result, actual keys and pointers can only be found at the  *  leaf level. This also affords the index the ability to ignore costly merging  *  and redistribution of pages when deletions occur. Deletions only affect leaf  *  pages in this implementation, and so it is entirely possible for a leaf page  *  to be completely empty after all of its keys have been removed.<br>  *<br>  *  Also, the Variable Magnitude attribute means that the btree attempts to  *  store as many values and pointers on one page as is possible.  */
+comment|/**  *  A general purpose B+-tree which stores binary keys as instances of  *  {@link org.exist.storage.btree.Value}. The actual value data is not  *  stored in the B+tree itself. Instead, we use long pointers to record the  *  storage address of the value. This class has no methods to locate or  *  modify data records. Data handling is in the responsibilty of the   *  proper subclasses: {@link org.exist.storage.index.BFile} and  *  {@link org.exist.storage.dom.DOMFile}.  *    *  Both, branch and leaf nodes are represented by the inner class   *  {@link org.exist.storage.btree.BTree.BTreeNode}.  */
 end_comment
 
 begin_class
@@ -1066,6 +1054,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Search for keys matching the given {@link IndexQuery} and      * remove them from the node. Every match is reported       * to the specified {@link BTreeCallback}.      *       * @param query      * @param callback      * @throws IOException      * @throws BTreeException      * @throws TerminatedException      */
 specifier|public
 name|void
 name|remove
@@ -1194,15 +1183,13 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Read a node from the given page.      *       * @param page      * @param parent      * @return      */
 specifier|private
 name|BTreeNode
 name|getBTreeNode
 parameter_list|(
 name|long
 name|page
-parameter_list|,
-name|BTreeNode
-name|parent
 parameter_list|)
 block|{
 try|try
@@ -1302,6 +1289,7 @@ literal|null
 return|;
 block|}
 block|}
+comment|/**      * Create a new node with the given status and parent.      *       * @param transaction      * @param status      * @param parent      * @return      */
 specifier|private
 name|BTreeNode
 name|createBTreeNode
@@ -1441,6 +1429,7 @@ literal|null
 return|;
 block|}
 block|}
+comment|/**      * Set the root node of the tree.      *       * @param rootNode      * @throws IOException      */
 specifier|protected
 name|void
 name|setRootNode
@@ -1478,6 +1467,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Create the root node.      *       * @param transaction      * @return      * @throws IOException      */
 specifier|protected
 name|long
 name|createRootNode
@@ -1514,6 +1504,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
+comment|/**      * @return the root node.      */
 specifier|protected
 name|BTreeNode
 name|getRootNode
@@ -1604,6 +1595,7 @@ literal|null
 return|;
 block|}
 block|}
+comment|/**      * Print a dump of the tree to the given writer. For debug only!      * @param writer      * @throws IOException      * @throws BTreeException      */
 specifier|public
 name|void
 name|dump
@@ -1644,23 +1636,7 @@ name|writer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see org.exist.storage.btree.Paged#drop()      */
-specifier|public
-name|boolean
-name|drop
-parameter_list|()
-throws|throws
-name|DBException
-block|{
-return|return
-name|getFile
-argument_list|()
-operator|.
-name|delete
-argument_list|()
-return|;
-block|}
-comment|/**      * @see org.exist.storage.btree.Paged#flush()      */
+comment|/*      * @see org.exist.storage.btree.Paged#flush()      */
 specifier|public
 name|boolean
 name|flush
@@ -1682,7 +1658,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * @see org.exist.storage.btree.Paged#close()      */
+comment|/*      * @see org.exist.storage.btree.Paged#close()      */
 specifier|public
 name|boolean
 name|close
@@ -2046,8 +2022,6 @@ argument_list|(
 name|loggable
 operator|.
 name|pageNum
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -2194,8 +2168,6 @@ argument_list|(
 name|loggable
 operator|.
 name|pageNum
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -2324,8 +2296,6 @@ argument_list|(
 name|loggable
 operator|.
 name|pageNum
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -2477,8 +2447,6 @@ argument_list|(
 name|loggable
 operator|.
 name|pageNum
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -2571,8 +2539,6 @@ argument_list|(
 name|loggable
 operator|.
 name|pageNum
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -2682,12 +2648,14 @@ name|timestamp
 init|=
 literal|0
 decl_stmt|;
+comment|/** does this node need to be saved? */
 specifier|private
 name|boolean
 name|saved
 init|=
 literal|true
 decl_stmt|;
+comment|/** the computed raw data size required by this node */
 specifier|private
 name|int
 name|currentDataLen
@@ -2821,8 +2789,6 @@ argument_list|(
 name|ph
 operator|.
 name|parentPage
-argument_list|,
-literal|null
 argument_list|)
 return|;
 block|}
@@ -3696,8 +3662,6 @@ name|ptrs
 index|[
 name|idx
 index|]
-argument_list|,
-name|this
 argument_list|)
 return|;
 else|else
@@ -5224,8 +5188,6 @@ name|ptrs
 index|[
 name|i
 index|]
-argument_list|,
-name|this
 argument_list|)
 decl_stmt|;
 if|if
