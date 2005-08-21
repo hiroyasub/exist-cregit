@@ -119,6 +119,27 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+specifier|public
+name|NamedNode
+parameter_list|(
+name|NamedNode
+name|other
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|other
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|nodeName
+operator|=
+name|other
+operator|.
+name|nodeName
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#getQName()      */
 specifier|public
 name|QName
