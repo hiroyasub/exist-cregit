@@ -1098,6 +1098,10 @@ specifier|private
 name|SyncDaemon
 name|syncDaemon
 decl_stmt|;
+specifier|private
+name|Sync
+name|sync
+decl_stmt|;
 comment|/** 	 * The listener that is notified when the database instance shuts down. 	 */
 specifier|private
 name|ShutdownListener
@@ -1766,13 +1770,10 @@ name|syncPeriod
 operator|>
 literal|0
 condition|)
+block|{
 comment|//TODO : why not automatically register Sync in system tasks ?
-name|syncDaemon
-operator|.
-name|executePeriodically
-argument_list|(
-literal|1000
-argument_list|,
+name|sync
+operator|=
 operator|new
 name|Sync
 argument_list|(
@@ -1780,10 +1781,19 @@ name|this
 argument_list|,
 name|syncPeriod
 argument_list|)
+expr_stmt|;
+name|syncDaemon
+operator|.
+name|executePeriodically
+argument_list|(
+literal|60000
+argument_list|,
+name|sync
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : create a canReadJournalDir() method in the *relevant* class. The two directories may be different.
 specifier|protected
@@ -3106,6 +3116,11 @@ operator|.
 name|checkCaches
 argument_list|()
 expr_stmt|;
+name|sync
+operator|.
+name|restart
+argument_list|()
+expr_stmt|;
 block|}
 comment|//TODO : touch this.syncEvent and syncRequired ?
 block|}
@@ -3669,6 +3684,11 @@ name|void
 name|triggerCheckpoint
 parameter_list|()
 block|{
+if|if
+condition|(
+name|syncRequired
+condition|)
+return|return;
 synchronized|synchronized
 init|(
 name|this

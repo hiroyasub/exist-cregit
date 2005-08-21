@@ -133,6 +133,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|restart
+parameter_list|()
+block|{
+name|lastMajorSync
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
