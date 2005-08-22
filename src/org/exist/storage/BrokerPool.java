@@ -1786,7 +1786,7 @@ name|syncDaemon
 operator|.
 name|executePeriodically
 argument_list|(
-literal|60000
+literal|10000
 argument_list|,
 name|sync
 argument_list|,
