@@ -1607,6 +1607,17 @@ operator|+
 name|Version
 decl_stmt|;
 comment|//Multipart Boundary
+if|if
+condition|(
+name|ContentType_Charset
+operator|==
+literal|""
+condition|)
+comment|//set default charset if requied
+name|ContentType_Charset
+operator|=
+literal|"UTF-8"
+expr_stmt|;
 comment|//write the message headers
 name|out
 operator|.
@@ -1614,10 +1625,15 @@ name|println
 argument_list|(
 literal|"From: "
 operator|+
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getFrom
 argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
@@ -1644,11 +1660,16 @@ name|println
 argument_list|(
 literal|"To: "
 operator|+
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getTo
 argument_list|(
 name|x
+argument_list|)
+argument_list|,
+name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1677,11 +1698,16 @@ name|println
 argument_list|(
 literal|"CC: "
 operator|+
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getCC
 argument_list|(
 name|x
+argument_list|)
+argument_list|,
+name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1710,11 +1736,16 @@ name|println
 argument_list|(
 literal|"BCC: "
 operator|+
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getBCC
 argument_list|(
 name|x
+argument_list|)
+argument_list|,
+name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1735,10 +1766,15 @@ name|println
 argument_list|(
 literal|"Subject: "
 operator|+
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getSubject
 argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
@@ -1812,7 +1848,12 @@ name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 literal|"Error your mail client is not MIME Compatible"
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//send the text part first
@@ -1825,23 +1866,6 @@ operator|+
 name|MultipartBoundary
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|ContentType_Charset
-operator|==
-literal|""
-condition|)
-block|{
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Content-Type: text/plain; charset=UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|out
 operator|.
 name|println
@@ -1851,7 +1875,6 @@ operator|+
 name|ContentType_Charset
 argument_list|)
 expr_stmt|;
-block|}
 name|out
 operator|.
 name|println
@@ -1879,23 +1902,6 @@ operator|+
 name|MultipartBoundary
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|ContentType_Charset
-operator|==
-literal|""
-condition|)
-block|{
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Content-Type: text/html; charset=UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|out
 operator|.
 name|println
@@ -1905,7 +1911,6 @@ operator|+
 name|ContentType_Charset
 argument_list|)
 expr_stmt|;
-block|}
 name|out
 operator|.
 name|println
@@ -1917,17 +1922,27 @@ name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 literal|"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">"
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getXHTML
 argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Emd multipart message
@@ -1964,23 +1979,6 @@ argument_list|)
 condition|)
 block|{
 comment|//Yes, text email
-if|if
-condition|(
-name|ContentType_Charset
-operator|==
-literal|""
-condition|)
-block|{
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Content-Type: text/plain; charset=UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|out
 operator|.
 name|println
@@ -1990,7 +1988,6 @@ operator|+
 name|ContentType_Charset
 argument_list|)
 expr_stmt|;
-block|}
 name|out
 operator|.
 name|println
@@ -2008,33 +2005,21 @@ name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getText
 argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
 comment|//No, its a HTML email
-if|if
-condition|(
-name|ContentType_Charset
-operator|==
-literal|""
-condition|)
-block|{
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Content-Type: text/html; charset=UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|out
 operator|.
 name|println
@@ -2044,7 +2029,6 @@ operator|+
 name|ContentType_Charset
 argument_list|)
 expr_stmt|;
-block|}
 name|out
 operator|.
 name|println
@@ -2062,17 +2046,27 @@ name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 literal|"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">"
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
+name|encode
+argument_list|(
 name|aMail
 operator|.
 name|getXHTML
 argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3077,6 +3071,48 @@ operator|(
 name|dateString
 operator|)
 return|;
+block|}
+comment|//encodes a string to the charset
+specifier|private
+name|String
+name|encode
+parameter_list|(
+name|String
+name|str
+parameter_list|,
+name|String
+name|ContentType_Charset
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+operator|new
+name|String
+argument_list|(
+name|str
+operator|.
+name|getBytes
+argument_list|()
+argument_list|,
+name|ContentType_Charset
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|java
+operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
+name|e
+parameter_list|)
+block|{
+return|return
+name|str
+return|;
+block|}
 block|}
 comment|//Class that Represents an email
 specifier|private
