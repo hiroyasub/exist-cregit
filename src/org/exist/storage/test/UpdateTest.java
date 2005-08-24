@@ -263,7 +263,11 @@ name|proc
 init|=
 operator|new
 name|XUpdateProcessor
-argument_list|()
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|)
 decl_stmt|;
 name|Txn
 name|transaction

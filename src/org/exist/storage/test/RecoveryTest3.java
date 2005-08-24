@@ -245,7 +245,7 @@ specifier|static
 name|String
 name|directory
 init|=
-literal|"s:/xml/movies"
+literal|"/home/wolf/xml/movies"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -393,7 +393,7 @@ name|length
 operator|&&
 name|i
 operator|<
-literal|2000
+literal|5000
 condition|;
 name|i
 operator|++
@@ -701,7 +701,7 @@ name|length
 operator|&&
 name|i
 operator|<
-literal|2000
+literal|5000
 condition|;
 name|i
 operator|++
