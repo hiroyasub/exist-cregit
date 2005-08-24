@@ -188,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/** A wrapper for requests processed by Cocoon.  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_class
@@ -200,53 +200,54 @@ name|RequestWrapper
 block|{
 specifier|private
 name|Request
-name|request
+name|cocoonRequest
 decl_stmt|;
 specifier|private
 name|HttpServletRequest
-name|httpRequest
+name|servletRequest
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/** 	 * Constructs a wrapper for the given Cocoon request. 	 * @param cocoonRequest The request as viewed by Cocoon. 	 */
 specifier|public
 name|CocoonRequestWrapper
 parameter_list|(
 name|Request
-name|request
+name|cocoonRequest
 parameter_list|)
 block|{
 name|this
 operator|.
-name|request
+name|cocoonRequest
 operator|=
-name|request
+name|cocoonRequest
 expr_stmt|;
 block|}
+comment|/** Constructs a wrapper for the given Cocoon request. 	 * @param cocoonRequest The request as viewed by Cocoon. 	 * @param httpRequest The request as viewed by Cocoon's servlet 	 */
 specifier|public
 name|CocoonRequestWrapper
 parameter_list|(
 name|Request
-name|request
+name|cocoonRequest
 parameter_list|,
 name|HttpServletRequest
-name|httpRequest
+name|servletRequest
 parameter_list|)
 block|{
 name|this
 operator|.
-name|request
+name|cocoonRequest
 operator|=
-name|request
+name|cocoonRequest
 expr_stmt|;
 name|this
 operator|.
-name|httpRequest
+name|servletRequest
 operator|=
-name|httpRequest
+name|servletRequest
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.RequestWrapper#getInputStream() 	 */
+comment|/**  	 * @see javax.servlet.http.HttpServletRequest#getInputStream() 	 */
 specifier|public
 name|InputStream
 name|getInputStream
@@ -256,7 +257,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|httpRequest
+name|servletRequest
 operator|==
 literal|null
 condition|)
@@ -270,13 +271,13 @@ literal|"within a servlet environment"
 argument_list|)
 throw|;
 return|return
-name|httpRequest
+name|servletRequest
 operator|.
 name|getInputStream
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @see org.apache.cocoon.environment.Request#get(String) 	 */
 specifier|public
 name|Object
 name|get
@@ -286,7 +287,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|get
 argument_list|(
@@ -294,72 +295,72 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 * @see org.apache.cocoon.environment.Request#getCharacterEncoding() 	 */
 specifier|public
 name|String
 name|getCharacterEncoding
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getCharacterEncoding
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getContentLength() 	 */
 specifier|public
 name|int
 name|getContentLength
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getContentLength
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getContentType() 	 */
 specifier|public
 name|String
 name|getContentType
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getContentType
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getContextPath() 	 */
 specifier|public
 name|String
 name|getContextPath
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getContextPath
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getCookieMap() 	 */
 specifier|public
 name|Map
 name|getCookieMap
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getCookieMap
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getHeader(String) 	 */
 specifier|public
 name|String
 name|getHeader
@@ -369,7 +370,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getHeader
 argument_list|(
@@ -377,20 +378,20 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getHeaderNames() 	 */
 specifier|public
 name|Enumeration
 name|getHeaderNames
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getHeaderNames
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getHeaders(String) 	 */
 specifier|public
 name|Enumeration
 name|getHeaders
@@ -400,7 +401,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getHeaders
 argument_list|(
@@ -408,20 +409,20 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getMethod() 	 */
 specifier|public
 name|String
 name|getMethod
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getMethod
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getParameter(String) 	 */
 specifier|public
 name|String
 name|getParameter
@@ -431,7 +432,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getParameter
 argument_list|(
@@ -439,20 +440,20 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getParameterNames() 	 */
 specifier|public
 name|Enumeration
 name|getParameterNames
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getParameterNames
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getParameterValues(String) 	 */
 specifier|public
 name|String
 index|[]
@@ -463,7 +464,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getParameterValues
 argument_list|(
@@ -471,176 +472,203 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getPathInfo() 	 */
 specifier|public
 name|String
 name|getPathInfo
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getPathInfo
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getPathTranslated() 	 */
 specifier|public
 name|String
 name|getPathTranslated
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getPathTranslated
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getProtocol() 	 */
 specifier|public
 name|String
 name|getProtocol
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getProtocol
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getQueryString() 	 */
 specifier|public
 name|String
 name|getQueryString
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getQueryString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getRemoteAddr() 	 */
 specifier|public
 name|String
 name|getRemoteAddr
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getRemoteAddr
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getRemoteHost() 	 */
 specifier|public
 name|String
 name|getRemoteHost
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getRemoteHost
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getRemoteUser() 	 */
 specifier|public
 name|String
 name|getRemoteUser
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getRemoteUser
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getRequestedSessionId() 	 */
 specifier|public
 name|String
 name|getRequestedSessionId
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getRequestedSessionId
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getRequestURI() 	 */
 specifier|public
 name|String
 name|getRequestURI
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getRequestURI
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see javax.servlet.http.HttpServletRequest#getRequestURL() 	 */
+specifier|public
+name|StringBuffer
+name|getRequestURL
+parameter_list|()
+block|{
+comment|//TODO : check accuracy
+if|if
+condition|(
+name|this
+operator|.
+name|servletRequest
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+return|return
+name|this
+operator|.
+name|servletRequest
+operator|.
+name|getRequestURL
+argument_list|()
+return|;
+block|}
+comment|/**@see org.apache.cocoon.environment.Request#getScheme() 	 */
 specifier|public
 name|String
 name|getScheme
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getScheme
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getServerName() 	 */
 specifier|public
 name|String
 name|getServerName
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getServerName
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getServerPort() 	 */
 specifier|public
 name|int
 name|getServerPort
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getServerPort
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getServletPath()() 	 */
 specifier|public
 name|String
 name|getServletPath
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getServletPath
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getSession() 	 */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -649,7 +677,7 @@ block|{
 name|Session
 name|session
 init|=
-name|request
+name|cocoonRequest
 operator|.
 name|getSession
 argument_list|()
@@ -672,7 +700,7 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getSession(boolean) 	 */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -684,7 +712,7 @@ block|{
 name|Session
 name|session
 init|=
-name|request
+name|cocoonRequest
 operator|.
 name|getSession
 argument_list|(
@@ -709,85 +737,85 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getSitemapURI() 	 */
 specifier|public
 name|String
 name|getSitemapURI
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getSitemapURI
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#getUserPrincipal() 	 */
 specifier|public
 name|Principal
 name|getUserPrincipal
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|getUserPrincipal
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#isRequestedSessionIdFromCookie() 	 */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromCookie
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|isRequestedSessionIdFromCookie
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#isRequestedSessionIdFromURL() 	 */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromURL
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|isRequestedSessionIdFromURL
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#isRequestedSessionIdValid() 	 */
 specifier|public
 name|boolean
 name|isRequestedSessionIdValid
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|isRequestedSessionIdValid
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#isSecure() 	 */
 specifier|public
 name|boolean
 name|isSecure
 parameter_list|()
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|isSecure
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/**@see org.apache.cocoon.environment.Request#isUserInRole(String) 	 */
 specifier|public
 name|boolean
 name|isUserInRole
@@ -797,7 +825,7 @@ name|arg0
 parameter_list|)
 block|{
 return|return
-name|request
+name|cocoonRequest
 operator|.
 name|isUserInRole
 argument_list|(
@@ -805,7 +833,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 */
+comment|/**@see org.apache.cocoon.environment.Request#removeAttribute(String) 	 */
 specifier|public
 name|void
 name|removeAttribute
@@ -814,7 +842,7 @@ name|String
 name|arg0
 parameter_list|)
 block|{
-name|request
+name|cocoonRequest
 operator|.
 name|removeAttribute
 argument_list|(
@@ -822,7 +850,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 */
+comment|/**@see org.apache.cocoon.environment.Request#setAttribute(String, Object) 	 */
 specifier|public
 name|void
 name|setAttribute
@@ -834,7 +862,7 @@ name|Object
 name|arg1
 parameter_list|)
 block|{
-name|request
+name|cocoonRequest
 operator|.
 name|setAttribute
 argument_list|(
@@ -844,7 +872,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @throws java.io.UnsupportedEncodingException 	 */
+comment|/**@see org.apache.cocoon.environment.Request#setCharacterEncoding(String) 	 */
 specifier|public
 name|void
 name|setCharacterEncoding
@@ -855,7 +883,7 @@ parameter_list|)
 throws|throws
 name|UnsupportedEncodingException
 block|{
-name|request
+name|cocoonRequest
 operator|.
 name|setCharacterEncoding
 argument_list|(
@@ -863,7 +891,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.RequestWrapper#getFileUploadParam(java.lang.String) 	 */
+comment|/*  	 * @see org.apache.cocoon.environment.Request#getFileUploadParam(String) 	 */
 specifier|public
 name|File
 name|getFileUploadParam
@@ -875,7 +903,7 @@ block|{
 name|Object
 name|param
 init|=
-name|request
+name|cocoonRequest
 operator|.
 name|get
 argument_list|(
@@ -1017,7 +1045,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.RequestWrapper#getUploadedFileName(java.lang.String) 	 */
+comment|/*  	 * @see org.apache.cocoon.environment.Request#getUploadedFileName(String) 	 */
 specifier|public
 name|String
 name|getUploadedFileName
@@ -1029,7 +1057,7 @@ block|{
 name|Object
 name|param
 init|=
-name|request
+name|cocoonRequest
 operator|.
 name|get
 argument_list|(

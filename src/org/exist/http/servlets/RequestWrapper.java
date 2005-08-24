@@ -221,6 +221,11 @@ name|getRequestURI
 parameter_list|()
 function_decl|;
 specifier|public
+name|StringBuffer
+name|getRequestURL
+parameter_list|()
+function_decl|;
+specifier|public
 name|String
 name|getScheme
 parameter_list|()
