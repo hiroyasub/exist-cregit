@@ -113,6 +113,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+specifier|public
+name|int
+name|readFixedInt
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/**      * Read a long value in variable byte encoding.      *       * @return      * @throws IOException      */
 specifier|public
 name|long
