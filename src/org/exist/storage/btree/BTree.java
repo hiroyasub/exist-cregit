@@ -439,6 +439,9 @@ parameter_list|,
 name|byte
 name|fileId
 parameter_list|,
+name|boolean
+name|transactional
+parameter_list|,
 name|CacheManager
 name|cacheManager
 parameter_list|,
@@ -500,6 +503,8 @@ argument_list|)
 expr_stmt|;
 name|isTransactional
 operator|=
+name|transactional
+operator|&&
 name|pool
 operator|.
 name|isTransactional
@@ -529,6 +534,9 @@ parameter_list|,
 name|byte
 name|fileId
 parameter_list|,
+name|boolean
+name|transactional
+parameter_list|,
 name|CacheManager
 name|cacheManager
 parameter_list|,
@@ -544,6 +552,8 @@ argument_list|(
 name|pool
 argument_list|,
 name|fileId
+argument_list|,
+name|transactional
 argument_list|,
 name|cacheManager
 argument_list|,
@@ -2598,7 +2608,7 @@ specifier|static
 name|int
 name|DEFAULT_INITIAL_ENTRIES
 init|=
-literal|64
+literal|32
 decl_stmt|;
 comment|/** the underlying Page object that stores the node's data */
 specifier|private
@@ -2884,7 +2894,10 @@ comment|/**          * @see org.exist.storage.cache.Cacheable#sync()          */
 specifier|public
 name|boolean
 name|sync
-parameter_list|()
+parameter_list|(
+name|boolean
+name|syncJournal
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -2899,6 +2912,8 @@ expr_stmt|;
 if|if
 condition|(
 name|isTransactional
+operator|&&
+name|syncJournal
 condition|)
 name|logManager
 operator|.

@@ -1555,6 +1555,8 @@ name|createValueIndexFile
 argument_list|(
 name|ELEMENTS_DBX_ID
 argument_list|,
+literal|false
+argument_list|,
 name|config
 argument_list|,
 name|dataDir
@@ -1571,6 +1573,8 @@ operator|=
 name|createValueIndexFile
 argument_list|(
 name|VALUES_DBX_ID
+argument_list|,
+literal|false
 argument_list|,
 name|config
 argument_list|,
@@ -1593,6 +1597,8 @@ operator|=
 name|createValueIndexFile
 argument_list|(
 name|VALUES_QNAME_DBX_ID
+argument_list|,
+literal|false
 argument_list|,
 name|config
 argument_list|,
@@ -1642,6 +1648,8 @@ argument_list|,
 name|NativeBroker
 operator|.
 name|WORDS_DBX_ID
+argument_list|,
+literal|false
 argument_list|,
 operator|new
 name|File
@@ -1754,6 +1762,9 @@ parameter_list|(
 name|byte
 name|id
 parameter_list|,
+name|boolean
+name|transactional
+parameter_list|,
 name|Configuration
 name|config
 parameter_list|,
@@ -1802,6 +1813,8 @@ argument_list|(
 name|pool
 argument_list|,
 name|id
+argument_list|,
+name|transactional
 argument_list|,
 operator|new
 name|File

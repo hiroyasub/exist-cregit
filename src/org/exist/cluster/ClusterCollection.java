@@ -2193,13 +2193,18 @@ comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#release() 	 
 specifier|public
 name|boolean
 name|sync
-parameter_list|()
+parameter_list|(
+name|boolean
+name|syncJournal
+parameter_list|)
 block|{
 return|return
 name|collection
 operator|.
 name|sync
-argument_list|()
+argument_list|(
+name|syncJournal
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#isDirty()      */

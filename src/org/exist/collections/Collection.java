@@ -7015,7 +7015,10 @@ comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#release() 	 
 specifier|public
 name|boolean
 name|sync
-parameter_list|()
+parameter_list|(
+name|boolean
+name|syncJournal
+parameter_list|)
 block|{
 return|return
 literal|false

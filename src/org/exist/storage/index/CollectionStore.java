@@ -110,6 +110,8 @@ name|NativeBroker
 operator|.
 name|COLLECTIONS_DBX_ID
 argument_list|,
+literal|true
+argument_list|,
 name|file
 argument_list|,
 name|cacheManager

@@ -329,7 +329,9 @@ block|{
 name|cacheable
 operator|.
 name|sync
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 name|next
@@ -530,7 +532,9 @@ block|{
 name|cached
 operator|.
 name|sync
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|map
 operator|.
@@ -588,6 +592,10 @@ condition|)
 do|;
 if|if
 condition|(
+name|growthFactor
+operator|>
+literal|1.0
+operator|&&
 operator|++
 name|replacements
 operator|>

@@ -573,6 +573,18 @@ operator|<
 name|SHRINK_THRESHOLD
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Shrinking cache: "
+operator|+
+name|cache
+operator|.
+name|getBuffers
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|currentPageCount
 operator|-=
 name|cache

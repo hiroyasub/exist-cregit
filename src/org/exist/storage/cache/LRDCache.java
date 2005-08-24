@@ -349,7 +349,9 @@ expr_stmt|;
 name|old
 operator|.
 name|sync
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 else|else

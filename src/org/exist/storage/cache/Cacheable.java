@@ -84,7 +84,10 @@ comment|/** 	 * Called before the object is released by the 	 * cache. The objec
 specifier|public
 name|boolean
 name|sync
-parameter_list|()
+parameter_list|(
+name|boolean
+name|syncJournal
+parameter_list|)
 function_decl|;
 comment|/** 	 * Is it safe to unload the Cacheable from the cache? 	 *  	 * Called before an object is actually removed. Return 	 * false to avoid being removed. 	 *  	 * @return 	 */
 specifier|public
