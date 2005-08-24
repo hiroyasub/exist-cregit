@@ -930,6 +930,27 @@ literal|"/xmlrpc"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|boolean
+name|isStarted
+parameter_list|()
+block|{
+if|if
+condition|(
+name|httpServer
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+return|return
+name|httpServer
+operator|.
+name|isStarted
+argument_list|()
+return|;
+block|}
 comment|/** 	 * @param home 	 * @return      * @throws IOException  	 */
 specifier|private
 name|Properties
