@@ -922,6 +922,14 @@ argument_list|,
 literal|"http://www.w3.org/XML/1998/namespace"
 argument_list|)
 expr_stmt|;
+comment|//TODO : move this to a dedicated configure() method.
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
 name|Configuration
 name|config
 init|=
@@ -958,6 +966,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|XUpdateProcessor

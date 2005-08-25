@@ -7855,6 +7855,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|qnameValueIndex
+operator|!=
+literal|null
+condition|)
 name|qnameValueIndex
 operator|.
 name|dropIndex
@@ -12411,6 +12417,12 @@ comment|//						qnameValueIndex.setDocument(doc);
 comment|//						qnameValueIndex.storeAttribute(qnIdx, (AttrImpl) node);
 comment|//					}
 block|}
+if|if
+condition|(
+name|qnameValueIndex
+operator|!=
+literal|null
+condition|)
 name|qnameValueIndex
 operator|.
 name|removeAttribute
@@ -14793,6 +14805,12 @@ argument_list|()
 expr_stmt|;
 comment|//            if (qnameValueIndexation)
 comment|//                valuesDbQname.close();
+if|if
+condition|(
+name|qnameValueIndex
+operator|!=
+literal|null
+condition|)
 name|qnameValueIndex
 operator|.
 name|close
@@ -15332,6 +15350,12 @@ expr_stmt|;
 comment|//			qnameValueIndex.setDocument(doc);
 comment|//			qnameValueIndex.storeElement(qnIdx.getType(),
 comment|//					(ElementImpl) node, content.toString());
+if|if
+condition|(
+name|qnameValueIndex
+operator|!=
+literal|null
+condition|)
 name|qnameValueIndex
 operator|.
 name|endElement
@@ -16060,6 +16084,12 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|valuesDbQname
+operator|!=
+literal|null
+condition|)
 name|valuesDbQname
 operator|.
 name|printStatistics
