@@ -106,7 +106,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Sebastian Bossung, Technische Universitaet Hamburg-Harburg  */
+comment|/** An abstract wrapper for remote DB tests  * @author Sebastian Bossung, Technische Universitaet Hamburg-Harburg  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+end_comment
+
+begin_comment
+comment|//TODO : manage content from here, not from the derived classes
 end_comment
 
 begin_class
@@ -131,7 +135,7 @@ specifier|static
 name|String
 name|COLLECTION_NAME
 init|=
-literal|"unit-testing-collection-CittÃ "
+literal|"unit-testing-collection-Citt\u00E0"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -147,7 +151,6 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param name      */
 specifier|public
 name|RemoteDBTest
 parameter_list|(
@@ -161,7 +164,6 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @throws Exception      * @throws ClassNotFoundException      * @throws InstantiationException      * @throws IllegalAccessException      * @throws XMLDBException      */
 specifier|protected
 name|void
 name|setUpRemoteDatabase
@@ -177,6 +179,7 @@ name|IllegalAccessException
 throws|,
 name|XMLDBException
 block|{
+comment|//Connect to the DB
 name|Class
 name|cl
 init|=
@@ -205,6 +208,7 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
+comment|//Get the root collection...
 name|Collection
 name|rootCollection
 init|=
@@ -221,6 +225,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+comment|//... and work from it
 name|Collection
 name|childCollection
 init|=
@@ -269,22 +274,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-throw|throw
-operator|new
-name|Exception
-argument_list|(
-literal|"Cannot run test because the collection /db/"
-operator|+
-name|COLLECTION_NAME
-operator|+
-literal|" already "
-operator|+
-literal|"exists. If it is a left-over of a previous test run, please remove it manually."
-argument_list|)
-throw|;
+comment|/*        	             throw new Exception("Cannot run test because the collection /db/" + COLLECTION_NAME + " already "                     + "exists. If it is a left-over of a previous test run, please remove it manually.");         */
 block|}
 block|}
-comment|/**      * @throws XMLDBException      * @throws Exception      */
 specifier|protected
 name|void
 name|removeCollection
@@ -333,7 +325,6 @@ name|COLLECTION_NAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @return Returns the collection.      */
 specifier|public
 name|RemoteCollection
 name|getCollection
@@ -343,7 +334,6 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**      * @param collection      *                   The collection to set.      */
 specifier|public
 name|void
 name|setCollection
