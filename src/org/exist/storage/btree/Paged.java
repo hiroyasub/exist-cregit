@@ -421,7 +421,7 @@ operator|!
 name|fileIsNew
 return|;
 block|}
-comment|/**      * Flush all dirty pages to disk. This will synch all      * caches.      *       * @return      * @throws DBException      */
+comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.  	 * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
 specifier|public
 name|boolean
 name|flush
@@ -429,6 +429,11 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+name|boolean
+name|flushed
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -441,11 +446,17 @@ operator|&&
 operator|!
 name|readOnly
 condition|)
+block|{
 name|fileHeader
 operator|.
 name|write
 argument_list|()
 expr_stmt|;
+name|flushed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -453,9 +464,10 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//TODO : this exception is *silently* ignored ?
 block|}
 return|return
-literal|true
+name|flushed
 return|;
 block|}
 comment|/** 	 *  getFile returns the file object for this Paged. 	 * 	 *@return    The File 	 */
@@ -1834,7 +1846,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the dirty attribute of the FileHeader object 		 * 		 *@return    The dirty value 		 */
+comment|/** 		 * Returns whether this page has been modified or not. 		 * 		 *@return<code>true</code> if this page has been modified 		 */
 specifier|public
 specifier|final
 name|boolean

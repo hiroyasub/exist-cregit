@@ -537,10 +537,15 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cache#flush() 	 */
 specifier|public
-name|void
+name|boolean
 name|flush
 parameter_list|()
 block|{
+name|boolean
+name|flushed
+init|=
+literal|false
+decl_stmt|;
 name|int
 name|written
 init|=
@@ -580,11 +585,20 @@ argument_list|(
 literal|false
 argument_list|)
 condition|)
+block|{
 operator|++
 name|written
 expr_stmt|;
+name|flushed
+operator|=
+literal|true
+expr_stmt|;
 block|}
-comment|//		LOG.debug(written + " pages written to disk");
+block|}
+comment|//LOG.debug(written + " pages written to disk");
+return|return
+name|flushed
+return|;
 block|}
 specifier|public
 name|boolean

@@ -284,10 +284,15 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cache#flush() 	 */
 specifier|public
-name|void
+name|boolean
 name|flush
 parameter_list|()
 block|{
+name|boolean
+name|flushed
+init|=
+literal|false
+decl_stmt|;
 name|Cacheable
 name|cacheable
 decl_stmt|;
@@ -326,6 +331,10 @@ name|isDirty
 argument_list|()
 condition|)
 block|{
+name|flushed
+operator|=
+name|flushed
+operator||
 name|cacheable
 operator|.
 name|sync
@@ -342,6 +351,9 @@ name|getNext
 argument_list|()
 expr_stmt|;
 block|}
+return|return
+name|flushed
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cache#hasDirtyItems()      */
 specifier|public
