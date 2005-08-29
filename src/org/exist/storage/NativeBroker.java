@@ -1565,7 +1565,7 @@ name|ELEMENTS_DBX
 argument_list|,
 literal|"db-connection.elements"
 argument_list|,
-literal|500
+literal|0.05
 argument_list|)
 expr_stmt|;
 name|valuesDb
@@ -1584,7 +1584,7 @@ name|VALUES_DBX
 argument_list|,
 literal|"db-connection.values"
 argument_list|,
-literal|1000
+literal|0.05
 argument_list|)
 expr_stmt|;
 if|if
@@ -1608,7 +1608,7 @@ name|VALUES_QNAME_DBX
 argument_list|,
 literal|"db-connection2.values"
 argument_list|,
-literal|1000
+literal|0.4
 argument_list|)
 expr_stmt|;
 block|}
@@ -1668,11 +1668,11 @@ operator|.
 name|getCacheManager
 argument_list|()
 argument_list|,
-literal|1.5
+literal|1.4
 argument_list|,
-literal|10
+literal|0.01
 argument_list|,
-literal|1000
+literal|0.015
 argument_list|)
 expr_stmt|;
 name|config
@@ -1777,7 +1777,7 @@ parameter_list|,
 name|String
 name|propertyName
 parameter_list|,
-name|int
+name|double
 name|thresholdData
 parameter_list|)
 throws|throws
@@ -1835,7 +1835,7 @@ argument_list|()
 argument_list|,
 literal|1.25
 argument_list|,
-literal|50
+literal|0.01
 argument_list|,
 name|thresholdData
 argument_list|)
@@ -16010,11 +16010,7 @@ block|}
 name|notifySync
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
+comment|//				System.gc();
 name|Runtime
 name|runtime
 init|=

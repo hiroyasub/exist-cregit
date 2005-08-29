@@ -414,7 +414,7 @@ name|Cache
 name|cache
 decl_stmt|;
 specifier|protected
-name|int
+name|double
 name|growthThreshold
 decl_stmt|;
 comment|/** Size of BTreeNode cache */
@@ -455,7 +455,7 @@ parameter_list|,
 name|CacheManager
 name|cacheManager
 parameter_list|,
-name|int
+name|double
 name|growthThreshold
 parameter_list|)
 block|{
@@ -553,7 +553,7 @@ parameter_list|,
 name|File
 name|file
 parameter_list|,
-name|int
+name|double
 name|growthThreshold
 parameter_list|)
 block|{

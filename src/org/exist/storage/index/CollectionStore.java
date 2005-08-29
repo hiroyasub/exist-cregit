@@ -118,9 +118,9 @@ name|cacheManager
 argument_list|,
 literal|1.25
 argument_list|,
-literal|100
+literal|0.01
 argument_list|,
-literal|1000
+literal|0.03
 argument_list|)
 expr_stmt|;
 block|}

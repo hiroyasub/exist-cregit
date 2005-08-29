@@ -926,7 +926,7 @@ literal|true
 argument_list|,
 name|cacheManager
 argument_list|,
-literal|1000
+literal|0.01
 argument_list|)
 expr_stmt|;
 name|lock
@@ -968,7 +968,7 @@ literal|256
 argument_list|,
 literal|0.0
 argument_list|,
-literal|100
+literal|1.0
 argument_list|)
 expr_stmt|;
 name|dataCache
@@ -16857,6 +16857,16 @@ condition|(
 name|isTransactional
 operator|&&
 name|syncJournal
+operator|&&
+name|logManager
+operator|.
+name|lastWrittenLsn
+argument_list|()
+operator|<
+name|ph
+operator|.
+name|getLsn
+argument_list|()
 condition|)
 name|logManager
 operator|.

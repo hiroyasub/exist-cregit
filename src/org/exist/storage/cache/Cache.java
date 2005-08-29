@@ -170,6 +170,11 @@ name|fileName
 parameter_list|)
 function_decl|;
 specifier|public
+name|String
+name|getFileName
+parameter_list|()
+function_decl|;
+specifier|public
 specifier|final
 specifier|static
 name|Logger

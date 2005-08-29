@@ -2021,7 +2021,7 @@ name|this
 argument_list|,
 name|DEFAULT_COLLECTION_BUFFER_SIZE
 argument_list|,
-literal|20
+literal|0.9
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
@@ -3122,6 +3122,12 @@ name|restart
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+name|cacheManager
+operator|.
+name|checkDistribution
+argument_list|()
+expr_stmt|;
 comment|//TODO : touch this.syncEvent and syncRequired ?
 block|}
 comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.Sync#MINOR_SYNC} or {@link org.exist.storage.Sync#MINOR_SYNC}    	 */
