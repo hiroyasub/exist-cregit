@@ -747,17 +747,9 @@ operator|.
 name|nextDup
 expr_stmt|;
 block|}
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Key "
-operator|+
-name|key
-operator|+
-literal|" not found"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 comment|/** 	 * Remove the first entry added to the map. 	 *  	 * @return 	 */
 specifier|public
