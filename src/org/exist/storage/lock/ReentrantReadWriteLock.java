@@ -480,6 +480,10 @@ operator|+
 literal|" tried to release lock on "
 operator|+
 name|id_
+operator|+
+literal|" but owner is "
+operator|+
+name|owner_
 argument_list|)
 throw|;
 if|if
