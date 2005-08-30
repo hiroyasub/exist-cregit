@@ -2770,7 +2770,7 @@ literal|"/"
 operator|+
 name|docname
 argument_list|,
-name|doc
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
