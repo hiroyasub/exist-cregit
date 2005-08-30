@@ -224,19 +224,21 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+if|if
+condition|(
+name|existingDocument
+operator|==
+literal|null
+condition|)
+return|return;
 comment|// retrieve the document in question
 name|DocumentImpl
 name|doc
 init|=
-name|getCollection
-argument_list|()
-operator|.
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|documentName
-argument_list|)
+operator|(
+name|DocumentImpl
+operator|)
+name|existingDocument
 decl_stmt|;
 comment|// construct the destination path
 name|String

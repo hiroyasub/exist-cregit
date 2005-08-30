@@ -250,7 +250,7 @@ init|=
 operator|new
 name|Trigger
 index|[
-literal|3
+literal|6
 index|]
 decl_stmt|;
 comment|/**      * @uml.associationEnd multiplicity="(0 1)"      */

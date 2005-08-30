@@ -102,7 +102,7 @@ name|ContentHandler
 extends|,
 name|LexicalHandler
 block|{
-comment|/**      * This method is called once before the database will actually parse the input data. You may take any action      * here, using the supplied broker instance.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param documentName the name of the document currently processed (relative to the collection path).      * @param existingDocument optional: if event is a {@link #UPDATE_DOCUMENT_EVENT},      *  existingDocument will contain the Document object for the old document, which will be overwritten. Otherwise, the parameter      *  is null.      * @throws TriggerException throwing a TriggerException will abort the current action.      */
+comment|/**      * This method is called once before the database will actually parse the input data. You may take any action      * here, using the supplied broker instance.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param documentPath the full absolute path of the document currently processed.      * @param existingDocument optional: if event is a {@link #UPDATE_DOCUMENT_EVENT},      *  existingDocument will contain the Document object for the old document, which will be overwritten. Otherwise, the parameter      *  is null.      * @throws TriggerException throwing a TriggerException will abort the current action.      */
 specifier|public
 name|void
 name|prepare
@@ -114,7 +114,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|String
-name|documentName
+name|documentPath
 parameter_list|,
 name|Document
 name|existingDocument
@@ -134,7 +134,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|String
-name|documentName
+name|documentPath
 parameter_list|,
 name|Document
 name|document
