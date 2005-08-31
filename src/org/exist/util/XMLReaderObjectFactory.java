@@ -228,6 +228,13 @@ name|equals
 argument_list|(
 literal|"true"
 argument_list|)
+operator|||
+name|option
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
 condition|)
 name|validation
 operator|=
@@ -330,6 +337,15 @@ operator|||
 name|validation
 operator|==
 name|VALIDATION_ENABLED
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Validation turned on"
 argument_list|)
 expr_stmt|;
 block|}
