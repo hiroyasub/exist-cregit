@@ -825,11 +825,7 @@ name|IOException
 block|{
 comment|//        boolean[] specialChars = inAttribute ? attrSpecialChars
 comment|//                : textSpecialChars;
-name|char
-name|ch
-init|=
-literal|0
-decl_stmt|;
+comment|//        char ch = 0;
 specifier|final
 name|int
 name|len
@@ -839,41 +835,12 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|int
-name|pos
-init|=
-literal|0
-decl_stmt|,
-name|i
-decl_stmt|;
-while|while
-condition|(
-name|pos
-operator|<
-name|len
-condition|)
-block|{
-name|i
-operator|=
-name|pos
-expr_stmt|;
+comment|//        int pos = 0, i;
+comment|//        while (pos< len) {
+comment|//            i = pos;
 comment|// TODO: I am not sure about this loop.
-while|while
-condition|(
-name|i
-operator|<
-name|len
-condition|)
-block|{
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|i
-argument_list|)
-expr_stmt|;
+comment|//            while (i< len) {
+comment|//                ch = s.charAt(i);
 comment|//                if (ch< 128) {
 comment|//                    if (specialChars[ch])
 comment|//                        break;
@@ -882,27 +849,20 @@ comment|//                        i++;
 comment|//                } else if (!charSet.inCharacterSet(ch) || ch == 160)
 comment|//                    break;
 comment|//                else
-name|i
-operator|++
-expr_stmt|;
-block|}
+comment|//                    i++;
+comment|//            }
 name|writeCharSeq
 argument_list|(
 name|s
 argument_list|,
-name|pos
+literal|0
 argument_list|,
-name|i
+name|len
 argument_list|)
 expr_stmt|;
 comment|// writer.write(s.subSequence(pos, i).toString());
-if|if
-condition|(
-name|i
-operator|>=
-name|len
-condition|)
-return|return;
+comment|//            if (i>= len)
+comment|//                return;
 comment|//            switch (ch) {
 comment|//                case '<':
 comment|//                    writer.write("&lt;");
@@ -932,17 +892,9 @@ comment|//                    break;
 comment|//                default:
 comment|//                    writeCharacterReference(ch);
 comment|//            }
-name|writeCharacterReference
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-name|pos
-operator|=
-operator|++
-name|i
-expr_stmt|;
-block|}
+comment|//            writeCharacterReference(ch);
+comment|//            pos = ++i;
+comment|//        }
 block|}
 specifier|private
 name|void
