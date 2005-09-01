@@ -2760,15 +2760,14 @@ argument_list|)
 expr_stmt|;
 name|is
 operator|.
-name|copyTo
+name|copyRaw
 argument_list|(
 name|os
 argument_list|,
-name|len
-operator|*
-literal|4
+name|size
 argument_list|)
 expr_stmt|;
+comment|//                            is.copyTo(os, len * 4);
 block|}
 else|else
 block|{
@@ -4056,13 +4055,11 @@ try|try
 block|{
 name|is
 operator|.
-name|copyTo
+name|copyRaw
 argument_list|(
 name|os
 argument_list|,
-name|len
-operator|*
-literal|4
+name|size
 argument_list|)
 expr_stmt|;
 block|}

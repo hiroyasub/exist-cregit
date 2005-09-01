@@ -183,6 +183,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+specifier|public
+name|void
+name|copyRaw
+parameter_list|(
+name|VariableByteOutputStream
+name|os
+parameter_list|,
+name|int
+name|bytes
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_interface
 
