@@ -5469,8 +5469,6 @@ name|indexAttribs
 init|=
 literal|false
 decl_stmt|;
-comment|//    				QName idxQName = new QName('@' + node.getLocalName(), node
-comment|//    						.getNamespaceURI());
 name|QName
 name|qname
 init|=
@@ -5506,12 +5504,19 @@ name|currentPath
 operator|==
 literal|null
 operator|||
+operator|(
+name|ftIdx
+operator|.
+name|getIncludeAttributes
+argument_list|()
+operator|&&
 name|ftIdx
 operator|.
 name|matchAttribute
 argument_list|(
 name|currentPath
 argument_list|)
+operator|)
 operator|)
 condition|)
 block|{
