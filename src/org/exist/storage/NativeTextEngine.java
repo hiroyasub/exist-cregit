@@ -2605,6 +2605,9 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|start
+operator|.
+name|toLowerCase
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2624,6 +2627,9 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|start
+operator|.
+name|toLowerCase
+argument_list|()
 argument_list|)
 argument_list|,
 operator|new
@@ -2632,6 +2638,9 @@ argument_list|(
 name|collectionId
 argument_list|,
 name|end
+operator|.
+name|toLowerCase
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2765,6 +2774,8 @@ argument_list|()
 operator|-
 name|t0
 operator|)
+operator|+
+literal|"ms"
 argument_list|)
 expr_stmt|;
 return|return
@@ -6896,7 +6907,9 @@ block|{
 name|int
 name|docId
 decl_stmt|;
-comment|//				byte section;
+name|byte
+name|section
+decl_stmt|;
 name|int
 name|len
 decl_stmt|;
@@ -6919,6 +6932,9 @@ decl_stmt|;
 name|boolean
 name|docAdded
 decl_stmt|;
+name|NodeProxy
+name|p
+decl_stmt|;
 while|while
 condition|(
 name|is
@@ -6936,7 +6952,8 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-comment|//					section =
+name|section
+operator|=
 name|is
 operator|.
 name|readByte
@@ -7021,6 +7038,11 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+comment|// fixme! Now checks the
+comment|// context to see what type
+comment|// to output, should be
+comment|// available info according
+comment|// to indexer settings?
 if|if
 condition|(
 name|contextSet
@@ -7028,6 +7050,48 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|p
+operator|=
+name|contextSet
+operator|.
+name|parentWithChild
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|section
+operator|==
+name|ATTRIBUTE_SECTION
+condition|)
+block|{
+name|include
+operator|=
+name|p
+operator|.
+name|nodeType
+operator|==
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+expr_stmt|;
+block|}
+else|else
+block|{
+name|include
+operator|=
+name|p
+operator|!=
+literal|null
+expr_stmt|;
+block|}
 name|include
 operator|=
 name|contextSet
