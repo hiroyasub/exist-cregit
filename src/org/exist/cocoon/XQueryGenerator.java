@@ -2088,6 +2088,15 @@ operator|new
 name|AggregatedValidity
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|inputSource
+operator|.
+name|getValidity
+argument_list|()
+operator|!=
+literal|null
+condition|)
 name|v
 operator|.
 name|add
