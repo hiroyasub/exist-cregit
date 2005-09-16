@@ -176,12 +176,6 @@ index|[]
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|boolean
-name|isDynamic
-init|=
-literal|true
-decl_stmt|;
 specifier|public
 name|ElementConstructor
 parameter_list|(
@@ -225,12 +219,6 @@ argument_list|(
 name|qname
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|isDynamic
-operator|=
-literal|false
 expr_stmt|;
 block|}
 specifier|public
@@ -299,7 +287,7 @@ argument_list|)
 condition|)
 name|addNamespaceDecl
 argument_list|(
-literal|""
+literal|"xmlns"
 argument_list|,
 name|attr
 operator|.
