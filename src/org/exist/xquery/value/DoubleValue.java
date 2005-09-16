@@ -127,8 +127,8 @@ block|}
 specifier|public
 name|DoubleValue
 parameter_list|(
-name|String
-name|stringValue
+name|AtomicValue
+name|otherValue
 parameter_list|)
 throws|throws
 name|XPathException
@@ -141,7 +141,10 @@ name|Double
 operator|.
 name|parseDouble
 argument_list|(
-name|stringValue
+name|otherValue
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -155,9 +158,17 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert string '"
+literal|"cannot convert '"
 operator|+
-name|stringValue
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|otherValue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
 operator|+
 literal|"' into a double"
 argument_list|)

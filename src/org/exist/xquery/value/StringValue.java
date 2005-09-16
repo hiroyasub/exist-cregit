@@ -683,7 +683,7 @@ return|return
 operator|new
 name|DoubleValue
 argument_list|(
-name|value
+name|this
 argument_list|)
 return|;
 case|case
