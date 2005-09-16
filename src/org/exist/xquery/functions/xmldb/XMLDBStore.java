@@ -852,6 +852,8 @@ argument_list|,
 name|docName
 argument_list|,
 name|binary
+argument_list|,
+name|mimeType
 argument_list|)
 expr_stmt|;
 block|}
@@ -897,6 +899,8 @@ argument_list|,
 name|docName
 argument_list|,
 name|binary
+argument_list|,
+name|mimeType
 argument_list|)
 expr_stmt|;
 block|}
@@ -1226,6 +1230,9 @@ name|docName
 parameter_list|,
 name|boolean
 name|binary
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1315,6 +1322,8 @@ argument_list|,
 name|docName
 argument_list|,
 name|binary
+argument_list|,
+name|mimeType
 argument_list|)
 expr_stmt|;
 block|}
@@ -1425,6 +1434,8 @@ argument_list|,
 name|docName
 argument_list|,
 name|binary
+argument_list|,
+name|mimeType
 argument_list|)
 expr_stmt|;
 name|temp
@@ -1501,6 +1512,9 @@ name|docName
 parameter_list|,
 name|boolean
 name|binary
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1535,6 +1549,7 @@ if|if
 condition|(
 name|binary
 condition|)
+block|{
 name|resource
 operator|=
 name|collection
@@ -1546,6 +1561,19 @@ argument_list|,
 literal|"BinaryResource"
 argument_list|)
 expr_stmt|;
+operator|(
+operator|(
+name|EXistResource
+operator|)
+name|resource
+operator|)
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 name|resource
 operator|=
