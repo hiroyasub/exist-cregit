@@ -339,9 +339,9 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
+throw|throw
+name|e
+throw|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#getContent() 	 */
