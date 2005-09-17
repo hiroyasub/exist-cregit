@@ -151,6 +151,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -500,10 +514,12 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|preload
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|analyze
@@ -1483,6 +1499,10 @@ operator|||
 operator|!
 operator|(
 name|docs
+operator|==
+name|currentDocs
+operator|||
+name|docs
 operator|.
 name|equals
 argument_list|(
@@ -1658,6 +1678,10 @@ literal|null
 operator|||
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equals
@@ -2374,7 +2398,6 @@ argument_list|,
 name|selector
 argument_list|)
 expr_stmt|;
-comment|//			LOG.debug("getAncestors found " + result.getLength());
 block|}
 else|else
 block|{
