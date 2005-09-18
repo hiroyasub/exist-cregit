@@ -315,20 +315,6 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|helpers
-operator|.
-name|AttributesImpl
-import|;
-end_import
-
 begin_comment
 comment|/**  * Serializer implementation for the native database backend.  *   * @author wolf  */
 end_comment
@@ -364,16 +350,7 @@ name|EXIST_ID_ALL
 init|=
 literal|2
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|AttributesImpl
-name|EMPTY_ATTRIBUTES
-init|=
-operator|new
-name|AttributesImpl
-argument_list|()
-decl_stmt|;
+comment|// private final static AttributesImpl EMPTY_ATTRIBUTES = new AttributesImpl();
 specifier|private
 specifier|final
 specifier|static
@@ -860,23 +837,35 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|DocumentImpl
+name|documentImpl
+init|=
+operator|(
+name|DocumentImpl
+operator|)
+name|doc
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
 literal|"serializing document "
 operator|+
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|doc
-operator|)
+name|documentImpl
 operator|.
 name|getDocId
 argument_list|()
 operator|+
-literal|"to SAX took "
+literal|" ("
+operator|+
+name|documentImpl
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|")"
+operator|+
+literal|" to SAX took "
 operator|+
 operator|(
 name|System
@@ -949,10 +938,7 @@ operator|==
 literal|null
 condition|)
 return|return;
-name|char
-name|ch
-index|[]
-decl_stmt|;
+comment|// char ch[];
 name|String
 name|cdata
 decl_stmt|;
@@ -1202,24 +1188,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|String
-name|src
-init|=
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|'/'
-operator|+
-name|doc
-operator|.
-name|getFileName
-argument_list|()
-decl_stmt|;
+comment|// String src = doc.getCollection().getName() + '/' + doc.getFileName();
 name|attribs
 operator|.
 name|addAttribute
@@ -1246,9 +1215,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-name|int
-name|childLen
-decl_stmt|;
+comment|// int childLen;
 name|NodeImpl
 name|child
 init|=
