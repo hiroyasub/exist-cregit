@@ -751,6 +751,8 @@ literal|"CDATA section"
 block|,
 literal|"\"collection\""
 block|,
+literal|"\"validate\""
+block|,
 literal|"start of processing instruction"
 block|,
 literal|"CDATA section start"
