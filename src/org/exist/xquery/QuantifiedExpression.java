@@ -365,34 +365,12 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
-comment|//			LOG.debug("satisfies returned: " + satisfiesSeq.getLength());
-if|if
-condition|(
-name|returnExpr
-operator|.
-name|returnsType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|BOOLEAN
-condition|)
 name|found
 operator|=
 name|satisfiesSeq
 operator|.
 name|effectiveBooleanValue
 argument_list|()
-expr_stmt|;
-else|else
-name|found
-operator|=
-name|satisfiesSeq
-operator|.
-name|getLength
-argument_list|()
-operator|!=
-literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -447,7 +425,20 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"some $"
+name|mode
+operator|==
+name|SOME
+condition|?
+literal|"some"
+else|:
+literal|"every"
+argument_list|)
+expr_stmt|;
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|" $"
 argument_list|)
 operator|.
 name|display
@@ -457,7 +448,7 @@ argument_list|)
 operator|.
 name|display
 argument_list|(
-literal|"in"
+literal|" in"
 argument_list|)
 expr_stmt|;
 name|dumper
