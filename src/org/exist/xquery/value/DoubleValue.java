@@ -919,11 +919,12 @@ name|value
 operator|==
 literal|0
 operator|||
-name|value
-operator|==
 name|Double
 operator|.
-name|NaN
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
 operator|)
 return|;
 block|}
