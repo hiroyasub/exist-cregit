@@ -317,6 +317,16 @@ name|found
 init|=
 literal|false
 decl_stmt|;
+if|if
+condition|(
+name|mode
+operator|==
+name|EVERY
+condition|)
+name|found
+operator|=
+literal|true
+expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
