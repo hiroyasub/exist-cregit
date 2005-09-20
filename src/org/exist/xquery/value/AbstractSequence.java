@@ -363,7 +363,7 @@ operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
+comment|/** See 	 *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a> 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -386,15 +386,6 @@ condition|)
 return|return
 literal|false
 return|;
-if|if
-condition|(
-name|len
-operator|>
-literal|1
-condition|)
-return|return
-literal|true
-return|;
 name|Item
 name|first
 init|=
@@ -403,6 +394,49 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|//		if (len> 1)
+comment|//			return true;
+comment|// If operand is a sequence whose first item is a node, fn:boolean returns true.
+name|int
+name|fisrtType
+init|=
+name|first
+operator|.
+name|getType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|fisrtType
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|if
+condition|(
+name|len
+operator|>
+literal|1
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"error FORG0006: effectiveBooleanValue: first item not a node, and sequence length>1"
+argument_list|)
+throw|;
+comment|// If $arg is a singleton value of type xs:boolean or a derived from xs:boolean, fn:boolean returns $arg.
 if|if
 condition|(
 name|first
@@ -455,9 +489,17 @@ name|effectiveBooleanValue
 argument_list|()
 return|;
 else|else
-return|return
-literal|true
-return|;
+block|{
+comment|// return true;
+comment|// In all other cases, fn:boolean raises a type error [err:FORG0006].
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"error FORG0006: effectiveBooleanValue: sequence of length 1, but not castable to a number or Boolean"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class) 	 */
 specifier|public
