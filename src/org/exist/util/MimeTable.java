@@ -634,12 +634,11 @@ block|{
 name|ClassLoader
 name|cl
 init|=
-name|Thread
+name|MimeTable
 operator|.
-name|currentThread
-argument_list|()
+name|class
 operator|.
-name|getContextClassLoader
+name|getClassLoader
 argument_list|()
 decl_stmt|;
 name|InputStream
