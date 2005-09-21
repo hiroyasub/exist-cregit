@@ -2991,7 +2991,14 @@ block|{
 name|Variable
 name|var
 decl_stmt|;
-comment|// first, check if the variable is declared in a module
+name|var
+operator|=
+name|resolveLocalVariable
+argument_list|(
+name|qname
+argument_list|)
+expr_stmt|;
+comment|// check if the variable is declared in a module
 name|Module
 name|module
 init|=
@@ -3029,13 +3036,6 @@ return|return
 name|var
 return|;
 block|}
-name|var
-operator|=
-name|resolveLocalVariable
-argument_list|(
-name|qname
-argument_list|)
-expr_stmt|;
 comment|//		var = (Variable) variables.get(qname);
 if|if
 condition|(
