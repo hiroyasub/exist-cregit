@@ -679,7 +679,7 @@ expr_stmt|;
 name|String
 name|mimeType
 init|=
-literal|"application/octet-stream"
+literal|"text/xml"
 decl_stmt|;
 name|boolean
 name|binary
