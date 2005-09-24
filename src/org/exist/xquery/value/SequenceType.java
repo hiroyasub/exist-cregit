@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Represents an XQuery SequenceType and provides methods to check  * sequences and items against this type.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -99,6 +99,7 @@ name|SequenceType
 parameter_list|()
 block|{
 block|}
+comment|/**      * Construct a new SequenceType using the specified      * primary type and cardinality constants.      *       * @param primaryType      * @param cardinality      */
 specifier|public
 name|SequenceType
 parameter_list|(
@@ -122,6 +123,7 @@ operator|=
 name|cardinality
 expr_stmt|;
 block|}
+comment|/**      * Returns the primary type as one of the      * constants defined in {@link Type}.      * @return      */
 specifier|public
 name|int
 name|getPrimaryType
@@ -146,6 +148,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+comment|/**      * Returns the expected cardinality. See the constants       * defined in {@link Cardinality}.      *       * @return      */
 specifier|public
 name|int
 name|getCardinality
@@ -194,6 +197,83 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+comment|/**      * Check the specified sequence against this SequenceType.      *        * @param seq      * @return      */
+specifier|public
+name|boolean
+name|checkType
+parameter_list|(
+name|Sequence
+name|seq
+parameter_list|)
+block|{
+if|if
+condition|(
+name|nodeName
+operator|!=
+literal|null
+condition|)
+block|{
+name|Item
+name|next
+decl_stmt|;
+for|for
+control|(
+name|SequenceIterator
+name|i
+init|=
+name|seq
+operator|.
+name|iterate
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|next
+operator|=
+name|i
+operator|.
+name|nextItem
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|checkType
+argument_list|(
+name|next
+argument_list|)
+condition|)
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+return|return
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|seq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|primaryType
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**      * Check a single item against this SequenceType.      *       * @param item      * @return      */
 specifier|public
 name|boolean
 name|checkType
@@ -300,6 +380,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * Check the given type against the primary type      * declared in this SequenceType.      *       * @param type      * @throws XPathException      */
 specifier|public
 name|void
 name|checkType
@@ -361,6 +442,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|/**      * Check if the given sequence has the cardinality required      * by this sequence type.      *       * @param seq      * @throws XPathException      */
 specifier|public
 name|void
 name|checkCardinality
