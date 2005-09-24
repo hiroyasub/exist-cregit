@@ -211,7 +211,11 @@ name|getPrefix
 parameter_list|()
 block|{
 return|return
-literal|"xmlns"
+name|getQName
+argument_list|()
+operator|.
+name|getPrefix
+argument_list|()
 return|;
 block|}
 specifier|public
