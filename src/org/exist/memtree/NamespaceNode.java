@@ -107,6 +107,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|TypeInfo
 import|;
 end_import
@@ -176,9 +188,9 @@ name|getNodeType
 parameter_list|()
 block|{
 return|return
-name|NodeImpl
+name|Node
 operator|.
-name|NAMESPACE_NODE
+name|ATTRIBUTE_NODE
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
