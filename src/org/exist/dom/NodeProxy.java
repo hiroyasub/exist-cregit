@@ -286,6 +286,7 @@ name|Comparable
 block|{
 comment|/** special value for gid: means document node */
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DOCUMENT_NODE_GID
@@ -293,7 +294,17 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/** special value for gid: means document element node */
 specifier|public
+specifier|static
+specifier|final
+name|int
+name|DOCUMENT_ELEMENT_GID
+init|=
+literal|1
+decl_stmt|;
+specifier|public
+specifier|static
 specifier|final
 name|int
 name|TO_BE_COMPUTED
@@ -302,6 +313,7 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|UNKNOWN

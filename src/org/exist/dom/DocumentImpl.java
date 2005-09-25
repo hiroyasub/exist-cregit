@@ -1975,7 +1975,10 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-literal|1
+comment|// 1,
+name|NodeProxy
+operator|.
+name|DOCUMENT_ELEMENT_GID
 argument_list|,
 name|address
 argument_list|)
@@ -2045,7 +2048,10 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-literal|1
+comment|// 1,
+name|NodeProxy
+operator|.
+name|DOCUMENT_ELEMENT_GID
 argument_list|,
 name|childList
 index|[
