@@ -650,13 +650,6 @@ operator|new
 name|NodeProxy
 argument_list|(
 name|doc
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|Node
-operator|.
-name|DOCUMENT_NODE
 argument_list|)
 expr_stmt|;
 if|if

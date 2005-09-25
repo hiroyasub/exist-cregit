@@ -448,15 +448,9 @@ operator|)
 operator|.
 name|getDocument
 argument_list|()
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|Node
-operator|.
-name|DOCUMENT_NODE
 argument_list|)
 return|;
+comment|// , -1, Node.DOCUMENT_NODE);
 block|}
 else|else
 return|return
