@@ -17,6 +17,52 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|SAXParser
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|SAXParserFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -48,6 +94,30 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|SAXAdapter
 import|;
 end_import
 
@@ -249,7 +319,55 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|XMLReader
 import|;
 end_import
 
@@ -285,13 +403,17 @@ argument_list|)
 argument_list|,
 literal|"Includes one or more documents "
 operator|+
-literal|"into the input sequence. Currently, "
+literal|"into the input sequence. "
 operator|+
-literal|"eXist interprets each argument as a path pointing to a "
+literal|"eXist interprets the argument as a path pointing to a "
 operator|+
 literal|"document in the database, as for example, '/db/shakespeare/plays/hamlet.xml'. "
 operator|+
-literal|"If the path is relative, it is resolved relative to the base URI property from the static context."
+literal|"If the path is relative, "
+operator|+
+literal|"it is resolved relative to the base URI property from the static context."
+operator|+
+literal|"Understands also standard URL's, starting with htttp:// , file:// , etc."
 argument_list|,
 operator|new
 name|SequenceType
@@ -351,7 +473,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#getDependencies() 	 */
+comment|/** 	 * @see org.exist.xquery.Function#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -363,7 +485,7 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/** 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -438,7 +560,28 @@ argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
-comment|// relative URL: add the current base URI
+if|if
+condition|(
+name|path
+operator|.
+name|matches
+argument_list|(
+literal|"^[a-z]+://.*"
+argument_list|)
+condition|)
+block|{
+comment|// === standard URL ===
+return|return
+name|processURL
+argument_list|(
+name|path
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|// === document in the database ===
+comment|// relative collection Path: add the current base URI
 if|if
 condition|(
 name|path
@@ -718,7 +861,167 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+block|}
+comment|/** process a standard URL :  http: , file: , ftp:   */
+specifier|private
+name|Sequence
+name|processURL
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+block|{
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|DocumentImpl
+name|memtreeDoc
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// we use eXist's in-memory DOM implementation
+name|SAXParserFactory
+name|factory
+init|=
+name|SAXParserFactory
+operator|.
+name|newInstance
+argument_list|()
+decl_stmt|;
+name|factory
+operator|.
+name|setNamespaceAware
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|InputSource
+name|src
+init|=
+operator|new
+name|InputSource
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
+name|SAXParser
+name|parser
+init|=
+name|factory
+operator|.
+name|newSAXParser
+argument_list|()
+decl_stmt|;
+name|XMLReader
+name|reader
+init|=
+name|parser
+operator|.
+name|getXMLReader
+argument_list|()
+decl_stmt|;
+name|SAXAdapter
+name|adapter
+init|=
+operator|new
+name|SAXAdapter
+argument_list|()
+decl_stmt|;
+name|reader
+operator|.
+name|setContentHandler
+argument_list|(
+name|adapter
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|parse
+argument_list|(
+name|src
+argument_list|)
+expr_stmt|;
+name|Document
+name|doc
+init|=
+name|adapter
+operator|.
+name|getDocument
+argument_list|()
+decl_stmt|;
+name|memtreeDoc
+operator|=
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|DocumentImpl
+operator|)
+name|doc
+expr_stmt|;
+name|memtreeDoc
+operator|.
+name|setContext
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+return|return
+name|memtreeDoc
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ParserConfigurationException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|memtreeDoc
+return|;
+block|}
+comment|/** 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState
