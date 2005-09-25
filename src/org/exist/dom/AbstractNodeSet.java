@@ -1246,8 +1246,9 @@ name|directParent
 argument_list|,
 literal|false
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|TO_BE_COMPUTED
 argument_list|)
 return|;
 block|}
@@ -1280,8 +1281,9 @@ name|directParent
 argument_list|,
 name|includeSelf
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|TO_BE_COMPUTED
 argument_list|)
 return|;
 block|}

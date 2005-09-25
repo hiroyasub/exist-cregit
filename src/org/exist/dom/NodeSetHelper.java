@@ -478,8 +478,9 @@ literal|false
 argument_list|,
 name|includeSelf
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|TO_BE_COMPUTED
 argument_list|)
 operator|)
 operator|!=
@@ -600,8 +601,9 @@ literal|false
 argument_list|,
 name|includeSelf
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|TO_BE_COMPUTED
 argument_list|)
 expr_stmt|;
 if|if
