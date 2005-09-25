@@ -4345,7 +4345,9 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_GID
 argument_list|,
 name|last
 argument_list|)
@@ -4553,7 +4555,9 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_GID
 argument_list|,
 name|last
 argument_list|)

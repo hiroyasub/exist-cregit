@@ -321,6 +321,14 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNKNOWN_GID
+init|=
+literal|0
+decl_stmt|;
 comment|/** 	 * The owner document of this node. 	 */
 specifier|public
 name|DocumentImpl
@@ -333,7 +341,7 @@ specifier|public
 name|long
 name|gid
 init|=
-literal|0
+name|UNKNOWN_GID
 decl_stmt|;
 comment|/** 	 * The internal storage address of the node in the 	 * dom.dbx node store. This field is optional. 	 */
 specifier|private
@@ -342,7 +350,7 @@ name|internalAddress
 init|=
 name|UNKNOWN
 decl_stmt|;
-comment|/** 	 * The type of this node (as defined by DOM), if known, UNKNOW 	 * otherwise. 	 */
+comment|/** 	 * The type of this node (as defined by DOM), if known, @link #UNKNOW 	 * otherwise. 	 */
 specifier|public
 name|short
 name|nodeType
