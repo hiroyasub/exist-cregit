@@ -3012,6 +3012,11 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+name|Collection
+name|collection
+init|=
+literal|null
+decl_stmt|;
 name|CollectionCache
 name|collectionsCache
 init|=
@@ -3025,16 +3030,15 @@ init|(
 name|collectionsCache
 init|)
 block|{
-name|Collection
 name|collection
-init|=
+operator|=
 name|collectionsCache
 operator|.
 name|get
 argument_list|(
 name|name
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|collection
@@ -3224,6 +3228,29 @@ block|}
 block|}
 if|if
 condition|(
+operator|!
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
+comment|// don't cache the collection during initialization: SecurityManager is not yet online
+name|collectionsCache
+operator|.
+name|add
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
+comment|//			LOG.debug(
+comment|//				"loading collection "
+comment|//					+ name
+comment|//					+ " took "
+comment|//					+ (System.currentTimeMillis() - start)
+comment|//					+ "ms.");
+block|}
+if|if
+condition|(
 name|lockMode
 operator|!=
 name|Lock
@@ -3263,32 +3290,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|isInitializing
-argument_list|()
-condition|)
-comment|// don't cache the collection during initialization: SecurityManager is not yet online
-name|collectionsCache
-operator|.
-name|add
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-comment|//			LOG.debug(
-comment|//				"loading collection "
-comment|//					+ name
-comment|//					+ " took "
-comment|//					+ (System.currentTimeMillis() - start)
-comment|//					+ "ms.");
 return|return
 name|collection
 return|;
-block|}
 block|}
 specifier|public
 name|Iterator
