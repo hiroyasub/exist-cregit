@@ -6971,7 +6971,7 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-operator|>
+operator|>=
 name|doc
 operator|.
 name|reindexRequired
