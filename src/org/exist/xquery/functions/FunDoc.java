@@ -401,7 +401,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Includes one or more documents "
+literal|"Includes a document "
 operator|+
 literal|"into the input sequence. "
 operator|+
@@ -413,7 +413,7 @@ literal|"If the path is relative, "
 operator|+
 literal|"it is resolved relative to the base URI property from the static context."
 operator|+
-literal|"Understands also standard URL's, starting with htttp:// , file:// , etc."
+literal|"Understands also standard URLs, starting with http:// , file:// , etc."
 argument_list|,
 operator|new
 name|SequenceType
@@ -560,6 +560,7 @@ argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
+comment|//TODO : use a better pattern matcher (Java lacks a convenient method to achieve this)
 if|if
 condition|(
 name|path
@@ -571,12 +572,36 @@ argument_list|)
 condition|)
 block|{
 comment|// === standard URL ===
+comment|//TODO : process pseudo-protocols URLs differently.
+try|try
+block|{
 return|return
 name|processURL
 argument_list|(
 name|path
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 block|{
@@ -726,12 +751,20 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//		        LOG.debug("Document " + path + " not found!");
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
+comment|//return Sequence.EMPTY_SEQUENCE;
+comment|//no reason to have a behaviour different from docs obtained via URLs
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Document not found "
+operator|+
+name|path
+argument_list|)
+throw|;
 block|}
 if|if
 condition|(
@@ -870,6 +903,8 @@ parameter_list|(
 name|String
 name|path
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|org
 operator|.
@@ -984,12 +1019,18 @@ name|ParserConfigurationException
 name|e
 parameter_list|)
 block|{
-comment|// TODO Auto-generated catch block
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
-expr_stmt|;
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -997,12 +1038,18 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
-comment|// TODO Auto-generated catch block
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
-expr_stmt|;
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -1010,16 +1057,19 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// TODO Auto-generated catch block
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
-expr_stmt|;
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
-return|return
-name|memtreeDoc
-return|;
 block|}
 comment|/** 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
