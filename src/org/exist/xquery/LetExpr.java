@@ -172,7 +172,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 name|inputSequence
 operator|.
@@ -342,7 +344,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 comment|// evaluate input sequence
 name|Sequence

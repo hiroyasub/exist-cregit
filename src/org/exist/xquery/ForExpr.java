@@ -256,7 +256,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 name|inputSequence
 operator|.
@@ -475,7 +477,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 decl_stmt|;
 comment|// Evaluate the "in" expression
 name|Sequence

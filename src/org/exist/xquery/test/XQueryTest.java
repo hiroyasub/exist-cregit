@@ -796,7 +796,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestVariable
+name|testVariable
 parameter_list|()
 block|{
 name|ResourceSet
@@ -831,7 +831,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//TODO : this should not work (binding should not erase variable)
 name|System
 operator|.
 name|out
@@ -839,6 +838,106 @@ operator|.
 name|println
 argument_list|(
 literal|"testVariable 1: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"xquery version \"1.0\";\n"
+operator|+
+literal|"declare namespace param=\"param\";\n"
+operator|+
+literal|"declare variable $param:a {\"a\"};\n"
+operator|+
+literal|"declare function param:a(){$param:a};\n"
+operator|+
+literal|"let $param:a := \"b\" \n"
+operator|+
+literal|"return ($param:a, $param:a)"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"b"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"b"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO : this should not work (binding should not erase variable)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testVariable 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -896,7 +995,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"b"
+literal|"a"
 argument_list|,
 operator|(
 operator|(
@@ -1703,7 +1802,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestModule
+name|testModule
 parameter_list|()
 block|{
 name|ResourceSet

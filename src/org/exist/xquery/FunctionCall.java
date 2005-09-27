@@ -618,7 +618,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 try|try
 block|{

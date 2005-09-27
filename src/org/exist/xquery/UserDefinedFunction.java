@@ -250,7 +250,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|QName
 name|varName
@@ -345,7 +347,9 @@ init|=
 name|context
 operator|.
 name|markLocalVariables
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|QName
 name|varName
