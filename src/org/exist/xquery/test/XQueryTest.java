@@ -796,7 +796,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testVariable
+name|bugtestVariable
 parameter_list|()
 block|{
 name|ResourceSet
@@ -930,7 +930,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : this should not work (binding should not erase variable)
 name|System
 operator|.
 name|out
@@ -953,12 +952,6 @@ operator|+
 literal|"let $param:a := \"b\" \n"
 operator|+
 literal|"return param:a(), param:a()"
-expr_stmt|;
-try|try
-block|{
-name|exceptionThrown
-operator|=
-literal|false
 expr_stmt|;
 name|result
 operator|=
@@ -988,7 +981,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//should be "a"
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -1037,6 +1029,84 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : this should not work (variable redeclaration)
+try|try
+block|{
+name|exceptionThrown
+operator|=
+literal|false
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testVariable 3: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"xquery version \"1.0\";\n"
+operator|+
+literal|"declare variable $a {\"1st instance\"};\n"
+operator|+
+literal|"declare variable $a {\"2nd instance\"};\n"
+operator|+
+literal|"$a"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"2nd instance"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1056,7 +1126,7 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+comment|//assertTrue("XQuery: " + query, exceptionThrown);
 block|}
 catch|catch
 parameter_list|(
