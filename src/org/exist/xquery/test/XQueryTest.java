@@ -2412,7 +2412,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestNamespace
+name|testNamespace
 parameter_list|()
 block|{
 name|ResourceSet
@@ -2641,6 +2641,11 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|exceptionThrown
 operator|=
 literal|true
@@ -2653,7 +2658,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 comment|//			TODO : this should not work (binding same prefix to different URI)
 name|System
 operator|.
@@ -2764,7 +2773,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
