@@ -796,7 +796,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestVariable
+name|testVariable
 parameter_list|()
 block|{
 name|ResourceSet
@@ -848,7 +848,7 @@ literal|"declare namespace param=\"param\";\n"
 operator|+
 literal|"declare variable $param:a {\"a\"};\n"
 operator|+
-literal|"declare function param:a(){$param:a};\n"
+literal|"declare function param:a() {$param:a};\n"
 operator|+
 literal|"let $param:a := \"b\" \n"
 operator|+
@@ -947,7 +947,7 @@ literal|"declare namespace param=\"param\";\n"
 operator|+
 literal|"declare variable $param:a {\"a\"};\n"
 operator|+
-literal|"declare function param:a(){$param:a};\n"
+literal|"declare function param:a() {$param:a};\n"
 operator|+
 literal|"let $param:a := \"b\" \n"
 operator|+
@@ -1029,6 +1029,144 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testVariable 3: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare variable $foo {\"foo1\"};\n"
+operator|+
+literal|"let $foo := \"foo2\" \n"
+operator|+
+literal|"for $bar in (1 to 1) \n"
+operator|+
+literal|"  let $foo := \"foo3\" \n"
+operator|+
+literal|"  return $foo"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"foo3"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testVariable : XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testVariable2
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+name|String
+name|query
+decl_stmt|;
+name|XMLResource
+name|resu
+decl_stmt|;
+name|boolean
+name|exceptionThrown
+decl_stmt|;
+name|String
+name|message
+decl_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
 comment|//TODO : this should not work (variable redeclaration)
 try|try
 block|{
@@ -1042,7 +1180,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testVariable 3: ========"
+literal|"testVariable 4 ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1140,7 +1278,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTypedVariables : XMLDBException: "
+literal|"testVariable : XMLDBException: "
 operator|+
 name|e
 argument_list|)
@@ -1872,7 +2010,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testModule
+name|bugtestModule
 parameter_list|()
 block|{
 name|ResourceSet
@@ -2400,7 +2538,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTypedVariables : XMLDBException: "
+literal|"testModule : XMLDBException: "
 operator|+
 name|e
 argument_list|)
