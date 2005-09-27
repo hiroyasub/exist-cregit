@@ -323,6 +323,11 @@ operator|(
 name|currentDocument
 operator|!=
 literal|null
+operator|&&
+name|currentDocument
+operator|.
+name|effectiveBooleanValue
+argument_list|()
 operator|)
 return|;
 block|}
