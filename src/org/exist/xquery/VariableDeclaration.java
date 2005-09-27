@@ -198,6 +198,25 @@ name|myModule
 operator|!=
 literal|null
 condition|)
+block|{
+if|if
+condition|(
+name|myModule
+operator|.
+name|isVarDeclared
+argument_list|(
+name|qn
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XQST0049: It is a static error if more than one "
+operator|+
+literal|"variable declared or imported by a module has the same expanded QName."
+argument_list|)
+throw|;
 name|myModule
 operator|.
 name|declareVariable
@@ -207,8 +226,29 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|isVarDeclared
+argument_list|(
+name|qn
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XQST0049: It is a static error if more than one "
+operator|+
+literal|"variable declared or imported by a module has the same expanded QName."
+argument_list|)
+throw|;
+block|}
 name|Variable
 name|var
 init|=

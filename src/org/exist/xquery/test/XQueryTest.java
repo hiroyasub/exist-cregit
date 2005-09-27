@@ -1264,7 +1264,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue("XQuery: " + query, exceptionThrown);
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2010,7 +2014,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestModule
+name|testModule
 parameter_list|()
 block|{
 name|ResourceSet
@@ -2193,7 +2197,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 comment|//TODO : this should not work (namespace redefinition as same)
 name|System
 operator|.
@@ -2524,7 +2532,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

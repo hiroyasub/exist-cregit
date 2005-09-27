@@ -167,6 +167,14 @@ name|Variable
 name|var
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|isVarDeclared
+parameter_list|(
+name|QName
+name|qname
+parameter_list|)
+function_decl|;
 comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
 specifier|public
 name|void
