@@ -1511,7 +1511,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testModule
+name|bugtestModule
 parameter_list|()
 block|{
 name|ResourceSet
