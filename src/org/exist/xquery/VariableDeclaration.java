@@ -212,9 +212,14 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:XQST0049: It is a static error if more than one "
 operator|+
-literal|"variable declared or imported by a module has the same expanded QName."
+literal|"variable declared or imported by a module has the same expanded QName. Variable: "
+operator|+
+name|qn
 argument_list|)
 throw|;
 name|myModule
@@ -243,9 +248,14 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:XQST0049: It is a static error if more than one "
 operator|+
-literal|"variable declared or imported by a module has the same expanded QName."
+literal|"variable declared or imported by a module has the same expanded QName. Variable: "
+operator|+
+name|qn
 argument_list|)
 throw|;
 block|}
