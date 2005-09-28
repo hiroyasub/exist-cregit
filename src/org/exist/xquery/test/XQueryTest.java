@@ -2575,7 +2575,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestNamespace
+name|testNamespace
 parameter_list|()
 block|{
 name|Resource
@@ -2687,7 +2687,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//			TODO : this should not work (empty namespace)
 name|System
 operator|.
 name|out
@@ -2701,17 +2700,27 @@ name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
 operator|+
-literal|"(:: empty namespace ::)\n"
+literal|"import module namespace blah=\"blah\" at \""
 operator|+
-literal|"declare namespace blah=\"\";\n"
+name|URI
 operator|+
-literal|"\"OK\""
+literal|"/test/"
+operator|+
+name|MODULE1_NAME
+operator|+
+literal|"\";\n"
+operator|+
+literal|"(:: redefine existing prefix ::)\n"
+operator|+
+literal|"declare namespace blah=\"bla\";\n"
+operator|+
+literal|"$blah:param"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -2722,11 +2731,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2734,10 +2738,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -2746,7 +2746,19 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//assertTrue(exceptionThrown);
+name|assertTrue
+argument_list|(
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"XQST0033"
+argument_list|)
+operator|>
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -2770,9 +2782,11 @@ name|MODULE1_NAME
 operator|+
 literal|"\";\n"
 operator|+
-literal|"(:: redefine existing prefix ::)\n"
+literal|"(:: redefine existing prefix with same URI ::)\n"
 operator|+
 literal|"declare namespace blah=\"blah\";\n"
+operator|+
+literal|"declare variable $blah:param  {\"value-2\"};\n"
 operator|+
 literal|"$blah:param"
 expr_stmt|;
@@ -2832,7 +2846,7 @@ name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
 operator|+
-literal|"import module namespace blah=\"blah\" at \""
+literal|"import module namespace foo=\"\" at \""
 operator|+
 name|URI
 operator|+
@@ -2842,19 +2856,13 @@ name|MODULE1_NAME
 operator|+
 literal|"\";\n"
 operator|+
-literal|"(:: redefine existing prefix ::)\n"
-operator|+
-literal|"declare namespace blah=\"bla\";\n"
-operator|+
-literal|"declare variable $blah:param  {\"value-2\"};\n"
-operator|+
-literal|"$blah:param"
+literal|"$foo:bar"
 expr_stmt|;
 try|try
 block|{
-name|message
+name|exceptionThrown
 operator|=
-literal|""
+literal|false
 expr_stmt|;
 name|result
 operator|=
@@ -2872,6 +2880,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|exceptionThrown
+operator|=
+literal|true
+expr_stmt|;
 name|message
 operator|=
 name|e
@@ -2882,20 +2894,9 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|message
-operator|.
-name|indexOf
-argument_list|(
-literal|"XQST0033"
-argument_list|)
-operator|>
-operator|-
-literal|1
+name|exceptionThrown
 argument_list|)
 expr_stmt|;
-comment|//			TODO : this should work (emty namespace allowed)
-try|try
-block|{
 name|System
 operator|.
 name|out
@@ -2919,7 +2920,13 @@ name|MODULE2_NAME
 operator|+
 literal|"\";\n"
 operator|+
-literal|"$foo:bar"
+literal|"$bar"
+expr_stmt|;
+try|try
+block|{
+name|exceptionThrown
+operator|=
+literal|false
 expr_stmt|;
 name|result
 operator|=
@@ -2930,49 +2937,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"XQuery: "
-operator|+
-name|query
-argument_list|,
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"XQuery: "
-operator|+
-name|query
-argument_list|,
-literal|"bar"
-argument_list|,
-operator|(
-operator|(
-name|XMLResource
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|)
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2980,6 +2944,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|exceptionThrown
+operator|=
+literal|true
+expr_stmt|;
 name|message
 operator|=
 name|e
@@ -2988,9 +2956,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-comment|//			TODO : this should work (emty namespace allowed)
-try|try
-block|{
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -3004,7 +2974,7 @@ name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
 operator|+
-literal|"import module namespace foo=\"\" at \""
+literal|"import module namespace foo=\"blah\" at \""
 operator|+
 name|URI
 operator|+
@@ -3016,6 +2986,12 @@ literal|"\";\n"
 operator|+
 literal|"$bar"
 expr_stmt|;
+try|try
+block|{
+name|exceptionThrown
+operator|=
+literal|false
+expr_stmt|;
 name|result
 operator|=
 name|service
@@ -3025,49 +3001,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"XQuery: "
-operator|+
-name|query
-argument_list|,
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"XQuery: "
-operator|+
-name|query
-argument_list|,
-literal|"bar"
-argument_list|,
-operator|(
-operator|(
-name|XMLResource
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|)
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3075,6 +3008,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|exceptionThrown
+operator|=
+literal|true
+expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3083,6 +3020,11 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
 comment|//Interesting one : let's see with XQuery gurus :-)
 comment|//declare namespace fn="";
 comment|//fn:current-time()
@@ -3853,6 +3795,86 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|exceptionThrown
+operator|=
+literal|true
+expr_stmt|;
+name|message
+operator|=
+name|e
+operator|.
+name|getMessage
+argument_list|()
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testModule 8: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"xquery version \"1.0\";\n"
+operator|+
+literal|"import module namespace foo1=\"foo\" at \""
+operator|+
+name|URI
+operator|+
+literal|"/test/"
+operator|+
+name|CHILD1_MODULE_NAME
+operator|+
+literal|"\";\n"
+operator|+
+literal|"import module namespace foo2=\"foo\" at \""
+operator|+
+name|URI
+operator|+
+literal|"/test/"
+operator|+
+name|CHILD1_MODULE_NAME
+operator|+
+literal|"\";\n"
+operator|+
+literal|"$foo1:bar"
+expr_stmt|;
+try|try
+block|{
+name|exceptionThrown
+operator|=
+literal|false
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+comment|//Should be a XQST0047 error
 name|exceptionThrown
 operator|=
 literal|true
