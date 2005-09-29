@@ -826,7 +826,7 @@ expr_stmt|;
 name|String
 name|address
 init|=
-name|DEFAULT_HOST
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -943,9 +943,11 @@ name|ErrorCodes
 operator|.
 name|INVALID_DATABASE
 argument_list|,
-literal|"malformed url: "
+literal|"Malformed URI: cannot determine host or collection part in URI: "
 operator|+
-name|address
+name|c
+operator|+
+literal|". The collection path should always start with /db."
 argument_list|)
 throw|;
 name|XmlRpcClient
