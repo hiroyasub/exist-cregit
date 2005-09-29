@@ -337,6 +337,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+try|try
+block|{
 comment|// Save the local variable stack
 name|LocalVariable
 name|mark
@@ -612,6 +614,30 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|// add stack trace information (line numbers)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 return|return
 name|resultSequence
 return|;
