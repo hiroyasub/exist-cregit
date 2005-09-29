@@ -249,6 +249,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -2647,9 +2659,8 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
-name|Type
-operator|.
-name|NODE
+name|getType
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getCardinality()      */
