@@ -275,6 +275,14 @@ init|=
 literal|"child2.xqm"
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|NAMESPACED_NAME
+init|=
+literal|"namespaced.xml"
+decl_stmt|;
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -362,6 +370,16 @@ name|child1Module
 init|=
 literal|"module namespace foo=\"foo1\";\n"
 operator|+
+literal|"import module namespace blah=\"blah\" at \""
+operator|+
+name|URI
+operator|+
+literal|"/test/"
+operator|+
+name|MODULE1_NAME
+operator|+
+literal|"\";\n"
+operator|+
 literal|"declare variable $foo:bar {\"bar1\"};"
 decl_stmt|;
 specifier|private
@@ -372,7 +390,43 @@ name|child2Module
 init|=
 literal|"module namespace foo=\"foo2\";\n"
 operator|+
+literal|"import module namespace blah=\"blah\" at \""
+operator|+
+name|URI
+operator|+
+literal|"/test/"
+operator|+
+name|MODULE1_NAME
+operator|+
+literal|"\";\n"
+operator|+
 literal|"declare variable $foo:bar {\"bar2\"};"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|namespacedDocument
+init|=
+literal|"<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" \n"
+operator|+
+literal|"xmlns:dc=\"http://purl.org/dc/elements/1.1/\" \n"
+operator|+
+literal|"xmlns:x=\"http://exist.sourceforge.net/dc-ext\"> \n"
+operator|+
+literal|"<rdf:Description id=\"3\"> \n"
+operator|+
+literal|"<dc:title>title</dc:title> \n"
+operator|+
+literal|"<dc:creator>creator</dc:creator> \n"
+operator|+
+literal|"<x:place>place</x:place> \n"
+operator|+
+literal|"<x:edition>place</x:edition> \n"
+operator|+
+literal|"</rdf:Description> \n"
+operator|+
+literal|"</rdf:RDF>"
 decl_stmt|;
 specifier|private
 name|Collection
@@ -2672,6 +2726,43 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|doc
+operator|=
+name|testCollection
+operator|.
+name|createResource
+argument_list|(
+name|NAMESPACED_NAME
+argument_list|,
+literal|"XMLResource"
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setContent
+argument_list|(
+name|namespacedDocument
+argument_list|)
+expr_stmt|;
+operator|(
+operator|(
+name|EXistResource
+operator|)
+name|doc
+operator|)
+operator|.
+name|setMimeType
+argument_list|(
+literal|"text/xml"
+argument_list|)
+expr_stmt|;
+name|testCollection
+operator|.
+name|storeResource
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|XPathQueryService
 name|service
 init|=
@@ -3023,6 +3114,124 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testNamespace 6: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare namespace x = \"http://www.foo.com\"; \n"
+operator|+
+literal|"let $a := doc(\""
+operator|+
+literal|"/db/test/"
+operator|+
+name|NAMESPACED_NAME
+operator|+
+literal|"\") \n"
+operator|+
+literal|"return $a//x:edition"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testNamespace 7: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare namespace x = \"http://www.foo.com\"; \n"
+operator|+
+literal|"declare namespace y = \"http://exist.sourceforge.net/dc-ext\"; \n"
+operator|+
+literal|"let $a := doc(\""
+operator|+
+literal|"/db/test/"
+operator|+
+name|NAMESPACED_NAME
+operator|+
+literal|"\") \n"
+operator|+
+literal|"return $a//y:edition"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"<x:edition xmlns:x=\"http://exist.sourceforge.net/dc-ext\">place</x:edition>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Interesting one : let's see with XQuery gurus :-)

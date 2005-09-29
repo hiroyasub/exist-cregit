@@ -1542,19 +1542,7 @@ argument_list|,
 name|baseURI
 argument_list|)
 expr_stmt|;
-name|service
-operator|.
-name|setNamespace
-argument_list|(
-name|RequestModule
-operator|.
-name|PREFIX
-argument_list|,
-name|RequestModule
-operator|.
-name|NAMESPACE_URI
-argument_list|)
-expr_stmt|;
+comment|//service.setNamespace(RequestModule.PREFIX, RequestModule.NAMESPACE_URI);
 name|service
 operator|.
 name|setModuleLoadPath

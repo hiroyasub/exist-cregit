@@ -1168,17 +1168,7 @@ name|RequestModule
 operator|.
 name|PREFIX
 decl_stmt|;
-name|service
-operator|.
-name|setNamespace
-argument_list|(
-name|prefix
-argument_list|,
-name|RequestModule
-operator|.
-name|NAMESPACE_URI
-argument_list|)
-expr_stmt|;
+comment|//service.setNamespace(prefix, RequestModule.NAMESPACE_URI);
 if|if
 condition|(
 operator|!

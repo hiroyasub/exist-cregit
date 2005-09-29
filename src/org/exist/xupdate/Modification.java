@@ -823,6 +823,8 @@ parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|Map
 operator|.

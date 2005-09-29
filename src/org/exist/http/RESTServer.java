@@ -4750,19 +4750,7 @@ argument_list|(
 name|response
 argument_list|)
 decl_stmt|;
-name|context
-operator|.
-name|declareNamespace
-argument_list|(
-name|RequestModule
-operator|.
-name|PREFIX
-argument_list|,
-name|RequestModule
-operator|.
-name|NAMESPACE_URI
-argument_list|)
-expr_stmt|;
+comment|//context.declareNamespace(RequestModule.PREFIX, RequestModule.NAMESPACE_URI);
 name|context
 operator|.
 name|declareVariable
