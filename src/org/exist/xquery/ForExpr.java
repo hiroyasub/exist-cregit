@@ -652,14 +652,19 @@ name|at
 operator|==
 literal|null
 operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|in
 operator|.
 name|getItemType
 argument_list|()
-operator|==
+argument_list|,
 name|Type
 operator|.
 name|NODE
+argument_list|)
 decl_stmt|;
 comment|// If possible, apply the where expression ahead of the iteration
 if|if
