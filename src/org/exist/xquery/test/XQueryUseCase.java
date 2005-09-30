@@ -432,7 +432,7 @@ control|)
 block|{
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
@@ -449,7 +449,7 @@ argument_list|)
 expr_stmt|;
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
@@ -469,7 +469,7 @@ argument_list|)
 decl_stmt|;
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
@@ -478,7 +478,7 @@ argument_list|)
 expr_stmt|;
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
@@ -550,7 +550,7 @@ argument_list|()
 decl_stmt|;
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
@@ -649,7 +649,7 @@ throw|;
 block|}
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(

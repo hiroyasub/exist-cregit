@@ -179,7 +179,7 @@ condition|)
 block|{
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|print
 argument_list|(
@@ -201,7 +201,7 @@ name|ATTRIBUTE_NODE
 case|:
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|print
 argument_list|(
@@ -212,7 +212,7 @@ default|default:
 block|}
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|print
 argument_list|(
@@ -246,7 +246,7 @@ name|ATTRIBUTE_NODE
 case|:
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|print
 argument_list|(
@@ -257,7 +257,7 @@ default|default:
 block|}
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
