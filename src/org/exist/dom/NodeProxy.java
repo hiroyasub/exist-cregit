@@ -347,7 +347,8 @@ specifier|final
 name|int
 name|UNKNOWN_NODE_ADDRESS
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 comment|/** 	 * The owner document of this node. 	 */
 specifier|public
