@@ -1476,6 +1476,14 @@ argument_list|,
 literal|"text/html"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+condition|)
 name|response
 operator|.
 name|setContentType
@@ -6230,6 +6238,12 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+operator|&&
 name|contentType
 operator|!=
 literal|null
