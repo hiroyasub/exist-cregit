@@ -296,7 +296,7 @@ name|NodeValue
 implements|,
 name|Comparable
 block|{
-comment|/** special value for gid: means document node */
+comment|/*  	 * Special values for nodes gid : 	 * Chosen in order to facilitate fast arithmetic computations 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -306,7 +306,14 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** special value for gid: means document element node */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNKNOWN_NODE_GID
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -337,14 +344,6 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|UNKNOWN_NODE_GID
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|int
 name|UNKNOWN_NODE_ADDRESS
 init|=
 operator|-
@@ -357,7 +356,7 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * The unique internal id of this node in the document, if known. 	 * @link #UNKNOWN_NODE_GID 	 * @link #DOCUMENT_NODE_GID 	 */
+comment|/** 	 * The unique internal id of this node in the document, if known. 	 * @link #UNKNOWN_NODE_GID 	 * @link #DOCUMENT_NODE_GID 	 * @link #DOCUMENT_ELEMENT_GID 	 */
 specifier|public
 name|long
 name|gid
