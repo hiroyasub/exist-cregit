@@ -2746,19 +2746,23 @@ index|[]
 init|=
 literal|null
 decl_stmt|;
-switch|switch
+if|if
 condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|qr
 operator|.
 name|getItemType
 argument_list|()
-condition|)
-block|{
-case|case
+argument_list|,
 name|Type
 operator|.
 name|NODE
-case|:
+argument_list|)
+condition|)
+block|{
 name|NodeList
 name|resultSet
 init|=
@@ -3028,8 +3032,8 @@ name|proxy
 argument_list|)
 expr_stmt|;
 block|}
-break|break;
-default|default :
+block|}
+else|else
 throw|throw
 operator|new
 name|RemoteException
@@ -3037,7 +3041,6 @@ argument_list|(
 literal|"result set is not a node list"
 argument_list|)
 throw|;
-block|}
 return|return
 name|xml
 return|;
