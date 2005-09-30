@@ -122,6 +122,14 @@ name|getImplementationType
 parameter_list|()
 function_decl|;
 specifier|public
+name|void
+name|addContextNode
+parameter_list|(
+name|NodeValue
+name|node
+parameter_list|)
+function_decl|;
+specifier|public
 name|Node
 name|getNode
 parameter_list|()

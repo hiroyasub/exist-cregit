@@ -623,6 +623,16 @@ return|;
 block|}
 specifier|public
 specifier|final
+name|int
+name|startOffset
+parameter_list|()
+block|{
+return|return
+name|start_
+return|;
+block|}
+specifier|public
+specifier|final
 name|String
 name|substring
 parameter_list|(

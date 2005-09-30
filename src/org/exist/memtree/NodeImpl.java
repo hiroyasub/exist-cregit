@@ -781,6 +781,15 @@ name|next
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|addContextNode
+parameter_list|(
+name|NodeValue
+name|node
+parameter_list|)
+block|{
+block|}
 comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
 name|boolean
