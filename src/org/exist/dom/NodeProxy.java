@@ -319,7 +319,7 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 init|=
 operator|-
 literal|1
@@ -328,7 +328,7 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|UNKNOWN
+name|UNKNOWN_NODE_TYPE
 init|=
 operator|-
 literal|1
@@ -337,7 +337,15 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|UNKNOWN_GID
+name|UNKNOWN_NODE_GID
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNKNOWN_NODE_ADDRESS
 init|=
 literal|0
 decl_stmt|;
@@ -348,26 +356,26 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * The unique internal node id in the document. 	 * @link #DOCUMENT_NODE_GID means document node. 	 */
+comment|/** 	 * The unique internal id of this node in the document, if known. 	 * @link #UNKNOWN_NODE_GID 	 * @link #DOCUMENT_NODE_GID 	 */
 specifier|public
 name|long
 name|gid
 init|=
-name|UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 decl_stmt|;
-comment|/** 	 * The internal storage address of the node in the 	 * dom.dbx node store. This field is optional. 	 */
+comment|/** 	 * The internal storage address of this node in the 	 * dom.dbx file, if known. 	 * @link #UNKNOWN_NODE_ADDRESS 	 */
 specifier|private
 name|long
 name|internalAddress
 init|=
-name|UNKNOWN
+name|UNKNOWN_NODE_ADDRESS
 decl_stmt|;
-comment|/** 	 * The type of this node (as defined by DOM), if known, @link #UNKNOW 	 * otherwise. 	 */
+comment|/** 	 * The type of this node (as defined by DOM), if known.  	 * @link #UNKNOWN_NODE_TYPE 	 */
 specifier|public
 name|short
 name|nodeType
 init|=
-name|UNKNOWN
+name|UNKNOWN_NODE_TYPE
 decl_stmt|;
 comment|/** 	 * The first {@link Match} object associated with this node. 	 * Match objects are used to track fulltext hits throughout query processing. 	 *  	 * Matches are stored as a linked list. 	 */
 specifier|public
@@ -658,22 +666,28 @@ operator|instanceof
 name|NodeProxy
 operator|)
 condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"cannot compare NodeProxy with "
+operator|+
+name|other
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 return|return
-literal|1
-return|;
-specifier|final
-name|NodeProxy
-name|p
-init|=
+name|compareTo
+argument_list|(
 operator|(
 name|NodeProxy
 operator|)
 name|other
-decl_stmt|;
-return|return
-name|compareTo
-argument_list|(
-name|p
 argument_list|)
 return|;
 block|}
@@ -698,7 +712,15 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"cannot compare nodes from different implementations"
+literal|"cannot compare NodeProxy with "
+operator|+
+name|other
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 name|NodeProxy
@@ -2184,13 +2206,13 @@ name|Type
 operator|.
 name|DOCUMENT
 return|;
+comment|//unknown type
 default|default :
 return|return
 name|Type
 operator|.
 name|NODE
 return|;
-comment|// unknown type
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
@@ -3091,7 +3113,7 @@ name|directParent
 argument_list|,
 name|includeSelf
 argument_list|,
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 return|;
 block|}
@@ -3656,7 +3678,7 @@ literal|false
 argument_list|,
 literal|true
 argument_list|,
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 decl_stmt|;
 if|if
@@ -3798,7 +3820,7 @@ literal|true
 argument_list|,
 literal|false
 argument_list|,
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 decl_stmt|;
 if|if
@@ -4015,7 +4037,7 @@ if|if
 condition|(
 name|nodeType
 operator|!=
-name|UNKNOWN
+name|UNKNOWN_NODE_TYPE
 operator|&&
 name|nodeType
 operator|!=

@@ -4347,7 +4347,7 @@ name|this
 argument_list|,
 name|NodeProxy
 operator|.
-name|UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 argument_list|,
 name|last
 argument_list|)
@@ -4557,7 +4557,7 @@ name|this
 argument_list|,
 name|NodeProxy
 operator|.
-name|UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 argument_list|,
 name|last
 argument_list|)

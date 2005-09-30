@@ -1248,7 +1248,7 @@ literal|false
 argument_list|,
 name|NodeProxy
 operator|.
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 return|;
 block|}
@@ -1283,7 +1283,7 @@ name|includeSelf
 argument_list|,
 name|NodeProxy
 operator|.
-name|TO_BE_COMPUTED
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 return|;
 block|}

@@ -2448,6 +2448,79 @@ argument_list|(
 name|exceptionThrown
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testTypedVariables 15: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $v as document-node() :=  doc(\""
+operator|+
+literal|"/db/test/"
+operator|+
+name|NUMBERS_XML
+operator|+
+literal|"\") \n"
+operator|+
+literal|"return $v"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO : no way to test the node type ?
+comment|//assertEquals( "XQuery: " + query, Node.DOCUMENT_NODE, ((XMLResource)result.getResource(0)));
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"test"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContentAsDOM
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
