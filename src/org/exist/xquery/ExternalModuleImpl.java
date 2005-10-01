@@ -517,6 +517,34 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+operator|!
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|decl
+operator|.
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"err:XQST0048: It is a static error if a function "
+operator|+
+literal|"or variable declared in a library module is not in the target namespace of the library module."
+argument_list|)
+throw|;
 name|mGlobalVariables
 operator|.
 name|put
