@@ -218,6 +218,13 @@ decl_stmt|;
 name|JProgressBar
 name|progress
 decl_stmt|;
+name|Observer
+name|progressObserver
+init|=
+operator|new
+name|UploadProgressObserver
+argument_list|()
+decl_stmt|;
 comment|/** 	 * @param owner 	 * @param title 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
 specifier|public
 name|RestoreDialog
@@ -816,9 +823,7 @@ name|getObserver
 parameter_list|()
 block|{
 return|return
-operator|new
-name|UploadProgressObserver
-argument_list|()
+name|progressObserver
 return|;
 block|}
 class|class
