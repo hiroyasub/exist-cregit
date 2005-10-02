@@ -181,23 +181,15 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-comment|// Find position of "/CONTEXT", construct URL to exist Base URL
-name|String
-name|contextPath
-init|=
-name|_request
-operator|.
-name|getContextPath
-argument_list|()
-decl_stmt|;
+comment|// Find BaseUrl http://host:8080/CONTEXT
 name|int
-name|posContextInUrl
+name|webstartPos
 init|=
 name|_currentUrl
 operator|.
 name|indexOf
 argument_list|(
-name|contextPath
+literal|"/webstart"
 argument_list|)
 decl_stmt|;
 name|_existBaseUrl
@@ -208,45 +200,20 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|posContextInUrl
+name|webstartPos
 argument_list|)
-operator|+
-name|contextPath
 expr_stmt|;
-comment|// Find URL to ...../webstart for first line jnlp-file
-name|int
-name|position
-init|=
-name|_currentUrl
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-decl_stmt|;
+comment|// Find codeBase for jarfiles http://host:8080/CONTEXT/webstart
 name|_codeBase
 operator|=
-name|_currentUrl
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|position
+name|_existBaseUrl
 operator|+
-literal|1
-argument_list|)
+literal|"/webstart"
 expr_stmt|;
+comment|// Reconstruct location http://host:8080/CONTEXT/webstart.exist.jnlp
 name|_href
 operator|=
 name|_currentUrl
-operator|.
-name|substring
-argument_list|(
-name|position
-operator|+
-literal|1
-argument_list|)
 expr_stmt|;
 comment|// Find URL to connect to with client
 name|_startUrl
