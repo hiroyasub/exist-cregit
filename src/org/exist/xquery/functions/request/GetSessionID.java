@@ -214,7 +214,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns an attribute stored in the current session or an empty sequence  * if the attribute does not exist.  *   * @author wolf  */
+comment|/**  * Returns the ID of the current session or an empty sequence  * if there is no session.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -247,7 +247,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the ID of the current session."
+literal|"Returns the ID of the current session or an empty sequence if there is no session."
 argument_list|,
 literal|null
 argument_list|,
