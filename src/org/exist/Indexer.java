@@ -2146,13 +2146,6 @@ name|startsWith
 argument_list|(
 literal|"xmlns"
 argument_list|)
-operator|||
-name|attrNS
-operator|.
-name|equals
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|)
 condition|)
 operator|--
 name|attrLength
@@ -2720,13 +2713,6 @@ name|startsWith
 argument_list|(
 literal|"xmlns"
 argument_list|)
-operator|||
-name|attrNS
-operator|.
-name|equals
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|)
 condition|)
 operator|--
 name|attrLength
@@ -3155,22 +3141,10 @@ name|uri
 parameter_list|)
 block|{
 comment|// skip the eXist namespace
-if|if
-condition|(
-name|uri
-operator|.
-name|equals
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|)
-condition|)
-block|{
-name|ignorePrefix
-operator|=
-name|prefix
-expr_stmt|;
-return|return;
-block|}
+comment|//		if (uri.equals("http://exist.sourceforge.net/NS/exist")) {
+comment|//			ignorePrefix = prefix;
+comment|//			return;
+comment|//		}
 name|nsMappings
 operator|.
 name|put
