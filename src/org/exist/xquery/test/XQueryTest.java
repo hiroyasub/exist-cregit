@@ -3089,9 +3089,9 @@ literal|"$foo:bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -3109,10 +3109,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3123,7 +3119,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"does not match namespace URI"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -3153,9 +3157,9 @@ literal|"$bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -3173,10 +3177,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3187,7 +3187,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"No namespace defined for prefix"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -3217,9 +3225,9 @@ literal|"$bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -3237,10 +3245,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3251,7 +3255,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"No namespace defined for prefix"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -3417,12 +3429,6 @@ name|result
 decl_stmt|;
 name|String
 name|query
-decl_stmt|;
-name|XMLResource
-name|resu
-decl_stmt|;
-name|boolean
-name|exceptionThrown
 decl_stmt|;
 name|String
 name|message
@@ -3700,9 +3706,9 @@ literal|"$blah:param"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -3713,11 +3719,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3725,10 +3726,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3739,7 +3736,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"XQST0049"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -3848,9 +3853,9 @@ literal|"$blah:param"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -3861,11 +3866,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3873,10 +3873,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -3887,7 +3883,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"does not match namespace URI"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -4045,9 +4049,9 @@ literal|"$foo1:bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -4058,11 +4062,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4070,10 +4069,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -4084,7 +4079,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"is not bound"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 comment|//			Non-heritance check
@@ -4117,9 +4120,9 @@ literal|"$foo2:bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -4130,11 +4133,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4142,10 +4140,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -4156,7 +4150,15 @@ expr_stmt|;
 block|}
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"is not bound"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
@@ -4196,9 +4198,9 @@ literal|"$foo1:bar"
 expr_stmt|;
 try|try
 block|{
-name|exceptionThrown
+name|message
 operator|=
-literal|false
+literal|""
 expr_stmt|;
 name|result
 operator|=
@@ -4209,11 +4211,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4221,11 +4218,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-comment|//Should be a XQST0047 error
-name|exceptionThrown
-operator|=
-literal|true
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -4234,9 +4226,18 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+comment|//			Should be a XQST0047 error
 name|assertTrue
 argument_list|(
-name|exceptionThrown
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"does not match namespace URI"
+argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
