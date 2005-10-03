@@ -4591,6 +4591,27 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|prependMessage
+argument_list|(
+literal|"Error while loading module "
+operator|+
+name|location
+operator|+
+literal|": "
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|Exception
 name|e
 parameter_list|)
