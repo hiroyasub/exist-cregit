@@ -7584,6 +7584,11 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|ownerDocument
+operator|.
+name|getBroker
+argument_list|()
+operator|.
 name|removeAll
 argument_list|(
 name|transaction
