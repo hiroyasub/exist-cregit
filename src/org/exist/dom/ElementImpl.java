@@ -8028,6 +8028,11 @@ init|=
 name|lastChildID
 argument_list|()
 decl_stmt|;
+comment|//        removeAll(transaction, old, old.getPath());
+name|ownerDocument
+operator|.
+name|broker
+operator|.
 name|removeAll
 argument_list|(
 name|transaction
