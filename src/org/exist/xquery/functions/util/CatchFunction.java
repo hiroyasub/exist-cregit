@@ -316,11 +316,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|context
-operator|.
-name|pushDocumentContext
-argument_list|()
-expr_stmt|;
+comment|//            context.pushDocumentContext();
 try|try
 block|{
 name|Sequence
@@ -344,11 +340,7 @@ return|;
 block|}
 finally|finally
 block|{
-name|context
-operator|.
-name|popDocumentContext
-argument_list|()
-expr_stmt|;
+comment|//                context.popDocumentContext();
 block|}
 block|}
 catch|catch
@@ -357,11 +349,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|context
-operator|.
-name|popDocumentContext
-argument_list|()
-expr_stmt|;
+comment|//            context.popDocumentContext();
 name|context
 operator|.
 name|getWatchDog
@@ -449,8 +437,6 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 name|UtilModule
@@ -532,6 +518,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Exception in handler: "
+operator|+
+name|e2
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|e2
 argument_list|)
 expr_stmt|;
