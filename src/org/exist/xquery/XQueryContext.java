@@ -859,13 +859,6 @@ name|lockedDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Is profiling enabled?      */
-specifier|private
-name|boolean
-name|profile
-init|=
-literal|false
-decl_stmt|;
 comment|/**      * The profiler instance used by this context.      */
 specifier|private
 name|Profiler
@@ -925,7 +918,10 @@ name|isProfilingEnabled
 parameter_list|()
 block|{
 return|return
-name|profile
+name|profiler
+operator|.
+name|isEnabled
+argument_list|()
 return|;
 block|}
 comment|/**      * Returns the {@link Profiler} instance of this context       * if profiling is enabled.      *       * @return the profiler instance.      */
@@ -4938,13 +4934,6 @@ name|configure
 argument_list|(
 name|pragma
 argument_list|)
-expr_stmt|;
-name|profile
-operator|=
-name|profiler
-operator|.
-name|isEnabled
-argument_list|()
 expr_stmt|;
 block|}
 if|else if
