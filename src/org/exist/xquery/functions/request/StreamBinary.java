@@ -291,7 +291,9 @@ literal|"Streams the binary data passed in $a to the current servlet request out
 operator|+
 literal|"HTTP header is set to the value given in $b. This function only works within a servlet context, not within "
 operator|+
-literal|"Cocoon."
+literal|"Cocoon. Note: the servlet output stream will be closed afterwards and mime-type settings in the prolog "
+operator|+
+literal|"will not be passed."
 argument_list|,
 operator|new
 name|SequenceType
