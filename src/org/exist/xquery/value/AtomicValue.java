@@ -755,6 +755,13 @@ parameter_list|)
 block|{
 comment|// ignore
 block|}
+specifier|public
+name|void
+name|clearContext
+parameter_list|()
+block|{
+comment|// ignore
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext() 	 */
 specifier|public
 name|void

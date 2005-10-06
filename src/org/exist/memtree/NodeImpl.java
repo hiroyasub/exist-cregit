@@ -2454,6 +2454,13 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|void
+name|clearContext
+parameter_list|()
+block|{
+comment|// ignored for in-memory nodes
+block|}
 block|}
 end_class
 

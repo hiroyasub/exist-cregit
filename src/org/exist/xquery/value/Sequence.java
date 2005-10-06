@@ -214,6 +214,12 @@ name|boolean
 name|cached
 parameter_list|)
 function_decl|;
+comment|/** 	 * For every item in the sequence, clear any context-dependant 	 * information that is stored during query processing. This 	 * feature is used for node sets, which may store information 	 * about their context node. 	 */
+specifier|public
+name|void
+name|clearContext
+parameter_list|()
+function_decl|;
 specifier|public
 name|void
 name|setSelfAsContext

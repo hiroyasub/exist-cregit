@@ -1986,6 +1986,13 @@ name|other
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|clearContext
+parameter_list|()
+block|{
+comment|// ignored for a virtual set
+block|}
 block|}
 end_class
 

@@ -993,6 +993,11 @@ name|SELF_AXIS
 operator|)
 condition|)
 block|{
+name|outerSequence
+operator|.
+name|clearContext
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|ancestors
 init|=
