@@ -226,6 +226,13 @@ literal|"http:"
 argument_list|,
 literal|"xmldb:exist:"
 argument_list|)
+operator|.
+name|replaceAll
+argument_list|(
+literal|"-"
+argument_list|,
+literal|"%2D"
+argument_list|)
 operator|+
 literal|"/xmlrpc"
 expr_stmt|;
