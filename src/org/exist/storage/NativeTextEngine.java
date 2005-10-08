@@ -7287,6 +7287,13 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|p
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|section
 operator|==
 name|ATTRIBUTE_SECTION
@@ -7311,6 +7318,7 @@ name|p
 operator|!=
 literal|null
 expr_stmt|;
+block|}
 block|}
 name|include
 operator|=
