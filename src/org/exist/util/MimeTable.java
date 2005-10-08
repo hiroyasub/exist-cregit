@@ -459,6 +459,9 @@ name|substring
 argument_list|(
 name|p
 argument_list|)
+operator|.
+name|toLowerCase
+argument_list|()
 return|;
 block|}
 specifier|private
@@ -1114,6 +1117,9 @@ init|=
 name|tok
 operator|.
 name|nextToken
+argument_list|()
+operator|.
+name|toLowerCase
 argument_list|()
 decl_stmt|;
 if|if
