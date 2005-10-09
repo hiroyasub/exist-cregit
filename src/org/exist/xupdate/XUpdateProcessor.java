@@ -2304,6 +2304,23 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+name|String
+name|nname
+init|=
+name|ns
+operator|==
+literal|null
+condition|?
+name|n
+operator|.
+name|getNodeName
+argument_list|()
+else|:
+name|n
+operator|.
+name|getLocalName
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|ns
@@ -2314,6 +2331,7 @@ name|ns
 operator|=
 literal|""
 expr_stmt|;
+comment|// check for duplicate attributes
 if|if
 condition|(
 name|n
@@ -2325,10 +2343,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 operator|&&
-name|n
-operator|.
-name|getLocalName
-argument_list|()
+name|nname
 operator|.
 name|equals
 argument_list|(
