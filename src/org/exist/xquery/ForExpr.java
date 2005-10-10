@@ -187,6 +187,18 @@ name|ValueSequence
 import|;
 end_import
 
+begin_import
+import|import
+name|sun
+operator|.
+name|security
+operator|.
+name|action
+operator|.
+name|GetLongAction
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -470,6 +482,26 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|start
+argument_list|(
+name|this
+argument_list|,
+literal|"for expression: "
+operator|+
+comment|// " line " +getASTNode().getLine() +
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|this
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// Save the local variable stack
 name|LocalVariable
 name|mark
@@ -1025,6 +1057,20 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|"for expression: "
+operator|+
+name|this
 argument_list|)
 expr_stmt|;
 return|return
