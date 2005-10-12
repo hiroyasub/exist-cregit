@@ -573,6 +573,19 @@ name|XMLDBIsAdmin
 operator|.
 name|class
 argument_list|)
+block|,
+comment|// DWES
+operator|new
+name|FunctionDef
+argument_list|(
+name|XMLDBValidator
+operator|.
+name|signature
+argument_list|,
+name|XMLDBValidator
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public

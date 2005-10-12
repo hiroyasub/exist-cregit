@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -324,20 +324,6 @@ operator|.
 name|collections
 operator|.
 name|IndexInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|TriggerException
 import|;
 end_import
 
@@ -709,6 +695,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|validation
+operator|.
+name|internal
+operator|.
+name|DatabaseResources
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|CompiledXQuery
@@ -997,8 +997,46 @@ name|AST
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|internal
+operator|.
+name|ResourceInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|ValidationReport
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|Validator
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * This class implements the actual methods defined by  * {@link org.exist.xmlrpc.RpcAPI}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -2473,7 +2511,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. 	 * If yes, copy the corresponding settings to the current set of output properties. 	 *  	 * @param context 	 */
+comment|/**      * Check if the XQuery contains pragmas that define serialization settings.      * If yes, copy the corresponding settings to the current set of output properties.      *      * @param context      */
 specifier|protected
 name|void
 name|checkPragmas
@@ -8098,7 +8136,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Parse a file previously uploaded with upload. 	 *  	 * The temporary file will be removed. 	 *  	 * @param user 	 * @param localFile 	 * @throws EXistException 	 * @throws IOException 	 */
+comment|/**      * Parse a file previously uploaded with upload.      *      * The temporary file will be removed.      *      * @param user      * @param localFile      * @throws EXistException      * @throws IOException      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -15278,7 +15316,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param user 	 * @param start 	 * @param end 	 * @param broker 	 * @param docs 	 * @return 	 * @throws PermissionDeniedException 	 */
+comment|/**      * @param user      * @param start      * @param end      * @param broker      * @param docs      * @return      * @throws PermissionDeniedException      */
 specifier|private
 name|Vector
 name|scanIndexTerms
@@ -15670,7 +15708,7 @@ decl_stmt|;
 name|DocumentType
 name|doctype
 decl_stmt|;
-comment|/** 		 * Constructor for the DoctypeCount object 		 *  		 * @param doctype 		 *                   Description of the Parameter 		 */
+comment|/**          * Constructor for the DoctypeCount object          *          * @param doctype          *                   Description of the Parameter          */
 specifier|public
 name|DoctypeCount
 parameter_list|(
@@ -15706,7 +15744,7 @@ decl_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
-comment|/** 		 * Constructor for the NodeCount object 		 *  		 * @param doc 		 *                   Description of the Parameter 		 */
+comment|/**          * Constructor for the NodeCount object          *          * @param doc          *                   Description of the Parameter          */
 specifier|public
 name|NodeCount
 parameter_list|(
@@ -16597,6 +16635,126 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// TODO DWES
+specifier|public
+name|boolean
+name|isValid
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|docPath
+parameter_list|)
+throws|throws
+name|Exception
+throws|,
+name|PermissionDeniedException
+block|{
+name|boolean
+name|retVal
+init|=
+literal|false
+decl_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// TODO not sure about this
+name|broker
+operator|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
+name|BrokerPool
+name|pPool
+init|=
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+comment|// Setup validator
+name|Validator
+name|validator
+init|=
+operator|new
+name|Validator
+argument_list|(
+name|pPool
+argument_list|)
+decl_stmt|;
+comment|// Get inputstream
+name|InputStream
+name|is
+init|=
+operator|new
+name|ResourceInputStream
+argument_list|(
+name|pPool
+argument_list|,
+name|docPath
+argument_list|)
+decl_stmt|;
+comment|// Perform validation
+name|ValidationReport
+name|veh
+init|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+name|is
+argument_list|)
+decl_stmt|;
+comment|// Return validation result
+name|retVal
+operator|=
+operator|!
+name|veh
+operator|.
+name|hasErrorsAndWarnings
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
+finally|finally
+block|{
+name|brokerPool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|retVal
+return|;
 block|}
 block|}
 end_class

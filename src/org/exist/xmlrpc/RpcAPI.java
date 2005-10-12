@@ -1790,6 +1790,21 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/// DWES
+name|boolean
+name|isValid
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 block|}
 end_interface
 
