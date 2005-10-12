@@ -440,6 +440,10 @@ name|declarationWritten
 operator|=
 literal|false
 expr_stmt|;
+name|doctypeWritten
+operator|=
+literal|false
+expr_stmt|;
 block|}
 specifier|public
 name|void
