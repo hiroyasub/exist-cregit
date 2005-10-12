@@ -108,6 +108,15 @@ name|Exception
 block|{
 comment|//
 block|}
+specifier|public
+name|void
+name|testDummyTestmethod
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|//
+block|}
 block|}
 end_class
 

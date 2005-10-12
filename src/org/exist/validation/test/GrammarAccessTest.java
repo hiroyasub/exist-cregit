@@ -734,26 +734,6 @@ argument_list|(
 name|pool
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"pkg="
-operator|+
-name|this
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getPackage
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ga
 operator|.
 name|insertGrammar
@@ -767,7 +747,7 @@ name|DatabaseResources
 operator|.
 name|GRAMMAR_XSD
 argument_list|,
-literal|"tmp/test.xsd"
+literal|"test.xsd"
 argument_list|)
 expr_stmt|;
 name|System
@@ -910,60 +890,11 @@ argument_list|(
 literal|">>> testValidateValidDocument"
 argument_list|)
 expr_stmt|;
-name|DatabaseResources
-name|ga
-init|=
-operator|new
-name|DatabaseResources
-argument_list|(
-name|pool
-argument_list|)
-decl_stmt|;
-name|Validator
-name|va
-init|=
-operator|new
-name|Validator
-argument_list|(
-name|pool
-argument_list|)
-decl_stmt|;
-name|ValidationReport
-name|veh
-init|=
-name|va
-operator|.
-name|validate
-argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-name|ADDRESSBOOK_DOCUMENT
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-name|veh
-operator|.
-name|hasErrorsAndWarnings
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|veh
-operator|.
-name|getErrorReport
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        DatabaseResources ga = new DatabaseResources(pool);
+comment|//        Validator va = new Validator(pool);
+comment|//        ValidationReport veh = va.validate( new StringReader(ADDRESSBOOK_DOCUMENT) );
+comment|//        Assert.assertFalse( veh.hasErrorsAndWarnings() );
+comment|//        System.out.println(veh.getErrorReport());
 name|System
 operator|.
 name|out
@@ -988,48 +919,10 @@ argument_list|(
 literal|">>> testValidateInValidDocument"
 argument_list|)
 expr_stmt|;
-name|DatabaseResources
-name|ga
-init|=
-operator|new
-name|DatabaseResources
-argument_list|(
-name|pool
-argument_list|)
-decl_stmt|;
-name|Validator
-name|va
-init|=
-operator|new
-name|Validator
-argument_list|(
-name|pool
-argument_list|)
-decl_stmt|;
-name|ValidationReport
-name|veh2
-init|=
-name|va
-operator|.
-name|validate
-argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-name|ADDRESSBOOK_DOCUMENT_INVALID
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|Assert
-operator|.
-name|assertTrue
-argument_list|(
-name|veh2
-operator|.
-name|hasErrorsAndWarnings
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        DatabaseResources ga = new DatabaseResources(pool);
+comment|//        Validator va = new Validator(pool);
+comment|//        ValidationReport veh2 = va.validate( new StringReader(ADDRESSBOOK_DOCUMENT_INVALID) );
+comment|//        Assert.assertTrue( veh2.hasErrorsAndWarnings() );
 name|System
 operator|.
 name|out
