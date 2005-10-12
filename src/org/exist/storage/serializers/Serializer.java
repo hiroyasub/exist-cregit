@@ -2351,21 +2351,9 @@ name|boolean
 name|xmlDecl
 parameter_list|)
 block|{
-name|outputProperties
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|OMIT_XML_DECLARATION
-argument_list|,
-name|xmlDecl
-condition|?
-literal|"no"
-else|:
-literal|"yes"
-argument_list|)
-expr_stmt|;
+comment|//outputProperties.setProperty(			//Hmmm, what was this meant to do? Just seemed to set omit-xml-declaration="yes". Seems better without it - delirium
+comment|//	OutputKeys.OMIT_XML_DECLARATION,
+comment|//	xmlDecl ? "no" : "yes");
 name|xmlout
 operator|=
 operator|(
