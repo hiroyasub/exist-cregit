@@ -1604,7 +1604,7 @@ literal|" PUBLIC \""
 operator|+
 name|publicId
 operator|.
-name|replace
+name|replaceAll
 argument_list|(
 literal|"&#160;"
 argument_list|,
