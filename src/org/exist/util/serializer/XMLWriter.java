@@ -1595,6 +1595,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//writer.write(" PUBLIC \"" + publicId + "\"");
 name|writer
 operator|.
 name|write
@@ -1602,10 +1603,18 @@ argument_list|(
 literal|" PUBLIC \""
 operator|+
 name|publicId
+operator|.
+name|replace
+argument_list|(
+literal|"&#160;"
+argument_list|,
+literal|" "
+argument_list|)
 operator|+
 literal|"\""
 argument_list|)
 expr_stmt|;
+comment|//workaround for XHTML doctype, declare does not allow spaces so use&#160; instead and then replace each&#160; with a space here - delirium
 block|}
 if|if
 condition|(
