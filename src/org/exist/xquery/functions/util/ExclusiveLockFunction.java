@@ -127,7 +127,7 @@ literal|"Puts an exclusive lock on the owner documents of all nodes in the first
 operator|+
 literal|"Then calls the expression in the second argument, $b and releases the acquired locks after"
 operator|+
-literal|"its completition."
+literal|"its completion."
 argument_list|,
 operator|new
 name|SequenceType
