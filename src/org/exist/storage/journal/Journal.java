@@ -1299,6 +1299,29 @@ operator|.
 name|getChannel
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|channel
+operator|.
+name|tryLock
+argument_list|()
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Failed to open journal file: "
+operator|+
+name|file
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|". It is locked by another process."
+argument_list|)
+throw|;
 name|syncThread
 operator|.
 name|setChannel
@@ -1323,6 +1346,29 @@ name|file
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Failed to open new journal: "
+operator|+
+name|file
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|". It might be used by another process."
 argument_list|,
 name|e
 argument_list|)

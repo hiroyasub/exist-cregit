@@ -4333,6 +4333,8 @@ parameter_list|(
 name|String
 name|location
 parameter_list|)
+throws|throws
+name|DBException
 block|{
 name|setFile
 argument_list|(

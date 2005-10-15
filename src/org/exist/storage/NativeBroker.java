@@ -1346,9 +1346,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|createIndexFiles
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 operator|(
@@ -1482,6 +1479,9 @@ name|isReadOnly
 argument_list|()
 expr_stmt|;
 block|}
+name|createIndexFiles
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|readOnly

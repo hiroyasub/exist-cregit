@@ -458,6 +458,8 @@ parameter_list|,
 name|double
 name|growthThreshold
 parameter_list|)
+throws|throws
+name|DBException
 block|{
 name|super
 argument_list|()
@@ -556,6 +558,8 @@ parameter_list|,
 name|double
 name|growthThreshold
 parameter_list|)
+throws|throws
+name|DBException
 block|{
 name|this
 argument_list|(
