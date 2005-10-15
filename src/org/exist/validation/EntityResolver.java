@@ -255,6 +255,20 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Resolving namespace '"
+operator|+
+name|xrid
+operator|.
+name|getNamespace
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 name|type
 operator|=
 name|DatabaseResources
@@ -286,6 +300,20 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Resolving publicId '"
+operator|+
+name|xrid
+operator|.
+name|getPublicId
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 name|type
 operator|=
 name|DatabaseResources
@@ -309,11 +337,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Fast escape; otherwise valiation is slow!
+comment|// Fast escape; no logging, otherwise validation is slow!
 return|return
 literal|null
 return|;
 block|}
+comment|// TODO: if resourcepath = null then default resolver must be checked.
 if|if
 condition|(
 name|resourcePath
