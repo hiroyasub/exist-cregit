@@ -561,13 +561,6 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
-operator|||
-name|contextSequence
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|NodeSet
