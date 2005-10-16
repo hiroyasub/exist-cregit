@@ -276,6 +276,15 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
+name|expression
+operator|.
+name|analyze
+argument_list|(
+name|this
+argument_list|,
+name|flags
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
@@ -318,6 +327,29 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|isProfilingEnabled
+argument_list|(
+literal|2
+argument_list|)
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|start
+argument_list|(
+name|this
+argument_list|,
+literal|"Global variable declaration: "
+operator|+
+name|qn
+argument_list|)
+expr_stmt|;
 comment|// declare the variable
 name|Sequence
 name|seq
@@ -326,11 +358,34 @@ name|expression
 operator|.
 name|eval
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
-name|contextItem
+literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|isProfilingEnabled
+argument_list|(
+literal|2
+argument_list|)
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|"Global variable declaration: "
+operator|+
+name|qn
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|myModule
@@ -515,10 +570,9 @@ name|getDependencies
 parameter_list|()
 block|{
 return|return
-name|expression
+name|Dependency
 operator|.
-name|getDependencies
-argument_list|()
+name|CONTEXT_SET
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
