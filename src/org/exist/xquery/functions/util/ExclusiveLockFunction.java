@@ -123,9 +123,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Puts an exclusive lock on the owner documents of all nodes in the first argument, $a. "
+literal|"Puts an exclusive lock on the owner documents of all nodes in the first argument $a. "
 operator|+
-literal|"Then calls the expression in the second argument, $b and releases the acquired locks after"
+literal|"Then calls the expression in the second argument $b and releases the acquired locks after"
 operator|+
 literal|"its completion."
 argument_list|,
@@ -142,7 +142,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|ZERO_OR_MORE
 argument_list|)
 block|,
 operator|new
@@ -167,7 +167,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
