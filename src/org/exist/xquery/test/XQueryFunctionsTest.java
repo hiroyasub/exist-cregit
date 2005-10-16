@@ -1633,7 +1633,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testExclusiveLock(): "
 operator|+
 name|e
 argument_list|)
@@ -1966,7 +1966,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testSharedLock(): "
 operator|+
 name|e
 argument_list|)
