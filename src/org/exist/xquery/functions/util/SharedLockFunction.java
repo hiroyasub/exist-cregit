@@ -123,11 +123,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Puts a shared lock on the owner documents of all nodes in the first argument, $a. "
+literal|"Puts a shared lock on the owner documents of all nodes in the first argument $a. "
 operator|+
-literal|"Then calls the expression in the second argument, $b and releases the acquired locks after"
+literal|"Then evaluates the expressions in the second argument $b and releases the acquired locks after"
 operator|+
-literal|"its completition."
+literal|"their completion."
 argument_list|,
 operator|new
 name|SequenceType
@@ -142,7 +142,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|ZERO_OR_MORE
 argument_list|)
 block|,
 operator|new
@@ -167,7 +167,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EMPTY
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
