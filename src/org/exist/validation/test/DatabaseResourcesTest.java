@@ -137,34 +137,8 @@ name|DatabaseResources
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|DatabaseManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Database
-import|;
-end_import
-
 begin_comment
-comment|/**  *  * @author wessels  */
+comment|/**  *  "DatabaseResources.class "jUnit tests.  *  * @author dizzzz  */
 end_comment
 
 begin_class
@@ -174,6 +148,14 @@ name|DatabaseResourcesTest
 extends|extends
 name|TestCase
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|ABOOKFILES
+init|=
+literal|"samples/validation/addressbook"
+decl_stmt|;
 specifier|private
 name|String
 name|eXistHome
@@ -194,17 +176,9 @@ literal|null
 decl_stmt|;
 specifier|private
 name|DatabaseResources
-name|dbr
+name|dbResources
 init|=
 literal|null
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|ABOOKFILES
-init|=
-literal|"samples/validation/addressbook"
 decl_stmt|;
 specifier|public
 name|DatabaseResourcesTest
@@ -235,6 +209,13 @@ argument_list|(
 literal|">>> setUp"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|eXistHome
+operator|==
+literal|null
+condition|)
+block|{
 name|eXistHome
 operator|=
 name|System
@@ -244,6 +225,7 @@ argument_list|(
 literal|"exist.home"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|pool
@@ -275,12 +257,12 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|dbr
+name|dbResources
 operator|==
 literal|null
 condition|)
 block|{
-name|dbr
+name|dbResources
 operator|=
 name|validator
 operator|.
@@ -428,7 +410,7 @@ argument_list|(
 literal|">>> tearDown"
 argument_list|)
 expr_stmt|;
-comment|// TODO why o why
+comment|// TODO why o why, tell me why to leave this one out
 comment|//BrokerPool.stopAll(false);
 name|System
 operator|.
@@ -456,13 +438,11 @@ argument_list|(
 literal|">>> testInsertGrammar"
 argument_list|)
 expr_stmt|;
-comment|//        Validator va = new Validator(pool);
-comment|//        DatabaseResources ga = va.getDatabaseResources();
 name|Assert
 operator|.
 name|assertTrue
 argument_list|(
-name|dbr
+name|dbResources
 operator|.
 name|insertGrammar
 argument_list|(
@@ -510,13 +490,11 @@ argument_list|(
 literal|">>> testInsertTestDocuments"
 argument_list|)
 expr_stmt|;
-comment|//        Validator va = new Validator(pool);
-comment|//        DatabaseResources ga = va.getDatabaseResources();
 name|Assert
 operator|.
 name|assertTrue
 argument_list|(
-name|dbr
+name|dbResources
 operator|.
 name|insertDocumentInDatabase
 argument_list|(
@@ -540,7 +518,7 @@ name|Assert
 operator|.
 name|assertTrue
 argument_list|(
-name|dbr
+name|dbResources
 operator|.
 name|insertDocumentInDatabase
 argument_list|(
@@ -586,13 +564,11 @@ argument_list|(
 literal|">>> testIsGrammarInDatabase"
 argument_list|)
 expr_stmt|;
-comment|//        Validator va = new Validator(pool);
-comment|//        DatabaseResources ga = va.getDatabaseResources();
 name|Assert
 operator|.
 name|assertTrue
 argument_list|(
-name|dbr
+name|dbResources
 operator|.
 name|hasGrammar
 argument_list|(
@@ -630,13 +606,11 @@ argument_list|(
 literal|">>> testIsGrammarNotInDatabase"
 argument_list|)
 expr_stmt|;
-comment|//        Validator va = new Validator(pool);
-comment|//        DatabaseResources ga = va.getDatabaseResources();
 name|Assert
 operator|.
 name|assertFalse
 argument_list|(
-name|dbr
+name|dbResources
 operator|.
 name|hasGrammar
 argument_list|(
@@ -646,6 +620,110 @@ name|GRAMMAR_XSD
 argument_list|,
 literal|"http://jmvanel.free.fr/xsd/addressBooky"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"<<<"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testValidDocument
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|">>> testValidDocument"
+argument_list|)
+expr_stmt|;
+name|ValidationReport
+name|report
+init|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+operator|new
+name|FileInputStream
+argument_list|(
+name|ABOOKFILES
+operator|+
+literal|"/addressbook_valid.xml"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|Assert
+operator|.
+name|assertFalse
+argument_list|(
+name|report
+operator|.
+name|hasErrorsAndWarnings
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"<<<"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testInvalidDocument
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|">>> testValidDocument"
+argument_list|)
+expr_stmt|;
+name|ValidationReport
+name|report
+init|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+operator|new
+name|FileInputStream
+argument_list|(
+name|ABOOKFILES
+operator|+
+literal|"/addressbook_invalid.xml"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|Assert
+operator|.
+name|assertTrue
+argument_list|(
+name|report
+operator|.
+name|hasErrorsAndWarnings
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
