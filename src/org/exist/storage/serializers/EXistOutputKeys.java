@@ -24,7 +24,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|OUPUT_DOCTYPE
+name|OUTPUT_DOCTYPE
 init|=
 literal|"output-doctype"
 decl_stmt|;

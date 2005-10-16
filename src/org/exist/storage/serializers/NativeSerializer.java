@@ -732,7 +732,7 @@ name|getProperty
 argument_list|(
 name|EXistOutputKeys
 operator|.
-name|OUPUT_DOCTYPE
+name|OUTPUT_DOCTYPE
 argument_list|,
 literal|"no"
 argument_list|)
