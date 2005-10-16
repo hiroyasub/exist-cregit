@@ -126,7 +126,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Initializing GrammarPool"
+literal|"Initializing GrammarPool."
 argument_list|)
 expr_stmt|;
 name|pool
@@ -235,7 +235,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Unlock grammarpool"
+literal|"Unlock grammarpool."
 argument_list|)
 expr_stmt|;
 name|pool
@@ -285,12 +285,14 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Got namespace "
+literal|"Retrieve grammar for namespace '"
 operator|+
 name|xgd
 operator|.
 name|getNamespace
 argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 expr_stmt|;
 block|}
@@ -308,12 +310,14 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Got publicId "
+literal|"Retrieve grammar for publicId '"
 operator|+
 name|xgd
 operator|.
 name|getPublicId
 argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 expr_stmt|;
 block|}
@@ -336,7 +340,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Lock grammarpool"
+literal|"Lock grammarpool."
 argument_list|)
 expr_stmt|;
 name|pool
@@ -355,7 +359,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Clear grammarpool"
+literal|"Clear grammarpool."
 argument_list|)
 expr_stmt|;
 name|pool

@@ -305,7 +305,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Initializing Validator"
+literal|"Initializing Validator."
 argument_list|)
 expr_stmt|;
 if|if
@@ -500,7 +500,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Start validation"
+literal|"Start validation."
 argument_list|)
 expr_stmt|;
 name|long
@@ -574,7 +574,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Parse begin"
+literal|"Parse begin."
 argument_list|)
 expr_stmt|;
 name|xmlReader
@@ -588,7 +588,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Parse end"
+literal|"Parse end."
 argument_list|)
 expr_stmt|;
 if|if

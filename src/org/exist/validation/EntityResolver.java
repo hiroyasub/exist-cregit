@@ -361,7 +361,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Resource not found in database"
+literal|"Resource not found in database."
 argument_list|)
 expr_stmt|;
 return|return
@@ -400,7 +400,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"No grammar found."
+literal|"Grammar not found."
 argument_list|)
 expr_stmt|;
 return|return
