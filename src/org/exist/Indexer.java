@@ -2014,46 +2014,16 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|document
-operator|.
-name|getDoctype
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-comment|// we don't know the doctype
-comment|// set it to the root node's tag name
-specifier|final
-name|DocumentTypeImpl
-name|dt
-init|=
-operator|new
-name|DocumentTypeImpl
-argument_list|(
-name|rootNode
-operator|.
-name|getTagName
-argument_list|()
-argument_list|,
-literal|null
-argument_list|,
-name|document
-operator|.
-name|getFileName
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|document
-operator|.
-name|setDocumentType
-argument_list|(
-name|dt
-argument_list|)
-expr_stmt|;
-block|}
+comment|//			if (document.getDoctype() == null) {
+comment|//				// we don't know the doctype
+comment|//				// set it to the root node's tag name
+comment|//				final DocumentTypeImpl dt =
+comment|//					new DocumentTypeImpl(
+comment|//						rootNode.getTagName(),
+comment|//						null,
+comment|//						document.getFileName());
+comment|//				document.setDocumentType(dt);
+comment|//			}
 name|document
 operator|.
 name|setChildCount
