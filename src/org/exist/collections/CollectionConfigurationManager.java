@@ -1019,7 +1019,7 @@ name|cache
 operator|.
 name|remove
 argument_list|(
-name|config
+name|collectionPath
 argument_list|)
 expr_stmt|;
 block|}
