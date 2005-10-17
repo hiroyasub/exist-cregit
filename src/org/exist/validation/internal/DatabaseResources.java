@@ -408,13 +408,13 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/** Path to grammar in database  */
-specifier|private
+specifier|public
 name|String
 name|GRAMMERBASE
 init|=
 literal|"/db/system/grammar"
 decl_stmt|;
-specifier|private
+specifier|public
 name|String
 name|XSDBASE
 init|=
@@ -422,7 +422,7 @@ name|GRAMMERBASE
 operator|+
 literal|"/xsd"
 decl_stmt|;
-specifier|private
+specifier|public
 name|String
 name|DTDBASE
 init|=
@@ -430,7 +430,7 @@ name|GRAMMERBASE
 operator|+
 literal|"/dtd"
 decl_stmt|;
-specifier|private
+specifier|public
 name|String
 name|DTDCATALOG
 init|=
@@ -471,7 +471,7 @@ literal|"<!-- Warning this file is regenerated at every start -->\n"
 operator|+
 literal|"<!-- Will be fixed in the near future -->\n"
 operator|+
-literal|"<!--<public publicId=\"-//PLAY//EN\" uri=\"entities/play.dtd\"/> -->\n"
+literal|"<public publicId=\"-//PLAY//EN\" uri=\"play.dtd\"/>\n"
 operator|+
 literal|"</catalog>"
 decl_stmt|;
@@ -522,7 +522,7 @@ argument_list|)
 argument_list|,
 name|GRAMMAR_DTD
 argument_list|,
-literal|"catalog.xml"
+literal|"catalog_example.xml"
 argument_list|)
 expr_stmt|;
 block|}
@@ -950,12 +950,15 @@ name|File
 name|file
 parameter_list|,
 name|String
-name|collection
+name|collectionName
 parameter_list|,
 name|String
-name|document
+name|documentName
 parameter_list|)
 block|{
+comment|// TODO make compatible for Binary (dtd) and schemas (xml)
+comment|// See org.exist.xmldb.test.CreateCollectionsTest
+comment|// org.exist.storage.test.RecoveryTest RecoverBinaryTest
 name|boolean
 name|insertIsSuccesfull
 init|=
@@ -996,7 +999,7 @@ name|beginTransaction
 argument_list|()
 decl_stmt|;
 name|Collection
-name|test
+name|collection
 init|=
 name|broker
 operator|.
@@ -1004,7 +1007,7 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|collection
+name|collectionName
 argument_list|)
 decl_stmt|;
 name|broker
@@ -1013,13 +1016,13 @@ name|saveCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|test
+name|collection
 argument_list|)
 expr_stmt|;
 name|IndexInfo
 name|info
 init|=
-name|test
+name|collection
 operator|.
 name|validate
 argument_list|(
@@ -1027,7 +1030,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|document
+name|documentName
 argument_list|,
 operator|new
 name|InputSource
@@ -1040,7 +1043,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|test
+name|collection
 operator|.
 name|store
 argument_list|(
@@ -1431,7 +1434,7 @@ name|id
 operator|+
 literal|"\"]/@uri "
 operator|+
-literal|"return if($dtds) then document-uri($dtds[1]) else \"NONE\""
+literal|"return if($dtds) then $dtds[1] else \"NONE\""
 expr_stmt|;
 block|}
 name|logger

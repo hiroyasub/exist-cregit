@@ -324,6 +324,12 @@ name|resourcePath
 operator|=
 name|databaseResources
 operator|.
+name|DTDBASE
+operator|+
+literal|"/"
+operator|+
+name|databaseResources
+operator|.
 name|getGrammarPath
 argument_list|(
 name|type
@@ -368,6 +374,15 @@ return|return
 literal|null
 return|;
 block|}
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"resourcePath="
+operator|+
+name|resourcePath
+argument_list|)
+expr_stmt|;
 comment|// TODO make this streaming, fortunately the grammarfiles are small.
 comment|// Get grammar from database
 name|rd

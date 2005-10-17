@@ -364,6 +364,16 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+comment|// Doctype info must be serialized too.
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+literal|"output-doctype"
+argument_list|,
+literal|"yes"
+argument_list|)
+expr_stmt|;
 name|serializer
 operator|.
 name|serialize
