@@ -187,17 +187,9 @@ name|ValueSequence
 import|;
 end_import
 
-begin_import
-import|import
-name|sun
-operator|.
-name|security
-operator|.
-name|action
-operator|.
-name|GetLongAction
-import|;
-end_import
+begin_comment
+comment|// import sun.security.action.GetLongAction;
+end_comment
 
 begin_comment
 comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
