@@ -21,7 +21,27 @@ name|java
 operator|.
 name|io
 operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
 import|;
 end_import
 
@@ -497,30 +517,31 @@ operator|=
 name|pool
 expr_stmt|;
 comment|// TODO this must be performed once.... and earlier...
-name|insertCollection
+name|createCollection
 argument_list|(
 name|GRAMMERBASE
 argument_list|)
 expr_stmt|;
-name|insertCollection
+name|createCollection
 argument_list|(
 name|XSDBASE
 argument_list|)
 expr_stmt|;
-name|insertCollection
+name|createCollection
 argument_list|(
 name|DTDBASE
 argument_list|)
 expr_stmt|;
-name|insertGrammar
+name|insertCatalog
+argument_list|(
+name|convertToFile
 argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|CATALOGCONTENT
 argument_list|)
-argument_list|,
-name|GRAMMAR_DTD
+argument_list|)
 argument_list|,
 literal|"catalog_example.xml"
 argument_list|)
@@ -528,7 +549,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|boolean
-name|insertCollection
+name|createCollection
 parameter_list|(
 name|String
 name|path
@@ -670,30 +691,23 @@ return|return
 name|insertIsSuccessfull
 return|;
 block|}
-specifier|public
-name|boolean
-name|insertGrammar
+specifier|private
+name|File
+name|convertToFile
 parameter_list|(
 name|Reader
 name|reader
-parameter_list|,
-name|int
-name|type
-parameter_list|,
-name|String
-name|path
 parameter_list|)
-block|{
-name|boolean
-name|insertIsSuccessfull
-init|=
-literal|false
-decl_stmt|;
-try|try
 block|{
 name|File
 name|tmpFile
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|tmpFile
+operator|=
 name|File
 operator|.
 name|createTempFile
@@ -702,7 +716,7 @@ literal|"InsertGrammar"
 argument_list|,
 literal|"tmp"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|FileWriter
 name|fw
 init|=
@@ -768,22 +782,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|insertIsSuccessfull
-operator|=
-name|insertGrammar
-argument_list|(
-name|tmpFile
-argument_list|,
-name|type
-argument_list|,
-name|path
-argument_list|)
-expr_stmt|;
-name|tmpFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -799,61 +797,25 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
+name|tmpFile
+operator|.
+name|deleteOnExit
+argument_list|()
+expr_stmt|;
 return|return
-name|insertIsSuccessfull
+name|tmpFile
 return|;
 block|}
-specifier|public
-name|boolean
-name|insertGrammar
+specifier|private
+name|String
+name|getDocumentName
 parameter_list|(
-name|File
-name|file
-parameter_list|,
-name|int
-name|type
-parameter_list|,
 name|String
 name|path
 parameter_list|)
 block|{
-name|boolean
-name|insertIsSuccesfull
-init|=
-literal|false
-decl_stmt|;
-comment|// Path = subpath/doc.xml
 name|String
-name|baseFolder
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|type
-operator|==
-name|GRAMMAR_XSD
-condition|)
-block|{
-name|baseFolder
-operator|=
-name|XSDBASE
-expr_stmt|;
-block|}
-else|else
-block|{
-name|baseFolder
-operator|=
-name|DTDBASE
-expr_stmt|;
-block|}
-name|String
-name|collection
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|document
+name|docName
 init|=
 literal|null
 decl_stmt|;
@@ -875,18 +837,14 @@ operator|-
 literal|1
 condition|)
 block|{
-name|document
+name|docName
 operator|=
 name|path
-expr_stmt|;
-name|collection
-operator|=
-name|baseFolder
 expr_stmt|;
 block|}
 else|else
 block|{
-name|document
+name|docName
 operator|=
 name|path
 operator|.
@@ -897,12 +855,52 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|collection
-operator|=
-name|baseFolder
-operator|+
+block|}
+return|return
+name|docName
+return|;
+block|}
+specifier|private
+name|String
+name|getCollectionPath
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+block|{
+name|String
+name|pathName
+init|=
+literal|null
+decl_stmt|;
+name|int
+name|separatorPos
+init|=
+name|path
+operator|.
+name|lastIndexOf
+argument_list|(
 literal|"/"
-operator|+
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|separatorPos
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// no path
+name|pathName
+operator|=
+literal|"/"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|pathName
+operator|=
 name|path
 operator|.
 name|substring
@@ -913,41 +911,166 @@ name|separatorPos
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
+if|if
+condition|(
+operator|!
+name|pathName
 operator|.
-name|info
+name|startsWith
 argument_list|(
-literal|"document="
-operator|+
-name|document
+literal|"/"
 argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"collection="
+condition|)
+block|{
+name|pathName
+operator|=
+literal|"/"
 operator|+
-name|collection
-argument_list|)
+name|pathName
 expr_stmt|;
+block|}
 return|return
-name|insertDocumentInDatabase
+name|pathName
+return|;
+block|}
+specifier|public
+name|boolean
+name|insertSchema
+parameter_list|(
+name|File
+name|file
+parameter_list|,
+name|String
+name|path
+parameter_list|)
+block|{
+name|String
+name|collection
+init|=
+name|XSDBASE
+operator|+
+name|getCollectionPath
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
+return|return
+name|insertDocument
 argument_list|(
 name|file
 argument_list|,
+literal|false
+argument_list|,
 name|collection
 argument_list|,
-name|document
+name|getDocumentName
+argument_list|(
+name|path
+argument_list|)
 argument_list|)
 return|;
 block|}
 specifier|public
 name|boolean
-name|insertDocumentInDatabase
+name|insertDtd
 parameter_list|(
 name|File
 name|file
+parameter_list|,
+name|String
+name|path
+parameter_list|)
+block|{
+name|String
+name|collection
+init|=
+name|DTDBASE
+operator|+
+name|getCollectionPath
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
+return|return
+name|insertDocument
+argument_list|(
+name|file
+argument_list|,
+literal|true
+argument_list|,
+name|collection
+argument_list|,
+name|getDocumentName
+argument_list|(
+name|path
+argument_list|)
+argument_list|)
+return|;
+block|}
+specifier|public
+name|boolean
+name|insertCatalog
+parameter_list|(
+name|File
+name|file
+parameter_list|)
+block|{
+name|String
+name|collection
+init|=
+name|DTDBASE
+decl_stmt|;
+return|return
+name|insertDocument
+argument_list|(
+name|file
+argument_list|,
+literal|false
+argument_list|,
+name|collection
+argument_list|,
+literal|"catalog.xml"
+argument_list|)
+return|;
+block|}
+specifier|public
+name|boolean
+name|insertCatalog
+parameter_list|(
+name|File
+name|file
+parameter_list|,
+name|String
+name|catalogName
+parameter_list|)
+block|{
+name|String
+name|collection
+init|=
+name|DTDBASE
+decl_stmt|;
+return|return
+name|insertDocument
+argument_list|(
+name|file
+argument_list|,
+literal|false
+argument_list|,
+name|collection
+argument_list|,
+name|catalogName
+argument_list|)
+return|;
+block|}
+specifier|public
+name|boolean
+name|insertDocument
+parameter_list|(
+name|File
+name|file
+parameter_list|,
+name|boolean
+name|isBinary
 parameter_list|,
 name|String
 name|collectionName
@@ -956,9 +1079,6 @@ name|String
 name|documentName
 parameter_list|)
 block|{
-comment|// TODO make compatible for Binary (dtd) and schemas (xml)
-comment|// See org.exist.xmldb.test.CreateCollectionsTest
-comment|// org.exist.storage.test.RecoveryTest RecoverBinaryTest
 name|boolean
 name|insertIsSuccesfull
 init|=
@@ -1019,6 +1139,96 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isBinary
+condition|)
+block|{
+name|FileInputStream
+name|is
+init|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|file
+argument_list|)
+decl_stmt|;
+name|ByteArrayOutputStream
+name|os
+init|=
+operator|new
+name|ByteArrayOutputStream
+argument_list|()
+decl_stmt|;
+name|byte
+index|[]
+name|buf
+init|=
+operator|new
+name|byte
+index|[
+literal|512
+index|]
+decl_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|count
+operator|=
+name|is
+operator|.
+name|read
+argument_list|(
+name|buf
+argument_list|)
+operator|)
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+name|os
+operator|.
+name|write
+argument_list|(
+name|buf
+argument_list|,
+literal|0
+argument_list|,
+name|count
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO : call mime-type stuff.
+name|BinaryDocument
+name|doc
+init|=
+name|collection
+operator|.
+name|addBinaryResource
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|documentName
+argument_list|,
+name|os
+operator|.
+name|toByteArray
+argument_list|()
+argument_list|,
+literal|"text/text"
+argument_list|)
+decl_stmt|;
+block|}
+else|else
+block|{
 name|IndexInfo
 name|info
 init|=
@@ -1066,6 +1276,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -1162,6 +1373,20 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
 finally|finally
 block|{
 if|if
@@ -1184,6 +1409,83 @@ return|return
 name|insertIsSuccesfull
 return|;
 block|}
+comment|//
+comment|//    public boolean insertGrammar(File file, int type, String path){
+comment|//
+comment|//        boolean insertIsSuccesfull = false;
+comment|//
+comment|//        // Path = subpath/doc.xml
+comment|//        String baseFolder=null;
+comment|//        if(type==GRAMMAR_XSD){
+comment|//            baseFolder = XSDBASE;
+comment|//        } else {
+comment|//            baseFolder = DTDBASE;
+comment|//        }
+comment|//
+comment|//        String collection=null;
+comment|//        String document=null;
+comment|//        int separatorPos = path.lastIndexOf("/");
+comment|//        if(separatorPos==-1){
+comment|//            document=path;
+comment|//            collection=baseFolder ;
+comment|//        } else {
+comment|//            document=path.substring(separatorPos+1);
+comment|//            collection=baseFolder + "/" +path.substring(0, separatorPos);
+comment|//        }
+comment|//
+comment|//        logger.info("document="+document);
+comment|//        logger.info("collection="+collection);
+comment|//
+comment|//        return insertDocumentInDatabase(file,  collection, document);
+comment|//    }
+comment|//
+comment|//    public boolean insertDocumentInDatabase(File file, String collectionName, String documentName){
+comment|//
+comment|//        // TODO make compatible for Binary (dtd) and schemas (xml)
+comment|//        // See org.exist.xmldb.test.CreateCollectionsTest
+comment|//
+comment|//        // org.exist.storage.test.RecoveryTest RecoverBinaryTest
+comment|//
+comment|//        boolean insertIsSuccesfull=false;
+comment|//
+comment|//        DBBroker broker = null;
+comment|//        try {
+comment|//
+comment|//            broker = brokerPool.get(SecurityManager.SYSTEM_USER);
+comment|//
+comment|//            TransactionManager transact = brokerPool.getTransactionManager();
+comment|//            Txn transaction = transact.beginTransaction();
+comment|//
+comment|//            Collection collection = broker.getOrCreateCollection(transaction, collectionName);
+comment|//            //broker.saveCollection(transaction, collection);
+comment|//
+comment|//            IndexInfo info = collection.validate( transaction, broker, documentName , new InputSource( new FileReader(file) ) );
+comment|//            collection.store(transaction, broker, info, new InputSource( new FileReader(file) ), false);
+comment|//
+comment|//            transact.commit(transaction);
+comment|//
+comment|//            insertIsSuccesfull=true;
+comment|//
+comment|//        } catch (EXistException ex){
+comment|//            logger.error(ex);
+comment|//        } catch (PermissionDeniedException ex){
+comment|//            logger.error(ex);
+comment|//        } catch (SAXException ex){
+comment|//            logger.error(ex);
+comment|//        } catch (TriggerException ex){
+comment|//            logger.error(ex);
+comment|//        } catch(LockException ex){
+comment|//            logger.error(ex);
+comment|//        } catch(FileNotFoundException ex){
+comment|//            logger.error(ex);
+comment|//        } finally {
+comment|//            if(brokerPool!=null){
+comment|//                brokerPool.release(broker);
+comment|//            }
+comment|//        }
+comment|//        return insertIsSuccesfull;
+comment|//    }
+comment|//
 specifier|public
 name|boolean
 name|hasGrammar
