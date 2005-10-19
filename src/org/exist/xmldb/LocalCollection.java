@@ -4063,19 +4063,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
+name|LOG
 operator|.
-name|VENDOR_ERROR
-argument_list|,
-literal|"please put nekohtml.jar in lib/optional/ "
-argument_list|,
-name|e
+name|info
+argument_list|(
+literal|"nekohtml parser not found. If you want to parse non-wellformed HTML files, put nekohtml.jar into "
+operator|+
+literal|"directory lib/optional/"
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
