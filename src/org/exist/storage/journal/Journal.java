@@ -1606,6 +1606,21 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+try|try
+block|{
+name|syncThread
+operator|.
+name|join
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+block|}
 block|}
 comment|/**      * Called to signal that the db is currently in      * recovery phase, so no output should be written.      *       * @param value      */
 specifier|public

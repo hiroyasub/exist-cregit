@@ -127,7 +127,7 @@ name|shutdown
 operator|=
 literal|true
 expr_stmt|;
-name|triggerSync
+name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
