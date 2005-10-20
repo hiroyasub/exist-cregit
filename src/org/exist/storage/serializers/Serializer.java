@@ -2023,9 +2023,24 @@ name|setPrettyPrinter
 argument_list|(
 name|writer
 argument_list|,
-literal|true
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|OMIT_XML_DECLARATION
+argument_list|,
+literal|"yes"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"no"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//setPrettyPrinter(writer, false);
 name|serializeToReceiver
 argument_list|(
 name|doc
@@ -2078,9 +2093,24 @@ name|setPrettyPrinter
 argument_list|(
 name|out
 argument_list|,
-literal|false
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|OMIT_XML_DECLARATION
+argument_list|,
+literal|"yes"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"no"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//setPrettyPrinter(out, false);
 name|serializeToReceiver
 argument_list|(
 name|n
@@ -2140,9 +2170,24 @@ name|setPrettyPrinter
 argument_list|(
 name|out
 argument_list|,
-literal|false
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|OMIT_XML_DECLARATION
+argument_list|,
+literal|"yes"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"no"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//setPrettyPrinter(out, false);
 name|serializeToReceiver
 argument_list|(
 name|p
@@ -2351,9 +2396,21 @@ name|boolean
 name|xmlDecl
 parameter_list|)
 block|{
-comment|//outputProperties.setProperty(			//Hmmm, what was this meant to do? Just seemed to set omit-xml-declaration="yes". Seems better without it - delirium
-comment|//	OutputKeys.OMIT_XML_DECLARATION,
-comment|//	xmlDecl ? "no" : "yes");
+name|outputProperties
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|OMIT_XML_DECLARATION
+argument_list|,
+name|xmlDecl
+condition|?
+literal|"no"
+else|:
+literal|"yes"
+argument_list|)
+expr_stmt|;
 name|xmlout
 operator|=
 operator|(
