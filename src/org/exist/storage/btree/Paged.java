@@ -1118,20 +1118,12 @@ argument_list|()
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|DBException
-argument_list|(
-literal|"Failed to open database file: "
-operator|+
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|". It is locked by another process."
-argument_list|)
-throw|;
+name|readOnly
+operator|=
+literal|true
+expr_stmt|;
+comment|//				throw new DBException("Failed to open database file: " + file.getAbsolutePath() +
+comment|//						". It is locked by another process.");
 block|}
 catch|catch
 parameter_list|(
