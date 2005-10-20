@@ -127,7 +127,7 @@ name|shutdown
 operator|=
 literal|true
 expr_stmt|;
-name|notifyAll
+name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
@@ -198,13 +198,9 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|shutdown
-condition|)
-break|break;
 block|}
 block|}
+comment|// shutdown: sync the file and close it
 name|sync
 argument_list|()
 expr_stmt|;

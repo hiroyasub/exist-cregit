@@ -83,6 +83,15 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
+name|ShutdownTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
 name|CollectionTest
 operator|.
 name|class

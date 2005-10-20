@@ -3567,50 +3567,11 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|//TODO : use dedicated method here, probably elsewhere ?
-try|try
-block|{
-if|if
-condition|(
-operator|!
-name|FORCE_CORRUPTION
-condition|)
-block|{
-name|transactionManager
-operator|.
-name|checkpoint
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|//TOUNDERSTAND (pb) : not called if FORCE_CORRUPTION is true ?
-comment|// WM: yes, this will truncate the log file and thus make the tests more realistic ;-)
 name|transactionManager
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|TransactionException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 comment|//Invalidate the configuration
 name|conf
 operator|=
