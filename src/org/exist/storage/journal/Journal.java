@@ -867,11 +867,6 @@ name|lastSyncLsn
 operator|)
 condition|)
 block|{
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|syncThread
 operator|.
 name|triggerSync
