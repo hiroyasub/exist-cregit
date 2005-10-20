@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/** @see http://www.w3.org/TR/xpath-functions/#func-tokenize  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -368,7 +368,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -419,6 +419,20 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|string
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 name|String
 name|pattern
 init|=
