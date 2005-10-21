@@ -3049,6 +3049,7 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : should we allow global variable *re*declaration ?
 name|var
 operator|.
 name|setValue
@@ -3180,11 +3181,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"variable $\""
+literal|"variable $"
 operator|+
 name|qname
 operator|+
-literal|"\" is not bound"
+literal|" is not bound"
 argument_list|)
 throw|;
 return|return
