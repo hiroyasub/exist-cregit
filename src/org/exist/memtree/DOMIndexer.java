@@ -480,6 +480,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// increase computed max depth by one
+name|targetDoc
+operator|.
+name|setMaxDepth
+argument_list|(
+name|targetDoc
+operator|.
+name|getMaxDepth
+argument_list|()
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
 name|targetDoc
 operator|.
 name|calculateTreeLevelStartPoints
