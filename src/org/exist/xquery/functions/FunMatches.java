@@ -953,15 +953,6 @@ name|STRING
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Using xs:string index for fn:matches. Regex: "
-operator|+
-name|pattern
-argument_list|)
-expr_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -972,6 +963,27 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|isProfilingEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+literal|"Using index for fn:matches. Regex: "
+operator|+
+name|pattern
+argument_list|)
+expr_stmt|;
 return|return
 name|context
 operator|.
