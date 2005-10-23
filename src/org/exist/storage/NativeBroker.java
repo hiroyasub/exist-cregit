@@ -16496,6 +16496,12 @@ name|int
 name|syncEvent
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isReadOnly
+argument_list|()
+condition|)
+return|return;
 try|try
 block|{
 operator|new

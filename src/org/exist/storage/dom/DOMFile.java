@@ -6168,6 +6168,12 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+if|if
+condition|(
+operator|!
+name|isReadOnly
+argument_list|()
+condition|)
 name|flush
 argument_list|()
 expr_stmt|;
