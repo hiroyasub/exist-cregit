@@ -2070,6 +2070,26 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|broker
+operator|.
+name|isReadOnly
+argument_list|()
+condition|)
+block|{
+name|transactionManager
+operator|.
+name|setEnabled
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|isReadOnly
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// run recovery
 name|boolean
 name|recovered

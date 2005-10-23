@@ -264,6 +264,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|setEnabled
+parameter_list|(
+name|boolean
+name|enabled
+parameter_list|)
+block|{
+name|this
+operator|.
+name|enabled
+operator|=
+name|enabled
+expr_stmt|;
+block|}
 comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *       * @param broker      * @throws EXistException      */
 specifier|public
 name|boolean
@@ -414,6 +429,10 @@ name|Txn
 name|txn
 parameter_list|)
 block|{
+if|if
+condition|(
+name|enabled
+condition|)
 name|txn
 operator|.
 name|releaseAll
