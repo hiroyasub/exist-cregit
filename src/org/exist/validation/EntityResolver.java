@@ -340,6 +340,26 @@ name|getPublicId
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Fix, remove leading path
+if|if
+condition|(
+name|resourcePath
+operator|.
+name|endsWith
+argument_list|(
+name|DatabaseResources
+operator|.
+name|NOGRAMMAR
+argument_list|)
+condition|)
+block|{
+name|resourcePath
+operator|=
+name|DatabaseResources
+operator|.
+name|NOGRAMMAR
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{

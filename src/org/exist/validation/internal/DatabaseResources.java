@@ -460,6 +460,13 @@ literal|"/catalog.xml"
 decl_stmt|;
 specifier|public
 specifier|static
+name|String
+name|NOGRAMMAR
+init|=
+literal|"NONE"
+decl_stmt|;
+specifier|public
+specifier|static
 name|int
 name|GRAMMAR_UNKNOWN
 init|=
@@ -1409,83 +1416,6 @@ return|return
 name|insertIsSuccesfull
 return|;
 block|}
-comment|//
-comment|//    public boolean insertGrammar(File file, int type, String path){
-comment|//
-comment|//        boolean insertIsSuccesfull = false;
-comment|//
-comment|//        // Path = subpath/doc.xml
-comment|//        String baseFolder=null;
-comment|//        if(type==GRAMMAR_XSD){
-comment|//            baseFolder = XSDBASE;
-comment|//        } else {
-comment|//            baseFolder = DTDBASE;
-comment|//        }
-comment|//
-comment|//        String collection=null;
-comment|//        String document=null;
-comment|//        int separatorPos = path.lastIndexOf("/");
-comment|//        if(separatorPos==-1){
-comment|//            document=path;
-comment|//            collection=baseFolder ;
-comment|//        } else {
-comment|//            document=path.substring(separatorPos+1);
-comment|//            collection=baseFolder + "/" +path.substring(0, separatorPos);
-comment|//        }
-comment|//
-comment|//        logger.info("document="+document);
-comment|//        logger.info("collection="+collection);
-comment|//
-comment|//        return insertDocumentInDatabase(file,  collection, document);
-comment|//    }
-comment|//
-comment|//    public boolean insertDocumentInDatabase(File file, String collectionName, String documentName){
-comment|//
-comment|//        // TODO make compatible for Binary (dtd) and schemas (xml)
-comment|//        // See org.exist.xmldb.test.CreateCollectionsTest
-comment|//
-comment|//        // org.exist.storage.test.RecoveryTest RecoverBinaryTest
-comment|//
-comment|//        boolean insertIsSuccesfull=false;
-comment|//
-comment|//        DBBroker broker = null;
-comment|//        try {
-comment|//
-comment|//            broker = brokerPool.get(SecurityManager.SYSTEM_USER);
-comment|//
-comment|//            TransactionManager transact = brokerPool.getTransactionManager();
-comment|//            Txn transaction = transact.beginTransaction();
-comment|//
-comment|//            Collection collection = broker.getOrCreateCollection(transaction, collectionName);
-comment|//            //broker.saveCollection(transaction, collection);
-comment|//
-comment|//            IndexInfo info = collection.validate( transaction, broker, documentName , new InputSource( new FileReader(file) ) );
-comment|//            collection.store(transaction, broker, info, new InputSource( new FileReader(file) ), false);
-comment|//
-comment|//            transact.commit(transaction);
-comment|//
-comment|//            insertIsSuccesfull=true;
-comment|//
-comment|//        } catch (EXistException ex){
-comment|//            logger.error(ex);
-comment|//        } catch (PermissionDeniedException ex){
-comment|//            logger.error(ex);
-comment|//        } catch (SAXException ex){
-comment|//            logger.error(ex);
-comment|//        } catch (TriggerException ex){
-comment|//            logger.error(ex);
-comment|//        } catch(LockException ex){
-comment|//            logger.error(ex);
-comment|//        } catch(FileNotFoundException ex){
-comment|//            logger.error(ex);
-comment|//        } finally {
-comment|//            if(brokerPool!=null){
-comment|//                brokerPool.release(broker);
-comment|//            }
-comment|//        }
-comment|//        return insertIsSuccesfull;
-comment|//    }
-comment|//
 specifier|public
 name|boolean
 name|hasGrammar
@@ -1712,7 +1642,11 @@ name|id
 operator|+
 literal|"\" ] "
 operator|+
-literal|"return if($schemas) then document-uri($schemas[1]) else \"NONE\" "
+literal|"return if($schemas) then document-uri($schemas[1]) else \""
+operator|+
+name|NOGRAMMAR
+operator|+
+literal|"\" "
 expr_stmt|;
 block|}
 if|else if
@@ -1736,16 +1670,23 @@ name|id
 operator|+
 literal|"\"]/@uri "
 operator|+
-literal|"return if($dtds) then $dtds[1] else \"NONE\""
+literal|"return if($dtds) then $dtds[1] else \""
+operator|+
+name|NOGRAMMAR
+operator|+
+literal|"\""
 expr_stmt|;
 block|}
+else|else
+block|{
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
-name|query
+literal|"Unknown grammar type, not able to find query."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|query
 return|;
