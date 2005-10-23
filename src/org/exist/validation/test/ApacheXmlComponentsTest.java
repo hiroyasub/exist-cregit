@@ -67,6 +67,20 @@ extends|extends
 name|TestCase
 block|{
 specifier|public
+specifier|static
+name|String
+name|XERCESVERSION
+init|=
+literal|"Xerces-J 2.7.1"
+decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|XALANVERSION
+init|=
+literal|"Xalan Java 2.7.0"
+decl_stmt|;
+specifier|public
 name|ApacheXmlComponentsTest
 parameter_list|(
 name|String
@@ -165,7 +179,29 @@ name|out
 operator|.
 name|println
 argument_list|(
+literal|"Xerces"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Required version '"
+operator|+
+name|XERCESVERSION
+operator|+
 literal|"'"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found version '"
 operator|+
 name|version
 operator|+
@@ -176,11 +212,11 @@ name|Assert
 operator|.
 name|assertEquals
 argument_list|(
-literal|"Incorrect Xerces version !"
+literal|"Incorrect Xerces version! "
 operator|+
-literal|"please put correct jar in endorsed folder"
+literal|"Please put correct jar in endorsed folder"
 argument_list|,
-literal|"Xerces-J 2.7.1"
+name|XERCESVERSION
 argument_list|,
 name|version
 argument_list|)
@@ -213,7 +249,29 @@ name|out
 operator|.
 name|println
 argument_list|(
+literal|"Xalan"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Required version '"
+operator|+
+name|XALANVERSION
+operator|+
 literal|"'"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found version '"
 operator|+
 name|version
 operator|+
@@ -224,11 +282,11 @@ name|Assert
 operator|.
 name|assertEquals
 argument_list|(
-literal|"Incorrect Xalan version !"
+literal|"Incorrect Xalan version! "
 operator|+
-literal|"please put correct jar in endorsed folder"
+literal|"Please put correct jar in endorsed folder"
 argument_list|,
-literal|"Xalan Java 2.7.0"
+name|XALANVERSION
 argument_list|,
 name|version
 argument_list|)
