@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Write PLAIN TEXT to a writer. This class defines methods similar to SAX.   * It deals with opening and closing tags, writing attributes and so on: they  * are all ignored. Only real content is written!  *  * Note this is an initial version. Code cleanup needed. Original code is  * commented for fast repair.  *  * @author dizzz  * @author wolf  */
+comment|/**  * Write PLAIN TEXT to a writer. This class defines methods similar to SAX.  * It deals with opening and closing tags, writing attributes and so on: they  * are all ignored. Only real content is written!  *  * Note this is an initial version. Code cleanup needed. Original code is  * commented for fast repair.  *  * @author dizzz  * @author wolf  */
 end_comment
 
 begin_class
@@ -140,9 +140,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-comment|//    static {
-comment|//        defaultProperties.setProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-comment|//    }
 specifier|protected
 name|Writer
 name|writer
@@ -155,13 +152,6 @@ name|charSet
 init|=
 literal|null
 decl_stmt|;
-comment|//    protected boolean tagIsOpen = false;
-comment|//
-comment|//    protected boolean tagIsEmpty = true;
-comment|//
-comment|//    protected boolean declarationWritten = false;
-comment|//
-comment|//    protected boolean doctypeWritten = false;
 specifier|protected
 name|Properties
 name|outputProperties
@@ -177,31 +167,11 @@ index|[
 literal|10
 index|]
 decl_stmt|;
-comment|//    private static boolean[] textSpecialChars;
-comment|//
-comment|//    private static boolean[] attrSpecialChars;
-comment|//    static {
-comment|//        textSpecialChars = new boolean[128];
-comment|//        Arrays.fill(textSpecialChars, false);
-comment|//        textSpecialChars['<'] = true;
-comment|//        textSpecialChars['>'] = true;
-comment|//        // textSpecialChars['\r'] = true;
-comment|//        textSpecialChars['&'] = true;
-comment|//
-comment|//        attrSpecialChars = new boolean[128];
-comment|//        Arrays.fill(attrSpecialChars, false);
-comment|//        attrSpecialChars['<'] = true;
-comment|//        attrSpecialChars['>'] = true;
-comment|//        attrSpecialChars['\r'] = true;
-comment|//        attrSpecialChars['\n'] = true;
-comment|//        attrSpecialChars['\t'] = true;
-comment|//        attrSpecialChars['&'] = true;
-comment|//        attrSpecialChars['"'] = true;
-comment|//    }
 specifier|public
 name|TEXTWriter
 parameter_list|()
 block|{
+comment|// empty
 block|}
 specifier|public
 name|TEXTWriter
@@ -283,9 +253,6 @@ name|writer
 operator|=
 name|writer
 expr_stmt|;
-comment|//        tagIsOpen = false;
-comment|//        tagIsEmpty = true;
-comment|//        declarationWritten = false;
 block|}
 specifier|public
 name|void
@@ -294,9 +261,7 @@ parameter_list|()
 throws|throws
 name|TransformerException
 block|{
-comment|//        tagIsOpen = false;
-comment|//        tagIsEmpty = true;
-comment|//        declarationWritten = false;
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -305,6 +270,7 @@ parameter_list|()
 throws|throws
 name|TransformerException
 block|{
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -316,19 +282,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
-comment|//        if (!doctypeWritten)
-comment|//            writeDoctype(qname.toString());
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(false);
-comment|//            writer.write('<');
-comment|//            writer.write(qname);
-comment|//            tagIsOpen = true;
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -340,23 +294,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
-comment|//        if (!doctypeWritten)
-comment|//            writeDoctype(qname.toString());
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(false);
-comment|//            writer.write('<');
-comment|//            if (qname.getPrefix() != null&& qname.getPrefix().length()> 0) {
-comment|//                writer.write(qname.getPrefix());
-comment|//                writer.write(':');
-comment|//            }
-comment|//            writer.write(qname.getLocalName());
-comment|//            tagIsOpen = true;
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -368,17 +306,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(true);
-comment|//            else {
-comment|//                writer.write("</");
-comment|//                writer.write(qname);
-comment|//                writer.write('>');
-comment|//            }
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -390,21 +318,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(true);
-comment|//            else {
-comment|//                writer.write("</");
-comment|//                if (qname.getPrefix() != null&& qname.getPrefix().length()> 0) {
-comment|//                    writer.write(qname.getPrefix());
-comment|//                    writer.write(':');
-comment|//                }
-comment|//                writer.write(qname.getLocalName());
-comment|//                writer.write('>');
-comment|//            }
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -419,25 +333,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if ((nsURI == null || nsURI.length() == 0)
-comment|//&& (prefix == null || prefix.length() == 0))
-comment|//            return;
-comment|//        try {
-comment|//            if (!tagIsOpen)
-comment|//                throw new TransformerException(
-comment|//                        "Found a namespace declaration outside an element");
-comment|//            writer.write(' ');
-comment|//            writer.write("xmlns");
-comment|//            if (prefix != null&& prefix.length()> 0) {
-comment|//                writer.write(':');
-comment|//                writer.write(prefix);
-comment|//            }
-comment|//            writer.write("=\"");
-comment|//            writeChars(nsURI, true);
-comment|//            writer.write('"');
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -452,21 +348,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        try {
-comment|//            if (!tagIsOpen) {
-comment|//                characters(value);
-comment|//                return;
-comment|//                // throw new TransformerException("Found an attribute outside an
-comment|//                // element");
-comment|//            }
-comment|//            writer.write(' ');
-comment|//            writer.write(qname);
-comment|//            writer.write("=\"");
-comment|//            writeChars(value, true);
-comment|//            writer.write('"');
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -481,25 +363,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        try {
-comment|//            if (!tagIsOpen) {
-comment|//                characters(value);
-comment|//                return;
-comment|//                // throw new TransformerException("Found an attribute outside an
-comment|//                // element");
-comment|//            }
-comment|//            writer.write(' ');
-comment|//            if (qname.getPrefix() != null&& qname.getPrefix().length()> 0) {
-comment|//                writer.write(qname.getPrefix());
-comment|//                writer.write(':');
-comment|//            }
-comment|//            writer.write(qname.getLocalName());
-comment|//            writer.write("=\"");
-comment|//            writeChars(value, true);
-comment|//            writer.write('"');
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -511,12 +375,8 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
 try|try
 block|{
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(false);
 name|writeChars
 argument_list|(
 name|chars
@@ -562,8 +422,6 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
 name|XMLString
 name|s
 init|=
@@ -601,21 +459,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(false);
-comment|//            writer.write("<?");
-comment|//            writer.write(target);
-comment|//            if (data != null&& data.length()> 0) {
-comment|//                writer.write(' ');
-comment|//                writeChars(data, false);
-comment|//            }
-comment|//            writer.write("?>");
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -627,17 +471,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
-comment|//        try {
-comment|//            if (tagIsOpen)
-comment|//                closeStartTag(false);
-comment|//            writer.write("<!--");
-comment|//            writeChars(data, false);
-comment|//            writer.write("-->");
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|public
 name|void
@@ -656,11 +490,8 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (tagIsOpen)
-comment|//            closeStartTag(false);
 try|try
 block|{
-comment|//            writer.write("<![CDATA[");
 name|writer
 operator|.
 name|write
@@ -672,7 +503,6 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
-comment|//            writer.write("]]>");
 block|}
 catch|catch
 parameter_list|(
@@ -710,28 +540,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (!declarationWritten)
-comment|//            writeDeclaration();
-comment|//
-comment|//        if (publicId == null&& systemId == null)
-comment|//            return;
-comment|//
-comment|//        try {
-comment|//            writer.write("<!DOCTYPE ");
-comment|//            writer.write(name);
-comment|//            if (publicId != null) {
-comment|//                writer.write(" PUBLIC \"" + publicId + "\"");
-comment|//            }
-comment|//            if (systemId != null) {
-comment|//                if (publicId == null)
-comment|//                    writer.write(" SYSTEM");
-comment|//                writer.write(" \"" + systemId + "\"");
-comment|//            }
-comment|//            writer.write(">");
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
-comment|//        doctypeWritten = true;
+comment|// empty
 block|}
 specifier|protected
 name|void
@@ -743,17 +552,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        try {
-comment|//            if (tagIsOpen) {
-comment|//                if (isEmpty)
-comment|//                    writer.write("/>");
-comment|//                else
-comment|//                    writer.write('>');
-comment|//                tagIsOpen = false;
-comment|//            }
-comment|//        } catch (IOException e) {
-comment|//            throw new TransformerException(e.getMessage(), e);
-comment|//        }
+comment|// empty
 block|}
 specifier|protected
 name|void
@@ -762,34 +561,7 @@ parameter_list|()
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (declarationWritten)
-comment|//            return;
-comment|//        if (outputProperties == null)
-comment|//            outputProperties = defaultProperties;
-comment|//        declarationWritten = true;
-comment|//        String omitXmlDecl = outputProperties.getProperty(
-comment|//                OutputKeys.OMIT_XML_DECLARATION, "yes");
-comment|//        if (omitXmlDecl.equals("no")) {
-comment|//            String version = outputProperties.getProperty(OutputKeys.VERSION, "1.0");
-comment|//            String standalone = outputProperties.getProperty(OutputKeys.STANDALONE);
-comment|//            String encoding = outputProperties.getProperty(OutputKeys.ENCODING,
-comment|//                    "UTF-8");
-comment|//            try {
-comment|//                writer.write("<?xml version=\"");
-comment|//                writer.write(version);
-comment|//                writer.write("\" encoding=\"");
-comment|//                writer.write(encoding);
-comment|//                writer.write('"');
-comment|//                if (standalone != null) {
-comment|//                    writer.write(" standalone=\"");
-comment|//                    writer.write(standalone);
-comment|//                    writer.write('"');
-comment|//                }
-comment|//                writer.write("?>\n");
-comment|//            } catch (IOException e) {
-comment|//                throw new TransformerException(e.getMessage(), e);
-comment|//            }
-comment|//        }
+comment|// empty
 block|}
 specifier|protected
 name|void
@@ -801,13 +573,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-comment|//        if (doctypeWritten)
-comment|//            return;
-comment|//        String publicId = outputProperties.getProperty(OutputKeys.DOCTYPE_PUBLIC);
-comment|//        String systemId = outputProperties.getProperty(OutputKeys.DOCTYPE_SYSTEM);
-comment|//        if (publicId != null || systemId != null)
-comment|//            documentType(rootElement, publicId, systemId);
-comment|//        doctypeWritten = true;
+comment|// empty
 block|}
 specifier|private
 specifier|final
@@ -823,9 +589,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//        boolean[] specialChars = inAttribute ? attrSpecialChars
-comment|//                : textSpecialChars;
-comment|//        char ch = 0;
 specifier|final
 name|int
 name|len
@@ -835,22 +598,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-comment|//        int pos = 0, i;
-comment|//        while (pos< len) {
-comment|//            i = pos;
-comment|// TODO: I am not sure about this loop.
-comment|//            while (i< len) {
-comment|//                ch = s.charAt(i);
-comment|//                if (ch< 128) {
-comment|//                    if (specialChars[ch])
-comment|//                        break;
-comment|//                    else
-comment|//                        i++;
-comment|//                } else if (!charSet.inCharacterSet(ch) || ch == 160)
-comment|//                    break;
-comment|//                else
-comment|//                    i++;
-comment|//            }
 name|writeCharSeq
 argument_list|(
 name|s
@@ -860,41 +607,6 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
-comment|// writer.write(s.subSequence(pos, i).toString());
-comment|//            if (i>= len)
-comment|//                return;
-comment|//            switch (ch) {
-comment|//                case '<':
-comment|//                    writer.write("&lt;");
-comment|//                    break;
-comment|//                case '>':
-comment|//                    writer.write("&gt;");
-comment|//                    break;
-comment|//                case '&':
-comment|//                    writer.write("&amp;");
-comment|//                    break;
-comment|//                case '\r':
-comment|//                    writer.write("&#xD;");
-comment|//                    break;
-comment|//                case '\n':
-comment|//                    writer.write("&#xA;");
-comment|//                    break;
-comment|//                case '\t':
-comment|//                    writer.write("&#x9;");
-comment|//                    break;
-comment|//                case '"':
-comment|//                    writer.write("&#34;");
-comment|//                    break;
-comment|//                    // non-breaking space:
-comment|//                case 160:
-comment|//                    writer.write("&#160;");
-comment|//                    break;
-comment|//                default:
-comment|//                    writeCharacterReference(ch);
-comment|//            }
-comment|//            writeCharacterReference(ch);
-comment|//            pos = ++i;
-comment|//        }
 block|}
 specifier|private
 name|void
