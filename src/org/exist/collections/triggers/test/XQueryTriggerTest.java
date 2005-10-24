@@ -19,6 +19,18 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -354,7 +366,21 @@ literal|"</xu:update>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
-comment|//    private final static String MODIFIED_DOCUMENT_CONTENT = DOCUMENT_CONTENT.replace("18.4", "15.2");
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|MODIFIED_DOCUMENT_CONTENT
+init|=
+name|DOCUMENT_CONTENT
+operator|.
+name|replaceAll
+argument_list|(
+literal|"<price>18.4</price>"
+argument_list|,
+literal|"<price>15.2</price>"
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -775,6 +801,18 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//TODO : understand why it is necessary !
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|service
@@ -894,8 +932,29 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : comparison fails !
-comment|//assertXMLEqual(DOCUMENT_CONTENT, result.getResource(0).getContent().toString());
+name|assertXMLEqual
+argument_list|(
+name|DOCUMENT_CONTENT
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -997,6 +1056,18 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//TODO : understand why it is necessary !
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|service
@@ -1116,9 +1187,42 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : comparison fails !
-comment|//assertXMLEqual(DOCUMENT_CONTENT, result.getResource(0).getContent().toString());
-comment|//assertXMLEqual(MODIFIED_DOCUMENT_CONTENT, result.getResource(1).getContent().toString());
+name|assertXMLEqual
+argument_list|(
+name|DOCUMENT_CONTENT
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+name|MODIFIED_DOCUMENT_CONTENT
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1207,6 +1311,18 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//TODO : understand why it is necessary !
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|service
@@ -1326,7 +1442,25 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : comparison fails !
+name|assertXMLEqual
+argument_list|(
+name|DOCUMENT_CONTENT
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO : use when we have working update triggers
 comment|//assertXMLEqual(MODIFIED_DOCUMENT_CONTENT, result.getResource(0).getContent().toString());
 block|}
 catch|catch
