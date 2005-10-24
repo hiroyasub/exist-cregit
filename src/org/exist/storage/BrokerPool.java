@@ -2134,7 +2134,9 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|transactionManager

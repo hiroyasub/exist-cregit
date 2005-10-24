@@ -1095,14 +1095,6 @@ name|TEMP_FRAGMENT_TIMEOUT
 init|=
 literal|300000
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|ROOT_COLLECTION
-init|=
-literal|"/db"
-decl_stmt|;
 comment|/** default buffer size setting */
 specifier|protected
 specifier|final
@@ -3471,7 +3463,7 @@ literal|'/'
 operator|+
 name|fileName
 expr_stmt|;
-comment|/*if (!fileName.startsWith("/db")) 		    fileName = "/db" + fileName;*/
+comment|/*if (!fileName.startsWith(ROOT_COLLECTION)) 		    fileName = "/db" + fileName;*/
 name|fileName
 operator|=
 name|NativeBroker
@@ -3480,7 +3472,7 @@ name|checkPath
 argument_list|(
 name|fileName
 argument_list|,
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|int
@@ -3640,7 +3632,7 @@ literal|'/'
 operator|+
 name|docPath
 expr_stmt|;
-comment|/*if (!docPath.startsWith("/db")) 		    docPath = "/db" + docPath;*/
+comment|/*if (!docPath.startsWith(ROOT_COLLECTION)) 		    docPath = "/db" + docPath;*/
 name|docPath
 operator|=
 name|NativeBroker
@@ -3649,7 +3641,7 @@ name|checkPath
 argument_list|(
 name|docPath
 argument_list|,
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|int
@@ -9922,7 +9914,9 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"creating root collection /db"
+literal|"creating root collection "
+operator|+
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|current
@@ -18069,7 +18063,9 @@ name|currentPath
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db/"
+name|ROOT_COLLECTION
+operator|+
+literal|"/"
 argument_list|)
 operator|)
 operator|&&
@@ -18079,7 +18075,7 @@ name|currentPath
 operator|.
 name|contentEquals
 argument_list|(
-literal|"/db"
+name|ROOT_COLLECTION
 argument_list|)
 operator|)
 condition|)
