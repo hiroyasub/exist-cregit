@@ -6121,6 +6121,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// TODO remove for new snapshot
 if|else if
 condition|(
 name|args
@@ -6130,7 +6131,7 @@ index|]
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"validate"
+literal|"validate_"
 argument_list|)
 condition|)
 block|{
@@ -6188,7 +6189,7 @@ literal|"there were errors."
 argument_list|)
 expr_stmt|;
 block|}
-comment|//new DWES
+comment|// TODO new by dizzzz
 block|}
 if|else if
 condition|(
@@ -6199,7 +6200,7 @@ index|]
 operator|.
 name|equalsIgnoreCase
 argument_list|(
-literal|"validate_"
+literal|"validate"
 argument_list|)
 condition|)
 block|{
