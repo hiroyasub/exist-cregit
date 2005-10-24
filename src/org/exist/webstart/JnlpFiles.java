@@ -110,6 +110,8 @@ literal|"excalibur-cli-.*\\.jar"
 block|,
 literal|"jEdit-syntax\\.jar"
 block|,
+literal|"jgroups-all\\.jar"
+block|,
 literal|"libreadline-java\\.jar"
 block|,
 literal|"log4j-.*\\.jar"
