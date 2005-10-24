@@ -354,21 +354,7 @@ literal|"</xu:update>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|MODIFIED_DOCUMENT_CONTENT
-init|=
-name|DOCUMENT_CONTENT
-operator|.
-name|replace
-argument_list|(
-literal|"18.4"
-argument_list|,
-literal|"15.2"
-argument_list|)
-decl_stmt|;
+comment|//    private final static String MODIFIED_DOCUMENT_CONTENT = DOCUMENT_CONTENT.replace("18.4", "15.2");
 specifier|private
 specifier|final
 specifier|static
