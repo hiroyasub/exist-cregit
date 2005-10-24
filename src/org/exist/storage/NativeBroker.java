@@ -18073,7 +18073,7 @@ operator|(
 operator|!
 name|currentPath
 operator|.
-name|contentEquals
+name|equals
 argument_list|(
 name|ROOT_COLLECTION
 argument_list|)
