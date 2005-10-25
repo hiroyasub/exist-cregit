@@ -1311,16 +1311,18 @@ argument_list|(
 name|rootColl
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"number of child collections should be 2"
-argument_list|,
+name|c1
+operator|=
 name|rootColl
 operator|.
-name|getChildCollectionCount
-argument_list|()
-operator|==
-literal|2
+name|getChildCollection
+argument_list|(
+literal|"dummy1"
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|c1
 argument_list|)
 expr_stmt|;
 block|}
