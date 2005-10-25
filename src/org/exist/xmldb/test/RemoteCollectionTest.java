@@ -71,9 +71,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|schema
+name|validation
 operator|.
-name|RemoteSchemaService
+name|service
+operator|.
+name|RemoteValidationService
 import|;
 end_import
 
@@ -462,7 +464,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|8
+literal|7
 argument_list|,
 name|services
 operator|.
@@ -561,7 +563,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|RemoteSchemaService
+name|RemoteValidationService
 operator|.
 name|class
 argument_list|,
