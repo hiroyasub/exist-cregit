@@ -4805,9 +4805,16 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
-name|assertTrue
+comment|//TODO : to be decided !
+comment|//assertTrue(exceptionThrown);
+name|assertEquals
 argument_list|(
-name|exceptionThrown
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
