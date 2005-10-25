@@ -355,26 +355,9 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|seq
-operator|==
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-name|path
-operator|+
-literal|" is not an XML document"
-argument_list|)
-throw|;
+comment|//			TODO: we still need a final decision about this. Also check base-uri.
+comment|//			if (seq == Sequence.EMPTY_SEQUENCE)
+comment|//				throw new XPathException(getASTNode(), path + " is not an XML document");
 return|return
 name|seq
 return|;
