@@ -337,6 +337,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+comment|// add line of the log statement
 name|StringBuffer
 name|buf
 init|=
@@ -344,6 +345,31 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"(Line: "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|getASTNode
+argument_list|()
+operator|.
+name|getLine
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|") "
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
