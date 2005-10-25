@@ -339,15 +339,6 @@ operator|==
 name|VALIDATION_ENABLED
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Validation turned on"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
