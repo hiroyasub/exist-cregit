@@ -3892,7 +3892,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"validating document "
+literal|"Scanning document "
 operator|+
 name|name
 argument_list|)
