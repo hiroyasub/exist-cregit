@@ -461,6 +461,8 @@ operator|!
 name|enabled
 condition|)
 return|return;
+try|try
+block|{
 name|ProfiledExpr
 name|e
 init|=
@@ -565,6 +567,27 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Profiler: could not pop from expression stack - "
+operator|+
+name|expr
+operator|+
+literal|" - "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Print out a single profiling message for the given       * expression object.      *       * @param expr      * @param message      */
 specifier|public
