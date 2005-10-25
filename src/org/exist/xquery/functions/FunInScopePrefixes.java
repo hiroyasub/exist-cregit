@@ -624,6 +624,14 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|element
+operator|.
+name|declaresNamespacePrefixes
+argument_list|()
+condition|)
+block|{
 for|for
 control|(
 name|Iterator
@@ -665,6 +673,7 @@ name|prefix
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

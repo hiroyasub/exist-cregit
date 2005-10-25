@@ -264,9 +264,13 @@ name|QName
 argument_list|(
 literal|"distinct-values"
 argument_list|,
-name|Module
+name|ModuleImpl
 operator|.
 name|BUILTIN_FUNCTION_NS
+argument_list|,
+name|ModuleImpl
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 operator|new
@@ -295,7 +299,7 @@ name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
