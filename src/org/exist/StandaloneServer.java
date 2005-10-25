@@ -794,6 +794,11 @@ argument_list|(
 name|DEFAULT_PROPERTIES
 argument_list|)
 decl_stmt|;
+name|configure
+argument_list|(
+name|props
+argument_list|)
+expr_stmt|;
 name|CLArgsParser
 name|optParser
 init|=
@@ -962,11 +967,6 @@ block|}
 break|break;
 block|}
 block|}
-name|configure
-argument_list|(
-name|props
-argument_list|)
-expr_stmt|;
 name|int
 name|httpPort
 init|=
