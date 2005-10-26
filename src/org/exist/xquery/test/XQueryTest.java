@@ -1147,7 +1147,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testCombiningNodeSequences 1: ========"
+literal|"testCombiningNodeSequences 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1218,7 +1218,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testCombiningNodeSequences 1: ========"
+literal|"testCombiningNodeSequences 3: ========"
 argument_list|)
 expr_stmt|;
 name|query

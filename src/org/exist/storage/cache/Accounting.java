@@ -347,12 +347,12 @@ name|misses
 operator|+
 literal|"; thrashing: "
 operator|+
-name|thrashing
-operator|+
-literal|"; thrashing: "
-operator|+
 name|getThrashing
 argument_list|()
+operator|+
+literal|"; thrashing period: "
+operator|+
+name|checkPeriod
 argument_list|)
 expr_stmt|;
 block|}
