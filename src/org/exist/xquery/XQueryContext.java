@@ -2859,7 +2859,7 @@ block|}
 comment|/** 	 * Declare a local variable. This is called by variable binding expressions like 	 * "let" and "for". 	 *  	 * @param var 	 * @return 	 * @throws XPathException 	 */
 specifier|public
 name|LocalVariable
-name|declareVariable
+name|declareVariableBinding
 parameter_list|(
 name|LocalVariable
 name|var

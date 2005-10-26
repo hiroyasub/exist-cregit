@@ -195,7 +195,7 @@ argument_list|)
 decl_stmt|;
 name|context
 operator|.
-name|declareVariable
+name|declareVariableBinding
 argument_list|(
 operator|new
 name|LocalVariable
@@ -298,7 +298,7 @@ argument_list|)
 decl_stmt|;
 name|context
 operator|.
-name|declareVariable
+name|declareVariableBinding
 argument_list|(
 name|var
 argument_list|)

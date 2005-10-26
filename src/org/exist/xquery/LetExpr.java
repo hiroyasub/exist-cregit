@@ -213,7 +213,7 @@ argument_list|)
 expr_stmt|;
 name|context
 operator|.
-name|declareVariable
+name|declareVariableBinding
 argument_list|(
 name|inVar
 argument_list|)
@@ -391,7 +391,7 @@ argument_list|)
 expr_stmt|;
 name|context
 operator|.
-name|declareVariable
+name|declareVariableBinding
 argument_list|(
 name|var
 argument_list|)
