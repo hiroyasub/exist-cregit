@@ -3207,7 +3207,7 @@ name|response
 argument_list|,
 literal|"<?xml version='1.0'?>\n"
 operator|+
-literal|"<exist:modifications mlns:exist='"
+literal|"<exist:modifications xmlns:exist='"
 operator|+
 name|NS
 operator|+
