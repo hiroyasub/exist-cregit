@@ -178,6 +178,11 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|lval
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|rval
 init|=
@@ -190,6 +195,11 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|rval
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|lval
@@ -364,6 +374,11 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;
