@@ -430,15 +430,19 @@ decl_stmt|;
 comment|/** Path to grammar in database  */
 specifier|public
 name|String
-name|GRAMMERBASE
+name|GRAMMARBASE
 init|=
-literal|"/db/system/grammar"
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/grammar"
 decl_stmt|;
 specifier|public
 name|String
 name|XSDBASE
 init|=
-name|GRAMMERBASE
+name|GRAMMARBASE
 operator|+
 literal|"/xsd"
 decl_stmt|;
@@ -446,7 +450,7 @@ specifier|public
 name|String
 name|DTDBASE
 init|=
-name|GRAMMERBASE
+name|GRAMMARBASE
 operator|+
 literal|"/dtd"
 decl_stmt|;
@@ -526,7 +530,7 @@ expr_stmt|;
 comment|// TODO this must be performed once.... and earlier...
 name|createCollection
 argument_list|(
-name|GRAMMERBASE
+name|GRAMMARBASE
 argument_list|)
 expr_stmt|;
 name|createCollection

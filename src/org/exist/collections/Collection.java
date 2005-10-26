@@ -3600,9 +3600,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|SecurityManager
+name|DBBroker
 operator|.
-name|SYSTEM
+name|SYSTEM_COLLECTION
 argument_list|)
 operator|&&
 name|document
@@ -5402,11 +5402,13 @@ return|;
 if|if
 condition|(
 operator|!
-literal|"/db/system"
+name|name
 operator|.
 name|equals
 argument_list|(
-name|name
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 argument_list|)
 condition|)
 block|{

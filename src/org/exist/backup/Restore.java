@@ -205,6 +205,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|CollectionImpl
@@ -552,6 +564,7 @@ operator|.
 name|getParentFile
 argument_list|()
 decl_stmt|;
+comment|//TODO : use DBBroker's named constants
 if|if
 condition|(
 name|dir
@@ -573,6 +586,7 @@ block|{
 name|File
 name|sys
 init|=
+comment|//TODO : use DBBroker's named constants
 operator|new
 name|File
 argument_list|(
@@ -609,7 +623,13 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"found /db/system. It will be processed first."
+literal|"found "
+operator|+
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
+operator|+
+literal|". It will be processed first."
 argument_list|)
 expr_stmt|;
 name|stack

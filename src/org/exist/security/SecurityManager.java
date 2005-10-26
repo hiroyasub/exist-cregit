@@ -309,14 +309,6 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|String
-name|SYSTEM
-init|=
-literal|"/db/system"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|User
 name|SYSTEM_USER
 init|=
@@ -428,7 +420,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|SYSTEM
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 argument_list|)
 decl_stmt|;
 if|if
@@ -446,7 +440,9 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|SYSTEM
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 argument_list|)
 expr_stmt|;
 name|sysCollection
@@ -1888,7 +1884,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|SYSTEM
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 argument_list|)
 decl_stmt|;
 name|String
