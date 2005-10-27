@@ -261,7 +261,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
