@@ -152,7 +152,11 @@ specifier|protected
 name|String
 name|root
 init|=
-literal|"/db/history"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/history"
 decl_stmt|;
 specifier|public
 name|void

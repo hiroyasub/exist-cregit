@@ -35,6 +35,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|EXistResource
@@ -220,7 +232,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -841,7 +857,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger1'][collectionName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+
@@ -869,7 +887,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger1'][documentName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+
@@ -1096,7 +1116,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger2'][collectionName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+
@@ -1124,7 +1146,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger2'][documentName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+
@@ -1351,7 +1375,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger3'][collectionName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+
@@ -1379,7 +1405,9 @@ name|query
 argument_list|(
 literal|"/events/event[@id = 'trigger3'][documentName = '"
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 literal|"/"
 operator|+

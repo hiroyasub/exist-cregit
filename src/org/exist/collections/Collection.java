@@ -2049,7 +2049,9 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 return|return
@@ -2068,7 +2070,9 @@ argument_list|)
 operator|<
 literal|1
 condition|?
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 else|:
 name|name
 operator|.

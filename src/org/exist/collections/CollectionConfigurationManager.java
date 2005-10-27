@@ -251,7 +251,11 @@ specifier|static
 name|String
 name|CONFIG_COLLECTION
 init|=
-literal|"/db/system/config"
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/config"
 decl_stmt|;
 specifier|private
 name|BrokerPool
@@ -578,7 +582,9 @@ decl_stmt|;
 name|int
 name|p
 init|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|.
 name|length
 argument_list|()
