@@ -227,7 +227,7 @@ argument_list|)
 argument_list|,
 literal|"Returns whether or not a document is available. "
 operator|+
-literal|"eXist interprets the argument as a path pointing to a "
+literal|"EXist interprets the argument as a path pointing to a "
 operator|+
 literal|"document in the database, as for example, '/db/shakespeare/plays/hamlet.xml'. "
 operator|+
@@ -235,7 +235,7 @@ literal|"If the path is relative, "
 operator|+
 literal|"it is resolved relative to the base URI property from the static context."
 operator|+
-literal|"Understands also standard URLs, starting with http:// , file:// , etc."
+literal|"Understands also standard URLs, starting with http://, file://, etc."
 argument_list|,
 operator|new
 name|SequenceType

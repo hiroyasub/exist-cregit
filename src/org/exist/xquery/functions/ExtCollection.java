@@ -343,7 +343,7 @@ literal|"Includes the documents contained in the specified collection "
 operator|+
 literal|"into the input sequence. eXist interprets the arguments as absolute paths "
 operator|+
-literal|"pointing to database collections, as for example, '/db/test'. Documents "
+literal|"pointing to database collections, as for example, '/db/shakespeare/plays'. Documents "
 operator|+
 literal|"located in subcollections of a collection are included into the input "
 operator|+
