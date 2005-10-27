@@ -477,7 +477,6 @@ condition|)
 block|{
 try|try
 block|{
-comment|/*                 	 * !collectionURI.startsWith("xmldb:") or  or                      or                   	 */
 if|if
 condition|(
 operator|!
