@@ -868,7 +868,7 @@ operator|new
 name|Profiler
 argument_list|()
 decl_stmt|;
-comment|//For holding XQuery Context variables from setXQVar() and getXQVar()
+comment|//For holding XQuery Context variables from setXQueryContextVar() and getXQueryContextVar()
 name|HashMap
 name|XQueryContextVars
 init|=
