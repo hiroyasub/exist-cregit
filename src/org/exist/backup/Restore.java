@@ -564,7 +564,7 @@ operator|.
 name|getParentFile
 argument_list|()
 decl_stmt|;
-comment|//TODO : use DBBroker's named constants
+comment|//TODO : find a way to make a corespondance with DBRoker's named constants
 if|if
 condition|(
 name|dir
@@ -580,13 +580,18 @@ operator|.
 name|equals
 argument_list|(
 literal|"db"
+operator|+
+name|File
+operator|.
+name|separatorChar
+operator|+
+literal|"system"
 argument_list|)
 condition|)
 block|{
 name|File
 name|sys
 init|=
-comment|//TODO : use DBBroker's named constants
 operator|new
 name|File
 argument_list|(
@@ -617,19 +622,20 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+comment|//				TODO : find a way to make a corespondance with DBRoker's named constants
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"found "
+literal|"found 'db"
 operator|+
-name|DBBroker
+name|File
 operator|.
-name|SYSTEM_COLLECTION
+name|separatorChar
 operator|+
-literal|". It will be processed first."
+literal|"system'. It will be processed first."
 argument_list|)
 expr_stmt|;
 name|stack
@@ -1932,7 +1938,9 @@ name|collPath
 operator|.
 name|startsWith
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 name|collPath
@@ -1941,7 +1949,9 @@ name|collPath
 operator|.
 name|substring
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|.
 name|length
 argument_list|()
@@ -1962,7 +1972,9 @@ name|getCollection
 argument_list|(
 name|uri
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 name|username
 argument_list|,
@@ -1972,10 +1984,13 @@ decl_stmt|;
 name|String
 name|p
 init|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|,
 name|token
 decl_stmt|;
+comment|//TODO : use dedicated shared code !
 name|StringTokenizer
 name|tok
 init|=

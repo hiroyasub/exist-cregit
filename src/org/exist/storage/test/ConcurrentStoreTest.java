@@ -260,12 +260,24 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : revisit !
 specifier|private
 specifier|static
 name|String
 name|directory
 init|=
 literal|"/home/wolf/xml/shakespeare"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
+name|TEST_COLLECTION
+init|=
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -392,7 +404,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-literal|"/db/test/test1"
+name|TEST_COLLECTION
+operator|+
+literal|"/test1"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -406,7 +420,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-literal|"/db/test/test2"
+name|TEST_COLLECTION
+operator|+
+literal|"/test2"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -546,7 +562,7 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|TEST_COLLECTION
 argument_list|)
 decl_stmt|;
 name|broker
@@ -566,7 +582,9 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test1"
+name|TEST_COLLECTION
+operator|+
+literal|"/test1"
 argument_list|)
 expr_stmt|;
 name|broker
@@ -586,7 +604,9 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|TEST_COLLECTION
+operator|+
+literal|"/test2"
 argument_list|)
 expr_stmt|;
 name|broker

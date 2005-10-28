@@ -318,6 +318,17 @@ block|{
 specifier|protected
 specifier|static
 name|String
+name|TEST_COLLECTION
+init|=
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
+decl_stmt|;
+specifier|protected
+specifier|static
+name|String
 name|TEST_XML
 init|=
 literal|"<?xml version=\"1.0\"?>"
@@ -395,7 +406,9 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/test.xml"
+name|TEST_COLLECTION
+operator|+
+literal|"/test2/test.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -404,7 +417,11 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/test2/test.xml should not be null"
+literal|"Document "
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/test2/test.xml should not be null"
 argument_list|,
 name|doc
 argument_list|)
@@ -567,7 +584,7 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|TEST_COLLECTION
 argument_list|)
 decl_stmt|;
 name|broker
@@ -588,7 +605,9 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|TEST_COLLECTION
+operator|+
+literal|"/test2"
 argument_list|)
 decl_stmt|;
 name|broker
