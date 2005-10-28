@@ -1090,6 +1090,15 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|test
+operator|.
+name|matches
+argument_list|(
+name|p
+argument_list|)
+condition|)
 name|p
 operator|.
 name|addContextNode
