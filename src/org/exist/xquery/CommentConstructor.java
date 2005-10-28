@@ -211,7 +211,7 @@ argument_list|()
 operator|.
 name|display
 argument_list|(
-literal|"<!-- "
+literal|"comment { "
 argument_list|)
 operator|.
 name|display
@@ -221,7 +221,7 @@ argument_list|)
 operator|.
 name|display
 argument_list|(
-literal|"-->"
+literal|" }"
 argument_list|)
 expr_stmt|;
 block|}
