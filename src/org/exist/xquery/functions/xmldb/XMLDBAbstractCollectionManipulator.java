@@ -542,7 +542,7 @@ argument_list|()
 argument_list|,
 name|collectionURI
 operator|.
-name|replace
+name|replaceFirst
 argument_list|(
 literal|"xmldb:exist://"
 argument_list|,
@@ -582,7 +582,7 @@ argument_list|()
 argument_list|,
 name|collectionURI
 operator|.
-name|replace
+name|replaceFirst
 argument_list|(
 literal|"xmldb:exist://localhost"
 argument_list|,
@@ -622,7 +622,7 @@ argument_list|()
 argument_list|,
 name|collectionURI
 operator|.
-name|replace
+name|replaceFirst
 argument_list|(
 literal|"xmldb:exist://127.0.0.1"
 argument_list|,
