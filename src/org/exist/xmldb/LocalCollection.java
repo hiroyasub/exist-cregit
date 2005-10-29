@@ -659,7 +659,9 @@ literal|null
 condition|)
 name|path
 operator|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 expr_stmt|;
 name|getCollection
 argument_list|()
@@ -1620,7 +1622,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 condition|)
 return|return

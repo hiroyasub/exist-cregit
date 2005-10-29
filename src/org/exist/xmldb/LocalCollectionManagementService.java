@@ -577,7 +577,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|//String path = (collName.startsWith("/db/") ? collName :
+comment|//String path = (collName.startsWith(DBBroker.ROOT_COLLECTION + "/") ? collName :
 comment|//	parent.getPath() + '/' + collName);
 name|String
 name|path
@@ -809,7 +809,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!collectionPath.startsWith("/db/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
+comment|/*if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -824,7 +824,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*         if(destinationPath != null)         {         	if(!destinationPath.startsWith("/db/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
+comment|/*         if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -1143,7 +1143,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!resourcePath.startsWith("/db/"))             resourcePath = parent.getPath() + '/' + resourcePath;*/
+comment|/*if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             resourcePath = parent.getPath() + '/' + resourcePath;*/
 name|resourcePath
 operator|=
 name|NativeBroker
@@ -1158,7 +1158,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(destinationPath != null)         {         	if(!destinationPath.startsWith("/db/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
+comment|/*if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -1554,7 +1554,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*(if(!resourcePath.startsWith("/db/"))             resourcePath = parent.getPath() + '/' + resourcePath;             */
+comment|/*(if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             resourcePath = parent.getPath() + '/' + resourcePath;             */
 name|resourcePath
 operator|=
 name|NativeBroker
@@ -1569,7 +1569,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(!destinationPath.startsWith("/db/"))             destinationPath = parent.getPath() + '/' + destinationPath;*/
+comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;*/
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -1965,7 +1965,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!collectionPath.startsWith("/db/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
+comment|/*if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -1980,7 +1980,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(!destinationPath.startsWith("/db/"))             destinationPath = parent.getPath() + '/' + destinationPath;             */
+comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;             */
 name|destinationPath
 operator|=
 name|NativeBroker

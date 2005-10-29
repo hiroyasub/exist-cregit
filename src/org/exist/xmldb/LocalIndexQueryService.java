@@ -423,7 +423,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*String path = (collectionPath.startsWith("/db/") ? collectionPath :      		parent.getPath() + '/' + collectionPath);*/
+comment|/*String path = (collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/") ? collectionPath :      		parent.getPath() + '/' + collectionPath);*/
 name|String
 name|path
 init|=

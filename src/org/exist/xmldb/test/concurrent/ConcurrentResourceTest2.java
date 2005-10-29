@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -48,7 +60,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -58,7 +74,13 @@ name|QUERY0
 init|=
 literal|"declare default element namespace 'http://www.loc.gov/mods/v3';"
 operator|+
-literal|"collection(\"/db\")//mods[titleInfo/title&= 'germany']"
+literal|"collection(\""
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\")//mods[titleInfo/title&= 'germany']"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -68,7 +90,13 @@ name|QUERY1
 init|=
 literal|"declare default element namespace 'http://www.loc.gov/mods/v3';"
 operator|+
-literal|"<result>{for $t in distinct-values(collection('/db')//mods/subject/topic) order by $t return<topic>{$t}</topic>}</result>"
+literal|"<result>{for $t in distinct-values(\""
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\")//mods/subject/topic) order by $t return<topic>{$t}</topic>}</result>"
 decl_stmt|;
 specifier|public
 specifier|static
