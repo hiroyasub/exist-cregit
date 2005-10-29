@@ -250,6 +250,17 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"$"
+operator|+
+name|qname
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
 specifier|public
 name|int

@@ -225,6 +225,22 @@ literal|"]]>"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"<![CDATA["
+operator|+
+name|cdata
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"]]>"
+return|;
+block|}
 block|}
 end_class
 

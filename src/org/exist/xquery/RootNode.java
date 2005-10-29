@@ -419,6 +419,15 @@ literal|"/ROOT"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"/ROOT"
+return|;
+block|}
 comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#returnsType()      */
 specifier|public
 name|int

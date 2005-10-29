@@ -757,6 +757,15 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"'Delete' string representation"
+return|;
+block|}
 block|}
 end_class
 
