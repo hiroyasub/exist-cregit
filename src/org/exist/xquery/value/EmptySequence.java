@@ -204,6 +204,15 @@ parameter_list|()
 block|{
 comment|// nothing to do
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"()"
+return|;
+block|}
 block|}
 end_class
 
