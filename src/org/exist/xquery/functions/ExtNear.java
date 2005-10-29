@@ -264,7 +264,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  near() function.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  *@created    July 31, 2002  */
+comment|/**  * near() function.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @created July 31, 2002  */
 end_comment
 
 begin_class
@@ -315,7 +315,7 @@ name|FULLTEXT_AND
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.functions.ExtFulltext#analyze(org.exist.xquery.Expression)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.functions.ExtFulltext#analyze(org.exist.xquery.Expression) 	 */
 specifier|public
 name|void
 name|analyze
@@ -497,6 +497,17 @@ return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+return|;
+if|if
+condition|(
+name|terms
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+return|return
+name|hits
 return|;
 name|boolean
 name|hasWildcards
@@ -725,7 +736,8 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|// that else would cause some words to be ignored in the matching
+comment|// that else would cause some words to be ignored in the
+comment|// matching
 if|if
 condition|(
 name|word
@@ -825,7 +837,8 @@ literal|0
 expr_stmt|;
 continue|continue;
 block|}
-comment|// that else MAY cause the distance counts to be off by one but i'm not sure
+comment|// that else MAY cause the distance counts to be off by one
+comment|// but i'm not sure
 if|if
 condition|(
 operator|-
@@ -840,7 +853,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//		LOG.debug("found " + r.getLength());
+comment|// LOG.debug("found " + r.getLength());
 return|return
 name|r
 return|;
@@ -1145,7 +1158,6 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-continue|continue;
 block|}
 name|matcher
 operator|.
@@ -1273,7 +1285,7 @@ literal|0
 expr_stmt|;
 continue|continue;
 block|}
-if|else if
+if|if
 condition|(
 operator|-
 literal|1
@@ -1291,7 +1303,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.functions.ExtFulltext#dump(org.exist.xquery.util.ExpressionDumper)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.functions.ExtFulltext#dump(org.exist.xquery.util.ExpressionDumper) 	 */
 specifier|public
 name|void
 name|dump
