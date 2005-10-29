@@ -325,7 +325,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|" and "
+literal|") and ("
 argument_list|)
 expr_stmt|;
 name|getExpression

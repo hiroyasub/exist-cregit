@@ -866,6 +866,8 @@ block|{
 comment|//        dumper.startIndent();
 name|Expression
 name|next
+init|=
+literal|null
 decl_stmt|;
 name|int
 name|count
@@ -900,6 +902,20 @@ name|iter
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+comment|//Open a first parenthesis
+if|if
+condition|(
+name|next
+operator|instanceof
+name|LogicalOp
+condition|)
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|'('
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -936,6 +952,20 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Close the last parenthesis
+if|if
+condition|(
+name|next
+operator|instanceof
+name|LogicalOp
+condition|)
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|')'
+argument_list|)
+expr_stmt|;
 comment|//        dumper.endIndent();
 block|}
 specifier|public
