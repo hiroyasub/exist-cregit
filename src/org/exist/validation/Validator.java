@@ -264,6 +264,15 @@ specifier|static
 name|BrokerPool
 name|brokerPool
 decl_stmt|;
+comment|// Required Xerces version.
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XERCESVERSION
+init|=
+literal|"Xerces-J 2.7.1"
+decl_stmt|;
 comment|// Xerces feature and property names
 specifier|final
 specifier|static
@@ -320,6 +329,75 @@ operator|.
 name|brokerPool
 operator|=
 name|pool
+expr_stmt|;
+block|}
+comment|// Check xerces version
+try|try
+block|{
+name|String
+name|version
+init|=
+name|org
+operator|.
+name|apache
+operator|.
+name|xerces
+operator|.
+name|impl
+operator|.
+name|Version
+operator|.
+name|getVersion
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|XERCESVERSION
+operator|.
+name|equals
+argument_list|(
+name|version
+argument_list|)
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Xerces version mismatch! eXist requires '"
+operator|+
+name|XERCESVERSION
+operator|+
+literal|"' but found '"
+operator|+
+name|version
+operator|+
+literal|"'. "
+operator|+
+literal|"Please add correct Xerces libraries to the "
+operator|+
+literal|"endorsed folder of your JRE or webcontainer."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Could not determine Xerces version. "
+operator|+
+literal|"Please add correct Xerces libraries to the "
+operator|+
+literal|"endorsed folder of your JRE or webcontainer."
+argument_list|)
 expr_stmt|;
 block|}
 comment|// setup access to grammars ; be sure just one instance!

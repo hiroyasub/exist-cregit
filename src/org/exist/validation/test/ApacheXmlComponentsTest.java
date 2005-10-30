@@ -55,6 +55,18 @@ name|TestSuite
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|Validator
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Class for testing xerces and xalan configuration.  *  * @author dizzzz  */
 end_comment
@@ -66,13 +78,6 @@ name|ApacheXmlComponentsTest
 extends|extends
 name|TestCase
 block|{
-specifier|public
-specifier|static
-name|String
-name|XERCESVERSION
-init|=
-literal|"Xerces-J 2.7.1"
-decl_stmt|;
 specifier|public
 specifier|static
 name|String
@@ -190,6 +195,8 @@ name|println
 argument_list|(
 literal|"Required version '"
 operator|+
+name|Validator
+operator|.
 name|XERCESVERSION
 operator|+
 literal|"'"
@@ -216,6 +223,8 @@ literal|"Incorrect Xerces version! "
 operator|+
 literal|"Please put correct jar in endorsed folder"
 argument_list|,
+name|Validator
+operator|.
 name|XERCESVERSION
 argument_list|,
 name|version
