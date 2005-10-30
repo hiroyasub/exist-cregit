@@ -11563,6 +11563,14 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|ph
+operator|.
+name|getLsn
+argument_list|()
+operator|>
+operator|-
+literal|1
+operator|&&
 name|requiresRedo
 argument_list|(
 name|loggable
