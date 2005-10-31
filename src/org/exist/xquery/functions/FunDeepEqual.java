@@ -161,6 +161,7 @@ name|ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//	TODO: collation as argument
 specifier|public
 name|FunDeepEqual
 parameter_list|(

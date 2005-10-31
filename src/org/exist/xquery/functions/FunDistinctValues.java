@@ -303,6 +303,7 @@ name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//	TODO: collation as argument
 specifier|public
 name|FunDistinctValues
 parameter_list|(
