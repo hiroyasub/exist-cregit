@@ -434,7 +434,13 @@ literal|"<title>Section 2</title>"
 operator|+
 literal|"<para>First paragraph in second section.</para>"
 operator|+
-literal|"           {collection('/db/test')//f:item[@itemno='2']/f:name}"
+literal|"           {collection('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test')//f:item[@itemno='2']/f:name}"
 operator|+
 literal|"</section>"
 operator|+

@@ -17,9 +17,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
+name|storage
 operator|.
-name|CollectionManagementServiceImpl
+name|DBBroker
 import|;
 end_import
 
@@ -31,7 +31,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|RemoteCollectionManagementService
+name|CollectionManagementServiceImpl
 import|;
 end_import
 
@@ -164,7 +164,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
