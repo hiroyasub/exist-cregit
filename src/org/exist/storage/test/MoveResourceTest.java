@@ -361,7 +361,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -382,7 +386,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -578,7 +586,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/new_test.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/new_test.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -637,7 +649,11 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 name|Lock
 operator|.
@@ -700,11 +716,11 @@ comment|//
 comment|//			System.out.println("Transaction started ...");
 comment|//
 comment|//			Collection root = broker.getOrCreateCollection(transaction,
-comment|//					"/db/test");
+comment|//					DBBroker.ROOT_COLLECTION +  "/test");
 comment|//			broker.saveCollection(transaction, root);
 comment|//
 comment|//			Collection test = broker.getOrCreateCollection(transaction,
-comment|//					"/db/test/test2");
+comment|//					DBBroker.ROOT_COLLECTION + "/test/test2");
 comment|//			broker.saveCollection(transaction, test);
 comment|//
 comment|//			File f = new File("samples/shakespeare/r_and_j.xml");
@@ -741,13 +757,13 @@ comment|//
 comment|//	        DocumentImpl doc;
 comment|//	        String data;
 comment|//
-comment|//	        doc = broker.openDocument("/db/test/test2/test2.xml", Lock.READ_LOCK);
+comment|//	        doc = broker.openDocument(DBBroker.ROOT_COLLECTION + "/test/test2/test2.xml", Lock.READ_LOCK);
 comment|//	        assertNotNull("Document should not be null", doc);
 comment|//	        data = serializer.serialize(doc);
 comment|//	        System.out.println(data);
 comment|//	        doc.getUpdateLock().release(Lock.READ_LOCK);
 comment|//
-comment|//	        doc = broker.openDocument("/db/test/new_test2.xml", Lock.READ_LOCK);
+comment|//	        doc = broker.openDocument(DBBroker.ROOT_COLLECTION +  "/test/new_test2.xml", Lock.READ_LOCK);
 comment|//	        assertNull("Document should not exist", doc);
 comment|//	    } finally {
 comment|//	        pool.release(broker);
@@ -758,7 +774,7 @@ comment|//	public void testXMLDBStore() throws Exception {
 comment|//		BrokerPool.FORCE_CORRUPTION = false;
 comment|//	    BrokerPool pool = startDB();
 comment|//
-comment|//	    org.xmldb.api.base.Collection root = DatabaseManager.getCollection("xmldb:exist:///db", "admin", "");
+comment|//	    org.xmldb.api.base.Collection root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION + , "admin", "");
 comment|//	    CollectionManagementServiceImpl mgr = (CollectionManagementServiceImpl)
 comment|//	    	root.getService("CollectionManagementService", "1.0");
 comment|//	    org.xmldb.api.base.Collection test = root.getChildCollection("test");
@@ -773,14 +789,14 @@ comment|//	    Resource res = test2.createResource("test3.xml", "XMLResource");
 comment|//	    res.setContent(f);
 comment|//	    test2.storeResource(res);
 comment|//
-comment|//	    mgr.moveResource("/db/test/test2/test3.xml", "/db/test", "new_test3.xml");
+comment|//	    mgr.moveResource(DBBroker.ROOT_COLLECTION +  "/test/test2/test3.xml", DBBroker.ROOT_COLLECTION + "/test", "new_test3.xml");
 comment|//	}
 comment|//
 comment|//	public void testXMLDBRead() throws Exception {
 comment|//		BrokerPool.FORCE_CORRUPTION = false;
 comment|//	    BrokerPool pool = startDB();
 comment|//
-comment|//	    org.xmldb.api.base.Collection test = DatabaseManager.getCollection("xmldb:exist:///db/test", "admin", "");
+comment|//	    org.xmldb.api.base.Collection test = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION +  "/test", "admin", "");
 comment|//	    Resource res = test.getResource("new_test3.xml");
 comment|//	    assertNotNull("Document should not be null", res);
 comment|//	    System.out.println(res.getContent());
