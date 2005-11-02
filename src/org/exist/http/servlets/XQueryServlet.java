@@ -1551,6 +1551,14 @@ literal|"</h2>"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|t
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// t can be null
 name|out
 operator|.
 name|print
@@ -1563,6 +1571,7 @@ name|t
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|out
 operator|.
 name|print
