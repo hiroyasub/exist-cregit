@@ -260,7 +260,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -435,7 +439,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/binary.txt"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/binary.txt"
 argument_list|,
 name|Lock
 operator|.

@@ -518,7 +518,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -539,7 +543,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -1043,7 +1051,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/hamlet.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/hamlet.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -1052,7 +1064,13 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/test2/hamlet.xml should not be null"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/hamlet.xml' should not be null"
 argument_list|,
 name|doc
 argument_list|)
@@ -1093,7 +1111,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/test_string.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test_string.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -1102,7 +1124,13 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/test2/test_string.xml should not be null"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test_string.xml' should not be null"
 argument_list|,
 name|doc
 argument_list|)
@@ -1143,7 +1171,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/"
 operator|+
 name|files
 index|[
@@ -1164,7 +1196,13 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-literal|"Document /db/test/test2/"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/'"
 operator|+
 name|files
 index|[
@@ -1270,7 +1308,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/binary.txt"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/binary.txt"
 argument_list|,
 name|Lock
 operator|.
@@ -1368,7 +1410,11 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 name|Lock
 operator|.
