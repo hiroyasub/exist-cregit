@@ -461,7 +461,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/test.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -470,7 +474,13 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/test2/test.xml should not be null"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test.xml' should not be null"
 argument_list|,
 name|doc
 argument_list|)

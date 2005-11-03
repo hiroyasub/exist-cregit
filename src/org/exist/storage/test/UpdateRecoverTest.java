@@ -528,7 +528,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -549,7 +553,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -1652,7 +1660,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/test2/test.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test.xml"
 argument_list|,
 name|Lock
 operator|.
@@ -1661,7 +1673,13 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/test2/test.xml should not be null"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2/test.xml' should not be null"
 argument_list|,
 name|doc
 argument_list|)
@@ -1742,7 +1760,11 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -1794,7 +1816,11 @@ name|mgr
 operator|.
 name|createCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 expr_stmt|;
 name|org
@@ -1827,7 +1853,11 @@ name|mgr
 operator|.
 name|createCollection
 argument_list|(
-literal|"/db/test/test2"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|)
 expr_stmt|;
 name|Resource
@@ -2397,7 +2427,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db/test/test2"
+literal|"xmldb:exist:// "
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -2448,7 +2484,11 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,

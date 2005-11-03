@@ -297,7 +297,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -318,7 +322,11 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-literal|"/db/test/test2"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test2"
 argument_list|)
 decl_stmt|;
 name|broker
@@ -490,7 +498,11 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 name|Lock
 operator|.
@@ -499,7 +511,13 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Collection /db/test not found"
+literal|"Collection '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test' not found"
 argument_list|,
 name|test
 argument_list|)
@@ -511,7 +529,11 @@ name|broker
 operator|.
 name|openDocument
 argument_list|(
-literal|"/db/test/biblio.rdf"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/biblio.rdf"
 argument_list|,
 name|Lock
 operator|.
@@ -520,7 +542,13 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Document /db/test/biblio.rdf should not be null"
+literal|"Document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/biblio.rdf' should not be null"
 argument_list|,
 name|doc
 argument_list|)

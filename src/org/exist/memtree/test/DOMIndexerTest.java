@@ -628,7 +628,11 @@ name|getOrCreateCollection
 argument_list|(
 literal|null
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 decl_stmt|;
 name|IndexInfo
