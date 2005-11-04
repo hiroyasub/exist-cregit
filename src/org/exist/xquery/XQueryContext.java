@@ -1066,6 +1066,53 @@ name|uri
 operator|=
 literal|""
 expr_stmt|;
+if|if
+condition|(
+name|prefix
+operator|.
+name|equals
+argument_list|(
+literal|"xml"
+argument_list|)
+operator|||
+name|prefix
+operator|.
+name|equals
+argument_list|(
+literal|"xmlns"
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XQST0070: Namespace predefined prefix: \""
+operator|+
+name|prefix
+operator|+
+literal|"\" is already bound"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|uri
+operator|.
+name|equals
+argument_list|(
+name|XML_NS
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XQST0070: Namespace URI: \""
+operator|+
+name|uri
+operator|+
+literal|"\" must be bound to the 'xml' prefix"
+argument_list|)
+throw|;
 specifier|final
 name|String
 name|prevURI
@@ -1080,6 +1127,7 @@ argument_list|(
 name|prefix
 argument_list|)
 decl_stmt|;
+comment|//This prefix was not bound
 if|if
 condition|(
 name|prevURI
@@ -1087,6 +1135,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//Bind it
 if|if
 condition|(
 name|uri
@@ -1117,9 +1166,10 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//Nothing to bind
 else|else
 block|{
-comment|//TODO : check the specs : unbinding an unbound NS may be disallowed.
+comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
 name|LOG
 operator|.
 name|warn
@@ -1131,6 +1181,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+else|else
+comment|//This prefix was bound
+block|{
+comment|//Unbind it
 if|if
 condition|(
 name|uri
@@ -1182,6 +1236,7 @@ operator|+
 literal|"\" is already bound to a different uri"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
