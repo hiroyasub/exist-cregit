@@ -71,6 +71,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|*
@@ -102,7 +114,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -230,9 +246,15 @@ block|}
 comment|// Currently (2003-04-02) fires an exception in FunPosition:
 name|XPathPrefix
 operator|=
-literal|"document('/db/test/shakes.xsl')/*/*"
+literal|"document('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/shakes.xsl')/*/*"
 expr_stmt|;
-comment|// "document('/db/test/macbeth.xml')/*/*";
+comment|// "document('" + DBBroker.ROOT_COLLECTION + "/test/macbeth.xml')/*/*";
 name|query1
 operator|=
 name|XPathPrefix
@@ -250,7 +272,7 @@ operator|=
 literal|87
 expr_stmt|;
 comment|// This validates OK:
-comment|//   XPathPrefix = "document('/db/test/hamlet.xml')//LINE";
+comment|//   XPathPrefix = "document('" +  DBBroker.ROOT_COLLECTION + "/test/hamlet.xml')//LINE";
 comment|//		query1 = XPathPrefix + "[ .&='funeral' ]";		// count=4
 comment|//		query2 = XPathPrefix + "[.&='dirge']";		// count=1, intersection=1
 comment|//		expected = 1;

@@ -47,6 +47,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XQueryService
@@ -563,11 +575,15 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection(\""
+literal|"let $root := xdb:collection('"
 operator|+
 name|eXistUrl
 operator|+
-literal|"/db\", \"admin\", \"admin\"),"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"', 'admin', 'admin'),"
 argument_list|)
 expr_stmt|;
 name|query

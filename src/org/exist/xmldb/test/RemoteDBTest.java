@@ -31,6 +31,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|RemoteCollection
@@ -218,7 +230,9 @@ name|getCollection
 argument_list|(
 name|URI
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -274,7 +288,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|/*        	             throw new Exception("Cannot run test because the collection /db/" + COLLECTION_NAME + " already "                     + "exists. If it is a left-over of a previous test run, please remove it manually.");         */
+comment|/*        	             throw new Exception("Cannot run test because the collection '"+ DBBroker.ROOT_COLLECTION + "/" + COLLECTION_NAME + " already "                     + "exists. If it is a left-over of a previous test run, please remove it manually.");         */
 block|}
 block|}
 specifier|protected
@@ -295,7 +309,9 @@ name|getCollection
 argument_list|(
 name|URI
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
