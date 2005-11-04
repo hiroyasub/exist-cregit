@@ -43,16 +43,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -117,6 +107,15 @@ name|AbstractSequence
 implements|implements
 name|Sequence
 block|{
+comment|/** To retain compatibility with eXist versions before september 20th 2005 , 	 * for conversion to boolean; 	 * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12 */
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|OLD_EXIST_VERSION_COMPATIBILITY
+init|=
+literal|false
+decl_stmt|;
 specifier|protected
 name|AbstractSequence
 parameter_list|()
@@ -396,6 +395,19 @@ condition|)
 return|return
 literal|false
 return|;
+if|if
+condition|(
+name|OLD_EXIST_VERSION_COMPATIBILITY
+condition|)
+if|if
+condition|(
+name|len
+operator|>
+literal|1
+condition|)
+return|return
+literal|true
+return|;
 name|Item
 name|first
 init|=
@@ -404,8 +416,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|//		if (len> 1)
-comment|//			return true;
 comment|// If operand is a sequence whose first item is a node, fn:boolean returns true.
 name|int
 name|fisrtType
@@ -433,6 +443,11 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+operator|!
+name|OLD_EXIST_VERSION_COMPATIBILITY
+condition|)
 if|if
 condition|(
 name|len
@@ -500,7 +515,13 @@ argument_list|()
 return|;
 else|else
 block|{
-comment|// return true;
+if|if
+condition|(
+name|OLD_EXIST_VERSION_COMPATIBILITY
+condition|)
+return|return
+literal|true
+return|;
 comment|// In all other cases, fn:boolean raises a type error [err:FORG0006].
 throw|throw
 operator|new
