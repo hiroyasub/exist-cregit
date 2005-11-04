@@ -5329,11 +5329,22 @@ comment|/* 		SymbolTable syms = broker.getSymbols(); 		String[] pfx = syms.defau
 try|try
 block|{
 comment|// default namespaces
-name|declareNamespace
+name|namespaces
+operator|.
+name|put
 argument_list|(
 literal|"xml"
 argument_list|,
 name|XML_NS
+argument_list|)
+expr_stmt|;
+name|prefixes
+operator|.
+name|put
+argument_list|(
+name|XML_NS
+argument_list|,
+literal|"xml"
 argument_list|)
 expr_stmt|;
 name|declareNamespace
