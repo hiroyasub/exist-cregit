@@ -299,6 +299,11 @@ argument_list|(
 literal|"( "
 argument_list|)
 expr_stmt|;
+name|boolean
+name|moreThanOne
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -316,6 +321,21 @@ argument_list|()
 condition|;
 control|)
 block|{
+if|if
+condition|(
+name|moreThanOne
+condition|)
+name|result
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+name|moreThanOne
+operator|=
+literal|true
+expr_stmt|;
 name|result
 operator|.
 name|append
@@ -332,13 +352,6 @@ operator|)
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|", "
 argument_list|)
 expr_stmt|;
 block|}

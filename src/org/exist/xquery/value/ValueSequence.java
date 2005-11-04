@@ -1088,7 +1088,7 @@ literal|"("
 argument_list|)
 expr_stmt|;
 name|boolean
-name|morethanOne
+name|moreThanOne
 init|=
 literal|false
 decl_stmt|;
@@ -1117,9 +1117,8 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|morethanOne
+name|moreThanOne
 condition|)
-block|{
 name|result
 operator|.
 name|append
@@ -1127,11 +1126,10 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
-name|morethanOne
+name|moreThanOne
 operator|=
 literal|true
 expr_stmt|;
-block|}
 name|result
 operator|.
 name|append
