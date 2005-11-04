@@ -913,15 +913,7 @@ name|documentSet
 operator|=
 name|docs
 expr_stmt|;
-name|namespaces
-operator|.
-name|put
-argument_list|(
-literal|"xml"
-argument_list|,
-literal|"http://www.w3.org/XML/1998/namespace"
-argument_list|)
-expr_stmt|;
+comment|//namespaces.put("xml", "http://www.w3.org/XML/1998/namespace");
 comment|//TODO : move this to a dedicated configure() method.
 if|if
 condition|(
@@ -4633,17 +4625,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|this
-operator|.
-name|namespaces
-operator|.
-name|put
-argument_list|(
-literal|"xml"
-argument_list|,
-literal|"http://www.w3.org/XML/1998/namespace"
-argument_list|)
-expr_stmt|;
+comment|//this.namespaces.put("xml", "http://www.w3.org/XML/1998/namespace");
 block|}
 block|}
 end_class
