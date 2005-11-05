@@ -4603,10 +4603,22 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Not allowed to write to collection "
+literal|"User '"
+operator|+
+name|broker
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to write to collection '"
 operator|+
 name|getName
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}

@@ -1531,7 +1531,12 @@ name|ErrorCodes
 operator|.
 name|INVALID_COLLECTION
 argument_list|,
-literal|"an io error occurred"
+literal|"An IO error occurred: "
+operator|+
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|ioe
 argument_list|)
@@ -1638,7 +1643,12 @@ name|ErrorCodes
 operator|.
 name|INVALID_COLLECTION
 argument_list|,
-literal|"an io error occurred"
+literal|"An IO error occurred: "
+operator|+
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|ioe
 argument_list|)
@@ -1975,7 +1985,12 @@ name|ErrorCodes
 operator|.
 name|INVALID_COLLECTION
 argument_list|,
-literal|"an io error occurred"
+literal|"An IO error occurred: "
+operator|+
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|ioe
 argument_list|)

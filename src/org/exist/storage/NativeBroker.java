@@ -10134,7 +10134,21 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"not allowed to write to collection"
+literal|"User '"
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to write to collection '"
+operator|+
+name|current
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -11528,7 +11542,21 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"not allowed to remove collection"
+literal|"User '"
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to remove collection '"
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 name|long
