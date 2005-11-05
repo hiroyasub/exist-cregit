@@ -1086,11 +1086,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0070: Namespace predefined prefix: \""
+literal|"err:XQST0070: Namespace predefined prefix '"
 operator|+
 name|prefix
 operator|+
-literal|"\" is already bound"
+literal|"' can not be bound"
 argument_list|)
 throw|;
 if|if
@@ -1106,11 +1106,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0070: Namespace URI: \""
+literal|"err:XQST0070: Namespace URI '"
 operator|+
 name|uri
 operator|+
-literal|"\" must be bound to the 'xml' prefix"
+literal|"' must be bound to the 'xml' prefix"
 argument_list|)
 throw|;
 specifier|final
@@ -1174,9 +1174,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"trying to unbind unbound prefix: "
+literal|"Unbinding unbound prefix '"
 operator|+
 name|prefix
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1229,11 +1231,15 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0033: Namespace prefix: \""
+literal|"err:XQST0033: Namespace prefix '"
 operator|+
 name|prefix
 operator|+
-literal|"\" is already bound to a different uri"
+literal|"' is already bound to a different uri '"
+operator|+
+name|prevURI
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
