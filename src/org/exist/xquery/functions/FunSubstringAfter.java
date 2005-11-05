@@ -81,7 +81,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionSignature
+name|Function
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Module
+name|FunctionSignature
 import|;
 end_import
 
@@ -218,7 +218,7 @@ name|QName
 argument_list|(
 literal|"substring-after"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -273,7 +273,7 @@ name|QName
 argument_list|(
 literal|"substring-after"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

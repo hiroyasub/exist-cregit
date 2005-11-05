@@ -93,18 +93,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Module
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XQueryContext
 import|;
 end_import
@@ -214,7 +202,7 @@ name|QName
 argument_list|(
 literal|"starts-with"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -269,7 +257,7 @@ name|QName
 argument_list|(
 literal|"starts-with"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

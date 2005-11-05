@@ -23,18 +23,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 import|;
 end_import
@@ -232,13 +220,9 @@ name|QName
 argument_list|(
 literal|"node-name"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|" Returns an expanded-QName for node kinds that can have names. For other kinds "

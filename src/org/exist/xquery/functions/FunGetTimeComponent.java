@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Module
+name|Function
 import|;
 end_import
 
@@ -110,20 +110,6 @@ operator|.
 name|value
 operator|.
 name|DateValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|DayTimeDurationValue
 import|;
 end_import
 
@@ -236,7 +222,7 @@ name|QName
 argument_list|(
 literal|"hours-from-time"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -289,7 +275,7 @@ name|QName
 argument_list|(
 literal|"minutes-from-time"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -342,7 +328,7 @@ name|QName
 argument_list|(
 literal|"seconds-from-time"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -399,7 +385,7 @@ name|QName
 argument_list|(
 literal|"timezone-from-time"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

@@ -35,6 +35,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionDef
 import|;
 end_import
@@ -50,14 +62,6 @@ name|ModuleImpl
 extends|extends
 name|AbstractInternalModule
 block|{
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|NAMESPACE_URI
-init|=
-literal|"http://www.w3.org/2003/05/xpath-functions"
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -1902,7 +1906,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-name|NAMESPACE_URI
+name|Function
+operator|.
+name|BUILTIN_FUNCTION_NS
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */

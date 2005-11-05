@@ -223,18 +223,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|SymbolTable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -776,7 +764,7 @@ specifier|protected
 name|String
 name|defaultFunctionNamespace
 init|=
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 decl_stmt|;
@@ -5378,7 +5366,7 @@ name|declareNamespace
 argument_list|(
 literal|"fn"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -5405,7 +5393,7 @@ comment|// these modules are loaded dynamically. It is not an error if the
 comment|// specified module class cannot be found in the classpath.
 name|loadBuiltInModule
 argument_list|(
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|,

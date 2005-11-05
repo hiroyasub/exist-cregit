@@ -199,18 +199,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Module
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|PathExpr
 import|;
 end_import
@@ -348,7 +336,7 @@ name|QName
 argument_list|(
 literal|"contains"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

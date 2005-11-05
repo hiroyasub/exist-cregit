@@ -27,16 +27,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -246,13 +236,9 @@ name|QName
 argument_list|(
 literal|"max"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Selects an item from the input sequence $a whose value "
@@ -299,13 +285,9 @@ name|QName
 argument_list|(
 literal|"max"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Selects an item from the input sequence $a whose value "

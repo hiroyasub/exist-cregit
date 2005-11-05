@@ -95,18 +95,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|memtree
-operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -122,6 +110,18 @@ operator|.
 name|xquery
 operator|.
 name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Function
 import|;
 end_import
 
@@ -290,13 +290,9 @@ name|QName
 argument_list|(
 literal|"in-scope-prefixes"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Returns the prefixes of the in-scope namespaces for $a. For namespaces that have "

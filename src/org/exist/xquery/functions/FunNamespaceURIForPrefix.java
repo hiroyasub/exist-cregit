@@ -121,6 +121,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -264,13 +276,9 @@ name|QName
 argument_list|(
 literal|"namespace-uri-for-prefix"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Returns the namespace URI of one of the in-scope namespaces for $b, identified by its namespace prefix. "

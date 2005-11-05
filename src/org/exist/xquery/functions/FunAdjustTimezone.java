@@ -72,7 +72,7 @@ name|QName
 argument_list|(
 literal|"adjust-dateTime-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -117,7 +117,7 @@ name|QName
 argument_list|(
 literal|"adjust-dateTime-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -185,7 +185,7 @@ name|QName
 argument_list|(
 literal|"adjust-date-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -230,7 +230,7 @@ name|QName
 argument_list|(
 literal|"adjust-date-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -298,7 +298,7 @@ name|QName
 argument_list|(
 literal|"adjust-time-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -343,7 +343,7 @@ name|QName
 argument_list|(
 literal|"adjust-time-to-timezone"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

@@ -23,18 +23,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 import|;
 end_import
@@ -72,18 +60,6 @@ operator|.
 name|xquery
 operator|.
 name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Module
 import|;
 end_import
 
@@ -207,18 +183,6 @@ name|Node
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|ProcessingInstruction
-import|;
-end_import
-
 begin_comment
 comment|/**  * xpath-library function: local-name(object)  *  */
 end_comment
@@ -246,7 +210,7 @@ name|QName
 argument_list|(
 literal|"namespace-uri"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
@@ -280,7 +244,7 @@ name|QName
 argument_list|(
 literal|"namespace-uri"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

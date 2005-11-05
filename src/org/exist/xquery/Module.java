@@ -44,15 +44,6 @@ specifier|public
 interface|interface
 name|Module
 block|{
-comment|/**  	 * XQuery/XPath 2.0 function namespace. 	 */
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|BUILTIN_FUNCTION_NS
-init|=
-literal|"http://www.w3.org/2003/05/xpath-functions"
-decl_stmt|;
 comment|/** 	 * Namespace for the built-in xmldb module. 	 */
 specifier|public
 specifier|final

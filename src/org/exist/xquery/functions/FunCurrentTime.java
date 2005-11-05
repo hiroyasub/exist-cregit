@@ -88,7 +88,7 @@ name|QName
 argument_list|(
 literal|"current-time"
 argument_list|,
-name|Module
+name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)

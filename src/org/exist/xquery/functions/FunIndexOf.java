@@ -27,26 +27,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -90,6 +70,18 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Function
 import|;
 end_import
 
@@ -166,20 +158,6 @@ operator|.
 name|value
 operator|.
 name|IntegerValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Item
 import|;
 end_import
 
@@ -280,13 +258,9 @@ name|QName
 argument_list|(
 literal|"index-of"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Returns a sequence of positive integers giving the positions within the sequence "
@@ -345,13 +319,9 @@ name|QName
 argument_list|(
 literal|"index-of"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Returns a sequence of positive integers giving the positions within the sequence "

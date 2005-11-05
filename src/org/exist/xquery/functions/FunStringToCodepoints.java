@@ -59,6 +59,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -178,13 +190,9 @@ name|QName
 argument_list|(
 literal|"string-to-codepoints"
 argument_list|,
-name|ModuleImpl
+name|Function
 operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ModuleImpl
-operator|.
-name|PREFIX
+name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 literal|"Returns the sequence of code points that constitute an xs:string. If $a is a zero-length "
