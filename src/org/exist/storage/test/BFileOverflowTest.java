@@ -17,21 +17,21 @@ end_package
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|io
+name|framework
 operator|.
-name|StringWriter
+name|TestCase
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|io
+name|textui
 operator|.
-name|Writer
+name|TestRunner
 import|;
 end_import
 
@@ -177,26 +177,6 @@ name|FixedByteArray
 import|;
 end_import
 
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -236,8 +216,6 @@ specifier|public
 name|void
 name|testAdd
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|TransactionManager
 name|mgr
@@ -507,6 +485,21 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|pool
@@ -522,8 +515,6 @@ specifier|public
 name|void
 name|testRead
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
@@ -618,6 +609,21 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|pool
@@ -633,8 +639,6 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|home
@@ -705,11 +709,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -724,8 +723,6 @@ specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
