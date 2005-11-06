@@ -192,6 +192,14 @@ return|return
 name|indexer
 return|;
 block|}
+name|int
+name|getEvent
+parameter_list|()
+block|{
+return|return
+name|event
+return|;
+block|}
 name|void
 name|setReader
 parameter_list|(
