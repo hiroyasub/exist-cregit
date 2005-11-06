@@ -2427,7 +2427,7 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:// "
+literal|"xmldb:exist://"
 operator|+
 name|DBBroker
 operator|.
