@@ -49,16 +49,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -70,6 +60,16 @@ operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
 import|;
 end_import
 
@@ -501,20 +501,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Sequence
 import|;
 end_import
@@ -816,13 +802,13 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
-comment|/* 		 * We don't do this directly in parameterize() because setup() can be 		 * called multiple times and optionalParameters needs resetting to forget 		 * sitemap parameters that may have been removed inbetween 		 */
+comment|/* 		 * We don't do this directly in parameterize() because setup() can be 		 * called multiple times and optionalParameters needs resetting to forget 		 * sitemap parameters that may have been removed inbetween 		 *  		 * The map must be sorted so that getKey() always returns the same 		 * object for any given oder of parameters. 		 */
 name|this
 operator|.
 name|optionalParameters
 operator|=
 operator|new
-name|HashMap
+name|TreeMap
 argument_list|()
 expr_stmt|;
 name|String
