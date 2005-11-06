@@ -57,18 +57,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|channels
-operator|.
-name|WritableByteChannel
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|Collator
@@ -848,20 +836,6 @@ operator|.
 name|util
 operator|.
 name|ReadOnlyException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|sanity
-operator|.
-name|SanityCheck
 import|;
 end_import
 
@@ -3131,8 +3105,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|collectionsDb
-argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -9957,8 +9929,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|collectionsDb
-argument_list|,
 name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
@@ -10166,8 +10136,6 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|collectionsDb
-argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
