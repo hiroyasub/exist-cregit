@@ -263,78 +263,6 @@ name|document
 init|=
 literal|"survey.xml"
 decl_stmt|;
-try|try
-block|{
-name|eXist
-operator|=
-name|registerDatabase
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"Unable to register database: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Obtain XQuery service
-name|XQueryService
-name|service
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|service
-operator|=
-name|getXQueryService
-argument_list|(
-name|eXist
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|service
-operator|==
-literal|null
-condition|)
-block|{
-name|fail
-argument_list|(
-literal|"Failed to obtain xquery service instance!"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"Failed to obtain xquery service instance: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|// create document
 name|StringBuffer
 name|xmlDocument
 init|=
@@ -412,9 +340,30 @@ argument_list|(
 literal|"</survey>"
 argument_list|)
 expr_stmt|;
-comment|// write document to the database
 try|try
 block|{
+name|eXist
+operator|=
+name|registerDatabase
+argument_list|()
+expr_stmt|;
+comment|// Obtain XQuery service
+name|XQueryService
+name|service
+init|=
+name|getXQueryService
+argument_list|(
+name|eXist
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Failed to obtain xquery service instance!"
+argument_list|,
+name|service
+argument_list|)
+expr_stmt|;
+comment|// write document to the database
 name|store
 argument_list|(
 name|xmlDocument
@@ -427,79 +376,28 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"Failed to write document to database: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|// read document back from database
 name|Node
 name|root
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|root
-operator|=
 name|load
 argument_list|(
 name|service
 argument_list|,
 name|document
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|root
-operator|==
-literal|null
-condition|)
-block|{
-name|fail
+decl_stmt|;
+name|assertNotNull
 argument_list|(
 literal|"Document "
 operator|+
 name|document
 operator|+
 literal|" was not found in the database!"
+argument_list|,
+name|root
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-literal|"Failed to write document to database: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|// issue xpath query.
-try|try
-block|{
 name|NodeList
 name|fieldNodes
 init|=
@@ -565,20 +463,15 @@ argument_list|,
 literal|"name/text()"
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|nameNode
-operator|==
-literal|null
-condition|)
-block|{
-name|fail
+name|assertNotNull
 argument_list|(
 literal|"Failed to read existing field["
 operator|+
 name|i
 operator|+
 literal|"]/name/text()"
+argument_list|,
+name|nameNode
 argument_list|)
 expr_stmt|;
 block|}
@@ -592,22 +485,14 @@ literal|"Test succeeded"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
-literal|"Failed to issue xpath: "
-operator|+
 name|e
 operator|.
 name|getMessage
@@ -616,7 +501,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Stores the given xml fragment into the database. 	 *  	 * @param xml the xml document 	 * @param service the xquery service 	 * @param document the document name 	 * @throws XMLDBException on database error 	 */
+comment|/** 	 * Stores the given xml fragment into the database. 	 *  	 * @param xml the xml document 	 * @param service the xquery service 	 * @param document the document name	  	 */
 specifier|private
 specifier|final
 name|void
@@ -631,8 +516,6 @@ parameter_list|,
 name|String
 name|document
 parameter_list|)
-throws|throws
-name|XMLDBException
 block|{
 name|StringBuffer
 name|query
@@ -684,6 +567,8 @@ argument_list|(
 literal|"return<result/>"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|service
 operator|.
 name|declareVariable
@@ -723,7 +608,23 @@ name|cQuery
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Loads the xml document identified by<code>document</code> from the database. 	 *  	 * @param service the xquery service 	 * @param document the document to load 	 * @throws XMLDBException on database error 	 */
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 * Loads the xml document identified by<code>document</code> from the database. 	 *  	 * @param service the xquery service 	 * @param document the document to load	 	 */
 specifier|private
 specifier|final
 name|Node
@@ -735,8 +636,6 @@ parameter_list|,
 name|String
 name|document
 parameter_list|)
-throws|throws
-name|XMLDBException
 block|{
 name|StringBuffer
 name|query
@@ -756,13 +655,13 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $survey := document(concat(\""
+literal|"let $survey := document(concat('"
 operator|+
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"/\", $document))"
+literal|"', '/', $document))"
 argument_list|)
 expr_stmt|;
 name|query
@@ -772,6 +671,8 @@ argument_list|(
 literal|"return ($survey)"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|service
 operator|.
 name|declareVariable
@@ -804,20 +705,21 @@ argument_list|(
 name|cQuery
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+name|assertNotNull
+argument_list|(
 name|set
-operator|!=
-literal|null
-operator|&&
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|set
 operator|.
 name|getSize
 argument_list|()
 operator|>
 literal|0
-condition|)
-block|{
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 operator|(
@@ -836,18 +738,31 @@ name|getContentAsDOM
 argument_list|()
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Registers a new database instance and returns it. 	 *  	 * @throws XMLDBException 	 */
+comment|/** 	 * Registers a new database instance and returns it. 	 */
 specifier|private
 specifier|final
 name|Database
 name|registerDatabase
 parameter_list|()
-throws|throws
-name|XMLDBException
 block|{
 name|Class
 name|driver
@@ -890,7 +805,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
-comment|//			database.setProperty("configuration", eXistConf);
+comment|//database.setProperty("configuration", eXistConf);
 name|DatabaseManager
 operator|.
 name|registerDatabase
@@ -904,81 +819,24 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|ClassNotFoundException
+name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|fail
 argument_list|(
-literal|"Driver class "
-operator|+
-name|driverName
-operator|+
-literal|" was not found!"
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|()
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|InstantiationException
 name|e
-parameter_list|)
-block|{
-name|System
 operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Driver class "
-operator|+
-name|driverName
-operator|+
-literal|" could not be instantiated!"
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|()
-throw|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalAccessException
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Access violation when trying to instantiate XMLDB Driver "
-operator|+
-name|driverName
-operator|+
-literal|"!"
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|()
-throw|;
+return|return
+literal|null
+return|;
 block|}
-block|}
-comment|/** 	 * Retrieves the base collection and thereof returns a reference to the collection's 	 * xquery service. 	 *  	 * @param db the database 	 * @return the xquery service 	 * @throws XMLDBException on database error 	 */
+comment|/** 	 * Retrieves the base collection and thereof returns a reference to the collection's 	 * xquery service. 	 *  	 * @param db the database 	 * @return the xquery service 	 */
 specifier|private
 specifier|final
 name|XQueryService
@@ -987,8 +845,8 @@ parameter_list|(
 name|Database
 name|db
 parameter_list|)
-throws|throws
-name|XMLDBException
+block|{
+try|try
 block|{
 name|Collection
 name|collection
@@ -1008,13 +866,11 @@ argument_list|,
 literal|"admin"
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+name|assertNotNull
+argument_list|(
 name|collection
-operator|!=
-literal|null
-condition|)
-block|{
+argument_list|)
+expr_stmt|;
 name|XQueryService
 name|service
 init|=
@@ -1038,6 +894,21 @@ expr_stmt|;
 return|return
 name|service
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
