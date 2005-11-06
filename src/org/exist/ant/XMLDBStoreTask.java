@@ -378,7 +378,9 @@ name|getCollection
 argument_list|(
 name|baseURI
 operator|+
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|root
@@ -389,7 +391,9 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 name|path
 argument_list|)
@@ -804,7 +808,9 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
 name|path
 argument_list|,

@@ -554,7 +554,7 @@ argument_list|(
 name|contents
 argument_list|)
 expr_stmt|;
-comment|// check if /db/system is in the backup. We have to process
+comment|// check if the system collection is in the backup. We have to process
 comment|// this first to create users.
 name|File
 name|dir
@@ -613,7 +613,7 @@ operator|+
 literal|"__contents__.xml"
 argument_list|)
 decl_stmt|;
-comment|// put /db/system on top of the stack
+comment|// put the system collection on top of the stack
 if|if
 condition|(
 name|sys
@@ -622,7 +622,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
-comment|//				TODO : find a way to make a corespondance with DBRoker's named constants
+comment|//TODO : find a way to make a corespondance with DBRoker's named constants
 name|System
 operator|.
 name|out

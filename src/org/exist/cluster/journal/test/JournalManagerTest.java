@@ -19,6 +19,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -35,7 +55,7 @@ name|exist
 operator|.
 name|cluster
 operator|.
-name|*
+name|ClusterEvent
 import|;
 end_import
 
@@ -47,9 +67,43 @@ name|exist
 operator|.
 name|cluster
 operator|.
-name|journal
+name|ClusterException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|JournalManager
+name|exist
+operator|.
+name|cluster
+operator|.
+name|CreateCollectionClusterEvent
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|cluster
+operator|.
+name|RemoveClusterEvent
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|cluster
+operator|.
+name|StoreClusterEvent
 import|;
 end_import
 
@@ -73,29 +127,35 @@ name|org
 operator|.
 name|exist
 operator|.
+name|cluster
+operator|.
+name|journal
+operator|.
+name|JournalManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -294,7 +354,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -410,7 +474,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -474,7 +542,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -538,7 +610,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -679,7 +755,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -743,7 +823,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -807,7 +891,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1039,7 +1127,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1175,7 +1267,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1239,7 +1335,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1355,7 +1455,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1419,7 +1523,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1483,7 +1591,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1714,7 +1826,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -1926,7 +2042,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -2209,7 +2329,11 @@ name|assertEquals
 argument_list|(
 literal|"Wrong parent value"
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 operator|(
 operator|(
@@ -2294,7 +2418,11 @@ init|=
 operator|new
 name|CreateCollectionClusterEvent
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|,
 name|collectionName
 argument_list|)
@@ -2424,7 +2552,13 @@ literal|"\t\n"
 operator|+
 literal|"\t<target name=\"store\" xmlns:xmldb=\"http://exist-db.org/ant\">\n"
 operator|+
-literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db/shakespeare/plays\"\n"
+literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays\"\n"
 operator|+
 literal|"\t\t\tcreatecollection=\"true\">\n"
 operator|+
@@ -2440,7 +2574,13 @@ literal|"\t\t</xmldb:store>\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db/shakespeare/plays\"\n"
+literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays\"\n"
 operator|+
 literal|"\t\t\ttype=\"binary\">\n"
 operator|+
@@ -2454,7 +2594,13 @@ literal|"\t\t</xmldb:store>\n"
 operator|+
 literal|"\t\t\n"
 operator|+
-literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db/library\"\n"
+literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/library\"\n"
 operator|+
 literal|"\t\t\tcreatecollection=\"true\">\n"
 operator|+
@@ -2464,7 +2610,13 @@ literal|"\t\t</xmldb:store>\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db/xinclude\"\n"
+literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/xinclude\"\n"
 operator|+
 literal|"\t\t\tcreatecollection=\"true\">\n"
 operator|+
@@ -2474,7 +2626,13 @@ literal|"</xmldb:store>\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db\">\n"
+literal|"<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\">\n"
 operator|+
 literal|"<fileset dir=\"samples\" includes=\"examples.xml\"/>\n"
 operator|+
@@ -2482,7 +2640,13 @@ literal|"</xmldb:store>\n"
 operator|+
 literal|"\n"
 operator|+
-literal|"\t\t<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc/db/mods\">\n"
+literal|"\t\t<xmldb:store uri=\"xmldb:exist://localhost:8080/exist/xmlrpc"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/mods\">\n"
 operator|+
 literal|"<fileset dir=\"mods\" includes=\"**.xml\"/>\n"
 operator|+
