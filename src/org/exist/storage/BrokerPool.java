@@ -1116,6 +1116,13 @@ name|securityManager
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * The global notification service used to subscribe      * to document updates.      */
+specifier|private
+name|NotificationService
+name|notificationService
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 * The system maintenance tasks of the database instance. 	 */
 comment|//TODO : maybe not the most appropriate container...
 comment|// WM: yes, only used in initialization. Don't need a synchronized collection here
@@ -2024,6 +2031,12 @@ argument_list|,
 literal|0.9
 argument_list|)
 expr_stmt|;
+name|notificationService
+operator|=
+operator|new
+name|NotificationService
+argument_list|()
+expr_stmt|;
 comment|//REFACTOR : construct then... configure
 comment|//TODO : journal directory *may* be different from "db-connection.data-dir"
 name|transactionManager
@@ -2540,6 +2553,15 @@ parameter_list|()
 block|{
 return|return
 name|syncDaemon
+return|;
+block|}
+specifier|public
+name|NotificationService
+name|getNotificationService
+parameter_list|()
+block|{
+return|return
+name|notificationService
 return|;
 block|}
 comment|/**      * Returns whether transactions can be handled by the database instance.      *       * @return<code>true</code> if transactions can be handled      */

@@ -10700,7 +10700,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//					LOG.debug(domDb.debugPages(p.doc));
+comment|//					LOG.debug(domDb.debugPages(p.doc, true));
 comment|//					return null;
 return|return
 name|objectWith
