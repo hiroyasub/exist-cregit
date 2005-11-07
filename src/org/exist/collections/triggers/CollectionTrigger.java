@@ -39,6 +39,20 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for triggers that can be registered with collection-related events.  *   * @author wolf  */
 end_comment
@@ -61,6 +75,9 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|,
@@ -70,7 +87,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
-comment|/**      * This method is called after the operation has completed.        **/
+comment|/**      * This method is called after the operation has completed.      *         **/
 specifier|public
 name|void
 name|finish
@@ -80,6 +97,9 @@ name|event
 parameter_list|,
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|transaction
 parameter_list|,
 name|Collection
 name|collection

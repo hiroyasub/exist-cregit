@@ -209,11 +209,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|storage
 operator|.
-name|Document
+name|txn
+operator|.
+name|Txn
 import|;
 end_import
 
@@ -606,10 +608,13 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|String
 name|documentName
 parameter_list|,
-name|Document
+name|DocumentImpl
 name|existingDocument
 parameter_list|)
 throws|throws

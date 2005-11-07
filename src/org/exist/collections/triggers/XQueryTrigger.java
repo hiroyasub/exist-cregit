@@ -75,18 +75,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeSet
 import|;
 end_import
@@ -133,9 +121,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|storage
 operator|.
-name|CompiledXQuery
+name|txn
+operator|.
+name|Txn
 import|;
 end_import
 
@@ -147,7 +137,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Variable
+name|CompiledXQuery
 import|;
 end_import
 
@@ -226,18 +216,6 @@ operator|.
 name|value
 operator|.
 name|StringValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
 import|;
 end_import
 
@@ -442,10 +420,13 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|String
 name|documentName
 parameter_list|,
-name|Document
+name|DocumentImpl
 name|existingDocument
 parameter_list|)
 throws|throws
@@ -695,10 +676,10 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|documentName
+name|Txn
+name|transaction
 parameter_list|,
-name|Document
+name|DocumentImpl
 name|document
 parameter_list|)
 block|{
@@ -715,7 +696,10 @@ argument_list|)
 operator|+
 literal|"XQuery trigger for document : '"
 operator|+
-name|documentName
+name|document
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|"'"
 argument_list|)
@@ -787,7 +771,10 @@ argument_list|,
 operator|new
 name|StringValue
 argument_list|(
-name|documentName
+name|document
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
