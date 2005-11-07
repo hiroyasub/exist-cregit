@@ -294,8 +294,6 @@ specifier|public
 name|void
 name|testStore
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
@@ -306,8 +304,7 @@ expr_stmt|;
 name|BrokerPool
 name|pool
 init|=
-name|startDB
-argument_list|()
+literal|null
 decl_stmt|;
 name|DBBroker
 name|broker
@@ -316,6 +313,16 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|pool
+operator|=
+name|startDB
+argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|pool
+argument_list|)
+expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -327,6 +334,11 @@ operator|.
 name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|TransactionManager
 name|transact
 init|=
@@ -335,6 +347,11 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transact
+argument_list|)
+expr_stmt|;
 name|Txn
 name|transaction
 init|=
@@ -343,6 +360,11 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -368,6 +390,11 @@ operator|+
 literal|"/test"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|root
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|saveCollection
@@ -378,7 +405,7 @@ name|root
 argument_list|)
 expr_stmt|;
 name|Collection
-name|test
+name|test2
 init|=
 name|broker
 operator|.
@@ -393,13 +420,18 @@ operator|+
 literal|"/test/test2"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|test2
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|saveCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|test
+name|test2
 argument_list|)
 expr_stmt|;
 name|File
@@ -411,10 +443,15 @@ argument_list|(
 literal|"samples/shakespeare/r_and_j.xml"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|f
+argument_list|)
+expr_stmt|;
 name|IndexInfo
 name|info
 init|=
-name|test
+name|test2
 operator|.
 name|validate
 argument_list|(
@@ -437,7 +474,12 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|test
+name|assertNotNull
+argument_list|(
+name|info
+argument_list|)
+expr_stmt|;
+name|test2
 operator|.
 name|store
 argument_list|(
@@ -503,6 +545,30 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -519,8 +585,6 @@ specifier|public
 name|void
 name|testRead
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
@@ -531,9 +595,15 @@ expr_stmt|;
 name|BrokerPool
 name|pool
 init|=
-name|startDB
-argument_list|()
+literal|null
 decl_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 name|System
 operator|.
 name|out
@@ -543,13 +613,16 @@ argument_list|(
 literal|"testRead() ...\n"
 argument_list|)
 expr_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
+name|pool
+operator|=
+name|startDB
+argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|pool
+argument_list|)
+expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -559,6 +632,11 @@ argument_list|(
 name|SecurityManager
 operator|.
 name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|broker
 argument_list|)
 expr_stmt|;
 name|Serializer
@@ -576,12 +654,7 @@ argument_list|()
 expr_stmt|;
 name|DocumentImpl
 name|doc
-decl_stmt|;
-name|String
-name|data
-decl_stmt|;
-name|doc
-operator|=
+init|=
 name|broker
 operator|.
 name|openDocument
@@ -596,7 +669,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 literal|"Document should not be null"
@@ -604,13 +677,19 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+name|String
 name|data
-operator|=
+init|=
 name|serializer
 operator|.
 name|serialize
 argument_list|(
 name|doc
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|data
 argument_list|)
 expr_stmt|;
 comment|//	        System.out.println(data);
@@ -634,6 +713,11 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transact
+argument_list|)
+expr_stmt|;
 name|Txn
 name|transaction
 init|=
@@ -642,6 +726,20 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction started ..."
+argument_list|)
+expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -660,6 +758,11 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|root
+argument_list|)
+expr_stmt|;
 name|transaction
 operator|.
 name|registerLock
@@ -690,6 +793,30 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -702,7 +829,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//	public void testStoreAborted() throws Exception {
+comment|//	public void testStoreAborted() {
 comment|//		BrokerPool.FORCE_CORRUPTION = true;
 comment|//		BrokerPool pool = startDB();
 comment|//
@@ -742,7 +869,7 @@ comment|//		} finally {
 comment|//			pool.release(broker);
 comment|//		}
 comment|//	}
-comment|//	public void testReadAborted() throws Exception {
+comment|//	public void testReadAborted() {
 comment|//	    BrokerPool.FORCE_CORRUPTION = false;
 comment|//	    BrokerPool pool = startDB();
 comment|//
@@ -770,7 +897,7 @@ comment|//	        pool.release(broker);
 comment|//	    }
 comment|//	}
 comment|//
-comment|//	public void testXMLDBStore() throws Exception {
+comment|//	public void testXMLDBStore() {
 comment|//		BrokerPool.FORCE_CORRUPTION = false;
 comment|//	    BrokerPool pool = startDB();
 comment|//
@@ -792,7 +919,7 @@ comment|//
 comment|//	    mgr.moveResource(DBBroker.ROOT_COLLECTION +  "/test/test2/test3.xml", DBBroker.ROOT_COLLECTION + "/test", "new_test3.xml");
 comment|//	}
 comment|//
-comment|//	public void testXMLDBRead() throws Exception {
+comment|//	public void testXMLDBRead() {
 comment|//		BrokerPool.FORCE_CORRUPTION = false;
 comment|//	    BrokerPool pool = startDB();
 comment|//
@@ -805,8 +932,6 @@ specifier|protected
 name|BrokerPool
 name|startDB
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|home
@@ -909,11 +1034,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -931,8 +1051,6 @@ specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
