@@ -149,6 +149,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|mortbay
 operator|.
 name|util
@@ -191,7 +203,11 @@ name|COLLECTION_URI
 init|=
 name|SERVER_URI
 operator|+
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -201,7 +217,11 @@ name|RESOURCE_URI
 init|=
 name|SERVER_URI
 operator|+
-literal|"/db/test/test.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test.xml"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -702,7 +722,13 @@ name|URLEncoder
 operator|.
 name|encode
 argument_list|(
-literal|"doc('/db/test/test.xml')//para[. = '\u00E4\u00E4\u00FC\u00FC\u00F6\u00F6\u00C4\u00C4\u00D6\u00D6\u00DC\u00DC']/text()"
+literal|"doc('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test.xml')//para[. = '\u00E4\u00E4\u00FC\u00FC\u00F6\u00F6\u00C4\u00C4\u00D6\u00D6\u00DC\u00DC']/text()"
 argument_list|,
 literal|"UTF-8"
 argument_list|)
@@ -849,7 +875,11 @@ name|assertEquals
 argument_list|(
 name|response
 argument_list|,
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 expr_stmt|;
 name|uri
@@ -915,7 +945,11 @@ name|response
 argument_list|,
 name|SERVER_URI
 operator|+
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 expr_stmt|;
 block|}

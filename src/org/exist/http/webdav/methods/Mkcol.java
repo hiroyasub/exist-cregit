@@ -346,7 +346,9 @@ argument_list|,
 name|p
 argument_list|)
 else|:
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 name|String
 name|newCollection

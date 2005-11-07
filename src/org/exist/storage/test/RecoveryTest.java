@@ -880,6 +880,15 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
 comment|// the following transaction will not be committed. It will thus be rolled back by recovery
 name|transaction
 operator|=
@@ -894,7 +903,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Transaction commited ..."
+literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
 name|test2
