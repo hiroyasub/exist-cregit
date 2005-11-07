@@ -1031,7 +1031,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Check if the config collection exists below /db/system. If not, create it. 	 *  	 * @param broker 	 * @throws EXistException 	 */
+comment|/** 	 * Check if the config collection exists below the system collection. If not, create it. 	 *  	 * @param broker 	 * @throws EXistException 	 */
 specifier|private
 name|void
 name|checkConfigCollection
@@ -1132,7 +1132,13 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Failed to initialize /db/system/config: "
+literal|"Failed to initialize '"
+operator|+
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/config: "
 operator|+
 name|e
 operator|.

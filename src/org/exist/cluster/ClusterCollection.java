@@ -934,6 +934,8 @@ throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|TriggerException
 block|{
 return|return
 name|collection
@@ -1637,6 +1639,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|TriggerException
 block|{
 name|collection
 operator|.
@@ -1667,6 +1671,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|TriggerException
 block|{
 name|collection
 operator|.
