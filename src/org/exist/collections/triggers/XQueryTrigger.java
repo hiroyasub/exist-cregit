@@ -444,21 +444,6 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|//TODO : think
-if|if
-condition|(
-name|existingDocument
-operator|==
-literal|null
-condition|)
-return|return;
-if|if
-condition|(
-name|existingDocument
-operator|instanceof
-name|BinaryDocument
-condition|)
-return|return;
 name|LOG
 operator|.
 name|debug
@@ -565,12 +550,14 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//if (existingDocument == null)
 if|if
 condition|(
 name|existingDocument
-operator|==
-literal|null
+operator|instanceof
+name|BinaryDocument
 condition|)
+comment|//        		TODO : encode in Base64 ?
 name|context
 operator|.
 name|declareVariable
@@ -710,21 +697,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|//TODO : think
-if|if
-condition|(
-name|document
-operator|==
-literal|null
-condition|)
-return|return;
-if|if
-condition|(
-name|document
-operator|instanceof
-name|BinaryDocument
-condition|)
-return|return;
 name|LOG
 operator|.
 name|debug
@@ -838,6 +810,47 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|event
+operator|==
+name|REMOVE_DOCUMENT_EVENT
+condition|)
+comment|//        		Document does not exist any more -> Sequence.EMPTY_SEQUENCE
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+literal|"document"
+argument_list|,
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|document
+operator|instanceof
+name|BinaryDocument
+condition|)
+comment|//        		TODO : encode in Base64 ?
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+literal|"document"
+argument_list|,
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+argument_list|)
+expr_stmt|;
+else|else
 name|context
 operator|.
 name|declareVariable
