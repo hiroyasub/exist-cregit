@@ -190,8 +190,6 @@ specifier|public
 name|void
 name|testUpdate
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 operator|.
@@ -202,8 +200,7 @@ expr_stmt|;
 name|BrokerPool
 name|pool
 init|=
-name|startDB
-argument_list|()
+literal|null
 decl_stmt|;
 name|DBBroker
 name|broker
@@ -212,6 +209,16 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|pool
+operator|=
+name|startDB
+argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|pool
+argument_list|)
+expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -223,6 +230,11 @@ operator|.
 name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|TransactionManager
 name|mgr
 init|=
@@ -231,6 +243,11 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|mgr
+argument_list|)
+expr_stmt|;
 name|IndexInfo
 name|info
 init|=
@@ -241,6 +258,11 @@ argument_list|,
 name|mgr
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|info
+argument_list|)
+expr_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -269,6 +291,11 @@ argument_list|,
 name|docs
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|proc
+argument_list|)
+expr_stmt|;
 name|Txn
 name|transaction
 init|=
@@ -277,6 +304,20 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction started ..."
+argument_list|)
+expr_stmt|;
 name|String
 name|xupdate
 decl_stmt|;
@@ -373,6 +414,11 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|modifications
+argument_list|)
+expr_stmt|;
 name|modifications
 index|[
 literal|0
@@ -396,6 +442,15 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
 comment|// the following transaction will not be committed and thus undone during recovery
 name|transaction
 operator|=
@@ -403,6 +458,20 @@ name|mgr
 operator|.
 name|beginTransaction
 argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction started ..."
+argument_list|)
 expr_stmt|;
 comment|// update attributes
 for|for
@@ -467,6 +536,11 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|modifications
+argument_list|)
+expr_stmt|;
 name|modifications
 index|[
 literal|0
@@ -483,6 +557,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+comment|//Don't commit
 name|pool
 operator|.
 name|getTransactionManager
@@ -494,6 +569,30 @@ operator|.
 name|flushToLog
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction interrupted ..."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -255,8 +255,6 @@ specifier|public
 name|void
 name|testShutdown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 for|for
 control|(
@@ -291,14 +289,11 @@ specifier|public
 name|void
 name|storeAndShutdown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|BrokerPool
 name|pool
 init|=
-name|startDB
-argument_list|()
+literal|null
 decl_stmt|;
 name|DBBroker
 name|broker
@@ -307,6 +302,16 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|pool
+operator|=
+name|startDB
+argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|pool
+argument_list|)
+expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -318,6 +323,11 @@ operator|.
 name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|TransactionManager
 name|transact
 init|=
@@ -326,6 +336,11 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transact
+argument_list|)
+expr_stmt|;
 name|Txn
 name|transaction
 init|=
@@ -334,6 +349,11 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -359,6 +379,11 @@ operator|+
 literal|"/test"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|test
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|saveCollection
@@ -410,6 +435,11 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|files
+argument_list|)
+expr_stmt|;
 name|File
 name|f
 decl_stmt|;
@@ -441,6 +471,11 @@ index|[
 name|i
 index|]
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|f
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|info
@@ -469,6 +504,11 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|info
 argument_list|)
 expr_stmt|;
 name|test
@@ -534,6 +574,11 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|xquery
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|result
 init|=
@@ -548,6 +593,11 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|result
@@ -565,12 +615,30 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
 name|transaction
 operator|=
 name|transact
 operator|.
 name|beginTransaction
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction started ..."
+argument_list|)
 expr_stmt|;
 name|broker
 operator|.
@@ -586,6 +654,30 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Transaction commited ..."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -624,7 +716,7 @@ comment|//	        	}
 comment|//	        });
 comment|//	        for (int i = 0; i< files.length; i++) {
 comment|//	        	System.out.println("Removing " + files[i].getAbsolutePath());
-comment|//	    		files[i].delete();
+comment|//	    		files[i].delete();;
 comment|//	        }
 comment|//        } catch (Exception e) {
 comment|//        	System.err.println("Error while deleting database files:\n" + e.getMessage());
@@ -635,8 +727,6 @@ specifier|protected
 name|BrokerPool
 name|startDB
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|home
@@ -706,11 +796,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -746,8 +831,6 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|TestRunner
 operator|.
