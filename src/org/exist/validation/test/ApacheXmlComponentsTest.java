@@ -123,10 +123,7 @@ specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
-comment|//
 name|System
 operator|.
 name|out
@@ -141,10 +138,7 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
 block|{
-comment|//
 name|System
 operator|.
 name|out
@@ -159,8 +153,6 @@ specifier|public
 name|void
 name|testXercesVersion
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|version
@@ -215,8 +207,6 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Incorrect Xerces version! "
@@ -235,8 +225,6 @@ specifier|public
 name|void
 name|testXalanVersion
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|version
@@ -287,8 +275,6 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"Incorrect Xalan version! "

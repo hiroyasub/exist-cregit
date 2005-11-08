@@ -94,8 +94,6 @@ specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 comment|//
 block|}
@@ -103,8 +101,6 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 comment|//
 block|}
@@ -112,8 +108,6 @@ specifier|public
 name|void
 name|testDummyTestmethod
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 comment|//
 block|}
