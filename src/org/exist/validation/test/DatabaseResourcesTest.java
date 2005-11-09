@@ -205,8 +205,6 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -313,8 +311,6 @@ specifier|protected
 name|BrokerPool
 name|startDB
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|String
 name|home
@@ -406,8 +402,6 @@ specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -434,8 +428,6 @@ specifier|public
 name|void
 name|testInsertXsdGrammar
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -446,8 +438,6 @@ argument_list|(
 literal|">>> testInsertGrammar"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -482,8 +472,6 @@ specifier|public
 name|void
 name|testInsertXsdGrammar2
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -494,8 +482,6 @@ argument_list|(
 literal|">>> testInsertGrammar"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -516,8 +502,6 @@ literal|"/other/path/addressbook.xsd"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -552,8 +536,6 @@ specifier|public
 name|void
 name|testInsertDtdGrammar
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -564,8 +546,6 @@ argument_list|(
 literal|">>> testInsertDtdGrammar"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -586,8 +566,6 @@ literal|"play.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -620,8 +598,6 @@ specifier|public
 name|void
 name|testInsertDtdGrammar2
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -632,8 +608,6 @@ argument_list|(
 literal|">>> testInsertDtdGrammar2"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -654,8 +628,6 @@ literal|"/other/path/play.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -702,8 +674,6 @@ argument_list|(
 literal|">>> testInsertTestDocuments"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -728,8 +698,6 @@ literal|"addressbook_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -754,8 +722,6 @@ literal|"addressbook_invalid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -780,8 +746,6 @@ literal|"hamlet_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -832,8 +796,6 @@ argument_list|(
 literal|">>> testIsGrammarInDatabase"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|dbResources
@@ -874,8 +836,6 @@ argument_list|(
 literal|">>> testIsGrammarNotInDatabase"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertFalse
 argument_list|(
 name|dbResources
@@ -932,8 +892,6 @@ literal|"/addressbook_valid.xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertFalse
 argument_list|(
 name|report
@@ -1008,8 +966,6 @@ literal|"/addressbook_invalid.xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|report
@@ -1084,8 +1040,6 @@ literal|"/hamlet_valid.xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertFalse
 argument_list|(
 name|report
@@ -1160,8 +1114,6 @@ literal|"/hamlet_invalid.xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertTrue
 argument_list|(
 name|report
