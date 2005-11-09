@@ -1134,7 +1134,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/system. 	 *  	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1157,7 +1157,7 @@ name|long
 name|address
 parameter_list|)
 function_decl|;
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/system. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1170,7 +1170,7 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/system. 	 *  	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection

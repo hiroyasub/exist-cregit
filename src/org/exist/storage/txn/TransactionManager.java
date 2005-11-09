@@ -504,7 +504,9 @@ name|broker
 operator|.
 name|reindex
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 block|}

@@ -2188,7 +2188,7 @@ expr_stmt|;
 comment|//create the security manager
 comment|//TODO : why only the first broker has a security manager ? Global or attached to each broker ?
 comment|// WM: there's only one security manager per BrokerPool, but it needs a DBBroker instance to read
-comment|// the /db/system collection.
+comment|// the system collection.
 name|securityManager
 operator|=
 operator|new

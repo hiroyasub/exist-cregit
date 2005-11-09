@@ -3441,7 +3441,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  get a document by its file name. The document's file name is used to 	 *  identify a document. 	 * 	 *@param  fileName                       absolute file name in the database; name can be given with or without the leading path /db . 	 *@return                                The document value 	 *@exception  PermissionDeniedException   	 */
+comment|/** 	 *  get a document by its file name. The document's file name is used to 	 *  identify a document. 	 * 	 *@param  fileName                       absolute file name in the database; name can be given with or without the leading path /db/shakespeare. 	 *@return                                The document value 	 *@exception  PermissionDeniedException   	 */
 specifier|public
 name|Document
 name|getDocument
@@ -3468,7 +3468,7 @@ literal|'/'
 operator|+
 name|fileName
 expr_stmt|;
-comment|/*if (!fileName.startsWith(ROOT_COLLECTION)) 		    fileName = "/db" + fileName;*/
+comment|/*if (!fileName.startsWith(ROOT_COLLECTION)) 		    fileName = ROOT_COLLECTION + fileName;*/
 name|fileName
 operator|=
 name|NativeBroker
@@ -3637,7 +3637,7 @@ literal|'/'
 operator|+
 name|docPath
 expr_stmt|;
-comment|/*if (!docPath.startsWith(ROOT_COLLECTION)) 		    docPath = "/db" + docPath;*/
+comment|/*if (!docPath.startsWith(ROOT_COLLECTION)) 		    docPath = ROOT_COLLECTION + docPath;*/
 name|docPath
 operator|=
 name|NativeBroker

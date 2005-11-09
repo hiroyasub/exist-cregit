@@ -249,7 +249,7 @@ name|documentIsValid
 init|=
 literal|false
 decl_stmt|;
-comment|/*if(!id.startsWith("/db"))             id = remoteCollection.getPath() + '/' + id;*/
+comment|/*if(!id.startsWith(DBBroker.ROOT_COLLECTION))             id = remoteCollection.getPath() + '/' + id;*/
 name|id
 operator|=
 name|NativeBroker

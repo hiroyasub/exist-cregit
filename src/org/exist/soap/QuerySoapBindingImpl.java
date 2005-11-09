@@ -1502,7 +1502,9 @@ literal|null
 condition|)
 name|path
 operator|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 expr_stmt|;
 name|org
 operator|.
