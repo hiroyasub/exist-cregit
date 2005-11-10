@@ -301,8 +301,8 @@ operator|>
 literal|0
 condition|)
 block|{
-name|setIncludeAttributes
-argument_list|(
+name|includeAttributes
+operator|=
 name|indexAttributes
 operator|.
 name|equals
@@ -315,7 +315,6 @@ operator|.
 name|equals
 argument_list|(
 literal|"yes"
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -601,30 +600,6 @@ literal|true
 return|;
 return|return
 literal|false
-return|;
-block|}
-comment|/**      * Include attribute values?      *      * @param index The new includeAttributes value      */
-specifier|private
-name|void
-name|setIncludeAttributes
-parameter_list|(
-name|boolean
-name|index
-parameter_list|)
-block|{
-name|includeAttributes
-operator|=
-name|index
-expr_stmt|;
-block|}
-comment|/**      * Include attribute values?      *      * @return The includeAttributes value      */
-specifier|public
-name|boolean
-name|getIncludeAttributes
-parameter_list|(  )
-block|{
-return|return
-name|includeAttributes
 return|;
 block|}
 comment|/**      * Include alpha-numeric data, i.e. numbers, serials, URLs and so on?      *      * @param index include alpha-numeric data      */
