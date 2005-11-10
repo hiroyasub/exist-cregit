@@ -961,7 +961,13 @@ literal|"Malformed URI: cannot determine host or collection part in URI: "
 operator|+
 name|c
 operator|+
-literal|". The collection path should always start with /db."
+literal|". The collection path should always start with "
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"."
 argument_list|)
 throw|;
 name|XmlRpcClient

@@ -151,6 +151,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|EXistOutputKeys
@@ -261,7 +273,11 @@ specifier|static
 name|String
 name|TARGET_COLLECTION
 init|=
-literal|"/db/xmlrpc/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/xmlrpc/"
 decl_stmt|;
 specifier|public
 name|XmlRpcTest
@@ -1532,7 +1548,11 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-literal|"/db/Citt\u00E0"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/Citt\u00E0"
 argument_list|)
 expr_stmt|;
 name|XmlRpcClient
@@ -1577,7 +1597,11 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-literal|"/db/Citt\u00E0/test.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/Citt\u00E0/test.xml"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1623,7 +1647,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|Hashtable
@@ -1728,7 +1754,13 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Retrieving document /db/Citt\u00E0/test.xml"
+literal|"Retrieving document '"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/Citt\u00E0/test.xml'"
 argument_list|)
 expr_stmt|;
 name|Hashtable
@@ -1783,7 +1815,11 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-literal|"/db/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/"
 operator|+
 name|colWithAccent
 operator|+

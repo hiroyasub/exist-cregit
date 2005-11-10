@@ -2917,7 +2917,9 @@ literal|null
 condition|)
 name|rootCollection
 operator|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 expr_stmt|;
 name|collection
 operator|=
@@ -3555,7 +3557,9 @@ literal|null
 condition|)
 name|rootCollection
 operator|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 expr_stmt|;
 name|collection
 operator|=
@@ -5663,7 +5667,7 @@ literal|'/'
 operator|+
 name|name
 expr_stmt|;
-comment|/*if (!name.startsWith("/db"))                 name = "/db" + name;*/
+comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
 name|name
 operator|=
 name|NativeBroker
@@ -5672,7 +5676,9 @@ name|checkPath
 argument_list|(
 name|name
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -5865,7 +5871,7 @@ literal|'/'
 operator|+
 name|collectionName
 expr_stmt|;
-comment|/*if (!collectionName.startsWith("/db"))                 collectionName = "/db" + collectionName;*/
+comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
 name|collectionName
 operator|=
 name|NativeBroker
@@ -5874,7 +5880,9 @@ name|checkPath
 argument_list|(
 name|collectionName
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -5971,7 +5979,7 @@ literal|'/'
 operator|+
 name|collectionName
 expr_stmt|;
-comment|/*if (!collectionName.startsWith("/db"))                 collectionName = "/db" + collectionName;*/
+comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
 name|collectionName
 operator|=
 name|NativeBroker
@@ -5980,7 +5988,9 @@ name|checkPath
 argument_list|(
 name|collectionName
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -6141,7 +6151,7 @@ literal|'/'
 operator|+
 name|name
 expr_stmt|;
-comment|/*if (!name.startsWith("/db"))                 name = "/db" + name;*/
+comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
 name|name
 operator|=
 name|NativeBroker
@@ -6150,7 +6160,9 @@ name|checkPath
 argument_list|(
 name|name
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -6406,7 +6418,7 @@ literal|'/'
 operator|+
 name|name
 expr_stmt|;
-comment|/*if (!name.startsWith("/db"))                 name = "/db" + name;*/
+comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
 name|name
 operator|=
 name|NativeBroker
@@ -6415,7 +6427,9 @@ name|checkPath
 argument_list|(
 name|name
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -6746,7 +6760,7 @@ literal|'/'
 operator|+
 name|name
 expr_stmt|;
-comment|/*if (!name.startsWith("/db"))                 name = "/db" + name;*/
+comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
 name|name
 operator|=
 name|NativeBroker
@@ -6755,7 +6769,9 @@ name|checkPath
 argument_list|(
 name|name
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -6967,7 +6983,7 @@ literal|'/'
 operator|+
 name|collectionPath
 expr_stmt|;
-comment|/*if (!collectionPath.startsWith("/db"))                 collectionPath = "/db" + collectionPath;*/
+comment|/*if (!collectionPath.startsWith(DBBroker.ROOT_COLLECTION))                 collectionPath = DBBroker.ROOT_COLLECTION + collectionPath;*/
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -6976,7 +6992,9 @@ name|checkPath
 argument_list|(
 name|collectionPath
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|collection
@@ -7094,7 +7112,7 @@ literal|'/'
 operator|+
 name|documentPath
 expr_stmt|;
-comment|/*if (!documentPath.startsWith("/db"))                 documentPath = "/db" + documentPath;*/
+comment|/*if (!documentPath.startsWith(DBBroker.ROOT_COLLECTION))                 documentPath = DBBroker.ROOT_COLLECTION + documentPath;*/
 name|documentPath
 operator|=
 name|NativeBroker
@@ -7103,7 +7121,9 @@ name|checkPath
 argument_list|(
 name|documentPath
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 name|doc
