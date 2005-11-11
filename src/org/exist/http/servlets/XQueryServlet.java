@@ -1673,6 +1673,11 @@ argument_list|(
 literal|"</div></body></html>"
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 block|}
 specifier|private
 specifier|static
