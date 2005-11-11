@@ -177,11 +177,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|validation
+name|util
 operator|.
-name|service
-operator|.
-name|RemoteValidationService
+name|Compressor
 import|;
 end_import
 
@@ -191,9 +189,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmlrpc
+name|validation
 operator|.
-name|RpcServer
+name|service
+operator|.
+name|RemoteValidationService
 import|;
 end_import
 
@@ -3018,7 +3018,7 @@ condition|)
 block|{
 name|compressed
 operator|=
-name|RpcServer
+name|Compressor
 operator|.
 name|compress
 argument_list|(
