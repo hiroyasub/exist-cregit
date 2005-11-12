@@ -302,6 +302,14 @@ specifier|private
 specifier|final
 specifier|static
 name|int
+name|DBA_PASS_OPT
+init|=
+literal|'P'
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
 name|BACKUP_OPT
 init|=
 literal|'b'
@@ -402,7 +410,23 @@ name|ARGUMENT_REQUIRED
 argument_list|,
 name|PASS_OPT
 argument_list|,
-literal|"set password."
+literal|"set the password for connecting to the database."
+argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"dba-password"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_REQUIRED
+argument_list|,
+name|DBA_PASS_OPT
+argument_list|,
+literal|"if the backup specifies a different password for the admin/dba user, use this option "
+operator|+
+literal|"to specify the new password. Otherwise you will get a permission denied"
 argument_list|)
 block|,
 operator|new
@@ -664,6 +688,11 @@ name|optionPass
 init|=
 literal|null
 decl_stmt|;
+name|String
+name|optionDbaPass
+init|=
+literal|null
+decl_stmt|;
 name|boolean
 name|doBackup
 init|=
@@ -772,6 +801,17 @@ case|case
 name|PASS_OPT
 case|:
 name|optionPass
+operator|=
+name|option
+operator|.
+name|getArgument
+argument_list|()
+expr_stmt|;
+break|break;
+case|case
+name|DBA_PASS_OPT
+case|:
+name|optionDbaPass
 operator|=
 name|option
 operator|.
@@ -1318,6 +1358,8 @@ argument_list|)
 argument_list|,
 name|optionPass
 argument_list|,
+name|optionDbaPass
+argument_list|,
 operator|new
 name|File
 argument_list|(
@@ -1437,7 +1479,13 @@ argument_list|,
 literal|"admin"
 argument_list|)
 argument_list|,
+name|optionDbaPass
+operator|==
+literal|null
+condition|?
 name|optionPass
+else|:
+name|optionDbaPass
 argument_list|)
 decl_stmt|;
 name|shutdown

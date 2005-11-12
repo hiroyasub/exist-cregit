@@ -116,6 +116,12 @@ name|dirSet
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|String
+name|restorePassword
+init|=
+literal|null
+decl_stmt|;
 comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
 specifier|public
 name|void
@@ -246,6 +252,8 @@ argument_list|(
 name|user
 argument_list|,
 name|password
+argument_list|,
+name|restorePassword
 argument_list|,
 name|file
 argument_list|,
@@ -402,6 +410,8 @@ name|user
 argument_list|,
 name|password
 argument_list|,
+name|restorePassword
+argument_list|,
 name|file
 argument_list|,
 name|uri
@@ -477,6 +487,21 @@ operator|.
 name|dir
 operator|=
 name|dir
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setRestorePassword
+parameter_list|(
+name|String
+name|pass
+parameter_list|)
+block|{
+name|this
+operator|.
+name|restorePassword
+operator|=
+name|pass
 expr_stmt|;
 block|}
 block|}
