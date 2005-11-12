@@ -4194,7 +4194,7 @@ argument_list|,
 name|getName
 argument_list|()
 operator|+
-literal|"/"
+literal|'/'
 operator|+
 name|docName
 argument_list|,
@@ -4207,7 +4207,12 @@ name|debug
 argument_list|(
 literal|"Scanning document "
 operator|+
-name|name
+name|getName
+argument_list|()
+operator|+
+literal|'/'
+operator|+
+name|docName
 argument_list|)
 expr_stmt|;
 name|doValidate
