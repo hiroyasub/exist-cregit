@@ -59,6 +59,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|LocalCollection
@@ -255,9 +267,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get a reference to a collection. The collection is identified by the first argument, "
+literal|"Get a reference to a collection. The first argument is either a collection path like '"
 operator|+
-literal|"which is either a collection path like '/db' or an XMLDB URI like 'xmldb:exist://localhost:8081/db'. "
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays' or an XMLDB URI like 'xmldb:exist://localhost:8081/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays'. "
 operator|+
 literal|"The second argument should specify the name of "
 operator|+

@@ -33,6 +33,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Cardinality
@@ -199,17 +211,25 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Includes a document into the input sequence. "
+literal|"Returns the documents specified in the input sequence. "
 operator|+
-literal|"EXist interprets the argument as a path pointing to a "
+literal|"The arguments are either document pathes like '"
 operator|+
-literal|"document in the database, as for example, '/db/shakespeare/plays/hamlet.xml'. "
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
-literal|"If the path is relative, "
+literal|"/shakespeare/plays/hamlet.xml' or "
 operator|+
-literal|"it is resolved relative to the base URI property from the static context."
+literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
 operator|+
-literal|"Understands also standard URLs, starting with http://, file://, etc."
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays/hamlet.xml' or "
+operator|+
+literal|"standard URLs starting with http://, file://, etc."
 argument_list|,
 operator|new
 name|SequenceType

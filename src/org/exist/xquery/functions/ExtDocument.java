@@ -135,6 +135,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|LockException
@@ -313,19 +325,31 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Includes one or more documents "
+literal|"Returns the documents specified in the input sequence. "
 operator|+
-literal|"into the input sequence. This function is specific to eXist and "
+literal|"This function is specific to eXist and "
 operator|+
-literal|"will be replaced with the corresponding fn:doc function. Currently, "
+literal|"will be replaced with the corresponding fn:doc function. "
 operator|+
-literal|"eXist interprets each argument as an absolute path pointing to a "
+literal|"The arguments are either document pathes like '"
 operator|+
-literal|"document in the database, as for example, '/db/shakespeare/plays/hamlet.xml'. "
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
-literal|"If no arguments are specified, the function will load all documents in the "
+literal|"/shakespeare/plays/hamlet.xml' or "
 operator|+
-literal|"database."
+literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays/hamlet.xml'. "
+operator|+
+literal|"If the input sequence is empty, "
+operator|+
+literal|"the function will load all documents in the database."
 argument_list|,
 operator|new
 name|SequenceType

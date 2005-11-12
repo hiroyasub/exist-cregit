@@ -137,6 +137,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|lock
 operator|.
 name|Lock
@@ -315,15 +327,27 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Includes the documents contained in the specified collection "
+literal|"Returns the documents contained in the collections "
 operator|+
-literal|"into the input sequence. eXist interprets the arguments as absolute paths "
+literal|"specified in the input sequence. "
 operator|+
-literal|"pointing to database collections, as for example, '/db/shakespeare/plays'. Documents "
+literal|"The arguments are either collection pathes like '"
 operator|+
-literal|"located in subcollections of a collection are included into the input "
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 operator|+
-literal|"set."
+literal|"/shakespeare/plays' or "
+operator|+
+literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays'. "
+operator|+
+literal|"Documents contained in subcollections are also included."
 argument_list|,
 operator|new
 name|SequenceType
