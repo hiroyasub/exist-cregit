@@ -757,18 +757,31 @@ operator|.
 name|ANCESTOR_SELF_AXIS
 case|:
 comment|//Avoid unnecessary tests
-if|if
-condition|(
+comment|//				TODO : log this costly operation into the profiler ?
+name|int
+name|testType
+init|=
 name|test
 operator|.
 name|getType
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|testType
+operator|!=
+name|Type
+operator|.
+name|NODE
+operator|&&
+name|testType
 operator|!=
 name|Type
 operator|.
 name|ELEMENT
 condition|)
 block|{
+comment|//					TODO : log this shortcut into the profiler ?
 name|temp
 operator|=
 name|NodeSet
@@ -1042,6 +1055,7 @@ parameter_list|)
 block|{
 comment|//TODO : move to eval() ?
 comment|//Avoid unnecessary tests
+comment|//		TODO : log this costly operation into the profiler ?
 name|int
 name|testType
 init|=
@@ -1064,6 +1078,7 @@ name|Type
 operator|.
 name|ELEMENT
 condition|)
+comment|//			TODO : log this shortcut into the profiler ?
 return|return
 name|NodeSet
 operator|.
@@ -2819,6 +2834,7 @@ parameter_list|)
 block|{
 comment|//TODO : move to eval() ?
 comment|//Avoid unnecessary tests
+comment|//		TODO : log this costly operation into the profiler ?
 name|int
 name|testType
 init|=
