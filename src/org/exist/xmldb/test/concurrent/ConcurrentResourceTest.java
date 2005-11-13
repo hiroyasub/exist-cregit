@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -100,10 +90,6 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|File
-name|tempFile
-decl_stmt|;
 comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
 specifier|public
 name|ConcurrentResourceTest
@@ -127,8 +113,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 name|super
 operator|.
@@ -148,6 +134,11 @@ argument_list|,
 literal|"C1-C2"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|c1
+argument_list|)
+expr_stmt|;
 name|DBUtils
 operator|.
 name|addXMLResource
@@ -161,16 +152,8 @@ operator|.
 name|XML
 argument_list|)
 expr_stmt|;
-name|String
-name|query0
-init|=
-literal|"//user[email = 'sam@email.com']"
-decl_stmt|;
-name|String
-name|query1
-init|=
-literal|"distinct-values(//user/@id)"
-decl_stmt|;
+comment|//String query0 = "//user[email = 'sam@email.com']";
+comment|//String query1 = "distinct-values(//user/@id)";
 name|addAction
 argument_list|(
 operator|new
@@ -228,16 +211,30 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
-comment|//        addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 1000, 100);
-comment|//        addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 1000, 100);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 1000, 100);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 1000, 100);
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
 specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|super
 operator|.

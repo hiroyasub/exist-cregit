@@ -145,8 +145,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 name|super
 operator|.
@@ -166,6 +166,11 @@ argument_list|,
 literal|"C1-C2"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|c1
+argument_list|)
+expr_stmt|;
 name|addAction
 argument_list|(
 operator|new
@@ -246,8 +251,24 @@ argument_list|,
 literal|500
 argument_list|)
 expr_stmt|;
-comment|//        addAction(new XQueryAction(URI + "/C1/C1-C2", "R1.xml", QUERY0), 200, 400, 500);
-comment|//        addAction(new XQueryAction(URI + "/C1/C1-C2", "R1.xml", QUERY1), 200, 500, 500);
+comment|//addAction(new XQueryAction(URI + "/C1/C1-C2", "R1.xml", QUERY0), 200, 400, 500);
+comment|//addAction(new XQueryAction(URI + "/C1/C1-C2", "R1.xml", QUERY1), 200, 500, 500);
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

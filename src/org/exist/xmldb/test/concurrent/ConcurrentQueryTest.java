@@ -39,18 +39,6 @@ name|DBBroker
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|NativeElementIndex
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -109,12 +97,6 @@ decl_stmt|,
 name|action1
 decl_stmt|,
 name|action2
-decl_stmt|,
-name|action3
-decl_stmt|,
-name|action4
-decl_stmt|,
-name|action5
 decl_stmt|;
 comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
 specifier|public
@@ -139,8 +121,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 name|super
 operator|.
@@ -280,13 +262,27 @@ comment|//		addAction(action3, 50, 0, 0);
 comment|//		addAction(action4, 50, 0, 0);
 comment|//		addAction(action5, 50, 0, 0);
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown()      */
 specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|super
 operator|.

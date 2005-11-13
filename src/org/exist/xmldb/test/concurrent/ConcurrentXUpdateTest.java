@@ -145,8 +145,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 name|super
 operator|.
@@ -169,6 +169,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|idxConf
+argument_list|)
+expr_stmt|;
 name|idxConf
 operator|.
 name|configureCollection
@@ -187,6 +192,11 @@ argument_list|(
 name|rootCol
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|wordList
+argument_list|)
+expr_stmt|;
 name|tempFile
 operator|=
 name|DBUtils
@@ -212,22 +222,8 @@ argument_list|,
 name|tempFile
 argument_list|)
 expr_stmt|;
-name|String
-name|query0
-init|=
-literal|"document('"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]"
-decl_stmt|;
-name|String
-name|query1
-init|=
-literal|"document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]"
-decl_stmt|;
+comment|//String query0 = "document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
+comment|//String query1 = "document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
 name|addAction
 argument_list|(
 operator|new
@@ -249,21 +245,37 @@ argument_list|,
 literal|200
 argument_list|)
 expr_stmt|;
-comment|//		addAction(new RemoveAppendAction(URI + "/C1", "R1.xml", wordList), 50, 100, 200);
-comment|//        addAction(new MultiResourcesAction("samples/mods", URI + "/C1"), 1, 0, 300);
-comment|//		addAction(new RetrieveResourceAction(URI + "/C1", "R1.xml"), 10, 1000, 2000);
-comment|//		addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 100, 100);
-comment|//        addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 200, 100);
+comment|//addAction(new RemoveAppendAction(URI + "/C1", "R1.xml", wordList), 50, 100, 200);
+comment|//addAction(new MultiResourcesAction("samples/mods", URI + "/C1"), 1, 0, 300);
+comment|//addAction(new RetrieveResourceAction(URI + "/C1", "R1.xml"), 10, 1000, 2000);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 100, 100);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 200, 100);
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
 specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
 block|{
-comment|//		super.tearDown();
+try|try
+block|{
+comment|//super.tearDown();
 name|DBUtils
 operator|.
 name|shutdownDB
@@ -276,6 +288,22 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
