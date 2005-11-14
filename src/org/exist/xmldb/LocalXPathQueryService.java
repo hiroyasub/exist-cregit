@@ -1068,11 +1068,6 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
-name|checkPragmas
-argument_list|(
-name|context
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|result
@@ -1084,6 +1079,13 @@ argument_list|(
 name|compiled
 argument_list|,
 literal|null
+argument_list|)
+expr_stmt|;
+comment|// check if serialization options have been set
+comment|// via pragma or 'declare option'
+name|checkPragmas
+argument_list|(
+name|context
 argument_list|)
 expr_stmt|;
 block|}

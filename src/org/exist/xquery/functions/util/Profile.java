@@ -219,11 +219,11 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|LONG
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|EMPTY
 argument_list|)
 argument_list|)
 block|,
