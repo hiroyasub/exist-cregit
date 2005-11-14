@@ -2117,7 +2117,19 @@ name|statusbar
 operator|=
 operator|new
 name|JLabel
-argument_list|()
+argument_list|(
+literal|"eXist Admin Client connected - "
+operator|+
+name|client
+operator|.
+name|USER
+operator|+
+literal|"@"
+operator|+
+name|client
+operator|.
+name|URI
+argument_list|)
 expr_stmt|;
 name|statusbar
 operator|.
@@ -5701,7 +5713,7 @@ expr_stmt|;
 block|}
 name|setStatus
 argument_list|(
-literal|"Move completed."
+literal|"Copy completed."
 argument_list|)
 expr_stmt|;
 block|}
