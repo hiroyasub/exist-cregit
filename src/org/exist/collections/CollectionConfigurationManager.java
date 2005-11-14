@@ -372,7 +372,9 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-literal|"collection.xconf"
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_FILE
 argument_list|,
 name|config
 argument_list|)
@@ -703,19 +705,21 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Reading config for "
+literal|"Reading config for '"
 operator|+
 name|collection
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" from "
+literal|"' from '"
 operator|+
 name|confDoc
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|conf
@@ -1134,11 +1138,9 @@ name|EXistException
 argument_list|(
 literal|"Failed to initialize '"
 operator|+
-name|DBBroker
-operator|.
-name|SYSTEM_COLLECTION
+name|CONFIG_COLLECTION
 operator|+
-literal|"/config: "
+literal|"' : "
 operator|+
 name|e
 operator|.
