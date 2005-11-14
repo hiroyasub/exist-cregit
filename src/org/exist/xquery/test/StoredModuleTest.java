@@ -21,6 +21,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|EXistResource
@@ -208,7 +220,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -271,7 +287,13 @@ name|query
 init|=
 literal|"import module namespace itg-modules = \"http://localhost:80/itg/xquery\" at "
 operator|+
-literal|"\"xmldb:exist:///db/test/test.xqm\"; itg-modules:check-coll()"
+literal|"\"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/test.xqm\"; itg-modules:check-coll()"
 decl_stmt|;
 name|String
 name|cols

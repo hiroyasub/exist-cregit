@@ -43,6 +43,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
@@ -559,7 +571,13 @@ name|query
 init|=
 name|queryBody
 operator|+
-literal|"t:index-terms(collection(\'/db\'), \'is\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"t:index-terms(collection('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"'), \'is\', util:function(\'f:term-callback\', 2), 1000)"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -585,7 +603,13 @@ name|query
 operator|=
 name|queryBody
 operator|+
-literal|"t:index-terms(collection(\'/db\')//LINE, \'is\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"t:index-terms(collection('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"')//LINE, \'is\', util:function(\'f:term-callback\', 2), 1000)"
 expr_stmt|;
 name|result
 operator|=
@@ -610,7 +634,13 @@ name|query
 operator|=
 name|queryBody
 operator|+
-literal|"t:index-terms(collection(\'/db\')//mods:title, \'s\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"t:index-terms(collection('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"')//mods:title, \'s\', util:function(\'f:term-callback\', 2), 1000)"
 expr_stmt|;
 name|result
 operator|=
@@ -979,7 +1009,11 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -1230,7 +1264,11 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
