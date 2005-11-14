@@ -323,7 +323,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|String
+name|boolean
 name|indent
 init|=
 name|getArgument
@@ -341,7 +341,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
-name|String
+name|boolean
 name|omitxmldeclaration
 init|=
 name|getArgument
