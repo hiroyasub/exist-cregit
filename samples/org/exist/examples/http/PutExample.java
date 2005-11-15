@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -169,7 +181,13 @@ init|=
 operator|new
 name|URL
 argument_list|(
-literal|"http://admin:@localhost:8080/exist/servlet/db/test/"
+literal|"http://admin:@localhost:8080/exist/servlet"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|docName
 argument_list|)

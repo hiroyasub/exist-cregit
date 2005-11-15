@@ -47,6 +47,18 @@ name|QueryServiceLocator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -101,7 +113,11 @@ name|getResourceData
 argument_list|(
 name|session
 argument_list|,
-literal|"/db/shakespeare/plays/hamlet.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/shakespeare/plays/hamlet.xml"
 argument_list|,
 literal|true
 argument_list|,

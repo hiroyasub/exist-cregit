@@ -83,6 +83,18 @@ name|QueryServiceLocator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -195,7 +207,11 @@ argument_list|)
 argument_list|,
 literal|"UTF-8"
 argument_list|,
-literal|"/db/test/notes.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/notes.xml"
 argument_list|,
 literal|true
 argument_list|)
@@ -206,7 +222,11 @@ name|xupdateResource
 argument_list|(
 name|session
 argument_list|,
-literal|"/db/test/notes.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/notes.xml"
 argument_list|,
 name|xupdate
 argument_list|)
@@ -220,7 +240,11 @@ name|getResource
 argument_list|(
 name|session
 argument_list|,
-literal|"/db/test/notes.xml"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/notes.xml"
 argument_list|,
 literal|true
 argument_list|,
