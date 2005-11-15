@@ -189,8 +189,6 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|TestRunner
 operator|.
@@ -221,8 +219,6 @@ specifier|public
 name|void
 name|testQName2string
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 name|ResourceSet
 name|result
@@ -332,8 +328,8 @@ specifier|protected
 name|void
 name|setUp
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 comment|// initialize driver
 name|Class
@@ -404,13 +400,29 @@ literal|"1.0"
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/* 	 * @see TestCase#tearDown() 	 */
 specifier|protected
 name|void
 name|tearDown
 parameter_list|()
-throws|throws
-name|Exception
+block|{
+try|try
 block|{
 name|DatabaseManager
 operator|.
@@ -440,6 +452,22 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 comment|//System.out.println("tearDown PASSED");
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
