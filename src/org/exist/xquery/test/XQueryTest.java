@@ -73,13 +73,37 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|xml
+name|custommonkey
 operator|.
-name|parsers
+name|xmlunit
 operator|.
-name|ParserConfigurationException
+name|DetailedDiff
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|XMLTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
 import|;
 end_import
 
@@ -111,30 +135,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -147,11 +147,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|xml
+name|w3c
 operator|.
-name|sax
+name|dom
 operator|.
-name|SAXException
+name|Node
 import|;
 end_import
 
@@ -293,18 +293,6 @@ name|XPathQueryService
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -390,7 +378,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -654,7 +646,11 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -2889,13 +2885,17 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"let $v as document-node() :=  doc(\""
+literal|"let $v as document-node() :=  doc('"
 operator|+
-literal|"/db/test/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|NUMBERS_XML
 operator|+
-literal|"\") \n"
+literal|"') \n"
 operator|+
 literal|"return $v"
 expr_stmt|;
@@ -4868,13 +4868,17 @@ name|query
 operator|=
 literal|"declare namespace x = \"http://www.foo.com\"; \n"
 operator|+
-literal|"let $a := doc(\""
+literal|"let $a := doc('"
 operator|+
-literal|"/db/test/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|NAMESPACED_NAME
 operator|+
-literal|"\") \n"
+literal|"') \n"
 operator|+
 literal|"return $a//x:edition"
 expr_stmt|;
@@ -4916,13 +4920,17 @@ literal|"declare namespace x = \"http://www.foo.com\"; \n"
 operator|+
 literal|"declare namespace y = \"http://exist.sourceforge.net/dc-ext\"; \n"
 operator|+
-literal|"let $a := doc(\""
+literal|"let $a := doc('"
 operator|+
-literal|"/db/test/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|NAMESPACED_NAME
 operator|+
-literal|"\") \n"
+literal|"') \n"
 operator|+
 literal|"return $a//y:edition"
 expr_stmt|;
@@ -6118,11 +6126,17 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc(\"/db/test/"
+literal|"doc('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|NUMBERS_XML
 operator|+
-literal|"\")"
+literal|"')"
 expr_stmt|;
 name|result
 operator|=
@@ -6275,11 +6289,17 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc(\"/db/test/dummy"
+literal|"doc('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/dummy"
 operator|+
 name|NUMBERS_XML
 operator|+
-literal|"\")"
+literal|"')"
 expr_stmt|;
 try|try
 block|{
@@ -6338,11 +6358,17 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc-available(\"/db/test/"
+literal|"doc-available('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/"
 operator|+
 name|NUMBERS_XML
 operator|+
-literal|"\")"
+literal|"')"
 expr_stmt|;
 name|result
 operator|=
@@ -6454,11 +6480,17 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc-available(\"/db/test/dummy"
+literal|"doc-available('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test/dummy"
 operator|+
 name|NUMBERS_XML
 operator|+
-literal|"\")"
+literal|"')"
 expr_stmt|;
 name|assertEquals
 argument_list|(
