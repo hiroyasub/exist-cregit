@@ -53,6 +53,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -79,7 +89,7 @@ name|QName
 argument_list|(
 literal|"timeout"
 argument_list|,
-name|XQueryContext
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -95,7 +105,7 @@ name|QName
 argument_list|(
 literal|"output-size-limit"
 argument_list|,
-name|XQueryContext
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -111,7 +121,7 @@ name|QName
 argument_list|(
 literal|"serialize"
 argument_list|,
-name|XQueryContext
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -127,7 +137,7 @@ name|QName
 argument_list|(
 literal|"profiling"
 argument_list|,
-name|XQueryContext
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)

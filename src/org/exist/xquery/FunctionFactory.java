@@ -39,6 +39,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -929,7 +939,7 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|XQueryContext
+name|Namespaces
 operator|.
 name|SCHEMA_NS
 argument_list|)
@@ -938,7 +948,7 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|XQueryContext
+name|Namespaces
 operator|.
 name|XPATH_DATATYPES_NS
 argument_list|)
