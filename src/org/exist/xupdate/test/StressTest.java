@@ -51,6 +51,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|test
@@ -204,7 +216,11 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist:///db"
+literal|"xmldb:exist://"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|final
@@ -661,7 +677,13 @@ name|xquery
 operator|.
 name|query
 argument_list|(
-literal|"for $n in collection('/db/test')//* return local-name($n)"
+literal|"for $n in collection('"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test')//* return local-name($n)"
 argument_list|)
 decl_stmt|;
 for|for
@@ -777,7 +799,11 @@ name|rootCol
 operator|.
 name|getChildCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 expr_stmt|;
 if|if
@@ -801,7 +827,11 @@ name|mgr
 operator|.
 name|removeCollection
 argument_list|(
-literal|"/db/test"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/test"
 argument_list|)
 expr_stmt|;
 block|}

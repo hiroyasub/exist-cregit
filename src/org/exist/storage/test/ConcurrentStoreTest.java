@@ -862,7 +862,7 @@ decl_stmt|;
 name|IndexInfo
 name|info
 decl_stmt|;
-comment|// store some documents into /db/test
+comment|// store some documents into the test collection
 for|for
 control|(
 name|int
