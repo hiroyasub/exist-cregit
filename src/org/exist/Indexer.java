@@ -621,7 +621,6 @@ index|[
 literal|0x1000
 index|]
 decl_stmt|;
-comment|//    private int childCnt[] = null;
 comment|// the current position in childCnt
 specifier|private
 name|int
@@ -1214,7 +1213,18 @@ comment|// keep whitespace for mixed content.
 specifier|final
 name|XMLString
 name|normalized
-init|=
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|last
+operator|.
+name|preserveSpace
+argument_list|()
+condition|)
+block|{
+name|normalized
+operator|=
 name|last
 operator|.
 name|getChildCount
@@ -1239,7 +1249,13 @@ literal|null
 else|:
 name|charBuf
 operator|)
-decl_stmt|;
+expr_stmt|;
+block|}
+else|else
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
 if|if
 condition|(
 name|normalized
@@ -2028,16 +2044,6 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
-comment|//			if (document.getDoctype() == null) {
-comment|//				// we don't know the doctype
-comment|//				// set it to the root node's tag name
-comment|//				final DocumentTypeImpl dt =
-comment|//					new DocumentTypeImpl(
-comment|//						rootNode.getTagName(),
-comment|//						null,
-comment|//						document.getFileName());
-comment|//				document.setDocumentType(dt);
-comment|//			}
 name|document
 operator|.
 name|setChildCount
@@ -2386,6 +2392,19 @@ argument_list|(
 name|qn
 argument_list|)
 expr_stmt|;
+comment|// copy xml:space setting
+name|node
+operator|.
+name|setPreserveSpace
+argument_list|(
+name|last
+operator|.
+name|preserveSpace
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// append the node to its parent
+comment|// (computes the node id and updates the parent's child count)
 name|last
 operator|.
 name|appendChildInternal
@@ -2845,7 +2864,7 @@ argument_list|()
 operator|.
 name|equalsSimple
 argument_list|(
-name|AttrImpl
+name|Namespaces
 operator|.
 name|XML_ID_QNAME
 argument_list|)
@@ -2904,6 +2923,37 @@ argument_list|(
 name|AttrImpl
 operator|.
 name|ID
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|attr
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|equalsSimple
+argument_list|(
+name|Namespaces
+operator|.
+name|XML_SPACE_QNAME
+argument_list|)
+condition|)
+block|{
+name|node
+operator|.
+name|setPreserveSpace
+argument_list|(
+literal|"preserve"
+operator|.
+name|equals
+argument_list|(
+name|attr
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
