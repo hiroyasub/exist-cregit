@@ -442,8 +442,11 @@ specifier|public
 name|String
 name|XSDBASE
 init|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
+comment|// TODO check is this ok
 specifier|public
 name|String
 name|DTDBASE
@@ -1606,6 +1609,8 @@ return|return
 name|result
 return|;
 block|}
+comment|// TODO precompile grammar, write queries to file.
+comment|// TODO figure out how to pass parameters to compiled queries
 specifier|public
 name|String
 name|getGrammarQuery

@@ -214,7 +214,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   xQuery function for validation of XML instance documents  * using grammars like XSDs and DTDs.  *  * @author dizzzz  */
+comment|/**  *   xQuery function for validation of XML instance documents  * using grammars like XSDs and DTDs.  *  * TODO: please use named constants  *  * @author dizzzz  */
 end_comment
 
 begin_class
