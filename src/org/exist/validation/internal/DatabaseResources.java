@@ -442,9 +442,7 @@ specifier|public
 name|String
 name|XSDBASE
 init|=
-name|GRAMMARBASE
-operator|+
-literal|"/xsd"
+literal|"/db"
 decl_stmt|;
 specifier|public
 name|String
