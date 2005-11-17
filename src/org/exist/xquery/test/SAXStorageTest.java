@@ -91,18 +91,6 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
 name|XMLReader
 import|;
 end_import
@@ -406,7 +394,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param xquery 	 * @param mess 	 * @return TODO 	 * @throws XMLDBException 	 */
+comment|/** 	 * @param xquery 	 * @param mess 	 * @return TODO	  	 */
 specifier|private
 name|ResourceSet
 name|querySingleLine
@@ -520,15 +508,13 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Store in the "classical" eXist way: the XMLResource stores an XML string before 	 * storeResource() stores it in the database. 	 * @throws XMLDBException 	 * @throws SAXException 	 */
+comment|/** Store in the "classical" eXist way: the XMLResource stores an XML string before 	 * storeResource() stores it in the database. 	 */
 specifier|public
 name|void
 name|testQueryStoreContentAsSAX
 parameter_list|()
-throws|throws
-name|XMLDBException
-throws|,
-name|SAXException
+block|{
+try|try
 block|{
 name|ContentHandler
 name|databaseInserter
@@ -564,13 +550,29 @@ literal|"testQueryStoreContentAsSAX"
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** Store in the new way: the XMLResource stores just a File object before 	 * storeResource() stores the SAX events in the database. 	 * @throws XMLDBException */
 specifier|public
 name|void
 name|testQueryBigDocument
 parameter_list|()
-throws|throws
-name|XMLDBException
+block|{
+try|try
 block|{
 name|XMLReader
 name|dataSource
@@ -605,6 +607,22 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** 	 * @param dataSource 	 * @throws XMLDBException 	 */
 specifier|private
 name|void
@@ -613,8 +631,8 @@ parameter_list|(
 name|XMLReader
 name|dataSource
 parameter_list|)
-throws|throws
-name|XMLDBException
+block|{
+try|try
 block|{
 if|if
 condition|(
@@ -691,6 +709,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** arguments: lines , columns, XQuery string */
 specifier|public
 specifier|static
@@ -701,8 +735,6 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|XMLDBException
 block|{
 name|String
 name|xquery
@@ -838,6 +870,8 @@ operator|+
 literal|" columns"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|xquery
@@ -880,6 +914,22 @@ name|root
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|private
 specifier|static
 name|void
@@ -888,8 +938,8 @@ parameter_list|(
 name|Collection
 name|collection
 parameter_list|)
-throws|throws
-name|XMLDBException
+block|{
+try|try
 block|{
 comment|//		shutdown the database gracefully
 name|DatabaseInstanceManager
@@ -912,6 +962,22 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

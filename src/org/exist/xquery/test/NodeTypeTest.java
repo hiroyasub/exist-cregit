@@ -858,7 +858,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Registers a new database instance and returns it. 	 *  	 * @throws XMLDBException 	 */
+comment|/** 	 * Registers a new database instance and returns it. 	 */
 specifier|private
 specifier|final
 name|Database
@@ -937,7 +937,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Retrieves the base collection and thereof returns a reference to the collection's 	 * xquery service. 	 *  	 * @param db the database 	 * @return the xquery service 	 * @throws XMLDBException on database error 	 */
+comment|/** 	 * Retrieves the base collection and thereof returns a reference to the collection's 	 * xquery service. 	 *  	 * @param db the database 	 * @return the xquery service	 	 */
 specifier|private
 specifier|final
 name|XQueryService
