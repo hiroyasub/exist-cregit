@@ -851,7 +851,7 @@ argument_list|()
 argument_list|,
 name|uri
 operator|.
-name|getRemoteContext
+name|getContext
 argument_list|()
 argument_list|)
 expr_stmt|;
