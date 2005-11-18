@@ -119,6 +119,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//        suite.addTest(new TestSuite(MultiDBTest.class));
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|XmldbURITest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|//$JUnit-END$
 return|return
 name|suite
