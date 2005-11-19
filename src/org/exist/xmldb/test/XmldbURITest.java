@@ -3347,7 +3347,7 @@ decl_stmt|;
 comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
-literal|"/a/"
+literal|"/a/b/"
 argument_list|,
 name|xmldbURI
 operator|.
@@ -3402,9 +3402,10 @@ argument_list|(
 literal|"../.."
 argument_list|)
 decl_stmt|;
+comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
-literal|"/"
+literal|"/a/"
 argument_list|,
 name|xmldbURI
 operator|.
@@ -3622,7 +3623,6 @@ argument_list|(
 literal|"xmldb:exist://localhost:8080/xmlrpc/db/./collection"
 argument_list|)
 decl_stmt|;
-comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
 literal|"xmldb:exist://localhost:8080/xmlrpc/db/collection"
