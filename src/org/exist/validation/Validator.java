@@ -581,14 +581,6 @@ argument_list|(
 literal|"Start validation."
 argument_list|)
 expr_stmt|;
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
 name|ValidationReport
 name|report
 init|=
@@ -655,6 +647,14 @@ argument_list|(
 literal|"Parse begin."
 argument_list|)
 expr_stmt|;
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|xmlReader
 operator|.
 name|parse
@@ -662,18 +662,46 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+name|long
+name|stop
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
+name|report
+operator|.
+name|setValidationDuration
+argument_list|(
+name|stop
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
 name|logger
 operator|.
 name|debug
 argument_list|(
 literal|"Parse end."
+operator|+
+literal|"Validation performed in "
+operator|+
+operator|(
+name|stop
+operator|-
+name|start
+operator|)
+operator|+
+literal|" msec."
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|report
 operator|.
-name|hasErrors
+name|isValid
 argument_list|()
 condition|)
 block|{
@@ -685,28 +713,7 @@ literal|"Parse errors \n"
 operator|+
 name|report
 operator|.
-name|getErrorReport
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|report
-operator|.
-name|hasWarnings
-argument_list|()
-condition|)
-block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Parse warnings \n"
-operator|+
-name|report
-operator|.
-name|getWarningReport
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -768,24 +775,6 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Validation performed in "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-operator|+
-literal|" msec."
-argument_list|)
-expr_stmt|;
 return|return
 name|report
 return|;

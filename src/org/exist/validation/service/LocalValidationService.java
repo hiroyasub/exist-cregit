@@ -322,10 +322,9 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|(
-operator|!
 name|report
 operator|.
-name|hasErrorsAndWarnings
+name|isValid
 argument_list|()
 operator|)
 return|;

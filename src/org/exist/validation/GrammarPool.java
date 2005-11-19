@@ -136,6 +136,28 @@ name|XMLGrammarPoolImpl
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**  Constructs a grammar pool with a default number of buckets.           The supplied grammar pool is reused */
+specifier|public
+name|GrammarPool
+parameter_list|(
+name|XMLGrammarPool
+name|pool
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Initializing GrammarPool using supplied pool."
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|pool
+operator|=
+name|pool
+expr_stmt|;
+block|}
 comment|/**      *   Retrieve the initial known set of grammars. this method is called      * by a validator before the validation starts. the application can provide       * an initial set of grammars available to the current validation attempt.      *       * @param   type  The type of the grammar, from the       *          org.apache.xerces.xni.grammars.Grammar interface.      * @return  The set of grammars the validator may put in its "bucket"      */
 specifier|public
 name|Grammar

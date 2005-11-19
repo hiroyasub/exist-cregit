@@ -115,7 +115,22 @@ operator|.
 name|class
 argument_list|)
 block|,
-comment|//       new FunctionDef(Validation.signatures[1], Validation.class),
+operator|new
+name|FunctionDef
+argument_list|(
+name|Validation
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
+argument_list|,
+name|Validation
+operator|.
+name|class
+argument_list|)
+block|,
+comment|//       new FunctionDef(Validation.signatures[2], Validation.class),
 operator|new
 name|FunctionDef
 argument_list|(

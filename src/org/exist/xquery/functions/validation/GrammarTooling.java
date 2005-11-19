@@ -125,7 +125,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -137,9 +137,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
-operator|.
-name|BooleanValue
+name|XQueryContext
 import|;
 end_import
 
@@ -224,6 +222,22 @@ name|GrammarTooling
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TYPE_DTD
+init|=
+literal|"http://www.w3.org/TR/REC-xml"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TYPE_XSD
+init|=
+literal|"http://www.w3.org/2001/XMLSchema"
+decl_stmt|;
 specifier|private
 name|Validator
 name|validator
@@ -360,12 +374,6 @@ name|Sequence
 name|contextSequence
 parameter_list|)
 throws|throws
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 block|{
 comment|// Create response
@@ -415,7 +423,7 @@ name|grammarpool
 operator|.
 name|retrieveInitialGrammarSet
 argument_list|(
-literal|"http://www.w3.org/2001/XMLSchema"
+name|TYPE_XSD
 argument_list|)
 decl_stmt|;
 for|for
@@ -465,7 +473,7 @@ name|grammarpool
 operator|.
 name|retrieveInitialGrammarSet
 argument_list|(
-literal|"http://www.w3.org/TR/REC-xml"
+name|TYPE_DTD
 argument_list|)
 decl_stmt|;
 for|for

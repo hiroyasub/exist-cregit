@@ -16718,10 +16718,9 @@ decl_stmt|;
 comment|// Return validation result
 name|retVal
 operator|=
-operator|!
 name|veh
 operator|.
-name|hasErrorsAndWarnings
+name|isValid
 argument_list|()
 expr_stmt|;
 block|}

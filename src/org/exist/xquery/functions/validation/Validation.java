@@ -133,6 +133,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -176,6 +188,20 @@ operator|.
 name|value
 operator|.
 name|SequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|StringValue
 import|;
 end_import
 
@@ -285,7 +311,8 @@ argument_list|)
 argument_list|)
 block|,
 comment|//        new FunctionSignature(
-comment|//                    new QName("validate", ValidationModule.NAMESPACE_URI, ValidationModule.PREFIX),
+comment|//                    new QName("validate", ValidationModule.NAMESPACE_URI,
+comment|//                                          ValidationModule.PREFIX),
 comment|//                    "Validate document specified by $a using grammar $b",
 comment|//                    new SequenceType[]{
 comment|//                        new SequenceType(Type.STRING, Cardinality.EXACTLY_ONE),
@@ -293,6 +320,54 @@ comment|//                        new SequenceType(Type.STRING, Cardinality.EXAC
 comment|//                    },
 comment|//                    new SequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE)
 comment|//                )
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"validate-report"
+argument_list|,
+name|ValidationModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|ValidationModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Validate document specified by $a, return a simple report."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|)
+argument_list|)
 block|}
 decl_stmt|;
 comment|/** Creates a new instance */
@@ -345,12 +420,6 @@ name|Sequence
 name|contextSequence
 parameter_list|)
 throws|throws
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 block|{
 comment|// Check input parameters
@@ -405,6 +474,14 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"validate"
+argument_list|)
+condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -412,14 +489,68 @@ argument_list|(
 operator|new
 name|BooleanValue
 argument_list|(
-operator|!
 name|vr
 operator|.
-name|hasErrorsAndWarnings
+name|isValid
 argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"validate-report"
+argument_list|)
+condition|)
+block|{
+name|String
+name|report
+index|[]
+init|=
+name|vr
+operator|.
+name|getValidationReportArray
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|report
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|result
+operator|.
+name|add
+argument_list|(
+operator|new
+name|StringValue
+argument_list|(
+name|report
+index|[
+name|i
+index|]
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|// ohoh
+block|}
 return|return
 name|result
 return|;
