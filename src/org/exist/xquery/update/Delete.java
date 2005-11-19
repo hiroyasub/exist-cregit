@@ -539,9 +539,12 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|XPathException
 argument_list|(
-literal|"permission to remove document denied"
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"permission to update document denied"
 argument_list|)
 throw|;
 block|}
