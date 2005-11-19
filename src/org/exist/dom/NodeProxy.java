@@ -710,21 +710,9 @@ operator|instanceof
 name|NodeProxy
 operator|)
 condition|)
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"cannot compare NodeProxy with "
-operator|+
-name|other
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+return|return
+literal|false
+return|;
 name|NodeProxy
 name|node
 init|=
