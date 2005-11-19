@@ -1344,11 +1344,67 @@ argument_list|(
 name|inPredicate
 argument_list|)
 expr_stmt|;
-comment|//        } else if(axis == Constants.ATTRIBUTE_AXIS&&
-comment|//                !(contextSet instanceof VirtualNodeSet)&& contextSet.getLength() == 1) {
-comment|//            NodeProxy proxy = contextSet.get(0);
-comment|//            if (proxy.getInternalAddress() != NodeProxy.UNKNOWN_NODE_ADDRESS)
-comment|//                result = contextSet.directSelectAttribute(test.getName(), inPredicate);
+comment|// if there's just a single known node in the context, it is faster
+comment|// do directly search for the attribute in the parent node.
+block|}
+if|else if
+condition|(
+name|axis
+operator|==
+name|Constants
+operator|.
+name|ATTRIBUTE_AXIS
+operator|&&
+operator|!
+operator|(
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
+name|contextSet
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+name|NodeProxy
+name|proxy
+init|=
+name|contextSet
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|proxy
+operator|.
+name|getInternalAddress
+argument_list|()
+operator|!=
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_ADDRESS
+condition|)
+name|result
+operator|=
+name|contextSet
+operator|.
+name|directSelectAttribute
+argument_list|(
+name|test
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|inPredicate
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1591,16 +1647,7 @@ name|preloadNodeSets
 argument_list|()
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Preload node sets for: "
-operator|+
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("Preload node sets for: " + toString());
 name|DocumentSet
 name|docs
 init|=
