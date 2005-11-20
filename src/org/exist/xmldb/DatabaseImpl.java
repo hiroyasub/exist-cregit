@@ -699,7 +699,7 @@ return|return
 name|home
 return|;
 block|}
-comment|//TODO : the signature is inconsistent with the design. We should have an XmldbURI here
+comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.           * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|Collection
 name|getCollection
@@ -746,31 +746,6 @@ operator|+
 name|newURIString
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|xmldbURI
-operator|.
-name|isAbsolute
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|INVALID_DATABASE
-argument_list|,
-literal|"xmldb URI is not absolute:"
-operator|+
-name|XmldbURI
-operator|.
-name|XMLDB_URI_PREFIX
-operator|+
-name|xmldbURI
-argument_list|)
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -796,6 +771,33 @@ name|xmldbURI
 argument_list|)
 throw|;
 block|}
+return|return
+name|getCollection
+argument_list|(
+name|xmldbURI
+argument_list|,
+name|user
+argument_list|,
+name|password
+argument_list|)
+return|;
+block|}
+specifier|public
+name|Collection
+name|getCollection
+parameter_list|(
+name|XmldbURI
+name|xmldbURI
+parameter_list|,
+name|String
+name|user
+parameter_list|,
+name|String
+name|password
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
 if|if
 condition|(
 literal|"direct access"
