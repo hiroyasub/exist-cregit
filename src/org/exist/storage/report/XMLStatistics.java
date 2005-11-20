@@ -185,6 +185,7 @@ operator|new
 name|AttributesImpl
 argument_list|()
 decl_stmt|;
+comment|//TODO : find a way to retrieve the actual instance's name !
 name|atts
 operator|.
 name|addAttribute
@@ -197,9 +198,7 @@ literal|"default"
 argument_list|,
 literal|"CDATA"
 argument_list|,
-name|BrokerPool
-operator|.
-name|DEFAULT_INSTANCE
+literal|"exist"
 argument_list|)
 expr_stmt|;
 name|this

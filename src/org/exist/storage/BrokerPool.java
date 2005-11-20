@@ -369,13 +369,12 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
-comment|/** 	 * The id of a default database instance for those who are too lazy to provide parameters ;-).  	 */
-comment|//TODO : rename as DEFAULT_DB_INSTANCE_ID ?
+comment|/** 	 * The name of a default database instance for those who are too lazy to provide parameters ;-).  	 */
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|DEFAULT_INSTANCE
+name|DEFAULT_INSTANCE_NAME
 init|=
 literal|"exist"
 decl_stmt|;
@@ -477,7 +476,7 @@ name|EXistException
 block|{
 name|configure
 argument_list|(
-name|DEFAULT_INSTANCE
+name|DEFAULT_INSTANCE_NAME
 argument_list|,
 name|minBrokers
 argument_list|,
@@ -487,7 +486,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Creates and configures a database instance and adds it to the pool.  	 *  Call this before calling {link #getInstance()}.  	 * If a database instance with the same name already exists, the new configuration is ignored. 	 * @param id A<strong>unique</strong> name for the database instance.  	 * It is possible to have more than one database instance (with different configurations for example). 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param config The configuration object for the database instance 	 * @throws EXistException If the initialization fails.	 	 */
+comment|/** 	 *  Creates and configures a database instance and adds it to the pool.  	 *  Call this before calling {link #getInstance()}.  	 * If a database instance with the same name already exists, the new configuration is ignored. 	 * @param instanceName A<strong>unique</strong> name for the database instance.  	 * It is possible to have more than one database instance (with different configurations for example). 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param config The configuration object for the database instance 	 * @throws EXistException If the initialization fails.	 	 */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -496,7 +495,7 @@ name|void
 name|configure
 parameter_list|(
 name|String
-name|id
+name|instanceName
 parameter_list|,
 name|int
 name|minBrokers
@@ -521,7 +520,7 @@ name|instances
 operator|.
 name|get
 argument_list|(
-name|id
+name|instanceName
 argument_list|)
 decl_stmt|;
 if|if
@@ -537,7 +536,7 @@ name|debug
 argument_list|(
 literal|"configuring database instance '"
 operator|+
-name|id
+name|instanceName
 operator|+
 literal|"'..."
 argument_list|)
@@ -548,7 +547,7 @@ operator|=
 operator|new
 name|BrokerPool
 argument_list|(
-name|id
+name|instanceName
 argument_list|,
 name|minBrokers
 argument_list|,
@@ -562,12 +561,12 @@ name|instances
 operator|.
 name|put
 argument_list|(
-name|id
+name|instanceName
 argument_list|,
 name|instance
 argument_list|)
 expr_stmt|;
-comment|//We now have at leant an instance...
+comment|//We now have at least an instance...
 if|if
 condition|(
 name|instances
@@ -578,7 +577,7 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|//... and a ShutdownHook may be interesting
+comment|//... so a ShutdownHook may be interesting
 if|if
 condition|(
 name|registerShutdownHook
@@ -631,7 +630,7 @@ name|warn
 argument_list|(
 literal|"database instance '"
 operator|+
-name|id
+name|instanceName
 operator|+
 literal|"' is already configured"
 argument_list|)
@@ -649,7 +648,7 @@ block|{
 return|return
 name|isConfigured
 argument_list|(
-name|DEFAULT_INSTANCE
+name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
@@ -710,11 +709,11 @@ block|{
 return|return
 name|getInstance
 argument_list|(
-name|DEFAULT_INSTANCE
+name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
-comment|/**Returns a broker pool for a database instance. 	 * @param id The name of the database instance 	 * @return The broker pool 	 * @throws EXistException If the instance is not available (not created, stopped or not configured) 	 */
+comment|/**Returns a broker pool for a database instance. 	 * @param instanceName The name of the database instance 	 * @return The broker pool 	 * @throws EXistException If the instance is not available (not created, stopped or not configured) 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -722,7 +721,7 @@ name|BrokerPool
 name|getInstance
 parameter_list|(
 name|String
-name|id
+name|instanceName
 parameter_list|)
 throws|throws
 name|EXistException
@@ -738,7 +737,7 @@ name|instances
 operator|.
 name|get
 argument_list|(
-name|id
+name|instanceName
 argument_list|)
 decl_stmt|;
 if|if
@@ -758,7 +757,7 @@ name|EXistException
 argument_list|(
 literal|"database instance '"
 operator|+
-name|id
+name|instanceName
 operator|+
 literal|"' is not available"
 argument_list|)
@@ -794,7 +793,7 @@ name|EXistException
 block|{
 name|stop
 argument_list|(
-name|DEFAULT_INSTANCE
+name|DEFAULT_INSTANCE_NAME
 argument_list|)
 expr_stmt|;
 block|}
@@ -1000,7 +999,7 @@ decl_stmt|;
 comment|/** 	 * The name of the database instance 	 */
 specifier|private
 name|String
-name|instanceId
+name|instanceName
 decl_stmt|;
 comment|/** 	 *<code>true</code> if the database instance is not yet initialized 	 */
 comment|//TODO : let's be positive and rename it as initialized ?
@@ -1196,7 +1195,7 @@ argument_list|(
 literal|"xupdate"
 argument_list|)
 decl_stmt|;
-comment|/** Creates and configures the database instance.  	 * @param instanceId A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
+comment|/** Creates and configures the database instance.  	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
 comment|//TODO : shouldn't this constructor be private ? as such it *must* remain under configure() control !
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
 comment|// WM: yes, could be private.
@@ -1204,7 +1203,7 @@ specifier|public
 name|BrokerPool
 parameter_list|(
 name|String
-name|instanceId
+name|instanceName
 parameter_list|,
 name|int
 name|minBrokers
@@ -1231,9 +1230,9 @@ comment|//TODO : ensure that the instance name is unique ?
 comment|//WM: needs to be done in the configure method.
 name|this
 operator|.
-name|instanceId
+name|instanceName
 operator|=
-name|instanceId
+name|instanceName
 expr_stmt|;
 comment|//TODO : find a nice way to (re)set the default values
 comment|//TODO : create static final members for configuration keys
@@ -1280,7 +1279,7 @@ name|maxBrokers
 operator|=
 name|maxBrokers
 expr_stmt|;
-comment|/* 		 * strange enough, the settings provided by the constructor may be overriden 		 * by the ones *explicitely* provided by the constructor 		 * TODO : consider a private constructor BrokerPool(String instanceId) then configure(int minBrokers, int maxBrokers, Configuration config) 		 */
+comment|/* 		 * strange enough, the settings provided by the constructor may be overriden 		 * by the ones *explicitely* provided by the constructor 		 * TODO : consider a private constructor BrokerPool(String instanceName) then configure(int minBrokers, int maxBrokers, Configuration config) 		 */
 name|anInteger
 operator|=
 operator|(
@@ -1343,7 +1342,7 @@ name|info
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' will have between "
 operator|+
@@ -1394,7 +1393,7 @@ name|info
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' will be synchronized every "
 operator|+
@@ -1447,7 +1446,7 @@ name|info
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' will wait  "
 operator|+
@@ -1493,7 +1492,7 @@ name|info
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' is enabled for transactions : "
 operator|+
@@ -1966,7 +1965,7 @@ name|debug
 argument_list|(
 literal|"initializing database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"'..."
 argument_list|)
@@ -2339,7 +2338,7 @@ name|debug
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' initialized"
 argument_list|)
@@ -2447,14 +2446,15 @@ return|return
 name|initializing
 return|;
 block|}
-comment|/** Returns the database instance's id.      * @return The id      */
+comment|/** Returns the database instance's name.      * @return The id      */
+comment|//TODO : rename getInstanceName
 specifier|public
 name|String
 name|getId
 parameter_list|()
 block|{
 return|return
-name|instanceId
+name|instanceName
 return|;
 block|}
 comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *@return The brokers count 	 */
@@ -2709,6 +2709,10 @@ argument_list|()
 operator|+
 literal|'_'
 operator|+
+name|instanceName
+operator|+
+literal|"_"
+operator|+
 name|brokersCount
 argument_list|)
 expr_stmt|;
@@ -2725,7 +2729,9 @@ argument_list|()
 operator|+
 literal|" for database instance '"
 operator|+
-name|instanceId
+name|instanceName
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 return|return
@@ -2753,7 +2759,7 @@ name|EXistException
 argument_list|(
 literal|"database instance '"
 operator|+
-name|instanceId
+name|instanceName
 operator|+
 literal|"' is not available"
 argument_list|)
@@ -3626,7 +3632,7 @@ name|instances
 operator|.
 name|remove
 argument_list|(
-name|instanceId
+name|instanceName
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -3680,7 +3686,7 @@ name|shutdownListener
 operator|.
 name|shutdown
 argument_list|(
-name|instanceId
+name|instanceName
 argument_list|,
 name|instances
 operator|.

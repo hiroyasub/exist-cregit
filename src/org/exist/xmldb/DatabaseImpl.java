@@ -246,6 +246,12 @@ name|configuration
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|String
+name|currentInstanceName
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 name|HashMap
 name|rpcClients
@@ -265,14 +271,6 @@ name|int
 name|mode
 init|=
 name|UNKNOWN_CONNECTION
-decl_stmt|;
-comment|//TODO : for compiance with xmldb API. Usage to be clarified !!!
-name|String
-name|currentInstanceName
-init|=
-name|BrokerPool
-operator|.
-name|DEFAULT_INSTANCE
 decl_stmt|;
 specifier|public
 name|DatabaseImpl
@@ -493,7 +491,7 @@ name|void
 name|configure
 parameter_list|(
 name|String
-name|InstanceName
+name|instanceName
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -581,7 +579,7 @@ name|println
 argument_list|(
 literal|"configuring '"
 operator|+
-name|InstanceName
+name|instanceName
 operator|+
 literal|"' using "
 operator|+
@@ -611,7 +609,7 @@ name|BrokerPool
 operator|.
 name|configure
 argument_list|(
-name|InstanceName
+name|instanceName
 argument_list|,
 literal|1
 argument_list|,
@@ -630,7 +628,7 @@ name|BrokerPool
 operator|.
 name|getInstance
 argument_list|(
-name|InstanceName
+name|instanceName
 argument_list|)
 operator|.
 name|registerShutdownListener
@@ -659,6 +657,10 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|currentInstanceName
+operator|=
+name|instanceName
+expr_stmt|;
 block|}
 comment|/** 	 * @return Exist Home dir. From system Properties 	 */
 specifier|private
@@ -1371,7 +1373,7 @@ return|return
 literal|"0"
 return|;
 block|}
-comment|//TODO : clarify usage !!!
+comment|//WARNING : returning such a default value is dangerous IMHO ? -pb
 specifier|public
 name|String
 name|getName
@@ -1380,10 +1382,18 @@ throws|throws
 name|XMLDBException
 block|{
 return|return
+operator|(
 name|currentInstanceName
+operator|!=
+literal|null
+operator|)
+condition|?
+name|currentInstanceName
+else|:
+literal|"exist"
 return|;
 block|}
-comment|//TODO : clarify usage !!!
+comment|//WARNING : returning such a default value is dangerous IMHO ? -pb
 specifier|public
 name|String
 index|[]
@@ -1397,7 +1407,15 @@ operator|new
 name|String
 index|[]
 block|{
+operator|(
 name|currentInstanceName
+operator|!=
+literal|null
+operator|)
+condition|?
+name|currentInstanceName
+else|:
+literal|"exist"
 block|}
 return|;
 block|}
