@@ -3451,8 +3451,6 @@ throws|throws
 name|DatabaseConfigurationException
 throws|,
 name|MalformedURLException
-throws|,
-name|IOException
 block|{
 name|Element
 name|p
@@ -4069,6 +4067,8 @@ name|exists
 argument_list|()
 condition|)
 block|{
+try|try
+block|{
 name|resolver
 operator|.
 name|getCatalog
@@ -4082,6 +4082,35 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"An exception occurred while reading the catalog file: "
+operator|+
+name|catalogFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
