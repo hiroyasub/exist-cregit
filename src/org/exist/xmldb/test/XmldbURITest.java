@@ -171,13 +171,15 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"direct access"
+name|XmldbURI
+operator|.
+name|API_LOCAL
 argument_list|,
 name|xmldbURI
 operator|.
@@ -237,13 +239,15 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"direct access"
+name|XmldbURI
+operator|.
+name|API_LOCAL
 argument_list|,
 name|xmldbURI
 operator|.
@@ -330,7 +334,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -399,7 +403,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -492,7 +496,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -561,7 +565,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -654,7 +658,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -723,7 +727,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -776,7 +780,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -796,7 +800,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -942,7 +946,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1011,7 +1015,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1104,7 +1108,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1173,7 +1177,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1266,7 +1270,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1335,7 +1339,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1428,7 +1432,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1497,7 +1501,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1589,7 +1593,7 @@ literal|"/db"
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3586,7 +3590,7 @@ name|assertTrue
 argument_list|(
 name|xmldbURI1
 operator|.
-name|isCollectionNameAbsolute
+name|isCollectionPathAbsolute
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3629,7 +3633,7 @@ literal|"xmldb:exist://localhost:8080/xmlrpc/db/collection"
 argument_list|,
 name|xmldbURI
 operator|.
-name|normalizeCollectionName
+name|normalizeCollectionPath
 argument_list|()
 operator|.
 name|toString
@@ -3674,7 +3678,7 @@ name|xmldbURI2
 init|=
 name|xmldbURI1
 operator|.
-name|normalizeCollectionName
+name|normalizeCollectionPath
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -3725,7 +3729,7 @@ name|xmldbURI2
 init|=
 name|xmldbURI1
 operator|.
-name|normalizeCollectionName
+name|normalizeCollectionPath
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -3786,7 +3790,7 @@ literal|"/db/collection"
 argument_list|,
 name|xmldbURI
 operator|.
-name|relativizeCollectionName
+name|relativizeCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -3843,7 +3847,7 @@ literal|"/db/db/collection"
 argument_list|,
 name|xmldbURI
 operator|.
-name|relativizeCollectionName
+name|relativizeCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -3905,7 +3909,7 @@ literal|""
 argument_list|,
 name|xmldbURI
 operator|.
-name|relativizeCollectionName
+name|relativizeCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -3967,14 +3971,13 @@ argument_list|(
 literal|".."
 argument_list|)
 decl_stmt|;
-comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
 literal|"/db/a/"
 argument_list|,
 name|xmldbURI
 operator|.
-name|resolveCollectionName
+name|resolveCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -4025,14 +4028,13 @@ argument_list|(
 literal|"../.."
 argument_list|)
 decl_stmt|;
-comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
 literal|"/db/"
 argument_list|,
 name|xmldbURI
 operator|.
-name|resolveCollectionName
+name|resolveCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -4084,14 +4086,13 @@ argument_list|(
 literal|".."
 argument_list|)
 decl_stmt|;
-comment|//Strange but it's like this
 name|assertEquals
 argument_list|(
 literal|"/.."
 argument_list|,
 name|xmldbURI
 operator|.
-name|resolveCollectionName
+name|resolveCollectionPath
 argument_list|(
 name|uri
 argument_list|)
@@ -4151,7 +4152,7 @@ literal|"/../../.."
 argument_list|,
 name|xmldbURI
 operator|.
-name|resolveCollectionName
+name|resolveCollectionPath
 argument_list|(
 name|uri
 argument_list|)

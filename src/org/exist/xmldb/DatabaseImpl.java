@@ -800,7 +800,9 @@ name|XMLDBException
 block|{
 if|if
 condition|(
-literal|"direct access"
+name|XmldbURI
+operator|.
+name|API_LOCAL
 operator|.
 name|equals
 argument_list|(
@@ -824,13 +826,15 @@ name|password
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 return|;
 if|else if
 condition|(
-literal|"xmlrpc"
+name|XmldbURI
+operator|.
+name|API_XMLRPC
 operator|.
 name|equals
 argument_list|(
@@ -913,7 +917,7 @@ name|password
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionName
+name|getCollectionPath
 argument_list|()
 argument_list|)
 return|;
