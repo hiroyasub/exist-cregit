@@ -147,6 +147,11 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|XmldbURI
+name|getURI
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
