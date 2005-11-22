@@ -60,13 +60,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class for managing webstart jar files.  */
+comment|/**  *  Class for managing webstart jar files.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|JnlpFiles
+name|JnlpJarFiles
 block|{
 specifier|private
 specifier|static
@@ -77,7 +77,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|JnlpFiles
+name|JnlpJarFiles
 operator|.
 name|class
 argument_list|)
@@ -124,17 +124,6 @@ literal|"xmlrpc-.*-patched\\.jar"
 block|}
 decl_stmt|;
 comment|// TODO tricky, needs te be reviewed on a regular basis.
-specifier|private
-name|String
-name|existHome
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
 comment|/**      *  Get jar file specified by regular expression.      * @param folder  Directory containing the jars.      * @param regExp  Regexp pattern      * @return        File object to jar file, null if not found.      */
 specifier|public
 name|File
@@ -265,10 +254,13 @@ return|return
 name|jarFile
 return|;
 block|}
-comment|/** Creates a new instance of JnlpFiles */
+comment|/**      * Creates a new instance of JnlpJarFiles      *       * @param jnlpHelper      */
 specifier|public
-name|JnlpFiles
-parameter_list|()
+name|JnlpJarFiles
+parameter_list|(
+name|JnlpHelper
+name|jnlpHelper
+parameter_list|)
 block|{
 name|logger
 operator|.
@@ -277,25 +269,6 @@ argument_list|(
 literal|"Initializing jar files Webstart"
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"eXist home="
-operator|+
-name|existHome
-argument_list|)
-expr_stmt|;
-name|File
-name|coreJarsFolder
-init|=
-literal|null
-decl_stmt|;
-name|File
-name|existJarFolder
-init|=
-literal|null
-decl_stmt|;
 comment|// Setup array CORE jars
 name|int
 name|nrCoreJars
@@ -321,95 +294,6 @@ operator|+
 name|nrCoreJars
 argument_list|)
 expr_stmt|;
-comment|// Setup path based on installation (in jetty, container)
-if|if
-condition|(
-name|isInWarFile
-argument_list|()
-condition|)
-block|{
-comment|// all files mixed in existHome/lib/
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"eXist is running in container (.war)."
-argument_list|)
-expr_stmt|;
-name|coreJarsFolder
-operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"lib/"
-argument_list|)
-expr_stmt|;
-name|existJarFolder
-operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"lib/"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// all files located in existHome/lib/core/
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"eXist is running private jetty server."
-argument_list|)
-expr_stmt|;
-name|coreJarsFolder
-operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"lib/core"
-argument_list|)
-expr_stmt|;
-name|existJarFolder
-operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|)
-expr_stmt|;
-block|}
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"CORE jars location="
-operator|+
-name|coreJarsFolder
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"EXIST jars location="
-operator|+
-name|existJarFolder
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// Setup CORE jars
 for|for
 control|(
@@ -433,7 +317,10 @@ index|]
 operator|=
 name|getJar
 argument_list|(
-name|coreJarsFolder
+name|jnlpHelper
+operator|.
+name|getCoreJarsFolder
+argument_list|()
 argument_list|,
 name|jars
 index|[
@@ -448,45 +335,14 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|existJarFolder
+name|jnlpHelper
+operator|.
+name|getExistJarFolder
+argument_list|()
 argument_list|,
 literal|"exist.jar"
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**      *  Check wether exist runs in Servlet container (as war file).      * @return TRUE if exist runs in servlet container.      */
-specifier|public
-name|boolean
-name|isInWarFile
-parameter_list|()
-block|{
-name|boolean
-name|retVal
-init|=
-literal|true
-decl_stmt|;
-if|if
-condition|(
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"lib/core"
-argument_list|)
-operator|.
-name|isDirectory
-argument_list|()
-condition|)
-block|{
-name|retVal
-operator|=
-literal|false
-expr_stmt|;
-block|}
-return|return
-name|retVal
-return|;
 block|}
 comment|/**      * Get references to all "core" jar files.      * @return Array of Files.      */
 specifier|public
@@ -523,7 +379,7 @@ operator|=
 name|mainJar
 expr_stmt|;
 block|}
-comment|/**      *  Get File reference of associated jar-file.      * @param   Name of file      * @return  File reference to resource.      */
+comment|/**      *  Get File reference of associated jar-file.      * @param name       * @return File reference to resource.      */
 specifier|public
 name|File
 name|getFile
