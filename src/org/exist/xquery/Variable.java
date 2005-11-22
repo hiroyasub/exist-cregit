@@ -317,7 +317,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" "
+literal|" as "
 argument_list|)
 expr_stmt|;
 name|result
@@ -344,6 +344,42 @@ argument_list|(
 name|getCardinality
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"[not set]"
+argument_list|)
+expr_stmt|;
+else|else
+name|result
+operator|.
+name|append
+argument_list|(
+literal|":= "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|value
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

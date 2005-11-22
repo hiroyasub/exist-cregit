@@ -534,17 +534,6 @@ name|String
 name|toString
 parameter_list|()
 block|{
-if|if
-condition|(
-name|cardinality
-operator|==
-name|Cardinality
-operator|.
-name|EMPTY
-condition|)
-return|return
-literal|"empty()"
-return|;
 return|return
 name|Type
 operator|.
@@ -555,7 +544,7 @@ argument_list|)
 operator|+
 name|Cardinality
 operator|.
-name|display
+name|toString
 argument_list|(
 name|cardinality
 argument_list|)

@@ -98,7 +98,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|display
+name|toString
 parameter_list|(
 name|int
 name|cardinality
@@ -138,64 +138,6 @@ name|ZERO_OR_ONE
 case|:
 return|return
 literal|"?"
-return|;
-default|default:
-comment|// impossible
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"unknown cardinality: "
-operator|+
-name|cardinality
-argument_list|)
-throw|;
-block|}
-block|}
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|toString
-parameter_list|(
-name|int
-name|cardinality
-parameter_list|)
-block|{
-switch|switch
-condition|(
-name|cardinality
-condition|)
-block|{
-case|case
-name|EMPTY
-case|:
-return|return
-literal|"empty sequence"
-return|;
-case|case
-name|EXACTLY_ONE
-case|:
-return|return
-literal|"exactly one"
-return|;
-case|case
-name|ONE_OR_MORE
-case|:
-return|return
-literal|"one or more"
-return|;
-case|case
-name|ZERO_OR_MORE
-case|:
-return|return
-literal|"zero or more"
-return|;
-case|case
-name|ZERO_OR_ONE
-case|:
-return|return
-literal|"zero or one"
 return|;
 default|default:
 comment|// impossible
