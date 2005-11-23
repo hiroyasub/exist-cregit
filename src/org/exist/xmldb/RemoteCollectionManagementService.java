@@ -221,6 +221,7 @@ name|name
 init|=
 name|collName
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 operator|(
@@ -434,15 +435,24 @@ name|name
 init|=
 name|collName
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
+operator|(
 operator|!
 name|collName
 operator|.
 name|startsWith
 argument_list|(
-literal|"/"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
+operator|)
+operator|&&
+name|parent
+operator|!=
+literal|null
 condition|)
 name|name
 operator|=
@@ -451,7 +461,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|collName
 expr_stmt|;
@@ -585,6 +595,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/*  if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -600,6 +611,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|/*if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
+comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -750,6 +762,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/*if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             resourcePath = parent.getPath() + '/' + resourcePath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|resourcePath
 operator|=
 name|NativeBroker
@@ -765,6 +778,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|/*if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
+comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -915,6 +929,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/*if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -930,6 +945,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
 name|NativeBroker
@@ -1080,6 +1096,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/*if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION+ "/"))             resourcePath = parent.getPath() + '/' + resourcePath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|resourcePath
 operator|=
 name|NativeBroker
@@ -1095,6 +1112,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
 name|NativeBroker

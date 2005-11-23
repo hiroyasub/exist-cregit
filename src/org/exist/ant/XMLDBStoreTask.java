@@ -800,6 +800,7 @@ operator|)
 operator|)
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|col
 operator|=
 name|mkcol

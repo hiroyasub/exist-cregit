@@ -334,6 +334,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : refactor
+comment|//TODO : use dedicated function in XmldbURI
 name|StringTokenizer
 name|tok
 init|=

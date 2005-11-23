@@ -424,6 +424,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/*String path = (collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/") ? collectionPath :      		parent.getPath() + '/' + collectionPath);*/
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=

@@ -2909,6 +2909,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|rootCollection
@@ -3549,6 +3550,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|rootCollection
@@ -5668,6 +5670,7 @@ operator|+
 name|name
 expr_stmt|;
 comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|NativeBroker
@@ -5872,6 +5875,7 @@ operator|+
 name|collectionName
 expr_stmt|;
 comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
 name|NativeBroker
@@ -5980,6 +5984,7 @@ operator|+
 name|collectionName
 expr_stmt|;
 comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
 name|NativeBroker
@@ -6152,6 +6157,7 @@ operator|+
 name|name
 expr_stmt|;
 comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|NativeBroker
@@ -6419,6 +6425,7 @@ operator|+
 name|name
 expr_stmt|;
 comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|NativeBroker
@@ -6761,6 +6768,7 @@ operator|+
 name|name
 expr_stmt|;
 comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|NativeBroker
@@ -6984,6 +6992,7 @@ operator|+
 name|collectionPath
 expr_stmt|;
 comment|/*if (!collectionPath.startsWith(DBBroker.ROOT_COLLECTION))                 collectionPath = DBBroker.ROOT_COLLECTION + collectionPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
 name|NativeBroker
@@ -7113,6 +7122,7 @@ operator|+
 name|documentPath
 expr_stmt|;
 comment|/*if (!documentPath.startsWith(DBBroker.ROOT_COLLECTION))                 documentPath = DBBroker.ROOT_COLLECTION + documentPath;*/
+comment|//TODO : use dedicated function in XmldbURI
 name|documentPath
 operator|=
 name|NativeBroker
