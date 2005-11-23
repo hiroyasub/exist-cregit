@@ -578,7 +578,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"configuring '"
+literal|"Configuring '"
 operator|+
 name|instanceName
 operator|+
@@ -588,7 +588,7 @@ name|home
 operator|+
 name|File
 operator|.
-name|pathSeparator
+name|separatorChar
 operator|+
 name|file
 argument_list|)
