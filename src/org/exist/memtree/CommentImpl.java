@@ -191,6 +191,61 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+name|StringBuffer
+name|result
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"in-memory["
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"comment { "
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+name|getData
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|" }"
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"] "
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

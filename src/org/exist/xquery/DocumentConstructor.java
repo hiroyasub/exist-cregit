@@ -564,6 +564,7 @@ operator|.
 name|startIndent
 argument_list|()
 expr_stmt|;
+comment|//TODO : is this the required syntax ?
 name|content
 operator|.
 name|dump
@@ -606,6 +607,7 @@ argument_list|(
 literal|"document { "
 argument_list|)
 expr_stmt|;
+comment|//TODO : is this the required syntax ?
 name|result
 operator|.
 name|append
@@ -620,7 +622,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
+literal|" } "
 argument_list|)
 expr_stmt|;
 return|return
