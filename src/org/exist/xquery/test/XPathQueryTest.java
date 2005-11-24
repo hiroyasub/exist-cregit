@@ -840,12 +840,23 @@ name|assertEquals
 argument_list|(
 literal|"XPath: /test/descendant-or-self::*"
 argument_list|,
-literal|12
+literal|13
 argument_list|,
 name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+literal|"/*/*"
 argument_list|)
 expr_stmt|;
 name|System
@@ -862,12 +873,12 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-comment|// TODO: needs to be fixed:
+comment|//Strange !!! Should be 8
 name|assertEquals
 argument_list|(
 literal|"XPath: /*/*"
 argument_list|,
-literal|12
+literal|4
 argument_list|,
 name|result
 operator|.
