@@ -133,6 +133,8 @@ operator|new
 name|File
 argument_list|(
 name|existHome
+argument_list|,
+literal|".."
 argument_list|)
 expr_stmt|;
 block|}
