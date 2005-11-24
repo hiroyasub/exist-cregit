@@ -1109,6 +1109,16 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+name|dumper
+operator|.
+name|endIndent
+argument_list|()
+expr_stmt|;
+name|dumper
+operator|.
+name|startIndent
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1167,7 +1177,6 @@ name|nl
 argument_list|()
 expr_stmt|;
 block|}
-block|}
 name|dumper
 operator|.
 name|endIndent
@@ -1176,6 +1185,7 @@ operator|.
 name|nl
 argument_list|()
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
