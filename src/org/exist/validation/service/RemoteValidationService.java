@@ -77,18 +77,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|NativeBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|validation
 operator|.
 name|Validator
@@ -111,13 +99,11 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
+name|XmldbURI
 import|;
 end_import
 
@@ -146,6 +132,20 @@ operator|.
 name|base
 operator|.
 name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
 import|;
 end_import
 
@@ -249,10 +249,9 @@ name|documentIsValid
 init|=
 literal|false
 decl_stmt|;
-comment|/*if(!id.startsWith(DBBroker.ROOT_COLLECTION))             id = remoteCollection.getPath() + '/' + id;*/
 name|id
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(

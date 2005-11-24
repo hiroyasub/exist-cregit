@@ -215,11 +215,10 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*String path = (collectionPath.startsWith(DBBroker.ROOT_COLLECTION) ? collectionPath :      		parent.getPath() + '/' + collectionPath);*/
 name|String
 name|path
 init|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(

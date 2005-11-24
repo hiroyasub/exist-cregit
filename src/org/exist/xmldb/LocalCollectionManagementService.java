@@ -367,6 +367,21 @@ literal|'/'
 operator|+
 name|collName
 expr_stmt|;
+name|String
+name|path
+init|=
+name|XmldbURI
+operator|.
+name|checkPath
+argument_list|(
+name|collName
+argument_list|,
+name|parent
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|TransactionManager
 name|transact
 init|=
@@ -627,7 +642,7 @@ expr_stmt|;
 name|String
 name|path
 init|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -854,11 +869,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -870,11 +883,9 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*         if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
-comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -1190,11 +1201,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             resourcePath = parent.getPath() + '/' + resourcePath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|resourcePath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -1206,11 +1215,9 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(destinationPath != null)         {         	if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))         		destinationPath = parent.getPath() + '/' + destinationPath;         }         else         {         	destinationPath = parent.getPath();         }*/
-comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -1603,11 +1610,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*(if(!resourcePath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             resourcePath = parent.getPath() + '/' + resourcePath;             */
-comment|//TODO : use dedicated function in XmldbURI
 name|resourcePath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -1619,11 +1624,9 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -2016,11 +2019,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|/*if(!collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             collectionPath = parent.getPath() + '/' + collectionPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -2032,11 +2033,9 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*if(!destinationPath.startsWith(DBBroker.ROOT_COLLECTION + "/"))             destinationPath = parent.getPath() + '/' + destinationPath;             */
-comment|//TODO : use dedicated function in XmldbURI
 name|destinationPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -2054,17 +2053,19 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Copying "
+literal|"Copying '"
 operator|+
 name|collectionPath
 operator|+
-literal|" to "
+literal|"' to '"
 operator|+
 name|destinationPath
 operator|+
-literal|" as "
+literal|"' as '"
 operator|+
 name|newName
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|TransactionManager
@@ -2156,11 +2157,11 @@ name|ErrorCodes
 operator|.
 name|NO_SUCH_COLLECTION
 argument_list|,
-literal|"Collection "
+literal|"Collection '"
 operator|+
 name|collectionPath
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 throw|;
 block|}
@@ -2199,11 +2200,11 @@ name|ErrorCodes
 operator|.
 name|NO_SUCH_COLLECTION
 argument_list|,
-literal|"Collection "
+literal|"Collection '"
 operator|+
 name|destinationPath
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 throw|;
 block|}

@@ -709,9 +709,45 @@ name|exist
 operator|.
 name|validation
 operator|.
+name|ValidationReport
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|Validator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
 name|internal
 operator|.
-name|DatabaseResources
+name|ResourceInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -1006,44 +1042,6 @@ operator|.
 name|collections
 operator|.
 name|AST
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|internal
-operator|.
-name|ResourceInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|ValidationReport
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|Validator
 import|;
 end_import
 
@@ -5653,6 +5651,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 operator|!
@@ -5670,10 +5669,9 @@ operator|+
 name|name
 expr_stmt|;
 comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -5878,7 +5876,7 @@ comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))             
 comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -5987,7 +5985,7 @@ comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))             
 comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -6160,7 +6158,7 @@ comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name =
 comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -6428,7 +6426,7 @@ comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name =
 comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -6771,7 +6769,7 @@ comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name =
 comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -6995,7 +6993,7 @@ comment|/*if (!collectionPath.startsWith(DBBroker.ROOT_COLLECTION))             
 comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(
@@ -7125,7 +7123,7 @@ comment|/*if (!documentPath.startsWith(DBBroker.ROOT_COLLECTION))               
 comment|//TODO : use dedicated function in XmldbURI
 name|documentPath
 operator|=
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|checkPath
 argument_list|(

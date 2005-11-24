@@ -834,16 +834,7 @@ operator|==
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|name
-operator|!=
-literal|null
-condition|)
-return|return
-name|name
-return|;
-else|else
+comment|/* 		    if(name != null) 		        return name; 		    else 		    */
 return|return
 name|DBBroker
 operator|.
