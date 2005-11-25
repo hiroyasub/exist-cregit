@@ -292,6 +292,17 @@ argument_list|(
 name|outputProperties
 argument_list|)
 expr_stmt|;
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|Serializer
+operator|.
+name|GENERATE_DOC_EVENTS
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
