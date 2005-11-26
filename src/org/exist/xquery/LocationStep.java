@@ -267,8 +267,9 @@ specifier|protected
 name|int
 name|parentDeps
 init|=
-operator|-
-literal|1
+name|Dependency
+operator|.
+name|UNKNOWN_DEPENDENCY
 decl_stmt|;
 specifier|protected
 name|boolean
@@ -281,6 +282,13 @@ name|boolean
 name|inUpdate
 init|=
 literal|false
+decl_stmt|;
+comment|//Cache for the current NodeTest type
+specifier|private
+name|Integer
+name|nodeTestType
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|LocationStep
@@ -379,6 +387,23 @@ name|boolean
 name|preloadNodeSets
 parameter_list|()
 block|{
+comment|//TODO : log elsewhere ?
+if|if
+condition|(
+name|preload
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Preloaded NodeSets"
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 name|inUpdate
@@ -386,9 +411,8 @@ condition|)
 return|return
 literal|false
 return|;
-return|return
-name|preload
-operator|||
+if|if
+condition|(
 operator|(
 name|parentDeps
 operator|&
@@ -400,6 +424,21 @@ operator|==
 name|Dependency
 operator|.
 name|LOCAL_VARS
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Preloaded NodeSets"
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
 return|;
 block|}
 specifier|protected
@@ -464,6 +503,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|//TODO : log and/or profile ?
 name|pred
 operator|=
 operator|(
@@ -549,6 +589,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|//TODO : log somewhere ?
 name|super
 operator|.
 name|analyze
@@ -636,6 +677,7 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Try to return cached results
 if|if
 condition|(
 name|cached
@@ -717,6 +759,10 @@ return|;
 block|}
 name|Sequence
 name|temp
+init|=
+name|NodeSet
+operator|.
+name|EMPTY_SET
 decl_stmt|;
 if|if
 condition|(
@@ -798,24 +844,6 @@ break|break;
 case|case
 name|Constants
 operator|.
-name|SELF_AXIS
-case|:
-name|temp
-operator|=
-name|getSelf
-argument_list|(
-name|context
-argument_list|,
-name|contextSequence
-operator|.
-name|toNodeSet
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Constants
-operator|.
 name|PARENT_AXIS
 case|:
 name|temp
@@ -834,9 +862,26 @@ break|break;
 case|case
 name|Constants
 operator|.
+name|SELF_AXIS
+case|:
+name|temp
+operator|=
+name|getSelf
+argument_list|(
+name|context
+argument_list|,
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|Constants
+operator|.
 name|ATTRIBUTE_AXIS
 case|:
-comment|// combines /descendant-or-self::node()/attribute:*
 case|case
 name|Constants
 operator|.
@@ -845,6 +890,42 @@ case|:
 name|temp
 operator|=
 name|getAttributes
+argument_list|(
+name|context
+argument_list|,
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|Constants
+operator|.
+name|PRECEDING_AXIS
+case|:
+name|temp
+operator|=
+name|getPreceding
+argument_list|(
+name|context
+argument_list|,
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|Constants
+operator|.
+name|FOLLOWING_AXIS
+case|:
+name|temp
+operator|=
+name|getFollowing
 argument_list|(
 name|context
 argument_list|,
@@ -878,42 +959,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
-case|case
-name|Constants
-operator|.
-name|FOLLOWING_AXIS
-case|:
-name|temp
-operator|=
-name|getFollowing
-argument_list|(
-name|context
-argument_list|,
-name|contextSequence
-operator|.
-name|toNodeSet
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Constants
-operator|.
-name|PRECEDING_AXIS
-case|:
-name|temp
-operator|=
-name|getPreceding
-argument_list|(
-name|context
-argument_list|,
-name|contextSequence
-operator|.
-name|toNodeSet
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
 default|default :
 throw|throw
 operator|new
@@ -924,13 +969,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-else|else
-name|temp
-operator|=
-name|NodeSet
-operator|.
-name|EMPTY_SET
-expr_stmt|;
 comment|//Caches the result
 if|if
 condition|(
@@ -939,6 +977,7 @@ operator|instanceof
 name|NodeSet
 condition|)
 block|{
+comment|//TODO : cache *after* removing duplicates ?
 name|cached
 operator|=
 operator|new
@@ -1058,23 +1097,39 @@ name|Constants
 operator|.
 name|SELF_AXIS
 case|:
-name|int
-name|testType
-init|=
+if|if
+condition|(
+name|nodeTestType
+operator|==
+literal|null
+condition|)
+name|nodeTestType
+operator|=
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
 name|test
 operator|.
 name|getType
 argument_list|()
-decl_stmt|;
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
-name|testType
+name|nodeTestType
+operator|.
+name|intValue
+argument_list|()
 operator|!=
 name|Type
 operator|.
 name|NODE
 operator|&&
-name|testType
+name|nodeTestType
+operator|.
+name|intValue
+argument_list|()
 operator|!=
 name|Type
 operator|.
@@ -1110,9 +1165,27 @@ condition|)
 block|{
 if|if
 condition|(
+name|nodeTestType
+operator|==
+literal|null
+condition|)
+name|nodeTestType
+operator|=
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
 name|test
 operator|.
 name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|nodeTestType
+operator|.
+name|intValue
 argument_list|()
 operator|==
 name|Type
@@ -1283,9 +1356,7 @@ argument_list|,
 name|inPredicate
 argument_list|)
 decl_stmt|;
-name|NodeSet
-name|result
-init|=
+return|return
 name|context
 operator|.
 name|getBroker
@@ -1309,9 +1380,6 @@ argument_list|()
 argument_list|,
 name|selector
 argument_list|)
-decl_stmt|;
-return|return
-name|result
 return|;
 block|}
 block|}
@@ -1701,7 +1769,6 @@ name|preloadNodeSets
 argument_list|()
 condition|)
 block|{
-comment|//			LOG.debug("Preload node sets for: " + toString());
 name|DocumentSet
 name|docs
 init|=
@@ -2129,7 +2196,6 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//			DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -2198,8 +2264,7 @@ name|Constants
 operator|.
 name|PRECEDING_SIBLING_AXIS
 case|:
-name|result
-operator|=
+return|return
 name|currentSet
 operator|.
 name|selectSiblings
@@ -2210,15 +2275,13 @@ name|NodeSet
 operator|.
 name|PRECEDING
 argument_list|)
-expr_stmt|;
-break|break;
+return|;
 case|case
 name|Constants
 operator|.
 name|FOLLOWING_SIBLING_AXIS
 case|:
-name|result
-operator|=
+return|return
 name|currentSet
 operator|.
 name|selectSiblings
@@ -2229,8 +2292,7 @@ name|NodeSet
 operator|.
 name|FOLLOWING
 argument_list|)
-expr_stmt|;
-break|break;
+return|;
 default|default :
 throw|throw
 operator|new
@@ -2469,7 +2531,6 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//			DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -2579,7 +2640,6 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//          DocumentSet docs = contextSet.getDocumentSet();
 if|if
 condition|(
 name|currentSet
@@ -2663,9 +2723,6 @@ name|NodeSet
 name|contextSet
 parameter_list|)
 block|{
-name|NodeSet
-name|result
-decl_stmt|;
 if|if
 condition|(
 name|test
@@ -2674,12 +2731,13 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+name|NodeSet
 name|result
-operator|=
+init|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|NodeProxy
 name|p
 decl_stmt|,
@@ -2877,6 +2935,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+return|return
+name|result
+return|;
 block|}
 if|else if
 condition|(
@@ -2957,8 +3018,7 @@ name|Constants
 operator|.
 name|ANCESTOR_SELF_AXIS
 case|:
-name|result
-operator|=
+return|return
 name|currentSet
 operator|.
 name|selectAncestors
@@ -2969,15 +3029,13 @@ literal|true
 argument_list|,
 name|inPredicate
 argument_list|)
-expr_stmt|;
-break|break;
+return|;
 case|case
 name|Constants
 operator|.
 name|ANCESTOR_AXIS
 case|:
-name|result
-operator|=
+return|return
 name|currentSet
 operator|.
 name|selectAncestors
@@ -2988,8 +3046,7 @@ literal|false
 argument_list|,
 name|inPredicate
 argument_list|)
-expr_stmt|;
-break|break;
+return|;
 default|default :
 throw|throw
 operator|new
@@ -3063,8 +3120,7 @@ literal|"Unsupported axis specified"
 argument_list|)
 throw|;
 block|}
-name|result
-operator|=
+return|return
 name|context
 operator|.
 name|getBroker
@@ -3088,11 +3144,8 @@ argument_list|()
 argument_list|,
 name|selector
 argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
 return|;
+block|}
 block|}
 specifier|protected
 name|NodeSet
@@ -3143,9 +3196,7 @@ argument_list|,
 name|inPredicate
 argument_list|)
 decl_stmt|;
-name|NodeSet
-name|result
-init|=
+return|return
 name|context
 operator|.
 name|getBroker
@@ -3169,9 +3220,6 @@ argument_list|()
 argument_list|,
 name|selector
 argument_list|)
-decl_stmt|;
-return|return
-name|result
 return|;
 block|}
 block|}
@@ -3381,6 +3429,7 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+comment|//TODO : uncomment some comments ?
 name|super
 operator|.
 name|resetState
@@ -3394,7 +3443,16 @@ name|currentDocs
 operator|=
 literal|null
 expr_stmt|;
+comment|//listener = null;
+comment|//parent = null;
 name|cached
+operator|=
+literal|null
+expr_stmt|;
+comment|//parentDeps = Dependency.UNKNOWN_DEPENDENCY;
+comment|//preload = false;
+comment|//inUpdate = false;
+name|nodeTestType
 operator|=
 literal|null
 expr_stmt|;

@@ -18,6 +18,15 @@ specifier|public
 class|class
 name|Dependency
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|UNKNOWN_DEPENDENCY
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/** 	 * Expression has no dependencies, for example, if it is a literal value. 	 */
 specifier|public
 specifier|final
@@ -102,6 +111,15 @@ name|int
 name|dependencies
 parameter_list|)
 block|{
+if|if
+condition|(
+name|dependencies
+operator|==
+name|UNKNOWN_DEPENDENCY
+condition|)
+return|return
+literal|"UNKNOWN"
+return|;
 if|if
 condition|(
 name|dependencies

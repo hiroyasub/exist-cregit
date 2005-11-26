@@ -166,6 +166,7 @@ name|SELF_AXIS
 init|=
 literal|12
 decl_stmt|;
+comment|//combines /descendant-or-self::node()/attribute:*
 specifier|public
 specifier|final
 specifier|static
