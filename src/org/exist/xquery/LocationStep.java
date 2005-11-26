@@ -1112,9 +1112,8 @@ literal|null
 condition|)
 name|nodeTestType
 operator|=
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|test
 operator|.
@@ -1178,9 +1177,8 @@ literal|null
 condition|)
 name|nodeTestType
 operator|=
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 name|test
 operator|.
