@@ -22641,8 +22641,9 @@ operator|.
 name|getAxis
 argument_list|()
 operator|==
-operator|-
-literal|1
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 condition|)
 operator|(
 operator|(
@@ -22747,8 +22748,9 @@ operator|.
 name|getAxis
 argument_list|()
 operator|==
-operator|-
-literal|1
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 condition|)
 operator|(
 operator|(
@@ -23260,8 +23262,9 @@ operator|.
 name|getAxis
 argument_list|()
 operator|==
-operator|-
-literal|1
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 condition|)
 operator|(
 operator|(
@@ -28782,8 +28785,9 @@ name|_t
 decl_stmt|;
 name|axis
 operator|=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 expr_stmt|;
 if|if
 condition|(

@@ -779,9 +779,7 @@ decl_stmt|;
 if|if
 condition|(
 name|needsComputation
-argument_list|(
-name|axis
-argument_list|)
+argument_list|()
 condition|)
 block|{
 switch|switch
@@ -1082,10 +1080,7 @@ comment|//Avoid unnecessary tests (these should be detected by the parser)
 specifier|private
 name|boolean
 name|needsComputation
-parameter_list|(
-name|int
-name|axis
-parameter_list|)
+parameter_list|()
 block|{
 comment|//TODO : log this ?
 switch|switch

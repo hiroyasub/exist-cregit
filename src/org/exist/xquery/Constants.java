@@ -60,7 +60,17 @@ block|,
 literal|"attribute-descendant"
 block|}
 decl_stmt|;
-comment|/**      * XPath axis constants:      *<br>     * Reverse axes */
+comment|/**      * XPath axis constants:      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|UNKNOWN_AXIS
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/** Reverse axes */
 specifier|public
 specifier|final
 specifier|static

@@ -128,8 +128,9 @@ specifier|protected
 name|int
 name|axis
 init|=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 decl_stmt|;
 specifier|protected
 name|NodeTest
