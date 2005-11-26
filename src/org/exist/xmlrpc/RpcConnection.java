@@ -5651,29 +5651,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//TODO : use dedicated function in XmldbURI
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|name
-operator|=
-literal|'/'
-operator|+
-name|name
-expr_stmt|;
-comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
 name|name
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|name
 argument_list|,
@@ -5856,29 +5838,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|collectionName
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|collectionName
-operator|=
-literal|'/'
-operator|+
-name|collectionName
-expr_stmt|;
-comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|collectionName
 argument_list|,
@@ -5965,29 +5929,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|collectionName
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|collectionName
-operator|=
-literal|'/'
-operator|+
-name|collectionName
-expr_stmt|;
-comment|/*if (!collectionName.startsWith(DBBroker.ROOT_COLLECTION))                 collectionName = DBBroker.ROOT_COLLECTION + collectionName;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|collectionName
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|collectionName
 argument_list|,
@@ -6138,29 +6084,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|name
-operator|=
-literal|'/'
-operator|+
-name|name
-expr_stmt|;
-comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|name
 argument_list|,
@@ -6406,29 +6334,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|name
-operator|=
-literal|'/'
-operator|+
-name|name
-expr_stmt|;
-comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|name
 argument_list|,
@@ -6749,29 +6659,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|name
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|name
-operator|=
-literal|'/'
-operator|+
-name|name
-expr_stmt|;
-comment|/*if (!name.startsWith(DBBroker.ROOT_COLLECTION))                 name = DBBroker.ROOT_COLLECTION + name;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|name
 argument_list|,
@@ -6973,29 +6865,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|collectionPath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|collectionPath
-operator|=
-literal|'/'
-operator|+
-name|collectionPath
-expr_stmt|;
-comment|/*if (!collectionPath.startsWith(DBBroker.ROOT_COLLECTION))                 collectionPath = DBBroker.ROOT_COLLECTION + collectionPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|collectionPath
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|collectionPath
 argument_list|,
@@ -7103,29 +6977,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|documentPath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|documentPath
-operator|=
-literal|'/'
-operator|+
-name|documentPath
-expr_stmt|;
-comment|/*if (!documentPath.startsWith(DBBroker.ROOT_COLLECTION))                 documentPath = DBBroker.ROOT_COLLECTION + documentPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|documentPath
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|documentPath
 argument_list|,

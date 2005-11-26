@@ -3464,29 +3464,11 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-if|if
-condition|(
-operator|!
-name|fileName
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|fileName
-operator|=
-literal|'/'
-operator|+
-name|fileName
-expr_stmt|;
-comment|/*if (!fileName.startsWith(ROOT_COLLECTION)) 		    fileName = ROOT_COLLECTION + fileName;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|fileName
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|fileName
 argument_list|,
@@ -3634,29 +3616,11 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-if|if
-condition|(
-operator|!
-name|docPath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-name|docPath
-operator|=
-literal|'/'
-operator|+
-name|docPath
-expr_stmt|;
-comment|/*if (!docPath.startsWith(ROOT_COLLECTION)) 		    docPath = ROOT_COLLECTION + docPath;*/
-comment|//TODO : use dedicated function in XmldbURI
 name|docPath
 operator|=
 name|XmldbURI
 operator|.
-name|checkPath
+name|checkPath2
 argument_list|(
 name|docPath
 argument_list|,
