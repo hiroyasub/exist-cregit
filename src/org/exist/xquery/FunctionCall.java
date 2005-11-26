@@ -722,6 +722,7 @@ operator|.
 name|resetState
 argument_list|()
 expr_stmt|;
+comment|//TODO : reset expression ?
 block|}
 block|}
 end_class

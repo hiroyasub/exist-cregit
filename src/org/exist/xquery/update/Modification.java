@@ -929,6 +929,10 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|lockedDocuments
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 *   	 * @param docs 	 */
 specifier|protected

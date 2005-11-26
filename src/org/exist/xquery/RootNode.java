@@ -445,11 +445,11 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-name|cachedDocs
+name|cached
 operator|=
 literal|null
 expr_stmt|;
-name|cached
+name|cachedDocs
 operator|=
 literal|null
 expr_stmt|;

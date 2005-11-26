@@ -667,6 +667,7 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+comment|//TODO ; understand this test. Why not reset even is not in recursion ?
 if|if
 condition|(
 operator|!
