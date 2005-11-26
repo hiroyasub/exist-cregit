@@ -422,15 +422,17 @@ name|i
 operator|++
 control|)
 block|{
+comment|// if this is a sequence of steps, the IN_PREDICATE flag
+comment|// is only passed to the first step, so it has to be removed
+comment|// for subsequent steps
+comment|//TODO : why not if (i> 0) then ??? -pb
+comment|//We'd need a test case with more than 2 steps to demonstrate the feature
 if|if
 condition|(
 name|i
 operator|==
 literal|1
 condition|)
-comment|// if this is a sequence of steps, the IN_PREDICATE flag
-comment|// is only passed to the first step, so it has to be removed
-comment|// for subsequent steps
 name|flags
 operator|=
 name|flags
@@ -493,6 +495,10 @@ name|EMPTY_SEQUENCE
 return|;
 name|Sequence
 name|r
+init|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 decl_stmt|;
 if|if
 condition|(
@@ -500,21 +506,10 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
-block|{
 name|r
 operator|=
 name|contextSequence
 expr_stmt|;
-block|}
-else|else
-block|{
-name|r
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-block|}
 name|DocumentSet
 name|contextDocs
 init|=
@@ -559,7 +554,6 @@ name|var
 operator|!=
 literal|null
 condition|)
-block|{
 name|contextDocs
 operator|=
 name|var
@@ -567,7 +561,6 @@ operator|.
 name|getContextDocs
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 name|Item
 name|current
@@ -617,18 +610,19 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|(
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
 name|expr
 operator|.
 name|getDependencies
 argument_list|()
-operator|&
+argument_list|,
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
-operator|)
-operator|!=
-literal|0
+argument_list|)
 condition|)
 block|{
 if|if
@@ -1113,9 +1107,7 @@ name|Type
 operator|.
 name|NODE
 return|;
-name|int
-name|rtype
-init|=
+return|return
 operator|(
 operator|(
 name|Expression
@@ -1135,9 +1127,6 @@ operator|)
 operator|.
 name|returnsType
 argument_list|()
-decl_stmt|;
-return|return
-name|rtype
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
@@ -1213,8 +1202,6 @@ operator|==
 literal|0
 condition|)
 return|return;
-else|else
-block|{
 name|steps
 operator|.
 name|set
@@ -1229,7 +1216,6 @@ argument_list|,
 name|s
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|String
@@ -1267,6 +1253,7 @@ name|next
 operator|instanceof
 name|LiteralValue
 condition|)
+block|{
 try|try
 block|{
 return|return
@@ -1290,6 +1277,8 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : is there anything to do here ?
+block|}
 block|}
 if|if
 condition|(
@@ -1339,7 +1328,6 @@ argument_list|()
 operator|==
 literal|1
 condition|)
-block|{
 return|return
 operator|(
 operator|(
@@ -1356,7 +1344,6 @@ operator|.
 name|getASTNode
 argument_list|()
 return|;
-block|}
 return|return
 name|ast
 return|;
