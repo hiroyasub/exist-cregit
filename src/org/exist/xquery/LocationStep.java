@@ -1547,7 +1547,7 @@ operator|.
 name|getElementIndex
 argument_list|()
 decl_stmt|;
-comment|//TODO : why a null selector here ? Whe have one below !
+comment|//TODO : why a null selector here ? We have one below !
 name|currentSet
 operator|=
 name|index
@@ -3497,10 +3497,7 @@ expr_stmt|;
 comment|//parentDeps = Dependency.UNKNOWN_DEPENDENCY;
 comment|//preload = false;
 comment|//inUpdate = false;
-name|nodeTestType
-operator|=
-literal|null
-expr_stmt|;
+comment|//nodeTestType = null;
 block|}
 block|}
 end_class

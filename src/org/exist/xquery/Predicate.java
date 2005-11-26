@@ -342,8 +342,9 @@ operator|.
 name|returnsType
 argument_list|()
 decl_stmt|;
-comment|// Case 1: predicate expression returns a node set. Check the returned node set
-comment|// against the context set and return all nodes from the context, for which the
+comment|// Case 1: predicate expression returns a node set.
+comment|// Check the returned node set against the context set
+comment|// and return all nodes from the context, for which the
 comment|// predicate expression returns a non-empty sequence.
 if|if
 condition|(
@@ -361,18 +362,20 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
+operator|!
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
 name|inner
 operator|.
 name|getDependencies
 argument_list|()
-operator|&
+argument_list|,
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
-operator|)
-operator|==
-literal|0
+argument_list|)
 condition|)
 name|executionMode
 operator|=
@@ -469,6 +472,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 comment|// just to be sure: change mode to boolean if the predicate expression returns a number
+comment|//TODO : the code, likely correct, seems to implement the exact contrary
 if|if
 condition|(
 name|Type
@@ -510,6 +514,17 @@ name|contextSequence
 argument_list|)
 return|;
 case|case
+name|BOOLEAN
+case|:
+return|return
+name|evalBoolean
+argument_list|(
+name|contextSequence
+argument_list|,
+name|inner
+argument_list|)
+return|;
+case|case
 name|POSITIONAL
 case|:
 return|return
@@ -525,14 +540,13 @@ name|inner
 argument_list|)
 return|;
 default|default:
-return|return
-name|evalBoolean
+throw|throw
+operator|new
+name|IllegalArgumentException
 argument_list|(
-name|contextSequence
-argument_list|,
-name|inner
+literal|"Unsupported execution mode"
 argument_list|)
-return|;
+throw|;
 block|}
 block|}
 comment|/** 	 * @param contextSequence 	 * @param inner 	 * @return 	 * @throws XPathException 	 */
@@ -1183,6 +1197,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : understand why we find other forward axes than the 3 ones above here
 block|}
 else|else
 block|{
@@ -1358,6 +1373,7 @@ operator|=
 name|p
 expr_stmt|;
 break|break;
+comment|//TODO : explain this default given what is said above !!!
 default|default:
 name|temp
 operator|=
@@ -1581,6 +1597,7 @@ name|result
 return|;
 block|}
 block|}
+comment|//TODO : move this to a dedicated Axis class
 specifier|public
 specifier|final
 specifier|static
@@ -1591,12 +1608,29 @@ name|int
 name|axis
 parameter_list|)
 block|{
+if|if
+condition|(
+name|axis
+operator|==
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Tested unknown axis"
+argument_list|)
+throw|;
 return|return
+operator|(
 name|axis
 operator|<
 name|Constants
 operator|.
 name|CHILD_AXIS
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
@@ -1605,6 +1639,7 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+comment|//TODO : does it actually do anything ?
 name|super
 operator|.
 name|resetState

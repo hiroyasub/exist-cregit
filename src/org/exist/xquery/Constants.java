@@ -22,6 +22,7 @@ specifier|public
 interface|interface
 name|Constants
 block|{
+comment|//TODO : move this to a dedicated Axis class
 comment|/** Axis names */
 specifier|public
 specifier|final
