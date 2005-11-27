@@ -1075,8 +1075,10 @@ name|proxy
 operator|.
 name|getGID
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 if|if
