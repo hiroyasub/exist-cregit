@@ -252,7 +252,8 @@ if|if
 condition|(
 name|proxy
 operator|.
-name|nodeType
+name|getNodeType
+argument_list|()
 operator|==
 name|Type
 operator|.
@@ -260,7 +261,8 @@ name|ITEM
 operator|||
 name|proxy
 operator|.
-name|nodeType
+name|getNodeType
+argument_list|()
 operator|==
 name|Type
 operator|.
@@ -301,7 +303,8 @@ name|isOfType
 argument_list|(
 name|proxy
 operator|.
-name|nodeType
+name|getNodeType
+argument_list|()
 argument_list|)
 return|;
 block|}

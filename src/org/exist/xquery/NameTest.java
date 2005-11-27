@@ -118,7 +118,8 @@ name|type
 init|=
 name|proxy
 operator|.
-name|nodeType
+name|getNodeType
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

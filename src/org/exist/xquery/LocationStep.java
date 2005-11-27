@@ -2828,7 +2828,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 name|p
 operator|.
@@ -2875,7 +2876,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 while|while
@@ -2896,7 +2898,8 @@ argument_list|()
 argument_list|,
 name|ancestor
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 operator|)
 operator|>
@@ -2905,11 +2908,12 @@ condition|)
 block|{
 name|ancestor
 operator|.
-name|nodeType
-operator|=
+name|setNodeType
+argument_list|(
 name|Node
 operator|.
 name|ELEMENT_NODE
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -2959,7 +2963,8 @@ argument_list|()
 argument_list|,
 name|ancestor
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

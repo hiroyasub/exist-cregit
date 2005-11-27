@@ -7305,13 +7305,16 @@ condition|)
 block|{
 name|include
 operator|=
+operator|(
 name|p
 operator|.
-name|nodeType
+name|getNodeType
+argument_list|()
 operator|==
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
+operator|)
 expr_stmt|;
 block|}
 else|else

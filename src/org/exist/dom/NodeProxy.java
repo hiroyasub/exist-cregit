@@ -359,14 +359,14 @@ init|=
 name|UNKNOWN_NODE_ADDRESS
 decl_stmt|;
 comment|/** 	 * The type of this node (as defined by DOM), if known.  	 * @link #UNKNOWN_NODE_TYPE 	 */
-specifier|public
+specifier|private
 name|short
 name|nodeType
 init|=
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
 comment|/** 	 * The first {@link Match} object associated with this node. 	 * Match objects are used to track fulltext hits throughout query processing. 	 *  	 * Matches are stored as a linked list. 	 */
-specifier|public
+specifier|private
 name|Match
 name|match
 init|=
