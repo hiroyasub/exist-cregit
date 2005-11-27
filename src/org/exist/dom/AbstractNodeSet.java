@@ -1353,8 +1353,9 @@ while|while
 condition|(
 name|gid
 operator|!=
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 name|gid
@@ -1516,9 +1517,10 @@ expr_stmt|;
 if|if
 condition|(
 name|pid
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 if|if
