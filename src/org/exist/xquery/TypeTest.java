@@ -224,8 +224,9 @@ block|{
 return|return
 name|nodeType
 operator|==
-operator|-
-literal|1
+name|Type
+operator|.
+name|NODE
 condition|?
 literal|"node()"
 else|:
