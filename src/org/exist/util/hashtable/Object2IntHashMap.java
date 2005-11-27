@@ -36,6 +36,15 @@ name|Object2IntHashMap
 extends|extends
 name|AbstractHashtable
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|UNKNOWN_KEY
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|protected
 name|Object
 index|[]
@@ -269,10 +278,8 @@ operator|==
 literal|null
 condition|)
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
-comment|// key does not exist
 if|else if
 condition|(
 name|keys
@@ -337,10 +344,8 @@ literal|null
 condition|)
 block|{
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
-comment|// key not found
 block|}
 if|else if
 condition|(
@@ -364,8 +369,7 @@ return|;
 block|}
 block|}
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
 block|}
 specifier|public
@@ -537,10 +541,8 @@ literal|null
 condition|)
 block|{
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
-comment|// key does not exist
 block|}
 if|else if
 condition|(
@@ -616,10 +618,8 @@ literal|null
 condition|)
 block|{
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
-comment|// key not found
 block|}
 if|else if
 condition|(
@@ -653,8 +653,7 @@ return|;
 block|}
 block|}
 return|return
-operator|-
-literal|1
+name|UNKNOWN_KEY
 return|;
 block|}
 specifier|public

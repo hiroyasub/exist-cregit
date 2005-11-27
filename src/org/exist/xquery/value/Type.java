@@ -1378,8 +1378,9 @@ if|if
 condition|(
 name|code
 operator|==
-operator|-
-literal|1
+name|Object2IntHashMap
+operator|.
+name|UNKNOWN_KEY
 condition|)
 throw|throw
 operator|new

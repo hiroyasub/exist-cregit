@@ -180,6 +180,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|//Do not change the -1 value since size computation relies on this start value
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|UNSET_SIZE
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -197,8 +207,7 @@ specifier|private
 name|int
 name|size
 init|=
-operator|-
-literal|1
+name|UNSET_SIZE
 decl_stmt|;
 comment|// used to keep track of the type of added items.
 comment|// will be Type.ANY_TYPE if the type is unknown
@@ -270,8 +279,7 @@ argument_list|)
 expr_stmt|;
 name|size
 operator|=
-operator|-
-literal|1
+name|UNSET_SIZE
 expr_stmt|;
 name|itemType
 operator|=
@@ -469,8 +477,7 @@ if|if
 condition|(
 name|size
 operator|==
-operator|-
-literal|1
+name|UNSET_SIZE
 condition|)
 return|return
 name|NodeSet
@@ -720,8 +727,7 @@ if|if
 condition|(
 name|size
 operator|==
-operator|-
-literal|1
+name|UNSET_SIZE
 condition|)
 return|return
 literal|true
