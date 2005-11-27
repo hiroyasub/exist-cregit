@@ -705,13 +705,6 @@ operator|.
 name|getParentId
 argument_list|(
 name|n
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|n
-operator|.
-name|gid
 argument_list|)
 argument_list|,
 name|Node

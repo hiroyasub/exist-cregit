@@ -592,9 +592,12 @@ argument_list|)
 operator|||
 name|p
 operator|.
-name|gid
-operator|<
-literal|0
+name|getGID
+argument_list|()
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 name|serializeToReceiver
@@ -649,7 +652,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,

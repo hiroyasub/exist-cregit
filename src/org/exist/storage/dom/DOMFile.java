@@ -6761,7 +6761,8 @@ literal|"node "
 operator|+
 name|node
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|+
 literal|" not found."
 argument_list|)
@@ -6871,7 +6872,8 @@ name|n
 argument_list|,
 name|node
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 name|iter
 argument_list|)

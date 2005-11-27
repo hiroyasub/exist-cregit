@@ -10579,7 +10579,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 return|;
 return|return
@@ -10627,7 +10628,8 @@ literal|"Node "
 operator|+
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|+
 literal|" not found in document "
 operator|+
@@ -10662,7 +10664,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 return|;
 comment|// retry?
@@ -10701,7 +10704,8 @@ name|setGID
 argument_list|(
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|node

@@ -3537,7 +3537,8 @@ name|delta
 operator|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|-
 name|last
 expr_stmt|;
@@ -3545,7 +3546,8 @@ name|last
 operator|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 name|os
 operator|.
@@ -4282,7 +4284,8 @@ name|delta
 operator|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|-
 name|last
 expr_stmt|;
@@ -4290,7 +4293,8 @@ name|last
 operator|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 name|os
 operator|.
@@ -4459,7 +4463,8 @@ name|i
 argument_list|)
 operator|)
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|==
 name|gid
 condition|)
@@ -4703,7 +4708,8 @@ name|cid
 operator|=
 name|proxy
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|-
 name|prevId
 expr_stmt|;
@@ -4711,7 +4717,8 @@ name|prevId
 operator|=
 name|proxy
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 name|os
 operator|.

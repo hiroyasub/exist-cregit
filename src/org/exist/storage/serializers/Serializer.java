@@ -3333,9 +3333,12 @@ if|if
 condition|(
 name|p
 operator|.
-name|gid
-operator|<
-literal|0
+name|getGID
+argument_list|()
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 name|serializeToReceiver
 argument_list|(

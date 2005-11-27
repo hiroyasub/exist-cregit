@@ -827,7 +827,8 @@ literal|"Internal evaluation error: context node is missing for node "
 operator|+
 name|current
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|+
 literal|" !"
 argument_list|)
