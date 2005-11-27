@@ -829,7 +829,7 @@ name|current
 operator|.
 name|gid
 operator|+
-literal|"!"
+literal|" !"
 argument_list|)
 throw|;
 block|}
@@ -1059,21 +1059,16 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Item
-name|item
-init|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
 name|NodeProxy
 name|p
 init|=
 operator|(
 name|NodeProxy
 operator|)
-name|item
+name|i
+operator|.
+name|nextItem
+argument_list|()
 decl_stmt|;
 name|ContextItem
 name|contextNode
@@ -1113,6 +1108,7 @@ name|getNextItem
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : understand why we sort here...
 name|temp
 operator|.
 name|sortInDocumentOrder
@@ -1145,21 +1141,16 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Item
-name|next
-init|=
-name|j
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
 name|NumericValue
 name|v
 init|=
 operator|(
 name|NumericValue
 operator|)
-name|next
+name|j
+operator|.
+name|nextItem
+argument_list|()
 operator|.
 name|convertTo
 argument_list|(
@@ -1168,6 +1159,8 @@ operator|.
 name|NUMBER
 argument_list|)
 decl_stmt|;
+comment|//... whereas we don't want a sorted array here
+comment|//TODO : rename this method as getInDocumentOrder ? -pb
 name|p
 operator|=
 name|temp
@@ -1195,6 +1188,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception for the else condition ?
 block|}
 block|}
 comment|//TODO : understand why we find other forward axes than the 3 ones above here
@@ -1421,21 +1415,16 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Item
-name|next
-init|=
-name|j
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
 name|NumericValue
 name|v
 init|=
 operator|(
 name|NumericValue
 operator|)
-name|next
+name|j
+operator|.
+name|nextItem
+argument_list|()
 operator|.
 name|convertTo
 argument_list|(
@@ -1494,6 +1483,7 @@ name|pos
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception for the else condition ?
 block|}
 block|}
 block|}
@@ -1591,13 +1581,14 @@ name|pos
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception for the else condition ?
 block|}
 return|return
 name|result
 return|;
 block|}
 block|}
-comment|//TODO : move this to a dedicated Axis class
+comment|//TODO : move this to a dedicated Axis class -pb
 specifier|public
 specifier|final
 specifier|static
@@ -1639,7 +1630,7 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-comment|//TODO : does it actually do anything ?
+comment|//TODO : does this actually do anything ?
 name|super
 operator|.
 name|resetState
