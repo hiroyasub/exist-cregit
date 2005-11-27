@@ -590,7 +590,8 @@ argument_list|()
 argument_list|,
 name|parent
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
@@ -917,13 +918,15 @@ name|pa
 operator|=
 name|na
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 name|pb
 operator|=
 name|nb
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 comment|//			    System.out.println(pa + " -> " + pb);
 name|pb
@@ -1429,7 +1432,8 @@ argument_list|()
 argument_list|,
 name|proxy
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 name|directParent
 argument_list|,
@@ -1505,7 +1509,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1542,7 +1547,8 @@ name|pid
 operator|!=
 name|parent
 operator|.
-name|gid
+name|getGID
+argument_list|()
 condition|)
 name|parent
 operator|=
@@ -1670,7 +1676,8 @@ name|gid
 operator|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 expr_stmt|;
 comment|// calculate parent's gid
 while|while
@@ -2020,11 +2027,13 @@ if|if
 condition|(
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|!=
 name|l
 operator|.
-name|gid
+name|getGID
+argument_list|()
 condition|)
 name|p
 operator|.

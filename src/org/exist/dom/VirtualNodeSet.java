@@ -326,7 +326,8 @@ argument_list|()
 argument_list|,
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 argument_list|)
 operator|!=
@@ -1072,7 +1073,8 @@ if|if
 condition|(
 name|proxy
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|<
 literal|0
 condition|)
@@ -1366,7 +1368,8 @@ name|setGID
 argument_list|(
 name|proxy
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|addChildren

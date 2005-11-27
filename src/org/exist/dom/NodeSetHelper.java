@@ -472,7 +472,8 @@ argument_list|()
 argument_list|,
 name|n
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -595,7 +596,8 @@ argument_list|()
 argument_list|,
 name|n
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -867,7 +869,8 @@ name|gid
 init|=
 name|p
 operator|.
-name|gid
+name|getGID
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1169,7 +1172,8 @@ argument_list|()
 argument_list|,
 name|na
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|pb
@@ -1185,7 +1189,8 @@ argument_list|()
 argument_list|,
 name|nb
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1253,11 +1258,13 @@ if|if
 condition|(
 name|nb
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|<
 name|na
 operator|.
-name|gid
+name|getGID
+argument_list|()
 condition|)
 block|{
 comment|// found a preceding sibling
@@ -1309,11 +1316,13 @@ if|else if
 condition|(
 name|nb
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|>
 name|na
 operator|.
-name|gid
+name|getGID
+argument_list|()
 condition|)
 block|{
 comment|// found a following sibling

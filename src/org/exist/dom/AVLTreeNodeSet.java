@@ -1319,7 +1319,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|==
 name|nodeId
 condition|)
@@ -1334,7 +1335,8 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|<
 name|nodeId
 condition|)
@@ -1543,7 +1545,8 @@ name|println
 argument_list|(
 name|node
 operator|.
-name|gid
+name|getGID
+argument_list|()
 operator|+
 literal|" not found"
 argument_list|)
