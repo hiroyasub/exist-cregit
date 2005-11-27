@@ -224,6 +224,7 @@ name|node
 argument_list|)
 expr_stmt|;
 comment|//System.out.println(node.doc.getDocId() + ":" + node.gid + "->" + pid);
+comment|//TODO : gid should be private ! -pb
 name|node
 operator|.
 name|gid

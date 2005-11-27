@@ -5140,8 +5140,10 @@ name|node
 operator|.
 name|getGID
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 name|LOG
 operator|.
@@ -5162,6 +5164,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : why continue processing ? return ? -pb
 name|this
 operator|.
 name|transaction
