@@ -1252,6 +1252,7 @@ expr_stmt|;
 block|}
 break|break;
 default|default :
+comment|//TODO : what kind of default here ? -pb
 name|System
 operator|.
 name|out
