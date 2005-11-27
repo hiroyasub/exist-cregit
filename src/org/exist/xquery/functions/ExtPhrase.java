@@ -612,7 +612,8 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|gid
 argument_list|)
@@ -1187,7 +1188,8 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 argument_list|,
 name|gid
 argument_list|)

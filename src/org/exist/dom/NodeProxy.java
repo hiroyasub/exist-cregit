@@ -338,7 +338,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|/** 	 * The owner document of this node. 	 */
-specifier|public
+specifier|private
 name|DocumentImpl
 name|doc
 init|=

@@ -1524,7 +1524,8 @@ literal|null
 operator|||
 name|parent
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDocId
 argument_list|()
@@ -2553,7 +2554,8 @@ if|if
 condition|(
 name|p
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getCollection
 argument_list|()

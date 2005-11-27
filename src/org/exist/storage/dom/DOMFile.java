@@ -6738,7 +6738,8 @@ literal|"Node "
 operator|+
 name|node
 operator|.
-name|doc
+name|getDocument
+argument_list|()
 operator|.
 name|getDocId
 argument_list|()
