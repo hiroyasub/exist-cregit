@@ -345,7 +345,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|/** 	 * The unique internal id of this node in the document, if known. 	 * @link #UNKNOWN_NODE_GID 	 * @link #DOCUMENT_NODE_GID 	 * @link #DOCUMENT_ELEMENT_GID 	 */
-specifier|public
+specifier|protected
 name|long
 name|gid
 init|=
