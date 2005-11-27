@@ -726,8 +726,9 @@ specifier|private
 name|long
 name|defaultCacheValidity
 init|=
-operator|-
-literal|1
+name|SourceValidity
+operator|.
+name|INVALID
 decl_stmt|;
 specifier|private
 specifier|final
@@ -2081,8 +2082,9 @@ if|if
 condition|(
 name|cacheValidity
 operator|!=
-operator|-
-literal|1
+name|SourceValidity
+operator|.
+name|INVALID
 condition|)
 block|{
 name|AggregatedValidity

@@ -959,8 +959,9 @@ if|if
 condition|(
 name|e1
 operator|==
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 condition|)
 block|{
 return|return
@@ -1020,8 +1021,9 @@ if|if
 condition|(
 name|e1
 operator|==
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 condition|)
 block|{
 return|return
@@ -1031,8 +1033,9 @@ block|}
 name|int
 name|e0
 init|=
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 decl_stmt|;
 while|while
 condition|(
@@ -1058,8 +1061,9 @@ if|if
 condition|(
 name|e0
 operator|==
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 condition|)
 block|{
 comment|// hit the end, no match
@@ -1134,8 +1138,9 @@ operator|.
 name|next
 argument_list|()
 operator|==
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 condition|)
 block|{
 comment|// the match is at the end
@@ -1179,8 +1184,9 @@ argument_list|()
 expr_stmt|;
 name|e0
 operator|=
-operator|-
-literal|1
+name|CollationElementIterator
+operator|.
+name|NULLORDER
 expr_stmt|;
 name|e1
 operator|=
