@@ -571,6 +571,7 @@ name|configFound
 init|=
 literal|false
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
