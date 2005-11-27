@@ -5141,9 +5141,9 @@ operator|.
 name|getGID
 argument_list|()
 operator|==
-name|NodeProxy
+name|NodeImpl
 operator|.
-name|DOCUMENT_NODE_GID
+name|UNKNOWN_NODE_IMPL_GID
 condition|)
 name|LOG
 operator|.
@@ -8968,6 +8968,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+comment|//TODO : what are the semantics of this 1 ? -pb
 if|if
 condition|(
 name|node
@@ -12087,22 +12088,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|DBException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"db error while removing document"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -12366,24 +12351,6 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"start() - "
-operator|+
-literal|"error while removing doc"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|DBException
 name|e
 parameter_list|)
 block|{
