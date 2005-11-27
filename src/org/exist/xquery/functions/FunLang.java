@@ -105,6 +105,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Dependency
 import|;
 end_import
@@ -141,7 +153,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -153,7 +165,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -495,8 +507,9 @@ if|if
 condition|(
 name|hyphen
 operator|!=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|langValue

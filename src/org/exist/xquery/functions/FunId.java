@@ -135,7 +135,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|Cardinality
 import|;
 end_import
 
@@ -147,7 +147,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|Constants
 import|;
 end_import
 
@@ -171,7 +171,19 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionSignature
 import|;
 end_import
 
@@ -184,6 +196,18 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -491,11 +515,12 @@ name|nextId
 operator|.
 name|indexOf
 argument_list|(
-literal|' '
+literal|" "
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 comment|// parse idrefs

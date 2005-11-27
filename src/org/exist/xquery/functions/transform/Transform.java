@@ -61,16 +61,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -417,9 +407,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|serializers
+name|lock
 operator|.
-name|Serializer
+name|Lock
 import|;
 end_import
 
@@ -431,9 +421,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|lock
+name|serializers
 operator|.
-name|Lock
+name|Serializer
 import|;
 end_import
 
@@ -458,6 +448,18 @@ operator|.
 name|xquery
 operator|.
 name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -592,20 +594,6 @@ operator|.
 name|value
 operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
 import|;
 end_import
 
@@ -1765,9 +1753,10 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 name|base
 operator|=

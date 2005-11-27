@@ -1703,9 +1703,10 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */

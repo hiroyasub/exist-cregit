@@ -47,6 +47,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -71,7 +83,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -83,7 +95,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -414,9 +426,10 @@ expr_stmt|;
 if|if
 condition|(
 name|p
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 if|if

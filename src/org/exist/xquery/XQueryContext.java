@@ -932,7 +932,7 @@ argument_list|(
 literal|"exist:serialize"
 argument_list|)
 operator|)
-comment|/*&& (pragma.getContents().indexOf("method") != -1)*/
+comment|/*&& (pragma.getContents().indexOf("method") != Constants.STRING_NOT_FOUND)*/
 condition|)
 block|{
 comment|//yes, so modify the content from the existing pragma
@@ -953,8 +953,9 @@ argument_list|(
 literal|"method="
 argument_list|)
 operator|!=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|content
@@ -989,8 +990,9 @@ argument_list|(
 literal|"indent="
 argument_list|)
 operator|!=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|content
@@ -1037,8 +1039,9 @@ argument_list|(
 literal|"omit-xml-declaration"
 argument_list|)
 operator|!=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|content

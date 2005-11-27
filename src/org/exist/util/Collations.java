@@ -55,7 +55,7 @@ name|java
 operator|.
 name|text
 operator|.
-name|RuleBasedCollator
+name|ParseException
 import|;
 end_import
 
@@ -65,7 +65,17 @@ name|java
 operator|.
 name|text
 operator|.
-name|ParseException
+name|RuleBasedCollator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
 import|;
 end_import
 
@@ -98,6 +108,18 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -772,9 +794,10 @@ name|indexOf
 argument_list|(
 name|s2
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 return|;
 else|else
 block|{
