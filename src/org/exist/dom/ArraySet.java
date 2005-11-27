@@ -99,7 +99,13 @@ index|[]
 decl_stmt|;
 specifier|protected
 name|boolean
-name|sorted
+name|sortedNaturally
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
+name|boolean
+name|sortedInDocumentOrder
 init|=
 literal|false
 decl_stmt|;
@@ -146,9 +152,6 @@ name|int
 name|len
 parameter_list|)
 block|{
-name|int
-name|level
-decl_stmt|;
 name|boolean
 name|foundValid
 init|=
@@ -261,6 +264,7 @@ decl_stmt|;
 name|int
 name|cmp
 decl_stmt|;
+comment|//Remember that items must be sorted !
 while|while
 condition|(
 name|low
@@ -351,9 +355,10 @@ block|{
 name|int
 name|mid
 decl_stmt|;
-name|int
+name|NodeProxy
 name|cmp
 decl_stmt|;
+comment|//Remember that items must be sorted !
 while|while
 condition|(
 name|low
@@ -371,12 +376,16 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
-if|if
-condition|(
+name|cmp
+operator|=
 name|items
 index|[
 name|mid
 index|]
+expr_stmt|;
+if|if
+condition|(
+name|cmp
 operator|.
 name|getDocument
 argument_list|()
@@ -390,10 +399,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|items
-index|[
-name|mid
-index|]
+name|cmp
 operator|.
 name|gid
 operator|==
@@ -404,10 +410,7 @@ name|mid
 return|;
 if|else if
 condition|(
-name|items
-index|[
-name|mid
-index|]
+name|cmp
 operator|.
 name|gid
 operator|>
@@ -429,10 +432,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|items
-index|[
-name|mid
-index|]
+name|cmp
 operator|.
 name|getDocument
 argument_list|()
@@ -485,6 +485,7 @@ name|NodeProxy
 name|upper
 parameter_list|)
 block|{
+comment|//TODO : dimension as high - low ?
 name|ArraySet
 name|result
 init|=
@@ -551,6 +552,7 @@ decl_stmt|;
 name|int
 name|cmp
 decl_stmt|;
+comment|//Remember that items must be sorted !
 while|while
 condition|(
 name|low
@@ -674,13 +676,6 @@ operator|++
 index|]
 argument_list|)
 expr_stmt|;
-name|result
-operator|.
-name|setIsSorted
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 return|return
 name|result
 return|;
@@ -777,7 +772,11 @@ operator|=
 name|proxy
 expr_stmt|;
 block|}
-name|sorted
+name|sortedNaturally
+operator|=
+literal|false
+expr_stmt|;
+name|sortedInDocumentOrder
 operator|=
 literal|false
 expr_stmt|;
@@ -829,9 +828,6 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
-name|sort
-argument_list|()
-expr_stmt|;
 name|NodeProxy
 name|p
 init|=
@@ -890,43 +886,22 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
-name|sort
-argument_list|()
-expr_stmt|;
-name|int
-name|pos
+name|NodeProxy
+name|p
 init|=
-name|search
+operator|new
+name|NodeProxy
 argument_list|(
-name|nodes
-argument_list|,
-literal|0
-argument_list|,
-name|counter
-operator|-
-literal|1
-argument_list|,
 name|doc
 argument_list|,
 name|nodeId
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|pos
-operator|<
-literal|0
-condition|)
-block|{
 return|return
-literal|null
-return|;
-block|}
-return|return
-name|nodes
-index|[
-name|pos
-index|]
+name|get
+argument_list|(
+name|p
+argument_list|)
 return|;
 block|}
 specifier|public
@@ -1013,6 +988,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+comment|//TODO : what if the Array has been sorted ?
 if|if
 condition|(
 name|pos
@@ -1163,9 +1139,12 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+comment|//TODO : understand why this can be true ?  -pb
+comment|//Would, at best, have expected result.sortedNaturally = this.sortedNaturally
+comment|//Why not also handle sortedInDocumentOrder ?
 name|result
 operator|.
-name|sorted
+name|sortedNaturally
 operator|=
 literal|true
 expr_stmt|;
@@ -2361,15 +2340,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-specifier|protected
-name|boolean
-name|isSorted
-parameter_list|()
-block|{
-return|return
-name|sorted
-return|;
-block|}
+comment|//protected boolean isSorted() {
+comment|//	return sorted;
+comment|//}
 specifier|public
 name|Node
 name|item
@@ -2378,31 +2351,23 @@ name|int
 name|pos
 parameter_list|)
 block|{
-if|if
-condition|(
-name|pos
-operator|>=
-name|counter
-operator|||
-name|pos
-operator|<
-literal|0
-condition|)
-return|return
-literal|null
-return|;
-name|sort
-argument_list|()
-expr_stmt|;
 name|NodeProxy
 name|p
 init|=
-name|nodes
-index|[
+name|get
+argument_list|(
 name|pos
-index|]
+argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|p
+operator|==
+literal|null
+operator|)
+condition|?
+literal|null
+else|:
 name|p
 operator|.
 name|getNode
@@ -2444,6 +2409,7 @@ name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 block|{
+comment|//TODO : explain this sort -pb
 name|sort
 argument_list|()
 expr_stmt|;
@@ -2556,10 +2522,11 @@ decl_stmt|;
 if|if
 condition|(
 name|pos
-operator|<
-literal|0
+operator|>
+operator|-
+literal|1
 condition|)
-return|return;
+block|{
 name|NodeProxy
 index|[]
 name|temp
@@ -2619,11 +2586,12 @@ expr_stmt|;
 name|counter
 operator|--
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"removal of node took "
+literal|"Removal of node took "
 operator|+
 operator|(
 name|System
@@ -2723,16 +2691,9 @@ return|return
 name|docs
 return|;
 block|}
-specifier|public
-name|void
-name|setIsSorted
-parameter_list|(
-name|boolean
-name|sorted
-parameter_list|)
-block|{
+comment|//public void setIsSorted(boolean sorted) {
 comment|//this.sorted = sorted;
-block|}
+comment|//}
 specifier|public
 name|void
 name|sort
@@ -2742,7 +2703,7 @@ if|if
 condition|(
 name|this
 operator|.
-name|sorted
+name|sortedNaturally
 operator|||
 name|counter
 operator|<
@@ -2765,11 +2726,13 @@ expr_stmt|;
 name|removeDuplicateNodes
 argument_list|()
 expr_stmt|;
-name|this
-operator|.
-name|sorted
+name|sortedNaturally
 operator|=
 literal|true
+expr_stmt|;
+name|sortedInDocumentOrder
+operator|=
+literal|false
 expr_stmt|;
 block|}
 specifier|public
@@ -2779,6 +2742,10 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|this
+operator|.
+name|sortedInDocumentOrder
+operator|||
 name|counter
 operator|<
 literal|2
@@ -2802,11 +2769,13 @@ expr_stmt|;
 name|removeDuplicateNodes
 argument_list|()
 expr_stmt|;
-name|this
-operator|.
-name|sorted
+name|sortedNaturally
 operator|=
 literal|false
+expr_stmt|;
+name|sortedInDocumentOrder
+operator|=
+literal|true
 expr_stmt|;
 block|}
 specifier|private
@@ -2887,7 +2856,11 @@ name|counter
 operator|=
 literal|0
 expr_stmt|;
-name|sorted
+name|sortedNaturally
+operator|=
+literal|false
+expr_stmt|;
+name|sortedInDocumentOrder
 operator|=
 literal|false
 expr_stmt|;
@@ -3540,10 +3513,7 @@ index|[
 name|b
 index|]
 operator|=
-name|nodes
-index|[
-name|a
-index|]
+name|t
 expr_stmt|;
 block|}
 specifier|public
