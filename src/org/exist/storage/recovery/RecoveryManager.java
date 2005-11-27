@@ -333,8 +333,9 @@ decl_stmt|;
 name|long
 name|lastLsn
 init|=
-operator|-
-literal|1
+name|Lsn
+operator|.
+name|LSN_INVALID
 decl_stmt|;
 name|Loggable
 name|next

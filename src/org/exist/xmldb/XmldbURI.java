@@ -140,6 +140,15 @@ specifier|public
 class|class
 name|XmldbURI
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NO_PORT
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|//Should be provided by org.xmldb.api package !!!
 specifier|public
 specifier|static
@@ -165,8 +174,7 @@ specifier|private
 name|int
 name|port
 init|=
-operator|-
-literal|1
+name|NO_PORT
 decl_stmt|;
 specifier|private
 name|String
@@ -400,8 +408,7 @@ name|this
 operator|.
 name|port
 operator|=
-operator|-
-literal|1
+name|NO_PORT
 expr_stmt|;
 name|this
 operator|.
@@ -787,9 +794,8 @@ block|{
 if|if
 condition|(
 name|port
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NO_PORT
 condition|)
 comment|//Put the "right" URI in the message ;-)
 throw|throw
@@ -911,9 +917,8 @@ expr_stmt|;
 if|if
 condition|(
 name|port
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NO_PORT
 condition|)
 name|buf
 operator|.
@@ -1093,16 +1098,14 @@ operator|.
 name|getPort
 argument_list|()
 operator|!=
-operator|-
-literal|1
+name|NO_PORT
 operator|&&
 name|uri
 operator|.
 name|getPort
 argument_list|()
 operator|!=
-operator|-
-literal|1
+name|NO_PORT
 operator|&&
 name|this
 operator|.
@@ -1292,16 +1295,14 @@ operator|.
 name|getPort
 argument_list|()
 operator|!=
-operator|-
-literal|1
+name|NO_PORT
 operator|&&
 name|uri
 operator|.
 name|getPort
 argument_list|()
 operator|!=
-operator|-
-literal|1
+name|NO_PORT
 operator|&&
 name|this
 operator|.

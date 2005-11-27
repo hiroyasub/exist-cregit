@@ -1736,8 +1736,9 @@ literal|false
 argument_list|,
 literal|true
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 expr_stmt|;
 else|else
@@ -6776,8 +6777,9 @@ literal|false
 argument_list|,
 literal|true
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_LEVEL
 argument_list|)
 expr_stmt|;
 else|else

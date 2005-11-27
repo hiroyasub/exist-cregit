@@ -15,6 +15,22 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|btree
+operator|.
+name|Paged
+operator|.
+name|Page
+import|;
+end_import
+
 begin_comment
 comment|/**  * Used to track the available amount of free space in a data page.  *   * @see FreeList  * @author wolf  */
 end_comment
@@ -34,8 +50,9 @@ specifier|protected
 name|long
 name|page
 init|=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 decl_stmt|;
 specifier|protected
 name|FreeSpace

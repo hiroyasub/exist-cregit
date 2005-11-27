@@ -192,9 +192,8 @@ operator|-
 literal|1
 init|;
 name|i
-operator|>
-operator|-
-literal|1
+operator|>=
+literal|0
 condition|;
 name|i
 operator|--

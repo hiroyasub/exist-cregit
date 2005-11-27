@@ -6543,9 +6543,10 @@ condition|(
 name|loggable
 operator|.
 name|prevPage
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 try|try
@@ -6658,9 +6659,10 @@ condition|(
 name|loggable
 operator|.
 name|prevPage
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 try|try
@@ -7116,9 +7118,10 @@ condition|(
 name|loggable
 operator|.
 name|prevPage
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|page
@@ -11381,8 +11384,9 @@ decl_stmt|;
 name|long
 name|prevPageNum
 init|=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 decl_stmt|;
 comment|// walk through chain of pages
 while|while
