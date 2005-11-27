@@ -173,6 +173,18 @@ name|Txn
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the WebDAV MKCOL method.  *   * @author wolf  */
 end_comment
@@ -332,10 +344,13 @@ decl_stmt|;
 name|String
 name|parentPath
 init|=
-operator|-
-literal|1
-operator|<
+operator|(
 name|p
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
+operator|)
 condition|?
 name|path
 operator|.
@@ -353,10 +368,13 @@ decl_stmt|;
 name|String
 name|newCollection
 init|=
-operator|-
-literal|1
-operator|<
+operator|(
 name|p
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
+operator|)
 condition|?
 name|path
 operator|.

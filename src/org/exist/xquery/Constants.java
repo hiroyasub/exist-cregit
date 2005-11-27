@@ -608,6 +608,16 @@ name|FULLTEXT_AND
 init|=
 literal|1
 decl_stmt|;
+comment|//The defenitive missing constant in java.lang.string
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|STRING_NOT_FOUND
+init|=
+operator|-
+literal|1
+decl_stmt|;
 block|}
 end_interface
 

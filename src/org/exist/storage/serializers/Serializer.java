@@ -473,6 +473,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -2715,9 +2727,10 @@ name|indexOf
 argument_list|(
 literal|":"
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|StreamSource
@@ -4082,9 +4095,10 @@ name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 comment|// href is an URL pointing to an external resource
 return|return

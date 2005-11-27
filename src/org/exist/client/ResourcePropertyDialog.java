@@ -294,6 +294,15 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|NO_OPTION
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|APPLY_OPTION
 init|=
 literal|0
@@ -345,8 +354,7 @@ decl_stmt|;
 name|int
 name|result
 init|=
-operator|-
-literal|1
+name|NO_OPTION
 decl_stmt|;
 comment|/** 	 * @param owner 	 * @param title 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
 specifier|public

@@ -209,6 +209,18 @@ name|FileUploadException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/** A wrapper for requests processed by a servlet.  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -1011,8 +1023,9 @@ if|if
 condition|(
 name|lastFileSepPos
 operator|!=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|documentName
