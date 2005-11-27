@@ -25,6 +25,18 @@ name|HashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|cluster
+operator|.
+name|ClusterEvent
+import|;
+end_import
+
 begin_comment
 comment|/**  * Manage the generation of the unique journal Id  * Created by Nicola Breda.  *  * @author Nicola Breda aka maiale  * @author David Frontini aka spider  *         Date: 05-aug-2005  *         Time: 18.09.08  *         Revision $Revision$  */
 end_comment
@@ -45,8 +57,9 @@ specifier|private
 name|int
 name|lastId
 init|=
-operator|-
-literal|1
+name|ClusterEvent
+operator|.
+name|NO_EVENT
 decl_stmt|;
 specifier|private
 name|int

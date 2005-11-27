@@ -89,6 +89,15 @@ name|ClusterEvent
 implements|implements
 name|Serializable
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NO_EVENT
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -109,8 +118,7 @@ specifier|private
 name|int
 name|id
 init|=
-operator|-
-literal|1
+name|NO_EVENT
 decl_stmt|;
 specifier|private
 name|int

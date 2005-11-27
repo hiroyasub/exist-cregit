@@ -1680,8 +1680,9 @@ comment|//TODO: per ora assumiamo che il master (o chi diventa master) sia allin
 name|int
 name|last
 init|=
-operator|-
-literal|1
+name|ClusterEvent
+operator|.
+name|NO_EVENT
 decl_stmt|;
 try|try
 block|{
@@ -2125,7 +2126,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Manage event id  "
+literal|"Manage event id "
 operator|+
 name|event
 operator|.
