@@ -508,8 +508,9 @@ specifier|protected
 name|long
 name|firstChild
 init|=
-operator|-
-literal|1
+name|NodeImpl
+operator|.
+name|UNKNOWN_NODE_IMPL_GID
 decl_stmt|;
 specifier|protected
 name|Map
@@ -682,8 +683,9 @@ argument_list|()
 expr_stmt|;
 name|firstChild
 operator|=
-operator|-
-literal|1
+name|NodeImpl
+operator|.
+name|UNKNOWN_NODE_IMPL_GID
 expr_stmt|;
 name|gid
 operator|=
@@ -1232,8 +1234,10 @@ name|child
 operator|.
 name|getGID
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|NodeImpl
+operator|.
+name|UNKNOWN_NODE_IMPL_GID
 condition|)
 block|{
 specifier|final
@@ -3534,9 +3538,10 @@ return|;
 if|if
 condition|(
 name|firstChild
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NodeImpl
+operator|.
+name|UNKNOWN_NODE_IMPL_GID
 condition|)
 return|return
 name|firstChild
@@ -4946,8 +4951,9 @@ name|hasChildNodes
 argument_list|()
 condition|)
 return|return
-operator|-
-literal|1
+name|NodeImpl
+operator|.
+name|UNKNOWN_NODE_IMPL_GID
 return|;
 return|return
 name|firstChildID
@@ -6975,6 +6981,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use NodeImpl.UNKNOWN_NODE_IMPL_GID ? -pb
 name|appendChildren
 argument_list|(
 name|transaction
@@ -7207,6 +7214,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use NodeImpl.UNKNOWN_NODE_IMPL_GID ? -pb
 name|appendChildren
 argument_list|(
 literal|null
@@ -8208,9 +8216,8 @@ operator|-
 literal|1
 init|;
 name|i
-operator|>
-operator|-
-literal|1
+operator|>=
+literal|0
 condition|;
 name|i
 operator|--
