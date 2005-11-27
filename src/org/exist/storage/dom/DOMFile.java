@@ -1360,8 +1360,9 @@ name|page
 operator|==
 literal|null
 condition|?
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 else|:
 name|page
 operator|.
@@ -1373,8 +1374,9 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 decl_stmt|;
 name|writeToLog
@@ -2356,8 +2358,9 @@ operator|.
 name|getNextDataPage
 argument_list|()
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 comment|// link the next page in the chain back to the new page inserted
@@ -3507,8 +3510,9 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|,
 name|rec
 operator|.
@@ -4164,8 +4168,9 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|,
 name|rec
 operator|.
@@ -5505,8 +5510,9 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|,
 name|nextPage
 operator|.
@@ -6270,24 +6276,27 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setNextPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
@@ -7700,16 +7709,18 @@ name|CreatePageLoggable
 argument_list|(
 name|transaction
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|,
 name|page
 operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 decl_stmt|;
 name|writeToLog
@@ -8913,9 +8924,10 @@ name|ph
 operator|.
 name|getNextDataPage
 argument_list|()
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|DOMPage
@@ -8964,9 +8976,10 @@ name|ph
 operator|.
 name|getPrevDataPage
 argument_list|()
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|DOMPage
@@ -9015,16 +9028,18 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
@@ -9227,16 +9242,18 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
@@ -10596,9 +10613,10 @@ decl_stmt|;
 while|while
 condition|(
 name|pageNr
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|page
@@ -10903,8 +10921,9 @@ name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 if|if
@@ -10948,8 +10967,9 @@ name|loggable
 operator|.
 name|nextPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -10965,8 +10985,9 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 if|if
@@ -10975,8 +10996,9 @@ name|loggable
 operator|.
 name|prevPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -10992,8 +11014,9 @@ name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 block|}
@@ -11026,7 +11049,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//        if (loggable.prevPage> -1) {
+comment|//        if (loggable.prevPage> Page.NO_PAGE) {
 comment|//            DOMPage oldPage = getCurrentPage(loggable.prevPage);
 comment|//            oldPage.ph.setNextDataPage(
 comment|//                    newPage.getPageNum());
@@ -11034,7 +11057,7 @@ comment|//            oldPage.setDirty(true);
 comment|//            dataCache.add(oldPage);
 comment|//            ph.setPrevDataPage(oldPage.getPageNum());
 comment|//        }
-comment|//        if (loggable.nextPage> -1) {
+comment|//        if (loggable.nextPage> Page.NO_PAGE) {
 comment|//            DOMPage oldPage = getCurrentPage(loggable.nextPage);
 comment|//            oldPage.ph.setPrevDataPage(
 comment|//                    newPage.getPageNum());
@@ -11089,16 +11112,18 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
@@ -12721,8 +12746,9 @@ name|loggable
 operator|.
 name|prevPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|DOMPage
@@ -12784,8 +12810,9 @@ argument_list|()
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 if|if
@@ -12794,8 +12821,9 @@ name|loggable
 operator|.
 name|nextPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|DOMPage
@@ -12856,8 +12884,9 @@ argument_list|()
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|newPage
@@ -12967,16 +12996,18 @@ name|ph
 operator|.
 name|setNextDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
 operator|.
 name|setPrevDataPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 name|ph
@@ -13281,9 +13312,10 @@ condition|(
 name|loggable
 operator|.
 name|nextPage
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|ph
@@ -13302,8 +13334,9 @@ name|ph
 operator|.
 name|setNextPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 block|}
@@ -13605,9 +13638,10 @@ condition|(
 name|loggable
 operator|.
 name|nextPage
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|ph
@@ -13626,8 +13660,9 @@ name|ph
 operator|.
 name|setNextPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 block|}
@@ -15437,8 +15472,9 @@ name|loggable
 operator|.
 name|nextPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -15455,8 +15491,9 @@ name|loggable
 operator|.
 name|prevPage
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -15527,8 +15564,9 @@ name|loggable
 operator|.
 name|oldPrev
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -15545,8 +15583,9 @@ name|loggable
 operator|.
 name|oldNext
 operator|!=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|ph
 operator|.
@@ -15675,15 +15714,17 @@ specifier|protected
 name|long
 name|nextDataPage
 init|=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 decl_stmt|;
 specifier|protected
 name|long
 name|prevDataPage
 init|=
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 decl_stmt|;
 specifier|protected
 name|short
@@ -17140,7 +17181,7 @@ name|createNewPage
 argument_list|()
 expr_stmt|;
 comment|// if (transaction != null) {
-comment|// Loggable loggable = new CreatePageLoggable(transaction, -1,
+comment|// Loggable loggable = new CreatePageLoggable(transaction, Page.NO_PAGE,
 comment|// firstPage.getPageNum());
 comment|// writeToLog(loggable, firstPage);
 comment|// }
@@ -17288,8 +17329,9 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 if|if
@@ -17323,8 +17365,9 @@ operator|.
 name|getPageNum
 argument_list|()
 else|:
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|,
 name|value
 argument_list|)
@@ -17446,10 +17489,13 @@ argument_list|()
 expr_stmt|;
 name|page
 operator|=
+operator|(
 name|np
 operator|>
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
+operator|)
 condition|?
 name|getPage
 argument_list|(
@@ -17596,10 +17642,13 @@ argument_list|)
 expr_stmt|;
 name|page
 operator|=
+operator|(
 name|np
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
+operator|)
 condition|?
 name|getPage
 argument_list|(

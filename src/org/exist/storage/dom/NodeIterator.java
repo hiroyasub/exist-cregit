@@ -127,6 +127,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|btree
+operator|.
+name|Paged
+operator|.
+name|Page
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|lock
 operator|.
 name|Lock
@@ -1314,9 +1330,10 @@ block|}
 if|else if
 condition|(
 name|page
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|p

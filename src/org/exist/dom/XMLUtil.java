@@ -1360,9 +1360,11 @@ operator|<
 literal|0
 condition|)
 block|{
+comment|//TODO : compare with below -pb
 return|return
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 return|;
 block|}
 return|return
@@ -1395,6 +1397,7 @@ name|int
 name|level
 parameter_list|)
 block|{
+comment|//TODO : compare with above -pb
 if|if
 condition|(
 name|level
@@ -1402,8 +1405,9 @@ operator|<
 literal|1
 condition|)
 return|return
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 return|;
 return|return
 operator|(
@@ -1471,9 +1475,10 @@ argument_list|,
 name|descendant
 argument_list|)
 operator|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 if|if
@@ -1518,9 +1523,10 @@ argument_list|,
 name|descendant
 argument_list|)
 operator|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 if|if

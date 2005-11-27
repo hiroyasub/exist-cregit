@@ -467,6 +467,15 @@ block|{
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|UNKNOWN_DOCUMENT_ID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|byte
 name|XML_FILE
 init|=
@@ -539,8 +548,7 @@ specifier|protected
 name|int
 name|docId
 init|=
-operator|-
-literal|1
+name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
 comment|// document's document type
 specifier|protected
@@ -4330,9 +4338,8 @@ operator|-
 literal|1
 init|;
 name|i
-operator|>
-operator|-
-literal|1
+operator|>=
+literal|0
 condition|;
 name|i
 operator|--

@@ -1102,8 +1102,9 @@ name|NodeProxy
 argument_list|(
 name|doc
 argument_list|,
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 argument_list|)
 argument_list|)
 expr_stmt|;

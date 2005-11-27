@@ -1049,8 +1049,10 @@ name|doc
 operator|.
 name|getDocId
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
 condition|)
 name|doc
 operator|.
