@@ -3164,7 +3164,7 @@ argument_list|)
 condition|)
 name|fileName
 operator|=
-literal|'/'
+literal|"/"
 operator|+
 name|fileName
 expr_stmt|;

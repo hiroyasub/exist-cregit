@@ -539,18 +539,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NativeBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|XQueryPool
 import|;
 end_import
@@ -760,6 +748,18 @@ operator|.
 name|xquery
 operator|.
 name|CompiledXQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -3814,6 +3814,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -3821,7 +3822,7 @@ name|name
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -4092,6 +4093,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -4099,7 +4101,7 @@ name|name
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -5746,13 +5748,14 @@ operator|.
 name|getFileName
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|p
 operator|=
 name|resource
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 expr_stmt|;
 name|vec
@@ -5760,8 +5763,10 @@ operator|.
 name|addElement
 argument_list|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|?
 name|resource
 else|:
@@ -6456,11 +6461,12 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|path
 operator|=
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|child
 expr_stmt|;
@@ -7669,6 +7675,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -7676,14 +7683,16 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -8125,6 +8134,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -8132,14 +8142,16 @@ name|docName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -8543,6 +8555,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -8550,14 +8563,16 @@ name|docName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -9847,6 +9862,7 @@ name|NodeProxy
 operator|)
 name|next
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|entry
 operator|.
 name|addElement
@@ -9862,7 +9878,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|p
 operator|.
@@ -10368,6 +10384,7 @@ name|NodeProxy
 operator|)
 name|next
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|entry
 operator|.
 name|addElement
@@ -10383,7 +10400,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|p
 operator|.
@@ -10647,14 +10664,16 @@ name|docPath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -13725,6 +13744,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|docName
 operator|=
 name|p
@@ -13738,7 +13758,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|p
 operator|.
@@ -14322,6 +14342,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|docName
 operator|=
 name|p
@@ -14335,7 +14356,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|p
 operator|.
@@ -15854,6 +15875,7 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|// get source document
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -15861,14 +15883,16 @@ name|docPath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
