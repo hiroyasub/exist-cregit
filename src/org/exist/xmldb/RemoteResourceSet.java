@@ -539,6 +539,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -552,7 +553,7 @@ name|doc
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 argument_list|)
 decl_stmt|;

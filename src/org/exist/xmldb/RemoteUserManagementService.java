@@ -349,6 +349,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -365,7 +366,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -633,6 +634,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -649,7 +651,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -753,6 +755,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -769,7 +772,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1075,6 +1078,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -1091,7 +1095,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1195,6 +1199,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -1211,7 +1216,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1327,6 +1332,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -1343,7 +1349,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1560,6 +1566,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -1576,7 +1583,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1935,6 +1942,7 @@ operator|.
 name|getPermissions
 argument_list|()
 return|;
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -1951,7 +1959,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
