@@ -1466,12 +1466,13 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+comment|//TODO : use dedicated function in XmldbURI
 name|childName
 operator|=
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|name
 expr_stmt|;

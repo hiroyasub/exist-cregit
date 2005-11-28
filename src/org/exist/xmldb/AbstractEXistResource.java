@@ -228,13 +228,14 @@ name|parent
 operator|=
 name|parent
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|docId
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|!=
 name|Constants
@@ -251,7 +252,7 @@ name|docId
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|+
 literal|1
