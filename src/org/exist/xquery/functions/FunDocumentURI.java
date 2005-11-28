@@ -304,6 +304,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|path
 init|=
@@ -318,7 +319,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|node
 operator|.

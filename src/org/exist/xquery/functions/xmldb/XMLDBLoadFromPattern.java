@@ -701,6 +701,7 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|stored
 operator|.
 name|add
@@ -713,7 +714,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|resource
 operator|.

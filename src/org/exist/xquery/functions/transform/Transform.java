@@ -1740,6 +1740,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -1747,7 +1748,7 @@ name|stylesheet
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
@@ -2421,6 +2422,7 @@ name|url
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|url
 operator|=
 operator|new
@@ -2428,7 +2430,7 @@ name|URL
 argument_list|(
 name|baseURI
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|href
 argument_list|)
@@ -2522,6 +2524,7 @@ decl_stmt|;
 name|String
 name|path
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|href
@@ -2543,7 +2546,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|href
 expr_stmt|;

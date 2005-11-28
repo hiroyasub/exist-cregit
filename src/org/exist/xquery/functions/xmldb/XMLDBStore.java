@@ -1186,6 +1186,7 @@ return|;
 else|else
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 return|return
 operator|new
 name|StringValue
@@ -1195,7 +1196,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|resource
 operator|.

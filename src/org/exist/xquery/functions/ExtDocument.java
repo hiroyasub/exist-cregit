@@ -607,6 +607,7 @@ argument_list|(
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
 throw|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|next
@@ -625,7 +626,7 @@ operator|.
 name|getBaseURI
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|next
 expr_stmt|;

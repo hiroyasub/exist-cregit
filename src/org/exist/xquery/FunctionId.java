@@ -161,7 +161,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|argCount
 return|;
