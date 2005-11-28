@@ -4312,6 +4312,7 @@ name|XMLDB_URI_START
 argument_list|)
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|location
@@ -4320,14 +4321,16 @@ name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 name|location
 operator|=
 name|moduleLoadPath
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|location
 expr_stmt|;

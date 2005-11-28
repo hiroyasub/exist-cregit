@@ -928,7 +928,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 expr_stmt|;
 else|else
@@ -1044,7 +1044,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 expr_stmt|;
 else|else

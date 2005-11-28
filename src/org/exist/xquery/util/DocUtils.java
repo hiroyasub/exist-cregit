@@ -690,7 +690,7 @@ operator|.
 name|getBaseURI
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|path
 expr_stmt|;
