@@ -1337,8 +1337,10 @@ return|;
 if|if
 condition|(
 name|level
-operator|<
-literal|0
+operator|==
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_LEVEL
 condition|)
 name|level
 operator|=

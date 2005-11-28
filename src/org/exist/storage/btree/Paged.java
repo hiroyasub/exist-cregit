@@ -2667,8 +2667,10 @@ expr_stmt|;
 if|if
 condition|(
 name|pageNum
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 throw|throw
 operator|new

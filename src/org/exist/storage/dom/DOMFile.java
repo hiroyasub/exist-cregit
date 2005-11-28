@@ -7656,8 +7656,10 @@ decl_stmt|;
 if|if
 condition|(
 name|pnum
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 specifier|final
@@ -10091,8 +10093,10 @@ decl_stmt|;
 if|if
 condition|(
 name|nextPage
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|SanityCheck
