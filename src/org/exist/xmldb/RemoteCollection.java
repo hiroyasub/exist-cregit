@@ -691,13 +691,14 @@ condition|)
 name|readCollection
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|name
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|!=
 name|Constants
@@ -727,7 +728,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|name
 argument_list|)
@@ -800,6 +801,7 @@ name|ROOT_COLLECTION
 argument_list|)
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 name|parentName
 init|=
@@ -813,7 +815,7 @@ name|name
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1378,6 +1380,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 operator|(
@@ -1390,7 +1393,7 @@ index|]
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|)
 operator|!=
@@ -1579,6 +1582,7 @@ operator|new
 name|Vector
 argument_list|()
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -1586,7 +1590,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|name
 argument_list|)
@@ -1685,6 +1689,7 @@ comment|// resource does not exist!
 name|int
 name|p
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 operator|(
@@ -1694,7 +1699,7 @@ name|docName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|)
 operator|!=
@@ -2091,6 +2096,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|RemoteCollection
 name|child
 init|=
@@ -2104,7 +2110,7 @@ argument_list|,
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|)
@@ -2163,6 +2169,7 @@ condition|)
 name|readCollection
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|childCollections
 operator|.
 name|remove
@@ -2170,7 +2177,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|name
 argument_list|)
@@ -2193,6 +2200,7 @@ operator|new
 name|Vector
 argument_list|()
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -2200,7 +2208,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -2655,6 +2663,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -2662,7 +2671,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -2811,6 +2820,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -2818,7 +2828,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -3098,6 +3108,7 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -3105,7 +3116,7 @@ argument_list|(
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
