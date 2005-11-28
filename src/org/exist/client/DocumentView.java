@@ -536,6 +536,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|super
 argument_list|(
 literal|"View Document: "
@@ -548,7 +549,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|resourceName
 argument_list|)

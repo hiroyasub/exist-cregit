@@ -231,6 +231,18 @@ name|LockException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the WebDAV move method.  * @author wolf  */
 end_comment
@@ -323,6 +335,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -330,7 +343,7 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -749,6 +762,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|collection
@@ -782,14 +796,16 @@ name|destination
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|response
@@ -1127,6 +1143,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -1134,14 +1151,16 @@ name|destination
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|response

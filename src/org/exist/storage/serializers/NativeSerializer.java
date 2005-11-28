@@ -1236,7 +1236,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// String src = doc.getCollection().getName() + '/' + doc.getFileName();
+comment|// String src = doc.getCollection().getName() + "/" + doc.getFileName();
 name|attribs
 operator|.
 name|addAttribute

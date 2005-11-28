@@ -2766,6 +2766,7 @@ decl_stmt|;
 name|Collection
 name|temp
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|args
@@ -2823,6 +2824,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|args
@@ -2905,7 +2907,7 @@ name|tempPath
 operator|=
 name|tempPath
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|args
 index|[
@@ -7424,6 +7426,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -7431,14 +7434,16 @@ name|destination
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|destName
@@ -7494,6 +7499,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|String
 name|resourcePath
 init|=
@@ -7505,7 +7511,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|srcDoc
 operator|.
@@ -7514,13 +7520,15 @@ argument_list|()
 decl_stmt|;
 name|messageln
 argument_list|(
-literal|"Copying resource "
+literal|"Copying resource '"
 operator|+
 name|resourcePath
 operator|+
-literal|" to "
+literal|"' to '"
 operator|+
 name|destination
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|mgtService
@@ -7538,13 +7546,15 @@ block|}
 else|else
 name|messageln
 argument_list|(
-literal|"Copying collection "
+literal|"Copying collection '"
 operator|+
 name|source
 operator|+
-literal|" to "
+literal|"' to '"
 operator|+
 name|destination
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|mgtService
@@ -7758,11 +7768,12 @@ name|i
 operator|++
 control|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|next
 operator|=
 name|base
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|temp
 index|[
@@ -8093,6 +8104,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO : why is this test for ? Fileshould make it, shouldn't it ? -pb
 name|fileName
 operator|=
 name|fileName
@@ -9015,11 +9027,12 @@ name|i
 operator|++
 control|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|next
 operator|=
 name|base
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|temp
 index|[
@@ -9352,11 +9365,14 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"creating "
+literal|"creating '"
 operator|+
 name|collPath
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|collPath
@@ -9427,7 +9443,7 @@ name|p
 operator|=
 name|p
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;
@@ -13422,6 +13438,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : use dedicated function in XmldbURI
 specifier|private
 name|Collection
 name|resolveCollection
@@ -13462,6 +13479,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|//TODO : use dedicated function in XmldbURI
 specifier|private
 name|Resource
 name|resolveResource
@@ -13487,14 +13505,16 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|collectionPath

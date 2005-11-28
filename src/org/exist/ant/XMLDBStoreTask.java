@@ -740,6 +740,7 @@ operator|+
 literal|" ...\n"
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 comment|// check whether the relative file path contains file seps
 name|p
 operator|=
@@ -1061,6 +1062,7 @@ decl_stmt|;
 name|String
 name|token
 decl_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|StringTokenizer
 name|tok
 init|=
@@ -1098,7 +1100,7 @@ name|path
 operator|=
 name|path
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;
@@ -1107,7 +1109,7 @@ else|else
 block|{
 name|path
 operator|=
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;

@@ -889,6 +889,7 @@ name|Collection
 name|child
 parameter_list|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 specifier|final
 name|int
 name|p
@@ -899,7 +900,7 @@ name|name
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|+
 literal|1
@@ -985,6 +986,7 @@ name|Collection
 name|child
 parameter_list|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 specifier|final
 name|int
 name|p
@@ -995,7 +997,7 @@ name|name
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|+
 literal|1
@@ -1228,6 +1230,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|child
 operator|=
 name|broker
@@ -1236,7 +1239,7 @@ name|getCollection
 argument_list|(
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|)
@@ -1457,6 +1460,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|child
 operator|=
 name|broker
@@ -1465,7 +1469,7 @@ name|getCollection
 argument_list|(
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|)
@@ -4185,6 +4189,7 @@ operator|.
 name|UPDATE_DOCUMENT_EVENT
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|info
 operator|.
 name|prepareTrigger
@@ -4196,7 +4201,7 @@ argument_list|,
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|docName
 argument_list|,
@@ -4212,7 +4217,7 @@ operator|+
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|docName
 argument_list|)

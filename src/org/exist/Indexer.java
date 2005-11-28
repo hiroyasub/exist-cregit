@@ -3281,6 +3281,7 @@ block|{
 name|int
 name|i
 decl_stmt|;
+comment|//TODO : rewrite with subString -pb
 for|for
 control|(
 name|i
@@ -3316,8 +3317,10 @@ block|}
 if|if
 condition|(
 name|i
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 return|return
 name|path

@@ -751,13 +751,14 @@ operator|.
 name|getKey
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|docId
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|!=
 name|Constants
@@ -774,7 +775,7 @@ name|docId
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|+
 literal|1
@@ -1696,13 +1697,14 @@ operator|.
 name|getFileName
 argument_list|()
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|p
 operator|=
 name|resource
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 expr_stmt|;
 name|resources
@@ -1710,9 +1712,13 @@ index|[
 name|j
 index|]
 operator|=
+operator|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
+operator|)
 condition|?
 name|resource
 else|:
@@ -2833,6 +2839,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|path
 operator|=
 name|p
@@ -2846,7 +2853,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|p
 operator|.

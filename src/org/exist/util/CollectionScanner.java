@@ -297,6 +297,7 @@ argument_list|,
 name|name
 argument_list|)
 condition|)
+comment|///TODO : use dedicated function in XmldbURI
 name|scan
 argument_list|(
 name|list
@@ -313,7 +314,7 @@ argument_list|)
 argument_list|,
 name|name
 operator|+
-literal|'/'
+literal|"/"
 argument_list|,
 name|pattern
 argument_list|)

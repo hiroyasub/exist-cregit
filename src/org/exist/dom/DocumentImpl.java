@@ -2464,13 +2464,14 @@ name|String
 name|getName
 parameter_list|()
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 return|return
 name|collection
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|fileName
 return|;

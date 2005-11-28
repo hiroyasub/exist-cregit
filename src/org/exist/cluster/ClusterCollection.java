@@ -999,6 +999,7 @@ argument_list|(
 name|child
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 specifier|final
 name|int
 name|p
@@ -1010,7 +1011,7 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|+
 literal|1

@@ -592,7 +592,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 decl_stmt|;
 name|int
 name|p
@@ -774,7 +774,7 @@ name|path
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|,
 name|p
 operator|+

@@ -144,6 +144,7 @@ name|String
 name|pattern
 parameter_list|)
 block|{
+comment|//TODO : why this test ? File should make it ! -pb
 name|pattern
 operator|=
 name|pattern
@@ -241,6 +242,7 @@ name|String
 name|pattern
 parameter_list|)
 block|{
+comment|///TODO : why this test ? File should make it ! -pb
 name|pattern
 operator|=
 name|pattern

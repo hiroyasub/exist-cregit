@@ -2772,6 +2772,7 @@ literal|"/"
 argument_list|)
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|stylesheet
 operator|=
 name|doc
@@ -2782,7 +2783,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|stylesheet
 expr_stmt|;
@@ -4104,6 +4105,7 @@ comment|// href is an URL pointing to an external resource
 return|return
 literal|null
 return|;
+comment|///TODO : use dedicated function in XmldbURI
 name|URI
 name|baseURI
 init|=
@@ -4113,7 +4115,7 @@ name|create
 argument_list|(
 name|collectionId
 operator|+
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|URI

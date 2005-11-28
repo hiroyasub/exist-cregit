@@ -434,6 +434,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|path
@@ -476,9 +477,10 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
+comment|//TODO : strange test here -pb
 if|if
 condition|(
 name|p

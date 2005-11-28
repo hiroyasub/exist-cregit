@@ -1171,6 +1171,7 @@ argument_list|(
 name|resources
 argument_list|)
 expr_stmt|;
+comment|//      TODO : use dedicated function in XmldbURI
 name|String
 name|cname
 init|=
@@ -1192,7 +1193,7 @@ literal|'/'
 condition|)
 name|cname
 operator|=
-literal|'/'
+literal|"/"
 operator|+
 name|cname
 expr_stmt|;
@@ -1321,7 +1322,9 @@ name|FileOutputStream
 argument_list|(
 name|path
 operator|+
-literal|'/'
+name|File
+operator|.
+name|separatorChar
 operator|+
 literal|"__contents__.xml"
 argument_list|)
@@ -1583,7 +1586,9 @@ literal|"writing "
 operator|+
 name|path
 operator|+
-literal|'/'
+name|File
+operator|.
+name|separatorChar
 operator|+
 name|resources
 index|[
@@ -1611,7 +1616,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|//os = new FileOutputStream(path + '/' + resources[i]);
+comment|//os = new FileOutputStream(path + File.eparatorChar + resources[i]);
 name|os
 operator|=
 operator|new
@@ -1619,7 +1624,9 @@ name|FileOutputStream
 argument_list|(
 name|path
 operator|+
-literal|'/'
+name|File
+operator|.
+name|separatorChar
 operator|+
 name|encode
 argument_list|(

@@ -1168,7 +1168,6 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|?
-operator|(
 name|subject
 operator|.
 name|replace
@@ -1179,9 +1178,7 @@ name|File
 operator|.
 name|separatorChar
 argument_list|)
-operator|)
 else|:
-operator|(
 name|home
 operator|+
 name|File
@@ -1198,7 +1195,6 @@ name|File
 operator|.
 name|separatorChar
 argument_list|)
-operator|)
 decl_stmt|;
 if|if
 condition|(

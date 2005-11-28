@@ -223,6 +223,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -378,10 +390,13 @@ name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 comment|// load stylesheet out of the database
 name|int
 name|p
@@ -390,7 +405,7 @@ name|stylesheet
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|DocumentImpl
@@ -409,7 +424,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|stylesheet
 expr_stmt|;

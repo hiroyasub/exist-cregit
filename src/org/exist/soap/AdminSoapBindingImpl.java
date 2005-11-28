@@ -253,6 +253,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -907,6 +919,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -914,14 +927,16 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -1205,6 +1220,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -1212,14 +1228,16 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==

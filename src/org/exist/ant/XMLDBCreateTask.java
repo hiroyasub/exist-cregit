@@ -368,6 +368,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 while|while
 condition|(
 name|tok
@@ -394,7 +395,7 @@ name|path
 operator|=
 name|path
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;
@@ -403,7 +404,7 @@ else|else
 block|{
 name|path
 operator|=
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;

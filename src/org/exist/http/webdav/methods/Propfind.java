@@ -919,6 +919,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 comment|// no collection found: check for a resource
 name|int
 name|pos
@@ -927,7 +928,7 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1874,6 +1875,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -1881,7 +1883,7 @@ name|displayName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
@@ -2373,6 +2375,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|childCollection
 operator|=
 name|broker
@@ -2384,7 +2387,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|child
 argument_list|,
@@ -2535,6 +2538,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|serializer
 operator|.
 name|characters
@@ -2546,7 +2550,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|resource
 operator|.
@@ -3145,6 +3149,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|String
 name|href
 init|=
@@ -3160,7 +3165,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|resource
 operator|.

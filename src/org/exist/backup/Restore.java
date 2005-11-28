@@ -1985,6 +1985,7 @@ name|ROOT_COLLECTION
 decl_stmt|,
 name|token
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 comment|//TODO : use dedicated shared code !
 name|StringTokenizer
 name|tok
@@ -2016,7 +2017,7 @@ name|p
 operator|=
 name|p
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|token
 expr_stmt|;

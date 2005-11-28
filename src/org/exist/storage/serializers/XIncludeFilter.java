@@ -1065,20 +1065,23 @@ expr_stmt|;
 block|}
 comment|// if docName has no collection specified, assume
 comment|// current collection
+comment|///TODO : use dedicated function in XmldbURI
 name|p
 operator|=
 name|docName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|&&
 name|document
 operator|!=
@@ -1094,7 +1097,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|docName
 expr_stmt|;

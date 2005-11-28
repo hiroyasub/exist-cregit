@@ -2489,6 +2489,7 @@ condition|;
 name|i
 operator|++
 control|)
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|name
@@ -2975,6 +2976,7 @@ name|lockMode
 parameter_list|)
 block|{
 comment|//	final long start = System.currentTimeMillis();
+comment|///TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|normalizeCollectionName
@@ -3475,6 +3477,7 @@ argument_list|,
 name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -3482,7 +3485,7 @@ name|fileName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -3528,11 +3531,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"collection "
+literal|"collection '"
 operator|+
 name|collName
 operator|+
-literal|" not found!"
+literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -3627,6 +3630,7 @@ argument_list|,
 name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -3634,7 +3638,7 @@ name|docPath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -7789,6 +7793,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -7799,7 +7804,7 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|newName
@@ -7841,6 +7846,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 comment|// check if the move would overwrite a collection
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|getCollection
@@ -7850,7 +7856,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 argument_list|)
@@ -8341,6 +8347,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|LOG
 operator|.
 name|debug
@@ -8355,7 +8362,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|doc
 operator|.
@@ -11186,6 +11193,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|Collection
 name|child
 init|=
@@ -11196,7 +11204,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|next
 argument_list|)
@@ -11211,11 +11219,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Collection "
+literal|"Collection '"
 operator|+
 name|next
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 expr_stmt|;
 else|else
@@ -11713,13 +11721,14 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|childCollection
 operator|=
 name|openCollection
 argument_list|(
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|,
@@ -13539,6 +13548,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -13549,7 +13559,7 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|newName
@@ -13591,6 +13601,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 comment|// check if the move would overwrite a collection
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|getCollection
@@ -13600,7 +13611,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 argument_list|)
@@ -14061,6 +14072,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -14071,7 +14083,7 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|newName
@@ -14089,17 +14101,19 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|newName
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 throw|throw
 operator|new
@@ -14109,6 +14123,7 @@ literal|"New collection name is illegal (may not contain a '/')"
 argument_list|)
 throw|;
 comment|//	check if another collection with the same name exists at the destination
+comment|//TODO : use dedicated function in XmldbURI
 name|Collection
 name|old
 init|=
@@ -14119,7 +14134,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 argument_list|,
@@ -14191,6 +14206,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|newName
 operator|=
 name|destination
@@ -14198,7 +14214,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 expr_stmt|;
@@ -14206,9 +14222,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Copying collection to "
+literal|"Copying collection to '"
 operator|+
 name|newName
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|destCollection
@@ -14254,12 +14272,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Copying resource: "
+literal|"Copying resource: '"
 operator|+
 name|child
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|DocumentImpl
@@ -14377,6 +14397,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|Collection
 name|child
 init|=
@@ -14384,7 +14405,7 @@ name|openCollection
 argument_list|(
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|,
@@ -14403,11 +14424,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Child collection "
+literal|"Child collection '"
 operator|+
 name|childName
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 expr_stmt|;
 else|else
@@ -14586,6 +14607,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -14596,7 +14618,7 @@ argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|newName
@@ -14620,11 +14642,12 @@ name|newName
 operator|.
 name|indexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 throw|throw
 operator|new
@@ -14634,6 +14657,7 @@ literal|"New collection name is illegal (may not contain a '/')"
 argument_list|)
 throw|;
 comment|// check if another collection with the same name exists at the destination
+comment|//TODO : use dedicated function in XmldbURI
 name|Collection
 name|old
 init|=
@@ -14644,7 +14668,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 argument_list|,
@@ -14830,6 +14854,7 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|collection
 operator|.
 name|setName
@@ -14839,7 +14864,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|newName
 argument_list|)
@@ -14950,13 +14975,14 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|///TODO : use dedicated function in XmldbURI
 name|child
 operator|=
 name|openCollection
 argument_list|(
 name|name
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|childName
 argument_list|,

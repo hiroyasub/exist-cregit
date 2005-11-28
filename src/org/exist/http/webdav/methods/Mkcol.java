@@ -331,6 +331,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -338,7 +339,7 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String

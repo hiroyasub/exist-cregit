@@ -6449,6 +6449,7 @@ argument_list|)
 argument_list|,
 name|dir
 argument_list|,
+comment|//TODO : use dedicated function in XmldbURI
 name|properties
 operator|.
 name|getProperty
@@ -6458,7 +6459,7 @@ argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|collection
 argument_list|)

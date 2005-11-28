@@ -361,6 +361,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -368,7 +369,7 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String

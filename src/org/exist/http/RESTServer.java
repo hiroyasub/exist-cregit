@@ -649,6 +649,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Pragma
 import|;
 end_import
@@ -3498,6 +3510,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -3505,14 +3518,16 @@ name|docPath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -4172,6 +4187,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -4179,15 +4195,18 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
 name|docName
 init|=
+operator|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 operator|||
 name|p
 operator|==
@@ -4197,6 +4216,7 @@ name|length
 argument_list|()
 operator|-
 literal|1
+operator|)
 condition|?
 name|path
 else|:
@@ -5465,6 +5485,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|Collection
 name|childCollection
 init|=
@@ -5477,7 +5498,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|child
 argument_list|)
@@ -5643,6 +5664,7 @@ operator|.
 name|getFileName
 argument_list|()
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -5650,7 +5672,7 @@ name|resource
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|attrs
@@ -5670,9 +5692,13 @@ literal|"name"
 argument_list|,
 literal|"CDATA"
 argument_list|,
+operator|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
+operator|)
 condition|?
 name|resource
 else|:
