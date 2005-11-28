@@ -629,6 +629,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -637,7 +638,7 @@ operator|.
 name|lastIndexOf
 argument_list|(
 operator|(
-literal|'/'
+literal|"/"
 operator|)
 argument_list|)
 decl_stmt|;
@@ -792,6 +793,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -800,7 +802,7 @@ operator|.
 name|lastIndexOf
 argument_list|(
 operator|(
-literal|'/'
+literal|"/"
 operator|)
 argument_list|)
 decl_stmt|;
@@ -955,6 +957,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -963,7 +966,7 @@ operator|.
 name|lastIndexOf
 argument_list|(
 operator|(
-literal|'/'
+literal|"/"
 operator|)
 argument_list|)
 decl_stmt|;
@@ -1118,6 +1121,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
 init|=
@@ -1126,7 +1130,7 @@ operator|.
 name|lastIndexOf
 argument_list|(
 operator|(
-literal|'/'
+literal|"/"
 operator|)
 argument_list|)
 decl_stmt|;

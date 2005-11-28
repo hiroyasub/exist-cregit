@@ -272,6 +272,7 @@ expr_stmt|;
 name|int
 name|p
 decl_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|documentName
@@ -285,7 +286,7 @@ name|documentName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|)
 operator|!=
@@ -325,7 +326,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|documentName
 expr_stmt|;
