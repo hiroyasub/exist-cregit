@@ -7253,6 +7253,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 operator|(
@@ -7262,7 +7263,7 @@ name|nome
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 operator|)
 operator|!=

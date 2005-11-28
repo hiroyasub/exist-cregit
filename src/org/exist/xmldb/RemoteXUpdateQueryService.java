@@ -383,6 +383,7 @@ name|getBytes
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
 name|addElement
@@ -392,7 +393,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|id
 argument_list|)

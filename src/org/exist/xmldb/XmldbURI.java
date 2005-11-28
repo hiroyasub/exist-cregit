@@ -3062,7 +3062,7 @@ name|String
 name|parentPath
 parameter_list|)
 block|{
-comment|/*String path = (collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/") ? collectionPath :  		parent.getPath() + '/' + collectionPath);*/
+comment|/*String path = (collectionPath.startsWith(DBBroker.ROOT_COLLECTION + "/") ? collectionPath :  		parent.getPath() + "/" + collectionPath);*/
 if|if
 condition|(
 name|currentPath
@@ -3122,7 +3122,7 @@ name|currentPath
 operator|=
 name|parentPath
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|currentPath
 expr_stmt|;
