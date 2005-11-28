@@ -3519,6 +3519,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|childColl
 operator|=
 name|broker
@@ -3530,7 +3531,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|child
 argument_list|,

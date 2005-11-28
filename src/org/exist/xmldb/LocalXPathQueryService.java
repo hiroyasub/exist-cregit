@@ -693,6 +693,7 @@ literal|null
 condition|)
 block|{
 comment|// resource is a document
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 index|[]
 name|docs
@@ -709,7 +710,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -836,6 +837,7 @@ literal|null
 condition|)
 block|{
 comment|// resource is a document
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 index|[]
 name|docs
@@ -852,7 +854,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
@@ -1443,13 +1445,14 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 argument_list|,
-literal|"resource "
+literal|"resource '"
 operator|+
 name|resource
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 throw|;
+comment|//TODO : use dedicated function in XmldbURI
 name|String
 index|[]
 name|docs
@@ -1466,7 +1469,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|res
 operator|.
