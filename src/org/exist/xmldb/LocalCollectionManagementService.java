@@ -363,7 +363,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|collName
 expr_stmt|;
@@ -635,7 +635,7 @@ operator|.
 name|getPath
 argument_list|()
 operator|+
-literal|'/'
+literal|"/"
 operator|+
 name|collName
 expr_stmt|;
@@ -1283,6 +1283,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -1290,7 +1291,7 @@ name|resourcePath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1692,6 +1693,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
@@ -1699,7 +1701,7 @@ name|resourcePath
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|'/'
+literal|"/"
 argument_list|)
 decl_stmt|;
 name|String
