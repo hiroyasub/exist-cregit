@@ -63,6 +63,18 @@ name|URL
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory to create a {@link org.exist.source.Source} object for a given  * URL.  *   * @author wolf  */
 end_comment
@@ -106,8 +118,10 @@ name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 block|{
 name|File

@@ -976,8 +976,10 @@ decl_stmt|;
 if|if
 condition|(
 name|p0
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 return|return
 literal|null
@@ -1911,8 +1913,10 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 return|return
 literal|null

@@ -316,16 +316,20 @@ decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"invalid uri: "
+literal|"invalid uri: '"
 operator|+
 name|uri
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 try|try

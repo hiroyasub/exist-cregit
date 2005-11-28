@@ -6280,8 +6280,10 @@ name|indexOf
 argument_list|(
 literal|';'
 argument_list|)
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 name|response
 operator|.

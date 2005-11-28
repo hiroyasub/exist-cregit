@@ -574,8 +574,10 @@ block|{
 if|if
 condition|(
 name|pid
-operator|<
-literal|0
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 comment|// given node was already document element -> no parent
@@ -708,8 +710,10 @@ block|}
 if|else if
 condition|(
 name|pid
-operator|<
-literal|0
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
 condition|)
 block|{
 comment|// no matching node has been found in the context

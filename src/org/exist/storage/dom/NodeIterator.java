@@ -508,8 +508,10 @@ name|ph
 operator|.
 name|getNextDataPage
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 return|return
 literal|false
@@ -661,8 +663,10 @@ decl_stmt|;
 if|if
 condition|(
 name|nextPage
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 name|SanityCheck
