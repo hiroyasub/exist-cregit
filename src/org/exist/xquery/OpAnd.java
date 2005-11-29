@@ -198,6 +198,7 @@ argument_list|(
 name|inPredicate
 argument_list|)
 expr_stmt|;
+comment|// TODO: optimize and return false if rl.getLength() == 0 ?
 name|NodeSet
 name|rr
 init|=
@@ -250,6 +251,17 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
+comment|// immediately return false if the left operand is false
+if|if
+condition|(
+operator|!
+name|ls
+condition|)
+return|return
+name|BooleanValue
+operator|.
+name|FALSE
+return|;
 name|boolean
 name|rs
 init|=
