@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -1293,8 +1305,9 @@ name|i
 argument_list|)
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|else if
 condition|(
@@ -1313,7 +1326,9 @@ name|i
 argument_list|)
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 block|}
 if|if
@@ -1326,8 +1341,9 @@ name|length
 argument_list|()
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|else if
 condition|(
@@ -1339,11 +1355,15 @@ name|length
 argument_list|()
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 else|else
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 block|}
 comment|/*      * @see java.lang.Object#equals(java.lang.Object)      */

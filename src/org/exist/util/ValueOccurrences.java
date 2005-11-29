@@ -45,6 +45,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -244,9 +256,11 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+comment|//TODO : what does this mean ? -pb
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 block|}
