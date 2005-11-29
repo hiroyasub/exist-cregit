@@ -93,6 +93,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -839,12 +851,15 @@ operator|instanceof
 name|EmptyValue
 condition|)
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 else|else
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#itemAt(int) 		 */

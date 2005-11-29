@@ -69,7 +69,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionSignature
+name|Constants
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|FunctionSignature
 import|;
 end_import
 
@@ -106,6 +106,18 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -444,15 +456,20 @@ if|if
 condition|(
 name|result
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|)
 return|return
 operator|new
 name|IntegerValue
 argument_list|(
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 argument_list|)
 return|;
+comment|//TODO :
 if|else if
 condition|(
 name|result
@@ -463,8 +480,9 @@ return|return
 operator|new
 name|IntegerValue
 argument_list|(
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 argument_list|)
 return|;
 else|else
@@ -472,7 +490,9 @@ return|return
 operator|new
 name|IntegerValue
 argument_list|(
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 argument_list|)
 return|;
 block|}
