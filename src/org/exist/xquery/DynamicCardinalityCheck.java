@@ -216,7 +216,7 @@ argument_list|)
 argument_list|,
 name|Cardinality
 operator|.
-name|toString
+name|getDescription
 argument_list|(
 name|requiredCardinality
 argument_list|)
@@ -272,7 +272,7 @@ argument_list|)
 argument_list|,
 name|Cardinality
 operator|.
-name|toString
+name|getDescription
 argument_list|(
 name|requiredCardinality
 argument_list|)
@@ -328,7 +328,7 @@ argument_list|)
 argument_list|,
 name|Cardinality
 operator|.
-name|toString
+name|getDescription
 argument_list|(
 name|requiredCardinality
 argument_list|)
