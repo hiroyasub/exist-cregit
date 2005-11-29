@@ -608,7 +608,7 @@ name|FULLTEXT_AND
 init|=
 literal|1
 decl_stmt|;
-comment|//The defenitive missing constant in java.lang.string
+comment|//The definitive missing constant in java.lang.String
 specifier|public
 specifier|final
 specifier|static
@@ -616,6 +616,32 @@ name|int
 name|STRING_NOT_FOUND
 init|=
 operator|-
+literal|1
+decl_stmt|;
+comment|//The definitive missing constants in java.lang.Comparable
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|INFERIOR
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|EQUAL
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|SUPERIOR
+init|=
 literal|1
 decl_stmt|;
 block|}

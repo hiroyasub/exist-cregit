@@ -1502,7 +1502,9 @@ operator|==
 name|docId
 condition|)
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 if|else if
 condition|(
@@ -1511,12 +1513,15 @@ operator|<
 name|otherId
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 else|else
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 block|}
 specifier|public
@@ -2023,8 +2028,9 @@ operator|==
 literal|0
 condition|)
 return|return
-operator|-
-literal|1
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_ADDRESS
 return|;
 return|return
 name|childList

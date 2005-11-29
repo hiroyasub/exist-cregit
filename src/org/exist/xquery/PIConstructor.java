@@ -129,6 +129,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+comment|//TODO : handle this from the parser -pb
 name|int
 name|p
 init|=
@@ -136,14 +137,16 @@ name|pi
 operator|.
 name|indexOf
 argument_list|(
-literal|' '
+literal|" "
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|p
-operator|<
-literal|0
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 throw|throw
 operator|new
