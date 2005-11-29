@@ -31,6 +31,18 @@ name|Page
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Used to track the available amount of free space in a data page.  *   * @see FreeList  * @author wolf  */
 end_comment
@@ -102,8 +114,9 @@ operator|.
 name|free
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|else if
 condition|(
@@ -114,11 +127,15 @@ operator|.
 name|free
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 else|else
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 block|}
 specifier|public

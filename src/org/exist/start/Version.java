@@ -25,6 +25,18 @@ name|start
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility class for parsing and comparing version strings.  * JDK 1.1 compatible.  * @author Jan Hlavatï¿½  */
 end_comment
@@ -369,7 +381,7 @@ argument_list|()
 return|;
 block|}
 comment|// java.lang.Comparable is Java 1.2! Cannot use it
-comment|/**      * Compares with other version. Does not take extension into account,      * as there is no reliable way to order them.      * @return -1 if this is older version that other,      *         0 if its same version,      *         1 if it's newer version than other      */
+comment|/**      * Compares with other version. Does not take extension into account,      * as there is no reliable way to order them.      * @return Constants.INFERIOR if this is older version that other,      *         Constants.EQUAL if its same version,      *         Constants.SUPERIOR if it's newer version than other      */
 specifier|public
 name|int
 name|compare
@@ -402,8 +414,9 @@ operator|.
 name|_version
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|if
 condition|(
@@ -416,7 +429,9 @@ operator|.
 name|_version
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 if|if
 condition|(
@@ -429,8 +444,9 @@ operator|.
 name|_revision
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|if
 condition|(
@@ -443,7 +459,9 @@ operator|.
 name|_revision
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 if|if
 condition|(
@@ -456,8 +474,9 @@ operator|.
 name|_subrevision
 condition|)
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 if|if
 condition|(
@@ -470,10 +489,14 @@ operator|.
 name|_subrevision
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 block|}
 comment|/**      * Check whether this verion is in range of versions specified      */

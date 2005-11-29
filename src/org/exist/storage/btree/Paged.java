@@ -115,6 +115,18 @@ name|ByteConversion
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Paged is a paged file foundation that is used by the BTree class and  *  its subclasses.  */
 end_comment
@@ -3145,7 +3157,9 @@ operator|.
 name|pageNum
 condition|)
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 if|else if
 condition|(
@@ -3156,12 +3170,15 @@ operator|.
 name|pageNum
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 else|else
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 specifier|public

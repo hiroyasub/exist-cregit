@@ -49,6 +49,18 @@ name|Heap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * A general-purpose time-based daemon, vaguely similar in functionality  * to common system-level utilities such as<code>at</code>   * (and the associated crond) in Unix.  * Objects of this class maintain a single thread and a task queue  * that may be used to execute Runnable commands in any of three modes --  * absolute (run at a given time), relative (run after a given delay),  * and periodic (cyclically run with a given delay).  *<p>  * All commands are executed by the single background thread.   * The thread is not actually started until the first   * request is encountered. Also, if the  * thread is stopped for any reason, one is started upon encountering  * the next request,  or<code>restart()</code> is invoked.   *<p>  * If you would instead like commands run in their own threads, you can  * use as arguments Runnable commands that start their own threads  * (or perhaps wrap within ThreadedExecutors).   *<p>  * You can also use multiple  * daemon objects, each using a different background thread. However,  * one of the reasons for using a time daemon is to pool together  * processing of infrequent tasks using a single background thread.  *<p>  * Background threads are created using a ThreadFactory. The  * default factory does<em>not</em>  * automatically<code>setDaemon</code> status.  *<p>  * The class uses Java timed waits for scheduling. These can vary  * in precision across platforms, and provide no real-time guarantees  * about meeting deadlines.  *<p>[<a href="http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/intro.html"> Introduction to this package.</a>]  **/
 end_comment
@@ -195,8 +207,9 @@ operator|<
 name|b
 operator|)
 condition|?
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 else|:
 operator|(
 operator|(
@@ -205,9 +218,13 @@ operator|==
 name|b
 operator|)
 condition|?
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 else|:
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 operator|)
 return|;
 block|}
