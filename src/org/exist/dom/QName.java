@@ -447,10 +447,13 @@ name|other
 operator|.
 name|nameType_
 condition|?
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 else|:
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 block|}
 name|int
@@ -470,10 +473,13 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|?
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 else|:
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 expr_stmt|;
 if|else if
 condition|(
@@ -485,7 +491,9 @@ literal|null
 condition|)
 name|c
 operator|=
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 expr_stmt|;
 else|else
 name|c
@@ -502,7 +510,9 @@ expr_stmt|;
 return|return
 name|c
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|?
 name|localName_
 operator|.
@@ -615,10 +625,13 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|?
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 else|:
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 expr_stmt|;
 if|else if
 condition|(
@@ -630,7 +643,9 @@ literal|null
 condition|)
 name|c
 operator|=
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 expr_stmt|;
 else|else
 name|c
@@ -648,7 +663,9 @@ if|if
 condition|(
 name|c
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|)
 return|return
 name|localName_

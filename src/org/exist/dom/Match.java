@@ -13,6 +13,18 @@ name|dom
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Used to track fulltext matches throughout the query.  *   * {@link org.exist.storage.TextSearchEngine} will add a  * match object to every {@link org.exist.dom.NodeProxy}  * that triggered a fulltext match for every term matched. The   * Match object contains the nodeId of the text node that triggered the  * match, the string value of the matching term and a frequency count,  * indicating the frequency of the matching term string within the corresponding  * single text node.  *   * All path operations copy existing match objects, i.e. the match objects  * are copied to the selected descendant or child nodes. This means that  * every NodeProxy being the direct or indirect result of a fulltext  * selection will have one or more match objects, indicating which text nodes  * among its descendant nodes contained a fulltext match.  *   * @author wolf  */
 end_comment
@@ -122,17 +134,22 @@ name|offset
 operator|==
 name|otherOffset
 condition|?
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 else|:
 operator|(
 name|offset
-operator|>
+operator|<
 name|otherOffset
 condition|?
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 else|:
-operator|-
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 operator|)
 return|;
 block|}

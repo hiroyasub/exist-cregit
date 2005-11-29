@@ -381,7 +381,7 @@ decl_stmt|;
 if|if
 condition|(
 name|id
-operator|>
+operator|!=
 operator|-
 literal|1
 condition|)
@@ -517,7 +517,7 @@ decl_stmt|;
 if|if
 condition|(
 name|id
-operator|>
+operator|!=
 operator|-
 literal|1
 condition|)
@@ -655,7 +655,7 @@ decl_stmt|;
 if|if
 condition|(
 name|id
-operator|>
+operator|!=
 operator|-
 literal|1
 condition|)
@@ -737,7 +737,7 @@ decl_stmt|;
 if|if
 condition|(
 name|id
-operator|>
+operator|!=
 operator|-
 literal|1
 condition|)

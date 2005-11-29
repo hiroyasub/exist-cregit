@@ -7916,10 +7916,13 @@ operator|.
 name|isCollection
 argument_list|()
 condition|?
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 else|:
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 block|}
 else|else
