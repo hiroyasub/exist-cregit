@@ -167,7 +167,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|IntegerValue
 import|;
 end_import
 
@@ -186,13 +186,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|RequestServername
+name|RequestServerport
 extends|extends
 name|BasicFunction
 block|{
@@ -208,7 +208,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"request-servername"
+literal|"request-serverport"
 argument_list|,
 name|RequestModule
 operator|.
@@ -219,7 +219,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the server nodename of the current request."
+literal|"Returns the server port of the current request."
 argument_list|,
 literal|null
 argument_list|,
@@ -228,7 +228,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
@@ -238,7 +238,7 @@ argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|RequestServername
+name|RequestServerport
 parameter_list|(
 name|XQueryContext
 name|context
@@ -356,7 +356,7 @@ name|RequestWrapper
 condition|)
 return|return
 operator|new
-name|StringValue
+name|IntegerValue
 argument_list|(
 operator|(
 operator|(
@@ -368,7 +368,7 @@ name|getObject
 argument_list|()
 operator|)
 operator|.
-name|getServerName
+name|getServerPort
 argument_list|()
 argument_list|)
 return|;
