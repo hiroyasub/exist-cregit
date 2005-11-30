@@ -2104,6 +2104,8 @@ init|=
 operator|new
 name|URI
 argument_list|(
+name|newURIString
+operator|+
 name|parts
 index|[
 name|i
