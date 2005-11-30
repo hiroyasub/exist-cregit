@@ -105,22 +105,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|xerces
-operator|.
-name|xni
-operator|.
-name|parser
-operator|.
-name|XMLEntityResolver
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|storage
@@ -230,14 +214,6 @@ decl_stmt|;
 comment|// TODO check whether this private static trick is wise to do.
 comment|// These are made static to prevent expensive double initialization
 comment|// of classes.
-specifier|private
-specifier|static
-name|XMLEntityResolver
-name|enityResolver
-init|=
-literal|null
-decl_stmt|;
-empty_stmt|;
 specifier|private
 specifier|static
 name|GrammarPool
@@ -417,23 +393,10 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-comment|// setup enityResolver ; be sure just one instance!
-if|if
-condition|(
-name|enityResolver
-operator|==
-literal|null
-condition|)
-block|{
-name|enityResolver
-operator|=
-operator|new
-name|EntityResolver
-argument_list|(
-name|dbResources
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        // setup enityResolver ; be sure just one instance!
+comment|//        if(enityResolver==null){
+comment|//            enityResolver = new EntityResolver(dbResources);
+comment|//        }
 comment|// setup grammar brokerPool ; be sure just one instance!
 if|if
 condition|(
@@ -562,6 +525,33 @@ name|InputStreamReader
 argument_list|(
 name|is
 argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**      *  Validate XML data in inputstream.      *      * @param is    XML input stream.      * @return      Validation report containing all validation info.      */
+specifier|public
+name|ValidationReport
+name|validate
+parameter_list|(
+name|InputStream
+name|is
+parameter_list|,
+name|String
+name|grammarPath
+parameter_list|)
+block|{
+return|return
+name|validate
+argument_list|(
+operator|new
+name|InputStreamReader
+argument_list|(
+name|is
+argument_list|)
+argument_list|,
+name|grammarPath
 argument_list|)
 return|;
 block|}
@@ -574,6 +564,27 @@ name|Reader
 name|reader
 parameter_list|)
 block|{
+return|return
+name|validate
+argument_list|(
+name|reader
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**      *  Validate XML data from reader using specified grammar.      *      *  grammar path      *      null : search all documents starting in /db      *      /db/doc/ : start search start in specified collection      *      *      /db/doc/schema/schema.xsd :start with this schema, no search needed.      *       * @return Validation report containing all validation info.      * @param grammarPath   User supplied path to grammar.      * @param reader        XML input.      */
+specifier|public
+name|ValidationReport
+name|validate
+parameter_list|(
+name|Reader
+name|reader
+parameter_list|,
+name|String
+name|grammarPath
+parameter_list|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -581,6 +592,30 @@ argument_list|(
 literal|"Start validation."
 argument_list|)
 expr_stmt|;
+name|EntityResolver
+name|entityResolver
+init|=
+operator|new
+name|EntityResolver
+argument_list|(
+name|dbResources
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|grammarPath
+operator|!=
+literal|null
+condition|)
+block|{
+name|entityResolver
+operator|.
+name|setStartGrammarPath
+argument_list|(
+name|grammarPath
+argument_list|)
+expr_stmt|;
+block|}
 name|ValidationReport
 name|report
 init|=
@@ -630,7 +665,7 @@ name|setProperty
 argument_list|(
 name|PROPERTIES_RESOLVER
 argument_list|,
-name|enityResolver
+name|entityResolver
 argument_list|)
 expr_stmt|;
 name|xmlReader
@@ -732,6 +767,13 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
+name|report
+operator|.
+name|setException
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -742,6 +784,13 @@ block|{
 name|logger
 operator|.
 name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+name|report
+operator|.
+name|setException
 argument_list|(
 name|ex
 argument_list|)
@@ -760,6 +809,13 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
+name|report
+operator|.
+name|setException
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -770,6 +826,13 @@ block|{
 name|logger
 operator|.
 name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+name|report
+operator|.
+name|setException
 argument_list|(
 name|ex
 argument_list|)
@@ -789,16 +852,13 @@ return|return
 name|dbResources
 return|;
 block|}
-comment|/**      *  Get access to internal XMLEntityResolver.      * @return Internally used XMLEntityResolver.      */
-specifier|public
-name|XMLEntityResolver
-name|getXMLEntityResolver
-parameter_list|()
-block|{
-return|return
-name|enityResolver
-return|;
-block|}
+comment|//    /**
+comment|//     *  Get access to internal XMLEntityResolver.
+comment|//     * @return Internally used XMLEntityResolver.
+comment|//     */
+comment|//    public XMLEntityResolver getXMLEntityResolver(){
+comment|//        return entityResolver;
+comment|//    }
 comment|/**      *  Get access to internal GrammarPool.      * @return Internally used GrammarPool.      */
 specifier|public
 name|GrammarPool

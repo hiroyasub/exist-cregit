@@ -261,7 +261,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"clear-grammar-cache"
+literal|"grammar-cache-clear"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -295,7 +295,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"show-grammar-cache"
+literal|"grammar-cache-show"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -306,7 +306,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Show cached grammars."
+literal|"Show all cached grammars."
 argument_list|,
 literal|null
 argument_list|,
