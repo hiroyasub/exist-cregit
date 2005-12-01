@@ -5972,6 +5972,13 @@ operator|.
 name|getConfigurationManager
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|manager
+operator|!=
+literal|null
+condition|)
+block|{
 name|collectionConfEnabled
 operator|=
 literal|false
@@ -6013,6 +6020,7 @@ name|collectionConfEnabled
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 return|return
 name|configuration
