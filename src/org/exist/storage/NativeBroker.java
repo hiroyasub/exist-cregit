@@ -10199,7 +10199,11 @@ name|current
 operator|.
 name|addCollection
 argument_list|(
+name|this
+argument_list|,
 name|sub
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|saveCollection
@@ -14883,7 +14887,11 @@ name|destination
 operator|.
 name|addCollection
 argument_list|(
+name|this
+argument_list|,
 name|collection
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if

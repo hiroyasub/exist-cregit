@@ -575,6 +575,11 @@ init|=
 operator|new
 name|CollectionConfiguration
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|collection
 argument_list|)
 decl_stmt|;

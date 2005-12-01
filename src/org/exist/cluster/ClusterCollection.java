@@ -986,8 +986,14 @@ specifier|public
 name|void
 name|addCollection
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Collection
 name|child
+parameter_list|,
+name|boolean
+name|isNew
 parameter_list|)
 block|{
 try|try
@@ -996,7 +1002,11 @@ name|collection
 operator|.
 name|addCollection
 argument_list|(
+name|broker
+argument_list|,
 name|child
+argument_list|,
+name|isNew
 argument_list|)
 expr_stmt|;
 comment|//TODO : use dedicated function in XmldbURI

@@ -623,7 +623,9 @@ init|=
 operator|new
 name|Permission
 argument_list|(
-literal|0754
+name|Permission
+operator|.
+name|DEFAULT_PERM
 argument_list|)
 decl_stmt|;
 comment|// arity of the tree at every level
