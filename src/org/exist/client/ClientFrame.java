@@ -6459,8 +6459,6 @@ argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
 operator|+
-literal|"/"
-operator|+
 name|collection
 argument_list|)
 decl_stmt|;
