@@ -1176,6 +1176,28 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+comment|// if document is not present, null is returned
+if|if
+condition|(
+name|binDoc
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Binary document '"
+operator|+
+name|documentPath
+operator|+
+literal|" does not exist."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|data
 operator|=
 name|broker
@@ -1198,6 +1220,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 name|DocumentImpl
@@ -1214,6 +1237,28 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+comment|// if document is not present, null is returned
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Xml document '"
+operator|+
+name|documentPath
+operator|+
+literal|" does not exist."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|Serializer
 name|serializer
 init|=
@@ -1227,14 +1272,6 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-comment|// if document is not present, null is returned
-if|if
-condition|(
-name|doc
-operator|!=
-literal|null
-condition|)
-block|{
 name|data
 operator|=
 name|serializer
@@ -1247,21 +1284,6 @@ operator|.
 name|getBytes
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"Document '"
-operator|+
-name|documentPath
-operator|+
-literal|" does not exist."
-argument_list|)
-throw|;
-block|}
 name|doc
 operator|.
 name|getUpdateLock
@@ -1274,6 +1296,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
