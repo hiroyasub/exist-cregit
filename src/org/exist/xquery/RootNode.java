@@ -413,7 +413,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"/ROOT"
+literal|"[root-node]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -424,7 +424,7 @@ parameter_list|()
 block|{
 comment|//TODO : find a better message
 return|return
-literal|"/ROOT"
+literal|"[root-node]"
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#returnsType()      */
