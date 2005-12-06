@@ -1708,8 +1708,12 @@ name|message
 argument_list|(
 name|this
 argument_list|,
-literal|"Using value index for key: "
-operator|+
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"Using value index for key"
+argument_list|,
 name|Type
 operator|.
 name|getTypeName
@@ -1805,8 +1809,12 @@ name|message
 argument_list|(
 name|this
 argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
 literal|"Using value index for key: "
-operator|+
+argument_list|,
 name|Type
 operator|.
 name|getTypeName

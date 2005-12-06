@@ -233,6 +233,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Profiler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -983,7 +995,13 @@ name|message
 argument_list|(
 name|this
 argument_list|,
-literal|"Using index for fn:matches. Regex: "
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"Using index for fn:matches"
+argument_list|,
+literal|"Regex: "
 operator|+
 name|pattern
 argument_list|)
