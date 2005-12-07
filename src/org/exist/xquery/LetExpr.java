@@ -790,6 +790,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : QuantifiedExpr
+if|if
+condition|(
+name|returnExpr
+operator|instanceof
+name|LetExpr
+condition|)
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+else|else
 name|dumper
 operator|.
 name|nl
@@ -950,6 +965,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : QuantifiedExpr
+if|if
+condition|(
+name|returnExpr
+operator|instanceof
+name|LetExpr
+condition|)
+name|result
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+else|else
 name|result
 operator|.
 name|append
