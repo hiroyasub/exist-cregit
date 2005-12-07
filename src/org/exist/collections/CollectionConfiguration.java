@@ -392,6 +392,19 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|root
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Configuration document can not be parsed"
+argument_list|)
+throw|;
+if|if
+condition|(
 operator|!
 operator|(
 name|NAMESPACE
