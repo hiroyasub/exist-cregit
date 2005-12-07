@@ -541,7 +541,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"attribute { "
+literal|"attribute {"
 argument_list|)
 operator|.
 name|display
@@ -553,7 +553,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|" } {"
+literal|"} {"
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -647,7 +647,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"attribute { "
+literal|"attribute {"
 argument_list|)
 operator|.
 name|append
@@ -659,7 +659,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" } {"
+literal|"} {"
 argument_list|)
 expr_stmt|;
 name|Object
@@ -726,7 +726,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
+literal|"}"
 argument_list|)
 expr_stmt|;
 return|return

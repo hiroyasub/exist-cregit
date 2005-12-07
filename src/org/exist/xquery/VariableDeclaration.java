@@ -595,7 +595,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|'{'
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -622,7 +622,7 @@ argument_list|()
 operator|.
 name|display
 argument_list|(
-literal|'}'
+literal|"}"
 argument_list|)
 operator|.
 name|nl
@@ -680,7 +680,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"{ "
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|result
@@ -697,7 +697,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
+literal|"}"
 argument_list|)
 expr_stmt|;
 return|return

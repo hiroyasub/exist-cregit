@@ -1473,14 +1473,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"in-memory["
+literal|"in-memory#"
 argument_list|)
 expr_stmt|;
 name|result
 operator|.
 name|append
 argument_list|(
-literal|"element { "
+literal|"element {"
 argument_list|)
 expr_stmt|;
 name|result
@@ -1498,7 +1498,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" } { "
+literal|"} {"
 argument_list|)
 expr_stmt|;
 if|if
@@ -1624,14 +1624,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"] "
+literal|"} "
 argument_list|)
 expr_stmt|;
 return|return

@@ -381,7 +381,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"#cardinality("
+literal|"cardinality-check#("
 argument_list|)
 expr_stmt|;
 block|}
@@ -425,7 +425,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"#cardinality( "
+literal|"cardinality-check#("
 argument_list|)
 expr_stmt|;
 name|result
@@ -442,7 +442,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" )"
+literal|")"
 argument_list|)
 expr_stmt|;
 return|return

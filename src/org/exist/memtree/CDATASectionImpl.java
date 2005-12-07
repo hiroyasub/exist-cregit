@@ -17,18 +17,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -58,30 +46,6 @@ operator|.
 name|dom
 operator|.
 name|Text
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ContentHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
 import|;
 end_import
 
@@ -320,14 +284,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"in-memory["
+literal|"in-memory#"
 argument_list|)
 expr_stmt|;
 name|result
 operator|.
 name|append
 argument_list|(
-literal|"CDATA { "
+literal|"CDATA {"
 argument_list|)
 expr_stmt|;
 name|result
@@ -342,14 +306,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"] "
+literal|"} "
 argument_list|)
 expr_stmt|;
 return|return

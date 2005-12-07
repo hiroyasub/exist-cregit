@@ -287,7 +287,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"#atomize("
+literal|"atomize#("
 argument_list|)
 expr_stmt|;
 name|expression
@@ -330,7 +330,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"#atomize("
+literal|"atomize#("
 argument_list|)
 expr_stmt|;
 name|result

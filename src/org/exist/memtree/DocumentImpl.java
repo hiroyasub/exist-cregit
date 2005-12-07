@@ -45,16 +45,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -4858,14 +4848,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"in-memory["
+literal|"in-memory#"
 argument_list|)
 expr_stmt|;
 name|result
 operator|.
 name|append
 argument_list|(
-literal|"document { "
+literal|"document {"
 argument_list|)
 expr_stmt|;
 name|result
@@ -4883,14 +4873,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"] "
+literal|"} "
 argument_list|)
 expr_stmt|;
 return|return

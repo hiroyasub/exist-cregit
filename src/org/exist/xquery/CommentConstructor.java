@@ -211,7 +211,7 @@ argument_list|()
 operator|.
 name|display
 argument_list|(
-literal|"comment { "
+literal|"comment {"
 argument_list|)
 operator|.
 name|display
@@ -221,7 +221,7 @@ argument_list|)
 operator|.
 name|display
 argument_list|(
-literal|" }"
+literal|"}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -231,14 +231,14 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"comment { "
+literal|"comment {"
 operator|+
 name|data
 operator|.
 name|toString
 argument_list|()
 operator|+
-literal|" }"
+literal|"}"
 return|;
 block|}
 block|}

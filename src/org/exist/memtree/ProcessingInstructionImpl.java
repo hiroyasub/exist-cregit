@@ -174,14 +174,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"in-memory["
+literal|"in-memory#"
 argument_list|)
 expr_stmt|;
 name|result
 operator|.
 name|append
 argument_list|(
-literal|"processing-instruction { "
+literal|"processing-instruction {"
 argument_list|)
 expr_stmt|;
 name|result
@@ -196,7 +196,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" } { "
+literal|"} {"
 argument_list|)
 expr_stmt|;
 name|result
@@ -211,14 +211,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|" }"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"] "
+literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
