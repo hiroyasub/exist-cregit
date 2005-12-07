@@ -415,8 +415,10 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"untyped-check#("
+literal|"untyped-value-check["
 argument_list|)
+expr_stmt|;
+name|dumper
 operator|.
 name|display
 argument_list|(
@@ -432,14 +434,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|":"
-argument_list|)
-expr_stmt|;
-name|dumper
-operator|.
-name|display
-argument_list|(
-literal|"("
+literal|", "
 argument_list|)
 expr_stmt|;
 name|expression
@@ -453,7 +448,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|")"
+literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -473,7 +468,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"untyped-check#("
+literal|"untyped-value-check["
 argument_list|)
 expr_stmt|;
 name|result
@@ -492,14 +487,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|":"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"("
+literal|", "
 argument_list|)
 expr_stmt|;
 name|result
@@ -516,7 +504,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|")"
+literal|"]"
 argument_list|)
 expr_stmt|;
 return|return
