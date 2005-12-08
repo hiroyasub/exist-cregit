@@ -421,6 +421,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|index
+operator|.
+name|BFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|io
 operator|.
 name|VariableByteInput
@@ -704,13 +718,21 @@ name|VALIDATION_DISABLED
 init|=
 literal|2
 decl_stmt|;
-comment|// the unique internal id to identify this collection
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|UNKNOWN_COLLECTION_ID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|// Internal id
 specifier|private
 name|short
 name|collectionId
 init|=
-operator|-
-literal|1
+name|UNKNOWN_COLLECTION_ID
 decl_stmt|;
 comment|// the documents contained in this collection
 specifier|private
@@ -748,13 +770,14 @@ argument_list|(
 literal|19
 argument_list|)
 decl_stmt|;
-comment|// temporary field for the storage address
+comment|// Storage address of the collection in the BFile
 specifier|private
 name|long
 name|address
 init|=
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 decl_stmt|;
 comment|// creation time
 specifier|private
@@ -2277,6 +2300,7 @@ name|String
 name|getParentPath
 parameter_list|()
 block|{
+comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
 name|name
@@ -2447,6 +2471,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : ouch ! -pb
 return|return
 name|subcollections
 operator|.
@@ -2554,18 +2579,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
-name|SecurityManager
-name|secman
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getSecurityManager
-argument_list|()
-decl_stmt|;
-specifier|final
 name|int
 name|uid
 init|=
@@ -2587,14 +2600,29 @@ specifier|final
 name|int
 name|perm
 init|=
-operator|(
 name|istream
 operator|.
 name|readInt
 argument_list|()
-operator|&
-literal|0777
-operator|)
+decl_stmt|;
+name|created
+operator|=
+name|istream
+operator|.
+name|readLong
+argument_list|()
+expr_stmt|;
+specifier|final
+name|SecurityManager
+name|secman
+init|=
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2603,6 +2631,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : load default permissions ? -pb
 name|permissions
 operator|.
 name|setOwner
@@ -2663,19 +2692,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|///TODO : why this mask ? -pb
 name|permissions
 operator|.
 name|setPermissions
 argument_list|(
 name|perm
+operator|&
+literal|0777
 argument_list|)
-expr_stmt|;
-name|created
-operator|=
-name|istream
-operator|.
-name|readLong
-argument_list|()
 expr_stmt|;
 name|broker
 operator|.

@@ -503,6 +503,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|TerminatedException
 import|;
 end_import
@@ -525,6 +537,15 @@ name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
 literal|3
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|UNKNOWN_ADDRESS
+init|=
+operator|-
+literal|1
 decl_stmt|;
 specifier|public
 specifier|final
@@ -1037,8 +1058,7 @@ literal|"key is null"
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 if|if
@@ -1054,6 +1074,7 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+comment|//TODO : throw an exception ? -pb
 name|LOG
 operator|.
 name|warn
@@ -1062,15 +1083,16 @@ literal|"Key length exceeds page size! Skipping key ..."
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
+comment|//TODO : one too many try block here -pb
 try|try
 block|{
 try|try
 block|{
 comment|// check if key exists already
+comment|//TODO : rely on a KEY_NOT_FOUND (or maybe VALUE_NOT_FOUND) result ! -pb
 name|long
 name|p
 init|=
@@ -1212,6 +1234,51 @@ operator|+
 name|pnum
 argument_list|)
 throw|;
+if|if
+condition|(
+name|offset
+operator|+
+literal|4
+operator|>
+name|data
+operator|.
+name|length
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"found invalid pointer in file "
+operator|+
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" for page"
+operator|+
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
+operator|+
+literal|" : "
+operator|+
+literal|"tid = "
+operator|+
+name|tid
+operator|+
+literal|"; offset = "
+operator|+
+name|offset
+argument_list|)
+expr_stmt|;
+return|return
+name|UNKNOWN_ADDRESS
+return|;
+block|}
 specifier|final
 name|int
 name|l
@@ -1225,52 +1292,7 @@ argument_list|,
 name|offset
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|offset
-operator|+
-literal|4
-operator|>
-name|data
-operator|.
-name|length
-operator|||
-name|offset
-operator|<
-literal|0
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"wrong pointer (tid: "
-operator|+
-name|tid
-operator|+
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-operator|+
-literal|") in file "
-operator|+
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"; offset = "
-operator|+
-name|offset
-argument_list|)
-expr_stmt|;
-return|return
-operator|-
-literal|1
-return|;
-block|}
+comment|//TOUNDERSTAND : unless l can be negative, we should never get there -pb
 if|if
 condition|(
 name|offset
@@ -1288,22 +1310,30 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"found invalid data record ("
+literal|"found invalid data record in file "
+operator|+
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" for page"
 operator|+
 name|page
 operator|.
 name|getPageInfo
 argument_list|()
 operator|+
-literal|"): "
+literal|" : "
 operator|+
-literal|"length="
+literal|"length = "
 operator|+
 name|data
 operator|.
 name|length
 operator|+
-literal|"; required="
+literal|"; required = "
 operator|+
 operator|(
 name|offset
@@ -1315,8 +1345,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 specifier|final
@@ -1387,6 +1416,7 @@ block|}
 return|return
 name|p
 return|;
+comment|//TODO : why catch an exception here ??? It costs too much ! -pb
 block|}
 catch|catch
 parameter_list|(
@@ -1436,8 +1466,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 comment|/**      * Close the BFile.      *       * @throws DBException      * @return always true      */
@@ -1480,16 +1509,36 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|bte
+name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|false
@@ -1777,6 +1826,7 @@ argument_list|(
 literal|"Database is read-only. Cannot remove items."
 argument_list|)
 expr_stmt|;
+comment|//TODO : break ? -pb
 block|}
 block|}
 block|}
@@ -1787,22 +1837,13 @@ name|e
 parameter_list|)
 block|{
 comment|// Should never happen during remove
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"removeAll() - method has been terminated."
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|private
@@ -2060,9 +2101,12 @@ block|{
 if|if
 condition|(
 name|dataCache
-operator|!=
+operator|==
 literal|null
 condition|)
+return|return
+literal|null
+return|;
 return|return
 operator|new
 name|BufferStats
@@ -2087,9 +2131,6 @@ operator|.
 name|getFails
 argument_list|()
 argument_list|)
-return|;
-return|return
-literal|null
 return|;
 block|}
 specifier|public
@@ -2328,6 +2369,7 @@ argument_list|,
 name|p
 argument_list|)
 return|;
+comment|//TODO : why rely on an exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -2398,11 +2440,9 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 specifier|final
 name|long
 name|pnum
@@ -2460,6 +2500,7 @@ name|p
 argument_list|)
 return|;
 block|}
+comment|//TODO : why rely on an exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -2599,7 +2640,6 @@ name|offset
 operator|<
 literal|0
 condition|)
-block|{
 throw|throw
 operator|new
 name|IOException
@@ -2616,7 +2656,6 @@ name|getPageNum
 argument_list|()
 argument_list|)
 throw|;
-block|}
 specifier|final
 name|byte
 index|[]
@@ -2702,9 +2741,16 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|b
+name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2775,14 +2821,14 @@ decl_stmt|;
 if|if
 condition|(
 name|offset
+operator|<
+literal|0
+operator|||
+name|offset
 operator|>
 name|data
 operator|.
 name|length
-operator|||
-name|offset
-operator|<
-literal|0
 condition|)
 block|{
 name|LOG
@@ -3314,7 +3360,7 @@ name|FILE_FORMAT_VERSION_ID
 argument_list|)
 return|;
 block|}
-comment|/**      * Put data under given key.      *       * @see {@link BFile#put(Value, ByteArray, boolean)}      * @param with which the data is updated      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
+comment|/**      * Put data under given key.      *       * @see {@link BFile#put(Value, ByteArray, boolean)}      * @param with which the data is updated      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -3378,6 +3424,7 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+comment|//TODO : exception ? -pb
 name|LOG
 operator|.
 name|warn
@@ -3386,8 +3433,7 @@ literal|"Key length exceeds page size! Skipping key ..."
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 name|FixedByteArray
@@ -3418,7 +3464,7 @@ name|overwrite
 argument_list|)
 return|;
 block|}
-comment|/**      * Convinience method for {@link BFile#put(Value, byte[], true)}.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
+comment|/**      * Convinience method for {@link BFile#put(Value, byte[], true)}.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -3443,7 +3489,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Put a value under given key. The difference of this      * method and {@link BFile#append(Value, ByteArray)} is,      * that the value gets updated and not stored.      *       * @param key with which the data is updated      * @param value value to update      * @param overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else -1      * @throws ReadOnlyException      */
+comment|/**      * Put a value under given key. The difference of this      * method and {@link BFile#append(Value, ByteArray)} is,      * that the value gets updated and not stored.      *       * @param key with which the data is updated      * @param value value to update      * @param overwrite if set to true, value will be overwritten if it already exists      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -3507,8 +3553,7 @@ literal|"key is null"
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 if|if
@@ -3524,6 +3569,7 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+comment|//TODO : exception ? -pb
 name|LOG
 operator|.
 name|warn
@@ -3532,8 +3578,7 @@ literal|"Key length exceeds page size! Skipping key ..."
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 try|try
@@ -3541,6 +3586,7 @@ block|{
 try|try
 block|{
 comment|// check if key exists already
+comment|//TODO : rely on a KEY_NOT_FOUND (or maybe VALUE_NOT_FOUND) result ! -pb
 name|long
 name|p
 init|=
@@ -3599,10 +3645,11 @@ argument_list|)
 return|;
 block|}
 else|else
+comment|//TODO : throw an exception ? -pb
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
+comment|//TODO : why catch an exception here ??? It costs too much ! -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3645,9 +3692,15 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|ioe
+argument_list|)
+expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 block|}
@@ -3670,8 +3723,7 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 catch|catch
@@ -3693,8 +3745,7 @@ name|bte
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 block|}
@@ -4715,7 +4766,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"wrong data length in list of free pages: adjusting to "
+literal|"Wrong data length in list of free pages: adjusting to "
 operator|+
 name|realSpace
 argument_list|)
@@ -4969,8 +5020,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 return|return
 name|update
@@ -5012,8 +5062,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 comment|/**      * Update the key/value pair found at the logical address p.      *       * @param p      *                   Description of the Parameter      * @param key      *                   Description of the Parameter      * @param value      *                   Description of the Parameter      * @return Description of the Return Value      */
@@ -5104,8 +5153,7 @@ name|bte
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 catch|catch
@@ -5127,8 +5175,7 @@ name|ioe
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|UNKNOWN_ADDRESS
 return|;
 block|}
 block|}
@@ -9446,7 +9493,9 @@ name|getPageNum
 argument_list|()
 condition|)
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 if|else if
 condition|(
@@ -9464,12 +9513,15 @@ name|getPageNum
 argument_list|()
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 else|else
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 block|}

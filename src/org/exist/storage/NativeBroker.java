@@ -2904,8 +2904,9 @@ name|openCollection
 argument_list|(
 name|name
 argument_list|,
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 argument_list|,
 name|Lock
 operator|.
@@ -2953,8 +2954,9 @@ name|openCollection
 argument_list|(
 name|name
 argument_list|,
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 argument_list|,
 name|lockMode
 argument_list|)
@@ -3127,12 +3129,14 @@ name|key
 init|=
 literal|null
 decl_stmt|;
+comment|//TODO : redesign this : one too many try block -pb
 if|if
 condition|(
 name|addr
 operator|==
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
 try|try
@@ -3175,8 +3179,10 @@ block|{
 if|if
 condition|(
 name|addr
-operator|<
-literal|0
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
 name|is
@@ -3252,7 +3258,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections.dbx"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -3668,19 +3682,13 @@ decl_stmt|;
 name|Collection
 name|collection
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|collection
-operator|=
 name|openCollection
 argument_list|(
 name|collName
 argument_list|,
 name|lockMode
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|collection
@@ -3692,11 +3700,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"collection "
+literal|"collection '"
 operator|+
 name|collName
 operator|+
-literal|" not found!"
+literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -3729,6 +3737,8 @@ literal|"permission denied to read collection"
 argument_list|)
 throw|;
 block|}
+try|try
+block|{
 name|DocumentImpl
 name|doc
 init|=
@@ -4094,7 +4104,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -4137,8 +4155,9 @@ block|{
 name|short
 name|freeCollectionId
 init|=
-operator|-
-literal|1
+name|Collection
+operator|.
+name|UNKNOWN_COLLECTION_ID
 decl_stmt|;
 name|Value
 name|key
@@ -4288,14 +4307,17 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|Collection
+operator|.
+name|UNKNOWN_COLLECTION_ID
 return|;
 block|}
 finally|finally
@@ -4332,9 +4354,10 @@ decl_stmt|;
 if|if
 condition|(
 name|nextCollectionId
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Collection
+operator|.
+name|UNKNOWN_COLLECTION_ID
 condition|)
 return|return
 name|nextCollectionId
@@ -4447,14 +4470,23 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|Collection
+operator|.
+name|UNKNOWN_COLLECTION_ID
 return|;
 block|}
 finally|finally
@@ -4642,7 +4674,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -4836,7 +4876,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -5039,7 +5087,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -8782,8 +8838,9 @@ name|doc
 operator|.
 name|setAddress
 argument_list|(
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 argument_list|)
 expr_stmt|;
 name|doc
@@ -8940,8 +8997,9 @@ name|node
 operator|.
 name|setInternalAddress
 argument_list|(
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 argument_list|)
 expr_stmt|;
 name|store
@@ -9760,6 +9818,7 @@ throws|throws
 name|PermissionDeniedException
 block|{
 comment|//		final long start = System.currentTimeMillis();
+comment|//TODO : use dedicated function in XmldbURI
 name|name
 operator|=
 name|normalizeCollectionName
@@ -11871,7 +11930,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to acquire lock on collections.dbx"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -12550,7 +12617,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to acquire lock on collections.dbx"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -12674,9 +12749,10 @@ decl_stmt|;
 if|if
 condition|(
 name|address
-operator|>
-operator|-
-literal|1
+operator|!=
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 name|domDb
 operator|.
@@ -13184,17 +13260,13 @@ expr_stmt|;
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -13210,8 +13282,10 @@ name|collection
 operator|.
 name|getId
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|Collection
+operator|.
+name|UNKNOWN_COLLECTION_ID
 condition|)
 name|collection
 operator|.
@@ -13317,20 +13391,25 @@ decl_stmt|;
 if|if
 condition|(
 name|addr
-operator|<
-literal|0
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
+comment|//TODO : exception !!! -pb
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"could not store collection data for "
+literal|"could not store collection data for '"
 operator|+
 name|collection
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -13387,7 +13466,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"could not acquire lock for collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -13435,6 +13522,7 @@ argument_list|(
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
+comment|//TODO : somewhat inconsistent (READ is enough for original doc whereas WRITE is mandatory for destination) -pb
 name|Collection
 name|collection
 init|=
@@ -13501,12 +13589,17 @@ name|getFileName
 argument_list|()
 argument_list|)
 throw|;
-if|if
-condition|(
+name|User
+name|docUser
+init|=
 name|doc
 operator|.
 name|getUserLock
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|docUser
 operator|!=
 literal|null
 condition|)
@@ -13515,10 +13608,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|doc
-operator|.
-name|getUserLock
-argument_list|()
+name|user
 operator|.
 name|getName
 argument_list|()
@@ -13526,7 +13616,7 @@ operator|)
 operator|.
 name|equals
 argument_list|(
-name|user
+name|docUser
 operator|.
 name|getName
 argument_list|()
@@ -13536,12 +13626,21 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move the resource because is locked by another user "
+literal|"Cannot move '"
 operator|+
 name|doc
 operator|.
 name|getFileName
 argument_list|()
+operator|+
+literal|" because is locked by user '"
+operator|+
+name|docUser
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -13584,17 +13683,13 @@ block|}
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -15200,7 +15295,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire read lock on dom.dbx"
+literal|"Failed to acquire read lock on "
+operator|+
+name|domDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -15309,9 +15412,6 @@ name|TRUNC_BOTH
 case|:
 if|if
 condition|(
-operator|-
-literal|1
-operator|<
 name|Collations
 operator|.
 name|indexOf
@@ -15322,6 +15422,10 @@ name|cmp
 argument_list|,
 name|expr
 argument_list|)
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 name|resultNodeSet
 operator|.
@@ -15618,8 +15722,9 @@ block|{
 name|long
 name|address
 init|=
-operator|-
-literal|1
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 decl_stmt|;
 specifier|final
 name|byte
@@ -15693,8 +15798,10 @@ block|}
 if|if
 condition|(
 name|address
-operator|<
-literal|0
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 name|LOG
 operator|.
@@ -15703,6 +15810,7 @@ argument_list|(
 literal|"address is missing"
 argument_list|)
 expr_stmt|;
+comment|//TODO : how can we continue here ? -pb
 name|node
 operator|.
 name|setInternalAddress
@@ -16149,7 +16257,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to acquire lock on collections.dbx"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -16242,6 +16358,28 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -16253,20 +16391,6 @@ argument_list|(
 literal|"IOException while reading document data"
 argument_list|,
 name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to acquire lock on collections.dbx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -16642,7 +16766,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"failed to acquire lock on collections store"
+literal|"Failed to acquire lock on "
+operator|+
+name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -16875,10 +17007,11 @@ name|ReadOnlyException
 block|{
 if|if
 condition|(
-operator|-
-literal|1
-operator|<
 name|internalAddress
+operator|!=
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 name|domDb
 operator|.
@@ -17086,9 +17219,10 @@ decl_stmt|;
 if|if
 condition|(
 name|address
-operator|>
-operator|-
-literal|1
+operator|!=
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
 name|address
