@@ -2437,7 +2437,7 @@ block|}
 block|}
 comment|/** 	 * Whether or not the database instance is being initialized.  	 *  	 * @return<code>true</code> is the database instance is being initialized 	 */
 comment|//	TODO : let's be positive and rename it as isInitialized ?
-specifier|protected
+specifier|public
 name|boolean
 name|isInitializing
 parameter_list|()

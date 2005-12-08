@@ -1135,7 +1135,7 @@ name|setDocId
 argument_list|(
 name|broker
 operator|.
-name|getNextDocId
+name|getNextDocumentId
 argument_list|(
 name|transaction
 argument_list|,
@@ -4489,7 +4489,7 @@ name|setDocId
 argument_list|(
 name|broker
 operator|.
-name|getNextDocId
+name|getNextDocumentId
 argument_list|(
 name|transaction
 argument_list|,

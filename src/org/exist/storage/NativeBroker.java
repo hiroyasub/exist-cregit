@@ -2977,7 +2977,6 @@ name|int
 name|lockMode
 parameter_list|)
 block|{
-comment|//	final long start = System.currentTimeMillis();
 comment|///TODO : use dedicated function in XmldbURI
 name|name
 operator|=
@@ -3060,8 +3059,6 @@ argument_list|)
 expr_stmt|;
 name|Collection
 name|collection
-init|=
-literal|null
 decl_stmt|;
 name|CollectionCache
 name|collectionsCache
@@ -3092,11 +3089,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|VariableByteInput
-name|is
-init|=
-literal|null
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -3124,12 +3116,9 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-name|Value
-name|key
-init|=
-literal|null
+name|VariableByteInput
+name|is
 decl_stmt|;
-comment|//TODO : redesign this : one too many try block -pb
 if|if
 condition|(
 name|addr
@@ -3139,10 +3128,9 @@ operator|.
 name|UNKNOWN_ADDRESS
 condition|)
 block|{
-try|try
-block|{
+name|Value
 name|key
-operator|=
+init|=
 operator|new
 name|Value
 argument_list|(
@@ -3153,38 +3141,7 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedEncodingException
-name|uee
-parameter_list|)
-block|{
-name|key
-operator|=
-operator|new
-name|Value
-argument_list|(
-name|name
-operator|.
-name|getBytes
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-try|try
-block|{
-if|if
-condition|(
-name|addr
-operator|==
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-condition|)
-block|{
+decl_stmt|;
 name|is
 operator|=
 name|collectionsDb
@@ -3213,11 +3170,9 @@ name|is
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 name|collection
 operator|.
 name|read
@@ -3227,26 +3182,44 @@ argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
+comment|//TODO : manage this from within the cache -pb
+if|if
+condition|(
+operator|!
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
+name|collectionsCache
+operator|.
+name|add
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
+comment|//TODO : rethrow exceptions ? -pb
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ioe
+name|UnsupportedEncodingException
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ioe
+literal|"Unable to encode "
+operator|+
+name|name
+operator|+
+literal|"' in UTF-8"
 argument_list|)
 expr_stmt|;
-block|}
+return|return
+literal|null
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -3273,6 +3246,28 @@ return|return
 literal|null
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 finally|finally
 block|{
 name|lock
@@ -3282,28 +3277,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|isInitializing
-argument_list|()
-condition|)
-comment|// don't cache the collection during initialization: SecurityManager is not yet online
-name|collectionsCache
-operator|.
-name|add
-argument_list|(
-name|collection
-argument_list|)
-expr_stmt|;
-comment|//			LOG.debug(
-comment|//				"loading collection "
-comment|//					+ name
-comment|//					+ " took "
-comment|//					+ (System.currentTimeMillis() - start)
-comment|//					+ "ms.");
 block|}
 if|if
 condition|(
@@ -3316,7 +3289,6 @@ condition|)
 block|{
 try|try
 block|{
-comment|//					LOG.debug("acquiring lock on " + collection.getName());
 name|collection
 operator|.
 name|getLock
@@ -3327,21 +3299,22 @@ argument_list|(
 name|lockMode
 argument_list|)
 expr_stmt|;
-comment|//					LOG.debug("lock acquired");
 block|}
 catch|catch
 parameter_list|(
 name|LockException
-name|e1
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not acquire lock on collection "
+literal|"Could not acquire lock on collection '"
 operator|+
 name|name
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3469,7 +3442,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  get a document by its file name. The document's file name is used to 	 *  identify a document. 	 * 	 *@param  fileName                       absolute file name in the database; name can be given with or without the leading path /db/shakespeare. 	 *@return                                The document value 	 *@exception  PermissionDeniedException   	 */
+comment|/** 	 *  get a document by its file name. The document's file name is used to 	 *  identify a document. 	 * 	 *@param  fileName absolute file name in the database;       *name can be given with or without the leading path /db/shakespeare. 	 *@return  The document value 	 *@exception  PermissionDeniedException   	 */
 specifier|public
 name|Document
 name|getDocument
@@ -3577,7 +3550,11 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"permission denied to read collection"
+literal|"Permission denied to read collection '"
+operator|+
+name|collName
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 name|DocumentImpl
@@ -3603,11 +3580,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"document "
+literal|"document '"
 operator|+
 name|fileName
 operator|+
-literal|" not found!"
+literal|"' not found!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -3625,7 +3602,7 @@ name|DocumentImpl
 name|openDocument
 parameter_list|(
 name|String
-name|docPath
+name|fileName
 parameter_list|,
 name|int
 name|lockMode
@@ -3633,13 +3610,13 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-name|docPath
+name|fileName
 operator|=
 name|XmldbURI
 operator|.
 name|checkPath2
 argument_list|(
-name|docPath
+name|fileName
 argument_list|,
 name|ROOT_COLLECTION
 argument_list|)
@@ -3648,7 +3625,7 @@ comment|///TODO : use dedicated function in XmldbURI
 name|int
 name|pos
 init|=
-name|docPath
+name|fileName
 operator|.
 name|lastIndexOf
 argument_list|(
@@ -3658,7 +3635,7 @@ decl_stmt|;
 name|String
 name|collName
 init|=
-name|docPath
+name|fileName
 operator|.
 name|substring
 argument_list|(
@@ -3670,7 +3647,7 @@ decl_stmt|;
 name|String
 name|docName
 init|=
-name|docPath
+name|fileName
 operator|.
 name|substring
 argument_list|(
@@ -3728,15 +3705,17 @@ operator|.
 name|READ
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"permission denied to read collection"
+literal|"Permission denied to read collection '"
+operator|+
+name|collName
+operator|+
+literal|"'"
 argument_list|)
 throw|;
-block|}
 try|try
 block|{
 name|DocumentImpl
@@ -3760,7 +3739,17 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//				LOG.debug("document " + docPath + " not found!");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"document '"
+operator|+
+name|fileName
+operator|+
+literal|"' not found!"
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -3783,14 +3772,16 @@ name|warn
 argument_list|(
 literal|"Could not acquire lock on document "
 operator|+
-name|docPath
+name|fileName
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : exception ? -pb
 block|}
 finally|finally
 block|{
+comment|//TOUNDERSTANT : by whom is this lock acquired ? -pb
 if|if
 condition|(
 name|collection
@@ -3934,7 +3925,7 @@ block|}
 comment|/** 	 * Release the collection id assigned to a collection so it can be 	 * reused later. 	 *  	 * @param id 	 * @throws PermissionDeniedException 	 */
 specifier|protected
 name|void
-name|freeCollection
+name|freeCollectionId
 parameter_list|(
 name|Txn
 name|transaction
@@ -3945,16 +3936,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|//		LOG.debug("freeing collection " + id);
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__free_collection_id"
-argument_list|)
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -3974,6 +3955,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|FREE_COLLECTION_ID_KEY
+argument_list|)
+decl_stmt|;
 name|Value
 name|value
 init|=
@@ -4117,6 +4109,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4159,15 +4152,6 @@ name|Collection
 operator|.
 name|UNKNOWN_COLLECTION_ID
 decl_stmt|;
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__free_collection_id"
-argument_list|)
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -4187,6 +4171,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|FREE_COLLECTION_ID_KEY
+argument_list|)
+decl_stmt|;
 name|Value
 name|value
 init|=
@@ -4296,6 +4291,9 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|freeCollectionId
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -4310,6 +4308,12 @@ argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
 name|collectionsDb
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -4319,6 +4323,7 @@ name|Collection
 operator|.
 name|UNKNOWN_COLLECTION_ID
 return|;
+comment|//TODO : rethrow ? -pb
 block|}
 finally|finally
 block|{
@@ -4328,9 +4333,6 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-return|return
-name|freeCollectionId
-return|;
 block|}
 comment|/** 	 * Get the next available unique collection id. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
 specifier|protected
@@ -4362,15 +4364,6 @@ condition|)
 return|return
 name|nextCollectionId
 return|;
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__next_collection_id"
-argument_list|)
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -4390,6 +4383,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|NEXT_COLLECTION_ID_KEY
+argument_list|)
+decl_stmt|;
 name|Value
 name|data
 init|=
@@ -4459,6 +4463,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+return|return
+name|nextCollectionId
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -4488,6 +4495,7 @@ name|Collection
 operator|.
 name|UNKNOWN_COLLECTION_ID
 return|;
+comment|//TODO : rethrow ? -pb
 block|}
 finally|finally
 block|{
@@ -4497,14 +4505,11 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-return|return
-name|nextCollectionId
-return|;
 block|}
 comment|/** 	 * Release the document id reserved for a document so it 	 * can be reused. 	 *  	 * @param id 	 * @throws PermissionDeniedException 	 */
 specifier|protected
 name|void
-name|freeDocument
+name|freeDocumentId
 parameter_list|(
 name|Txn
 name|transaction
@@ -4515,16 +4520,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|//		LOG.debug("freeing document " + id);
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__free_doc_id"
-argument_list|)
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -4544,6 +4539,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|FREE_DOC_ID_KEY
+argument_list|)
+decl_stmt|;
 name|Value
 name|value
 init|=
@@ -4687,6 +4693,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4714,7 +4721,7 @@ block|}
 comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
 specifier|protected
 name|int
-name|getFreeDocId
+name|getFreeDocumentId
 parameter_list|(
 name|Txn
 name|transaction
@@ -4725,17 +4732,9 @@ block|{
 name|int
 name|freeDocId
 init|=
-operator|-
-literal|1
-decl_stmt|;
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__free_doc_id"
-argument_list|)
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
 name|Lock
 name|lock
@@ -4756,6 +4755,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|FREE_DOC_ID_KEY
+argument_list|)
+decl_stmt|;
 name|Value
 name|value
 init|=
@@ -4865,6 +4875,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : maybe something ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4890,9 +4901,11 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
 return|;
+comment|//TODO : rethrow ? -pb
 block|}
 finally|finally
 block|{
@@ -4909,7 +4922,7 @@ block|}
 comment|/** get next Free Doc Id */
 specifier|public
 name|int
-name|getNextDocId
+name|getNextDocumentId
 parameter_list|(
 name|Txn
 name|transaction
@@ -4925,7 +4938,7 @@ try|try
 block|{
 name|nextDocId
 operator|=
-name|getFreeDocId
+name|getFreeDocumentId
 argument_list|(
 name|transaction
 argument_list|)
@@ -4934,9 +4947,10 @@ block|}
 catch|catch
 parameter_list|(
 name|ReadOnlyException
-name|e1
+name|e
 parameter_list|)
 block|{
+comment|//TODO : rethrow ? -pb
 return|return
 literal|1
 return|;
@@ -4944,9 +4958,10 @@ block|}
 if|if
 condition|(
 name|nextDocId
-operator|>
-operator|-
-literal|1
+operator|!=
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
 condition|)
 return|return
 name|nextDocId
@@ -4956,18 +4971,6 @@ name|nextDocId
 operator|=
 literal|1
 expr_stmt|;
-name|Value
-name|key
-init|=
-operator|new
-name|Value
-argument_list|(
-literal|"__next_doc_id"
-argument_list|)
-decl_stmt|;
-name|Value
-name|data
-decl_stmt|;
 name|Lock
 name|lock
 init|=
@@ -4987,15 +4990,27 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|Value
+name|key
+init|=
+operator|new
+name|Value
+argument_list|(
+name|CollectionStore
+operator|.
+name|NEXT_DOC_ID_KEY
+argument_list|)
+decl_stmt|;
+name|Value
 name|data
-operator|=
+init|=
 name|collectionsDb
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|data
@@ -5042,8 +5057,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|collectionsDb
 operator|.
 name|put
@@ -5072,10 +5085,11 @@ literal|"database read-only"
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
 return|;
-block|}
+comment|//TODO : rethrow ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -5100,6 +5114,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow ? -pb
 block|}
 finally|finally
 block|{
@@ -8155,7 +8170,7 @@ name|newDoc
 operator|.
 name|setDocId
 argument_list|(
-name|getNextDocId
+name|getNextDocumentId
 argument_list|(
 name|transaction
 argument_list|,
@@ -11908,7 +11923,7 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-name|freeCollection
+name|freeCollectionId
 argument_list|(
 name|transaction
 argument_list|,
@@ -12214,7 +12229,7 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-name|freeDocument
+name|freeDocumentId
 argument_list|(
 name|transaction
 argument_list|,
@@ -12500,7 +12515,7 @@ if|if
 condition|(
 name|freeDocId
 condition|)
-name|freeDocument
+name|freeDocumentId
 argument_list|(
 name|transaction
 argument_list|,
@@ -14408,7 +14423,7 @@ name|newDoc
 operator|.
 name|setDocId
 argument_list|(
-name|getNextDocId
+name|getNextDocumentId
 argument_list|(
 name|transaction
 argument_list|,
@@ -17474,7 +17489,7 @@ name|targetDoc
 operator|.
 name|setDocId
 argument_list|(
-name|getNextDocId
+name|getNextDocumentId
 argument_list|(
 name|transaction
 argument_list|,

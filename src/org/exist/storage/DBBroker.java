@@ -1292,7 +1292,7 @@ comment|/** 	 * Get a new document id that does not yet exist within the collect
 specifier|public
 specifier|abstract
 name|int
-name|getNextDocId
+name|getNextDocumentId
 parameter_list|(
 name|Txn
 name|transaction
