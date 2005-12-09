@@ -557,18 +557,6 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Reading config for "
-operator|+
-name|collection
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|CollectionConfiguration
 name|conf
 init|=
@@ -700,31 +688,24 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_FILE
+operator|.
+name|equals
+argument_list|(
 name|confDoc
 operator|.
 name|getFileName
 argument_list|()
-operator|.
-name|endsWith
-argument_list|(
-name|CollectionConfiguration
-operator|.
-name|COLLECTION_CONFIG_SUFFIX
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Reading config for '"
+literal|"Reading collection configuration for '"
 operator|+
 name|collection
 operator|.
@@ -792,6 +773,21 @@ condition|(
 operator|!
 name|configFound
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Reading collection configuration for '"
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' from index configuration"
+argument_list|)
+expr_stmt|;
 comment|// use default configuration
 name|conf
 operator|.
@@ -803,6 +799,7 @@ name|getIndexConfiguration
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// we synchronize on the global CollectionCache to avoid deadlocks.
 comment|// the calling code does mostly already hold a lock on CollectionCache.
 name|CollectionCache

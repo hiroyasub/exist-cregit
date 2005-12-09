@@ -182,14 +182,6 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|COLLECTION_CONFIG_SUFFIX
-init|=
-literal|".xconf"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
 name|NAMESPACE
 init|=
 literal|"http://exist-db.org/collection-config/1.0"
@@ -308,7 +300,6 @@ index|[
 literal|6
 index|]
 decl_stmt|;
-comment|/**      * @uml.associationEnd multiplicity="(0 1)"      */
 specifier|private
 name|IndexSpec
 name|indexSpec
@@ -406,17 +397,6 @@ throw|;
 if|if
 condition|(
 operator|!
-operator|(
-name|NAMESPACE
-operator|.
-name|equals
-argument_list|(
-name|root
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-operator|&&
 name|ROOT_ELEMENT
 operator|.
 name|equals
@@ -426,21 +406,58 @@ operator|.
 name|getLocalName
 argument_list|()
 argument_list|)
-operator|)
 condition|)
 throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Wrong document root for collection configuration. "
-operator|+
-literal|"The root element should be "
+literal|"Expected element '"
 operator|+
 name|ROOT_ELEMENT
 operator|+
-literal|" in namespace "
+literal|"' in configuration document. Got element '"
+operator|+
+name|root
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+name|NAMESPACE
+operator|.
+name|equals
+argument_list|(
+name|root
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Expected namespace '"
 operator|+
 name|NAMESPACE
+operator|+
+literal|"' for element '"
+operator|+
+name|PARAMETER_ELEMENT
+operator|+
+literal|"' in configuration document. Got '"
+operator|+
+name|root
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 name|NodeList
@@ -709,7 +726,7 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for permissions in collection configuration: "
+literal|"Ilegal value for permissions in configuration document : "
 operator|+
 name|e
 operator|.
@@ -777,7 +794,7 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for permissions in collection configuration: "
+literal|"Ilegal value for permissions in configuration document : "
 operator|+
 name|e
 operator|.
@@ -790,6 +807,48 @@ throw|;
 block|}
 block|}
 block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Ignored node '"
+operator|+
+name|node
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|"' in configuration document"
+argument_list|)
+expr_stmt|;
+comment|//TODO : throw an exception like above ? -pb
+block|}
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Ignored node '"
+operator|+
+name|node
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|"' in namespace '"
+operator|+
+name|node
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|+
+literal|"' in configuration document"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -892,7 +951,18 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"trigger requires an attribute 'event'"
+literal|"'"
+operator|+
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|"' requires an attribute '"
+operator|+
+name|EVENT_ATTRIBUTE
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 name|String
@@ -915,9 +985,32 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"trigger requires an attribute 'class'"
+literal|"'"
+operator|+
+name|node
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|"' requires an attribute '"
+operator|+
+name|CLASS_ATTRIBUTE
+operator|+
+literal|"'"
 argument_list|)
 throw|;
+name|Trigger
+name|trigger
+init|=
+name|instantiate
+argument_list|(
+name|broker
+argument_list|,
+name|node
+argument_list|,
+name|classAttr
+argument_list|)
+decl_stmt|;
 name|StringTokenizer
 name|tok
 init|=
@@ -932,40 +1025,6 @@ decl_stmt|;
 name|String
 name|event
 decl_stmt|;
-name|Trigger
-name|trigger
-decl_stmt|;
-try|try
-block|{
-name|trigger
-operator|=
-name|instantiate
-argument_list|(
-name|broker
-argument_list|,
-name|node
-argument_list|,
-name|classAttr
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CollectionConfigurationException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"failed to instantiate trigger"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 while|while
 condition|(
 name|tok
@@ -985,13 +1044,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Registering trigger "
+literal|"Registering trigger '"
 operator|+
 name|classAttr
 operator|+
-literal|" for event "
+literal|"' for event '"
 operator|+
 name|event
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 if|if
@@ -1004,6 +1065,28 @@ literal|"store"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|STORE_DOCUMENT_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1024,6 +1107,28 @@ literal|"update"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|UPDATE_DOCUMENT_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1044,6 +1149,28 @@ literal|"remove"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|REMOVE_DOCUMENT_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1064,6 +1191,28 @@ literal|"create-collection"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|CREATE_COLLECTION_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1084,6 +1233,28 @@ literal|"rename-collection"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|RENAME_COLLECTION_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1104,6 +1275,28 @@ literal|"delete-collection"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|triggers
+index|[
+name|Trigger
+operator|.
+name|DELETE_COLLECTION_EVENT
+index|]
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Trigger '"
+operator|+
+name|classAttr
+operator|+
+literal|"' already registered"
+argument_list|)
+throw|;
 name|triggers
 index|[
 name|Trigger
@@ -1119,9 +1312,13 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"unknown event type '"
+literal|"Unknown event type '"
 operator|+
 name|event
+operator|+
+literal|"' in trigger '"
+operator|+
+name|classAttr
 operator|+
 literal|"'"
 argument_list|)
@@ -1172,39 +1369,56 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"supplied class is not a subclass of org.exist.collections.Trigger"
+literal|"Trigger's class '"
+operator|+
+name|classname
+operator|+
+literal|"' is not assignable from '"
+operator|+
+name|Trigger
+operator|.
+name|class
+operator|+
+literal|"'"
 argument_list|)
 throw|;
-name|Trigger
-name|trigger
-init|=
-operator|(
-name|Trigger
-operator|)
-name|clazz
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
 name|NodeList
 name|nodes
 init|=
 name|node
 operator|.
-name|getChildNodes
+name|getElementsByTagNameNS
+argument_list|(
+name|NAMESPACE
+argument_list|,
+name|PARAMETER_ELEMENT
+argument_list|)
+decl_stmt|;
+comment|//TODO : rely on schema-driven validation -pb
+if|if
+condition|(
+name|nodes
+operator|.
+name|getLength
 argument_list|()
-decl_stmt|;
-name|Node
-name|next
-decl_stmt|;
-name|Element
-name|param
-decl_stmt|;
-name|String
-name|name
-decl_stmt|,
-name|value
-decl_stmt|;
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Expected '"
+operator|+
+name|PARAM_NAME_ATTRIBUTE
+operator|+
+literal|"' elements in namespace '"
+operator|+
+name|NAMESPACE
+operator|+
+literal|"' in trigger's configuration."
+argument_list|)
+throw|;
 name|Map
 name|parameters
 init|=
@@ -1232,78 +1446,63 @@ name|i
 operator|++
 control|)
 block|{
-name|next
-operator|=
+name|Element
+name|param
+init|=
+operator|(
+name|Element
+operator|)
 name|nodes
 operator|.
 name|item
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|next
-operator|.
-name|getNodeType
-argument_list|()
-operator|==
-name|Node
-operator|.
-name|ELEMENT_NODE
-operator|&&
-name|next
-operator|.
-name|getNamespaceURI
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|NAMESPACE
-argument_list|)
-operator|&&
-name|next
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|PARAMETER_ELEMENT
-argument_list|)
-condition|)
-block|{
-name|param
-operator|=
-operator|(
-name|Element
-operator|)
-name|next
-expr_stmt|;
+decl_stmt|;
+comment|//TODO : rely on schema-driven validation -pb
+name|String
 name|name
-operator|=
+init|=
 name|param
 operator|.
 name|getAttribute
 argument_list|(
 name|PARAM_NAME_ATTRIBUTE
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|name
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"Expected attribute '"
+operator|+
+name|PARAM_NAME_ATTRIBUTE
+operator|+
+literal|"' for element '"
+operator|+
+name|PARAMETER_ELEMENT
+operator|+
+literal|"' in trigger's configuration."
+argument_list|)
+throw|;
+name|String
 name|value
-operator|=
+init|=
 name|param
 operator|.
 name|getAttribute
 argument_list|(
 name|PARAM_VALUE_ATTRIBUTE
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|name
-operator|==
-literal|null
-operator|||
 name|value
 operator|==
 literal|null
@@ -1312,9 +1511,15 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"element parameter requires attributes "
+literal|"Expected attribute '"
 operator|+
-literal|"'name' and 'value'"
+name|PARAM_NAME_ATTRIBUTE
+operator|+
+literal|"' for element '"
+operator|+
+name|PARAMETER_ELEMENT
+operator|+
+literal|"' in trigger's configuration."
 argument_list|)
 throw|;
 name|parameters
@@ -1327,7 +1532,17 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+name|Trigger
+name|trigger
+init|=
+operator|(
+name|Trigger
+operator|)
+name|clazz
+operator|.
+name|newInstance
+argument_list|()
+decl_stmt|;
 name|trigger
 operator|.
 name|configure
