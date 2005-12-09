@@ -608,7 +608,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Added config for collection "
+literal|"Configured '"
 operator|+
 name|parent
 operator|.
@@ -617,6 +617,8 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
