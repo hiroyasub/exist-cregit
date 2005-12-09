@@ -7616,19 +7616,18 @@ name|boolean
 name|repairMode
 parameter_list|)
 block|{
-comment|//		LOG.debug("Reindexing document " + doc.getFileName());
 if|if
 condition|(
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_FILE
+operator|.
+name|equals
+argument_list|(
 name|doc
 operator|.
 name|getFileName
 argument_list|()
-operator|.
-name|endsWith
-argument_list|(
-name|CollectionConfiguration
-operator|.
-name|COLLECTION_CONFIG_SUFFIX
 argument_list|)
 condition|)
 name|doc
@@ -7641,7 +7640,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//		final long start = System.currentTimeMillis();
 name|Iterator
 name|iterator
 decl_stmt|;
@@ -7735,16 +7733,16 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_FILE
+operator|.
+name|equals
+argument_list|(
 name|doc
 operator|.
 name|getFileName
 argument_list|()
-operator|.
-name|endsWith
-argument_list|(
-name|CollectionConfiguration
-operator|.
-name|COLLECTION_CONFIG_SUFFIX
 argument_list|)
 condition|)
 name|doc
@@ -7757,7 +7755,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//		LOG.debug("reindex took " + (System.currentTimeMillis() - start) + "ms.");
 block|}
 specifier|public
 name|void
