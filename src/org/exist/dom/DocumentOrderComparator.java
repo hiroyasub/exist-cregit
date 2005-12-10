@@ -107,7 +107,9 @@ operator|.
 name|docId
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 if|else if
 condition|(
