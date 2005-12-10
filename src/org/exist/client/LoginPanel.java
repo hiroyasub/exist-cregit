@@ -1648,7 +1648,14 @@ operator|=
 operator|new
 name|JButton
 argument_list|(
-literal|"Load"
+literal|"Select"
+argument_list|)
+expr_stmt|;
+name|btnLoadFavourite
+operator|.
+name|setToolTipText
+argument_list|(
+literal|"Select favourite"
 argument_list|)
 expr_stmt|;
 name|btnLoadFavourite
@@ -1824,6 +1831,13 @@ operator|new
 name|JButton
 argument_list|(
 literal|"Save"
+argument_list|)
+expr_stmt|;
+name|btnAddFavourite
+operator|.
+name|setToolTipText
+argument_list|(
+literal|"Save settings"
 argument_list|)
 expr_stmt|;
 name|btnAddFavourite
@@ -2061,6 +2075,13 @@ operator|.
 name|setEnabled
 argument_list|(
 literal|false
+argument_list|)
+expr_stmt|;
+name|btnRemoveFavourite
+operator|.
+name|setToolTipText
+argument_list|(
+literal|"Remove favourite"
 argument_list|)
 expr_stmt|;
 name|btnRemoveFavourite
