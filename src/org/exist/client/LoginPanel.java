@@ -1823,7 +1823,7 @@ operator|=
 operator|new
 name|JButton
 argument_list|(
-literal|"Save..."
+literal|"Save"
 argument_list|)
 expr_stmt|;
 name|btnAddFavourite
