@@ -285,7 +285,7 @@ name|escaped
 init|=
 name|URIUtils
 operator|.
-name|escapeHtmlURI
+name|iriToURI
 argument_list|(
 name|collectionPath
 argument_list|)
