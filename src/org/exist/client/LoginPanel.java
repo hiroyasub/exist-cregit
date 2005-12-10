@@ -2257,7 +2257,7 @@ argument_list|)
 decl_stmt|;
 comment|// Get all favourites
 name|String
-name|favouriteNode
+name|favouriteNodeNames
 index|[]
 init|=
 operator|new
@@ -2268,7 +2268,7 @@ index|]
 decl_stmt|;
 try|try
 block|{
-name|favouriteNode
+name|favouriteNodeNames
 operator|=
 name|favouritesNode
 operator|.
@@ -2296,7 +2296,7 @@ init|=
 operator|new
 name|Favourite
 index|[
-name|favouriteNode
+name|favouriteNodeNames
 operator|.
 name|length
 index|]
@@ -2310,7 +2310,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|favouriteNode
+name|favouriteNodeNames
 operator|.
 name|length
 condition|;
@@ -2325,7 +2325,7 @@ name|favouritesNode
 operator|.
 name|node
 argument_list|(
-name|favouriteNode
+name|favouriteNodeNames
 index|[
 name|i
 index|]
