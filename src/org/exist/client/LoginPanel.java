@@ -105,6 +105,36 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -162,6 +192,16 @@ operator|.
 name|swing
 operator|.
 name|JComboBox
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|JFileChooser
 import|;
 end_import
 
@@ -387,6 +427,9 @@ name|btnRemoveFavourite
 decl_stmt|;
 name|JButton
 name|btnLoadFavourite
+decl_stmt|;
+name|JButton
+name|btnExportFavourite
 decl_stmt|;
 comment|/**      * Creates a new login panel with the given user and uri.      *      * @param defaultUser the initial user      * @param uri the uri to connect to      */
 specifier|public
@@ -2193,6 +2236,23 @@ argument_list|(
 name|btnRemoveFavourite
 argument_list|)
 expr_stmt|;
+comment|//        btnExportFavourite = new JButton("Export");
+comment|//        btnExportFavourite.setEnabled(true);
+comment|//        btnExportFavourite.setToolTipText("Export favourite");
+comment|//        btnExportFavourite.addActionListener(new ActionListener() {
+comment|//            public void actionPerformed(ActionEvent e) {
+comment|//                importFavourites();
+comment|//                repaint();
+comment|//            }
+comment|//        });
+comment|//        c.gridx = 2;
+comment|//        c.gridy = 7;
+comment|//        c.gridwidth = 1;
+comment|//        c.gridheight = 1;
+comment|//        c.anchor = GridBagConstraints.WEST;
+comment|//        c.fill = GridBagConstraints.HORIZONTAL;
+comment|//        grid.setConstraints(btnExportFavourite, c);
+comment|//        add(btnExportFavourite);
 name|JPanel
 name|spacer
 init|=
@@ -2516,6 +2576,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//Preferences favouriteNode = favouritesNode.node(f.getName());
 name|Preferences
 name|favouriteNode
 init|=
@@ -2582,6 +2643,176 @@ name|f
 operator|.
 name|getUrl
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|private
+name|void
+name|importFavourites
+parameter_list|()
+block|{
+name|JFileChooser
+name|chooser
+init|=
+operator|new
+name|JFileChooser
+argument_list|()
+decl_stmt|;
+name|chooser
+operator|.
+name|showOpenDialog
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|File
+name|selectedFile
+init|=
+name|chooser
+operator|.
+name|getSelectedFile
+argument_list|()
+decl_stmt|;
+name|Preferences
+name|prefs
+init|=
+name|Preferences
+operator|.
+name|userNodeForPackage
+argument_list|(
+name|LoginPanel
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|FileInputStream
+name|fis
+init|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|selectedFile
+argument_list|)
+decl_stmt|;
+name|prefs
+operator|.
+name|importPreferences
+argument_list|(
+name|fis
+argument_list|)
+expr_stmt|;
+name|fis
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|ClientFrame
+operator|.
+name|showErrorMessage
+argument_list|(
+literal|"Problems importing favourites"
+argument_list|,
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|private
+name|void
+name|exportFavourites
+parameter_list|()
+block|{
+name|JFileChooser
+name|chooser
+init|=
+operator|new
+name|JFileChooser
+argument_list|()
+decl_stmt|;
+name|chooser
+operator|.
+name|showSaveDialog
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|File
+name|selectedFile
+init|=
+name|chooser
+operator|.
+name|getSelectedFile
+argument_list|()
+decl_stmt|;
+name|Preferences
+name|prefs
+init|=
+name|Preferences
+operator|.
+name|userNodeForPackage
+argument_list|(
+name|LoginPanel
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|FileOutputStream
+name|fos
+init|=
+operator|new
+name|FileOutputStream
+argument_list|(
+name|selectedFile
+argument_list|)
+decl_stmt|;
+name|prefs
+operator|.
+name|exportSubtree
+argument_list|(
+name|fos
+argument_list|)
+expr_stmt|;
+name|fos
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|ClientFrame
+operator|.
+name|showErrorMessage
+argument_list|(
+literal|"Problems exporting favourites"
+argument_list|,
+name|ex
 argument_list|)
 expr_stmt|;
 block|}
