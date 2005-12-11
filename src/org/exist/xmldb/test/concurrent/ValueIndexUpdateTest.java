@@ -148,7 +148,7 @@ argument_list|()
 argument_list|,
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_FILE
+name|DEFAULT_COLLECTION_CONFIG_FILE
 argument_list|,
 name|XCONF
 argument_list|)

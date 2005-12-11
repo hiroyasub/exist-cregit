@@ -7620,7 +7620,7 @@ if|if
 condition|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_FILE
+name|DEFAULT_COLLECTION_CONFIG_FILE
 operator|.
 name|equals
 argument_list|(
@@ -7735,7 +7735,7 @@ if|if
 condition|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_FILE
+name|DEFAULT_COLLECTION_CONFIG_FILE
 operator|.
 name|equals
 argument_list|(
