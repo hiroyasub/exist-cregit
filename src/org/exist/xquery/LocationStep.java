@@ -725,11 +725,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Sequence
-name|temp
-init|=
-name|NodeSet
-operator|.
-name|EMPTY_SET
+name|result
 decl_stmt|;
 if|if
 condition|(
@@ -750,37 +746,14 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
-block|{
-if|if
-condition|(
-name|context
+name|result
+operator|=
+name|NodeSet
 operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|end
-argument_list|(
-name|this
-argument_list|,
-literal|""
-argument_list|,
-name|temp
-argument_list|)
+name|EMPTY_SET
 expr_stmt|;
-return|return
-name|temp
-return|;
-block|}
 comment|//Try to return cached results
-if|if
+if|else if
 condition|(
 name|cached
 operator|!=
@@ -794,30 +767,15 @@ name|contextSequence
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|predicates
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|applyPredicate
-argument_list|(
-name|contextSequence
-argument_list|,
+comment|//WARNING : commented since predicates are *also* applied below ! -pb
+comment|/* 			if (predicates.size()> 0) {                 applyPredicate(contextSequence, cached.getResult());             } else {             */
+name|result
+operator|=
 name|cached
 operator|.
 name|getResult
 argument_list|()
-argument_list|)
 expr_stmt|;
-comment|//TODO : return now ? -pb
-block|}
-else|else
-block|{
 if|if
 condition|(
 name|context
@@ -833,27 +791,22 @@ operator|.
 name|getProfiler
 argument_list|()
 operator|.
-name|end
+name|message
 argument_list|(
 name|this
 argument_list|,
-literal|"Using cached result"
-argument_list|,
-name|cached
+name|Profiler
 operator|.
-name|getResult
-argument_list|()
+name|OPTIMIZATIONS
+argument_list|,
+literal|"Using cached results"
+argument_list|,
+name|result
 argument_list|)
 expr_stmt|;
-return|return
-name|cached
-operator|.
-name|getResult
-argument_list|()
-return|;
+comment|//}
 block|}
-block|}
-if|if
+if|else if
 condition|(
 name|needsComputation
 argument_list|()
@@ -874,7 +827,7 @@ name|Constants
 operator|.
 name|DESCENDANT_SELF_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getDescendants
 argument_list|(
@@ -892,7 +845,7 @@ name|Constants
 operator|.
 name|CHILD_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getChildren
 argument_list|(
@@ -915,7 +868,7 @@ name|Constants
 operator|.
 name|ANCESTOR_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getAncestors
 argument_list|(
@@ -933,7 +886,7 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getParents
 argument_list|(
@@ -951,7 +904,7 @@ name|Constants
 operator|.
 name|SELF_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getSelf
 argument_list|(
@@ -974,7 +927,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getAttributes
 argument_list|(
@@ -992,7 +945,7 @@ name|Constants
 operator|.
 name|PRECEDING_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getPreceding
 argument_list|(
@@ -1010,7 +963,7 @@ name|Constants
 operator|.
 name|FOLLOWING_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getFollowing
 argument_list|(
@@ -1033,7 +986,7 @@ name|Constants
 operator|.
 name|FOLLOWING_SIBLING_AXIS
 case|:
-name|temp
+name|result
 operator|=
 name|getSiblings
 argument_list|(
@@ -1056,6 +1009,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+else|else
+name|result
+operator|=
+name|NodeSet
+operator|.
+name|EMPTY_SET
+expr_stmt|;
 comment|//Caches the result
 if|if
 condition|(
@@ -1064,7 +1024,7 @@ operator|instanceof
 name|NodeSet
 condition|)
 block|{
-comment|//TODO : cache *after* removing duplicates ?
+comment|//TODO : cache *after* removing duplicates ? -pb
 name|cached
 operator|=
 operator|new
@@ -1075,7 +1035,7 @@ name|NodeSet
 operator|)
 name|contextSequence
 argument_list|,
-name|temp
+name|result
 argument_list|)
 expr_stmt|;
 name|registerUpdateListener
@@ -1083,19 +1043,19 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//Remove duplicate nodes
-name|temp
+name|result
 operator|.
 name|removeDuplicates
 argument_list|()
 expr_stmt|;
 comment|//Apply the predicate
-name|temp
+name|result
 operator|=
 name|applyPredicate
 argument_list|(
 name|contextSequence
 argument_list|,
-name|temp
+name|result
 argument_list|)
 expr_stmt|;
 if|if
@@ -1119,11 +1079,11 @@ name|this
 argument_list|,
 literal|""
 argument_list|,
-name|temp
+name|result
 argument_list|)
 expr_stmt|;
 return|return
-name|temp
+name|result
 return|;
 block|}
 comment|//Avoid unnecessary tests (these should be detected by the parser)

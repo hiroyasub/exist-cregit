@@ -282,7 +282,7 @@ name|contextItem
 argument_list|)
 decl_stmt|;
 name|int
-name|items
+name|seqLength
 init|=
 name|seq
 operator|.
@@ -291,7 +291,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|items
+name|seqLength
 operator|>
 literal|0
 operator|&&
@@ -323,7 +323,7 @@ argument_list|,
 operator|new
 name|Integer
 argument_list|(
-name|items
+name|seqLength
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -343,7 +343,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|items
+name|seqLength
 operator|==
 literal|0
 operator|&&
@@ -379,7 +379,7 @@ argument_list|,
 operator|new
 name|Integer
 argument_list|(
-name|items
+name|seqLength
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -399,7 +399,7 @@ throw|;
 block|}
 if|else if
 condition|(
-name|items
+name|seqLength
 operator|>
 literal|1
 operator|&&
@@ -435,7 +435,7 @@ argument_list|,
 operator|new
 name|Integer
 argument_list|(
-name|items
+name|seqLength
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -453,6 +453,30 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+name|seq
+argument_list|)
+expr_stmt|;
 return|return
 name|seq
 return|;

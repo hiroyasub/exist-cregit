@@ -358,16 +358,6 @@ operator|.
 name|lockDocumentsOnLoad
 argument_list|()
 decl_stmt|;
-try|try
-block|{
-comment|// wait for pending updates
-name|ds
-operator|.
-name|lock
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -380,6 +370,16 @@ name|getLength
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+block|{
+comment|// wait for pending updates
+name|ds
+operator|.
+name|lock
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -460,9 +460,6 @@ name|cachedDocs
 operator|=
 name|ds
 expr_stmt|;
-return|return
-name|result
-return|;
 block|}
 catch|catch
 parameter_list|(
@@ -497,6 +494,33 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Step#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
