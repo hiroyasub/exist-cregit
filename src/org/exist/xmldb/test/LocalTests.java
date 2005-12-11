@@ -128,6 +128,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|CollectionConfigurationTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|//$JUnit-END$
 return|return
 name|suite
