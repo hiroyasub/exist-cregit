@@ -1159,7 +1159,7 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"function "
+literal|"Function "
 operator|+
 name|qname
 operator|.
@@ -1189,22 +1189,40 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"wrong number of parameters in call to function "
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|qname
-operator|.
-name|toString
-argument_list|()
+literal|"Unexpectedly received "
 argument_list|)
 expr_stmt|;
 name|buf
 operator|.
 name|append
 argument_list|(
-literal|". Defined function signatures:\r\n"
+name|params
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" parameter(s) in call to function "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"'"
+operator|+
+name|qname
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"()'. "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"Defined function signatures are:\r\n"
 argument_list|)
 expr_stmt|;
 for|for
@@ -1326,21 +1344,21 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"function "
+literal|"Function "
 operator|+
 name|qname
 operator|.
 name|toString
 argument_list|()
 operator|+
-literal|" ( namespace-uri = "
+literal|"() is not defined in namespace '"
 operator|+
 name|qname
 operator|.
 name|getNamespaceURI
 argument_list|()
 operator|+
-literal|") is not defined"
+literal|"'"
 argument_list|)
 throw|;
 name|FunctionCall
