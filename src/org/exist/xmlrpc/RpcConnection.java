@@ -1259,7 +1259,7 @@ expr_stmt|;
 comment|//broker.sync();
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"collection "
 operator|+
@@ -1284,7 +1284,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 name|e
 argument_list|)
@@ -1422,6 +1422,20 @@ operator|.
 name|commit
 argument_list|(
 name|txn
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Configured '"
+operator|+
+name|collection
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
