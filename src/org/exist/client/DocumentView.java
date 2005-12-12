@@ -539,19 +539,7 @@ block|{
 comment|//TODO : use dedicated function in XmldbURI
 name|super
 argument_list|(
-literal|"View Document: "
-operator|+
-name|client
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|resourceName
+literal|"View Document "
 argument_list|)
 expr_stmt|;
 name|this
@@ -2115,10 +2103,26 @@ name|setText
 argument_list|(
 literal|"Loaded "
 operator|+
-name|resource
+name|client
 operator|.
-name|getId
+name|getCollection
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"/"
+operator|+
+name|resourceName
+operator|+
+literal|" from "
+operator|+
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"uri"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
