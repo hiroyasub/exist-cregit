@@ -547,6 +547,9 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Sequence
+name|result
+decl_stmt|;
+name|Sequence
 name|arg
 init|=
 name|getArgument
@@ -570,11 +573,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-return|return
+name|result
+operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
-return|;
+expr_stmt|;
+else|else
+block|{
 name|DateValue
 name|date
 init|=
@@ -595,7 +601,8 @@ argument_list|(
 literal|"day-from-date"
 argument_list|)
 condition|)
-return|return
+name|result
+operator|=
 operator|new
 name|IntegerValue
 argument_list|(
@@ -612,7 +619,7 @@ name|Type
 operator|.
 name|INTEGER
 argument_list|)
-return|;
+expr_stmt|;
 if|else if
 condition|(
 name|isCalledAs
@@ -620,7 +627,8 @@ argument_list|(
 literal|"month-from-date"
 argument_list|)
 condition|)
-return|return
+name|result
+operator|=
 operator|new
 name|IntegerValue
 argument_list|(
@@ -637,7 +645,7 @@ name|Type
 operator|.
 name|INTEGER
 argument_list|)
-return|;
+expr_stmt|;
 if|else if
 condition|(
 name|isCalledAs
@@ -645,12 +653,13 @@ argument_list|(
 literal|"timezone-from-date"
 argument_list|)
 condition|)
-return|return
+name|result
+operator|=
 name|date
 operator|.
 name|getTimezone
 argument_list|()
-return|;
+expr_stmt|;
 if|else if
 condition|(
 name|isCalledAs
@@ -658,7 +667,8 @@ argument_list|(
 literal|"year-from-date"
 argument_list|)
 condition|)
-return|return
+name|result
+operator|=
 operator|new
 name|IntegerValue
 argument_list|(
@@ -675,7 +685,7 @@ name|Type
 operator|.
 name|INTEGER
 argument_list|)
-return|;
+expr_stmt|;
 else|else
 throw|throw
 operator|new
@@ -692,6 +702,34 @@ name|getLocalName
 argument_list|()
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
 block|}
 block|}
 end_class

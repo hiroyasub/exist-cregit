@@ -361,7 +361,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Sequence
-name|seq
+name|result
 init|=
 name|getArgument
 argument_list|(
@@ -377,7 +377,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|seq
+name|result
 operator|.
 name|getLength
 argument_list|()
@@ -390,7 +390,7 @@ name|XPathException
 argument_list|(
 literal|"fn:exactly-one called with a sequence containing "
 operator|+
-name|seq
+name|result
 operator|.
 name|getLength
 argument_list|()
@@ -398,8 +398,32 @@ operator|+
 literal|" items"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
 return|return
-name|seq
+name|result
 return|;
 block|}
 block|}
