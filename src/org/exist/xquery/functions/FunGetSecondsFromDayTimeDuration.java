@@ -436,7 +436,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-return|return
+name|result
+operator|=
 operator|new
 name|DecimalValue
 argument_list|(
@@ -450,7 +451,7 @@ name|getSeconds
 argument_list|()
 argument_list|)
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 if|if
 condition|(
