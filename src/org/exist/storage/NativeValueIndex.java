@@ -4162,6 +4162,44 @@ return|return
 name|atomic
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" at "
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" owned by "
+operator|+
+name|broker
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" (case sensitive = "
+operator|+
+name|caseSensitive
+operator|+
+literal|")"
+return|;
+block|}
 comment|/** TODO document */
 class|class
 name|SearchCallback
