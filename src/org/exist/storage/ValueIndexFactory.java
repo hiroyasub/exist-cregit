@@ -73,6 +73,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|DateTimeValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|DoubleValue
 import|;
 end_import
@@ -133,6 +147,52 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|GregorianCalendar
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|datatype
+operator|.
+name|DatatypeFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|datatype
+operator|.
+name|DatatypeConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|datatype
+operator|.
+name|XMLGregorianCalendar
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -171,6 +231,7 @@ operator|+
 literal|2
 index|]
 decl_stmt|;
+comment|/* xs:string */
 if|if
 condition|(
 name|Type
@@ -210,6 +271,105 @@ name|s
 argument_list|)
 return|;
 block|}
+comment|/* xs:dateTime */
+if|else if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|type
+argument_list|,
+name|Type
+operator|.
+name|DATE_TIME
+argument_list|)
+condition|)
+block|{
+comment|//get the dateTime back as a long
+name|long
+name|value
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data
+argument_list|,
+name|start
+operator|+
+literal|3
+argument_list|)
+decl_stmt|;
+comment|//Create a GregorianCalendar from the long (normalized datetime as milliseconds since the Epoch)
+name|GregorianCalendar
+name|utccal
+init|=
+operator|new
+name|GregorianCalendar
+argument_list|()
+decl_stmt|;
+name|utccal
+operator|.
+name|setTimeInMillis
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
+comment|//Create a XMLGregorianCalendar from the GregorianCalendar
+try|try
+block|{
+name|XMLGregorianCalendar
+name|xmlutccal
+init|=
+name|DatatypeFactory
+operator|.
+name|newInstance
+argument_list|()
+operator|.
+name|newXMLGregorianCalendar
+argument_list|(
+name|utccal
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|DateTimeValue
+argument_list|(
+name|xmlutccal
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|DatatypeConfigurationException
+name|dtce
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"Could not deserialize xs:dateTime data type for range index key: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+operator|+
+literal|" - "
+operator|+
+name|dtce
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/* xs:integer */
 if|else if
 condition|(
 name|Type
@@ -243,6 +403,7 @@ literal|0x8000000000000000L
 argument_list|)
 return|;
 block|}
+comment|/* xs:boolean */
 if|else if
 condition|(
 name|type
@@ -267,6 +428,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/* xs:float */
 if|else if
 condition|(
 name|type
@@ -310,6 +472,7 @@ name|f
 argument_list|)
 return|;
 block|}
+comment|/* xs:double */
 if|else if
 condition|(
 name|type
@@ -353,7 +516,9 @@ name|d
 argument_list|)
 return|;
 block|}
+comment|/* unknown! */
 else|else
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -368,6 +533,7 @@ name|type
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

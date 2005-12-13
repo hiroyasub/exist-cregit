@@ -1021,6 +1021,14 @@ argument_list|(
 name|receiver
 argument_list|)
 decl_stmt|;
+name|result
+operator|.
+name|setLexicalHandler
+argument_list|(
+name|receiver
+argument_list|)
+expr_stmt|;
+comment|//preserve comments etc... from xslt output
 name|handler
 operator|.
 name|setResult

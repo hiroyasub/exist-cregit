@@ -93,6 +93,14 @@ name|BOOLEAN
 init|=
 literal|5
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DATE_TIME
+init|=
+literal|6
+decl_stmt|;
 comment|/**  	 * Indicates that the node has a qname-value index defined 	 * on it. 	 */
 specifier|public
 specifier|static
@@ -168,6 +176,10 @@ block|,
 name|Type
 operator|.
 name|BOOLEAN
+block|,
+name|Type
+operator|.
+name|DATE_TIME
 block|}
 decl_stmt|;
 specifier|protected
@@ -238,6 +250,15 @@ name|BOOLEAN
 index|]
 operator|=
 name|BOOLEAN
+expr_stmt|;
+name|indexTypes
+index|[
+name|Type
+operator|.
+name|DATE_TIME
+index|]
+operator|=
+name|DATE_TIME
 expr_stmt|;
 block|}
 comment|/** 	 * For a given index type bit, return the corresponding 	 * atomic XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type a bit set indicating the type 	 * @return 	 */
