@@ -3563,6 +3563,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"http://www.foo.com"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -3572,8 +3574,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|,
-literal|"http://www.foo.com"
 argument_list|)
 expr_stmt|;
 block|}
