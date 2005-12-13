@@ -1086,13 +1086,9 @@ return|return
 name|UNKNOWN_ADDRESS
 return|;
 block|}
-comment|//TODO : one too many try block here -pb
-try|try
-block|{
 try|try
 block|{
 comment|// check if key exists already
-comment|//TODO : rely on a KEY_NOT_FOUND (or maybe VALUE_NOT_FOUND) result ! -pb
 name|long
 name|p
 init|=
@@ -1416,38 +1412,6 @@ block|}
 return|return
 name|p
 return|;
-comment|//TODO : why catch an exception here ??? It costs too much ! -pb
-block|}
-catch|catch
-parameter_list|(
-name|BTreeException
-name|bte
-parameter_list|)
-block|{
-comment|// key does not exist:
-name|long
-name|p
-init|=
-name|storeValue
-argument_list|(
-name|transaction
-argument_list|,
-name|value
-argument_list|)
-decl_stmt|;
-name|addValue
-argument_list|(
-name|transaction
-argument_list|,
-name|key
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
-return|return
-name|p
-return|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1826,7 +1790,13 @@ argument_list|(
 literal|"Database is read-only. Cannot remove items."
 argument_list|)
 expr_stmt|;
-comment|//TODO : break ? -pb
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Database is read-only"
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
@@ -2369,23 +2339,29 @@ argument_list|,
 name|p
 argument_list|)
 return|;
-comment|//TODO : why rely on an exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|b
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"key "
+literal|"An exception occurred while trying to retrieve key "
 operator|+
 name|key
 operator|+
-literal|" not found"
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2397,7 +2373,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 name|e
 operator|.
@@ -2500,23 +2476,29 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|//TODO : why rely on an exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|b
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"key "
+literal|"An exception occurred while trying to retrieve key "
 operator|+
 name|key
 operator|+
-literal|" not found"
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -3411,31 +3393,23 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
-if|if
-condition|(
+name|SanityCheck
+operator|.
+name|THROW_ASSERT
+argument_list|(
 name|key
 operator|.
 name|getLength
 argument_list|()
-operator|>
+operator|<=
 name|fileHeader
 operator|.
 name|getWorkSize
 argument_list|()
-condition|)
-block|{
-comment|//TODO : exception ? -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Key length exceeds page size! Skipping key ..."
+argument_list|,
+literal|"Key length exceeds page size!"
 argument_list|)
 expr_stmt|;
-return|return
-name|UNKNOWN_ADDRESS
-return|;
-block|}
 name|FixedByteArray
 name|buf
 init|=
