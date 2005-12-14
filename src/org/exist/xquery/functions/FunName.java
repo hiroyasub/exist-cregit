@@ -632,6 +632,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|Node
 operator|.
