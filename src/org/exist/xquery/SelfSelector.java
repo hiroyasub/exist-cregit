@@ -107,7 +107,7 @@ name|gid
 parameter_list|)
 block|{
 name|NodeProxy
-name|newNode
+name|p
 init|=
 operator|new
 name|NodeProxy
@@ -119,7 +119,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|newNode
+name|p
 operator|==
 literal|null
 condition|)
@@ -131,13 +131,13 @@ name|contextNode
 decl_stmt|;
 name|contextNode
 operator|=
-name|newNode
+name|p
 expr_stmt|;
 if|if
 condition|(
 name|rememberContext
 condition|)
-name|newNode
+name|p
 operator|.
 name|addContextNode
 argument_list|(
@@ -145,9 +145,9 @@ name|contextNode
 argument_list|)
 expr_stmt|;
 return|return
-name|newNode
+name|p
 return|;
-comment|/*         NodeProxy p = context.get(doc, gid); 		if(p != null) { 			if (rememberContext) 				p.addContextNode(p); 		} 		return p; 		*/
+comment|/*         NodeProxy p = context.get(doc, gid); 		if(p == null)             return null;             		if (rememberContext) {             contextNode = p; 			p.addContextNode(p);         }		 		return p; 		*/
 block|}
 block|}
 end_class

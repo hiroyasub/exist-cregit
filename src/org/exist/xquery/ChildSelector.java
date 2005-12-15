@@ -122,9 +122,8 @@ name|long
 name|gid
 parameter_list|)
 block|{
-comment|//NodeProxy newNode = new NodeProxy(doc, gid);
 name|NodeProxy
-name|newNode
+name|p
 init|=
 operator|new
 name|NodeProxy
@@ -136,7 +135,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|newNode
+name|p
 operator|==
 literal|null
 condition|)
@@ -155,13 +154,13 @@ block|{
 comment|//Like in SelfSelector
 name|contextNode
 operator|=
-name|newNode
+name|p
 expr_stmt|;
 if|if
 condition|(
 name|rememberContext
 condition|)
-name|newNode
+name|p
 operator|.
 name|addContextNode
 argument_list|(
@@ -205,7 +204,7 @@ if|if
 condition|(
 name|rememberContext
 condition|)
-name|newNode
+name|p
 operator|.
 name|addContextNode
 argument_list|(
@@ -213,7 +212,7 @@ name|contextNode
 argument_list|)
 expr_stmt|;
 else|else
-name|newNode
+name|p
 operator|.
 name|copyContext
 argument_list|(
@@ -222,7 +221,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|newNode
+name|p
 return|;
 block|}
 block|}
