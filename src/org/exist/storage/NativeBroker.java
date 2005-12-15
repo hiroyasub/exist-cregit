@@ -12308,13 +12308,11 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"removeDocument() - "
-operator|+
-literal|"removing document "
+literal|"Removing document "
 operator|+
 name|document
 operator|.
-name|getDocId
+name|getFileName
 argument_list|()
 operator|+
 literal|" ..."
