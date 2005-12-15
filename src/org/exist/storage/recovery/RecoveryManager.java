@@ -323,6 +323,13 @@ argument_list|,
 name|lastNum
 argument_list|)
 decl_stmt|;
+name|Long2ObjectHashMap
+name|txnsStarted
+init|=
+operator|new
+name|Long2ObjectHashMap
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|Checkpoint
@@ -395,8 +402,64 @@ argument_list|()
 operator|==
 name|LogEntryTypes
 operator|.
+name|TXN_START
+condition|)
+block|{
+comment|// new transaction starts: add it to the transactions table
+name|txnsStarted
+operator|.
+name|put
+argument_list|(
+name|next
+operator|.
+name|getTransactionId
+argument_list|()
+argument_list|,
+name|next
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|next
+operator|.
+name|getLogType
+argument_list|()
+operator|==
+name|LogEntryTypes
+operator|.
+name|TXN_ABORT
+condition|)
+block|{
+comment|// transaction aborted: remove it from the transactions table
+name|txnsStarted
+operator|.
+name|remove
+argument_list|(
+name|next
+operator|.
+name|getTransactionId
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|next
+operator|.
+name|getLogType
+argument_list|()
+operator|==
+name|LogEntryTypes
+operator|.
 name|CHECKPOINT
 condition|)
+block|{
+name|txnsStarted
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|lastCheckpoint
 operator|=
 operator|(
@@ -404,6 +467,7 @@ name|Checkpoint
 operator|)
 name|next
 expr_stmt|;
+block|}
 name|lastLsn
 operator|=
 name|next
@@ -450,6 +514,7 @@ comment|// if the last checkpoint record is not the last record in the file
 comment|// we need a recovery.
 if|if
 condition|(
+operator|(
 name|lastCheckpoint
 operator|==
 literal|null
@@ -460,8 +525,28 @@ name|getLsn
 argument_list|()
 operator|!=
 name|lastLsn
+operator|)
+operator|&&
+name|txnsStarted
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Found dirty transactions: "
+operator|+
+name|txnsStarted
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// starting recovery: reposition the log reader to the last checkpoint
 if|if
 condition|(
@@ -702,6 +787,30 @@ name|TXN_COMMIT
 condition|)
 block|{
 comment|// transaction committed: remove it from the transactions table
+name|runningTxns
+operator|.
+name|remove
+argument_list|(
+name|next
+operator|.
+name|getTransactionId
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|next
+operator|.
+name|getLogType
+argument_list|()
+operator|==
+name|LogEntryTypes
+operator|.
+name|TXN_ABORT
+condition|)
+block|{
+comment|// transaction aborted: remove it from the transactions table
 name|runningTxns
 operator|.
 name|remove
