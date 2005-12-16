@@ -113,7 +113,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
+name|DocumentSet
 import|;
 end_import
 
@@ -125,7 +125,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|ExtArrayNodeSet
 import|;
 end_import
 
@@ -311,6 +311,20 @@ name|api
 operator|.
 name|base
 operator|.
+name|CompiledExpression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
 name|ErrorCodes
 import|;
 end_import
@@ -340,20 +354,6 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|CompiledExpression
 import|;
 end_import
 
@@ -737,7 +737,7 @@ name|NodeSet
 name|set
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|1
 argument_list|)
@@ -881,7 +881,7 @@ name|NodeSet
 name|set
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|1
 argument_list|)

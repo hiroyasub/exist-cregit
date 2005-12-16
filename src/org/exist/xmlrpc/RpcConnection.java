@@ -335,18 +335,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -372,6 +360,18 @@ operator|.
 name|dom
 operator|.
 name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ExtArrayNodeSet
 import|;
 end_import
 
@@ -9613,7 +9613,7 @@ decl_stmt|;
 name|nodes
 operator|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|1
 argument_list|)
