@@ -886,6 +886,22 @@ return|return
 name|docName
 return|;
 block|}
+comment|//TODO : we should not have write access
+specifier|public
+name|void
+name|setDocName
+parameter_list|(
+name|String
+name|docName
+parameter_list|)
+block|{
+name|this
+operator|.
+name|docName
+operator|=
+name|docName
+expr_stmt|;
+block|}
 specifier|protected
 name|void
 name|setIndexConfiguration

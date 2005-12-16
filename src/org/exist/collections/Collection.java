@@ -4034,6 +4034,7 @@ operator|.
 name|CONFIG_COLLECTION
 argument_list|)
 condition|)
+block|{
 if|if
 condition|(
 name|getConfiguration
@@ -4062,6 +4063,7 @@ name|getFileName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|broker
 operator|.
 name|sync
@@ -4071,6 +4073,22 @@ operator|.
 name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
+comment|//TODO : ugly construct since we should re-read the configuration
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+operator|.
+name|setDocName
+argument_list|(
+name|document
+operator|.
+name|getFileName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 specifier|public
 name|IndexInfo
@@ -4366,7 +4384,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Allow just one configuration document per collection
-comment|//TODO : do no throw the exception if a system property allows several ones -pb
+comment|//TODO : do not throw the exception if a system property allows several ones -pb
 if|if
 condition|(
 name|getConfiguration
