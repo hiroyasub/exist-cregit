@@ -972,6 +972,16 @@ operator|==
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
 name|context
 operator|.
 name|getProfiler
@@ -1000,6 +1010,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
 name|context
 operator|.
 name|getProfiler
@@ -1035,6 +1055,16 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
 name|context
 operator|.
 name|getProfiler
@@ -1671,6 +1701,16 @@ name|contextSequence
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
 name|context
 operator|.
 name|getProfiler
@@ -1758,7 +1798,36 @@ argument_list|()
 operator|>
 literal|1
 condition|)
-comment|// fall back to nodeSetCompare
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION FALLBACK"
+argument_list|,
+literal|"nodeSetCompare"
+argument_list|)
+expr_stmt|;
+comment|//TODO : cache this ?
 return|return
 name|nodeSetCompare
 argument_list|(
@@ -1767,6 +1836,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 return|;
+block|}
 comment|// get the type of a possible index
 name|int
 name|indexType
@@ -2084,8 +2154,36 @@ block|}
 block|}
 block|}
 else|else
-comment|// no usable index found. Fall back to nodeSetCompare
-comment|//TODO : is this cacheable ? -pb
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION FALLBACK"
+argument_list|,
+literal|"nodeSetCompare"
+argument_list|)
+expr_stmt|;
+comment|//TODO : cache this ?
 return|return
 name|nodeSetCompare
 argument_list|(
@@ -2094,13 +2192,41 @@ argument_list|,
 name|contextSequence
 argument_list|)
 return|;
+block|}
 comment|//REMOVED : a *general* comparison should not be dependant of the settings of a fulltext index
 comment|/* 	    } else if (key.getType() == Type.ATOMIC || Type.subTypeOf(key.getType(), Type.STRING)) { 	        if (!nodes.hasMixedContent()&& relation == Constants.EQ&& nodes.hasTextIndex()) { 		        // we can use the fulltext index 		        String cmp = rightSeq.getStringValue(); 		        if(cmp.length()< NativeTextEngine.MAX_WORD_LENGTH) 		            nodes = useFulltextIndex(cmp, nodes, docs); 		         		        // now compare the input node set to the search expression 				result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, cmp, getCollator(contextSequence)); 	 			} else { 			     			    // no usable index found. Fall back to a sequential scan of the nodes 			    result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, rightSeq.getStringValue(),  					        getCollator(contextSequence)); 			}         */
 block|}
 else|else
 block|{
-comment|// no usable index found. Fall back to nodeSetCompare
-comment|//TODO : is this cacheable ? -pb
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION FALLBACK"
+argument_list|,
+literal|"nodeSetCompare"
+argument_list|)
+expr_stmt|;
+comment|//TODO : cache this ? -pb
 return|return
 name|nodeSetCompare
 argument_list|(
