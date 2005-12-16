@@ -170,7 +170,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert '"
+literal|"Cannot convert '"
 operator|+
 name|Type
 operator|.
@@ -182,7 +182,14 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|"' into a double"
+literal|"("
+operator|+
+name|otherValue
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|")' into a double"
 argument_list|)
 throw|;
 block|}
