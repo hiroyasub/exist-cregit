@@ -961,7 +961,7 @@ name|Sequence
 name|result
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|100
 argument_list|)

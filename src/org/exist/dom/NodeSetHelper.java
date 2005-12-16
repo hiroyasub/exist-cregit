@@ -859,7 +859,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 literal|5
 argument_list|)

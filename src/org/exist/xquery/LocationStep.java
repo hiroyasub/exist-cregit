@@ -31,18 +31,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -2399,7 +2387,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ArraySet
+name|ExtArrayNodeSet
 argument_list|(
 name|contextSet
 operator|.
