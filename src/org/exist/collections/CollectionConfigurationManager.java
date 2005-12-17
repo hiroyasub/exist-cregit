@@ -1153,10 +1153,7 @@ decl_stmt|;
 name|Txn
 name|txn
 init|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -1177,6 +1174,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|txn
+operator|=
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
+expr_stmt|;
 name|root
 operator|=
 name|broker
