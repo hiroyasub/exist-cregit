@@ -2318,6 +2318,14 @@ name|int
 name|hi
 parameter_list|)
 block|{
+if|if
+condition|(
+name|lo
+operator|==
+name|hi
+condition|)
+return|return;
+comment|// just one item, doesn't need sorting
 name|IntroSortByNodeId
 argument_list|(
 name|a
