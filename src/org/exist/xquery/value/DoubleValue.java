@@ -182,14 +182,14 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|"("
+literal|"(\""
 operator|+
 name|otherValue
 operator|.
 name|getStringValue
 argument_list|()
 operator|+
-literal|")' into a double"
+literal|"\")' into an xs:double"
 argument_list|)
 throw|;
 block|}
