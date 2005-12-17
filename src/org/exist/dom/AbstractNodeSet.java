@@ -172,7 +172,7 @@ argument_list|)
 decl_stmt|;
 comment|// indicates the type of an optional value index that may have
 comment|// been defined on the nodes in this set.
-specifier|private
+specifier|protected
 name|int
 name|indexType
 init|=
@@ -180,13 +180,13 @@ name|Type
 operator|.
 name|ANY_TYPE
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|hasTextIndex
 init|=
 literal|false
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|hasMixedContent
 init|=
