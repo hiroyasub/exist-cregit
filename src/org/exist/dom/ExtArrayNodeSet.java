@@ -1470,13 +1470,6 @@ condition|(
 name|isSorted
 condition|)
 return|return;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"SORT NATURALLY EXT"
-argument_list|)
-expr_stmt|;
 name|Part
 name|part
 decl_stmt|;
@@ -1542,13 +1535,6 @@ condition|(
 name|isInDocumentOrder
 condition|)
 return|return;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"SORT EXT"
-argument_list|)
-expr_stmt|;
 name|Part
 name|part
 decl_stmt|;
