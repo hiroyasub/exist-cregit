@@ -908,6 +908,14 @@ name|e
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Release all acquired document locks. 	 */
 specifier|protected
