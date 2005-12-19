@@ -5161,6 +5161,38 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" at "
+operator|+
+name|dbElement
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" owned by "
+operator|+
+name|broker
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
