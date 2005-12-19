@@ -1355,20 +1355,6 @@ argument_list|(
 name|gid
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|level
-operator|<
-literal|0
-condition|)
-block|{
-comment|//TODO : compare with below -pb
-return|return
-name|NodeProxy
-operator|.
-name|DOCUMENT_NODE_GID
-return|;
-block|}
 return|return
 name|getParentId
 argument_list|(
@@ -1399,7 +1385,6 @@ name|int
 name|level
 parameter_list|)
 block|{
-comment|//TODO : compare with above -pb
 if|if
 condition|(
 name|level
