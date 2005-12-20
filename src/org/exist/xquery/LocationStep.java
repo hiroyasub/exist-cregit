@@ -1808,26 +1808,6 @@ argument_list|,
 name|inPredicate
 argument_list|)
 expr_stmt|;
-comment|//TODO : find when this condition must be set !
-comment|//It should be for :
-comment|//let $a := (<c id="1"><d id="2">d</d><e>e</e></c>)/descendant-or-self::node()
-comment|//for $b in $a/attribute::id
-comment|//return<b>{$b}</b>
-comment|//Note that this expression also works with selector = null
-if|if
-condition|(
-literal|false
-condition|)
-operator|(
-operator|(
-name|ChildSelector
-operator|)
-name|selector
-operator|)
-operator|.
-name|setMysteriousCondition
-argument_list|()
-expr_stmt|;
 break|break;
 case|case
 name|Constants

@@ -70,13 +70,6 @@ name|rememberContext
 init|=
 literal|false
 decl_stmt|;
-comment|//TODO : give me light ! -pb
-specifier|private
-name|boolean
-name|mysteriousCondition
-init|=
-literal|false
-decl_stmt|;
 specifier|public
 name|ChildSelector
 parameter_list|(
@@ -98,16 +91,6 @@ operator|.
 name|rememberContext
 operator|=
 name|rememberContext
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setMysteriousCondition
-parameter_list|()
-block|{
-name|mysteriousCondition
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeSelector#match(org.exist.dom.NodeProxy) 	 */
@@ -144,36 +127,7 @@ literal|null
 return|;
 name|NodeProxy
 name|contextNode
-decl_stmt|;
-comment|//What is this mysterious condition apart a Constants.ATTRIBUTE_AXIS ???
-if|if
-condition|(
-name|mysteriousCondition
-condition|)
-block|{
-comment|//Like in SelfSelector
-name|contextNode
-operator|=
-name|p
-expr_stmt|;
-if|if
-condition|(
-name|rememberContext
-condition|)
-name|p
-operator|.
-name|addContextNode
-argument_list|(
-name|contextNode
-argument_list|)
-expr_stmt|;
-comment|//no else clause !
-block|}
-else|else
-block|{
-comment|//Like in ChildSelector
-name|contextNode
-operator|=
+init|=
 name|context
 operator|.
 name|parentWithChild
@@ -190,7 +144,7 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_LEVEL
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|contextNode
@@ -219,7 +173,6 @@ argument_list|(
 name|contextNode
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|p
 return|;
