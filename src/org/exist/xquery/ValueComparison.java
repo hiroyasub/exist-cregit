@@ -256,19 +256,6 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-name|Collator
-name|collator
-init|=
-name|getCollator
-argument_list|(
-name|contextSequence
-argument_list|)
-decl_stmt|;
-name|AtomicValue
-name|lv
-decl_stmt|,
-name|rv
-decl_stmt|;
 if|if
 condition|(
 name|ls
@@ -286,6 +273,11 @@ operator|==
 literal|1
 condition|)
 block|{
+name|AtomicValue
+name|lv
+decl_stmt|,
+name|rv
+decl_stmt|;
 name|lv
 operator|=
 name|ls
@@ -310,6 +302,14 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
+name|Collator
+name|collator
+init|=
+name|getCollator
+argument_list|(
+name|contextSequence
+argument_list|)
+decl_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -326,12 +326,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-else|else
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: sequence with less or more than one item is not allowed here"
+literal|"Type error: sequence with more than one item is not allowed here"
 argument_list|)
 throw|;
 block|}
@@ -366,16 +365,6 @@ name|rs
 decl_stmt|;
 name|AtomicValue
 name|lv
-decl_stmt|,
-name|rv
-decl_stmt|;
-name|Collator
-name|collator
-init|=
-name|getCollator
-argument_list|(
-name|contextSequence
-argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -452,6 +441,14 @@ argument_list|(
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)
 throw|;
+name|Collator
+name|collator
+init|=
+name|getCollator
+argument_list|(
+name|contextSequence
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|compareValues
