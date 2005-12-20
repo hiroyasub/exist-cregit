@@ -180,7 +180,28 @@ name|equals
 argument_list|(
 literal|"0"
 argument_list|)
-operator|||
+condition|)
+return|return
+name|BooleanValue
+operator|.
+name|FALSE
+return|;
+if|else if
+condition|(
+name|value
+operator|.
+name|equals
+argument_list|(
+literal|"1"
+argument_list|)
+condition|)
+return|return
+name|BooleanValue
+operator|.
+name|TRUE
+return|;
+if|else if
+condition|(
 name|value
 operator|.
 name|equals
@@ -199,13 +220,6 @@ name|value
 operator|.
 name|equals
 argument_list|(
-literal|"1"
-argument_list|)
-operator|||
-name|value
-operator|.
-name|equals
-argument_list|(
 literal|"true"
 argument_list|)
 condition|)
@@ -219,11 +233,20 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert string '"
+literal|"Cannot cast 'xdt:UntypeAtomic("
 operator|+
 name|value
 operator|+
-literal|"' to boolean"
+literal|")' to '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+operator|+
+literal|"' [err:FORG0001]"
 argument_list|)
 throw|;
 case|case
@@ -406,11 +429,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert string '"
+literal|"Cannot cast 'xdt:UntypeAtomic("
 operator|+
 name|value
 operator|+
-literal|"' to "
+literal|")' to '"
 operator|+
 name|Type
 operator|.
@@ -418,6 +441,8 @@ name|getTypeName
 argument_list|(
 name|requiredType
 argument_list|)
+operator|+
+literal|"' [err:FORG0001]"
 argument_list|)
 throw|;
 block|}
