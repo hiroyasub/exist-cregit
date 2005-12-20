@@ -8175,6 +8175,16 @@ name|destination
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|newDoc
+operator|.
+name|setPermissions
+argument_list|(
+name|doc
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|copyResource
 argument_list|(
 name|transaction
