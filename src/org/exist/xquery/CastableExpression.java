@@ -427,7 +427,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
-comment|//TODO : why catch this xception ?
+comment|//TODO : improve by *not* using a costly exception ?
 block|}
 catch|catch
 parameter_list|(
@@ -435,15 +435,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Caught exception in CatableExpression"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|BooleanValue
