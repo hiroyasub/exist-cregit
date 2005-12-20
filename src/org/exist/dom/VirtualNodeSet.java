@@ -574,6 +574,13 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|directParent
+condition|)
+return|return
+name|first
+return|;
 comment|// Timo Boehme: we need a real parent (child from context)
 return|return
 name|getFirstParent
