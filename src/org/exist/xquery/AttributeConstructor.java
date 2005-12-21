@@ -541,8 +541,18 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"attribute {"
+literal|"attribute "
 argument_list|)
+expr_stmt|;
+comment|//TODO : remove curly braces if Qname
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|"{"
+argument_list|)
+expr_stmt|;
+name|dumper
 operator|.
 name|display
 argument_list|(
@@ -553,7 +563,14 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"} {"
+literal|"} "
+argument_list|)
+expr_stmt|;
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -627,7 +644,7 @@ argument_list|()
 operator|.
 name|display
 argument_list|(
-literal|"}"
+literal|"} "
 argument_list|)
 expr_stmt|;
 block|}
@@ -647,8 +664,18 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"attribute {"
+literal|"attribute "
 argument_list|)
+expr_stmt|;
+comment|//TODO : remove curly braces if Qname
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"{"
+argument_list|)
+expr_stmt|;
+name|result
 operator|.
 name|append
 argument_list|(
@@ -659,7 +686,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"} {"
+literal|"} "
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|Object
@@ -726,7 +760,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"}"
+literal|"} "
 argument_list|)
 expr_stmt|;
 return|return

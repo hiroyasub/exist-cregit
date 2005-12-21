@@ -1033,7 +1033,15 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"element {"
+literal|"element "
+argument_list|)
+expr_stmt|;
+comment|//TODO : remove curly braces if Qname
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|qnameExpr
@@ -1047,7 +1055,14 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"} {"
+literal|"} "
+argument_list|)
+expr_stmt|;
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -1192,7 +1207,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"}"
+literal|"} "
 argument_list|)
 expr_stmt|;
 block|}
@@ -1212,7 +1227,15 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"element {"
+literal|"element "
+argument_list|)
+expr_stmt|;
+comment|//TODO : remove curly braces if Qname
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|result
@@ -1229,7 +1252,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"} {"
+literal|"} "
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"{"
 argument_list|)
 expr_stmt|;
 if|if
