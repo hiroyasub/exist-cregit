@@ -414,6 +414,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : revisit according to XmldbURI implementation -pb
 if|if
 condition|(
 operator|!
@@ -517,7 +518,11 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"exception while retrieving collection: "
+literal|"Exception while retrieving collection '"
+operator|+
+name|collectionURI
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -583,6 +588,26 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|u
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Unknown user '"
+operator|+
+name|user
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+if|if
+condition|(
 operator|!
 name|u
 operator|.
@@ -598,9 +623,11 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Wrong password specified for user "
+literal|"Wrong password specified for user '"
 operator|+
 name|user
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 return|return
