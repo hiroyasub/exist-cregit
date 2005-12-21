@@ -235,16 +235,17 @@ argument_list|)
 decl_stmt|;
 comment|// Timo Boehme: getFirstParent returns now only real parents
 comment|//              therefore test if node is child of context
-comment|//return (first != null);
-return|return
-operator|(
-operator|(
+if|if
+condition|(
 name|first
 operator|!=
 literal|null
-operator|)
-operator|||
-operator|(
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
 name|context
 operator|.
 name|get
@@ -262,8 +263,12 @@ argument_list|)
 argument_list|)
 operator|!=
 literal|null
-operator|)
-operator|)
+condition|)
+return|return
+literal|true
+return|;
+return|return
+literal|false
 return|;
 block|}
 specifier|public
@@ -296,16 +301,17 @@ argument_list|)
 decl_stmt|;
 comment|// Timo Boehme: getFirstParent returns now only real parents
 comment|//              therefore test if node is child of context
-comment|//return (first != null);
-return|return
-operator|(
-operator|(
+if|if
+condition|(
 name|first
 operator|!=
 literal|null
-operator|)
-operator|||
-operator|(
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
 name|context
 operator|.
 name|get
@@ -332,8 +338,12 @@ argument_list|)
 argument_list|)
 operator|!=
 literal|null
-operator|)
-operator|)
+condition|)
+return|return
+literal|true
+return|;
+return|return
+literal|false
 return|;
 block|}
 specifier|public
@@ -362,7 +372,7 @@ name|getDocumentSet
 argument_list|()
 return|;
 block|}
-specifier|protected
+specifier|private
 name|NodeProxy
 name|getFirstParent
 parameter_list|(
@@ -394,7 +404,7 @@ name|recursions
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|private
 name|NodeProxy
 name|getFirstParent
 parameter_list|(
@@ -432,6 +442,18 @@ name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//no matching node has been found in the context
+if|if
+condition|(
+name|pid
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
+condition|)
+return|return
+literal|null
+return|;
 name|NodeProxy
 name|parent
 decl_stmt|;
@@ -464,9 +486,6 @@ condition|)
 block|{
 comment|// if we're on the child axis, test if
 comment|// the node is a direct child of the context node
-if|if
-condition|(
-operator|(
 name|parent
 operator|=
 name|context
@@ -484,7 +503,10 @@ argument_list|,
 name|pid
 argument_list|)
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|parent
 operator|!=
 literal|null
 condition|)
@@ -543,20 +565,6 @@ operator|==
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|pid
-operator|==
-name|NodeProxy
-operator|.
-name|DOCUMENT_NODE_GID
-condition|)
-block|{
-comment|// given node was already document element -> no parent
-return|return
-literal|null
-return|;
-block|}
 name|first
 operator|=
 operator|new
@@ -591,7 +599,7 @@ name|first
 argument_list|,
 literal|false
 argument_list|,
-name|directParent
+literal|false
 argument_list|,
 name|recursions
 operator|+
@@ -681,44 +689,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Timo Boehme: we return the ancestor which is child of context
-comment|// TODO
 return|return
 name|node
 return|;
-block|}
-if|else if
-condition|(
-name|pid
-operator|==
-name|NodeProxy
-operator|.
-name|DOCUMENT_NODE_GID
-condition|)
-block|{
-comment|// no matching node has been found in the context
-return|return
-literal|null
-return|;
-block|}
-if|else if
-condition|(
-name|directParent
-operator|&&
-name|axis
-operator|==
-name|Constants
-operator|.
-name|CHILD_AXIS
-operator|&&
-name|recursions
-operator|==
-literal|1
-condition|)
-block|{
-comment|// break here if the expression is like /*/n
-return|return
-literal|null
-return|;
+comment|//Removed : the directParent case is handled above
+comment|//} else if (directParent&& axis == Constants.CHILD_AXIS&& recursions == 1) {
+comment|//break here if the expression is like /*/n
+comment|//return null;
 block|}
 else|else
 block|{
@@ -749,7 +726,7 @@ name|first
 argument_list|,
 literal|false
 argument_list|,
-name|directParent
+literal|false
 argument_list|,
 name|recursions
 operator|+
@@ -773,9 +750,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 specifier|final
@@ -828,9 +802,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 specifier|final
@@ -914,9 +885,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -968,9 +936,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -995,13 +960,11 @@ name|first
 operator|!=
 literal|null
 condition|)
-block|{
 name|addInternal
 argument_list|(
 name|first
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|first
 return|;
