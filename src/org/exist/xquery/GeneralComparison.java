@@ -789,6 +789,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//Profiling for eval
 if|if
 condition|(
 name|context
@@ -941,6 +942,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+comment|/* 			     * TODO quickNodeSetCompare() is NOT being called for xqueries like - 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = current-dateTime()] 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = ("2005-12-20T16:39:00" cast as xs:dateTime)] 			     * but is being called for xqueries like -  			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = "2005-12-20T16:39:00"] 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = "2005-12-20T16:39:00" cast as xs:dateTime] 			     * 		- but due to the string type of the key falls back to nodeSetCompare() 			     *  			     * deliriumsky  			     */
 if|if
 condition|(
 operator|(
@@ -956,21 +958,9 @@ name|CONTEXT_ITEM
 operator|)
 operator|==
 literal|0
-operator|&&
-operator|(
-name|getRight
-argument_list|()
-operator|.
-name|getCardinality
-argument_list|()
-operator|&
-name|Cardinality
-operator|.
-name|MANY
-operator|)
-operator|==
-literal|0
+comment|/*&& (getRight().getCardinality()& Cardinality.MANY) == 0*/
 condition|)
+comment|//changed to allow multiple right cardinality into () - deliriumsky
 block|{
 if|if
 condition|(
@@ -1686,6 +1676,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|/* TODO think about optimising fallback to NodeSetCompare() in the for loop!!! 		 * At the moment when we fallback to NodeSetCompare() we are in effect throwing away any nodes 		 * we have already processed in quickNodeSetCompare() and reprocessing all the nodes in NodeSetCompare(). 		 * Instead - Could we create a NodeCompare() (based on NodeSetCompare() code) to only compare a single node and then union the result? 		 * - deliriumsky  		 */
+comment|/* TODO think about caching of results in this function... 		 * also examine and check if correct (line near the end) - 		 * 	 boolean canCache = contextSequence instanceof NodeSet&& (getRight().getDependencies()& Dependency.VARS) == 0&& (getLeft().getDependencies()& Dependency.VARS) == 0; 		 *  - deliriumsky  		 */
 comment|// if the context sequence hasn't changed we can return a cached result
 if|if
 condition|(
@@ -1711,6 +1703,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1729,13 +1722,17 @@ argument_list|,
 literal|"Returned cached result"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|cached
 operator|.
 name|getResult
 argument_list|()
+operator|)
 return|;
 block|}
+comment|//get the NodeSet on the left
 name|NodeSet
 name|nodes
 init|=
@@ -1759,11 +1756,17 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+comment|//nothing on the left, so nothing to do
+block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
+block|}
+comment|//get the Sequence on the right
 name|Sequence
 name|rightSeq
 init|=
@@ -1784,21 +1787,134 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+comment|//nothing on the right, so nothing to do
+block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
+block|}
+comment|//Holds the result
+name|NodeSet
+name|result
+init|=
+literal|null
+decl_stmt|;
+comment|//get the type of a possible index
+name|int
+name|indexType
+init|=
+name|nodes
+operator|.
+name|getIndexType
+argument_list|()
+decl_stmt|;
+comment|//See if we have a range index defined on the nodes in this sequence
 if|if
 condition|(
-name|rightSeq
+name|indexType
+operator|!=
+name|Type
 operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|1
+name|ITEM
 condition|)
 block|{
+comment|//Get the documents from the node set
+name|DocumentSet
+name|docs
+init|=
+name|nodes
+operator|.
+name|getDocumentSet
+argument_list|()
+decl_stmt|;
+comment|//Iterate through the right hand sequence
+for|for
+control|(
+name|SequenceIterator
+name|itRightSeq
+init|=
+name|rightSeq
+operator|.
+name|iterate
+argument_list|()
+init|;
+name|itRightSeq
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+comment|//Get the index Key
+name|Item
+name|key
+init|=
+name|itRightSeq
+operator|.
+name|nextItem
+argument_list|()
+operator|.
+name|atomize
+argument_list|()
+decl_stmt|;
+comment|//if key has truncation convert to string
+if|if
+condition|(
+name|truncation
+operator|!=
+name|Constants
+operator|.
+name|TRUNC_NONE
+condition|)
+block|{
+comment|//truncation is only possible on strings
+name|key
+operator|=
+name|key
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+block|}
+comment|//else if key is not the same type as the index
+if|else if
+condition|(
+name|key
+operator|.
+name|getType
+argument_list|()
+operator|!=
+name|indexType
+condition|)
+block|{
+comment|//try and convert the key to the index type
+try|try
+block|{
+name|key
+operator|=
+name|key
+operator|.
+name|convertTo
+argument_list|(
+name|indexType
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|xpe
+parameter_list|)
+block|{
+comment|//Could not convert the key to a suitable type for the index, fallback to nodeSetCompare()
 if|if
 condition|(
 name|context
@@ -1809,6 +1925,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1827,7 +1944,7 @@ argument_list|,
 literal|"nodeSetCompare"
 argument_list|)
 expr_stmt|;
-comment|//TODO : cache this ?
+block|}
 return|return
 name|nodeSetCompare
 argument_list|(
@@ -1837,133 +1954,8 @@ name|contextSequence
 argument_list|)
 return|;
 block|}
-comment|// get the type of a possible index
-name|int
-name|indexType
-init|=
-name|nodes
-operator|.
-name|getIndexType
-argument_list|()
-decl_stmt|;
-name|DocumentSet
-name|docs
-init|=
-name|nodes
-operator|.
-name|getDocumentSet
-argument_list|()
-decl_stmt|;
-name|NodeSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|Item
-name|key
-init|=
-name|rightSeq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|atomize
-argument_list|()
-decl_stmt|;
-comment|//See if we have a range index defined on the nodes in this sequence
-if|if
-condition|(
-name|indexType
-operator|!=
-name|Type
-operator|.
-name|ITEM
-condition|)
-block|{
-if|if
-condition|(
-name|truncation
-operator|!=
-name|Constants
-operator|.
-name|TRUNC_NONE
-condition|)
-block|{
-comment|// truncation is only possible on strings
-name|key
-operator|=
-name|key
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
 block|}
-if|else if
-condition|(
-name|key
-operator|.
-name|getType
-argument_list|()
-operator|!=
-name|indexType
-condition|)
-block|{
-comment|// index type doesn't match. If key is untyped atomic, convert it to string
-if|if
-condition|(
-name|key
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|ATOMIC
-condition|)
-name|key
-operator|=
-name|key
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
-comment|// If index has a numeric type, we convert to xs:double
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|indexType
-argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
-condition|)
-name|key
-operator|=
-name|key
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|)
-expr_stmt|;
-block|}
-comment|// If key implements Indexable, we can use the index
+comment|// If key implements org.exist.storage.Indexable, we can use the index
 if|if
 condition|(
 name|key
@@ -1992,6 +1984,7 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
+comment|//key without truncation, find key
 name|context
 operator|.
 name|getProfiler
@@ -2029,6 +2022,14 @@ operator|+
 literal|")'"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+comment|//if first iteration
+block|{
 name|result
 operator|=
 name|context
@@ -2056,6 +2057,40 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|result
+operator|=
+name|result
+operator|.
+name|union
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getValueIndex
+argument_list|()
+operator|.
+name|find
+argument_list|(
+name|relation
+argument_list|,
+name|docs
+argument_list|,
+name|nodes
+argument_list|,
+operator|(
+name|Indexable
+operator|)
+name|key
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//key with truncation, match key
 name|context
 operator|.
 name|getProfiler
@@ -2095,6 +2130,14 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+comment|//if first iteration
+block|{
 name|result
 operator|=
 name|context
@@ -2111,7 +2154,7 @@ name|docs
 argument_list|,
 name|nodes
 argument_list|,
-name|rightSeq
+name|key
 operator|.
 name|getStringValue
 argument_list|()
@@ -2128,6 +2171,48 @@ operator|.
 name|MATCH_WILDCARDS
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|result
+operator|=
+name|result
+operator|.
+name|union
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getValueIndex
+argument_list|()
+operator|.
+name|match
+argument_list|(
+name|docs
+argument_list|,
+name|nodes
+argument_list|,
+name|key
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|'%'
+argument_list|,
+literal|'*'
+argument_list|)
+argument_list|,
+name|DBBroker
+operator|.
+name|MATCH_WILDCARDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2155,6 +2240,8 @@ block|}
 block|}
 else|else
 block|{
+comment|//the datatype of our key does not
+comment|//implement org.exist.storage.Indexable or is not of the correct type
 if|if
 condition|(
 name|context
@@ -2165,6 +2252,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2183,21 +2271,27 @@ argument_list|,
 literal|"nodeSetCompare"
 argument_list|)
 expr_stmt|;
-comment|//TODO : cache this ?
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
+comment|//removed by Pierrick Brihaye
 comment|//REMOVED : a *general* comparison should not be dependant of the settings of a fulltext index
 comment|/* 	    } else if (key.getType() == Type.ATOMIC || Type.subTypeOf(key.getType(), Type.STRING)) { 	        if (!nodes.hasMixedContent()&& relation == Constants.EQ&& nodes.hasTextIndex()) { 		        // we can use the fulltext index 		        String cmp = rightSeq.getStringValue(); 		        if(cmp.length()< NativeTextEngine.MAX_WORD_LENGTH) 		            nodes = useFulltextIndex(cmp, nodes, docs); 		         		        // now compare the input node set to the search expression 				result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, cmp, getCollator(contextSequence)); 	 			} else { 			     			    // no usable index found. Fall back to a sequential scan of the nodes 			    result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, rightSeq.getStringValue(),  					        getCollator(contextSequence)); 			}         */
+comment|/* end */
+block|}
 block|}
 else|else
 block|{
+comment|//no range index defined on the nodes in this sequence, so fallback to nodeSetCompare
 if|if
 condition|(
 name|context
@@ -2208,6 +2302,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2226,14 +2321,16 @@ argument_list|,
 literal|"nodeSetCompare"
 argument_list|)
 expr_stmt|;
-comment|//TODO : cache this ? -pb
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
 comment|// can this result be cached? Don't cache if the result depends on local variables.
@@ -2276,6 +2373,7 @@ if|if
 condition|(
 name|canCache
 condition|)
+block|{
 name|cached
 operator|=
 operator|new
@@ -2289,10 +2387,15 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
+comment|//return the result of the range index lookup(s) :-)
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
+comment|//removed by Pierrick Brihaye
 comment|/*     protected NodeSet useFulltextIndex(String cmp, NodeSet nodes, DocumentSet docs) throws XPathException { //	    LOG.debug("Using fulltext index for expression " + ExpressionDumper.dump(this)); 	    String cmpCopy = cmp; 		// try to use a fulltext search expression to reduce the number 		// of potential nodes to scan through 		SimpleTokenizer tokenizer = new SimpleTokenizer(); 		tokenizer.setText(cmp);  		TextToken token; 		String term; 		boolean foundNumeric = false; 		// setup up an&= expression using the fulltext index 		ExtFulltext containsExpr = new ExtFulltext(context, Constants.FULLTEXT_AND); 		containsExpr.setASTNode(getASTNode()); 		// disable default match highlighting 		int oldFlags = context.getBroker().getTextEngine().getTrackMatches(); 		context.getBroker().getTextEngine().setTrackMatches(Serializer.TAG_NONE); 		 		int i = 0; 		for (; i< 5&& (token = tokenizer.nextToken(false)) != null; i++) { 			// remember if we find an alphanumeric token 			if (token.getType() == TextToken.ALPHANUM) 				foundNumeric = true; 		} 		// check if all elements are indexed. If not, we can't use the 		// fulltext index. 		if (foundNumeric) 			foundNumeric = checkArgumentTypes(context, docs); 		if ((!foundNumeric)&& i> 0) { 			// all elements are indexed: use the fulltext index 			cmp = handleTruncation(cmp); 			containsExpr.addTerm(new LiteralValue(context, new StringValue(cmp))); 			nodes = (NodeSet) containsExpr.eval(nodes, null); 		} 		context.getBroker().getTextEngine().setTrackMatches(oldFlags); 		cmp = cmpCopy; 		return nodes; 	}     	 	private String handleTruncation(String cmp) { 		switch (truncation) { 			case Constants.TRUNC_RIGHT: 				return cmp + '*'; 			case Constants.TRUNC_LEFT: 				return '*' + cmp; 			case Constants.TRUNC_BOTH: 				return '*' + cmp + '*'; 			default: 				return cmp; 		} 	}     */
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
 specifier|protected
