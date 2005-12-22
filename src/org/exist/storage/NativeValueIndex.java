@@ -1204,10 +1204,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"could not save index for value"
+literal|"Could not append index data for value '"
+operator|+
+name|ref
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
-continue|continue;
 block|}
 block|}
 catch|catch
@@ -1356,7 +1359,7 @@ name|Entry
 name|entry
 decl_stmt|;
 name|Value
-name|val
+name|value
 decl_stmt|;
 name|VariableByteArrayInput
 name|is
@@ -1469,7 +1472,7 @@ name|caseSensitive
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|val
+name|value
 operator|=
 name|db
 operator|.
@@ -1486,7 +1489,7 @@ expr_stmt|;
 comment|//Does the value already has data ?
 if|if
 condition|(
-name|val
+name|value
 operator|!=
 literal|null
 condition|)
@@ -1497,7 +1500,7 @@ operator|=
 operator|new
 name|VariableByteArrayInput
 argument_list|(
-name|val
+name|value
 operator|.
 name|getData
 argument_list|()
@@ -1577,11 +1580,15 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"EOF while copying: expected: "
-operator|+
-name|gidsCount
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+comment|//The data will be saved if an exception occurs ! -p
 block|}
 block|}
 else|else
@@ -1649,23 +1656,6 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"end-of-file while updating value index"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//The data will be saved if an exception occurs ! -pb
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -1674,7 +1664,10 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"io-error while updating value index"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -1767,11 +1760,13 @@ block|}
 comment|//Store the data
 if|if
 condition|(
-name|val
+name|value
 operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
 name|db
 operator|.
 name|put
@@ -1783,16 +1778,34 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not put index data for value '"
+operator|+
+name|ref
+operator|+
+literal|"'"
+argument_list|)
 expr_stmt|;
-comment|//TODO : what if BFile.UNKNOWN_ADDRESS is returned ? -pb
+block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
 name|db
 operator|.
 name|update
 argument_list|(
-name|val
+name|value
 operator|.
 name|getAddress
 argument_list|()
@@ -1804,8 +1817,24 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not update index data for value '"
+operator|+
+name|ref
+operator|+
+literal|"'"
+argument_list|)
 expr_stmt|;
-comment|//TODO : what if BFile.UNKNOWN_ADDRESS is returned ? -pb
+block|}
 block|}
 block|}
 catch|catch
@@ -1886,13 +1915,6 @@ name|Collection
 name|collection
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removing elements ..."
-argument_list|)
-expr_stmt|;
 name|Value
 name|ref
 init|=
@@ -1953,9 +1975,19 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
-literal|"could not acquire lock on elements index"
+literal|"Failed to acquire lock for '"
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -2019,7 +2051,28 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
-comment|//	  drop element-index
+name|Value
+name|key
+decl_stmt|;
+name|Value
+name|value
+decl_stmt|;
+name|int
+name|gidsCount
+decl_stmt|;
+name|long
+name|delta
+decl_stmt|;
+name|VariableByteArrayInput
+name|is
+decl_stmt|;
+name|int
+name|currentDocId
+decl_stmt|;
+name|boolean
+name|changed
+decl_stmt|;
+specifier|final
 name|short
 name|collectionId
 init|=
@@ -2082,35 +2135,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|Value
-name|key
-decl_stmt|;
-name|Value
-name|value
-decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
-name|VariableByteArrayInput
-name|is
-decl_stmt|;
-name|VariableByteOutputStream
-name|os
-decl_stmt|;
-name|int
-name|len
-decl_stmt|;
-name|int
-name|docId
-decl_stmt|;
-name|long
-name|delta
-decl_stmt|;
-comment|//            long address;
-name|boolean
-name|changed
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2129,6 +2153,10 @@ name|i
 operator|++
 control|)
 block|{
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 name|key
 operator|=
 operator|(
@@ -2150,33 +2178,22 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
-name|data
-operator|=
-name|value
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
 name|is
 operator|=
 operator|new
 name|VariableByteArrayInput
 argument_list|(
-name|data
+name|value
+operator|.
+name|getData
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|os
-operator|=
-operator|new
-name|VariableByteOutputStream
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
-name|changed
-operator|=
-literal|false
-expr_stmt|;
-try|try
-block|{
 while|while
 condition|(
 name|is
@@ -2187,24 +2204,23 @@ operator|>
 literal|0
 condition|)
 block|{
-name|docId
+name|currentDocId
 operator|=
 name|is
 operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|len
+name|gidsCount
 operator|=
 name|is
 operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-comment|// copy data to new buffer if not in given document
 if|if
 condition|(
-name|docId
+name|currentDocId
 operator|!=
 name|doc
 operator|.
@@ -2212,18 +2228,20 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
+comment|// data are related to another document:
+comment|// copy them to any existing data
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|docId
+name|currentDocId
 argument_list|)
 expr_stmt|;
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|len
+name|gidsCount
 argument_list|)
 expr_stmt|;
 for|for
@@ -2235,7 +2253,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|len
+name|gidsCount
 condition|;
 name|j
 operator|++
@@ -2259,66 +2277,20 @@ block|}
 block|}
 else|else
 block|{
-name|changed
-operator|=
-literal|true
-expr_stmt|;
-comment|// skip
+comment|// data are related to our document:
+comment|// skip them
 name|is
 operator|.
 name|skip
 argument_list|(
-name|len
+name|gidsCount
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removeDocument(String) - eof"
-argument_list|,
-name|e
-argument_list|)
+name|changed
+operator|=
+literal|true
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"removeDocument(String) "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 block|}
 if|if
 condition|(
@@ -2348,6 +2320,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//TODO : why not use the same construct as above :
+comment|//db.update(value.getAddress(), ref, os.data()) -pb
 if|if
 condition|(
 name|db
@@ -2361,24 +2335,21 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
-operator|<
-literal|0
-condition|)
-if|if
-condition|(
-name|LOG
+operator|==
+name|BFile
 operator|.
-name|isDebugEnabled
-argument_list|()
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"removeDocument() - "
+literal|"Could not put index data for value '"
 operator|+
-literal|"could not save value index"
+name|ref
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2396,9 +2367,17 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"removeDocument(String) - "
+literal|"Failed to acquire lock for '"
 operator|+
-literal|"could not acquire lock on values.dbx"
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -2414,7 +2393,10 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"method terminated"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -2423,6 +2405,25 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EOFException
 name|e
 parameter_list|)
 block|{
@@ -2620,7 +2621,7 @@ name|caseSensitive
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// try to retrieve old index entry for the element
+comment|// Retrieve old index entry for the element
 try|try
 block|{
 name|lock
@@ -2820,6 +2821,17 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not save index data for value '"
+operator|+
+name|ref
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2996,7 +3008,10 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"io error while reindexing"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
