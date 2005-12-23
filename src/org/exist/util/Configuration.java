@@ -642,15 +642,16 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-name|CatalogResolver
-name|resolver
-init|=
-operator|new
-name|CatalogResolver
+comment|// Create resolver
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
-literal|true
+literal|"Creating CatalogResolver"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -660,6 +661,15 @@ argument_list|,
 literal|"10"
 argument_list|)
 expr_stmt|;
+name|CatalogResolver
+name|resolver
+init|=
+operator|new
+name|CatalogResolver
+argument_list|(
+literal|true
+argument_list|)
+decl_stmt|;
 name|config
 operator|.
 name|put
@@ -888,7 +898,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*             CLUSTER CONFIGURATION...             */
+comment|/*             CLUSTER CONFIGURATION...              */
 name|NodeList
 name|clusters
 init|=
@@ -923,7 +933,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*             END CLUSTER CONFIGURATION....             */
+comment|/*             END CLUSTER CONFIGURATION....              */
 block|}
 catch|catch
 parameter_list|(
@@ -4138,12 +4148,23 @@ argument_list|(
 literal|"catalog"
 argument_list|)
 decl_stmt|;
-name|String
-name|catalog
-decl_stmt|;
-name|File
-name|catalogFile
-decl_stmt|;
+comment|// TODO remove. log function does not work yet
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found "
+operator|+
+name|catalogs
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" catalog entries."
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -4162,8 +4183,9 @@ name|i
 operator|++
 control|)
 block|{
+name|String
 name|catalog
-operator|=
+init|=
 operator|(
 operator|(
 name|Element
@@ -4180,27 +4202,12 @@ name|getAttribute
 argument_list|(
 literal|"file"
 argument_list|)
-expr_stmt|;
-comment|//TODO : why this test ? File should make it ! -pb
-if|if
-condition|(
+decl_stmt|;
 name|File
-operator|.
-name|separatorChar
-operator|==
-literal|'\\'
-condition|)
-name|catalog
-operator|=
-name|catalog
-operator|.
-name|replace
-argument_list|(
-literal|'/'
-argument_list|,
-literal|'\\'
-argument_list|)
-expr_stmt|;
+name|catalogFile
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|dbHome
@@ -4222,22 +4229,52 @@ operator|new
 name|File
 argument_list|(
 name|dbHome
-operator|+
-name|File
-operator|.
-name|separatorChar
-operator|+
+argument_list|,
 name|catalog
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|catalogFile
+operator|!=
+literal|null
+operator|&&
+name|catalogFile
 operator|.
 name|exists
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Loading catalog '"
+operator|+
+name|catalogFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Loading catalog '"
+operator|+
+name|catalogFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|resolver
@@ -4260,11 +4297,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"An exception occurred while reading the catalog file: "
+name|String
+name|message
+init|=
+literal|"An exception occurred while reading catalog: "
 operator|+
 name|catalogFile
 operator|.
@@ -4277,11 +4313,57 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|message
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|String
+name|message
+init|=
+literal|"Could not load catalog '"
+operator|+
+name|catalogFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|"'."
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -4376,7 +4458,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
+comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|fatalError
@@ -4411,7 +4493,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|warning

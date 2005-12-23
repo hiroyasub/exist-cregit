@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  Collection.java - eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  *  Collection.java - eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -672,7 +672,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class represents a collection in the database. A collection maintains a list of   * sub-collections and documents, and provides the methods to store/remove resources.  *   * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(String, int)}    * to get a collection with a read or write lock and {@link #release()} to release the lock.  *    * @author wolf  */
+comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(String, int)}  * to get a collection with a read or write lock and {@link #release()} to release the lock.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -811,7 +811,7 @@ name|observers
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *        * @uml.property name="configuration"      * @uml.associationEnd multiplicity="(0 1)"      */
+comment|/**      *      * @uml.property name="configuration"      * @uml.associationEnd multiplicity="(0 1)"      */
 specifier|private
 name|CollectionConfiguration
 name|configuration
@@ -929,7 +929,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/** 	 *  Add a new sub-collection to the collection. 	 * 	 *@param  name 	 */
+comment|/**      *  Add a new sub-collection to the collection.      *      *@param  name      */
 specifier|public
 name|void
 name|addCollection
@@ -1040,7 +1040,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if this is a temporary collection. By default,      * the temporary collection is in /db/system/temp.      *       * @return      */
+comment|/**      * Returns true if this is a temporary collection. By default,      * the temporary collection is in /db/system/temp.      *      * @return      */
 specifier|public
 name|boolean
 name|isTempCollection
@@ -1050,7 +1050,7 @@ return|return
 name|isTempCollection
 return|;
 block|}
-comment|/** 	 * Closes the collection, i.e. releases the lock held by  	 * the current thread. This is a shortcut for getLock().release(). 	 */
+comment|/**      * Closes the collection, i.e. releases the lock held by      * the current thread. This is a shortcut for getLock().release().      */
 specifier|public
 name|void
 name|release
@@ -1064,7 +1064,7 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Update the specified child-collection. 	 *  	 * @param child 	 */
+comment|/**      * Update the specified child-collection.      *      * @param child      */
 specifier|public
 name|void
 name|update
@@ -1117,7 +1117,7 @@ name|childName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Add a document to the collection. 	 * 	 *@param  doc  	 */
+comment|/**      *  Add a document to the collection.      *      *@param  doc      */
 specifier|public
 name|void
 name|addDocument
@@ -1170,7 +1170,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Removes the document from the internal list of resources, but 	 * doesn't delete the document object itself. 	 *  	 * @param doc 	 */
+comment|/**      * Removes the document from the internal list of resources, but      * doesn't delete the document object itself.      *      * @param doc      */
 specifier|public
 name|void
 name|unlinkDocument
@@ -1190,7 +1190,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Return an iterator over all subcollections. 	 *  	 * The list of subcollections is copied first, so modifications 	 * via the iterator have no affect. 	 * 	 *@return    Description of the Return Value 	 */
+comment|/**      *  Return an iterator over all subcollections.      *      * The list of subcollections is copied first, so modifications      * via the iterator have no affect.      *      *@return    Description of the Return Value      */
 specifier|public
 name|Iterator
 name|collectionIterator
@@ -1247,7 +1247,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Load all collections below this collections 	 * and return them in a List. 	 *  	 * @return List 	 */
+comment|/**      * Load all collections below this collections      * and return them in a List.      *      * @return List      */
 specifier|public
 name|List
 name|getDescendants
@@ -1410,7 +1410,7 @@ return|return
 name|cl
 return|;
 block|}
-comment|/** 	 * Retrieve all documents contained in this collections. 	 *  	 * If recursive is true, documents from sub-collections are 	 * included. 	 *  	 * @param user 	 * @param recursive 	 * @return 	 */
+comment|/**      * Retrieve all documents contained in this collections.      *      * If recursive is true, documents from sub-collections are      * included.      *      * @param user      * @param recursive      * @return      */
 specifier|public
 name|DocumentSet
 name|allDocs
@@ -1666,7 +1666,7 @@ return|return
 name|docs
 return|;
 block|}
-comment|/** 	 * Add all documents to the specified document set. 	 *   	 * @param docs 	 */
+comment|/**      * Add all documents to the specified document set.      *      * @param docs      */
 specifier|public
 name|DocumentSet
 name|getDocuments
@@ -1747,7 +1747,7 @@ return|return
 name|docs
 return|;
 block|}
-comment|/** 	 * Check if this collection may be safely removed from the 	 * cache. Returns false if there are ongoing write operations, 	 * i.e. one or more of the documents is locked for 	 * write. 	 *  	 * @return 	 */
+comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for      * write.      *      * @return      */
 specifier|public
 name|boolean
 name|allowUnload
@@ -1895,7 +1895,7 @@ operator|==
 name|collectionId
 return|;
 block|}
-comment|/** 	 *  Return the number of child-collections managed by this 	 * collection. 	 * 	 *@return    The childCollectionCount value 	 */
+comment|/**      *  Return the number of child-collections managed by this      * collection.      *      *@return    The childCollectionCount value      */
 specifier|public
 name|int
 name|getChildCollectionCount
@@ -1952,7 +1952,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Get a child resource as identified by path. This method doesn't put 	 * a lock on the document nor does it recognize locks held by other threads. 	 * There's no guarantee that the document still exists when accessing it. 	 *  	 *@param  name  The name of the document (without collection path) 	 *@return   the document 	 */
+comment|/**      *  Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      *@param  name  The name of the document (without collection path)      *@return   the document      */
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -2042,7 +2042,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Retrieve a child resource after putting a read lock on it. With this method, 	 * access to the received document object is safe.  	 *  	 * @param broker 	 * @param name 	 * @return 	 * @throws LockException 	 */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2121,7 +2121,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Retrieve a child resource after putting a read lock on it. With this method, 	 * access to the received document object is safe.  	 *  	 * @param broker 	 * @param name 	 * @return 	 * @throws LockException 	 */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2201,7 +2201,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Release any locks held on the document. 	 *  	 * @param doc 	 */
+comment|/**      * Release any locks held on the document.      *      * @param doc      */
 specifier|public
 name|void
 name|releaseDocument
@@ -2231,7 +2231,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Returns the number of documents in this collection. 	 * 	 *@return    The documentCount value 	 */
+comment|/**      *  Returns the number of documents in this collection.      *      *@return    The documentCount value      */
 specifier|public
 name|int
 name|getDocumentCount
@@ -2288,7 +2288,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Get the internal id. 	 * 	 *@return    The id value 	 */
+comment|/**      *  Get the internal id.      *      *@return    The id value      */
 specifier|public
 name|short
 name|getId
@@ -2298,7 +2298,7 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/** 	 *  Get the name of this collection. 	 * 	 *@return    The name value 	 */
+comment|/**      *  Get the name of this collection.      *      *@return    The name value      */
 specifier|public
 name|String
 name|getName
@@ -2308,7 +2308,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/** 	 *  Returns the parent-collection. 	 * 	 *@return    The parent-collection or null if this 	 *is the root collection. 	 */
+comment|/**      *  Returns the parent-collection.      *      *@return    The parent-collection or null if this      *is the root collection.      */
 specifier|public
 name|String
 name|getParentPath
@@ -2365,7 +2365,7 @@ return|return
 name|parent
 return|;
 block|}
-comment|/** 	 *  Gets the permissions attribute of the Collection object 	 * 	 *@return    The permissions value 	 */
+comment|/**      *  Gets the permissions attribute of the Collection object      *      *@return    The permissions value      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -2419,7 +2419,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Check if the collection has a child document. 	 * 	 *@param  name  the name (without path) of the document 	 *@return   	 */
+comment|/**      *  Check if the collection has a child document.      *      *@param  name  the name (without path) of the document      *@return      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -2437,7 +2437,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Check if the collection has a sub-collection. 	 * 	 *@param  name  the name of the subcollection (without path). 	 *@return   	 */
+comment|/**      *  Check if the collection has a sub-collection.      *      *@param  name  the name of the subcollection (without path).      *@return      */
 specifier|public
 name|boolean
 name|hasSubcollection
@@ -2505,7 +2505,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Returns an iterator on the child-documents in this collection. 	 * 	 *@return 	 */
+comment|/**      *  Returns an iterator on the child-documents in this collection.      *      *@return      */
 specifier|public
 name|Iterator
 name|iterator
@@ -2530,7 +2530,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Read collection contents from the stream. 	 *  	 * @param istream 	 * @throws IOException 	 */
+comment|/**      * Read collection contents from the stream.      *      * @param istream      * @throws IOException      */
 specifier|public
 name|void
 name|read
@@ -2724,7 +2724,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Remove the specified sub-collection. 	 * 	 *@param  name  Description of the Parameter 	 */
+comment|/**      *  Remove the specified sub-collection.      *      *@param  name  Description of the Parameter      */
 specifier|public
 name|void
 name|removeCollection
@@ -2765,7 +2765,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Remove the specified document from the collection. 	 * 	 *@param  name 	 */
+comment|/**      *  Remove the specified document from the collection.      *      *@param  name      */
 specifier|public
 name|void
 name|removeDocument
@@ -4885,7 +4885,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** add observers to the indexer 	 * @param broker 	 * @param indexer 	 */
+comment|/** add observers to the indexer      * @param broker      * @param indexer      */
 specifier|private
 name|void
 name|addObserversToIndexer
@@ -4949,7 +4949,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** If an old document exists, keep information  about  the document. 	 * @param broker 	 * @param name 	 * @param oldDoc 	 * @param document 	 */
+comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param name      * @param oldDoc      * @param document      */
 specifier|private
 name|void
 name|manageDocumentInformation
@@ -5048,7 +5048,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**  	 * Check Permissions about user and document, and throw exceptions if necessary. 	 *  	 * @param broker 	 * @param name 	 * @param oldDoc old Document existing in database prior to adding a new one with same name. 	 * @throws LockException 	 * @throws PermissionDeniedException 	 */
+comment|/**      * Check Permissions about user and document, and throw exceptions if necessary.      *      * @param broker      * @param name      * @param oldDoc old Document existing in database prior to adding a new one with same name.      * @throws LockException      * @throws PermissionDeniedException      */
 specifier|private
 name|void
 name|checkPermissions
@@ -5903,7 +5903,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Set permissions for the collection. 	 *  	 * @param permissions 	 */
+comment|/**      * Set permissions for the collection.      *      * @param permissions      */
 specifier|public
 name|void
 name|setPermissions
@@ -5943,7 +5943,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Write collection contents to stream. 	 *  	 * @param ostream 	 * @throws IOException 	 */
+comment|/**      * Write collection contents to stream.      *      * @param ostream      * @throws IOException      */
 specifier|public
 name|void
 name|write
@@ -6268,7 +6268,7 @@ return|return
 name|configuration
 return|;
 block|}
-comment|/** 	 * Should the collection configuration document be enabled 	 * for this collection? Called by {@link org.exist.storage.NativeBroker} 	 * before doing a reindex. 	 *  	 * @param enabled 	 */
+comment|/**      * Should the collection configuration document be enabled      * for this collection? Called by {@link org.exist.storage.NativeBroker}      * before doing a reindex.      *      * @param enabled      */
 specifier|public
 name|void
 name|setConfigEnabled
@@ -6292,7 +6292,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Set the internal storage address of the collection data. 	 *  	 * @param addr 	 */
+comment|/**      * Set the internal storage address of the collection data.      *      * @param addr      */
 specifier|public
 name|void
 name|setAddress
@@ -6418,7 +6418,7 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
-comment|/** If user-defined Reader is set, return it; otherwise return JAXP default XMLReader  	 * configured by eXist. */
+comment|/** If user-defined Reader is set, return it; otherwise return JAXP default XMLReader      * configured by eXist. */
 specifier|private
 name|XMLReader
 name|getReader
@@ -6505,7 +6505,7 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Try to resolve external entities. 	 *  	 * This method forwards the request to the resolver. If that fails, 	 * the method replaces absolute file names with relative ones  	 * and retries to resolve. This makes it possible to use relative 	 * file names in the catalog. 	 *  	 * @see org.xml.sax.EntityResolver#resolveEntity(java.lang.String, java.lang.String) 	 */
+comment|/**      * Try to resolve external entities.      *      * This method forwards the request to the resolver. If that fails,      * the method replaces absolute file names with relative ones      * and retries to resolve. This makes it possible to use relative      * file names in the catalog.      *      * @see org.xml.sax.EntityResolver#resolveEntity(java.lang.String, java.lang.String)      */
 specifier|public
 name|InputSource
 name|resolveEntity
@@ -6521,6 +6521,22 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+comment|// TODO remove later on
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Resolve publicId='"
+operator|+
+name|publicId
+operator|+
+literal|"', systemId='"
+operator|+
+name|systemId
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 name|InputSource
 name|is
 init|=
@@ -6708,7 +6724,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see java.util.Observable#addObserver(java.util.Observer) 	 */
+comment|/* (non-Javadoc)          * @see java.util.Observable#addObserver(java.util.Observer)          */
 specifier|public
 name|void
 name|addObserver
@@ -6847,7 +6863,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.util.Observable#deleteObservers() 	 */
+comment|/* (non-Javadoc)          * @see java.util.Observable#deleteObservers()          */
 specifier|public
 name|void
 name|deleteObservers
@@ -6864,7 +6880,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#getKey() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getKey()          */
 specifier|public
 name|long
 name|getKey
@@ -6874,7 +6890,7 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
 specifier|public
 name|int
 name|getReferenceCount
@@ -6884,7 +6900,7 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#incReferenceCount() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#incReferenceCount()          */
 specifier|public
 name|int
 name|incReferenceCount
@@ -6895,7 +6911,7 @@ operator|++
 name|refCount
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#decReferenceCount() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#decReferenceCount()          */
 specifier|public
 name|int
 name|decReferenceCount
@@ -6912,7 +6928,7 @@ else|:
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)          */
 specifier|public
 name|void
 name|setReferenceCount
@@ -6926,7 +6942,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
 specifier|public
 name|void
 name|setTimestamp
@@ -6942,7 +6958,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#getTimestamp() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
 specifier|public
 name|int
 name|getTimestamp
@@ -6952,7 +6968,7 @@ return|return
 name|timestamp
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cacheable#release() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#release()          */
 specifier|public
 name|boolean
 name|sync
