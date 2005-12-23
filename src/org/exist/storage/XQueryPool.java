@@ -124,7 +124,7 @@ specifier|static
 name|int
 name|MAX_POOL_SIZE
 init|=
-literal|32
+literal|128
 decl_stmt|;
 specifier|public
 specifier|final
@@ -171,6 +171,10 @@ name|lastTimeOutCheck
 decl_stmt|;
 specifier|private
 name|int
+name|maxPoolSize
+decl_stmt|;
+specifier|private
+name|int
 name|maxStackSize
 decl_stmt|;
 specifier|private
@@ -214,6 +218,19 @@ argument_list|(
 literal|"db-connection.query-pool.max-stack-size"
 argument_list|)
 decl_stmt|;
+name|Integer
+name|maxPoolSz
+init|=
+operator|(
+name|Integer
+operator|)
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+literal|"db-connection.query-pool.size"
+argument_list|)
+decl_stmt|;
 name|Long
 name|t
 init|=
@@ -240,6 +257,24 @@ argument_list|(
 literal|"db-connection.query-pool.timeout-check-interval"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|maxPoolSz
+operator|!=
+literal|null
+condition|)
+name|maxPoolSize
+operator|=
+name|maxPoolSz
+operator|.
+name|intValue
+argument_list|()
+expr_stmt|;
+else|else
+name|maxPoolSize
+operator|=
+name|MAX_POOL_SIZE
+expr_stmt|;
 if|if
 condition|(
 name|maxStSz
@@ -298,7 +333,11 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"QueryPool: maxStackSize = "
+literal|"QueryPool: size = "
+operator|+
+name|maxPoolSize
+operator|+
+literal|"; maxStackSize = "
 operator|+
 name|maxStackSize
 operator|+
@@ -329,7 +368,7 @@ condition|(
 name|size
 argument_list|()
 operator|<
-name|MAX_POOL_SIZE
+name|maxPoolSize
 condition|)
 block|{
 name|Stack
@@ -423,9 +462,11 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Source
 name|key
 init|=

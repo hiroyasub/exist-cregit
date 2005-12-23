@@ -74,6 +74,14 @@ name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|setContext
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+function_decl|;
 comment|/**      * Execute the compiled query, optionally using the specified      * sequence as context.      *       * @param contextSequence      * @return      * @throws XPathException      */
 specifier|public
 name|Sequence
