@@ -586,7 +586,7 @@ decl_stmt|;
 comment|/** The datastore for this value index */
 specifier|protected
 name|BFile
-name|db
+name|dbValues
 decl_stmt|;
 comment|/** A collection of key-value pairs that pending modifications for this value index.        * The keys are {@link org.exist.xquery.value.AtomicValue atomic values}      * that implement {@link Indexable Indexable}. 	 * The values are {@link org.exist.util.LongLinkedList lists} containing 	 * the nodes GIDs (global identifiers. 	 * Do not confuse the keys with the ones used in persistent storage, created with 	 * {@link Indexable#serialize(short) */
 specifier|protected
@@ -625,7 +625,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|BFile
-name|valuesDb
+name|dbValues
 parameter_list|)
 block|{
 name|this
@@ -636,9 +636,9 @@ name|broker
 expr_stmt|;
 name|this
 operator|.
-name|db
+name|dbValues
 operator|=
-name|valuesDb
+name|dbValues
 expr_stmt|;
 comment|//TODO : reconsider this. Case sensitivity have nothing to do with atomic values -pb
 name|Boolean
@@ -878,7 +878,7 @@ block|{
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -894,7 +894,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|db
+name|dbValues
 operator|.
 name|flush
 argument_list|()
@@ -912,7 +912,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1009,7 +1009,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -1180,7 +1180,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|append
 argument_list|(
@@ -1222,7 +1222,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1249,7 +1249,7 @@ name|warn
 argument_list|(
 literal|"Read-only error on '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1276,7 +1276,7 @@ name|warn
 argument_list|(
 literal|"IO error on '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1380,7 +1380,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -1471,7 +1471,7 @@ argument_list|)
 expr_stmt|;
 name|value
 operator|=
-name|db
+name|dbValues
 operator|.
 name|get
 argument_list|(
@@ -1764,7 +1764,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|put
 argument_list|(
@@ -1798,7 +1798,7 @@ else|else
 block|{
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|update
 argument_list|(
@@ -1846,7 +1846,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1873,7 +1873,7 @@ name|warn
 argument_list|(
 literal|"Read-only error on '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -1940,7 +1940,7 @@ decl_stmt|;
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -1956,7 +1956,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|db
+name|dbValues
 operator|.
 name|removeAll
 argument_list|(
@@ -1976,7 +1976,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -2106,7 +2106,7 @@ decl_stmt|;
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -2125,7 +2125,7 @@ expr_stmt|;
 name|ArrayList
 name|elements
 init|=
-name|db
+name|dbValues
 operator|.
 name|findKeys
 argument_list|(
@@ -2168,7 +2168,7 @@ argument_list|)
 expr_stmt|;
 name|value
 operator|=
-name|db
+name|dbValues
 operator|.
 name|get
 argument_list|(
@@ -2307,7 +2307,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|db
+name|dbValues
 operator|.
 name|remove
 argument_list|(
@@ -2321,7 +2321,7 @@ comment|//TODO : why not use the same construct as above :
 comment|//db.update(value.getAddress(), ref, os.data()) -pb
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|put
 argument_list|(
@@ -2366,7 +2366,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -2545,7 +2545,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -2631,7 +2631,7 @@ argument_list|)
 expr_stmt|;
 name|is
 operator|=
-name|db
+name|dbValues
 operator|.
 name|getAsStream
 argument_list|(
@@ -2946,7 +2946,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|put
 argument_list|(
@@ -2994,7 +2994,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|db
+name|dbValues
 operator|.
 name|update
 argument_list|(
@@ -3039,7 +3039,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -3174,7 +3174,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -3265,7 +3265,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|db
+name|dbValues
 operator|.
 name|query
 argument_list|(
@@ -3328,7 +3328,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -3567,7 +3567,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -3679,7 +3679,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|db
+name|dbValues
 operator|.
 name|query
 argument_list|(
@@ -3740,7 +3740,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -3829,7 +3829,7 @@ specifier|final
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -3922,7 +3922,7 @@ if|if
 condition|(
 name|stringType
 condition|)
-name|db
+name|dbValues
 operator|.
 name|query
 argument_list|(
@@ -3946,7 +3946,7 @@ argument_list|,
 name|collectionId
 argument_list|)
 decl_stmt|;
-name|db
+name|dbValues
 operator|.
 name|query
 argument_list|(
@@ -3971,7 +3971,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock for '"
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -4415,7 +4415,7 @@ argument_list|()
 operator|+
 literal|" at "
 operator|+
-name|db
+name|dbValues
 operator|.
 name|getFile
 argument_list|()
@@ -4519,7 +4519,7 @@ try|try
 block|{
 name|is
 operator|=
-name|db
+name|dbValues
 operator|.
 name|getAsStream
 argument_list|(
@@ -5086,7 +5086,7 @@ try|try
 block|{
 name|is
 operator|=
-name|db
+name|dbValues
 operator|.
 name|getAsStream
 argument_list|(

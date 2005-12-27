@@ -1123,7 +1123,7 @@ decl_stmt|;
 name|Lock
 name|lock
 init|=
-name|db
+name|dbValues
 operator|.
 name|getLock
 argument_list|()
@@ -1216,7 +1216,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|db
+name|dbValues
 operator|.
 name|query
 argument_list|(
@@ -1556,7 +1556,7 @@ if|if
 condition|(
 name|qnameValueIndexation
 condition|)
-name|db
+name|dbValues
 operator|.
 name|close
 argument_list|()
