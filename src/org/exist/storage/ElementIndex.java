@@ -141,19 +141,20 @@ name|ElementIndex
 extends|extends
 name|Observable
 block|{
+comment|/** The broker that is using this value index */
 specifier|protected
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/** maps a qname to a List of  NodeProxy - should be renamed ? */
 specifier|protected
 name|TreeMap
-name|elementIds
+name|pending
 init|=
 operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|/** The current document */
 specifier|protected
 name|DocumentImpl
 name|doc

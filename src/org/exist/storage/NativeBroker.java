@@ -5745,7 +5745,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|qname
 argument_list|,
@@ -5805,7 +5805,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|qname
 argument_list|,
@@ -12883,7 +12883,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|qname
 argument_list|,
@@ -12994,7 +12994,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|qname
 argument_list|,
@@ -13162,7 +13162,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|qname
 argument_list|,
@@ -16149,7 +16149,7 @@ argument_list|)
 expr_stmt|;
 name|elementIndex
 operator|.
-name|addRow
+name|addNode
 argument_list|(
 name|node
 operator|.

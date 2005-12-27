@@ -232,7 +232,7 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 function_decl|;
-comment|/**      * Reindexes all pending items for the specified document. Similar to the normal index process,      * items to be reindexed are added to the internal pending list via methods       * {@link #addRow(QName, NodeProxy)}, {@link #storeElement(int, ElementImpl, String),      * and {@link #storeAttribute(RangeIndexSpec, AttrImpl)}. Method reindex then scans this      * list and updates the items in the index to reflect the reindexed document.      *       * @param oldDoc the document to be reindexed.      * @param node if != null, only nodes being descendants of the specified node will be      * reindexed. Other nodes are not touched. This is used for a partial reindex.      */
+comment|/**      * Reindexes all pending items for the specified document. Similar to the normal index process,      * items to be reindexed are added to the internal pending list via methods       * {@link #addNode(QName, NodeProxy)}, {@link #storeElement(int, ElementImpl, String),      * and {@link #storeAttribute(RangeIndexSpec, AttrImpl)}. Method reindex then scans this      * list and updates the items in the index to reflect the reindexed document.      *       * @param oldDoc the document to be reindexed.      * @param node if != null, only nodes being descendants of the specified node will be      * reindexed. Other nodes are not touched. This is used for a partial reindex.      */
 specifier|public
 specifier|abstract
 name|void
