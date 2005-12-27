@@ -1590,6 +1590,21 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setContext
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+block|{
+name|this
+operator|.
+name|context
+operator|=
+name|context
+expr_stmt|;
+block|}
 block|}
 end_class
 
