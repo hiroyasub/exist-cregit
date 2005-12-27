@@ -4646,7 +4646,7 @@ name|contextSet
 operator|.
 name|containsDoc
 argument_list|(
-name|doc
+name|currentDocument
 argument_list|)
 condition|)
 block|{
@@ -4665,7 +4665,7 @@ name|contextSet
 operator|.
 name|getSizeHint
 argument_list|(
-name|doc
+name|currentDocument
 argument_list|)
 expr_stmt|;
 block|}
@@ -4706,7 +4706,7 @@ operator|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|doc
+name|currentDocument
 argument_list|,
 name|currentGID
 argument_list|)
