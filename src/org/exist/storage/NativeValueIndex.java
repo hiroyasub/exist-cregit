@@ -969,6 +969,7 @@ return|return;
 name|Indexable
 name|indexable
 decl_stmt|;
+comment|//TODO : NativeElementIndex uses ArrayLists -pb
 name|LongLinkedList
 name|gidList
 decl_stmt|;
@@ -1316,6 +1317,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//What does remove has to do with the pending entries ??? -pb
 if|if
 condition|(
 name|pending
@@ -1329,6 +1331,7 @@ return|return;
 name|Indexable
 name|indexable
 decl_stmt|;
+comment|//TODO : NativeElementIndex uses ArrayLists -pb
 name|LongLinkedList
 name|currentGIDList
 decl_stmt|;
@@ -1458,6 +1461,7 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
+comment|//Compute a key for the value
 name|ref
 operator|=
 operator|new
@@ -1487,7 +1491,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//Does the value already has data ?
+comment|//Does the value already exist in the index ?
 if|if
 condition|(
 name|value
@@ -1589,7 +1593,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//The data will be saved if an exception occurs ! -pb
+comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
 else|else
@@ -1673,10 +1677,10 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//The data will be saved if an exception occurs ! -pb
+comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
-comment|// append the new list to any existing data
+comment|// append the new list
 name|gids
 operator|=
 name|newGIDList
@@ -2494,6 +2498,7 @@ return|return;
 name|Indexable
 name|indexable
 decl_stmt|;
+comment|//TODO : NativeElementIndex uses ArrayLists -pb
 name|LongLinkedList
 name|currentGIDList
 decl_stmt|;
