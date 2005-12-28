@@ -775,7 +775,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// process the remaining attributesCharArr
+comment|// process the remaining attributes
 for|for
 control|(
 name|int

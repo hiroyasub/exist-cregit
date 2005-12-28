@@ -566,6 +566,7 @@ specifier|protected
 name|BFile
 name|dbNodes
 decl_stmt|;
+comment|/** Work output Stream taht should be cleared before every use */
 specifier|private
 name|VariableByteOutputStream
 name|os
@@ -596,7 +597,7 @@ operator|=
 name|dbNodes
 expr_stmt|;
 block|}
-comment|/**      * Add an index entry for the given QName and NodeProxy.      * Added entries are written to the list of pending entries.      * {@link #flush()} is called later to flush all pending entries.      */
+comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy The node's proxy      */
 specifier|public
 name|void
 name|addNode
@@ -608,11 +609,10 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+comment|//Is this node already pending ?
 name|ArrayList
 name|buf
-decl_stmt|;
-name|buf
-operator|=
+init|=
 operator|(
 name|ArrayList
 operator|)
@@ -622,7 +622,7 @@ name|get
 argument_list|(
 name|qname
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|buf
@@ -630,6 +630,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//Create a node list
 name|buf
 operator|=
 operator|new
@@ -648,6 +649,7 @@ name|buf
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Add node's proxy to the list
 name|buf
 operator|.
 name|add
@@ -656,6 +658,7 @@ name|proxy
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#sync()      */
 specifier|public
 name|void
 name|sync
@@ -740,7 +743,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Flush all pending index entries. This method is called while      * a document is stored.      */
+comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#flush()      */
 specifier|public
 name|void
 name|flush
@@ -771,41 +774,45 @@ argument_list|,
 literal|5
 argument_list|)
 decl_stmt|;
-name|NodeProxy
-name|proxy
-decl_stmt|;
 name|QName
 name|qname
 decl_stmt|;
 name|ArrayList
-name|idList
+name|gids
 decl_stmt|;
 name|int
-name|count
-init|=
-literal|1
-decl_stmt|,
-name|len
+name|gidsCount
 decl_stmt|;
-comment|//        String name;
-name|ElementValue
-name|ref
+name|long
+name|previousGID
+decl_stmt|;
+name|long
+name|delta
+decl_stmt|;
+name|NodeProxy
+name|currentProxy
+decl_stmt|;
+name|int
+name|lenOffset
+decl_stmt|;
+specifier|final
+name|SymbolTable
+name|symbols
+init|=
+name|broker
+operator|.
+name|getSymbols
+argument_list|()
 decl_stmt|;
 name|Map
 operator|.
 name|Entry
 name|entry
 decl_stmt|;
-comment|// get collection id for this collection
-name|long
-name|prevId
+name|ElementValue
+name|ref
 decl_stmt|;
-name|long
-name|delta
-decl_stmt|;
-name|int
-name|lenOffset
-decl_stmt|;
+specifier|final
 name|short
 name|collectionId
 init|=
@@ -817,6 +824,7 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -825,8 +833,11 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
-try|try
-block|{
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -845,6 +856,8 @@ operator|.
 name|hasNext
 argument_list|()
 condition|;
+name|count
+operator|++
 control|)
 block|{
 name|entry
@@ -869,7 +882,7 @@ operator|.
 name|getKey
 argument_list|()
 expr_stmt|;
-name|idList
+name|gids
 operator|=
 operator|(
 name|ArrayList
@@ -879,32 +892,30 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
-name|os
+name|gidsCount
+operator|=
+name|gids
 operator|.
-name|clear
+name|size
 argument_list|()
 expr_stmt|;
+comment|//Don't forget this one
 name|FastQSort
 operator|.
 name|sort
 argument_list|(
-name|idList
+name|gids
 argument_list|,
 literal|0
 argument_list|,
-name|idList
-operator|.
-name|size
-argument_list|()
+name|gidsCount
 operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|len
-operator|=
-name|idList
+name|os
 operator|.
-name|size
+name|clear
 argument_list|()
 expr_stmt|;
 name|os
@@ -921,7 +932,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|len
+name|gidsCount
 argument_list|)
 expr_stmt|;
 name|lenOffset
@@ -938,7 +949,8 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|prevId
+comment|//Compute the GID list
+name|previousGID
 operator|=
 literal|0
 expr_stmt|;
@@ -951,18 +963,18 @@ literal|0
 init|;
 name|j
 operator|<
-name|len
+name|gidsCount
 condition|;
 name|j
 operator|++
 control|)
 block|{
-name|proxy
+name|currentProxy
 operator|=
 operator|(
 name|NodeProxy
 operator|)
-name|idList
+name|gids
 operator|.
 name|get
 argument_list|(
@@ -971,19 +983,12 @@ argument_list|)
 expr_stmt|;
 name|delta
 operator|=
-name|proxy
+name|currentProxy
 operator|.
 name|getGID
 argument_list|()
 operator|-
-name|prevId
-expr_stmt|;
-name|prevId
-operator|=
-name|proxy
-operator|.
-name|getGID
-argument_list|()
+name|previousGID
 expr_stmt|;
 name|os
 operator|.
@@ -996,13 +1001,20 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|proxy
+name|currentProxy
 operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|,
 name|os
 argument_list|)
+expr_stmt|;
+name|previousGID
+operator|=
+name|currentProxy
+operator|.
+name|getGID
+argument_list|()
 expr_stmt|;
 block|}
 name|os
@@ -1021,25 +1033,44 @@ operator|-
 literal|4
 argument_list|)
 expr_stmt|;
+comment|//Compute a key for the node
 if|if
 condition|(
 name|qname
 operator|.
 name|getNameType
 argument_list|()
-operator|!=
+operator|==
 name|ElementValue
 operator|.
 name|ATTRIBUTE_ID
 condition|)
 block|{
+name|ref
+operator|=
+operator|new
+name|ElementValue
+argument_list|(
+name|qname
+operator|.
+name|getNameType
+argument_list|()
+argument_list|,
+name|collectionId
+argument_list|,
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|short
 name|sym
 init|=
-name|broker
-operator|.
-name|getSymbols
-argument_list|()
+name|symbols
 operator|.
 name|getSymbol
 argument_list|(
@@ -1052,10 +1083,7 @@ decl_stmt|;
 name|short
 name|nsSym
 init|=
-name|broker
-operator|.
-name|getSymbols
-argument_list|()
+name|symbols
 operator|.
 name|getNSSymbol
 argument_list|(
@@ -1083,27 +1111,6 @@ name|nsSym
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|ref
-operator|=
-operator|new
-name|ElementValue
-argument_list|(
-name|qname
-operator|.
-name|getNameType
-argument_list|()
-argument_list|,
-name|collectionId
-argument_list|,
-name|qname
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 try|try
 block|{
 name|lock
@@ -1115,6 +1122,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//Store data
 if|if
 condition|(
 name|dbNodes
@@ -1138,12 +1146,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"could not save index for element "
+literal|"Could not put index data for node '"
 operator|+
 name|qname
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
-continue|continue;
 block|}
 block|}
 catch|catch
@@ -1171,6 +1180,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
@@ -1182,13 +1192,43 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"io error while writing element "
-operator|+
-name|qname
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return ?
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Read-only error on '"
+operator|+
+name|dbNodes
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//Return without clearing the pending entries
+return|return;
 block|}
 finally|finally
 block|{
@@ -1222,25 +1262,6 @@ name|progress
 argument_list|)
 expr_stmt|;
 block|}
-name|count
-operator|++
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"database is read-only"
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
 name|progress
 operator|.

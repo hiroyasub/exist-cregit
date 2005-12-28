@@ -1109,6 +1109,7 @@ argument_list|(
 name|gidsCount
 argument_list|)
 expr_stmt|;
+comment|//Compute the GID list
 name|previousGID
 operator|=
 literal|0
@@ -1152,6 +1153,7 @@ name|j
 index|]
 expr_stmt|;
 block|}
+comment|//Compute a key for the value
 name|ref
 operator|=
 operator|new
@@ -1178,6 +1180,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//Store data
 if|if
 condition|(
 name|dbValues
@@ -1239,33 +1242,6 @@ comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Read-only error on '"
-operator|+
-name|dbValues
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -1290,6 +1266,34 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|//TODO : return ?
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Read-only error on '"
+operator|+
+name|dbValues
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//Return without clearing the pending entries
+return|return;
 block|}
 finally|finally
 block|{
