@@ -778,7 +778,7 @@ name|QName
 name|qname
 decl_stmt|;
 name|NodeProxy
-name|currentNode
+name|storedNode
 decl_stmt|;
 comment|//TODO : NativeValueIndex uses LongLinkedLists -pb
 name|ArrayList
@@ -970,7 +970,7 @@ name|j
 operator|++
 control|)
 block|{
-name|currentNode
+name|storedNode
 operator|=
 operator|(
 name|NodeProxy
@@ -984,7 +984,7 @@ argument_list|)
 expr_stmt|;
 name|delta
 operator|=
-name|currentNode
+name|storedNode
 operator|.
 name|getGID
 argument_list|()
@@ -1002,7 +1002,7 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|currentNode
+name|storedNode
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -1012,7 +1012,7 @@ argument_list|)
 expr_stmt|;
 name|previousGID
 operator|=
-name|currentNode
+name|storedNode
 operator|.
 name|getGID
 argument_list|()
@@ -1288,7 +1288,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-comment|//What does remove has to do with the pending entries ??? -pb
 if|if
 condition|(
 name|pending
@@ -1303,10 +1302,10 @@ name|QName
 name|qname
 decl_stmt|;
 name|NodeProxy
-name|currentNode
+name|storedNode
 decl_stmt|;
 name|List
-name|currentGIDList
+name|storedGIDList
 decl_stmt|;
 name|List
 name|newGIDList
@@ -1319,7 +1318,7 @@ name|int
 name|gidsCount
 decl_stmt|;
 name|long
-name|currentGID
+name|storedGID
 decl_stmt|;
 name|long
 name|previousGID
@@ -1421,7 +1420,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|currentGIDList
+name|storedGIDList
 operator|=
 operator|(
 name|ArrayList
@@ -1692,7 +1691,7 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
 name|previousGID
 operator|+
@@ -1713,9 +1712,9 @@ condition|(
 operator|!
 name|containsNode
 argument_list|(
-name|currentGIDList
+name|storedGIDList
 argument_list|,
-name|currentGID
+name|storedGID
 argument_list|)
 condition|)
 block|{
@@ -1728,7 +1727,7 @@ name|NodeProxy
 argument_list|(
 name|doc
 argument_list|,
-name|currentGID
+name|storedGID
 argument_list|,
 name|address
 argument_list|)
@@ -1737,7 +1736,7 @@ expr_stmt|;
 block|}
 name|previousGID
 operator|=
-name|currentGID
+name|storedGID
 expr_stmt|;
 block|}
 block|}
@@ -1836,7 +1835,7 @@ name|j
 operator|++
 control|)
 block|{
-name|currentNode
+name|storedNode
 operator|=
 operator|(
 name|NodeProxy
@@ -1850,7 +1849,7 @@ argument_list|)
 expr_stmt|;
 name|delta
 operator|=
-name|currentNode
+name|storedNode
 operator|.
 name|getGID
 argument_list|()
@@ -1868,7 +1867,7 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|currentNode
+name|storedNode
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -1878,7 +1877,7 @@ argument_list|)
 expr_stmt|;
 name|previousGID
 operator|=
-name|currentNode
+name|storedNode
 operator|.
 name|getGID
 argument_list|()
@@ -2049,7 +2048,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Drop all index entries for the given collection.      *       * @param collection      */
+comment|/* Drop all index entries for the given collection.      * @see org.exist.storage.ContentLoadingObserver#dropIndex(org.exist.collections.Collection)      */
 specifier|public
 name|void
 name|dropIndex
@@ -2186,7 +2185,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Drop all index entries for the given document.      *       * @param doc      * @throws ReadOnlyException      */
+comment|/* Drop all index entries for the given document.      * @see org.exist.storage.ContentLoadingObserver#dropIndex(org.exist.dom.DocumentImpl)      */
 specifier|public
 name|void
 name|dropIndex
@@ -2197,6 +2196,24 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+name|Value
+name|key
+decl_stmt|;
+name|int
+name|gidsCount
+decl_stmt|;
+name|int
+name|size
+decl_stmt|;
+name|VariableByteInput
+name|is
+decl_stmt|;
+name|int
+name|storedDocId
+decl_stmt|;
+name|boolean
+name|changed
+decl_stmt|;
 specifier|final
 name|short
 name|collectionId
@@ -2263,23 +2280,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|Value
-name|key
-decl_stmt|;
-name|VariableByteInput
-name|is
-decl_stmt|;
-name|int
-name|len
-decl_stmt|,
-name|size
-decl_stmt|;
-name|int
-name|docId
-decl_stmt|;
-name|boolean
-name|changed
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2298,6 +2298,10 @@ name|i
 operator|++
 control|)
 block|{
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 name|key
 operator|=
 operator|(
@@ -2324,10 +2328,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|changed
-operator|=
-literal|false
-expr_stmt|;
 try|try
 block|{
 while|while
@@ -2340,14 +2340,14 @@ operator|>
 literal|0
 condition|)
 block|{
-name|docId
+name|storedDocId
 operator|=
 name|is
 operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|len
+name|gidsCount
 operator|=
 name|is
 operator|.
@@ -2363,7 +2363,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|docId
+name|storedDocId
 operator|!=
 name|doc
 operator|.
@@ -2371,19 +2371,20 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
-comment|// copy data to new buffer
+comment|// data are related to another document:
+comment|// copy them to any existing data
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|docId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|len
+name|gidsCount
 argument_list|)
 expr_stmt|;
 name|os
@@ -2402,15 +2403,15 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
-comment|//                            is.copyTo(os, len * 4);
 block|}
 else|else
 block|{
+comment|// data are related to our document:
+comment|// skip them
 name|changed
 operator|=
 literal|true
 expr_stmt|;
-comment|// skip
 name|is
 operator|.
 name|skipBytes
@@ -2427,34 +2428,16 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|// EOF is expected here
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"removeDocument(String) "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//EOF is expected here
 block|}
 if|if
 condition|(
 name|changed
 condition|)
 block|{
+comment|//TODO : no call to dbNodes.remove if no data ? -pb
+comment|//TODO : why not use the same construct as above :
+comment|//dbNodes.update(value.getAddress(), ref, os.data()) -pb
 if|if
 condition|(
 name|dbNodes
@@ -2473,21 +2456,16 @@ name|BFile
 operator|.
 name|UNKNOWN_ADDRESS
 condition|)
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"removeDocument() - "
+literal|"Could not put index data for value '"
 operator|+
-literal|"could not save element"
+name|ref
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2530,7 +2508,10 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"method terminated"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -2583,7 +2564,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Called by {@link NativeBroker.reIndex} */
+comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl)      */
 specifier|public
 name|void
 name|reindex
@@ -4013,7 +3994,7 @@ condition|;
 control|)
 block|{
 name|Collection
-name|current
+name|storedCollection
 init|=
 operator|(
 name|Collection
@@ -4026,7 +4007,7 @@ decl_stmt|;
 name|short
 name|collectionId
 init|=
-name|current
+name|storedCollection
 operator|.
 name|getId
 argument_list|()

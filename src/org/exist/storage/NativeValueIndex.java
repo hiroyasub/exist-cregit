@@ -1317,7 +1317,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-comment|//What does remove has to do with the pending entries ??? -pb
 if|if
 condition|(
 name|pending
@@ -1333,7 +1332,7 @@ name|indexable
 decl_stmt|;
 comment|//TODO : NativeElementIndex uses ArrayLists -pb
 name|LongLinkedList
-name|currentGIDList
+name|storedGIDList
 decl_stmt|;
 name|LongLinkedList
 name|newGIDList
@@ -1346,7 +1345,7 @@ name|int
 name|gidsCount
 decl_stmt|;
 name|long
-name|currentGID
+name|storedGID
 decl_stmt|;
 name|long
 name|previousGID
@@ -1369,7 +1368,7 @@ name|VariableByteArrayInput
 name|is
 decl_stmt|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 specifier|final
 name|short
@@ -1451,7 +1450,7 @@ operator|.
 name|getKey
 argument_list|()
 expr_stmt|;
-name|currentGIDList
+name|storedGIDList
 operator|=
 operator|(
 name|LongLinkedList
@@ -1523,7 +1522,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -1539,7 +1538,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|currentDocId
+name|storedDocId
 operator|!=
 name|doc
 operator|.
@@ -1553,7 +1552,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|currentDocId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 name|os
@@ -1626,7 +1625,7 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
 name|previousGID
 operator|+
@@ -1635,11 +1634,11 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|currentGIDList
+name|storedGIDList
 operator|.
 name|contains
 argument_list|(
-name|currentGID
+name|storedGID
 argument_list|)
 condition|)
 block|{
@@ -1647,13 +1646,13 @@ name|newGIDList
 operator|.
 name|add
 argument_list|(
-name|currentGID
+name|storedGID
 argument_list|)
 expr_stmt|;
 block|}
 name|previousGID
 operator|=
-name|currentGID
+name|storedGID
 expr_stmt|;
 block|}
 block|}
@@ -1911,7 +1910,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.collections.Collection) 	 */
+comment|/* Drop all index entries for the given collection. 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.collections.Collection) 	 */
 specifier|public
 name|void
 name|dropIndex
@@ -2045,7 +2044,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl) 	 */
+comment|/* Drop all index entries for the given document. 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl) 	 */
 specifier|public
 name|void
 name|dropIndex
@@ -2072,7 +2071,7 @@ name|VariableByteArrayInput
 name|is
 decl_stmt|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 name|boolean
 name|changed
@@ -2089,6 +2088,7 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Value
 name|ref
 init|=
@@ -2098,6 +2098,7 @@ argument_list|(
 name|collectionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -2111,6 +2112,7 @@ argument_list|,
 name|ref
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -2209,7 +2211,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -2225,7 +2227,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|currentDocId
+name|storedDocId
 operator|!=
 name|doc
 operator|.
@@ -2239,7 +2241,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|currentDocId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 name|os
@@ -2428,25 +2430,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -2500,7 +2483,7 @@ name|indexable
 decl_stmt|;
 comment|//TODO : NativeElementIndex uses ArrayLists -pb
 name|LongLinkedList
-name|currentGIDList
+name|storedGIDList
 decl_stmt|;
 name|LongLinkedList
 name|newGIDList
@@ -2513,7 +2496,7 @@ name|int
 name|gidsCount
 decl_stmt|;
 name|long
-name|currentGID
+name|storedGID
 decl_stmt|;
 name|long
 name|previousGID
@@ -2533,7 +2516,7 @@ name|VariableByteInput
 name|is
 decl_stmt|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 name|long
 name|address
@@ -2601,7 +2584,7 @@ operator|.
 name|getKey
 argument_list|()
 expr_stmt|;
-name|currentGIDList
+name|storedGIDList
 operator|=
 operator|(
 name|LongLinkedList
@@ -2677,7 +2660,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -2693,7 +2676,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|currentDocId
+name|storedDocId
 operator|!=
 name|document
 operator|.
@@ -2757,7 +2740,7 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
 name|previousGID
 operator|+
@@ -2776,7 +2759,7 @@ name|document
 operator|.
 name|getTreeLevel
 argument_list|(
-name|currentGID
+name|storedGID
 argument_list|)
 operator|<
 name|document
@@ -2784,11 +2767,11 @@ operator|.
 name|reindexRequired
 argument_list|()
 condition|)
-name|currentGIDList
+name|storedGIDList
 operator|.
 name|add
 argument_list|(
-name|currentGID
+name|storedGID
 argument_list|)
 expr_stmt|;
 block|}
@@ -2808,7 +2791,7 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|,
-name|currentGID
+name|storedGID
 argument_list|)
 condition|)
 comment|//TO UNDERSTAND : what will these GIDs become ? -pb
@@ -2816,13 +2799,13 @@ name|newGIDList
 operator|.
 name|add
 argument_list|(
-name|currentGID
+name|storedGID
 argument_list|)
 expr_stmt|;
 block|}
 name|previousGID
 operator|=
-name|currentGID
+name|storedGID
 expr_stmt|;
 block|}
 block|}
@@ -2866,7 +2849,7 @@ block|}
 comment|// append the new list to any existing data
 name|gids
 operator|=
-name|currentGIDList
+name|storedGIDList
 operator|.
 name|getData
 argument_list|()
@@ -3861,7 +3844,7 @@ condition|;
 control|)
 block|{
 name|Collection
-name|current
+name|collection
 init|=
 operator|(
 name|Collection
@@ -3874,7 +3857,7 @@ decl_stmt|;
 name|short
 name|collectionId
 init|=
-name|current
+name|collection
 operator|.
 name|getId
 argument_list|()
@@ -4565,22 +4548,22 @@ return|return
 literal|true
 return|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 name|int
 name|gidsCount
 decl_stmt|;
 name|long
-name|currentGID
+name|storedGID
 decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
 name|DocumentImpl
-name|currentDocument
+name|storedDocument
 decl_stmt|;
 name|NodeProxy
-name|currentNode
+name|storedNode
 decl_stmt|,
 name|parentNode
 decl_stmt|;
@@ -4602,7 +4585,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -4616,18 +4599,18 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|currentDocument
+name|storedDocument
 operator|=
 name|docs
 operator|.
 name|getDoc
 argument_list|(
-name|currentDocId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|currentDocument
+name|storedDocument
 operator|==
 literal|null
 condition|)
@@ -4655,7 +4638,7 @@ name|contextSet
 operator|.
 name|containsDoc
 argument_list|(
-name|currentDocument
+name|storedDocument
 argument_list|)
 condition|)
 block|{
@@ -4674,11 +4657,11 @@ name|contextSet
 operator|.
 name|getSizeHint
 argument_list|(
-name|currentDocument
+name|storedDocument
 argument_list|)
 expr_stmt|;
 block|}
-name|currentGID
+name|storedGID
 operator|=
 literal|0
 expr_stmt|;
@@ -4704,20 +4687,20 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
-name|currentGID
+name|storedGID
 operator|+
 name|delta
 expr_stmt|;
-name|currentNode
+name|storedNode
 operator|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|currentDocument
+name|storedDocument
 argument_list|,
-name|currentGID
+name|storedGID
 argument_list|)
 expr_stmt|;
 comment|// if a context set is specified, we can directly check if the
@@ -4741,7 +4724,7 @@ name|contextSet
 operator|.
 name|parentWithChild
 argument_list|(
-name|currentNode
+name|storedNode
 argument_list|,
 literal|false
 argument_list|,
@@ -4773,7 +4756,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|currentNode
+name|storedNode
 argument_list|,
 name|sizeHint
 argument_list|)
@@ -4786,7 +4769,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|currentNode
+name|storedNode
 argument_list|,
 name|sizeHint
 argument_list|)
@@ -5132,19 +5115,19 @@ return|return
 literal|true
 return|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 name|int
 name|gidsCount
 decl_stmt|;
 name|long
-name|currentGID
+name|storedGID
 decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
 name|DocumentImpl
-name|currentDocument
+name|storedDocument
 decl_stmt|;
 name|boolean
 name|docAdded
@@ -5174,7 +5157,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -5188,18 +5171,18 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|currentDocument
+name|storedDocument
 operator|=
 name|docs
 operator|.
 name|getDoc
 argument_list|(
-name|currentDocId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|currentDocument
+name|storedDocument
 operator|==
 literal|null
 condition|)
@@ -5217,7 +5200,7 @@ name|docAdded
 operator|=
 literal|false
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
 literal|0
 expr_stmt|;
@@ -5243,9 +5226,9 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|currentGID
+name|storedGID
 operator|=
-name|currentGID
+name|storedGID
 operator|+
 name|delta
 expr_stmt|;
@@ -5265,9 +5248,9 @@ name|contextSet
 operator|.
 name|parentWithChild
 argument_list|(
-name|currentDocument
+name|storedDocument
 argument_list|,
-name|currentGID
+name|storedGID
 argument_list|,
 literal|false
 argument_list|,
@@ -5312,7 +5295,7 @@ name|oc
 operator|.
 name|addDocument
 argument_list|(
-name|currentDocument
+name|storedDocument
 argument_list|)
 expr_stmt|;
 name|docAdded
