@@ -1562,8 +1562,6 @@ argument_list|(
 name|gidsCount
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|is
 operator|.
 name|copyTo
@@ -1573,27 +1571,6 @@ argument_list|,
 name|gidsCount
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
-block|}
 block|}
 else|else
 block|{
@@ -1657,6 +1634,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|EOFException
+name|e
+parameter_list|)
+block|{
+comment|//Is it expected ? -pb
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2817,15 +2814,17 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//Is it expected ? -pb
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not save index data for value '"
-operator|+
-name|ref
-operator|+
-literal|"'"
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -2839,11 +2838,15 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"io-error while updating index for value"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
 comment|// append the new list to any existing data
@@ -2936,6 +2939,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : Should is be null, what will there be in os.data() ? -pb
 if|if
 condition|(
 name|dbValues
@@ -4794,7 +4798,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -5321,6 +5325,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//Is it expected ? -pb
 name|LOG
 operator|.
 name|warn
@@ -5342,7 +5347,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
