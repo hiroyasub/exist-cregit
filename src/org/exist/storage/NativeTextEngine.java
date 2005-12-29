@@ -1477,7 +1477,7 @@ name|void
 name|dropIndex
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 block|{
 comment|//Collect document's tokens
@@ -1491,7 +1491,7 @@ decl_stmt|;
 name|NodeList
 name|children
 init|=
-name|doc
+name|document
 operator|.
 name|getChildNodes
 argument_list|()
@@ -1539,7 +1539,7 @@ argument_list|(
 operator|new
 name|NodeProxy
 argument_list|(
-name|doc
+name|document
 argument_list|,
 name|node
 operator|.
@@ -1585,7 +1585,7 @@ decl_stmt|;
 name|short
 name|collectionId
 init|=
-name|doc
+name|document
 operator|.
 name|getCollection
 argument_list|()
@@ -1725,7 +1725,7 @@ if|if
 condition|(
 name|docId
 operator|!=
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -4208,6 +4208,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -4463,6 +4465,8 @@ if|if
 condition|(
 name|docId
 operator|==
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -4666,6 +4670,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -5777,6 +5783,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -5903,6 +5911,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -6260,7 +6270,7 @@ name|void
 name|setDocument
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 block|{
 if|if
@@ -6278,7 +6288,7 @@ operator|.
 name|getDocId
 argument_list|()
 operator|!=
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -6290,7 +6300,7 @@ name|this
 operator|.
 name|doc
 operator|=
-name|doc
+name|document
 expr_stmt|;
 block|}
 block|}
