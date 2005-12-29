@@ -2371,7 +2371,7 @@ argument_list|)
 expr_stmt|;
 name|string
 operator|=
-literal|"~bÃ©bÃ©"
+literal|"~b\u00e9b\u00e9"
 expr_stmt|;
 name|expected
 operator|=
@@ -2566,7 +2566,7 @@ argument_list|)
 expr_stmt|;
 name|string
 operator|=
-literal|"http://www.example.com/~bÃ©bÃ©"
+literal|"http://www.example.com/~b\u00e9b\u00e9"
 expr_stmt|;
 name|expected
 operator|=
@@ -2714,7 +2714,7 @@ argument_list|)
 expr_stmt|;
 name|string
 operator|=
-literal|"javascript:if (navigator.browserLanguage == 'fr') window.open('http://www.example.com/~bÃ©bÃ©');"
+literal|"javascript:if (navigator.browserLanguage == 'fr') window.open('http://www.example.com/~b\u00e9b\u00e9');"
 expr_stmt|;
 name|expected
 operator|=
