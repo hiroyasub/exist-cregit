@@ -1811,19 +1811,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-else|else
-comment|//TODO : throw an exception ?
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Strange position in Predicate: '"
-operator|+
-name|pos
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
+comment|//Other positions are ignored
 block|}
 return|return
 name|result
