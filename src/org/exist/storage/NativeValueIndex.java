@@ -3240,9 +3240,9 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|Value
-name|prefix
+name|keyPrefix
 init|=
-name|getValuePrefix
+name|computeKeyPrefix
 argument_list|(
 name|value
 operator|.
@@ -3267,7 +3267,7 @@ name|query
 argument_list|(
 name|query
 argument_list|,
-name|prefix
+name|keyPrefix
 argument_list|,
 name|callback
 argument_list|)
@@ -3605,7 +3605,7 @@ name|getId
 argument_list|()
 decl_stmt|;
 name|Value
-name|value
+name|searchKey
 decl_stmt|;
 if|if
 condition|(
@@ -3627,7 +3627,7 @@ argument_list|,
 name|caseSensitive
 argument_list|)
 decl_stmt|;
-name|value
+name|searchKey
 operator|=
 operator|new
 name|Value
@@ -3638,9 +3638,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|value
+name|searchKey
 operator|=
-name|getValuePrefix
+name|computeKeyPrefix
 argument_list|(
 name|Type
 operator|.
@@ -3663,7 +3663,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|value
+name|searchKey
 argument_list|)
 decl_stmt|;
 try|try
@@ -3930,9 +3930,9 @@ expr_stmt|;
 else|else
 block|{
 name|Value
-name|prefix
+name|keyPrefix
 init|=
-name|getValuePrefix
+name|computeKeyPrefix
 argument_list|(
 name|start
 operator|.
@@ -3948,7 +3948,7 @@ name|query
 argument_list|(
 name|query
 argument_list|,
-name|prefix
+name|keyPrefix
 argument_list|,
 name|cb
 argument_list|)
@@ -4086,7 +4086,7 @@ block|}
 comment|/**      * Returns a search key for a collectionId/type combination.      */
 specifier|private
 name|Value
-name|getValuePrefix
+name|computeKeyPrefix
 parameter_list|(
 name|int
 name|type
