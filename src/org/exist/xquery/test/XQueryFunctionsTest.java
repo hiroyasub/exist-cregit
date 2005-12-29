@@ -1373,7 +1373,7 @@ comment|//(typically, values extracted from nodes in a schemaless document)
 comment|//are converted to xs:double values ([MK Xpath 2.0], p. 372)
 name|assertEquals
 argument_list|(
-literal|"1"
+literal|"1.0"
 argument_list|,
 name|r
 argument_list|)
@@ -1410,7 +1410,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testMin(): "
 operator|+
 name|e
 argument_list|)
@@ -1504,7 +1504,7 @@ comment|//(typically, values extracted from nodes in a schemaless document)
 comment|//are converted to xs:double values ([MK Xpath 2.0], p. 370)
 name|assertEquals
 argument_list|(
-literal|"2"
+literal|"2.0"
 argument_list|,
 name|r
 argument_list|)
@@ -1541,7 +1541,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testMax(): "
 operator|+
 name|e
 argument_list|)
