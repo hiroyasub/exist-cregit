@@ -670,6 +670,15 @@ specifier|protected
 name|InvertedIndex
 name|invertedIndex
 decl_stmt|;
+comment|/** Work output Stream taht should be cleared before every use */
+specifier|private
+name|VariableByteOutputStream
+name|os
+init|=
+operator|new
+name|VariableByteOutputStream
+argument_list|()
+decl_stmt|;
 specifier|public
 name|NativeTextEngine
 parameter_list|(
@@ -993,8 +1002,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Indexes the tokens contained in a text node.      *       * @param idx The index configuration      * @param text The text node to be indexed      * @param onetoken      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is itokenized before being indexed      * @return boolean indicates if all of the text content has been added to      *            the index      */
-comment|//TODO : use an indexSpec member in order to get rid of<code>onetoken</code>
+comment|/**      * Indexes the tokens contained in a text node.      *       * @param idx The index configuration      * @param text The text node to be indexed      * @param noTokenizing      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is itokenized before being indexed      * @return boolean indicates if all of the text content has been added to      *            the index      */
+comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
 specifier|public
 name|void
 name|storeText
@@ -1006,7 +1015,7 @@ name|TextImpl
 name|text
 parameter_list|,
 name|boolean
-name|onetoken
+name|noTokenizing
 parameter_list|)
 block|{
 specifier|final
@@ -1047,7 +1056,7 @@ name|token
 decl_stmt|;
 if|if
 condition|(
-name|onetoken
+name|noTokenizing
 condition|)
 block|{
 name|token
@@ -1182,6 +1191,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#sync()      */
 specifier|public
 name|void
 name|sync
@@ -1215,25 +1225,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|DBException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|LockException
 name|e
 parameter_list|)
@@ -1257,6 +1248,27 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ? -pb
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//TODO : throw an exception ? -pb
 block|}
 finally|finally
 block|{
@@ -1267,6 +1279,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#flush()      */
 specifier|public
 name|void
 name|flush
@@ -1310,7 +1323,7 @@ name|remove
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Remove indexed words for entire collection      *       * @param collection      *                Description of the Parameter      */
+comment|/* Drop all index entries for the given collection.      * @see org.exist.storage.ContentLoadingObserver#dropIndex(org.exist.collections.Collection)      */
 specifier|public
 name|void
 name|dropIndex
@@ -1380,42 +1393,42 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|bte
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-name|bte
+name|e
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|DBException
-name|dbe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-name|dbe
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1458,7 +1471,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove all index entries for the specified document      *       * @param doc      *                The document      */
+comment|/* Drop all index entries for the given document.      * @see org.exist.storage.ContentLoadingObserver#dropIndex(org.exist.dom.DocumentImpl)      */
 specifier|public
 name|void
 name|dropIndex
@@ -1467,10 +1480,9 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
-try|try
-block|{
+comment|//Collect document's tokens
 name|TreeSet
-name|words
+name|tokens
 init|=
 operator|new
 name|TreeSet
@@ -1543,7 +1555,7 @@ argument_list|)
 decl_stmt|;
 name|collect
 argument_list|(
-name|words
+name|tokens
 argument_list|,
 name|j
 argument_list|)
@@ -1552,21 +1564,16 @@ block|}
 name|String
 name|word
 decl_stmt|;
-comment|//          Value val;
 name|WordRef
 name|ref
 decl_stmt|;
 name|VariableByteInput
 name|is
-init|=
-literal|null
-decl_stmt|;
-name|VariableByteOutputStream
-name|os
 decl_stmt|;
 name|int
 name|len
-decl_stmt|,
+decl_stmt|;
+name|int
 name|rawSize
 decl_stmt|;
 name|int
@@ -1589,6 +1596,7 @@ decl_stmt|;
 name|boolean
 name|changed
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -1602,7 +1610,7 @@ control|(
 name|Iterator
 name|iter
 init|=
-name|words
+name|tokens
 operator|.
 name|iterator
 argument_list|()
@@ -1838,20 +1846,13 @@ argument_list|()
 argument_list|)
 operator|<
 literal|0
-operator|&&
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
 condition|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"removeDocument() - "
-operator|+
-literal|"could not remove index for "
+literal|"removeDocument() - could not remove index for "
 operator|+
 name|word
 argument_list|)
@@ -1912,39 +1913,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removeDocument() - "
-operator|+
-name|words
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" words updated."
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 catch|catch
 parameter_list|(
 name|ReadOnlyException
@@ -1960,6 +1928,15 @@ operator|+
 literal|"database is read-only"
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

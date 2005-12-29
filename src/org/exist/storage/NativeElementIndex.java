@@ -714,6 +714,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -723,7 +724,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -733,6 +734,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ? -pb
 block|}
 finally|finally
 block|{
@@ -817,6 +819,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -923,6 +927,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -1354,6 +1360,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -1599,6 +1607,8 @@ if|if
 condition|(
 name|currentDocId
 operator|!=
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -1808,6 +1818,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -2206,12 +2218,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/* Drop all index entries for the given document.      * @see org.exist.storage.ContentLoadingObserver#dropIndex(org.exist.dom.DocumentImpl)      */
+comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
 name|dropIndex
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 throws|throws
 name|ReadOnlyException
@@ -2238,7 +2251,7 @@ specifier|final
 name|short
 name|collectionId
 init|=
-name|doc
+name|document
 operator|.
 name|getCollection
 argument_list|()
@@ -2385,7 +2398,7 @@ if|if
 condition|(
 name|storedDocId
 operator|!=
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -2585,6 +2598,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl)      */
+comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
 name|reindex
@@ -3131,7 +3145,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -4591,12 +4605,13 @@ name|result
 argument_list|)
 return|;
 block|}
+comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
 name|consistencyCheck
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 throws|throws
 name|EXistException
@@ -4645,7 +4660,7 @@ specifier|final
 name|short
 name|collectionId
 init|=
-name|doc
+name|document
 operator|.
 name|getCollection
 argument_list|()
@@ -4849,7 +4864,7 @@ if|if
 condition|(
 name|storedDocId
 operator|!=
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -4946,7 +4961,7 @@ name|storedGID
 operator|+
 literal|" in document "
 operator|+
-name|doc
+name|document
 operator|.
 name|getFileName
 argument_list|()
@@ -4986,7 +5001,7 @@ name|storedGID
 operator|+
 literal|" in document "
 operator|+
-name|doc
+name|document
 operator|.
 name|getFileName
 argument_list|()
@@ -5030,7 +5045,7 @@ name|storedGID
 operator|+
 literal|" in document "
 operator|+
-name|doc
+name|document
 operator|.
 name|getFileName
 argument_list|()

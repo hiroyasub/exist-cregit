@@ -930,16 +930,22 @@ block|}
 catch|catch
 parameter_list|(
 name|DBException
-name|dbe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-name|dbe
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ? -pb
 block|}
 finally|finally
 block|{
@@ -998,6 +1004,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -1097,6 +1105,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -1374,6 +1384,8 @@ specifier|final
 name|short
 name|collectionId
 init|=
+name|this
+operator|.
 name|doc
 operator|.
 name|getCollection
@@ -1540,6 +1552,8 @@ if|if
 condition|(
 name|storedDocId
 operator|!=
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -1702,6 +1716,8 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
+name|this
+operator|.
 name|doc
 operator|.
 name|getDocId
@@ -2043,12 +2059,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/* Drop all index entries for the given document. 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl) 	 */
+comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
 name|dropIndex
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 throws|throws
 name|ReadOnlyException
@@ -2078,7 +2095,7 @@ specifier|final
 name|short
 name|collectionId
 init|=
-name|doc
+name|document
 operator|.
 name|getCollection
 argument_list|()
@@ -2227,7 +2244,7 @@ if|if
 condition|(
 name|storedDocId
 operator|!=
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -2455,6 +2472,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl) 	 */
+comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
 name|reindex
@@ -2523,7 +2541,7 @@ specifier|final
 name|short
 name|collectionId
 init|=
-name|doc
+name|document
 operator|.
 name|getCollection
 argument_list|()
@@ -2876,7 +2894,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
