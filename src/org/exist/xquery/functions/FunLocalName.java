@@ -632,6 +632,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|Node
 operator|.
@@ -653,6 +654,7 @@ name|getTarget
 argument_list|()
 argument_list|)
 expr_stmt|;
+break|break;
 default|default:
 name|result
 operator|=
