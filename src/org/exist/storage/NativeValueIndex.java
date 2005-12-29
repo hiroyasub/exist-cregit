@@ -1960,6 +1960,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//TODO : flush ? -pb
 name|dbValues
 operator|.
 name|removeAll
