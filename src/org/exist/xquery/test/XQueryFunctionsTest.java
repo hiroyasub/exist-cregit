@@ -2852,7 +2852,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"local-name(): "
 operator|+
 name|e
 argument_list|)
