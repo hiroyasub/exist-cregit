@@ -1351,13 +1351,13 @@ decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
-name|Value
-name|ref
-decl_stmt|;
 name|Map
 operator|.
 name|Entry
 name|entry
+decl_stmt|;
+name|Value
+name|ref
 decl_stmt|;
 name|Value
 name|value
@@ -1610,6 +1610,8 @@ name|previousGID
 operator|+
 name|delta
 expr_stmt|;
+comment|// add the node to the new list if it is not
+comment|// in the list of removed nodes
 if|if
 condition|(
 operator|!

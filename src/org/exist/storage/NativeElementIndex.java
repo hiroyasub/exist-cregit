@@ -1331,13 +1331,13 @@ decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
-name|Value
-name|ref
-decl_stmt|;
 name|Map
 operator|.
 name|Entry
 name|entry
+decl_stmt|;
+name|Value
+name|ref
 decl_stmt|;
 name|Value
 name|value
@@ -1353,7 +1353,7 @@ name|int
 name|lenOffset
 decl_stmt|;
 name|int
-name|currentDocId
+name|storedDocId
 decl_stmt|;
 specifier|final
 name|short
@@ -1577,7 +1577,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|currentDocId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -1600,7 +1600,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|currentDocId
+name|storedDocId
 operator|!=
 name|this
 operator|.
@@ -1616,7 +1616,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|currentDocId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 name|os
@@ -1712,6 +1712,8 @@ argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
+comment|// add the node to the new list if it is not
+comment|// in the list of removed nodes
 if|if
 condition|(
 operator|!
