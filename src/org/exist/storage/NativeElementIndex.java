@@ -3740,7 +3740,7 @@ argument_list|(
 name|storedDocId
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND : how could this be possible ? -pb
+comment|//Exit if the document is not concerned
 if|if
 condition|(
 name|storedDocument

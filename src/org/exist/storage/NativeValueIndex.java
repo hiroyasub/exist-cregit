@@ -4606,7 +4606,7 @@ argument_list|(
 name|storedDocId
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND : how could this be possible ? -pb
+comment|//Exit if the document is not concerned
 if|if
 condition|(
 name|storedDocument
@@ -4623,7 +4623,6 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-comment|//TOUNDERSTAND : does a null contextSet makes sense ? -pb
 if|if
 condition|(
 name|contextSet
@@ -4631,6 +4630,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//Exit if the document is not concerned
 if|if
 condition|(
 operator|!
@@ -4651,15 +4651,6 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-name|sizeHint
-operator|=
-name|contextSet
-operator|.
-name|getSizeHint
-argument_list|(
-name|storedDocument
-argument_list|)
-expr_stmt|;
 block|}
 comment|//Process the nodes
 name|storedGID
@@ -4714,6 +4705,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|sizeHint
+operator|=
+name|contextSet
+operator|.
+name|getSizeHint
+argument_list|(
+name|storedDocument
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|returnAncestor
@@ -4772,7 +4772,8 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-name|sizeHint
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -5182,6 +5183,7 @@ argument_list|(
 name|storedDocId
 argument_list|)
 expr_stmt|;
+comment|//Exit if the document is not concerned
 if|if
 condition|(
 name|storedDocument
