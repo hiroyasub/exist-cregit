@@ -6521,22 +6521,8 @@ name|SAXException
 throws|,
 name|IOException
 block|{
-comment|// TODO remove later on
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Resolve publicId='"
-operator|+
-name|publicId
-operator|+
-literal|"', systemId='"
-operator|+
-name|systemId
-operator|+
-literal|"'."
-argument_list|)
-expr_stmt|;
+comment|// TODO dizzzz remove later on
+comment|// LOG.debug("Resolve publicId='"+publicId+"', systemId='"+systemId+"'.");
 name|InputSource
 name|is
 init|=

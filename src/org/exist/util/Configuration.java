@@ -4300,22 +4300,8 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Loading catalog '"
-operator|+
-name|catalogFile
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|"'."
-argument_list|)
-expr_stmt|;
+comment|// TODO dizzzz remove debug
+comment|//System.out.println("Loading catalog '"+catalogFile.getAbsolutePath()+"'.");
 try|try
 block|{
 name|resolver
