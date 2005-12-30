@@ -2019,7 +2019,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2038,7 +2038,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2314,6 +2314,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+comment|//Store new data, if relevant
 if|if
 condition|(
 name|changed
@@ -2332,6 +2333,7 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|//Well, nothing to store : remove the existing data
 name|dbValues
 operator|.
 name|remove
@@ -2342,8 +2344,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//TODO : why not use the same construct as above :
-comment|//db.update(value.getAddress(), ref, os.data()) -pb
 if|if
 condition|(
 name|dbValues

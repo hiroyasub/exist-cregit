@@ -870,7 +870,7 @@ name|flags
 expr_stmt|;
 block|}
 comment|/**      * Indexes the tokens contained in an attribute.      *       * @param attr The attribute to be indexed      */
-comment|//TODO : unify with storeText -pb
+comment|//TODO : unify functionalities with storeText -pb
 specifier|public
 name|void
 name|storeAttribute
@@ -1392,48 +1392,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|BTreeException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|DBException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|LockException
 name|e
 parameter_list|)
@@ -1453,6 +1411,63 @@ name|getName
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|BTreeException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -1562,25 +1577,29 @@ argument_list|)
 expr_stmt|;
 block|}
 name|String
-name|word
+name|token
 decl_stmt|;
 name|WordRef
 name|ref
+decl_stmt|;
+name|int
+name|gidsCount
+decl_stmt|;
+name|byte
+name|section
+decl_stmt|;
+comment|//TOUNDERSTAND -pb
+name|int
+name|size
 decl_stmt|;
 name|VariableByteInput
 name|is
 decl_stmt|;
 name|int
-name|len
+name|storedDocId
 decl_stmt|;
-name|int
-name|rawSize
-decl_stmt|;
-name|int
-name|docId
-decl_stmt|;
-name|byte
-name|section
+name|boolean
+name|changed
 decl_stmt|;
 name|short
 name|collectionId
@@ -1592,9 +1611,6 @@ argument_list|()
 operator|.
 name|getId
 argument_list|()
-decl_stmt|;
-name|boolean
-name|changed
 decl_stmt|;
 specifier|final
 name|Lock
@@ -1622,7 +1638,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|word
+name|token
 operator|=
 operator|(
 name|String
@@ -1639,7 +1655,7 @@ name|WordRef
 argument_list|(
 name|collectionId
 argument_list|,
-name|word
+name|token
 argument_list|)
 expr_stmt|;
 try|try
@@ -1653,6 +1669,10 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+name|changed
+operator|=
+literal|false
+expr_stmt|;
 name|is
 operator|=
 name|dbTokens
@@ -1661,6 +1681,11 @@ name|getAsStream
 argument_list|(
 name|ref
 argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -1671,16 +1696,6 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|os
-operator|=
-operator|new
-name|VariableByteOutputStream
-argument_list|()
-expr_stmt|;
-name|changed
-operator|=
-literal|false
-expr_stmt|;
 try|try
 block|{
 while|while
@@ -1693,7 +1708,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|docId
+name|storedDocId
 operator|=
 name|is
 operator|.
@@ -1707,14 +1722,14 @@ operator|.
 name|readByte
 argument_list|()
 expr_stmt|;
-name|len
+name|gidsCount
 operator|=
 name|is
 operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|rawSize
+name|size
 operator|=
 name|is
 operator|.
@@ -1723,7 +1738,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|docId
+name|storedDocId
 operator|!=
 name|document
 operator|.
@@ -1731,12 +1746,13 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
-comment|// copy data to new buffer
+comment|// data are related to another document:
+comment|// copy them to any existing data
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|docId
+name|storedDocId
 argument_list|)
 expr_stmt|;
 name|os
@@ -1750,14 +1766,14 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|len
+name|gidsCount
 argument_list|)
 expr_stmt|;
 name|os
 operator|.
 name|writeFixedInt
 argument_list|(
-name|rawSize
+name|size
 argument_list|)
 expr_stmt|;
 name|is
@@ -1766,22 +1782,23 @@ name|copyRaw
 argument_list|(
 name|os
 argument_list|,
-name|rawSize
+name|size
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
+comment|// data are related to our document:
+comment|// skip them
 name|changed
 operator|=
 literal|true
 expr_stmt|;
-comment|// skip
 name|is
 operator|.
 name|skipBytes
 argument_list|(
-name|rawSize
+name|size
 argument_list|)
 expr_stmt|;
 block|}
@@ -1793,21 +1810,15 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//                  LOG.debug(e.getMessage(), e);
+comment|//EOF is expected here
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|//                  LOG.debug(e.getMessage(), e);
-block|}
+comment|//Store new data, if relevant
 if|if
 condition|(
 name|changed
 condition|)
 block|{
+comment|//Well, nothing to store : remove the existing data
 if|if
 condition|(
 name|os
@@ -1844,17 +1855,21 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
-operator|<
-literal|0
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
 condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"removeDocument() - could not remove index for "
+literal|"Could not put index data for token '"
 operator|+
-name|word
+name|token
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1886,10 +1901,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|is
-operator|=
-literal|null
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1901,16 +1912,13 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"removeDocument(DocumentImpl) - "
-operator|+
-literal|"io error while reading words"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
-name|is
-operator|=
-literal|null
 expr_stmt|;
 block|}
 catch|catch
@@ -1921,11 +1929,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"removeDocument(DocumentImpl) - "
-operator|+
-literal|"database is read-only"
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1975,6 +1986,7 @@ name|expr
 argument_list|)
 condition|)
 block|{
+comment|//TODO : log this fallback ? -pb
 name|type
 operator|=
 name|DBBroker
@@ -2004,6 +2016,7 @@ argument_list|,
 name|expr
 argument_list|)
 return|;
+comment|//TODO : stricter control -pb
 default|default :
 return|return
 name|getNodesRegexp
