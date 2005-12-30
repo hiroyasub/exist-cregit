@@ -14176,6 +14176,8 @@ name|resultId
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|XPathException
 block|{
 name|long
 name|startTime
@@ -14288,12 +14290,12 @@ block|{
 name|NodeList
 name|resultSet
 init|=
-operator|(
-name|NodeList
-operator|)
 name|qr
 operator|.
 name|result
+operator|.
+name|toNodeSet
+argument_list|()
 decl_stmt|;
 name|HashMap
 name|map

@@ -4464,6 +4464,8 @@ throws|throws
 name|EXistException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|XPathException
 block|{
 name|RpcConnection
 name|con
@@ -4486,6 +4488,21 @@ name|resultId
 argument_list|)
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|handleException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 finally|finally
 block|{
 name|pool
@@ -4497,7 +4514,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *       *<tableborder="1">      *       *<tr>      *       *<td>"queryTime"</td>      *       *<td>int</td>      *       *</tr>      *       *<tr>      *       *<td>"hits"</td>      *       *<td>int</td>      *       *</tr>      *       *<tr>      *       *<td>"documents"</td>      *       *<td>array of array: Object[][3]</td>      *       *</tr>      *       *<tr>      *       *<td>"doctypes"</td>      *       *<td>array of array: Object[][2]</td>      *       *</tr>      *       *</table> Documents and doctypes represent tables where each row describes      * one document or doctype for which hits were found. Each document entry      * has the following structure: docId (int), docName (string), hits (int)      * The doctype entry has this structure: doctypeName (string), hits (int)      *       * @param xpath      *                   Description of the Parameter      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
+comment|/** 	 * execute XPath query and return a summary of hits per document and hits 	 * per doctype. This method returns a struct with the following fields: 	 *  	 *<tableborder="1"> 	 *  	 *<tr> 	 *  	 *<td>"queryTime"</td> 	 *  	 *<td>int</td> 	 *  	 *</tr> 	 *  	 *<tr> 	 *  	 *<td>"hits"</td> 	 *  	 *<td>int</td> 	 *  	 *</tr> 	 *  	 *<tr> 	 *  	 *<td>"documents"</td> 	 *  	 *<td>array of array: Object[][3]</td> 	 *  	 *</tr> 	 *  	 *<tr> 	 *  	 *<td>"doctypes"</td> 	 *  	 *<td>array of array: Object[][2]</td> 	 *  	 *</tr> 	 *  	 *</table> Documents and doctypes represent tables where each row describes 	 * one document or doctype for which hits were found. Each document entry 	 * has the following structure: docId (int), docName (string), hits (int) 	 * The doctype entry has this structure: doctypeName (string), hits (int) 	 *  	 * @param xpath 	 *            Description of the Parameter 	 * @param user 	 *            Description of the Parameter 	 * @return Description of the Return Value 	 * @exception EXistException 	 *                Description of the Exception 	 * @exception PermissionDeniedException 	 *                Description of the Exception 	 */
 specifier|public
 name|Hashtable
 name|querySummary

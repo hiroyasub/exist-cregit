@@ -1189,6 +1189,8 @@ throws|throws
 name|EXistException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|XPathException
 function_decl|;
 name|Hashtable
 name|getPermissions
