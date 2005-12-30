@@ -1260,19 +1260,12 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"IO error on '"
-operator|+
-name|dbValues
+name|e
 operator|.
-name|getFile
+name|getMessage
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -1289,17 +1282,10 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Read-only error on '"
-operator|+
-name|dbValues
+name|e
 operator|.
-name|getFile
+name|getMessage
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -1328,6 +1314,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//TODO : return if doc == null? -pb
 if|if
 condition|(
 name|pending
