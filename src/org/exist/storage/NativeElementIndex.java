@@ -1337,7 +1337,7 @@ name|Entry
 name|entry
 decl_stmt|;
 name|Value
-name|ref
+name|searchKey
 decl_stmt|;
 name|Value
 name|value
@@ -1398,23 +1398,6 @@ argument_list|()
 condition|;
 control|)
 block|{
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-name|newGIDList
-operator|=
-operator|new
-name|ArrayList
-argument_list|()
-expr_stmt|;
 name|entry
 operator|=
 operator|(
@@ -1460,7 +1443,7 @@ operator|.
 name|ATTRIBUTE_ID
 condition|)
 block|{
-name|ref
+name|searchKey
 operator|=
 operator|new
 name|ElementValue
@@ -1513,7 +1496,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ref
+name|searchKey
 operator|=
 operator|new
 name|ElementValue
@@ -1531,19 +1514,36 @@ name|nsSym
 argument_list|)
 expr_stmt|;
 block|}
+name|newGIDList
+operator|=
+operator|new
+name|ArrayList
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|value
 operator|=
 name|dbNodes
 operator|.
 name|get
 argument_list|(
-name|ref
+name|searchKey
 argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|clear
-argument_list|()
 expr_stmt|;
 comment|//Does the node already exist in the index ?
 if|if
@@ -1952,7 +1952,7 @@ name|dbNodes
 operator|.
 name|put
 argument_list|(
-name|ref
+name|searchKey
 argument_list|,
 name|os
 operator|.
@@ -1967,7 +1967,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for node '"
 operator|+
@@ -1991,7 +1991,7 @@ operator|.
 name|getAddress
 argument_list|()
 argument_list|,
-name|ref
+name|searchKey
 argument_list|,
 name|os
 operator|.
@@ -2006,7 +2006,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for node '"
 operator|+
@@ -2043,7 +2043,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
@@ -2070,7 +2069,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return ?
 block|}
 finally|finally
 block|{
