@@ -1645,7 +1645,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//Is it expected ? -pb
+comment|//Is it expected ? if not, remove the block -pb
 name|LOG
 operator|.
 name|warn
@@ -1658,26 +1658,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 comment|//append the data from the new list
 if|if
@@ -1903,6 +1883,25 @@ name|getName
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -3259,8 +3258,6 @@ operator|.
 name|acquire
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|dbValues
 operator|.
 name|query
@@ -3270,6 +3267,32 @@ argument_list|,
 name|keyPrefix
 argument_list|,
 name|callback
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire lock for '"
+operator|+
+name|dbValues
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -3300,39 +3323,12 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to acquire lock for '"
-operator|+
-name|dbValues
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -4528,7 +4524,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -4538,6 +4534,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return early -pb
 block|}
 if|if
 condition|(
@@ -5098,7 +5095,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -5108,6 +5105,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return early -pb
 block|}
 if|if
 condition|(

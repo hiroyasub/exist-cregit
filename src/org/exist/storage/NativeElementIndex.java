@@ -1153,7 +1153,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for node '"
 operator|+
@@ -1755,6 +1755,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : remove this block if unexpected -pb
 name|LOG
 operator|.
 name|warn
@@ -1767,26 +1768,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 comment|//append the data from the new list
 if|if
@@ -2065,6 +2046,25 @@ name|getName
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -3089,26 +3089,6 @@ name|e
 parameter_list|)
 block|{
 comment|//EOFExceptions expected there
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
 comment|//TOUNDERSTAND : why is this construct so different from the other ones ? -pb
@@ -4454,6 +4434,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : remove this block if unexpected -pb
 name|LOG
 operator|.
 name|warn
@@ -4466,26 +4447,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : return null ? -pb
 block|}
 block|}
 block|}
@@ -5125,6 +5086,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : remove this block if unexpected -pb
 name|LOG
 operator|.
 name|warn
@@ -5137,26 +5099,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw an exception ? -pb
 block|}
 name|LOG
 operator|.

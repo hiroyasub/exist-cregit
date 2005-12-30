@@ -5337,26 +5337,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
-block|}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -5713,6 +5693,25 @@ name|getName
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -6198,26 +6197,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//LOG.error("end-of-file while reading index entry
-comment|// for " + word, e);
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"io-error while reading index entry for "
-operator|+
-name|token
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//EOF is expected here
 block|}
 block|}
 name|termCount
@@ -6467,6 +6447,7 @@ name|ReadOnlyException
 name|e
 parameter_list|)
 block|{
+comment|//EOF are expected here -pb
 block|}
 block|}
 catch|catch
@@ -6872,21 +6853,22 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-name|ioe
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return early -pb
 block|}
 if|if
 condition|(
@@ -7271,13 +7253,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"io error while reading index"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return early -pb
 block|}
 block|}
 if|if
@@ -7448,21 +7431,22 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-name|ioe
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : return early -pb
 block|}
 if|if
 condition|(
