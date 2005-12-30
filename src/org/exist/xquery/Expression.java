@@ -215,6 +215,11 @@ name|DocumentSet
 name|contextSet
 parameter_list|)
 function_decl|;
+specifier|public
+name|DocumentSet
+name|getContextDocSet
+parameter_list|()
+function_decl|;
 comment|/** 	 * Returns the {@link XQueryAST} node from which this expression 	 * has been constructed by the parser. This node contains location information 	 * (line number and column) important for error reports. 	 *  	 * @return 	 */
 specifier|public
 name|XQueryAST

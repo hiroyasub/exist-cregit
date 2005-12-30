@@ -491,6 +491,11 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+name|super
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 name|select
 operator|.
 name|resetState

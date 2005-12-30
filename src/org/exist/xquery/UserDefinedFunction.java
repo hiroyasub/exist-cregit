@@ -668,6 +668,7 @@ name|resetState
 parameter_list|()
 block|{
 comment|//TODO ; understand this test. Why not reset even is not in recursion ?
+comment|// Answer: would lead to an infinite loop if the function is recursive.
 if|if
 condition|(
 operator|!

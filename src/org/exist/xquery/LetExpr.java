@@ -531,6 +531,16 @@ argument_list|)
 expr_stmt|;
 name|var
 operator|.
+name|setContextDocs
+argument_list|(
+name|inputSequence
+operator|.
+name|getContextDocSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|var
+operator|.
 name|checkType
 argument_list|()
 expr_stmt|;

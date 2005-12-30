@@ -148,11 +148,15 @@ parameter_list|()
 function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
 specifier|public
-specifier|abstract
 name|void
 name|resetState
 parameter_list|()
-function_decl|;
+block|{
+name|contextDocSet
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/** 	 * The default cardinality is {@link Cardinality#EXACTLY_ONE}. 	 */
 specifier|public
 name|int

@@ -551,6 +551,11 @@ name|void
 name|resetState
 parameter_list|()
 block|{
+name|super
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 name|getArgument
 argument_list|(
 literal|0
