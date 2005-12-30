@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** 	This class implements a version  	of the Introspective Sort Algorithm. 	 	Reference: David R. Musser 	"Introspective Sorting and Selection Algorithms" 	Software--Practice and Experience, (8): 983-993 (1997)  	The implementation is mainly inspired 	on the article describing the algorithm, 	but also in the work of Michael 	Maniscalco in C++. It is also slightly 	based on the previous implementation of 	FastQSort in eXist. 	 	http://www.cs.rpi.edu/~musser/ 	http://www.cs.rpi.edu/~musser/gp/introsort.ps 	http://www.michael-maniscalco.com/sorting.htm 	 	@author José María Fernández */
+comment|/** 	This class implements a version  	of the Introspective Sort Algorithm. 	 	Reference: David R. Musser 	"Introspective Sorting and Selection Algorithms" 	Software--Practice and Experience, (8): 983-993 (1997)  	The implementation is mainly inspired 	on the article describing the algorithm, 	but also in the work of Michael 	Maniscalco in C++. It is also slightly 	based on the previous implementation of 	FastQSort in eXist. 	 	http://www.cs.rpi.edu/~musser/ 	http://www.cs.rpi.edu/~musser/gp/introsort.ps 	http://www.michael-maniscalco.com/sorting.htm 	 	@author Jose Maria Fernandez */
 end_comment
 
 begin_class

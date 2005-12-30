@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** 	This class implements a simple version  	of the heapsort algorithm, improved.  	The implementation is based on the 	implementation of J. Mohr, which was 	based on the implementation of a sorting 	framework by Cay Horstmann.  	@author José María Fernández */
+comment|/** 	This class implements a simple version  	of the heapsort algorithm, improved.  	The implementation is based on the 	implementation of J. Mohr, which was 	based on the implementation of a sorting 	framework by Cay Horstmann.  	@author Jose Maria Fernandez */
 end_comment
 
 begin_class
