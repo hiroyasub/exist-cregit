@@ -640,17 +640,17 @@ specifier|public
 specifier|final
 specifier|static
 name|byte
-name|ATTRIBUTE_SECTION
+name|TEXT_SECTION
 init|=
-literal|1
+literal|0
 decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
 name|byte
-name|TEXT_SECTION
+name|ATTRIBUTE_SECTION
 init|=
-literal|0
+literal|1
 decl_stmt|;
 comment|/** Length limit for the tokens */
 specifier|public
@@ -2128,7 +2128,7 @@ name|int
 name|storedDocId
 decl_stmt|;
 name|int
-name|section
+name|storedSection
 decl_stmt|;
 name|int
 name|freq
@@ -2272,7 +2272,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|section
+name|storedSection
 operator|=
 name|is
 operator|.
@@ -2400,7 +2400,7 @@ argument_list|()
 expr_stmt|;
 switch|switch
 condition|(
-name|section
+name|storedSection
 condition|)
 block|{
 case|case
@@ -2460,7 +2460,7 @@ condition|)
 block|{
 switch|switch
 condition|(
-name|section
+name|storedSection
 condition|)
 block|{
 case|case
@@ -4427,8 +4427,8 @@ init|=
 literal|0
 init|;
 name|section
-operator|<
-literal|2
+operator|<=
+name|ATTRIBUTE_SECTION
 condition|;
 name|section
 operator|++
@@ -5298,6 +5298,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|is
 operator|.
 name|skip
@@ -5305,11 +5306,11 @@ argument_list|(
 name|freq
 argument_list|)
 expr_stmt|;
+block|}
 name|previousGID
 operator|=
 name|storedGID
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -5519,6 +5520,7 @@ operator|-
 literal|4
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

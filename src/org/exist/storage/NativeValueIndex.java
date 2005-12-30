@@ -1679,8 +1679,17 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
-block|}
-comment|// append the new list
+if|if
+condition|(
+name|newGIDList
+operator|.
+name|getSize
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|//append the data from the new list
 name|gids
 operator|=
 name|newGIDList
@@ -1763,6 +1772,8 @@ index|[
 name|j
 index|]
 expr_stmt|;
+block|}
+block|}
 block|}
 comment|//Store the data
 if|if
