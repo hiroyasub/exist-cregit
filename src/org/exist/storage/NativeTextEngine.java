@@ -5852,6 +5852,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|//Compute a key for the token
 name|entry
 operator|=
 operator|(
@@ -5919,6 +5920,7 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
+comment|//Does the token already has data in the index ?
 if|if
 condition|(
 name|is
@@ -5926,7 +5928,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// add old entries to the new list
+comment|//Add its data to the new list
 try|try
 block|{
 while|while
@@ -5981,8 +5983,8 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
-comment|// section belongs to another document:
-comment|// copy data to new buffer
+comment|// data are related to another section or document:
+comment|// append them to any existing data
 name|os
 operator|.
 name|writeInt
@@ -6023,7 +6025,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// copy nodes to new list
+comment|// data are related to our section and document:
+comment|// feed the new list with the GIDs
 name|previousGID
 operator|=
 literal|0
@@ -6068,7 +6071,10 @@ condition|(
 name|node
 operator|==
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|document
 operator|.
 name|getTreeLevel
@@ -6111,13 +6117,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-if|else if
+else|else
+name|is
+operator|.
+name|skip
+argument_list|(
+name|freq
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
 condition|(
-name|node
-operator|!=
-literal|null
-operator|&&
-operator|(
 operator|!
 name|XMLUtil
 operator|.
@@ -6132,7 +6144,6 @@ argument_list|()
 argument_list|,
 name|storedGID
 argument_list|)
-operator|)
 condition|)
 block|{
 for|for
@@ -6172,6 +6183,7 @@ argument_list|(
 name|freq
 argument_list|)
 expr_stmt|;
+block|}
 name|previousGID
 operator|=
 name|storedGID

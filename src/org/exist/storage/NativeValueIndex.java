@@ -2432,7 +2432,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2451,7 +2451,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2578,6 +2578,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|//Compute a key for the value
 name|entry
 operator|=
 operator|(
@@ -2625,7 +2626,6 @@ name|caseSensitive
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Retrieve old index entry for the element
 try|try
 block|{
 name|lock
@@ -2657,6 +2657,7 @@ operator|new
 name|LongLinkedList
 argument_list|()
 expr_stmt|;
+comment|//Does the value already has data in the index ?
 if|if
 condition|(
 name|is
@@ -2833,7 +2834,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//Is it expected ? -pb
+comment|//Is it expected ? Remove this block if not -pb
 name|LOG
 operator|.
 name|warn
@@ -2846,26 +2847,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
 comment|// append the new list to any existing data
