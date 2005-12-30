@@ -962,6 +962,7 @@ name|void
 name|flush
 parameter_list|()
 block|{
+comment|//TODO : return if doc == null? -pb
 if|if
 condition|(
 name|pending

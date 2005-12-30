@@ -751,6 +751,7 @@ name|void
 name|flush
 parameter_list|()
 block|{
+comment|//TODO : return if doc == null? -pb
 if|if
 condition|(
 name|pending
@@ -795,6 +796,7 @@ decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
+comment|//TOUNDERSTAND -pb
 name|int
 name|lenOffset
 decl_stmt|;
@@ -1316,10 +1318,6 @@ decl_stmt|;
 name|List
 name|newGIDList
 decl_stmt|;
-name|byte
-index|[]
-name|gids
-decl_stmt|;
 name|int
 name|gidsCount
 decl_stmt|;
@@ -1555,19 +1553,15 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
-name|gids
-operator|=
-name|value
-operator|.
-name|getData
-argument_list|()
-expr_stmt|;
 name|is
 operator|=
 operator|new
 name|VariableByteArrayInput
 argument_list|(
-name|gids
+name|value
+operator|.
+name|getData
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try

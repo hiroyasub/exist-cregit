@@ -4003,6 +4003,8 @@ block|}
 break|break;
 default|default :
 comment|//Other types are ignored : some may be useful though -pb
+comment|//TOUNDERSTAND : it looks like other types (got : Node.PRCESSING_INSTRUCTION_NODE)
+comment|//are stored in the index ??? -pb
 block|}
 block|}
 specifier|public
@@ -4044,6 +4046,10 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+comment|// To distinguish between attribute values and text, we use
+comment|// two maps: words[0] collects text, words[1] stores attribute
+comment|// values.
+comment|//TODO : very tricky. Why not 2 inverted indexes ??? -pb
 specifier|private
 name|Map
 name|words
@@ -4069,9 +4075,6 @@ specifier|public
 name|InvertedIndex
 parameter_list|()
 block|{
-comment|// To distinguish between attribute values and text, we use
-comment|// two maps: words[0] collects text, words[1] stores attribute
-comment|// values.
 name|words
 index|[
 literal|0
@@ -4147,6 +4150,7 @@ name|long
 name|gid
 parameter_list|)
 block|{
+comment|//Is this token already pending ?
 name|OccurrenceList
 name|list
 init|=
@@ -4163,6 +4167,7 @@ argument_list|(
 name|token
 argument_list|)
 decl_stmt|;
+comment|//Create a GIDs list
 if|if
 condition|(
 name|list
@@ -4211,6 +4216,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//Add node's GID to the list
 name|list
 operator|.
 name|add
@@ -4225,6 +4231,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : unify functionalities with addText -pb
 specifier|public
 name|void
 name|addAttribute
@@ -4236,6 +4243,7 @@ name|long
 name|gid
 parameter_list|)
 block|{
+comment|//Is this token already pending ?
 name|OccurrenceList
 name|list
 init|=
@@ -4252,6 +4260,7 @@ argument_list|(
 name|token
 argument_list|)
 decl_stmt|;
+comment|//Create a GIDs list
 if|if
 condition|(
 name|list
@@ -4295,6 +4304,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//Add node's GID to the list
 name|list
 operator|.
 name|add
@@ -4314,6 +4324,16 @@ name|void
 name|flush
 parameter_list|()
 block|{
+comment|//return early
+if|if
+condition|(
+name|this
+operator|.
+name|doc
+operator|==
+literal|null
+condition|)
+return|return;
 specifier|final
 name|int
 name|wordsCount
@@ -4336,10 +4356,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|doc
-operator|==
-literal|null
-operator|||
 name|wordsCount
 operator|==
 literal|0
@@ -4371,15 +4387,25 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+name|OccurrenceList
+name|occurences
+decl_stmt|;
 name|int
-name|count
+name|termCount
+decl_stmt|;
+name|long
+name|previousGID
 init|=
-literal|1
-decl_stmt|,
-name|len
-decl_stmt|,
+literal|0
+decl_stmt|;
+name|long
+name|delta
+decl_stmt|;
+comment|//TOUNDERSTAND -pb
+name|int
 name|lenOffset
-decl_stmt|,
+decl_stmt|;
+name|int
 name|freq
 decl_stmt|;
 name|Map
@@ -4388,18 +4414,12 @@ name|Entry
 name|entry
 decl_stmt|;
 name|String
-name|word
+name|token
 decl_stmt|;
-name|OccurrenceList
-name|idList
-decl_stmt|;
-name|long
-name|lastId
+name|int
+name|count
 init|=
 literal|0
-decl_stmt|;
-name|long
-name|delta
 decl_stmt|;
 for|for
 control|(
@@ -4453,7 +4473,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|word
+name|token
 operator|=
 operator|(
 name|String
@@ -4463,7 +4483,7 @@ operator|.
 name|getKey
 argument_list|()
 expr_stmt|;
-name|idList
+name|occurences
 operator|=
 operator|(
 name|OccurrenceList
@@ -4473,16 +4493,22 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
+name|termCount
+operator|=
+name|occurences
+operator|.
+name|getTermCount
+argument_list|()
+expr_stmt|;
+comment|//Don't forget this one
+name|occurences
+operator|.
+name|sort
+argument_list|()
+expr_stmt|;
 name|os
 operator|.
 name|clear
-argument_list|()
-expr_stmt|;
-name|len
-operator|=
-name|idList
-operator|.
-name|getTermCount
 argument_list|()
 expr_stmt|;
 name|os
@@ -4497,24 +4523,47 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
+switch|switch
+condition|(
+name|k
+condition|)
+block|{
+case|case
+literal|0
+case|:
 name|os
 operator|.
 name|writeByte
 argument_list|(
-name|k
-operator|==
-literal|0
-condition|?
 name|TEXT_SECTION
-else|:
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+literal|1
+case|:
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|ATTRIBUTE_SECTION
 argument_list|)
 expr_stmt|;
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid inverted index"
+argument_list|)
+throw|;
+block|}
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|len
+name|termCount
 argument_list|)
 expr_stmt|;
 name|lenOffset
@@ -4531,12 +4580,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|idList
-operator|.
-name|sort
-argument_list|()
-expr_stmt|;
-name|lastId
+name|previousGID
 operator|=
 literal|0
 expr_stmt|;
@@ -4549,7 +4593,7 @@ literal|0
 init|;
 name|m
 operator|<
-name|idList
+name|occurences
 operator|.
 name|getSize
 argument_list|()
@@ -4558,14 +4602,14 @@ control|)
 block|{
 name|delta
 operator|=
-name|idList
+name|occurences
 operator|.
 name|nodes
 index|[
 name|m
 index|]
 operator|-
-name|lastId
+name|previousGID
 expr_stmt|;
 name|os
 operator|.
@@ -4574,18 +4618,9 @@ argument_list|(
 name|delta
 argument_list|)
 expr_stmt|;
-name|lastId
-operator|=
-name|idList
-operator|.
-name|nodes
-index|[
-name|m
-index|]
-expr_stmt|;
 name|freq
 operator|=
-name|idList
+name|occurences
 operator|.
 name|getOccurrences
 argument_list|(
@@ -4618,7 +4653,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|idList
+name|occurences
 operator|.
 name|offsets
 index|[
@@ -4629,6 +4664,15 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|previousGID
+operator|=
+name|occurences
+operator|.
+name|nodes
+index|[
+name|m
+index|]
+expr_stmt|;
 name|m
 operator|+=
 name|freq
@@ -4654,7 +4698,7 @@ name|flushWord
 argument_list|(
 name|collectionId
 argument_list|,
-name|word
+name|token
 argument_list|,
 name|os
 operator|.
@@ -4687,6 +4731,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TOUNDERSTAND : is this a flush ?
+comment|//If so, the ProgressIndicator should be reinitialized -pb
 if|if
 condition|(
 name|wordsCount
@@ -4717,7 +4763,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|//          dbWords.debugFreeList();
 block|}
 specifier|private
 name|void
@@ -4733,6 +4778,8 @@ name|ByteArray
 name|data
 parameter_list|)
 block|{
+comment|//return early
+comment|//TODO : is this ever called ? -pb
 if|if
 condition|(
 name|data
@@ -4743,6 +4790,7 @@ operator|==
 literal|0
 condition|)
 return|return;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -4762,8 +4810,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|dbTokens
 operator|.
 name|append
@@ -4779,34 +4825,6 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"io error while writing '"
-operator|+
-name|word
-operator|+
-literal|"'"
-argument_list|,
-name|ioe
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -4831,6 +4849,34 @@ operator|+
 literal|"'"
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+comment|//
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"io error while writing '"
+operator|+
+name|word
+operator|+
+literal|"'"
+argument_list|,
+name|ioe
 argument_list|)
 expr_stmt|;
 block|}
