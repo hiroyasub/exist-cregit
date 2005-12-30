@@ -5118,6 +5118,8 @@ name|getData
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 while|while
 condition|(
 name|is
@@ -5314,6 +5316,48 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|EOFException
+name|e
+parameter_list|)
+block|{
+comment|//Is it expected ? -pb
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//TODO : data will be saved although os is probably corrupted ! -pb
+block|}
+comment|//append the data from the new list
 if|if
 condition|(
 name|newOccurencesList
@@ -5324,17 +5368,17 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// save the nodes remaining in the output list for the document
-name|newOccurencesList
-operator|.
-name|sort
-argument_list|()
-expr_stmt|;
 name|termCount
 operator|=
 name|newOccurencesList
 operator|.
 name|getTermCount
+argument_list|()
+expr_stmt|;
+comment|//Don't forget this one
+name|newOccurencesList
+operator|.
+name|sort
 argument_list|()
 expr_stmt|;
 name|os
@@ -5522,6 +5566,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Store the data
 if|if
 condition|(
 name|os
@@ -5551,6 +5596,8 @@ name|value
 operator|==
 literal|null
 condition|)
+if|if
+condition|(
 name|dbTokens
 operator|.
 name|put
@@ -5562,8 +5609,26 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not put index data for token '"
+operator|+
+name|ref
+operator|+
+literal|"'"
+argument_list|)
 expr_stmt|;
-else|else
+block|}
+if|else 					            if
+condition|(
 name|dbTokens
 operator|.
 name|update
@@ -5580,7 +5645,24 @@ operator|.
 name|data
 argument_list|()
 argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not update index data for token '"
+operator|+
+name|ref
+operator|+
+literal|"'"
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -5611,20 +5693,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"io-error while reading index entry for "
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -5633,16 +5701,22 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Error while removing fulltext entry: "
+literal|"Read-only error on '"
 operator|+
-name|e
+name|dbTokens
 operator|.
-name|getMessage
+name|getFile
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 finally|finally
 block|{

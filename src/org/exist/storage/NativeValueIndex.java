@@ -1679,6 +1679,7 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
+comment|//append the data from the new list
 if|if
 condition|(
 name|newGIDList
@@ -1689,7 +1690,6 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//append the data from the new list
 name|gids
 operator|=
 name|newGIDList
