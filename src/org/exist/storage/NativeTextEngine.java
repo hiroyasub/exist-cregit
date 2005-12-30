@@ -670,7 +670,7 @@ specifier|protected
 name|InvertedIndex
 name|invertedIndex
 decl_stmt|;
-comment|/** Work output Stream taht should be cleared before every use */
+comment|/** Work output Stream that should be cleared before every use */
 specifier|private
 name|VariableByteOutputStream
 name|os
@@ -1002,7 +1002,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Indexes the tokens contained in a text node.      *       * @param idx The index configuration      * @param text The text node to be indexed      * @param noTokenizing      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is itokenized before being indexed      * @return boolean indicates if all of the text content has been added to      *            the index      */
+comment|/**      * Indexes the tokens contained in a text node.      *       * @param idx The index configuration      * @param text The text node to be indexed      * @param noTokenizing      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      * @return boolean indicates if all of the text content has been added to      *            the index      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
 specifier|public
 name|void
@@ -2077,6 +2077,36 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//TODO : case conversion should be handled by the tokenizer -pb
+name|expr
+operator|=
+name|expr
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
+comment|//TODO : use an indexSpec member in order to get rid of this or do the job *before* -pb
+name|String
+name|token
+decl_stmt|;
+if|if
+condition|(
+name|stem
+condition|)
+name|token
+operator|=
+name|stemmer
+operator|.
+name|stem
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
+else|else
+name|token
+operator|=
+name|expr
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -2146,28 +2176,6 @@ decl_stmt|;
 name|Match
 name|match
 decl_stmt|;
-name|String
-name|term
-init|=
-operator|(
-name|stem
-operator|)
-condition|?
-name|stemmer
-operator|.
-name|stem
-argument_list|(
-name|expr
-operator|.
-name|toLowerCase
-argument_list|()
-argument_list|)
-else|:
-name|expr
-operator|.
-name|toLowerCase
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -2210,7 +2218,7 @@ name|WordRef
 argument_list|(
 name|collectionId
 argument_list|,
-name|term
+name|token
 argument_list|)
 expr_stmt|;
 name|Lock
@@ -2450,12 +2458,27 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
+switch|switch
 condition|(
 name|section
-operator|==
-name|TEXT_SECTION
 condition|)
+block|{
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+name|parent
+operator|=
+name|contextSet
+operator|.
+name|get
+argument_list|(
+name|storedNode
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|TEXT_SECTION
+case|:
 name|parent
 operator|=
 name|contextSet
@@ -2473,16 +2496,16 @@ operator|.
 name|UNKNOWN_NODE_LEVEL
 argument_list|)
 expr_stmt|;
-else|else
-name|parent
-operator|=
-name|contextSet
-operator|.
-name|get
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
 argument_list|(
-name|storedNode
+literal|"Invalid section type"
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 if|if
 condition|(
 name|parent
@@ -2497,7 +2520,7 @@ name|Match
 argument_list|(
 name|storedGID
 argument_list|,
-name|term
+name|token
 argument_list|,
 name|freq
 argument_list|)
@@ -2510,7 +2533,7 @@ name|is
 argument_list|,
 name|match
 argument_list|,
-name|term
+name|token
 operator|.
 name|length
 argument_list|()
@@ -2554,7 +2577,7 @@ name|Match
 argument_list|(
 name|storedGID
 argument_list|,
-name|term
+name|token
 argument_list|,
 name|freq
 argument_list|)
@@ -2567,7 +2590,7 @@ name|is
 argument_list|,
 name|match
 argument_list|,
-name|term
+name|token
 operator|.
 name|length
 argument_list|()
@@ -2608,6 +2631,8 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|// EOF is expected here
+comment|//TODO : confirm this -pb
 block|}
 catch|catch
 parameter_list|(
@@ -2643,13 +2668,21 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"io error while reading words"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+name|is
+operator|=
+literal|null
+expr_stmt|;
+comment|//TODO : return ?
 block|}
 finally|finally
 block|{
@@ -2686,6 +2719,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+comment|//Return early
 if|if
 condition|(
 name|expr
@@ -2707,6 +2741,7 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|expr
 operator|=
 name|expr
