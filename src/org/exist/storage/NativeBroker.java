@@ -16887,6 +16887,11 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+name|textEngine
+operator|.
+name|printStatistics
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 catch|catch

@@ -1546,7 +1546,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|void
+name|boolean
 name|close
 parameter_list|()
 throws|throws
@@ -1556,11 +1556,15 @@ if|if
 condition|(
 name|qnameValueIndexation
 condition|)
+return|return
 name|dbValues
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
+return|;
+return|return
+literal|true
+return|;
 block|}
 comment|/** updates the index type of given node according to the Index By QName config. */
 specifier|public
