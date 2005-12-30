@@ -4631,6 +4631,7 @@ argument_list|(
 name|storedDocId
 argument_list|)
 expr_stmt|;
+comment|//TOUNDERSTAND : how could this be possible ? -pb
 if|if
 condition|(
 name|storedDocument
@@ -4647,6 +4648,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|//TOUNDERSTAND : does a null contextSet makes sense ? -pb
 if|if
 condition|(
 name|contextSet
@@ -4684,6 +4686,7 @@ name|storedDocument
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Process the nodes
 name|storedGID
 operator|=
 literal|0

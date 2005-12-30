@@ -3522,14 +3522,27 @@ argument_list|,
 literal|256
 argument_list|)
 decl_stmt|;
-name|NodeProxy
-name|storedNode
+specifier|final
+name|SymbolTable
+name|symbols
+init|=
+name|broker
+operator|.
+name|getSymbols
+argument_list|()
+decl_stmt|;
+name|ElementValue
+name|ref
 decl_stmt|;
 name|int
 name|storedDocId
 decl_stmt|;
 name|int
 name|gidsCount
+decl_stmt|;
+comment|//TOUNDERSTAND -pb
+name|int
+name|size
 decl_stmt|;
 name|long
 name|storedGID
@@ -3540,24 +3553,11 @@ decl_stmt|;
 name|long
 name|delta
 decl_stmt|;
-name|ElementValue
-name|ref
-decl_stmt|;
-specifier|final
-name|SymbolTable
-name|symbols
-init|=
-name|broker
-operator|.
-name|getSymbols
-argument_list|()
+name|NodeProxy
+name|storedNode
 decl_stmt|;
 name|VariableByteInput
 name|is
-decl_stmt|;
-comment|//TOUNDERSTAND -pb
-name|int
-name|size
 decl_stmt|;
 name|Collection
 name|collection
@@ -3771,6 +3771,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|//Process the nodes
 name|previousGID
 operator|=
 literal|0
