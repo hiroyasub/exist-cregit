@@ -317,9 +317,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Fast retrieval of nodes by node name and content, "
+literal|"Can be used to query existing qname indexes defined on a set of nodes. "
 operator|+
-literal|"using the new value index by QName's"
+literal|"The qname is specified in the first argument. "
+operator|+
+literal|"The second argument specifies a comparison value. "
 argument_list|,
 operator|new
 name|SequenceType
