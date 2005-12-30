@@ -267,6 +267,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
+comment|//More complicated : see below
 operator|new
 name|SequenceType
 argument_list|(
@@ -276,7 +277,7 @@ name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ONE_OR_MORE
 argument_list|)
 block|}
 argument_list|,
@@ -289,7 +290,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|ZERO_OR_ONE
 argument_list|)
 argument_list|,
 literal|true
@@ -589,6 +590,13 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+name|Sequence
+name|result
+init|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+decl_stmt|;
 name|StringBuffer
 name|concat
 init|=
@@ -631,9 +639,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
+if|if
+condition|(
+name|concat
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
 name|result
-init|=
+operator|=
 operator|new
 name|StringValue
 argument_list|(
@@ -642,7 +658,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|context
