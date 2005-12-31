@@ -422,11 +422,14 @@ name|boolean
 name|hasMixedContent
 parameter_list|()
 function_decl|;
-comment|/** 	 * Return a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */
+comment|/** 	 * Create a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. Matching nodes are added to the 	 * given result node set. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */
 specifier|public
-name|NodeSet
+name|void
 name|getRange
 parameter_list|(
+name|NodeSet
+name|result
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,

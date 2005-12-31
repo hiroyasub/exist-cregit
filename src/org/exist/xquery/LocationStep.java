@@ -1568,6 +1568,13 @@ comment|// do directly search for the attribute in the parent node.
 block|}
 if|else if
 condition|(
+operator|!
+operator|(
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
 name|axis
 operator|==
 name|Constants
@@ -1580,13 +1587,6 @@ name|getLength
 argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
-operator|&&
-operator|!
-operator|(
-name|contextSet
-operator|instanceof
-name|VirtualNodeSet
-operator|)
 condition|)
 block|{
 name|NodeProxy

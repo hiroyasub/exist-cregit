@@ -3237,9 +3237,12 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#getRange(org.exist.dom.DocumentImpl, long, long) 	 */
 specifier|public
-name|NodeSet
+name|void
 name|getRange
 parameter_list|(
+name|NodeSet
+name|result
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|,
@@ -3258,11 +3261,7 @@ name|gid
 operator|<
 name|lower
 condition|)
-return|return
-name|NodeSet
-operator|.
-name|EMPTY_SET
-return|;
+return|return;
 if|if
 condition|(
 name|this
@@ -3271,11 +3270,7 @@ name|gid
 operator|>
 name|upper
 condition|)
-return|return
-name|NodeSet
-operator|.
-name|EMPTY_SET
-return|;
+return|return;
 if|if
 condition|(
 name|this
@@ -3290,14 +3285,14 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
-return|return
-name|NodeSet
+return|return;
+name|result
 operator|.
-name|EMPTY_SET
-return|;
-return|return
+name|add
+argument_list|(
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#getState() 	 */
 specifier|public
