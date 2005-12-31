@@ -3328,7 +3328,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//TODO : Should is be null, what will there be in os.data() ? -pb
+comment|//TOUNDERSTAND : Should is be null, what will there be in os.data() ? -pb
 if|if
 condition|(
 name|dbNodes
@@ -3511,6 +3511,7 @@ name|NodeSelector
 name|selector
 parameter_list|)
 block|{
+comment|//TODO : should we consider ElementValue.ATTRIBUTE_ID as well ? -pb
 return|return
 name|findElementsByTagName
 argument_list|(
@@ -3555,6 +3556,12 @@ block|{
 case|case
 name|ElementValue
 operator|.
+name|ATTRIBUTE_ID
+case|:
+comment|//is this correct ? -pb
+case|case
+name|ElementValue
+operator|.
 name|ATTRIBUTE
 case|:
 name|nodeType
@@ -3564,14 +3571,26 @@ operator|.
 name|ATTRIBUTE_NODE
 expr_stmt|;
 break|break;
-comment|//TODO : stricter control -pb
-default|default :
+case|case
+name|ElementValue
+operator|.
+name|ELEMENT
+case|:
 name|nodeType
 operator|=
 name|Node
 operator|.
 name|ELEMENT_NODE
 expr_stmt|;
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid type"
+argument_list|)
+throw|;
 block|}
 specifier|final
 name|ExtArrayNodeSet
@@ -3772,7 +3791,7 @@ argument_list|(
 name|ref
 argument_list|)
 expr_stmt|;
-comment|//Does the node already exist in the index ?
+comment|//Does the node already has data in the index ?
 if|if
 condition|(
 name|is

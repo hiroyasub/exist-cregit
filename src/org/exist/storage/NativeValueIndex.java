@@ -3018,7 +3018,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//TODO : Should is be null, what will there be in os.data() ? -pb
+comment|//TOUNDERSTAND : Should is be null, what will there be in os.data() ? -pb
 if|if
 condition|(
 name|dbValues
@@ -4606,8 +4606,6 @@ name|TerminatedException
 block|{
 name|VariableByteInput
 name|is
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -4639,17 +4637,10 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return early -pb
-block|}
-if|if
-condition|(
-name|is
-operator|==
-literal|null
-condition|)
 return|return
 literal|true
 return|;
+block|}
 name|int
 name|storedDocId
 decl_stmt|;
@@ -5162,7 +5153,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -5178,8 +5169,6 @@ return|;
 block|}
 name|VariableByteInput
 name|is
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -5211,17 +5200,10 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return early -pb
-block|}
-if|if
-condition|(
-name|is
-operator|==
-literal|null
-condition|)
 return|return
 literal|true
 return|;
+block|}
 name|int
 name|storedDocId
 decl_stmt|;
@@ -5265,6 +5247,10 @@ operator|>
 literal|0
 condition|)
 block|{
+name|docAdded
+operator|=
+literal|false
+expr_stmt|;
 name|storedDocId
 operator|=
 name|is
@@ -5305,10 +5291,6 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-name|docAdded
-operator|=
-literal|false
-expr_stmt|;
 name|storedGID
 operator|=
 literal|0
@@ -5341,9 +5323,6 @@ name|storedGID
 operator|+
 name|delta
 expr_stmt|;
-comment|//TODO : what if contextSet == null ? -pb
-comment|//See above where we have this behaviour :
-comment|//otherwise, we add all nodes without check
 if|if
 condition|(
 name|contextSet
@@ -5421,6 +5400,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : what if contextSet == null ? -pb
+comment|//See above where we have this behaviour :
+comment|//otherwise, we add all nodes without check
 block|}
 block|}
 block|}
