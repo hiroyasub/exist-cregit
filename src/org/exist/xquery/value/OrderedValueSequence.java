@@ -106,12 +106,6 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-specifier|private
-name|long
-name|execTime
-init|=
-literal|0
-decl_stmt|;
 specifier|public
 name|OrderedValueSequence
 parameter_list|(
@@ -442,14 +436,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
 name|this
 operator|.
 name|item
@@ -571,19 +557,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|execTime
-operator|=
-name|execTime
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.lang.Comparable#compareTo(java.lang.Object) 		 */
 specifier|public
