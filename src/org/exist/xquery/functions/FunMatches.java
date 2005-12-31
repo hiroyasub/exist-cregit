@@ -766,7 +766,9 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|getArgumentCount
+name|arguments
+operator|.
+name|size
 argument_list|()
 operator|==
 literal|3
