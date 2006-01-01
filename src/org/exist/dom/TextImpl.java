@@ -208,7 +208,7 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|static
-name|NodeImpl
+name|StoredNode
 name|deserialize
 parameter_list|(
 name|byte

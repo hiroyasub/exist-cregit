@@ -1312,11 +1312,11 @@ name|isDocument
 argument_list|()
 condition|)
 block|{
-name|NodeImpl
+name|StoredNode
 name|root
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|doc
 operator|.

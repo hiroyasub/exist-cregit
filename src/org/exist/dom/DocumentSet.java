@@ -211,6 +211,8 @@ block|{
 name|super
 argument_list|(
 literal|29
+argument_list|,
+literal|1.75
 argument_list|)
 expr_stmt|;
 block|}
@@ -224,6 +226,8 @@ block|{
 name|super
 argument_list|(
 name|initialSize
+argument_list|,
+literal|1.75
 argument_list|)
 expr_stmt|;
 block|}

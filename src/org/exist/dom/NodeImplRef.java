@@ -26,7 +26,7 @@ block|}
 specifier|public
 name|NodeImplRef
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -38,7 +38,7 @@ name|node
 expr_stmt|;
 block|}
 specifier|public
-name|NodeImpl
+name|StoredNode
 name|node
 decl_stmt|;
 block|}

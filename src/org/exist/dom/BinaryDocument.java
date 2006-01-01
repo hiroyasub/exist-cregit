@@ -271,13 +271,6 @@ name|ostream
 operator|.
 name|writeLong
 argument_list|(
-name|internalAddress
-argument_list|)
-expr_stmt|;
-name|ostream
-operator|.
-name|writeLong
-argument_list|(
 name|pageNr
 argument_list|)
 expr_stmt|;
@@ -429,13 +422,6 @@ operator|=
 name|istream
 operator|.
 name|readUTF
-argument_list|()
-expr_stmt|;
-name|internalAddress
-operator|=
-name|istream
-operator|.
-name|readLong
 argument_list|()
 expr_stmt|;
 name|pageNr

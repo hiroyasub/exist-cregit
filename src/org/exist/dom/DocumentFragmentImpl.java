@@ -37,7 +37,7 @@ begin_class
 class|class
 name|DocumentFragmentImpl
 extends|extends
-name|NodeImpl
+name|StoredNode
 implements|implements
 name|DocumentFragment
 block|{

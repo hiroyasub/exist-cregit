@@ -22,7 +22,7 @@ specifier|public
 class|class
 name|NamedNode
 extends|extends
-name|NodeImpl
+name|StoredNode
 implements|implements
 name|QNameable
 block|{
