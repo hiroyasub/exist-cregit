@@ -84,7 +84,16 @@ name|StoredNode
 extends|extends
 name|NodeImpl
 block|{
-comment|//TODO : what are the semantics of this 0 ? Clarify then use named constant -pb
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|UNKNOWN_NODE_IMPL_ADDRESS
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 specifier|protected
 name|long
 name|gid
@@ -598,15 +607,18 @@ init|=
 name|getParentGID
 argument_list|()
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|pid
 operator|==
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
-condition|?
+name|NODE_IMPL_UNKNOWN_GID
+condition|)
+return|return
 literal|null
-else|:
+return|;
+return|return
 name|ownerDocument
 operator|.
 name|getNode

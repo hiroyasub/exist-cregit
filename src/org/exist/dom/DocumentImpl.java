@@ -476,6 +476,15 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|REINDEX_ALL
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|byte
 name|XML_FILE
 init|=
@@ -613,8 +622,7 @@ specifier|transient
 name|int
 name|reindex
 init|=
-operator|-
-literal|1
+name|REINDEX_ALL
 decl_stmt|;
 specifier|protected
 name|Permission
@@ -3942,6 +3950,8 @@ name|getAddress
 parameter_list|()
 block|{
 return|return
+name|StoredNode
+operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 block|}
@@ -3978,6 +3988,8 @@ name|getInternalAddress
 parameter_list|()
 block|{
 return|return
+name|StoredNode
+operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 block|}

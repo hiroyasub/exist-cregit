@@ -61,6 +61,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -143,7 +155,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 init|=
 operator|-
 literal|1
@@ -152,9 +164,17 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|UNKNOWN_NODE_IMPL_ADDRESS
+name|NODE_IMPL_DOCUMENT_NODE_GID
 init|=
 operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|NODE_IMPL_ROOT_NODE_GID
+init|=
 literal|1
 decl_stmt|;
 specifier|public
@@ -259,6 +279,7 @@ name|long
 name|firstChildID
 parameter_list|()
 block|{
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 return|return
 literal|0
 return|;
@@ -683,6 +704,7 @@ name|long
 name|lastChildID
 parameter_list|()
 block|{
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 return|return
 literal|0
 return|;
@@ -1082,7 +1104,9 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */

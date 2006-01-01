@@ -69,16 +69,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -100,16 +90,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -289,6 +269,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|StringValue
@@ -427,58 +419,6 @@ name|UserDataHandler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ContentHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ext
-operator|.
-name|LexicalHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|helpers
-operator|.
-name|AttributesImpl
-import|;
-end_import
-
 begin_comment
 comment|/**  * ElementImpl.java  *  * @author Wolfgang Meier  */
 end_comment
@@ -510,7 +450,7 @@ name|firstChild
 init|=
 name|StoredNode
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 decl_stmt|;
 specifier|protected
 name|Map
@@ -685,8 +625,9 @@ name|firstChild
 operator|=
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 expr_stmt|;
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 name|gid
 operator|=
 literal|0
@@ -1211,6 +1152,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 if|if
 condition|(
 name|gid
@@ -1237,7 +1179,7 @@ argument_list|()
 operator|==
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 condition|)
 block|{
 specifier|final
@@ -1318,6 +1260,7 @@ throw|;
 block|}
 block|}
 else|else
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 name|child
 operator|.
 name|setGID
@@ -3108,7 +3051,9 @@ operator|.
 name|XML_ID_QNAME
 argument_list|)
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|)
 block|{
 comment|// an xml:id attribute. Normalize the attribute and set its type to ID
@@ -3507,17 +3452,24 @@ name|boolean
 name|declaresNamespacePrefixes
 parameter_list|()
 block|{
-return|return
+if|if
+condition|(
 name|namespaceMappings
-operator|!=
+operator|==
 literal|null
-operator|&&
+condition|)
+return|return
+literal|false
+return|;
+return|return
+operator|(
 name|namespaceMappings
 operator|.
 name|size
 argument_list|()
 operator|>
 literal|0
+operator|)
 return|;
 block|}
 comment|/**      * @see org.exist.dom.NodeImpl#firstChildID()      */
@@ -3526,6 +3478,7 @@ name|long
 name|firstChildID
 parameter_list|()
 block|{
+comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 if|if
 condition|(
 name|gid
@@ -3541,7 +3494,7 @@ name|firstChild
 operator|!=
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 condition|)
 return|return
 name|firstChild
@@ -4953,7 +4906,7 @@ condition|)
 return|return
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 return|;
 return|return
 name|firstChildID
@@ -5022,16 +4975,8 @@ decl_stmt|;
 comment|// serialize namespace prefixes declared in this element
 if|if
 condition|(
-name|namespaceMappings
-operator|!=
-literal|null
-operator|&&
-name|namespaceMappings
-operator|.
-name|size
+name|declaresNamespacePrefixes
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|ByteArrayOutputStream
@@ -8672,7 +8617,9 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */

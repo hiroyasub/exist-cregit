@@ -2701,7 +2701,9 @@ return|return
 operator|(
 name|cmp
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 operator|)
 return|;
 case|case
@@ -2713,7 +2715,9 @@ return|return
 operator|(
 name|cmp
 operator|!=
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 operator|)
 return|;
 block|}
@@ -5230,7 +5234,7 @@ argument_list|()
 operator|==
 name|NodeImpl
 operator|.
-name|UNKNOWN_NODE_IMPL_GID
+name|NODE_IMPL_UNKNOWN_GID
 condition|)
 name|LOG
 operator|.
@@ -6277,8 +6281,10 @@ decl_stmt|;
 if|if
 condition|(
 name|idxLevel
-operator|<
-literal|0
+operator|==
+name|DocumentImpl
+operator|.
+name|REINDEX_ALL
 condition|)
 block|{
 name|flush
@@ -6725,8 +6731,9 @@ name|doc
 operator|.
 name|setReindexRequired
 argument_list|(
-operator|-
-literal|1
+name|DocumentImpl
+operator|.
+name|REINDEX_ALL
 argument_list|)
 expr_stmt|;
 comment|//		checkTree(doc);
@@ -9067,8 +9074,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//TODO : what are the semantics of this 1 ? -pb
-comment|// Answer: 1 is the document root node. Always.
 if|if
 condition|(
 name|node
@@ -9076,7 +9081,9 @@ operator|.
 name|getGID
 argument_list|()
 operator|==
-literal|1
+name|NodeImpl
+operator|.
+name|NODE_IMPL_ROOT_NODE_GID
 condition|)
 name|newDoc
 operator|.
@@ -10678,8 +10685,10 @@ name|p
 operator|.
 name|getInternalAddress
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 return|return
 name|objectWith
