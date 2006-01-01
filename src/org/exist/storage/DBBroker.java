@@ -227,6 +227,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|SymbolTable
 import|;
 end_import
@@ -1895,7 +1907,7 @@ parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{

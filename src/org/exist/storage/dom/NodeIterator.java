@@ -85,6 +85,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|StorageAddress
@@ -623,11 +635,6 @@ name|backLink
 init|=
 literal|0
 decl_stmt|;
-name|boolean
-name|skipped
-init|=
-literal|false
-decl_stmt|;
 do|do
 block|{
 name|DOMFile
@@ -758,30 +765,12 @@ argument_list|)
 condition|)
 block|{
 comment|// skip this
-name|long
-name|link
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|p
-operator|.
-name|data
-argument_list|,
-name|offset
-argument_list|)
-decl_stmt|;
 name|offset
 operator|+=
 literal|8
 expr_stmt|;
 comment|//						System.out.println("skipping link on p " + page + " -> " +
 comment|//								StorageAddress.pageFromPointer(link));
-name|skipped
-operator|=
-literal|true
-expr_stmt|;
 continue|continue;
 block|}
 comment|// read data length
@@ -883,7 +872,7 @@ argument_list|)
 decl_stmt|;
 name|nextNode
 operator|=
-name|NodeImpl
+name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
@@ -937,7 +926,7 @@ try|try
 block|{
 name|nextNode
 operator|=
-name|NodeImpl
+name|StoredNode
 operator|.
 name|deserialize
 argument_list|(

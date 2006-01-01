@@ -371,6 +371,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|TextImpl
 import|;
 end_import
@@ -6250,7 +6262,7 @@ name|DocumentImpl
 name|doc
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -9056,6 +9068,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//TODO : what are the semantics of this 1 ? -pb
+comment|// Answer: 1 is the document root node. Always.
 if|if
 condition|(
 name|node
@@ -9069,6 +9082,9 @@ name|newDoc
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|StoredNode
+operator|)
 name|node
 argument_list|)
 expr_stmt|;
@@ -10588,10 +10604,10 @@ return|return
 literal|null
 return|;
 block|}
-name|NodeImpl
+name|StoredNode
 name|node
 init|=
-name|NodeImpl
+name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
@@ -10766,10 +10782,10 @@ argument_list|)
 return|;
 comment|// retry?
 block|}
-name|NodeImpl
+name|StoredNode
 name|node
 init|=
-name|NodeImpl
+name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
@@ -17106,10 +17122,10 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|old
 init|=
-name|NodeImpl
+name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
