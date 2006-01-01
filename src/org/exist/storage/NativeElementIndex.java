@@ -291,6 +291,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|btree
@@ -3986,6 +3998,15 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+specifier|final
+name|User
+name|user
+init|=
+name|broker
+operator|.
+name|getUser
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -3996,10 +4017,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -4012,10 +4030,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"User '"
 operator|+
-name|broker
-operator|.
-name|getUser
-argument_list|()
+name|user
 operator|.
 name|getName
 argument_list|()
@@ -4805,12 +4820,16 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TODO : use variable -pb
+comment|//TOUNDERSTAND -pb
+name|int
+name|size
+init|=
 name|is
 operator|.
 name|readFixedInt
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+comment|//unused
 if|if
 condition|(
 name|storedDocId

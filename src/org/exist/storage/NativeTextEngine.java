@@ -1040,6 +1040,7 @@ name|getGID
 argument_list|()
 decl_stmt|;
 comment|//TODO : case conversion should be handled by the tokenizer -pb
+specifier|final
 name|XMLString
 name|t
 init|=
@@ -1436,6 +1437,33 @@ name|collection
 parameter_list|)
 block|{
 specifier|final
+name|WordRef
+name|ref
+init|=
+operator|new
+name|WordRef
+argument_list|(
+name|collection
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+decl_stmt|;
+specifier|final
+name|IndexQuery
+name|query
+init|=
+operator|new
+name|IndexQuery
+argument_list|(
+name|IndexQuery
+operator|.
+name|TRUNC_RIGHT
+argument_list|,
+name|ref
+argument_list|)
+decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -1455,31 +1483,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|WordRef
-name|ref
-init|=
-operator|new
-name|WordRef
-argument_list|(
-name|collection
-operator|.
-name|getId
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|IndexQuery
-name|query
-init|=
-operator|new
-name|IndexQuery
-argument_list|(
-name|IndexQuery
-operator|.
-name|TRUNC_RIGHT
-argument_list|,
-name|ref
-argument_list|)
-decl_stmt|;
 name|dbTokens
 operator|.
 name|flush
@@ -1679,6 +1682,7 @@ name|j
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|short
 name|collectionId
 init|=
@@ -1949,7 +1953,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for token '"
 operator|+
@@ -6458,12 +6462,9 @@ block|}
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|dbTokens
-operator|.
-name|update
-argument_list|(
+name|long
+name|address
+init|=
 operator|(
 operator|(
 name|BFile
@@ -6475,6 +6476,14 @@ operator|)
 operator|.
 name|getAddress
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|dbTokens
+operator|.
+name|update
+argument_list|(
+name|address
 argument_list|,
 name|ref
 argument_list|,
@@ -7621,7 +7630,6 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TODO : use variable
 name|is
 operator|.
 name|skip
@@ -8117,6 +8125,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Standard quicksort */
+comment|//TODO : use methods in org.exist.util ?
 specifier|private
 name|void
 name|sort
