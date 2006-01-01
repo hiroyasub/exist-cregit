@@ -659,7 +659,9 @@ name|docs
 init|=
 operator|new
 name|DocumentSet
-argument_list|()
+argument_list|(
+literal|521
+argument_list|)
 decl_stmt|;
 for|for
 control|(
