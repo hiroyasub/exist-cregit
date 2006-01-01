@@ -955,6 +955,7 @@ name|void
 name|sync
 parameter_list|()
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -1278,7 +1279,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not append index data for value '"
 operator|+
@@ -1521,7 +1522,7 @@ argument_list|(
 name|searchKey
 argument_list|)
 decl_stmt|;
-comment|//Does the value already exist in the index ?
+comment|//Does the value already has data in the index ?
 if|if
 condition|(
 name|value
@@ -1687,6 +1688,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2395,7 +2398,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for value '"
 operator|+
@@ -2841,6 +2844,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME"
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2851,6 +2856,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TOUNDERSTAND (bis) : don't we lack the 2 following lines like in NativeElementIndex ? -pb
+comment|//if (node != null)
+comment|//    storedGIDList.addAll(newGIDList);
+comment|// append the data
 if|if
 condition|(
 name|storedGIDList
@@ -2861,7 +2870,6 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// append the new list to any existing data
 name|long
 index|[]
 name|gids
@@ -2979,7 +2987,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for value '"
 operator|+
@@ -3030,7 +3038,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not update index data for value '"
 operator|+
@@ -3820,6 +3828,20 @@ name|STRING
 argument_list|)
 decl_stmt|;
 specifier|final
+name|int
+name|op
+init|=
+name|stringType
+condition|?
+name|IndexQuery
+operator|.
+name|TRUNC_RIGHT
+else|:
+name|IndexQuery
+operator|.
+name|GEQ
+decl_stmt|;
+specifier|final
 name|IndexScanCallback
 name|cb
 init|=
@@ -3877,19 +3899,6 @@ name|collection
 operator|.
 name|getId
 argument_list|()
-decl_stmt|;
-name|int
-name|op
-init|=
-name|stringType
-condition|?
-name|IndexQuery
-operator|.
-name|TRUNC_RIGHT
-else|:
-name|IndexQuery
-operator|.
-name|GEQ
 decl_stmt|;
 name|byte
 index|[]
@@ -4582,12 +4591,6 @@ return|;
 block|}
 try|try
 block|{
-name|int
-name|sizeHint
-init|=
-operator|-
-literal|1
-decl_stmt|;
 while|while
 condition|(
 name|is
@@ -4726,15 +4729,16 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|int
 name|sizeHint
-operator|=
+init|=
 name|contextSet
 operator|.
 name|getSizeHint
 argument_list|(
 name|storedDocument
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|returnAncestor
@@ -5341,6 +5345,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME"
+operator|+
 name|e
 operator|.
 name|getMessage

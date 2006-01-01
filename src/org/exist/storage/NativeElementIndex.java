@@ -1373,6 +1373,15 @@ literal|0
 condition|)
 return|return;
 specifier|final
+name|SymbolTable
+name|symbols
+init|=
+name|broker
+operator|.
+name|getSymbols
+argument_list|()
+decl_stmt|;
+specifier|final
 name|short
 name|collectionId
 init|=
@@ -1492,10 +1501,7 @@ block|{
 name|short
 name|sym
 init|=
-name|broker
-operator|.
-name|getSymbols
-argument_list|()
+name|symbols
 operator|.
 name|getSymbol
 argument_list|(
@@ -1508,10 +1514,7 @@ decl_stmt|;
 name|short
 name|nsSym
 init|=
-name|broker
-operator|.
-name|getSymbols
-argument_list|()
+name|symbols
 operator|.
 name|getNSSymbol
 argument_list|(
@@ -1795,6 +1798,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2528,7 +2533,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for value '"
 operator|+
@@ -3021,6 +3026,7 @@ name|reindexRequired
 argument_list|()
 condition|)
 block|{
+comment|//TOUNDERSTAND : given what is below, why not use newGIDList ? -pb
 name|storedGIDList
 operator|.
 name|add
@@ -3058,6 +3064,7 @@ name|storedGID
 argument_list|)
 condition|)
 block|{
+comment|//TOUNDERSTAND : given what is below, why not use storedGIDList ? -pb
 name|newGIDList
 operator|.
 name|add
@@ -3092,7 +3099,7 @@ block|{
 comment|//EOFExceptions expected there
 block|}
 block|}
-comment|//TOUNDERSTAND : why is this construct so different from the other ones ? -pb
+comment|// TOUNDERSTAND : given what is above :-), why not rationalize ? -pb
 comment|// append the new list to any existing data
 if|if
 condition|(
@@ -3107,6 +3114,17 @@ argument_list|(
 name|newGIDList
 argument_list|)
 expr_stmt|;
+comment|// append the data
+if|if
+condition|(
+name|storedGIDList
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|int
 name|gidsCount
 init|=
@@ -3248,6 +3266,7 @@ operator|-
 literal|4
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|is
@@ -3277,7 +3296,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not put index data for node '"
 operator|+
@@ -3328,7 +3347,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not update index data for node '"
 operator|+
@@ -3790,6 +3809,16 @@ name|previousGID
 operator|+
 name|delta
 decl_stmt|;
+name|long
+name|address
+init|=
+name|StorageAddress
+operator|.
+name|read
+argument_list|(
+name|is
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|selector
@@ -3809,12 +3838,7 @@ name|storedGID
 argument_list|,
 name|nodeType
 argument_list|,
-name|StorageAddress
-operator|.
-name|read
-argument_list|(
-name|is
-argument_list|)
+name|address
 argument_list|)
 decl_stmt|;
 name|result
@@ -3845,30 +3869,15 @@ decl_stmt|;
 if|if
 condition|(
 name|storedNode
-operator|==
+operator|!=
 literal|null
 condition|)
-block|{
-name|is
-operator|.
-name|skip
-argument_list|(
-literal|3
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|storedNode
 operator|.
 name|setInternalAddress
 argument_list|(
-name|StorageAddress
-operator|.
-name|read
-argument_list|(
-name|is
-argument_list|)
+name|address
 argument_list|)
 expr_stmt|;
 name|storedNode
@@ -4430,6 +4439,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -5068,6 +5079,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME "
+operator|+
 name|e
 operator|.
 name|getMessage
