@@ -869,6 +869,16 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setDocument
+parameter_list|(
+name|DocumentImpl
+name|document
+parameter_list|)
+block|{
+comment|//TODO Auto-generated method stub
+block|}
 comment|/**      * Indexes the tokens contained in an attribute.      *       * @param attr The attribute to be indexed      */
 comment|//TODO : unify functionalities with storeText -pb
 specifier|public
@@ -1204,16 +1214,6 @@ name|node
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
-block|}
-specifier|public
-name|void
-name|setDocument
-parameter_list|(
-name|DocumentImpl
-name|document
-parameter_list|)
-block|{
-comment|//TODO Auto-generated method stub
 block|}
 specifier|public
 name|void
@@ -4052,7 +4052,7 @@ block|}
 break|break;
 default|default :
 comment|//Other types are ignored : some may be useful though -pb
-comment|//TOUNDERSTAND : it looks like other types (got : Node.PRCESSING_INSTRUCTION_NODE)
+comment|//TOUNDERSTAND : it looks like other types (got : Node.PROCESSING_INSTRUCTION_NODE)
 comment|//are stored in the index ??? -pb
 block|}
 block|}
