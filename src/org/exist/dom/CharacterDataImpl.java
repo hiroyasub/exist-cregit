@@ -194,6 +194,11 @@ name|void
 name|clear
 parameter_list|()
 block|{
+name|super
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|cdata
 operator|.
 name|reset

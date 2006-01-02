@@ -522,7 +522,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"insertAfter(Txn transaction, NodeList nodes, Node refChild) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -545,7 +545,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getChildCount() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -568,7 +568,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getChildNodes() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -584,11 +584,23 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
-comment|//TODO : throw the exception. For now, we return "something" -pb
-return|return
-literal|null
-return|;
-comment|//throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "not implemented on class " + getClass().getName());
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getFirstChild() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
 specifier|public
@@ -604,7 +616,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getLastChild() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -628,7 +640,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"hasAttributes() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -651,7 +663,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getAttributesCount() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -675,7 +687,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getAttributes()  not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -702,7 +714,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setAttributes(short attribNum) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -728,7 +740,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getNodeValue() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -757,7 +769,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setNodeValue(String value) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -773,11 +785,23 @@ name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
-comment|//TODO : throw the exception. For now, we return "something" -pb
-return|return
-literal|false
-return|;
-comment|//throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "not implemented on class " + getClass().getName());
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"hasChildNodes() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
 specifier|protected
@@ -796,7 +820,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setChildCount(int count) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -823,7 +847,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setNodeName(QName name) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -853,7 +877,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"isSupported(String key, String value) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -877,7 +901,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"normalize() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -907,7 +931,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"supports(String feature, String version) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -931,7 +955,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getBaseURI() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -960,7 +984,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"compareDocumentPosition(Node other) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -986,7 +1010,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getTextContent() not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1015,7 +1039,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setTextContent(String textContent) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1042,7 +1066,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"isSameNode(Node other) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1069,7 +1093,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"lookupPrefix(String namespaceURI) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1096,7 +1120,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"isDefaultNamespace(String namespaceURI) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1123,7 +1147,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"lookupNamespaceURI(String prefix) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1150,7 +1174,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"isEqualNode(Node arg) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1180,7 +1204,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getFeature(String feature, String version) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1207,7 +1231,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"getUserData(String key) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -1240,7 +1264,7 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"not implemented on class "
+literal|"setUserData(String key, Object data, UserDataHandler handler) not implemented on class "
 operator|+
 name|getClass
 argument_list|()

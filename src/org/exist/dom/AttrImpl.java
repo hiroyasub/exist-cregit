@@ -288,6 +288,10 @@ name|attributeType
 operator|=
 name|DEFAULT_ATTRIBUTE_TYPE
 expr_stmt|;
+name|value
+operator|=
+literal|null
+expr_stmt|;
 block|}
 specifier|public
 name|byte
@@ -1242,6 +1246,25 @@ else|else
 return|return
 name|toString
 argument_list|()
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasChildNodes
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+specifier|public
+name|Node
+name|getFirstChild
+parameter_list|()
+block|{
+comment|//bad implementations don't call hasChildNodes before
+return|return
+literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Attr#getSchemaTypeInfo() 	 */
