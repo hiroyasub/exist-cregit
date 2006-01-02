@@ -291,6 +291,41 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int)}      * method of the corresponding node class.      *       * @param data      * @param start      * @param len      * @param doc      * @return      */
+specifier|public
+specifier|static
+name|StoredNode
+name|deserialize
+parameter_list|(
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|len
+parameter_list|,
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+return|return
+name|deserialize
+argument_list|(
+name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
+argument_list|,
+name|doc
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
 comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
 specifier|public
 specifier|static
@@ -434,7 +469,7 @@ return|;
 default|default :
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 literal|"Unknown node type: "
 operator|+
@@ -445,41 +480,6 @@ return|return
 literal|null
 return|;
 block|}
-block|}
-comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
-specifier|public
-specifier|static
-name|StoredNode
-name|deserialize
-parameter_list|(
-name|byte
-index|[]
-name|data
-parameter_list|,
-name|int
-name|start
-parameter_list|,
-name|int
-name|len
-parameter_list|,
-name|DocumentImpl
-name|doc
-parameter_list|)
-block|{
-return|return
-name|deserialize
-argument_list|(
-name|data
-argument_list|,
-name|start
-argument_list|,
-name|len
-argument_list|,
-name|doc
-argument_list|,
-literal|false
-argument_list|)
-return|;
 block|}
 comment|/** 	 * Reset this object to its initial state. Required by the 	 * parser to be able to reuse node objects. 	 */
 specifier|public
