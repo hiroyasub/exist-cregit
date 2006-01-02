@@ -17,6 +17,10 @@ begin_comment
 comment|/**  * A node with a QName, i.e. an element or attribute.  *   * @author wolf  */
 end_comment
 
+begin_comment
+comment|//TODO : rename as StoredNamedNode ? -pb
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -150,6 +154,19 @@ return|return
 name|nodeName
 return|;
 block|}
+specifier|public
+name|void
+name|setNodeName
+parameter_list|(
+name|QName
+name|name
+parameter_list|)
+block|{
+name|nodeName
+operator|=
+name|name
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#clear()      */
 specifier|public
 name|void
@@ -164,19 +181,6 @@ expr_stmt|;
 name|nodeName
 operator|=
 literal|null
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setNodeName
-parameter_list|(
-name|QName
-name|name
-parameter_list|)
-block|{
-name|nodeName
-operator|=
-name|name
 expr_stmt|;
 block|}
 block|}

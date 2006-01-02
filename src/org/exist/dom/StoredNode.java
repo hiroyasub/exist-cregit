@@ -120,6 +120,15 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|UNKNOWN_NODE_IMPL_NODE_TYPE
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 specifier|private
 name|long
@@ -134,16 +143,16 @@ init|=
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
 specifier|private
-name|short
-name|nodeType
-init|=
-name|UNKNOWN_NODE_IMPL_NODE_TYPE
-decl_stmt|;
-specifier|private
 name|DocumentImpl
 name|ownerDocument
 init|=
 literal|null
+decl_stmt|;
+specifier|private
+name|short
+name|nodeType
+init|=
+name|UNKNOWN_NODE_IMPL_NODE_TYPE
 decl_stmt|;
 comment|//Made this constructor protected since we need it from DocumentImpl -pb
 specifier|private
@@ -465,6 +474,7 @@ name|ownerDocument
 operator|=
 literal|null
 expr_stmt|;
+comment|//nodeType is *immutable*
 block|}
 specifier|public
 name|QName
