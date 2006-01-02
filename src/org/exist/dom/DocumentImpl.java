@@ -4752,6 +4752,23 @@ name|boolean
 name|strict
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setStrictErrorChecking(boolean strict) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
 specifier|public
@@ -4759,10 +4776,23 @@ name|String
 name|getInputEncoding
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"String getInputEncoding() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlEncoding() 	 */
 specifier|public
@@ -4770,10 +4800,23 @@ name|String
 name|getXmlEncoding
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getXmlEncoding() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlStandalone() 	 */
 specifier|public
@@ -4781,10 +4824,23 @@ name|boolean
 name|getXmlStandalone
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getXmlStandalone() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean) 	 */
 specifier|public
@@ -4797,7 +4853,23 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setXmlStandalone(boolean xmlStandalone) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlVersion() 	 */
 specifier|public
@@ -4805,10 +4877,23 @@ name|String
 name|getXmlVersion
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getXmlVersion() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String) 	 */
 specifier|public
@@ -4821,7 +4906,23 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setXmlVersion(String xmlVersion) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getDocumentURI() 	 */
 specifier|public
@@ -4829,10 +4930,23 @@ name|String
 name|getDocumentURI
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getDocumentURI() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
 specifier|public
@@ -4843,7 +4957,23 @@ name|String
 name|documentURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setDocumentURI(String documentURI) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getDomConfig() 	 */
 specifier|public
@@ -4851,10 +4981,23 @@ name|DOMConfiguration
 name|getDomConfig
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getDomConfig() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#normalizeDocument() 	 */
 specifier|public
@@ -4862,7 +5005,23 @@ name|void
 name|normalizeDocument
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"normalizeDocument() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -4881,10 +5040,23 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"renameNode(Node n, String namespaceURI, String qualifiedName) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
 specifier|public
@@ -4892,10 +5064,23 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getBaseURI() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
 specifier|public
@@ -4908,10 +5093,23 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|0
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"compareDocumentPosition(Node other) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
 specifier|public
@@ -4921,10 +5119,23 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getTextContent() not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
 specifier|public
@@ -4937,7 +5148,23 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setTextContent(String textContent) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
 specifier|public
@@ -4948,10 +5175,23 @@ name|Node
 name|other
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"isSameNode(Node other) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
 specifier|public
@@ -4962,10 +5202,23 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"lookupPrefix(String namespaceURI) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
 specifier|public
@@ -4976,10 +5229,23 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"isDefaultNamespace(String namespaceURI) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
 specifier|public
@@ -4990,10 +5256,23 @@ name|String
 name|prefix
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"lookupNamespaceURI(String prefix) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
 specifier|public
@@ -5004,10 +5283,23 @@ name|Node
 name|arg
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"isEqualNode(Node arg) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -5021,10 +5313,23 @@ name|String
 name|version
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getFeature(String feature, String version) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
 specifier|public
@@ -5041,10 +5346,23 @@ name|UserDataHandler
 name|handler
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"setUserData(String key, Object data, UserDataHandler handler) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
 specifier|public
@@ -5055,10 +5373,23 @@ name|String
 name|key
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"getUserData(String key) not implemented on class "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 block|}
 end_class
