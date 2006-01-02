@@ -396,6 +396,32 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+comment|/**      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+specifier|public
+name|Node
+name|replaceChild
+parameter_list|(
+name|Node
+name|newChild
+parameter_list|,
+name|Node
+name|oldChild
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented"
+argument_list|)
+throw|;
+block|}
 comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *       * @param oldChild      * @param newChild      * @throws DOMException      */
 specifier|public
 name|void
@@ -424,24 +450,6 @@ argument_list|,
 literal|"not implemented"
 argument_list|)
 throw|;
-block|}
-comment|/**      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
-specifier|public
-name|Node
-name|replaceChild
-parameter_list|(
-name|Node
-name|newChild
-parameter_list|,
-name|Node
-name|oldChild
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-return|return
-literal|null
-return|;
 block|}
 specifier|public
 name|int
@@ -539,16 +547,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
-specifier|public
-name|boolean
-name|hasChildNodes
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 comment|/**      *  Set the attributes that belong to this node.      *      *@param  attribNum  The new attributes value      */
 specifier|public
 name|void
@@ -558,6 +556,16 @@ name|short
 name|attribNum
 parameter_list|)
 block|{
+block|}
+comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
+specifier|public
+name|boolean
+name|hasChildNodes
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
 block|}
 comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
 specifier|protected
