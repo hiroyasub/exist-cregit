@@ -67,6 +67,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|Document
 import|;
 end_import
@@ -261,9 +273,23 @@ index|[]
 name|serialize
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INVALID_ACCESS_ERR
+argument_list|,
+literal|"Can't serialize "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
 specifier|public
@@ -703,21 +729,23 @@ name|long
 name|firstChildID
 parameter_list|()
 block|{
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
-return|return
-literal|0
-return|;
-block|}
-comment|/**      *  Get the unique node identifier of the last child of this node.      *      *@return    Description of the Return Value      */
-specifier|public
-name|long
-name|lastChildID
-parameter_list|()
-block|{
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
-return|return
-literal|0
-return|;
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INVALID_ACCESS_ERR
+argument_list|,
+literal|"No first child ID in "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getParentNode() 	 */
 specifier|public
@@ -977,6 +1005,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+comment|//TODO : use XMLUtils routine ? -pb
 name|long
 name|firstChildId
 init|=
@@ -1091,6 +1120,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+comment|//TODO : use XMLUtils routine ? -pb
 name|long
 name|firstChildId
 init|=
