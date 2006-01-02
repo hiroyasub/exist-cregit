@@ -299,18 +299,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeIndexListener
 import|;
 end_import
@@ -8875,7 +8863,7 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|.
-name|setAddress
+name|setInternalAddress
 argument_list|(
 name|BFile
 operator|.
@@ -8911,7 +8899,7 @@ name|toString
 argument_list|(
 name|doc
 operator|.
-name|getAddress
+name|getInternalAddress
 argument_list|()
 argument_list|)
 argument_list|)
@@ -18599,7 +18587,7 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|.
-name|setAddress
+name|setInternalAddress
 argument_list|(
 name|pointer
 argument_list|)

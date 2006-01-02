@@ -9458,7 +9458,7 @@ name|toString
 argument_list|(
 name|doc
 operator|.
-name|getAddress
+name|getInternalAddress
 argument_list|()
 argument_list|)
 argument_list|)
