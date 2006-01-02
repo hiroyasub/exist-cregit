@@ -577,7 +577,8 @@ name|result
 operator|.
 name|append
 argument_list|(
-name|gid
+name|getGID
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -591,7 +592,13 @@ name|result
 operator|.
 name|append
 argument_list|(
-name|ownerDocument
+operator|(
+operator|(
+name|DocumentImpl
+operator|)
+name|getOwnerDocument
+argument_list|()
+operator|)
 operator|.
 name|getFileName
 argument_list|()

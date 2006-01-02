@@ -166,6 +166,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+comment|//suite.addTestSuite(XQueryFunctionsTest.class);
 comment|//		suite.addTestSuite(XQueryUseCasesTest.class);
 comment|//$JUnit-END$
 return|return

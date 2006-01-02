@@ -103,6 +103,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|VirtualNodeSet
 import|;
 end_import
@@ -2709,7 +2721,7 @@ name|p
 decl_stmt|,
 name|sib
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -2742,7 +2754,7 @@ expr_stmt|;
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|p
 operator|.
@@ -2832,7 +2844,7 @@ return|;
 block|}
 block|}
 specifier|protected
-name|NodeImpl
+name|StoredNode
 name|getNextSibling
 parameter_list|(
 name|NodeImpl
@@ -2851,7 +2863,7 @@ name|FOLLOWING_SIBLING_AXIS
 case|:
 return|return
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|last
 operator|.
@@ -2865,7 +2877,7 @@ name|PRECEDING_SIBLING_AXIS
 case|:
 return|return
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|last
 operator|.

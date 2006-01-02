@@ -111,6 +111,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|Permission
@@ -313,7 +325,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
-name|NodeImpl
+name|StoredNode
 index|[]
 name|ql
 init|=

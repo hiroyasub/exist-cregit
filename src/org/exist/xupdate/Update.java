@@ -89,7 +89,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
+name|StoredNode
 import|;
 end_import
 
@@ -316,7 +316,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|NodeImpl
+name|StoredNode
 name|ql
 index|[]
 init|=
@@ -343,7 +343,7 @@ operator|.
 name|getNotificationService
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|node
 decl_stmt|;
 name|Node

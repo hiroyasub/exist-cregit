@@ -63,18 +63,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -588,7 +576,7 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|nextNode
 init|=
 literal|null

@@ -40,7 +40,7 @@ specifier|public
 name|void
 name|nodeChanged
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{

@@ -125,18 +125,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeSet
 import|;
 end_import
@@ -150,6 +138,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
 import|;
 end_import
 
@@ -794,7 +794,7 @@ specifier|private
 name|void
 name|updatePendingIndexEntry
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|ValueIndexKeyFactory

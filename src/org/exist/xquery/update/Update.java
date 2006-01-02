@@ -81,7 +81,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
+name|NodeListImpl
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeListImpl
+name|StoredNode
 import|;
 end_import
 
@@ -669,7 +669,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|ql
 index|[]
 init|=
@@ -690,7 +690,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|node
 decl_stmt|;
 name|TextImpl

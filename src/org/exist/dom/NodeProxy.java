@@ -1338,11 +1338,13 @@ name|doc
 argument_list|,
 name|root
 operator|.
-name|gid
+name|getGID
+argument_list|()
 argument_list|,
 name|root
 operator|.
-name|internalAddress
+name|getInternalAddress
+argument_list|()
 argument_list|)
 argument_list|,
 literal|false

@@ -185,18 +185,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -210,6 +198,18 @@ operator|.
 name|dom
 operator|.
 name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
 import|;
 end_import
 
@@ -2513,7 +2513,7 @@ parameter_list|(
 name|DocumentImpl
 name|document
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{

@@ -67,6 +67,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|Permission
@@ -555,7 +567,7 @@ operator|.
 name|getNotificationService
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 index|[]
 name|ql
 init|=
@@ -684,7 +696,7 @@ expr_stmt|;
 name|parent
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|node
 operator|.

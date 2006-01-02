@@ -2376,7 +2376,7 @@ name|DocumentImpl
 name|oldDoc
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -5154,7 +5154,7 @@ name|Txn
 name|transaction
 decl_stmt|;
 specifier|private
-name|NodeImpl
+name|StoredNode
 name|node
 decl_stmt|;
 specifier|private
@@ -5218,7 +5218,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -5231,10 +5231,8 @@ name|node
 operator|.
 name|getGID
 argument_list|()
-operator|==
-name|NodeImpl
-operator|.
-name|NODE_IMPL_UNKNOWN_GID
+operator|<
+literal|0
 condition|)
 name|LOG
 operator|.
@@ -5362,7 +5360,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -6193,7 +6191,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -6221,7 +6219,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -6573,7 +6571,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -6597,7 +6595,7 @@ block|{
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|nodes
 operator|.
@@ -6766,7 +6764,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -6801,7 +6799,7 @@ parameter_list|,
 name|Iterator
 name|iterator
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -6948,7 +6946,7 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|child
 decl_stmt|;
 for|for
@@ -6969,7 +6967,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iterator
 operator|.
@@ -7091,7 +7089,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -7200,7 +7198,7 @@ parameter_list|,
 name|Iterator
 name|iterator
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -7422,7 +7420,7 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|child
 decl_stmt|;
 for|for
@@ -7443,7 +7441,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iterator
 operator|.
@@ -7579,7 +7577,7 @@ specifier|static
 class|class
 name|RemovedNode
 block|{
-name|NodeImpl
+name|StoredNode
 name|node
 decl_stmt|;
 name|String
@@ -7590,7 +7588,7 @@ name|path
 decl_stmt|;
 name|RemovedNode
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -7670,7 +7668,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -7694,7 +7692,7 @@ block|{
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|nodes
 operator|.
@@ -8329,7 +8327,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -8353,7 +8351,7 @@ block|{
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|nodes
 operator|.
@@ -8721,7 +8719,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -8745,7 +8743,7 @@ block|{
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|nodes
 operator|.
@@ -8981,7 +8979,7 @@ parameter_list|,
 name|Iterator
 name|iterator
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -9081,7 +9079,7 @@ operator|.
 name|getGID
 argument_list|()
 operator|==
-name|NodeImpl
+name|StoredNode
 operator|.
 name|NODE_IMPL_ROOT_NODE_GID
 condition|)
@@ -9178,7 +9176,7 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|child
 decl_stmt|;
 for|for
@@ -9199,7 +9197,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iterator
 operator|.
@@ -9397,7 +9395,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|n
 decl_stmt|;
 for|for
@@ -9421,7 +9419,7 @@ block|{
 name|n
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|nodes
 operator|.
@@ -9568,7 +9566,7 @@ parameter_list|(
 name|Iterator
 name|iterator
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -9654,7 +9652,7 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|NodeImpl
+name|StoredNode
 name|child
 decl_stmt|;
 for|for
@@ -9675,7 +9673,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iterator
 operator|.
@@ -12108,11 +12106,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|NodeImpl
+name|StoredNode
 name|node
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|doc
 operator|.
@@ -12388,11 +12386,11 @@ name|Object
 name|start
 parameter_list|()
 block|{
-name|NodeImpl
+name|StoredNode
 name|node
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|document
 operator|.
@@ -12693,7 +12691,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -15634,7 +15632,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -15977,7 +15975,7 @@ name|void
 name|endElement
 parameter_list|(
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -16994,7 +16992,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -17204,11 +17202,11 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|previous
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{

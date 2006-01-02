@@ -141,7 +141,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
+name|NodeSet
 import|;
 end_import
 
@@ -153,7 +153,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeSet
+name|StoredNode
 import|;
 end_import
 
@@ -1025,7 +1025,7 @@ parameter_list|(
 name|DocumentImpl
 name|oldDoc
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 function_decl|;

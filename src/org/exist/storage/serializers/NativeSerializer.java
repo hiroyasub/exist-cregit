@@ -31,16 +31,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -179,18 +169,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -216,6 +194,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
 import|;
 end_import
 
@@ -748,11 +738,11 @@ argument_list|)
 condition|)
 block|{
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|n
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|doc
 operator|.
@@ -809,11 +799,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|n
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|children
 operator|.
@@ -949,7 +939,7 @@ specifier|protected
 name|void
 name|serializeToReceiver
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|Iterator
@@ -982,7 +972,7 @@ condition|)
 name|node
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iter
 operator|.
@@ -1264,7 +1254,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// int childLen;
-name|NodeImpl
+name|StoredNode
 name|child
 init|=
 literal|null
@@ -1296,7 +1286,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iter
 operator|.
@@ -1433,7 +1423,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iter
 operator|.

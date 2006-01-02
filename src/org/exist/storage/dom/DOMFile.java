@@ -115,7 +115,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
+name|NodeProxy
 import|;
 end_import
 
@@ -127,7 +127,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
+name|StoredNode
 import|;
 end_import
 
@@ -6450,7 +6450,7 @@ specifier|private
 name|long
 name|findNode
 parameter_list|(
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|long
@@ -6542,11 +6542,11 @@ name|gid
 operator|++
 control|)
 block|{
-name|NodeImpl
+name|StoredNode
 name|child
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iter
 operator|.
@@ -6821,19 +6821,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 do|;
-specifier|final
-name|long
-name|firstChildId
-init|=
-name|XMLUtil
-operator|.
-name|getFirstChildId
-argument_list|(
-name|doc
-argument_list|,
-name|id
-argument_list|)
-decl_stmt|;
+comment|//final long firstChildId = XMLUtil.getFirstChildId(doc, id);
 specifier|final
 name|Iterator
 name|iter
@@ -6854,11 +6842,11 @@ name|parentPointer
 argument_list|)
 decl_stmt|;
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|n
 init|=
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|iter
 operator|.
@@ -9386,7 +9374,7 @@ name|pageFromPointer
 argument_list|(
 operator|(
 operator|(
-name|NodeImpl
+name|StoredNode
 operator|)
 name|doc
 operator|.

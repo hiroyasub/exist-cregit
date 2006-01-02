@@ -191,18 +191,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -264,18 +252,6 @@ operator|.
 name|security
 operator|.
 name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
 import|;
 end_import
 
@@ -903,8 +879,6 @@ name|booleanValue
 argument_list|()
 expr_stmt|;
 name|String
-name|sym
-decl_stmt|,
 name|dataDir
 decl_stmt|;
 if|if
@@ -1584,7 +1558,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -1601,7 +1575,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -1627,7 +1601,7 @@ name|void
 name|endElement
 parameter_list|(
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -1846,7 +1820,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -1886,11 +1860,11 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|previous
 parameter_list|,
 specifier|final
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 function_decl|;
@@ -1926,7 +1900,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|)
 block|{
@@ -1947,7 +1921,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -1969,7 +1943,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -1995,7 +1969,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|NodeImpl
+name|StoredNode
 name|node
 parameter_list|,
 name|NodePath
