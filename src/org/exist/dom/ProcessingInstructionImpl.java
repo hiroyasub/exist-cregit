@@ -83,10 +83,14 @@ block|{
 specifier|protected
 name|String
 name|target
+init|=
+literal|null
 decl_stmt|;
 specifier|protected
 name|String
 name|data
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|ProcessingInstructionImpl
