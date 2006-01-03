@@ -63,6 +63,18 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DocumentType
+import|;
+end_import
+
 begin_comment
 comment|/**  * Defines additional methods implemented by XML and binary   * resources.  *   * @author wolf  *  */
 end_comment
@@ -113,6 +125,21 @@ function_decl|;
 name|String
 name|getMimeType
 parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
+name|DocumentType
+name|getDocType
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
+name|void
+name|setDocType
+parameter_list|(
+name|DocumentType
+name|doctype
+parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
