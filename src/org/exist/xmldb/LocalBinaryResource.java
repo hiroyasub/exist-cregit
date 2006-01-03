@@ -758,6 +758,9 @@ name|Date
 argument_list|(
 name|blob
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getCreated
 argument_list|()
 argument_list|)
@@ -883,6 +886,9 @@ name|Date
 argument_list|(
 name|blob
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getLastModified
 argument_list|()
 argument_list|)
@@ -997,6 +1003,9 @@ throw|;
 name|mimeType
 operator|=
 name|blob
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|getMimeType
 argument_list|()

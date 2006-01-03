@@ -107,10 +107,6 @@ name|Logger
 import|;
 end_import
 
-begin_comment
-comment|// import org.cyberneko.html.parsers.SAXParser;
-end_comment
-
 begin_import
 import|import
 name|org
@@ -156,18 +152,6 @@ operator|.
 name|triggers
 operator|.
 name|TriggerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|BinaryDocument
 import|;
 end_import
 
@@ -2635,14 +2619,8 @@ name|j
 init|=
 literal|0
 decl_stmt|;
-name|int
-name|p
-decl_stmt|;
 name|DocumentImpl
 name|doc
-decl_stmt|;
-name|String
-name|resource
 decl_stmt|;
 for|for
 control|(
@@ -3409,9 +3387,6 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
-name|BinaryDocument
-name|blob
-init|=
 name|collection
 operator|.
 name|addBinaryResource
@@ -3447,7 +3422,7 @@ name|res
 operator|.
 name|datemodified
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|transact
 operator|.
 name|commit
@@ -3588,9 +3563,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
-name|DocumentImpl
-name|newDoc
-decl_stmt|;
 name|IndexInfo
 name|info
 init|=
@@ -3762,6 +3734,9 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|setMimeType
 argument_list|(
 name|res
@@ -3781,6 +3756,9 @@ condition|)
 name|info
 operator|.
 name|getDocument
+argument_list|()
+operator|.
+name|getMetadata
 argument_list|()
 operator|.
 name|setCreated
@@ -3804,6 +3782,9 @@ condition|)
 name|info
 operator|.
 name|getDocument
+argument_list|()
+operator|.
+name|getMetadata
 argument_list|()
 operator|.
 name|setLastModified

@@ -3034,6 +3034,9 @@ argument_list|)
 operator|<
 name|document
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|reindexRequired
 argument_list|()
 condition|)
@@ -3980,22 +3983,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found: "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" for "
-operator|+
-name|qname
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("Found: " + result.getLength() + " for " + qname);
 return|return
 name|result
 return|;

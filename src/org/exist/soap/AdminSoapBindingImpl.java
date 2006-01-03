@@ -1401,6 +1401,9 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|setMimeType
 argument_list|(
 literal|"text/xml"

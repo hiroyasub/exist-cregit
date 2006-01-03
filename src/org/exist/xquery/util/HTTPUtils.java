@@ -243,6 +243,9 @@ name|max
 argument_list|(
 name|doc
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getLastModified
 argument_list|()
 argument_list|,

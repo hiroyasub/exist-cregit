@@ -127,6 +127,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|DateFormat
@@ -170,26 +180,6 @@ operator|.
 name|util
 operator|.
 name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URI
 import|;
 end_import
 
@@ -346,6 +336,18 @@ operator|.
 name|dom
 operator|.
 name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentMetadata
 import|;
 end_import
 
@@ -1457,6 +1459,9 @@ name|equals
 argument_list|(
 name|resource
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
@@ -1836,6 +1841,9 @@ name|setContentType
 argument_list|(
 name|resource
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
@@ -1930,6 +1938,9 @@ operator|.
 name|setContentType
 argument_list|(
 name|resource
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
@@ -2094,11 +2105,19 @@ literal|" denied"
 argument_list|)
 throw|;
 block|}
+name|DocumentMetadata
+name|metadata
+init|=
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+decl_stmt|;
 name|response
 operator|.
 name|setContentType
 argument_list|(
-name|resource
+name|metadata
 operator|.
 name|getMimeType
 argument_list|()
@@ -2120,7 +2139,7 @@ name|addDateHeader
 argument_list|(
 literal|"Last-Modified"
 argument_list|,
-name|resource
+name|metadata
 operator|.
 name|getLastModified
 argument_list|()
@@ -2132,7 +2151,7 @@ name|addDateHeader
 argument_list|(
 literal|"Created"
 argument_list|,
-name|resource
+name|metadata
 operator|.
 name|getCreated
 argument_list|()
@@ -2242,6 +2261,9 @@ operator|.
 name|equals
 argument_list|(
 name|resource
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
@@ -2378,16 +2400,6 @@ expr_stmt|;
 block|}
 comment|// normal POST: read the request content and check if
 comment|// it is an XUpdate or a query request.
-name|boolean
-name|indent
-init|=
-literal|true
-decl_stmt|;
-name|boolean
-name|summary
-init|=
-literal|false
-decl_stmt|;
 name|int
 name|howmany
 init|=
@@ -3962,6 +3974,9 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|setMimeType
 argument_list|(
 name|contentType
@@ -4748,11 +4763,6 @@ name|PermissionDeniedException
 throws|,
 name|XPathException
 block|{
-name|String
-name|result
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 name|Source
@@ -5888,6 +5898,14 @@ operator|.
 name|getFileName
 argument_list|()
 decl_stmt|;
+name|DocumentMetadata
+name|metadata
+init|=
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
+decl_stmt|;
 comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
@@ -5955,7 +5973,7 @@ argument_list|(
 operator|new
 name|Date
 argument_list|(
-name|doc
+name|metadata
 operator|.
 name|getCreated
 argument_list|()
@@ -5982,7 +6000,7 @@ argument_list|(
 operator|new
 name|Date
 argument_list|(
-name|doc
+name|metadata
 operator|.
 name|getLastModified
 argument_list|()

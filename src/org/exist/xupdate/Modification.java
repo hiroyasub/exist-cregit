@@ -1102,6 +1102,9 @@ if|if
 condition|(
 name|next
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getSplitCount
 argument_list|()
 operator|>

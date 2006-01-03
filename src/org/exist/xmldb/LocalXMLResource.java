@@ -1777,6 +1777,9 @@ name|Date
 argument_list|(
 name|document
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getCreated
 argument_list|()
 argument_list|)
@@ -1882,6 +1885,9 @@ operator|new
 name|Date
 argument_list|(
 name|document
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|getLastModified
 argument_list|()

@@ -202,6 +202,9 @@ name|lastModified
 operator|=
 name|doc
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getLastModified
 argument_list|()
 expr_stmt|;
@@ -272,6 +275,9 @@ return|;
 if|if
 condition|(
 name|doc
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|getLastModified
 argument_list|()

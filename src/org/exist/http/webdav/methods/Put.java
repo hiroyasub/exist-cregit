@@ -719,6 +719,9 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|setMimeType
 argument_list|(
 name|contentType
@@ -961,6 +964,10 @@ block|{
 if|if
 condition|(
 name|collectionLocked
+operator|&&
+name|collection
+operator|!=
+literal|null
 condition|)
 name|collection
 operator|.

@@ -426,6 +426,9 @@ argument_list|()
 expr_stmt|;
 name|doc
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|setIndexListener
 argument_list|(
 name|listener
@@ -659,6 +662,17 @@ argument_list|)
 throw|;
 block|}
 name|doc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|clearIndexListener
+argument_list|()
+expr_stmt|;
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
 operator|.
 name|setLastModified
 argument_list|(

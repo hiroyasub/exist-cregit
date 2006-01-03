@@ -4398,6 +4398,9 @@ operator|||
 operator|!
 name|sourceDoc
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getMimeType
 argument_list|()
 operator|.

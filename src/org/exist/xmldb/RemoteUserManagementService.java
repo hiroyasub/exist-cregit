@@ -1816,12 +1816,7 @@ name|get
 argument_list|(
 literal|"group"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|perm
-operator|.
-name|setPermissions
-argument_list|(
+argument_list|,
 operator|(
 operator|(
 name|Integer
@@ -2036,12 +2031,7 @@ name|get
 argument_list|(
 literal|"group"
 argument_list|)
-argument_list|)
-decl_stmt|;
-name|perm
-operator|.
-name|setPermissions
-argument_list|(
+argument_list|,
 operator|(
 operator|(
 name|Integer
@@ -2057,7 +2047,7 @@ operator|.
 name|intValue
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 name|perm
 return|;

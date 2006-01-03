@@ -6089,6 +6089,9 @@ argument_list|)
 operator|<
 name|document
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|reindexRequired
 argument_list|()
 condition|)

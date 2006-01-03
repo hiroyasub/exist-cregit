@@ -1633,6 +1633,15 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|readDocumentMeta
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+function_decl|;
 comment|/**      * Stores the given data under the given binary resource descriptor       * (BinaryDocument).      *       * @param blob the binary document descriptor      * @param data the document binary data      */
 specifier|public
 specifier|abstract

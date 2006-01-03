@@ -1232,6 +1232,9 @@ name|equals
 argument_list|(
 name|doc
 operator|.
+name|getMetadata
+argument_list|()
+operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
