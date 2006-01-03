@@ -533,14 +533,6 @@ name|docId
 init|=
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
-comment|// document's document type
-specifier|protected
-specifier|transient
-name|DocumentType
-name|docType
-init|=
-literal|null
-decl_stmt|;
 comment|// the document's file name
 specifier|protected
 name|String
@@ -3527,7 +3519,11 @@ name|getDoctype
 parameter_list|()
 block|{
 return|return
-name|docType
+name|getMetadata
+argument_list|()
+operator|.
+name|getDocType
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -3538,11 +3534,13 @@ name|DocumentType
 name|docType
 parameter_list|)
 block|{
-name|this
+name|getMetadata
+argument_list|()
 operator|.
+name|setDocType
+argument_list|(
 name|docType
-operator|=
-name|docType
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
