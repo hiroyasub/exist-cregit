@@ -267,6 +267,33 @@ operator|.
 name|ownerDocument
 expr_stmt|;
 block|}
+comment|/**      * Reset this object to its initial state. Required by the      * parser to be able to reuse node objects.      */
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+comment|//TODO : what are the semantics of this 0 ? -pb
+name|this
+operator|.
+name|gid
+operator|=
+literal|0
+expr_stmt|;
+name|this
+operator|.
+name|internalAddress
+operator|=
+name|UNKNOWN_NODE_IMPL_ADDRESS
+expr_stmt|;
+name|this
+operator|.
+name|ownerDocument
+operator|=
+literal|null
+expr_stmt|;
+comment|//this.nodeType is *immutable*
+block|}
 specifier|public
 name|byte
 index|[]
@@ -481,27 +508,6 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * Reset this object to its initial state. Required by the 	 * parser to be able to reuse node objects. 	 */
-specifier|public
-name|void
-name|clear
-parameter_list|()
-block|{
-comment|//TODO : what are the semantics of this 0 ? -pb
-name|gid
-operator|=
-literal|0
-expr_stmt|;
-name|internalAddress
-operator|=
-name|UNKNOWN_NODE_IMPL_ADDRESS
-expr_stmt|;
-name|ownerDocument
-operator|=
-literal|null
-expr_stmt|;
-comment|//nodeType is *immutable*
-block|}
 specifier|public
 name|QName
 name|getQName
@@ -657,12 +663,14 @@ name|void
 name|setInternalAddress
 parameter_list|(
 name|long
-name|address
+name|internalAddress
 parameter_list|)
 block|{
+name|this
+operator|.
 name|internalAddress
 operator|=
-name|address
+name|internalAddress
 expr_stmt|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getNodeType() 	 */
@@ -691,15 +699,17 @@ name|void
 name|setOwnerDocument
 parameter_list|(
 name|Document
-name|doc
+name|ownerDocument
 parameter_list|)
 block|{
+name|this
+operator|.
 name|ownerDocument
 operator|=
 operator|(
 name|DocumentImpl
 operator|)
-name|doc
+name|ownerDocument
 expr_stmt|;
 block|}
 comment|/** 	 *  Get the unique node identifier of this node's parent node. 	 * 	 *@return    The parentGID value 	 */
@@ -713,11 +723,7 @@ name|XMLUtil
 operator|.
 name|getParentId
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
-name|getOwnerDocument
-argument_list|()
+name|ownerDocument
 argument_list|,
 name|getGID
 argument_list|()
@@ -737,7 +743,7 @@ name|DOMException
 operator|.
 name|INVALID_ACCESS_ERR
 argument_list|,
-literal|"No first child ID in "
+literal|"firstChildID() not implemented in "
 operator|+
 name|getClass
 argument_list|()
@@ -769,13 +775,7 @@ return|return
 literal|null
 return|;
 return|return
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|getOwnerDocument
-argument_list|()
-operator|)
+name|ownerDocument
 operator|.
 name|getNode
 argument_list|(
@@ -792,23 +792,13 @@ name|node
 parameter_list|)
 block|{
 specifier|final
-name|DocumentImpl
-name|owner
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
-specifier|final
 name|NodeProxy
 name|p
 init|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|owner
+name|ownerDocument
 argument_list|,
 name|node
 operator|.
@@ -821,11 +811,10 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Iterator
 name|iterator
 init|=
-name|owner
-operator|.
 name|getBroker
 argument_list|()
 operator|.
@@ -834,6 +823,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+comment|//TODO : hasNext() test ? -pb
 name|iterator
 operator|.
 name|next
@@ -861,12 +851,15 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
 name|node
 operator|.
 name|hasChildNodes
 argument_list|()
 condition|)
-block|{
+return|return
+name|node
+return|;
 specifier|final
 name|long
 name|firstChild
@@ -924,6 +917,7 @@ argument_list|(
 name|gid
 argument_list|)
 expr_stmt|;
+comment|//Recursivity helps taversing...
 name|next
 operator|=
 name|getLastNode
@@ -936,11 +930,6 @@ expr_stmt|;
 block|}
 return|return
 name|next
-return|;
-block|}
-else|else
-return|return
-name|node
 return|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
