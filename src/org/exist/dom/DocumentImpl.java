@@ -599,7 +599,7 @@ name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
-specifier|protected
+specifier|private
 name|DocumentMetadata
 name|metadata
 init|=
@@ -2437,56 +2437,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-specifier|public
-name|long
-name|getGID
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-specifier|public
-name|void
-name|setGID
-parameter_list|(
-name|long
-name|gid
-parameter_list|)
-block|{
-block|}
-specifier|public
-name|long
-name|getInternalAddress
-parameter_list|()
-block|{
-return|return
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#setInternalAddress(long)      */
-specifier|public
-name|void
-name|setInternalAddress
-parameter_list|(
-name|long
-name|address
-parameter_list|)
-block|{
-block|}
-specifier|public
-name|long
-name|getParentGID
-parameter_list|()
-block|{
-return|return
-name|StoredNode
-operator|.
-name|NODE_IMPL_UNKNOWN_GID
-return|;
-block|}
+comment|/*     public long getGID() {         //TOUNDERSTAND : what are the semantics of this 0 ? -pb         return 0;     }      public void setGID(long gid) {     }      public long getInternalAddress() {         return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;     }      public void setInternalAddress(long address) {     }          public long getParentGID() {         return StoredNode.NODE_IMPL_UNKNOWN_GID;     }     */
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|void
@@ -2965,7 +2916,6 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-comment|// 1,
 name|NodeProxy
 operator|.
 name|DOCUMENT_ELEMENT_GID
@@ -3010,9 +2960,6 @@ operator|new
 name|NodeListImpl
 argument_list|()
 decl_stmt|;
-name|Node
-name|child
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3028,8 +2975,9 @@ name|i
 operator|++
 control|)
 block|{
+name|Node
 name|child
-operator|=
+init|=
 name|broker
 operator|.
 name|objectWith
@@ -3039,7 +2987,6 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-comment|// 1,
 name|NodeProxy
 operator|.
 name|DOCUMENT_ELEMENT_GID
@@ -3050,7 +2997,7 @@ name|i
 index|]
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|list
 operator|.
 name|add
@@ -3077,9 +3024,6 @@ init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|next
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3098,8 +3042,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|next
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -3109,7 +3054,7 @@ name|item
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|StorageAddress
@@ -3162,9 +3107,6 @@ init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|next
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3183,8 +3125,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|next
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -3194,7 +3137,7 @@ name|item
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|StorageAddress

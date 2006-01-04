@@ -8937,23 +8937,8 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"new doc address = "
-operator|+
-name|StorageAddress
-operator|.
-name|toString
-argument_list|(
-name|doc
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//Commented out since DocmentImpl has no more internal address
+comment|//LOG.debug("new doc address = " + StorageAddress.toString(doc.getInternalAddress()));
 name|closeDocument
 argument_list|()
 expr_stmt|;
@@ -18907,13 +18892,8 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|setInternalAddress
-argument_list|(
-name|pointer
-argument_list|)
-expr_stmt|;
+comment|//Commented since
+comment|//doc.setInternalAddress(pointer);
 name|collection
 operator|.
 name|addDocument

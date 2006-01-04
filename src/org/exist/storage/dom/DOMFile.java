@@ -9445,23 +9445,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"; Document metadata at "
-operator|+
-name|StorageAddress
-operator|.
-name|toString
-argument_list|(
-name|doc
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//Commented out since DocmentImpl has no more internal address
+comment|//buf.append("; Document metadata at "
+comment|//		+ StorageAddress.toString(doc.getInternalAddress()));
 return|return
 name|buf
 operator|.
