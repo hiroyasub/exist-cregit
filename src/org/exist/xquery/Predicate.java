@@ -562,7 +562,7 @@ expr_stmt|;
 else|else
 block|{
 comment|// just to be sure: change mode to boolean if the predicate expression returns a number
-comment|//TODO : the code, likely correct, seems to implement the exact contrary
+comment|//TODO : the code, likely to be correct, implements the exact contrary
 if|if
 condition|(
 name|Type
@@ -787,14 +787,6 @@ name|p
 init|=
 literal|0
 decl_stmt|;
-comment|//TODO : as such the following expression is useless : do we have a 0 or 1 based sequence ?
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -831,7 +823,9 @@ argument_list|)
 expr_stmt|;
 name|Sequence
 name|innerSeq
-init|=
+decl_stmt|;
+name|innerSeq
+operator|=
 name|inner
 operator|.
 name|eval
@@ -840,7 +834,7 @@ name|contextSequence
 argument_list|,
 name|item
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|innerSeq
