@@ -6309,10 +6309,8 @@ condition|(
 operator|!
 name|user
 operator|.
-name|hasGroup
-argument_list|(
-literal|"dba"
-argument_list|)
+name|hasDbaRole
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -6480,10 +6478,8 @@ condition|(
 operator|!
 name|user
 operator|.
-name|hasGroup
-argument_list|(
-literal|"dba"
-argument_list|)
+name|hasDbaRole
+argument_list|()
 condition|)
 block|{
 throw|throw

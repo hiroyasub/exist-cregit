@@ -7220,6 +7220,10 @@ argument_list|(
 literal|""
 argument_list|,
 literal|""
+argument_list|,
+name|Permission
+operator|.
+name|DEFAULT_PERM
 argument_list|)
 expr_stmt|;
 block|}

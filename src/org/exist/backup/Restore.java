@@ -475,12 +475,6 @@ name|String
 name|pass
 decl_stmt|;
 specifier|private
-name|String
-name|adminPass
-init|=
-literal|null
-decl_stmt|;
-specifier|private
 name|XMLReader
 name|reader
 decl_stmt|;
