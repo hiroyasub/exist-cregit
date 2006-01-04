@@ -357,9 +357,6 @@ decl_stmt|;
 name|LocalVariable
 name|var
 decl_stmt|;
-name|Sequence
-name|argSeq
-decl_stmt|;
 name|int
 name|j
 init|=

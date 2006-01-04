@@ -674,9 +674,6 @@ block|{
 name|Item
 name|current
 decl_stmt|;
-name|String
-name|arg
-decl_stmt|;
 name|NodeSet
 name|nodes
 decl_stmt|;
