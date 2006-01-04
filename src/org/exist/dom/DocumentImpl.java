@@ -1818,12 +1818,21 @@ name|int
 name|level
 parameter_list|)
 block|{
+comment|//TODO : check *before* calling ? -pb
 if|if
 condition|(
 name|level
 operator|<
 literal|0
-operator|||
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
+if|if
+condition|(
 name|level
 operator|>
 name|maxDepth
@@ -1831,15 +1840,20 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|fatal
+name|error
 argument_list|(
 literal|"tree level "
 operator|+
 name|level
 operator|+
-literal|" does not exist"
+literal|" does not exist (maximum "
+operator|+
+name|maxDepth
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
+comment|//throw an exception ? -pb
 return|return
 operator|-
 literal|1
@@ -1867,15 +1881,20 @@ operator|>
 name|maxDepth
 condition|)
 block|{
+comment|//throw an exception ? -pb
 name|LOG
 operator|.
-name|fatal
+name|error
 argument_list|(
 literal|"tree level "
 operator|+
 name|level
 operator|+
-literal|" does not exist"
+literal|" does not exist (maximum "
+operator|+
+name|maxDepth
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 return|return
@@ -1965,6 +1984,7 @@ name|int
 name|order
 parameter_list|)
 block|{
+comment|//TODO : range check ? -pb
 name|treeLevelOrder
 index|[
 name|level
@@ -1985,6 +2005,7 @@ name|maxDepth
 operator|=
 name|depth
 expr_stmt|;
+comment|//Expand the array if maxDepth is now too big
 if|if
 condition|(
 name|treeLevelOrder
@@ -2044,6 +2065,7 @@ block|{
 operator|++
 name|maxDepth
 expr_stmt|;
+comment|//Expand the array if maxDepth is now too big
 if|if
 condition|(
 name|treeLevelOrder
@@ -2081,10 +2103,6 @@ literal|1
 argument_list|)
 expr_stmt|;
 name|treeLevelOrder
-operator|=
-name|temp
-expr_stmt|;
-name|treeLevelOrder
 index|[
 name|maxDepth
 operator|-
@@ -2092,6 +2110,10 @@ literal|1
 index|]
 operator|=
 literal|0
+expr_stmt|;
+name|treeLevelOrder
+operator|=
+name|temp
 expr_stmt|;
 block|}
 block|}
