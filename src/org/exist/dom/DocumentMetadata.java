@@ -214,14 +214,6 @@ name|other
 operator|.
 name|lastModified
 expr_stmt|;
-name|this
-operator|.
-name|userLock
-operator|=
-name|other
-operator|.
-name|userLock
-expr_stmt|;
 block|}
 specifier|public
 name|long
@@ -401,15 +393,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Writing doctype info..."
-argument_list|)
-expr_stmt|;
 name|ostream
 operator|.
 name|writeByte
@@ -432,15 +415,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NO DOCTYPE"
-argument_list|)
-expr_stmt|;
 name|ostream
 operator|.
 name|writeByte
