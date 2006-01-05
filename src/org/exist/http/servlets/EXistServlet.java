@@ -2005,24 +2005,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"User: "
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"; pass: "
-operator|+
-name|defaultPass
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
