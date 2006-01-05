@@ -515,6 +515,27 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|String
+index|[]
+name|VOPS
+init|=
+block|{
+literal|"lt"
+block|,
+literal|"gt"
+block|,
+literal|"ge"
+block|,
+literal|"lt"
+block|,
+literal|"eq"
+block|,
+literal|"ne"
+block|}
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|int
 name|KEEP_UNION
 init|=
@@ -608,6 +629,7 @@ name|FULLTEXT_AND
 init|=
 literal|1
 decl_stmt|;
+comment|//TODO : move the following to an org.exist.utils.Constants.java file
 comment|//The definitive missing constant in java.lang.String
 specifier|public
 specifier|final
@@ -642,6 +664,16 @@ specifier|static
 name|int
 name|SUPERIOR
 init|=
+literal|1
+decl_stmt|;
+comment|//
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|NO_SIZE_HINT
+init|=
+operator|-
 literal|1
 decl_stmt|;
 block|}

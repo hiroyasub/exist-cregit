@@ -123,20 +123,6 @@ name|RecoveryManager
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|sanity
-operator|.
-name|SanityCheck
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is the central entry point to the transaction management service.  *   * There's only one TransactionManager per database instance that can be  * retrieved via {@link BrokerPool#getTransactionManager()}. TransactionManager  * provides methods to create, commit and rollback a transaction.  *   * @author wolf  *  */
 end_comment

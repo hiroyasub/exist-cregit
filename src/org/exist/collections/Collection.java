@@ -4532,9 +4532,9 @@ name|DocumentImpl
 argument_list|(
 name|broker
 argument_list|,
-name|docName
-argument_list|,
 name|this
+argument_list|,
+name|docName
 argument_list|)
 expr_stmt|;
 if|if

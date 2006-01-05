@@ -351,18 +351,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class

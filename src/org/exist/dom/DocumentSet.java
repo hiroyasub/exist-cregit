@@ -772,7 +772,8 @@ name|containsKey
 argument_list|(
 name|d
 operator|.
-name|docId
+name|getDocId
+argument_list|()
 argument_list|)
 condition|)
 name|r
@@ -816,7 +817,8 @@ name|containsKey
 argument_list|(
 name|d
 operator|.
-name|docId
+name|getDocId
+argument_list|()
 argument_list|)
 operator|&&
 operator|(
@@ -827,7 +829,8 @@ name|containsKey
 argument_list|(
 name|d
 operator|.
-name|docId
+name|getDocId
+argument_list|()
 argument_list|)
 operator|)
 condition|)
@@ -902,7 +905,8 @@ name|containsKey
 argument_list|(
 name|d
 operator|.
-name|docId
+name|getDocId
+argument_list|()
 argument_list|)
 condition|)
 name|result
@@ -975,7 +979,8 @@ name|containsKey
 argument_list|(
 name|d
 operator|.
-name|docId
+name|getDocId
+argument_list|()
 argument_list|)
 condition|)
 return|return

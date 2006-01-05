@@ -613,12 +613,10 @@ name|getBroker
 parameter_list|()
 block|{
 return|return
-operator|(
-name|DBBroker
-operator|)
 name|ownerDocument
 operator|.
-name|broker
+name|getBroker
+argument_list|()
 return|;
 block|}
 comment|/** 	 *  Get the unique identifier assigned to this node. 	 * 	 *@return 	 */

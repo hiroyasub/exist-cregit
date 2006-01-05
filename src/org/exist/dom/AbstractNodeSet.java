@@ -55,6 +55,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -1854,8 +1866,9 @@ name|doc
 parameter_list|)
 block|{
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 return|;
 block|}
 comment|/** 	 * Return a new node set, which represents the intersection of the current 	 * node set with the given node set. 	 *  	 * @param other 	 * @return 	 */

@@ -31,6 +31,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -81,12 +93,6 @@ name|lastDoc
 init|=
 literal|null
 decl_stmt|;
-name|int
-name|sizeHint
-init|=
-operator|-
-literal|1
-decl_stmt|;
 switch|switch
 condition|(
 name|mode
@@ -114,6 +120,13 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|int
+name|sizeHint
+init|=
+name|Constants
+operator|.
+name|NO_SIZE_HINT
+decl_stmt|;
 name|n
 operator|=
 operator|(
@@ -155,9 +168,6 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|(
 name|p
 operator|=
 name|al
@@ -174,7 +184,10 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_LEVEL
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|p
 operator|!=
 literal|null
 condition|)
@@ -232,6 +245,13 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|int
+name|sizeHint
+init|=
+name|Constants
+operator|.
+name|NO_SIZE_HINT
+decl_stmt|;
 name|n
 operator|=
 operator|(
@@ -273,9 +293,6 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|(
 name|p
 operator|=
 name|al
@@ -292,7 +309,10 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_LEVEL
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|p
 operator|!=
 literal|null
 condition|)
@@ -328,12 +348,15 @@ expr_stmt|;
 block|}
 block|}
 break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Bad 'mode' argument"
+argument_list|)
+throw|;
 block|}
-comment|//				LOG.debug(
-comment|//					"getChildren found "
-comment|//						+ result.getLength()
-comment|//						+ " in "
-comment|//						+ (System.currentTimeMillis() - start));
 name|result
 operator|.
 name|sort
@@ -370,24 +393,17 @@ name|n
 decl_stmt|,
 name|p
 decl_stmt|;
-comment|//		long start = System.currentTimeMillis();
-name|DocumentImpl
-name|lastDoc
-init|=
-literal|null
-decl_stmt|;
-name|int
-name|sizeHint
-init|=
-operator|-
-literal|1
-decl_stmt|;
 name|ExtArrayNodeSet
 name|result
 init|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
+decl_stmt|;
+name|DocumentImpl
+name|lastDoc
+init|=
+literal|null
 decl_stmt|;
 switch|switch
 condition|(
@@ -416,6 +432,13 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|int
+name|sizeHint
+init|=
+name|Constants
+operator|.
+name|NO_SIZE_HINT
+decl_stmt|;
 name|n
 operator|=
 operator|(
@@ -543,6 +566,13 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|int
+name|sizeHint
+init|=
+name|Constants
+operator|.
+name|NO_SIZE_HINT
+decl_stmt|;
 name|n
 operator|=
 operator|(
@@ -648,12 +678,15 @@ expr_stmt|;
 block|}
 block|}
 break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Bad 'mode' argument"
+argument_list|)
+throw|;
 block|}
-comment|//				LOG.debug(
-comment|//					"getDescendants found "
-comment|//						+ result.getLength()
-comment|//						+ " in "
-comment|//						+ (System.currentTimeMillis() - start));
 return|return
 name|result
 return|;
@@ -691,9 +724,6 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|NodeSet
-name|ancestors
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -721,8 +751,9 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|NodeSet
 name|ancestors
-operator|=
+init|=
 name|ancestorsForChild
 argument_list|(
 name|al
@@ -737,7 +768,7 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_LEVEL
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -772,9 +803,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-operator|(
 name|temp
 operator|=
 name|result
@@ -783,7 +811,10 @@ name|get
 argument_list|(
 name|p
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|temp
 operator|==
 literal|null
 condition|)
@@ -864,9 +895,6 @@ argument_list|(
 literal|5
 argument_list|)
 decl_stmt|;
-name|NodeProxy
-name|temp
-decl_stmt|;
 name|long
 name|gid
 init|=
@@ -875,13 +903,9 @@ operator|.
 name|getGID
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|includeSelf
-operator|&&
-operator|(
+name|NodeProxy
 name|temp
-operator|=
+init|=
 name|ancestors
 operator|.
 name|get
@@ -893,7 +917,12 @@ argument_list|()
 argument_list|,
 name|gid
 argument_list|)
-operator|)
+decl_stmt|;
+if|if
+condition|(
+name|includeSelf
+operator|&&
+name|temp
 operator|!=
 literal|null
 condition|)
@@ -947,9 +976,6 @@ argument_list|,
 name|level
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|(
 name|temp
 operator|=
 name|ancestors
@@ -963,7 +989,10 @@ argument_list|()
 argument_list|,
 name|gid
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|temp
 operator|!=
 literal|null
 condition|)
@@ -1059,7 +1088,8 @@ name|ia
 operator|.
 name|next
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+name|NodeProxy
 name|nb
 init|=
 operator|(
@@ -1069,11 +1099,6 @@ name|ib
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|long
-name|pa
-decl_stmt|,
-name|pb
 decl_stmt|;
 while|while
 condition|(
@@ -1162,8 +1187,9 @@ block|}
 else|else
 block|{
 comment|// same document: check if the nodes have the same parent
+name|long
 name|pa
-operator|=
+init|=
 name|XMLUtil
 operator|.
 name|getParentId
@@ -1178,9 +1204,10 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|long
 name|pb
-operator|=
+init|=
 name|XMLUtil
 operator|.
 name|getParentId
@@ -1195,7 +1222,7 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|pa
@@ -1470,7 +1497,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//            System.out.println("Context " + sn.toString());
 for|for
 control|(
 name|Iterator
@@ -1499,7 +1525,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//                System.out.println("Checking " + fn.toString());
 if|if
 condition|(
 name|fn
@@ -1601,7 +1626,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//            System.out.println("Context " + sn.toString());
 for|for
 control|(
 name|Iterator
@@ -1630,7 +1654,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//                System.out.println("Checking " + fn.toString());
 if|if
 condition|(
 name|fn
