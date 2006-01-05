@@ -1955,6 +1955,19 @@ return|return
 name|cachedDocuments
 return|;
 block|}
+specifier|public
+name|void
+name|setDocumentSet
+parameter_list|(
+name|DocumentSet
+name|docs
+parameter_list|)
+block|{
+name|cachedDocuments
+operator|=
+name|docs
+expr_stmt|;
+block|}
 comment|/*      * (non-Javadoc)      *       * @see org.exist.dom.AbstractNodeSet#hasChanged(int)      */
 specifier|public
 name|boolean

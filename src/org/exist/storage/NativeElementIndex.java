@@ -3583,6 +3583,12 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
+comment|// true if the output document set is the same as the input document set
+name|boolean
+name|sameDocSet
+init|=
+literal|true
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -3725,7 +3731,13 @@ name|is
 operator|==
 literal|null
 condition|)
+block|{
+name|sameDocSet
+operator|=
+literal|false
+expr_stmt|;
 continue|continue;
+block|}
 while|while
 condition|(
 name|is
@@ -3912,6 +3924,11 @@ name|gidsCount
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+name|sameDocSet
+operator|=
+literal|false
+expr_stmt|;
 block|}
 name|previousGID
 operator|=
@@ -3984,6 +4001,19 @@ expr_stmt|;
 block|}
 block|}
 comment|//        LOG.debug("Found: " + result.getLength() + " for " + qname);
+if|if
+condition|(
+name|sameDocSet
+condition|)
+block|{
+name|result
+operator|.
+name|setDocumentSet
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|result
 return|;
