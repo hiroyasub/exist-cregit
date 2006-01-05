@@ -1688,7 +1688,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * @param pool      * @param config      * @param dataDir      * @param buffers      * @throws DBException      */
 specifier|private
 name|void
 name|createIndexFiles
@@ -1804,9 +1803,6 @@ name|qnameValueIndex
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|(
 name|dbWords
 operator|=
 operator|(
@@ -1818,7 +1814,10 @@ name|getProperty
 argument_list|(
 literal|"db-connection.words"
 argument_list|)
-operator|)
+expr_stmt|;
+if|if
+condition|(
+name|dbWords
 operator|==
 literal|null
 condition|)
@@ -1888,6 +1887,7 @@ argument_list|,
 name|dbWords
 argument_list|)
 expr_stmt|;
+block|}
 name|textEngine
 operator|=
 operator|new
@@ -1905,9 +1905,16 @@ argument_list|(
 name|textEngine
 argument_list|)
 expr_stmt|;
+name|readOnly
+operator|=
+name|readOnly
+operator|&
+name|dbWords
+operator|.
+name|isReadOnly
+argument_list|()
+expr_stmt|;
 block|}
-block|}
-comment|/**      * @param config      * @param dataDir      * @param buffers      * @param pathSep      * @throws DBException      */
 specifier|private
 name|BFile
 name|createValueIndexFile
@@ -2019,6 +2026,7 @@ argument_list|,
 name|db
 argument_list|)
 expr_stmt|;
+block|}
 name|readOnly
 operator|=
 name|readOnly
@@ -2028,7 +2036,6 @@ operator|.
 name|isReadOnly
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 name|db
 return|;
@@ -2082,12 +2089,24 @@ operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
-name|textEngine
+if|if
+condition|(
+name|elementIndex
+operator|!=
+literal|null
+condition|)
+name|elementIndex
 operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
-name|elementIndex
+if|if
+condition|(
+name|textEngine
+operator|!=
+literal|null
+condition|)
+name|textEngine
 operator|.
 name|deleteObservers
 argument_list|()
@@ -15730,11 +15749,6 @@ name|void
 name|shutdown
 parameter_list|()
 block|{
-name|super
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 try|try
 block|{
 name|flush
@@ -15747,12 +15761,17 @@ operator|.
 name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
+name|domDb
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|textEngine
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|domDb
+name|collectionsDb
 operator|.
 name|close
 argument_list|()
@@ -15767,13 +15786,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|collectionsDb
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|//            if (qnameValueIndexation)
-comment|//                valuesDbQname.close();
 if|if
 condition|(
 name|qnameValueIndex
@@ -15805,6 +15817,11 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+name|super
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed).  @param index switch to activate fulltext indexation 	 */
 specifier|public
@@ -17225,23 +17242,34 @@ operator|+
 literal|"K free"
 argument_list|)
 expr_stmt|;
-comment|// uncomment this to get statistics on page buffer usage
+name|domDb
+operator|.
+name|printStatistics
+argument_list|()
+expr_stmt|;
 name|collectionsDb
 operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|elementsDb
+operator|!=
+literal|null
+condition|)
 name|elementsDb
 operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
 name|valuesDb
-operator|.
-name|printStatistics
-argument_list|()
-expr_stmt|;
-name|domDb
+operator|!=
+literal|null
+condition|)
+name|valuesDb
 operator|.
 name|printStatistics
 argument_list|()
@@ -17257,6 +17285,12 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|textEngine
+operator|!=
+literal|null
+condition|)
 name|textEngine
 operator|.
 name|printStatistics
