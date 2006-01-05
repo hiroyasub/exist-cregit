@@ -798,6 +798,15 @@ name|String
 name|group
 parameter_list|)
 block|{
+if|if
+condition|(
+name|groups
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 for|for
 control|(
 name|int
