@@ -582,7 +582,21 @@ literal|"BinaryResource"
 expr_stmt|;
 name|log
 argument_list|(
-literal|"Creating resource of type "
+literal|"Creating resource "
+operator|+
+name|srcFile
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" in collection "
+operator|+
+name|col
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" of type "
 operator|+
 name|resourceType
 operator|+
@@ -842,6 +856,14 @@ name|relDir
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+comment|// No file separator found in resource name, reset col to the root collection
+name|col
+operator|=
+name|root
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|mime
@@ -876,7 +898,21 @@ literal|"BinaryResource"
 expr_stmt|;
 name|log
 argument_list|(
-literal|"Creating resource of type "
+literal|"Creating resource "
+operator|+
+name|file
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" in collection "
+operator|+
+name|col
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" of type "
 operator|+
 name|resourceType
 operator|+
@@ -886,6 +922,10 @@ name|currentMime
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+name|Project
+operator|.
+name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 name|res
