@@ -640,6 +640,15 @@ argument_list|)
 return|;
 block|}
 specifier|public
+name|Source
+name|getSource
+parameter_list|()
+block|{
+return|return
+name|mSource
+return|;
+block|}
+specifier|public
 name|void
 name|setSource
 parameter_list|(

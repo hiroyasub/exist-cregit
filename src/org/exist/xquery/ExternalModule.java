@@ -82,6 +82,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Get the source object this module has been read from. 	 * 	 * This is required for query access control. 	 * @return The source object this module has been read from. 	 */
+specifier|public
+name|Source
+name|getSource
+parameter_list|()
+function_decl|;
 comment|/** 	 * Set the source object this module has been read from. 	 *  	 * This is required to check the validity of a compiled expression. 	 * @param source 	 */
 specifier|public
 name|void
