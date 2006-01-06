@@ -1735,6 +1735,7 @@ name|getIndexType
 argument_list|()
 decl_stmt|;
 comment|//See if we have a range index defined on the nodes in this sequence
+comment|//TODO : use isSubType ??? -pb
 if|if
 condition|(
 name|indexType
@@ -1807,6 +1808,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//else if key is not the same type as the index
+comment|//TODO : use isSubType ??? -pb
 if|else if
 condition|(
 name|key
@@ -2312,9 +2314,7 @@ expr_stmt|;
 block|}
 comment|//return the result of the range index lookup(s) :-)
 return|return
-operator|(
 name|result
-operator|)
 return|;
 block|}
 comment|//removed by Pierrick Brihaye

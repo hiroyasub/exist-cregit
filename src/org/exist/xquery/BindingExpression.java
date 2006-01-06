@@ -777,13 +777,6 @@ name|p
 init|=
 literal|0
 decl_stmt|;
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
