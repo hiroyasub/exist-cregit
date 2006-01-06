@@ -3278,7 +3278,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|//You probably will have to call this methed from this cast :
+comment|//You probably will have to call this method from this cast :
 comment|//((org.exist.xmldb.CollectionImpl)collection).getURI()
 specifier|public
 name|XmldbURI
