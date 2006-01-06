@@ -1118,7 +1118,7 @@ name|serializer
 operator|.
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|docName
 argument_list|)

@@ -2688,7 +2688,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 literal|null
 argument_list|,
@@ -2707,7 +2707,7 @@ argument_list|()
 decl_stmt|;
 name|broker
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -2766,7 +2766,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -2908,7 +2908,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -2954,7 +2954,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,

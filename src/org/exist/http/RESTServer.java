@@ -3130,7 +3130,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|path
 argument_list|)
@@ -4383,7 +4383,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|path
 argument_list|)

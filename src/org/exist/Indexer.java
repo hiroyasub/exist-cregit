@@ -998,7 +998,7 @@ name|validate
 condition|)
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1113,7 +1113,7 @@ name|validate
 condition|)
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1457,7 +1457,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1762,7 +1762,7 @@ name|validate
 condition|)
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1883,7 +1883,7 @@ name|validate
 condition|)
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -2987,7 +2987,7 @@ name|validate
 condition|)
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3123,7 +3123,7 @@ block|}
 block|}
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3143,7 +3143,7 @@ parameter_list|)
 block|{
 name|broker
 operator|.
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,

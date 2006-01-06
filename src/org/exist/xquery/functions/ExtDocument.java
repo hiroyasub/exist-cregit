@@ -643,7 +643,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|next
 argument_list|)

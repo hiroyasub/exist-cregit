@@ -5258,7 +5258,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|resource
 argument_list|)
@@ -7553,7 +7553,7 @@ return|return
 operator|(
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|name
 argument_list|)
@@ -9587,7 +9587,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|docName
 argument_list|)
@@ -11226,7 +11226,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|docName
 argument_list|)
@@ -16401,7 +16401,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|reindex
+name|reindexCollection
 argument_list|(
 name|name
 argument_list|)

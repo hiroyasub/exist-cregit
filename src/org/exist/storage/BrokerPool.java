@@ -3132,7 +3132,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|cleanUp
+name|cleanUpTempResources
 argument_list|()
 expr_stmt|;
 if|if

@@ -439,7 +439,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getResource
 argument_list|(
 name|stylesheet
 argument_list|)

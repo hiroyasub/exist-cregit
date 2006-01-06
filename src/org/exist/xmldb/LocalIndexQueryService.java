@@ -334,7 +334,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|reindex
+name|reindexCollection
 argument_list|(
 name|parent
 operator|.
@@ -456,7 +456,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|reindex
+name|reindexCollection
 argument_list|(
 name|path
 argument_list|)

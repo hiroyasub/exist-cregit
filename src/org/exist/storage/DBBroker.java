@@ -1252,7 +1252,7 @@ comment|/** 	 *  Return the document stored at the specified path. The 	 * path 
 specifier|public
 specifier|abstract
 name|Document
-name|getDocument
+name|getResource
 parameter_list|(
 name|String
 name|path
@@ -1472,7 +1472,7 @@ comment|/** 	 * Reindex a collection. 	 *  	 * @param collectionName 	 * @throws
 specifier|public
 specifier|abstract
 name|void
-name|reindex
+name|reindexCollection
 parameter_list|(
 name|String
 name|collectionName
@@ -1520,7 +1520,7 @@ comment|/** 	 *  Store a node into the database. This method is called by the pa
 specifier|public
 specifier|abstract
 name|void
-name|store
+name|storeNode
 parameter_list|(
 name|Txn
 name|transaction
@@ -1537,7 +1537,7 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
-name|store
+name|storeNode
 parameter_list|(
 name|Txn
 name|transaction
@@ -1549,7 +1549,7 @@ name|NodePath
 name|currentPath
 parameter_list|)
 block|{
-name|store
+name|storeNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1790,8 +1790,9 @@ parameter_list|)
 function_decl|;
 comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
 specifier|public
+specifier|abstract
 name|void
-name|update
+name|updateNode
 parameter_list|(
 name|Txn
 name|transaction
@@ -1799,15 +1800,7 @@ parameter_list|,
 name|StoredNode
 name|node
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/** 	 * Is the database running read-only? Returns false by default. 	 * Storage backends should override this if they support read-only 	 * mode. 	 *  	 * @return boolean 	 */
 specifier|public
 name|boolean
@@ -1830,7 +1823,7 @@ block|}
 specifier|public
 specifier|abstract
 name|void
-name|insertAfter
+name|insertNodeAfter
 parameter_list|(
 name|Txn
 name|transaction
@@ -1845,8 +1838,9 @@ name|node
 parameter_list|)
 function_decl|;
 specifier|public
+specifier|abstract
 name|void
-name|reindex
+name|reindexResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1860,18 +1854,10 @@ parameter_list|,
 name|StoredNode
 name|node
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 specifier|public
 name|void
-name|index
+name|indexNode
 parameter_list|(
 name|Txn
 name|transaction
@@ -1880,7 +1866,7 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1891,8 +1877,9 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+specifier|abstract
 name|void
-name|index
+name|indexNode
 parameter_list|(
 name|Txn
 name|transaction
@@ -1903,16 +1890,9 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|removeNode
 parameter_list|(
@@ -1928,19 +1908,11 @@ parameter_list|,
 name|String
 name|content
 parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|removeAll
+name|removeAllNodes
 parameter_list|(
 name|Txn
 name|transaction
@@ -1953,18 +1925,11 @@ name|currentPath
 parameter_list|)
 function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|endRemove
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/** 	 * Create a temporary document in the temp collection and store the 	 * supplied data. 	 *  	 * @param data 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
@@ -1994,6 +1959,13 @@ name|void
 name|cleanUpTempCollection
 parameter_list|()
 function_decl|;
+comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 * 	 */
+specifier|public
+specifier|abstract
+name|void
+name|cleanUpTempResources
+parameter_list|()
+function_decl|;
 comment|/**      * Remove the temporary document fragments specified by a list      * of names.      *       * @param docs      */
 specifier|public
 specifier|abstract
@@ -2003,13 +1975,6 @@ parameter_list|(
 name|List
 name|docs
 parameter_list|)
-function_decl|;
-comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 * 	 */
-specifier|public
-specifier|abstract
-name|void
-name|cleanUp
-parameter_list|()
 function_decl|;
 comment|/** 	 *    	 */
 specifier|public

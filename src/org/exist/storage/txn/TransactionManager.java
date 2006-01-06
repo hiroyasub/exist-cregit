@@ -542,7 +542,7 @@ try|try
 block|{
 name|broker
 operator|.
-name|reindex
+name|reindexCollection
 argument_list|(
 name|DBBroker
 operator|.

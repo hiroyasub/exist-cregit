@@ -1952,7 +1952,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -1962,7 +1962,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -2364,7 +2364,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -2374,7 +2374,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -2726,7 +2726,7 @@ block|}
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -2736,7 +2736,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -3205,7 +3205,7 @@ comment|// insert the node
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -3253,7 +3253,7 @@ condition|)
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3420,7 +3420,7 @@ comment|// insert the node
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -3466,7 +3466,7 @@ condition|)
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3644,7 +3644,7 @@ block|}
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -3692,7 +3692,7 @@ block|{
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3753,7 +3753,7 @@ comment|// insert the node
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -3799,7 +3799,7 @@ condition|)
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -3864,7 +3864,7 @@ comment|//          insert the node
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -3910,7 +3910,7 @@ condition|)
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -6665,7 +6665,7 @@ block|}
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 literal|null
 argument_list|,
@@ -6685,7 +6685,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 literal|null
 argument_list|,
@@ -6941,7 +6941,7 @@ block|}
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -6981,7 +6981,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -7010,7 +7010,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -7183,7 +7183,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -7223,7 +7223,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -7252,7 +7252,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -7390,7 +7390,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|removeAll
+name|removeAllNodes
 argument_list|(
 name|transaction
 argument_list|,
@@ -7450,7 +7450,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -7471,7 +7471,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -7709,7 +7709,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|insertAfter
+name|insertNodeAfter
 argument_list|(
 name|transaction
 argument_list|,
@@ -7729,7 +7729,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|index
+name|indexNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -7864,7 +7864,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|removeAll
+name|removeAllNodes
 argument_list|(
 name|transaction
 argument_list|,
@@ -7888,7 +7888,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -7920,7 +7920,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -8489,7 +8489,7 @@ block|{
 name|getBroker
 argument_list|()
 operator|.
-name|update
+name|updateNode
 argument_list|(
 name|transaction
 argument_list|,
@@ -8499,7 +8499,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -8610,7 +8610,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|removeAll
+name|removeAllNodes
 argument_list|(
 name|transaction
 argument_list|,
@@ -8665,7 +8665,7 @@ decl_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|reindex
+name|reindexResource
 argument_list|(
 name|transaction
 argument_list|,
