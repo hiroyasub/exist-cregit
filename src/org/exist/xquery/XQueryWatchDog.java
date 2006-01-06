@@ -661,7 +661,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|removeTempDocs
+name|cleanUpTempResources
 argument_list|(
 name|tempFragments
 argument_list|)

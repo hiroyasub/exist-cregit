@@ -1969,7 +1969,7 @@ comment|/** 	 * Create a temporary document in the temp collection and store the
 specifier|public
 specifier|abstract
 name|DocumentImpl
-name|storeTemporaryDoc
+name|storeTempResource
 parameter_list|(
 name|org
 operator|.
@@ -1991,8 +1991,18 @@ comment|/** 	 * Clean up any temporary resources. 	 * 	 */
 specifier|public
 specifier|abstract
 name|void
-name|cleanUpAll
+name|cleanUpTempCollection
 parameter_list|()
+function_decl|;
+comment|/**      * Remove the temporary document fragments specified by a list      * of names.      *       * @param docs      */
+specifier|public
+specifier|abstract
+name|void
+name|cleanUpTempResources
+parameter_list|(
+name|List
+name|docs
+parameter_list|)
 function_decl|;
 comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 * 	 */
 specifier|public
@@ -2000,16 +2010,6 @@ specifier|abstract
 name|void
 name|cleanUp
 parameter_list|()
-function_decl|;
-comment|/** 	 * Remove the temporary document fragments specified by a list 	 * of names. 	 *  	 * @param docs 	 */
-specifier|public
-specifier|abstract
-name|void
-name|removeTempDocs
-parameter_list|(
-name|List
-name|docs
-parameter_list|)
 function_decl|;
 comment|/** 	 *    	 */
 specifier|public

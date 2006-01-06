@@ -2102,7 +2102,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// run recovery
+comment|//Run the recovery process
+comment|//TODO : assume
 name|boolean
 name|recovered
 init|=
@@ -2123,6 +2124,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+comment|//TODO : extract the following from this block ? What if we ware not transactional ? -pb
 if|if
 condition|(
 operator|!
@@ -2193,10 +2195,10 @@ block|}
 comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
-comment|// remove old temporary docs
+comment|// remove temporary docs
 name|broker
 operator|.
-name|cleanUpAll
+name|cleanUpTempCollection
 argument_list|()
 expr_stmt|;
 comment|//create the security manager
@@ -2223,9 +2225,7 @@ name|initializing
 operator|=
 literal|false
 expr_stmt|;
-comment|//TODO : other brokers don't have one. Don't know if they need one though...
-comment|// WM: there's only one CollectionConfigurationManager per BrokerPool. The passed DBBroker
-comment|// is needed to initialize/read the /db/system/config collection.
+comment|//Get a manager to handle further collectios configuration
 name|collectionConfigurationManager
 operator|=
 operator|new
@@ -2234,6 +2234,8 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+comment|//If necessary, launch a task to repair the DB
+comment|//TODO : merge this with the recovery process ?
 if|if
 condition|(
 name|recovered

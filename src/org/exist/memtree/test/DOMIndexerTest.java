@@ -483,7 +483,7 @@ name|targetDoc
 init|=
 name|broker
 operator|.
-name|storeTemporaryDoc
+name|storeTempResource
 argument_list|(
 name|doc
 argument_list|)
