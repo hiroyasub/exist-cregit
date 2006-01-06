@@ -1014,7 +1014,7 @@ argument_list|()
 condition|)
 name|broker
 operator|.
-name|defrag
+name|defragResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1023,7 +1023,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|consistencyCheck
+name|checkResourceConsistency
 argument_list|(
 name|next
 argument_list|)

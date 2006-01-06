@@ -1748,7 +1748,7 @@ comment|/**      * Defragment pages of this document. This will minimize the num
 specifier|public
 specifier|abstract
 name|void
-name|defrag
+name|defragResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1761,7 +1761,7 @@ comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * 
 specifier|public
 specifier|abstract
 name|void
-name|checkTree
+name|checkResourceTree
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -1770,7 +1770,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|consistencyCheck
+name|checkResourceConsistency
 parameter_list|(
 name|DocumentImpl
 name|doc
