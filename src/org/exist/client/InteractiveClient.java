@@ -8623,6 +8623,14 @@ control|)
 block|{
 if|if
 condition|(
+name|upload
+operator|.
+name|isCancelled
+argument_list|()
+condition|)
+break|break;
+if|if
+condition|(
 name|files
 index|[
 name|i
@@ -8875,10 +8883,8 @@ argument_list|()
 expr_stmt|;
 name|upload
 operator|.
-name|setVisible
-argument_list|(
-literal|false
-argument_list|)
+name|uploadCompleted
+argument_list|()
 expr_stmt|;
 return|return
 literal|true
@@ -9039,6 +9045,16 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|upload
+operator|.
+name|isCancelled
+argument_list|()
+condition|)
+return|return
+name|totalSize
+return|;
 comment|///TODO : use dedicated function in XmldbURI
 name|next
 operator|=

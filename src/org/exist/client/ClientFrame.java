@@ -6306,13 +6306,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|upload
-operator|.
-name|setVisible
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 operator|.
