@@ -504,7 +504,7 @@ name|info
 init|=
 name|parent
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 literal|null
 argument_list|,
