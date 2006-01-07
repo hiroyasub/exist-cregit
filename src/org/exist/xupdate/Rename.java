@@ -605,7 +605,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|storeDocument
+name|storeResource
 argument_list|(
 name|transaction
 argument_list|,

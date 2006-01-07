@@ -1976,7 +1976,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|storeDocument
+name|storeResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -6699,7 +6699,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|storeDocument
+name|storeResource
 argument_list|(
 literal|null
 argument_list|,
@@ -8679,7 +8679,7 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
-name|storeDocument
+name|storeResource
 argument_list|(
 name|transaction
 argument_list|,

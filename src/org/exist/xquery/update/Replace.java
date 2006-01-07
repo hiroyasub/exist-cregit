@@ -1025,7 +1025,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|storeDocument
+name|storeResource
 argument_list|(
 name|transaction
 argument_list|,
