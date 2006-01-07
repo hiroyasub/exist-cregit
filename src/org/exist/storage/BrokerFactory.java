@@ -19,9 +19,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|*
+name|EXistException
 import|;
 end_import
 
@@ -31,7 +29,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|*
+name|util
+operator|.
+name|Configuration
 import|;
 end_import
 
