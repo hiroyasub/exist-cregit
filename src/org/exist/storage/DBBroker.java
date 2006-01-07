@@ -1430,7 +1430,7 @@ function_decl|;
 comment|/** 	 *  Remove a document from the database. 	 * 	 */
 specifier|public
 name|void
-name|removeDocument
+name|removeXMLResource
 parameter_list|(
 name|Txn
 name|transaction

@@ -3953,7 +3953,7 @@ name|info
 init|=
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -4499,7 +4499,7 @@ operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,

@@ -577,7 +577,7 @@ name|info
 operator|=
 name|test
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,

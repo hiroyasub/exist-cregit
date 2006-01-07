@@ -7911,7 +7911,7 @@ name|info
 operator|=
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -8377,7 +8377,7 @@ name|info
 operator|=
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -10903,7 +10903,7 @@ expr_stmt|;
 else|else
 name|collection
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,

@@ -641,7 +641,7 @@ name|info
 operator|=
 name|test2
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,

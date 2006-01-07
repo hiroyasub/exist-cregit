@@ -462,7 +462,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|removeDocument
+name|removeXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -482,7 +482,7 @@ name|LockException
 block|{
 name|collection
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1683,7 +1683,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|txn
@@ -1711,7 +1711,7 @@ block|{
 return|return
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -1725,7 +1725,7 @@ return|;
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|txn
@@ -1753,7 +1753,7 @@ block|{
 return|return
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -1767,7 +1767,7 @@ return|;
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|txn
@@ -1795,7 +1795,7 @@ block|{
 return|return
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,

@@ -7967,7 +7967,7 @@ try|try
 block|{
 name|temp
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -8159,7 +8159,7 @@ condition|;
 control|)
 name|temp
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -9744,7 +9744,7 @@ expr_stmt|;
 else|else
 name|destination
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -10456,7 +10456,7 @@ expr_stmt|;
 else|else
 name|destination
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,

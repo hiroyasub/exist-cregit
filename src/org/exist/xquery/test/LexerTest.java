@@ -541,7 +541,7 @@ name|info
 init|=
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 literal|null
 argument_list|,

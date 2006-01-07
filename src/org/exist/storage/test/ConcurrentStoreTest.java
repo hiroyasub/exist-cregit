@@ -893,7 +893,7 @@ name|info
 operator|=
 name|test
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1116,7 +1116,7 @@ argument_list|)
 expr_stmt|;
 name|test
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1150,7 +1150,7 @@ name|info
 init|=
 name|test
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,

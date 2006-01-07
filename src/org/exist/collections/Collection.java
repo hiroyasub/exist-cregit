@@ -2792,7 +2792,7 @@ block|}
 comment|/**      *  Remove the specified document from the collection.      *      *@param  name      */
 specifier|public
 name|void
-name|removeDocument
+name|removeXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -3029,7 +3029,7 @@ expr_stmt|;
 block|}
 name|broker
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -3537,7 +3537,7 @@ name|SAXException
 throws|,
 name|LockException
 block|{
-name|storeInternal
+name|storeXMLInternal
 argument_list|(
 name|transaction
 argument_list|,
@@ -3686,7 +3686,7 @@ name|SAXException
 throws|,
 name|LockException
 block|{
-name|storeInternal
+name|storeXMLInternal
 argument_list|(
 name|transaction
 argument_list|,
@@ -3781,7 +3781,7 @@ name|SAXException
 throws|,
 name|LockException
 block|{
-name|storeInternal
+name|storeXMLInternal
 argument_list|(
 name|transaction
 argument_list|,
@@ -3837,7 +3837,7 @@ function_decl|;
 block|}
 specifier|private
 name|void
-name|storeInternal
+name|storeXMLInternal
 parameter_list|(
 name|Txn
 name|transaction
@@ -4116,7 +4116,7 @@ block|}
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -4142,7 +4142,7 @@ throws|,
 name|LockException
 block|{
 return|return
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -4164,7 +4164,7 @@ return|;
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -4192,7 +4192,7 @@ throws|,
 name|LockException
 block|{
 return|return
-name|validateInternal
+name|validateXMLResourceInternal
 argument_list|(
 name|transaction
 argument_list|,
@@ -4264,7 +4264,7 @@ return|;
 block|}
 specifier|public
 name|IndexInfo
-name|validate
+name|validateXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -4292,7 +4292,7 @@ throws|,
 name|LockException
 block|{
 return|return
-name|validateInternal
+name|validateXMLResourceInternal
 argument_list|(
 name|transaction
 argument_list|,
@@ -4359,7 +4359,7 @@ function_decl|;
 block|}
 specifier|private
 name|IndexInfo
-name|validateInternal
+name|validateXMLResourceInternal
 parameter_list|(
 name|Txn
 name|transaction
@@ -5757,7 +5757,7 @@ expr_stmt|;
 else|else
 name|broker
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,

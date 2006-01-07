@@ -615,7 +615,7 @@ name|info
 operator|=
 name|test2
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -731,7 +731,7 @@ name|info
 operator|=
 name|test2
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -820,7 +820,7 @@ name|info
 operator|=
 name|test2
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -854,7 +854,7 @@ expr_stmt|;
 comment|// remove last document
 name|test2
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -908,7 +908,7 @@ argument_list|)
 expr_stmt|;
 name|test2
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,

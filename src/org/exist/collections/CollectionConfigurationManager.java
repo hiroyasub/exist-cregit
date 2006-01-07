@@ -416,7 +416,7 @@ name|info
 init|=
 name|confCol
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|transaction
 argument_list|,

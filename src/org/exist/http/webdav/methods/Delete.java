@@ -566,7 +566,7 @@ expr_stmt|;
 else|else
 name|collection
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,
