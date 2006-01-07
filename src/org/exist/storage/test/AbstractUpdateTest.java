@@ -332,7 +332,7 @@ name|doc
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|TEST_COLLECTION
 operator|+

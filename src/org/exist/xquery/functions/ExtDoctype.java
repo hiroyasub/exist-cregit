@@ -513,7 +513,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getDocumentsByDoctype
+name|getXMLResourcesByDoctype
 argument_list|(
 name|next
 argument_list|,

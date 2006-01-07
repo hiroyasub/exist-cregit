@@ -657,7 +657,7 @@ name|doc
 init|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|DBBroker
 operator|.

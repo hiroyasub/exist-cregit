@@ -3358,7 +3358,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resourceName
 argument_list|,
@@ -4828,7 +4828,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|,
@@ -5586,7 +5586,7 @@ name|docs
 init|=
 name|broker
 operator|.
-name|getAllDocuments
+name|getAllXMLResources
 argument_list|(
 operator|new
 name|DocumentSet
@@ -6745,7 +6745,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|,
@@ -7036,7 +7036,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|documentPath
 argument_list|,
@@ -11970,7 +11970,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resource
 argument_list|,
@@ -12435,7 +12435,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resource
 argument_list|,
@@ -13046,7 +13046,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -13314,7 +13314,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -13455,7 +13455,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -16621,7 +16621,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|documentPath
 argument_list|,
@@ -16891,7 +16891,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|documentName
 argument_list|,

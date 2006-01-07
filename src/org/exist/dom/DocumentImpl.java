@@ -902,7 +902,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|readDocumentMeta
+name|getResourceMetadata
 argument_list|(
 name|this
 argument_list|)

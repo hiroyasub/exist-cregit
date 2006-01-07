@@ -1102,7 +1102,7 @@ name|doc
 init|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|DBBroker
 operator|.
@@ -1168,7 +1168,7 @@ name|doc
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|DBBroker
 operator|.
@@ -1247,7 +1247,7 @@ name|doc
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|DBBroker
 operator|.
@@ -1394,7 +1394,7 @@ name|BinaryDocument
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|DBBroker
 operator|.

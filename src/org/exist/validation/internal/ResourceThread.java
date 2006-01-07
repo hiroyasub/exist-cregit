@@ -321,7 +321,7 @@ name|doc
 init|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resourceId
 argument_list|,

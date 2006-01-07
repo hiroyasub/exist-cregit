@@ -2079,7 +2079,7 @@ condition|)
 comment|// no path defined: return all documents in the db
 name|broker
 operator|.
-name|getAllDocuments
+name|getAllXMLResources
 argument_list|(
 name|staticDocuments
 argument_list|)
@@ -2115,7 +2115,7 @@ name|doc
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|staticDocumentPaths
 index|[
@@ -4358,7 +4358,7 @@ name|sourceDoc
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,

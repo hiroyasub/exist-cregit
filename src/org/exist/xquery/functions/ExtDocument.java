@@ -501,7 +501,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getAllDocuments
+name|getAllXMLResources
 argument_list|(
 name|docs
 argument_list|)

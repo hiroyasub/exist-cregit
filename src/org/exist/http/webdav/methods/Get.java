@@ -425,7 +425,7 @@ name|resource
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,

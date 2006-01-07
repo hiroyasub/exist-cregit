@@ -1124,7 +1124,7 @@ comment|/** 	 *  Adds all the documents in the database to the specified Documen
 specifier|public
 specifier|abstract
 name|DocumentSet
-name|getAllDocuments
+name|getAllXMLResources
 parameter_list|(
 name|DocumentSet
 name|docs
@@ -1263,7 +1263,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|DocumentImpl
-name|openDocument
+name|getXMLResource
 parameter_list|(
 name|String
 name|docPath
@@ -1278,7 +1278,7 @@ comment|/** 	 * Get a new document id that does not yet exist within the collect
 specifier|public
 specifier|abstract
 name|int
-name|getNextDocumentId
+name|getNextResourceId
 parameter_list|(
 name|Txn
 name|transaction
@@ -1611,7 +1611,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|readDocuments
+name|getCollectionResources
 parameter_list|(
 name|Collection
 name|collection
@@ -1631,7 +1631,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|readDocumentMeta
+name|getResourceMetadata
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -1980,7 +1980,7 @@ comment|/** 	 *    	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
-name|getDocumentsByDoctype
+name|getXMLResourcesByDoctype
 parameter_list|(
 name|String
 name|doctype

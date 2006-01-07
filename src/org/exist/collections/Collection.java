@@ -1173,7 +1173,7 @@ name|setDocId
 argument_list|(
 name|broker
 operator|.
-name|getNextDocumentId
+name|getNextResourceId
 argument_list|(
 name|transaction
 argument_list|,
@@ -2742,7 +2742,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|readDocuments
+name|getCollectionResources
 argument_list|(
 name|this
 argument_list|)
@@ -4849,7 +4849,7 @@ name|setDocId
 argument_list|(
 name|broker
 operator|.
-name|getNextDocumentId
+name|getNextResourceId
 argument_list|(
 name|transaction
 argument_list|,

@@ -1167,7 +1167,7 @@ name|BinaryDocument
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|documentPath
 argument_list|,
@@ -1228,7 +1228,7 @@ name|doc
 init|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|documentPath
 argument_list|,

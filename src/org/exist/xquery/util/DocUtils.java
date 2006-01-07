@@ -800,7 +800,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,

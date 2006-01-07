@@ -1426,7 +1426,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -2044,7 +2044,7 @@ name|resource
 operator|=
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -2229,7 +2229,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -3189,7 +3189,7 @@ block|}
 else|else
 name|broker
 operator|.
-name|getAllDocuments
+name|getAllXMLResources
 argument_list|(
 name|docs
 argument_list|)
