@@ -2013,7 +2013,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|documentName
 argument_list|)

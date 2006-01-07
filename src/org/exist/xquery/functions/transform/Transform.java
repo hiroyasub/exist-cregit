@@ -2581,7 +2581,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|)

@@ -1252,7 +1252,7 @@ comment|/** 	 *  Return the document stored at the specified path. The 	 * path 
 specifier|public
 specifier|abstract
 name|Document
-name|getResource
+name|getXMLResource
 parameter_list|(
 name|String
 name|path
@@ -1441,7 +1441,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1454,7 +1454,7 @@ block|}
 specifier|public
 specifier|abstract
 name|void
-name|removeDocument
+name|removeXMLResource
 parameter_list|(
 name|Txn
 name|transaction

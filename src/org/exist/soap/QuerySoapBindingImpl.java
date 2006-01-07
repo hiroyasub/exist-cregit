@@ -1315,7 +1315,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|)

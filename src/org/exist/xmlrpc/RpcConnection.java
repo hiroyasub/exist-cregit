@@ -5258,7 +5258,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|resource
 argument_list|)
@@ -7553,7 +7553,7 @@ return|return
 operator|(
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|)
@@ -9587,7 +9587,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|docName
 argument_list|)
@@ -11226,7 +11226,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|docName
 argument_list|)

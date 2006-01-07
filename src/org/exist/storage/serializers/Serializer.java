@@ -1811,7 +1811,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|systemId
 argument_list|)
@@ -2803,7 +2803,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getResource
+name|getXMLResource
 argument_list|(
 name|stylesheet
 argument_list|)
