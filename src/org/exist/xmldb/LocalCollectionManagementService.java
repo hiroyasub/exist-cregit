@@ -1448,7 +1448,7 @@ throw|;
 block|}
 name|broker
 operator|.
-name|moveResource
+name|moveXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1858,7 +1858,7 @@ throw|;
 block|}
 name|broker
 operator|.
-name|copyResource
+name|copyXMLResource
 argument_list|(
 name|transaction
 argument_list|,

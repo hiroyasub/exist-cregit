@@ -1194,7 +1194,7 @@ block|{
 return|return
 name|broker
 operator|.
-name|getRange
+name|getNodeRange
 argument_list|(
 name|this
 argument_list|,

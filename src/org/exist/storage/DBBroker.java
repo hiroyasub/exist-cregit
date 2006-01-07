@@ -1336,7 +1336,7 @@ comment|/** 	 *  Get a range of nodes with given owner document from the databas
 specifier|public
 specifier|abstract
 name|NodeList
-name|getRange
+name|getNodeRange
 parameter_list|(
 name|Document
 name|doc
@@ -1679,7 +1679,7 @@ comment|/** 	 * Move a resource to the destination collection and rename it. 	 *
 specifier|public
 specifier|abstract
 name|void
-name|moveResource
+name|moveXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1725,7 +1725,7 @@ comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *
 specifier|public
 specifier|abstract
 name|void
-name|copyResource
+name|copyXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1748,7 +1748,7 @@ comment|/**      * Defragment pages of this document. This will minimize the num
 specifier|public
 specifier|abstract
 name|void
-name|defragResource
+name|defragXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1761,7 +1761,7 @@ comment|/** 	 * Perform a consistency check on the specified document. 	 *  	 * 
 specifier|public
 specifier|abstract
 name|void
-name|checkResourceTree
+name|checkXMLResourceTree
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -1770,7 +1770,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|checkResourceConsistency
+name|checkXMLResourceConsistency
 parameter_list|(
 name|DocumentImpl
 name|doc
@@ -1840,7 +1840,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|void
-name|reindexResource
+name|reindexXMLResource
 parameter_list|(
 name|Txn
 name|transaction

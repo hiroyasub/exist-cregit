@@ -15997,7 +15997,7 @@ name|move
 condition|)
 name|broker
 operator|.
-name|moveResource
+name|moveXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -16011,7 +16011,7 @@ expr_stmt|;
 else|else
 name|broker
 operator|.
-name|copyResource
+name|copyXMLResource
 argument_list|(
 name|transaction
 argument_list|,
