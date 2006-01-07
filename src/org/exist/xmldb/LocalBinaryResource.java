@@ -402,7 +402,7 @@ name|rawData
 operator|=
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|blob
 argument_list|)

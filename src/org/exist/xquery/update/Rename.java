@@ -959,7 +959,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|storeResource
+name|storeXMLResource
 argument_list|(
 name|transaction
 argument_list|,

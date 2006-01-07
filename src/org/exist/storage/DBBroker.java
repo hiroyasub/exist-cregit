@@ -1582,7 +1582,7 @@ comment|/** 	 * Store a document (descriptor) into the database      * (all meta
 specifier|public
 specifier|abstract
 name|void
-name|storeResource
+name|storeXMLResource
 parameter_list|(
 name|Txn
 name|transaction
@@ -1622,7 +1622,7 @@ specifier|public
 specifier|abstract
 name|byte
 index|[]
-name|getBinaryResourceData
+name|getBinaryResource
 parameter_list|(
 name|BinaryDocument
 name|blob

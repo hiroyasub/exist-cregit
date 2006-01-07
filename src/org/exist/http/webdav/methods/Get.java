@@ -626,7 +626,7 @@ name|contentData
 operator|=
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 operator|(
 name|BinaryDocument

@@ -1421,7 +1421,7 @@ name|String
 argument_list|(
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|binDoc
 argument_list|)

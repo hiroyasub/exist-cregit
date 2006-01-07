@@ -461,7 +461,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|storeResource
+name|storeXMLResource
 argument_list|(
 name|transaction
 argument_list|,

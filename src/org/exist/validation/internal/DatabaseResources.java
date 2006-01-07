@@ -1202,7 +1202,7 @@ name|data
 operator|=
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|binDoc
 argument_list|)

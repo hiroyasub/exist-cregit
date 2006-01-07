@@ -390,7 +390,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|bin
 argument_list|)

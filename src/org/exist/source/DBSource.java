@@ -382,7 +382,7 @@ name|data
 init|=
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|doc
 argument_list|)
@@ -430,7 +430,7 @@ name|data
 init|=
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 name|doc
 argument_list|)
