@@ -53,36 +53,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|DataOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Created by Francesco Mondora.  *  * @author Francesco Mondora aka Makkina  *         Date: Aug 30, 2004  *         Time: 3:45:03 PM  *         Revision $Revision$  */
 end_comment
