@@ -589,9 +589,35 @@ operator|=
 name|POSITIONAL
 expr_stmt|;
 block|}
-comment|//            if (!(contextSequence instanceof VirtualNodeSet)&&
-comment|//            		Type.subTypeOf(contextSequence.getItemType(), Type.ATOMIC))
-comment|//            	executionMode = BOOLEAN;
+if|if
+condition|(
+operator|!
+operator|(
+name|contextSequence
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|)
+condition|)
+block|{
+name|executionMode
+operator|=
+name|BOOLEAN
+expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|executionMode
