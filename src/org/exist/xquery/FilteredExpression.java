@@ -378,9 +378,6 @@ name|result
 operator|=
 name|seq
 expr_stmt|;
-name|Predicate
-name|pred
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -398,8 +395,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|Predicate
 name|pred
-operator|=
+init|=
 operator|(
 name|Predicate
 operator|)
@@ -407,7 +405,7 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|result
 operator|=
 name|pred
