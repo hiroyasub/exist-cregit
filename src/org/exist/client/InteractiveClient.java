@@ -13362,7 +13362,7 @@ parameter_list|()
 block|{
 name|messageln
 argument_list|(
-literal|"eXist version 1.0, Copyright (C) 2004 Wolfgang Meier"
+literal|"eXist version 1.0, Copyright (C) 2001-2006 Wolfgang Meier"
 argument_list|)
 expr_stmt|;
 name|messageln

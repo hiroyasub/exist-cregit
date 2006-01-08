@@ -7704,7 +7704,7 @@ name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"eXist version 1.0, Copyright (C) 2004 Wolfgang Meier\n"
+literal|"eXist version 1.0, Copyright (C) 2001-2006 Wolfgang Meier\n"
 operator|+
 literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
 operator|+
