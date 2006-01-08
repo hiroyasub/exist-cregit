@@ -1512,12 +1512,6 @@ name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy
-name|p
-decl_stmt|;
-name|long
-name|pid
-decl_stmt|;
-name|NodeProxy
 name|parent
 init|=
 literal|null
@@ -1537,8 +1531,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -1546,10 +1541,11 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// calculate parent's gid
+name|long
 name|pid
-operator|=
+init|=
 name|XMLUtil
 operator|.
 name|getParentId
@@ -1564,7 +1560,7 @@ operator|.
 name|getGID
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|pid
@@ -1572,6 +1568,28 @@ operator|!=
 name|NodeProxy
 operator|.
 name|DOCUMENT_NODE_GID
+operator|&&
+comment|//Remove the temorary nodes wrapper element
+comment|//TODO : optimize this !!!
+operator|!
+operator|(
+name|pid
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_ELEMENT_GID
+operator|&&
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|isTempCollection
+argument_list|()
+operator|)
 condition|)
 block|{
 if|if
@@ -1670,12 +1688,6 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
-name|long
-name|gid
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1691,8 +1703,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -1700,7 +1713,7 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|includeSelf
@@ -1725,13 +1738,14 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+name|long
 name|gid
-operator|=
+init|=
 name|p
 operator|.
 name|getGID
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// calculate parent's gid
 while|while
 condition|(
@@ -1752,6 +1766,37 @@ argument_list|)
 operator|)
 operator|>
 literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|gid
+operator|!=
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
+operator|&&
+comment|//Remove the temorary nodes wrapper element
+comment|//TODO : optimize this !!!
+operator|!
+operator|(
+name|gid
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_ELEMENT_GID
+operator|&&
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|isTempCollection
+argument_list|()
+operator|)
 condition|)
 block|{
 name|NodeProxy
@@ -1818,6 +1863,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return

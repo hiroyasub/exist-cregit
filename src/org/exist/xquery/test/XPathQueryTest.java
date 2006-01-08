@@ -1018,10 +1018,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Various tests involving operators * . [] 	*>>>>>>>>>> currently this crashes<<<<<<<<<< */
 specifier|public
 name|void
-name|bugtestStarAxisConstraints
+name|testStarAxisConstraints
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1046,6 +1045,49 @@ argument_list|(
 literal|"t"
 argument_list|,
 literal|"http://www.foo.com"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"// t:title/text() [ . != 'aaaa' ]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"namespaces.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxis2 : ========"
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -1111,7 +1153,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Note: this is OK:
 name|result
 operator|=
 name|service
@@ -1135,14 +1176,9 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/* currently all this crashes 	Caused by: org.exist.xquery.XPathException: Internal evaluation error: context node is missing for node 116!     at org.exist.xquery.Predicate.selectByNodeSet(Predicate.java:178)     at org.exist.xquery.Predicate.evalPredicate(Predicate.java:117)     at org.exist.xquery.LocationStep.applyPredicate(LocationStep.java:106)     at org.exist.xquery.LocationStep.eval(LocationStep.java:195) 			*/
-comment|// Note: all this is OK:
-comment|// query =  "/ * / * [ t:title ]";
-comment|// query =  "/ t:test / t:section [ t:title ]";
-comment|// query =  "/ t:test / t:section";
 name|query
 operator|=
-literal|"/ * [ ./ * / t:title ]"
+literal|"/ * / * [ t:title ]"
 expr_stmt|;
 name|result
 operator|=
@@ -1185,7 +1221,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"// t:title/text() [ . != 'aaaa' ]"
+literal|"/ t:test / t:section [ t:title ]"
 expr_stmt|;
 name|result
 operator|=
@@ -1226,6 +1262,55 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|query
+operator|=
+literal|"/ t:test / t:section"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"namespaces.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxis2 : ========"
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/* currently this crashes             Caused by: org.exist.xquery.XPathException: Internal evaluation error: context node is missing for node 116!             at org.exist.xquery.Predicate.selectByNodeSet(Predicate.java:178)             at org.exist.xquery.Predicate.evalPredicate(Predicate.java:117)             at org.exist.xquery.LocationStep.applyPredicate(LocationStep.java:106)             at org.exist.xquery.LocationStep.eval(LocationStep.java:195)                     */
+comment|//query =  "/ * [ ./ * / t:title ]";
+comment|//result = service.queryResource( "namespaces.xml", query );
+comment|//System.out.println("testStarAxis2 : ========" );
+comment|//printResult(result);
+comment|//assertEquals( "XPath: "+query, 1, result.getSize() );
 block|}
 catch|catch
 parameter_list|(
@@ -1244,6 +1329,51 @@ operator|+
 name|e
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testParentAxis
+parameter_list|()
+block|{
+try|try
+block|{
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"nested2.xml"
+argument_list|,
+name|nested2
+argument_list|)
+decl_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"nested2.xml"
+argument_list|,
+literal|"(<a/>,<b/>,<c/>)/parent::*"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
 name|fail
 argument_list|(
 name|e
@@ -1380,6 +1510,28 @@ argument_list|,
 literal|"//ChildB/ancestor::*[position() = 2]/self::RootElement"
 argument_list|,
 literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"nested2.xml"
+argument_list|,
+literal|"//ChildB/ancestor::*[position() = 2]/self::RootElement"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"nested2.xml"
+argument_list|,
+literal|"(<a/>,<b/>,<c/>)/ancestor::*"
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

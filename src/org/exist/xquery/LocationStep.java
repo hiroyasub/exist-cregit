@@ -3436,6 +3436,38 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
+comment|//TODO : optimize !!!! -pb
+if|if
+condition|(
+name|parentID
+operator|!=
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
+operator|&&
+comment|//Remove the temorary nodes wrapper element
+comment|//TODO : optimize this !!!
+operator|!
+operator|(
+name|parentID
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_ELEMENT_GID
+operator|&&
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|isTempCollection
+argument_list|()
+operator|)
+condition|)
+block|{
 if|if
 condition|(
 name|test
@@ -3472,6 +3504,7 @@ argument_list|(
 name|ancestor
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|parentID
 operator|=
