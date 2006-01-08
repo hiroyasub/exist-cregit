@@ -668,6 +668,13 @@ argument_list|(
 name|contextDocs
 argument_list|)
 expr_stmt|;
+comment|//To prevent computing nodes after atomic values...
+comment|//TODO : let the parser do it ? -pb
+name|boolean
+name|gotAtomic
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -861,14 +868,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO ! maybe this could be detected by the parser ? -pb
-if|if
-condition|(
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
 comment|//TOUNDERSTAND : why did I have to write this test :-) ? -pb
 comment|//it looks like an empty sequence could be considered as a sub-type of Type.NODE
 comment|//well, no so stupid I think...
@@ -899,6 +898,20 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|gotAtomic
+condition|)
+block|{
+name|gotAtomic
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -918,6 +931,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 if|if
