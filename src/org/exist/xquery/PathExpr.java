@@ -671,7 +671,7 @@ expr_stmt|;
 comment|//To prevent computing nodes after atomic values...
 comment|//TODO : let the parser do it ? -pb
 name|boolean
-name|gotAtomic
+name|gotAtomicResult
 init|=
 literal|false
 decl_stmt|;
@@ -702,6 +702,65 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : maybe this could be detected by the parser ? -pb
+if|if
+condition|(
+name|gotAtomicResult
+operator|&&
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|expr
+operator|.
+name|returnsType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+comment|//Ugly workaround to allow preceding *text* nodes.
+operator|&&
+operator|!
+operator|(
+name|expr
+operator|instanceof
+name|EnclosedExpr
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0019: left operand of '/' must be a node. Got '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|result
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+operator|+
+name|Cardinality
+operator|.
+name|toString
+argument_list|(
+name|result
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|contextDocs
@@ -867,7 +926,6 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO ! maybe this could be detected by the parser ? -pb
 comment|//TOUNDERSTAND : why did I have to write this test :-) ? -pb
 comment|//it looks like an empty sequence could be considered as a sub-type of Type.NODE
 comment|//well, no so stupid I think...
@@ -879,10 +937,7 @@ name|getLength
 argument_list|()
 operator|>
 literal|0
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|!
 name|Type
 operator|.
@@ -898,42 +953,10 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|gotAtomic
-condition|)
-block|{
-name|gotAtomic
+name|gotAtomicResult
 operator|=
 literal|true
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"XPTY0019: left operand of '/' must be a node. Got '"
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|result
-operator|.
-name|getItemType
-argument_list|()
-argument_list|)
-operator|+
-literal|"'"
-argument_list|)
-throw|;
-block|}
-block|}
-block|}
 if|if
 condition|(
 name|steps
