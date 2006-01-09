@@ -303,6 +303,29 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|//Logger
+specifier|protected
+name|DocumentBuilder
+name|builder
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
+name|HashMap
+name|config
+init|=
+operator|new
+name|HashMap
+argument_list|()
+decl_stmt|;
+comment|//Configuration
+specifier|protected
+name|String
+name|file
+init|=
+literal|null
+decl_stmt|;
+comment|//config file (conf.xml)
 specifier|public
 specifier|static
 specifier|final
@@ -376,26 +399,7 @@ name|params
 return|;
 block|}
 block|}
-specifier|protected
-name|DocumentBuilder
-name|builder
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|HashMap
-name|config
-init|=
-operator|new
-name|HashMap
-argument_list|()
-decl_stmt|;
-specifier|protected
-name|String
-name|file
-init|=
-literal|null
-decl_stmt|;
+comment|//Constructor (wrapper)
 specifier|public
 name|Configuration
 parameter_list|(
@@ -413,6 +417,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Constructor
 specifier|public
 name|Configuration
 parameter_list|(
@@ -432,12 +437,11 @@ name|is
 init|=
 literal|null
 decl_stmt|;
-comment|// first try to read the configuration from a file within the
-comment|// classpath
+comment|//firstly, try to read the configuration from a file within the classpath
 if|if
 condition|(
 name|file
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
@@ -470,12 +474,16 @@ literal|"Reading configuration from classloader"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
+comment|//Default file name
 name|file
 operator|=
 literal|"conf.xml"
 expr_stmt|;
 block|}
+comment|//otherise, secondly try to read configuration from file. Guess the location if necessary
 if|if
 condition|(
 name|is
@@ -483,8 +491,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// try to read configuration from file. Guess the location if
-comment|// necessary
+comment|//try and read the config file from the specified home folder
 name|File
 name|f
 init|=
@@ -528,6 +535,7 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
+comment|//if cant read config from specified home folder
 if|if
 condition|(
 operator|!
@@ -541,10 +549,10 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"unable to read configuration. Trying to guess location ..."
+literal|"Unable to read configuration. Trying to guess location ..."
 argument_list|)
 expr_stmt|;
-comment|// fall back and try to read from home directory
+comment|//Read from the configration file from the guessed home folder
 if|if
 condition|(
 name|dbHome
@@ -622,7 +630,7 @@ throw|throw
 operator|new
 name|DatabaseConfigurationException
 argument_list|(
-literal|"unable to read configuration file"
+literal|"Unable to read configuration file"
 argument_list|)
 throw|;
 block|}
@@ -753,7 +761,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-comment|// indexer settings
+comment|//indexer settings
 name|NodeList
 name|indexer
 init|=
@@ -784,6 +792,7 @@ name|indexer
 argument_list|)
 expr_stmt|;
 block|}
+comment|//db connection settings
 name|NodeList
 name|dbcon
 init|=
@@ -812,6 +821,7 @@ name|dbcon
 argument_list|)
 expr_stmt|;
 block|}
+comment|//serializer settings
 name|NodeList
 name|serializers
 init|=
@@ -838,6 +848,7 @@ name|serializers
 argument_list|)
 expr_stmt|;
 block|}
+comment|//XUpdate settings
 name|NodeList
 name|xupdates
 init|=
@@ -864,6 +875,7 @@ name|xupdates
 argument_list|)
 expr_stmt|;
 block|}
+comment|//XQuery settings
 name|NodeList
 name|xquery
 init|=
@@ -898,6 +910,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|//XACML settings
 name|NodeList
 name|xacml
 init|=
@@ -4529,6 +4542,7 @@ return|return
 name|file
 return|;
 block|}
+comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|error
