@@ -371,6 +371,18 @@ name|exist
 operator|.
 name|http
 operator|.
+name|Descriptor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
 name|servlets
 operator|.
 name|HttpRequestWrapper
@@ -1053,6 +1065,13 @@ specifier|private
 name|String
 name|containerEncoding
 decl_stmt|;
+specifier|private
+name|Descriptor
+name|descriptor
+init|=
+literal|null
+decl_stmt|;
+comment|//Constructor
 specifier|public
 name|RESTServer
 parameter_list|(
@@ -1074,6 +1093,14 @@ operator|.
 name|containerEncoding
 operator|=
 name|containerEncoding
+expr_stmt|;
+name|descriptor
+operator|=
+operator|new
+name|Descriptor
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a binary      * resource with mime-type "application/xquery", this resource will be      * loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param parameters      * @param path      * @return      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
@@ -1418,7 +1445,25 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// first, check if path leads to an XQuery resource
+comment|//first, see if a mapping is specified on the path
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|// second, check if path leads to an XQuery resource
 name|resource
 operator|=
 operator|(
@@ -2040,6 +2085,24 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//first, see if a mapping is specified on the path
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
 name|resource
 operator|=
 name|broker
@@ -2213,8 +2276,6 @@ argument_list|(
 name|defaultProperties
 argument_list|)
 decl_stmt|;
-comment|// first, check if path leads to an XQuery resource.
-comment|// if yes, the resource is loaded and the XQuery executed.
 name|DocumentImpl
 name|resource
 init|=
@@ -2222,6 +2283,26 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//first, see if a mapping is specified on the path
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|// second, check if path leads to an XQuery resource.
+comment|// if yes, the resource is loaded and the XQuery executed.
 name|resource
 operator|=
 operator|(
@@ -3644,6 +3725,24 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|//first, see if a mapping is specified on the docPath
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+name|docPath
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|docPath
+argument_list|)
+expr_stmt|;
+block|}
 comment|//TODO : use dedicated function in XmldbURI
 name|int
 name|p
@@ -4321,6 +4420,24 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|//first, see if a mapping is specified on the path
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
 name|Collection
 name|collection
 init|=
