@@ -131,6 +131,15 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|context
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
 name|Type
 operator|.
 name|subTypeOf

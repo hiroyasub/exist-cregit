@@ -71,6 +71,21 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Context. Current:"
+operator|+
+name|node
+operator|+
+literal|"Next:"
+operator|+
+name|nextItem
+return|;
+block|}
 block|}
 end_class
 

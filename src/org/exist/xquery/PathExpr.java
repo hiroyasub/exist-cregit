@@ -581,9 +581,7 @@ block|}
 name|Sequence
 name|result
 init|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -591,9 +589,18 @@ name|steps
 operator|.
 name|size
 argument_list|()
-operator|>
+operator|==
 literal|0
 condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+block|}
+else|else
 block|{
 if|if
 condition|(
@@ -731,6 +738,24 @@ name|EnclosedExpr
 operator|)
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Path steps:"
+operator|+
+name|steps
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Current expression:"
+operator|+
+name|expr
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -793,6 +818,10 @@ condition|)
 block|{
 if|if
 condition|(
+name|result
+operator|==
+literal|null
+operator|||
 name|result
 operator|.
 name|getLength
