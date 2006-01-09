@@ -591,6 +591,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|executionMode
+operator|==
+name|NODE
+operator|&&
 operator|!
 operator|(
 name|contextSequence
