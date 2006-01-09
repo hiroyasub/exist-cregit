@@ -829,6 +829,15 @@ name|String
 name|path
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mapList
+operator|==
+literal|null
+condition|)
+return|return
+name|path
+return|;
 comment|//Iterate through the mappings
 for|for
 control|(
