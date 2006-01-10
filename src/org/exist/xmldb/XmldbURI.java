@@ -877,7 +877,7 @@ operator|=
 name|index
 expr_stmt|;
 block|}
-comment|//Default : a local URI...
+comment|//Default : REST-style...
 if|if
 condition|(
 name|apiName
