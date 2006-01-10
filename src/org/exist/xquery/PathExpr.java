@@ -425,23 +425,6 @@ block|{
 comment|// if this is a sequence of steps, the IN_PREDICATE flag
 comment|// is only passed to the first step, so it has to be removed
 comment|// for subsequent steps
-comment|//TODO : why not if (i> 0) then ??? -pb
-comment|//We'd need a test case with more than 2 steps to demonstrate the feature
-if|if
-condition|(
-name|i
-operator|==
-literal|1
-condition|)
-name|flags
-operator|=
-name|flags
-operator|&
-operator|(
-operator|~
-name|IN_PREDICATE
-operator|)
-expr_stmt|;
 name|Expression
 name|expr
 init|=
@@ -455,6 +438,36 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|(
+name|flags
+operator|&
+name|IN_PREDICATE
+operator|)
+operator|>
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|i
+operator|==
+literal|1
+condition|)
+block|{
+comment|//take care : predicates in predicates are not marked as such ! -pb
+name|flags
+operator|=
+name|flags
+operator|&
+operator|(
+operator|~
+name|IN_PREDICATE
+operator|)
+expr_stmt|;
+block|}
+block|}
 name|expr
 operator|.
 name|analyze

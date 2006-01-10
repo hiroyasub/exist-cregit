@@ -2536,6 +2536,172 @@ block|}
 block|}
 specifier|public
 name|void
+name|bugtestPredicates2
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|numbers
+init|=
+literal|"<test>"
+operator|+
+literal|"<item id='1' type='alphanum'><price>5.6</price><stock>22</stock></item>"
+operator|+
+literal|"<item id='2'><price>7.4</price><stock>43</stock></item>"
+operator|+
+literal|"<item id='3'><price>18.4</price><stock>5</stock></item>"
+operator|+
+literal|"<item id='4'><price>65.54</price><stock>16</stock></item>"
+operator|+
+literal|"</test>"
+decl_stmt|;
+try|try
+block|{
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|numbers
+argument_list|)
+decl_stmt|;
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
+name|String
+name|query
+init|=
+literal|"let $t :=<test>"
+operator|+
+literal|"<a><s>A</s> 1</a>"
+operator|+
+literal|"<a><s>Z</s> 2</a>"
+operator|+
+literal|"<a><s>B</s> 3</a>"
+operator|+
+literal|"<a><s>Z</s> 4</a>"
+operator|+
+literal|"<a><s>C</s> 5</a>"
+operator|+
+literal|"<a><s>Z</s> 6</a>"
+operator|+
+literal|"</test>"
+operator|+
+literal|"return $t//a[s='Z' and preceding-sibling::*[1]/s='B']"
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<a><s>Z</s> 4</a>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $t :=<test>"
+operator|+
+literal|"<a><s>A</s> 1</a>"
+operator|+
+literal|"<a><s>Z</s> 2</a>"
+operator|+
+literal|"<a><s>B</s> 3</a>"
+operator|+
+literal|"<a><s>Z</s> 4</a>"
+operator|+
+literal|"<a><s>C</s> 5</a>"
+operator|+
+literal|"<a><s>Z</s> 6</a>"
+operator|+
+literal|"</test>"
+operator|+
+literal|"return $t//a[s='Z' and ./preceding-sibling::*[1]/s='B']"
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<a><s>Z</s> 4</a>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
 name|testStrings
 parameter_list|()
 block|{
