@@ -561,9 +561,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|result
-decl_stmt|;
 name|boolean
 name|exceptionThrown
 init|=
@@ -576,8 +573,6 @@ literal|""
 decl_stmt|;
 try|try
 block|{
-name|result
-operator|=
 name|queryAndAssert
 argument_list|(
 name|service
@@ -628,8 +623,6 @@ literal|""
 expr_stmt|;
 try|try
 block|{
-name|result
-operator|=
 name|queryAndAssert
 argument_list|(
 name|service
@@ -670,8 +663,6 @@ argument_list|,
 name|exceptionThrown
 argument_list|)
 expr_stmt|;
-name|result
-operator|=
 name|queryAndAssert
 argument_list|(
 name|service
@@ -1435,7 +1426,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis2 : ========"
+literal|"testStarAxisConstraints2 : ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -1471,7 +1462,108 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis(): XMLDBException: "
+literal|"testStarAxisConstraints2(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|bugtestStarAxisConstraints3
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+try|try
+block|{
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"namespaces.xml"
+argument_list|,
+name|namespaces
+argument_list|)
+decl_stmt|;
+name|service
+operator|.
+name|setNamespace
+argument_list|(
+literal|"t"
+argument_list|,
+literal|"http://www.foo.com"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"// * [ . = 'Test Document' ]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"namespaces.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints3 : ========"
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+comment|//org.xmldb.api.base.XMLDBException: Internal evaluation error: context node is missing !
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints3(): XMLDBException: "
 operator|+
 name|e
 argument_list|)
