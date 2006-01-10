@@ -1112,6 +1112,7 @@ argument_list|(
 name|docElemProxy
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1119,6 +1120,31 @@ argument_list|(
 name|docElemProxy
 argument_list|)
 expr_stmt|;
+comment|// I took these lines from addChildren() .
+comment|// Certainly there is some refactoring here ...
+name|docElemProxy
+operator|.
+name|copyContext
+argument_list|(
+name|docElemProxy
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|useSelfAsContext
+operator|&&
+name|inPredicate
+condition|)
+block|{
+name|docElemProxy
+operator|.
+name|addContextNode
+argument_list|(
+name|docElemProxy
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|node
@@ -1326,6 +1352,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** recursively adds children nodes */
 specifier|private
 specifier|final
 name|void

@@ -1378,7 +1378,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestStarAxisConstraints2
+name|testStarAxisConstraints2
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1479,7 +1479,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestStarAxisConstraints3
+name|testStarAxisConstraints3
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1541,7 +1541,7 @@ literal|"XPath: "
 operator|+
 name|query
 argument_list|,
-literal|1
+literal|4
 argument_list|,
 name|result
 operator|.
