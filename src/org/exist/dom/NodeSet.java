@@ -296,6 +296,9 @@ name|siblings
 parameter_list|,
 name|int
 name|mode
+parameter_list|,
+name|boolean
+name|rememberContext
 parameter_list|)
 function_decl|;
 specifier|public

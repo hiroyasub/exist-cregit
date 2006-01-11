@@ -2876,6 +2876,25 @@ name|registerUpdateListener
 argument_list|()
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Current Set: "
+operator|+
+name|currentSet
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|"; context: "
+operator|+
+name|contextSet
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 switch|switch
 condition|(
 name|axis
@@ -2896,6 +2915,8 @@ argument_list|,
 name|NodeSet
 operator|.
 name|PRECEDING
+argument_list|,
+name|inPredicate
 argument_list|)
 return|;
 case|case
@@ -2913,6 +2934,8 @@ argument_list|,
 name|NodeSet
 operator|.
 name|FOLLOWING
+argument_list|,
+name|inPredicate
 argument_list|)
 return|;
 default|default :

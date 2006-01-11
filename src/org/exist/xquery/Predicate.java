@@ -1590,6 +1590,8 @@ argument_list|,
 name|NodeSet
 operator|.
 name|PRECEDING
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1609,6 +1611,8 @@ argument_list|,
 name|NodeSet
 operator|.
 name|FOLLOWING
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|reverseAxis
