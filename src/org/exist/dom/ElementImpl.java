@@ -5988,9 +5988,12 @@ argument_list|(
 name|nodeName
 argument_list|)
 expr_stmt|;
+comment|//Remove false to have a verbose output
 if|if
 condition|(
 name|top
+operator|&&
+literal|false
 condition|)
 block|{
 name|buf
@@ -6132,11 +6135,12 @@ argument_list|(
 literal|" xmlns=\""
 argument_list|)
 expr_stmt|;
+comment|//buf.append(namespace);
 name|buf
 operator|.
 name|append
 argument_list|(
-name|namespace
+literal|"..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -6163,11 +6167,12 @@ argument_list|(
 literal|"=\""
 argument_list|)
 expr_stmt|;
+comment|//buf.append(namespace);
 name|buf
 operator|.
 name|append
 argument_list|(
-name|namespace
+literal|"..."
 argument_list|)
 expr_stmt|;
 block|}

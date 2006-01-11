@@ -1409,6 +1409,9 @@ operator|.
 name|toString
 argument_list|()
 return|;
+comment|//return ("doc: " + this.getDocument() + " gid:" + this.getGID() + " address :" +
+comment|//        this.getInternalAddress() + " type :" + this.getNodeType()
+comment|//        );
 block|}
 comment|/** 		 * Sets the nodeType. 		 * @param nodeType The nodeType to set 		 */
 specifier|public
