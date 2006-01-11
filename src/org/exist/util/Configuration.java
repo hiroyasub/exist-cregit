@@ -1645,7 +1645,7 @@ name|obj
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
+specifier|private
 name|void
 name|configureXACML
 parameter_list|(
