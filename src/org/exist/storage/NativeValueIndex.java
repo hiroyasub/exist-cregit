@@ -2842,21 +2842,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//Is it expected ? Remove this block if not -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//EOFException expected
 block|}
 block|}
 comment|//TOUNDERSTAND (bis) : don't we lack the 2 following lines like in NativeElementIndex ? -pb
