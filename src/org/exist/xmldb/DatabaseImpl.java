@@ -1205,6 +1205,25 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|current
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NO_SUCH_COLLECTION
+argument_list|,
+literal|"Could not find collection: "
+operator|+
+name|c
+argument_list|)
+throw|;
 block|}
 return|return
 name|current
