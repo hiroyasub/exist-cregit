@@ -1355,6 +1355,8 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//			DocumentImpl document = (DocumentImpl) broker.getDocument(name);
 name|DocumentImpl
 name|document
 init|=
@@ -1363,12 +1365,11 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
-comment|//??			DocumentImpl document = (DocumentImpl) broker.getXMLResource(name);
 if|if
 condition|(
 name|document

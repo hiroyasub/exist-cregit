@@ -1229,7 +1229,7 @@ expr_stmt|;
 else|else
 name|collection
 operator|.
-name|removeDocument
+name|removeXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -1238,7 +1238,6 @@ argument_list|,
 name|docName
 argument_list|)
 expr_stmt|;
-comment|//??				collection.removeXMLResource(txn, broker, docName);
 name|transact
 operator|.
 name|commit
@@ -1533,12 +1532,14 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//          IndexInfo info = collection.validate(txn, broker, path, new InputSource(new ByteArrayInputStream(data)));
 name|IndexInfo
 name|info
 init|=
 name|collection
 operator|.
-name|validate
+name|validateXMLResource
 argument_list|(
 name|txn
 argument_list|,
@@ -1557,7 +1558,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//??            IndexInfo info = collection.validateXMLResource(txn, broker, path, new InputSource(new ByteArrayInputStream(data)));
 name|info
 operator|.
 name|getDocument
@@ -1716,7 +1716,7 @@ return|return
 name|session
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.soap.Admin#xupdate(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.soap.Admin#xupdate(java.lang.String, java.lang.String)          */
 specifier|public
 name|int
 name|xupdate
@@ -2123,7 +2123,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.soap.Admin#xupdate(java.lang.String, java.lang.String) 		 */
+comment|/* (non-Javadoc)          * @see org.exist.soap.Admin#xupdate(java.lang.String, java.lang.String)          */
 specifier|public
 name|int
 name|xupdateResource
@@ -2199,6 +2199,8 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            DocumentImpl doc = (DocumentImpl)broker.getDocument(documentName);
 name|DocumentImpl
 name|doc
 init|=
@@ -2207,12 +2209,11 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|getDocument
+name|getXMLResource
 argument_list|(
 name|documentName
 argument_list|)
 decl_stmt|;
-comment|//??			DocumentImpl doc = (DocumentImpl)broker.getXMLResource(documentName);
 if|if
 condition|(
 name|doc
@@ -2918,6 +2919,8 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            doc = (DocumentImpl) broker.openXmlDocument(name, Lock.READ_LOCK);
 name|doc
 operator|=
 operator|(
@@ -2925,7 +2928,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|name
 argument_list|,
@@ -3003,7 +3006,7 @@ throw|;
 return|return
 name|broker
 operator|.
-name|getBinaryResourceData
+name|getBinaryResource
 argument_list|(
 operator|(
 name|BinaryDocument
@@ -3640,6 +3643,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// TODO check XML/Binary resource
+comment|//                doc = (DocumentImpl) broker.openDocument(resource, Lock.WRITE_LOCK);
 name|doc
 operator|=
 operator|(
@@ -3647,7 +3652,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resource
 argument_list|,
@@ -3748,9 +3753,11 @@ argument_list|(
 name|permissions
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//                    broker.storeDocument(transaction, doc);
 name|broker
 operator|.
-name|storeDocument
+name|storeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -4277,9 +4284,11 @@ if|if
 condition|(
 name|move
 condition|)
+comment|// TODO check XML/Binary resource
+comment|//                broker.moveResource(transaction, doc, destination, newName);
 name|broker
 operator|.
-name|moveResource
+name|moveXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -4291,9 +4300,11 @@ name|newName
 argument_list|)
 expr_stmt|;
 else|else
+comment|// TODO check XML/Binary resource
+comment|//                broker.copyResource(transaction, doc, destination, newName);
 name|broker
 operator|.
-name|copyResource
+name|copyXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -5268,7 +5279,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*         Vector groups = new Vector();         for (Iterator i = u.getGroups(); i.hasNext(); )             groups.addElement(i.next());         desc.setGroups(new Strings((String[])groups.toArray(new String[groups.size()]))); */
+comment|/*         Vector groups = new Vector();         for (Iterator i = u.getGroups(); i.hasNext(); )             groups.addElement(i.next());         desc.setGroups(new Strings((String[])groups.toArray(new String[groups.size()])));  */
 name|desc
 operator|.
 name|setGroups
@@ -5493,7 +5504,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*             Vector groups = new Vector();             for (Iterator j = users[i].getGroups(); j.hasNext(); )                 groups.addElement(j.next());             r[i].setGroups(new Strings((String[])groups.toArray(new String[groups.size()]))); */
+comment|/*             Vector groups = new Vector();             for (Iterator j = users[i].getGroups(); j.hasNext(); )                 groups.addElement(j.next());             r[i].setGroups(new Strings((String[])groups.toArray(new String[groups.size()])));  */
 name|r
 index|[
 name|i
@@ -5895,6 +5906,8 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.WRITE_LOCK);
 name|doc
 operator|=
 operator|(
@@ -5902,7 +5915,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -6073,9 +6086,11 @@ argument_list|(
 name|lo
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            broker.storeDocument(transaction, doc);
 name|broker
 operator|.
-name|storeDocument
+name|storeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -6206,6 +6221,8 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.WRITE_LOCK);
 name|doc
 operator|=
 operator|(
@@ -6213,7 +6230,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -6348,9 +6365,11 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            broker.storeDocument(transaction, doc);
 name|broker
 operator|.
-name|storeDocument
+name|storeXMLResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -6478,6 +6497,8 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|// TODO check XML/Binary resource
+comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.READ_LOCK);
 name|doc
 operator|=
 operator|(
@@ -6485,7 +6506,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|path
 argument_list|,
@@ -6725,6 +6746,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// TODO check XML/Binary resource
+comment|//                DocumentImpl doc = (DocumentImpl) broker.openDocument(resource, Lock.READ_LOCK);
 name|DocumentImpl
 name|doc
 init|=
@@ -6733,7 +6756,7 @@ name|DocumentImpl
 operator|)
 name|broker
 operator|.
-name|openDocument
+name|getXMLResource
 argument_list|(
 name|resource
 argument_list|,
