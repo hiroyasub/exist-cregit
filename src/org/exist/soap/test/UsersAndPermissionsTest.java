@@ -321,7 +321,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testCreateUser
+name|bugTestCreateUser
 parameter_list|()
 throws|throws
 name|RemoteException

@@ -185,7 +185,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|testXQuery
+name|bugTestXQuery
 parameter_list|()
 throws|throws
 name|RemoteException

@@ -389,7 +389,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|testCopyResourceChangeName
+name|bugTestCopyResourceChangeName
 parameter_list|()
 throws|throws
 name|RemoteException
@@ -513,7 +513,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|testMoveResource
+name|bugTestMoveResource
 parameter_list|()
 throws|throws
 name|RemoteException
@@ -600,7 +600,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|testCopyCollectionChangeName
+name|bugTestCopyCollectionChangeName
 parameter_list|()
 throws|throws
 name|RemoteException
@@ -684,7 +684,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|testMoveCollection
+name|bugTestMoveCollection
 parameter_list|()
 throws|throws
 name|RemoteException
