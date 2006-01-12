@@ -155,6 +155,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -166,6 +176,16 @@ operator|.
 name|util
 operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -216,10 +236,6 @@ import|;
 end_import
 
 begin_comment
-comment|/* * requires sunxacml.jar to be on the classpath * Added getSource() to ExternalModule interface and implemented getSource() *	in ExternalModuleImpl */
-end_comment
-
-begin_comment
 comment|/** * This class is responsible for creating the XACML Policy Decision Point (PDP) * for a database instance.  The PDP is the entity that accepts access requests * and makes a decision whether the access is allowed.  The PDP returns a decision * to the requesting entity (called a Policy Enforcement Point, or PEP).  This * decision is either Permit, Deny, Indeterminate, or Not Applicable.  Not * Applicable occurs if no policy could be found that applied to the request. * Indeterminate occurs if there was an error processing the request or the * request was invalid. *<p> * This class also provides convenience methods for most uses.  The main method * is<code>evaluate</code>, which will throw a *<code>PermissionDeniedException</code> unless the decision was Permit and no * Obligations were required.  An Obligation is a conditional access decision. * If the PEP cannot perform the Obligation, then it cannot accept the decision. *<p> *<code>RequestHelper</code> provides methods for creating a *<code>RequestCtx</code>, which is then passed to the<code>PDP</code> either * indirectly by calling<code>evaluate</code> or directly by calling *<code>getPDP().evaluate()</code>.  The first method can probably be used in * most cases, while the second one allows more flexibility in handling the * response. * * @see XACMLConstants * @see ExistPolicyModule * @see RequestHelper */
 end_comment
 
@@ -247,6 +263,11 @@ specifier|private
 name|PDP
 name|pdp
 decl_stmt|;
+comment|/** 	 * Assists client in creating<code>RequestCtx</code>s. 	 */
+specifier|private
+name|RequestHelper
+name|helper
+decl_stmt|;
 specifier|private
 name|ExistPDP
 parameter_list|()
@@ -260,6 +281,32 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+literal|"com.sun.xacml"
+argument_list|)
+operator|.
+name|setLevel
+argument_list|(
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+operator|.
+name|WARNING
+argument_list|)
+expr_stmt|;
 name|PDPConfig
 name|config
 init|=
@@ -289,6 +336,12 @@ name|PDP
 argument_list|(
 name|config
 argument_list|)
+expr_stmt|;
+name|helper
+operator|=
+operator|new
+name|RequestHelper
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	* The method that will be used most of the time.  It provides the 	* simplest interface to the underlying<code>PDP</code> by 	* permitting the request only if the<code>ResponseCtx</code> 	* includes<code>Result</code>s that have no<code>Obligation</code>s 	* and only have the decision<code>Permit</code>.  Other cases 	* result in a<code>PermissionDeniedException</code>.  The other cases 	* include when an applicable policy cannot be found and when an error 	* occurs. 	* 	* @param request the access request 	* @throws PermissionDeniedException if the request is not allowed 	*/
@@ -473,7 +526,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"The response did not permit the request.  The decision was "
+literal|"The response did not permit the request.  The decision was: "
 operator|+
 name|getDecisionString
 argument_list|(
@@ -513,7 +566,7 @@ operator|.
 name|DECISION_PERMIT
 case|:
 return|return
-literal|"to permit the request"
+literal|"permit the request"
 return|;
 case|case
 name|Result
@@ -521,7 +574,7 @@ operator|.
 name|DECISION_DENY
 case|:
 return|return
-literal|"to deny the request"
+literal|"deny the request"
 return|;
 case|case
 name|Result
@@ -570,7 +623,7 @@ operator|+
 name|error
 expr_stmt|;
 return|return
-literal|"indeterminate because there was an error"
+literal|"indeterminate (there was an error)"
 operator|+
 name|error
 return|;
@@ -584,7 +637,7 @@ literal|"the request was not applicable to the policy"
 return|;
 default|default:
 return|return
-literal|"of an unknown type"
+literal|": of an unknown type"
 return|;
 block|}
 block|}
@@ -596,6 +649,16 @@ parameter_list|()
 block|{
 return|return
 name|pdp
+return|;
+block|}
+comment|/** 	 * Gets a<code>RequestHelper</code> 	 *  	 * @return The<code>RequestHelper</code> for this database instance 	 */
+specifier|public
+name|RequestHelper
+name|getRequestHelper
+parameter_list|()
+block|{
+return|return
+name|helper
 return|;
 block|}
 comment|/** 	* Creates a<code>ResourceFinder</code> that is used by the 	*<code>PDP</code> to locate hierarchical resources.  Hierarchical resources 	* are not currently supported (org.exist.security.xacml, not sunxacml) so 	* this method returns null. 	*  	* @param pool The<code>BrokerPool</code> to be used to access the 	*		database if needed. 	* @return A<code>ResourceFinder</code> for hierarchical resources. 	*/
@@ -611,7 +674,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	* Creates an<code>AttributeFinder</code> that is used by the 	*<code>PDP</code> to locate attributes required by a policy but unspecified 	* by the request context.  The XACML specification requires that certain 	* attributes of the environment always be available, so the CurrentEnvModule 	* is a provided<code>AttributeFinderModule</code> in the returned 	*<code>AttributeFinder</code>.  No other modules are yet provided. 	*  	* @param pool The<code>BrokerPool</code> to be used to access the 	*		database if needed. 	* @return An<code>AttributeFinder</code> for unspecified attributes. 	*/
+comment|/** 	* Creates an<code>AttributeFinder</code> that is used by the 	*<code>PDP</code> to locate attributes required by a policy but unspecified 	* by the request context.  The XACML specification requires that certain 	* attributes of the environment always be available, so the CurrentEnvModule 	* is a provided<code>AttributeFinderModule</code> in the returned 	*<code>AttributeFinder</code>.  The other module looks up attributes 	* for a<code>User</code>.  This module,<code>UserAttributeModule</code>, 	* finds the user's name and the user's groups from the subject-id (which is 	* the uid of the user). 	*  	* @param pool The<code>BrokerPool</code> to be used to access the 	*		database if needed. 	* @return An<code>AttributeFinder</code> for unspecified attributes. 	*/
 specifier|private
 name|AttributeFinder
 name|createAttributeFinder
@@ -620,6 +683,35 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+name|List
+name|modules
+init|=
+operator|new
+name|ArrayList
+argument_list|(
+literal|2
+argument_list|)
+decl_stmt|;
+name|modules
+operator|.
+name|add
+argument_list|(
+operator|new
+name|UserAttributeModule
+argument_list|(
+name|pool
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|modules
+operator|.
+name|add
+argument_list|(
+operator|new
+name|CurrentEnvModule
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|AttributeFinder
 name|attributeFinder
 init|=
@@ -631,14 +723,7 @@ name|attributeFinder
 operator|.
 name|setModules
 argument_list|(
-name|Collections
-operator|.
-name|singletonList
-argument_list|(
-operator|new
-name|CurrentEnvModule
-argument_list|()
-argument_list|)
+name|modules
 argument_list|)
 expr_stmt|;
 return|return

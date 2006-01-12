@@ -15,6 +15,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|sun
+operator|.
+name|xacml
+operator|.
+name|ctx
+operator|.
+name|RequestCtx
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -272,6 +286,20 @@ operator|.
 name|security
 operator|.
 name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|ExistPDP
 import|;
 end_import
 
@@ -3017,6 +3045,25 @@ expr_stmt|;
 block|}
 return|return
 name|module
+return|;
+block|}
+comment|/** 	 * Convenience method that returns the XACML Policy Decision Point for  	 * this database instance.  If XACML has not been enabled, this returns 	 * null. 	 *  	 * @return the PDP for this database instance, or null if XACML is disabled  	 */
+specifier|public
+name|ExistPDP
+name|getPDP
+parameter_list|()
+block|{
+return|return
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getPDP
+argument_list|()
 return|;
 block|}
 comment|/** 	 * Declare a user-defined function. All user-defined functions are kept 	 * in a single hash map. 	 *  	 * @param function 	 * @throws XPathException 	 */

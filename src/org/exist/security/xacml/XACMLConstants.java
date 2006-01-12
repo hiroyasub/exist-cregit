@@ -304,20 +304,47 @@ name|EXIST_XACML_NS
 operator|+
 literal|"/resource"
 decl_stmt|;
+comment|/** 	* The namespace used for subject-related eXist-specific XACML 	* constants. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUBJECT_NS
+init|=
+name|EXIST_XACML_NS
+operator|+
+literal|"/subject"
+decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the namespace 	* URI of a module. 	*/
 specifier|public
 specifier|static
 specifier|final
 name|URI
-name|MODULE_NS_ATTRIBUTE
+name|SUBJECT_NS_ATTRIBUTE
 init|=
 name|URI
 operator|.
 name|create
 argument_list|(
-name|EXIST_XACML_NS
+name|SUBJECT_NS
 operator|+
-literal|"#module-namespace"
+literal|"#subject-namespace"
+argument_list|)
+decl_stmt|;
+comment|/** 	* The attribute ID for the attribute that provides the namespace 	* URI of a module. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|URI
+name|RESOURCE_NS_ATTRIBUTE
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|RESOURCE_NS
+operator|+
+literal|"#resource-namespace"
 argument_list|)
 decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the category 	* of an XQuery module. 	*/
@@ -336,6 +363,22 @@ operator|+
 literal|"#module-category"
 argument_list|)
 decl_stmt|;
+comment|/** 	 * The attribute ID for the attribute the describes a module's source.  	 */
+specifier|public
+specifier|static
+specifier|final
+name|URI
+name|MODULE_SRC_ATTRIBUTE
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|SUBJECT_NS
+operator|+
+literal|"#module-src"
+argument_list|)
+decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the category of 	* a resource. 	*/
 specifier|public
 specifier|static
@@ -352,87 +395,6 @@ operator|+
 literal|"#resource-category"
 argument_list|)
 decl_stmt|;
-comment|/** 	* The internal/builtin XQuery module type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|INTERNAL_MODULE_ATTR_VALUE
-init|=
-literal|"internal"
-decl_stmt|;
-comment|/** 	* The external/non-builtin XQuery module type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|EXTERNAL_MODULE_ATTR_VALUE
-init|=
-literal|"external"
-decl_stmt|;
-comment|/** 	* The action-id corresponding to a request to reflectively load a 	* Java class in XQuery. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|LOAD_CLASS_ACTION
-init|=
-literal|"load class"
-decl_stmt|;
-comment|/** 	* The action-id corresponding to a request to reflectively invoke a 	* method of a Java class in XQuery. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|INVOKE_METHOD_ACTION
-init|=
-literal|"invoke method"
-decl_stmt|;
-comment|/** 	* The action-id corresponding to a request to import an XQuery module. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|IMPORT_MODULE_ACTION
-init|=
-literal|"import module"
-decl_stmt|;
-comment|/** 	* The action-id corresponding to a request to call a function in an XQuery. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|CALL_FUNCTION_ACTION
-init|=
-literal|"call function"
-decl_stmt|;
-comment|/** 	* The XQuery resource type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|QUERY_RESOURCE
-init|=
-literal|"query"
-decl_stmt|;
-comment|/** 	* The Java method resource type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|METHOD_RESOURCE
-init|=
-literal|"method"
-decl_stmt|;
-comment|/** 	* The Java class resource type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|CLASS_RESOURCE
-init|=
-literal|"class"
-decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the name of a Java class 	* being reflectively loaded. 	*/
 specifier|public
 specifier|static
@@ -444,9 +406,25 @@ name|URI
 operator|.
 name|create
 argument_list|(
-name|EXIST_XACML_NS
+name|RESOURCE_NS
 operator|+
-literal|"/class"
+literal|"#class"
+argument_list|)
+decl_stmt|;
+comment|/** 	* The attribute ID for the attribute that provides the name of a user. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|URI
+name|USER_NAME_ATTRIBUTE
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|SUBJECT_NS
+operator|+
+literal|"#name"
 argument_list|)
 decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the names of the groups 	* to which a user belongs. 	*/
@@ -460,10 +438,91 @@ name|URI
 operator|.
 name|create
 argument_list|(
-name|EXIST_XACML_NS
+name|SUBJECT_NS
 operator|+
-literal|"/group"
+literal|"#group"
 argument_list|)
+decl_stmt|;
+comment|/** 	* The internal/builtin XQuery library module type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INTERNAL_LIBRARY_MODULE
+init|=
+literal|"internal library"
+decl_stmt|;
+comment|/** 	* The external/non-builtin XQuery library module type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXTERNAL_LIBRARY_MODULE
+init|=
+literal|"external library"
+decl_stmt|;
+comment|/** 	* The external/non-builtin XQuery library module type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXTERNAL_MAIN_MODULE
+init|=
+literal|"external main"
+decl_stmt|;
+comment|/** 	* The external/non-builtin XQuery library module type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONSTRUCTED_MAIN_MODULE
+init|=
+literal|"constructed main"
+decl_stmt|;
+comment|/** 	* The action-id corresponding to a request to reflectively invoke a 	* method of a Java class in XQuery. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INVOKE_METHOD_ACTION
+init|=
+literal|"invoke method"
+decl_stmt|;
+comment|/** 	* The action-id corresponding to a request to call a function in an XQuery. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CALL_FUNCTION_ACTION
+init|=
+literal|"call function"
+decl_stmt|;
+comment|/** 	* The Java method resource type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|METHOD_RESOURCE
+init|=
+literal|"method"
+decl_stmt|;
+comment|/** 	* The query function resource type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_RESOURCE
+init|=
+literal|"function"
+decl_stmt|;
+comment|/** 	* The main XQuery module resource type. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MAIN_MODULE_RESOURCE
+init|=
+literal|"main module"
 decl_stmt|;
 specifier|private
 name|XACMLConstants

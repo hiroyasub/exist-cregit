@@ -1306,7 +1306,11 @@ argument_list|)
 expr_stmt|;
 name|step
 operator|=
+operator|new
+name|InternalFunctionCall
+argument_list|(
 name|func
+argument_list|)
 expr_stmt|;
 block|}
 else|else
