@@ -1100,7 +1100,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.soap.Query#getResourceData(java.lang.String, byte[], boolean, boolean) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.soap.Query#getResourceData(java.lang.String, byte[], boolean, boolean)          */
 specifier|public
 name|byte
 index|[]
@@ -1356,7 +1356,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// TODO check XML/Binary resource
-comment|//			DocumentImpl document = (DocumentImpl) broker.getDocument(name);
+comment|// DocumentImpl document = (DocumentImpl) broker.getDocument(name);
 name|DocumentImpl
 name|document
 init|=
@@ -1854,7 +1854,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.soap.Query#xquery(java.lang.String, byte[]) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.soap.Query#xquery(java.lang.String, byte[])          */
 specifier|public
 name|org
 operator|.
@@ -2322,7 +2322,7 @@ return|return
 name|resp
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.soap.Query#retrieveData(java.lang.String, int, int, boolean, boolean, java.lang.String) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.soap.Query#retrieveData(java.lang.String, int, int, boolean, boolean, java.lang.String)          */
 specifier|public
 name|org
 operator|.
