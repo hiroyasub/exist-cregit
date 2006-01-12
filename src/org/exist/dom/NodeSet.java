@@ -286,16 +286,25 @@ name|boolean
 name|rememberContext
 parameter_list|)
 function_decl|;
-comment|/** 	 * Select all nodes from the passed node set, which 	 * are preceding or following siblings of the nodes in 	 * this set. If mode is {@link #FOLLOWING}, only nodes following 	 * the context node are selected. {@link #PRECEDING} selects 	 * preceding nodes. 	 *  	 * @param siblings a node set containing potential siblings 	 * @param mode either FOLLOWING or PRECEDING 	 * @return 	 */
+comment|/**      * Select all nodes from the passed node set, which      * are preceding siblings of the nodes in      * this set.      *       * @param siblings a node set containing potential siblings       * @return      */
 specifier|public
 name|NodeSet
-name|selectSiblings
+name|selectPrecedingSiblings
 parameter_list|(
 name|NodeSet
 name|siblings
 parameter_list|,
-name|int
-name|mode
+name|boolean
+name|rememberContext
+parameter_list|)
+function_decl|;
+comment|/**      * Select all nodes from the passed node set, which      * are following siblings of the nodes in      * this set.      *       * @param siblings a node set containing potential siblings          * @return      */
+specifier|public
+name|NodeSet
+name|selectFollowingSiblings
+parameter_list|(
+name|NodeSet
+name|siblings
 parameter_list|,
 name|boolean
 name|rememberContext
@@ -303,20 +312,20 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|NodeSet
-name|selectFollowing
+name|selectPreceding
 parameter_list|(
 name|NodeSet
-name|following
+name|preceding
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
 specifier|public
 name|NodeSet
-name|selectPreceding
+name|selectFollowing
 parameter_list|(
 name|NodeSet
-name|preceding
+name|following
 parameter_list|)
 throws|throws
 name|XPathException

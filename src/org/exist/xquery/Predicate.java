@@ -1106,13 +1106,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-name|count
-argument_list|)
-expr_stmt|;
 name|NodeProxy
 name|next
 init|=
@@ -1133,6 +1126,7 @@ name|next
 argument_list|)
 condition|)
 block|{
+comment|//if (count ==  contextMark) {
 name|next
 operator|.
 name|addMatches
@@ -1149,6 +1143,8 @@ argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
+comment|//break;
+comment|//}
 block|}
 name|contextItem
 operator|=
@@ -1156,6 +1152,9 @@ name|contextItem
 operator|.
 name|getNextItem
 argument_list|()
+expr_stmt|;
+name|count
+operator|++
 expr_stmt|;
 block|}
 block|}
@@ -1583,15 +1582,11 @@ name|temp
 operator|=
 name|contextSet
 operator|.
-name|selectSiblings
+name|selectPrecedingSiblings
 argument_list|(
 name|p
 argument_list|,
-name|NodeSet
-operator|.
-name|PRECEDING
-argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1604,15 +1599,11 @@ name|temp
 operator|=
 name|contextSet
 operator|.
-name|selectSiblings
+name|selectFollowingSiblings
 argument_list|(
 name|p
 argument_list|,
-name|NodeSet
-operator|.
-name|FOLLOWING
-argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 name|reverseAxis
@@ -1674,6 +1665,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|//TODO : build a value sequence *one* time ? -pb
 name|Sequence
 name|innerSeq
 init|=
@@ -1739,8 +1731,6 @@ name|v
 operator|.
 name|getInt
 argument_list|()
-operator|-
-literal|1
 operator|)
 decl_stmt|;
 comment|//Other positions are ignored

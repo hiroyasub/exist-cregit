@@ -6198,11 +6198,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//ignore eXist namespace's attributes
-comment|//TODO : should be improved !
 name|assertEquals
 argument_list|(
-literal|1
+literal|0
 argument_list|,
 name|d
 operator|.
@@ -6213,6 +6211,8 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//ignore eXist namespace's attributes
+comment|//assertEquals(1, d.getAllDifferences().size());
 block|}
 catch|catch
 parameter_list|(
