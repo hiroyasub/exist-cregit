@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/**  * QueryResponseDocument.java  *  * This file was auto-generated from WSDL  * by the Apache Axis 1.2.1 Jun 14, 2005 (09:15:57 EDT) WSDL2Java emitter.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -8,10 +12,6 @@ operator|.
 name|soap
 package|;
 end_package
-
-begin_comment
-comment|/**  * Wrapper class containing a query result summary for a single document.  *    * @author wolf  */
-end_comment
 
 begin_class
 specifier|public
@@ -41,7 +41,34 @@ name|QueryResponseDocument
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Returns the name of the document represented by this object. 	 *  	 * @return 	 */
+specifier|public
+name|QueryResponseDocument
+parameter_list|(
+name|java
+operator|.
+name|lang
+operator|.
+name|String
+name|documentName
+parameter_list|,
+name|int
+name|hitCount
+parameter_list|)
+block|{
+name|this
+operator|.
+name|documentName
+operator|=
+name|documentName
+expr_stmt|;
+name|this
+operator|.
+name|hitCount
+operator|=
+name|hitCount
+expr_stmt|;
+block|}
+comment|/**      * Gets the documentName value for this QueryResponseDocument.      *       * @return documentName      */
 specifier|public
 name|java
 operator|.
@@ -55,6 +82,7 @@ return|return
 name|documentName
 return|;
 block|}
+comment|/**      * Sets the documentName value for this QueryResponseDocument.      *       * @param documentName      */
 specifier|public
 name|void
 name|setDocumentName
@@ -74,7 +102,7 @@ operator|=
 name|documentName
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the number of hits found within this document. 	 *  	 * @return 	 */
+comment|/**      * Gets the hitCount value for this QueryResponseDocument.      *       * @return hitCount      */
 specifier|public
 name|int
 name|getHitCount
@@ -84,6 +112,7 @@ return|return
 name|hitCount
 return|;
 block|}
+comment|/**      * Sets the hitCount value for this QueryResponseDocument.      *       * @param hitCount      */
 specifier|public
 name|void
 name|setHitCount
@@ -328,6 +357,8 @@ argument_list|(
 name|QueryResponseDocument
 operator|.
 name|class
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 static|static
@@ -394,7 +425,7 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|""
+literal|"urn:exist"
 argument_list|,
 literal|"documentName"
 argument_list|)
@@ -417,6 +448,13 @@ literal|"http://www.w3.org/2001/XMLSchema"
 argument_list|,
 literal|"string"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|elemField
+operator|.
+name|setNillable
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 name|typeDesc
@@ -460,7 +498,7 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|""
+literal|"urn:exist"
 argument_list|,
 literal|"hitCount"
 argument_list|)
@@ -483,6 +521,13 @@ literal|"http://www.w3.org/2001/XMLSchema"
 argument_list|,
 literal|"int"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|elemField
+operator|.
+name|setNillable
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 name|typeDesc

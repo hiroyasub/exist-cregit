@@ -285,6 +285,9 @@ literal|false
 argument_list|,
 literal|"elements"
 argument_list|)
+operator|.
+name|getElements
+argument_list|()
 decl_stmt|;
 for|for
 control|(
