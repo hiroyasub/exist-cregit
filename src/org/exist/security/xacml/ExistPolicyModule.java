@@ -189,7 +189,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -420,6 +440,23 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|Map
+name|POLICY_CACHE
+init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
+operator|new
+name|HashMap
+argument_list|(
+literal|8
+argument_list|)
+argument_list|)
+decl_stmt|;
+specifier|private
 name|PolicyFinder
 name|finder
 decl_stmt|;
@@ -609,10 +646,10 @@ control|)
 block|{
 name|policy
 operator|=
-name|parsePolicyDocument
+name|getPolicyDocument
 argument_list|(
 operator|(
-name|Document
+name|DocumentImpl
 operator|)
 name|it
 operator|.
@@ -644,7 +681,6 @@ name|MatchResult
 operator|.
 name|INDETERMINATE
 condition|)
-block|{
 return|return
 operator|new
 name|PolicyFinderResult
@@ -655,7 +691,6 @@ name|getStatus
 argument_list|()
 argument_list|)
 return|;
-block|}
 if|else if
 condition|(
 name|result
@@ -679,7 +714,7 @@ else|else
 return|return
 name|errorResult
 argument_list|(
-literal|"Matched multiple profiles for reqest"
+literal|"Matched multiple policies for reqest"
 argument_list|,
 literal|null
 argument_list|)
@@ -776,7 +811,7 @@ operator|.
 name|get
 argument_list|()
 expr_stmt|;
-name|Document
+name|DocumentImpl
 name|policyDoc
 init|=
 name|getPolicyDocument
@@ -802,7 +837,7 @@ return|;
 name|AbstractPolicy
 name|policy
 init|=
-name|parsePolicyDocument
+name|getPolicyDocument
 argument_list|(
 name|policyDoc
 argument_list|)
@@ -971,7 +1006,7 @@ return|;
 block|}
 comment|//resolves a reference to a policy document
 specifier|private
-name|Document
+name|DocumentImpl
 name|getPolicyDocument
 parameter_list|(
 name|DBBroker
@@ -1244,6 +1279,67 @@ argument_list|,
 name|message
 argument_list|)
 argument_list|)
+return|;
+block|}
+comment|//if the document has already been parsed, returns the cached AbstractPolicy
+comment|//otherwise, parses and caches the document
+specifier|private
+name|AbstractPolicy
+name|getPolicyDocument
+parameter_list|(
+name|DocumentImpl
+name|policyDoc
+parameter_list|)
+throws|throws
+name|ParsingException
+block|{
+name|String
+name|uri
+init|=
+name|policyDoc
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+name|AbstractPolicy
+name|policy
+init|=
+operator|(
+name|AbstractPolicy
+operator|)
+name|POLICY_CACHE
+operator|.
+name|get
+argument_list|(
+name|uri
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|policy
+operator|==
+literal|null
+condition|)
+block|{
+name|policy
+operator|=
+name|parsePolicyDocument
+argument_list|(
+name|policyDoc
+argument_list|)
+expr_stmt|;
+name|POLICY_CACHE
+operator|.
+name|put
+argument_list|(
+name|uri
+argument_list|,
+name|policy
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|policy
 return|;
 block|}
 comment|//parses a DOM representation of a policy document into an AbstractPolicy
