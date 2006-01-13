@@ -193,6 +193,30 @@ end_comment
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|xmlrpc
+operator|.
+name|Base64
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -395,18 +419,6 @@ name|TransformerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
@@ -422,6 +434,10 @@ comment|//TODO: Feature - Add an option to execute the function Asynchronously a
 comment|//TODO: Feature - Add a facility for the user to add their own message headers.
 comment|//TODO: Feature - Add attachment support, will need base64 encoding etc...
 comment|//TODO: Read the location of sendmail from the configuration file. Can vary from system to system
+specifier|private
+name|String
+name|charset
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -534,6 +550,38 @@ name|XPathException
 block|{
 try|try
 block|{
+comment|//get the charset parameter, default to UTF-8
+if|if
+condition|(
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|charset
+operator|=
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|charset
+operator|=
+literal|"UTF-8"
+expr_stmt|;
+block|}
 comment|//Parse the XML<mail> into a mail Object
 name|mail
 name|theMail
@@ -587,14 +635,6 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|,
-name|args
-index|[
-literal|2
-index|]
-operator|.
-name|getStringValue
-argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -615,14 +655,6 @@ condition|(
 name|SendSendmail
 argument_list|(
 name|theMail
-argument_list|,
-name|args
-index|[
-literal|2
-index|]
-operator|.
-name|getStringValue
-argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -673,9 +705,6 @@ name|SendSendmail
 parameter_list|(
 name|mail
 name|aMail
-parameter_list|,
-name|String
-name|ContentType_Charset
 parameter_list|)
 block|{
 try|try
@@ -867,10 +896,16 @@ init|=
 operator|new
 name|PrintWriter
 argument_list|(
+operator|new
+name|OutputStreamWriter
+argument_list|(
 name|p
 operator|.
 name|getOutputStream
 argument_list|()
+argument_list|,
+name|charset
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//Send the Message
@@ -879,8 +914,6 @@ argument_list|(
 name|out
 argument_list|,
 name|aMail
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 expr_stmt|;
 comment|//Close the stdOut
@@ -930,9 +963,6 @@ name|aMail
 parameter_list|,
 name|String
 name|SMTPServer
-parameter_list|,
-name|String
-name|ContentType_Charset
 parameter_list|)
 block|{
 specifier|final
@@ -993,6 +1023,8 @@ name|smtpSock
 operator|.
 name|getOutputStream
 argument_list|()
+argument_list|,
+name|charset
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1496,8 +1528,6 @@ argument_list|(
 name|out
 argument_list|,
 name|aMail
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 expr_stmt|;
 comment|//Get end message response, should be "250 blah blah"
@@ -1585,9 +1615,6 @@ name|out
 parameter_list|,
 name|mail
 name|aMail
-parameter_list|,
-name|String
-name|ContentType_Charset
 parameter_list|)
 throws|throws
 name|IOException
@@ -1607,17 +1634,6 @@ operator|+
 name|Version
 decl_stmt|;
 comment|//Multipart Boundary
-if|if
-condition|(
-name|ContentType_Charset
-operator|==
-literal|""
-condition|)
-comment|//set default charset if requied
-name|ContentType_Charset
-operator|=
-literal|"UTF-8"
-expr_stmt|;
 comment|//write the message headers
 name|out
 operator|.
@@ -1625,14 +1641,12 @@ name|println
 argument_list|(
 literal|"From: "
 operator|+
-name|encode
+name|encode64Address
 argument_list|(
 name|aMail
 operator|.
 name|getFrom
 argument_list|()
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1660,7 +1674,7 @@ name|println
 argument_list|(
 literal|"To: "
 operator|+
-name|encode
+name|encode64Address
 argument_list|(
 name|aMail
 operator|.
@@ -1668,8 +1682,6 @@ name|getTo
 argument_list|(
 name|x
 argument_list|)
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1698,7 +1710,7 @@ name|println
 argument_list|(
 literal|"CC: "
 operator|+
-name|encode
+name|encode64Address
 argument_list|(
 name|aMail
 operator|.
@@ -1706,8 +1718,6 @@ name|getCC
 argument_list|(
 name|x
 argument_list|)
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1736,7 +1746,7 @@ name|println
 argument_list|(
 literal|"BCC: "
 operator|+
-name|encode
+name|encode64Address
 argument_list|(
 name|aMail
 operator|.
@@ -1744,8 +1754,6 @@ name|getBCC
 argument_list|(
 name|x
 argument_list|)
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1766,14 +1774,12 @@ name|println
 argument_list|(
 literal|"Subject: "
 operator|+
-name|encode
+name|encode64
 argument_list|(
 name|aMail
 operator|.
 name|getSubject
 argument_list|()
-argument_list|,
-name|ContentType_Charset
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1848,12 +1854,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-name|encode
-argument_list|(
 literal|"Error your mail client is not MIME Compatible"
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//send the text part first
@@ -1872,14 +1873,14 @@ name|println
 argument_list|(
 literal|"Content-Type: text/plain; charset="
 operator|+
-name|ContentType_Charset
+name|charset
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Transfer-Encoding: quoted-printable"
+literal|"Content-Transfer-Encoding: 8bit"
 argument_list|)
 expr_stmt|;
 name|out
@@ -1908,41 +1909,31 @@ name|println
 argument_list|(
 literal|"Content-Type: text/html; charset="
 operator|+
-name|ContentType_Charset
+name|charset
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Transfer-Encoding: quoted-printable"
+literal|"Content-Transfer-Encoding: 8bit"
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
-argument_list|(
-name|encode
 argument_list|(
 literal|"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">"
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
-argument_list|(
-name|encode
 argument_list|(
 name|aMail
 operator|.
 name|getXHTML
 argument_list|()
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Emd multipart message
@@ -1985,14 +1976,14 @@ name|println
 argument_list|(
 literal|"Content-Type: text/plain; charset="
 operator|+
-name|ContentType_Charset
+name|charset
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Transfer-Encoding: quoted-printable"
+literal|"Content-Transfer-Encoding: 8bit"
 argument_list|)
 expr_stmt|;
 comment|//now send the trxt message
@@ -2005,15 +1996,10 @@ name|out
 operator|.
 name|println
 argument_list|(
-name|encode
-argument_list|(
 name|aMail
 operator|.
 name|getText
 argument_list|()
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2026,14 +2012,14 @@ name|println
 argument_list|(
 literal|"Content-Type: text/html; charset="
 operator|+
-name|ContentType_Charset
+name|charset
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Content-Transfer-Encoding: quoted-printable"
+literal|"Content-Transfer-Encoding: 8bit"
 argument_list|)
 expr_stmt|;
 comment|//now send the html message
@@ -2046,27 +2032,17 @@ name|out
 operator|.
 name|println
 argument_list|(
-name|encode
-argument_list|(
 literal|"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">"
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|println
 argument_list|(
-name|encode
-argument_list|(
 name|aMail
 operator|.
 name|getXHTML
 argument_list|()
-argument_list|,
-name|ContentType_Charset
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3072,47 +3048,157 @@ name|dateString
 operator|)
 return|;
 block|}
-comment|//encodes a string to the charset
+comment|//Base65 Encodes a string (used for message subject)
 specifier|private
 name|String
-name|encode
+name|encode64
 parameter_list|(
 name|String
 name|str
-parameter_list|,
-name|String
-name|ContentType_Charset
 parameter_list|)
-block|{
-try|try
-block|{
-return|return
-operator|new
-name|String
-argument_list|(
-name|str
-operator|.
-name|getBytes
-argument_list|()
-argument_list|,
-name|ContentType_Charset
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
+throws|throws
 name|java
 operator|.
 name|io
 operator|.
 name|UnsupportedEncodingException
-name|e
-parameter_list|)
 block|{
-return|return
+name|String
+name|result
+init|=
+operator|new
+name|String
+argument_list|(
+name|Base64
+operator|.
+name|encode
+argument_list|(
 name|str
+operator|.
+name|getBytes
+argument_list|(
+name|charset
+argument_list|)
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|result
+operator|=
+name|result
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|result
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\n"
+argument_list|,
+literal|"?=\n =?UTF-8?B?"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+literal|"=?"
+operator|+
+name|charset
+operator|+
+literal|"?B?"
+operator|+
+name|result
+operator|+
+literal|"?="
+expr_stmt|;
+return|return
+operator|(
+name|result
+operator|)
 return|;
 block|}
+comment|//Base64 Encodes an email address
+specifier|private
+name|String
+name|encode64Address
+parameter_list|(
+name|String
+name|str
+parameter_list|)
+throws|throws
+name|java
+operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
+block|{
+name|String
+name|result
+decl_stmt|;
+name|int
+name|idx
+init|=
+name|str
+operator|.
+name|indexOf
+argument_list|(
+literal|"<"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|idx
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|result
+operator|=
+name|encode64
+argument_list|(
+name|str
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|idx
+argument_list|)
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|str
+operator|.
+name|substring
+argument_list|(
+name|idx
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|result
+operator|=
+name|str
+expr_stmt|;
+block|}
+return|return
+operator|(
+name|result
+operator|)
+return|;
 block|}
 comment|//Class that Represents an email
 specifier|private
