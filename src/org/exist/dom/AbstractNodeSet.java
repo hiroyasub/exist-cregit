@@ -2434,7 +2434,7 @@ return|return
 name|result
 return|;
 block|}
-comment|//TOUNDERSTAND : what is this mthod for ? -pb
+comment|//TOUNDERSTAND : what is this method for ? -pb
 specifier|public
 name|NodeSet
 name|getContextNodes
@@ -2591,7 +2591,7 @@ name|contextNode
 operator|=
 name|contextNode
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}

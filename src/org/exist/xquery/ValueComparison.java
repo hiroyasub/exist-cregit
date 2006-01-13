@@ -407,6 +407,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : review to consider transverse context
 name|c
 operator|=
 name|current
@@ -497,7 +498,7 @@ name|c
 operator|=
 name|c
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 operator|)
 operator|!=

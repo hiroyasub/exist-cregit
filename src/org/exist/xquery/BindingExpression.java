@@ -674,6 +674,7 @@ literal|"!"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : review to consider transverse context
 while|while
 condition|(
 name|contextNode
@@ -722,7 +723,7 @@ name|contextNode
 operator|=
 name|contextNode
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}

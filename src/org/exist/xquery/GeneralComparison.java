@@ -1404,6 +1404,7 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
+comment|//TODO : review to consider transverse context
 do|do
 block|{
 name|rs
@@ -1478,7 +1479,7 @@ name|c
 operator|=
 name|c
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 operator|)
 operator|!=

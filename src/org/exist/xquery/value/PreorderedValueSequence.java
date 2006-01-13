@@ -333,6 +333,7 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+comment|//TODO : review to consider transverse context
 while|while
 condition|(
 name|context
@@ -392,7 +393,7 @@ name|context
 operator|=
 name|context
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}

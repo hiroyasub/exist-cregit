@@ -1094,6 +1094,7 @@ literal|" !"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : review to consider transverse context
 name|int
 name|count
 init|=
@@ -1150,7 +1151,7 @@ name|contextItem
 operator|=
 name|contextItem
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 expr_stmt|;
 name|count
@@ -1374,7 +1375,7 @@ name|contextNode
 operator|=
 name|contextNode
 operator|.
-name|getNextItem
+name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
@@ -1548,6 +1549,9 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 case|:
+comment|//TODO : understand why the contextSet is not involved here
+comment|//NodeProxy.getParent returns a *theoretical* parent
+comment|//which is *not* guaranteed to be in the context set !
 name|temp
 operator|=
 name|p
