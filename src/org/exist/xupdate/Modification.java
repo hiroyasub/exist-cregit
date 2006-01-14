@@ -588,13 +588,6 @@ argument_list|()
 expr_stmt|;
 name|context
 operator|.
-name|setExclusiveMode
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
 name|setStaticallyKnownDocuments
 argument_list|(
 name|docs

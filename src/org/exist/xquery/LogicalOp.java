@@ -108,11 +108,8 @@ specifier|public
 name|void
 name|analyze
 parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
+name|AnalyzeContextInfo
+name|contextInfo
 parameter_list|)
 throws|throws
 name|XPathException
@@ -121,9 +118,7 @@ name|super
 operator|.
 name|analyze
 argument_list|(
-name|parent
-argument_list|,
-name|flags
+name|contextInfo
 argument_list|)
 expr_stmt|;
 if|if

@@ -125,6 +125,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|AnalyzeContextInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|PathExpr
 import|;
 end_import
@@ -599,9 +611,9 @@ name|expr
 operator|.
 name|analyze
 argument_list|(
-literal|null
-argument_list|,
-literal|0
+operator|new
+name|AnalyzeContextInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// execute the query

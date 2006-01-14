@@ -219,16 +219,13 @@ operator|=
 name|args
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#analyze(org.exist.xquery.Expression, int) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#analyze(org.exist.xquery.AnalyzeContextInfo) 	 */
 specifier|public
 name|void
 name|analyze
 parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
+name|AnalyzeContextInfo
+name|contextInfo
 parameter_list|)
 throws|throws
 name|XPathException
@@ -303,13 +300,18 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
+name|contextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|body
 operator|.
 name|analyze
 argument_list|(
-name|this
-argument_list|,
-name|flags
+name|contextInfo
 argument_list|)
 expr_stmt|;
 comment|// restore the local variable stack

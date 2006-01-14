@@ -215,16 +215,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
 parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
+name|AnalyzeContextInfo
+name|contextInfo
 parameter_list|)
 throws|throws
 name|XPathException
@@ -232,12 +229,22 @@ block|{
 name|inPredicate
 operator|=
 operator|(
-name|flags
+name|contextInfo
+operator|.
+name|getFlags
+argument_list|()
 operator|&
 name|IN_PREDICATE
 operator|)
 operator|>
 literal|0
+expr_stmt|;
+name|contextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 for|for
 control|(
@@ -268,9 +275,7 @@ operator|)
 operator|.
 name|analyze
 argument_list|(
-name|this
-argument_list|,
-name|flags
+name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}

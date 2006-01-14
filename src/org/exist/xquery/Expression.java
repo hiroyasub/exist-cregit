@@ -127,16 +127,39 @@ name|IN_UPDATE
 init|=
 literal|8
 decl_stmt|;
-comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class.      *       * @throws XPathException      */
+comment|/**      * Indicates that no context id is supplied to an expression.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|NO_CONTEXT_ID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/**      * Marks an invalid expression id.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|EXPRESSION_ID_INVALID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/**      * Returns an id which uniquely identifies this expression      * within the compiled expression tree of the query.      *       * @return unique id or {@link #EXPRESSION_ID_INVALID}      */
+specifier|public
+name|int
+name|getExpressionId
+parameter_list|()
+function_decl|;
+comment|/**      * Statically analyze the expression and its subexpressions.      *       * During the static analysis phase, the query engine can detect      * unknown variables and some type errors.      *       * @throws XPathException      */
 specifier|public
 name|void
 name|analyze
 parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
+name|AnalyzeContextInfo
+name|contextInfo
 parameter_list|)
 throws|throws
 name|XPathException

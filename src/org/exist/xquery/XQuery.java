@@ -551,9 +551,9 @@ name|expr
 operator|.
 name|analyze
 argument_list|(
-literal|null
-argument_list|,
-literal|0
+operator|new
+name|AnalyzeContextInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LOG

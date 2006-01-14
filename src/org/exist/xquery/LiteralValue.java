@@ -144,16 +144,13 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
 parameter_list|(
-name|Expression
-name|parent
-parameter_list|,
-name|int
-name|flags
+name|AnalyzeContextInfo
+name|contextInfo
 parameter_list|)
 throws|throws
 name|XPathException

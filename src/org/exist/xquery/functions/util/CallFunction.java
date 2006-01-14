@@ -57,6 +57,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|AnalyzeContextInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Cardinality
 import|;
 end_import
@@ -443,9 +455,13 @@ name|call
 operator|.
 name|analyze
 argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|this
 argument_list|,
 literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
