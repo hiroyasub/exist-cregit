@@ -290,9 +290,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-name|boolean
-name|unloadable
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -698,7 +695,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-name|names
+name|newNames
 operator|.
 name|put
 argument_list|(
@@ -736,6 +733,12 @@ operator|.
 name|map
 operator|=
 name|newMap
+expr_stmt|;
+name|this
+operator|.
+name|names
+operator|=
+name|newNames
 expr_stmt|;
 name|accounting
 operator|.
