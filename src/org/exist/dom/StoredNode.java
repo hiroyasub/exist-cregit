@@ -558,10 +558,20 @@ name|QName
 operator|.
 name|DOCTYPE_QNAME
 return|;
-block|}
+default|default:
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unknown node type: "
+operator|+
+name|nodeType
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 block|}
 comment|/** 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public

@@ -64,12 +64,6 @@ specifier|private
 name|NodeSet
 name|parents
 decl_stmt|;
-specifier|private
-name|boolean
-name|rememberContext
-init|=
-literal|false
-decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|ParentSelector
@@ -92,12 +86,6 @@ argument_list|(
 name|rememberContext
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|rememberContext
-operator|=
-name|rememberContext
-expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeSelector#match(org.exist.dom.DocumentImpl, long) 	 */
 specifier|public
@@ -111,9 +99,7 @@ name|long
 name|gid
 parameter_list|)
 block|{
-name|NodeProxy
-name|p
-init|=
+return|return
 name|parents
 operator|.
 name|get
@@ -122,9 +108,6 @@ name|doc
 argument_list|,
 name|gid
 argument_list|)
-decl_stmt|;
-return|return
-name|p
 return|;
 block|}
 block|}

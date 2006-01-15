@@ -629,6 +629,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -654,14 +655,6 @@ argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;
-name|int
-name|prevNr
-init|=
-name|prevNodeInLevel
-index|[
-name|level
-index|]
-decl_stmt|;
 name|linkNode
 argument_list|(
 name|nodeNr

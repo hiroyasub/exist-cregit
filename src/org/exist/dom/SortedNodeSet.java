@@ -285,10 +285,6 @@ name|OrderedLinkedList
 argument_list|()
 decl_stmt|;
 specifier|private
-name|DocumentSet
-name|ndocs
-decl_stmt|;
-specifier|private
 name|String
 name|sortExpr
 decl_stmt|;
@@ -369,15 +365,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
-name|IteratorItem
-name|item
-decl_stmt|;
-name|Item
-name|next
-decl_stmt|;
 name|DocumentSet
 name|docs
 init|=
@@ -402,8 +389,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -411,7 +399,7 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|docs
 operator|.
 name|add
@@ -494,6 +482,7 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
+comment|//TODO : error ?
 name|LOG
 operator|.
 name|debug
@@ -587,8 +576,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -596,9 +586,10 @@ name|i
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|IteratorItem
 name|item
-operator|=
+init|=
 operator|new
 name|IteratorItem
 argument_list|(
@@ -612,7 +603,7 @@ name|docs
 argument_list|,
 name|context
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|list
 operator|.
 name|add
@@ -787,9 +778,6 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
-name|NodeProxy
-name|p
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -807,8 +795,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 operator|(
 name|IteratorItem
@@ -820,7 +809,7 @@ argument_list|()
 operator|)
 operator|.
 name|proxy
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|p
@@ -886,9 +875,6 @@ name|nodeId
 parameter_list|)
 block|{
 name|NodeProxy
-name|p
-decl_stmt|;
-name|NodeProxy
 name|proxy
 init|=
 operator|new
@@ -916,8 +902,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 operator|(
 name|IteratorItem
@@ -929,7 +916,7 @@ argument_list|()
 operator|)
 operator|.
 name|proxy
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|p
@@ -957,9 +944,6 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
-name|NodeProxy
-name|p
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -977,8 +961,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|p
-operator|=
+init|=
 operator|(
 operator|(
 name|IteratorItem
@@ -990,7 +975,7 @@ argument_list|()
 operator|)
 operator|.
 name|proxy
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|p
@@ -1545,6 +1530,13 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Called SortedNodeSet.add()"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

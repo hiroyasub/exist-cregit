@@ -333,6 +333,7 @@ parameter_list|()
 throws|throws
 name|EXistException
 block|{
+comment|//Creates a dummy DOCTYPE
 specifier|final
 name|DocumentTypeImpl
 name|dt

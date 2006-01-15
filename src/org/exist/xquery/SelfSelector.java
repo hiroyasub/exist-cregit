@@ -61,10 +61,6 @@ implements|implements
 name|NodeSelector
 block|{
 specifier|private
-name|NodeSet
-name|context
-decl_stmt|;
-specifier|private
 name|boolean
 name|rememberContext
 init|=
@@ -81,12 +77,6 @@ name|boolean
 name|rememberContext
 parameter_list|)
 block|{
-name|this
-operator|.
-name|context
-operator|=
-name|contextSet
-expr_stmt|;
 name|this
 operator|.
 name|rememberContext
@@ -128,11 +118,9 @@ literal|null
 return|;
 name|NodeProxy
 name|contextNode
-decl_stmt|;
-name|contextNode
-operator|=
+init|=
 name|p
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|rememberContext
@@ -147,7 +135,6 @@ expr_stmt|;
 return|return
 name|p
 return|;
-comment|/*         NodeProxy p = context.get(doc, gid); 		if(p == null)             return null;             		if (rememberContext) {             contextNode = p; 			p.addContextNode(p);         }		 		return p; 		*/
 block|}
 block|}
 end_class

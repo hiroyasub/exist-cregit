@@ -290,6 +290,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+comment|//TODO : use XmldbURI methods !
 if|if
 condition|(
 name|path
@@ -329,6 +330,7 @@ name|startGrammarPath
 operator|=
 name|path
 expr_stmt|;
+comment|//TODO : read from mime types
 if|if
 condition|(
 name|path
