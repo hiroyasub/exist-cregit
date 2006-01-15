@@ -253,6 +253,13 @@ comment|// Xerces feature and property names
 specifier|final
 specifier|static
 name|String
+name|FEATURE_VALIDATION
+init|=
+literal|"http://xml.org/sax/features/validation"
+decl_stmt|;
+specifier|final
+specifier|static
+name|String
 name|FEATURE_DYNAMIC
 init|=
 literal|"http://apache.org/xml/features/validation/dynamic"
@@ -277,6 +284,20 @@ name|String
 name|PROPERTIES_RESOLVER
 init|=
 literal|"http://apache.org/xml/properties/internal/entity-resolver"
+decl_stmt|;
+specifier|final
+specifier|static
+name|String
+name|PROPERTIES_LOAD_EXT_DTD
+init|=
+literal|"http://apache.org/xml/features/nonvalidating/load-external-dtd"
+decl_stmt|;
+specifier|final
+specifier|static
+name|String
+name|PROPERTIES_NS_PRFXS
+init|=
+literal|"http://xml.org/sax/features/namespace-prefixes"
 decl_stmt|;
 comment|/**      *  Setup Validator object with brokerpool as centre.      */
 specifier|public
@@ -427,7 +448,6 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
-block|}
 comment|// Enable validation stuff
 name|saxFactory
 operator|.
@@ -450,7 +470,7 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
-name|FEATURE_DYNAMIC
+name|FEATURE_VALIDATION
 argument_list|,
 literal|true
 argument_list|)
@@ -459,7 +479,34 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
+name|FEATURE_DYNAMIC
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|saxFactory
+operator|.
+name|setFeature
+argument_list|(
 name|FEATURE_SCHEMA
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|saxFactory
+operator|.
+name|setFeature
+argument_list|(
+name|PROPERTIES_LOAD_EXT_DTD
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|saxFactory
+operator|.
+name|setFeature
+argument_list|(
+name|PROPERTIES_NS_PRFXS
 argument_list|,
 literal|true
 argument_list|)
@@ -506,6 +553,7 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      *  Validate XML data in inputstream.      *      * @param is    XML input stream.      * @return      Validation report containing all validation info.      */
@@ -573,7 +621,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      *  Validate XML data from reader using specified grammar.      *      *  grammar path      *      null : search all documents starting in /db      *      /db/doc/ : start search start in specified collection      *      *      /db/doc/schema/schema.xsd :start with this schema, no search needed.      *       * @return Validation report containing all validation info.      * @param grammarPath   User supplied path to grammar.      * @param reader        XML input.      */
+comment|/**      *  Validate XML data from reader using specified grammar.      *      *  grammar path      *      null : search all documents starting in /db      *      /db/doc/ : start search start in specified collection      *      *      /db/doc/schema/schema.xsd :start with this schema, no search needed.      *      * @return Validation report containing all validation info.      * @param grammarPath   User supplied path to grammar.      * @param reader        XML input.      */
 specifier|public
 name|ValidationReport
 name|validate

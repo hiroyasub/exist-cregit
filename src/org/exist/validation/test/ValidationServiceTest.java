@@ -605,7 +605,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|failTestNoDoctype
+name|testNoDoctype
 parameter_list|()
 block|{
 try|try
@@ -639,7 +639,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|failTestWrongDoctype
+name|testWrongDoctype
 parameter_list|()
 block|{
 try|try
