@@ -332,6 +332,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : how can it be possible ?
 name|Expression
 name|inner
 init|=
@@ -346,7 +347,16 @@ name|inner
 operator|==
 literal|null
 condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"REPORT ME : null Inner Sequence"
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -1068,8 +1078,9 @@ decl_stmt|;
 name|int
 name|sizeHint
 init|=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 decl_stmt|;
 if|if
 condition|(

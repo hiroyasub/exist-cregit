@@ -588,8 +588,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// arity of the tree at every level
-comment|//TODO : make private
-specifier|protected
+specifier|private
 name|int
 name|treeLevelOrder
 index|[]
@@ -601,7 +600,7 @@ literal|15
 index|]
 decl_stmt|;
 comment|//TODO : make private
-specifier|protected
+specifier|private
 specifier|transient
 name|long
 name|treeLevelStartPoints

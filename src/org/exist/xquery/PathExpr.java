@@ -653,12 +653,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|contextSequence
-operator|!=
-literal|null
-condition|)
+comment|//we will filter out nodes from the contextSequence
 name|result
 operator|=
 name|contextSequence

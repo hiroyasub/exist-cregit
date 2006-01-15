@@ -2536,7 +2536,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestPredicates2
+name|testPredicates2
 parameter_list|()
 throws|throws
 name|Exception
