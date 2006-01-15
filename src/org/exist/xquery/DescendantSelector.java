@@ -160,6 +160,14 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
+name|p
+operator|.
+name|copyContext
+argument_list|(
+name|contextNode
+argument_list|)
+expr_stmt|;
 name|p
 operator|.
 name|addContextNode
@@ -169,6 +177,7 @@ argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 name|p
 operator|.

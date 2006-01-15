@@ -1725,6 +1725,21 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setContextId
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
+block|{
+name|this
+operator|.
+name|contextId
+operator|=
+name|contextId
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#hasIndex() 	 */
 specifier|public
 name|boolean

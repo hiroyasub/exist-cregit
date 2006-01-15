@@ -379,6 +379,14 @@ operator||
 name|IN_WHERE_CLAUSE
 argument_list|)
 expr_stmt|;
+name|newContextInfo
+operator|.
+name|setContextId
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|whereExpr
 operator|.
 name|analyze

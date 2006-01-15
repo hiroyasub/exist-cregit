@@ -707,9 +707,7 @@ name|arg
 operator|.
 name|eval
 argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
+name|result
 argument_list|)
 decl_stmt|;
 name|NodeSet
