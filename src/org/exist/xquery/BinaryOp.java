@@ -221,6 +221,13 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
+name|contextId
+operator|=
+name|contextInfo
+operator|.
+name|getContextId
+argument_list|()
+expr_stmt|;
 name|inWhereClause
 operator|=
 operator|(

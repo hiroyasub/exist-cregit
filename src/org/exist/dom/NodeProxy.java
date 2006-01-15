@@ -117,6 +117,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -1745,6 +1757,9 @@ specifier|public
 name|void
 name|addContextNode
 parameter_list|(
+name|int
+name|contextId
+parameter_list|,
 name|NodeValue
 name|node
 parameter_list|)
@@ -1781,6 +1796,8 @@ operator|=
 operator|new
 name|ContextItem
 argument_list|(
+name|contextId
+argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;
@@ -1800,6 +1817,13 @@ condition|)
 block|{
 if|if
 condition|(
+name|contextId
+operator|==
+name|next
+operator|.
+name|getContextId
+argument_list|()
+operator|&&
 name|next
 operator|.
 name|getNode
@@ -1811,7 +1835,7 @@ name|contextNode
 operator|.
 name|gid
 condition|)
-comment|//TODO : why break here ? What about nodes that are context for themselves ? -pb
+comment|// Ignore duplicate context nodes
 break|break;
 if|if
 condition|(
@@ -1830,6 +1854,8 @@ argument_list|(
 operator|new
 name|ContextItem
 argument_list|(
+name|contextId
+argument_list|,
 name|contextNode
 argument_list|)
 argument_list|)
@@ -2595,10 +2621,15 @@ comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsCo
 specifier|public
 name|void
 name|setSelfAsContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
@@ -3142,8 +3173,8 @@ specifier|public
 name|NodeSet
 name|getContextNodes
 parameter_list|(
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 name|ExtArrayNodeSet
@@ -3195,12 +3226,18 @@ block|{
 comment|//TODO : why isn't "this" involved here ? -pb
 if|if
 condition|(
-name|rememberContext
+name|contextId
+operator|!=
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 condition|)
 name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
@@ -3530,8 +3567,8 @@ specifier|public
 name|NodeSet
 name|getParents
 parameter_list|(
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 name|long
@@ -3574,12 +3611,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|rememberContext
+name|contextId
+operator|!=
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 condition|)
 name|parent
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
@@ -3599,8 +3642,8 @@ specifier|public
 name|NodeSet
 name|getAncestors
 parameter_list|(
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -3666,12 +3709,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|rememberContext
+name|contextId
+operator|!=
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 condition|)
 name|parent
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
@@ -3714,7 +3763,9 @@ name|al
 argument_list|,
 name|mode
 argument_list|,
-literal|false
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 argument_list|)
 return|;
 block|}
@@ -3729,8 +3780,8 @@ parameter_list|,
 name|int
 name|mode
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 return|return
@@ -3744,12 +3795,12 @@ name|al
 argument_list|,
 name|mode
 argument_list|,
-name|rememberContext
+name|contextId
 argument_list|)
 return|;
 comment|/*         NodeProxy parent = al.parentWithChild(this, true, false,	UNKNOWN_NODE_LEVEL);         if(parent == null)             return NodeSet.EMPTY_SET;           switch (mode){             case NodeSet.DESCENDANT : {     			if (rememberContext)     				addContextNode(parent);     			else     				copyContext(parent);     			return this;             }             case NodeSet.ANCESTOR : {                 if (rememberContext)                     parent.addContextNode(this);     			else                     parent.copyContext(this);                 return parent;             }             default :                 throw new IllegalArgumentException("Invalid axis");         }         */
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectAncestors(org.exist.dom.NodeSet, boolean, boolean)      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectAncestors(org.exist.dom.NodeSet, boolean, int)      */
 specifier|public
 name|NodeSet
 name|selectAncestors
@@ -3760,8 +3811,8 @@ parameter_list|,
 name|boolean
 name|includeSelf
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 return|return
@@ -3775,11 +3826,11 @@ name|al
 argument_list|,
 name|includeSelf
 argument_list|,
-name|rememberContext
+name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectSiblings(org.exist.dom.NodeSet, int)      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectPrecedingSiblings(org.exist.dom.NodeSet, int)      */
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
@@ -3787,8 +3838,8 @@ parameter_list|(
 name|NodeSet
 name|siblings
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 return|return
@@ -3800,10 +3851,11 @@ name|this
 argument_list|,
 name|siblings
 argument_list|,
-name|rememberContext
+name|contextId
 argument_list|)
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectFollowingSiblings(org.exist.dom.NodeSet, int)      */
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
@@ -3811,8 +3863,8 @@ parameter_list|(
 name|NodeSet
 name|siblings
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 return|return
@@ -3824,11 +3876,11 @@ name|this
 argument_list|,
 name|siblings
 argument_list|,
-name|rememberContext
+name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectAncestorDescendant(org.exist.dom.NodeSet, int, boolean, boolean)      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#selectAncestorDescendant(org.exist.dom.NodeSet, int, boolean, int)      */
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -3842,8 +3894,8 @@ parameter_list|,
 name|boolean
 name|includeSelf
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 return|return
@@ -3859,7 +3911,7 @@ name|mode
 argument_list|,
 name|includeSelf
 argument_list|,
-name|rememberContext
+name|contextId
 argument_list|)
 return|;
 block|}
@@ -3913,8 +3965,8 @@ parameter_list|(
 name|QName
 name|qname
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 if|if
@@ -4021,12 +4073,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|rememberContext
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|child
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;

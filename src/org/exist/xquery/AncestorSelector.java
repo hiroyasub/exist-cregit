@@ -66,8 +66,8 @@ parameter_list|(
 name|NodeSet
 name|descendants
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -82,7 +82,7 @@ name|descendants
 operator|.
 name|getAncestors
 argument_list|(
-name|rememberContext
+name|contextId
 argument_list|,
 name|includeSelf
 argument_list|)

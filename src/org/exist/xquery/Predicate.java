@@ -324,6 +324,14 @@ name|IN_WHERE_CLAUSE
 argument_list|)
 expr_stmt|;
 comment|// remove where clause flag
+name|contextInfo
+operator|.
+name|setContextId
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Expression
 name|inner
 init|=
@@ -1112,16 +1120,22 @@ argument_list|)
 throw|;
 block|}
 comment|//TODO : review to consider transverse context
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
 while|while
 condition|(
 name|contextItem
 operator|!=
 literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|contextItem
+operator|.
+name|getContextId
+argument_list|()
+operator|==
+name|getExpressionId
+argument_list|()
 condition|)
 block|{
 name|NodeProxy
@@ -1144,7 +1158,6 @@ name|next
 argument_list|)
 condition|)
 block|{
-comment|//if (count ==  contextMark) {
 name|next
 operator|.
 name|addMatches
@@ -1161,8 +1174,7 @@ argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
-comment|//break;
-comment|//}
+block|}
 block|}
 name|contextItem
 operator|=
@@ -1170,9 +1182,6 @@ name|contextItem
 operator|.
 name|getNextDirect
 argument_list|()
-expr_stmt|;
-name|count
-operator|++
 expr_stmt|;
 block|}
 block|}
@@ -1318,7 +1327,8 @@ name|ANCESTOR
 argument_list|,
 literal|true
 argument_list|,
-literal|true
+name|getExpressionId
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|ArraySet
@@ -1378,6 +1388,16 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|contextNode
+operator|.
+name|getContextId
+argument_list|()
+operator|==
+name|getExpressionId
+argument_list|()
+condition|)
 name|temp
 operator|.
 name|add
@@ -1538,7 +1558,9 @@ name|p
 argument_list|,
 literal|false
 argument_list|,
-literal|false
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1557,7 +1579,9 @@ name|p
 argument_list|,
 literal|true
 argument_list|,
-literal|false
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1575,7 +1599,9 @@ name|p
 operator|.
 name|getParents
 argument_list|(
-literal|false
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1607,7 +1633,8 @@ name|selectPrecedingSiblings
 argument_list|(
 name|p
 argument_list|,
-literal|true
+name|getExpressionId
+argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1624,7 +1651,8 @@ name|selectFollowingSiblings
 argument_list|(
 name|p
 argument_list|,
-literal|true
+name|getExpressionId
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reverseAxis

@@ -691,6 +691,9 @@ name|current
 operator|.
 name|addContextNode
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
@@ -719,7 +722,8 @@ argument_list|()
 operator|.
 name|getContextNodes
 argument_list|(
-literal|true
+name|getExpressionId
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|result

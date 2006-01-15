@@ -336,7 +336,7 @@ name|DESCENDANT
 argument_list|,
 literal|true
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;
@@ -360,7 +360,7 @@ name|NodeSet
 operator|.
 name|DESCENDANT
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;

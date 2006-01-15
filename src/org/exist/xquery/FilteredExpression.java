@@ -369,11 +369,7 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
-name|seq
-operator|.
-name|setSelfAsContext
-argument_list|()
-expr_stmt|;
+comment|//    		seq.setSelfAsContext();
 name|result
 operator|=
 name|seq

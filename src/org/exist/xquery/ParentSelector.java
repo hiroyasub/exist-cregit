@@ -71,8 +71,8 @@ parameter_list|(
 name|NodeSet
 name|contextSet
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 name|this
@@ -83,7 +83,7 @@ name|contextSet
 operator|.
 name|getParents
 argument_list|(
-name|rememberContext
+name|contextId
 argument_list|)
 expr_stmt|;
 block|}

@@ -860,7 +860,10 @@ block|}
 specifier|public
 name|void
 name|setSelfAsContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 name|Item
 name|next
@@ -918,6 +921,8 @@ name|node
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|node
 argument_list|)
 expr_stmt|;

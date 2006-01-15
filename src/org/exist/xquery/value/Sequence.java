@@ -223,7 +223,10 @@ function_decl|;
 specifier|public
 name|void
 name|setSelfAsContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 function_decl|;
 specifier|public
 name|boolean

@@ -720,7 +720,7 @@ name|DESCENDANT
 argument_list|,
 literal|true
 argument_list|,
-literal|false
+name|contextId
 argument_list|)
 expr_stmt|;
 for|for
@@ -760,6 +760,8 @@ name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|p
 argument_list|)
 expr_stmt|;

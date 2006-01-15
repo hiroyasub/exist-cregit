@@ -778,7 +778,10 @@ comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsConte
 specifier|public
 name|void
 name|setSelfAsContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */

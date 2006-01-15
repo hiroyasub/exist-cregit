@@ -1328,7 +1328,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 block|{
 if|if
@@ -1421,6 +1425,8 @@ name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
@@ -1433,16 +1439,6 @@ return|;
 block|}
 else|else
 block|{
-comment|//                NodeSet result = new ExtArrayNodeSet();
-comment|//                NodeProxy p;
-comment|//                for (Iterator i = contextSet.iterator(); i.hasNext(); ) {
-comment|//                    p = (NodeProxy) i.next();
-comment|//                    if (test.matches(p)) {
-comment|//                        result.add(p);
-comment|//                        p.addContextNode(p);
-comment|//                    }
-comment|//                }
-comment|//                return result;
 name|VirtualNodeSet
 name|vset
 init|=
@@ -1453,6 +1449,8 @@ name|axis
 argument_list|,
 name|test
 argument_list|,
+name|contextId
+argument_list|,
 name|contextSet
 argument_list|)
 decl_stmt|;
@@ -1460,7 +1458,11 @@ name|vset
 operator|.
 name|setInPredicate
 argument_list|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 argument_list|)
 expr_stmt|;
 return|return
@@ -1486,7 +1488,7 @@ name|SelfSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 decl_stmt|;
 name|ElementIndex
@@ -1622,6 +1624,8 @@ name|axis
 argument_list|,
 name|test
 argument_list|,
+name|contextId
+argument_list|,
 name|contextSet
 argument_list|)
 decl_stmt|;
@@ -1634,7 +1638,11 @@ operator|)
 operator|.
 name|setInPredicate
 argument_list|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 argument_list|)
 expr_stmt|;
 return|return
@@ -1729,7 +1737,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 block|}
@@ -1864,7 +1872,7 @@ name|NodeSet
 operator|.
 name|DESCENDANT
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 case|case
@@ -1885,7 +1893,7 @@ name|DESCENDANT
 argument_list|,
 literal|false
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 default|default:
@@ -1929,7 +1937,7 @@ name|ChildSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1945,7 +1953,7 @@ name|DescendantSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2051,6 +2059,8 @@ name|axis
 argument_list|,
 name|test
 argument_list|,
+name|contextId
+argument_list|,
 name|contextSet
 argument_list|)
 decl_stmt|;
@@ -2058,7 +2068,11 @@ name|vset
 operator|.
 name|setInPredicate
 argument_list|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 argument_list|)
 expr_stmt|;
 return|return
@@ -2190,7 +2204,7 @@ name|NodeSet
 operator|.
 name|DESCENDANT
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 block|}
@@ -2258,7 +2272,7 @@ name|ChildSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 decl_stmt|;
 return|return
@@ -2312,6 +2326,8 @@ name|axis
 argument_list|,
 name|test
 argument_list|,
+name|contextId
+argument_list|,
 name|contextSet
 argument_list|)
 decl_stmt|;
@@ -2319,7 +2335,11 @@ name|vset
 operator|.
 name|setInPredicate
 argument_list|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 argument_list|)
 expr_stmt|;
 return|return
@@ -2463,7 +2483,7 @@ name|DESCENDANT
 argument_list|,
 literal|true
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 case|case
@@ -2484,7 +2504,7 @@ name|DESCENDANT
 argument_list|,
 literal|false
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 default|default:
@@ -2527,7 +2547,7 @@ name|DescendantOrSelfSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2543,7 +2563,7 @@ name|DescendantSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2744,12 +2764,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|sibling
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
@@ -2880,25 +2906,6 @@ name|registerUpdateListener
 argument_list|()
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Current Set: "
-operator|+
-name|currentSet
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|"; context: "
-operator|+
-name|contextSet
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 switch|switch
 condition|(
 name|axis
@@ -2916,7 +2923,7 @@ name|selectPrecedingSiblings
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 case|case
@@ -2931,7 +2938,7 @@ name|selectFollowingSiblings
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 default|default :
@@ -3378,12 +3385,18 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|ancestor
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
@@ -3487,12 +3500,18 @@ condition|)
 block|{
 if|if
 condition|(
-name|inPredicate
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|ancestor
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
@@ -3656,7 +3675,7 @@ name|contextSet
 argument_list|,
 literal|true
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 case|case
@@ -3673,7 +3692,7 @@ name|contextSet
 argument_list|,
 literal|false
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 default|default :
@@ -3716,7 +3735,7 @@ name|AncestorSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|,
 literal|true
 argument_list|)
@@ -3734,7 +3753,7 @@ name|AncestorSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|,
 literal|false
 argument_list|)
@@ -3840,7 +3859,7 @@ name|contextSet
 operator|.
 name|getParents
 argument_list|(
-name|inPredicate
+name|contextId
 argument_list|)
 return|;
 block|}
@@ -3862,7 +3881,7 @@ name|ParentSelector
 argument_list|(
 name|contextSet
 argument_list|,
-name|inPredicate
+name|contextId
 argument_list|)
 decl_stmt|;
 name|ElementIndex

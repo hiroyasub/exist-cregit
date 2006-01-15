@@ -65,10 +65,8 @@ name|NodeSet
 name|context
 decl_stmt|;
 specifier|protected
-name|boolean
-name|rememberContext
-init|=
-literal|false
+name|int
+name|contextId
 decl_stmt|;
 specifier|public
 name|DescendantSelector
@@ -76,8 +74,8 @@ parameter_list|(
 name|NodeSet
 name|contextSet
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 name|this
@@ -88,9 +86,9 @@ name|contextSet
 expr_stmt|;
 name|this
 operator|.
-name|rememberContext
+name|contextId
 operator|=
-name|rememberContext
+name|contextId
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeSelector#match(org.exist.dom.NodeProxy) 	 */
@@ -156,12 +154,18 @@ literal|null
 return|;
 if|if
 condition|(
-name|rememberContext
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;

@@ -125,6 +125,9 @@ specifier|public
 name|void
 name|addContextNode
 parameter_list|(
+name|int
+name|contextId
+parameter_list|,
 name|NodeValue
 name|node
 parameter_list|)

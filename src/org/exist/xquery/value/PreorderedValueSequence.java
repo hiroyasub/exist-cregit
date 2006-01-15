@@ -159,6 +159,9 @@ index|[]
 parameter_list|,
 name|Sequence
 name|input
+parameter_list|,
+name|int
+name|contextId
 parameter_list|)
 throws|throws
 name|XPathException
@@ -230,6 +233,8 @@ name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|nodes
 index|[
 name|j

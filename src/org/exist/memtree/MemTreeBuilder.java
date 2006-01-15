@@ -359,6 +359,7 @@ argument_list|,
 name|qn
 argument_list|)
 decl_stmt|;
+comment|//		System.out.println("start: " + qn + "; nodeNr = " + nodeNr + "; level = " + level);
 if|if
 condition|(
 name|attributes
@@ -438,16 +439,10 @@ name|startsWith
 argument_list|(
 literal|"xmlns"
 argument_list|)
-operator|||
-name|attrNS
-operator|.
-name|equals
-argument_list|(
-literal|"http://exist.sourceforge.net/NS/exist"
-argument_list|)
 operator|)
 condition|)
 block|{
+comment|//					|| attrNS.equals("http://exist.sourceforge.net/NS/exist"))) {
 name|p
 operator|=
 name|attrQName
@@ -609,6 +604,7 @@ name|void
 name|endElement
 parameter_list|()
 block|{
+comment|//		System.out.println("end-element: level = " + level);
 name|prevNodeInLevel
 index|[
 name|level
@@ -774,6 +770,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+comment|//		System.out.println("nodeNr = " + nodeNr + "; level = " + level);
 name|linkNode
 argument_list|(
 name|nodeNr

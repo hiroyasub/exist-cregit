@@ -850,6 +850,9 @@ argument_list|()
 condition|)
 name|setContext
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
@@ -889,6 +892,9 @@ argument_list|(
 name|orderSpecs
 argument_list|,
 name|in
+argument_list|,
+name|getExpressionId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1075,6 +1081,9 @@ operator|)
 operator|.
 name|addContextNode
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 operator|(
 name|NodeProxy
 operator|)

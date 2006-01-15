@@ -43,6 +43,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|NodeTest
 import|;
 end_import
@@ -150,6 +162,14 @@ name|useSelfAsContext
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|int
+name|contextId
+init|=
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+decl_stmt|;
 specifier|public
 name|VirtualNodeSet
 parameter_list|(
@@ -158,6 +178,9 @@ name|axis
 parameter_list|,
 name|NodeTest
 name|test
+parameter_list|,
+name|int
+name|contextId
 parameter_list|,
 name|NodeSet
 name|context
@@ -515,6 +538,8 @@ name|node
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
@@ -527,6 +552,8 @@ name|node
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|parent
 argument_list|)
 expr_stmt|;
@@ -657,6 +684,8 @@ name|node
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
@@ -670,6 +699,8 @@ name|node
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|parent
 argument_list|)
 expr_stmt|;
@@ -1140,6 +1171,8 @@ name|docElemProxy
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|docElemProxy
 argument_list|)
 expr_stmt|;
@@ -1265,6 +1298,8 @@ name|proxy
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;
@@ -1602,6 +1637,8 @@ name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
@@ -1614,6 +1651,8 @@ name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;

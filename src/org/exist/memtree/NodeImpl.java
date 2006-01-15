@@ -797,6 +797,9 @@ specifier|public
 name|void
 name|addContextNode
 parameter_list|(
+name|int
+name|contextId
+parameter_list|,
 name|NodeValue
 name|node
 parameter_list|)
@@ -2252,11 +2255,14 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext(int) 	 */
 specifier|public
 name|void
 name|setSelfAsContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */

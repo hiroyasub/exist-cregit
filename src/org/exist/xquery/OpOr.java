@@ -283,7 +283,7 @@ name|rl
 operator|.
 name|getContextNodes
 argument_list|(
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 name|NodeSet
@@ -307,7 +307,7 @@ name|rr
 operator|.
 name|getContextNodes
 argument_list|(
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 name|result

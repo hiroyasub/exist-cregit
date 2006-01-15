@@ -1041,6 +1041,9 @@ specifier|static
 name|void
 name|setContext
 parameter_list|(
+name|int
+name|contextId
+parameter_list|,
 name|Sequence
 name|seq
 parameter_list|)
@@ -1119,6 +1122,8 @@ operator|)
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 operator|(
 name|NodeProxy
 operator|)

@@ -286,7 +286,7 @@ name|rl
 operator|.
 name|getContextNodes
 argument_list|(
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 comment|// TODO: optimize and return false if rl.getLength() == 0 ?
@@ -311,7 +311,7 @@ name|rr
 operator|.
 name|getContextNodes
 argument_list|(
-name|inPredicate
+name|contextId
 argument_list|)
 expr_stmt|;
 name|result

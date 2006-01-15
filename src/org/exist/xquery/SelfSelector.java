@@ -61,10 +61,8 @@ implements|implements
 name|NodeSelector
 block|{
 specifier|private
-name|boolean
-name|rememberContext
-init|=
-literal|false
+name|int
+name|contextId
 decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
@@ -73,15 +71,15 @@ parameter_list|(
 name|NodeSet
 name|contextSet
 parameter_list|,
-name|boolean
-name|rememberContext
+name|int
+name|contextId
 parameter_list|)
 block|{
 name|this
 operator|.
-name|rememberContext
+name|contextId
 operator|=
-name|rememberContext
+name|contextId
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeSelector#match(org.exist.dom.DocumentImpl, long) 	 */
@@ -123,12 +121,18 @@ name|p
 decl_stmt|;
 if|if
 condition|(
-name|rememberContext
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
 condition|)
 name|p
 operator|.
 name|addContextNode
 argument_list|(
+name|contextId
+argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;

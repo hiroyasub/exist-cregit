@@ -546,7 +546,7 @@ name|proxy
 operator|.
 name|getAncestors
 argument_list|(
-literal|false
+name|contextId
 argument_list|,
 literal|true
 argument_list|)
