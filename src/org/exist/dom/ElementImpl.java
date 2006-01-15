@@ -3972,6 +3972,7 @@ condition|)
 return|return
 literal|0
 return|;
+comment|//Return if already computed
 if|if
 condition|(
 name|firstChild
@@ -3983,6 +3984,7 @@ condition|)
 return|return
 name|firstChild
 return|;
+comment|//Compute
 name|firstChild
 operator|=
 name|NodeSetHelper

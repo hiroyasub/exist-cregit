@@ -1359,12 +1359,7 @@ operator|.
 name|internalAddress
 operator|!=
 name|UNKNOWN_NODE_ADDRESS
-operator|&&
-name|this
-operator|.
-name|internalAddress
-operator|!=
-name|internalAddress
+comment|/*&& this.internalAddress != internalAddress*/
 condition|)
 throw|throw
 operator|new
@@ -1388,7 +1383,8 @@ name|int
 name|type
 parameter_list|)
 block|{
-comment|//TODO : check wether the allready set internal address can be changed here -pb
+name|this
+operator|.
 name|internalAddress
 operator|=
 name|StorageAddress
@@ -3670,13 +3666,6 @@ expr_stmt|;
 name|long
 name|pid
 init|=
-name|gid
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|pid
-operator|=
 name|NodeSetHelper
 operator|.
 name|getParentId
@@ -3684,9 +3673,12 @@ argument_list|(
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|gid
 argument_list|)
-operator|)
+decl_stmt|;
+while|while
+condition|(
+name|pid
 operator|>
 literal|0
 condition|)
@@ -3737,6 +3729,18 @@ operator|.
 name|add
 argument_list|(
 name|parent
+argument_list|)
+expr_stmt|;
+name|pid
+operator|=
+name|NodeSetHelper
+operator|.
+name|getParentId
+argument_list|(
+name|getDocument
+argument_list|()
+argument_list|,
+name|pid
 argument_list|)
 expr_stmt|;
 block|}

@@ -405,18 +405,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|XMLUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|memtree
 operator|.
 name|DOMIndexer
@@ -14071,7 +14059,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"wrong node id"
+literal|"Wrong node id"
 argument_list|)
 throw|;
 block|}
@@ -14120,9 +14108,10 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
-name|debug
+name|fatal
 argument_list|(
 literal|"child "
 operator|+
@@ -14147,6 +14136,14 @@ name|getChildCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Wrong node id"
+argument_list|)
+throw|;
+block|}
 name|child
 operator|.
 name|setGID
@@ -15088,7 +15085,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"wrong node id"
+literal|"Wrong node id"
 argument_list|)
 throw|;
 block|}
@@ -15137,9 +15134,10 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
-name|debug
+name|fatal
 argument_list|(
 literal|"child "
 operator|+
@@ -15164,6 +15162,14 @@ name|getChildCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Wrong node id"
+argument_list|)
+throw|;
+block|}
 name|child
 operator|.
 name|setGID
@@ -15429,7 +15435,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"wrong node id"
+literal|"Wrong node id"
 argument_list|)
 throw|;
 block|}
@@ -15478,9 +15484,10 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
-name|debug
+name|fatal
 argument_list|(
 literal|"child "
 operator|+
@@ -15505,6 +15512,14 @@ name|getChildCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Wrong node id"
+argument_list|)
+throw|;
+block|}
 name|child
 operator|.
 name|setGID
@@ -15665,7 +15680,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"wrong node id"
+literal|"Wrong node id"
 argument_list|)
 throw|;
 block|}
@@ -15714,9 +15729,10 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
-name|debug
+name|fatal
 argument_list|(
 literal|"child "
 operator|+
@@ -15741,6 +15757,14 @@ name|getChildCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Wrong node id"
+argument_list|)
+throw|;
+block|}
 name|child
 operator|.
 name|setGID
@@ -16380,8 +16404,6 @@ name|Collator
 name|collator
 parameter_list|)
 block|{
-comment|//		long start = System.currentTimeMillis();
-comment|// NodeSet temp;
 if|if
 condition|(
 operator|!
@@ -16395,9 +16417,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 expr_stmt|;
-name|NodeSet
-name|result
-init|=
+return|return
 name|scanNodesSequential
 argument_list|(
 name|context
@@ -16412,15 +16432,6 @@ name|expr
 argument_list|,
 name|collator
 argument_list|)
-decl_stmt|;
-comment|//				LOG.debug(
-comment|//					"searching "
-comment|//						+ result.getLength()
-comment|//						+ " nodes took "
-comment|//						+ (System.currentTimeMillis() - start)
-comment|//						+ "ms.");
-return|return
-name|result
 return|;
 block|}
 specifier|public

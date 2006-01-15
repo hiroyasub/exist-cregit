@@ -6508,9 +6508,9 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
-literal|"first child not found: "
+literal|"First child not found for node : "
 operator|+
 name|node
 operator|.
