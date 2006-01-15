@@ -127,7 +127,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|NodeSetHelper
 import|;
 end_import
 
@@ -139,7 +139,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|XMLUtil
+name|StoredNode
 import|;
 end_import
 
@@ -6481,7 +6481,7 @@ specifier|final
 name|long
 name|firstChildId
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
@@ -6732,7 +6732,7 @@ do|do
 block|{
 name|id
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

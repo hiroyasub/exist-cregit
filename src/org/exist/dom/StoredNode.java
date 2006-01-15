@@ -727,7 +727,7 @@ name|getParentGID
 parameter_list|()
 block|{
 return|return
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

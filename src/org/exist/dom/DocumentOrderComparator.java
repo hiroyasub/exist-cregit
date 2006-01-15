@@ -234,7 +234,7 @@ condition|)
 block|{
 name|pa
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -286,7 +286,7 @@ condition|)
 block|{
 name|pb
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

@@ -87,7 +87,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|NodeSetHelper
 import|;
 end_import
 
@@ -99,7 +99,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|XMLUtil
+name|QName
 import|;
 end_import
 
@@ -884,7 +884,7 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

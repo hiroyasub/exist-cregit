@@ -2440,7 +2440,7 @@ condition|)
 block|{
 name|gid
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -2507,7 +2507,7 @@ comment|// node
 name|Range
 name|range
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getChildRange
 argument_list|(

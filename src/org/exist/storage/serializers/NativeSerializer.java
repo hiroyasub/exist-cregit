@@ -181,6 +181,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeSetHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|ProcessingInstructionImpl
 import|;
 end_import
@@ -218,18 +230,6 @@ operator|.
 name|dom
 operator|.
 name|TextImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|XMLUtil
 import|;
 end_import
 
@@ -1267,7 +1267,7 @@ literal|0
 condition|)
 name|gid
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(

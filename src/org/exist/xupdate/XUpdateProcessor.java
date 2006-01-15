@@ -187,7 +187,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|XMLUtil
+name|NodeSetHelper
 import|;
 end_import
 
@@ -2586,7 +2586,7 @@ block|{
 name|Node
 name|node
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|copyNode
 argument_list|(

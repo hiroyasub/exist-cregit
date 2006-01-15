@@ -239,7 +239,7 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

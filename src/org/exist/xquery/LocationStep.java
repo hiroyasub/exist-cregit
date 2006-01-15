@@ -103,6 +103,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeSetHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -116,18 +128,6 @@ operator|.
 name|dom
 operator|.
 name|VirtualNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|XMLUtil
 import|;
 end_import
 
@@ -3406,7 +3406,7 @@ block|}
 name|long
 name|parentID
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -3515,7 +3515,7 @@ block|}
 block|}
 name|parentID
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

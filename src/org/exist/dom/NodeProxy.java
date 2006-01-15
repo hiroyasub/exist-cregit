@@ -924,7 +924,7 @@ condition|)
 block|{
 name|pa
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -972,7 +972,7 @@ condition|)
 block|{
 name|pb
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1142,7 +1142,7 @@ condition|)
 block|{
 name|pa
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1194,7 +1194,7 @@ condition|)
 block|{
 name|pb
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -3123,7 +3123,7 @@ condition|)
 block|{
 name|otherId
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -3559,7 +3559,7 @@ block|{
 name|long
 name|pid
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -3656,7 +3656,7 @@ condition|(
 operator|(
 name|pid
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

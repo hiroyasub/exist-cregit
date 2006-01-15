@@ -626,7 +626,7 @@ decl_stmt|;
 name|Range
 name|range
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getChildRange
 argument_list|(
@@ -978,7 +978,7 @@ expr_stmt|;
 comment|//			    System.out.println(pa + " -> " + pb);
 name|pb
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1431,7 +1431,7 @@ condition|)
 block|{
 name|gid
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1565,7 +1565,7 @@ decl_stmt|;
 name|long
 name|parentID
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1759,7 +1759,7 @@ block|}
 name|long
 name|parentID
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -1878,7 +1878,7 @@ expr_stmt|;
 block|}
 name|parentID
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

@@ -238,7 +238,7 @@ name|get
 argument_list|(
 name|doc
 argument_list|,
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -307,7 +307,7 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(
@@ -413,7 +413,7 @@ block|{
 name|long
 name|pid
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getParentId
 argument_list|(

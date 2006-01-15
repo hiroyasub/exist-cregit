@@ -359,6 +359,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeSetHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 import|;
 end_import
@@ -11986,7 +11998,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|isDescendant
 argument_list|(
@@ -14010,7 +14022,7 @@ specifier|final
 name|long
 name|firstChildId
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
@@ -15027,7 +15039,7 @@ specifier|final
 name|long
 name|firstChildId
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
@@ -15362,7 +15374,7 @@ specifier|final
 name|long
 name|firstChildId
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
@@ -15604,7 +15616,7 @@ specifier|final
 name|long
 name|firstChildId
 init|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(

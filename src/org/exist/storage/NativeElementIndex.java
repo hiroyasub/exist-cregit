@@ -209,6 +209,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeSetHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 import|;
 end_import
@@ -246,18 +258,6 @@ operator|.
 name|dom
 operator|.
 name|TextImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|XMLUtil
 import|;
 end_import
 
@@ -3064,7 +3064,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|isDescendant
 argument_list|(

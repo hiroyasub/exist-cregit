@@ -3985,7 +3985,7 @@ name|firstChild
 return|;
 name|firstChild
 operator|=
-name|XMLUtil
+name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
