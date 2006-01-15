@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation, Inc.  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -338,6 +338,21 @@ operator|.
 name|getCatalog
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|catalog
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Catalog could not be retrieved."
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|catalog
 return|;
@@ -385,6 +400,33 @@ argument_list|,
 name|systemId
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|inputsource
+operator|==
+literal|null
+condition|)
+block|{
+comment|// According to the spec 'null' must be returned. However, this
+comment|// value is for the Parser the hint to use the systemId that is
+comment|// supplied to the resolver. Unfortunately this value does not make
+comment|// any sence; cocoon let is point to it cache:
+comment|// tools/jetty/work/Jetty__8080__exist/cocoon-files/cache-dir/*.dtd
+comment|// With this value is seems this resolver is not functional at all.
+comment|// We'll return null at this moment.
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Entity could not be resolved"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+else|else
+block|{
 name|logger
 operator|.
 name|debug
@@ -406,6 +448,26 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|inputsource
+operator|.
+name|getByteStream
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"No data stream returned from resolved Entitity."
+argument_list|)
+expr_stmt|;
+comment|//inputsource.setSystemId(null);
+block|}
 return|return
 name|inputsource
 return|;
@@ -451,6 +513,23 @@ argument_list|,
 name|base
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"href could not be resolved"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|logger
 operator|.
 name|debug
@@ -463,6 +542,7 @@ name|getSystemId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|source
 return|;
