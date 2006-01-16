@@ -687,6 +687,23 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|contextId
+operator|!=
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+condition|)
+name|current
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|current
+argument_list|)
+expr_stmt|;
 name|current
 operator|.
 name|addContextNode
@@ -697,6 +714,7 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+comment|//    					LOG.debug("Context: " + current.debugContext());
 block|}
 block|}
 comment|// evaluate argument expression

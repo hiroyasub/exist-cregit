@@ -64,6 +64,10 @@ specifier|private
 name|int
 name|contextId
 decl_stmt|;
+specifier|private
+name|NodeSet
+name|context
+decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|SelfSelector
@@ -75,6 +79,12 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+name|this
+operator|.
+name|context
+operator|=
+name|contextSet
+expr_stmt|;
 name|this
 operator|.
 name|contextId
@@ -117,8 +127,22 @@ return|;
 name|NodeProxy
 name|contextNode
 init|=
-name|p
+name|context
+operator|.
+name|get
+argument_list|(
+name|doc
+argument_list|,
+name|gid
+argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|contextNode
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|Expression
@@ -144,6 +168,7 @@ argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|p
