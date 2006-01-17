@@ -4203,6 +4203,17 @@ name|String
 name|toString
 parameter_list|()
 block|{
+if|if
+condition|(
+name|doc
+operator|.
+name|getNode
+argument_list|(
+name|gid
+argument_list|)
+operator|!=
+literal|null
+condition|)
 return|return
 name|doc
 operator|.
@@ -4212,6 +4223,15 @@ name|gid
 argument_list|)
 operator|.
 name|toString
+argument_list|()
+return|;
+else|else
+return|return
+literal|"Document node for "
+operator|+
+name|doc
+operator|.
+name|getDocId
 argument_list|()
 return|;
 comment|//return ("doc: " + this.getDocument() + " gid:" + this.getGID() + " address :" +
