@@ -965,6 +965,16 @@ name|expressionCounter
 operator|++
 return|;
 block|}
+comment|/**      * Returns the number of expression objects in the internal      * representation of the query. Used to estimate the size      * of the query.      *       * @return      */
+specifier|public
+name|int
+name|getExpressionCount
+parameter_list|()
+block|{
+return|return
+name|expressionCounter
+return|;
+block|}
 comment|/** 	 * Declare a user-defined prefix/namespace mapping. 	 *  	 * eXist internally keeps a table containing all prefix/namespace 	 * mappings it found in documents, which have been previously 	 * stored into the database. These default mappings need not to be 	 * declared explicitely. 	 *  	 * @param prefix 	 * @param uri 	 */
 specifier|public
 name|void

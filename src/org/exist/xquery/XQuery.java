@@ -533,6 +533,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|// Log the query if it is not too large, but avoid
+comment|// dumping huge queries to the log
+if|if
+condition|(
+name|context
+operator|.
+name|getExpressionCount
+argument_list|()
+operator|<
+literal|150
+condition|)
 name|LOG
 operator|.
 name|debug
