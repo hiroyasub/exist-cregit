@@ -2728,6 +2728,20 @@ operator|.
 name|nodeNumber
 condition|)
 break|break;
+comment|//No nextNode if the top node is a Document node
+if|if
+condition|(
+name|top
+operator|!=
+literal|null
+operator|&&
+name|top
+operator|.
+name|nodeNumber
+operator|==
+literal|0
+condition|)
+break|break;
 name|nextNode
 operator|=
 operator|(
