@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -1359,7 +1349,12 @@ operator|.
 name|internalAddress
 operator|!=
 name|UNKNOWN_NODE_ADDRESS
-comment|/*&& this.internalAddress != internalAddress*/
+operator|&&
+name|this
+operator|.
+name|internalAddress
+operator|!=
+name|internalAddress
 condition|)
 throw|throw
 operator|new
@@ -1868,6 +1863,7 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
+comment|//        System.out.println("NodeProxy.addContextNode: " + contextNode.debugContext());
 block|}
 specifier|public
 name|void
@@ -1924,7 +1920,12 @@ literal|"Context for "
 operator|+
 name|gid
 operator|+
-literal|": "
+literal|"[ "
+operator|+
+name|toString
+argument_list|()
+operator|+
+literal|"] : "
 argument_list|)
 expr_stmt|;
 name|ContextItem
@@ -1954,8 +1955,6 @@ name|next
 operator|.
 name|getNode
 argument_list|()
-operator|.
-name|gid
 argument_list|)
 expr_stmt|;
 name|buf
@@ -2728,7 +2727,7 @@ block|}
 comment|/* -----------------------------------------------* 	 * Methods of class NodeSet 	 * -----------------------------------------------*/
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterator() 	 */
 specifier|public
-name|Iterator
+name|NodeSetIterator
 name|iterator
 parameter_list|()
 block|{
@@ -4225,7 +4224,7 @@ specifier|static
 class|class
 name|SingleNodeIterator
 implements|implements
-name|Iterator
+name|NodeSetIterator
 implements|,
 name|SequenceIterator
 block|{
@@ -4317,6 +4316,23 @@ expr_stmt|;
 return|return
 name|node
 return|;
+block|}
+specifier|public
+name|void
+name|setPosition
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+name|node
+operator|=
+name|proxy
+expr_stmt|;
+name|hasNext
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 block|}

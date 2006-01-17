@@ -234,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *   * The results of the first evaluation of the expression are cached for the   * lifetime of the object and only reloaded if the context sequence  * (as passed to the {@link #eval(Sequence, Item)} method) has changed.  *   * @author wolf  */
+comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *   * The results of the first evaluation of the expression are cached for the  * lifetime of the object and only reloaded if the context sequence (as passed  * to the {@link #eval(Sequence, Item)} method) has changed.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -302,7 +302,7 @@ name|inUpdate
 init|=
 literal|false
 decl_stmt|;
-comment|//Cache for the current NodeTest type
+comment|// Cache for the current NodeTest type
 specifier|private
 name|Integer
 name|nodeTestType
@@ -350,7 +350,7 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -400,13 +400,13 @@ return|return
 name|deps
 return|;
 block|}
-comment|/** 	 * If the current path expression depends on local variables 	 * from a for expression, we can optimize by preloading  	 * entire element or attribute sets. 	 *   	 * @return 	 */
+comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return      */
 specifier|protected
 name|boolean
 name|preloadNodeSets
 parameter_list|()
 block|{
-comment|//TODO : log elsewhere ?
+comment|// TODO : log elsewhere ?
 if|if
 condition|(
 name|preload
@@ -515,7 +515,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-comment|//Nothing to apply
+comment|// Nothing to apply
 return|return
 name|contextSequence
 return|;
@@ -544,7 +544,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//TODO : log and/or profile ?
+comment|// TODO : log and/or profile ?
 name|pred
 operator|=
 operator|(
@@ -581,7 +581,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression)      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression)      */
 specifier|public
 name|void
 name|analyze
@@ -644,7 +644,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|//TODO : log somewhere ?
+comment|// TODO : log somewhere ?
 name|super
 operator|.
 name|analyze
@@ -781,7 +781,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-comment|/*if(contextSequence == null)             //Commented because this the high level result nodeset is *really* null              			result = NodeSet.EMPTY_SET;           //Try to return cached results         else*/
+comment|/*          * if(contextSequence == null) //Commented because this the high level          * result nodeset is *really* null result = NodeSet.EMPTY_SET; //Try to          * return cached results else          */
 if|if
 condition|(
 name|cached
@@ -796,8 +796,9 @@ name|contextSequence
 argument_list|)
 condition|)
 block|{
-comment|//WARNING : commented since predicates are *also* applied below ! -pb
-comment|/* 			if (predicates.size()> 0) {                 applyPredicate(contextSequence, cached.getResult());             } else {             */
+comment|// WARNING : commented since predicates are *also* applied below !
+comment|// -pb
+comment|/*              * if (predicates.size()> 0) { applyPredicate(contextSequence,              * cached.getResult()); } else {              */
 name|result
 operator|=
 name|cached
@@ -833,7 +834,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-comment|//}
+comment|// }
 block|}
 if|else if
 condition|(
@@ -1082,7 +1083,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1099,7 +1100,7 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 expr_stmt|;
-comment|//Caches the result
+comment|// Caches the result
 if|if
 condition|(
 name|contextSequence
@@ -1107,7 +1108,7 @@ operator|instanceof
 name|NodeSet
 condition|)
 block|{
-comment|//TODO : cache *after* removing duplicates ? -pb
+comment|// TODO : cache *after* removing duplicates ? -pb
 name|cached
 operator|=
 operator|new
@@ -1125,13 +1126,13 @@ name|registerUpdateListener
 argument_list|()
 expr_stmt|;
 block|}
-comment|//Remove duplicate nodes
+comment|// Remove duplicate nodes
 name|result
 operator|.
 name|removeDuplicates
 argument_list|()
 expr_stmt|;
-comment|//Apply the predicate
+comment|// Apply the predicate
 name|result
 operator|=
 name|applyPredicate
@@ -1169,19 +1170,19 @@ return|return
 name|result
 return|;
 block|}
-comment|//Avoid unnecessary tests (these should be detected by the parser)
+comment|// Avoid unnecessary tests (these should be detected by the parser)
 specifier|private
 name|boolean
 name|needsComputation
 parameter_list|()
 block|{
-comment|//TODO : log this ?
+comment|// TODO : log this ?
 switch|switch
 condition|(
 name|axis
 condition|)
 block|{
-comment|//Certainly not exhaustive
+comment|// Certainly not exhaustive
 case|case
 name|Constants
 operator|.
@@ -1272,7 +1273,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * @param context 	 * @param contextSet 	 * @return 	 */
+comment|/**      * @param context      * @param contextSet      * @return      */
 specifier|protected
 name|Sequence
 name|getSelf
@@ -1834,7 +1835,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-comment|//TODO : why a null selector here ? We have one below !
+comment|// TODO : why a null selector here ? We have one below !
 name|currentSet
 operator|=
 name|index
@@ -1931,7 +1932,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : why a selector here ? We havn't one above !
+comment|// TODO : why a selector here ? We havn't one above !
 switch|switch
 condition|(
 name|axis
@@ -2105,7 +2106,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : understand why this one is different from the other ones
+comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
 name|currentSet
@@ -2372,7 +2373,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : understand why this one is different from the other ones
+comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
 name|currentSet
@@ -2752,6 +2753,33 @@ block|{
 name|NodeProxy
 name|sibling
 init|=
+name|result
+operator|.
+name|get
+argument_list|(
+operator|(
+name|DocumentImpl
+operator|)
+name|currentNode
+operator|.
+name|getOwnerDocument
+argument_list|()
+argument_list|,
+name|currentNode
+operator|.
+name|getGID
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|sibling
+operator|==
+literal|null
+condition|)
+block|{
+name|sibling
+operator|=
 operator|new
 name|NodeProxy
 argument_list|(
@@ -2773,8 +2801,36 @@ operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
+condition|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
+condition|)
+block|{
+name|sibling
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|current
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|sibling
+operator|.
+name|copyContext
+argument_list|(
+name|current
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
 condition|(
 name|Expression
 operator|.
@@ -2788,14 +2844,6 @@ name|addContextNode
 argument_list|(
 name|contextId
 argument_list|,
-name|current
-argument_list|)
-expr_stmt|;
-else|else
-name|sibling
-operator|.
-name|copyContext
-argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
@@ -2953,7 +3001,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -3005,7 +3053,7 @@ operator|.
 name|getPreviousSibling
 argument_list|()
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -3036,7 +3084,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
-comment|//TODO : throw an exception here ! Don't let this pass through
+comment|// TODO : throw an exception here ! Don't let this pass through
 return|return
 name|NodeSet
 operator|.
@@ -3179,7 +3227,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
-comment|//TODO : throw an exception here ! Don't let this pass through
+comment|// TODO : throw an exception here ! Don't let this pass through
 return|return
 name|NodeSet
 operator|.
@@ -3395,6 +3443,23 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|NodeProxy
+name|t
+init|=
+name|result
+operator|.
+name|get
+argument_list|(
+name|ancestor
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|Expression
@@ -3425,6 +3490,17 @@ operator|.
 name|add
 argument_list|(
 name|ancestor
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|t
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|current
 argument_list|)
 expr_stmt|;
 block|}
@@ -3470,7 +3546,7 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|//Filter out the temporary nodes wrapper element
+comment|// Filter out the temporary nodes wrapper element
 if|if
 condition|(
 name|parentID
@@ -3510,6 +3586,23 @@ name|ancestor
 argument_list|)
 condition|)
 block|{
+name|NodeProxy
+name|t
+init|=
+name|result
+operator|.
+name|get
+argument_list|(
+name|ancestor
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|Expression
@@ -3540,6 +3633,17 @@ operator|.
 name|add
 argument_list|(
 name|ancestor
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|t
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|current
 argument_list|)
 expr_stmt|;
 block|}
@@ -3707,7 +3811,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -3771,7 +3875,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 break|break;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -4163,13 +4267,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Step#resetState() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#resetState()      */
 specifier|public
 name|void
 name|resetState
 parameter_list|()
 block|{
-comment|//TODO : uncomment some comments ?
+comment|// TODO : uncomment some comments ?
 name|super
 operator|.
 name|resetState
@@ -4183,16 +4287,16 @@ name|currentDocs
 operator|=
 literal|null
 expr_stmt|;
-comment|//listener = null;
-comment|//parent = null;
+comment|// listener = null;
+comment|// parent = null;
 name|cached
 operator|=
 literal|null
 expr_stmt|;
-comment|//parentDeps = Dependency.UNKNOWN_DEPENDENCY;
-comment|//preload = false;
-comment|//inUpdate = false;
-comment|//nodeTestType = null;
+comment|// parentDeps = Dependency.UNKNOWN_DEPENDENCY;
+comment|// preload = false;
+comment|// inUpdate = false;
+comment|// nodeTestType = null;
 block|}
 block|}
 end_class

@@ -145,7 +145,7 @@ argument_list|()
 decl_stmt|;
 comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 * @return 	 */
 specifier|public
-name|Iterator
+name|NodeSetIterator
 name|iterator
 parameter_list|()
 function_decl|;

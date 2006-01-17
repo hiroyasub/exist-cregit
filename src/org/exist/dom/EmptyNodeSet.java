@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -59,7 +49,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|NodeList
+name|Node
 import|;
 end_import
 
@@ -71,7 +61,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Node
+name|NodeList
 import|;
 end_import
 
@@ -94,7 +84,7 @@ name|EmptyNodeSetIterator
 argument_list|()
 decl_stmt|;
 specifier|public
-name|Iterator
+name|NodeSetIterator
 name|iterator
 parameter_list|()
 block|{
@@ -300,7 +290,7 @@ specifier|static
 class|class
 name|EmptyNodeSetIterator
 implements|implements
-name|Iterator
+name|NodeSetIterator
 block|{
 comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
 specifier|public
@@ -328,6 +318,15 @@ block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|void
+name|setPosition
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
 block|}
 specifier|public
 name|String

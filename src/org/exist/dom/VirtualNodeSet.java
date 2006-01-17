@@ -1945,7 +1945,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|Iterator
+name|NodeSetIterator
 name|iterator
 parameter_list|()
 block|{

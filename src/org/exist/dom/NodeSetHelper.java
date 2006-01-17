@@ -152,7 +152,7 @@ specifier|public
 class|class
 name|NodeSetHelper
 block|{
-comment|/** 	 * For two given sets of potential parent and child nodes, find 	 * those nodes from the child set that actually have parents in the 	 * parent set, i.e. the parent-child relationship is true. 	 *  	 * The method returns either the matching descendant or ancestor nodes, 	 * depending on the mode constant. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param dl a node set containing potential child nodes 	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 * @return 	 */
+comment|/**      * For two given sets of potential parent and child nodes, find those nodes      * from the child set that actually have parents in the parent set, i.e. the      * parent-child relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link #DESCENDANT}, the returned node set will contain all      * child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes, for      * which children have been found.      *       * @param dl      *            a node set containing potential child nodes      * @param al      *            a node set containing potential parent nodes      * @param mode      *            selection mode      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      * @return      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -472,7 +472,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * For two given sets of potential ancestor and descendant nodes, find 	 * those nodes from the descendant set that actually have ancestors in the 	 * ancestor set, i.e. the ancestor-descendant relationship is true. 	 *  	 * The method returns either the matching descendant or ancestor nodes, 	 * depending on the mode constant. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *  	 * @param dl a node set containing potential descendant nodes 	 * @param al a node set containing potential ancestor nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 *  	 * @return 	 */
+comment|/**      * For two given sets of potential ancestor and descendant nodes, find those      * nodes from the descendant set that actually have ancestors in the      * ancestor set, i.e. the ancestor-descendant relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link #DESCENDANT}, the returned node set will contain all      * descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *       * @param dl      *            a node set containing potential descendant nodes      * @param al      *            a node set containing potential ancestor nodes      * @param mode      *            selection mode      * @param includeSelf      *            if true, check if the ancestor node itself is contained in the      *            set of descendant nodes (descendant-or-self axis)      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      *       * @return      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -808,7 +808,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * For two sets of potential ancestor and descendant nodes, return all the 	 * real ancestors having a descendant in the descendant set.  	 * 	 * @param  al node set containing potential ancestors 	 * @param dl node set containing potential descendants 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 *@return 	 */
+comment|/**      * For two sets of potential ancestor and descendant nodes, return all the      * real ancestors having a descendant in the descendant set.      *       * @param al      *            node set containing potential ancestors      * @param dl      *            node set containing potential descendants      * @param includeSelf      *            if true, check if the ancestor node itself is contained in      *            this node set (ancestor-or-self axis)      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      * @return      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -936,6 +936,15 @@ if|if
 condition|(
 name|Expression
 operator|.
+name|IGNORE_CONTEXT
+operator|!=
+name|contextId
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
 name|NO_CONTEXT_ID
 operator|!=
 name|contextId
@@ -957,6 +966,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -989,7 +999,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Return all nodes contained in the node set that are ancestors of the node p.   	 */
+comment|/**      * Return all nodes contained in the node set that are ancestors of the node      * p.      */
 specifier|private
 specifier|static
 name|NodeSet
@@ -1141,7 +1151,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Select all nodes from the passed set of potential siblings, which 	 * are preceding siblings of the nodes in 	 * the other set. 	 *  	 * @param candidates the node set to check 	 * @param references a node set containing potential siblings 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 * @return 	 */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * preceding siblings of the nodes in the other set.      *       * @param candidates      *            the node set to check      * @param references      *            a node set containing potential siblings      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      * @return      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -1185,7 +1195,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|NodeSetIterator
 name|iReferences
 init|=
 name|references
@@ -1193,7 +1203,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|NodeSetIterator
 name|iCandidates
 init|=
 name|candidates
@@ -1223,6 +1233,11 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|NodeProxy
+name|firstCandidate
+init|=
+literal|null
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -1248,6 +1263,10 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iReferences
@@ -1287,6 +1306,10 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iCandidates
@@ -1350,6 +1373,10 @@ name|pb
 condition|)
 block|{
 comment|// wrong parent: proceed
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iReferences
@@ -1378,6 +1405,10 @@ name|pb
 condition|)
 block|{
 comment|// wrong parent: proceed
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iCandidates
@@ -1400,6 +1431,16 @@ break|break;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|firstCandidate
+operator|==
+literal|null
+condition|)
+name|firstCandidate
+operator|=
+name|candidate
+expr_stmt|;
 comment|// found two nodes with the same parent
 comment|// now, compare the ids: a node is a following sibling
 comment|// if its id is greater than the id of the other node
@@ -1417,15 +1458,51 @@ argument_list|()
 condition|)
 block|{
 comment|// found a preceding sibling
+name|NodeProxy
+name|t
+init|=
+name|result
+operator|.
+name|get
+argument_list|(
+name|candidate
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+operator|!=
+name|contextId
+condition|)
+block|{
 if|if
 condition|(
 name|Expression
 operator|.
 name|NO_CONTEXT_ID
-operator|!=
+operator|==
 name|contextId
 condition|)
-comment|//TODO : add transverse context
+block|{
+name|candidate
+operator|.
+name|copyContext
+argument_list|(
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|candidate
 operator|.
 name|addContextNode
@@ -1435,14 +1512,8 @@ argument_list|,
 name|reference
 argument_list|)
 expr_stmt|;
-else|else
-name|candidate
-operator|.
-name|copyContext
-argument_list|(
-name|reference
-argument_list|)
-expr_stmt|;
+block|}
+block|}
 name|result
 operator|.
 name|add
@@ -1450,6 +1521,26 @@ argument_list|(
 name|candidate
 argument_list|)
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|contextId
+operator|>
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+condition|)
+block|{
+name|t
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|iCandidates
@@ -1491,7 +1582,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
-comment|//TODO : break ?
+comment|// TODO : break ?
 name|candidate
 operator|=
 operator|(
@@ -1515,6 +1606,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|reference
 operator|=
 operator|(
@@ -1525,6 +1617,24 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|iCandidates
+operator|.
+name|setPosition
+argument_list|(
+name|firstCandidate
+argument_list|)
+expr_stmt|;
+name|candidate
+operator|=
+operator|(
+name|NodeProxy
+operator|)
+name|iCandidates
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+block|}
 else|else
 break|break;
 block|}
@@ -1535,7 +1645,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Select all nodes from the passed set of potential siblings, which      * are following siblings of the nodes in      * the other set.      *       * @param candidates the node set to check      * @param references a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.       * @return      */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * following siblings of the nodes in the other set.      *       * @param candidates      *            the node set to check      * @param references      *            a node set containing potential siblings      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      * @return      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -1579,7 +1689,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|NodeSetIterator
 name|iReferences
 init|=
 name|references
@@ -1587,7 +1697,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|NodeSetIterator
 name|iCandidates
 init|=
 name|candidates
@@ -1617,7 +1727,12 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//TODO : review : don't care about preceding siblings
+name|NodeProxy
+name|firstCandidate
+init|=
+literal|null
+decl_stmt|;
+comment|// TODO : review : don't care about preceding siblings
 while|while
 condition|(
 literal|true
@@ -1643,6 +1758,10 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iReferences
@@ -1682,6 +1801,10 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iCandidates
@@ -1745,6 +1868,10 @@ name|pb
 condition|)
 block|{
 comment|// wrong parent: proceed
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iReferences
@@ -1773,6 +1900,10 @@ name|pb
 condition|)
 block|{
 comment|// wrong parent: proceed
+name|firstCandidate
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 name|iCandidates
@@ -1795,6 +1926,16 @@ break|break;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|firstCandidate
+operator|==
+literal|null
+condition|)
+name|firstCandidate
+operator|=
+name|candidate
+expr_stmt|;
 comment|// found two nodes with the same parent
 comment|// now, compare the ids: a node is a following sibling
 comment|// if its id is greater than the id of the other node
@@ -1846,15 +1987,51 @@ argument_list|()
 condition|)
 block|{
 comment|// found a following sibling
+name|NodeProxy
+name|t
+init|=
+name|result
+operator|.
+name|get
+argument_list|(
+name|candidate
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+operator|!=
+name|contextId
+condition|)
+block|{
 if|if
 condition|(
 name|Expression
 operator|.
 name|NO_CONTEXT_ID
-operator|!=
+operator|==
 name|contextId
 condition|)
-comment|//TODO : add transverse context
+block|{
+name|candidate
+operator|.
+name|copyContext
+argument_list|(
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|candidate
 operator|.
 name|addContextNode
@@ -1864,14 +2041,28 @@ argument_list|,
 name|reference
 argument_list|)
 expr_stmt|;
-else|else
-name|candidate
+block|}
+block|}
+name|result
 operator|.
-name|copyContext
+name|add
 argument_list|(
+name|candidate
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|t
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
 name|reference
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1896,6 +2087,42 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+if|else if
+condition|(
+name|iReferences
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|reference
+operator|=
+operator|(
+name|NodeProxy
+operator|)
+name|iReferences
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|iCandidates
+operator|.
+name|setPosition
+argument_list|(
+name|firstCandidate
+argument_list|)
+expr_stmt|;
+name|candidate
+operator|=
+operator|(
+name|NodeProxy
+operator|)
+name|iCandidates
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+block|}
 else|else
 break|break;
 comment|// equal nodes: proceed with next node
@@ -2038,7 +2265,7 @@ name|reference
 argument_list|)
 condition|)
 block|{
-comment|//TODO : add transverse context
+comment|// TODO : add transverse context
 name|candidate
 operator|.
 name|addContextNode
@@ -2173,7 +2400,7 @@ name|reference
 argument_list|)
 condition|)
 block|{
-comment|//TODO : add transverse context
+comment|// TODO : add transverse context
 name|candidate
 operator|.
 name|addContextNode
@@ -2434,7 +2661,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-comment|//TODO : error for any other one -pb
+comment|// TODO : error for any other one -pb
 block|}
 block|}
 block|}
@@ -2566,8 +2793,8 @@ expr_stmt|;
 return|return
 name|new_node
 return|;
-default|default :
-comment|//TODO : error ? -pb
+default|default:
+comment|// TODO : error ? -pb
 return|return
 literal|null
 return|;

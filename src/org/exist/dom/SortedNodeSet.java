@@ -1086,7 +1086,7 @@ name|p
 return|;
 block|}
 specifier|public
-name|Iterator
+name|NodeSetIterator
 name|iterator
 parameter_list|()
 block|{
@@ -1141,7 +1141,7 @@ specifier|static
 class|class
 name|SortedNodeSetIterator
 implements|implements
-name|Iterator
+name|NodeSetIterator
 implements|,
 name|SequenceIterator
 block|{
@@ -1238,6 +1238,22 @@ name|void
 name|remove
 parameter_list|()
 block|{
+block|}
+specifier|public
+name|void
+name|setPosition
+parameter_list|(
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"NodeSetIterator.setPosition() is not supported by SortedNodeSetIterator"
+argument_list|)
+throw|;
 block|}
 block|}
 specifier|private

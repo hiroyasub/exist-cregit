@@ -137,6 +137,15 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IGNORE_CONTEXT
+init|=
+operator|-
+literal|2
+decl_stmt|;
 comment|/**      * Marks an invalid expression id.      */
 specifier|public
 specifier|final
