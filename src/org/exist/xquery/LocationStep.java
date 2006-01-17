@@ -855,7 +855,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Null context sequence for '"
+literal|"XPDY0002 : undefined context sequence for '"
 operator|+
 name|this
 operator|.
