@@ -204,6 +204,12 @@ name|context
 operator|=
 name|context
 expr_stmt|;
+name|this
+operator|.
+name|contextId
+operator|=
+name|contextId
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
