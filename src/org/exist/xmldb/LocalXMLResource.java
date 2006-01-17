@@ -1174,12 +1174,9 @@ argument_list|(
 name|proxy
 argument_list|)
 return|;
-else|else
+comment|//<frederic.glorieux@ajlsm.com> return a full to get root PI and comments
 return|return
 name|document
-operator|.
-name|getDocumentElement
-argument_list|()
 return|;
 block|}
 catch|catch

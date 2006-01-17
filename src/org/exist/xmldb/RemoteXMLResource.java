@@ -1491,11 +1491,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//<frederic.glorieux@ajlsm.com> return a full DOM doc, with root PI and comments
 return|return
 name|doc
-operator|.
-name|getDocumentElement
-argument_list|()
 return|;
 block|}
 catch|catch
