@@ -190,6 +190,21 @@ operator|=
 name|writer
 expr_stmt|;
 block|}
+specifier|protected
+name|void
+name|reset
+parameter_list|()
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|writer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/**      * Set the output properties.      *      * @param outputProperties      */
 specifier|public
 name|void

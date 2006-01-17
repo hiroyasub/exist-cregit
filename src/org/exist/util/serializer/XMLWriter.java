@@ -393,6 +393,16 @@ name|encoding
 argument_list|)
 expr_stmt|;
 block|}
+specifier|protected
+name|void
+name|reset
+parameter_list|()
+block|{
+name|writer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/** 	 * Set a new writer. Calling this method will reset the state of the object. 	 *  	 * @param writer 	 */
 specifier|public
 name|void

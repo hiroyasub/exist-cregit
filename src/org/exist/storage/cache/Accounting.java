@@ -40,6 +40,7 @@ name|Accounting
 block|{
 specifier|private
 specifier|final
+specifier|static
 name|Object
 name|DUMMY
 init|=
