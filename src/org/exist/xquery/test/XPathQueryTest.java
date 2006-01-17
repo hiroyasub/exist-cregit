@@ -717,10 +717,13 @@ name|message
 argument_list|,
 name|message
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"XPTY0019"
 argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 comment|//Undefined context sequence
@@ -773,10 +776,13 @@ name|message
 argument_list|,
 name|message
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"XPDY0002"
 argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|exceptionThrown
@@ -830,10 +836,13 @@ name|message
 argument_list|,
 name|message
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"FORG0006"
 argument_list|)
+operator|>
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|queryAndAssert
