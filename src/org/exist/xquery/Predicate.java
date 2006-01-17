@@ -455,6 +455,15 @@ name|Type
 operator|.
 name|NUMBER
 argument_list|)
+operator|&&
+name|inner
+operator|.
+name|getCardinality
+argument_list|()
+operator|==
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
 condition|)
 block|{
 name|executionMode
@@ -632,6 +641,15 @@ name|Type
 operator|.
 name|NUMBER
 argument_list|)
+operator|&&
+name|inner
+operator|.
+name|getCardinality
+argument_list|()
+operator|==
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
 condition|)
 block|{
 name|recomputedExecutionMode
@@ -672,10 +690,10 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 block|}
-comment|//            if (executionMode == POSITIONAL&& Type.subTypeOf(contextSequence.getItemType(), Type.ATOMIC)
+comment|//if (executionMode == POSITIONAL&& Type.subTypeOf(contextSequence.getItemType(), Type.ATOMIC)
 comment|//&& !(contextSequence instanceof VirtualNodeSet)) {
-comment|//                recomputedExecutionMode = BOOLEAN;
-comment|//            }
+comment|//recomputedExecutionMode = BOOLEAN;
+comment|//}
 switch|switch
 condition|(
 name|recomputedExecutionMode
