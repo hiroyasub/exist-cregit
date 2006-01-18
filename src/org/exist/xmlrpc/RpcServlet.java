@@ -98,6 +98,15 @@ specifier|protected
 name|XmlRpcServer
 name|xmlrpc
 decl_stmt|;
+comment|/** id of the database registred against the BrokerPool */
+specifier|protected
+name|String
+name|databaseid
+init|=
+name|BrokerPool
+operator|.
+name|DEFAULT_INSTANCE_NAME
+decl_stmt|;
 comment|/**      *  Handle XML-RPC requests      *      *@param  request               Description of the Parameter      *@param  response              Description of the Parameter      *@exception  ServletException  Description of the Exception      *@exception  IOException       Description of the Exception      */
 specifier|public
 name|void
@@ -275,13 +284,46 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+comment|//<frederic.glorieux@ajlsm.com> to allow multi-instance xmlrpc server, use a databaseid everywhere
+name|String
+name|id
+init|=
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"database-id"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|id
+operator|!=
+literal|null
+operator|&&
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|id
+argument_list|)
+condition|)
+name|this
+operator|.
+name|databaseid
+operator|=
+name|id
+expr_stmt|;
 if|if
 condition|(
 operator|!
 name|BrokerPool
 operator|.
 name|isConfigured
-argument_list|()
+argument_list|(
+name|databaseid
+argument_list|)
 condition|)
 throw|throw
 operator|new
@@ -328,7 +370,9 @@ init|=
 name|BrokerPool
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|databaseid
+argument_list|)
 decl_stmt|;
 name|Configuration
 name|conf
@@ -351,6 +395,8 @@ operator|new
 name|AuthenticatedHandler
 argument_list|(
 name|conf
+argument_list|,
+name|databaseid
 argument_list|)
 decl_stmt|;
 comment|//RpcServer rpcserv = new RpcServer( conf );
