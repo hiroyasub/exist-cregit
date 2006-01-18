@@ -218,7 +218,10 @@ comment|/** 	 * For every item in the sequence, clear any context-dependant 	 * 
 specifier|public
 name|void
 name|clearContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 function_decl|;
 specifier|public
 name|void

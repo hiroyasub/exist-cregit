@@ -499,6 +499,9 @@ argument_list|)
 decl_stmt|;
 name|clearContext
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
@@ -800,6 +803,14 @@ operator|)
 operator|.
 name|sort
 argument_list|()
+expr_stmt|;
+name|clearContext
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
+name|in
+argument_list|)
 expr_stmt|;
 comment|// Restore the local variable stack
 name|context

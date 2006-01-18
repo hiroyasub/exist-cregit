@@ -2223,8 +2223,6 @@ operator|<
 name|maxDepth
 condition|)
 block|{
-try|try
-block|{
 name|int
 name|temp
 index|[]
@@ -2265,30 +2263,6 @@ index|]
 operator|=
 literal|0
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Severe error: ArrayIndexOutOfBoundsException "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|"; maxDepth = "
-operator|+
-name|maxDepth
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public

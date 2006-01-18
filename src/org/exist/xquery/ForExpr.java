@@ -672,6 +672,9 @@ argument_list|)
 decl_stmt|;
 name|clearContext
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
@@ -881,6 +884,9 @@ argument_list|()
 condition|)
 name|clearContext
 argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
@@ -1120,7 +1126,10 @@ name|contextItem
 operator|)
 operator|.
 name|clearContext
+argument_list|(
+name|getExpressionId
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// if where returned false, continue
 if|if
@@ -1203,6 +1212,14 @@ operator|)
 operator|.
 name|sort
 argument_list|()
+expr_stmt|;
+name|clearContext
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|,
+name|in
+argument_list|)
 expr_stmt|;
 comment|// restore the local variable stack
 name|context

@@ -2926,7 +2926,10 @@ block|}
 specifier|public
 name|void
 name|clearContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 name|NodeProxy
 name|p
@@ -2959,7 +2962,9 @@ expr_stmt|;
 name|p
 operator|.
 name|clearContext
-argument_list|()
+argument_list|(
+name|contextId
+argument_list|)
 expr_stmt|;
 block|}
 block|}

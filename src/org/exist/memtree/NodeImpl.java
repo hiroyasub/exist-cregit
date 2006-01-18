@@ -2482,7 +2482,10 @@ block|}
 specifier|public
 name|void
 name|clearContext
-parameter_list|()
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
 block|{
 comment|// ignored for in-memory nodes
 block|}

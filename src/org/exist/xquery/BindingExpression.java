@@ -1161,6 +1161,9 @@ specifier|static
 name|void
 name|clearContext
 parameter_list|(
+name|int
+name|contextId
+parameter_list|,
 name|Sequence
 name|seq
 parameter_list|)
@@ -1216,7 +1219,9 @@ name|next
 operator|)
 operator|.
 name|clearContext
-argument_list|()
+argument_list|(
+name|contextId
+argument_list|)
 expr_stmt|;
 block|}
 block|}

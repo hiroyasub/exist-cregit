@@ -1866,7 +1866,11 @@ decl_stmt|;
 name|t
 operator|.
 name|clearContext
-argument_list|()
+argument_list|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+argument_list|)
 expr_stmt|;
 while|while
 condition|(
