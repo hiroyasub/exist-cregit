@@ -520,16 +520,15 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Encountered SAX exception while serializing enclosed expression: "
-operator|+
-name|ExpressionDumper
+name|e
 operator|.
-name|dump
-argument_list|(
-name|this
-argument_list|)
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
+comment|//throw new XPathException(getASTNode(),
+comment|//	"Encountered SAX exception while serializing enclosed expression: "
+comment|//		+ ExpressionDumper.dump(this));
 block|}
 if|if
 condition|(
