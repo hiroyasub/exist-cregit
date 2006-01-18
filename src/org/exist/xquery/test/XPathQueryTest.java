@@ -849,6 +849,28 @@ name|queryAndAssert
 argument_list|(
 name|service
 argument_list|,
+literal|"let $a := ('a', 'b', 'c') return $a[2 to 2]"
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+literal|"let $a := ('a', 'b', 'c') return $a[(2 to 2)]"
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
 literal|"()/position()"
 argument_list|,
 literal|0

@@ -1812,6 +1812,88 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testVariable 6: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $a :=<root> "
+operator|+
+literal|"<b name='1'>"
+operator|+
+literal|"<c name='x'> "
+operator|+
+literal|"<bar name='2'/> "
+operator|+
+literal|"<bar name='3'> "
+operator|+
+literal|"<bar name='4'/> "
+operator|+
+literal|"</bar> "
+operator|+
+literal|"</c> "
+operator|+
+literal|"</b> "
+operator|+
+literal|"</root> "
+operator|+
+literal|"let $b := for $bar in $a/b/c/bar "
+operator|+
+literal|"where ($bar/../@name = 'x') "
+operator|+
+literal|"return $bar "
+operator|+
+literal|"return $b"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+comment|//assertEquals( "XQuery: " + query, 2, result.getSize() );
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|resu
+operator|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+comment|//assertEquals( "XQuery: " + query, "2", ((Element)resu.getContentAsDOM()).getAttribute("name") );
+name|resu
+operator|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+comment|//assertEquals( "XQuery: " + query, "3", ((Element)resu.getContentAsDOM()).getAttribute("name") );
 block|}
 catch|catch
 parameter_list|(

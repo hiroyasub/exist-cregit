@@ -466,6 +466,7 @@ operator|.
 name|EXACTLY_ONE
 condition|)
 block|{
+comment|//Just a hint : inner's cardinality may still be potential
 name|executionMode
 operator|=
 name|POSITIONAL
@@ -619,9 +620,7 @@ name|recomputedExecutionMode
 init|=
 name|executionMode
 decl_stmt|;
-comment|//TODO : use an else/else if construct -pb
-comment|// just to be sure: change mode to boolean if the predicate expression returns a number
-comment|//TODO : the code, likely to be correct, implements the exact contrary
+comment|//Try to promote a boolean evaluation to a positionnal one
 if|if
 condition|(
 name|executionMode
@@ -641,17 +640,28 @@ name|Type
 operator|.
 name|NUMBER
 argument_list|)
-operator|&&
-name|inner
-operator|.
-name|getCardinality
-argument_list|()
-operator|==
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
 condition|)
 block|{
+name|Sequence
+name|innerSeq
+init|=
+name|inner
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+decl_stmt|;
+comment|//Only if we have an actual *singleton* of numeric items
+if|if
+condition|(
+name|innerSeq
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|1
+condition|)
 name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
