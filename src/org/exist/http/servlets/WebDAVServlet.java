@@ -105,6 +105,18 @@ name|WebDAV
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides a WebDAV interface to the database. All WebDAV requests  * are delegated to the {@link org.exist.http.webdav.WebDAV} class.  *   * @author wolf  */
 end_comment
@@ -119,6 +131,15 @@ block|{
 specifier|private
 name|WebDAV
 name|webdav
+decl_stmt|;
+comment|/** id of the database registred against the BrokerPool */
+specifier|protected
+name|String
+name|databaseid
+init|=
+name|BrokerPool
+operator|.
+name|DEFAULT_INSTANCE_NAME
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
@@ -137,6 +158,37 @@ name|init
 argument_list|(
 name|config
 argument_list|)
+expr_stmt|;
+comment|//<frederic.glorieux@ajlsm.com> to allow multi-instance webdav server, use a databaseid everywhere
+name|String
+name|id
+init|=
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"database-id"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|id
+operator|!=
+literal|null
+operator|&&
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|id
+argument_list|)
+condition|)
+name|this
+operator|.
+name|databaseid
+operator|=
+name|id
 expr_stmt|;
 name|int
 name|authMethod
@@ -180,6 +232,10 @@ operator|new
 name|WebDAV
 argument_list|(
 name|authMethod
+argument_list|,
+name|this
+operator|.
+name|databaseid
 argument_list|)
 expr_stmt|;
 block|}
