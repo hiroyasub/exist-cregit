@@ -4273,7 +4273,6 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-comment|// TODO : uncomment some comments ?
 name|super
 operator|.
 name|resetState
@@ -4287,16 +4286,17 @@ name|currentDocs
 operator|=
 literal|null
 expr_stmt|;
-comment|// listener = null;
-comment|// parent = null;
 name|cached
 operator|=
 literal|null
 expr_stmt|;
-comment|// parentDeps = Dependency.UNKNOWN_DEPENDENCY;
-comment|// preload = false;
-comment|// inUpdate = false;
-comment|// nodeTestType = null;
+name|deregisterUpdateListener
+argument_list|()
+expr_stmt|;
+name|listener
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
