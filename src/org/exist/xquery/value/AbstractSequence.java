@@ -458,7 +458,34 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"error FORG0006: effectiveBooleanValue: first item not a node, and sequence length>1"
+literal|"error FORG0006: effectiveBooleanValue: first item of '"
+operator|+
+operator|(
+name|toString
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|<
+literal|20
+condition|?
+name|toString
+argument_list|()
+else|:
+name|toString
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|20
+argument_list|)
+operator|+
+literal|"..."
+operator|)
+operator|+
+literal|"' is not a node, and sequence length> 1"
 argument_list|)
 throw|;
 comment|// If $arg is a singleton value of type xs:boolean or a derived from xs:boolean, fn:boolean returns $arg.
