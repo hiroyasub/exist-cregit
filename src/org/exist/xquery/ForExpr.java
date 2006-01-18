@@ -985,6 +985,10 @@ name|atVal
 argument_list|)
 expr_stmt|;
 comment|// Loop through each variable binding
+name|p
+operator|=
+literal|0
+expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
