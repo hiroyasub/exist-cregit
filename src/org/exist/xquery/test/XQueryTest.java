@@ -1862,7 +1862,20 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-comment|//assertEquals( "XQuery: " + query, 2, result.getSize() );
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|printResult
 argument_list|(
 name|result
@@ -1880,7 +1893,30 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//assertEquals( "XQuery: " + query, "2", ((Element)resu.getContentAsDOM()).getAttribute("name") );
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"2"
+argument_list|,
+operator|(
+operator|(
+name|Element
+operator|)
+name|resu
+operator|.
+name|getContentAsDOM
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"name"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|resu
 operator|=
 operator|(
@@ -1893,7 +1929,30 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//assertEquals( "XQuery: " + query, "3", ((Element)resu.getContentAsDOM()).getAttribute("name") );
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"3"
+argument_list|,
+operator|(
+operator|(
+name|Element
+operator|)
+name|resu
+operator|.
+name|getContentAsDOM
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"name"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

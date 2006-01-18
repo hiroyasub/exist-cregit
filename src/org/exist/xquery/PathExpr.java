@@ -239,14 +239,6 @@ name|inPredicate
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
-name|int
-name|contextId
-init|=
-name|Expression
-operator|.
-name|NO_CONTEXT_ID
-decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
@@ -497,6 +489,20 @@ name|IN_PREDICATE
 operator|)
 argument_list|)
 expr_stmt|;
+comment|//Where clauses should be identified. TODO : pass bound variable's inputSequence ? -pb
+if|if
+condition|(
+operator|(
+name|contextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|IN_WHERE_CLAUSE
+operator|)
+operator|==
+literal|0
+condition|)
 name|contextInfo
 operator|.
 name|setContextId

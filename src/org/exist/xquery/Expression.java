@@ -248,6 +248,11 @@ name|contextSet
 parameter_list|)
 function_decl|;
 specifier|public
+name|int
+name|getContextId
+parameter_list|()
+function_decl|;
+specifier|public
 name|DocumentSet
 name|getContextDocSet
 parameter_list|()
