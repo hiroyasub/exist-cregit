@@ -1710,7 +1710,10 @@ expr_stmt|;
 if|if
 condition|(
 name|first
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|createContainerElements
 condition|)
 block|{
@@ -1788,6 +1791,27 @@ argument_list|(
 name|ATTRIB_ELEMENT
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+throw|throw
+operator|new
+name|SAXException
+argument_list|(
+literal|"Error XTDE0410: attribute '"
+operator|+
+operator|(
+operator|(
+name|AttrImpl
+operator|)
+name|node
+operator|)
+operator|.
+name|getQName
+argument_list|()
+operator|+
+literal|"' has no parent element"
+argument_list|)
+throw|;
 block|}
 else|else
 name|receiver

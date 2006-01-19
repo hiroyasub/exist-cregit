@@ -477,7 +477,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//USER-SESSION-DATA[1]/@version"
+literal|"string(//USER-SESSION-DATA[1]/@version)"
 argument_list|)
 expr_stmt|;
 name|Assert
