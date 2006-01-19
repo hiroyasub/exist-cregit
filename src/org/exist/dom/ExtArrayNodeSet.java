@@ -1529,10 +1529,36 @@ operator|||
 name|isInDocumentOrder
 return|;
 block|}
+comment|/**      * Remove all duplicate nodes, but merge their      * contexts.      */
+specifier|public
+name|void
+name|mergeDuplicates
+parameter_list|()
+block|{
+name|sort
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|sort
 parameter_list|()
+block|{
+name|sort
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|sort
+parameter_list|(
+name|boolean
+name|mergeContexts
+parameter_list|)
 block|{
 comment|//              long start = System.currentTimeMillis();
 if|if
@@ -1579,7 +1605,9 @@ operator|+=
 name|part
 operator|.
 name|removeDuplicates
-argument_list|()
+argument_list|(
+name|mergeContexts
+argument_list|)
 expr_stmt|;
 block|}
 name|isSorted
@@ -1644,7 +1672,9 @@ operator|+=
 name|part
 operator|.
 name|removeDuplicates
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 name|isSorted
@@ -3125,7 +3155,10 @@ block|}
 comment|/**          * Remove all duplicate nodes from this part.          *           * @return the new length of the part, after removing all duplicates          */
 name|int
 name|removeDuplicates
-parameter_list|()
+parameter_list|(
+name|boolean
+name|mergeContext
+parameter_list|)
 block|{
 name|int
 name|j
@@ -3182,6 +3215,25 @@ name|array
 index|[
 name|i
 index|]
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|mergeContext
+condition|)
+block|{
+name|array
+index|[
+name|j
+index|]
+operator|.
+name|addContext
+argument_list|(
+name|array
+index|[
+name|i
+index|]
+argument_list|)
 expr_stmt|;
 block|}
 block|}
