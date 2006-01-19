@@ -155,12 +155,7 @@ name|expressionId
 operator|!=
 name|EXPRESSION_ID_INVALID
 argument_list|,
-literal|"The expression "
-operator|+
-name|toString
-argument_list|()
-operator|+
-literal|" should have a unique id!"
+literal|"The expression should have a unique id!"
 argument_list|)
 expr_stmt|;
 return|return
