@@ -424,7 +424,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:matches() function.  *   * Based on the jakarta ORO package for regular expression support.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements the fn:matches() function.  *   * Based on the java.util.regex package for regular expression support.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -459,7 +459,9 @@ literal|"Returns true if the first argument string matches the regular expressio
 operator|+
 literal|"by the second argument. This function is optimized internally if a range index of type xs:string "
 operator|+
-literal|"is defined on the nodes passed to the first argument."
+literal|"is defined on the nodes passed to the first argument. Please note that - in contrast - with the "
+operator|+
+literal|"specification - this method allows zero or more items for the string argument."
 argument_list|,
 operator|new
 name|SequenceType
@@ -474,7 +476,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|)
 block|,
 operator|new
@@ -520,7 +522,9 @@ literal|"Returns true if the first argument string matches the regular expressio
 operator|+
 literal|"by the second argument. This function is optimized internally if a range index of type xs:string "
 operator|+
-literal|"is defined on the nodes passed to the first argument."
+literal|"is defined on the nodes passed to the first argument. Please note that - in contrast - with the "
+operator|+
+literal|"specification - this method allows zero or more items for the string argument."
 argument_list|,
 operator|new
 name|SequenceType
@@ -535,7 +539,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|)
 block|,
 operator|new
@@ -632,59 +636,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|arg
-operator|=
-operator|new
-name|DynamicCardinalityCheck
-argument_list|(
-name|context
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-name|arg
-argument_list|,
-operator|new
-name|Error
-argument_list|(
-name|Error
-operator|.
-name|FUNC_PARAM_CARDINALITY
-argument_list|,
-literal|"1"
-argument_list|,
-name|mySignature
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|arg
-operator|.
-name|returnsType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|ATOMIC
-argument_list|)
-condition|)
-name|arg
-operator|=
-operator|new
-name|Atomize
-argument_list|(
-name|context
-argument_list|,
-name|arg
-argument_list|)
-expr_stmt|;
 name|steps
 operator|.
 name|add
@@ -1268,6 +1219,13 @@ argument_list|,
 literal|""
 argument_list|,
 literal|"Generic evaluation"
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"GENERIC"
 argument_list|)
 expr_stmt|;
 name|result
