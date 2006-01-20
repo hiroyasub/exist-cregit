@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright 1999-2004 The Apache Software Foundation.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  *      http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -610,7 +610,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the xmldb:// pseudo-protocol and allows to get XML  * content from an XML:DB enabled XML database.  *  *  frederic.glorieux@ajlsm.com  *  this version come from Cocoon trunk (work also under Cocoon 2.1.5)  *  It has been read and modified to become an all-in-on tool on a DBConnection  *    *  It's still in cocoon package hierarchy, maybe it should move one day.  *    *  Interesting new methods   *   * getContentAsDOM(), setContentAsDOM() (for a resource)  *   * cacheable for a resource read  *   * getCollection(), getResource() (xmldb objects)  *   * getUser(), getPass  *      *    *  *   * @version CVS $Id$  *   * $Log$  * Revision 1.1  2006/01/19 19:42:32  glorieux  * A first draft of a cocoon xmldb Source, optimized for Exist. Needs doc and demos  *  * Revision 1.4  2006/01/13 16:06:27  fglorieux  * Meilleure utilisation de cleanup  *  * Revision 1.3  2006/01/12 10:39:49  fglorieux  * Commentaires pour Vincent.  *  *   */
+comment|/**  * This class implements the xmldb:// pseudo-protocol and allows to get XML  * content from an XML:DB enabled XML database.  *  *<p>  * This class starts on   *<a   *  href="http://svn.apache.org/viewcvs.cgi/cocoon/blocks/xmldb/trunk/java/org/apache/cocoon/components/source/impl/XMLDBSource.java?rev=359757&view=markup"/  *>XMLDBSource</a> from Cocoon project.  * Some improvments may be useful for Cocoon, some others may be Exist specific.  * Interesting new features :  *</p>  *   *<ul>  *<li>cacheable for a resource read</li>  *<li>handle userinfo urls like<...//user:password@host/...> (for read)</li>   *<li>setContentAsDOM() to avoid encodings problem when writing a resource</li>  *<li>resourceToSAX() plug a lexical handler to get comments of the XML document</li>  *<li>getCollection(), getResource() (xmldb objects)</li>  *<li>getUser(), getPassword()</li>  *</ul>  *   * @version CVS $Id$  */
 end_comment
 
 begin_class
@@ -964,11 +964,22 @@ name|password
 operator|=
 name|password
 expr_stmt|;
-comment|// Parse URL
-name|int
-name|start
-init|=
+comment|// Parse URL (with String methods for efficiency and tolerance)
+comment|// Exist improvment, handle user:pass override from URL
+comment|// default behavior
+name|this
+operator|.
+name|url
+operator|=
 name|srcUrl
+expr_stmt|;
+comment|// allow little queries
+name|int
+name|sharp
+init|=
+name|this
+operator|.
+name|url
 operator|.
 name|indexOf
 argument_list|(
@@ -977,7 +988,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|start
+name|sharp
 operator|!=
 operator|-
 literal|1
@@ -987,24 +998,28 @@ name|this
 operator|.
 name|url
 operator|=
-name|srcUrl
+name|this
+operator|.
+name|url
 operator|.
 name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|start
+name|sharp
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|query
 operator|=
-name|srcUrl
+name|this
+operator|.
+name|url
 operator|.
 name|substring
 argument_list|(
-name|start
+name|sharp
 operator|+
 literal|1
 argument_list|)
@@ -1018,21 +1033,155 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-block|{
 name|query
 operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// try userinfo, a '@' before #
+comment|// alow things like xmldb:exist://user:password@*/**
+name|int
+name|at
+init|=
+name|this
+operator|.
+name|url
+operator|.
+name|indexOf
+argument_list|(
+literal|'@'
+argument_list|)
+decl_stmt|;
+name|int
+name|root
+init|=
+name|this
+operator|.
+name|url
+operator|.
+name|indexOf
+argument_list|(
+literal|"//"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|at
+operator|>
+operator|-
+literal|1
+operator|&&
+operator|(
+name|sharp
+operator|==
+operator|-
+literal|1
+operator|||
+name|at
+operator|<
+name|sharp
+operator|)
+condition|)
+block|{
+comment|// take userinfo first and modify url after
+name|String
+name|userinfo
+init|=
+name|this
+operator|.
+name|url
+operator|.
+name|substring
+argument_list|(
+name|root
+operator|+
+literal|2
+argument_list|,
+name|at
+argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|url
+operator|=
+name|this
+operator|.
+name|url
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|root
+operator|+
+literal|2
+argument_list|)
+operator|+
+name|this
+operator|.
+name|url
+operator|.
+name|substring
+argument_list|(
+name|at
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
+name|int
+name|column
+init|=
+name|userinfo
+operator|.
+name|indexOf
+argument_list|(
+literal|":"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|column
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|this
+operator|.
+name|user
+operator|=
+name|userinfo
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|column
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|password
+operator|=
+name|userinfo
+operator|.
+name|substring
+argument_list|(
+name|column
+operator|+
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
 name|this
 operator|.
-name|url
+name|user
 operator|=
-name|srcUrl
+name|userinfo
 expr_stmt|;
+block|}
 block|}
 comment|// Split path in collection and resource
 if|if
@@ -1070,6 +1219,9 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|// [giulio]
+comment|// [FG] commented till Exist is able to work without URI encoding, to keep compatibility with other possible xmldb
+comment|// url = url.replaceAll(" ", "%20");
 name|int
 name|pos
 init|=
@@ -1708,7 +1860,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//<frederic.glorieux@ajlsm.com> exist specific improvements
-comment|// ((XMLResource)resource).setSAXFeature(javax.xml.transform.OutputKeys.INDENT, true); // not implemented yet in Exist
 if|if
 condition|(
 name|resource
