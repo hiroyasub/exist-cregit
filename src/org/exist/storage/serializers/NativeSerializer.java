@@ -1797,7 +1797,7 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"Error XTDE0410: attribute '"
+literal|"Error SENR0001: attribute '"
 operator|+
 operator|(
 operator|(
