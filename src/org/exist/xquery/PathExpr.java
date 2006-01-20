@@ -888,7 +888,9 @@ name|expr
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 argument_list|,
 literal|null
 argument_list|)
