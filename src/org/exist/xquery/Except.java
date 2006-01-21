@@ -298,6 +298,26 @@ operator|.
 name|removeDuplicates
 argument_list|()
 expr_stmt|;
+name|Sequence
+name|result
+decl_stmt|;
+if|if
+condition|(
+name|lval
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+condition|)
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+else|else
+block|{
 if|if
 condition|(
 operator|!
@@ -338,28 +358,10 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"except operand is not a node sequence"
+literal|"Error XPTY0004 : except operand is not a node sequence"
 argument_list|)
 throw|;
-name|Sequence
-name|result
-decl_stmt|;
 if|if
-condition|(
-name|lval
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|0
-condition|)
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-if|else if
 condition|(
 name|rval
 operator|.
@@ -488,6 +490,7 @@ operator|.
 name|removeDuplicates
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

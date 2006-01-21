@@ -727,7 +727,7 @@ argument_list|(
 name|contextDocs
 argument_list|)
 expr_stmt|;
-comment|//To prevent computing nodes after atomic values...
+comment|//To prevent processing nodes after atomic values...
 comment|//TODO : let the parser do it ? -pb
 name|boolean
 name|gotAtomicResult
