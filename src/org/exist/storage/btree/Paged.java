@@ -3383,7 +3383,7 @@ return|return
 name|nextPage
 return|;
 block|}
-comment|/** 		 *  The status of this page (UNUSED, RECORD, DELETED, etc...) 		 * 		 *@return    The status value 		 */
+comment|/** 		 *  The status of this page (UNUSED, RECORD, DELETED, etc...) 		 * - jmv - DESIGN_NOTE : 44 calls to this functions, mostly with switch; 		 * the "state" design pattern is appropriate to eliminate these non - object oriented switches, 		 * and put together all the behavior related to one state.  		 *  		 *@return    The status value 		 */
 specifier|public
 specifier|final
 name|byte
