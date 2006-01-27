@@ -1082,6 +1082,13 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|whereExpr
