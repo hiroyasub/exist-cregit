@@ -1940,6 +1940,41 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|String
+name|query
+init|=
+literal|"let $doc :=<root><page><a>a</a><b>b</b></page></root>"
+operator|+
+literal|"return "
+operator|+
+literal|"for $element in $doc/page/* "
+operator|+
+literal|"return "
+operator|+
+literal|"if($element[self::a] or $element[self::b]) then (<found/>) else (<notfound/>)"
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
