@@ -293,6 +293,10 @@ name|XPathQueryService
 import|;
 end_import
 
+begin_comment
+comment|/** I propose that we put here in XQueryTest the tests involving all the   * others constructs of the XQuery language, besides XPath expressions.  * And in {@link XPathQueryTest} we will put the tests involving only XPath expressions.  * TODO maybe move the various eXist XQuery extensions in another class ... */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -7972,6 +7976,113 @@ operator|.
 name|println
 argument_list|(
 literal|"testLargeAttributeRealFile(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|bugtestXUpdateWithAdvancentTextNodes
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+name|String
+name|query
+decl_stmt|;
+name|query
+operator|=
+literal|"let $coll := xmldb:collection('/db', 'guest', 'guest')"
+operator|+
+literal|"let $name := xmldb:store($coll , 'xupdateTest.xml',<test>aaa</test>)"
+operator|+
+literal|"let $xu :="
+operator|+
+literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
+operator|+
+literal|"<xu:append select='/test'>"
+operator|+
+literal|"<xu:text>yyy</xu:text>"
+operator|+
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+operator|+
+literal|"let $count := xmldb:update($coll , $xu)"
+operator|+
+literal|"for $textNode in document('/db/xupdateTest.xml')/test/text()"
+operator|+
+literal|"	return<text id='{util:node-id($textNode)}'>{$textNode}</text>"
+expr_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|numbers
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testXUpdateWithAdvancentTextNodes 1: ========"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testXUpdateWithAdvancentTextNodes(): XMLDBException: "
 operator|+
 name|e
 argument_list|)
