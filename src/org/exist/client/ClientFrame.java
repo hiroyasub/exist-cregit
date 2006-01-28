@@ -8162,15 +8162,15 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"Permissions"
+literal|"Resource"
+block|,
+literal|"Date"
 block|,
 literal|"Owner"
 block|,
 literal|"Group"
 block|,
-literal|"Resource"
-block|,
-literal|"Date"
+literal|"Permissions"
 block|}
 decl_stmt|;
 specifier|private
@@ -8306,7 +8306,7 @@ case|:
 return|return
 name|row
 operator|.
-name|getPermissions
+name|getName
 argument_list|()
 return|;
 case|case
@@ -8315,7 +8315,7 @@ case|:
 return|return
 name|row
 operator|.
-name|getOwner
+name|getDate
 argument_list|()
 return|;
 case|case
@@ -8324,7 +8324,7 @@ case|:
 return|return
 name|row
 operator|.
-name|getGroup
+name|getOwner
 argument_list|()
 return|;
 case|case
@@ -8333,7 +8333,7 @@ case|:
 return|return
 name|row
 operator|.
-name|getName
+name|getGroup
 argument_list|()
 return|;
 case|case
@@ -8342,7 +8342,7 @@ case|:
 return|return
 name|row
 operator|.
-name|getDate
+name|getPermissions
 argument_list|()
 return|;
 default|default:
