@@ -241,6 +241,11 @@ name|instance
 init|=
 literal|null
 decl_stmt|;
+comment|/** From where the mime table is loeaded for message purpose */
+specifier|private
+name|String
+name|src
+decl_stmt|;
 comment|/**      * Returns the singleton.      *       * @return      */
 specifier|public
 specifier|static
@@ -287,6 +292,18 @@ block|{
 name|load
 argument_list|()
 expr_stmt|;
+block|}
+comment|/**      * Inform from where a mime-table is loaded      * @return      */
+specifier|public
+name|String
+name|getSrc
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|src
+return|;
 block|}
 specifier|public
 name|MimeType
@@ -543,6 +560,18 @@ name|loaded
 operator|=
 literal|true
 expr_stmt|;
+name|this
+operator|.
+name|src
+operator|=
+name|f
+operator|.
+name|toURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -679,6 +708,14 @@ name|loadMimeTypes
 argument_list|(
 name|is
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|src
+operator|=
+literal|"resource://"
+operator|+
+name|MIME_TYPES_XML_DEFAULT
 expr_stmt|;
 block|}
 catch|catch
