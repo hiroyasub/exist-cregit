@@ -2588,6 +2588,12 @@ operator|new
 name|ObjectHashSet
 argument_list|(
 name|collLen
+operator|==
+literal|0
+condition|?
+literal|19
+else|:
+name|collLen
 argument_list|)
 expr_stmt|;
 for|for
