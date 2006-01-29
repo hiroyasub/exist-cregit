@@ -376,7 +376,7 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|TYPE_EMBEDED
+name|TYPE_EMBEDDED
 init|=
 literal|1
 decl_stmt|;
@@ -385,7 +385,7 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|URI_EMBEDED
+name|URI_EMBEDDED
 init|=
 literal|"xmldb:exist://"
 decl_stmt|;
@@ -848,7 +848,7 @@ name|type
 operator|.
 name|addItem
 argument_list|(
-literal|"Embeded"
+literal|"Embedded"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -870,10 +870,10 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 argument_list|)
 condition|?
-name|TYPE_EMBEDED
+name|TYPE_EMBEDDED
 else|:
 name|TYPE_REMOTE
 argument_list|)
@@ -902,15 +902,15 @@ name|getSelectedIndex
 argument_list|()
 condition|)
 block|{
-comment|// in case local, default URL, may be a conf file
+comment|// in case embedded, default URL xmldb:exist//, allow to change conf file
 case|case
-name|TYPE_EMBEDED
+name|TYPE_EMBEDDED
 case|:
 name|cur_url
 operator|.
 name|setText
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 argument_list|)
 expr_stmt|;
 name|cur_url
@@ -947,7 +947,7 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 argument_list|)
 condition|?
 name|uri
@@ -1107,7 +1107,16 @@ argument_list|(
 literal|"An eXist configuration file for an embed instance"
 argument_list|)
 expr_stmt|;
-comment|// if default is remote, select a conf file should be disable
+comment|// if type selected is remote, select a conf file should be disable
+if|if
+condition|(
+name|type
+operator|.
+name|getSelectedIndex
+argument_list|()
+operator|==
+name|TYPE_REMOTE
+condition|)
 name|configuration
 operator|.
 name|setEnabled
@@ -1172,6 +1181,15 @@ argument_list|(
 literal|"Select an alternate conf file for embed mode."
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|type
+operator|.
+name|getSelectedIndex
+argument_list|()
+operator|==
+name|TYPE_REMOTE
+condition|)
 name|selectConf
 operator|.
 name|setEnabled
@@ -1352,7 +1370,7 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1890,11 +1908,21 @@ name|getPassword
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|configuration
+operator|.
+name|setText
+argument_list|(
+name|f
+operator|.
+name|getConfiguration
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|type
 operator|.
 name|setSelectedIndex
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 operator|.
 name|equals
 argument_list|(
@@ -1904,7 +1932,7 @@ name|getUrl
 argument_list|()
 argument_list|)
 condition|?
-name|TYPE_EMBEDED
+name|TYPE_EMBEDDED
 else|:
 name|TYPE_REMOTE
 argument_list|)
@@ -2121,7 +2149,7 @@ name|type
 operator|.
 name|setSelectedIndex
 argument_list|(
-name|URI_EMBEDED
+name|URI_EMBEDDED
 operator|.
 name|equals
 argument_list|(
@@ -2131,7 +2159,7 @@ name|getUrl
 argument_list|()
 argument_list|)
 condition|?
-name|TYPE_EMBEDED
+name|TYPE_EMBEDDED
 else|:
 name|TYPE_REMOTE
 argument_list|)
