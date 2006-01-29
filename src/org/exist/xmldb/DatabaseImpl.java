@@ -246,6 +246,15 @@ name|REMOTE_CONNECTION
 init|=
 literal|1
 decl_stmt|;
+comment|/** Default config filename to configure an Instance */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONF_XML
+init|=
+literal|"conf.xml"
+decl_stmt|;
 specifier|protected
 name|boolean
 name|autoCreate
@@ -349,7 +358,7 @@ decl_stmt|;
 name|String
 name|file
 init|=
-literal|"conf.xml"
+name|CONF_XML
 decl_stmt|;
 if|if
 condition|(
