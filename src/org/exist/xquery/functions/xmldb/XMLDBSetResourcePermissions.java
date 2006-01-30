@@ -241,7 +241,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the permissions of the specified Resource. Required: user, group, mode (as xs:integer). "
+literal|"Sets the permissions of the specified resource. $a is the collection, which can be specified "
+operator|+
+literal|"as a simple collection path, an XMLDB URI or a collection object. $b denotes the resource to"
+operator|+
+literal|"change. $c specifies the user which will become the owner of the resource, $d the group. "
+operator|+
+literal|"The final argument contains the permissions, specified as an xs:integer value. "
 operator|+
 literal|"PLEASE REMEMBER that 0755 is 7*64+5*8+5, NOT decimal 755."
 argument_list|,
