@@ -3048,7 +3048,7 @@ name|dateString
 operator|)
 return|;
 block|}
-comment|//Base65 Encodes a string (used for message subject)
+comment|//Base64 Encodes a string (used for message subject)
 specifier|private
 name|String
 name|encode64
