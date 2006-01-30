@@ -746,6 +746,21 @@ name|configure
 argument_list|()
 expr_stmt|;
 block|}
+specifier|protected
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|BrokerPool
+operator|.
+name|stopAll
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -1444,6 +1444,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|c
+operator|=
+literal|null
+expr_stmt|;
+name|query
+operator|=
+literal|null
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
