@@ -440,6 +440,14 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
+name|c
+operator|=
+literal|null
+expr_stmt|;
+name|database
+operator|=
+literal|null
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

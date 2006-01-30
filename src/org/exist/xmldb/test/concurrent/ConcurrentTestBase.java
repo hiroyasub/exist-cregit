@@ -144,7 +144,7 @@ name|failed
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * @param name the name of the test. 	 * @param uri the XMLDB URI of the root collection. 	 * @param testCollection the name of the collection that will be created for the test. 	 */
+comment|/**      * @param name the name of the test.      * @param uri the XMLDB URI of the root collection.      * @param testCollection the name of the collection that will be created for the test.      */
 specifier|public
 name|ConcurrentTestBase
 parameter_list|(
@@ -176,7 +176,7 @@ operator|=
 name|testCollection
 expr_stmt|;
 block|}
-comment|/** 	 * Add an {@link Action} to the list of actions that will be processed 	 * concurrently. Should be called after {@link #setUp()}. 	 *  	 * @param action the action. 	 * @param repeat number of times the actions should be repeated. 	 */
+comment|/**      * Add an {@link Action} to the list of actions that will be processed      * concurrently. Should be called after {@link #setUp()}.      *       * @param action the action.      * @param repeat number of times the actions should be repeated.      */
 specifier|public
 name|void
 name|addAction
@@ -327,7 +327,7 @@ name|failed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * @see TestCase#setUp() 	 */
+comment|/*      * @see TestCase#setUp()      */
 specifier|protected
 name|void
 name|setUp
@@ -431,7 +431,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * @see TestCase#tearDown() 	 */
+comment|/*      * @see TestCase#tearDown()      */
 specifier|protected
 name|void
 name|tearDown
@@ -477,6 +477,14 @@ argument_list|(
 name|rootColURI
 argument_list|)
 expr_stmt|;
+name|rootCol
+operator|=
+literal|null
+expr_stmt|;
+name|testCol
+operator|=
+literal|null
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -494,7 +502,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Runs the specified Action a number of times. 	 *  	 * @author wolf 	 */
+comment|/**      * Runs the specified Action a number of times.      *       * @author wolf      */
 class|class
 name|Runner
 extends|extends
@@ -564,7 +572,7 @@ operator|=
 name|delayBeforeStart
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.lang.Thread#run() 		 */
+comment|/* (non-Javadoc)          * @see java.lang.Thread#run()          */
 specifier|public
 name|void
 name|run

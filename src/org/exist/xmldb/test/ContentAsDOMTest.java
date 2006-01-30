@@ -650,6 +650,10 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|root
+operator|=
+literal|null
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
