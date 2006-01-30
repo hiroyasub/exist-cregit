@@ -309,7 +309,7 @@ specifier|final
 name|int
 name|MAX_UPLOAD_CHUNK
 init|=
-literal|1
+literal|10
 operator|*
 literal|1024
 operator|*
