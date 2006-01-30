@@ -246,6 +246,14 @@ comment|//descriptor file (descriptor.xml)
 comment|//Data
 specifier|private
 name|String
+name|allowSourceXQueryList
+index|[]
+init|=
+literal|null
+decl_stmt|;
+comment|//Array of xql files to allow source to be viewed
+specifier|private
+name|String
 name|mapList
 index|[]
 index|[]
@@ -567,7 +575,42 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-comment|//maps settings
+comment|//load<allow-source> settings
+name|NodeList
+name|allowsourcexqueries
+init|=
+name|doc
+operator|.
+name|getElementsByTagName
+argument_list|(
+literal|"allow-source"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|allowsourcexqueries
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|configureAllowSourceXQuery
+argument_list|(
+operator|(
+name|Element
+operator|)
+name|allowsourcexqueries
+operator|.
+name|item
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|//load<maps> settings
 name|NodeList
 name|maps
 init|=
@@ -661,6 +704,115 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|//loads<allow-source> settings from the descriptor.xml file
+specifier|private
+name|void
+name|configureAllowSourceXQuery
+parameter_list|(
+name|Element
+name|allowsourcexqueries
+parameter_list|)
+block|{
+comment|//Get the xquery element(s)
+name|NodeList
+name|nlXQuery
+init|=
+name|allowsourcexqueries
+operator|.
+name|getElementsByTagName
+argument_list|(
+literal|"xquery"
+argument_list|)
+decl_stmt|;
+comment|//Setup the hashmap to hold the xquery elements
+name|allowSourceXQueryList
+operator|=
+operator|new
+name|String
+index|[
+name|nlXQuery
+operator|.
+name|getLength
+argument_list|()
+index|]
+expr_stmt|;
+name|Element
+name|elem
+init|=
+literal|null
+decl_stmt|;
+comment|//temporary holds xquery elements
+comment|//Iterate through the xquery elements
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|nlXQuery
+operator|.
+name|getLength
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|elem
+operator|=
+operator|(
+name|Element
+operator|)
+name|nlXQuery
+operator|.
+name|item
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+comment|//<xquery>
+name|String
+name|path
+init|=
+name|elem
+operator|.
+name|getAttribute
+argument_list|(
+literal|"path"
+argument_list|)
+decl_stmt|;
+comment|//@path
+comment|//must be a path to allow source for
+if|if
+condition|(
+name|path
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"error element 'xquery' requires an attribute 'path'"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+comment|//store the path
+name|allowSourceXQueryList
+index|[
+name|i
+index|]
+operator|=
+name|path
+expr_stmt|;
+block|}
+block|}
+comment|//loads<maps> settings from the descriptor.xml file
 specifier|private
 name|void
 name|configureMaps
@@ -669,6 +821,7 @@ name|Element
 name|maps
 parameter_list|)
 block|{
+comment|//TODO: add pattern support for mappings, as an alternative to path - deliriumsky
 comment|//Get the map element(s)
 name|NodeList
 name|nlMap
@@ -819,6 +972,88 @@ expr_stmt|;
 block|}
 block|}
 comment|//takes a path such as that from RESTServer.doGet()
+comment|//if it finds a matching allowsourcexquery path then it returns true
+comment|//else it returns false
+specifier|public
+name|boolean
+name|allowSourceXQuery
+parameter_list|(
+name|String
+name|path
+parameter_list|)
+block|{
+if|if
+condition|(
+name|allowSourceXQueryList
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//Iterate through the xqueries that source viewing is allowed for
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|allowSourceXQueryList
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|//does the path match the<allow-source><xquery path=""/></allow-source> path
+if|if
+condition|(
+operator|(
+name|allowSourceXQueryList
+index|[
+name|i
+index|]
+operator|.
+name|equals
+argument_list|(
+name|path
+argument_list|)
+operator|)
+operator|||
+operator|(
+name|path
+operator|.
+name|indexOf
+argument_list|(
+name|allowSourceXQueryList
+index|[
+name|i
+index|]
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator|)
+condition|)
+block|{
+comment|//yes, return true
+return|return
+operator|(
+literal|true
+operator|)
+return|;
+block|}
+block|}
+block|}
+return|return
+operator|(
+literal|false
+operator|)
+return|;
+block|}
+comment|//takes a path such as that from RESTServer.doGet()
 comment|//if it finds a matching map path then it returns the map view
 comment|//else it returns the passed in path
 specifier|public
@@ -835,8 +1070,11 @@ name|mapList
 operator|==
 literal|null
 condition|)
+comment|//has a list of mappings been specified?
 return|return
+operator|(
 name|path
+operator|)
 return|;
 comment|//Iterate through the mappings
 for|for

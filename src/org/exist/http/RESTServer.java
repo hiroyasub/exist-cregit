@@ -1103,7 +1103,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a binary      * resource with mime-type "application/xquery", this resource will be      * loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param parameters      * @param path      * @return      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
+comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a binary      * resource with mime-type "application/xquery", this resource will be      * loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type "application/xquery" is requested      * then the xquery will not be executed, instead the source of the document will be returned.      * Must be enabled in descriptor.xml with the following syntax       *<xquery-app><allow-source><xquery path="/db/mycollection/myquery.xql"/></allow-source></xquery-app>      *</li>      *       *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param parameters      * @param path      * @return      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
 specifier|public
 name|void
 name|doGet
@@ -1160,6 +1160,11 @@ name|boolean
 name|wrap
 init|=
 literal|true
+decl_stmt|;
+name|boolean
+name|source
+init|=
+literal|false
 decl_stmt|;
 name|Properties
 name|outputProperties
@@ -1335,6 +1340,30 @@ operator|.
 name|INDENT
 argument_list|,
 name|option
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|(
+name|option
+operator|=
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"_source"
+argument_list|)
+operator|)
+operator|!=
+literal|null
+condition|)
+name|source
+operator|=
+name|option
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
 argument_list|)
 expr_stmt|;
 name|String
@@ -1529,6 +1558,68 @@ argument_list|)
 condition|)
 block|{
 comment|// found an XQuery resource
+comment|//Should we display the source of the XQuery or execute it
+if|if
+condition|(
+name|source
+operator|&&
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//show the source
+comment|//check are we allowed to show the xquery source - descriptor.xml
+if|if
+condition|(
+name|descriptor
+operator|.
+name|allowSourceXQuery
+argument_list|(
+name|path
+argument_list|)
+condition|)
+block|{
+comment|//TODO: change writeResourceAs to use a serializer that will serialize xquery to syntax coloured xhtml, replace the asMimeType parameter with a method for specifying the serializer, or split the code into two methods. - deliriumsky
+comment|//Show the source of the XQuery
+name|writeResourceAs
+argument_list|(
+name|resource
+argument_list|,
+name|broker
+argument_list|,
+name|stylesheet
+argument_list|,
+name|encoding
+argument_list|,
+literal|"text/plain"
+argument_list|,
+name|outputProperties
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//we are not allowed to show the source - query not allowed in descriptor.xml
+comment|//TODO: is this the correct exception to throw or should we return a http response?
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Permission to view XQuery source for: "
+operator|+
+name|path
+operator|+
+literal|" denied. Must be explicitly defined in descriptor.xml"
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+comment|//Execute the XQuery
 try|try
 block|{
 name|String
@@ -1637,6 +1728,7 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return;
 block|}
@@ -1856,6 +1948,82 @@ block|}
 else|else
 block|{
 comment|// document found: serialize it
+name|writeResourceAs
+argument_list|(
+name|resource
+argument_list|,
+name|broker
+argument_list|,
+name|stylesheet
+argument_list|,
+name|encoding
+argument_list|,
+literal|null
+argument_list|,
+name|outputProperties
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+name|resource
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//writes out a resource, uses asMimeType as the specified mime-type or if null uses the type of the resource
+specifier|private
+name|void
+name|writeResourceAs
+parameter_list|(
+name|DocumentImpl
+name|resource
+parameter_list|,
+name|DBBroker
+name|broker
+parameter_list|,
+name|String
+name|stylesheet
+parameter_list|,
+name|String
+name|encoding
+parameter_list|,
+name|String
+name|asMimeType
+parameter_list|,
+name|Properties
+name|outputProperties
+parameter_list|,
+name|HttpServletResponse
+name|response
+parameter_list|)
+throws|throws
+name|BadRequestException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+block|{
+comment|//Do we have permission to read the resource
 if|if
 condition|(
 operator|!
@@ -1896,6 +2064,24 @@ name|BINARY_FILE
 condition|)
 block|{
 comment|// binary resource
+if|if
+condition|(
+name|asMimeType
+operator|!=
+literal|null
+condition|)
+comment|//was a mime-type specified?
+block|{
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|asMimeType
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|response
 operator|.
 name|setContentType
@@ -1909,6 +2095,7 @@ name|getMimeType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|writeResponse
 argument_list|(
 name|response
@@ -1941,6 +2128,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+comment|//use a stylesheet if specified in query parameters
 if|if
 condition|(
 name|stylesheet
@@ -1958,6 +2146,7 @@ name|stylesheet
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Serialize the document
 try|try
 block|{
 name|serializer
@@ -1979,6 +2168,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|asMimeType
+operator|!=
+literal|null
+condition|)
+comment|//was a mime-type specified?
+block|{
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|asMimeType
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
 name|serializer
 operator|.
 name|isStylesheetApplied
@@ -1994,6 +2201,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|response
 operator|.
 name|setContentType
@@ -2007,6 +2215,8 @@ name|getMimeType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 name|writeResponse
 argument_list|(
 name|response
@@ -2043,30 +2253,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-block|}
-block|}
-block|}
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|resource
-operator|!=
-literal|null
-condition|)
-name|resource
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|public
