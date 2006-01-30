@@ -761,6 +761,14 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|testCollection
+operator|=
+literal|null
+expr_stmt|;
+name|database
+operator|=
+literal|null
+expr_stmt|;
 name|System
 operator|.
 name|out
