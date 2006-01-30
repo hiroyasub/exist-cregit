@@ -311,16 +311,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Enumeration
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -352,16 +342,6 @@ operator|.
 name|swing
 operator|.
 name|BorderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|ButtonGroup
 import|;
 end_import
 
@@ -502,16 +482,6 @@ operator|.
 name|swing
 operator|.
 name|JPopupMenu
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
-name|JRadioButtonMenuItem
 import|;
 end_import
 
@@ -5295,6 +5265,7 @@ name|collections
 init|=
 literal|null
 decl_stmt|;
+comment|//get an array of collection paths
 try|try
 block|{
 name|Collection
@@ -5358,6 +5329,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//prompt the user for a destination collection from the list
 name|Object
 name|val
 init|=
@@ -5449,6 +5421,14 @@ name|i
 operator|++
 control|)
 block|{
+comment|//TODO
+comment|//what happens if the source and destination paths are the same?
+comment|//we need to check and prompt the user to either skip or choose a new name
+comment|//this function can copy multiple resources/collections selected by the user,
+comment|//so may need to prompt the user multiple times? is in this thread the correct
+comment|//place to do it? also need to do something similar for moveAction()
+comment|//
+comment|//Its too late and brain hurts - deliriumsky
 name|setStatus
 argument_list|(
 literal|"Copying "
