@@ -512,11 +512,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|accounting
-operator|.
-name|stats
-argument_list|()
-expr_stmt|;
 block|}
 return|return
 name|old

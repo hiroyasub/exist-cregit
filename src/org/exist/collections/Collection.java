@@ -355,6 +355,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|XMLSecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|User
 import|;
 end_import
@@ -3942,7 +3954,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|SecurityManager
+name|XMLSecurityManager
 operator|.
 name|ACL_FILE
 argument_list|)
