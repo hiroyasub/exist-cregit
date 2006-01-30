@@ -479,6 +479,16 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * Returns just the error message, not including      * line numbers or the call stack.      *       * @return      */
+specifier|public
+name|String
+name|getDetailMessage
+parameter_list|()
+block|{
+return|return
+name|message
+return|;
+block|}
 specifier|public
 name|String
 name|getMessageAsHTML
