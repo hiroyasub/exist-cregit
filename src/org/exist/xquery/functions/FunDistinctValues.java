@@ -77,6 +77,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Dependency
 import|;
 end_import
@@ -125,7 +137,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -137,7 +149,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -685,13 +697,13 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot compare values"
-argument_list|)
-throw|;
+comment|//throw new IllegalArgumentException("cannot compare values");
+comment|//Values that cannot be compared, i.e. the eq operator is not defined for their types, are considered to be distinct
+return|return
+name|Constants
+operator|.
+name|INFERIOR
+return|;
 block|}
 block|}
 block|}

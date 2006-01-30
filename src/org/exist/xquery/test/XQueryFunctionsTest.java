@@ -994,6 +994,25 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"let $seq := ('A', 2, 'B', 2) return distinct-values($seq) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
