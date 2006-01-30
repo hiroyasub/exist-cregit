@@ -1660,6 +1660,10 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|currentBuffer
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/**      * Called to signal that the db is currently in      * recovery phase, so no output should be written.      *       * @param value      */
 specifier|public
