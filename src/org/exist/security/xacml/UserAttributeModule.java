@@ -185,18 +185,6 @@ name|User
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
 begin_comment
 comment|/** * This class looks up attributes for a Subject with a subject-category * of access-subject.  The currently supported attributes are * {@link XACMLConstants#USER_NAME_ATTRIBUTE user name} and * {@link XACMLConstants#GROUP_ATTRIBUTE groups}.  This is a possible * implementation point for LDAP lookup if this is desired * in the future. */
 end_comment
@@ -224,27 +212,27 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-name|BrokerPool
-name|pool
+name|ExistPDP
+name|pdp
 decl_stmt|;
 specifier|private
 name|UserAttributeModule
 parameter_list|()
 block|{
 block|}
-comment|/** 	* Creates an<code>AttributeFinderModule</code> capable of retrieving attributes 	* for a<code>User</code>. 	* 	* @param pool The<code>BrokerPool</code> that is used to obtain information 	* about a given<code>User</code>. 	*/
+comment|/** 	* Creates an<code>AttributeFinderModule</code> capable of retrieving attributes 	* for a<code>User</code>. 	* 	* @param pdp The<code>ExistPDP</code> that is used to obtain information 	* about a given<code>User</code>. 	*/
 specifier|public
 name|UserAttributeModule
 parameter_list|(
-name|BrokerPool
-name|pool
+name|ExistPDP
+name|pdp
 parameter_list|)
 block|{
 name|this
 operator|.
-name|pool
+name|pdp
 operator|=
-name|pool
+name|pdp
 expr_stmt|;
 block|}
 specifier|public
@@ -481,7 +469,10 @@ decl_stmt|;
 name|User
 name|user
 init|=
-name|pool
+name|pdp
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSecurityManager
 argument_list|()
