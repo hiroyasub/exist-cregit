@@ -1024,7 +1024,7 @@ argument_list|(
 name|functionString
 argument_list|)
 operator|+
-literal|"<b>"
+literal|"&nbsp;<b>"
 operator|+
 name|XACMLUtil
 operator|.
