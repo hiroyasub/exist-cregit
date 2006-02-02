@@ -358,6 +358,10 @@ name|DBBroker
 name|sysBroker
 parameter_list|)
 function_decl|;
+name|boolean
+name|isXACMLEnabled
+parameter_list|()
+function_decl|;
 name|ExistPDP
 name|getPDP
 parameter_list|()

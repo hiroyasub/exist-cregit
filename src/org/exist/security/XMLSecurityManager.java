@@ -1139,6 +1139,17 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+name|boolean
+name|isXACMLEnabled
+parameter_list|()
+block|{
+return|return
+name|pdp
+operator|!=
+literal|null
+return|;
+block|}
+specifier|public
 name|ExistPDP
 name|getPDP
 parameter_list|()

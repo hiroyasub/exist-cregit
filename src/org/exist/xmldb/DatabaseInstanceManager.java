@@ -80,6 +80,14 @@ name|boolean
 name|isLocalInstance
 parameter_list|()
 function_decl|;
+comment|/** 	 * Returns true if XACML is enabled for the database instance.  	 * 	 * @returns if XACML is enabled 	 */
+specifier|public
+name|boolean
+name|isXACMLEnabled
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 
