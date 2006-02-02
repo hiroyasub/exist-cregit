@@ -1432,6 +1432,17 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+name|Trigger
+name|trigger
+init|=
+operator|(
+name|Trigger
+operator|)
+name|clazz
+operator|.
+name|newInstance
+argument_list|()
+decl_stmt|;
 name|NodeList
 name|nodes
 init|=
@@ -1451,31 +1462,20 @@ name|nodes
 operator|.
 name|getLength
 argument_list|()
-operator|==
+operator|>
 literal|0
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
-argument_list|(
-literal|"Expected '"
-operator|+
-name|PARAM_NAME_ATTRIBUTE
-operator|+
-literal|"' elements in namespace '"
-operator|+
-name|NAMESPACE
-operator|+
-literal|"' in trigger's configuration."
-argument_list|)
-throw|;
+block|{
 name|Map
 name|parameters
 init|=
 operator|new
 name|HashMap
 argument_list|(
-literal|5
+name|nodes
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 decl_stmt|;
 for|for
@@ -1563,7 +1563,7 @@ name|CollectionConfigurationException
 argument_list|(
 literal|"Expected attribute '"
 operator|+
-name|PARAM_NAME_ATTRIBUTE
+name|PARAM_VALUE_ATTRIBUTE
 operator|+
 literal|"' for element '"
 operator|+
@@ -1582,17 +1582,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-name|Trigger
-name|trigger
-init|=
-operator|(
-name|Trigger
-operator|)
-name|clazz
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
 name|trigger
 operator|.
 name|configure
@@ -1604,6 +1593,8 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
+block|}
+comment|/* else {                 throw new CollectionConfigurationException("Expected '" + PARAM_NAME_ATTRIBUTE +                         "' elements in namespace '" + NAMESPACE + "' in trigger's configuration.");                  } */
 return|return
 name|trigger
 return|;
