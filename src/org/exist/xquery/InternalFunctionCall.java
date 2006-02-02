@@ -184,19 +184,6 @@ name|getSignature
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|f
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-literal|"Function cannot be null"
-argument_list|)
-throw|;
 name|this
 operator|.
 name|function
