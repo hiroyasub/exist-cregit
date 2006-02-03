@@ -764,6 +764,8 @@ name|broker
 argument_list|,
 name|confDoc
 argument_list|,
+name|next
+argument_list|,
 name|confDoc
 operator|.
 name|getFileName

@@ -327,6 +327,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+name|String
+name|srcCollectionName
+decl_stmt|;
+specifier|private
 name|int
 name|defCollPermissions
 decl_stmt|;
@@ -375,7 +379,7 @@ name|getCollectionDefaultPerms
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param collection      * @param doc      * @throws CollectionConfigurationException      */
+comment|/**      * @param broker      * @param srcCollectionName The collection from which the document is being read.  This      * is not necessarily the same as this.collection.getName() because the      * source document may have come from a parent collection.      * @param docName The name of the document being read      * @param doc      * @throws CollectionConfigurationException      */
 specifier|protected
 name|void
 name|read
@@ -385,6 +389,9 @@ name|broker
 parameter_list|,
 name|Document
 name|doc
+parameter_list|,
+name|String
+name|srcCollectionName
 parameter_list|,
 name|String
 name|docName
@@ -484,6 +491,12 @@ operator|.
 name|docName
 operator|=
 name|docName
+expr_stmt|;
+name|this
+operator|.
+name|srcCollectionName
+operator|=
+name|srcCollectionName
 expr_stmt|;
 name|NodeList
 name|childNodes
@@ -924,6 +937,15 @@ parameter_list|()
 block|{
 return|return
 name|collection
+return|;
+block|}
+specifier|public
+name|String
+name|getSourceCollectionName
+parameter_list|()
+block|{
+return|return
+name|srcCollectionName
 return|;
 block|}
 specifier|public
