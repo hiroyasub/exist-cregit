@@ -3499,6 +3499,111 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|query
+operator|=
+literal|"declare variable $doc {<root>"
+operator|+
+literal|"<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a>"
+operator|+
+literal|"</root> }; "
+operator|+
+literal|"(for $x in $doc/a return $x)[position() mod 3 = 2]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare variable $doc {<root>"
+operator|+
+literal|"<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a>"
+operator|+
+literal|"</root> }; "
+operator|+
+literal|"for $x in $doc/a return $x[position() mod 3 = 2]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare variable $doc {<root>"
+operator|+
+literal|"<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a>"
+operator|+
+literal|"</root> }; "
+operator|+
+literal|"for $x in $doc/a[position() mod 3 = 2] return $x"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// TODO: clarify
 comment|//            query = "let $a := ('a', 'b', 'c') for $b in $a[position()] return<blah>{$b}</blah>";
 comment|//            result = service.queryResource("numbers.xml", query);

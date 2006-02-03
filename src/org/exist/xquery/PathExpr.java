@@ -895,7 +895,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//TODO : strange design : should rather use : else if (result.getLength() == 1) ? -pb
 block|}
 else|else
 block|{
@@ -919,10 +918,14 @@ operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+comment|//Restore a position which may have been modified by inner expressions
 name|int
 name|p
 init|=
-literal|0
+name|context
+operator|.
+name|getContextPosition
+argument_list|()
 decl_stmt|;
 for|for
 control|(

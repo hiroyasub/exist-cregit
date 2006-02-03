@@ -1156,6 +1156,14 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+comment|//Reset the context position
+name|context
+operator|.
+name|setContextPosition
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 comment|/* if the returnExpr is another BindingExpression, call it 			 * with the result sequence. 			 */
 if|if
 condition|(
