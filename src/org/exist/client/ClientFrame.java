@@ -6870,7 +6870,7 @@ condition|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XACML is not currently enabled.  To enable it, add\n\n<xacml enabled=\"yes\"/>\n\nto conf.xml and restart eXist."
+literal|"XACML is not currently enabled.  To enable it, add\n\n<xacml enable=\"yes\"/>\n\nto conf.xml and restart eXist."
 argument_list|,
 literal|null
 argument_list|)
