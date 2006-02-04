@@ -26795,15 +26795,6 @@ name|_ttype
 operator|=
 name|APOS
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"APOS"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 if|else if
