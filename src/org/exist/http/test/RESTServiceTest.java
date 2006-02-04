@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* *  eXist Open Source Native XML Database *  Copyright (C) 2001-04 Wolfgang M. Meier (wolfgang@exist-db.org)  *  and others (see http://exist-db.org) * *  This program is free software; you can redistribute it and/or *  modify it under the terms of the GNU Lesser General Public License *  as published by the Free Software Foundation; either version 2 *  of the License, or (at your option) any later version. * *  This program is distributed in the hope that it will be useful, *  but WITHOUT ANY WARRANTY; without even the implied warranty of *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *  GNU Lesser General Public License for more details. * *  You should have received a copy of the GNU Lesser General Public License *  along with this program; if not, write to the Free Software *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *  *  $Id$ */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier (wolfgang@exist-db.org)   *  and others (see http://exist-db.org)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -71,6 +71,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|Authenticator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|BindException
 import|;
 end_import
@@ -82,6 +92,16 @@ operator|.
 name|net
 operator|.
 name|HttpURLConnection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|PasswordAuthentication
 import|;
 end_import
 
@@ -166,6 +186,16 @@ operator|.
 name|util
 operator|.
 name|MultiException
+import|;
+end_import
+
+begin_import
+import|import
+name|sun
+operator|.
+name|misc
+operator|.
+name|BASE64Encoder
 import|;
 end_import
 
@@ -281,6 +311,10 @@ literal|"</text>"
 operator|+
 literal|"</query>"
 decl_stmt|;
+specifier|private
+name|String
+name|credentials
+decl_stmt|;
 specifier|public
 name|RESTServiceTest
 parameter_list|(
@@ -291,6 +325,20 @@ block|{
 name|super
 argument_list|(
 name|name
+argument_list|)
+expr_stmt|;
+name|credentials
+operator|=
+operator|new
+name|BASE64Encoder
+argument_list|()
+operator|.
+name|encode
+argument_list|(
+literal|"admin:"
+operator|.
+name|getBytes
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -483,6 +531,17 @@ argument_list|)
 decl_stmt|;
 name|connect
 operator|.
+name|setRequestProperty
+argument_list|(
+literal|"Authorization"
+argument_list|,
+literal|"Basic "
+operator|+
+name|credentials
+argument_list|)
+expr_stmt|;
+name|connect
+operator|.
 name|setRequestMethod
 argument_list|(
 literal|"PUT"
@@ -598,6 +657,17 @@ argument_list|(
 name|RESOURCE_URI
 argument_list|)
 decl_stmt|;
+name|connect
+operator|.
+name|setRequestProperty
+argument_list|(
+literal|"Authorization"
+argument_list|,
+literal|"Basic "
+operator|+
+name|credentials
+argument_list|)
+expr_stmt|;
 name|connect
 operator|.
 name|setRequestMethod
@@ -1242,6 +1312,17 @@ argument_list|(
 name|RESOURCE_URI
 argument_list|)
 decl_stmt|;
+name|connect
+operator|.
+name|setRequestProperty
+argument_list|(
+literal|"Authorization"
+argument_list|,
+literal|"Basic "
+operator|+
+name|credentials
+argument_list|)
+expr_stmt|;
 name|connect
 operator|.
 name|setRequestMethod
