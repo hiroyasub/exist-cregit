@@ -1912,6 +1912,12 @@ argument_list|(
 name|functionId
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|f
+operator|!=
+literal|null
+condition|)
 name|matches
 operator|.
 name|add
