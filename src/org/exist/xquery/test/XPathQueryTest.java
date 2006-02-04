@@ -482,17 +482,27 @@ name|ids
 init|=
 literal|"<!DOCTYPE test ["
 operator|+
-literal|"<!ELEMENT test (a*, b*)>"
+literal|"<!ELEMENT test (a | b | c | d)*>"
+operator|+
+literal|"<!ATTLIST test xml:space CDATA #IMPLIED>"
 operator|+
 literal|"<!ELEMENT a EMPTY>"
 operator|+
 literal|"<!ELEMENT b (name)>"
 operator|+
+literal|"<!ELEMENT c (name)>"
+operator|+
+literal|"<!ELEMENT d EMPTY>"
+operator|+
+literal|"<!ATTLIST d ref IDREF #IMPLIED>"
+operator|+
 literal|"<!ELEMENT name (#PCDATA)>"
 operator|+
 literal|"<!ATTLIST a ref IDREF #IMPLIED>"
 operator|+
-literal|"<!ATTLIST b id ID #IMPLIED>]>"
+literal|"<!ATTLIST b id ID #IMPLIED>"
+operator|+
+literal|"<!ATTLIST c xml:id ID #IMPLIED>]>"
 operator|+
 literal|"<test xml:space=\"preserve\">"
 operator|+
@@ -5424,6 +5434,11 @@ literal|"testIds(): XMLDBException: "
 operator|+
 name|e
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
