@@ -1959,6 +1959,16 @@ literal|"Could not put index data for token '"
 operator|+
 name|token
 operator|+
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -2006,6 +2016,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -2025,6 +2047,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -2485,7 +2519,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid section type"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -2546,7 +2590,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid section type"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -2689,7 +2743,20 @@ name|e
 parameter_list|)
 block|{
 comment|// EOF is expected here
-comment|//TODO : confirm this -pb
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"REPORT ME for confirmation "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2731,6 +2798,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -4610,7 +4689,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 throw|;
 block|}
@@ -4906,7 +4995,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -4922,10 +5011,17 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-name|e
+literal|"Read-only error on '"
+operator|+
+name|dbTokens
 operator|.
-name|getMessage
+name|getFile
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -4945,6 +5041,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -5357,6 +5465,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"REPORT ME "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -5435,7 +5545,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 throw|;
 block|}
@@ -5639,7 +5759,17 @@ literal|"Could not put index data for token '"
 operator|+
 name|token
 operator|+
-literal|"'"
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5675,7 +5805,17 @@ literal|"Could not update index data for token '"
 operator|+
 name|token
 operator|+
-literal|"'"
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5701,7 +5841,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -5727,7 +5867,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -5747,6 +5887,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -6277,7 +6429,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 throw|;
 block|}
@@ -6458,7 +6620,17 @@ literal|"Could not put index data for token '"
 operator|+
 name|token
 operator|+
-literal|"'"
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6509,7 +6681,17 @@ literal|"Could not update index data for value '"
 operator|+
 name|token
 operator|+
-literal|"'"
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6535,7 +6717,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -6561,7 +6743,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"' (inverted index)"
 argument_list|,
 name|e
 argument_list|)
@@ -6581,7 +6763,19 @@ literal|"io error while reindexing word '"
 operator|+
 name|token
 operator|+
-literal|"'"
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -7123,7 +7317,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -7181,7 +7385,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -7337,6 +7551,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
@@ -7712,7 +7938,17 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid inverted index"
+literal|"Invalid section type  in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}
@@ -7815,6 +8051,18 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+operator|+
+literal|" in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
