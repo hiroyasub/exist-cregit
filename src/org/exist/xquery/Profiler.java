@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -128,28 +128,13 @@ name|TIME
 init|=
 literal|1
 decl_stmt|;
-comment|//An abstract level to pass some sequences
+comment|//For optimizations
 specifier|public
 specifier|static
 name|int
-name|START_SEQUENCES
+name|OPTIMIZATIONS
 init|=
 literal|2
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|ITEM_COUNT
-init|=
-literal|3
-decl_stmt|;
-comment|//For a truncated string representation of sequences (TODO)
-specifier|public
-specifier|static
-name|int
-name|SEQUENCE_PREVIEW
-init|=
-literal|4
 decl_stmt|;
 comment|//For computations that will trigger further optimizations
 specifier|public
@@ -157,23 +142,41 @@ specifier|static
 name|int
 name|OPTIMIZATION_FLAGS
 init|=
-literal|5
+literal|3
 decl_stmt|;
-comment|//For optimizations
-specifier|public
-specifier|static
-name|int
-name|OPTIMIZATIONS
-init|=
-literal|6
-decl_stmt|;
+comment|//Indicates the dependencies of the expression
 specifier|public
 specifier|static
 name|int
 name|DEPENDENCIES
 init|=
-literal|7
+literal|4
 decl_stmt|;
+comment|//An abstract level for viewing the expression's context sequence/item
+specifier|public
+specifier|static
+name|int
+name|START_SEQUENCES
+init|=
+literal|4
+decl_stmt|;
+comment|//Just returns the number of items in the sequence
+specifier|public
+specifier|static
+name|int
+name|ITEM_COUNT
+init|=
+literal|5
+decl_stmt|;
+comment|//For a truncated string representation of then context sequence (TODO)
+specifier|public
+specifier|static
+name|int
+name|SEQUENCE_PREVIEW
+init|=
+literal|6
+decl_stmt|;
+comment|//For a full representation of the context sequence (TODO)
 specifier|public
 specifier|static
 name|int
