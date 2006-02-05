@@ -379,6 +379,17 @@ name|pdpConfig
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|initializePolicyCollection
+parameter_list|()
+block|{
+name|util
+operator|.
+name|initializePolicyCollection
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** 	* Returns the<code>PDPConfig</code> used to initialize the 	* underlying<code>PDP</code>. 	* 	* @return the<code>PDPConfig</code> 	*/
 specifier|public
 name|PDPConfig

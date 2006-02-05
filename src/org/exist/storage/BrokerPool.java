@@ -2282,6 +2282,23 @@ name|initializing
 operator|=
 literal|false
 expr_stmt|;
+comment|//have to do this after initializing = false
+comment|// so that the policies collection is saved
+if|if
+condition|(
+name|securityManager
+operator|.
+name|isXACMLEnabled
+argument_list|()
+condition|)
+name|securityManager
+operator|.
+name|getPDP
+argument_list|()
+operator|.
+name|initializePolicyCollection
+argument_list|()
+expr_stmt|;
 comment|//Get a manager to handle further collectios configuration
 name|collectionConfigurationManager
 operator|=
