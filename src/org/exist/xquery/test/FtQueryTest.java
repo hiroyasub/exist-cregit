@@ -260,6 +260,28 @@ literal|"mods"
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|TEST_COLLECTION_NAME
+init|=
+literal|"testft"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TEST_COLLECTION_PATH
+init|=
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION_NAME
+decl_stmt|;
+specifier|private
 name|Database
 name|database
 decl_stmt|;
@@ -589,9 +611,7 @@ name|queryBody
 operator|+
 literal|"t:index-terms(collection('"
 operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
+name|TEST_COLLECTION_PATH
 operator|+
 literal|"'), \'is\', util:function(\'f:term-callback\', 2), 1000)"
 decl_stmt|;
@@ -621,9 +641,7 @@ name|queryBody
 operator|+
 literal|"t:index-terms(collection('"
 operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
+name|TEST_COLLECTION_PATH
 operator|+
 literal|"')//LINE, \'is\', util:function(\'f:term-callback\', 2), 1000)"
 expr_stmt|;
@@ -652,9 +670,7 @@ name|queryBody
 operator|+
 literal|"t:index-terms(collection('"
 operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
+name|TEST_COLLECTION_PATH
 operator|+
 literal|"')//mods:title, \'s\', util:function(\'f:term-callback\', 2), 1000)"
 expr_stmt|;
@@ -1087,7 +1103,7 @@ name|service
 operator|.
 name|createCollection
 argument_list|(
-literal|"testft"
+name|TEST_COLLECTION_NAME
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1340,7 +1356,7 @@ name|service
 operator|.
 name|removeCollection
 argument_list|(
-literal|"testft"
+name|TEST_COLLECTION_NAME
 argument_list|)
 expr_stmt|;
 name|DatabaseManager
