@@ -75,6 +75,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -204,6 +216,7 @@ name|ROOT_ELEMENT
 init|=
 literal|"collection"
 decl_stmt|;
+comment|/** First level element in a collection configuration document */
 specifier|private
 specifier|final
 specifier|static
@@ -252,6 +265,7 @@ name|PARAM_VALUE_ATTRIBUTE
 init|=
 literal|"value"
 decl_stmt|;
+comment|/** First level element in a collection configuration document */
 specifier|private
 specifier|final
 specifier|static
@@ -379,7 +393,51 @@ name|getCollectionDefaultPerms
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param broker      * @param srcCollectionName The collection from which the document is being read.  This      * is not necessarily the same as this.collection.getName() because the      * source document may have come from a parent collection.      * @param docName The name of the document being read      * @param doc      * @throws CollectionConfigurationException      */
+specifier|public
+specifier|static
+name|boolean
+name|isCollectionConfigDocument
+parameter_list|(
+name|String
+name|docName
+parameter_list|)
+block|{
+return|return
+name|docName
+operator|.
+name|endsWith
+argument_list|(
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_SUFFIX
+argument_list|)
+return|;
+block|}
+specifier|public
+specifier|static
+name|boolean
+name|isCollectionConfigDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+name|String
+name|docName
+init|=
+name|doc
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+return|return
+name|isCollectionConfigDocument
+argument_list|(
+name|docName
+argument_list|)
+return|;
+block|}
+comment|/**      * @param broker      * @param srcCollectionName The collection from which the document is being read.  This      * is not necessarily the same as this.collection.getName() because the      * source document may have come from a parent collection.      * @param docName The name of the document being read      * @param doc collection configuration document      * @throws CollectionConfigurationException      */
 specifier|protected
 name|void
 name|read
