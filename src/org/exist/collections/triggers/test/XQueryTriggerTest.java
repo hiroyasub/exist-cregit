@@ -401,7 +401,7 @@ literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'
 operator|+
 literal|"<!-- special offer -->"
 operator|+
-literal|"<xu:update select='/test/item[@id = '3']/price'>"
+literal|"<xu:update select='/test/item[@id = \"3\"]/price'>"
 operator|+
 literal|"15.2"
 operator|+
@@ -1030,7 +1030,7 @@ block|}
 comment|/** test a trigger fired by a Document Update */
 specifier|public
 name|void
-name|ttttestUpdateDocument
+name|bugtestUpdateDocument
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1107,7 +1107,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//TODO : understand why it is necessary !
+comment|// this is necessary to compare with MODIFIED_DOCUMENT_CONTENT ; TODO better compare with XML diff tool
 name|service
 operator|.
 name|setProperty
@@ -1298,7 +1298,7 @@ block|}
 comment|/** test a trigger fired by a Document Delete */
 specifier|public
 name|void
-name|ttttestDeleteDocument
+name|testDeleteDocument
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1362,7 +1362,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//TODO : understand why it is necessary !
 name|service
 operator|.
 name|setProperty
