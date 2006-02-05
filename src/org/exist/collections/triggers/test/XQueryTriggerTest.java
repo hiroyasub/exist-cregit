@@ -35,6 +35,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
+name|XQueryTrigger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -216,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/** class under test : {@link XQueryTrigger}  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_class
@@ -247,18 +261,21 @@ init|=
 literal|"testXQueryTrigger"
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
-name|CONFIG
+name|COLLECTION_CONFIG
 init|=
-literal|"<exist:collection xmlns:exist=\"http://exist-db.org/collection-config/1.0\">"
+literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.0'>"
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event=\"store\""
+literal|"<exist:trigger event='store'"
 operator|+
-literal|"                    class=\"org.exist.collections.triggers.XQueryTrigger\">"
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
+literal|"<exist:parameter name='query' "
+operator|+
+literal|"			value=\"import module namespace log = 'log' at '"
 operator|+
 name|URI
 operator|+
@@ -270,7 +287,37 @@ literal|"/"
 operator|+
 name|MODULE_NAME
 operator|+
-literal|"'; log:log('trigger1')\"/>"
+literal|"';"
+operator|+
+literal|"log:log('trigger1')\" />"
+operator|+
+literal|"<exist:parameter name='bindingPrefix' value='log'/>"
+operator|+
+literal|"        />"
+operator|+
+literal|"</exist:trigger>"
+operator|+
+literal|"<exist:trigger event='update'"
+operator|+
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+operator|+
+literal|"<exist:parameter name='query' "
+operator|+
+literal|"			value=\"import module namespace log = 'log' at '"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|MODULE_NAME
+operator|+
+literal|"';"
+operator|+
+literal|"log:log('trigger2')\" />"
 operator|+
 literal|"<exist:parameter name=\"bindingPrefix\" value=\"log\"/>"
 operator|+
@@ -278,33 +325,9 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event=\"update\""
+literal|"<exist:trigger event='remove'"
 operator|+
-literal|"                    class=\"org.exist.collections.triggers.XQueryTrigger\">"
-operator|+
-literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
-operator|+
-name|URI
-operator|+
-literal|"/"
-operator|+
-name|TEST_COLLECTION
-operator|+
-literal|"/"
-operator|+
-name|MODULE_NAME
-operator|+
-literal|"'; log:log('trigger2')\"/>"
-operator|+
-literal|"<exist:parameter name=\"bindingPrefix\" value=\"log\"/>"
-operator|+
-literal|"        />"
-operator|+
-literal|"</exist:trigger>"
-operator|+
-literal|"<exist:trigger event=\"remove\""
-operator|+
-literal|"                    class=\"org.exist.collections.triggers.XQueryTrigger\">"
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
 literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
 operator|+
@@ -318,9 +341,11 @@ literal|"/"
 operator|+
 name|MODULE_NAME
 operator|+
-literal|"'; log:log('trigger3')\"/>"
+literal|"';"
 operator|+
-literal|"<exist:parameter name=\"bindingPrefix\" value=\"log\"/>"
+literal|"log:log('trigger3')\"/>"
+operator|+
+literal|"<exist:parameter name='bindingPrefix' value='log' />"
 operator|+
 literal|"        />"
 operator|+
@@ -331,10 +356,11 @@ operator|+
 literal|"</exist:collection>"
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
-name|EMPTY_CONFIG
+name|EMPTY_COLLECTION_CONFIG
 init|=
-literal|"<exist:collection xmlns:exist=\"http://exist-db.org/collection-config/1.0\">"
+literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.0'>"
 operator|+
 literal|"</exist:collection>"
 decl_stmt|;
@@ -364,17 +390,18 @@ literal|"<item id='4'><price>65.54</price><stock>16</stock></item>"
 operator|+
 literal|"</test>"
 decl_stmt|;
+comment|/** XUpdate document update specification */
 specifier|private
 specifier|final
 specifier|static
 name|String
 name|DOCUMENT_UPDATE
 init|=
-literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
 operator|+
 literal|"<!-- special offer -->"
 operator|+
-literal|"<xu:update select=\"/test/item[@id = '3']/price\">"
+literal|"<xu:update select='/test/item[@id = '3']/price'>"
 operator|+
 literal|"15.2"
 operator|+
@@ -397,6 +424,7 @@ argument_list|,
 literal|"<price>15.2</price>"
 argument_list|)
 decl_stmt|;
+comment|/** "log" document that will be updated by the trigger */
 specifier|private
 specifier|final
 specifier|static
@@ -405,6 +433,7 @@ name|LOG_NAME
 init|=
 literal|"XQueryTriggerLog.xml"
 decl_stmt|;
+comment|/** initial content of the "log" document */
 specifier|private
 specifier|final
 specifier|static
@@ -413,6 +442,7 @@ name|EMPTY_LOG
 init|=
 literal|"<events/>"
 decl_stmt|;
+comment|/** XQuery module implementing the trigger under test */
 specifier|private
 specifier|final
 specifier|static
@@ -421,6 +451,7 @@ name|MODULE_NAME
 init|=
 literal|"XQueryTriggerLogger.xqm"
 decl_stmt|;
+comment|/** XQuery module implementing the trigger under test;       * the log() XQuery function will add an<event> element inside<events> element */
 specifier|private
 specifier|final
 specifier|static
@@ -453,23 +484,23 @@ name|TEST_COLLECTION
 operator|+
 literal|"', 'admin', ''), "
 operator|+
-literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
 operator|+
-literal|"<xu:append select=\"/events\">"
+literal|"<xu:append select='/events'>"
 operator|+
-literal|"<xu:element name=\"event\">"
+literal|"<xu:element name='event'>"
 operator|+
-literal|"<xu:attribute name=\"id\">{$id}</xu:attribute>"
+literal|"<xu:attribute name='id'>{$id}</xu:attribute>"
 operator|+
-literal|"<xu:attribute name=\"time\">{current-dateTime()}</xu:attribute>"
+literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
 operator|+
-literal|"<xu:element name=\"collectionName\">{$log:collectionName}</xu:element>"
+literal|"<xu:element name='collectionName'>{$log:collectionName}</xu:element>"
 operator|+
-literal|"<xu:element name=\"documentName\">{$log:documentName}</xu:element>"
+literal|"<xu:element name='documentName'>{$log:documentName}</xu:element>"
 operator|+
-literal|"<xu:element name=\"triggerEvent\">{$log:triggerEvent}</xu:element>"
+literal|"<xu:element name='triggerEvent'>{$log:triggerEvent}</xu:element>"
 operator|+
-literal|"<xu:element name=\"document\">{$log:document}</xu:element>"
+literal|"<xu:element name='document'>{$log:document}</xu:element>"
 operator|+
 literal|"</xu:element>"
 operator|+
@@ -485,6 +516,7 @@ specifier|private
 name|Collection
 name|testCollection
 decl_stmt|;
+comment|/** just start the DB and create the test collection */
 specifier|protected
 name|void
 name|setUp
@@ -635,6 +667,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** create "log" document that will be updated by the trigger,      * and store the XQuery module implementing the trigger under test */
 specifier|public
 name|void
 name|testStorePreliminaryDocuments
@@ -732,6 +765,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** test a trigger fired by storing a Document  */
 specifier|public
 name|void
 name|testStoreDocument
@@ -742,6 +776,7 @@ name|result
 decl_stmt|;
 try|try
 block|{
+comment|// configure the Collection with the trigger under test
 name|IndexQueryService
 name|idxConf
 init|=
@@ -761,9 +796,10 @@ name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
+comment|// this will fire the trigger
 name|XMLResource
 name|doc
 init|=
@@ -793,11 +829,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+comment|// remove the trigger for the Collection under test
 name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|EMPTY_CONFIG
+name|EMPTY_COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 name|XPathQueryService
@@ -990,9 +1027,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** test a trigger fired by a Document Update */
 specifier|public
 name|void
-name|bugtestUpdateDocument
+name|ttttestUpdateDocument
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1019,7 +1057,7 @@ name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 comment|//TODO : trigger UPDATE events !
@@ -1051,7 +1089,7 @@ name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|EMPTY_CONFIG
+name|EMPTY_COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 name|XPathQueryService
@@ -1257,9 +1295,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** test a trigger fired by a Document Delete */
 specifier|public
 name|void
-name|testDeleteDocument
+name|ttttestDeleteDocument
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1286,7 +1325,7 @@ name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|CONFIG
+name|COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 name|testCollection
@@ -1305,7 +1344,7 @@ name|idxConf
 operator|.
 name|configureCollection
 argument_list|(
-name|EMPTY_CONFIG
+name|EMPTY_COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 name|XPathQueryService
