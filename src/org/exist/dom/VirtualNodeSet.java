@@ -457,6 +457,7 @@ name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|/* if the node has no parent, i.e. pid == -1, we still need to complete this method          * to check if we have found a potential parent in one of the iterations before.          */
 name|NodeProxy
 name|parent
 decl_stmt|;
@@ -564,7 +565,9 @@ name|node
 expr_stmt|;
 block|}
 comment|// if this is the first call to this method, remember the first parent node
-comment|// and re-evaluate the method
+comment|// and re-evaluate the method. We can't just return the first parent as
+comment|// we need a parent that is actually contained in the context set. We thus
+comment|// call the method again to complete.
 if|if
 condition|(
 name|first
