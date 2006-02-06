@@ -1863,7 +1863,6 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        System.out.println("NodeProxy.addContextNode: " + contextNode.debugContext());
 block|}
 comment|/**      * Add all context nodes from the other NodeProxy to the      * context of this NodeProxy.      *       * @param other      */
 specifier|public
@@ -1932,9 +1931,6 @@ name|deepCopyContext
 parameter_list|(
 name|NodeProxy
 name|node
-parameter_list|,
-name|int
-name|addContextId
 parameter_list|)
 block|{
 name|context
@@ -2017,6 +2013,7 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
+comment|//          System.out.println("NodeProxy.copyContext: " + next.getNode().debugContext());
 name|next
 operator|=
 name|next
@@ -2025,6 +2022,23 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|deepCopyContext
+parameter_list|(
+name|NodeProxy
+name|node
+parameter_list|,
+name|int
+name|addContextId
+parameter_list|)
+block|{
+name|deepCopyContext
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
 name|addContextNode
 argument_list|(
 name|addContextId
