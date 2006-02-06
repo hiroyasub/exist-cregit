@@ -893,6 +893,9 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|//    public NodeProxy parentWithChild(DocumentImpl doc, long gid, boolean directParent, boolean includeSelf) {
+comment|//        return parentWithChild(doc, gid, directParent, includeSelf, NodeProxy.UNKNOWN_NODE_LEVEL);
+comment|//    }
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1150,20 +1153,11 @@ name|docElemProxy
 argument_list|)
 condition|)
 block|{
-name|result
-operator|.
-name|add
-argument_list|(
-name|docElemProxy
-argument_list|)
-expr_stmt|;
-comment|// I took these lines from addChildren() .
-comment|// Certainly there is some refactoring here ...
 name|docElemProxy
 operator|.
-name|copyContext
+name|deepCopyContext
 argument_list|(
-name|docElemProxy
+name|proxy
 argument_list|)
 expr_stmt|;
 if|if
@@ -1183,6 +1177,13 @@ name|docElemProxy
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|add
+argument_list|(
+name|docElemProxy
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1216,9 +1217,27 @@ name|DESCENDANT_ATTRIBUTE_AXIS
 operator|)
 condition|)
 block|{
+comment|// note: we create a copy of the docElemProxy here to be used
+comment|// as context when traversing the tree.
+name|NodeProxy
+name|contextNode
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|docElemProxy
+argument_list|)
+decl_stmt|;
+name|contextNode
+operator|.
+name|deepCopyContext
+argument_list|(
+name|proxy
+argument_list|)
+expr_stmt|;
 name|domIter
 operator|=
-name|docElemProxy
+name|contextNode
 operator|.
 name|getDocument
 argument_list|()
@@ -1228,7 +1247,7 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
-name|docElemProxy
+name|contextNode
 argument_list|)
 expr_stmt|;
 name|domIter
@@ -1236,7 +1255,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|docElemProxy
+name|contextNode
 operator|.
 name|setMatches
 argument_list|(
@@ -1248,7 +1267,7 @@ argument_list|)
 expr_stmt|;
 name|addChildren
 argument_list|(
-name|docElemProxy
+name|contextNode
 argument_list|,
 name|result
 argument_list|,
@@ -1298,6 +1317,8 @@ condition|)
 block|{
 if|if
 condition|(
+name|useSelfAsContext
+operator|&&
 name|inPredicate
 condition|)
 name|proxy
@@ -1618,16 +1639,9 @@ name|DESCENDANT_ATTRIBUTE_AXIS
 operator|)
 condition|)
 block|{
-name|result
-operator|.
-name|add
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
 name|p
 operator|.
-name|copyContext
+name|deepCopyContext
 argument_list|(
 name|contextNode
 argument_list|)
@@ -1660,6 +1674,13 @@ argument_list|(
 name|contextId
 argument_list|,
 name|contextNode
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|add
+argument_list|(
+name|p
 argument_list|)
 expr_stmt|;
 block|}
