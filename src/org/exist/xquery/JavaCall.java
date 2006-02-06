@@ -343,6 +343,8 @@ operator|+
 name|namespaceURI
 operator|+
 literal|" not found"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -637,6 +639,16 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
+name|String
+name|message
+init|=
+literal|"no constructor found with "
+operator|+
+name|argCount
+operator|+
+literal|" arguments"
+decl_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -644,13 +656,16 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"no constructor found with "
-operator|+
-name|argCount
-operator|+
-literal|" arguments"
+name|message
+argument_list|,
+operator|new
+name|NoSuchMethodException
+argument_list|(
+name|message
+argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 else|else
 block|{
@@ -824,13 +839,10 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
+block|{
+name|String
+name|message
+init|=
 literal|"no method matches "
 operator|+
 name|name
@@ -840,8 +852,24 @@ operator|+
 name|argCount
 operator|+
 literal|" arguments"
+decl_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+name|message
+argument_list|,
+operator|new
+name|NoSuchMethodException
+argument_list|(
+name|message
+argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#analyze(org.exist.xquery.AnalyzeContextInfo)      */
