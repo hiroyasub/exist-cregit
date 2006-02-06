@@ -457,18 +457,6 @@ name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//no matching node has been found in the context
-if|if
-condition|(
-name|pid
-operator|==
-name|NodeProxy
-operator|.
-name|DOCUMENT_NODE_GID
-condition|)
-return|return
-literal|null
-return|;
 name|NodeProxy
 name|parent
 decl_stmt|;
@@ -584,6 +572,18 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|pid
+operator|<
+literal|0
+condition|)
+block|{
+comment|// given node was already document element -> no parent
+return|return
+literal|null
+return|;
+block|}
 name|first
 operator|=
 operator|new
@@ -601,13 +601,6 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|directParent
-condition|)
-return|return
-name|first
-return|;
 comment|// Timo Boehme: we need a real parent (child from context)
 return|return
 name|getFirstParent
@@ -618,7 +611,7 @@ name|first
 argument_list|,
 literal|false
 argument_list|,
-literal|false
+name|directParent
 argument_list|,
 name|recursions
 operator|+
@@ -715,10 +708,38 @@ comment|// Timo Boehme: we return the ancestor which is child of context
 return|return
 name|node
 return|;
-comment|//Removed : the directParent case is handled above
-comment|//} else if (directParent&& axis == Constants.CHILD_AXIS&& recursions == 1) {
-comment|//break here if the expression is like /*/n
-comment|//return null;
+block|}
+if|else if
+condition|(
+name|pid
+operator|<
+literal|0
+condition|)
+block|{
+comment|// no matching node has been found in the context
+return|return
+literal|null
+return|;
+block|}
+if|else if
+condition|(
+name|directParent
+operator|&&
+name|axis
+operator|==
+name|Constants
+operator|.
+name|CHILD_AXIS
+operator|&&
+name|recursions
+operator|==
+literal|1
+condition|)
+block|{
+comment|// break here if the expression is like /*/n
+return|return
+literal|null
+return|;
 block|}
 else|else
 block|{
@@ -893,9 +914,6 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|//    public NodeProxy parentWithChild(DocumentImpl doc, long gid, boolean directParent, boolean includeSelf) {
-comment|//        return parentWithChild(doc, gid, directParent, includeSelf, NodeProxy.UNKNOWN_NODE_LEVEL);
-comment|//    }
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -911,6 +929,9 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|int
+name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -962,6 +983,9 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|int
+name|level
 parameter_list|)
 block|{
 name|NodeProxy
@@ -1732,6 +1756,18 @@ operator|&&
 name|realSetIsComplete
 condition|)
 return|return;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"REALIZE!!!!"
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 name|realSet
 operator|=
 name|getNodes
