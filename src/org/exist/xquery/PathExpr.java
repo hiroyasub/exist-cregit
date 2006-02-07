@@ -1017,13 +1017,6 @@ comment|//it looks like an empty sequence could be considered as a sub-type of T
 comment|//well, no so stupid I think...
 if|if
 condition|(
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
-operator|&&
 operator|!
 name|Type
 operator|.
@@ -1038,6 +1031,13 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
+operator|&&
+name|result
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
 condition|)
 name|gotAtomicResult
 operator|=
