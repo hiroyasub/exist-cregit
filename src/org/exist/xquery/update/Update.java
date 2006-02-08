@@ -603,6 +603,13 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
+operator|&&
+name|inSeq
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
 condition|)
 throw|throw
 operator|new
