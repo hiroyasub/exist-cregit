@@ -7608,7 +7608,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"let $a :=<test name=\"Test\"/> return<wrapper>{$a/@name}</wrapper>"
+literal|"let $a :=<name name=\"Test\"/> return<wrap>{$a//@name}</wrap>"
 decl_stmt|;
 try|try
 block|{
@@ -7649,7 +7649,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<wrapper name=\"Test\">"
+literal|"<wrap name=\"Test\"/>"
 argument_list|,
 name|result
 operator|.
