@@ -378,6 +378,24 @@ specifier|private
 specifier|final
 specifier|static
 name|String
+name|numbers2
+init|=
+literal|"<test xmlns=\"http://numbers.org\">"
+operator|+
+literal|"<item id='1' type='alphanum'><price>5.6</price><stock>22</stock></item>"
+operator|+
+literal|"<item id='2'><price>7.4</price><stock>43</stock></item>"
+operator|+
+literal|"<item id='3'><price>18.4</price><stock>5</stock></item>"
+operator|+
+literal|"<item id='4'><price>65.54</price><stock>16</stock></item>"
+operator|+
+literal|"</test>"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
 name|namespaces
 init|=
 literal|"<test xmlns='http://www.foo.com'>"
@@ -2291,21 +2309,6 @@ argument_list|,
 name|nested2
 argument_list|)
 decl_stmt|;
-name|String
-name|numbers
-init|=
-literal|"<test>"
-operator|+
-literal|"<item id='1' type='alphanum'><price>5.6</price><stock>22</stock></item>"
-operator|+
-literal|"<item id='2'><price>7.4</price><stock>43</stock></item>"
-operator|+
-literal|"<item id='3'><price>18.4</price><stock>5</stock></item>"
-operator|+
-literal|"<item id='4'><price>65.54</price><stock>16</stock></item>"
-operator|+
-literal|"</test>"
-decl_stmt|;
 name|queryResource
 argument_list|(
 name|service
@@ -2356,7 +2359,16 @@ name|storeXMLStringAndGetQueryService
 argument_list|(
 literal|"numbers.xml"
 argument_list|,
-name|numbers
+name|numbers2
+argument_list|)
+expr_stmt|;
+name|service
+operator|.
+name|setNamespace
+argument_list|(
+literal|"n"
+argument_list|,
+literal|"http://numbers.org"
 argument_list|)
 expr_stmt|;
 name|queryResource
@@ -2365,7 +2377,7 @@ name|service
 argument_list|,
 literal|"numbers.xml"
 argument_list|,
-literal|"//price[. = 18.4]/parent::*[@id = '3']"
+literal|"//n:price[. = 18.4]/parent::*[@id = '3']"
 argument_list|,
 literal|1
 argument_list|)
@@ -2376,7 +2388,7 @@ name|service
 argument_list|,
 literal|"numbers.xml"
 argument_list|,
-literal|"//price[. = 18.4]/parent::item[@id = '3']"
+literal|"//n:price[. = 18.4]/parent::n:item[@id = '3']"
 argument_list|,
 literal|1
 argument_list|)
@@ -2387,9 +2399,103 @@ name|service
 argument_list|,
 literal|"numbers.xml"
 argument_list|,
-literal|"//price/parent::item[@id = '3']"
+literal|"//n:price/parent::n:item[@id = '3']"
 argument_list|,
 literal|1
+argument_list|)
+expr_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+literal|"//n:price[. = 18.4]/parent::n:*/string(@id)"
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"3"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+literal|"//n:price[. = 18.4]/parent::*:item/string(@id)"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"3"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+literal|"//n:price[. = 18.4]/../string(@id)"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"3"
 argument_list|)
 expr_stmt|;
 name|queryResource
@@ -2398,7 +2504,7 @@ name|service
 argument_list|,
 literal|"numbers.xml"
 argument_list|,
-literal|"for $price in //price where $price/parent::*[@id = '3']/stock = '5' return $price"
+literal|"for $price in //n:price where $price/parent::*[@id = '3']/n:stock = '5' return $price"
 argument_list|,
 literal|1
 argument_list|)
