@@ -464,7 +464,10 @@ argument_list|()
 argument_list|,
 literal|"An exception occurred while serializing node to log: "
 operator|+
-literal|"e.getMessage()"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
