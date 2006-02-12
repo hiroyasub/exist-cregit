@@ -509,7 +509,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
-comment|// number of child nodes
+comment|/** number of child nodes */
 specifier|private
 name|int
 name|children
@@ -523,7 +523,7 @@ name|childList
 init|=
 literal|null
 decl_stmt|;
-comment|// the collection this document belongs to
+comment|/** the collection this document belongs to */
 specifier|private
 specifier|transient
 name|Collection
@@ -531,14 +531,14 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-comment|// the document's id
+comment|/** the document's id */
 specifier|private
 name|int
 name|docId
 init|=
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
-comment|// the document's file name
+comment|/** the document's file name */
 specifier|private
 name|String
 name|fileName
@@ -580,14 +580,14 @@ name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
-comment|//number of levels in this DOM tree
+comment|/** number of levels in this DOM tree */
 specifier|private
 name|int
 name|maxDepth
 init|=
 literal|0
 decl_stmt|;
-comment|// arity of the tree at every level
+comment|/** arity of the tree at every level */
 specifier|private
 name|int
 name|treeLevelOrder
@@ -599,7 +599,7 @@ index|[
 literal|15
 index|]
 decl_stmt|;
-comment|//TODO : make private
+comment|/** Id's of first node at each depth level */
 specifier|private
 specifier|transient
 name|long
@@ -2841,156 +2841,27 @@ argument_list|)
 throw|;
 comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = 0; i< children; i++) {             next = childList[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 last = next;                 idx = i + 1;                 break;             }         }         if (last< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         StoredNode prev = getLastNode( (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last)) );         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) appendChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childList[idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
 block|}
-specifier|private
-name|Node
-name|appendChild
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
-name|StoredNode
-name|last
-parameter_list|,
-name|Node
-name|child
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-switch|switch
-condition|(
-name|child
-operator|.
-name|getNodeType
-argument_list|()
-condition|)
-block|{
-case|case
-name|Node
-operator|.
-name|PROCESSING_INSTRUCTION_NODE
-case|:
-specifier|final
-name|ProcessingInstructionImpl
-name|pi
-init|=
-operator|new
-name|ProcessingInstructionImpl
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-name|pi
-operator|.
-name|setTarget
-argument_list|(
-operator|(
-operator|(
-name|ProcessingInstruction
-operator|)
-name|child
-operator|)
-operator|.
-name|getTarget
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|pi
-operator|.
-name|setData
-argument_list|(
-operator|(
-operator|(
-name|ProcessingInstruction
-operator|)
-name|child
-operator|)
-operator|.
-name|getData
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|pi
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-name|broker
-operator|.
-name|insertNodeAfter
-argument_list|(
-name|transaction
-argument_list|,
-name|last
-argument_list|,
-name|pi
-argument_list|)
-expr_stmt|;
-return|return
-name|pi
-return|;
-case|case
-name|Node
-operator|.
-name|COMMENT_NODE
-case|:
-specifier|final
-name|CommentImpl
-name|comment
-init|=
-operator|new
-name|CommentImpl
-argument_list|(
-literal|0
-argument_list|,
-operator|(
-operator|(
-name|Comment
-operator|)
-name|child
-operator|)
-operator|.
-name|getData
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|comment
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-name|broker
-operator|.
-name|insertNodeAfter
-argument_list|(
-name|transaction
-argument_list|,
-name|last
-argument_list|,
-name|comment
-argument_list|)
-expr_stmt|;
-return|return
-name|comment
-return|;
-default|default :
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|INVALID_MODIFICATION_ERR
-argument_list|,
-literal|"you cannot append a node of this type"
-argument_list|)
-throw|;
-block|}
-block|}
+comment|// Never used locally !
+comment|//    private Node appendChild(Txn transaction, StoredNode last, Node child) throws DOMException {
+comment|//        switch (child.getNodeType()) {
+comment|//            case Node.PROCESSING_INSTRUCTION_NODE :
+comment|//                final ProcessingInstructionImpl pi = new ProcessingInstructionImpl(0);
+comment|//                pi.setTarget(((ProcessingInstruction) child).getTarget());
+comment|//                pi.setData(((ProcessingInstruction) child).getData());
+comment|//                pi.setOwnerDocument(this);
+comment|//                broker.insertNodeAfter(transaction, last, pi);
+comment|//                return pi;
+comment|//            case Node.COMMENT_NODE :
+comment|//                final CommentImpl comment = new CommentImpl(0, ((Comment) child).getData());
+comment|//                comment.setOwnerDocument(this);
+comment|//                broker.insertNodeAfter(transaction, last, comment);
+comment|//                return comment;
+comment|//            default :
+comment|//                throw new DOMException(
+comment|//                    DOMException.INVALID_MODIFICATION_ERR,
+comment|//                    "you cannot append a node of this type");
+comment|//        }
+comment|//    }
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
 specifier|public
 name|Node
@@ -5123,6 +4994,26 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getName
+argument_list|()
+operator|+
+literal|" -<"
+operator|+
+name|getDocumentElement
+argument_list|()
+operator|.
+name|getNodeName
+argument_list|()
+operator|+
+literal|">"
+return|;
 block|}
 block|}
 end_class
