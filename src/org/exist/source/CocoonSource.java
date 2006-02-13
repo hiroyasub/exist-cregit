@@ -486,6 +486,15 @@ name|getURI
 argument_list|()
 return|;
 block|}
+specifier|public
+name|Source
+name|getWrappedSource
+parameter_list|()
+block|{
+return|return
+name|inputSource
+return|;
+block|}
 specifier|private
 name|void
 name|checkEncoding

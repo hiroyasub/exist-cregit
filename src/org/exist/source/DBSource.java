@@ -226,6 +226,15 @@ name|key
 return|;
 block|}
 specifier|public
+name|String
+name|getDocumentPath
+parameter_list|()
+block|{
+return|return
+name|key
+return|;
+block|}
+specifier|public
 name|long
 name|getLastModified
 parameter_list|()

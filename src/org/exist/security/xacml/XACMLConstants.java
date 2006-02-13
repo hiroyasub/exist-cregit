@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -574,6 +578,17 @@ name|EXIST_XACML_NS
 operator|+
 literal|"/subject"
 decl_stmt|;
+comment|/** 	* The namespace used for environment-related eXist-specific XACML 	* constants 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ENVIRONMENT_NS
+init|=
+name|EXIST_XACML_NS
+operator|+
+literal|"/environment"
+decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the namespace 	* URI of a module. 	*/
 specifier|public
 specifier|static
@@ -622,20 +637,36 @@ operator|+
 literal|"#module-category"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * The attribute ID for the attribute the describes a module's source.  	 */
+comment|/** 	 * The attribute ID for the attribute the describes the source of some content, 	 * such as a module, a query.  	 */
 specifier|public
 specifier|static
 specifier|final
 name|URI
-name|MODULE_SRC_ATTRIBUTE
+name|SOURCE_KEY_ATTRIBUTE
 init|=
 name|URI
 operator|.
 name|create
 argument_list|(
-name|SUBJECT_NS
+name|EXIST_XACML_NS
 operator|+
-literal|"#module-src"
+literal|"#source-key"
+argument_list|)
+decl_stmt|;
+comment|/** 	 * The attribute ID for the attribute the describes the type of source of some content, 	 * such as a module, a query. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|URI
+name|SOURCE_TYPE_ATTRIBUTE
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|EXIST_XACML_NS
+operator|+
+literal|"#source-type"
 argument_list|)
 decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the category of 	* a resource. 	*/
@@ -652,22 +683,6 @@ argument_list|(
 name|RESOURCE_NS
 operator|+
 literal|"#resource-category"
-argument_list|)
-decl_stmt|;
-comment|/** 	* The attribute ID for the attribute that provides the name of a Java class 	* being reflectively loaded. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|URI
-name|CLASS_ATTRIBUTE
-init|=
-name|URI
-operator|.
-name|create
-argument_list|(
-name|RESOURCE_NS
-operator|+
-literal|"#class"
 argument_list|)
 decl_stmt|;
 comment|/** 	* The attribute ID for the attribute that provides the name of a user. 	*/
@@ -702,6 +717,22 @@ operator|+
 literal|"#group"
 argument_list|)
 decl_stmt|;
+comment|/** 	* The attribute ID for the attribute that provides the names of the groups 	* to which a user belongs. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|URI
+name|ACCESS_CONTEXT_ATTRIBUTE
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|ENVIRONMENT_NS
+operator|+
+literal|"#access-context"
+argument_list|)
+decl_stmt|;
 comment|/** 	* The internal/builtin XQuery library module type. 	*/
 specifier|public
 specifier|static
@@ -725,18 +756,9 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|EXTERNAL_MAIN_MODULE
+name|MAIN_MODULE
 init|=
-literal|"external main"
-decl_stmt|;
-comment|/** 	* The constructed XQuery main module type. 	*/
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|CONSTRUCTED_MAIN_MODULE
-init|=
-literal|"constructed main"
+literal|"main"
 decl_stmt|;
 comment|/** 	* The action-id corresponding to a request to reflectively invoke a 	* method of a Java class in XQuery. 	*/
 specifier|public
@@ -755,6 +777,15 @@ name|String
 name|CALL_FUNCTION_ACTION
 init|=
 literal|"call function"
+decl_stmt|;
+comment|/** 	* The action-id corresponding to a request to execute a main XQuery module. 	*/
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXECUTE_QUERY_ACTION
+init|=
+literal|"execute query"
 decl_stmt|;
 comment|/** 	* The Java method resource type. 	*/
 specifier|public
@@ -781,7 +812,70 @@ specifier|final
 name|String
 name|MAIN_MODULE_RESOURCE
 init|=
-literal|"main module"
+literal|"query"
+decl_stmt|;
+comment|/** 	 * The source type for Java classes. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CLASS_SOURCE_TYPE
+init|=
+literal|"Class"
+decl_stmt|;
+comment|/** 	 * The source type for files. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FILE_SOURCE_TYPE
+init|=
+literal|"File"
+decl_stmt|;
+comment|/** 	 * The source type for documents from the database. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DB_SOURCE_TYPE
+init|=
+literal|"Database"
+decl_stmt|;
+comment|/** 	 * The source type for URLs. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|URL_SOURCE_TYPE
+init|=
+literal|"URL"
+decl_stmt|;
+comment|/** 	 * The source type for resources loaded by the ClassLoader. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CLASSLOADER_SOURCE_TYPE
+init|=
+literal|"Classloader"
+decl_stmt|;
+comment|/** 	 * The source type for constructed strings. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STRING_SOURCE_TYPE
+init|=
+literal|"String"
+decl_stmt|;
+comment|/** 	 * The source type for cocoon sources. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COCOON_SOURCE_TYPE
+init|=
+literal|"Cocoon"
 decl_stmt|;
 specifier|private
 name|XACMLConstants

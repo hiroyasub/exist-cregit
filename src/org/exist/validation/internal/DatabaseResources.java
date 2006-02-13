@@ -155,6 +155,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|AccessContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -505,7 +519,7 @@ operator|+
 literal|"return document-uri($dtd)"
 decl_stmt|;
 comment|/**      *  Execute xquery.      *      * @param query  The xQuery      * @return  Sequence when results are available, null when errors occur.      */
-specifier|public
+specifier|private
 name|Sequence
 name|executeQuery
 parameter_list|(
@@ -567,6 +581,10 @@ argument_list|(
 name|query
 argument_list|,
 literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|VALIDATION_INTERNAL
 argument_list|)
 expr_stmt|;
 block|}
@@ -609,7 +627,7 @@ name|result
 return|;
 block|}
 comment|/**      *  Execute xquery, return single result.      *      * @param   query  The xQuery      * @return  String When a result is available, null when an error occured.      */
-specifier|public
+specifier|private
 name|String
 name|executeQuerySingleResult
 parameter_list|(
@@ -703,7 +721,7 @@ name|result
 return|;
 block|}
 comment|/**      *  Execute xquery, return multiple result.      *      * @param   query  The xQuery      * @return  List of Strings when a result is available, null when an      *          error occured.      */
-specifier|public
+specifier|private
 name|List
 name|executeQueryListResult
 parameter_list|(

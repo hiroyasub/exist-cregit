@@ -473,6 +473,11 @@ name|getBrokerPool
 argument_list|()
 argument_list|,
 name|collectionURI
+argument_list|,
+name|context
+operator|.
+name|getAccessContext
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

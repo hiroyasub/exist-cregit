@@ -109,6 +109,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|AccessContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|source
 operator|.
 name|StringSource
@@ -499,7 +513,11 @@ init|=
 name|service
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|AccessContext
+operator|.
+name|TRIGGER
+argument_list|)
 decl_stmt|;
 comment|//TODO : futher initializations ?
 name|CompiledXQuery
@@ -771,7 +789,11 @@ init|=
 name|service
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|AccessContext
+operator|.
+name|TRIGGER
+argument_list|)
 decl_stmt|;
 name|CompiledXQuery
 name|compiledQuery
@@ -924,7 +946,7 @@ comment|//Should never be reached
 block|}
 try|try
 block|{
-comment|// TODO : should we provide another contextSet ?
+comment|//TODO : should we provide another contextSet ?
 name|NodeSet
 name|contextSet
 init|=
@@ -941,7 +963,7 @@ argument_list|,
 name|contextSet
 argument_list|)
 expr_stmt|;
-comment|// TODO : should we have a special processing ?
+comment|//TODO : should we have a special processing ?
 name|TriggerStatePerThread
 operator|.
 name|setTriggerRunningState
@@ -976,7 +998,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|// Should never be reached
+comment|//Should never be reached
 name|LOG
 operator|.
 name|error
@@ -1038,7 +1060,11 @@ init|=
 name|service
 operator|.
 name|newContext
-argument_list|()
+argument_list|(
+name|AccessContext
+operator|.
+name|TRIGGER
+argument_list|)
 decl_stmt|;
 comment|//TODO : futher initializations ?
 comment|// CompiledXQuery compiledQuery;

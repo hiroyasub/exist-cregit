@@ -158,6 +158,15 @@ return|return
 name|filePath
 return|;
 block|}
+specifier|public
+name|String
+name|getFilePath
+parameter_list|()
+block|{
+return|return
+name|filePath
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid()      */
 specifier|public
 name|int

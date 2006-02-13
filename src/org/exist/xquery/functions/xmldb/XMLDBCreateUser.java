@@ -497,6 +497,11 @@ argument_list|,
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
+argument_list|,
+name|context
+operator|.
+name|getAccessContext
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|UserManagementService

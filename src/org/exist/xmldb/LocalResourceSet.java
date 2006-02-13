@@ -396,6 +396,11 @@ specifier|private
 name|User
 name|user
 decl_stmt|;
+specifier|private
+name|LocalResourceSet
+parameter_list|()
+block|{
+block|}
 specifier|public
 name|LocalResourceSet
 parameter_list|(
@@ -420,6 +425,19 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+if|if
+condition|(
+name|col
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Collection cannot be null"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|user
@@ -486,6 +504,11 @@ argument_list|,
 name|user
 argument_list|,
 name|sortExpr
+argument_list|,
+name|collection
+operator|.
+name|getAccessContext
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -1070,10 +1093,6 @@ name|collection
 decl_stmt|;
 if|if
 condition|(
-name|coll
-operator|==
-literal|null
-operator|||
 name|p
 operator|.
 name|getDocument
@@ -1124,6 +1143,11 @@ name|getCollection
 argument_list|()
 operator|.
 name|getName
+argument_list|()
+argument_list|,
+name|coll
+operator|.
+name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;

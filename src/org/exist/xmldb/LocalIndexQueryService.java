@@ -1051,6 +1051,11 @@ argument_list|(
 name|xpath
 argument_list|,
 literal|null
+argument_list|,
+name|parent
+operator|.
+name|getAccessContext
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return

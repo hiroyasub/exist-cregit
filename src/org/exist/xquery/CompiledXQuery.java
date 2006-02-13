@@ -43,6 +43,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|XACMLSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|value
@@ -106,6 +120,21 @@ name|dump
 parameter_list|(
 name|Writer
 name|writer
+parameter_list|)
+function_decl|;
+comment|/**      * Gets the source of this query.      *       * @return This query's source      */
+specifier|public
+name|XACMLSource
+name|getSource
+parameter_list|()
+function_decl|;
+comment|/**      * Sets the source of this query.      *       * @param source This query's source      */
+specifier|public
+name|void
+name|setSource
+parameter_list|(
+name|XACMLSource
+name|source
 parameter_list|)
 function_decl|;
 block|}

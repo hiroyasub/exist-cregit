@@ -163,6 +163,15 @@ operator|=
 name|url
 expr_stmt|;
 block|}
+specifier|public
+name|URL
+name|getURL
+parameter_list|()
+block|{
+return|return
+name|url
+return|;
+block|}
 specifier|private
 name|long
 name|getLastModification

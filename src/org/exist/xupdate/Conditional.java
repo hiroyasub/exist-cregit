@@ -369,7 +369,10 @@ operator|=
 name|xquery
 operator|.
 name|newContext
+argument_list|(
+name|getAccessContext
 argument_list|()
+argument_list|)
 expr_stmt|;
 else|else
 name|context
