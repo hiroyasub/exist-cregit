@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_comment
@@ -596,7 +596,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XUpdateProcessor.java  *   * @author Wolfgang Meier  *   */
+comment|/**  * Main class to pre-process an XUpdate request. XUpdateProcessor  * will parse the request via SAX and compile it into a set of  * {@link Modification} objects as returned by the {@link #parse(org.xml.sax.InputSource)}  * method. The modifications can then be executed via {@link Modification#process(org.exist.storage.txn.Txn)}.  *   * @author Wolfgang Meier  *   */
 end_comment
 
 begin_class
@@ -761,12 +761,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**      * NodeList to keep track of created document fragments within      * the currently processed XUpdate modification.      */
 specifier|private
 name|NodeListImpl
 name|contents
 init|=
 literal|null
 decl_stmt|;
+comment|// Flags needed during SAX processing
 specifier|private
 name|boolean
 name|inModification
@@ -779,6 +781,7 @@ name|inAttribute
 init|=
 literal|false
 decl_stmt|;
+comment|/**      * Whitespace preservation: the XUpdate processor      * will honour xml:space attribute settings.      */
 specifier|private
 name|boolean
 name|preserveWhitespace
@@ -791,26 +794,31 @@ name|preserveWhitespaceTemp
 init|=
 literal|false
 decl_stmt|;
+comment|/**      * Stack to maintain xml:space settings. The items on the      * stack are strings, containing either "default" or "preserve".      */
 specifier|private
 name|Stack
 name|spaceStack
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * The modification we are currently processing.      */
 specifier|private
 name|Modification
 name|modification
 init|=
 literal|null
 decl_stmt|;
+comment|/** The DocumentBuilder used to create new nodes */
 specifier|private
 name|DocumentBuilder
 name|builder
 decl_stmt|;
+comment|/** The Document object used to create new nodes */
 specifier|private
 name|Document
 name|doc
 decl_stmt|;
+comment|/** The current element stack. Contains the last elements processed. */
 specifier|private
 name|Stack
 name|stack
@@ -819,20 +827,24 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
+comment|/** The last node that has been created */
 specifier|private
 name|Node
 name|currentNode
 init|=
 literal|null
 decl_stmt|;
+comment|/** DBBroker for this instance */
 specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
+comment|/** The set of documents to which this XUpdate might apply. */
 specifier|private
 name|DocumentSet
 name|documentSet
 decl_stmt|;
+comment|/**      * The final list of modifications. All modifications encountered      * within the XUpdate will be added to this list. The final list      * will be returned to the caller.      */
 specifier|private
 name|List
 name|modifications
@@ -841,6 +853,7 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
+comment|/** Temporary string buffer used for collecting text chunks */
 specifier|private
 name|FastStringBuffer
 name|charBuf
@@ -855,6 +868,8 @@ argument_list|,
 literal|5
 argument_list|)
 decl_stmt|;
+comment|// Environment
+comment|/** Contains all variables declared via xupdate:variable.      * Maps variable QName to the Sequence returned by      * evaluating the variable expression.      */
 specifier|private
 name|Map
 name|variables
@@ -863,6 +878,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+comment|/**      * Keeps track of namespaces declared within the XUpdate.      */
 specifier|private
 name|Map
 name|namespaces
@@ -873,6 +889,7 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
+comment|/**      * Stack used to track conditionals.      */
 specifier|private
 name|Stack
 name|conditionals
