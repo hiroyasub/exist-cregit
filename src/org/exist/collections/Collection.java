@@ -7141,6 +7141,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 literal|"["
 argument_list|)
 expr_stmt|;
