@@ -1342,27 +1342,6 @@ name|long
 name|internalAddress
 parameter_list|)
 block|{
-if|if
-condition|(
-name|this
-operator|.
-name|internalAddress
-operator|!=
-name|UNKNOWN_NODE_ADDRESS
-operator|&&
-name|this
-operator|.
-name|internalAddress
-operator|!=
-name|internalAddress
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Internal address already affected"
-argument_list|)
-throw|;
 name|this
 operator|.
 name|internalAddress

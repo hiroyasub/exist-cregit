@@ -2689,6 +2689,9 @@ name|currentPath
 parameter_list|,
 name|String
 name|content
+parameter_list|,
+name|long
+name|oldAddress
 parameter_list|)
 block|{
 specifier|final
@@ -2776,6 +2779,14 @@ name|content
 operator|==
 literal|null
 condition|)
+block|{
+name|tempProxy
+operator|.
+name|setInternalAddress
+argument_list|(
+name|oldAddress
+argument_list|)
+expr_stmt|;
 name|content
 operator|=
 name|getNodeValue
@@ -2785,6 +2796,17 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|tempProxy
+operator|.
+name|setInternalAddress
+argument_list|(
+name|node
+operator|.
+name|getInternalAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|valueIndex
 operator|.
 name|setDocument
@@ -2833,6 +2855,14 @@ name|content
 operator|==
 literal|null
 condition|)
+block|{
+name|tempProxy
+operator|.
+name|setInternalAddress
+argument_list|(
+name|oldAddress
+argument_list|)
+expr_stmt|;
 name|content
 operator|=
 name|getNodeValue
@@ -2842,6 +2872,17 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|tempProxy
+operator|.
+name|setInternalAddress
+argument_list|(
+name|node
+operator|.
+name|getInternalAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|//          qnameValueIndex.setDocument(doc);
 comment|//          qnameValueIndex.storeElement(qnIdx.getType(),
 comment|//                  (ElementImpl) node, content.toString());
@@ -13921,6 +13962,15 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
+specifier|final
+name|long
+name|oldAddress
+init|=
+name|node
+operator|.
+name|getInternalAddress
+argument_list|()
+decl_stmt|;
 name|node
 operator|.
 name|setOwnerDocument
@@ -13966,6 +14016,8 @@ argument_list|,
 name|currentPath
 argument_list|,
 literal|null
+argument_list|,
+name|oldAddress
 argument_list|)
 expr_stmt|;
 if|if
