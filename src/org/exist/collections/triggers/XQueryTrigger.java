@@ -256,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes an XQuery statement when invoked.  * External variables amy be resolved by the process  :  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  * The XQuery source executed is the value of the context parameter named "query".  * These external variables are accessible to the user XQuery statement :  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
 end_comment
 
 begin_class
@@ -282,6 +282,7 @@ name|query
 init|=
 literal|null
 decl_stmt|;
+comment|/** namespace prefix associated to trigger */
 specifier|private
 name|String
 name|bindingPrefix
@@ -307,7 +308,7 @@ name|SAXAdapter
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+comment|/** 	 * @see org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
 specifier|public
 name|void
 name|configure
@@ -421,7 +422,7 @@ name|getXQueryService
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
+comment|/** 	 * @see org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
 specifier|public
 name|void
 name|prepare
@@ -469,6 +470,29 @@ operator|==
 literal|null
 condition|)
 return|return;
+comment|// avoid infinite recursion by allowing just one trigger per thread
+if|if
+condition|(
+operator|!
+name|TriggerStatePerThread
+operator|.
+name|verifyUniqueTriggerPerThreadBeforePrepare
+argument_list|(
+name|this
+argument_list|,
+name|existingDocument
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
+name|TriggerStatePerThread
+operator|.
+name|setTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|XQueryContext
 name|context
 init|=
@@ -679,7 +703,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
+comment|/**      * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
 specifier|public
 name|void
 name|finish
@@ -697,6 +721,22 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+comment|// avoid infinite recursion by allowing just one trigger per thread
+if|if
+condition|(
+operator|!
+name|TriggerStatePerThread
+operator|.
+name|verifyUniqueTriggerPerThreadBeforeFinish
+argument_list|(
+name|this
+argument_list|,
+name|document
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -884,7 +924,7 @@ comment|//Should never be reached
 block|}
 try|try
 block|{
-comment|//TODO : should we provide another contextSet ?
+comment|// TODO : should we provide another contextSet ?
 name|NodeSet
 name|contextSet
 init|=
@@ -901,12 +941,32 @@ argument_list|,
 name|contextSet
 argument_list|)
 expr_stmt|;
-comment|//TODO : should we have a special processing ?
+comment|// TODO : should we have a special processing ?
+name|TriggerStatePerThread
+operator|.
+name|setTriggerRunningState
+argument_list|(
+name|TriggerStatePerThread
+operator|.
+name|NO_TRIGGER_RUNNING
+argument_list|,
+name|this
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|TriggerStatePerThread
+operator|.
+name|setTransaction
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"done."
+literal|"trigger done."
 argument_list|)
 expr_stmt|;
 block|}
@@ -916,7 +976,16 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|//Should never be reached
+comment|// Should never be reached
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"trigger done with error: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -972,13 +1041,10 @@ name|newContext
 argument_list|()
 decl_stmt|;
 comment|//TODO : futher initializations ?
-name|CompiledXQuery
-name|compiledQuery
-decl_stmt|;
+comment|// CompiledXQuery compiledQuery;
 try|try
 block|{
-name|compiledQuery
-operator|=
+comment|// compiledQuery =
 name|service
 operator|.
 name|compile
@@ -1136,6 +1202,45 @@ return|return
 literal|null
 return|;
 block|}
+block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"collection="
+operator|+
+name|collection
+operator|+
+literal|"\n"
+operator|+
+literal|"modifiedDocument="
+operator|+
+name|TriggerStatePerThread
+operator|.
+name|getModifiedDocument
+argument_list|()
+operator|+
+literal|"\n"
+operator|+
+operator|(
+name|query
+operator|!=
+literal|null
+condition|?
+name|query
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|40
+argument_list|)
+else|:
+literal|null
+operator|)
+return|;
 block|}
 block|}
 end_class
