@@ -2080,6 +2080,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Possible services: XPathQueryService, XQueryService, 	 * CollectionManagementService (CollectionManager), UserManagementService, 	 * DatabaseInstanceManager, XUpdateQueryService,  IndexQueryService, 	 * ValidationService. */
 specifier|public
 name|Service
 name|getService
