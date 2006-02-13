@@ -462,7 +462,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents a persistent document object in the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  *  Represents a persistent document object in the database;  *  it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *    *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -5006,11 +5006,20 @@ argument_list|()
 operator|+
 literal|" -<"
 operator|+
+operator|(
+name|getDocumentElement
+argument_list|()
+operator|!=
+literal|null
+condition|?
 name|getDocumentElement
 argument_list|()
 operator|.
 name|getNodeName
 argument_list|()
+else|:
+literal|null
+operator|)
 operator|+
 literal|">"
 return|;
