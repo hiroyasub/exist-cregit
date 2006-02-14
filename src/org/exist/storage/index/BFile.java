@@ -12887,6 +12887,8 @@ condition|?
 literal|0
 else|:
 name|pageLen
+operator|-
+name|offset
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.io.VariableByteInput#read(byte[])          */
