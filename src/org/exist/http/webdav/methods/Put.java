@@ -982,6 +982,11 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+name|tempFile
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
 name|response
 operator|.
 name|setStatus
