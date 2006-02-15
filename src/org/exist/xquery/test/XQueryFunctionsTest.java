@@ -851,7 +851,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testDeepEqual(): "
 operator|+
 name|e
 argument_list|)
@@ -932,7 +932,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testCompare(): "
 operator|+
 name|e
 argument_list|)
@@ -1060,7 +1060,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testDistinctValues(): "
 operator|+
 name|e
 argument_list|)
@@ -1201,7 +1201,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testSum(): "
 operator|+
 name|e
 argument_list|)
@@ -1233,6 +1233,9 @@ name|r
 init|=
 literal|""
 decl_stmt|;
+name|String
+name|message
+decl_stmt|;
 try|try
 block|{
 name|result
@@ -1241,7 +1244,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"declare variable $c { avg((2, 2)) }; $c"
+literal|"avg((2, 2))"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1261,7 +1264,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2"
+literal|"2.0"
 argument_list|,
 name|r
 argument_list|)
@@ -1272,7 +1275,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"declare variable $c { avg((<a>2</a>,<b>2</b>)) }; $c"
+literal|"avg((<a>2</a>,<b>2</b>))"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1306,7 +1309,112 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"declare variable $c { avg(()) }; $c"
+literal|"avg((3, 4, 5))"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"4.0"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"avg((xdt:yearMonthDuration('P20Y'), xdt:yearMonthDuration('P10M')))"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"P10Y5M"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|message
+operator|=
+literal|""
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"avg((xdt:yearMonthDuration('P20Y') , (3, 4, 5)))"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|message
+operator|=
+name|e
+operator|.
+name|getMessage
+argument_list|()
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"FORG0006"
+argument_list|)
+operator|>
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"avg(())"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1317,6 +1425,68 @@ name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"avg(((xs:float('INF')), xs:float('-INF')))"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"NaN"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"avg(((3, 4, 5), xs:float('NaN')))"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"NaN"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -1332,7 +1502,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testTokenize(): "
+literal|"testAvg(): "
 operator|+
 name|e
 argument_list|)

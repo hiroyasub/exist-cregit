@@ -612,6 +612,7 @@ argument_list|,
 name|ATOMIC
 argument_list|)
 expr_stmt|;
+comment|//TODO :; haven't we here UNTYPED_ATOMIC descendants ?
 name|defineSubType
 argument_list|(
 name|ATOMIC
