@@ -2672,6 +2672,12 @@ name|j
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|select
+init|=
+operator|-
+literal|1
+decl_stmt|;
 name|StringBuffer
 name|contents
 init|=
@@ -2748,9 +2754,11 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|select
+operator|=
 name|ClientFrame
 operator|.
-name|showErrorMessage
+name|showErrorMessageQuery
 argument_list|(
 literal|"An error occurred while retrieving results: "
 operator|+
@@ -2764,6 +2772,13 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|select
+operator|==
+literal|2
+condition|)
+break|break;
 block|}
 block|}
 name|resultDisplay
@@ -2821,7 +2836,7 @@ parameter_list|)
 block|{
 name|ClientFrame
 operator|.
-name|showErrorMessage
+name|showErrorMessageQuery
 argument_list|(
 literal|"An exception occurred during query execution: "
 operator|+
