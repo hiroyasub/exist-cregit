@@ -526,10 +526,17 @@ throw|;
 block|}
 block|}
 else|else
-comment|// unknown collation
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FOCH0002: Unknown collation : '"
+operator|+
+name|uri
+operator|+
+literal|"'"
+argument_list|)
+throw|;
 block|}
 specifier|public
 specifier|final

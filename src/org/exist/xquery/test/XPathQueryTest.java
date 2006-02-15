@@ -3979,9 +3979,9 @@ name|service
 argument_list|,
 literal|"numbers.xml"
 argument_list|,
-literal|"min( 123456789123456789123456789, "
+literal|"min(( 123456789123456789123456789, "
 operator|+
-literal|"123456789123456789123456789123456789123456789 )"
+literal|"123456789123456789123456789123456789123456789 ))"
 argument_list|,
 literal|1
 argument_list|)
