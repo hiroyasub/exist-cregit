@@ -17,33 +17,11 @@ end_package
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|util
+name|framework
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|DLNBase
+name|TestCase
 import|;
 end_import
 
@@ -61,23 +39,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|numbering
-operator|.
-name|MutableDLN
+name|Arrays
 import|;
 end_import
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|framework
+name|util
 operator|.
-name|TestCase
+name|Random
 import|;
 end_import
 
@@ -743,11 +719,11 @@ argument_list|(
 literal|"------ testCreate ------"
 argument_list|)
 expr_stmt|;
-name|MutableDLN
+name|DLN
 name|dln
 init|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|()
 decl_stmt|;
 for|for
@@ -910,11 +886,11 @@ block|,
 literal|72
 block|}
 decl_stmt|;
-name|MutableDLN
+name|DLN
 name|dln
 init|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|(
 name|id0
 argument_list|)
@@ -946,7 +922,7 @@ expr_stmt|;
 name|dln
 operator|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|(
 name|id1
 argument_list|)
@@ -978,7 +954,7 @@ expr_stmt|;
 name|dln
 operator|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|(
 name|id2
 argument_list|)
@@ -1010,7 +986,7 @@ expr_stmt|;
 name|dln
 operator|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|(
 name|id3
 argument_list|)
@@ -1042,7 +1018,7 @@ expr_stmt|;
 name|dln
 operator|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|(
 name|id4
 argument_list|)
@@ -1074,7 +1050,7 @@ expr_stmt|;
 name|dln
 operator|=
 operator|new
-name|MutableDLN
+name|DLN
 argument_list|()
 expr_stmt|;
 for|for
