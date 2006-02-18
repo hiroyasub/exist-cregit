@@ -9089,7 +9089,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 operator|+
-literal|" - unknown suffix in : "
+literal|" - unknown suffix. No matching mime-type found in : "
 operator|+
 name|MimeTable
 operator|.
