@@ -632,23 +632,12 @@ name|boolean
 name|hasAttributes
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"hasAttributes() not implemented on class "
-operator|+
-name|getClass
+return|return
+name|getAttributesCount
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+operator|>
+literal|0
+return|;
 block|}
 specifier|public
 name|short
@@ -785,23 +774,12 @@ name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"hasChildNodes() not implemented on class "
-operator|+
-name|getClass
+return|return
+name|getChildCount
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+operator|>
+literal|0
+return|;
 block|}
 comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
 specifier|protected

@@ -250,6 +250,15 @@ name|name
 return|;
 block|}
 specifier|public
+name|boolean
+name|hasChildNodes
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+specifier|public
 name|String
 name|getPublicId
 parameter_list|()
