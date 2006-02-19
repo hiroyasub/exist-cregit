@@ -471,7 +471,7 @@ literal|"context properties can be set via the XML fragment in the second parame
 operator|+
 literal|"XML fragment should have the format:<static-context><variable name=\"qname\">"
 operator|+
-literal|"variable value</variable><static-context>."
+literal|"variable value</variable></static-context>."
 argument_list|,
 operator|new
 name|SequenceType
