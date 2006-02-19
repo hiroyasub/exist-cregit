@@ -469,9 +469,9 @@ literal|"A new execution context will be created before the expression is evalua
 operator|+
 literal|"context properties can be set via the XML fragment in the second parameter. The "
 operator|+
-literal|"XML fragment should have the format:<static-context><variable name=\"qname\" "
+literal|"XML fragment should have the format:<static-context><variable name=\"qname\">"
 operator|+
-literal|"value=\"value\"/><static-context>."
+literal|"variable value</variable><static-context>."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1193,23 +1193,16 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
-name|String
-name|value
-init|=
-name|elem
-operator|.
-name|getAttribute
-argument_list|(
-literal|"value"
-argument_list|)
-decl_stmt|;
 name|innerContext
 operator|.
 name|declareVariable
 argument_list|(
 name|qname
 argument_list|,
-name|value
+name|elem
+operator|.
+name|getFirstChild
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
