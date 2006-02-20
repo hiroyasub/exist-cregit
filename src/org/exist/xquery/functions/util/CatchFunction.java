@@ -359,8 +359,6 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 comment|//            context.popDocumentContext();
@@ -538,8 +536,6 @@ name|e2
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e2
 argument_list|)
 expr_stmt|;
 block|}
