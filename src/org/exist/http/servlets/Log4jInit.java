@@ -85,6 +85,18 @@ name|DOMConfigurator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
 begin_comment
 comment|/**  * Helper servlet for initializing the log4j framework in a webcontainer.  */
 end_comment
@@ -96,17 +108,6 @@ name|Log4jInit
 extends|extends
 name|HttpServlet
 block|{
-specifier|private
-name|String
-name|existHome
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
 comment|/**      * Initialize servlet for log4j purposes in servlet container (war file).      */
 specifier|public
 name|void
@@ -251,15 +252,23 @@ name|retVal
 init|=
 literal|true
 decl_stmt|;
-if|if
-condition|(
-operator|new
 name|File
+name|core
+init|=
+name|Configuration
+operator|.
+name|lookup
 argument_list|(
-name|existHome
-argument_list|,
 literal|"lib/core"
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+operator|&&
+name|core
 operator|.
 name|isDirectory
 argument_list|()

@@ -721,12 +721,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|//		// set exist.home property if not set
-comment|//		String homeDir = System.getProperty("exist.home");
-comment|//		if(homeDir == null) {
-comment|//			homeDir = config.getServletContext().getRealPath("/");
-comment|//			System.setProperty("exist.home", homeDir);
-comment|//		}
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected

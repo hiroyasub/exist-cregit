@@ -164,12 +164,6 @@ name|service
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|String
-name|eXistHome
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|ValidationServiceTest
 parameter_list|(
@@ -218,15 +212,6 @@ operator|.
 name|println
 argument_list|(
 literal|">>> setUp"
-argument_list|)
-expr_stmt|;
-name|eXistHome
-operator|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
 argument_list|)
 expr_stmt|;
 name|Class

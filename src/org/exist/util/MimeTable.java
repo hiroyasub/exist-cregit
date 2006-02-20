@@ -192,7 +192,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global table of mime types. This singleton class maintains a list  * of mime types known to the system. It is used to look up the  * mime type for a specific file extension and to check if a file  * is an XML or binary resource.  *   * The mime type table is read from a file "mime-types.xml",  * which should reside in the directory identified by the system  * property "exist.home". If no such file is found, the class tries  * to load the default map from the org.exist.util package via the   * class loader.  *   * @author wolf  */
+comment|/**  * Global table of mime types. This singleton class maintains a list  * of mime types known to the system. It is used to look up the  * mime type for a specific file extension and to check if a file  * is an XML or binary resource.  *   * The mime type table is read from a file "mime-types.xml",  * which should reside in the directory identified in the exist home  * directory. If no such file is found, the class tries  * to load the default map from the org.exist.util package via the   * class loader.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -491,35 +491,13 @@ name|loaded
 init|=
 literal|false
 decl_stmt|;
-name|String
-name|home
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|home
-operator|!=
-literal|null
-condition|)
-block|{
 name|File
 name|f
 init|=
-operator|new
-name|File
-argument_list|(
-name|home
-operator|+
-name|File
+name|Configuration
 operator|.
-name|separator
-operator|+
+name|lookup
+argument_list|(
 name|MIME_TYPES_XML
 argument_list|)
 decl_stmt|;
@@ -656,7 +634,6 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 if|if

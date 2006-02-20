@@ -906,7 +906,6 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
-comment|//			database.setProperty("exist.home", existHome);
 name|DatabaseManager
 operator|.
 name|registerDatabase
