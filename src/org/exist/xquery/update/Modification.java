@@ -888,10 +888,9 @@ operator|)
 name|item
 operator|)
 operator|.
-name|expand
+name|deepCopy
 argument_list|()
 expr_stmt|;
-comment|//                        System.out.println(context.getBroker().getSerializer().serialize((NodeValue)item));
 block|}
 block|}
 name|out
