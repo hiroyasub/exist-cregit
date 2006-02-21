@@ -450,17 +450,17 @@ index|[]
 name|resultvalues
 init|=
 block|{
-literal|"0.0"
+literal|"0"
 block|,
-literal|"2.0"
+literal|"2"
 block|,
-literal|"2.0"
+literal|"2"
 block|,
 literal|"3567.81"
 block|,
-literal|"0.0"
+literal|"0"
 block|,
-literal|"35600.0"
+literal|"35600"
 block|}
 decl_stmt|;
 name|int
@@ -1152,7 +1152,7 @@ expr_stmt|;
 comment|//Any untyped atomic values in the sequence are converted to xs:double values ([MK Xpath 2.0], p. 432)
 name|assertEquals
 argument_list|(
-literal|"3.0"
+literal|"3"
 argument_list|,
 name|r
 argument_list|)
@@ -1264,7 +1264,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2.0"
+literal|"2"
 argument_list|,
 name|r
 argument_list|)
@@ -1298,7 +1298,7 @@ comment|//(typically, values extracted from nodes in a schemaless document)
 comment|//are converted to xs:double values ([MK Xpath 2.0], p. 301)
 name|assertEquals
 argument_list|(
-literal|"2.0"
+literal|"2"
 argument_list|,
 name|r
 argument_list|)
@@ -1329,7 +1329,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"4.0"
+literal|"4"
 argument_list|,
 name|r
 argument_list|)

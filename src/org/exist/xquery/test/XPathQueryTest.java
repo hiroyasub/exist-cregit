@@ -3919,7 +3919,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"97.0"
+literal|"97"
 argument_list|,
 name|result
 operator|.
@@ -3947,7 +3947,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"86.0"
+literal|"86"
 argument_list|,
 name|result
 operator|.
