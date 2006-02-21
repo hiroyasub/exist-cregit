@@ -669,6 +669,13 @@ name|Type
 operator|.
 name|FLOAT
 case|:
+return|return
+operator|new
+name|FloatValue
+argument_list|(
+name|value
+argument_list|)
+return|;
 case|case
 name|Type
 operator|.
