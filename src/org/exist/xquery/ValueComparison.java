@@ -344,6 +344,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: sequence with more than one item is not allowed here"
 argument_list|)
 throw|;
@@ -444,6 +447,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)
 throw|;
