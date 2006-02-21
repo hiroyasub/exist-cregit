@@ -132,7 +132,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2005-10-11T10:00:00+00:00"
+literal|"2005-10-11T10:00:00Z"
 argument_list|,
 name|v
 operator|.
@@ -215,7 +215,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2005-10-11T10:00:00+00:00"
+literal|"2005-10-11T10:00:00Z"
 argument_list|,
 name|v
 operator|.
