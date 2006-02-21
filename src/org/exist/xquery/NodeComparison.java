@@ -163,7 +163,7 @@ name|context
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 name|left
 argument_list|,
@@ -177,31 +177,14 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//add(new DynamicCardinalityCheck(context, Cardinality.ZERO_OR_ONE, right,
+comment|//        new Error(Error.NODE_COMP_TYPE_MISMATCH)));
+comment|//add(left);
 name|add
 argument_list|(
-operator|new
-name|DynamicCardinalityCheck
-argument_list|(
-name|context
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 name|right
-argument_list|,
-operator|new
-name|Error
-argument_list|(
-name|Error
-operator|.
-name|NODE_COMP_TYPE_MISMATCH
-argument_list|)
-argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//add(left);
-comment|//add(right);
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
@@ -370,6 +353,9 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 name|Sequence
+name|result
+decl_stmt|;
+name|Sequence
 name|ls
 init|=
 name|getLeft
@@ -391,11 +377,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-return|return
-name|Sequence
+name|result
+operator|=
+name|BooleanValue
 operator|.
 name|EMPTY_SEQUENCE
-return|;
+expr_stmt|;
+else|else
+block|{
 name|Sequence
 name|rs
 init|=
@@ -418,11 +407,15 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
-name|Sequence
+name|BooleanValue
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+else|else
+block|{
 name|NodeValue
 name|sv
 init|=
@@ -469,9 +462,6 @@ operator|.
 name|FALSE
 return|;
 block|}
-name|BooleanValue
-name|result
-decl_stmt|;
 switch|switch
 condition|(
 name|relation
@@ -577,6 +567,8 @@ argument_list|(
 literal|"Illegal argument: unknown relation"
 argument_list|)
 throw|;
+block|}
+block|}
 block|}
 if|if
 condition|(
