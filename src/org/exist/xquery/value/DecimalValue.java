@@ -879,6 +879,7 @@ name|DECIMAL
 case|:
 comment|// arbitrarily set precision to 20 spots after the decimal point, since XQuery says it's "implementation-dependent"
 comment|// TODO: find a better algorithm for deciding the result's precision?
+comment|//return new DecimalValue(value.divide(((DecimalValue) other).value, 20, BigDecimal.ROUND_HALF_UP));
 return|return
 operator|new
 name|DecimalValue
@@ -895,8 +896,6 @@ name|other
 operator|)
 operator|.
 name|value
-argument_list|,
-literal|20
 argument_list|,
 name|BigDecimal
 operator|.
