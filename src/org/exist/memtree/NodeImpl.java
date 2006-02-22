@@ -719,6 +719,14 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|newDoc
+operator|!=
+name|document
+condition|)
+block|{
+comment|// we received a new document
 name|this
 operator|.
 name|nodeNumber
@@ -731,6 +739,7 @@ name|document
 operator|=
 name|newDoc
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
 specifier|public
