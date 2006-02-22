@@ -344,6 +344,10 @@ operator|.
 name|LTEQ
 case|:
 return|return
+name|value
+operator|==
+name|otherVal
+operator|||
 operator|(
 operator|!
 name|value
@@ -370,6 +374,10 @@ operator|.
 name|GTEQ
 case|:
 return|return
+name|value
+operator|==
+name|otherVal
+operator|||
 name|value
 operator|&&
 operator|(
