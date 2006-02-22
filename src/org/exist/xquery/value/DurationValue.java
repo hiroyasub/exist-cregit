@@ -407,9 +407,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|BigDecimal
-operator|.
-name|ZERO
+name|ZERO_DECIMAL
 operator|.
 name|compareTo
 argument_list|(
