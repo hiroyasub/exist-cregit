@@ -1254,6 +1254,22 @@ return|return
 name|gid
 return|;
 block|}
+comment|/** 	 * Adjust the proxy's GID in response to a change in the GID of the referenced node. 	 * This is only necessary if we want proxies to remain valid following an update, 	 * which is not an issue with eXist's normal update mechanisms but does concern 	 * some advanced clients. 	 * 	 * @param gid the new GID of the node referenced by this proxy 	 */
+specifier|public
+name|void
+name|setGID
+parameter_list|(
+name|long
+name|gid
+parameter_list|)
+block|{
+name|this
+operator|.
+name|gid
+operator|=
+name|gid
+expr_stmt|;
+block|}
 specifier|public
 name|Node
 name|getNode
