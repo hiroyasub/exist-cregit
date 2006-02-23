@@ -431,15 +431,14 @@ name|Type
 operator|.
 name|DOUBLE
 case|:
+comment|//return new DoubleValue(monthsValueSigned().doubleValue());
 return|return
 operator|new
 name|DoubleValue
 argument_list|(
-name|monthsValueSigned
-argument_list|()
+name|Double
 operator|.
-name|doubleValue
-argument_list|()
+name|NaN
 argument_list|)
 return|;
 case|case
