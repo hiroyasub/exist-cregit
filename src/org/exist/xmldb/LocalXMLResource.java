@@ -2411,7 +2411,7 @@ return|return
 name|document
 return|;
 block|}
-specifier|protected
+specifier|public
 name|NodeProxy
 name|getNode
 parameter_list|()
