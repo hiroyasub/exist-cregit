@@ -699,6 +699,13 @@ argument_list|()
 expr_stmt|;
 name|serializer
 operator|.
+name|setProperties
+argument_list|(
+name|outputProperties
+argument_list|)
+expr_stmt|;
+name|serializer
+operator|.
 name|setReceiver
 argument_list|(
 name|sax
