@@ -759,6 +759,7 @@ expr_stmt|;
 comment|//int ltype = lvalue.getType();
 comment|//int rtype = rvalue.getType();
 comment|/*     			if (Type.subTypeOf(ltype, Type.NUMBER)&& Type.subTypeOf(rtype, Type.NUMBER)) {     				if (ltype> rtype) {     					rvalue = rvalue.convertTo(ltype);     				} else if (rtype> ltype) {     					lvalue = lvalue.convertTo(rtype);     				}				     			} else if (Type.subTypeOf(ltype, Type.NUMBER)) {     				rvalue = rvalue.convertTo(ltype);				     			} else if (Type.subTypeOf(rtype, Type.NUMBER)) {     				lvalue = lvalue.convertTo(rtype);				     			}     			*/
+comment|//TODO : use type hierarchy
 if|if
 condition|(
 operator|!
@@ -772,7 +773,23 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Not a computable value"
+literal|"XPTY0004: '"
+operator|+
+name|lvalue
+operator|+
+literal|"' ("
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|lvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|") can not be an operand for an arithmetic operation"
 argument_list|)
 throw|;
 if|if
@@ -788,7 +805,23 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Not a computable value"
+literal|"XPTY0004: '"
+operator|+
+name|lvalue
+operator|+
+literal|"' ("
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|rvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|") can not be an operand for an arithmetic operation"
 argument_list|)
 throw|;
 if|if
@@ -800,6 +833,7 @@ operator|.
 name|IDIV
 condition|)
 block|{
+comment|//TODO : use type hierarchy
 if|if
 condition|(
 operator|!
@@ -807,7 +841,35 @@ operator|(
 name|lvalue
 operator|instanceof
 name|NumericValue
-operator|&&
+operator|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|lvalue
+operator|+
+literal|"' ("
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|lvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|") can not be an operand for idiv"
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+operator|(
 name|rvalue
 operator|instanceof
 name|NumericValue
@@ -817,19 +879,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"idiv not supported for types "
+literal|"XPTY0004: '"
 operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
 name|lvalue
-operator|.
-name|getType
-argument_list|()
-argument_list|)
 operator|+
-literal|" and "
+literal|"' ("
 operator|+
 name|Type
 operator|.
@@ -840,6 +894,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|") can not be an operand for idiv"
 argument_list|)
 throw|;
 name|result
