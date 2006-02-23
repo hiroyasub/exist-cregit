@@ -4677,7 +4677,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are beeing interpreted relative to<code>exist.home</code>.      *       * @param path path to the file or directory      * @return the file handle      */
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are beeing interpreted relative to<code>exist.home</code>.      *       * This method is also used to resolve relative paths in configuration file      *       * @param path path to the file or directory      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -4690,49 +4690,20 @@ name|String
 name|parent
 parameter_list|)
 block|{
+comment|// resolvePath is used for things like ~user/folder
 name|File
 name|f
 init|=
 operator|new
 name|File
 argument_list|(
+name|resolvePath
+argument_list|(
 name|path
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
-condition|(
-name|path
-operator|.
-name|startsWith
-argument_list|(
-literal|"~"
-argument_list|)
-operator|&&
-name|path
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|1
-condition|)
-block|{
-name|f
-operator|=
-operator|new
-name|File
-argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"user.home"
-argument_list|)
-argument_list|,
-name|path
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
 condition|(
 operator|!
 name|f
@@ -4784,6 +4755,7 @@ name|DatabaseConfigurationException
 name|e
 parameter_list|)
 block|{
+comment|// [FG] still useful ?
 throw|throw
 operator|new
 name|IllegalStateException
@@ -4888,11 +4860,14 @@ operator|=
 operator|new
 name|File
 argument_list|(
+name|resolvePath
+argument_list|(
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"exist.home"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
