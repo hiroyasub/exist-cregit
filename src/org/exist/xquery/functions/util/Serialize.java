@@ -347,13 +347,15 @@ literal|"full path to the file is specified in parameter $b. $c contains a "
 operator|+
 literal|"sequence of zero or more serialization parameters specified as key=value pairs. The "
 operator|+
-literal|"serialization parameters are the same as those recognized by \"declare option exist:serialize\". "
+literal|"serialization options are the same as those recognized by \"declare option exist:serialize\". "
 operator|+
-literal|"The function returns false if the "
+literal|"The function does NOT automatically inherit the serialization options of the XQuery it is "
 operator|+
-literal|"specified file can not be created or is not writable, true on success. If the passed "
+literal|"called from. False is returned if the "
 operator|+
-literal|"node set is empty, the empty sequence is returned."
+literal|"specified file can not be created or is not writable, true on success. The empty "
+operator|+
+literal|"sequence if returned if the argument sequence is empty."
 argument_list|,
 operator|new
 name|SequenceType
