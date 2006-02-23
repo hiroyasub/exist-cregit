@@ -1531,6 +1531,11 @@ name|d
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|include_subject
+condition|)
+block|{
 name|done
 operator|.
 name|put
@@ -1540,11 +1545,6 @@ argument_list|,
 name|d
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|include_subject
-condition|)
-block|{
 if|if
 condition|(
 name|classpath
