@@ -710,14 +710,18 @@ block|{
 try|try
 block|{
 comment|// runtime type checks:
+comment|//if (!(lvalue instanceof ComputableValue)) lvalue = lvalue.convertTo(Type.NUMBER);
+comment|//if (!(rvalue instanceof ComputableValue)) rvalue = rvalue.convertTo(Type.NUMBER);
 if|if
 condition|(
-operator|!
-operator|(
 name|lvalue
-operator|instanceof
-name|ComputableValue
-operator|)
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 name|lvalue
 operator|=
@@ -732,12 +736,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
-operator|(
 name|rvalue
-operator|instanceof
-name|ComputableValue
-operator|)
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 name|rvalue
 operator|=
@@ -753,6 +759,38 @@ expr_stmt|;
 comment|//int ltype = lvalue.getType();
 comment|//int rtype = rvalue.getType();
 comment|/*     			if (Type.subTypeOf(ltype, Type.NUMBER)&& Type.subTypeOf(rtype, Type.NUMBER)) {     				if (ltype> rtype) {     					rvalue = rvalue.convertTo(ltype);     				} else if (rtype> ltype) {     					lvalue = lvalue.convertTo(rtype);     				}				     			} else if (Type.subTypeOf(ltype, Type.NUMBER)) {     				rvalue = rvalue.convertTo(ltype);				     			} else if (Type.subTypeOf(rtype, Type.NUMBER)) {     				lvalue = lvalue.convertTo(rtype);				     			}     			*/
+if|if
+condition|(
+operator|!
+operator|(
+name|lvalue
+operator|instanceof
+name|ComputableValue
+operator|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Not a computable value"
+argument_list|)
+throw|;
+if|if
+condition|(
+operator|!
+operator|(
+name|rvalue
+operator|instanceof
+name|ComputableValue
+operator|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Not a computable value"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|operator
