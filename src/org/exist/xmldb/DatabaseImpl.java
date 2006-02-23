@@ -356,24 +356,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Configuring '"
-operator|+
-name|instanceName
-operator|+
-literal|"' using "
-operator|+
-name|Configuration
-operator|.
-name|getPath
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("Configuring '" + instanceName + "' using " + Configuration.getPath(configuration, null));
 try|try
 block|{
 name|Configuration
@@ -381,7 +364,11 @@ name|config
 init|=
 operator|new
 name|Configuration
-argument_list|()
+argument_list|(
+name|configuration
+argument_list|,
+literal|null
+argument_list|)
 decl_stmt|;
 name|BrokerPool
 operator|.
