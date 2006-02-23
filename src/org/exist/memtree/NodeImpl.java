@@ -285,6 +285,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|UntypedAtomicValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|ValueSequence
 import|;
 end_import
@@ -1642,12 +1656,13 @@ name|XPathException
 block|{
 return|return
 operator|new
-name|StringValue
+name|UntypedAtomicValue
 argument_list|(
 name|getStringValue
 argument_list|()
 argument_list|)
 return|;
+comment|//return new StringValue(getStringValue());
 block|}
 comment|/* 	 * Methods of interface Sequence 	 */
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
