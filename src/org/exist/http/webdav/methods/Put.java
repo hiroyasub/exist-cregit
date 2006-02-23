@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -166,6 +166,30 @@ operator|.
 name|triggers
 operator|.
 name|TriggerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|LockToken
 import|;
 end_import
 
@@ -343,7 +367,7 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.webdav.WebDAVMethod#process(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.exist.collections.Collection, org.exist.dom.DocumentImpl) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.http.webdav.WebDAVMethod#process(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.exist.collections.Collection, org.exist.dom.DocumentImpl)          */
 specifier|public
 name|void
 name|process
@@ -481,33 +505,12 @@ literal|"/"
 argument_list|)
 decl_stmt|;
 comment|//TODO : strange test here -pb
-if|if
-condition|(
-name|p
-operator|<
-literal|1
-condition|)
-block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_CONFLICT
-argument_list|,
-literal|"No collection specified for PUT"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
+comment|// "/" should be rewritten to "/db"? -dw
+comment|//            if(p< 1) {
+comment|//                transact.abort(txn);
+comment|//                response.sendError(HttpServletResponse.SC_CONFLICT, "No collection specified for PUT");
+comment|//                return;
+comment|//            }
 name|String
 name|collectionName
 init|=
@@ -531,6 +534,21 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"collectionName='"
+operator|+
+name|collectionName
+operator|+
+literal|"';  path="
+operator|+
+name|path
+operator|+
+literal|"';"
+argument_list|)
+expr_stmt|;
 name|collection
 operator|=
 name|broker
@@ -541,9 +559,10 @@ name|collectionName
 argument_list|,
 name|Lock
 operator|.
-name|WRITE_LOCK
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
+comment|// WRITE
 if|if
 condition|(
 name|collection
@@ -605,6 +624,27 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//            // Get old lock info
+comment|//            LockToken lockToken=null;
+comment|//            User lockUser=null;
+comment|////            try {
+comment|//            DocumentImpl resource = broker.getXMLResource(path, org.exist.storage.lock.Lock.WRITE_LOCK);
+comment|//
+comment|//            if(resource==null){
+comment|////
+comment|//
+comment|//            } else {
+comment|//                lockToken = resource.getMetadata().getLockToken();
+comment|//                lockUser = resource.getUserLock();
+comment|////                resource.setUserLock(null);
+comment|////                resource.getMetadata().setLockToken(null);
+comment|//            }
+comment|//
+comment|////            } catch (PermissionDeniedException ex) {
+comment|////                LOG.debug( ex.getMessage() );
+comment|////                response.sendError();
+comment|////                return;
+comment|////            }
 name|MimeType
 name|mime
 decl_stmt|;
@@ -727,6 +767,8 @@ argument_list|(
 name|contentType
 argument_list|)
 expr_stmt|;
+comment|//                info.getDocument().getMetadata().setLockToken(lockToken);
+comment|//                info.getDocument().setUserLock(lockUser);
 name|collection
 operator|.
 name|release
@@ -812,6 +854,10 @@ name|l
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Restore original lock information
+name|DocumentImpl
+name|doc
+init|=
 name|collection
 operator|.
 name|addBinaryResource
@@ -829,7 +875,9 @@ argument_list|()
 argument_list|,
 name|contentType
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+comment|//                doc.getMetadata().setLockToken(lockToken);
+comment|//                doc.setUserLock(lockUser);
 block|}
 name|transact
 operator|.
@@ -852,20 +900,29 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|ServletException
+comment|//throw new ServletException("Failed to store resource: " + e.getMessage(), e);
+name|LOG
+operator|.
+name|error
 argument_list|(
-literal|"Failed to store resource: "
-operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_INTERNAL_SERVER_ERROR
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -880,6 +937,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -889,6 +953,7 @@ operator|.
 name|SC_FORBIDDEN
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -903,6 +968,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -912,6 +984,7 @@ operator|.
 name|SC_FORBIDDEN
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -926,6 +999,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -935,6 +1015,7 @@ operator|.
 name|SC_BAD_REQUEST
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -949,6 +1030,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -958,6 +1046,7 @@ operator|.
 name|SC_CONFLICT
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 finally|finally
 block|{
@@ -981,12 +1070,12 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-block|}
 name|tempFile
 operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setStatus

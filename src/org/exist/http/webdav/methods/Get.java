@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -346,7 +346,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the WebDAV GET method.  *   * @author wolf  */
+comment|/**  * Implements the WebDAV GET method.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -363,6 +363,14 @@ name|String
 name|SERIALIZE_ERROR
 init|=
 literal|"Error while serializing document: "
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|COLLECTION_XQ
+init|=
+literal|"org/exist/http/webdav/methods/collection.xq"
 decl_stmt|;
 comment|// We use an XQuery to list collection contents
 specifier|private
@@ -433,7 +441,9 @@ operator|=
 name|pool
 operator|.
 name|get
-argument_list|()
+argument_list|(
+name|user
+argument_list|)
 expr_stmt|;
 name|resource
 operator|=
@@ -474,6 +484,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 name|response
 operator|.
 name|sendError
@@ -483,6 +494,9 @@ operator|.
 name|SC_NOT_FOUND
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
 name|collectionListing
 argument_list|(
 name|broker
@@ -494,6 +508,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 if|if
@@ -619,6 +634,13 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ServletException
@@ -636,6 +658,7 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 name|contentData
 operator|=
 name|broker
@@ -647,6 +670,66 @@ name|BinaryDocument
 operator|)
 name|resource
 argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO all data is serialized here to bytearray. for large files this
+comment|// is far from efficient. Implement streaming, XML content already supports
+comment|// this.
+comment|// Serve out content
+if|if
+condition|(
+name|contentData
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"content data is empty. No data could be retrieved."
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_NOT_FOUND
+argument_list|)
+expr_stmt|;
+comment|// TODO is this correct Code?
+return|return;
+block|}
+name|response
+operator|.
+name|setContentLength
+argument_list|(
+name|contentData
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|ServletOutputStream
+name|os
+init|=
+name|response
+operator|.
+name|getOutputStream
+argument_list|()
+decl_stmt|;
+name|os
+operator|.
+name|write
+argument_list|(
+name|contentData
+argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -676,6 +759,13 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -687,6 +777,7 @@ argument_list|,
 name|READ_PERMISSION_DENIED
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 finally|finally
 block|{
@@ -727,55 +818,8 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contentData
-operator|==
-literal|null
-condition|)
-block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_NOT_FOUND
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
-name|response
-operator|.
-name|setContentLength
-argument_list|(
-name|contentData
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|ServletOutputStream
-name|os
-init|=
-name|response
-operator|.
-name|getOutputStream
-argument_list|()
-decl_stmt|;
-name|os
-operator|.
-name|write
-argument_list|(
-name|contentData
-argument_list|)
-expr_stmt|;
-name|os
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**      * Display a listing of the collection contents.      *        * @param collection      * @param response      * @throws IOException       */
+comment|/**      * Display a listing of the collection contents.      *      * @param collection      * @param response      * @throws IOException      */
 specifier|private
 name|void
 name|collectionListing
@@ -873,6 +917,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|compiled
 operator|=
 name|xquery
@@ -884,10 +929,11 @@ argument_list|,
 operator|new
 name|ClassLoaderSource
 argument_list|(
-literal|"org/exist/http/webdav/methods/collection.xq"
+name|COLLECTION_XQ
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 init|=

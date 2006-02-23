@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The main class for processing WebDAV requests.  *   * @author wolf  */
+comment|/**  * The main class for processing WebDAV requests.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -452,7 +452,7 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Process a WebDAV request. The request is delegated to the corresponding 	 * {@link WebDAVMethod} after authenticating the user. 	 *  	 * @param request 	 * @param response 	 * @throws ServletException 	 * @throws IOException 	 */
+comment|/**      * Process a WebDAV request. The request is delegated to the corresponding      * {@link WebDAVMethod} after authenticating the user.      *      * @param request           an HttpServletRequest object that contains      *                          the request the client has made of the servlet      * @param response          an HttpServletResponse object that contains the      *                          response the servlet sends to the client      * @throws ServletException if the request could not be handled      * @throws IOException      if an input or output error is detected when      *                          the servlet handles the request      */
 specifier|public
 name|void
 name|process
@@ -559,16 +559,34 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"path = "
+literal|"path='"
 operator|+
 name|path
 operator|+
-literal|"; method = "
+literal|"'; method='"
 operator|+
 name|request
 operator|.
 name|getMethod
 argument_list|()
+operator|+
+literal|"'; user='"
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'; Lock-Token='"
+operator|+
+name|request
+operator|.
+name|getHeader
+argument_list|(
+literal|"Lock-Token"
+argument_list|)
+operator|+
+literal|"';"
 argument_list|)
 expr_stmt|;
 name|WebDAVMethod

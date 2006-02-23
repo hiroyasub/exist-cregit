@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -101,6 +101,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|byte
+name|HAS_LOCKTOKEN
+init|=
+literal|2
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|int
 name|REINDEX_ALL
 init|=
@@ -154,6 +162,13 @@ name|docType
 init|=
 literal|null
 decl_stmt|;
+comment|/** TODO associated locktoken - if available */
+specifier|private
+name|LockToken
+name|lockToken
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 specifier|transient
 name|NodeIndexListener
@@ -170,7 +185,7 @@ name|splitCount
 init|=
 literal|0
 decl_stmt|;
-comment|/**  	 * if set to> -1, the document needs to be partially reindexed 	 *  - beginning at the tree-level defined by reindex 	 */
+comment|/**      * if set to> -1, the document needs to be partially reindexed      *  - beginning at the tree-level defined by reindex      */
 specifier|protected
 specifier|transient
 name|int
@@ -297,7 +312,7 @@ operator|=
 name|mimeType
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the number of pages currently occupied by this document. 	 *  	 * @return 	 */
+comment|/**      * Returns the number of pages currently occupied by this document.      *      * @return      */
 specifier|public
 name|int
 name|getPageCount
@@ -307,7 +322,7 @@ return|return
 name|pageCount
 return|;
 block|}
-comment|/** 	 * Set the number of pages currently occupied by this document. 	 * @param count 	 */
+comment|/**      * Set the number of pages currently occupied by this document.      * @param count      */
 specifier|public
 name|void
 name|setPageCount
@@ -426,6 +441,42 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO added by dwes
+if|if
+condition|(
+name|lockToken
+operator|!=
+literal|null
+condition|)
+block|{
+name|ostream
+operator|.
+name|writeByte
+argument_list|(
+name|HAS_LOCKTOKEN
+argument_list|)
+expr_stmt|;
+name|lockToken
+operator|.
+name|write
+argument_list|(
+name|ostream
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|ostream
+operator|.
+name|writeByte
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -504,10 +555,44 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|docType
 operator|=
 literal|null
 expr_stmt|;
+block|}
+comment|// TODO added by dwes
+if|if
+condition|(
+name|istream
+operator|.
+name|readByte
+argument_list|()
+operator|==
+name|HAS_LOCKTOKEN
+condition|)
+block|{
+name|lockToken
+operator|=
+operator|new
+name|LockToken
+argument_list|()
+expr_stmt|;
+name|lockToken
+operator|.
+name|read
+argument_list|(
+name|istream
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|lockToken
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -531,6 +616,28 @@ operator|.
 name|userLock
 operator|=
 name|userLock
+expr_stmt|;
+block|}
+specifier|public
+name|LockToken
+name|getLockToken
+parameter_list|()
+block|{
+return|return
+name|lockToken
+return|;
+block|}
+specifier|public
+name|void
+name|setLockToken
+parameter_list|(
+name|LockToken
+name|token
+parameter_list|)
+block|{
+name|lockToken
+operator|=
+name|token
 expr_stmt|;
 block|}
 specifier|public
@@ -617,7 +724,7 @@ operator|=
 name|level
 expr_stmt|;
 block|}
-comment|/** 	 * Increase the page split count of this document. The number 	 * of pages that have been split during inserts serves as an 	 * indicator for the  	 * 	 */
+comment|/**      * Increase the page split count of this document. The number      * of pages that have been split during inserts serves as an      * indicator for the      *      */
 specifier|public
 name|void
 name|incSplitCount

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -91,6 +91,22 @@ name|webdav
 operator|.
 name|methods
 operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
+name|webdav
+operator|.
+name|methods
+operator|.
 name|Mkcol
 import|;
 end_import
@@ -156,6 +172,22 @@ operator|.
 name|methods
 operator|.
 name|Put
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
+name|webdav
+operator|.
+name|methods
+operator|.
+name|Unlock
 import|;
 end_import
 
@@ -331,6 +363,38 @@ condition|)
 return|return
 operator|new
 name|Copy
+argument_list|(
+name|pool
+argument_list|)
+return|;
+if|else if
+condition|(
+name|method
+operator|.
+name|equals
+argument_list|(
+literal|"UNLOCK"
+argument_list|)
+condition|)
+return|return
+operator|new
+name|Unlock
+argument_list|(
+name|pool
+argument_list|)
+return|;
+if|else if
+condition|(
+name|method
+operator|.
+name|equals
+argument_list|(
+literal|"LOCK"
+argument_list|)
+condition|)
+return|return
+operator|new
+name|Lock
 argument_list|(
 name|pool
 argument_list|)
