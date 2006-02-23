@@ -401,11 +401,12 @@ name|isNaN
 parameter_list|()
 block|{
 return|return
-name|value
-operator|==
 name|Double
 operator|.
-name|NaN
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
@@ -577,6 +578,18 @@ name|Type
 operator|.
 name|POSITIVE_INTEGER
 case|:
+if|if
+condition|(
+name|isNaN
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: can not convert xs:double('NaN') to xs:integer"
+argument_list|)
+throw|;
 return|return
 operator|new
 name|IntegerValue
@@ -600,11 +613,8 @@ name|value
 operator|==
 literal|0.0
 operator|||
-name|value
-operator|==
-name|Double
-operator|.
-name|NaN
+name|isNaN
+argument_list|()
 operator|)
 condition|?
 name|BooleanValue
@@ -651,12 +661,8 @@ name|value
 operator|==
 literal|0
 operator|||
-name|Double
-operator|.
 name|isNaN
-argument_list|(
-name|value
-argument_list|)
+argument_list|()
 operator|)
 return|;
 block|}
