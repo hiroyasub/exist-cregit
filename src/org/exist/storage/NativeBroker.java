@@ -16875,7 +16875,7 @@ name|run
 argument_list|()
 return|;
 block|}
-specifier|protected
+specifier|public
 name|void
 name|repair
 parameter_list|()

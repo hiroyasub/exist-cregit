@@ -1480,7 +1480,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-specifier|protected
+specifier|public
 specifier|abstract
 name|void
 name|repair
