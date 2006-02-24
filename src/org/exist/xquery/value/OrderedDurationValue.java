@@ -425,22 +425,7 @@ operator|.
 name|DAY_TIME_DURATION
 case|:
 block|{
-if|if
-condition|(
-name|getType
-argument_list|()
-operator|!=
-name|other
-operator|.
-name|getType
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|()
-throw|;
-comment|// not a match after all
+comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
 name|Duration
 name|a
 init|=
@@ -476,6 +461,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+comment|//TODO : move instantiation to the right place
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -490,22 +476,7 @@ operator|.
 name|YEAR_MONTH_DURATION
 case|:
 block|{
-if|if
-condition|(
-name|getType
-argument_list|()
-operator|!=
-name|other
-operator|.
-name|getType
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|()
-throw|;
-comment|// not a match after all
+comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
 name|Duration
 name|a
 init|=
@@ -541,9 +512,61 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+comment|//TODO : move instantiation to the right place
 return|return
 operator|new
 name|YearMonthDurationValue
+argument_list|(
+name|result
+argument_list|)
+return|;
+block|}
+case|case
+name|Type
+operator|.
+name|DURATION
+case|:
+block|{
+comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
+name|Duration
+name|a
+init|=
+name|getCanonicalDuration
+argument_list|()
+decl_stmt|;
+name|Duration
+name|b
+init|=
+operator|(
+operator|(
+name|DurationValue
+operator|)
+name|other
+operator|)
+operator|.
+name|getCanonicalDuration
+argument_list|()
+decl_stmt|;
+name|Duration
+name|result
+init|=
+name|createSameKind
+argument_list|(
+name|a
+operator|.
+name|add
+argument_list|(
+name|b
+argument_list|)
+argument_list|)
+operator|.
+name|getCanonicalDuration
+argument_list|()
+decl_stmt|;
+comment|//TODO : move instantiation to the right place
+return|return
+operator|new
+name|DurationValue
 argument_list|(
 name|result
 argument_list|)
