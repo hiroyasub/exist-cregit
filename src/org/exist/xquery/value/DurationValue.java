@@ -275,7 +275,7 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 name|Duration
 name|getCanonicalDuration
 parameter_list|()
