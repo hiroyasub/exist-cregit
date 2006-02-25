@@ -187,18 +187,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|LockToken
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -344,7 +332,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Implements the WebDAV PUT method.  *  * @author wolf  * @author dizzz  */
 end_comment
 
 begin_class
@@ -504,13 +492,6 @@ argument_list|(
 literal|"/"
 argument_list|)
 decl_stmt|;
-comment|//TODO : strange test here -pb
-comment|// "/" should be rewritten to "/db"? -dw
-comment|//            if(p< 1) {
-comment|//                transact.abort(txn);
-comment|//                response.sendError(HttpServletResponse.SC_CONFLICT, "No collection specified for PUT");
-comment|//                return;
-comment|//            }
 name|String
 name|collectionName
 init|=
@@ -562,7 +543,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|// WRITE
+comment|// TODO check why not use WRITE_LOCK here?
 if|if
 condition|(
 name|collection
@@ -624,27 +605,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//            // Get old lock info
-comment|//            LockToken lockToken=null;
-comment|//            User lockUser=null;
-comment|////            try {
-comment|//            DocumentImpl resource = broker.getXMLResource(path, org.exist.storage.lock.Lock.WRITE_LOCK);
-comment|//
-comment|//            if(resource==null){
-comment|////
-comment|//
-comment|//            } else {
-comment|//                lockToken = resource.getMetadata().getLockToken();
-comment|//                lockUser = resource.getUserLock();
-comment|////                resource.setUserLock(null);
-comment|////                resource.getMetadata().setLockToken(null);
-comment|//            }
-comment|//
-comment|////            } catch (PermissionDeniedException ex) {
-comment|////                LOG.debug( ex.getMessage() );
-comment|////                response.sendError();
-comment|////                return;
-comment|////            }
 name|MimeType
 name|mime
 decl_stmt|;
@@ -716,9 +676,11 @@ literal|"storing document "
 operator|+
 name|path
 operator|+
-literal|"; content-type = "
+literal|"; content-type='"
 operator|+
 name|contentType
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 if|if
@@ -767,8 +729,6 @@ argument_list|(
 name|contentType
 argument_list|)
 expr_stmt|;
-comment|//                info.getDocument().getMetadata().setLockToken(lockToken);
-comment|//                info.getDocument().setUserLock(lockUser);
 name|collection
 operator|.
 name|release
@@ -854,7 +814,6 @@ name|l
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Restore original lock information
 name|DocumentImpl
 name|doc
 init|=
@@ -876,8 +835,6 @@ argument_list|,
 name|contentType
 argument_list|)
 decl_stmt|;
-comment|//                doc.getMetadata().setLockToken(lockToken);
-comment|//                doc.setUserLock(lockUser);
 block|}
 name|transact
 operator|.
@@ -900,7 +857,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new ServletException("Failed to store resource: " + e.getMessage(), e);
 name|LOG
 operator|.
 name|error
