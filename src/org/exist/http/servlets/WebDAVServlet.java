@@ -118,7 +118,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a WebDAV interface to the database. All WebDAV requests  * are delegated to the {@link org.exist.http.webdav.WebDAV} class.  *   * @author wolf  */
+comment|/**  * Provides a WebDAV interface to the database. All WebDAV requests  * are delegated to the {@link org.exist.http.webdav.WebDAV} class.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -141,7 +141,7 @@ name|BrokerPool
 operator|.
 name|DEFAULT_INSTANCE_NAME
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
+comment|/* (non-Javadoc)          * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)          */
 specifier|public
 name|void
 name|init
@@ -159,7 +159,8 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
-comment|//<frederic.glorieux@ajlsm.com> to allow multi-instance webdav server, use a databaseid everywhere
+comment|//<frederic.glorieux@ajlsm.com> to allow multi-instance webdav server,
+comment|// use a databaseid everywhere
 name|String
 name|id
 init|=
@@ -239,7 +240,7 @@ name|databaseid
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* (non-Javadoc)          * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)          */
 specifier|protected
 name|void
 name|service

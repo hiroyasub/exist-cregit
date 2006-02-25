@@ -420,7 +420,9 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"Error found while initializing database: "
+literal|"Error found while initializing "
+operator|+
+literal|"database: "
 operator|+
 name|e
 operator|.
@@ -484,7 +486,12 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
+comment|// TODO Return error code ?
+comment|//            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+comment|//                        "Please Supply credentials");
 return|return;
+block|}
 name|String
 name|path
 init|=
@@ -586,16 +593,21 @@ argument_list|(
 literal|"Lock-Token"
 argument_list|)
 operator|+
-literal|"';"
+literal|"'; If='"
+operator|+
+name|request
+operator|.
+name|getHeader
+argument_list|(
+literal|"If"
+argument_list|)
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|WebDAVMethod
 name|method
 init|=
-literal|null
-decl_stmt|;
-name|method
-operator|=
 name|WebDAVMethodFactory
 operator|.
 name|create
@@ -607,7 +619,7 @@ argument_list|()
 argument_list|,
 name|pool
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|method
