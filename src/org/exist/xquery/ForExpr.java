@@ -438,14 +438,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// analyze the order specs
-if|if
-condition|(
-name|orderBy
-operator|!=
-literal|null
-condition|)
-block|{
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -462,6 +454,14 @@ argument_list|(
 name|SINGLE_STEP_EXECUTION
 argument_list|)
 expr_stmt|;
+comment|// analyze the order specs
+if|if
+condition|(
+name|orderBy
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -493,7 +493,7 @@ name|returnExpr
 operator|.
 name|analyze
 argument_list|(
-name|contextInfo
+name|newContextInfo
 argument_list|)
 expr_stmt|;
 block|}
