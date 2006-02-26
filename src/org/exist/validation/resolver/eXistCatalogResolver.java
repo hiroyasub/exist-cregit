@@ -200,15 +200,6 @@ argument_list|(
 literal|"Initializing eXistCatalogResolver"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Initializing eXistCatalogResolver"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|catalogResolver
@@ -235,17 +226,6 @@ block|{
 name|logger
 operator|.
 name|debug
-argument_list|(
-literal|"Initializing eXistCatalogResolver, privateCatalog="
-operator|+
-name|privateCatalog
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 literal|"Initializing eXistCatalogResolver, privateCatalog="
 operator|+
@@ -282,15 +262,6 @@ argument_list|(
 literal|"Initializing eXistCatalogResolver, with manager."
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Initializing eXistCatalogResolver, with manager."
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|catalogResolver
@@ -317,15 +288,6 @@ block|{
 name|logger
 operator|.
 name|debug
-argument_list|(
-literal|"Getting catalog from eXistCatalogResolver."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 literal|"Getting catalog from eXistCatalogResolver."
 argument_list|)

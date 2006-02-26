@@ -300,6 +300,7 @@ name|Configuration
 implements|implements
 name|ErrorHandler
 block|{
+comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static 	 * file and existHome fields and static methods), or if we should allow many instances to 	 * run around in the system.  Right now, any attempts to create multiple instances will 	 * likely get the system confused.  Let's decide which one it should be and fix it properly. 	 */
 specifier|private
 specifier|final
 specifier|static
@@ -317,6 +318,21 @@ argument_list|)
 decl_stmt|;
 comment|//Logger
 specifier|protected
+specifier|static
+name|String
+name|file
+init|=
+literal|null
+decl_stmt|;
+comment|//config file (conf.xml by default)
+specifier|protected
+specifier|static
+name|File
+name|existHome
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
 name|DocumentBuilder
 name|builder
 init|=
@@ -331,28 +347,6 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|//Configuration
-specifier|protected
-specifier|static
-name|String
-name|file
-init|=
-literal|null
-decl_stmt|;
-comment|//config file (conf.xml)
-specifier|protected
-specifier|static
-name|File
-name|existHome
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-specifier|static
-name|boolean
-name|configDetected
-init|=
-literal|false
-decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -440,33 +434,31 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Constructor (wrapper)
 specifier|public
 name|Configuration
 parameter_list|(
 name|String
-name|file
+name|configFilename
 parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
 name|this
 argument_list|(
-name|file
+name|configFilename
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Constructor
 specifier|public
 name|Configuration
 parameter_list|(
 name|String
-name|file
+name|configFilename
 parameter_list|,
 name|String
-name|dbHome
+name|existHomeDirname
 parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
@@ -478,10 +470,11 @@ name|is
 init|=
 literal|null
 decl_stmt|;
-comment|//firstly, try to read the configuration from a file within the classpath
+comment|// firstly, try to read the configuration from a file within the
+comment|// classpath
 if|if
 condition|(
-name|file
+name|configFilename
 operator|!=
 literal|null
 condition|)
@@ -497,7 +490,7 @@ argument_list|()
 operator|.
 name|getResourceAsStream
 argument_list|(
-name|file
+name|configFilename
 argument_list|)
 expr_stmt|;
 if|if
@@ -506,7 +499,6 @@ name|is
 operator|!=
 literal|null
 condition|)
-block|{
 name|LOG
 operator|.
 name|info
@@ -515,16 +507,16 @@ literal|"Reading configuration from classloader"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 else|else
 block|{
-comment|//Default file name
-name|file
+comment|// Default file name
+name|configFilename
 operator|=
 literal|"conf.xml"
 expr_stmt|;
 block|}
-comment|//otherise, secondly try to read configuration from file. Guess the location if necessary
+comment|// otherise, secondly try to read configuration from file. Guess the
+comment|// location if necessary
 if|if
 condition|(
 name|is
@@ -532,11 +524,12 @@ operator|==
 literal|null
 condition|)
 block|{
-name|File
-name|eXistHome
-init|=
+name|Configuration
+operator|.
+name|existHome
+operator|=
 operator|(
-name|dbHome
+name|existHomeDirname
 operator|!=
 literal|null
 operator|)
@@ -544,21 +537,22 @@ condition|?
 operator|new
 name|File
 argument_list|(
-name|dbHome
+name|existHomeDirname
 argument_list|)
 else|:
 name|getExistHome
 argument_list|(
-name|dbHome
+name|existHomeDirname
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|eXistHome
+name|Configuration
+operator|.
+name|existHome
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|DatabaseConfigurationException
@@ -566,30 +560,28 @@ argument_list|(
 literal|"Unable to locate eXist home directory"
 argument_list|)
 throw|;
-block|}
 name|File
-name|config
+name|configFile
 init|=
 name|lookup
 argument_list|(
-name|file
+name|configFilename
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 operator|!
-name|config
+name|configFile
 operator|.
 name|exists
 argument_list|()
 operator|||
 operator|!
-name|config
+name|configFile
 operator|.
 name|canRead
 argument_list|()
 condition|)
-block|{
 throw|throw
 operator|new
 name|DatabaseConfigurationException
@@ -599,12 +591,11 @@ operator|+
 name|config
 argument_list|)
 throw|;
-block|}
-name|this
+name|Configuration
 operator|.
 name|file
 operator|=
-name|config
+name|configFile
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -614,13 +605,14 @@ operator|=
 operator|new
 name|FileInputStream
 argument_list|(
-name|config
+name|configFile
 argument_list|)
 expr_stmt|;
-comment|// set dbHome to parent of the conf file found, to resolve relative path from conf file
-name|dbHome
+comment|// set dbHome to parent of the conf file found, to resolve relative
+comment|// path from conf file
+name|existHomeDirname
 operator|=
-name|config
+name|configFile
 operator|.
 name|getParentFile
 argument_list|()
@@ -628,24 +620,20 @@ operator|.
 name|getCanonicalPath
 argument_list|()
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
-literal|"[Exist] Configuration from "
+literal|"Reading configuration from file "
 operator|+
-name|config
+name|configFile
 argument_list|)
 expr_stmt|;
 block|}
 comment|// Create resolver
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Creating CatalogResolver"
 argument_list|)
@@ -774,7 +762,7 @@ condition|)
 block|{
 name|configureIndexer
 argument_list|(
-name|dbHome
+name|existHomeDirname
 argument_list|,
 name|doc
 argument_list|,
@@ -805,7 +793,7 @@ condition|)
 block|{
 name|configureBackend
 argument_list|(
-name|dbHome
+name|existHomeDirname
 argument_list|,
 name|dbcon
 argument_list|)
@@ -984,7 +972,7 @@ name|warn
 argument_list|(
 literal|"error while reading config file: "
 operator|+
-name|file
+name|configFilename
 argument_list|,
 name|e
 argument_list|)
@@ -1012,7 +1000,7 @@ name|warn
 argument_list|(
 literal|"error while reading config file: "
 operator|+
-name|file
+name|configFilename
 argument_list|,
 name|cfg
 argument_list|)
@@ -1040,7 +1028,7 @@ name|warn
 argument_list|(
 literal|"error while reading config file: "
 operator|+
-name|file
+name|configFilename
 argument_list|,
 name|io
 argument_list|)
@@ -4677,7 +4665,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are beeing interpreted relative to<code>exist.home</code>.      *       * This method is also used to resolve relative paths in configuration file      *       * @param path path to the file or directory      * @return the file handle      */
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are being interpreted relative to<code>exist.home</code>.      *       * This method is also used to resolve relative paths in configuration file      *       * @param path path to the file or directory      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -4705,57 +4693,33 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
 name|f
 operator|.
 name|isAbsolute
 argument_list|()
-operator|&&
+condition|)
+return|return
+name|f
+return|;
+if|if
+condition|(
 name|parent
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
-name|f
-operator|=
-operator|new
 name|File
-argument_list|(
-name|parent
-argument_list|,
-name|path
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-operator|!
-name|f
-operator|.
-name|isAbsolute
-argument_list|()
-condition|)
-block|{
-try|try
-block|{
-return|return
-operator|new
-name|File
-argument_list|(
+name|home
+init|=
 name|getExistHome
 argument_list|()
-argument_list|,
-name|path
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|DatabaseConfigurationException
-name|e
-parameter_list|)
-block|{
-comment|// [FG] still useful ?
+decl_stmt|;
+if|if
+condition|(
+name|home
+operator|==
+literal|null
+condition|)
 throw|throw
 operator|new
 name|IllegalStateException
@@ -4767,20 +4731,30 @@ operator|+
 literal|" because exist home directory cannot be found!"
 argument_list|)
 throw|;
-block|}
+name|parent
+operator|=
+name|home
+operator|.
+name|getPath
+argument_list|()
+expr_stmt|;
 block|}
 return|return
-name|f
+operator|new
+name|File
+argument_list|(
+name|parent
+argument_list|,
+name|path
+argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for eXist's home directory.      *<p>      * If either none of the directories identified by the system properties      *<code>exist.home</code> and<code>user.home</code> exist or none      * of them contain a configuration file, this method returns<code>null</code>.      *       * @return the file handle or<code>null</code>      */
+comment|/**      * Returns a file handle for eXist's home directory.      *<p>      * If either none of the directories identified by the system properties      *<code>exist.home</code> and<code>user.home</code> exist or none of      * them contain a configuration file, this method returns<code>null</code>.      *       * @return the file handle or<code>null</code>      */
 specifier|public
 specifier|static
 name|File
 name|getExistHome
 parameter_list|()
-throws|throws
-name|DatabaseConfigurationException
 block|{
 return|return
 name|getExistHome
@@ -4798,8 +4772,6 @@ parameter_list|(
 name|String
 name|path
 parameter_list|)
-throws|throws
-name|DatabaseConfigurationException
 block|{
 if|if
 condition|(
@@ -5046,10 +5018,7 @@ condition|(
 name|path
 operator|!=
 literal|null
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|path
 operator|.
 name|startsWith
@@ -5082,12 +5051,11 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 return|return
 name|path
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|error
