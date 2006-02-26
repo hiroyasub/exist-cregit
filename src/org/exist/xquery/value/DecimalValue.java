@@ -1058,6 +1058,37 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+switch|switch
+condition|(
+name|other
+operator|.
+name|getType
+argument_list|()
+condition|)
+block|{
+comment|//case Type.DECIMAL:
+comment|//return new DecimalValue(value.divide(((DecimalValue) other).value, BigDecimal.ROUND_HALF_UP));
+case|case
+name|Type
+operator|.
+name|INTEGER
+case|:
+return|return
+name|div
+argument_list|(
+operator|(
+name|ComputableValue
+operator|)
+name|other
+operator|.
+name|convertTo
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+return|;
+default|default:
 comment|//Copied from Saxon 8.6.1
 name|int
 name|scale
@@ -1091,7 +1122,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//int scale = value.scale() + ((DecimalValue)other).value.scale() + DIVIDE_PRECISION;
 name|BigDecimal
 name|result
 init|=
@@ -1123,7 +1153,7 @@ name|result
 argument_list|)
 return|;
 comment|//End of copy
-comment|/* 		switch(other.getType()) { 			case Type.DECIMAL: 				// arbitrarily set precision to 20 spots after the decimal point, since XQuery says it's "implementation-dependent" 				// TODO: find a better algorithm for deciding the result's precision? 				//return new DecimalValue(value.divide(((DecimalValue) other).value, 20, BigDecimal.ROUND_HALF_UP)); 				return new DecimalValue(value.divide(((DecimalValue) other).value, BigDecimal.ROUND_HALF_UP)); 			case Type.INTEGER: 				return div((ComputableValue) other.convertTo(getType())); 			default: 				return ((ComputableValue) convertTo(other.getType())).div(other); 		} 		*/
+block|}
 block|}
 specifier|public
 name|IntegerValue
