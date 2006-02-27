@@ -61,12 +61,27 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a NodeId from the given byte array. Start to read at      * startOffset. sizeHint indicates the length of the id in an      * implementation dependent manner.      *      * @param sizeHint a hint about the expected length of the id      * @param data the byte array to read from      * @param startOffset offset into the byte array      * @return the NodeId read      */
+comment|/**      * Read a NodeId from the given byte array. Start to read at      * startOffset. sizeHint indicates the length of the id in an      * implementation dependent manner. Some implementations      * may require sizeHint to be specified, others not.      *      * @param sizeHint a hint about the expected length of the id      * @param data the byte array to read from      * @param startOffset offset into the byte array      * @return the NodeId read      */
 name|NodeId
 name|createFromData
 parameter_list|(
 name|int
 name|sizeHint
+parameter_list|,
+name|byte
+index|[]
+name|data
+parameter_list|,
+name|int
+name|startOffset
+parameter_list|)
+function_decl|;
+comment|/**      * Returns the number of bytes occupied by the NodeId stored      * in the byte array at the given startOffset. This method is      * similar to {@link #createFromData(int, byte[], int)}, but it      * just returns the number of bytes.      *      * @param units      * @param data      * @param startOffset      * @return      */
+name|int
+name|lengthInBytes
+parameter_list|(
+name|int
+name|units
 parameter_list|,
 name|byte
 index|[]

@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|numbering
 operator|.
-name|DLN
+name|NodeId
 import|;
 end_import
 
@@ -233,6 +233,9 @@ parameter_list|,
 name|int
 name|len
 parameter_list|,
+name|DocumentImpl
+name|doc
+parameter_list|,
 name|boolean
 name|pooled
 parameter_list|)
@@ -268,11 +271,21 @@ operator|new
 name|TextImpl
 argument_list|()
 expr_stmt|;
-name|DLN
+name|NodeId
 name|dln
 init|=
-operator|new
-name|DLN
+name|doc
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getNodeFactory
+argument_list|()
+operator|.
+name|createFromData
 argument_list|(
 name|data
 index|[
@@ -485,8 +498,7 @@ specifier|final
 name|int
 name|nodeIdLen
 init|=
-name|getNodeId
-argument_list|()
+name|nodeId
 operator|.
 name|size
 argument_list|()
@@ -530,8 +542,10 @@ index|[
 literal|1
 index|]
 operator|=
-name|getNodeId
-argument_list|()
+operator|(
+name|byte
+operator|)
+name|nodeId
 operator|.
 name|units
 argument_list|()

@@ -21,7 +21,7 @@ name|exist
 operator|.
 name|numbering
 operator|.
-name|DLN
+name|NodeId
 import|;
 end_import
 
@@ -154,7 +154,7 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|protected
-name|DLN
+name|NodeId
 name|nodeId
 init|=
 literal|null
@@ -422,6 +422,8 @@ name|start
 argument_list|,
 name|len
 argument_list|,
+name|doc
+argument_list|,
 name|pooled
 argument_list|)
 return|;
@@ -483,6 +485,8 @@ name|start
 argument_list|,
 name|len
 argument_list|,
+name|doc
+argument_list|,
 name|pooled
 argument_list|)
 return|;
@@ -501,6 +505,8 @@ argument_list|,
 name|start
 argument_list|,
 name|len
+argument_list|,
+name|doc
 argument_list|,
 name|pooled
 argument_list|)
@@ -671,7 +677,7 @@ specifier|public
 name|void
 name|setNodeId
 parameter_list|(
-name|DLN
+name|NodeId
 name|dln
 parameter_list|)
 block|{
@@ -683,7 +689,7 @@ name|dln
 expr_stmt|;
 block|}
 specifier|public
-name|DLN
+name|NodeId
 name|getNodeId
 parameter_list|()
 block|{
