@@ -4647,6 +4647,7 @@ return|return
 name|file
 return|;
 block|}
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are being interpreted relative to<code>exist.home</code>      * or the current working directory, in case<code>exist.home</code> was not set.      *       * @param path the file path      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -4665,7 +4666,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are being interpreted relative to<code>exist.home</code>.      *       * This method is also used to resolve relative paths in configuration file      *       * @param path path to the file or directory      * @return the file handle      */
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * If<code>parent</code> is null, then relative paths are being interpreted      * relative to<code>exist.home</code> or the current working directory, in      * case<code>exist.home</code> was not set.      *       * @param path path to the file or directory      * @param parent parent directory used to lookup<code>path</code>      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -4720,17 +4721,19 @@ name|home
 operator|==
 literal|null
 condition|)
-throw|throw
+name|home
+operator|=
 operator|new
-name|IllegalStateException
+name|File
 argument_list|(
-literal|"Unable to locate "
-operator|+
-name|path
-operator|+
-literal|" because exist home directory cannot be found!"
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"user.dir"
 argument_list|)
-throw|;
+argument_list|)
+expr_stmt|;
 name|parent
 operator|=
 name|home
