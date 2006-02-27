@@ -444,7 +444,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot cast 'xdt:UntypeAtomic("
+literal|"FORG0001: cannot cast 'xdt:UntypeAtomic("
 operator|+
 name|value
 operator|+
@@ -457,7 +457,7 @@ argument_list|(
 name|requiredType
 argument_list|)
 operator|+
-literal|"' [err:FORG0001]"
+literal|"'"
 argument_list|)
 throw|;
 block|}

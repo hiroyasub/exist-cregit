@@ -249,7 +249,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot convert '"
+literal|"FORG0001: cannot convert '"
 operator|+
 name|Type
 operator|.
