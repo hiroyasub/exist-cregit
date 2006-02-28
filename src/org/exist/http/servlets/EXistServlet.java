@@ -348,6 +348,12 @@ name|EXistServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+name|String
+name|formEncoding
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -666,16 +672,15 @@ argument_list|)
 throw|;
 block|}
 comment|// Instantiate REST server
-name|String
 name|formEncoding
-init|=
+operator|=
 name|config
 operator|.
 name|getInitParameter
 argument_list|(
 literal|"form-encoding"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|formEncoding
@@ -1550,7 +1555,7 @@ name|void
 name|doPost
 parameter_list|(
 name|HttpServletRequest
-name|request
+name|req
 parameter_list|,
 name|HttpServletResponse
 name|response
@@ -1560,6 +1565,18 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//Wrap HttpServletRequest, for better access to POST parameters from Content and URL - deliriumsky
+name|HttpServletRequestWrapper
+name|request
+init|=
+operator|new
+name|HttpServletRequestWrapper
+argument_list|(
+name|req
+argument_list|,
+name|formEncoding
+argument_list|)
+decl_stmt|;
 name|User
 name|user
 init|=
