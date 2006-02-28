@@ -19,6 +19,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|BufferedWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -39,6 +49,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -50,6 +70,38 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|SimpleDateFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServletRequest
 import|;
 end_import
 
@@ -222,7 +274,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *  * Class representation of an XQuery Web Application Descriptor file  *   */
+comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.6  */
 end_comment
 
 begin_class
@@ -257,6 +309,13 @@ decl_stmt|;
 comment|//descriptor file (descriptor.xml)
 comment|//Data
 specifier|private
+name|BufferedWriter
+name|bufWriteReplayLog
+init|=
+literal|null
+decl_stmt|;
+comment|//Should a replay log of requests be created
+specifier|private
 name|String
 name|allowSourceXQueryList
 index|[]
@@ -273,7 +332,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|//Array of Mappings
-comment|//Constructor (wrapper)
+comment|/** 	 * Descriptor Constructor 	 * @param file		The descriptor file to read, defaults to descriptor.xml in the home folder 	 */
 specifier|public
 name|Descriptor
 parameter_list|(
@@ -289,7 +348,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Constructor
+comment|/** 	 * Descriptor Constructor 	 * @param file		The descriptor file to read, defaults to descriptor.xml in the dbHome folder 	 * @param dbHome	The home folder to find the descriptor file in, defaults to $EXIST_HOME 	 */
 specifier|public
 name|Descriptor
 parameter_list|(
@@ -478,6 +537,47 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+comment|//load<xquery-app> attribue settings
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocumentElement
+argument_list|()
+operator|.
+name|getAttribute
+argument_list|(
+literal|"request-replay-log"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+condition|)
+block|{
+name|File
+name|logFile
+init|=
+operator|new
+name|File
+argument_list|(
+literal|"request-replay-log.txt"
+argument_list|)
+decl_stmt|;
+name|bufWriteReplayLog
+operator|=
+operator|new
+name|BufferedWriter
+argument_list|(
+operator|new
+name|FileWriter
+argument_list|(
+name|logFile
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|//load<allow-source> settings
 name|NodeList
 name|allowsourcexqueries
@@ -874,9 +974,7 @@ name|view
 expr_stmt|;
 block|}
 block|}
-comment|//takes a path such as that from RESTServer.doGet()
-comment|//if it finds a matching allowsourcexquery path then it returns true
-comment|//else it returns false
+comment|/** 	 * Determines whether it is permissible to show the source of an XQuery. 	 * Takes a path such as that from RESTServer.doGet() as an argument, 	 * if it finds a matching allowsourcexquery path in the descriptor then it returns true else it returns false 	 *    	 * @param path		The path of the XQuery (e.g. /db/MyCollection/query.xql) 	 * @return			The boolean value true or false indicating whether it is permissible to show the source 	 */
 specifier|public
 name|boolean
 name|allowSourceXQuery
@@ -885,6 +983,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+comment|//TODO: commit an example descriptor that allows viewing of xquery source for the demo applications
 if|if
 condition|(
 name|allowSourceXQueryList
@@ -956,9 +1055,7 @@ literal|false
 operator|)
 return|;
 block|}
-comment|//takes a path such as that from RESTServer.doGet()
-comment|//if it finds a matching map path then it returns the map view
-comment|//else it returns the passed in path
+comment|/** 	 * Map's one XQuery or Collection path to another 	 * Takes a path such as that from RESTServer.doGet() as an argument, 	 * if it finds a matching map path then it returns the map view else it returns the passed in path 	 *    	 * @param path		The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map from 	 * @return			The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map to 	 */
 specifier|public
 name|String
 name|mapPath
@@ -1054,7 +1151,139 @@ name|path
 operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 *    	 * @param request		The HttpServletRequest to log. For POST requests form data will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest!   	 */
+specifier|protected
+specifier|synchronized
+name|void
+name|doLogRequestInReplayLog
+parameter_list|(
+name|HttpServletRequest
+name|request
+parameter_list|)
+block|{
+comment|//Only log if set by the user in descriptor.xml<xquery-app request-replay-log="true">
+if|if
+condition|(
+name|bufWriteReplayLog
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
+try|try
+block|{
+comment|//Store the date and time
+name|bufWriteReplayLog
+operator|.
+name|write
+argument_list|(
+literal|"Date: "
+argument_list|)
+expr_stmt|;
+name|SimpleDateFormat
+name|formatter
+init|=
+operator|new
+name|SimpleDateFormat
+argument_list|(
+literal|"dd/MM/yyyy HH:mm:ss"
+argument_list|)
+decl_stmt|;
+name|bufWriteReplayLog
+operator|.
+name|write
+argument_list|(
+name|formatter
+operator|.
+name|format
+argument_list|(
+operator|new
+name|Date
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|bufWriteReplayLog
+operator|.
+name|write
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//Store the request string excluding the first line
+name|bufWriteReplayLog
+operator|.
+name|write
+argument_list|(
+name|request
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+name|request
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|indexOf
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+argument_list|)
+operator|+
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//End of record indicator
+name|bufWriteReplayLog
+operator|.
+name|write
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//flush the buffer to file
+name|bufWriteReplayLog
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not write request replay log"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+block|}
+comment|/**      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|error
@@ -1089,7 +1318,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
+comment|/**      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|fatalError
@@ -1124,7 +1353,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+comment|/**       * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|warning
