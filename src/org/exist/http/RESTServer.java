@@ -1075,16 +1075,19 @@ specifier|private
 name|String
 name|formEncoding
 decl_stmt|;
+comment|//TODO: we may be able to remove this eventually, in favour of HttpServletRequestWrapper being setup in EXistServlet, currently used for doPost() but perhaps could be used for other Request Methods? - deliriumsky
 specifier|private
 name|String
 name|containerEncoding
 decl_stmt|;
 specifier|private
+specifier|static
 name|Descriptor
 name|descriptor
 init|=
 literal|null
 decl_stmt|;
+comment|//I am 99% sure this can be static (we only ever need one in memory) - deliriumsky
 comment|//Constructor
 specifier|public
 name|RESTServer
@@ -1504,7 +1507,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//first, see if a mapping is specified on the path
+comment|//first, perform descriptor actions
 if|if
 condition|(
 name|descriptor
@@ -1512,6 +1515,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -2301,7 +2313,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//first, see if a mapping is specified on the path
+comment|//first, perform descriptor actions
 if|if
 condition|(
 name|descriptor
@@ -2309,6 +2321,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -2483,22 +2504,6 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 block|{
-if|if
-condition|(
-name|request
-operator|.
-name|getCharacterEncoding
-argument_list|()
-operator|==
-literal|null
-condition|)
-name|request
-operator|.
-name|setCharacterEncoding
-argument_list|(
-name|formEncoding
-argument_list|)
-expr_stmt|;
 name|Properties
 name|outputProperties
 init|=
@@ -2515,7 +2520,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//first, see if a mapping is specified on the path
+comment|//first, perform descriptor actions
 if|if
 condition|(
 name|descriptor
@@ -2523,6 +2528,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -2711,7 +2725,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-comment|// normal POST: read the request content and check if
+comment|// third, normal POST: read the request content and check if
 comment|// it is an XUpdate or a query request.
 name|int
 name|howmany
