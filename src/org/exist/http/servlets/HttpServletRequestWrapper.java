@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-06 Wolfgang M.  * Meier meier@ifs.tu-darmstadt.de http://exist.sourceforge.net  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -67,16 +71,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|NoSuchElementException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -108,6 +102,16 @@ operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|NoSuchElementException
 import|;
 end_import
 
@@ -188,7 +192,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** A wrapper for HttpServletRequest  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-27  * @version 1.0   */
+comment|/** A wrapper for HttpServletRequest  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.1  */
+end_comment
+
+begin_comment
+comment|//TODO: check loops to make sure they only iterate as few times as needed
+end_comment
+
+begin_comment
+comment|//TODO: do we need to do anything with encoding strings manually?
 end_comment
 
 begin_class
@@ -599,22 +611,30 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//If not a file uplodad (file upload is indicated by multipart content type)
+comment|//If a form POST and not a document POST
 if|if
 condition|(
-operator|!
 name|request
 operator|.
 name|getContentType
 argument_list|()
 operator|.
-name|toUpperCase
+name|toLowerCase
 argument_list|()
 operator|.
-name|startsWith
+name|equals
 argument_list|(
-literal|"MULTIPART/"
+literal|"application/x-www-form-urlencoded"
 argument_list|)
+operator|&&
+name|request
+operator|.
+name|getHeader
+argument_list|(
+literal|"ContentType"
+argument_list|)
+operator|==
+literal|null
 condition|)
 block|{
 comment|//Parse out parameters from the Content Body
@@ -634,6 +654,13 @@ name|String
 name|querystring
 parameter_list|)
 block|{
+if|if
+condition|(
+name|querystring
+operator|!=
+literal|null
+condition|)
+block|{
 comment|//Parse any parameters from the URL
 name|parseParameters
 argument_list|(
@@ -644,6 +671,7 @@ operator|.
 name|PARAM_TYPE_URL
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Stores parameters from the Content Body of the Request
 specifier|private
