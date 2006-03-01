@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Context Module Extension GetVarFunction  *  * Released under the BSD License  *  * Copyright (c) 2006, Adam retter<adam.retter@devon.gov.uk>  * All rights reserved.  *   * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:  * 		Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.  *  	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.  *  	Neither the name of the Devon Portal Project nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.  *    *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS  *  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE  *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR  *  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR  *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,  *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,  *  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;  *  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -37,18 +37,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|Cardinality
 import|;
 end_import
@@ -61,43 +49,19 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
 import|;
 end_import
 
@@ -139,35 +103,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
 import|;
 end_import
 
@@ -193,14 +129,36 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|ValueSequence
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  */
+comment|/**  * eXist Context Module Extension GetVarFunction   *   * The Variable Getting functionality of the eXist Context Module Extension that  * allows variables to be retreived from the Context of the executing XQuery that have previously  * been set with set-var()    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-01  * @version 1.3  *  * @see org.exist.xquery.Function  */
 end_comment
 
 begin_class
@@ -265,6 +223,7 @@ name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|/** 	 * GetVarFunction Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
 specifier|public
 name|GetVarFunction
 parameter_list|(
@@ -280,6 +239,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * evaluate the call to the xquery get-var() function, 	 * it is really the main entry point of this class 	 *  	 * @param contextSequence	the Context Sequence to operate on 	 * @param contextItem		the Context Item to operate on 	 * @return		The sequence stored in the context by set-var() 	 *  	 * @see org.exist.xquery.Function#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
