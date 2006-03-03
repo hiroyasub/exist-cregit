@@ -2347,6 +2347,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|debug
+parameter_list|()
+block|{
+comment|// left empty
+block|}
 block|}
 end_class
 
