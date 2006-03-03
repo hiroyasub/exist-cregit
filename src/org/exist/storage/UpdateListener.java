@@ -66,6 +66,11 @@ name|int
 name|event
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|debug
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

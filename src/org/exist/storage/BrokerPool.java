@@ -3266,6 +3266,11 @@ operator|.
 name|restart
 argument_list|()
 expr_stmt|;
+name|notificationService
+operator|.
+name|debug
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 name|cacheManager
@@ -3562,6 +3567,11 @@ name|boolean
 name|killed
 parameter_list|)
 block|{
+name|notificationService
+operator|.
+name|debug
+argument_list|()
+expr_stmt|;
 comment|//Notify all running tasks that we are shutting down
 name|syncDaemon
 operator|.

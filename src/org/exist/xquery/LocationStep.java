@@ -4405,7 +4405,26 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-empty_stmt|;
+specifier|public
+name|void
+name|debug
+parameter_list|()
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"UpdateListener: Line: "
+operator|+
+name|LocationStep
+operator|.
+name|this
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 expr_stmt|;
 name|NotificationService
