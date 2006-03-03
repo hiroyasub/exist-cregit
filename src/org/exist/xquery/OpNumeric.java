@@ -692,6 +692,45 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 if|else if
 condition|(
+name|lseq
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|1
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|lvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|lvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
+argument_list|)
+throw|;
+if|else if
+condition|(
 name|rseq
 operator|.
 name|getLength
@@ -705,6 +744,45 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+if|else if
+condition|(
+name|rseq
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|1
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|rvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|rvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
+argument_list|)
+throw|;
 else|else
 block|{
 try|try
@@ -775,10 +853,6 @@ name|XPathException
 argument_list|(
 literal|"XPTY0004: '"
 operator|+
-name|lvalue
-operator|+
-literal|"' ("
-operator|+
 name|Type
 operator|.
 name|getTypeName
@@ -789,7 +863,18 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|") can not be an operand for an arithmetic operation"
+literal|"("
+operator|+
+name|lvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
 argument_list|)
 throw|;
 if|if
@@ -807,10 +892,6 @@ name|XPathException
 argument_list|(
 literal|"XPTY0004: '"
 operator|+
-name|lvalue
-operator|+
-literal|"' ("
-operator|+
 name|Type
 operator|.
 name|getTypeName
@@ -821,7 +902,18 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|") can not be an operand for an arithmetic operation"
+literal|"("
+operator|+
+name|rvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
 argument_list|)
 throw|;
 if|if
@@ -849,10 +941,6 @@ name|XPathException
 argument_list|(
 literal|"XPTY0004: '"
 operator|+
-name|lvalue
-operator|+
-literal|"' ("
-operator|+
 name|Type
 operator|.
 name|getTypeName
@@ -863,7 +951,18 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|") can not be an operand for idiv"
+literal|"("
+operator|+
+name|lvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
 argument_list|)
 throw|;
 if|if
@@ -881,10 +980,6 @@ name|XPathException
 argument_list|(
 literal|"XPTY0004: '"
 operator|+
-name|lvalue
-operator|+
-literal|"' ("
-operator|+
 name|Type
 operator|.
 name|getTypeName
@@ -895,7 +990,18 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|") can not be an operand for idiv"
+literal|"("
+operator|+
+name|rvalue
+operator|+
+literal|")' can not be an operand for "
+operator|+
+name|Constants
+operator|.
+name|OPS
+index|[
+name|operator
+index|]
 argument_list|)
 throw|;
 name|result
