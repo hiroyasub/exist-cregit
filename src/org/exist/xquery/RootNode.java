@@ -621,15 +621,6 @@ name|int
 name|event
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"ROOT: clear: "
-operator|+
-name|event
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|event
@@ -689,14 +680,6 @@ operator|.
 name|debug
 argument_list|(
 literal|"UpdateListener: Line: "
-operator|+
-name|getASTNode
-argument_list|()
-operator|.
-name|getLine
-argument_list|()
-operator|+
-literal|": "
 operator|+
 name|RootNode
 operator|.
