@@ -88,7 +88,7 @@ name|convertTo
 argument_list|(
 name|Type
 operator|.
-name|DECIMAL
+name|DOUBLE
 argument_list|)
 operator|)
 operator|.
@@ -369,7 +369,9 @@ operator|==
 name|otherVal
 condition|)
 return|return
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 return|;
 if|else if
 condition|(
@@ -378,12 +380,15 @@ operator|>
 name|otherVal
 condition|)
 return|return
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 else|else
 return|return
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 else|else
