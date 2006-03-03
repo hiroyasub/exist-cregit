@@ -125,28 +125,10 @@ argument_list|(
 name|listener
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|value
-operator|<
-literal|0
-condition|)
-block|{
-name|listener
-operator|.
-name|debug
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Key not found: "
-operator|+
-name|value
-argument_list|)
-throw|;
-block|}
+comment|//		if (value< 0) {
+comment|//			listener.debug();
+comment|//			throw new RuntimeException("Key not found: " + value);
+comment|//		}
 block|}
 comment|/** 	 * Notify all subscribers that a document has been updated/removed or 	 * a new document has been added. 	 *  	 * @param document 	 * @param event 	 */
 specifier|public
