@@ -94,7 +94,7 @@ name|YearMonthDurationValue
 extends|extends
 name|OrderedDurationValue
 block|{
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|Duration
