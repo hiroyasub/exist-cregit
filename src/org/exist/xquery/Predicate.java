@@ -439,6 +439,9 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 comment|// Case 2: predicate expression returns a number.
+comment|//Warning : in ((1,2,3,4,5,6,7,8,9,10,11)[(2 to 4)])
+comment|//the range expression has a cardinality Cardinality.EXACTLY_ONE
+comment|//whereas it is obvious that we have more !
 block|}
 if|else if
 condition|(
@@ -700,6 +703,9 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 block|}
+comment|//Warning : ((1,2,3,4,5,6,7,8,9,10,11)[(2 to 4)])
+comment|//leads to a positional evaluation
+comment|//whereas we should have a boolean one (see above)
 comment|//if (executionMode == POSITIONAL&& Type.subTypeOf(contextSequence.getItemType(), Type.ATOMIC)
 comment|//&& !(contextSequence instanceof VirtualNodeSet)) {
 comment|//recomputedExecutionMode = BOOLEAN;
@@ -921,6 +927,13 @@ name|p
 operator|++
 control|)
 block|{
+name|context
+operator|.
+name|setContextPosition
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|Item
 name|item
 init|=
@@ -929,27 +942,21 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
+comment|//Sequence innerSeq = inner.eval(contextSequence, item);
+comment|//We just test against the *current* item
 name|Sequence
 name|innerSeq
-decl_stmt|;
-name|innerSeq
-operator|=
+init|=
 name|inner
 operator|.
 name|eval
 argument_list|(
-name|contextSequence
-argument_list|,
 name|item
+operator|.
+name|toSequence
+argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|innerSeq
