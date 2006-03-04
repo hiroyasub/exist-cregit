@@ -521,6 +521,19 @@ condition|(
 name|requiredType
 condition|)
 block|{
+comment|//Not sure -pb
+case|case
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+case|:
+return|return
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|value
+argument_list|)
+return|;
 case|case
 name|Type
 operator|.
@@ -535,12 +548,6 @@ case|case
 name|Type
 operator|.
 name|STRING
-case|:
-comment|//Not sure -pb
-case|case
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
 case|:
 return|return
 name|this
