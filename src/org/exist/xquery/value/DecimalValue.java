@@ -108,6 +108,7 @@ name|XPathException
 block|{
 try|try
 block|{
+comment|//TODO : check the string against a regular expression that prevents scientific notation
 name|value
 operator|=
 operator|new
