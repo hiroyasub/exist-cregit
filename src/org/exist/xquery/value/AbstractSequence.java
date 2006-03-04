@@ -417,21 +417,16 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// If operand is a sequence whose first item is a node, fn:boolean returns true.
-name|int
-name|fisrtType
-init|=
-name|first
-operator|.
-name|getType
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|Type
 operator|.
 name|subTypeOf
 argument_list|(
-name|fisrtType
+name|first
+operator|.
+name|getType
+argument_list|()
 argument_list|,
 name|Type
 operator|.
