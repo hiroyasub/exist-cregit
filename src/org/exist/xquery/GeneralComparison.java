@@ -863,6 +863,10 @@ comment|//Ugly workaround for the polysemy of "." which is expanded as self::nod
 name|boolean
 name|invalidNodeEvaluation
 init|=
+name|contextSequence
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|Type
 operator|.
