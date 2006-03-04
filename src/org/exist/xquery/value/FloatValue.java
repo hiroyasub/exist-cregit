@@ -298,11 +298,12 @@ name|isNaN
 parameter_list|()
 block|{
 return|return
-name|value
-operator|==
 name|Float
 operator|.
-name|NaN
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
