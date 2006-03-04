@@ -323,6 +323,9 @@ argument_list|(
 name|rl
 argument_list|)
 expr_stmt|;
+comment|//TODO : replace by the following ?
+comment|//TODO : what to do with virtual node sets ?
+comment|//result = (rr.intersection(rl).getLength() == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
 block|}
 else|else
 block|{

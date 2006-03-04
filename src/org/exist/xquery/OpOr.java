@@ -319,6 +319,9 @@ argument_list|(
 name|rr
 argument_list|)
 expr_stmt|;
+comment|//TODO : replace by the following ?
+comment|//TODO : what to do with virtual node sets ?
+comment|//result = (rl.union(rr).getLength() == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
 block|}
 else|else
 block|{

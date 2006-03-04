@@ -180,6 +180,15 @@ name|CONTEXT_ITEM
 operator|)
 operator|==
 literal|0
+comment|//TODO: is this accurate ? -pb
+operator|&&
+name|contextInfo
+operator|.
+name|getContextId
+argument_list|()
+operator|!=
+operator|-
+literal|1
 condition|)
 name|optimize
 operator|=
@@ -207,6 +216,8 @@ name|Type
 operator|.
 name|BOOLEAN
 return|;
+comment|//TODO : should always be a boolean -pb
+comment|//return Type.BOOLEAN;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
