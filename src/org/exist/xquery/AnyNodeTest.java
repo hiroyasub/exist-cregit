@@ -204,7 +204,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"any-node-test[]"
+literal|"node()"
 argument_list|)
 expr_stmt|;
 block|}
@@ -216,7 +216,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"any-node-test[]"
+literal|"node()"
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#setType(int)      */
