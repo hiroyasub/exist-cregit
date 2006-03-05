@@ -354,8 +354,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-try|try
-block|{
 name|DayTimeDurationValue
 name|dtdv
 init|=
@@ -365,6 +363,10 @@ argument_list|(
 literal|"P3DT1H2M3S"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"P0M"
+argument_list|,
 name|dtdv
 operator|.
 name|convertTo
@@ -373,19 +375,11 @@ name|Type
 operator|.
 name|YEAR_MONTH_DURATION
 argument_list|)
-expr_stmt|;
-name|fail
+operator|.
+name|getStringValue
 argument_list|()
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 specifier|public
 name|void
