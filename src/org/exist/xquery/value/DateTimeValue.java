@@ -468,6 +468,19 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
+case|case
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+case|:
+return|return
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|getStringValue
+argument_list|()
+argument_list|)
+return|;
 default|default :
 throw|throw
 operator|new
