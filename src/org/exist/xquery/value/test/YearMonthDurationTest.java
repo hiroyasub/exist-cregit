@@ -320,8 +320,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-try|try
-block|{
 name|YearMonthDurationValue
 name|ymdv
 init|=
@@ -331,6 +329,10 @@ argument_list|(
 literal|"P1Y2M"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"PT0S"
+argument_list|,
 name|ymdv
 operator|.
 name|convertTo
@@ -339,19 +341,11 @@ name|Type
 operator|.
 name|DAY_TIME_DURATION
 argument_list|)
-expr_stmt|;
-name|fail
+operator|.
+name|getStringValue
 argument_list|()
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 specifier|public
 name|void

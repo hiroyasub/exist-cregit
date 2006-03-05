@@ -467,31 +467,32 @@ return|;
 case|case
 name|Type
 operator|.
-name|DOUBLE
+name|DAY_TIME_DURATION
 case|:
-comment|//return new DoubleValue(monthsValueSigned().doubleValue());
 return|return
 operator|new
-name|DoubleValue
+name|DayTimeDurationValue
 argument_list|(
-name|Double
+name|DayTimeDurationValue
 operator|.
-name|NaN
+name|CANONICAL_ZERO_DURATION
 argument_list|)
 return|;
+comment|//case Type.DOUBLE:
+comment|//return new DoubleValue(monthsValueSigned().doubleValue());
+comment|//return new DoubleValue(Double.NaN);
+comment|//case Type.DECIMAL:
+comment|//return new DecimalValue(monthsValueSigned().doubleValue());
 case|case
 name|Type
 operator|.
-name|DECIMAL
+name|UNTYPED_ATOMIC
 case|:
 return|return
 operator|new
-name|DecimalValue
+name|UntypedAtomicValue
 argument_list|(
-name|monthsValueSigned
-argument_list|()
-operator|.
-name|doubleValue
+name|getStringValue
 argument_list|()
 argument_list|)
 return|;
@@ -500,7 +501,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: cannot cast xs:yearMonthDuration to "
+literal|"XPTY0004: cannot cast 'xs:yearMonthDuration(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
