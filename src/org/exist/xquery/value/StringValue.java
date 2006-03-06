@@ -521,19 +521,6 @@ condition|(
 name|requiredType
 condition|)
 block|{
-comment|//Not sure -pb
-case|case
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-case|:
-return|return
-operator|new
-name|UntypedAtomicValue
-argument_list|(
-name|value
-argument_list|)
-return|;
 case|case
 name|Type
 operator|.
@@ -888,16 +875,42 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 return|;
+case|case
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+case|:
+return|return
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|getStringValue
+argument_list|()
+argument_list|)
+return|;
 default|default :
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert string '"
+literal|"FORG0001: cannot cast '"
 operator|+
-name|value
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|"' to "
+literal|"(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
