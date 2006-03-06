@@ -889,11 +889,7 @@ init|=
 operator|new
 name|FastStringBuffer
 argument_list|(
-literal|6
-argument_list|,
-literal|15
-argument_list|,
-literal|5
+literal|64
 argument_list|)
 decl_stmt|;
 comment|// Environment
@@ -4710,11 +4706,7 @@ operator|=
 operator|new
 name|FastStringBuffer
 argument_list|(
-literal|6
-argument_list|,
-literal|15
-argument_list|,
-literal|5
+literal|64
 argument_list|)
 expr_stmt|;
 name|this

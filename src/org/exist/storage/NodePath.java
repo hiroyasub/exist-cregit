@@ -768,12 +768,18 @@ name|String
 name|path
 parameter_list|)
 block|{
+comment|//TODO : compute better length
 name|FastStringBuffer
 name|token
 init|=
 operator|new
 name|FastStringBuffer
+argument_list|(
+name|path
+operator|.
+name|length
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|pos
@@ -818,8 +824,10 @@ argument_list|()
 decl_stmt|;
 name|token
 operator|.
-name|reset
-argument_list|()
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

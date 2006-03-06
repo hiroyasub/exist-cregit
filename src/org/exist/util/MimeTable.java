@@ -871,11 +871,7 @@ init|=
 operator|new
 name|FastStringBuffer
 argument_list|(
-literal|6
-argument_list|,
-literal|15
-argument_list|,
-literal|5
+literal|64
 argument_list|)
 decl_stmt|;
 comment|/* (non-Javadoc)          * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)          */
