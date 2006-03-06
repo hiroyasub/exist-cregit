@@ -47,6 +47,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -76,6 +88,20 @@ name|int
 name|DIVIDE_PRECISION
 init|=
 literal|18
+decl_stmt|;
+comment|//Copied from Saxon 8.7
+specifier|private
+specifier|static
+specifier|final
+name|Pattern
+name|decimalPattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"(\\-|\\+)?((\\.[0-9]+)|([0-9]+(\\.[0-9]*)?))"
+argument_list|)
 decl_stmt|;
 name|BigDecimal
 name|value
@@ -108,7 +134,44 @@ name|XPathException
 block|{
 try|try
 block|{
-comment|//TODO : check the string against a regular expression that prevents scientific notation
+if|if
+condition|(
+operator|!
+name|decimalPattern
+operator|.
+name|matcher
+argument_list|(
+name|str
+argument_list|)
+operator|.
+name|matches
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: cannot construct "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+operator|+
+literal|" from \""
+operator|+
+name|str
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|value
 operator|=
 operator|new
@@ -128,11 +191,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: "
+literal|"FORG0001: cannot construct "
 operator|+
-name|str
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|" cannot be cast to a decimal"
+literal|" from \""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
