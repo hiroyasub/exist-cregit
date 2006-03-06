@@ -727,37 +727,11 @@ operator|.
 name|CANONICAL_ZERO_DURATION
 argument_list|)
 return|;
-case|case
-name|Type
-operator|.
-name|DOUBLE
-case|:
+comment|//case Type.DOUBLE:
 comment|//return new DoubleValue(monthsValueSigned().doubleValue());
-return|return
-operator|new
-name|DoubleValue
-argument_list|(
-name|Double
-operator|.
-name|NaN
-argument_list|)
-return|;
-case|case
-name|Type
-operator|.
-name|DECIMAL
-case|:
-return|return
-operator|new
-name|DecimalValue
-argument_list|(
-name|monthsValueSigned
-argument_list|()
-operator|.
-name|doubleValue
-argument_list|()
-argument_list|)
-return|;
+comment|//return new DoubleValue(Double.NaN);
+comment|//case Type.DECIMAL:
+comment|//return new DecimalValue(monthsValueSigned().doubleValue());
 case|case
 name|Type
 operator|.
@@ -776,7 +750,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: cannot cast xs:dayTimeDuration to "
+literal|"XPTY0004: cannot cast '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+operator|+
+literal|"(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
