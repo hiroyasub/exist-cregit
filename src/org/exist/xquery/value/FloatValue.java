@@ -192,11 +192,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert string '"
+literal|"FORG0001: cannot construct "
 operator|+
-name|stringValue
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|"' into a float"
+literal|" from \""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -268,6 +281,7 @@ expr_stmt|;
 return|return
 name|s
 return|;
+comment|//TODO : use Saxon's code
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
 specifier|public
@@ -525,16 +539,42 @@ name|BooleanValue
 operator|.
 name|TRUE
 return|;
+case|case
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+case|:
+return|return
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|getStringValue
+argument_list|()
+argument_list|)
+return|;
 default|default :
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert double value '"
+literal|"FORG0001: cannot cast '"
 operator|+
-name|value
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|"' into "
+literal|"(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
