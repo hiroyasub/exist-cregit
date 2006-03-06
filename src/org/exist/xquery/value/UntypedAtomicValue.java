@@ -140,6 +140,11 @@ name|Type
 operator|.
 name|ITEM
 case|:
+case|case
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+case|:
 return|return
 name|this
 return|;
@@ -233,11 +238,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot cast 'xdt:UntypeAtomic("
+literal|"FORG0001: cannot cast '"
 operator|+
-name|value
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|")' to '"
+literal|"(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
@@ -245,8 +263,6 @@ name|getTypeName
 argument_list|(
 name|requiredType
 argument_list|)
-operator|+
-literal|"' [err:FORG0001]"
 argument_list|)
 throw|;
 case|case
@@ -295,7 +311,8 @@ return|return
 operator|new
 name|DecimalValue
 argument_list|(
-name|value
+name|getStringValue
+argument_list|()
 argument_list|)
 return|;
 case|case
@@ -468,11 +485,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot cast 'xdt:UntypeAtomic("
+literal|"FORG0001: cannot cast '"
 operator|+
-name|value
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
 operator|+
-literal|")' to '"
+literal|"(\""
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
@@ -480,8 +510,6 @@ name|getTypeName
 argument_list|(
 name|requiredType
 argument_list|)
-operator|+
-literal|"'"
 argument_list|)
 throw|;
 block|}
