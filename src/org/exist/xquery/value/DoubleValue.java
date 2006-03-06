@@ -249,7 +249,19 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot convert '"
+literal|"FORG0001: cannot construct "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+operator|+
+literal|" from '"
 operator|+
 name|Type
 operator|.
@@ -257,7 +269,7 @@ name|getTypeName
 argument_list|(
 name|otherValue
 operator|.
-name|getType
+name|getItemType
 argument_list|()
 argument_list|)
 operator|+
@@ -268,7 +280,7 @@ operator|.
 name|getStringValue
 argument_list|()
 operator|+
-literal|"\")' into an xs:double"
+literal|"\")'"
 argument_list|)
 throw|;
 block|}
@@ -1271,12 +1283,24 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: Cannot convert xs:double('"
+literal|"FORG0001: cannot cast '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+operator|+
+literal|"(\""
 operator|+
 name|getStringValue
 argument_list|()
 operator|+
-literal|"') into "
+literal|"\")' to "
 operator|+
 name|Type
 operator|.
