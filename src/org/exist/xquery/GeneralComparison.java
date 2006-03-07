@@ -601,27 +601,13 @@ name|returnsType
 parameter_list|()
 block|{
 comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
+comment|//boolean invalidNodeEvaluation =
+comment|//	getLeft() instanceof LocationStep&& ((LocationStep)getLeft()).axis == Constants.SELF_AXIS;
+comment|//TODO : uncomment and improve code above to make (1)[.= 1] work...
 name|boolean
 name|invalidNodeEvaluation
 init|=
-name|getLeft
-argument_list|()
-operator|instanceof
-name|LocationStep
-operator|&&
-operator|(
-operator|(
-name|LocationStep
-operator|)
-name|getLeft
-argument_list|()
-operator|)
-operator|.
-name|axis
-operator|==
-name|Constants
-operator|.
-name|SELF_AXIS
+literal|false
 decl_stmt|;
 if|if
 condition|(
@@ -860,46 +846,13 @@ init|=
 literal|null
 decl_stmt|;
 comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
+comment|//boolean invalidNodeEvaluation = contextSequence != null&& !Type.subTypeOf(contextSequence.getItemType(), Type.NODE)&&
+comment|//	getLeft() instanceof LocationStep&& ((LocationStep)getLeft()).axis == Constants.SELF_AXIS;
+comment|//TODO : uncomment and improve code above to make (1)[.= 1] work...
 name|boolean
 name|invalidNodeEvaluation
 init|=
-name|contextSequence
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|contextSequence
-operator|.
-name|getItemType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|)
-operator|&&
-name|getLeft
-argument_list|()
-operator|instanceof
-name|LocationStep
-operator|&&
-operator|(
-operator|(
-name|LocationStep
-operator|)
-name|getLeft
-argument_list|()
-operator|)
-operator|.
-name|axis
-operator|==
-name|Constants
-operator|.
-name|SELF_AXIS
+literal|false
 decl_stmt|;
 comment|/*  		 * If we are inside a predicate and one of the arguments is a node set,  		 * we try to speed up the query by returning nodes from the context set. 		 * This works only inside a predicate. The node set will always be the left  		 * operand. 		 */
 if|if
