@@ -769,6 +769,12 @@ argument_list|(
 name|contextDocs
 argument_list|)
 expr_stmt|;
+else|else
+name|setContextDocSet
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 comment|//To prevent processing nodes after atomic values...
 comment|//TODO : let the parser do it ? -pb
 name|boolean
@@ -891,6 +897,14 @@ operator|.
 name|setContextDocSet
 argument_list|(
 name|contextDocs
+argument_list|)
+expr_stmt|;
+else|else
+name|expr
+operator|.
+name|setContextDocSet
+argument_list|(
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
