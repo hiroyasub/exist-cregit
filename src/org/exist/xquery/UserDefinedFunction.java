@@ -666,7 +666,7 @@ name|void
 name|resetState
 parameter_list|()
 block|{
-comment|//TODO ; understand this test. Why not reset even is not in recursion ?
+comment|// Question: understand this test. Why not reset even is not in recursion ?
 comment|// Answer: would lead to an infinite loop if the function is recursive.
 if|if
 condition|(
@@ -688,6 +688,10 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+name|currentArguments
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
