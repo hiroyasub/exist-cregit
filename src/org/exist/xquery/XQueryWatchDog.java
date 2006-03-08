@@ -109,6 +109,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|XQueryContext
 name|context
 decl_stmt|;

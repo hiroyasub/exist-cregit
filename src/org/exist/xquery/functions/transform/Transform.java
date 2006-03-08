@@ -844,6 +844,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 name|cache
 init|=

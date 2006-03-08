@@ -103,6 +103,7 @@ extends|extends
 name|NodeConstructor
 block|{
 specifier|private
+specifier|final
 name|String
 name|cdata
 decl_stmt|;

@@ -112,15 +112,16 @@ name|expression
 decl_stmt|;
 specifier|private
 name|int
-name|requiredType
-decl_stmt|;
-specifier|private
-name|int
 name|cardinality
 init|=
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+decl_stmt|;
+specifier|private
+specifier|final
+name|int
+name|requiredType
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param expr 	 * @param requiredType 	 * @param cardinality 	 */
 specifier|public

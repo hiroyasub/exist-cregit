@@ -126,15 +126,16 @@ name|expression
 decl_stmt|;
 specifier|private
 name|int
-name|requiredType
-decl_stmt|;
-specifier|private
-name|int
 name|cardinality
 init|=
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+decl_stmt|;
+specifier|private
+specifier|final
+name|int
+name|requiredType
 decl_stmt|;
 comment|/** 	 * Constructor. When calling {@link #eval(Sequence, Item)}  	 * the passed expression will be cast into the required type and cardinality. 	 *  	 * @param context 	 */
 specifier|public

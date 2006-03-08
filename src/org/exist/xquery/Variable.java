@@ -160,6 +160,7 @@ name|Variable
 block|{
 comment|// the name of the variable
 specifier|private
+specifier|final
 name|QName
 name|qname
 decl_stmt|;

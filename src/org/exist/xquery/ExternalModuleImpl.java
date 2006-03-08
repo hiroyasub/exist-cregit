@@ -92,14 +92,17 @@ name|ExternalModuleImpl
 implements|implements
 name|ExternalModule
 block|{
+specifier|final
 specifier|private
 name|String
 name|mNamespaceURI
 decl_stmt|;
+specifier|final
 specifier|private
 name|String
 name|mPrefix
 decl_stmt|;
+specifier|final
 specifier|private
 name|TreeMap
 name|mFunctionMap
@@ -108,6 +111,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+specifier|final
 specifier|private
 name|TreeMap
 name|mGlobalVariables
@@ -116,6 +120,7 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+specifier|final
 specifier|private
 name|TreeMap
 name|mStaticVariables

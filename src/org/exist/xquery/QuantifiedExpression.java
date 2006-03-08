@@ -137,10 +137,9 @@ init|=
 literal|1
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|mode
-init|=
-name|SOME
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
@@ -158,12 +157,33 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+switch|switch
+condition|(
+name|mode
+condition|)
+block|{
+case|case
+name|SOME
+case|:
+case|case
+name|EVERY
+case|:
 name|this
 operator|.
 name|mode
 operator|=
 name|mode
 expr_stmt|;
+break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"QuantifiedExpression"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])      */
 specifier|public

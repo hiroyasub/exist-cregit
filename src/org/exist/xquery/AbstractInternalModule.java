@@ -119,6 +119,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
+specifier|final
 name|TreeMap
 name|mFunctionMap
 init|=
@@ -132,6 +133,7 @@ index|[]
 name|mFunctions
 decl_stmt|;
 specifier|protected
+specifier|final
 name|TreeMap
 name|mGlobalVariables
 init|=

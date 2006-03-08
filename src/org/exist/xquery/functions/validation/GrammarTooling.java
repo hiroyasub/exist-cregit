@@ -239,10 +239,12 @@ init|=
 literal|"http://www.w3.org/2001/XMLSchema"
 decl_stmt|;
 specifier|private
+specifier|final
 name|Validator
 name|validator
 decl_stmt|;
 specifier|private
+specifier|final
 name|BrokerPool
 name|brokerPool
 decl_stmt|;

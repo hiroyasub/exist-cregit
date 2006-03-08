@@ -149,14 +149,17 @@ extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|expression
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|requiredType
 decl_stmt|;
 specifier|private
+specifier|final
 name|Error
 name|error
 decl_stmt|;

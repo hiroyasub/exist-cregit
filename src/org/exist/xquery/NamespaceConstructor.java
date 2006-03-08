@@ -104,11 +104,10 @@ name|NamespaceConstructor
 extends|extends
 name|NodeConstructor
 block|{
+specifier|final
 specifier|private
 name|String
 name|prefix
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|Expression

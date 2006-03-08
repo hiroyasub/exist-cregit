@@ -93,6 +93,7 @@ extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+specifier|final
 name|String
 name|qname
 decl_stmt|;

@@ -123,6 +123,7 @@ extends|extends
 name|BinaryOp
 block|{
 specifier|private
+specifier|final
 name|int
 name|relation
 decl_stmt|;

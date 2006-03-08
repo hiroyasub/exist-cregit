@@ -79,10 +79,12 @@ init|=
 literal|4
 decl_stmt|;
 specifier|private
+specifier|final
 name|XQueryContext
 name|context
 decl_stmt|;
 specifier|private
+specifier|final
 name|Expression
 name|expression
 decl_stmt|;

@@ -93,14 +93,17 @@ extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|testExpr
 decl_stmt|;
 specifier|private
+specifier|final
 name|Expression
 name|thenExpr
 decl_stmt|;
 specifier|private
+specifier|final
 name|Expression
 name|elseExpr
 decl_stmt|;

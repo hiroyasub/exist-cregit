@@ -153,6 +153,7 @@ extends|extends
 name|BinaryOp
 block|{
 specifier|protected
+specifier|final
 name|int
 name|operator
 decl_stmt|;

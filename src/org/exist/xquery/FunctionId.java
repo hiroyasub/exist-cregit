@@ -36,10 +36,12 @@ name|FunctionId
 implements|implements
 name|Comparable
 block|{
+specifier|final
 specifier|private
 name|QName
 name|qname
 decl_stmt|;
+specifier|final
 specifier|private
 name|int
 name|argCount

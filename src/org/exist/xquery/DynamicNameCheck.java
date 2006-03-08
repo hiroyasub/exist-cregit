@@ -132,10 +132,12 @@ name|DynamicNameCheck
 extends|extends
 name|AbstractExpression
 block|{
+specifier|final
 specifier|private
 name|NameTest
 name|test
 decl_stmt|;
+specifier|final
 specifier|private
 name|Expression
 name|expression

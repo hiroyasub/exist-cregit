@@ -57,6 +57,7 @@ implements|implements
 name|NodeSelector
 block|{
 specifier|private
+specifier|final
 name|NodeSet
 name|ancestors
 decl_stmt|;

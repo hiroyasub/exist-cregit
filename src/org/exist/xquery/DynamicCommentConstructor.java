@@ -104,6 +104,7 @@ name|DynamicCommentConstructor
 extends|extends
 name|NodeConstructor
 block|{
+specifier|final
 specifier|private
 name|Expression
 name|content

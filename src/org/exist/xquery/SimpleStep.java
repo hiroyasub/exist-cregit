@@ -77,6 +77,7 @@ extends|extends
 name|Step
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|expression
 decl_stmt|;

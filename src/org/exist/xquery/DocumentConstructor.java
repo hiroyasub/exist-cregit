@@ -143,6 +143,7 @@ extends|extends
 name|NodeConstructor
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|content
 decl_stmt|;

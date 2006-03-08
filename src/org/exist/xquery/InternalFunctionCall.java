@@ -161,6 +161,7 @@ extends|extends
 name|Function
 block|{
 specifier|private
+specifier|final
 name|Function
 name|function
 decl_stmt|;

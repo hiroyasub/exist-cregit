@@ -138,9 +138,11 @@ name|AttributeConstructor
 extends|extends
 name|NodeConstructor
 block|{
+specifier|final
 name|String
 name|qname
 decl_stmt|;
+specifier|final
 name|List
 name|contents
 init|=

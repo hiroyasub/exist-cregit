@@ -116,6 +116,7 @@ block|}
 return|;
 block|}
 specifier|private
+specifier|final
 name|QName
 name|name
 decl_stmt|;

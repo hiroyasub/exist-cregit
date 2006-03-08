@@ -79,6 +79,7 @@ extends|extends
 name|XQueryContext
 block|{
 specifier|private
+specifier|final
 name|XQueryContext
 name|parentContext
 decl_stmt|;

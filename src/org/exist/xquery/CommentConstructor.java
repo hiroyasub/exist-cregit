@@ -99,10 +99,9 @@ extends|extends
 name|NodeConstructor
 block|{
 specifier|private
+specifier|final
 name|String
 name|data
-init|=
-literal|null
 decl_stmt|;
 specifier|public
 name|CommentConstructor

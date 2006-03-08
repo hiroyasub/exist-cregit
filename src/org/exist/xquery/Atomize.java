@@ -135,6 +135,7 @@ extends|extends
 name|AbstractExpression
 block|{
 specifier|private
+specifier|final
 name|Expression
 name|expression
 decl_stmt|;

@@ -129,6 +129,7 @@ init|=
 literal|"S03"
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|errCode
 decl_stmt|;

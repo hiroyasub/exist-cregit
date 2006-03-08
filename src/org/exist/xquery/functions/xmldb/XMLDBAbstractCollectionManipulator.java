@@ -196,6 +196,7 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|private
+specifier|final
 name|boolean
 name|errorIfAbsent
 decl_stmt|;

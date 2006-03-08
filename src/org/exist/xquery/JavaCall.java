@@ -201,6 +201,7 @@ extends|extends
 name|Function
 block|{
 specifier|private
+specifier|final
 name|QName
 name|qname
 decl_stmt|;

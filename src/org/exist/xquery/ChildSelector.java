@@ -61,10 +61,12 @@ implements|implements
 name|NodeSelector
 block|{
 specifier|private
+specifier|final
 name|NodeSet
 name|context
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|contextId
 decl_stmt|;

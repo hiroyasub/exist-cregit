@@ -245,10 +245,12 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|private
+specifier|final
 name|Validator
 name|validator
 decl_stmt|;
 specifier|private
+specifier|final
 name|BrokerPool
 name|brokerPool
 decl_stmt|;

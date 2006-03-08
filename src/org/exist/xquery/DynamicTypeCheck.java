@@ -146,10 +146,12 @@ name|DynamicTypeCheck
 extends|extends
 name|AbstractExpression
 block|{
+specifier|final
 specifier|private
 name|Expression
 name|expression
 decl_stmt|;
+specifier|final
 specifier|private
 name|int
 name|requiredType

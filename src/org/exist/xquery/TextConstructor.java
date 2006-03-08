@@ -117,10 +117,9 @@ extends|extends
 name|NodeConstructor
 block|{
 specifier|private
+specifier|final
 name|String
 name|text
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|boolean

@@ -151,6 +151,7 @@ init|=
 literal|"\\s*([\\w\\.-]+)\\s*=\\s*('[^']*'|\"[^\"]*\"|[^\\s]+)"
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
 name|Pattern
 name|pattern
@@ -163,6 +164,7 @@ name|paramPattern
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
 name|Matcher
 name|matcher
@@ -175,10 +177,12 @@ literal|""
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|QName
 name|qname
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|contents
 decl_stmt|;

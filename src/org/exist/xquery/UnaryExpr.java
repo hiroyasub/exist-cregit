@@ -95,6 +95,7 @@ extends|extends
 name|PathExpr
 block|{
 specifier|private
+specifier|final
 name|int
 name|mode
 decl_stmt|;
