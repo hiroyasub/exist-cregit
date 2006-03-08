@@ -730,13 +730,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|XPathException
+name|LOG
+operator|.
+name|warn
 argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
 literal|"Could not store file "
 operator|+
 name|files
@@ -756,7 +753,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
