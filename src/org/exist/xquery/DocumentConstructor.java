@@ -757,6 +757,22 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|resetState
+parameter_list|()
+block|{
+name|super
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+name|content
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -1433,6 +1433,11 @@ operator|.
 name|resetState
 argument_list|()
 expr_stmt|;
+name|qnameExpr
+operator|.
+name|resetState
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|content
