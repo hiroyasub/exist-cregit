@@ -177,6 +177,12 @@ name|arguments
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|boolean
+name|analyzed
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|FunctionCall
 parameter_list|(
@@ -414,6 +420,12 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|analyzed
+condition|)
+block|{
 name|super
 operator|.
 name|analyze
@@ -428,6 +440,11 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+name|analyzed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Called by {@link XQueryContext} to resolve a call to a function that has not      * yet been declared. XQueryContext remembers all calls to undeclared functions      * and tries to resolve them after parsing has completed.      *       * @param functionDef      * @throws XPathException      */
 specifier|public
