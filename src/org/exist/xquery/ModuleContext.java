@@ -55,6 +55,18 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|UpdateListener
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
 end_comment
@@ -278,6 +290,29 @@ operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|registerUpdateListener
+parameter_list|(
+name|UpdateListener
+name|listener
+parameter_list|)
+block|{
+name|parentContext
+operator|.
+name|registerUpdateListener
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|clearUpdateListeners
+parameter_list|()
+block|{
+comment|// will be cleared by the parent context
 block|}
 block|}
 end_class
