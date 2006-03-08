@@ -5981,6 +5981,12 @@ name|void
 name|clearUpdateListeners
 parameter_list|()
 block|{
+if|if
+condition|(
+name|updateListener
+operator|!=
+literal|null
+condition|)
 name|broker
 operator|.
 name|getBrokerPool
