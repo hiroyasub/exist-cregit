@@ -796,6 +796,14 @@ name|contextDocs
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+name|var
+operator|.
+name|setContextDocs
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// Check if we can speed up the processing of the "order by" clause.
 name|boolean
 name|fastOrderBy
