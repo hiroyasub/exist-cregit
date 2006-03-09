@@ -439,7 +439,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a, using grannab $b, return a simple report."
+literal|"Validate document specified by $a, using grammar $b, return a simple report."
 argument_list|,
 operator|new
 name|SequenceType
