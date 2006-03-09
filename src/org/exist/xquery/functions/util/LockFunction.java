@@ -126,10 +126,9 @@ extends|extends
 name|Function
 block|{
 specifier|protected
+specifier|final
 name|boolean
 name|exclusive
-init|=
-literal|false
 decl_stmt|;
 specifier|protected
 name|LockFunction

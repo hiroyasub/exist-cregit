@@ -81,6 +81,7 @@ extends|extends
 name|TypeTest
 block|{
 specifier|protected
+specifier|final
 name|QName
 name|nodeName
 decl_stmt|;

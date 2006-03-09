@@ -96,10 +96,12 @@ name|FilteredExpression
 extends|extends
 name|AbstractExpression
 block|{
+specifier|final
 specifier|protected
 name|Expression
 name|expression
 decl_stmt|;
+specifier|final
 specifier|protected
 name|List
 name|predicates

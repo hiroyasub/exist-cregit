@@ -652,6 +652,7 @@ name|prefixes
 decl_stmt|;
 comment|// Local prefix/namespace mappings in the current context
 specifier|protected
+specifier|final
 name|HashMap
 name|inScopePrefixes
 init|=
@@ -661,6 +662,7 @@ argument_list|()
 decl_stmt|;
 comment|// Local namespace stack
 specifier|protected
+specifier|final
 name|Stack
 name|namespaceStack
 init|=
@@ -670,6 +672,7 @@ argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
 specifier|protected
+specifier|final
 name|TreeMap
 name|declaredFunctions
 init|=
@@ -679,6 +682,7 @@ argument_list|()
 decl_stmt|;
 comment|// Globally declared variables
 specifier|protected
+specifier|final
 name|TreeMap
 name|globalVariables
 init|=
@@ -694,6 +698,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
+specifier|final
 name|Stack
 name|contextStack
 init|=
@@ -710,6 +715,7 @@ literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
 specifier|protected
+specifier|final
 name|Stack
 name|forwardReferences
 init|=
@@ -731,6 +737,7 @@ name|watchdog
 decl_stmt|;
 comment|/** 	 * Loaded modules. 	 */
 specifier|protected
+specifier|final
 name|HashMap
 name|modules
 init|=

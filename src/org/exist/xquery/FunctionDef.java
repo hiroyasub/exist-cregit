@@ -23,10 +23,12 @@ class|class
 name|FunctionDef
 block|{
 specifier|protected
+specifier|final
 name|FunctionSignature
 name|signature
 decl_stmt|;
 specifier|protected
+specifier|final
 name|Class
 name|implementingClass
 decl_stmt|;

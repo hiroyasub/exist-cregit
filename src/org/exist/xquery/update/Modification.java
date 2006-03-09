@@ -429,10 +429,12 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
+specifier|final
 name|Expression
 name|select
 decl_stmt|;
 specifier|protected
+specifier|final
 name|Expression
 name|value
 decl_stmt|;

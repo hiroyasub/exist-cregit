@@ -79,10 +79,12 @@ name|CombiningExpression
 extends|extends
 name|AbstractExpression
 block|{
+specifier|final
 specifier|protected
 name|PathExpr
 name|left
 decl_stmt|;
+specifier|final
 specifier|protected
 name|PathExpr
 name|right

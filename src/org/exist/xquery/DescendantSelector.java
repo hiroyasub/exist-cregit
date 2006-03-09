@@ -60,10 +60,12 @@ name|DescendantSelector
 implements|implements
 name|NodeSelector
 block|{
+specifier|final
 specifier|protected
 name|NodeSet
 name|context
 decl_stmt|;
+specifier|final
 specifier|protected
 name|int
 name|contextId
