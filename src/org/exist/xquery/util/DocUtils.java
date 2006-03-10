@@ -287,27 +287,9 @@ class|class
 name|DocUtils
 block|{
 comment|//TODO : improve caching mechanism
-specifier|private
-specifier|static
-name|Sequence
-name|currentDocument
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|NodeProxy
-name|cachedNode
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|cachedPath
-init|=
-literal|null
-decl_stmt|;
+comment|//private static Sequence currentDocument = null;
+comment|//	private static NodeProxy cachedNode = null;
+comment|//	private static String cachedPath = null;
 specifier|public
 specifier|static
 name|Sequence
@@ -324,15 +306,13 @@ name|XPathException
 throws|,
 name|PermissionDeniedException
 block|{
-name|setDocumentPath
+return|return
+name|getDocumentByPath
 argument_list|(
 name|context
 argument_list|,
 name|path
 argument_list|)
-expr_stmt|;
-return|return
-name|currentDocument
 return|;
 block|}
 specifier|public
@@ -351,20 +331,23 @@ name|XPathException
 block|{
 try|try
 block|{
-name|setDocumentPath
+name|Sequence
+name|seq
+init|=
+name|getDocumentByPath
 argument_list|(
 name|context
 argument_list|,
 name|path
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 operator|(
-name|currentDocument
+name|seq
 operator|!=
 literal|null
 operator|&&
-name|currentDocument
+name|seq
 operator|.
 name|effectiveBooleanValue
 argument_list|()
@@ -384,8 +367,8 @@ block|}
 block|}
 specifier|private
 specifier|static
-name|void
-name|setDocumentPath
+name|Sequence
+name|getDocumentByPath
 parameter_list|(
 name|XQueryContext
 name|context
@@ -398,12 +381,13 @@ name|XPathException
 throws|,
 name|PermissionDeniedException
 block|{
-name|currentDocument
-operator|=
+name|Sequence
+name|document
+init|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
-expr_stmt|;
+decl_stmt|;
 comment|//URLs
 if|if
 condition|(
@@ -581,11 +565,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-name|cachedPath
-operator|=
-name|path
-expr_stmt|;
-name|currentDocument
+name|document
 operator|=
 name|memtreeDoc
 expr_stmt|;
@@ -710,78 +690,18 @@ literal|null
 decl_stmt|;
 comment|// if the expression occurs in a nested context, we might have cached the
 comment|// document set
-if|if
-condition|(
-name|path
-operator|.
-name|equals
-argument_list|(
-name|cachedPath
-argument_list|)
-operator|&&
-name|cachedNode
-operator|!=
-literal|null
-condition|)
-block|{
-name|dlock
-operator|=
-name|cachedNode
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getUpdateLock
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-comment|// wait for pending updates by acquiring a lock
-name|dlock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-name|currentDocument
-operator|=
-name|cachedNode
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Failed to acquire lock on document "
-operator|+
-name|path
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-finally|finally
-block|{
-name|dlock
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//			if (path.equals(cachedPath)&& cachedNode != null) {
+comment|//				dlock = cachedNode.getDocument().getUpdateLock();
+comment|//				try {
+comment|//					// wait for pending updates by acquiring a lock
+comment|//					dlock.acquire(Lock.READ_LOCK);
+comment|//					currentDocument =  cachedNode;
+comment|//				} catch (LockException e) {
+comment|//					throw new XPathException("Failed to acquire lock on document " + path, e);
+comment|//				} finally {
+comment|//					dlock.release(Lock.READ_LOCK);
+comment|//				}
+comment|//			}
 name|DocumentImpl
 name|doc
 init|=
@@ -859,18 +779,6 @@ name|path
 argument_list|)
 throw|;
 block|}
-name|cachedPath
-operator|=
-name|path
-expr_stmt|;
-name|cachedNode
-operator|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|lockOnLoad
@@ -888,9 +796,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-name|currentDocument
+name|document
 operator|=
-name|cachedNode
+operator|new
+name|NodeProxy
+argument_list|(
+name|doc
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -930,6 +842,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+return|return
+name|document
+return|;
 block|}
 block|}
 end_class
