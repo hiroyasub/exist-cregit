@@ -197,6 +197,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|DocumentUpdateTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|//		suite.addTestSuite(XQueryUseCasesTest.class);
 comment|//$JUnit-END$
 return|return
