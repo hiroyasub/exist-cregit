@@ -181,7 +181,7 @@ init|=
 operator|new
 name|URL
 argument_list|(
-literal|"http://admin:@localhost:8080/exist/servlet"
+literal|"http://admin:@localhost:8080/exist/rest"
 operator|+
 name|DBBroker
 operator|.
