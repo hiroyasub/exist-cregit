@@ -107,21 +107,6 @@ name|UpdateListener
 name|listener
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|hashCode
-argument_list|()
-operator|+
-literal|" adding listener: "
-operator|+
-name|listener
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|put
 argument_list|(
 name|listener
@@ -130,9 +115,6 @@ operator|new
 name|Object
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|debug
-argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	 * Unsubscribe an {@link UpdateListener}. 	 *  	 * @param listener 	 */
@@ -145,9 +127,6 @@ name|UpdateListener
 name|listener
 parameter_list|)
 block|{
-name|debug
-argument_list|()
-expr_stmt|;
 name|Object
 name|i
 init|=
@@ -177,19 +156,6 @@ name|hashCode
 argument_list|()
 argument_list|)
 throw|;
-else|else
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Removed listener: "
-operator|+
-name|listener
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** 	 * Notify all subscribers that a document has been updated/removed or 	 * a new document has been added. 	 *  	 * @param document 	 * @param event 	 */
 specifier|public
