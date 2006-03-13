@@ -286,10 +286,6 @@ specifier|public
 class|class
 name|DocUtils
 block|{
-comment|//TODO : improve caching mechanism
-comment|//private static Sequence currentDocument = null;
-comment|//	private static NodeProxy cachedNode = null;
-comment|//	private static String cachedPath = null;
 specifier|public
 specifier|static
 name|Sequence
@@ -683,25 +679,6 @@ operator|.
 name|lockDocumentsOnLoad
 argument_list|()
 decl_stmt|;
-name|Lock
-name|dlock
-init|=
-literal|null
-decl_stmt|;
-comment|// if the expression occurs in a nested context, we might have cached the
-comment|// document set
-comment|//			if (path.equals(cachedPath)&& cachedNode != null) {
-comment|//				dlock = cachedNode.getDocument().getUpdateLock();
-comment|//				try {
-comment|//					// wait for pending updates by acquiring a lock
-comment|//					dlock.acquire(Lock.READ_LOCK);
-comment|//					currentDocument =  cachedNode;
-comment|//				} catch (LockException e) {
-comment|//					throw new XPathException("Failed to acquire lock on document " + path, e);
-comment|//				} finally {
-comment|//					dlock.release(Lock.READ_LOCK);
-comment|//				}
-comment|//			}
 name|DocumentImpl
 name|doc
 init|=

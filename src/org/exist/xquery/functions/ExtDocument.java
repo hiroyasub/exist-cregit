@@ -1129,13 +1129,6 @@ name|int
 name|event
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Doc updated"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|event
@@ -1222,13 +1215,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Update listener"
-argument_list|)
 expr_stmt|;
 name|context
 operator|.

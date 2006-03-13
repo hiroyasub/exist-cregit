@@ -23,6 +23,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|textui
+operator|.
+name|TestRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -203,9 +213,11 @@ literal|"let $col := xdb:create-collection('/db', 'testup')\n"
 operator|+
 literal|"let $path := '/db/testup/test1.xml'\n"
 operator|+
+literal|"let $doc := xdb:store($col, 'test1.xml',<test><n>1</n></test>)\n"
+operator|+
 literal|"let $d1 := local:get-doc($path)\n"
 operator|+
-literal|"let $doc := xdb:store($col, 'test1.xml',<test><n>1</n></test>)\n"
+literal|"let $remove := xdb:remove('/db/testup', 'test1.xml')\n"
 operator|+
 literal|"return string-join((count(local:get-doc($path)), doc-available($path)), ' ')"
 decl_stmt|;
@@ -221,7 +233,7 @@ name|assertEquals
 argument_list|(
 name|result
 argument_list|,
-literal|"1 true"
+literal|"0 false"
 argument_list|)
 expr_stmt|;
 name|System
@@ -675,6 +687,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+specifier|static
+name|void
+name|main
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|)
+block|{
+name|TestRunner
+operator|.
+name|run
+argument_list|(
+name|DocumentUpdateTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
