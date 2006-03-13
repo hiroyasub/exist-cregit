@@ -817,7 +817,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|2
+literal|3
 decl_stmt|;
 comment|// page types
 specifier|public
