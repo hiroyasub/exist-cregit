@@ -1104,6 +1104,12 @@ operator|==
 name|UpdateListener
 operator|.
 name|ADD
+operator|||
+name|event
+operator|==
+name|UpdateListener
+operator|.
+name|REMOVE
 condition|)
 block|{
 comment|// clear all
