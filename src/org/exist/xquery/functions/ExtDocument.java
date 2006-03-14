@@ -569,32 +569,9 @@ name|docs
 operator|=
 name|cachedDocs
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Returning cached document set"
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|hashCode
-argument_list|()
-operator|+
-literal|": cached: "
-operator|+
-operator|(
-name|cached
-operator|!=
-literal|null
-operator|)
-argument_list|)
-expr_stmt|;
 name|docs
 operator|=
 operator|new
@@ -670,15 +647,6 @@ operator|+
 literal|"/"
 operator|+
 name|next
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Loading document: "
-operator|+
-name|next
-argument_list|)
 expr_stmt|;
 try|try
 block|{
