@@ -219,7 +219,11 @@ argument_list|)
 argument_list|,
 literal|"Returns the HTTP request parameter identified by $a. If the parameter could not be found, "
 operator|+
-literal|"the default value specified in $b is returned instead."
+literal|"the default value specified in $b is returned instead. Note: this function will not try to expand "
+operator|+
+literal|"predefined entities like&amp; or&lt;, so a&amp; passed through a parameter will indeed "
+operator|+
+literal|"be treated as an&amp; character."
 argument_list|,
 operator|new
 name|SequenceType
@@ -443,6 +447,8 @@ literal|0
 index|]
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 return|;
 else|else
@@ -454,6 +460,8 @@ argument_list|(
 name|values
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
