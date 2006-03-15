@@ -858,13 +858,6 @@ operator|(
 name|nsURI
 operator|==
 literal|null
-operator|||
-name|nsURI
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
 operator|)
 operator|&&
 operator|(
