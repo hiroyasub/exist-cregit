@@ -794,6 +794,13 @@ decl_stmt|;
 name|String
 name|uri
 decl_stmt|;
+if|if
+condition|(
+name|attribs
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -1001,6 +1008,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 name|Map
 operator|.
 name|Entry
@@ -1073,9 +1081,10 @@ name|declarePrefix
 argument_list|(
 name|prefix
 argument_list|,
-name|namespaceURI
+name|uri
 argument_list|)
 expr_stmt|;
+comment|//nsSupport.declarePrefix(prefix, namespaceURI);
 block|}
 comment|// output all namespace declarations
 for|for
