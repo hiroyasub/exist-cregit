@@ -1099,6 +1099,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|document
+operator|==
+literal|null
+operator|||
 name|event
 operator|==
 name|UpdateListener
