@@ -202,7 +202,7 @@ name|Remove
 extends|extends
 name|Modification
 block|{
-comment|/**      * Constructor for Remove.      *       * @param pool      * @param user      * @param selectStmt      */
+comment|/** 	 * Constructor for Remove. 	 *  	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
 specifier|public
 name|Remove
 parameter_list|(
@@ -236,7 +236,7 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet)      */
+comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet) 	 */
 specifier|public
 name|long
 name|process
@@ -358,7 +358,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"permission to remove document denied"
+literal|"permission to update document denied"
 argument_list|)
 throw|;
 name|doc
@@ -501,7 +501,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see org.exist.xupdate.Modification#getName()      */
+comment|/** 	 * @see org.exist.xupdate.Modification#getName() 	 */
 specifier|public
 name|String
 name|getName

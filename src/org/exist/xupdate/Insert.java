@@ -475,7 +475,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"permission to remove document denied"
+literal|"permission to update document denied"
 argument_list|)
 throw|;
 name|modifiedDocs

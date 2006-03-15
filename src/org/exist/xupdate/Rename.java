@@ -441,7 +441,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"permission denied to update document"
+literal|"permission to update document denied"
 argument_list|)
 throw|;
 name|doc
