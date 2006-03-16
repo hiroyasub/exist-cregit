@@ -408,6 +408,10 @@ name|writer
 operator|=
 literal|null
 expr_stmt|;
+name|defaultNamespace
+operator|=
+literal|""
+expr_stmt|;
 block|}
 comment|/** 	 * Set a new writer. Calling this method will reset the state of the object. 	 *  	 * @param writer 	 */
 specifier|public
@@ -436,6 +440,10 @@ name|declarationWritten
 operator|=
 literal|false
 expr_stmt|;
+name|defaultNamespace
+operator|=
+literal|""
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -459,6 +467,10 @@ expr_stmt|;
 name|doctypeWritten
 operator|=
 literal|false
+expr_stmt|;
+name|defaultNamespace
+operator|=
+literal|""
 expr_stmt|;
 block|}
 specifier|public
