@@ -700,6 +700,15 @@ block|{
 if|if
 condition|(
 name|cachedPath
+operator|!=
+literal|null
+operator|&&
+operator|(
+name|document
+operator|==
+literal|null
+operator|||
+name|cachedPath
 operator|.
 name|equals
 argument_list|(
@@ -708,6 +717,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+operator|)
 condition|)
 block|{
 name|cached
