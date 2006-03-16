@@ -2219,6 +2219,28 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// wait 200 milliseconds before sending next request
+try|try
+block|{
+name|wait
+argument_list|(
+literal|200
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+block|}
+block|}
 comment|//break out of this inner while loop, i.e. next record
 break|break;
 block|}
