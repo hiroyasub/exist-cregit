@@ -41,6 +41,46 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringBufferInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -202,7 +242,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A wrapper for HttpServletRequest  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.1  */
+comment|/** A wrapper for HttpServletRequest  * - differentiates between POST parameters in the URL or Content Body  * - keeps content Body of the POST request, making it available many times   * 		through {@link #getStringBufferInputStream()} .  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.1  */
 end_comment
 
 begin_comment
@@ -220,7 +260,7 @@ name|HttpServletRequestWrapper
 implements|implements
 name|HttpServletRequest
 block|{
-comment|//Simple Enumeration implementation for String's, needed for getParameterNames()
+comment|/** Simple Enumeration implementation for String's, needed for getParameterNames() */
 specifier|private
 class|class
 name|StringEnumeration
@@ -403,7 +443,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|//Simple class to hold the value and type of a request parameter
+comment|/** Simple class to hold the value and type of a request parameter */
 specifier|private
 class|class
 name|RequestParamater
@@ -496,23 +536,26 @@ init|=
 literal|null
 decl_stmt|;
 comment|//The Request
+comment|/** The encoding for the Request */
 specifier|private
 name|String
 name|formEncoding
 init|=
 literal|null
 decl_stmt|;
-comment|//The encoding for the Request
+comment|/** The Request Parameters 	 *  	 * params LinkedHashMap 	 * ==================== 	 * params keys are String 	 * params values are Vector of RequestParameter's 	 */
 specifier|private
 name|LinkedHashMap
 name|params
 init|=
 literal|null
 decl_stmt|;
-comment|//The Request Parameters
-comment|/* params LinkedHashMap 	 * ==================== 	 * params keys are String 	 * params values are Vector of RequestParameter's 	 */
+comment|/** the content Body of the POST request;  	 * it must be stored because once the Servlet input stream has been  	 * consumed, the content Body is no more readable. */
+specifier|private
+name|String
+name|contentBody
+decl_stmt|;
 comment|/** 	 * HttpServletRequestWrapper Constructor 	 * @param request		The HttpServletRequest to wrap 	 * @param formEncoding		The encoding to use 	 */
-comment|//Constructor
 specifier|public
 name|HttpServletRequestWrapper
 parameter_list|(
@@ -621,9 +664,10 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//If a form POST and not a document POST
-if|if
-condition|(
+comment|// If a form POST , and not a document POST
+name|String
+name|contentType
+init|=
 name|request
 operator|.
 name|getContentType
@@ -631,6 +675,10 @@ argument_list|()
 operator|.
 name|toLowerCase
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|contentType
 operator|.
 name|equals
 argument_list|(
@@ -649,6 +697,23 @@ condition|)
 block|{
 comment|//Parse out parameters from the Content Body
 name|parseContentBodyParameters
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|contentType
+operator|.
+name|equals
+argument_list|(
+literal|"text/xml"
+argument_list|)
+condition|)
+block|{
+comment|// if an XML-RPC
+name|contentBody
+operator|=
+name|getContentBody
 argument_list|()
 expr_stmt|;
 block|}
@@ -683,10 +748,32 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//Stores parameters from the Content Body of the Request
+comment|/** Stores parameters from the Content Body of the Request */
 specifier|private
 name|void
 name|parseContentBodyParameters
+parameter_list|()
+block|{
+name|String
+name|content
+init|=
+name|getContentBody
+argument_list|()
+decl_stmt|;
+comment|//Parse any parameters from the Content Body
+name|parseParameters
+argument_list|(
+name|content
+argument_list|,
+name|RequestParamater
+operator|.
+name|PARAM_TYPE_CONTENT
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|String
+name|getContentBody
 parameter_list|()
 block|{
 comment|//Create a buffer big enough to hold the Content Body
@@ -746,28 +833,32 @@ name|ioe
 parameter_list|)
 block|{
 comment|//TODO: handle this properly
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Error Reading the Content Body into the buffer: "
+operator|+
+name|ioe
+argument_list|)
+expr_stmt|;
 name|ioe
 operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//Parse any parameters from the Content Body
-name|parseParameters
-argument_list|(
+return|return
 operator|new
 name|String
 argument_list|(
 name|content
 argument_list|)
-argument_list|,
-name|RequestParamater
-operator|.
-name|PARAM_TYPE_CONTENT
-argument_list|)
-expr_stmt|;
+return|;
 block|}
-comment|//Parses Parameters into param objects and stores them in a vector in params
+comment|/** Parses Parameters into param objects and stores them in a vector in params */
 specifier|private
 name|void
 name|parseParameters
@@ -1478,6 +1569,21 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
+specifier|public
+name|InputStream
+name|getStringBufferInputStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|StringBufferInputStream
+argument_list|(
+name|contentBody
+argument_list|)
+return|;
+block|}
 comment|/** 	 * get the value of a Request parameter by its name from the local parameter store 	 * @param name		The name of the Request parameter to get the value for 	 * @return		The value of the Request parameter with the specified name 	 */
 specifier|public
 name|String
@@ -2102,16 +2208,16 @@ name|getLocalPort
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Similar to javax.servlet.http.HttpServletRequest.toString() except it includes output of the Request parameters from the Request's Content Body 	 * @return		String representation of HttpServletRequestWrapper 	 */
+comment|/** 	 * Similar to javax.servlet.http.HttpServletRequest.toString() , 	 * except it includes output of the Request parameters from the Request's Content Body 	 * @return		String representation of HttpServletRequestWrapper 	 */
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
-comment|//If POST request AND there is some content AND its not a file upload
+comment|// If POST request AND there is some content AND its not a file upload
+comment|// 	AND content Body has not been recorded
 if|if
 condition|(
-operator|(
 name|request
 operator|.
 name|getMethod
@@ -2124,18 +2230,14 @@ name|equals
 argument_list|(
 literal|"POST"
 argument_list|)
-operator|)
 operator|&&
-operator|(
 name|request
 operator|.
 name|getContentLength
 argument_list|()
 operator|>
 literal|0
-operator|)
 operator|&&
-operator|(
 operator|!
 name|request
 operator|.
@@ -2149,10 +2251,14 @@ name|startsWith
 argument_list|(
 literal|"MULTIPART/"
 argument_list|)
-operator|)
+operator|&&
+name|contentBody
+operator|==
+literal|null
 condition|)
 block|{
-comment|//Also return the content parameters, these are not part of the standard HttpServletRequest.toString() output
+comment|// Also return the content parameters, these are not part
+comment|// of the standard HttpServletRequest.toString() output
 name|StringBuffer
 name|buf
 init|=
@@ -2311,6 +2417,59 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|buf
+operator|.
+name|append
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|buf
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+if|else if
+condition|(
+name|contentBody
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// XML-RPC request or plain XML REST POST
+name|StringBuffer
+name|buf
+init|=
+operator|new
+name|StringBuffer
+argument_list|(
+name|request
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|contentBody
+argument_list|)
+expr_stmt|;
 name|buf
 operator|.
 name|append
