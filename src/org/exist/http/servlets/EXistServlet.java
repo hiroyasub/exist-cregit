@@ -173,6 +173,18 @@ name|exist
 operator|.
 name|http
 operator|.
+name|Descriptor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
 name|NotFoundException
 import|;
 end_import
@@ -738,6 +750,44 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//first, adjust the path
+name|String
+name|path
+init|=
+name|adjustPath
+argument_list|(
+name|request
+argument_list|)
+decl_stmt|;
+comment|//second, perform descriptor actions
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//TODO: figure out a way to log PUT requests with HttpServletRequestWrapper and Descriptor.doLogRequestInReplayLog()
+comment|//map's the path if a mapping is specified in the descriptor
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|//third, authenticate the user
 name|User
 name|user
 init|=
@@ -766,14 +816,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|String
-name|path
-init|=
-name|adjustPath
-argument_list|(
-name|request
-argument_list|)
-decl_stmt|;
+comment|//fourth, process the request
 name|ServletInputStream
 name|is
 init|=
@@ -1052,6 +1095,51 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//first, adjust the path
+name|String
+name|path
+init|=
+name|adjustPath
+argument_list|(
+name|request
+argument_list|)
+decl_stmt|;
+comment|//second, perform descriptor actions
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|//third, authenticate the user
 name|User
 name|user
 init|=
@@ -1082,14 +1170,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|String
-name|path
-init|=
-name|adjustPath
-argument_list|(
-name|request
-argument_list|)
-decl_stmt|;
+comment|//fouth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -1230,6 +1311,51 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//first, adjust the path
+name|String
+name|path
+init|=
+name|adjustPath
+argument_list|(
+name|request
+argument_list|)
+decl_stmt|;
+comment|//second, perform descriptor actions
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|//third, authenticate the user
 name|User
 name|user
 init|=
@@ -1260,14 +1386,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|String
-name|path
-init|=
-name|adjustPath
-argument_list|(
-name|request
-argument_list|)
-decl_stmt|;
+comment|//fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -1409,6 +1528,43 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|//first, adjust the path
+name|String
+name|path
+init|=
+name|adjustPath
+argument_list|(
+name|request
+argument_list|)
+decl_stmt|;
+comment|//second, perform descriptor actions
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//map's the path if a mapping is specified in the descriptor
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|//third, authenticate the user
 name|User
 name|user
 init|=
@@ -1439,14 +1595,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|String
-name|path
-init|=
-name|adjustPath
-argument_list|(
-name|request
-argument_list|)
-decl_stmt|;
+comment|//fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -1565,10 +1714,31 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|//Wrap HttpServletRequest, for better access to POST parameters from Content and URL - deliriumsky
-name|HttpServletRequestWrapper
+name|HttpServletRequest
 name|request
 init|=
+literal|null
+decl_stmt|;
+comment|//For POST request, If we are logging the requests we must wrap HttpServletRequest in HttpServletRequestWrapper
+comment|//otherwise we cannot access the POST parameters from the content body of the request!!! - deliriumsky
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|.
+name|allowRequestLogging
+argument_list|()
+condition|)
+block|{
+name|request
+operator|=
 operator|new
 name|HttpServletRequestWrapper
 argument_list|(
@@ -1576,7 +1746,74 @@ name|req
 argument_list|,
 name|formEncoding
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|request
+operator|=
+name|req
+expr_stmt|;
+block|}
+comment|//first, adjust the path
+name|String
+name|path
+init|=
+name|request
+operator|.
+name|getPathInfo
+argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|path
+operator|==
+literal|null
+condition|)
+block|{
+name|path
+operator|=
+literal|""
+expr_stmt|;
+block|}
+else|else
+block|{
+name|path
+operator|=
+name|adjustPath
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+block|}
+comment|//second, perform descriptor actions
+if|if
+condition|(
+name|descriptor
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//logs the request if specified in the descriptor
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+comment|//map's the path if a mapping is specified in the descriptor
+name|path
+operator|=
+name|descriptor
+operator|.
+name|mapPath
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
+block|}
+comment|//third, authenticate the user
 name|User
 name|user
 init|=
@@ -1607,34 +1844,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|String
-name|path
-init|=
-name|request
-operator|.
-name|getPathInfo
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|path
-operator|==
-literal|null
-condition|)
-name|path
-operator|=
-literal|""
-expr_stmt|;
-else|else
-block|{
-name|path
-operator|=
-name|adjustPath
-argument_list|(
-name|request
-argument_list|)
-expr_stmt|;
-block|}
+comment|//fouth, process the request
 name|DBBroker
 name|broker
 init|=

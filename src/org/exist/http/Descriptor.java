@@ -39,16 +39,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileWriter
 import|;
 end_import
@@ -169,18 +159,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -274,7 +252,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.6  */
+comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  * Uses the Singleton design pattern.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.7  */
 end_comment
 
 begin_class
@@ -284,6 +262,12 @@ name|Descriptor
 implements|implements
 name|ErrorHandler
 block|{
+comment|//References
+specifier|private
+specifier|static
+name|Descriptor
+name|singletonRef
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -301,10 +285,12 @@ argument_list|)
 decl_stmt|;
 comment|//Logger
 specifier|private
+specifier|final
+specifier|static
 name|String
 name|file
 init|=
-literal|null
+literal|"descriptor.xml"
 decl_stmt|;
 comment|//descriptor file (descriptor.xml)
 comment|//Data
@@ -332,32 +318,10 @@ init|=
 literal|null
 decl_stmt|;
 comment|//Array of Mappings
-comment|/** 	 * Descriptor Constructor 	 * @param file		The descriptor file to read, defaults to descriptor.xml in the home folder 	 */
-specifier|public
+comment|/** 	 * Descriptor Constructor 	 *  	 * Class has a Singleton design pattern 	 * to get an instance, call getDescriptorSingleton() 	 */
+specifier|private
 name|Descriptor
-parameter_list|(
-name|String
-name|file
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|file
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** 	 * Descriptor Constructor 	 * @param file		The descriptor file to read, defaults to descriptor.xml in the dbHome folder 	 * @param dbHome	The home folder to find the descriptor file in, defaults to $EXIST_HOME 	 */
-specifier|public
-name|Descriptor
-parameter_list|(
-name|String
-name|file
-parameter_list|,
-name|String
-name|dbHome
-parameter_list|)
+parameter_list|()
 block|{
 try|try
 block|{
@@ -366,14 +330,7 @@ name|is
 init|=
 literal|null
 decl_stmt|;
-comment|//firstly, try to read the Descriptor from a file within the classpath
-if|if
-condition|(
-name|file
-operator|!=
-literal|null
-condition|)
-block|{
+comment|//try to read the Descriptor from a file within the classpath
 name|is
 operator|=
 name|Descriptor
@@ -399,70 +356,20 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Reading descriptor from classloader"
+literal|"Reading Descriptor from classloader"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
-block|{
-comment|//Default file name
-name|file
-operator|=
-literal|"descriptor.xml"
-expr_stmt|;
-block|}
-comment|//otherise, secondly try to read Descriptor from file. Guess the location if necessary
-if|if
-condition|(
-name|is
-operator|==
-literal|null
-condition|)
-block|{
-comment|//try and read the Descriptor file from the specified home folder
-name|File
-name|f
-init|=
-name|Configuration
-operator|.
-name|lookup
-argument_list|(
-name|file
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|f
-operator|.
-name|canRead
-argument_list|()
-condition|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"giving up unable to read descriptor file"
+literal|"Giving up unable to read Descriptor.xml file"
 argument_list|)
 expr_stmt|;
 return|return;
-block|}
-name|this
-operator|.
-name|file
-operator|=
-name|file
-expr_stmt|;
-name|is
-operator|=
-operator|new
-name|FileInputStream
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
 block|}
 comment|// initialize xml parser
 comment|// we use eXist's in-memory DOM implementation to work
@@ -706,6 +613,33 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+block|}
+specifier|public
+specifier|static
+specifier|synchronized
+name|Descriptor
+name|getDescriptorSingleton
+parameter_list|()
+block|{
+if|if
+condition|(
+name|singletonRef
+operator|==
+literal|null
+condition|)
+block|{
+name|singletonRef
+operator|=
+operator|new
+name|Descriptor
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+operator|(
+name|singletonRef
+operator|)
+return|;
 block|}
 comment|//loads<allow-source> settings from the descriptor.xml file
 specifier|private
@@ -1151,8 +1085,36 @@ name|path
 operator|)
 return|;
 block|}
-comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 *    	 * @param request		The HttpServletRequest to log. For POST requests form data will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest!   	 */
-specifier|protected
+comment|/** 	 * Determines whether it is permissible to Log Requests 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @return			The boolean value true or false indicating whether it is permissible to Log Requests   	 */
+specifier|public
+name|boolean
+name|allowRequestLogging
+parameter_list|()
+block|{
+if|if
+condition|(
+name|bufWriteReplayLog
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|(
+literal|false
+operator|)
+return|;
+block|}
+else|else
+block|{
+return|return
+operator|(
+literal|true
+operator|)
+return|;
+block|}
+block|}
+comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. For POST requests form data will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest!   	 */
+specifier|public
 specifier|synchronized
 name|void
 name|doLogRequestInReplayLog
@@ -1161,6 +1123,7 @@ name|HttpServletRequest
 name|request
 parameter_list|)
 block|{
+comment|//TOOD: add the facility to log HTTP PUT requests, may need changes to HttpServletRequestWrapper
 comment|//Only log if set by the user in descriptor.xml<xquery-app request-replay-log="true">
 if|if
 condition|(
@@ -1282,6 +1245,21 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+block|}
+comment|/**      * Thows a CloneNotSupportedException as this class uses a Singleton design pattern      */
+specifier|public
+name|Object
+name|clone
+parameter_list|()
+throws|throws
+name|CloneNotSupportedException
+block|{
+comment|//Class is a Singleton, dont allow cloning
+throw|throw
+operator|new
+name|CloneNotSupportedException
+argument_list|()
+throw|;
 block|}
 comment|/**      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
