@@ -262,6 +262,19 @@ name|Descriptor
 implements|implements
 name|ErrorHandler
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|SYSTEM_LINE_SEPARATOR
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+decl_stmt|;
 comment|//References
 specifier|private
 specifier|static
@@ -1113,7 +1126,7 @@ operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. For POST requests form data will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest!   	 */
+comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. For POST requests  	 * form data will only be logged if a HttpServletRequestWrapper is used  	 * instead of HttpServletRequest!   	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -1171,39 +1184,31 @@ name|bufWriteReplayLog
 operator|.
 name|write
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"line.separator"
-argument_list|)
+name|SYSTEM_LINE_SEPARATOR
 argument_list|)
 expr_stmt|;
 comment|//Store the request string excluding the first line
+name|String
+name|requestAsString
+init|=
+name|request
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 name|bufWriteReplayLog
 operator|.
 name|write
 argument_list|(
-name|request
-operator|.
-name|toString
-argument_list|()
+name|requestAsString
 operator|.
 name|substring
 argument_list|(
-name|request
-operator|.
-name|toString
-argument_list|()
+name|requestAsString
 operator|.
 name|indexOf
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"line.separator"
-argument_list|)
+name|SYSTEM_LINE_SEPARATOR
 argument_list|)
 operator|+
 literal|1
@@ -1215,12 +1220,7 @@ name|bufWriteReplayLog
 operator|.
 name|write
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"line.separator"
-argument_list|)
+name|SYSTEM_LINE_SEPARATOR
 argument_list|)
 expr_stmt|;
 comment|//flush the buffer to file
@@ -1240,7 +1240,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Could not write request replay log"
+literal|"Could not write request replay log: "
+operator|+
+name|ioe
 argument_list|)
 expr_stmt|;
 return|return;
