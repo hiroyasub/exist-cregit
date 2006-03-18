@@ -350,9 +350,6 @@ name|Descriptor
 operator|.
 name|class
 operator|.
-name|getClassLoader
-argument_list|()
-operator|.
 name|getResourceAsStream
 argument_list|(
 name|file
@@ -369,7 +366,15 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Reading Descriptor from classloader"
+literal|"Reading Descriptor from classloader in "
+operator|+
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getPackage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -379,7 +384,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Giving up unable to read Descriptor.xml file"
+literal|"Giving up unable to read descriptor.xml file from classloader in "
+operator|+
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getPackage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
