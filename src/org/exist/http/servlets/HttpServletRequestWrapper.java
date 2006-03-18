@@ -1613,18 +1613,21 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
+comment|//	public InputStream getStringBufferInputStream() throws IOException {
+comment|//		return new StringBufferInputStream( contentBodyAsString );
+comment|//	}
 specifier|public
 name|InputStream
-name|getStringBufferInputStream
+name|getContentBodyInputStream
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 return|return
 operator|new
-name|StringBufferInputStream
+name|ByteArrayInputStream
 argument_list|(
-name|contentBodyAsString
+name|contentBody
 argument_list|)
 return|;
 block|}
@@ -2296,9 +2299,9 @@ argument_list|(
 literal|"MULTIPART/"
 argument_list|)
 operator|&&
-name|contentBodyAsString
-operator|==
-literal|null
+operator|!
+name|contentBodyRecorded
+argument_list|()
 condition|)
 block|{
 comment|// Also return the content parameters, these are not part
@@ -2489,9 +2492,8 @@ return|;
 block|}
 if|else if
 condition|(
-name|contentBodyAsString
-operator|!=
-literal|null
+name|contentBodyRecorded
+argument_list|()
 condition|)
 block|{
 comment|// XML-RPC request or plain XML REST POST
@@ -2550,6 +2552,23 @@ name|toString
 argument_list|()
 return|;
 block|}
+block|}
+specifier|private
+name|boolean
+name|contentBodyRecorded
+parameter_list|()
+block|{
+return|return
+name|contentBody
+operator|!=
+literal|null
+operator|&&
+name|contentBody
+operator|.
+name|length
+operator|>
+literal|0
+return|;
 block|}
 block|}
 end_class

@@ -290,7 +290,7 @@ name|inputStream
 operator|=
 name|requestWrapper
 operator|.
-name|getStringBufferInputStream
+name|getContentBodyInputStream
 argument_list|()
 expr_stmt|;
 block|}
