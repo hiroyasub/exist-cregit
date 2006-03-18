@@ -39,6 +39,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|FileWriter
 import|;
 end_import
@@ -152,6 +162,18 @@ operator|.
 name|memtree
 operator|.
 name|SAXAdapter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
 import|;
 end_import
 
@@ -297,6 +319,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//Logger
+comment|/** descriptor file (descriptor.xml) */
 specifier|private
 specifier|final
 specifier|static
@@ -305,7 +328,6 @@ name|file
 init|=
 literal|"descriptor.xml"
 decl_stmt|;
-comment|//descriptor file (descriptor.xml)
 comment|//Data
 specifier|private
 name|BufferedWriter
@@ -343,7 +365,66 @@ name|is
 init|=
 literal|null
 decl_stmt|;
-comment|//try to read the Descriptor from a file within the classpath
+comment|// First, try to read Descriptor from file. Guess the location if necessary
+comment|// from the home folder.
+name|File
+name|f
+init|=
+name|Configuration
+operator|.
+name|lookup
+argument_list|(
+name|file
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|f
+operator|.
+name|canRead
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"giving up unable to read descriptor file from "
+operator|+
+name|f
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|is
+operator|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Reading Descriptor from file "
+operator|+
+name|f
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|is
+operator|==
+literal|null
+condition|)
+block|{
+comment|// otherise, secondly
+comment|// try to read the Descriptor from a file within the classpath
 name|is
 operator|=
 name|Descriptor
@@ -396,6 +477,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
+block|}
 block|}
 comment|// initialize xml parser
 comment|// we use eXist's in-memory DOM implementation to work
