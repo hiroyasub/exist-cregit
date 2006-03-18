@@ -151,6 +151,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|http
+operator|.
+name|Descriptor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|source
 operator|.
 name|FileSource
@@ -309,20 +321,6 @@ name|api
 operator|.
 name|base
 operator|.
-name|CompiledExpression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
 name|Database
 import|;
 end_import
@@ -394,6 +392,14 @@ name|XQueryServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -770,7 +776,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/** 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|process
@@ -786,6 +792,30 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|descriptor
+operator|.
+name|allowRequestLogging
+argument_list|()
+condition|)
+block|{
+name|descriptor
+operator|.
+name|doLogRequestInReplayLog
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|request
@@ -1703,96 +1733,30 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|CachedQuery
-block|{
-name|long
-name|lastModified
-decl_stmt|;
-name|String
-name|sourcePath
-decl_stmt|;
-name|CompiledExpression
-name|expression
-decl_stmt|;
-specifier|public
-name|CachedQuery
-parameter_list|(
-name|File
-name|sourceFile
-parameter_list|,
-name|CompiledExpression
-name|expression
-parameter_list|)
-block|{
-name|this
-operator|.
-name|sourcePath
-operator|=
-name|sourceFile
-operator|.
-name|getAbsolutePath
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|lastModified
-operator|=
-name|sourceFile
-operator|.
-name|lastModified
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|expression
-operator|=
-name|expression
-expr_stmt|;
-block|}
-specifier|public
-name|boolean
-name|isValid
-parameter_list|()
-block|{
-name|File
-name|f
-init|=
-operator|new
-name|File
-argument_list|(
-name|sourcePath
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|f
-operator|.
-name|lastModified
-argument_list|()
-operator|>
-name|lastModified
-condition|)
-return|return
-literal|false
-return|;
-return|return
-literal|true
-return|;
-block|}
-specifier|public
-name|CompiledExpression
-name|getExpression
-parameter_list|()
-block|{
-return|return
-name|expression
-return|;
-block|}
-block|}
+comment|// -jmvanel : never used locally
+comment|//	private static final class CachedQuery {
+comment|//
+comment|//		long lastModified;
+comment|//		String sourcePath;
+comment|//		CompiledExpression expression;
+comment|//
+comment|//		public CachedQuery(File sourceFile, CompiledExpression expression) {
+comment|//			this.sourcePath = sourceFile.getAbsolutePath();
+comment|//			this.lastModified = sourceFile.lastModified();
+comment|//			this.expression = expression;
+comment|//		}
+comment|//
+comment|//		public boolean isValid() {
+comment|//			File f = new File(sourcePath);
+comment|//			if(f.lastModified()> lastModified)
+comment|//				return false;
+comment|//			return true;
+comment|//		}
+comment|//
+comment|//		public CompiledExpression getExpression() {
+comment|//			return expression;
+comment|//		}
+comment|//	}
 block|}
 end_class
 
