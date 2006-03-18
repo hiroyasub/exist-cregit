@@ -403,7 +403,7 @@ operator|=
 operator|new
 name|FileInputStream
 argument_list|(
-name|file
+name|f
 argument_list|)
 expr_stmt|;
 name|LOG
