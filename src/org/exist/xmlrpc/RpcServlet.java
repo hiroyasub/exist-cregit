@@ -245,15 +245,10 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Request logger
 name|InputStream
 name|inputStream
-init|=
-name|request
-operator|.
-name|getInputStream
-argument_list|()
 decl_stmt|;
-comment|// Request logger
 name|Descriptor
 name|descriptor
 init|=
@@ -273,7 +268,7 @@ block|{
 comment|// Wrap HttpServletRequest, because both request Logger and xmlrpc
 comment|// need the request InputStream, which is consumed when read.
 name|HttpServletRequestWrapper
-name|request2
+name|requestWrapper
 init|=
 operator|new
 name|HttpServletRequestWrapper
@@ -288,14 +283,26 @@ name|descriptor
 operator|.
 name|doLogRequestInReplayLog
 argument_list|(
-name|request2
+name|requestWrapper
 argument_list|)
 expr_stmt|;
 name|inputStream
 operator|=
-name|request2
+name|requestWrapper
 operator|.
 name|getStringBufferInputStream
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//- Caution : this must be called AFTER HttpServletRequestWrapper,
+comment|// otherwise Web server throws IllegalStateException
+name|inputStream
+operator|=
+name|request
+operator|.
+name|getInputStream
 argument_list|()
 expr_stmt|;
 block|}
