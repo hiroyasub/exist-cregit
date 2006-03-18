@@ -31,6 +31,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|ByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -238,6 +248,22 @@ operator|.
 name|http
 operator|.
 name|HttpSession
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|tools
+operator|.
+name|ant
+operator|.
+name|filters
+operator|.
+name|StringInputStream
 import|;
 end_import
 
@@ -553,6 +579,10 @@ decl_stmt|;
 comment|/** the content Body of the POST request;  	 * it must be stored because once the Servlet input stream has been  	 * consumed, the content Body is no more readable. */
 specifier|private
 name|String
+name|contentBodyAsString
+decl_stmt|;
+name|byte
+index|[]
 name|contentBody
 decl_stmt|;
 comment|/** 	 * HttpServletRequestWrapper Constructor 	 * @param request		The HttpServletRequest to wrap 	 * @param formEncoding		The encoding to use 	 */
@@ -711,7 +741,7 @@ argument_list|)
 condition|)
 block|{
 comment|// if an XML-RPC
-name|contentBody
+name|contentBodyAsString
 operator|=
 name|getContentBody
 argument_list|()
@@ -777,54 +807,72 @@ name|getContentBody
 parameter_list|()
 block|{
 comment|//Create a buffer big enough to hold the Content Body
-name|char
-index|[]
-name|content
-init|=
+comment|//		char[] content = new char[request.getContentLength()];
+name|contentBody
+operator|=
 operator|new
-name|char
+name|byte
 index|[
 name|request
 operator|.
 name|getContentLength
 argument_list|()
 index|]
+expr_stmt|;
+name|String
+name|result
+init|=
+literal|""
 decl_stmt|;
 try|try
 block|{
-comment|//Read the Content Body into the buffer
-name|BufferedReader
-name|bufRequestBody
+name|String
+name|encoding
 init|=
-operator|new
-name|BufferedReader
-argument_list|(
-operator|new
-name|java
+name|request
 operator|.
-name|io
-operator|.
-name|InputStreamReader
-argument_list|(
+name|getCharacterEncoding
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|encoding
+operator|==
+literal|null
+condition|)
+name|encoding
+operator|=
+literal|"UTF-8"
+expr_stmt|;
+comment|//Read the Content Body into the buffer
+name|InputStream
+name|is
+init|=
 name|request
 operator|.
 name|getInputStream
 argument_list|()
-argument_list|)
-argument_list|)
 decl_stmt|;
-name|bufRequestBody
+name|is
 operator|.
 name|read
 argument_list|(
-name|content
+name|contentBody
 argument_list|)
 expr_stmt|;
-name|bufRequestBody
-operator|.
-name|close
-argument_list|()
+name|result
+operator|=
+operator|new
+name|String
+argument_list|(
+name|contentBody
+argument_list|,
+name|encoding
+argument_list|)
 expr_stmt|;
+comment|//			BufferedReader bufRequestBody = new BufferedReader(new java.io.InputStreamReader(request.getInputStream()));
+comment|//			bufRequestBody.read(content);
+comment|//			bufRequestBody.close();
 block|}
 catch|catch
 parameter_list|(
@@ -851,11 +899,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|String
-argument_list|(
-name|content
-argument_list|)
+name|result
 return|;
 block|}
 comment|/** Parses Parameters into param objects and stores them in a vector in params */
@@ -1580,7 +1624,7 @@ return|return
 operator|new
 name|StringBufferInputStream
 argument_list|(
-name|contentBody
+name|contentBodyAsString
 argument_list|)
 return|;
 block|}
@@ -2252,7 +2296,7 @@ argument_list|(
 literal|"MULTIPART/"
 argument_list|)
 operator|&&
-name|contentBody
+name|contentBodyAsString
 operator|==
 literal|null
 condition|)
@@ -2445,7 +2489,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|contentBody
+name|contentBodyAsString
 operator|!=
 literal|null
 condition|)
@@ -2467,7 +2511,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|contentBody
+name|contentBodyAsString
 argument_list|)
 expr_stmt|;
 name|buf
