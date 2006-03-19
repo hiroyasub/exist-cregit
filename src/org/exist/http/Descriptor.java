@@ -863,7 +863,7 @@ name|path
 operator|.
 name|startsWith
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|)
 condition|)
 block|{
@@ -874,7 +874,7 @@ name|path
 operator|.
 name|replace
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|,
 name|System
 operator|.
@@ -1017,7 +1017,7 @@ name|path
 operator|.
 name|startsWith
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|)
 condition|)
 block|{
@@ -1028,7 +1028,7 @@ name|path
 operator|.
 name|replace
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|,
 name|System
 operator|.
@@ -1063,7 +1063,7 @@ name|view
 operator|.
 name|startsWith
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|)
 condition|)
 block|{
@@ -1074,7 +1074,7 @@ name|view
 operator|.
 name|replace
 argument_list|(
-literal|"$EXIST_HOME"
+literal|"{$EXIST_HOME}"
 argument_list|,
 name|System
 operator|.
