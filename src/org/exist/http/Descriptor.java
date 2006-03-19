@@ -1010,6 +1010,35 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//Does the path contain $EXIST_HOME?
+if|if
+condition|(
+name|path
+operator|.
+name|startsWith
+argument_list|(
+literal|"$EXIST_HOME"
+argument_list|)
+condition|)
+block|{
+comment|//Replace $EXIST_HOME with the actual path
+name|path
+operator|=
+name|path
+operator|.
+name|replace
+argument_list|(
+literal|"$EXIST_HOME"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"exist.home"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|//must be a view to map to
 if|if
 condition|(
@@ -1026,6 +1055,35 @@ literal|"Error element 'map' requires an attribute 'view'"
 argument_list|)
 expr_stmt|;
 return|return;
+block|}
+comment|//Does the view contain $EXIST_HOME?
+if|if
+condition|(
+name|view
+operator|.
+name|startsWith
+argument_list|(
+literal|"$EXIST_HOME"
+argument_list|)
+condition|)
+block|{
+comment|//Replace $EXIST_HOME with the actual path
+name|view
+operator|=
+name|view
+operator|.
+name|replace
+argument_list|(
+literal|"$EXIST_HOME"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"exist.home"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|//store what to map from
 comment|/* if(path != null)             {*/
