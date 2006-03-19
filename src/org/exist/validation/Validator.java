@@ -247,7 +247,7 @@ specifier|static
 name|String
 name|XERCESVERSION
 init|=
-literal|"Xerces-J 2.7.1"
+literal|"Xerces-J 2.8.0"
 decl_stmt|;
 comment|// Xerces feature and property names
 specifier|final
