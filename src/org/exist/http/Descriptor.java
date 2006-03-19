@@ -274,7 +274,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  * Uses the Singleton design pattern.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.7  */
+comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  * Uses the Singleton design pattern.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-19  * @version 1.71  */
+end_comment
+
+begin_comment
+comment|// TODO: doLogRequestInReplayLog() - add the facility to log HTTP PUT requests, may need changes to HttpServletRequestWrapper
+end_comment
+
+begin_comment
+comment|// TODO: doLogRequestInReplayLog() - add the facility to log HTTP POST form file uploads, may need changes to HttpServletRequestWrapper
 end_comment
 
 begin_class
@@ -390,7 +398,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"giving up unable to read descriptor file from "
+literal|"Giving up unable to read descriptor file from "
 operator|+
 name|f
 argument_list|)
@@ -674,7 +682,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error while reading descriptor file: "
+literal|"Error while reading descriptor file: "
 operator|+
 name|file
 argument_list|,
@@ -693,7 +701,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error while reading descriptor file: "
+literal|"Error while reading descriptor file: "
 operator|+
 name|file
 argument_list|,
@@ -712,7 +720,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error while reading descriptor file: "
+literal|"Error while reading descriptor file: "
 operator|+
 name|file
 argument_list|,
@@ -722,6 +730,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|/**      * Returns a refernce to this (Descriptor) Singleton class      *       * @return The Descriptor object reference      */
 specifier|public
 specifier|static
 specifier|synchronized
@@ -749,7 +758,7 @@ name|singletonRef
 operator|)
 return|;
 block|}
-comment|//loads<allow-source> settings from the descriptor.xml file
+comment|/**      * loads<allow-source> settings from the descriptor.xml file      *      * @param	allowsourcexqueries	The<allow-source> DOM Element from the descriptor.xml file      */
 specifier|private
 name|void
 name|configureAllowSourceXQuery
@@ -842,7 +851,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error element 'xquery' requires an attribute 'path'"
+literal|"Error element 'xquery' requires an attribute 'path'"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -857,7 +866,7 @@ name|path
 expr_stmt|;
 block|}
 block|}
-comment|//loads<maps> settings from the descriptor.xml file
+comment|/**      * loads<maps> settings from the descriptor.xml file      *      * @param	maps	The<maps> DOM Element from the descriptor.xml file      */
 specifier|private
 name|void
 name|configureMaps
@@ -967,7 +976,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error element 'map' requires an attribute 'path' or an attribute 'pattern'"
+literal|"Error element 'map' requires an attribute 'path' or an attribute 'pattern'"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -984,7 +993,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"error element 'map' requires an attribute 'view'"
+literal|"Error element 'map' requires an attribute 'view'"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1025,7 +1034,6 @@ name|String
 name|path
 parameter_list|)
 block|{
-comment|//TODO: commit an example descriptor that allows viewing of xquery source for the demo applications
 if|if
 condition|(
 name|allowSourceXQueryList
@@ -1221,7 +1229,7 @@ operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Log's Http Requests in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. For POST requests  	 * form data will only be logged if a HttpServletRequestWrapper is used  	 * instead of HttpServletRequest!   	 */
+comment|/** 	 * Logs HTTP Request's in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest or a HttpServletRequestWrapper as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. 	 * For Simple HTTP POST Requests - EXistServlet/XQueryServlet - POST parameters (e.g. form data) will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest! POST Uploaded files are not yet supported! 	 * For XML-RPC Requests - RpcServlet - HttpServletRequestWrapper must be used, otherwise the content of the Request will be lost! 	 * For Cocoon Requests  - 	 */
 specifier|public
 specifier|synchronized
 name|void
@@ -1231,7 +1239,6 @@ name|HttpServletRequest
 name|request
 parameter_list|)
 block|{
-comment|//TOOD: add the facility to log HTTP PUT requests, may need changes to HttpServletRequestWrapper
 comment|//Only log if set by the user in descriptor.xml<xquery-app request-replay-log="true">
 if|if
 condition|(
@@ -1242,6 +1249,7 @@ condition|)
 block|{
 return|return;
 block|}
+comment|//Log the Request
 try|try
 block|{
 comment|//Store the date and time
@@ -1343,7 +1351,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|/**      * Thows a CloneNotSupportedException as this class uses a Singleton design pattern      */
+comment|/**      * Thows a CloneNotSupportedException as this class uses a Singleton design pattern      *       * @return Will never return anything!      */
 specifier|public
 name|Object
 name|clone
@@ -1375,9 +1383,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"error occured while reading descriptor file "
-operator|+
-literal|"[line: "
+literal|"Error occured while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
@@ -1410,9 +1416,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"error occured while reading descriptor file "
-operator|+
-literal|"[line: "
+literal|"Error occured while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
@@ -1445,9 +1449,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"error occured while reading descriptor file "
-operator|+
-literal|"[line: "
+literal|"error occured while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
