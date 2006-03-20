@@ -6072,6 +6072,9 @@ parameter_list|,
 name|String
 name|password
 parameter_list|,
+name|String
+name|digestPassword
+parameter_list|,
 name|Vector
 name|groups
 parameter_list|,
@@ -6107,6 +6110,8 @@ argument_list|,
 name|name
 argument_list|,
 name|password
+argument_list|,
+name|digestPassword
 argument_list|,
 name|groups
 argument_list|,
@@ -6153,6 +6158,9 @@ parameter_list|,
 name|String
 name|password
 parameter_list|,
+name|String
+name|digestPassword
+parameter_list|,
 name|Vector
 name|groups
 parameter_list|)
@@ -6169,6 +6177,8 @@ argument_list|,
 name|name
 argument_list|,
 name|password
+argument_list|,
+name|digestPassword
 argument_list|,
 name|groups
 argument_list|,

@@ -87,6 +87,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Base64Coder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|MD5
 import|;
 end_import
@@ -267,7 +279,7 @@ name|check
 argument_list|(
 name|user
 operator|.
-name|getPassword
+name|getDigestPassword
 argument_list|()
 argument_list|)
 condition|)
@@ -345,6 +357,8 @@ argument_list|()
 argument_list|,
 literal|27
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 operator|+
 literal|'"'
@@ -399,6 +413,8 @@ argument_list|(
 name|hashCode
 argument_list|()
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}

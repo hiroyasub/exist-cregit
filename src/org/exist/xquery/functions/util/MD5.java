@@ -286,6 +286,8 @@ operator|.
 name|md
 argument_list|(
 name|arg
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return

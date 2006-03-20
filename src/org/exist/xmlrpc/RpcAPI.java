@@ -1280,6 +1280,9 @@ parameter_list|,
 name|String
 name|passwd
 parameter_list|,
+name|String
+name|digestPassword
+parameter_list|,
 name|Vector
 name|groups
 parameter_list|,
@@ -1302,6 +1305,9 @@ name|name
 parameter_list|,
 name|String
 name|passwd
+parameter_list|,
+name|String
+name|digestPassword
 parameter_list|,
 name|Vector
 name|groups

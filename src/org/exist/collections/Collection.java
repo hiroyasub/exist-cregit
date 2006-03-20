@@ -6227,6 +6227,50 @@ name|getOwnerGroup
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|user
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"The user "
+operator|+
+name|permissions
+operator|.
+name|getOwner
+argument_list|()
+operator|+
+literal|" for the collection cannot be found."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|group
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"The group "
+operator|+
+name|permissions
+operator|.
+name|getOwnerGroup
+argument_list|()
+operator|+
+literal|" for the collection cannot be found."
+argument_list|)
+throw|;
+block|}
 name|ostream
 operator|.
 name|writeInt
