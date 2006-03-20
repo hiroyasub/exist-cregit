@@ -807,7 +807,6 @@ name|getContentBody
 parameter_list|()
 block|{
 comment|//Create a buffer big enough to hold the Content Body
-comment|//		char[] content = new char[request.getContentLength()];
 name|contentBody
 operator|=
 operator|new
@@ -853,13 +852,47 @@ operator|.
 name|getInputStream
 argument_list|()
 decl_stmt|;
+name|int
+name|bytes
+init|=
+literal|0
+decl_stmt|;
+name|int
+name|offset
+init|=
+literal|0
+decl_stmt|;
+name|int
+name|max
+init|=
+literal|4096
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|bytes
+operator|=
 name|is
 operator|.
 name|read
 argument_list|(
 name|contentBody
+argument_list|,
+name|offset
+argument_list|,
+name|max
 argument_list|)
+operator|)
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|offset
+operator|+=
+name|bytes
 expr_stmt|;
+block|}
 name|result
 operator|=
 operator|new
@@ -870,9 +903,6 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
-comment|//			BufferedReader bufRequestBody = new BufferedReader(new java.io.InputStreamReader(request.getInputStream()));
-comment|//			bufRequestBody.read(content);
-comment|//			bufRequestBody.close();
 block|}
 catch|catch
 parameter_list|(
@@ -1616,6 +1646,7 @@ block|}
 comment|//	public InputStream getStringBufferInputStream() throws IOException {
 comment|//		return new StringBufferInputStream( contentBodyAsString );
 comment|//	}
+comment|/** making the content Body of the POST request available many times, for processing by , e.g. Rpc processor . */
 specifier|public
 name|InputStream
 name|getContentBodyInputStream
