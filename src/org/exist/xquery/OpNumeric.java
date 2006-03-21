@@ -704,23 +704,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: '"
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|lvalue
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|"("
-operator|+
-name|lvalue
-operator|+
-literal|")' can not be an operand for "
+literal|"XPTY0004: too many operands at the left of "
 operator|+
 name|Constants
 operator|.
@@ -758,23 +742,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: '"
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|rvalue
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|"("
-operator|+
-name|rvalue
-operator|+
-literal|")' can not be an operand for "
+literal|"XPTY0004: too many operands at the right of "
 operator|+
 name|Constants
 operator|.
