@@ -3614,7 +3614,28 @@ literal|2
 argument_list|)
 expr_stmt|;
 comment|// Currently fails with error XPTY0004
-comment|//          queryResource(service, "numbers.xml", "//item[last() - 1]", 1);
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+literal|"//item[last() - 1]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+literal|"//item[count(('a','b')) - 1]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 name|String
 name|query
 init|=
