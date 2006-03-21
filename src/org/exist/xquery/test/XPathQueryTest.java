@@ -3613,6 +3613,8 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+comment|// Currently fails with error XPTY0004
+comment|//          queryResource(service, "numbers.xml", "//item[last() - 1]", 1);
 name|String
 name|query
 init|=
