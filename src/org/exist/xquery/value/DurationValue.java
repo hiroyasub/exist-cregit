@@ -1325,7 +1325,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"xs:duration values cannot be compared. Use xdt:yearMonthDuration or xdt:dayTimeDuration instead"
+literal|"xs:duration values cannot be compared with an operator. Use xdt:yearMonthDuration or xdt:dayTimeDuration instead"
 argument_list|)
 throw|;
 block|}
@@ -1342,13 +1342,56 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|other
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|isAssignableFrom
+argument_list|(
+name|DurationValue
+operator|.
+name|class
+argument_list|)
+operator|)
+condition|)
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"xs:duration values cannot be compared. Use xdt:yearMonthDuration or xdt:dayTimeDuration instead"
+literal|"FORG0006: invalid operand type: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|)
 argument_list|)
 throw|;
+comment|//TODO : what to do with the collator ?
+return|return
+name|duration
+operator|.
+name|compare
+argument_list|(
+operator|(
+operator|(
+name|DurationValue
+operator|)
+name|other
+operator|)
+operator|.
+name|duration
+argument_list|)
+return|;
 block|}
 specifier|public
 name|AtomicValue
@@ -1384,7 +1427,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid operand type: "
+literal|"FORG0006: invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1473,7 +1516,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid operand type: "
+literal|"FORG0006: invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1551,7 +1594,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid operand type: "
+literal|"FORG0006: invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1609,7 +1652,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid operand type: "
+literal|"FORG0006: invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1661,7 +1704,7 @@ name|numberToBigDecimal
 argument_list|(
 name|other
 argument_list|,
-literal|"Operand to mult should be of numeric type; got: "
+literal|"FORG0006: invalid operand type: "
 argument_list|)
 decl_stmt|;
 return|return
@@ -1688,13 +1731,39 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|XPathException
+name|BigDecimal
+name|factor
+init|=
+name|numberToBigDecimal
 argument_list|(
-literal|"division is not supported for type xs:duration"
+name|other
+argument_list|,
+literal|"FORG0006: invalid operand type: "
 argument_list|)
-throw|;
+decl_stmt|;
+return|return
+operator|new
+name|DurationValue
+argument_list|(
+name|getCanonicalDuration
+argument_list|()
+operator|.
+name|multiply
+argument_list|(
+name|BigDecimal
+operator|.
+name|valueOf
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|divide
+argument_list|(
+name|factor
+argument_list|)
+argument_list|)
+argument_list|)
+return|;
 block|}
 comment|/** 	 * Convert the given value to a big decimal if it's a number, keeping as much precision 	 * as possible. 	 * 	 * @param x a value to convert to a big decimal 	 * @param exceptionMessagePrefix the beginning of the message to throw in an exception, will be suffixed with the type of the value given 	 * @return the big decimal equivalent of the value 	 * @throws XPathException if the value is not of a numeric type 	 */
 specifier|protected
