@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -107,7 +107,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -164,20 +164,6 @@ operator|.
 name|value
 operator|.
 name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|NumericValue
 import|;
 end_import
 
@@ -488,7 +474,7 @@ argument_list|()
 condition|)
 block|{
 name|Item
-name|nextItem
+name|item
 init|=
 name|iter
 operator|.
@@ -496,33 +482,28 @@ name|nextItem
 argument_list|()
 decl_stmt|;
 name|AtomicValue
-name|nextValue
+name|value
 init|=
-name|nextItem
+name|item
 operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
 if|if
 condition|(
-operator|!
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|nextValue
+name|value
 operator|.
 name|getType
 argument_list|()
-argument_list|,
+operator|==
 name|Type
 operator|.
-name|DURATION
-argument_list|)
+name|ATOMIC
 condition|)
-name|nextValue
+name|value
 operator|=
-name|nextValue
+name|value
 operator|.
 name|convertTo
 argument_list|(
@@ -531,6 +512,38 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|value
+operator|instanceof
+name|ComputableValue
+operator|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|value
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|value
+operator|+
+literal|")' can not be an operand in an average"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|sum
@@ -542,7 +555,7 @@ operator|=
 operator|(
 name|ComputableValue
 operator|)
-name|nextValue
+name|value
 expr_stmt|;
 else|else
 block|{
@@ -557,7 +570,7 @@ argument_list|(
 operator|(
 name|ComputableValue
 operator|)
-name|nextValue
+name|value
 argument_list|)
 expr_stmt|;
 block|}
