@@ -602,7 +602,7 @@ argument_list|()
 condition|)
 block|{
 name|Item
-name|nextItem
+name|item
 init|=
 name|iter
 operator|.
@@ -610,9 +610,9 @@ name|nextItem
 argument_list|()
 decl_stmt|;
 name|AtomicValue
-name|nextValue
+name|value
 init|=
-name|nextItem
+name|item
 operator|.
 name|atomize
 argument_list|()
@@ -620,7 +620,7 @@ decl_stmt|;
 comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
 if|if
 condition|(
-name|nextValue
+name|value
 operator|.
 name|getType
 argument_list|()
@@ -629,9 +629,9 @@ name|Type
 operator|.
 name|ATOMIC
 condition|)
-name|nextValue
+name|value
 operator|=
-name|nextValue
+name|value
 operator|.
 name|convertTo
 argument_list|(
@@ -648,7 +648,7 @@ literal|null
 condition|)
 name|min
 operator|=
-name|nextValue
+name|value
 expr_stmt|;
 else|else
 block|{
@@ -663,7 +663,7 @@ operator|.
 name|getType
 argument_list|()
 argument_list|,
-name|nextValue
+name|value
 operator|.
 name|getType
 argument_list|()
@@ -696,7 +696,7 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|nextValue
+name|value
 operator|.
 name|getType
 argument_list|()
@@ -707,7 +707,7 @@ block|}
 comment|//Ugly test
 if|if
 condition|(
-name|nextValue
+name|value
 operator|instanceof
 name|NumericValue
 condition|)
@@ -718,7 +718,7 @@ operator|(
 operator|(
 name|NumericValue
 operator|)
-name|nextValue
+name|value
 operator|)
 operator|.
 name|isNaN
@@ -737,7 +737,7 @@ block|}
 comment|//Ugly test
 if|if
 condition|(
-name|nextValue
+name|value
 operator|instanceof
 name|ComputableValue
 condition|)
@@ -753,7 +753,7 @@ name|min
 argument_list|(
 name|collator
 argument_list|,
-name|nextValue
+name|value
 argument_list|)
 expr_stmt|;
 block|}
@@ -767,7 +767,7 @@ name|compare
 argument_list|(
 name|collator
 argument_list|,
-name|nextValue
+name|value
 operator|.
 name|getStringValue
 argument_list|()
@@ -782,7 +782,7 @@ literal|0
 condition|)
 name|min
 operator|=
-name|nextValue
+name|value
 expr_stmt|;
 block|}
 block|}
