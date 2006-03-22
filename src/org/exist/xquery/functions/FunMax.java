@@ -621,7 +621,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
-comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
+comment|//Any value of type xdt:untypedAtomic is cast to xs:double
 if|if
 condition|(
 name|value
@@ -708,6 +708,29 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|//Any value of type xdt:untypedAtomic is cast to xs:double
+if|if
+condition|(
+name|value
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATOMIC
+condition|)
+name|value
+operator|=
+name|value
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
 comment|//Ugly test
 if|if
 condition|(
