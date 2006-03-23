@@ -96,10 +96,11 @@ name|int
 name|getType
 parameter_list|()
 block|{
+comment|//return Type.ATOMIC;
 return|return
 name|Type
 operator|.
-name|ATOMIC
+name|UNTYPED_ATOMIC
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */

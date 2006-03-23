@@ -756,11 +756,17 @@ else|else
 block|{
 try|try
 block|{
-comment|// runtime type checks:
-comment|//if (!(lvalue instanceof ComputableValue)) lvalue = lvalue.convertTo(Type.NUMBER);
-comment|//if (!(rvalue instanceof ComputableValue)) rvalue = rvalue.convertTo(Type.NUMBER);
 if|if
 condition|(
+name|lvalue
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+operator|||
 name|lvalue
 operator|.
 name|getType
@@ -790,6 +796,15 @@ argument_list|()
 operator|==
 name|Type
 operator|.
+name|UNTYPED_ATOMIC
+operator|||
+name|rvalue
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
 name|ATOMIC
 condition|)
 name|rvalue
@@ -803,10 +818,6 @@ operator|.
 name|NUMBER
 argument_list|)
 expr_stmt|;
-comment|//int ltype = lvalue.getType();
-comment|//int rtype = rvalue.getType();
-comment|/*     			if (Type.subTypeOf(ltype, Type.NUMBER)&& Type.subTypeOf(rtype, Type.NUMBER)) {     				if (ltype> rtype) {     					rvalue = rvalue.convertTo(ltype);     				} else if (rtype> ltype) {     					lvalue = lvalue.convertTo(rtype);     				}				     			} else if (Type.subTypeOf(ltype, Type.NUMBER)) {     				rvalue = rvalue.convertTo(ltype);				     			} else if (Type.subTypeOf(rtype, Type.NUMBER)) {     				lvalue = lvalue.convertTo(rtype);				     			}     			*/
-comment|//TODO : use type hierarchy
 if|if
 condition|(
 operator|!
@@ -894,7 +905,6 @@ operator|.
 name|IDIV
 condition|)
 block|{
-comment|//TODO : use type hierarchy
 if|if
 condition|(
 operator|!
@@ -1009,6 +1019,7 @@ name|rvalue
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : type-checks on MOD operator : maybe the same ones than above -pb
 block|}
 catch|catch
 parameter_list|(

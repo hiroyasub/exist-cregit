@@ -597,7 +597,7 @@ argument_list|()
 operator|==
 name|Type
 operator|.
-name|ATOMIC
+name|UNTYPED_ATOMIC
 condition|)
 name|value
 operator|=
@@ -683,7 +683,7 @@ argument_list|()
 operator|==
 name|Type
 operator|.
-name|ATOMIC
+name|UNTYPED_ATOMIC
 condition|)
 name|value
 operator|=
