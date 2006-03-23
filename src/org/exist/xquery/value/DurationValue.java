@@ -1760,6 +1760,12 @@ operator|.
 name|divide
 argument_list|(
 name|factor
+argument_list|,
+literal|20
+argument_list|,
+name|BigDecimal
+operator|.
+name|ROUND_HALF_UP
 argument_list|)
 argument_list|)
 argument_list|)
