@@ -2399,6 +2399,14 @@ operator|new
 name|Stack
 argument_list|()
 expr_stmt|;
+comment|//remove the context-vars, subsequent execution of the query
+comment|//may generate different values for the vars based on the
+comment|//content of the db
+name|XQueryContextVars
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|watchdog
 operator|.
 name|reset
@@ -5457,7 +5465,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//	set an XQuery Context variable; called by context:set-var()
+comment|/** 	 * Set an XQuery Context variable. 	 * Used by the context extension module; called by context:set-var(). 	 *  	 * @param name The variable name 	 * @param XQVar The variable value, may be of any xs: type  	 */
 specifier|public
 name|void
 name|setXQueryContextVar
@@ -5479,7 +5487,7 @@ name|XQvar
 argument_list|)
 expr_stmt|;
 block|}
-comment|//get an XQuery Context variable; called by context:get-var()
+comment|/** 	 * Get an XQuery Context variable. 	 * Used by the context extension module; called by context:get-var(). 	 *  	 * @param name The variable name 	 * @return The variable value indicated by name. 	 */
 specifier|public
 name|Object
 name|getXQueryContextVar
@@ -5499,7 +5507,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|//set the serializer to use for output; called by context:set-serializer()
+comment|/** 	 * Set the serializer to use for output 	 * Used by the context extension module; called by context:set-serializer(). 	 *  	 * @param name The name of the serializer to use 	 * @param indent Should the output be indented? 	 * @param omitxmldeclaration Should the output omit the xml declaration? 	 */
 specifier|public
 name|void
 name|setXQuerySerializer
