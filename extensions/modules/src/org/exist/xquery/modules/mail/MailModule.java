@@ -79,11 +79,11 @@ block|{
 operator|new
 name|FunctionDef
 argument_list|(
-name|SendEmail
+name|SendEmailFunction
 operator|.
 name|signature
 argument_list|,
-name|SendEmail
+name|SendEmailFunction
 operator|.
 name|class
 argument_list|)
