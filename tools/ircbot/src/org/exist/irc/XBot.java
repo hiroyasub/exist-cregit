@@ -1938,7 +1938,7 @@ name|XBot
 argument_list|(
 literal|"irc.freenode.net"
 argument_list|,
-literal|"#existdb"
+literal|"#testaabb"
 argument_list|,
 name|args
 index|[
