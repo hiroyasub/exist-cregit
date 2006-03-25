@@ -103,12 +103,8 @@ argument_list|(
 literal|64
 argument_list|)
 decl_stmt|;
-specifier|private
-name|long
-name|profilingThreshold
-init|=
-literal|5
-decl_stmt|;
+comment|// never used locally
+comment|// private long profilingThreshold = 5;
 specifier|private
 name|boolean
 name|enabled
@@ -121,6 +117,7 @@ name|verbosity
 init|=
 literal|0
 decl_stmt|;
+comment|/** value for Verbosity property: basic profiling : just elapsed time */
 specifier|public
 specifier|static
 name|int
@@ -128,7 +125,7 @@ name|TIME
 init|=
 literal|1
 decl_stmt|;
-comment|//For optimizations
+comment|/** value for Verbosity property: For optimizations */
 specifier|public
 specifier|static
 name|int
@@ -136,7 +133,7 @@ name|OPTIMIZATIONS
 init|=
 literal|2
 decl_stmt|;
-comment|//For computations that will trigger further optimizations
+comment|/** For computations that will trigger further optimizations */
 specifier|public
 specifier|static
 name|int
@@ -144,7 +141,7 @@ name|OPTIMIZATION_FLAGS
 init|=
 literal|3
 decl_stmt|;
-comment|//Indicates the dependencies of the expression
+comment|/** Indicates the dependencies of the expression */
 specifier|public
 specifier|static
 name|int
@@ -152,7 +149,7 @@ name|DEPENDENCIES
 init|=
 literal|4
 decl_stmt|;
-comment|//An abstract level for viewing the expression's context sequence/item
+comment|/** An abstract level for viewing the expression's context sequence/item */
 specifier|public
 specifier|static
 name|int
@@ -160,7 +157,7 @@ name|START_SEQUENCES
 init|=
 literal|4
 decl_stmt|;
-comment|//Just returns the number of items in the sequence
+comment|/** Just returns the number of items in the sequence */
 specifier|public
 specifier|static
 name|int
@@ -168,7 +165,7 @@ name|ITEM_COUNT
 init|=
 literal|5
 decl_stmt|;
-comment|//For a truncated string representation of then context sequence (TODO)
+comment|/** For a truncated string representation of the context sequence (TODO) */
 specifier|public
 specifier|static
 name|int
@@ -176,7 +173,7 @@ name|SEQUENCE_PREVIEW
 init|=
 literal|6
 decl_stmt|;
-comment|//For a full representation of the context sequence (TODO)
+comment|/** For a full representation of the context sequence (TODO) */
 specifier|public
 specifier|static
 name|int
@@ -325,49 +322,38 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
-comment|//                      LOG this
-block|}
-block|}
-if|else if
-condition|(
-literal|"threshold"
+name|log
 operator|.
-name|equals
+name|warn
 argument_list|(
-name|params
-index|[
-literal|0
-index|]
-argument_list|)
-condition|)
-block|{
-try|try
-block|{
-name|profilingThreshold
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|params
-index|[
-literal|1
-index|]
+literal|"invalid value for verbosity: "
+operator|+
+literal|"should be an integer between 0 and "
+operator|+
+name|SEQUENCE_DUMP
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-comment|//                      LOG this
 block|}
-block|}
+comment|//                else if("threshold".equals(params[0])) {
+comment|//                    try {
+comment|//                        profilingThreshold = Integer.parseInt(params[1]);
+comment|//                    } catch(NumberFormatException e) {
+comment|//                    }
+comment|//                }
 else|else
 block|{
-comment|//                  LOG this
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"invalid parameter for"
+operator|+
+literal|"  declare option exist:profiling : "
+operator|+
+literal|"should be enabled verbosity , or logger"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1508,6 +1494,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO : find a way to preview "abstract" sequences
+comment|// never used locally
 specifier|private
 name|String
 name|sequencePreview
