@@ -373,7 +373,7 @@ return|;
 name|int
 name|levels
 init|=
-name|countLevelsBelow
+name|getLevelCount
 argument_list|(
 name|other
 operator|.
@@ -396,7 +396,9 @@ parameter_list|()
 block|{
 return|return
 name|getLevelCount
-argument_list|()
+argument_list|(
+literal|0
+argument_list|)
 return|;
 block|}
 specifier|public
