@@ -39,20 +39,6 @@ name|http
 operator|.
 name|servlets
 operator|.
-name|RequestWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|http
-operator|.
-name|servlets
-operator|.
 name|SessionWrapper
 import|;
 end_import
@@ -333,7 +319,7 @@ name|resolveVariable
 argument_list|(
 name|RequestModule
 operator|.
-name|REQUEST_VAR
+name|SESSION_VAR
 argument_list|)
 decl_stmt|;
 if|if
@@ -353,7 +339,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Request object not found"
+literal|"Session not set"
 argument_list|)
 throw|;
 if|if
@@ -374,11 +360,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Variable $request is not bound to an Java object."
+literal|"Variable $session is not bound to a Java object."
 argument_list|)
 throw|;
 name|JavaObjectValue
-name|value
+name|session
 init|=
 operator|(
 name|JavaObjectValue
@@ -414,50 +400,26 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|value
+name|session
 operator|.
 name|getObject
 argument_list|()
 operator|instanceof
-name|RequestWrapper
+name|SessionWrapper
 condition|)
 block|{
-name|RequestWrapper
-name|request
-init|=
-operator|(
-name|RequestWrapper
-operator|)
-name|value
-operator|.
-name|getObject
-argument_list|()
-decl_stmt|;
-name|SessionWrapper
-name|session
-init|=
-name|request
-operator|.
-name|getSession
-argument_list|(
-literal|false
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|session
-operator|==
-literal|null
-condition|)
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
 name|Object
 name|o
 init|=
+operator|(
+operator|(
+name|SessionWrapper
+operator|)
 name|session
+operator|.
+name|getObject
+argument_list|()
+operator|)
 operator|.
 name|getAttribute
 argument_list|(
@@ -491,7 +453,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: variable $request is not bound to a request object"
+literal|"Type error: variable $session is not bound to a session object"
 argument_list|)
 throw|;
 block|}
