@@ -2381,20 +2381,15 @@ operator|>
 literal|0x6fffffffffffffffL
 condition|)
 block|{
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"The document is too complex/irregularily structured "
+name|treeLevelStartPoints
+index|[
+name|i
 operator|+
-literal|"to be mapped into eXist's numbering scheme. Number of children per level of the "
-operator|+
-literal|"tree: "
-operator|+
-name|printTreeLevelOrder
-argument_list|()
-argument_list|)
-throw|;
+literal|1
+index|]
+operator|=
+literal|1
+expr_stmt|;
 block|}
 block|}
 block|}

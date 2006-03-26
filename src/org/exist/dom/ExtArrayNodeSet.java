@@ -1505,7 +1505,7 @@ name|upper
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 name|NodeSet
 name|hasChildrenInSet
 parameter_list|(

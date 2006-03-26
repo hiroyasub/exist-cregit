@@ -3418,13 +3418,12 @@ argument_list|()
 argument_list|,
 name|proxy
 operator|.
-name|gid
+name|getNodeId
+argument_list|()
 argument_list|,
 name|directParent
 argument_list|,
 name|includeSelf
-argument_list|,
-name|level
 argument_list|)
 return|;
 block|}
