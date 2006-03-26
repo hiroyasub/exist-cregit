@@ -90,14 +90,14 @@ parameter_list|()
 function_decl|;
 comment|/**      * Is the current node id a descendant of the specified node?      *      * @param ancestor node id of the potential ancestor      * @return true if the node id is a descendant of the given node, false otherwise      */
 name|boolean
-name|isDescendant
+name|isDescendantOf
 parameter_list|(
 name|NodeId
 name|ancestor
 parameter_list|)
 function_decl|;
 name|boolean
-name|isDescendantOrSelf
+name|isDescendantOrSelfOf
 parameter_list|(
 name|NodeId
 name|ancestor
