@@ -13358,9 +13358,8 @@ name|this
 argument_list|)
 decl_stmt|;
 comment|//        final FulltextIndexSpec ftIdx = idxSpec != null ? idxSpec.getFulltextIndexSpec() : null;
-specifier|final
 name|long
-name|gid
+name|id
 init|=
 name|node
 operator|.
@@ -13369,34 +13368,23 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|gid
+name|id
 operator|<
 literal|0
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"illegal node: "
-operator|+
-name|gid
-operator|+
-literal|"; "
-operator|+
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
+name|id
+operator|=
+literal|1
 expr_stmt|;
 return|return;
 block|}
+specifier|final
+name|long
+name|gid
+init|=
+name|id
+decl_stmt|;
 specifier|final
 name|short
 name|nodeType
