@@ -10196,17 +10196,6 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Len = "
-operator|+
-name|len
-argument_list|)
-expr_stmt|;
 name|rec
 operator|.
 name|offset
