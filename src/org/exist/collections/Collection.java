@@ -5086,13 +5086,6 @@ operator|new
 name|DocumentMetadata
 argument_list|()
 decl_stmt|;
-name|document
-operator|.
-name|setMetadata
-argument_list|(
-name|metadata
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|oldDoc
@@ -5100,6 +5093,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|metadata
+operator|=
+name|oldDoc
+operator|.
+name|getMetadata
+argument_list|()
+expr_stmt|;
 name|metadata
 operator|.
 name|setCreated
@@ -5176,6 +5176,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|document
+operator|.
+name|setMetadata
+argument_list|(
+name|metadata
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Check Permissions about user and document, and throw exceptions if necessary.      *      * @param broker      * @param name      * @param oldDoc old Document existing in database prior to adding a new one with same name.      * @throws LockException      * @throws PermissionDeniedException      */
 specifier|private

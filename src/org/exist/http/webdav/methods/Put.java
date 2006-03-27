@@ -187,6 +187,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|LockToken
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -377,6 +389,13 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"PUT start"
+argument_list|)
+expr_stmt|;
 name|File
 name|tempFile
 init|=
@@ -605,6 +624,12 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//            MimeType mime = MimeTable.getInstance().getContentTypeFor(path);
+comment|//            if (mime == null){
+comment|//                mime = MimeType.BINARY_TYPE;
+comment|//            }
+comment|// TODO why is content type involved here? would not like to use it,
+comment|// as it seems to block binary file upload by MS office.
 name|MimeType
 name|mime
 decl_stmt|;
@@ -683,6 +708,11 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+name|DocumentImpl
+name|doc
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|mime
@@ -691,6 +721,13 @@ name|isXMLType
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"storing XML resource"
+argument_list|)
+expr_stmt|;
 name|InputSource
 name|is
 init|=
@@ -716,10 +753,14 @@ argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|doc
+operator|=
 name|info
 operator|.
 name|getDocument
 argument_list|()
+expr_stmt|;
+name|doc
 operator|.
 name|getMetadata
 argument_list|()
@@ -753,9 +794,23 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"done"
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"storing Binary resource"
+argument_list|)
+expr_stmt|;
 name|byte
 index|[]
 name|chunk
@@ -814,9 +869,8 @@ name|l
 argument_list|)
 expr_stmt|;
 block|}
-name|DocumentImpl
 name|doc
-init|=
+operator|=
 name|collection
 operator|.
 name|addBinaryResource
@@ -834,13 +888,66 @@ argument_list|()
 argument_list|,
 name|contentType
 argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"done"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Remove Null Resource flag
+name|LockToken
+name|token
+init|=
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getLockToken
+argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|token
+operator|!=
+literal|null
+condition|)
+block|{
+name|token
+operator|.
+name|setResourceType
+argument_list|(
+name|LockToken
+operator|.
+name|RESOURCE_TYPE_NOT_SPECIFIED
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"token==null"
+argument_list|)
+expr_stmt|;
 block|}
 name|transact
 operator|.
 name|commit
 argument_list|(
 name|txn
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"PUT ready"
 argument_list|)
 expr_stmt|;
 block|}

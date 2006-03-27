@@ -566,16 +566,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"path='"
-operator|+
-name|path
-operator|+
-literal|"'; method='"
+literal|"method='"
 operator|+
 name|request
 operator|.
 name|getMethod
 argument_list|()
+operator|+
+literal|"'; path='"
+operator|+
+name|path
 operator|+
 literal|"'; user='"
 operator|+
