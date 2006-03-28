@@ -1516,6 +1516,8 @@ operator|.
 name|bitIndex
 operator|%
 literal|8
+operator|+
+literal|1
 decl_stmt|;
 for|for
 control|(

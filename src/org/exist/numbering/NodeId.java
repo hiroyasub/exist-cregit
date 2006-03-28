@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -24,28 +34,6 @@ operator|.
 name|io
 operator|.
 name|VariableByteOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -101,6 +89,14 @@ name|isDescendantOrSelfOf
 parameter_list|(
 name|NodeId
 name|ancestor
+parameter_list|)
+function_decl|;
+comment|/**      * Is the current node a child node of the specified parent?      *       * @param parent the parent node      * @return      */
+name|boolean
+name|isChildOf
+parameter_list|(
+name|NodeId
+name|parent
 parameter_list|)
 function_decl|;
 comment|/**      * Returns the level within the document tree at which      * this node occurs.      *      * @return      */
