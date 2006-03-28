@@ -926,10 +926,8 @@ name|grammar
 operator|=
 name|databaseResources
 operator|.
-name|getGrammar
+name|getResource
 argument_list|(
-name|grammarIsBinary
-argument_list|,
 name|resourcePath
 argument_list|)
 expr_stmt|;

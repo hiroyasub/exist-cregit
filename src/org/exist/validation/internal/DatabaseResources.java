@@ -249,6 +249,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|MimeTable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -1058,15 +1082,39 @@ comment|/**      *  Get document from database.      *      * @param isBinary   
 specifier|public
 name|byte
 index|[]
-name|getGrammar
+name|getResource
 parameter_list|(
-name|boolean
-name|isBinary
-parameter_list|,
 name|String
 name|documentPath
 parameter_list|)
 block|{
+name|MimeType
+name|mime
+init|=
+name|MimeTable
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getContentTypeFor
+argument_list|(
+name|documentPath
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|mime
+operator|==
+literal|null
+condition|)
+block|{
+name|mime
+operator|=
+name|MimeType
+operator|.
+name|BINARY_TYPE
+expr_stmt|;
+block|}
 name|byte
 index|[]
 name|data
@@ -1080,10 +1128,6 @@ argument_list|(
 literal|"Get resource '"
 operator|+
 name|documentPath
-operator|+
-literal|"' binary="
-operator|+
-name|isBinary
 argument_list|)
 expr_stmt|;
 name|DBBroker
@@ -1106,72 +1150,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|isBinary
-condition|)
-block|{
-name|BinaryDocument
-name|binDoc
-init|=
-operator|(
-name|BinaryDocument
-operator|)
-name|broker
+name|mime
 operator|.
-name|getXMLResource
-argument_list|(
-name|documentPath
-argument_list|,
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-decl_stmt|;
-comment|// if document is not present, null is returned
-if|if
-condition|(
-name|binDoc
-operator|==
-literal|null
-condition|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Binary document '"
-operator|+
-name|documentPath
-operator|+
-literal|" does not exist."
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|data
-operator|=
-name|broker
-operator|.
-name|getBinaryResource
-argument_list|(
-name|binDoc
-argument_list|)
-expr_stmt|;
-name|binDoc
-operator|.
-name|getUpdateLock
+name|isXMLType
 argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
+condition|)
 block|{
 name|DocumentImpl
 name|doc
@@ -1235,6 +1218,70 @@ name|getBytes
 argument_list|()
 expr_stmt|;
 name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|BinaryDocument
+name|binDoc
+init|=
+operator|(
+name|BinaryDocument
+operator|)
+name|broker
+operator|.
+name|getXMLResource
+argument_list|(
+name|documentPath
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+decl_stmt|;
+comment|// if document is not present, null is returned
+if|if
+condition|(
+name|binDoc
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Binary document '"
+operator|+
+name|documentPath
+operator|+
+literal|" does not exist."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|data
+operator|=
+name|broker
+operator|.
+name|getBinaryResource
+argument_list|(
+name|binDoc
+argument_list|)
+expr_stmt|;
+name|binDoc
 operator|.
 name|getUpdateLock
 argument_list|()
@@ -1317,14 +1364,10 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      *  Inser document to database. Not well tested yet.      *      * @param grammar      ByteArray containing file.      * @param isBinary     Indicate wether resource is binary.      * @param documentPath Path to the resource.      * @return             TRUE if successfull, FALSE if not.      */
 specifier|public
 name|boolean
-name|insertGrammar
+name|insertResource
 parameter_list|(
-name|boolean
-name|isBinary
-parameter_list|,
 name|String
 name|documentPath
 parameter_list|,
@@ -1365,6 +1408,33 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|MimeType
+name|mime
+init|=
+name|MimeTable
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getContentTypeFor
+argument_list|(
+name|documentPath
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|mime
+operator|==
+literal|null
+condition|)
+block|{
+name|mime
+operator|=
+name|MimeType
+operator|.
+name|BINARY_TYPE
+expr_stmt|;
+block|}
 name|broker
 operator|=
 name|brokerPool
@@ -1415,30 +1485,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|isBinary
-condition|)
-block|{
-comment|// TODO : call mime-type stuff for goof mimetypes
-name|BinaryDocument
-name|doc
-init|=
-name|collection
+name|mime
 operator|.
-name|addBinaryResource
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|documentName
-argument_list|,
-name|grammar
-argument_list|,
-literal|"text/text"
-argument_list|)
-decl_stmt|;
-block|}
-else|else
+name|isXMLType
+argument_list|()
+condition|)
 block|{
 name|IndexInfo
 name|info
@@ -1487,6 +1538,31 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// TODO : call mime-type stuff for good mimetypes
+name|BinaryDocument
+name|doc
+init|=
+name|collection
+operator|.
+name|addBinaryResource
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|documentName
+argument_list|,
+name|grammar
+argument_list|,
+name|mime
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 block|}
 name|transact
 operator|.
@@ -1673,121 +1749,6 @@ return|return
 name|pathName
 return|;
 block|}
-comment|//    /**
-comment|//     * @deprecated Get rid of this code.
-comment|//     */
-comment|//    public boolean hasGrammar(int type, String id){
-comment|//        return !getGrammarPath(type, id).equalsIgnoreCase("NONE");
-comment|//    }
-comment|//
-comment|//    /**
-comment|//     * @deprecated Get rid of this code.
-comment|//     */
-comment|//    public String getGrammarPath(int type, String id){
-comment|//
-comment|//        logger.info("Get path of '"+id+"'");
-comment|//
-comment|//        String result="EMPTY";
-comment|//        String query = getGrammarQuery(type, id);
-comment|//
-comment|//        DBBroker broker = null;
-comment|//        try {
-comment|//            broker = brokerPool.get(SecurityManager.SYSTEM_USER);
-comment|//        } catch (EXistException ex){
-comment|//            logger.error("Error getting DBBroker", ex);
-comment|//        }
-comment|//
-comment|//        XQuery xquery = broker.getXQueryService();
-comment|//        try{
-comment|//            Sequence seq = xquery.execute(query, null);
-comment|//
-comment|//            SequenceIterator i = seq.iterate();
-comment|//            if(i.hasNext()){
-comment|//                result= i.nextItem().getStringValue();
-comment|//
-comment|//            } else {
-comment|//                logger.debug("No xQuery result");
-comment|//            }
-comment|//
-comment|//        } catch (XPathException ex){
-comment|//            logger.error("XSD xQuery error: "+ ex.getMessage());
-comment|//        }
-comment|//
-comment|//        brokerPool.release(broker);
-comment|//
-comment|//        return result;
-comment|//    }
-comment|//    /**
-comment|//     * @deprecated Get rid of this code.
-comment|//     */
-comment|//    public String getGrammarQuery(int type, String id){ // TODO double
-comment|//        String query="NOQUERY";
-comment|//        if(type==GRAMMAR_XSD){
-comment|//            query = "let $top := collection('"+XSDBASE+"') " +
-comment|//                    "let $schemas := $top/xs:schema[ @targetNamespace = \"" + id+ "\" ] "+
-comment|//                    "return if($schemas) then document-uri($schemas[1]) else \""+NOGRAMMAR+"\" " ;
-comment|//        } else if(type==GRAMMAR_DTD){
-comment|//            query = "let $top := doc('"+DTDCATALOG+"') "+
-comment|//                    "let $dtds := $top//public[@publicId = \""+id+"\"]/@uri " +
-comment|//                    "return if($dtds) then $dtds[1] else \""+NOGRAMMAR+"\"" ;
-comment|//        } else {
-comment|//            logger.error("Unknown grammar type, not able to find query.");
-comment|//        }
-comment|//
-comment|//        return query;
-comment|//    }
-comment|//    /**
-comment|//     *  Get GRAMMAR resource specified by DB path
-comment|//     *
-comment|//     * @deprecated Get rid of this code.
-comment|//     * @param path          Path in DB to resource.
-comment|//     * @param isBinary      Flag is resource binary?
-comment|//     * @return              Reader to the resource.
-comment|//     */
-comment|//    public byte[] getGrammar(int type, String path ){
-comment|//
-comment|//        byte[] data = null;
-comment|//        boolean isBinary=false;
-comment|//
-comment|//        if(type==GRAMMAR_DTD){
-comment|//            isBinary=true;
-comment|//        }
-comment|//
-comment|//        logger.debug("Get resource '"+path + "' binary="+ isBinary);
-comment|//
-comment|//        DBBroker broker = null;
-comment|//        try {
-comment|//
-comment|//            broker = brokerPool.get(SecurityManager.SYSTEM_USER);
-comment|//
-comment|//
-comment|//            if(isBinary){
-comment|//                BinaryDocument binDoc = (BinaryDocument) broker.openDocument(path, Lock.READ_LOCK);
-comment|//                data = broker.getBinaryResourceData(binDoc);
-comment|//                binDoc.getUpdateLock().release(Lock.READ_LOCK);
-comment|//
-comment|//            } else {
-comment|//
-comment|//                DocumentImpl doc = broker.openDocument(path, Lock.READ_LOCK);
-comment|//                Serializer serializer = broker.getSerializer();
-comment|//                serializer.reset();
-comment|//                data = serializer.serialize(doc).getBytes();
-comment|//                doc.getUpdateLock().release(Lock.READ_LOCK);
-comment|//            }
-comment|//        } catch (PermissionDeniedException ex){
-comment|//            logger.error("Error opening document", ex);
-comment|//        } catch (SAXException ex){
-comment|//            logger.error("Error serializing document", ex);
-comment|//        }  catch (EXistException ex){
-comment|//            logger.error(ex);
-comment|//        } finally {
-comment|//            if(brokerPool!=null){
-comment|//                brokerPool.release(broker);
-comment|//            }
-comment|//        }
-comment|//
-comment|//        return data;
-comment|//    }
 comment|/**      *  Get schema path information from catalog.      *      * @param collection Collection containing the catalog file      * @param docName    Catalog filename      * @param namespace  This namespace needs to be resolved      * @return           Path to schema, or null if not found.      */
 specifier|public
 name|String
