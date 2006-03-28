@@ -113,6 +113,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -462,7 +472,7 @@ argument_list|,
 name|moduleSrc
 argument_list|)
 expr_stmt|;
-name|addURIAttribute
+name|addValidURIAttribute
 argument_list|(
 name|resourceAttributes
 argument_list|,
@@ -628,7 +638,7 @@ argument_list|,
 name|action
 argument_list|)
 expr_stmt|;
-name|addURIAttribute
+name|addValidURIAttribute
 argument_list|(
 name|attributes
 argument_list|,
@@ -672,7 +682,7 @@ argument_list|(
 literal|8
 argument_list|)
 decl_stmt|;
-name|addURIAttribute
+name|addValidURIAttribute
 argument_list|(
 name|attributes
 argument_list|,
@@ -1083,7 +1093,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-specifier|private
+comment|/** 	 * Returns the module type for the given XQuery library module.  This 	 * is either 	 * {@link XACMLConstants#INTERNAL_LIBRARY_MODULE internal} or 	 * {@link XACMLConstants#EXTERNAL_LIBRARY_MODULE external} 	 *  	 * @param module The XQuery library module.  If it is null, this method 	 * returns null. 	 * @return null if module is null, the module's category (internal or external) 	 * otherwise 	 */
+specifier|public
 specifier|static
 name|String
 name|getModuleCategory
@@ -1116,7 +1127,8 @@ operator|.
 name|EXTERNAL_LIBRARY_MODULE
 return|;
 block|}
-specifier|private
+comment|/** 	 * Adds new attributes to the specified<code>Set</code> of attributes 	 * that represent the specified source.  The added attributes are the 	 * {@link XACMLConstants#SOURCE_KEY_ATTRIBUTE source's key} and the 	 * {@link XACMLConstants#SOURCE_TYPE_ATTRIBUTE source's type}. 	 *    	 * @param attributes The<code>Set</code> to which attributes will be 	 * added.  If null, this method does nothing. 	 * @param source The source for which attributes will be added.  It 	 * cannot be null. 	 */
+specifier|public
 specifier|static
 name|void
 name|addSourceAttributes
@@ -1128,6 +1140,19 @@ name|XACMLSource
 name|source
 parameter_list|)
 block|{
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Source cannot be null"
+argument_list|)
+throw|;
 name|addStringAttribute
 argument_list|(
 name|attributes
@@ -1157,8 +1182,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//convenience methods for adding an AttributeValue to a Set of attributes
-specifier|private
+comment|/** 	 * Adds a new attribute of type string to the specified 	 *<code>Set</code> of attributes.  The new attribute's value is 	 * constructed from the attrValue parameter and is given the id 	 * of the attrID parameter.  	 *  	 * @param attributes The<code>Set</code> to which the new attribute 	 * should be added.  If it is null, this method does nothing. 	 * @param attrID The ID of the new attribute, cannot be null 	 * @param attrValue The value of the new attribute.  It cannot be null. 	 */
+specifier|public
 specifier|static
 name|void
 name|addStringAttribute
@@ -1173,6 +1198,26 @@ name|String
 name|attrValue
 parameter_list|)
 block|{
+if|if
+condition|(
+name|attributes
+operator|==
+literal|null
+condition|)
+return|return;
+if|if
+condition|(
+name|attrID
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Attribute ID cannot be null"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|attrValue
@@ -1218,7 +1263,8 @@ name|attr
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+comment|/** 	 * Adds a new attribute of type anyURI to the specified 	 *<code>Set</code> of attributes.  The new attribute's value is 	 * constructed from the uriString parameter and is given the id 	 * of the attrID parameter.  	 *  	 * @param attributes The<code>Set</code> to which the new attribute 	 * should be added.  If it is null, this method does nothing. 	 * @param attrID The ID of the new attribute, cannot be null 	 * @param uriString The value of the new attribute.  It must parse into a 	 * valid URI and cannot be null. 	 * @throws URISyntaxException if the specified attribute value is not a 	 * valid URI. 	 */
+specifier|public
 specifier|static
 name|void
 name|addURIAttribute
@@ -1232,13 +1278,47 @@ parameter_list|,
 name|String
 name|uriString
 parameter_list|)
+throws|throws
+name|URISyntaxException
 block|{
+if|if
+condition|(
+name|attributes
+operator|==
+literal|null
+condition|)
+return|return;
+if|if
+condition|(
+name|attrID
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Attribute ID cannot be null"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|uriString
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Attribute value cannot be null"
+argument_list|)
+throw|;
 name|URI
 name|uri
 init|=
+operator|new
 name|URI
-operator|.
-name|create
 argument_list|(
 name|uriString
 argument_list|)
@@ -1274,6 +1354,52 @@ argument_list|(
 name|attr
 argument_list|)
 expr_stmt|;
+block|}
+comment|//wrapper for when the URI is known to be valid, such as when obtained from a source
+comment|//that validates the URI or from a constant
+specifier|private
+specifier|static
+name|void
+name|addValidURIAttribute
+parameter_list|(
+name|Set
+name|attributes
+parameter_list|,
+name|URI
+name|attrID
+parameter_list|,
+name|String
+name|uriString
+parameter_list|)
+block|{
+try|try
+block|{
+name|addURIAttribute
+argument_list|(
+name|attributes
+argument_list|,
+name|attrID
+argument_list|,
+name|uriString
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"URI should never be invalid"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 name|RequestHelper
 parameter_list|()
