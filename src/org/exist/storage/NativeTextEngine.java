@@ -6213,7 +6213,7 @@ operator|||
 operator|!
 name|nodeId
 operator|.
-name|isDescendantOrSelf
+name|isDescendantOrSelfOf
 argument_list|(
 name|node
 operator|.
