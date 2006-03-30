@@ -37,6 +37,18 @@ name|DOMException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -64,6 +76,15 @@ argument_list|,
 name|nodeNumber
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|Node
+name|getFirstChild
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#getData() 	 */
 specifier|public

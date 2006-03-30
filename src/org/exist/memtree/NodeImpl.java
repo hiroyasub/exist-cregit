@@ -1111,9 +1111,14 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+comment|//TODO : make abstract -pb
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getFirstChild() from here"
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLastChild() 	 */
 specifier|public
@@ -1173,9 +1178,14 @@ name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+comment|//TODO : make abstract -pb
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getAttributes() from here"
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
 specifier|public
@@ -1353,9 +1363,14 @@ name|String
 name|getLocalName
 parameter_list|()
 block|{
-return|return
-literal|""
-return|;
+comment|//TODO : make abstract -pb
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getLocalName() from here"
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
 specifier|public
