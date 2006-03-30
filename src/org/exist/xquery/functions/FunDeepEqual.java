@@ -1398,13 +1398,6 @@ operator|.
 name|getNodeType
 argument_list|()
 expr_stmt|;
-name|n
-operator|=
-name|p
-operator|.
-name|getNode
-argument_list|()
-expr_stmt|;
 block|}
 while|while
 condition|(

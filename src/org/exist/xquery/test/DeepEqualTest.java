@@ -969,6 +969,56 @@ literal|"deep-equal(/test/*[1], /test/*[2])"
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Courtesy : Dizzz
+specifier|public
+name|void
+name|testElements14
+parameter_list|()
+block|{
+comment|//Includes a reference node
+name|String
+name|query
+init|=
+literal|"let $parSpecs1 :=<ParameterSpecifications/> "
+operator|+
+literal|"let $funSpecs2 := "
+operator|+
+literal|"<FunctionSpecifications>"
+operator|+
+literal|"<FunctionName>Func2</FunctionName>"
+operator|+
+literal|"  { $parSpecs1 }"
+operator|+
+literal|"</FunctionSpecifications>"
+operator|+
+literal|"return "
+operator|+
+literal|" deep-equal("
+operator|+
+literal|"<FunctionVerifications>"
+operator|+
+literal|"<FunctionName>Func2</FunctionName>"
+operator|+
+literal|"</FunctionVerifications>"
+operator|+
+literal|","
+operator|+
+literal|"<FunctionVerifications>"
+operator|+
+literal|"   { $funSpecs2/FunctionName }"
+operator|+
+literal|"</FunctionVerifications>"
+operator|+
+literal|" )"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|testNSElements1
