@@ -71,6 +71,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|ReferenceNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -404,6 +416,17 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
+comment|//TODO : make it happy
+if|if
+condition|(
+name|node
+operator|instanceof
+name|ReferenceNode
+condition|)
+name|nextNode
+operator|=
+literal|null
+expr_stmt|;
 while|while
 condition|(
 name|nextNode
