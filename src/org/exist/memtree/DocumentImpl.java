@@ -2712,12 +2712,18 @@ expr_stmt|;
 name|NodeImpl
 name|nextNode
 decl_stmt|;
-comment|//TODO : we should not have a ClassCastException there
-comment|//The problem occurs for persistent referenced  nodes
-comment|//that are not castable to org.exist.memtree.NodeImpl
-comment|//Question : how to send such a persisten node to the receiver ? -pb
-try|try
-block|{
+if|if
+condition|(
+name|node
+operator|instanceof
+name|ReferenceNode
+condition|)
+comment|//Nothing more to stream ?
+name|nextNode
+operator|=
+literal|null
+expr_stmt|;
+else|else
 name|nextNode
 operator|=
 operator|(
@@ -2728,23 +2734,6 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Attempt to access persistent node as a memory node"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 while|while
 condition|(
 name|nextNode
@@ -3706,12 +3695,18 @@ expr_stmt|;
 name|NodeImpl
 name|nextNode
 decl_stmt|;
-comment|//TODO : we should not have a ClassCastException there
-comment|//The problem occurs for persistent referenced  nodes
-comment|//that are not castable to org.exist.memtree.NodeImpl
-comment|//Question : how to send such a persisten node to the receiver ? -pb
-try|try
-block|{
+if|if
+condition|(
+name|node
+operator|instanceof
+name|ReferenceNode
+condition|)
+comment|//Nothing more to stream ?
+name|nextNode
+operator|=
+literal|null
+expr_stmt|;
+else|else
 name|nextNode
 operator|=
 operator|(
@@ -3722,23 +3717,6 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Attempt to access persistent node as a memory node"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 while|while
 condition|(
 name|nextNode
