@@ -323,6 +323,12 @@ name|inWhereClause
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|boolean
+name|invalidNodeEvaluation
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
@@ -593,6 +599,29 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
+comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
+comment|// (1)[.= 1] works...
+name|invalidNodeEvaluation
+operator|=
+name|getLeft
+argument_list|()
+operator|instanceof
+name|LocationStep
+operator|&&
+operator|(
+operator|(
+name|LocationStep
+operator|)
+name|getLeft
+argument_list|()
+operator|)
+operator|.
+name|axis
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
 specifier|public
@@ -600,15 +629,6 @@ name|int
 name|returnsType
 parameter_list|()
 block|{
-comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
-comment|//boolean invalidNodeEvaluation =
-comment|//	getLeft() instanceof LocationStep&& ((LocationStep)getLeft()).axis == Constants.SELF_AXIS;
-comment|//TODO : uncomment and improve code above to make (1)[.= 1] work...
-name|boolean
-name|invalidNodeEvaluation
-init|=
-literal|false
-decl_stmt|;
 if|if
 condition|(
 name|inPredicate
@@ -844,15 +864,6 @@ name|Sequence
 name|result
 init|=
 literal|null
-decl_stmt|;
-comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
-comment|//boolean invalidNodeEvaluation = contextSequence != null&& !Type.subTypeOf(contextSequence.getItemType(), Type.NODE)&&
-comment|//	getLeft() instanceof LocationStep&& ((LocationStep)getLeft()).axis == Constants.SELF_AXIS;
-comment|//TODO : uncomment and improve code above to make (1)[.= 1] work...
-name|boolean
-name|invalidNodeEvaluation
-init|=
-literal|false
 decl_stmt|;
 comment|/*  		 * If we are inside a predicate and one of the arguments is a node set,  		 * we try to speed up the query by returning nodes from the context set. 		 * This works only inside a predicate. The node set will always be the left  		 * operand. 		 */
 if|if
