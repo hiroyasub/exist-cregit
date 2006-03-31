@@ -181,14 +181,7 @@ operator|)
 operator|==
 literal|0
 comment|//TODO: is this accurate ? -pb
-operator|&&
-name|contextInfo
-operator|.
-name|getContextId
-argument_list|()
-operator|!=
-operator|-
-literal|1
+comment|/*&& contextInfo.getContextId() != -1*/
 condition|)
 name|optimize
 operator|=
