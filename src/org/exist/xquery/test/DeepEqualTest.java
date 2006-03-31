@@ -1021,6 +1021,47 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testElements15
+parameter_list|()
+block|{
+comment|// [ 1462061 ] Issue with deep-equal() "DeepestEqualBug"
+name|String
+name|query
+init|=
+literal|"declare namespace ve = \"ournamespace\";"
+operator|+
+literal|"declare function ve:functionVerifications($pars as element()*) as element() {"
+operator|+
+literal|"<FunctionVerifications>"
+operator|+
+literal|"<ParameterVerifications>{$pars[Name eq \"Par1\"]}</ParameterVerifications>"
+operator|+
+literal|"</FunctionVerifications>"
+operator|+
+literal|"};"
+operator|+
+literal|"let $par1 :=<Parameter><Name>Par1</Name></Parameter>"
+operator|+
+literal|"let $funVers2 := "
+operator|+
+literal|"<FunctionVerifications><ParameterVerifications> {$par1}"
+operator|+
+literal|"</ParameterVerifications></FunctionVerifications> "
+operator|+
+literal|"return "
+operator|+
+literal|"deep-equal($funVers2, ve:functionVerifications($par1))"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{
