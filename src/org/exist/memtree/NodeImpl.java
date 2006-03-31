@@ -763,9 +763,18 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getNodeValue() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setNodeValue(java.lang.String) 	 */
 specifier|public
@@ -778,7 +787,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setNodeValue() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeType() 	 */
 specifier|public
@@ -857,6 +877,18 @@ name|NodeValue
 name|node
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call addContextNode() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
@@ -1254,10 +1286,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call insertBefore() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
 specifier|public
@@ -1406,10 +1446,18 @@ name|String
 name|arg1
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call isSupported() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
 specifier|public
@@ -1806,7 +1854,6 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-comment|//return new StringValue(getStringValue());
 block|}
 comment|/* 	 * Methods of interface Sequence 	 */
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
@@ -1820,6 +1867,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call add() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence) 	 */
 specifier|public
@@ -1832,6 +1891,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call addAll() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
 specifier|public
@@ -1922,6 +1993,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|//A node evaluates to true()
 return|return
 literal|true
 return|;
@@ -2462,6 +2534,18 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setSelfAsContext() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
 specifier|public
@@ -2484,6 +2568,18 @@ name|cached
 parameter_list|)
 block|{
 comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setIsCached() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
 specifier|public
@@ -2499,10 +2595,18 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getBaseURI() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
 specifier|public
@@ -2515,10 +2619,19 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|0
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call compareDocumentPosition() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
+comment|//return 0;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
 specifier|public
@@ -2528,10 +2641,18 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getTextContent() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
 specifier|public
@@ -2544,7 +2665,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setTextContent() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
 specifier|public
@@ -2555,10 +2687,18 @@ name|Node
 name|other
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call isSameNode() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
 specifier|public
@@ -2569,10 +2709,18 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call lookupPrefix() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
 specifier|public
@@ -2583,10 +2731,18 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call isDefaultNamespace() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
 specifier|public
@@ -2597,10 +2753,18 @@ name|String
 name|prefix
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call lookupNamespaceURI() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
 specifier|public
@@ -2611,10 +2775,18 @@ name|Node
 name|arg
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call isEqualNode() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -2628,10 +2800,18 @@ name|String
 name|version
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getFeature() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
 specifier|public
@@ -2648,10 +2828,18 @@ name|UserDataHandler
 name|handler
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setUserData() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
 specifier|public
@@ -2662,10 +2850,18 @@ name|String
 name|key
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getUserData() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
 specifier|public
@@ -2673,6 +2869,7 @@ name|boolean
 name|isPersistentSet
 parameter_list|()
 block|{
+comment|//See package's name ;-)
 return|return
 literal|false
 return|;
@@ -2685,7 +2882,18 @@ name|int
 name|contextId
 parameter_list|)
 block|{
-comment|// ignored for in-memory nodes
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call clearContext() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 block|}
 end_class
