@@ -920,25 +920,34 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-comment|/* 			     * TODO quickNodeSetCompare() is NOT being called for xqueries like - 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = current-dateTime()] 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = ("2005-12-20T16:39:00" cast as xs:dateTime)] 			     * but is being called for xqueries like -  			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = "2005-12-20T16:39:00"] 			     * 		collection("/db/CommunityDirectory/data")/communitygroup[validation/lastapproved/date = "2005-12-20T16:39:00" cast as xs:dateTime] 			     * 		- but due to the string type of the key falls back to nodeSetCompare() 			     *  			     * deliriumsky  			     */
 if|if
 condition|(
-operator|(
 name|getRight
 argument_list|()
 operator|.
 name|getDependencies
 argument_list|()
-operator|&
+operator|!=
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+operator|&&
+operator|!
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|getRight
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+argument_list|,
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
-operator|)
-operator|==
-literal|0
-comment|/*&& (getRight().getCardinality()& Cardinality.MANY) == 0*/
+argument_list|)
 condition|)
-comment|//changed to allow multiple right cardinality into () - deliriumsky
 block|{
 if|if
 condition|(
@@ -1016,6 +1025,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//TODO : better design. Should a (buggy) null previous result be returned, we would evaluate this !
 if|if
 condition|(
 name|result
