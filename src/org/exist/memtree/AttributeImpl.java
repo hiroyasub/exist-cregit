@@ -259,6 +259,15 @@ name|getPrefix
 argument_list|()
 return|;
 block|}
+specifier|public
+name|Node
+name|getFirstChild
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#getSpecified() 	 */
 specifier|public
 name|boolean
