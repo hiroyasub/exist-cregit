@@ -1198,6 +1198,13 @@ argument_list|(
 name|tempFile
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|len
+operator|!=
+literal|0
+condition|)
+block|{
 name|byte
 index|[]
 name|buffer
@@ -1260,6 +1267,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|tempFile
 return|;
