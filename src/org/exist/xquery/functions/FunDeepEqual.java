@@ -1182,7 +1182,7 @@ operator|.
 name|REFERENCE_NODE
 condition|)
 block|{
-comment|//Retrieve the actual node type
+comment|//Dereference...
 name|NodeProxy
 name|p
 init|=
@@ -1196,9 +1196,13 @@ operator|.
 name|getReference
 argument_list|()
 decl_stmt|;
+comment|//... then retrieve the actual node, then its type
 name|nodeTypeA
 operator|=
 name|p
+operator|.
+name|getNode
+argument_list|()
 operator|.
 name|getNodeType
 argument_list|()
@@ -1221,7 +1225,7 @@ operator|.
 name|REFERENCE_NODE
 condition|)
 block|{
-comment|//Retrieve the actual node type
+comment|//Dereference...
 name|NodeProxy
 name|p
 init|=
@@ -1235,9 +1239,13 @@ operator|.
 name|getReference
 argument_list|()
 decl_stmt|;
+comment|//... then retrieve the actual node, then its type
 name|nodeTypeB
 operator|=
 name|p
+operator|.
+name|getNode
+argument_list|()
 operator|.
 name|getNodeType
 argument_list|()
@@ -1377,7 +1385,7 @@ operator|.
 name|REFERENCE_NODE
 condition|)
 block|{
-comment|//Retrieve the actual node type
+comment|//Dereference...
 name|NodeProxy
 name|p
 init|=
@@ -1391,9 +1399,13 @@ operator|.
 name|getReference
 argument_list|()
 decl_stmt|;
+comment|//... then retrieve the actual node, then its type
 name|nodeType
 operator|=
 name|p
+operator|.
+name|getNode
+argument_list|()
 operator|.
 name|getNodeType
 argument_list|()
