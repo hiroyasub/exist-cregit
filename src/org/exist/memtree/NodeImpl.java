@@ -1099,11 +1099,19 @@ name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
-return|return
+throw|throw
 operator|new
-name|NodeListImpl
+name|RuntimeException
+argument_list|(
+literal|"Can not call getChildNodes() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
 argument_list|()
-return|;
+argument_list|)
+throw|;
+comment|//return new NodeListImpl();
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
 specifier|public
@@ -1111,12 +1119,16 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
-comment|//TODO : make abstract -pb
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not call getFirstChild() from here"
+literal|"Can not call getFirstChild() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1126,9 +1138,18 @@ name|Node
 name|getLastChild
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getLastChild() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
 specifier|public
@@ -1136,10 +1157,19 @@ name|Node
 name|getPreviousSibling
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+comment|//TODO : we have a getNextSibling() method !
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getPreviousSibling() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNextSibling() 	 */
 specifier|public
@@ -1178,12 +1208,16 @@ name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
-comment|//TODO : make abstract -pb
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not call getAttributes() from here"
+literal|"Can not call getAttributes() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1239,10 +1273,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call replaceChild() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node) 	 */
 specifier|public
@@ -1255,10 +1297,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call removeChild() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
 specifier|public
@@ -1271,10 +1321,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call appendChild() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
 specifier|public
@@ -1282,9 +1340,18 @@ name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call hasChildNodes() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
 specifier|public
@@ -1295,10 +1362,18 @@ name|boolean
 name|arg0
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call cloneNode() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#normalize() 	 */
 specifier|public
@@ -1306,7 +1381,18 @@ name|void
 name|normalize
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call normalize() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -1331,9 +1417,18 @@ name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
-return|return
-literal|""
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getNamespaceURI() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPrefix() 	 */
 specifier|public
@@ -1341,9 +1436,18 @@ name|String
 name|getPrefix
 parameter_list|()
 block|{
-return|return
-literal|""
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getPrefix() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setPrefix(java.lang.String) 	 */
 specifier|public
@@ -1356,6 +1460,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call setPrefix() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */
 specifier|public
@@ -1363,12 +1479,16 @@ name|String
 name|getLocalName
 parameter_list|()
 block|{
-comment|//TODO : make abstract -pb
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not call getLocalName() from here"
+literal|"Can not call getLocalName() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1378,9 +1498,18 @@ name|boolean
 name|hasAttributes
 parameter_list|()
 block|{
-return|return
-literal|false
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call hasAttributes() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* 	 * Methods of interface Item 	 */
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
