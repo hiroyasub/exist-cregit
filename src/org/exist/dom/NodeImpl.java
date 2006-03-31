@@ -1264,13 +1264,7 @@ init|=
 name|getQName
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|nodeName
-operator|!=
-literal|null
-condition|)
-block|{
+comment|//if (nodeName != null) {
 specifier|final
 name|String
 name|prefix
@@ -1289,10 +1283,8 @@ literal|""
 else|:
 name|prefix
 return|;
-block|}
-return|return
-literal|""
-return|;
+comment|//}
+comment|//return "";
 block|}
 comment|/**      *  Sets the prefix attribute of the NodeImpl object      *      *@param  prefix            The new prefix value      *@exception  DOMException  Description of the Exception      */
 specifier|public
@@ -1326,6 +1318,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNamespaceURI()      */
+comment|//TODO : remove default value
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1337,23 +1330,17 @@ init|=
 name|getQName
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|nodeName
-operator|!=
-literal|null
-condition|)
+comment|//if (nodeName != null)
 return|return
 name|nodeName
 operator|.
 name|getNamespaceURI
 argument_list|()
 return|;
-return|return
-literal|""
-return|;
+comment|//return "";
 block|}
 comment|/**      * @see org.w3c.dom.Node#getLocalName()      */
+comment|//TODO : remove default value
 specifier|public
 name|String
 name|getLocalName
@@ -1365,23 +1352,17 @@ init|=
 name|getQName
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|nodeName
-operator|!=
-literal|null
-condition|)
+comment|//if (nodeName != null)
 return|return
 name|nodeName
 operator|.
 name|getLocalName
 argument_list|()
 return|;
-return|return
-literal|""
-return|;
+comment|//return "";
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeName()      */
+comment|//TODO : remove default value
 specifier|public
 name|String
 name|getNodeName
@@ -1393,21 +1374,14 @@ init|=
 name|getQName
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|nodeName
-operator|!=
-literal|null
-condition|)
+comment|//if(nodeName != null)
 return|return
 name|nodeName
 operator|.
 name|toString
 argument_list|()
 return|;
-return|return
-literal|""
-return|;
+comment|//return "";
 block|}
 block|}
 end_class
