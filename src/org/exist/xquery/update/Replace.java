@@ -612,7 +612,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
-comment|//Indicate the failure to perform this update by adding it to the sequence in the context variable "_eXist_xquery_update_error"
+comment|//Indicate the failure to perform this update by adding it to the sequence in the context variable XQueryContext.XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 name|ValueSequence
 name|prevUpdateErrors
 init|=
@@ -644,7 +644,9 @@ name|context
 operator|.
 name|getXQueryContextVar
 argument_list|(
-literal|"_eXist_xquery_update_error"
+name|XQueryContext
+operator|.
+name|XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 argument_list|)
 decl_stmt|;
 if|if
@@ -696,7 +698,9 @@ name|context
 operator|.
 name|setXQueryContextVar
 argument_list|(
-literal|"_eXist_xquery_update_error"
+name|XQueryContext
+operator|.
+name|XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 argument_list|,
 name|prevUpdateErrors
 argument_list|)
