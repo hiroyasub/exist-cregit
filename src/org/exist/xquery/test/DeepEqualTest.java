@@ -1024,6 +1024,50 @@ name|void
 name|testElements15
 parameter_list|()
 block|{
+name|String
+name|query
+init|=
+literal|"let $funSpecs :="
+operator|+
+literal|"<FunctionSpecifications>"
+operator|+
+literal|"<FunctionName>Func2</FunctionName>"
+operator|+
+literal|"</FunctionSpecifications>"
+operator|+
+literal|"let $funVers1 :="
+operator|+
+literal|"<FunctionVerifications>"
+operator|+
+literal|"<FunctionName>Func2</FunctionName>"
+operator|+
+literal|"</FunctionVerifications>"
+operator|+
+literal|"let $funVers2 :="
+operator|+
+literal|"<FunctionVerifications>"
+operator|+
+literal|"{$funSpecs/FunctionName}"
+operator|+
+literal|"</FunctionVerifications>"
+operator|+
+literal|"return "
+operator|+
+literal|"deep-equal($funVers1, $funVers2)"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testElements16
+parameter_list|()
+block|{
 comment|// [ 1462061 ] Issue with deep-equal() "DeepestEqualBug"
 name|String
 name|query
