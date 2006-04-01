@@ -500,7 +500,7 @@ name|inputSequence
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
