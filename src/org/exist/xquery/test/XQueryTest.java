@@ -805,6 +805,7 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
+comment|//Non null context sequence
 name|System
 operator|.
 name|out
@@ -1246,6 +1247,62 @@ name|getAttribute
 argument_list|(
 literal|"id"
 argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//Non null context sequence
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 6: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"/test/item[for $id in ./@id return $id]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|resu
+operator|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|4
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
