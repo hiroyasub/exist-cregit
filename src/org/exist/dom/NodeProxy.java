@@ -3657,7 +3657,9 @@ literal|1
 return|;
 else|else
 return|return
-literal|0
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getDocumentSet()      */

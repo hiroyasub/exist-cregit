@@ -601,27 +601,9 @@ literal|0
 expr_stmt|;
 comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
 comment|// (1)[.= 1] works...
-name|invalidNodeEvaluation
-operator|=
-name|getLeft
-argument_list|()
-operator|instanceof
-name|LocationStep
-operator|&&
-operator|(
-operator|(
-name|LocationStep
-operator|)
-name|getLeft
-argument_list|()
-operator|)
-operator|.
-name|axis
-operator|==
-name|Constants
-operator|.
-name|SELF_AXIS
-expr_stmt|;
+comment|//invalidNodeEvaluation = getLeft() instanceof LocationStep&& ((LocationStep)getLeft()).axis == Constants.SELF_AXIS;
+comment|//Unfortunately, we lose the possibility to make a nodeset optimization
+comment|//(we still don't know anything about the contextSequence that will be processed)
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
 specifier|public
