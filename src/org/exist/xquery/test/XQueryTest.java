@@ -1305,6 +1305,74 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//Ordered value sequence
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testFor 7: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $doc :=<doc><value>Z</value><value>Y</value><value>X</value></doc> "
+operator|+
+literal|"return "
+operator|+
+literal|"let $ordered_values := "
+operator|+
+literal|"	for $value in $doc/value order by $value ascending "
+operator|+
+literal|"	return $value "
+operator|+
+literal|"for $value in $doc/value "
+operator|+
+literal|"	return $value[. = $ordered_values[position() = 1]]"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|resu
+operator|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"<value>X</value>"
+argument_list|,
+name|resu
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
