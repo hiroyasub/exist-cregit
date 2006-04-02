@@ -349,6 +349,18 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the REST-style interface if eXist is running within  * a servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
 end_comment
@@ -374,6 +386,21 @@ name|DEFAULT_ENCODING
 init|=
 literal|"UTF-8"
 decl_stmt|;
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|EXistServlet
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
@@ -382,7 +409,7 @@ literal|null
 decl_stmt|;
 specifier|private
 name|String
-name|defaultUser
+name|defaultUsername
 init|=
 name|SecurityManager
 operator|.
@@ -390,7 +417,7 @@ name|GUEST_USER
 decl_stmt|;
 specifier|private
 name|String
-name|defaultPass
+name|defaultPassword
 init|=
 name|SecurityManager
 operator|.
@@ -399,6 +426,14 @@ decl_stmt|;
 specifier|private
 name|RESTServer
 name|server
+decl_stmt|;
+specifier|private
+name|Authenticator
+name|authenticator
+decl_stmt|;
+specifier|private
+name|User
+name|defaultUser
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
@@ -429,9 +464,9 @@ name|isConfigured
 argument_list|()
 condition|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"Database already started. Skipping configuration ..."
 argument_list|)
@@ -507,9 +542,9 @@ argument_list|(
 name|dbHome
 argument_list|)
 expr_stmt|;
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"EXistServlet: exist.home="
 operator|+
@@ -540,9 +575,9 @@ operator|+
 name|confFile
 argument_list|)
 decl_stmt|;
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"reading configuration from "
 operator|+
@@ -615,8 +650,13 @@ name|config
 operator|.
 name|getInitParameter
 argument_list|(
-literal|"user"
+literal|"use-default-user"
 argument_list|)
+decl_stmt|;
+name|boolean
+name|useDefaultUser
+init|=
+literal|true
 decl_stmt|;
 if|if
 condition|(
@@ -624,7 +664,41 @@ name|option
 operator|!=
 literal|null
 condition|)
-name|defaultUser
+block|{
+name|useDefaultUser
+operator|=
+name|option
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|useDefaultUser
+condition|)
+block|{
+name|option
+operator|=
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"user"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|option
+operator|!=
+literal|null
+condition|)
+name|defaultUsername
 operator|=
 name|option
 expr_stmt|;
@@ -643,9 +717,70 @@ name|option
 operator|!=
 literal|null
 condition|)
-name|defaultPass
+name|defaultPassword
 operator|=
 name|option
+expr_stmt|;
+name|defaultUser
+operator|=
+name|getDefaultUser
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|defaultUser
+operator|!=
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Using default user "
+operator|+
+name|defaultUsername
+operator|+
+literal|" for all unauthorized requests."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Default user "
+operator|+
+name|defaultUsername
+operator|+
+literal|" cannot be found.  A BASIC AUTH challenge will be the default."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"No default user.  All requires must be authorized or will result in a BASIC AUTH challenge."
+argument_list|)
+expr_stmt|;
+name|defaultUser
+operator|=
+literal|null
+expr_stmt|;
+block|}
+name|authenticator
+operator|=
+operator|new
+name|BasicAuthenticator
+argument_list|(
+name|pool
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -794,6 +929,8 @@ init|=
 name|authenticate
 argument_list|(
 name|request
+argument_list|,
+name|response
 argument_list|)
 decl_stmt|;
 if|if
@@ -803,17 +940,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission denied: unknown user or password"
-argument_list|)
-expr_stmt|;
+comment|// You now get a challenge if there is no user
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|//		"Permission denied: unknown user or password");
 return|return;
 block|}
 comment|//fourth, process the request
@@ -1146,6 +1275,8 @@ init|=
 name|authenticate
 argument_list|(
 name|request
+argument_list|,
+name|response
 argument_list|)
 decl_stmt|;
 if|if
@@ -1155,19 +1286,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission denied: unknown user "
-operator|+
-literal|"or password"
-argument_list|)
-expr_stmt|;
+comment|// You now get a challenge if there is no user
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
 comment|//fouth, process the request
@@ -1362,6 +1483,8 @@ init|=
 name|authenticate
 argument_list|(
 name|request
+argument_list|,
+name|response
 argument_list|)
 decl_stmt|;
 if|if
@@ -1371,19 +1494,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission denied: unknown user "
-operator|+
-literal|"or password"
-argument_list|)
-expr_stmt|;
+comment|// You now get a challenge if there is no user
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
 comment|//fourth, process the request
@@ -1571,6 +1684,8 @@ init|=
 name|authenticate
 argument_list|(
 name|request
+argument_list|,
+name|response
 argument_list|)
 decl_stmt|;
 if|if
@@ -1580,19 +1695,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission denied: unknown user "
-operator|+
-literal|"or password"
-argument_list|)
-expr_stmt|;
+comment|// You now get a challenge if there is no user
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
 comment|//fourth, process the request
@@ -1835,6 +1940,8 @@ init|=
 name|authenticate
 argument_list|(
 name|request
+argument_list|,
+name|response
 argument_list|)
 decl_stmt|;
 if|if
@@ -1844,19 +1951,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission denied: unknown user "
-operator|+
-literal|"or password"
-argument_list|)
-expr_stmt|;
+comment|// You now get a challenge if there is no user
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
 comment|//fouth, process the request
@@ -1989,7 +2086,16 @@ name|authenticate
 parameter_list|(
 name|HttpServletRequest
 name|request
+parameter_list|,
+name|HttpServletResponse
+name|response
 parameter_list|)
+throws|throws
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 block|{
 comment|// First try to validate the principial if passed from the servlet engine
 name|Principal
@@ -2033,9 +2139,9 @@ operator|.
 name|getPassword
 argument_list|()
 decl_stmt|;
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"Validating Principle: "
 operator|+
@@ -2078,9 +2184,9 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"Valid User: "
 operator|+
@@ -2096,9 +2202,9 @@ return|;
 block|}
 else|else
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"Password invalid for user: "
 operator|+
@@ -2106,9 +2212,9 @@ name|username
 argument_list|)
 expr_stmt|;
 block|}
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"User not found: "
 operator|+
@@ -2135,126 +2241,27 @@ condition|(
 name|auth
 operator|==
 literal|null
-condition|)
-block|{
-return|return
-name|getDefaultUser
-argument_list|()
-return|;
-block|}
-name|byte
-index|[]
-name|c
-init|=
-name|Base64
-operator|.
-name|decode
-argument_list|(
-name|auth
-operator|.
-name|substring
-argument_list|(
-literal|6
-argument_list|)
-operator|.
-name|getBytes
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|String
-name|s
-init|=
-operator|new
-name|String
-argument_list|(
-name|c
-argument_list|)
-decl_stmt|;
-name|int
-name|p
-init|=
-name|s
-operator|.
-name|indexOf
-argument_list|(
-literal|':'
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|p
-operator|==
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
-condition|)
-block|{
-return|return
+operator|&&
+name|defaultUser
+operator|!=
 literal|null
+condition|)
+block|{
+return|return
+name|defaultUser
 return|;
 block|}
-name|String
-name|username
-init|=
-name|s
+return|return
+name|authenticator
 operator|.
-name|substring
+name|authenticate
 argument_list|(
-literal|0
+name|request
 argument_list|,
-name|p
+name|response
 argument_list|)
-decl_stmt|;
-name|String
-name|password
-init|=
-name|s
-operator|.
-name|substring
-argument_list|(
-name|p
-operator|+
-literal|1
-argument_list|)
-decl_stmt|;
-name|User
-name|user
-init|=
-name|pool
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getUser
-argument_list|(
-name|username
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|user
-operator|==
-literal|null
-condition|)
-return|return
-literal|null
 return|;
-if|if
-condition|(
-operator|!
-name|user
-operator|.
-name|validate
-argument_list|(
-name|password
-argument_list|)
-condition|)
-return|return
-literal|null
-return|;
-return|return
-name|user
-return|;
+comment|/* 		byte[] c = Base64.decode(auth.substring(6).getBytes()); 		String s = new String(c); 		int p = s.indexOf(':'); 		if (p == Constants.STRING_NOT_FOUND) { 			 return null; 			 } 		String username = s.substring(0, p); 		String password = s.substring(p + 1); 		 		User user = pool.getSecurityManager().getUser(username); 		if (user == null) 			return null; 		if (!user.validate(password)) 			return null; 		return user;                  */
 block|}
 specifier|private
 name|User
@@ -2263,7 +2270,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|defaultUser
+name|defaultUsername
 operator|!=
 literal|null
 condition|)
@@ -2278,7 +2285,7 @@ argument_list|()
 operator|.
 name|getUser
 argument_list|(
-name|defaultUser
+name|defaultUsername
 argument_list|)
 decl_stmt|;
 if|if
@@ -2295,7 +2302,7 @@ name|user
 operator|.
 name|validate
 argument_list|(
-name|defaultPass
+name|defaultPassword
 argument_list|)
 condition|)
 return|return
@@ -2335,9 +2342,9 @@ operator|+
 literal|"configured"
 argument_list|)
 throw|;
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"configuring eXist instance"
 argument_list|)
@@ -2383,9 +2390,9 @@ throw|;
 block|}
 try|try
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"registering XMLDB driver"
 argument_list|)
@@ -2425,9 +2432,9 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"ERROR"
 argument_list|,
@@ -2441,9 +2448,9 @@ name|InstantiationException
 name|e
 parameter_list|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"ERROR"
 argument_list|,
@@ -2457,9 +2464,9 @@ name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"ERROR"
 argument_list|,
@@ -2473,9 +2480,9 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|this
+name|LOG
 operator|.
-name|log
+name|info
 argument_list|(
 literal|"ERROR"
 argument_list|,
