@@ -2774,8 +2774,9 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 argument_list|)
 expr_stmt|;
 block|}
@@ -4610,6 +4611,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -4695,52 +4728,13 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
@@ -5065,6 +5059,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -5450,52 +5476,13 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
@@ -5814,6 +5801,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -6233,52 +6252,13 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
@@ -7266,6 +7246,7 @@ literal|null
 expr_stmt|;
 block|}
 else|else
+block|{
 name|parentNode
 operator|=
 name|contextSet
@@ -7275,6 +7256,7 @@ argument_list|(
 name|storedNode
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 throw|throw
@@ -7413,8 +7395,9 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 argument_list|)
 expr_stmt|;
 block|}
