@@ -151,7 +151,10 @@ name|short
 name|getNodeType
 parameter_list|()
 block|{
-comment|//TODO : understand this design -pb
+comment|//TOUNDERSTAND : return value
+comment|//XQuery doesn't support namespace nodes
+comment|//so, mapping as an attribute at *serialization tile*  makes sense
+comment|//however, the Query parser should not accept them in constructors !
 return|return
 name|Node
 operator|.
@@ -180,6 +183,20 @@ name|getQName
 argument_list|()
 operator|.
 name|getPrefix
+argument_list|()
+return|;
+block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+comment|//TODO: remove
+return|return
+name|getQName
+argument_list|()
+operator|.
+name|getNamespaceURI
 argument_list|()
 return|;
 block|}
