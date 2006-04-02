@@ -4540,14 +4540,6 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|int
-name|termCount
-init|=
-name|occurences
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 comment|//Don't forget this one
 name|occurences
 operator|.
@@ -4621,7 +4613,10 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|occurences
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -5401,14 +5396,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|int
-name|termCount
-init|=
-name|newOccurencesList
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 comment|//Don't forget this one
 name|newOccurencesList
 operator|.
@@ -5477,7 +5464,10 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|newOccurencesList
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -6288,14 +6278,6 @@ literal|0
 condition|)
 block|{
 comment|//append the data from the new list
-name|int
-name|termCount
-init|=
-name|storedOccurencesList
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 name|storedOccurencesList
 operator|.
 name|sort
@@ -6361,7 +6343,10 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|storedOccurencesList
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -6380,6 +6365,11 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|int
+name|realCount
+init|=
+literal|0
+decl_stmt|;
 name|long
 name|previousGID
 init|=
@@ -6413,6 +6403,15 @@ index|]
 operator|-
 name|previousGID
 decl_stmt|;
+name|previousGID
+operator|=
+name|storedOccurencesList
+operator|.
+name|nodes
+index|[
+name|m
+index|]
+expr_stmt|;
 name|os
 operator|.
 name|writeLong
@@ -6461,24 +6460,13 @@ operator|.
 name|offsets
 index|[
 name|m
-operator|+
-name|n
+operator|++
 index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|previousGID
-operator|=
-name|storedOccurencesList
-operator|.
-name|nodes
-index|[
-name|m
-index|]
-expr_stmt|;
-name|m
-operator|+=
-name|freq
+name|realCount
+operator|++
 expr_stmt|;
 block|}
 name|os
