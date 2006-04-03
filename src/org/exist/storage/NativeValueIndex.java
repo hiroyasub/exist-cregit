@@ -1229,9 +1229,19 @@ name|j
 index|]
 expr_stmt|;
 block|}
-comment|//Compute a key for the value
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|Value
-name|ref
+name|key
 init|=
 operator|new
 name|Value
@@ -1246,25 +1256,13 @@ name|caseSensitive
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-comment|//Store data
 if|if
 condition|(
 name|dbValues
 operator|.
 name|append
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -1281,9 +1279,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not append index data for value '"
+literal|"Could not append index data for key '"
 operator|+
-name|ref
+name|key
 operator|+
 literal|"'"
 argument_list|)
@@ -2400,9 +2398,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not put index data for value '"
+literal|"Could not put index data for key '"
 operator|+
-name|ref
+name|key
 operator|+
 literal|"'"
 argument_list|)
@@ -2608,7 +2606,7 @@ name|getValue
 argument_list|()
 decl_stmt|;
 name|Value
-name|ref
+name|key
 init|=
 operator|new
 name|Value
@@ -2641,7 +2639,7 @@ name|dbValues
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 name|os
@@ -2961,7 +2959,7 @@ name|dbValues
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -2978,9 +2976,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not put index data for value '"
+literal|"Could not put index data for key '"
 operator|+
-name|ref
+name|key
 operator|+
 literal|"'"
 argument_list|)
@@ -3012,7 +3010,7 @@ name|update
 argument_list|(
 name|address
 argument_list|,
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -3029,9 +3027,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not update index data for value '"
+literal|"Could not update index data for key '"
 operator|+
-name|ref
+name|key
 operator|+
 literal|"'"
 argument_list|)
@@ -3146,15 +3144,6 @@ throws|throws
 name|TerminatedException
 block|{
 specifier|final
-name|int
-name|idxOp
-init|=
-name|checkRelationOp
-argument_list|(
-name|relation
-argument_list|)
-decl_stmt|;
-specifier|final
 name|NodeSet
 name|result
 init|=
@@ -3204,9 +3193,18 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Collection
-name|collection
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3214,15 +3212,12 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|key
@@ -3236,6 +3231,16 @@ argument_list|,
 name|caseSensitive
 argument_list|)
 decl_stmt|;
+specifier|final
+name|int
+name|idxOp
+init|=
+name|checkRelationOp
+argument_list|(
+name|relation
+argument_list|)
+decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3251,6 +3256,7 @@ name|key
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Value
 name|keyPrefix
 init|=
@@ -3264,13 +3270,6 @@ argument_list|,
 name|collectionId
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|()
-expr_stmt|;
 name|dbValues
 operator|.
 name|query
@@ -3597,9 +3596,18 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Collection
-name|collection
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3607,11 +3615,7 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
@@ -3665,6 +3669,7 @@ comment|//key = new byte[3];
 comment|//ByteConversion.shortToByte(collectionId, key, 0);
 comment|//key[2] = (byte) Type.STRING;
 block|}
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3678,13 +3683,6 @@ argument_list|,
 name|searchKey
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|()
-expr_stmt|;
 name|dbValues
 operator|.
 name|query
@@ -3870,9 +3868,18 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|Collection
-name|collection
+try|try
+block|{
+name|lock
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3880,15 +3887,12 @@ name|i
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|startKey
@@ -3902,6 +3906,7 @@ argument_list|,
 name|caseSensitive
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3917,13 +3922,6 @@ name|startKey
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|lock
-operator|.
-name|acquire
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|stringType
