@@ -1450,7 +1450,7 @@ parameter_list|)
 block|{
 specifier|final
 name|WordRef
-name|ref
+name|value
 init|=
 operator|new
 name|WordRef
@@ -1472,7 +1472,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1744,7 +1744,7 @@ name|next
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -1782,7 +1782,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -1938,7 +1938,7 @@ name|dbTokens
 operator|.
 name|remove
 argument_list|(
-name|ref
+name|key
 argument_list|)
 expr_stmt|;
 block|}
@@ -1950,7 +1950,7 @@ name|dbTokens
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -2275,10 +2275,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the node
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -2286,17 +2287,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Value
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -2306,6 +2304,7 @@ argument_list|,
 name|token
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -2328,7 +2327,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -3116,10 +3115,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3127,17 +3127,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the token
 name|Value
-name|ref
+name|value
 decl_stmt|;
 if|if
 condition|(
@@ -3153,7 +3150,7 @@ operator|>
 literal|0
 condition|)
 comment|//TODO : case conversion should be handled by the tokenizer -pb
-name|ref
+name|value
 operator|=
 operator|new
 name|WordRef
@@ -3170,7 +3167,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
-name|ref
+name|value
 operator|=
 operator|new
 name|WordRef
@@ -3188,7 +3185,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 try|try
@@ -3337,10 +3334,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3348,17 +3346,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the token
 name|Value
-name|ref
+name|value
 init|=
 operator|new
 name|WordRef
@@ -3376,7 +3371,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 try|try
@@ -3553,10 +3548,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3564,21 +3560,12 @@ name|i
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-name|Value
-name|startRef
-decl_stmt|;
-name|Value
-name|endRef
-decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 decl_stmt|;
@@ -3589,8 +3576,9 @@ operator|==
 literal|null
 condition|)
 block|{
+name|Value
 name|startRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3601,7 +3589,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|query
 operator|=
 operator|new
@@ -3617,8 +3605,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|Value
 name|startRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3629,9 +3618,10 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|Value
 name|endRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3642,7 +3632,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|query
 operator|=
 operator|new
@@ -4898,10 +4888,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|dbTokens
-operator|.
-name|append
-argument_list|(
+name|WordRef
+name|key
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -4909,6 +4898,12 @@ name|collectionId
 argument_list|,
 name|token
 argument_list|)
+decl_stmt|;
+name|dbTokens
+operator|.
+name|append
+argument_list|(
+name|key
 argument_list|,
 name|data
 argument_list|)
@@ -5153,7 +5148,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -5193,7 +5188,7 @@ name|dbTokens
 operator|.
 name|get
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -5550,7 +5545,7 @@ name|dbTokens
 operator|.
 name|remove
 argument_list|(
-name|ref
+name|key
 argument_list|)
 expr_stmt|;
 block|}
@@ -5569,7 +5564,7 @@ name|dbTokens
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -5615,7 +5610,7 @@ operator|.
 name|getAddress
 argument_list|()
 argument_list|,
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -5884,7 +5879,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -5928,7 +5923,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -6322,7 +6317,7 @@ name|dbTokens
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -6383,7 +6378,7 @@ name|update
 argument_list|(
 name|address
 argument_list|,
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
