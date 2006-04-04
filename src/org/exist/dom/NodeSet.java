@@ -228,18 +228,6 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get a node from this node set matching the document and node id. 	 *  	 * @param doc 	 * @param nodeId 	 * @return 	 */
-specifier|public
-name|NodeProxy
-name|get
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
-function_decl|;
 specifier|public
 name|NodeProxy
 name|get
@@ -388,27 +376,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|)
-function_decl|;
-comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
-specifier|public
-name|NodeProxy
-name|parentWithChild
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|,
-name|boolean
-name|directParent
-parameter_list|,
-name|boolean
-name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 function_decl|;
 comment|/** 	 * Check if the given node has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
