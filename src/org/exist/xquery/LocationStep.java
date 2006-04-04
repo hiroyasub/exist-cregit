@@ -2785,7 +2785,7 @@ argument_list|()
 argument_list|,
 name|currentNode
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2817,6 +2817,16 @@ argument_list|,
 name|currentNode
 operator|.
 name|getInternalAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sibling
+operator|.
+name|setNodeId
+argument_list|(
+name|currentNode
+operator|.
+name|getNodeId
 argument_list|()
 argument_list|)
 expr_stmt|;
