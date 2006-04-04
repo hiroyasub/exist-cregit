@@ -209,7 +209,7 @@ specifier|static
 name|int
 name|ITEMS_TO_TEST
 init|=
-literal|10000
+literal|100000
 decl_stmt|;
 specifier|public
 name|void
