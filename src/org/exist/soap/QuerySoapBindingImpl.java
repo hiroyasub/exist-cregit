@@ -2182,12 +2182,11 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|seq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 operator|&&
 name|Type
 operator|.

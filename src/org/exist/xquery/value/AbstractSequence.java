@@ -456,19 +456,15 @@ condition|)
 return|return
 literal|false
 return|;
-name|int
-name|len
-init|=
-name|getLength
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|OLD_EXIST_VERSION_COMPATIBILITY
 condition|)
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
-name|len
+name|getLength
+argument_list|()
 operator|>
 literal|1
 condition|)
@@ -510,9 +506,11 @@ condition|(
 operator|!
 name|OLD_EXIST_VERSION_COMPATIBILITY
 condition|)
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
-name|len
+name|getLength
+argument_list|()
 operator|>
 literal|1
 condition|)

@@ -8901,10 +8901,8 @@ if|if
 condition|(
 name|resultSet
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 literal|"<?xml version=\"1.0\"?>\n"

@@ -1067,10 +1067,8 @@ if|if
 condition|(
 name|other
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return;
 comment|//TODO : get rid of getLength()
