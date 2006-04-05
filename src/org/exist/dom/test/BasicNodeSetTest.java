@@ -472,7 +472,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test basic {@link org.exist.dom.NodeSet} operations to ensure that  * the used algorithms are basically correct.  *    * @author wolf  *  */
+comment|/**  * Test basic {@link org.exist.dom.NodeSet} operations to ensure that  * the used algorithms are correct.  *    * @author wolf  *  */
 end_comment
 
 begin_class
@@ -1806,11 +1806,16 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|scenes
+operator|(
+operator|(
+name|AbstractNodeSet
+operator|)
+name|largeSet
+operator|)
 operator|.
 name|selectAncestors
 argument_list|(
-name|largeSet
+name|scenes
 operator|.
 name|toNodeSet
 argument_list|()
