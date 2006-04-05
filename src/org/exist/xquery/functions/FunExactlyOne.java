@@ -375,13 +375,19 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|result
 operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|result
+operator|.
 name|getLength
 argument_list|()
-operator|!=
+operator|>
 literal|1
 condition|)
 throw|throw

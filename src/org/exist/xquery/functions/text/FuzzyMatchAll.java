@@ -363,8 +363,15 @@ argument_list|(
 name|nodes
 argument_list|)
 decl_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
+operator|!
+name|thresOpt
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|thresOpt
 operator|.
 name|getLength

@@ -593,10 +593,8 @@ literal|null
 operator|||
 name|contextSequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 comment|// TODO: special treatment if the context sequence is empty:
@@ -638,12 +636,11 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|contextSequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 name|result
 operator|.

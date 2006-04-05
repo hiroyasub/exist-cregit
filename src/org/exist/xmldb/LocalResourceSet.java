@@ -466,10 +466,8 @@ if|if
 condition|(
 name|val
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return;
 if|if

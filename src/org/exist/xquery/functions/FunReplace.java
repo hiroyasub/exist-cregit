@@ -905,10 +905,8 @@ if|if
 condition|(
 name|stringArg
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=

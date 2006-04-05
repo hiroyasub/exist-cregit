@@ -668,6 +668,15 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(
@@ -767,6 +776,10 @@ name|sortedInDocumentOrder
 operator|=
 literal|false
 expr_stmt|;
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -792,6 +805,7 @@ name|hasNext
 argument_list|()
 condition|;
 control|)
+block|{
 name|add
 argument_list|(
 operator|(
@@ -803,6 +817,7 @@ name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean

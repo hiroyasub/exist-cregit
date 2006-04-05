@@ -890,10 +890,8 @@ operator|!
 operator|(
 name|resultSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 operator|||
 name|Type
 operator|.
@@ -927,6 +925,13 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug

@@ -550,6 +550,15 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void
@@ -805,6 +814,15 @@ name|EmptyValue
 extends|extends
 name|AtomicValue
 block|{
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#getStringValue() 		 */
 specifier|public
 name|String

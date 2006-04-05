@@ -770,6 +770,13 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1058,8 +1065,15 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
+operator|!
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|seq
 operator|.
 name|getLength

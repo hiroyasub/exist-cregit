@@ -1514,10 +1514,8 @@ if|if
 condition|(
 name|sequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|truncation
 operator|.
@@ -1529,6 +1527,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|sequence

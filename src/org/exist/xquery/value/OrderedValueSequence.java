@@ -259,6 +259,15 @@ else|:
 name|count
 return|;
 block|}
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void
@@ -331,6 +340,10 @@ name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#addAll(org.exist.xquery.value.Sequence) 	 */
 specifier|public
@@ -345,12 +358,11 @@ name|XPathException
 block|{
 if|if
 condition|(
+operator|!
 name|other
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|Item
@@ -392,6 +404,7 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : get rid of getLength()
 block|}
 if|else if
 condition|(
@@ -736,6 +749,7 @@ name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|seq

@@ -504,10 +504,8 @@ if|if
 condition|(
 name|value
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return;
 name|int

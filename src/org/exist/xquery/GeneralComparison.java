@@ -445,6 +445,7 @@ operator|=
 name|truncation
 expr_stmt|;
 comment|// simplify arguments
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|left
@@ -502,6 +503,7 @@ argument_list|(
 name|left
 argument_list|)
 expr_stmt|;
+comment|//TODO : get rid of getLength
 if|if
 condition|(
 name|right
@@ -1163,14 +1165,27 @@ name|lv
 decl_stmt|,
 name|rv
 decl_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
+operator|!
+name|ls
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|ls
 operator|.
 name|getLength
 argument_list|()
 operator|==
 literal|1
+operator|&&
+operator|!
+name|rs
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 name|rs
 operator|.
@@ -1249,8 +1264,15 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
+comment|//TODO : get rid of getLength
 if|if
 condition|(
+operator|!
+name|rs
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|rs
 operator|.
 name|getLength
@@ -1758,10 +1780,8 @@ operator|)
 operator|&&
 name|nodes
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 comment|//nothing on the left, so nothing to do
 block|{
@@ -1789,10 +1809,8 @@ if|if
 condition|(
 name|rightSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 comment|//nothing on the right, so nothing to do
 block|{

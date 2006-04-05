@@ -589,10 +589,8 @@ literal|null
 operator|||
 name|contextSequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 comment|// if the context sequence is empty, we create a default context

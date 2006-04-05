@@ -678,6 +678,15 @@ name|partCount
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(
@@ -685,6 +694,10 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 name|getPart
 argument_list|(
 name|proxy
@@ -737,6 +750,10 @@ name|int
 name|sizeHint
 parameter_list|)
 block|{
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 name|getPart
 argument_list|(
 name|proxy
@@ -1056,6 +1073,7 @@ operator|==
 literal|0
 condition|)
 return|return;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|other

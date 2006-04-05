@@ -321,6 +321,15 @@ literal|null
 return|;
 block|}
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+return|;
+block|}
+specifier|public
 specifier|final
 name|void
 name|add
@@ -336,6 +345,10 @@ operator|==
 literal|null
 condition|)
 return|return;
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|root

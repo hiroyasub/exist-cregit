@@ -453,19 +453,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|int
-name|items
-init|=
-name|seq
-operator|.
-name|getLength
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|items
-operator|>
-literal|0
+operator|!
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 name|cardinality
 operator|==
@@ -479,14 +473,18 @@ name|XPathException
 argument_list|(
 literal|"Empty sequence expected; got "
 operator|+
-name|items
+name|seq
+operator|.
+name|getLength
+argument_list|()
 argument_list|)
 throw|;
 if|if
 condition|(
-name|items
-operator|==
-literal|0
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 operator|(
 name|cardinality
@@ -505,9 +503,13 @@ argument_list|(
 literal|"Empty sequence is not allowed here"
 argument_list|)
 throw|;
+comment|//TODO : ret rig of getLength
 if|else if
 condition|(
-name|items
+name|seq
+operator|.
+name|getLength
+argument_list|()
 operator|>
 literal|1
 operator|&&

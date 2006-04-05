@@ -541,15 +541,14 @@ block|{
 comment|//get the charset parameter, default to UTF-8
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|2
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|charset

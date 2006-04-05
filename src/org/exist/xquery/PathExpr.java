@@ -866,7 +866,7 @@ argument_list|(
 name|contextDocs
 argument_list|)
 expr_stmt|;
-comment|//DESIGN : calling result.getLength() should be avoided -pb
+comment|//DESIGN : first test the dependency then the result
 if|if
 condition|(
 name|Dependency
@@ -883,12 +883,11 @@ operator|.
 name|CONTEXT_POSITION
 argument_list|)
 operator|&&
+operator|!
 name|result
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|Sequence
@@ -942,6 +941,7 @@ name|nextItem
 argument_list|()
 decl_stmt|;
 comment|//DESIGN : calling result.getLength() should be avoided -pb
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|result
@@ -1006,9 +1006,14 @@ block|}
 comment|//TOUNDERSTAND : why did I have to write this test :-) ? -pb
 comment|//it looks like an empty sequence could be considered as a sub-type of Type.NODE
 comment|//well, no so stupid I think...
-comment|//DESIGN : calling result.getLength() should be avoided -pb
 if|if
 condition|(
+operator|!
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 operator|!
 name|Type
 operator|.
@@ -1023,13 +1028,6 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-operator|&&
-name|result
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
 condition|)
 name|gotAtomicResult
 operator|=

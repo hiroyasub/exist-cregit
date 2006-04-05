@@ -693,12 +693,11 @@ block|}
 block|}
 if|if
 condition|(
+operator|!
 name|temp
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|result

@@ -465,12 +465,11 @@ name|contextSequence
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|contextSequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|item
@@ -515,10 +514,8 @@ if|if
 condition|(
 name|seq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|item
 operator|=

@@ -253,23 +253,20 @@ if|if
 condition|(
 name|ls
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 operator|||
 name|rs
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|ls
@@ -434,13 +431,19 @@ name|toSequence
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|rs
 operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|rs
+operator|.
 name|getLength
 argument_list|()
-operator|!=
+operator|>
 literal|1
 condition|)
 throw|throw

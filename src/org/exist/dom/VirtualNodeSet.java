@@ -1851,6 +1851,19 @@ return|;
 block|}
 comment|/* the following methods are normally never called in this context, 	 * we just provide them because they are declared abstract 	 * in the super class 	 */
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+comment|//TODO : fix this terrible performance gap !!!
+return|return
+name|getLength
+argument_list|()
+operator|==
+literal|0
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(

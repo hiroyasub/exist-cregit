@@ -471,6 +471,19 @@ operator|.
 name|length
 return|;
 block|}
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|nodes
+operator|.
+name|length
+operator|==
+literal|0
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void

@@ -656,6 +656,7 @@ name|contextSequence
 argument_list|)
 decl_stmt|;
 comment|//Only if we have an actual *singleton* of numeric items
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|innerSeq
@@ -1291,6 +1292,16 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|outerSequence
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|outerSequence
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -1304,17 +1315,6 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-operator|&&
-name|outerSequence
-operator|!=
-literal|null
-operator|&&
-name|outerSequence
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|Sequence

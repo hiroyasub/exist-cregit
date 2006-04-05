@@ -455,12 +455,11 @@ literal|0
 condition|)
 name|value
 operator|=
+operator|!
 name|contextSequence
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|?
 name|contextSequence
 operator|.
@@ -493,10 +492,8 @@ if|if
 condition|(
 name|seq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 comment|//TODO : it this the right value ? -pb
 name|value

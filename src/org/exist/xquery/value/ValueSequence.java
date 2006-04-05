@@ -305,6 +305,15 @@ literal|false
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|isEmpty
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(
@@ -312,6 +321,10 @@ name|Item
 name|item
 parameter_list|)
 block|{
+name|isEmpty
+operator|=
+literal|false
+expr_stmt|;
 operator|++
 name|size
 expr_stmt|;

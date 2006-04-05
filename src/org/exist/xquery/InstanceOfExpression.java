@@ -335,14 +335,6 @@ name|contextItem
 argument_list|)
 decl_stmt|;
 name|int
-name|items
-init|=
-name|seq
-operator|.
-name|getLength
-argument_list|()
-decl_stmt|;
-name|int
 name|requiredCardinality
 init|=
 name|type
@@ -352,9 +344,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|items
-operator|>
-literal|0
+operator|!
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 name|requiredCardinality
 operator|==
@@ -370,9 +364,10 @@ name|FALSE
 expr_stmt|;
 if|else if
 condition|(
-name|items
-operator|==
-literal|0
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
 operator|&&
 operator|(
 name|requiredCardinality
@@ -390,9 +385,13 @@ name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|else if
 condition|(
-name|items
+name|seq
+operator|.
+name|getLength
+argument_list|()
 operator|>
 literal|1
 operator|&&

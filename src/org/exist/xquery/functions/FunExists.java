@@ -405,10 +405,8 @@ name|result
 init|=
 name|seq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|?
 name|BooleanValue
 operator|.

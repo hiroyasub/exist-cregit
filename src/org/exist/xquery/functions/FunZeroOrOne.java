@@ -375,6 +375,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|result

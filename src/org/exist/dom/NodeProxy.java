@@ -3071,6 +3071,15 @@ literal|"Method not supported"
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|void

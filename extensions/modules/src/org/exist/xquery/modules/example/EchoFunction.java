@@ -276,10 +276,8 @@ index|[
 literal|0
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|Sequence

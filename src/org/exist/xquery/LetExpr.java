@@ -588,10 +588,8 @@ if|if
 condition|(
 name|filtered
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 if|if

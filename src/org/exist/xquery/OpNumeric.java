@@ -680,10 +680,8 @@ if|if
 condition|(
 name|lseq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=
@@ -691,6 +689,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|lseq
@@ -718,10 +717,8 @@ if|else if
 condition|(
 name|rseq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=
@@ -729,6 +726,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|rseq

@@ -441,10 +441,8 @@ index|[
 literal|0
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=

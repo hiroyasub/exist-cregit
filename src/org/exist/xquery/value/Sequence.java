@@ -117,6 +117,12 @@ name|int
 name|getLength
 parameter_list|()
 function_decl|;
+comment|/** 	 * Returns whether the sequence is empty or not. 	 *  	 * @return 	 */
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+function_decl|;
 comment|/** 	 * Explicitely remove all duplicate nodes from this sequence. 	 */
 specifier|public
 name|void

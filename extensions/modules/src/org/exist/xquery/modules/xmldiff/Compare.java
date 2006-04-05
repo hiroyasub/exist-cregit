@@ -541,10 +541,8 @@ if|if
 condition|(
 name|s1
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|BooleanValue
@@ -553,20 +551,16 @@ name|valueOf
 argument_list|(
 name|s2
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 return|;
 if|else if
 condition|(
 name|s2
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|BooleanValue
@@ -575,10 +569,8 @@ name|valueOf
 argument_list|(
 name|s1
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 return|;
 name|NodeValue

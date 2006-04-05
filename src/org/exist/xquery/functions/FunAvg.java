@@ -438,10 +438,8 @@ if|if
 condition|(
 name|inner
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=

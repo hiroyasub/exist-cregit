@@ -305,10 +305,8 @@ if|if
 condition|(
 name|lval
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|result
@@ -322,10 +320,8 @@ if|else if
 condition|(
 name|rval
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 if|if

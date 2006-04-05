@@ -640,12 +640,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|inSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 throw|throw
 name|xpe
@@ -655,12 +654,11 @@ block|}
 comment|//END trap Delete failure
 if|if
 condition|(
+operator|!
 name|inSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|TransactionManager

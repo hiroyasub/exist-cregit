@@ -443,10 +443,8 @@ if|if
 condition|(
 name|seq1
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=
@@ -456,10 +454,8 @@ if|else if
 condition|(
 name|seq2
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=

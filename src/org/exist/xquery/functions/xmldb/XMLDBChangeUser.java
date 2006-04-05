@@ -460,15 +460,14 @@ argument_list|)
 throw|;
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|1
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|// set password
@@ -499,15 +498,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|2
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|// set groups
@@ -559,15 +557,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|3
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|// set home collection

@@ -779,6 +779,13 @@ operator|.
 name|iterate
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|logger
 operator|.
 name|debug
