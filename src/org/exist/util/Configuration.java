@@ -484,6 +484,8 @@ literal|null
 decl_stmt|;
 comment|// firstly, try to read the configuration from a file within the
 comment|// classpath
+try|try
+block|{
 if|if
 condition|(
 name|configFilename
@@ -527,6 +529,23 @@ operator|=
 literal|"conf.xml"
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// EB: ignore and go forward, e.g. in case there is an absolute
+comment|// file name for configFileName
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 comment|// otherise, secondly try to read configuration from file. Guess the
 comment|// location if necessary
 if|if
@@ -565,13 +584,45 @@ name|existHome
 operator|==
 literal|null
 condition|)
-throw|throw
+block|{
+comment|// EB: try to create existHome based on location of config file
+comment|// when config file points to absolute file location
+name|File
+name|absoluteConfigFile
+init|=
 operator|new
-name|DatabaseConfigurationException
+name|File
 argument_list|(
-literal|"Unable to locate eXist home directory"
+name|configFilename
 argument_list|)
-throw|;
+decl_stmt|;
+if|if
+condition|(
+name|absoluteConfigFile
+operator|.
+name|isAbsolute
+argument_list|()
+operator|&&
+name|absoluteConfigFile
+operator|.
+name|exists
+argument_list|()
+operator|&&
+name|absoluteConfigFile
+operator|.
+name|canRead
+argument_list|()
+condition|)
+name|Configuration
+operator|.
+name|existHome
+operator|=
+name|absoluteConfigFile
+operator|.
+name|getParentFile
+argument_list|()
+expr_stmt|;
+block|}
 name|File
 name|configFile
 init|=
