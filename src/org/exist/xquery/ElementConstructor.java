@@ -888,20 +888,13 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-comment|//TODO : get rid of getLength
 if|if
 condition|(
+operator|!
 name|qnameSeq
 operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
-operator|||
-name|qnameSeq
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|1
 condition|)
 throw|throw
 operator|new

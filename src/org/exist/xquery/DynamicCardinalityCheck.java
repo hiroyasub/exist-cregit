@@ -422,10 +422,8 @@ if|else if
 condition|(
 name|seq
 operator|.
-name|getLength
+name|hasMany
 argument_list|()
-operator|>
-literal|1
 operator|&&
 operator|(
 operator|!

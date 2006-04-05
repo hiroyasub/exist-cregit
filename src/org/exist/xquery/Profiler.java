@@ -1527,15 +1527,12 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|sequence
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|truncation

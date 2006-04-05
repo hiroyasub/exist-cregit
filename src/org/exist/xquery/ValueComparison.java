@@ -266,22 +266,17 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|ls
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 operator|&&
 name|rs
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|AtomicValue
@@ -431,20 +426,13 @@ name|toSequence
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
+operator|!
 name|rs
 operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
-operator|||
-name|rs
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|1
 condition|)
 throw|throw
 operator|new

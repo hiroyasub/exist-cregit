@@ -165,6 +165,15 @@ literal|true
 return|;
 block|}
 specifier|public
+name|boolean
+name|hasOne
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(

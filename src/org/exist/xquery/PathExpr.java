@@ -940,16 +940,14 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|//DESIGN : calling result.getLength() should be avoided -pb
-comment|//TODO : get rid of getLength()
+comment|//0 or 1 item
 if|if
 condition|(
+operator|!
 name|result
 operator|.
-name|getLength
+name|hasMany
 argument_list|()
-operator|<
-literal|2
 condition|)
 name|exprResult
 operator|=

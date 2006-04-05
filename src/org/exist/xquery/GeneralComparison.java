@@ -445,7 +445,6 @@ operator|=
 name|truncation
 expr_stmt|;
 comment|// simplify arguments
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|left
@@ -1165,34 +1164,17 @@ name|lv
 decl_stmt|,
 name|rv
 decl_stmt|;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
-operator|!
 name|ls
 operator|.
-name|isEmpty
-argument_list|()
-operator|&&
-name|ls
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|1
-operator|&&
-operator|!
-name|rs
-operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
 operator|&&
 name|rs
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|lv
@@ -1267,18 +1249,10 @@ expr_stmt|;
 comment|//TODO : get rid of getLength
 if|if
 condition|(
-operator|!
 name|rs
 operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
-operator|&&
-name|rs
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|1
 operator|&&
 name|compareValues
 argument_list|(

@@ -366,17 +366,11 @@ decl_stmt|;
 comment|//TODO : get rid of getLength()
 if|if
 condition|(
+operator|!
 name|thresOpt
 operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
-operator|||
-name|thresOpt
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|1
 condition|)
 throw|throw
 operator|new

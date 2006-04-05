@@ -123,6 +123,16 @@ name|boolean
 name|isEmpty
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|hasOne
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|hasMany
+parameter_list|()
+function_decl|;
 comment|/** 	 * Explicitely remove all duplicate nodes from this sequence. 	 */
 specifier|public
 name|void

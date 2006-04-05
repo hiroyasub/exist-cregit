@@ -1864,6 +1864,19 @@ literal|0
 return|;
 block|}
 specifier|public
+name|boolean
+name|hasOne
+parameter_list|()
+block|{
+comment|//TODO : fix this terrible performance gap !!!
+return|return
+name|getLength
+argument_list|()
+operator|==
+literal|1
+return|;
+block|}
+specifier|public
 name|void
 name|add
 parameter_list|(

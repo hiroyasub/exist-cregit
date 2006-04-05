@@ -1065,21 +1065,12 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
-operator|!
 name|seq
 operator|.
-name|isEmpty
+name|hasOne
 argument_list|()
-operator|&&
-name|seq
-operator|.
-name|getLength
-argument_list|()
-operator|==
-literal|1
 condition|)
 name|terms
 operator|.

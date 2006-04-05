@@ -689,15 +689,12 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
-comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|lseq
 operator|.
-name|getLength
+name|hasMany
 argument_list|()
-operator|>
-literal|1
 condition|)
 throw|throw
 operator|new
@@ -726,15 +723,12 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
-comment|//TODO : get rid of getLength()
 if|else if
 condition|(
 name|rseq
 operator|.
-name|getLength
+name|hasMany
 argument_list|()
-operator|>
-literal|1
 condition|)
 throw|throw
 operator|new

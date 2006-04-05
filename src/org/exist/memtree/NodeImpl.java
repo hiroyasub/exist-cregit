@@ -1853,6 +1853,24 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|boolean
+name|hasOne
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasMany
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public
 name|void

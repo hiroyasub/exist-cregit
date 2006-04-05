@@ -3080,6 +3080,24 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|boolean
+name|hasOne
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasMany
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy) 	 */
 specifier|public
 name|void

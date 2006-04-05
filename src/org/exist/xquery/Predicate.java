@@ -661,10 +661,8 @@ if|if
 condition|(
 name|innerSeq
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 name|recomputedExecutionMode
 operator|=
