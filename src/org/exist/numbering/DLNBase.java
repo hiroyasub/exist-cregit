@@ -338,6 +338,21 @@ name|int
 name|startOffset
 parameter_list|)
 block|{
+if|if
+condition|(
+name|units
+operator|<
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Negative size for DLN: "
+operator|+
+name|units
+argument_list|)
+throw|;
 name|int
 name|bitCnt
 init|=
@@ -900,7 +915,7 @@ operator|/
 name|BITS_PER_UNIT
 return|;
 block|}
-comment|/**      * Returns the size of this id by counting the bits      * used to encode it.      *      * @return the size in bits      */
+comment|/**      * Returns the size of this id by counting the bytes      * used to encode it.      *      * @return the size in bytes      */
 specifier|public
 name|int
 name|size

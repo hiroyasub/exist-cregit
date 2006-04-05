@@ -51,6 +51,14 @@ name|NodeId
 name|createInstance
 parameter_list|()
 function_decl|;
+comment|/**      * Create a new NodeId, initialized with the given      * base id.      *       * @param id      * @return      */
+name|NodeId
+name|createInstance
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+function_decl|;
 comment|/**      * Read a NodeId from the given input stream.      *      * @param is the input stream to read from      * @return the NodeId read      * @throws IOException      */
 name|NodeId
 name|createFromStream
