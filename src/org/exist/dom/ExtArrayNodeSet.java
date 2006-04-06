@@ -1112,15 +1112,12 @@ name|isEmpty
 argument_list|()
 condition|)
 return|return;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|other
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|add

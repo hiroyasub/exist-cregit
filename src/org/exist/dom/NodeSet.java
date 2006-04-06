@@ -192,12 +192,6 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
-comment|/** 	 * Return the number of nodes contained in this node set. 	 */
-specifier|public
-name|int
-name|getLength
-parameter_list|()
-function_decl|;
 comment|/** 	 * Get the node at position pos within this node set. 	 * @param pos 	 * @return 	 */
 specifier|public
 name|NodeProxy

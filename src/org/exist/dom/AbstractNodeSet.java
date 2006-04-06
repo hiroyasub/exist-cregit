@@ -454,13 +454,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Return the number of nodes contained in this node set. 	 */
-specifier|public
-specifier|abstract
-name|int
-name|getLength
-parameter_list|()
-function_decl|;
 specifier|public
 name|void
 name|setIsCached
