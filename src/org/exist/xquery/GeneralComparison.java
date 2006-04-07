@@ -432,6 +432,16 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+name|boolean
+name|didLeftSimplification
+init|=
+literal|false
+decl_stmt|;
+name|boolean
+name|didRightSimplification
+init|=
+literal|false
+decl_stmt|;
 name|this
 operator|.
 name|relation
@@ -444,7 +454,6 @@ name|truncation
 operator|=
 name|truncation
 expr_stmt|;
-comment|// simplify arguments
 if|if
 condition|(
 name|left
@@ -464,24 +473,6 @@ operator|==
 literal|1
 condition|)
 block|{
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATIONS
-argument_list|,
-literal|"OPTIMIZATION"
-argument_list|,
-literal|"Simplifying left argument"
-argument_list|)
-expr_stmt|;
 name|left
 operator|=
 operator|(
@@ -495,6 +486,10 @@ name|getExpression
 argument_list|(
 literal|0
 argument_list|)
+expr_stmt|;
+name|didLeftSimplification
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|add
@@ -502,7 +497,6 @@ argument_list|(
 name|left
 argument_list|)
 expr_stmt|;
-comment|//TODO : get rid of getLength
 if|if
 condition|(
 name|right
@@ -522,24 +516,6 @@ operator|==
 literal|1
 condition|)
 block|{
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATIONS
-argument_list|,
-literal|"OPTIMIZATION"
-argument_list|,
-literal|"Simplifying right argument"
-argument_list|)
-expr_stmt|;
 name|right
 operator|=
 operator|(
@@ -553,6 +529,10 @@ name|getExpression
 argument_list|(
 literal|0
 argument_list|)
+expr_stmt|;
+name|didRightSimplification
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|add
@@ -561,6 +541,50 @@ name|right
 argument_list|)
 expr_stmt|;
 comment|//TODO : should we also use simplify() here ? -pb
+if|if
+condition|(
+name|didLeftSimplification
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Marked left argument as a child expression"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|didRightSimplification
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Marked right argument as a child expression"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.BinaryOp#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
