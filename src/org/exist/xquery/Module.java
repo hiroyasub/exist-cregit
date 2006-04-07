@@ -71,6 +71,25 @@ name|REQUEST_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/request"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in session module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SESSION_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/session"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in response module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RESPONSE_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/response"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in transform module. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -79,6 +98,7 @@ name|TRANSFORM_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/transform"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in text module. 	 */
 specifier|public
 specifier|final
 specifier|static
