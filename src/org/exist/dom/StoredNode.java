@@ -748,14 +748,20 @@ name|parentID
 operator|==
 name|NodeProxy
 operator|.
-name|DOCUMENT_NODE_GID
+name|UNKNOWN_NODE_GID
 condition|)
 return|return
 literal|null
 return|;
-comment|//Filter out the temporary nodes wrapper element
 if|if
 condition|(
+name|parentID
+operator|==
+name|NodeProxy
+operator|.
+name|DOCUMENT_NODE_GID
+operator|||
+comment|//Filter out the temporary nodes wrapper element
 name|parentID
 operator|==
 name|NodeProxy
@@ -777,22 +783,6 @@ name|isTempCollection
 argument_list|()
 condition|)
 block|{
-comment|//Is this ever called ?
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Filtered out wrapper element in "
-operator|+
-name|this
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
