@@ -1367,6 +1367,15 @@ name|subtract
 argument_list|(
 name|quotient
 operator|.
+name|setScale
+argument_list|(
+literal|0
+argument_list|,
+name|BigDecimal
+operator|.
+name|ROUND_DOWN
+argument_list|)
+operator|.
 name|multiply
 argument_list|(
 operator|(
