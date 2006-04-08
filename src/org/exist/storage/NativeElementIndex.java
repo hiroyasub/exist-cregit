@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-06, Wolfgang M.  * Meier (wolfgang@exist-db.org)  *   * This library is free software; you can redistribute it and/or modify it under  * the terms of the GNU Library General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This library is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more  * details.  *   * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *   * $Id$  */
+comment|/*  * Meier (wolfgang@exist-db.org)  *   * This library is free software; you can redistribute it and/or modify it under  * the terms of the GNU Library General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This library is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more  * details.  *   * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -1284,6 +1284,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : flush dbNodes ?
 name|progress
 operator|.
 name|finish
@@ -1468,8 +1469,7 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -1558,18 +1558,7 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//LOG.error(e.getMessage(), e);
 comment|//TODO : data will be saved although os is probably corrupted ! -pb
 block|}
 block|}
@@ -1658,29 +1647,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//TODO : remove this block if unexpected -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -1997,6 +1967,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : flush dbNodes ?
 name|pending
 operator|.
 name|clear
@@ -2059,7 +2030,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|//TODO : flush ? -pb
 name|dbNodes
 operator|.
 name|removeAll
@@ -2270,8 +2240,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -2367,15 +2336,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOF is expected here
-block|}
+comment|//}
 if|if
 condition|(
 name|changed
@@ -2669,8 +2632,7 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -2888,15 +2850,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOFExceptions expected there
-block|}
+comment|//}
 block|}
 comment|// TOUNDERSTAND : given what is above :-), why not rationalize ? -pb
 comment|// append the new list to any existing data
@@ -3647,14 +3603,8 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-comment|//EOFExceptions are expected here
+comment|//} catch (EOFException e) {
+comment|//    //EOFExceptions are expected here
 block|}
 catch|catch
 parameter_list|(
@@ -4144,8 +4094,7 @@ name|getLength
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -4193,29 +4142,10 @@ name|gidsCount
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//TODO : remove this block if unexpected -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 block|}
 block|}
 catch|catch
@@ -4543,8 +4473,7 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -4837,29 +4766,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//TODO : remove this block if unexpected -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 name|LOG
 operator|.
 name|debug
