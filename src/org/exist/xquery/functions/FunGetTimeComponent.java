@@ -667,7 +667,7 @@ operator|.
 name|SECOND
 argument_list|)
 operator|*
-literal|1000
+literal|1000L
 operator|+
 name|time
 operator|.
@@ -685,7 +685,7 @@ name|DecimalValue
 argument_list|(
 name|millis
 operator|/
-literal|1000
+literal|1000F
 argument_list|)
 expr_stmt|;
 block|}
