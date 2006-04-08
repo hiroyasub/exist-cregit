@@ -2337,6 +2337,11 @@ argument_list|()
 argument_list|,
 name|root
 operator|.
+name|getNodeType
+argument_list|()
+argument_list|,
+name|root
+operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)

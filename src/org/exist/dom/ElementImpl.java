@@ -4660,6 +4660,9 @@ argument_list|,
 name|getGID
 argument_list|()
 argument_list|,
+name|getNodeType
+argument_list|()
+argument_list|,
 name|getInternalAddress
 argument_list|()
 argument_list|)
@@ -7942,6 +7945,11 @@ argument_list|,
 name|node
 operator|.
 name|getGID
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getNodeType
 argument_list|()
 argument_list|,
 name|node

@@ -1099,6 +1099,11 @@ argument_list|()
 argument_list|,
 name|node
 operator|.
+name|getNodeType
+argument_list|()
+argument_list|,
+name|node
+operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
