@@ -1097,7 +1097,7 @@ name|NodeSet
 name|selectAncestors
 parameter_list|(
 name|NodeSet
-name|dl
+name|descendants
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -1113,7 +1113,7 @@ name|selectAncestors
 argument_list|(
 name|this
 argument_list|,
-name|dl
+name|descendants
 argument_list|,
 name|includeSelf
 argument_list|,

@@ -878,10 +878,6 @@ argument_list|,
 literal|false
 argument_list|,
 name|includeSelf
-argument_list|,
-name|NodeProxy
-operator|.
-name|UNKNOWN_NODE_LEVEL
 argument_list|)
 decl_stmt|;
 for|for
@@ -987,6 +983,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|temp
 operator|.
 name|addContextNode
@@ -996,6 +993,7 @@ argument_list|,
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1020,9 +1018,6 @@ name|directParent
 parameter_list|,
 name|boolean
 name|includeSelf
-parameter_list|,
-name|int
-name|level
 parameter_list|)
 block|{
 name|NodeSet
@@ -1120,9 +1115,6 @@ condition|)
 return|return
 name|result
 return|;
-operator|--
-name|level
-expr_stmt|;
 block|}
 return|return
 name|result

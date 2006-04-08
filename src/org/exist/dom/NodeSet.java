@@ -290,7 +290,7 @@ name|NodeSet
 name|selectAncestors
 parameter_list|(
 name|NodeSet
-name|al
+name|descendants
 parameter_list|,
 name|boolean
 name|includeSelf

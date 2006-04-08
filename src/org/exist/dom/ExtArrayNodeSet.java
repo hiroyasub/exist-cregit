@@ -1273,7 +1273,7 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|)
 return|;
