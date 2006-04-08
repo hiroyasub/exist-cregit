@@ -14146,9 +14146,9 @@ operator|.
 name|getGID
 argument_list|()
 operator|==
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_ROOT_NODE_GID
+name|DOCUMENT_ELEMENT_GID
 condition|)
 block|{
 name|newDoc

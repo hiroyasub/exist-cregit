@@ -1239,9 +1239,9 @@ if|if
 condition|(
 name|gid
 operator|==
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_ROOT_NODE_GID
+name|DOCUMENT_ELEMENT_GID
 condition|)
 return|return
 name|getDocumentElement
@@ -2545,7 +2545,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/*     public long getGID() {         //TOUNDERSTAND : what are the semantics of this 0 ? -pb         return 0;     }      public void setGID(long gid) {     }      public long getInternalAddress() {         return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;     }      public void setInternalAddress(long address) {     }          public long getParentGID() {         return StoredNode.NODE_IMPL_UNKNOWN_GID;     }     */
+comment|/*     public long getGID() {         return NodeProxy.UNKNOWN_NODE_GID;     }      public void setGID(long gid) {     }      public long getInternalAddress() {         return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;     }      public void setInternalAddress(long address) {     }          public long getParentGID() {         return StoredNode.NODE_IMPL_UNKNOWN_GID;     }     */
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|void
@@ -2767,12 +2767,13 @@ operator|.
 name|endRemove
 argument_list|()
 expr_stmt|;
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 name|newNode
 operator|.
 name|setGID
 argument_list|(
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_GID
 argument_list|)
 expr_stmt|;
 name|broker
@@ -2916,9 +2917,9 @@ operator|==
 literal|0
 condition|)
 return|return
-name|NodeProxy
+name|StoredNode
 operator|.
-name|UNKNOWN_NODE_ADDRESS
+name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 return|return
 name|childList

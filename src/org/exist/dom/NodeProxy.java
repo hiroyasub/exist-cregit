@@ -327,15 +327,6 @@ decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
-name|int
-name|UNKNOWN_NODE_LEVEL
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
 name|short
 name|UNKNOWN_NODE_TYPE
 init|=
@@ -346,7 +337,7 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|UNKNOWN_NODE_ADDRESS
+name|UNKNOWN_NODE_LEVEL
 init|=
 operator|-
 literal|1
@@ -369,11 +360,17 @@ comment|/** 	 * The internal storage address of this node in the 	 * dom.dbx fil
 specifier|private
 name|long
 name|internalAddress
+init|=
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
 comment|/** 	 * The type of this node (as defined by DOM), if known.  	 * @link #UNKNOWN_NODE_TYPE 	 */
 specifier|private
 name|short
 name|nodeType
+init|=
+name|UNKNOWN_NODE_TYPE
 decl_stmt|;
 comment|/** 	 * The first {@link Match} object associated with this node. 	 * Match objects are used to track fulltext hits throughout query processing. 	 *  	 * Matches are stored as a linked list. 	 */
 specifier|private
@@ -406,7 +403,9 @@ name|gid
 argument_list|,
 name|UNKNOWN_NODE_TYPE
 argument_list|,
-name|UNKNOWN_NODE_ADDRESS
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
@@ -431,10 +430,13 @@ name|gid
 argument_list|,
 name|nodeType
 argument_list|,
-name|UNKNOWN_NODE_ADDRESS
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @deprecated : avoid using this constructor ; we generally know the node's type      * @param doc      * @param gid      * @param address      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -553,7 +555,9 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 argument_list|,
-name|UNKNOWN_NODE_ADDRESS
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
@@ -598,7 +602,9 @@ if|if
 condition|(
 name|diff
 operator|!=
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|)
 return|return
 name|diff
@@ -610,7 +616,9 @@ name|other
 operator|.
 name|gid
 condition|?
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 else|:
 operator|(
 name|gid
@@ -619,10 +627,13 @@ name|other
 operator|.
 name|gid
 condition|?
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 else|:
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 operator|)
 return|;
 block|}
@@ -1601,7 +1612,9 @@ if|if
 condition|(
 name|cmp
 operator|==
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 operator|&&
 name|m
 operator|.

@@ -448,9 +448,9 @@ specifier|private
 name|long
 name|firstChild
 init|=
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 decl_stmt|;
 specifier|private
 name|int
@@ -631,9 +631,9 @@ literal|0
 expr_stmt|;
 name|firstChild
 operator|=
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 expr_stmt|;
 name|position
 operator|=
@@ -1712,9 +1712,9 @@ operator|.
 name|getGID
 argument_list|()
 operator|==
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 condition|)
 block|{
 specifier|final
@@ -1807,12 +1807,13 @@ throw|;
 block|}
 block|}
 else|else
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 name|child
 operator|.
 name|setGID
 argument_list|(
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_GID
 argument_list|)
 expr_stmt|;
 operator|++
@@ -3961,25 +3962,28 @@ name|long
 name|firstChildID
 parameter_list|()
 block|{
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 if|if
 condition|(
 name|getGID
 argument_list|()
 operator|==
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_GID
 condition|)
 return|return
-literal|0
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_GID
 return|;
 comment|//Return if already computed
 if|if
 condition|(
 name|firstChild
 operator|!=
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 condition|)
 return|return
 name|firstChild
@@ -5482,9 +5486,9 @@ name|hasChildNodes
 argument_list|()
 condition|)
 return|return
-name|StoredNode
+name|NodeProxy
 operator|.
-name|NODE_IMPL_UNKNOWN_GID
+name|UNKNOWN_NODE_GID
 return|;
 return|return
 name|firstChildID
