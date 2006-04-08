@@ -2553,7 +2553,7 @@ init|=
 operator|new
 name|Match
 argument_list|(
-literal|1
+name|nodeId
 argument_list|,
 name|token
 argument_list|,
@@ -2621,7 +2621,7 @@ init|=
 operator|new
 name|Match
 argument_list|(
-literal|1
+name|nodeId
 argument_list|,
 name|token
 argument_list|,
@@ -7345,7 +7345,7 @@ init|=
 operator|new
 name|Match
 argument_list|(
-name|storedGID
+literal|null
 argument_list|,
 name|word
 operator|.
@@ -7413,7 +7413,7 @@ init|=
 operator|new
 name|Match
 argument_list|(
-name|storedGID
+literal|null
 argument_list|,
 name|word
 operator|.
