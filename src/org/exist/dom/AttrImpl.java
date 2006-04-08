@@ -1142,7 +1142,9 @@ operator|)
 operator|.
 name|getNode
 argument_list|(
-name|getParentGID
+name|nodeId
+operator|.
+name|getParentId
 argument_list|()
 argument_list|)
 return|;
