@@ -1236,28 +1236,6 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Check if the node identified by its node id has an ancestor contained in this node set 	 * and return the ancestor found. 	 * 	 * If directParent is true, only immediate ancestors (parents) are considered. 	 * Otherwise the method will call itself recursively for all the node's 	 * parents. 	 * 	 * If includeSelf is true, the method returns also true if 	 * the node itself is contained in the node set. 	 */
-specifier|public
-name|NodeProxy
-name|parentWithChild
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|,
-name|boolean
-name|directParent
-parameter_list|,
-name|boolean
-name|includeSelf
-parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1769,38 +1747,6 @@ expr_stmt|;
 return|return
 name|ancestors
 return|;
-block|}
-comment|/** 	 * Return a sub-range of this node set containing the range of nodes greater than or including 	 * the lower node and smaller than or including the upper node. 	 *  	 * @param doc 	 * @param lower 	 * @param upper 	 * @return 	 */
-specifier|public
-name|void
-name|getRange
-parameter_list|(
-name|NodeSet
-name|result
-parameter_list|,
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|lower
-parameter_list|,
-name|long
-name|upper
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"getRange is not valid for class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
 block|}
 comment|/** 	 * Get a hint about how many nodes in this node set belong to the  	 * specified document. This is just used for allocating new node sets. 	 * The information does not need to be exact. -1 is returned if the 	 * size cannot be determined (the default). 	 *  	 * @param doc 	 * @return 	 */
 specifier|public
