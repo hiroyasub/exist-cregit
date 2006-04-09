@@ -521,9 +521,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|request
+name|response
 operator|.
-name|RequestModule
+name|ResponseModule
 import|;
 end_import
 
@@ -1130,22 +1130,22 @@ return|;
 block|}
 else|else
 block|{
-name|RequestModule
+name|ResponseModule
 name|myModule
 init|=
 operator|(
-name|RequestModule
+name|ResponseModule
 operator|)
 name|context
 operator|.
 name|getModule
 argument_list|(
-name|RequestModule
+name|ResponseModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $request
+comment|// response object is read from global variable $response
 name|Variable
 name|respVar
 init|=
@@ -1153,7 +1153,7 @@ name|myModule
 operator|.
 name|resolveVariable
 argument_list|(
-name|RequestModule
+name|ResponseModule
 operator|.
 name|RESPONSE_VAR
 argument_list|)
@@ -1171,7 +1171,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"No request object found in the current XQuery context."
+literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
 if|if
