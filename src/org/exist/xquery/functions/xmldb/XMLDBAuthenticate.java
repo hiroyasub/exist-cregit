@@ -149,9 +149,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|request
+name|session
 operator|.
-name|RequestModule
+name|SessionModule
 import|;
 end_import
 
@@ -654,17 +654,17 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|RequestModule
+name|SessionModule
 name|myModule
 init|=
 operator|(
-name|RequestModule
+name|SessionModule
 operator|)
 name|context
 operator|.
 name|getModule
 argument_list|(
-name|RequestModule
+name|SessionModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
@@ -676,7 +676,7 @@ name|myModule
 operator|.
 name|resolveVariable
 argument_list|(
-name|RequestModule
+name|SessionModule
 operator|.
 name|SESSION_VAR
 argument_list|)
