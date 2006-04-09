@@ -1720,7 +1720,9 @@ literal|"\nWARN: The following JAR file entries from '"
 operator|+
 name|startConfigFileName
 operator|+
-literal|"' aren't available:\n"
+literal|"' aren't available (this may NOT be a "
+operator|+
+literal|"problem):\n"
 operator|+
 name|nonexistentJars
 argument_list|)
