@@ -451,9 +451,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|request
+name|session
 operator|.
-name|RequestModule
+name|SessionModule
 import|;
 end_import
 
@@ -3660,15 +3660,15 @@ name|User
 name|getUserFromHttpSession
 parameter_list|()
 block|{
-name|RequestModule
+name|SessionModule
 name|myModule
 init|=
 operator|(
-name|RequestModule
+name|SessionModule
 operator|)
 name|getModule
 argument_list|(
-name|RequestModule
+name|SessionModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
@@ -3686,7 +3686,7 @@ name|myModule
 operator|.
 name|resolveVariable
 argument_list|(
-name|RequestModule
+name|SessionModule
 operator|.
 name|SESSION_VAR
 argument_list|)

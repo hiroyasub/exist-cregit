@@ -111,9 +111,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|request
+name|response
 operator|.
-name|RequestModule
+name|ResponseModule
 import|;
 end_import
 
@@ -272,17 +272,17 @@ operator|>
 literal|0
 condition|)
 block|{
-name|RequestModule
+name|ResponseModule
 name|myModule
 init|=
 operator|(
-name|RequestModule
+name|ResponseModule
 operator|)
 name|context
 operator|.
 name|getModule
 argument_list|(
-name|RequestModule
+name|ResponseModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
@@ -295,7 +295,7 @@ name|myModule
 operator|.
 name|resolveVariable
 argument_list|(
-name|RequestModule
+name|ResponseModule
 operator|.
 name|RESPONSE_VAR
 argument_list|)
