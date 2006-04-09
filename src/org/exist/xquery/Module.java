@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $id$  */
 end_comment
 
 begin_package
@@ -71,6 +71,25 @@ name|REQUEST_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/request"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in response module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RESPONSE_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/response"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in session module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SESSION_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/session"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in transform module. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -79,6 +98,7 @@ name|TRANSFORM_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/transform"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in text module. 	 */
 specifier|public
 specifier|final
 specifier|static
