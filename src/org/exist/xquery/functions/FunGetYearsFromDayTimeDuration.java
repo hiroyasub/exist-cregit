@@ -195,6 +195,20 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|YearMonthDurationValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Dannes Wessels (dizzzz)  */
 end_comment
@@ -238,7 +252,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|DAY_TIME_DURATION
+name|YEAR_MONTH_DURATION
 argument_list|,
 name|Cardinality
 operator|.
@@ -425,7 +439,7 @@ name|DurationValue
 name|duration
 init|=
 operator|(
-name|DurationValue
+name|YearMonthDurationValue
 operator|)
 name|arg
 operator|.
