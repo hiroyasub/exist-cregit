@@ -72,29 +72,6 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      * @param gid      */
-specifier|public
-name|NamedNode
-parameter_list|(
-name|long
-name|gid
-parameter_list|,
-name|QName
-name|qname
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|gid
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|nodeName
-operator|=
-name|qname
-expr_stmt|;
-block|}
 comment|/**      * @param nodeType      * @param gid      */
 specifier|public
 name|NamedNode

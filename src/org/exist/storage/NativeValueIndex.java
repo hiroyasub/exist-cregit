@@ -13,15 +13,9 @@ name|storage
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|EOFException
-import|;
-end_import
+begin_comment
+comment|//import java.io.EOFException;
+end_comment
 
 begin_import
 import|import
@@ -712,13 +706,14 @@ argument_list|,
 name|content
 argument_list|)
 decl_stmt|;
+comment|//Ignore if the value can't be successfully atomized
+comment|//(this is logged elsewhere)
 if|if
 condition|(
 name|atomic
 operator|==
 literal|null
 condition|)
-comment|//TODO : throw an exception ? -pb
 return|return;
 name|LongLinkedList
 name|buf
@@ -805,6 +800,8 @@ name|getValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//Ignore if the value can't be successfully atomized
+comment|//(this is logged elsewhere)
 if|if
 condition|(
 name|atomic
@@ -1541,8 +1538,7 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -1674,29 +1670,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//Is it expected ? if not, remove the block -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -1797,49 +1774,6 @@ index|]
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|//Store the data
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|dbValues
-operator|.
-name|put
-argument_list|(
-name|searchKey
-argument_list|,
-name|os
-operator|.
-name|data
-argument_list|()
-argument_list|)
-operator|==
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not put index data for value '"
-operator|+
-name|searchKey
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
 if|if
 condition|(
 name|dbValues
@@ -1869,6 +1803,40 @@ operator|.
 name|error
 argument_list|(
 literal|"Could not update index data for value '"
+operator|+
+name|searchKey
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|dbValues
+operator|.
+name|put
+argument_list|(
+name|searchKey
+argument_list|,
+name|os
+operator|.
+name|data
+argument_list|()
+argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not put index data for value '"
 operator|+
 name|searchKey
 operator|+
@@ -2663,8 +2631,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -2833,15 +2800,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOFException expected
-block|}
+comment|//}
 block|}
 comment|//TOUNDERSTAND (bis) : don't we lack the 2 following lines like in NativeElementIndex ? -pb
 comment|//if (node != null)
@@ -4792,13 +4753,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|// EOF is expected here
 block|}
 catch|catch
@@ -5320,28 +5275,9 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch(EOFException e) {
 comment|//Is it expected ? -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//LOG.warn("REPORT ME" + e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(

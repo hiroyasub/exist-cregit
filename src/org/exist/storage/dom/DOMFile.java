@@ -6485,12 +6485,9 @@ name|NodeSetHelper
 operator|.
 name|getFirstChildId
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
-name|getOwnerDocument
+name|getDocument
 argument_list|()
 argument_list|,
 name|node
@@ -6665,9 +6662,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getDocument

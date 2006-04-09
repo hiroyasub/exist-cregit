@@ -13,15 +13,9 @@ name|storage
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|EOFException
-import|;
-end_import
+begin_comment
+comment|//import java.io.EOFException;
+end_comment
 
 begin_import
 import|import
@@ -908,12 +902,9 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|attr
 operator|.
-name|getOwnerDocument
+name|getDocument
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1044,12 +1035,9 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|text
 operator|.
-name|getOwnerDocument
+name|getDocument
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1497,11 +1485,6 @@ argument_list|)
 expr_stmt|;
 name|dbTokens
 operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|dbTokens
-operator|.
 name|removeAll
 argument_list|(
 name|query
@@ -1556,25 +1539,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|DBException
 name|e
 parameter_list|)
 block|{
@@ -1677,6 +1641,11 @@ argument_list|,
 name|node
 operator|.
 name|getGID
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getNodeType
 argument_list|()
 argument_list|,
 name|node
@@ -1793,8 +1762,7 @@ operator|==
 literal|null
 condition|)
 continue|continue;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -1905,15 +1873,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOF is expected here
-block|}
+comment|//}
 comment|//Store new data, if relevant
 if|if
 condition|(
@@ -2790,28 +2752,9 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-comment|// EOF is expected here
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME for confirmation "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//} catch (EOFException e) {
+comment|//    // EOF is expected here
+comment|//    LOG.warn("REPORT ME for confirmation " + e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(
@@ -5212,8 +5155,7 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -5419,29 +5361,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//Is it expected ? -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -5526,7 +5449,6 @@ literal|4
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 comment|//Store the data
 if|if
 condition|(
@@ -5540,7 +5462,6 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-block|{
 name|dbTokens
 operator|.
 name|remove
@@ -5548,57 +5469,6 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-comment|//TOUNDERSTAND : is this ever called ? -pb
-if|if
-condition|(
-name|dbTokens
-operator|.
-name|put
-argument_list|(
-name|key
-argument_list|,
-name|os
-operator|.
-name|data
-argument_list|()
-argument_list|)
-operator|==
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not put index data for token '"
-operator|+
-name|token
-operator|+
-literal|"' in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-expr_stmt|;
-block|}
 if|else 					            if
 condition|(
 name|dbTokens
@@ -5628,6 +5498,50 @@ operator|.
 name|error
 argument_list|(
 literal|"Could not update index data for token '"
+operator|+
+name|token
+operator|+
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|dbTokens
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|os
+operator|.
+name|data
+argument_list|()
+argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not put index data for token '"
 operator|+
 name|token
 operator|+
@@ -5935,8 +5849,7 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -6211,15 +6124,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOF is expected here
-block|}
+comment|//}
 block|}
 if|if
 condition|(
@@ -7402,13 +7309,7 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|// EOFExceptions are normal
 block|}
 catch|catch
@@ -7902,13 +7803,7 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch(EOFException e) {
 comment|//EOFExceptions are expected
 block|}
 catch|catch
