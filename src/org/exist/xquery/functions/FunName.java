@@ -555,9 +555,6 @@ name|i
 init|=
 name|seq
 operator|.
-name|toNodeSet
-argument_list|()
-operator|.
 name|iterate
 argument_list|()
 init|;
