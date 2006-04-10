@@ -618,7 +618,7 @@ name|path
 operator|=
 name|truncatedURI
 operator|.
-name|getPath
+name|getRawPath
 argument_list|()
 expr_stmt|;
 comment|//Eventually rewrite wrappedURI *without* user info
@@ -1960,6 +1960,16 @@ parameter_list|()
 block|{
 return|return
 name|port
+return|;
+block|}
+comment|/** 	 * Method to return the collection path with reserved characters  	 * percent encoded 	 *  	 * @return Returns the encoded collection path 	 */
+specifier|public
+name|String
+name|getRawCollectionPath
+parameter_list|()
+block|{
+return|return
+name|escapedCollectionPath
 return|;
 block|}
 specifier|public

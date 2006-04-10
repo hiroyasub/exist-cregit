@@ -227,9 +227,33 @@ block|{
 try|try
 block|{
 comment|// this will fail!!!
-comment|//			Collection test =
-comment|//				DatabaseManager.getCollection(URI + DBBroker.ROOT_COLLECTION + '/' + ESC_COLL, "admin", null);
-comment|//			assertNotNull(test);
+name|Collection
+name|test
+init|=
+name|DatabaseManager
+operator|.
+name|getCollection
+argument_list|(
+name|URI
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|'/'
+operator|+
+name|ESC_COLL
+argument_list|,
+literal|"admin"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|test
+argument_list|)
+expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -248,16 +272,15 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|Collection
 name|test
-init|=
+operator|=
 name|root
 operator|.
 name|getChildCollection
 argument_list|(
 name|ESC_COLL
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|test

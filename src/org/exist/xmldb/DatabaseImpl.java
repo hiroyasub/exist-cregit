@@ -808,7 +808,7 @@ name|pool
 argument_list|,
 name|xmldbURI
 operator|.
-name|getCollectionPath
+name|getRawCollectionPath
 argument_list|()
 argument_list|,
 name|AccessContext
@@ -962,7 +962,7 @@ name|readCollection
 argument_list|(
 name|xmldbURI
 operator|.
-name|getCollectionPath
+name|getRawCollectionPath
 argument_list|()
 argument_list|,
 name|rpcClient
