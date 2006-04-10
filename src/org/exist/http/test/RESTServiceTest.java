@@ -71,16 +71,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|Authenticator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|BindException
 import|;
 end_import
@@ -92,16 +82,6 @@ operator|.
 name|net
 operator|.
 name|HttpURLConnection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|PasswordAuthentication
 import|;
 end_import
 
@@ -1003,7 +983,7 @@ name|uri
 init|=
 name|COLLECTION_URI
 operator|+
-literal|"?_query=request:request-uri()&_wrap=no"
+literal|"?_query=request:get-uri()&_wrap=no"
 decl_stmt|;
 name|HttpURLConnection
 name|connect
@@ -1073,7 +1053,7 @@ name|uri
 operator|=
 name|COLLECTION_URI
 operator|+
-literal|"?_query=request:request-url()&_wrap=no"
+literal|"?_query=request:get-url()&_wrap=no"
 expr_stmt|;
 name|connect
 operator|=
