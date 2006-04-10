@@ -1079,12 +1079,6 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|NodeProxy
-name|proxy
-decl_stmt|;
-name|Iterator
-name|domIter
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1102,8 +1096,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|proxy
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -1111,7 +1106,7 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|proxy
@@ -1292,8 +1287,10 @@ argument_list|(
 name|proxy
 argument_list|)
 expr_stmt|;
+comment|//TODO : is this StoredNode construction necessary ?
+name|Iterator
 name|domIter
-operator|=
+init|=
 name|contextNode
 operator|.
 name|getDocument
@@ -1304,9 +1301,13 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
+operator|new
+name|StoredNode
+argument_list|(
 name|contextNode
 argument_list|)
-expr_stmt|;
+argument_list|)
+decl_stmt|;
 name|domIter
 operator|.
 name|next
@@ -1405,8 +1406,10 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
+comment|//TODO : is this StroredNode construction necessary ?
+name|Iterator
 name|domIter
-operator|=
+init|=
 name|proxy
 operator|.
 name|getDocument
@@ -1417,9 +1420,13 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
+operator|new
+name|StoredNode
+argument_list|(
 name|proxy
 argument_list|)
-expr_stmt|;
+argument_list|)
+decl_stmt|;
 name|StoredNode
 name|node
 init|=

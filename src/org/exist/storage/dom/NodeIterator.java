@@ -221,7 +221,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|NodeProxy
+name|StoredNode
 name|node
 init|=
 literal|null
@@ -281,7 +281,7 @@ parameter_list|,
 name|DOMFile
 name|db
 parameter_list|,
-name|NodeProxy
+name|StoredNode
 name|node
 parameter_list|,
 name|boolean
@@ -1192,6 +1192,9 @@ argument_list|(
 name|lockKey
 argument_list|,
 name|node
+operator|.
+name|getProxy
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1362,7 +1365,7 @@ specifier|public
 name|void
 name|setTo
 parameter_list|(
-name|NodeProxy
+name|StoredNode
 name|node
 parameter_list|)
 block|{

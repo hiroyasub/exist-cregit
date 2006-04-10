@@ -1219,8 +1219,8 @@ specifier|public
 name|Iterator
 name|getDOMIterator
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|)
 block|{
 throw|throw
@@ -1236,8 +1236,8 @@ specifier|public
 name|Iterator
 name|getNodeIterator
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|)
 block|{
 throw|throw

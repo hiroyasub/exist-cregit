@@ -4614,8 +4614,7 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
-name|getProxy
-argument_list|()
+name|this
 argument_list|)
 decl_stmt|;
 name|iter

@@ -3119,8 +3119,8 @@ specifier|public
 name|Iterator
 name|getDOMIterator
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|)
 block|{
 try|try
@@ -3133,7 +3133,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|proxy
+name|node
 argument_list|)
 return|;
 block|}
@@ -3177,8 +3177,8 @@ specifier|public
 name|Iterator
 name|getNodeIterator
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|)
 block|{
 comment|//      domDb.setOwnerObject(this);
@@ -3192,7 +3192,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|proxy
+name|node
 argument_list|,
 literal|false
 argument_list|)
@@ -10134,9 +10134,6 @@ init|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iterator
@@ -12226,9 +12223,6 @@ operator|=
 name|getNodeIterator
 argument_list|(
 name|n
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|iterator
@@ -12262,9 +12256,6 @@ operator|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|iterator
@@ -12436,9 +12427,6 @@ init|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iterator
@@ -12816,9 +12804,6 @@ init|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iterator
@@ -13154,9 +13139,6 @@ init|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iterator
@@ -14780,9 +14762,6 @@ init|=
 name|getNodeIterator
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|iterator
