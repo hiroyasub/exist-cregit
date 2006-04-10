@@ -4723,6 +4723,43 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|query
+operator|=
+literal|"let $doc :=<doc><a b='c' d='e'/></doc> "
+operator|+
+literal|"return $doc/a[$doc/a/@b or $doc/a/@d]"
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<a b=\"c\" d=\"e\"/>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
