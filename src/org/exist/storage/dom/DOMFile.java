@@ -9823,8 +9823,8 @@ specifier|public
 name|String
 name|getNodeValue
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|,
 name|boolean
 name|addWhitespace
@@ -9835,7 +9835,7 @@ block|{
 name|long
 name|address
 init|=
-name|proxy
+name|node
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -9843,8 +9843,10 @@ decl_stmt|;
 if|if
 condition|(
 name|address
-operator|<
-literal|0
+operator|==
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 name|address
 operator|=
@@ -9852,7 +9854,10 @@ name|findValue
 argument_list|(
 name|this
 argument_list|,
-name|proxy
+name|node
+operator|.
+name|getProxy
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if

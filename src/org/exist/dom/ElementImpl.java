@@ -7820,9 +7820,6 @@ operator|.
 name|getNodeValue
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|,
 literal|false
 argument_list|)

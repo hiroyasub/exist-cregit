@@ -1292,8 +1292,8 @@ specifier|public
 name|String
 name|getNodeValue
 parameter_list|(
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|,
 name|boolean
 name|addWhitespace

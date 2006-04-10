@@ -2779,13 +2779,11 @@ operator|=
 name|getNodeValue
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+comment|//TODO : investigate
 name|node
 operator|.
 name|setInternalAddress
@@ -2865,13 +2863,11 @@ operator|=
 name|getNodeValue
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+comment|//TODO : investigate
 name|node
 operator|.
 name|setInternalAddress
@@ -13990,9 +13986,6 @@ name|newDoc
 operator|.
 name|appendChild
 argument_list|(
-operator|(
-name|StoredNode
-operator|)
 name|node
 argument_list|)
 expr_stmt|;
@@ -14933,9 +14926,6 @@ operator|=
 name|getNodeValue
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|,
 literal|false
 argument_list|)
@@ -15908,7 +15898,11 @@ name|domDb
 operator|.
 name|getNodeValue
 argument_list|(
+operator|new
+name|StoredNode
+argument_list|(
 name|p
+argument_list|)
 argument_list|,
 literal|false
 argument_list|)
@@ -16268,8 +16262,8 @@ name|String
 name|getNodeValue
 parameter_list|(
 specifier|final
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|,
 specifier|final
 name|boolean
@@ -16302,7 +16296,7 @@ name|domDb
 operator|.
 name|getNodeValue
 argument_list|(
-name|proxy
+name|node
 argument_list|,
 name|addWhitespace
 argument_list|)
