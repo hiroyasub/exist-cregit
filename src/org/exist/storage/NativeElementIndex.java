@@ -631,8 +631,8 @@ parameter_list|(
 name|QName
 name|qname
 parameter_list|,
-name|NodeProxy
-name|proxy
+name|StoredNode
+name|node
 parameter_list|)
 block|{
 comment|//Is this qname already pending ?
@@ -680,7 +680,10 @@ name|buf
 operator|.
 name|add
 argument_list|(
-name|proxy
+name|node
+operator|.
+name|getProxy
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -962,7 +965,7 @@ argument_list|()
 decl_stmt|;
 comment|//TODO : NativeValueIndex uses LongLinkedLists -pb
 name|ArrayList
-name|gids
+name|proxies
 init|=
 operator|(
 name|ArrayList
@@ -975,7 +978,7 @@ decl_stmt|;
 name|int
 name|gidsCount
 init|=
-name|gids
+name|proxies
 operator|.
 name|size
 argument_list|()
@@ -985,7 +988,7 @@ name|FastQSort
 operator|.
 name|sort
 argument_list|(
-name|gids
+name|proxies
 argument_list|,
 literal|0
 argument_list|,
@@ -1056,12 +1059,12 @@ operator|++
 control|)
 block|{
 name|NodeProxy
-name|storedNode
+name|proxy
 init|=
 operator|(
 name|NodeProxy
 operator|)
-name|gids
+name|proxies
 operator|.
 name|get
 argument_list|(
@@ -1071,7 +1074,7 @@ decl_stmt|;
 name|long
 name|delta
 init|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()
@@ -1089,7 +1092,7 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|storedNode
+name|proxy
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -1099,7 +1102,7 @@ argument_list|)
 expr_stmt|;
 name|previousGID
 operator|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()
@@ -1740,7 +1743,7 @@ operator|++
 control|)
 block|{
 name|NodeProxy
-name|storedNode
+name|proxy
 init|=
 operator|(
 name|NodeProxy
@@ -1755,7 +1758,7 @@ decl_stmt|;
 name|long
 name|delta
 init|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()
@@ -1773,7 +1776,7 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|storedNode
+name|proxy
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -1783,7 +1786,7 @@ argument_list|)
 expr_stmt|;
 name|previousGID
 operator|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()
@@ -2579,7 +2582,7 @@ argument_list|()
 decl_stmt|;
 comment|//TODO : NativeValueIndex uses LongLinkedLists -pb
 name|List
-name|storedGIDList
+name|proxies
 init|=
 operator|(
 name|ArrayList
@@ -2788,7 +2791,7 @@ argument_list|()
 condition|)
 block|{
 comment|//TOUNDERSTAND : given what is below, why not use newGIDList ? -pb
-name|storedGIDList
+name|proxies
 operator|.
 name|add
 argument_list|(
@@ -2862,7 +2865,7 @@ name|node
 operator|!=
 literal|null
 condition|)
-name|storedGIDList
+name|proxies
 operator|.
 name|addAll
 argument_list|(
@@ -2872,7 +2875,7 @@ expr_stmt|;
 comment|// append the data
 if|if
 condition|(
-name|storedGIDList
+name|proxies
 operator|.
 name|size
 argument_list|()
@@ -2883,7 +2886,7 @@ block|{
 name|int
 name|gidsCount
 init|=
-name|storedGIDList
+name|proxies
 operator|.
 name|size
 argument_list|()
@@ -2893,7 +2896,7 @@ name|FastQSort
 operator|.
 name|sort
 argument_list|(
-name|storedGIDList
+name|proxies
 argument_list|,
 literal|0
 argument_list|,
@@ -2956,12 +2959,12 @@ operator|++
 control|)
 block|{
 name|NodeProxy
-name|storedNode
+name|proxy
 init|=
 operator|(
 name|NodeProxy
 operator|)
-name|storedGIDList
+name|proxies
 operator|.
 name|get
 argument_list|(
@@ -2971,7 +2974,7 @@ decl_stmt|;
 name|long
 name|delta
 init|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()
@@ -2989,7 +2992,7 @@ name|StorageAddress
 operator|.
 name|write
 argument_list|(
-name|storedNode
+name|proxy
 operator|.
 name|getInternalAddress
 argument_list|()
@@ -2999,7 +3002,7 @@ argument_list|)
 expr_stmt|;
 name|previousGID
 operator|=
-name|storedNode
+name|proxy
 operator|.
 name|getGID
 argument_list|()

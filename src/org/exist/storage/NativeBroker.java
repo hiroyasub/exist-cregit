@@ -2919,9 +2919,6 @@ name|getQName
 argument_list|()
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -14381,9 +14378,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -14495,9 +14489,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// check if attribute value should be fulltext-indexed
@@ -14666,9 +14657,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -18128,9 +18116,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// --move to-- NativeElementIndex
@@ -18191,9 +18176,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
