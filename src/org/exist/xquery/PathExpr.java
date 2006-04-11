@@ -874,9 +874,6 @@ operator|.
 name|dependsOn
 argument_list|(
 name|expr
-operator|.
-name|getDependencies
-argument_list|()
 argument_list|,
 name|Dependency
 operator|.

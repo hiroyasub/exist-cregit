@@ -420,9 +420,6 @@ operator|.
 name|dependsOn
 argument_list|(
 name|inner
-operator|.
-name|getDependencies
-argument_list|()
 argument_list|,
 name|Dependency
 operator|.

@@ -265,8 +265,8 @@ specifier|static
 name|boolean
 name|dependsOn
 parameter_list|(
-name|int
-name|dependencies
+name|Expression
+name|expr
 parameter_list|,
 name|int
 name|dependency
@@ -275,7 +275,10 @@ block|{
 return|return
 operator|(
 operator|(
-name|dependencies
+name|expr
+operator|.
+name|getDependencies
+argument_list|()
 operator|&
 name|dependency
 operator|)
