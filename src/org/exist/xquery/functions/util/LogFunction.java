@@ -532,6 +532,22 @@ argument_list|(
 name|buf
 argument_list|)
 expr_stmt|;
+if|else if
+condition|(
+name|priority
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"trace"
+argument_list|)
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
 else|else
 name|LOG
 operator|.
