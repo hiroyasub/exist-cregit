@@ -679,12 +679,15 @@ expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
+operator|(
+name|DocumentImpl
+operator|)
 name|ql
 index|[
 name|i
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 name|doc

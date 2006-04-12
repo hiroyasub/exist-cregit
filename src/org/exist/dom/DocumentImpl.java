@@ -3162,7 +3162,7 @@ specifier|protected
 name|NodeList
 name|findElementsByTagName
 parameter_list|(
-name|StoredNode
+name|NodeProxy
 name|node
 parameter_list|,
 name|QName
@@ -3190,9 +3190,6 @@ operator|new
 name|DescendantSelector
 argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
 argument_list|,
 name|Expression
 operator|.

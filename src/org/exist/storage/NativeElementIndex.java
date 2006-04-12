@@ -631,8 +631,8 @@ parameter_list|(
 name|QName
 name|qname
 parameter_list|,
-name|StoredNode
-name|node
+name|NodeProxy
+name|p
 parameter_list|)
 block|{
 comment|//Is this qname already pending ?
@@ -680,10 +680,7 @@ name|buf
 operator|.
 name|add
 argument_list|(
-name|node
-operator|.
-name|getProxy
-argument_list|()
+name|p
 argument_list|)
 expr_stmt|;
 block|}
@@ -3553,10 +3550,11 @@ name|result
 operator|.
 name|add
 argument_list|(
+operator|new
+name|NodeProxy
+argument_list|(
 name|storedNode
-operator|.
-name|getProxy
-argument_list|()
+argument_list|)
 argument_list|,
 name|gidsCount
 argument_list|)

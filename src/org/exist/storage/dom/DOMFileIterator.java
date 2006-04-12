@@ -901,10 +901,11 @@ name|findValue
 argument_list|(
 name|lockKey
 argument_list|,
+operator|new
+name|NodeProxy
+argument_list|(
 name|node
-operator|.
-name|getProxy
-argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if

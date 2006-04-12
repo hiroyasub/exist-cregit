@@ -908,9 +908,12 @@ decl_stmt|;
 name|DocumentImpl
 name|doc
 init|=
+operator|(
+name|DocumentImpl
+operator|)
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 name|doc

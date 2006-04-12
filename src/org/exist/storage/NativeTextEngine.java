@@ -902,9 +902,12 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
+operator|(
+name|DocumentImpl
+operator|)
 name|attr
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1035,9 +1038,12 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
+operator|(
+name|DocumentImpl
+operator|)
 name|text
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 specifier|final

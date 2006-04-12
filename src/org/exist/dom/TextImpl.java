@@ -592,8 +592,13 @@ name|result
 operator|.
 name|append
 argument_list|(
-name|getDocument
+operator|(
+operator|(
+name|DocumentImpl
+operator|)
+name|getOwnerDocument
 argument_list|()
+operator|)
 operator|.
 name|getFileName
 argument_list|()
