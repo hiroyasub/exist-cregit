@@ -99,6 +99,14 @@ name|NodeId
 name|parent
 parameter_list|)
 function_decl|;
+specifier|public
+name|int
+name|isSiblingOf
+parameter_list|(
+name|NodeId
+name|sibling
+parameter_list|)
+function_decl|;
 comment|/**      * Returns the level within the document tree at which      * this node occurs.      *      * @return      */
 name|int
 name|getTreeLevel
