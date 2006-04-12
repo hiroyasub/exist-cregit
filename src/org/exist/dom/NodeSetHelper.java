@@ -1302,43 +1302,33 @@ block|}
 else|else
 block|{
 comment|// same document: check if the nodes have the same parent
-name|long
-name|pa
+name|int
+name|cmp
 init|=
+name|candidate
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
 name|getParentId
+argument_list|()
+operator|.
+name|compareTo
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getNodeId
 argument_list|()
-argument_list|,
-name|reference
 operator|.
-name|getGID
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|long
-name|pb
-init|=
 name|getParentId
-argument_list|(
-name|candidate
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|candidate
-operator|.
-name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|pa
-operator|<
-name|pb
+name|cmp
+operator|>
+literal|0
 condition|)
 block|{
 comment|// wrong parent: proceed
@@ -1368,9 +1358,9 @@ break|break;
 block|}
 if|else if
 condition|(
-name|pa
-operator|>
-name|pb
+name|cmp
+operator|<
+literal|0
 condition|)
 block|{
 comment|// wrong parent: proceed
@@ -1413,17 +1403,26 @@ expr_stmt|;
 comment|// found two nodes with the same parent
 comment|// now, compare the ids: a node is a following sibling
 comment|// if its id is greater than the id of the other node
-if|if
-condition|(
+name|cmp
+operator|=
 name|candidate
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
-operator|<
+operator|.
+name|compareTo
+argument_list|(
 name|reference
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|cmp
+operator|<
+literal|0
 condition|)
 block|{
 comment|// found a preceding sibling
@@ -1532,15 +1531,9 @@ break|break;
 block|}
 if|else if
 condition|(
-name|candidate
-operator|.
-name|getGID
-argument_list|()
+name|cmp
 operator|>
-name|reference
-operator|.
-name|getGID
-argument_list|()
+literal|0
 condition|)
 block|{
 comment|// found a following sibling
@@ -1797,43 +1790,33 @@ block|}
 else|else
 block|{
 comment|// same document: check if the nodes have the same parent
-name|long
-name|pa
+name|int
+name|cmp
 init|=
+name|candidate
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
 name|getParentId
+argument_list|()
+operator|.
+name|compareTo
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getNodeId
 argument_list|()
-argument_list|,
-name|reference
 operator|.
-name|getGID
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|long
-name|pb
-init|=
 name|getParentId
-argument_list|(
-name|candidate
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|candidate
-operator|.
-name|getGID
 argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|pa
-operator|<
-name|pb
+name|cmp
+operator|>
+literal|0
 condition|)
 block|{
 comment|// wrong parent: proceed
@@ -1863,9 +1846,9 @@ break|break;
 block|}
 if|else if
 condition|(
-name|pa
-operator|>
-name|pb
+name|cmp
+operator|<
+literal|0
 condition|)
 block|{
 comment|// wrong parent: proceed
@@ -1905,20 +1888,29 @@ name|firstCandidate
 operator|=
 name|candidate
 expr_stmt|;
+name|cmp
+operator|=
+name|candidate
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// found two nodes with the same parent
 comment|// now, compare the ids: a node is a following sibling
 comment|// if its id is greater than the id of the other node
 if|if
 condition|(
-name|candidate
-operator|.
-name|getGID
-argument_list|()
+name|cmp
 operator|<
-name|reference
-operator|.
-name|getGID
-argument_list|()
+literal|0
 condition|)
 block|{
 comment|// found a preceding sibling
@@ -1944,15 +1936,9 @@ break|break;
 block|}
 if|else if
 condition|(
-name|candidate
-operator|.
-name|getGID
-argument_list|()
+name|cmp
 operator|>
-name|reference
-operator|.
-name|getGID
-argument_list|()
+literal|0
 condition|)
 block|{
 comment|// found a following sibling
