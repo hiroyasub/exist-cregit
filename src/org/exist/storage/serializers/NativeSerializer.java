@@ -819,7 +819,7 @@ argument_list|()
 argument_list|,
 name|n
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|,
 name|n

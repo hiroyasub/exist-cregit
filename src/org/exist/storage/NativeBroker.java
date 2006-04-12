@@ -2718,7 +2718,7 @@ name|doc
 argument_list|,
 name|node
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|,
 name|node
@@ -2727,16 +2727,6 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|tempProxy
-operator|.
-name|setNodeId
-argument_list|(
-name|node
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//      final IndexSpec idxSpec =
 comment|//          doc.getCollection().getIdxConf(this);
 specifier|final
@@ -7922,6 +7912,20 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to store temporary fragment: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|transact
 operator|.
 name|abort
@@ -18126,21 +18130,14 @@ name|NodeProxy
 argument_list|(
 name|doc
 argument_list|,
-name|gid
-argument_list|,
-name|address
-argument_list|)
-decl_stmt|;
-name|tempProxy
-operator|.
-name|setNodeId
-argument_list|(
 name|node
 operator|.
 name|getNodeId
 argument_list|()
+argument_list|,
+name|address
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|tempProxy
 operator|.
 name|setIndexType

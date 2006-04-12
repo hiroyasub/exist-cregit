@@ -2367,7 +2367,7 @@ name|NodeProxy
 argument_list|(
 name|storedDocument
 argument_list|,
-literal|1
+name|nodeId
 argument_list|,
 name|Node
 operator|.
@@ -2385,7 +2385,7 @@ name|NodeProxy
 argument_list|(
 name|storedDocument
 argument_list|,
-literal|1
+name|nodeId
 argument_list|,
 name|Node
 operator|.
@@ -2412,13 +2412,6 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
-name|storedNode
-operator|.
-name|setNodeId
-argument_list|(
-name|nodeId
-argument_list|)
-expr_stmt|;
 comment|// if a context set is specified, we can directly check if the
 comment|// matching text node is a descendant of one of the nodes
 comment|// in the context set.
@@ -7172,7 +7165,7 @@ name|NodeProxy
 argument_list|(
 name|storedDocument
 argument_list|,
-literal|1
+name|nodeId
 argument_list|,
 name|Node
 operator|.
@@ -7190,7 +7183,7 @@ name|NodeProxy
 argument_list|(
 name|storedDocument
 argument_list|,
-literal|1
+name|nodeId
 argument_list|,
 name|Node
 operator|.
@@ -7217,13 +7210,6 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
-name|storedNode
-operator|.
-name|setNodeId
-argument_list|(
-name|nodeId
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|contextSet
