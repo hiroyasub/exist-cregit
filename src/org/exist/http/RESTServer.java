@@ -5419,6 +5419,17 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
+comment|// special header to indicate that the query is not returned from cache
+name|response
+operator|.
+name|setHeader
+argument_list|(
+literal|"X-XQuery-Cached"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|context
 operator|=
 name|xquery
@@ -5430,7 +5441,18 @@ operator|.
 name|REST
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+name|response
+operator|.
+name|setHeader
+argument_list|(
+literal|"X-XQuery-Cached"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|context
 operator|=
 name|compiled
@@ -5438,6 +5460,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|setModuleLoadPath
