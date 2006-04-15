@@ -156,6 +156,15 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|boolean
+name|isInfinite
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean
