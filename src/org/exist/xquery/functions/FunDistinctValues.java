@@ -578,6 +578,8 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
+comment|//TODO : use a real comparison. Nothing should be filtered in :
+comment|//fn:distinct-values((xs:float('NaN'), 'NaN'))
 if|if
 condition|(
 operator|!
