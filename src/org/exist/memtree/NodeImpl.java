@@ -884,6 +884,9 @@ name|after
 parameter_list|(
 name|NodeValue
 name|other
+parameter_list|,
+name|boolean
+name|isFollowing
 parameter_list|)
 throws|throws
 name|XPathException
@@ -926,6 +929,9 @@ name|before
 parameter_list|(
 name|NodeValue
 name|other
+parameter_list|,
+name|boolean
+name|isPreceding
 parameter_list|)
 throws|throws
 name|XPathException
