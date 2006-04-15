@@ -1232,15 +1232,6 @@ name|getDocId
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Next doc"
-argument_list|)
-expr_stmt|;
 name|firstCandidate
 operator|=
 literal|null
