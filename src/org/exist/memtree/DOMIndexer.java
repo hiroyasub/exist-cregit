@@ -567,20 +567,6 @@ argument_list|(
 name|elem
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|elem
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|storeNode
