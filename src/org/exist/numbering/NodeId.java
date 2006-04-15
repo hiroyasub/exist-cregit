@@ -76,6 +76,28 @@ name|NodeId
 name|getParentId
 parameter_list|()
 function_decl|;
+comment|/**      * Returns true if the node represented by this node id comes      * after the argument node in document order. If isFollowing is set to true, the method      * behaves as if called to evaluate a following::* XPath select, i.e. it      * returns false for descendants of the current node.       *        * @param other      * @param isFollowing      * @return      */
+name|boolean
+name|after
+parameter_list|(
+name|NodeId
+name|other
+parameter_list|,
+name|boolean
+name|isFollowing
+parameter_list|)
+function_decl|;
+comment|/**      * Returns true if the node represented by this node id comes      * before the argument node in document order. If isPreceding is set to true, the method      * behaves as if called to evaluate a preceding::* XPath select, i.e. it      * returns false for ancestors of the current node.       *        * @param other      * @param isFollowing      * @return      */
+name|boolean
+name|before
+parameter_list|(
+name|NodeId
+name|other
+parameter_list|,
+name|boolean
+name|isPreceding
+parameter_list|)
+function_decl|;
 comment|/**      * Is the current node id a descendant of the specified node?      *      * @param ancestor node id of the potential ancestor      * @return true if the node id is a descendant of the given node, false otherwise      */
 name|boolean
 name|isDescendantOf
