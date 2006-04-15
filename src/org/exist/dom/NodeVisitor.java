@@ -13,6 +13,10 @@ name|dom
 package|;
 end_package
 
+begin_comment
+comment|/**  * Visitor pattern: used for traversing the DOM tree  * implement to get notified of the current node.  *   * @author wolf  *  */
+end_comment
+
 begin_interface
 specifier|public
 interface|interface
