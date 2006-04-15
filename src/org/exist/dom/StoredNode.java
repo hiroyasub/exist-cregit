@@ -832,7 +832,7 @@ operator|.
 name|getTreeLevel
 argument_list|()
 operator|==
-literal|2
+literal|1
 operator|&&
 operator|(
 operator|(
