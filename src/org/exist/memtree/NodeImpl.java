@@ -794,6 +794,20 @@ name|short
 name|getNodeType
 parameter_list|()
 block|{
+comment|//Workaround for fn:string-length(fn:node-name(document {""}))
+if|if
+condition|(
+name|this
+operator|.
+name|document
+operator|==
+literal|null
+condition|)
+return|return
+name|Node
+operator|.
+name|DOCUMENT_NODE
+return|;
 return|return
 name|document
 operator|.
@@ -1554,6 +1568,20 @@ name|int
 name|getType
 parameter_list|()
 block|{
+comment|//Workaround for fn:string-length(fn:node-name(document {""}))
+if|if
+condition|(
+name|this
+operator|.
+name|document
+operator|==
+literal|null
+condition|)
+return|return
+name|Type
+operator|.
+name|DOCUMENT
+return|;
 name|int
 name|type
 init|=

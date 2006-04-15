@@ -563,9 +563,13 @@ comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
 name|result
 operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+operator|new
+name|QNameValue
+argument_list|(
+name|context
+argument_list|,
+literal|""
+argument_list|)
 expr_stmt|;
 block|}
 block|}
