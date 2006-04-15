@@ -622,13 +622,7 @@ throws|throws
 name|XPathException
 block|{
 return|return
-name|getStringValue
-argument_list|()
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
+literal|false
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
