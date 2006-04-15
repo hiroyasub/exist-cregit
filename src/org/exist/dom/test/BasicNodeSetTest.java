@@ -2264,6 +2264,28 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|executeQuery
+argument_list|(
+name|broker
+argument_list|,
+literal|"//SPEECH[LINE&= 'perturbed spirit']/preceding-sibling::*"
+argument_list|,
+literal|65
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|executeQuery
+argument_list|(
+name|broker
+argument_list|,
+literal|"//SPEECH[LINE&= 'perturbed spirit']/following-sibling::*"
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

@@ -2217,6 +2217,8 @@ operator|.
 name|before
 argument_list|(
 name|reference
+argument_list|,
+literal|true
 argument_list|)
 condition|)
 block|{
@@ -2352,6 +2354,8 @@ operator|.
 name|after
 argument_list|(
 name|reference
+argument_list|,
+literal|true
 argument_list|)
 condition|)
 block|{
