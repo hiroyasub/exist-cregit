@@ -204,13 +204,35 @@ specifier|private
 specifier|static
 specifier|final
 name|String
-name|XML_EXPECTED
+name|XML_EXPECTED1
 init|=
 literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" hitCount=\"2\">\n"
 operator|+
 literal|"<entry xmlns=\"http://foo.com\">1</entry>\n"
 operator|+
 literal|"<entry xmlns=\"http://foo.com\">2</entry>\n"
+operator|+
+literal|"</exist:result>"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|XML_EXPECTED2
+init|=
+literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" hitCount=\"1\">\n"
+operator|+
+literal|"<c:Site xmlns:c=\"urn:content\" xmlns=\"urn:content\">\n"
+operator|+
+comment|//BUG : we should have
+comment|//<config xmlns="urn:config">123</config>
+literal|"<config>123</config>\n"
+operator|+
+comment|//BUG : we should have
+comment|//<serverconfig xmlns="urn:config">123</serverconfig>
+literal|"<serverconfig>123</serverconfig>\n"
+operator|+
+literal|"</c:Site>\n"
 operator|+
 literal|"</exist:result>"
 decl_stmt|;
@@ -308,7 +330,62 @@ argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
-name|XML_EXPECTED
+name|XML_EXPECTED1
+argument_list|,
+name|str
+argument_list|)
+expr_stmt|;
+comment|//TODO : THIS IS BUGGY !
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace config='urn:config'; "
+operator|+
+literal|"declare namespace c='urn:content'; "
+operator|+
+literal|"declare variable $config {<config xmlns='urn:config'>123</config>}; "
+operator|+
+literal|"declare variable $serverConfig {<serverconfig xmlns='urn:config'>123</serverconfig>}; "
+operator|+
+literal|"<c:Site xmlns='urn:content' xmlns:c='urn:content'> "
+operator|+
+literal|"{($config,$serverConfig)} "
+operator|+
+literal|"</c:Site>"
+argument_list|)
+expr_stmt|;
+name|resource
+operator|=
+name|result
+operator|.
+name|getMembersAsResource
+argument_list|()
+expr_stmt|;
+name|str
+operator|=
+name|resource
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|str
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+name|XML_EXPECTED2
 argument_list|,
 name|str
 argument_list|)
