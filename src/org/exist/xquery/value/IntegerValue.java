@@ -139,7 +139,7 @@ init|=
 operator|new
 name|BigInteger
 argument_list|(
-literal|"1"
+literal|"-1"
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -392,6 +392,36 @@ name|stringValue
 argument_list|)
 expr_stmt|;
 comment|// Long.parseLong(stringValue);
+if|if
+condition|(
+operator|!
+operator|(
+name|checkType
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
+operator|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: can not convert '"
+operator|+
+name|stringValue
+operator|+
+literal|"' to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -415,15 +445,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
-comment|//			}
 block|}
-name|checkType
-argument_list|(
-name|value
-argument_list|,
-name|type
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** 	 * @param value 	 * @param requiredType 	 */
 specifier|public
