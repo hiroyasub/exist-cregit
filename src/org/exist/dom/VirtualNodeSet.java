@@ -1283,16 +1283,6 @@ argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|setGID
-argument_list|(
-name|proxy
-operator|.
-name|getGID
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|node
-operator|.
 name|setNodeId
 argument_list|(
 name|proxy

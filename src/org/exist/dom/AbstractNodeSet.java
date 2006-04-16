@@ -427,29 +427,6 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove a node. By default, this method throws a 	 * RuntimeException. 	 *  	 * @param node 	 */
-specifier|public
-name|void
-name|remove
-parameter_list|(
-name|NodeProxy
-name|node
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"remove not implemented for class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
 comment|/** 	 * Return the number of nodes contained in this node set. 	 */
 specifier|public
 specifier|abstract
