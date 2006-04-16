@@ -1154,7 +1154,7 @@ literal|"Internal evaluation error: context is missing for node "
 operator|+
 name|currentNode
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 operator|+
 literal|" !"
