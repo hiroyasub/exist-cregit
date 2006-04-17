@@ -469,24 +469,9 @@ argument_list|(
 name|other
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|this
-operator|+
-literal|" does not start with "
-operator|+
-name|other
-argument_list|)
-expr_stmt|;
 return|return
 literal|false
 return|;
-block|}
 name|int
 name|levels
 init|=
