@@ -460,7 +460,9 @@ specifier|final
 name|String
 name|FINDSCHEMA
 init|=
-literal|"for $schema in collection('COLLECTION')/xs:schema"
+literal|"declare namespace xs=\"http://www.w3.org/2001/XMLSchema\";"
+operator|+
+literal|"for $schema in collection('COLLECTION')//xs:schema"
 operator|+
 literal|"[@targetNamespace = 'TARGET'] return document-uri($schema)"
 decl_stmt|;
@@ -880,6 +882,18 @@ name|path
 init|=
 literal|null
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"collection path "
+operator|+
+name|collection
+operator|.
+name|getCollectionPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Fill parameters for query
 name|String
 name|xquery
