@@ -280,7 +280,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a."
+literal|"Validate document specified by $a. The grammar files "
+operator|+
+literal|"are searched inside the database."
 argument_list|,
 operator|new
 name|SequenceType
@@ -329,7 +331,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a using grammar $b"
+literal|"Validate document specified by $a using path $b. "
+operator|+
+literal|"$b can point a grammar, a collection containing "
+operator|+
+literal|"grammars (usefull for XSD) or a OASIS catalog file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -390,7 +396,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a, return a simple report."
+literal|"Validate document specified by $a, return a simple report"
+operator|+
+literal|". The grammar files are searched inside the database."
 argument_list|,
 operator|new
 name|SequenceType
@@ -439,7 +447,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a, using grammar $b, return a simple report."
+literal|"Validate document specified by $a using path $b, "
+operator|+
+literal|"return a simple report. "
+operator|+
+literal|"$b can point a grammar, a collection containing "
+operator|+
+literal|"grammars (usefull for XSD) or a OASIS catalog file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -704,6 +718,12 @@ block|}
 else|else
 block|{
 comment|// ohoh
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 block|}
 return|return
 name|result

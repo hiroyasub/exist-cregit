@@ -407,6 +407,20 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|// TODO check if this is safe enough
+name|validator
+operator|.
+name|setGrammarPool
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -520,6 +534,12 @@ block|}
 else|else
 block|{
 comment|// oh oh
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 block|}
 return|return
 name|result

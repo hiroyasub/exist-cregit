@@ -784,6 +784,13 @@ block|}
 else|else
 block|{
 comment|// Search for grammar, Might be 'somewhere' in database.
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Search for grammar."
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|xrid

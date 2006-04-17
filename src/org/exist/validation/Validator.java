@@ -917,6 +917,19 @@ return|return
 name|grammarPool
 return|;
 block|}
+specifier|public
+name|void
+name|setGrammarPool
+parameter_list|(
+name|GrammarPool
+name|gp
+parameter_list|)
+block|{
+name|grammarPool
+operator|=
+name|gp
+expr_stmt|;
+block|}
 block|}
 end_class
 
