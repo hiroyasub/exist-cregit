@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a node id in the form of a dynamic level number (DLN). DLN's are  * hierarchical ids, which borrow from Dewey's decimal classification. Examples for  * node ids: 1, 1.1, 1.2, 1.2.1, 1.2.2, 1.3. In this case, 1 represents the root node, 1.1 is  * the first node on the second level, 1.2 the second, and so on.   */
+comment|/**  * Represents a node id in the form of a dynamic level number (DLN). DLN's are  * hierarchical ids, which borrow from Dewey's decimal classification. Examples for  * node ids: 1, 1.1, 1.2, 1.2.1, 1.2.2, 1.3. In this case, 1 represents the root node, 1.1 is  * the first node on the second level, 1.2 the second, and so on.  *   * To support efficient insertion of new nodes between existing nodes, we use the  * concept of sublevel ids. Between two nodes 1.1 and 1.2, a new node can be inserted  * as 1.1/1, where the / is the sublevel separator. The / does not start a new level. 1.1 and   * 1.1/1 are thus on the same level of the tree.  *   * In the binary encoding, the '.' is represented by a 0-bit while '/' is written as a 1-bit.  */
 end_comment
 
 begin_class
@@ -64,6 +64,7 @@ name|DLNBase
 implements|implements
 name|NodeId
 block|{
+comment|/** 	 * Constructs a new DLN with a single id with value 1. 	 * 	 */
 specifier|public
 name|DLN
 parameter_list|()
@@ -74,49 +75,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|DLN
-parameter_list|(
-name|int
-index|[]
-name|id
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|id
-index|[
-literal|0
-index|]
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<
-name|id
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-name|addLevelId
-argument_list|(
-name|id
-index|[
-name|i
-index|]
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
+comment|/**      * Constructs a new DLN by parsing the string argument.      * In the string, levels are separated by a '.', sublevels by      * a '/'. For example, '1.2/1' or '1.2/1.2' are valid ids.      *       * @param s      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -248,6 +207,7 @@ name|subValue
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Constructs a new DLN, using the passed id as its      * single level value.      *       * @param id      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -271,6 +231,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Constructs a new DLN by copying the data of the      * passed DLN.      *       * @param other      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -284,6 +245,7 @@ name|other
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Reads a DLN from the given byte[].      *       * @param units number of bits to read      * @param data the byte[] to read from      * @param startOffset the start offset to start reading at      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -308,6 +270,7 @@ name|startOffset
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Reads a DLN from the given {@link VariableByteInput} stream.      *       * @see #write(VariableByteOutputStream)      * @param is      * @throws IOException      */
 specifier|public
 name|DLN
 parameter_list|(
@@ -323,6 +286,7 @@ name|is
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Create a new DLN by copying nbits bits from the given       * byte[].      *       * @param data      * @param nbits      */
 specifier|protected
 name|DLN
 parameter_list|(
@@ -394,6 +358,7 @@ return|return
 name|sibling
 return|;
 block|}
+comment|/**      * Returns a new DLN representing the parent of the      * current node. If the current node is the root element      * of the document, the method returns       * {@link NodeId#DOCUMENT_NODE}. If the current node      * is the document node, null is returned.      *       * @see NodeId#getParentId()      */
 specifier|public
 name|NodeId
 name|getParentId
@@ -504,9 +469,24 @@ argument_list|(
 name|other
 argument_list|)
 condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|this
+operator|+
+literal|" does not start with "
+operator|+
+name|other
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
 name|int
 name|levels
 init|=
@@ -516,7 +496,7 @@ name|other
 operator|.
 name|bitIndex
 operator|+
-literal|1
+literal|2
 argument_list|)
 decl_stmt|;
 return|return
@@ -721,10 +701,10 @@ name|IOException
 block|{
 name|os
 operator|.
-name|writeByte
+name|writeShort
 argument_list|(
 operator|(
-name|byte
+name|short
 operator|)
 name|units
 argument_list|()

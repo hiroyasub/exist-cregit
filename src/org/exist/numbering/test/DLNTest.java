@@ -524,30 +524,204 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    public void testSort() {
-comment|//        long start = System.currentTimeMillis();
-comment|//
-comment|//        System.out.println("------- testSort: generating " + ITEMS_TO_TEST + " random ids --------");
-comment|//        Random rand = new Random();
-comment|//        DLN items[] = new DLN[ITEMS_TO_TEST];
-comment|//        for (int i = 0; i< ITEMS_TO_TEST; i++) {
-comment|//            int next = rand.nextInt(5000000);
-comment|//            DLN dln = new DLN();
-comment|//            dln.setLevelId(0, next);
-comment|//            items[i] = dln;
-comment|//        }
-comment|//        System.out.println("------ generation took " + (System.currentTimeMillis() - start));
-comment|//
-comment|//        start = System.currentTimeMillis();
-comment|//        System.out.println("------ sorting id set ------");
-comment|//        Arrays.sort(items);
-comment|//        System.out.println("------ sort took " + (System.currentTimeMillis() - start));
-comment|//
-comment|//        System.out.println("------- testSortId: PASSED --------");
-comment|//        Runtime rt = Runtime.getRuntime();
-comment|//        System.out.println("Memory: total: " + (rt.totalMemory() / 1024) +
-comment|//                "; free: " + (rt.freeMemory() / 1024));
-comment|//    }
+specifier|public
+name|void
+name|testSort
+parameter_list|()
+block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------- testSort: generating "
+operator|+
+name|ITEMS_TO_TEST
+operator|+
+literal|" random ids --------"
+argument_list|)
+expr_stmt|;
+name|Random
+name|rand
+init|=
+operator|new
+name|Random
+argument_list|()
+decl_stmt|;
+name|DLN
+name|items
+index|[]
+init|=
+operator|new
+name|DLN
+index|[
+name|ITEMS_TO_TEST
+index|]
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|ITEMS_TO_TEST
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|int
+name|next
+init|=
+name|rand
+operator|.
+name|nextInt
+argument_list|(
+literal|5000000
+argument_list|)
+decl_stmt|;
+name|DLN
+name|dln
+init|=
+operator|new
+name|DLN
+argument_list|()
+decl_stmt|;
+name|dln
+operator|.
+name|setLevelId
+argument_list|(
+literal|0
+argument_list|,
+name|next
+argument_list|)
+expr_stmt|;
+name|items
+index|[
+name|i
+index|]
+operator|=
+name|dln
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------ generation took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+argument_list|)
+expr_stmt|;
+name|start
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------ sorting id set ------"
+argument_list|)
+expr_stmt|;
+name|Arrays
+operator|.
+name|sort
+argument_list|(
+name|items
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------ sort took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------- testSortId: PASSED --------"
+argument_list|)
+expr_stmt|;
+name|Runtime
+name|rt
+init|=
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Memory: total: "
+operator|+
+operator|(
+name|rt
+operator|.
+name|totalMemory
+argument_list|()
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"; free: "
+operator|+
+operator|(
+name|rt
+operator|.
+name|freeMemory
+argument_list|()
+operator|/
+literal|1024
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|testCreate
@@ -588,20 +762,6 @@ name|dln
 operator|.
 name|incrementLevelId
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
-operator|.
-name|getLevelId
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
 expr_stmt|;
 block|}
 name|assertEquals
@@ -728,6 +888,18 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|10
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|dln
 operator|=
 operator|new
@@ -760,6 +932,18 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|5
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|dln
 operator|=
 operator|new
@@ -790,6 +974,103 @@ name|dln
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|dln
+operator|.
+name|incrementLevelId
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ID after increment: "
+operator|+
+name|dln
+operator|.
+name|debug
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1.2"
+argument_list|,
+name|dln
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|dln
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ID: "
+operator|+
+name|dln
+operator|.
+name|debug
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|dln
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|dln
@@ -856,6 +1137,18 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|dln
 operator|=
 operator|new
@@ -888,15 +1181,202 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        dln = new DLN();
-comment|//        for (int i = 0; i< id0.length; i++) {
-comment|//            if (i> 0)
-comment|//                dln.addLevelId(1);
-comment|//            for (int j = 1; j< id0[i]; j++) dln.incrementLevelId();
-comment|//            System.out.println("ID: " + dln.debug());
-comment|//        }
-comment|//        System.out.println("ID: " + dln.debug());
-comment|//        assertEquals("1.33.56.2.98.1.27", dln.toString());
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|dln
+operator|.
+name|incrementLevelId
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ID after increment: "
+operator|+
+name|dln
+operator|.
+name|debug
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1.7.3.1/35"
+argument_list|,
+name|dln
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------- testing DLN.incrementLevelId --------"
+argument_list|)
+expr_stmt|;
+name|int
+index|[]
+name|id0
+init|=
+operator|new
+name|int
+index|[]
+block|{
+literal|1
+block|,
+literal|33
+block|,
+literal|56
+block|,
+literal|2
+block|,
+literal|98
+block|,
+literal|1
+block|,
+literal|27
+block|}
+decl_stmt|;
+name|dln
+operator|=
+operator|new
+name|DLN
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|id0
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|i
+operator|>
+literal|0
+condition|)
+name|dln
+operator|.
+name|addLevelId
+argument_list|(
+literal|1
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|1
+init|;
+name|j
+operator|<
+name|id0
+index|[
+name|i
+index|]
+condition|;
+name|j
+operator|++
+control|)
+name|dln
+operator|.
+name|incrementLevelId
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ID: "
+operator|+
+name|dln
+operator|.
+name|debug
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ID: "
+operator|+
+name|dln
+operator|.
+name|debug
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1.33.56.2.98.1.27"
+argument_list|,
+name|dln
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|7
+argument_list|,
+name|dln
+operator|.
+name|getLevelCount
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -907,79 +1387,784 @@ literal|"------- testLevelIds: PASSED --------"
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    public void testRelations() {
-comment|//    	System.out.println("------ testLevelRelations ------");
-comment|//    	int[] id0 = { 1, 3 };
-comment|//    	int[] id1 = { 1, 3, 1 };
-comment|//    	int[] id2 = { 1, 3, 2, 5, 6 };
-comment|//    	int[] id3 = { 1, 4 };
-comment|//    	int[] id4 = { 1, 3, 2, 5, 6, 7777 };
-comment|//    	int[] id5 = { 1, 3, 2, 5, 6, 7777, 1 };
-comment|//    	int[] id6 = { 1, 3, 2 };
-comment|//
-comment|//    	DLN root = new DLN(id0);
-comment|//    	DLN descendant = new DLN(id1);
-comment|//
-comment|//    	System.out.println("Testing isDescendant: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOf(root));
-comment|//
-comment|//    	descendant = new DLN(id1);
-comment|//    	System.out.println("Testing isDescendantOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOf(root));
-comment|//
-comment|//    	descendant = new DLN(id1);
-comment|//    	System.out.println("Testing isChildOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isChildOf(root));
-comment|//
-comment|//    	descendant = new DLN(id2);
-comment|//    	System.out.println("Testing isDescendantOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOf(root));
-comment|//
-comment|//    	descendant = new DLN(id2);
-comment|//    	System.out.println("Testing isChildOf: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isChildOf(root));
-comment|//
-comment|//    	System.out.println("Testing isDescendantOrSelf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOrSelfOf(root));
-comment|//
-comment|//    	descendant = new DLN(id3);
-comment|//    	System.out.println("Testing isDescendant: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isDescendantOf(root));
-comment|//
-comment|//    	descendant = new DLN(id0);
-comment|//    	System.out.println("Testing isDescendant: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isDescendantOf(root));
-comment|//
-comment|//    	System.out.println("Testing isDescendantOrSelf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOrSelfOf(root));
-comment|//
-comment|//    	root = new DLN(id2);
-comment|//    	descendant = new DLN(id4);
-comment|//    	System.out.println("Testing isDescendantOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOf(root));
-comment|//
-comment|//    	System.out.println("Testing isChildOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isChildOf(root));
-comment|//
-comment|//    	descendant = new DLN(id5);
-comment|//    	System.out.println("Testing isDescendantOf: " + descendant + " -> " + root);
-comment|//    	assertTrue(descendant.isDescendantOf(root));
-comment|//
-comment|//    	System.out.println("Testing isChildOf: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isChildOf(root));
-comment|//
-comment|//    	root = new DLN(id1);
-comment|//    	descendant = new DLN(id6);
-comment|//    	System.out.println("Testing isDescendantOf: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isDescendantOf(root));
-comment|//
-comment|//    	root = new DLN(new int[] { 1, 6, 6, 66 });
-comment|//    	descendant = new DLN(new int[] { 1, 6, 6, 65, 1 });
-comment|//    	System.out.println("Testing isChildOf: " + descendant + " -> " + root);
-comment|//    	assertFalse(descendant.isChildOf(root));
-comment|//
-comment|//    	System.out.println("------ testLevelRelations: PASSED ------");
-comment|//    }
+specifier|public
+name|void
+name|testRelations
+parameter_list|()
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------ testLevelRelations ------"
+argument_list|)
+expr_stmt|;
+name|DLN
+name|root
+init|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3"
+argument_list|)
+decl_stmt|;
+name|DLN
+name|descendant
+init|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1"
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendant: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing getParentId: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|root
+operator|.
+name|equals
+argument_list|(
+name|descendant
+operator|.
+name|getParentId
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2.5.6"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOrSelf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOrSelfOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.4"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendant: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendant: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOrSelf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOrSelfOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|root
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2.5.6"
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2.5.6.7777"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing getParentId: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|root
+operator|.
+name|equals
+argument_list|(
+name|descendant
+operator|.
+name|getParentId
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2.5.6.7777.1"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|root
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1"
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|root
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.6.6.66"
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.6.6.65.1"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.6.6.66"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|root
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1/1"
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1/1.1"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Parent of "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|descendant
+operator|.
+name|getParentId
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|root
+operator|.
+name|equals
+argument_list|(
+name|descendant
+operator|.
+name|getParentId
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|descendant
+operator|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1/1.2.2"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isChildOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|descendant
+operator|.
+name|isChildOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Testing isDescendantOf: "
+operator|+
+name|descendant
+operator|+
+literal|" -> "
+operator|+
+name|root
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|descendant
+operator|.
+name|isDescendantOf
+argument_list|(
+name|root
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|NodeId
+name|left
+init|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1"
+argument_list|)
+decl_stmt|;
+name|NodeId
+name|dln
+init|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.1/1"
+argument_list|)
+decl_stmt|;
+name|NodeId
+name|right
+init|=
+operator|new
+name|DLN
+argument_list|(
+literal|"1.3.2"
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|dln
+operator|.
+name|compareTo
+argument_list|(
+name|right
+argument_list|)
+operator|<
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|dln
+operator|.
+name|compareTo
+argument_list|(
+name|left
+argument_list|)
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|left
+operator|.
+name|compareTo
+argument_list|(
+name|dln
+argument_list|)
+operator|<
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|right
+operator|.
+name|compareTo
+argument_list|(
+name|dln
+argument_list|)
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|left
+operator|.
+name|compareTo
+argument_list|(
+name|right
+argument_list|)
+operator|<
+literal|0
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"------ testLevelRelations: PASSED ------"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
