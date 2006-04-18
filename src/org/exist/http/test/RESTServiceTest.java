@@ -1460,10 +1460,13 @@ name|cacheHeader
 argument_list|,
 name|Boolean
 operator|.
-name|parseBoolean
+name|valueOf
 argument_list|(
 name|cached
 argument_list|)
+operator|.
+name|booleanValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String

@@ -1527,10 +1527,13 @@ operator|.
 name|toString
 argument_list|()
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"Error (2,61) : cvc-elt.1: Cannot find the declaration of element 'addressBook'."
 argument_list|)
+operator|!=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1542,10 +1545,13 @@ operator|.
 name|toString
 argument_list|()
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"Error (12,15) : cvc-complex-type.2.4.a: Invalid content was found starting with element 'name'. One of '{\"http://jmvanel.free.fr/xsd/addressBook\":cname}' is expected."
 argument_list|)
+operator|!=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
