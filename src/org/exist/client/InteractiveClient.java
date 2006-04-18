@@ -2679,6 +2679,17 @@ name|newPath
 init|=
 name|path
 decl_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+return|return
+literal|true
+return|;
 try|try
 block|{
 if|if
