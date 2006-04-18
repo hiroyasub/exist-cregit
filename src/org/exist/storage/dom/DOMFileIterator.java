@@ -399,6 +399,21 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire read lock on "
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -536,6 +551,21 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire read lock on "
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;

@@ -211,11 +211,22 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-comment|// timed out
-name|e
+name|System
 operator|.
-name|printStackTrace
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Failed to acquire read lock on "
+operator|+
+name|file
+operator|.
+name|getFile
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
