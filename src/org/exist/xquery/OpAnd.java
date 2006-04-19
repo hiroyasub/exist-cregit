@@ -81,6 +81,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
 comment|/**  * Boolean operator "and".  *   * @author Wolfgang<wolfgang@exist-db.org>  */
 end_comment
@@ -323,9 +337,32 @@ argument_list|(
 name|rl
 argument_list|)
 expr_stmt|;
-comment|//TODO : replace by the following ?
-comment|//TODO : what to do with virtual node sets ?
-comment|//result = (rr.intersection(rl).getLength() == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
+if|if
+condition|(
+name|returnsType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|BOOLEAN
+condition|)
+block|{
+name|result
+operator|=
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|BooleanValue
+operator|.
+name|FALSE
+else|:
+name|BooleanValue
+operator|.
+name|TRUE
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -498,7 +535,9 @@ name|result
 init|=
 operator|new
 name|StringBuffer
-argument_list|()
+argument_list|(
+literal|"("
+argument_list|)
 decl_stmt|;
 name|result
 operator|.
@@ -550,6 +589,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|append
+argument_list|(
+literal|")"
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 operator|.

@@ -81,6 +81,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
 comment|/**  * Boolean operator "or".  *   * @author Wolfgang<wolfgang@exist-db.org>  */
 end_comment
@@ -319,9 +333,32 @@ argument_list|(
 name|rr
 argument_list|)
 expr_stmt|;
-comment|//TODO : replace by the following ?
-comment|//TODO : what to do with virtual node sets ?
-comment|//result = (rl.union(rr).getLength() == 0) ? BooleanValue.FALSE : BooleanValue.TRUE;
+if|if
+condition|(
+name|returnsType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|BOOLEAN
+condition|)
+block|{
+name|result
+operator|=
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|BooleanValue
+operator|.
+name|FALSE
+else|:
+name|BooleanValue
+operator|.
+name|TRUE
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -424,6 +461,13 @@ operator|==
 literal|0
 condition|)
 return|return;
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|"("
+argument_list|)
+expr_stmt|;
 name|getExpression
 argument_list|(
 literal|0
@@ -468,6 +512,13 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|")"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|String
@@ -489,7 +540,9 @@ name|result
 init|=
 operator|new
 name|StringBuffer
-argument_list|()
+argument_list|(
+literal|"("
+argument_list|)
 decl_stmt|;
 name|result
 operator|.
@@ -541,6 +594,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|append
+argument_list|(
+literal|")"
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 operator|.
