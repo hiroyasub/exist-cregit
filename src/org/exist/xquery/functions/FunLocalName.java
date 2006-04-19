@@ -545,9 +545,9 @@ literal|null
 condition|)
 name|result
 operator|=
-name|Sequence
+name|StringValue
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_STRING
 expr_stmt|;
 else|else
 block|{
