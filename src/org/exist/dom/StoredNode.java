@@ -1040,7 +1040,7 @@ name|ownerDocument
 argument_list|,
 name|node
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|,
 name|node
