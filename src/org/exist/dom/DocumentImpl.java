@@ -1227,6 +1227,7 @@ name|getSymbols
 argument_list|()
 return|;
 block|}
+comment|/** Gets the node from the broker, i.e. fom the underlying file system      * Call this method<strong>only</strong><hen necessary      * @param gid The nodes identifier      * @return The actual node      */
 specifier|public
 name|Node
 name|getNode
@@ -1258,6 +1259,7 @@ name|gid
 argument_list|)
 return|;
 block|}
+comment|/** Gets the node from the broker, i.e. fom the underlying file system      * Call this method<strong>only</strong><hen necessary      * @param p A proxy to the node      * @return The actual node      */
 specifier|public
 name|Node
 name|getNode

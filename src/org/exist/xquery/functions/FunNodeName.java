@@ -504,6 +504,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+comment|//TODO : how to improve performance ?
 name|Node
 name|n
 init|=
@@ -561,6 +562,18 @@ expr_stmt|;
 break|break;
 comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Tried to obtain node name for node type "
+operator|+
+name|n
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 operator|new

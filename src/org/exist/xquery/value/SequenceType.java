@@ -307,8 +307,9 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//TODO : how to improve performance ?
 name|Node
-name|node
+name|n
 init|=
 operator|(
 operator|(
@@ -340,7 +341,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|node
+name|n
 operator|.
 name|getNamespaceURI
 argument_list|()
@@ -368,7 +369,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|node
+name|n
 operator|.
 name|getLocalName
 argument_list|()

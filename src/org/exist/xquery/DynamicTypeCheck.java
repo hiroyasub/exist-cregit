@@ -308,6 +308,27 @@ operator|)
 name|item
 operator|)
 operator|.
+name|getNodeType
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|type
+operator|==
+name|NodeProxy
+operator|.
+name|UNKNOWN_NODE_TYPE
+condition|)
+comment|//Retrieve the actual node
+name|type
+operator|=
+operator|(
+operator|(
+name|NodeProxy
+operator|)
+name|item
+operator|)
+operator|.
 name|getNode
 argument_list|()
 operator|.

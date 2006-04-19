@@ -155,6 +155,7 @@ name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
+comment|//TODO : improve performance ?
 return|return
 name|getReference
 argument_list|()
@@ -171,6 +172,7 @@ name|String
 name|getLocalName
 parameter_list|()
 block|{
+comment|//TODO : improve performance ?
 return|return
 name|getReference
 argument_list|()
@@ -187,6 +189,7 @@ name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
+comment|//TODO : improve performance ?
 return|return
 name|getReference
 argument_list|()
@@ -203,6 +206,7 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
+comment|//TODO : improve performance ?
 comment|//TODO : how to make this node a reference as well ?
 return|return
 name|getReference

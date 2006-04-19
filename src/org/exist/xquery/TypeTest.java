@@ -272,6 +272,7 @@ operator|.
 name|NODE
 condition|)
 block|{
+comment|//TODO : what are the semantics of Type.NODE ?
 if|if
 condition|(
 name|this
@@ -285,15 +286,10 @@ condition|)
 return|return
 literal|true
 return|;
-comment|//TODO : why not directly call proxy.getNodeType() ?
-comment|//Is it different from proxy.getNode().getNodeType() ? -pb
 return|return
 name|matches
 argument_list|(
 name|proxy
-operator|.
-name|getNode
-argument_list|()
 argument_list|)
 return|;
 block|}

@@ -602,6 +602,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+comment|//TODO : how to improve performance ?
 name|Node
 name|n
 init|=

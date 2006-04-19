@@ -1325,6 +1325,7 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
+comment|/* Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong><hen necessary 	 * @see org.exist.xquery.value.NodeValue#getNode() 	 */
 specifier|public
 name|Node
 name|getNode
@@ -4356,6 +4357,7 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+comment|//TODO : maybe we could improve performance here
 name|NodeImpl
 name|node
 init|=

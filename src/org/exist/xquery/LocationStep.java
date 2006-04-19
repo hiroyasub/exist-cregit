@@ -2721,6 +2721,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|//TODO : how to improve performance ?
 name|StoredNode
 name|currentNode
 init|=

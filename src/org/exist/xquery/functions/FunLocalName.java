@@ -588,6 +588,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+comment|//TODO : how to improve performance ?
 name|Node
 name|n
 init|=
@@ -654,6 +655,18 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Tried to obtain local name for node type "
+operator|+
+name|n
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 operator|new
