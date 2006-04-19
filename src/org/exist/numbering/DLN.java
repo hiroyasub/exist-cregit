@@ -159,22 +159,6 @@ argument_list|,
 name|subValue
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|buf
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|bitIndex
-argument_list|)
-expr_stmt|;
 name|subValue
 operator|=
 name|ch
@@ -208,22 +192,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|buf
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|bitIndex
-argument_list|)
-expr_stmt|;
 name|addLevelId
 argument_list|(
 name|Integer
@@ -240,25 +208,6 @@ name|subValue
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|toBitString
-argument_list|()
-operator|+
-literal|" index: "
-operator|+
-name|bitIndex
-operator|+
-literal|"; size: "
-operator|+
-name|units
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**      * Constructs a new DLN, using the passed id as its      * single level value.      *       * @param id      */
 specifier|public
@@ -554,7 +503,6 @@ argument_list|(
 name|lastPos
 argument_list|)
 decl_stmt|;
-comment|//        System.out.println("insertBefore: " + toString() + " = " + bitIndex);
 name|DLN
 name|newNode
 init|=
@@ -564,6 +512,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+comment|//        System.out.println("insertBefore: " + newNode.toString() + " = " + newNode.bitIndex);
 if|if
 condition|(
 name|lastId
@@ -602,6 +551,11 @@ name|lastId
 operator|-
 literal|1
 argument_list|)
+expr_stmt|;
+name|newNode
+operator|.
+name|compact
+argument_list|()
 expr_stmt|;
 comment|//            System.out.println("newNode: " + newNode.toString() + " = " + newNode.bitIndex + "; last = " + lastPos);
 block|}
