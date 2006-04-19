@@ -339,12 +339,9 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|returnsType
-argument_list|()
+name|contextSequence
 operator|==
-name|Type
-operator|.
-name|BOOLEAN
+literal|null
 condition|)
 block|{
 name|result

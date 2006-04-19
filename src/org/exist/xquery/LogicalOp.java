@@ -74,10 +74,6 @@ name|optimize
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
-name|Expression
-name|parentExpr
-decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|LogicalOp
@@ -118,13 +114,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|parentExpr
-operator|=
-name|contextInfo
-operator|.
-name|getParent
-argument_list|()
-expr_stmt|;
 name|super
 operator|.
 name|analyze
@@ -235,32 +224,16 @@ name|int
 name|returnsType
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|!
+return|return
 name|optimize
-condition|)
-return|return
-name|Type
-operator|.
-name|BOOLEAN
-return|;
-comment|//An attempt to solve<return>  { () and () }</return>
-if|if
-condition|(
-name|parentExpr
-operator|instanceof
-name|EnclosedExpr
-condition|)
-return|return
-name|Type
-operator|.
-name|BOOLEAN
-return|;
-return|return
+condition|?
 name|Type
 operator|.
 name|NODE
+else|:
+name|Type
+operator|.
+name|BOOLEAN
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
