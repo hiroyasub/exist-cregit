@@ -674,13 +674,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|Node
+operator|.
+name|DOCUMENT_NODE
+case|:
+case|case
+name|Node
+operator|.
+name|TEXT_NODE
+case|:
+name|result
+operator|.
+name|add
+argument_list|(
+operator|new
+name|StringValue
+argument_list|(
+literal|""
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Unkhandled node type: '"
+literal|"Unhandled node type: '"
 operator|+
 name|n
 operator|.
