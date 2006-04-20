@@ -95,6 +95,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -107,7 +119,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|value
+operator|.
+name|AnyURIValue
 import|;
 end_import
 
@@ -250,7 +264,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -295,7 +309,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -537,9 +551,9 @@ literal|null
 condition|)
 name|result
 operator|=
-name|Sequence
+name|AnyURIValue
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_URI
 expr_stmt|;
 else|else
 block|{
@@ -615,7 +629,7 @@ case|:
 name|result
 operator|=
 operator|new
-name|StringValue
+name|AnyURIValue
 argument_list|(
 name|n
 operator|.
@@ -626,6 +640,7 @@ expr_stmt|;
 break|break;
 comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
+comment|//TODO : raise an exception ?
 name|LOG
 operator|.
 name|warn
@@ -640,11 +655,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-operator|new
-name|StringValue
-argument_list|(
-literal|""
-argument_list|)
+name|AnyURIValue
+operator|.
+name|EMPTY_URI
 expr_stmt|;
 block|}
 block|}

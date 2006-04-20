@@ -100,6 +100,15 @@ name|AnyURIValue
 extends|extends
 name|AtomicValue
 block|{
+specifier|public
+specifier|static
+name|AnyURIValue
+name|EMPTY_URI
+init|=
+operator|new
+name|AnyURIValue
+argument_list|()
+decl_stmt|;
 specifier|private
 name|String
 name|uri
@@ -121,6 +130,16 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
+name|AnyURIValue
+parameter_list|()
+block|{
+name|this
+operator|.
+name|uri
+operator|=
+literal|""
+expr_stmt|;
+block|}
 specifier|public
 name|AnyURIValue
 parameter_list|(
@@ -132,15 +151,12 @@ name|XPathException
 block|{
 try|try
 block|{
-name|URI
-name|uri
-init|=
 operator|new
 name|URI
 argument_list|(
 name|s
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -152,11 +168,19 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: the given string "
+literal|"Type error: the given string '"
 operator|+
 name|s
 operator|+
-literal|" cannot be cast to xs:anyURI"
+literal|"' cannot be cast to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
