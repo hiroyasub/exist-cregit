@@ -487,6 +487,24 @@ name|SYSTEM_COLLECTION
 operator|+
 literal|"/temp"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONFIG_COLLECTION
+init|=
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/config"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COLLECTION_CONFIG_FILENAME
+init|=
+literal|"collection.xconf"
+decl_stmt|;
 specifier|protected
 specifier|final
 specifier|static
@@ -1085,6 +1103,8 @@ name|user
 operator|=
 name|user
 expr_stmt|;
+comment|/*synchronized (this){ 			System.out.println("DBBroker.setUser(" + user.getName() + ")"); 			Thread.dumpStack(); 		}*/
+comment|//debugging user escalation permissions problem - deliriumsky.
 block|}
 comment|/** 	 * Get the user that is currently using this DBBroker object. 	 *  	 * @return 	 */
 specifier|public
