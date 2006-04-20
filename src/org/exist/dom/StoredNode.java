@@ -145,7 +145,7 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
-specifier|public
+specifier|protected
 name|StoredNode
 parameter_list|(
 name|short
@@ -159,7 +159,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-specifier|public
+specifier|protected
 name|StoredNode
 parameter_list|(
 name|short
@@ -182,7 +182,6 @@ operator|=
 name|gid
 expr_stmt|;
 block|}
-comment|//TODO : this is a temporary crazy constructor
 specifier|public
 name|StoredNode
 parameter_list|(

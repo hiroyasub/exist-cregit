@@ -635,6 +635,30 @@ name|NodeProxy
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|!=
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Document id and proxy id differ !"
+argument_list|)
+throw|;
+block|}
 comment|//Is this qname already pending ?
 name|ArrayList
 name|buf
@@ -1068,6 +1092,30 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|!=
+name|proxy
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Document id and proxy id differ !"
+argument_list|)
+throw|;
+block|}
 name|long
 name|delta
 init|=
@@ -1381,7 +1429,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|List
-name|storedGIDList
+name|storedProxies
 init|=
 operator|(
 name|ArrayList
@@ -1393,7 +1441,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|List
-name|newGIDList
+name|newProxies
 init|=
 operator|new
 name|ArrayList
@@ -1469,7 +1517,6 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -1489,7 +1536,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 name|int
-name|gidsCount
+name|proxyCount
 init|=
 name|is
 operator|.
@@ -1530,7 +1577,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|gidsCount
+name|proxyCount
 argument_list|)
 expr_stmt|;
 name|os
@@ -1558,8 +1605,19 @@ name|EOFException
 name|e
 parameter_list|)
 block|{
-comment|//LOG.error(e.getMessage(), e);
 comment|//TODO : data will be saved although os is probably corrupted ! -pb
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -1580,7 +1638,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|gidsCount
+name|proxyCount
 condition|;
 name|j
 operator|++
@@ -1618,13 +1676,13 @@ condition|(
 operator|!
 name|containsNode
 argument_list|(
-name|storedGIDList
+name|storedProxies
 argument_list|,
 name|storedGID
 argument_list|)
 condition|)
 block|{
-name|newGIDList
+name|newProxies
 operator|.
 name|add
 argument_list|(
@@ -1647,14 +1705,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//TODO : remove this block if unexpected -pb
-comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
-comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
-name|newGIDList
+name|newProxies
 operator|.
 name|size
 argument_list|()
@@ -1663,9 +1717,9 @@ literal|0
 condition|)
 block|{
 name|int
-name|gidsCount
+name|proxyCount
 init|=
-name|newGIDList
+name|newProxies
 operator|.
 name|size
 argument_list|()
@@ -1675,11 +1729,11 @@ name|FastQSort
 operator|.
 name|sort
 argument_list|(
-name|newGIDList
+name|newProxies
 argument_list|,
 literal|0
 argument_list|,
-name|gidsCount
+name|proxyCount
 operator|-
 literal|1
 argument_list|)
@@ -1700,7 +1754,7 @@ name|os
 operator|.
 name|writeInt
 argument_list|(
-name|gidsCount
+name|proxyCount
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -1733,7 +1787,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|gidsCount
+name|proxyCount
 condition|;
 name|j
 operator|++
@@ -1745,13 +1799,37 @@ init|=
 operator|(
 name|NodeProxy
 operator|)
-name|newGIDList
+name|newProxies
 operator|.
 name|get
 argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|!=
+name|proxy
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Document id and proxy id differ !"
+argument_list|)
+throw|;
+block|}
 name|long
 name|delta
 init|=
@@ -2240,7 +2318,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -2336,9 +2413,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//EOF is expected here
-comment|//}
 if|if
 condition|(
 name|changed
@@ -2632,7 +2706,6 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
-comment|//try {
 while|while
 condition|(
 name|is
@@ -2850,9 +2923,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//EOFExceptions expected there
-comment|//}
 block|}
 comment|// TOUNDERSTAND : given what is above :-), why not rationalize ? -pb
 comment|// append the new list to any existing data
@@ -2968,6 +3038,30 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|!=
+name|proxy
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Document id and proxy id differ !"
+argument_list|)
+throw|;
+block|}
 name|long
 name|delta
 init|=
@@ -3513,6 +3607,21 @@ argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
+name|StoredNode
+name|storedNode
+init|=
+operator|new
+name|StoredNode
+argument_list|(
+name|storedDocument
+argument_list|,
+name|storedGID
+argument_list|,
+name|nodeType
+argument_list|,
+name|address
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|selector
@@ -3520,32 +3629,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//TODO : use a dedicated constructor
-name|StoredNode
-name|storedNode
-init|=
-operator|new
-name|StoredNode
-argument_list|(
-name|nodeType
-argument_list|,
-name|storedGID
-argument_list|)
-decl_stmt|;
-name|storedNode
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|storedDocument
-argument_list|)
-expr_stmt|;
-name|storedNode
-operator|.
-name|setInternalAddress
-argument_list|(
-name|address
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|add
@@ -3573,13 +3656,7 @@ argument_list|(
 operator|new
 name|NodeProxy
 argument_list|(
-name|storedDocument
-argument_list|,
-name|storedGID
-argument_list|,
-name|nodeType
-argument_list|,
-name|address
+name|storedNode
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -3626,8 +3703,6 @@ name|storedGID
 expr_stmt|;
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//    //EOFExceptions are expected here
 block|}
 catch|catch
 parameter_list|(
@@ -3684,7 +3759,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//        LOG.debug("Found: " + result.getLength() + " for " + qname);
 if|if
 condition|(
 name|sameDocSet
@@ -4117,7 +4191,6 @@ name|getLength
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -4165,10 +4238,6 @@ name|gidsCount
 argument_list|)
 expr_stmt|;
 block|}
-comment|//} catch (EOFException e) {
-comment|//TODO : remove this block if unexpected -pb
-comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
-comment|//}
 block|}
 block|}
 catch|catch
@@ -4496,7 +4565,6 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -4524,14 +4592,12 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//TOUNDERSTAND -pb
-name|int
-name|size
-init|=
+comment|/*int size = */
 name|is
 operator|.
 name|readFixedInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|//unused
 if|if
 condition|(
@@ -4789,10 +4855,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//TODO : remove this block if unexpected -pb
-comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
-comment|//}
 name|LOG
 operator|.
 name|debug
