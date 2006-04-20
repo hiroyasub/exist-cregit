@@ -276,106 +276,579 @@ specifier|static
 name|int
 name|ITEMS_TO_APPEND
 init|=
-literal|70
+literal|500
 decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|//	public void testAppend() {
-comment|//        DBBroker broker = null;
-comment|//        try {
-comment|//        	System.out.println("testAppend() ...\n");
-comment|//            broker = pool.get(SecurityManager.SYSTEM_USER);
-comment|//
-comment|//            XQuery xquery = broker.getXQueryService();
-comment|//            for (int i = 0; i< ITEMS_TO_APPEND; i++) {
-comment|//                String query =
-comment|//                	"	update insert\n" +
-comment|//                	"<product id='id{$i}'>\n" +
-comment|//                	"<description>Description {$i}</description>\n" +
-comment|//                	"<price>{$i + 1.0}</price>\n" +
-comment|//                	"<stock>{$i * 10}</stock>\n" +
-comment|//                	"</product>\n" +
-comment|//                	"	into /products";
-comment|//                XQueryContext context = xquery.newContext(AccessContext.TEST);
-comment|//                context.declareVariable("i", new Integer(i));
-comment|//                CompiledXQuery compiled = xquery.compile(context, query);
-comment|//                xquery.execute(compiled, null);
-comment|//
-comment|//                Sequence seq = xquery.execute("/products", null, AccessContext.TEST);
-comment|//                assertEquals(seq.getLength(), 1);
-comment|//
-comment|//                Serializer serializer = broker.getSerializer();
-comment|//                System.out.println(serializer.serialize((NodeValue) seq.itemAt(0)));
-comment|//            }
-comment|//
-comment|//            Sequence seq = xquery.execute("//product", null, AccessContext.TEST);
-comment|//            assertEquals(ITEMS_TO_APPEND, seq.getLength());
-comment|//
-comment|//            seq = xquery.execute("//product[price> 0.0]", null, AccessContext.TEST);
-comment|//            assertEquals(ITEMS_TO_APPEND, seq.getLength());
-comment|//            System.out.println("testAppend: PASS");
-comment|//        } catch (Exception e) {
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        } finally {
-comment|//            pool.release(broker);
-comment|//        }
-comment|//	}
-comment|//    public void testInsertBefore() {
-comment|//        DBBroker broker = null;
-comment|//        try {
-comment|//            System.out.println("testInsertBefore() ...\n");
-comment|//            broker = pool.get(SecurityManager.SYSTEM_USER);
-comment|//
-comment|//            String query =
-comment|//                "   update insert\n" +
-comment|//                "<product id='original'>\n" +
-comment|//                "<description>Description</description>\n" +
-comment|//                "<price>0</price>\n" +
-comment|//                "<stock>10</stock>\n" +
-comment|//                "</product>\n" +
-comment|//                "   into /products";
-comment|//
-comment|//            XQuery xquery = broker.getXQueryService();
-comment|//            xquery.execute(query, null, AccessContext.TEST);
-comment|//
-comment|//            query =
-comment|//                "   declare variable $i external;\n" +
-comment|//                "   update insert\n" +
-comment|//                "<product id='id{$i}'>\n" +
-comment|//                "<description>Description {$i}</description>\n" +
-comment|//                "<price>{$i + 1.0}</price>\n" +
-comment|//                "<stock>{$i * 10}</stock>\n" +
-comment|//                "</product>\n" +
-comment|//                "   preceding /products/product[1]";
-comment|//            XQueryContext context = xquery.newContext(AccessContext.TEST);
-comment|//            CompiledXQuery compiled = xquery.compile(context, query);
-comment|//            for (int i = 0; i< ITEMS_TO_APPEND; i++) {
-comment|//                context.declareVariable("i", new Integer(i));
-comment|//                xquery.execute(compiled, null);
-comment|//
-comment|//                Sequence seq = xquery.execute("/products", null, AccessContext.TEST);
-comment|//                assertEquals(seq.getLength(), 1);
-comment|//
-comment|//                Serializer serializer = broker.getSerializer();
-comment|//                System.out.println(serializer.serialize((NodeValue) seq.itemAt(0)));
-comment|//            }
-comment|//
-comment|//            Sequence seq = xquery.execute("//product", null, AccessContext.TEST);
-comment|//            assertEquals(ITEMS_TO_APPEND + 1, seq.getLength());
-comment|//
-comment|//            seq = xquery.execute("//product[price> 0.0]", null, AccessContext.TEST);
-comment|//            assertEquals(ITEMS_TO_APPEND, seq.getLength());
-comment|//            System.out.println("testInsertBefore: PASS");
-comment|//        } catch (Exception e) {
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        } finally {
-comment|//            pool.release(broker);
-comment|//        }
-comment|//    }
+specifier|public
+name|void
+name|testAppend
+parameter_list|()
+block|{
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testAppend() ...\n"
+argument_list|)
+expr_stmt|;
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|String
+name|query
+init|=
+literal|"   declare variable $i external;\n"
+operator|+
+literal|"	update insert\n"
+operator|+
+literal|"<product id='id{$i}' num='{$i}'>\n"
+operator|+
+literal|"<description>Description {$i}</description>\n"
+operator|+
+literal|"<price>{$i + 1.0}</price>\n"
+operator|+
+literal|"<stock>{$i * 10}</stock>\n"
+operator|+
+literal|"</product>\n"
+operator|+
+literal|"	into /products"
+decl_stmt|;
+name|XQueryContext
+name|context
+init|=
+name|xquery
+operator|.
+name|newContext
+argument_list|(
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|CompiledXQuery
+name|compiled
+init|=
+name|xquery
+operator|.
+name|compile
+argument_list|(
+name|context
+argument_list|,
+name|query
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|ITEMS_TO_APPEND
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+literal|"i"
+argument_list|,
+operator|new
+name|Integer
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|compiled
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"/products"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|Serializer
+name|serializer
+init|=
+name|broker
+operator|.
+name|getSerializer
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|serializer
+operator|.
+name|serialize
+argument_list|(
+operator|(
+name|NodeValue
+operator|)
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|ITEMS_TO_APPEND
+argument_list|,
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[price> 0.0]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|ITEMS_TO_APPEND
+argument_list|,
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testAppend: PASS"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testInsertBefore
+parameter_list|()
+block|{
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testInsertBefore() ...\n"
+argument_list|)
+expr_stmt|;
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|String
+name|query
+init|=
+literal|"   update insert\n"
+operator|+
+literal|"<product id='original'>\n"
+operator|+
+literal|"<description>Description</description>\n"
+operator|+
+literal|"<price>0</price>\n"
+operator|+
+literal|"<stock>10</stock>\n"
+operator|+
+literal|"</product>\n"
+operator|+
+literal|"   into /products"
+decl_stmt|;
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"   declare variable $i external;\n"
+operator|+
+literal|"   update insert\n"
+operator|+
+literal|"<product id='id{$i}'>\n"
+operator|+
+literal|"<description>Description {$i}</description>\n"
+operator|+
+literal|"<price>{$i + 1.0}</price>\n"
+operator|+
+literal|"<stock>{$i * 10}</stock>\n"
+operator|+
+literal|"</product>\n"
+operator|+
+literal|"   preceding /products/product[1]"
+expr_stmt|;
+name|XQueryContext
+name|context
+init|=
+name|xquery
+operator|.
+name|newContext
+argument_list|(
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|CompiledXQuery
+name|compiled
+init|=
+name|xquery
+operator|.
+name|compile
+argument_list|(
+name|context
+argument_list|,
+name|query
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|ITEMS_TO_APPEND
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+literal|"i"
+argument_list|,
+operator|new
+name|Integer
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|compiled
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"/products"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|Serializer
+name|serializer
+init|=
+name|broker
+operator|.
+name|getSerializer
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|serializer
+operator|.
+name|serialize
+argument_list|(
+operator|(
+name|NodeValue
+operator|)
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|ITEMS_TO_APPEND
+operator|+
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[price> 0.0]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|ITEMS_TO_APPEND
+argument_list|,
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testInsertBefore: PASS"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|void
 name|testInsertAfter
@@ -525,6 +998,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 name|Sequence
 name|seq
 init|=
@@ -581,10 +1055,8 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -597,7 +1069,7 @@ name|AccessContext
 operator|.
 name|TEST
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|ITEMS_TO_APPEND
@@ -642,6 +1114,458 @@ operator|.
 name|println
 argument_list|(
 literal|"testInsertAfter: PASS"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testUpdate
+parameter_list|()
+block|{
+name|testAppend
+argument_list|()
+expr_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testUpdate() ...\n"
+argument_list|)
+expr_stmt|;
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|String
+name|query
+init|=
+literal|"for $prod in //product return\n"
+operator|+
+literal|"	update value $prod/description\n"
+operator|+
+literal|"	with 'Updated Description'"
+decl_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[starts-with(description, 'Updated')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+name|ITEMS_TO_APPEND
+argument_list|)
+expr_stmt|;
+name|Serializer
+name|serializer
+init|=
+name|broker
+operator|.
+name|getSerializer
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|serializer
+operator|.
+name|serialize
+argument_list|(
+operator|(
+name|NodeValue
+operator|)
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"for $prod in //product return\n"
+operator|+
+literal|"	update value $prod/stock/text()\n"
+operator|+
+literal|"	with 400"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[stock = 400]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+name|ITEMS_TO_APPEND
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|serializer
+operator|.
+name|serialize
+argument_list|(
+operator|(
+name|NodeValue
+operator|)
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"for $prod in //product return\n"
+operator|+
+literal|"	update value $prod/@num\n"
+operator|+
+literal|"	with xs:int($prod/@num) * 3"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"/products"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[@num = 3]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|serializer
+operator|.
+name|serialize
+argument_list|(
+operator|(
+name|NodeValue
+operator|)
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testUpdate: PASS"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testRemove
+parameter_list|()
+block|{
+name|testAppend
+argument_list|()
+expr_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|String
+name|query
+init|=
+literal|"for $prod in //product return\n"
+operator|+
+literal|"	update delete $prod\n"
+decl_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testRemove: PASS"
 argument_list|)
 expr_stmt|;
 block|}
