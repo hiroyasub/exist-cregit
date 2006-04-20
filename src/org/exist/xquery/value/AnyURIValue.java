@@ -215,6 +215,23 @@ return|return
 name|uri
 return|;
 block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
