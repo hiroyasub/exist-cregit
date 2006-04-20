@@ -1393,7 +1393,7 @@ function_decl|;
 comment|/** 	 *  Get a node with given owner document and id from the database. 	 * 	 *@param  doc  the document the node belongs to 	 *@param  gid  the node's unique identifier 	 */
 specifier|public
 specifier|abstract
-name|Node
+name|StoredNode
 name|objectWith
 parameter_list|(
 name|Document
@@ -1405,7 +1405,7 @@ parameter_list|)
 function_decl|;
 specifier|public
 specifier|abstract
-name|Node
+name|StoredNode
 name|objectWith
 parameter_list|(
 name|NodeProxy

@@ -16440,7 +16440,7 @@ name|result
 return|;
 block|}
 specifier|public
-name|Node
+name|StoredNode
 name|objectWith
 parameter_list|(
 specifier|final
@@ -16454,7 +16454,7 @@ parameter_list|)
 block|{
 return|return
 operator|(
-name|Node
+name|StoredNode
 operator|)
 operator|new
 name|DOMTransaction
@@ -16560,7 +16560,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|Node
+name|StoredNode
 name|objectWith
 parameter_list|(
 specifier|final
@@ -16595,7 +16595,7 @@ argument_list|)
 return|;
 return|return
 operator|(
-name|Node
+name|StoredNode
 operator|)
 operator|new
 name|DOMTransaction
