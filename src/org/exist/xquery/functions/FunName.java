@@ -695,6 +695,7 @@ literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
 throw|throw
