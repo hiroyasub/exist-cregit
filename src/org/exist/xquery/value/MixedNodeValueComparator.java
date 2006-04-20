@@ -17,13 +17,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|dom
-operator|.
-name|DocumentOrderComparator
+name|Comparator
 import|;
 end_import
 
@@ -59,6 +57,8 @@ begin_class
 specifier|public
 class|class
 name|MixedNodeValueComparator
+implements|implements
+name|Comparator
 block|{
 comment|/* (non-Javadoc)      * @see org.exist.dom.DocumentOrderComparator#compare(java.lang.Object, java.lang.Object)      */
 specifier|public
