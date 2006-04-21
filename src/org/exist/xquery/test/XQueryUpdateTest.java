@@ -85,6 +85,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -850,12 +862,12 @@ name|store
 argument_list|(
 name|broker
 argument_list|,
-literal|"<test attr1='a' attr2='b'>ccc</test>"
+literal|"<test attr1='aaa' attr2='bbb'>ccc</test>"
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"update insert attribute attr1 { 'c' } into /test"
+literal|"update insert attribute attr1 { 'eee' } into /test"
 expr_stmt|;
 name|System
 operator|.
@@ -866,13 +878,26 @@ argument_list|(
 literal|"testing duplicate attribute ..."
 argument_list|)
 expr_stmt|;
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
 name|seq
 operator|=
 name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"/test"
+literal|"/test[@attr1 = 'eee']"
 argument_list|,
 literal|null
 argument_list|,
@@ -2645,7 +2670,7 @@ name|broker
 argument_list|,
 name|info
 argument_list|,
-name|TEST_XML
+name|data
 argument_list|,
 literal|false
 argument_list|)
@@ -2655,6 +2680,28 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
+argument_list|)
+expr_stmt|;
+name|DocumentImpl
+name|doc
+init|=
+name|root
+operator|.
+name|getDocument
+argument_list|(
+name|broker
+argument_list|,
+literal|"test.xml"
+argument_list|)
+decl_stmt|;
+name|broker
+operator|.
+name|getSerializer
+argument_list|()
+operator|.
+name|serialize
+argument_list|(
+name|doc
 argument_list|)
 expr_stmt|;
 block|}
