@@ -1892,6 +1892,7 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
+comment|//TODO : make matches('&#x212A;', '[A-Z]', 'i') work !
 name|matcher
 operator|=
 name|pat
@@ -1912,19 +1913,11 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
+return|return
 name|matcher
 operator|.
 name|find
 argument_list|()
-condition|)
-return|return
-literal|true
-return|;
-else|else
-return|return
-literal|false
 return|;
 block|}
 catch|catch
