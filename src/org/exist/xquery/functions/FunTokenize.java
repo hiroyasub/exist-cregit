@@ -563,6 +563,7 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
+comment|//TODO : make fn:tokenize("Some unparsed<br> HTML<BR> text", "\s*<br>\s*", "") work
 name|String
 name|pattern
 init|=
@@ -584,6 +585,26 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|Pattern
+operator|.
+name|matches
+argument_list|(
+name|pattern
+argument_list|,
+literal|""
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORX0003: regular expression could match empty string"
+argument_list|)
+throw|;
+block|}
 name|int
 name|flags
 init|=
