@@ -3860,13 +3860,6 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
 name|tokenizer
 operator|.
 name|setText
