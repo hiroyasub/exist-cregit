@@ -397,18 +397,6 @@ name|Node
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is the base class for all database backends. All the basic database operations like storing,  * removing or index access are provided by subclasses of this class.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -1861,24 +1849,6 @@ name|StoredNode
 name|previous
 parameter_list|,
 specifier|final
-name|StoredNode
-name|node
-parameter_list|)
-function_decl|;
-specifier|public
-specifier|abstract
-name|void
-name|reindexXMLResource
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
-name|DocumentImpl
-name|oldDoc
-parameter_list|,
-name|DocumentImpl
-name|doc
-parameter_list|,
 name|StoredNode
 name|node
 parameter_list|)
