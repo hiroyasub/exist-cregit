@@ -596,6 +596,17 @@ name|NODE
 return|;
 block|}
 specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+block|{
+return|return
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+return|;
+block|}
+specifier|public
 name|void
 name|setAxis
 parameter_list|(
