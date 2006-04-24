@@ -84,6 +84,14 @@ name|int
 name|startOffset
 parameter_list|)
 function_decl|;
+comment|/**      * Create a NodeId instance from its string representation.      *       * @param string the string representation of the node id as returned      * by {@link Object#toString()}      * @return      */
+name|NodeId
+name|createFromString
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+function_decl|;
 comment|/**      * Returns the number of bytes occupied by the NodeId stored      * in the byte array at the given startOffset. This method is      * similar to {@link #createFromData(int, byte[], int)}, but it      * just returns the number of bytes.      *      * @param units      * @param data      * @param startOffset      * @return      */
 name|int
 name|lengthInBytes
