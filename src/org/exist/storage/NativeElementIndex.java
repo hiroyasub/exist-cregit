@@ -3893,11 +3893,6 @@ else|else
 block|{
 comment|// data are related to our document:
 comment|// check
-name|long
-name|previousGID
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3913,20 +3908,21 @@ name|j
 operator|++
 control|)
 block|{
-name|long
-name|delta
+name|NodeId
+name|nodeId
 init|=
-name|is
+name|broker
 operator|.
-name|readLong
+name|getBrokerPool
 argument_list|()
-decl_stmt|;
-name|long
-name|storedGID
-init|=
-name|previousGID
-operator|+
-name|delta
+operator|.
+name|getNodeFactory
+argument_list|()
+operator|.
+name|createFromStream
+argument_list|(
+name|is
+argument_list|)
 decl_stmt|;
 name|long
 name|address
@@ -3950,7 +3946,7 @@ name|NodeProxy
 argument_list|(
 name|doc
 argument_list|,
-name|storedGID
+name|nodeId
 argument_list|,
 name|address
 argument_list|)
@@ -3969,7 +3965,7 @@ name|EXistException
 argument_list|(
 literal|"Node "
 operator|+
-name|storedGID
+name|nodeId
 operator|+
 literal|" in document "
 operator|+
@@ -4009,7 +4005,7 @@ name|error
 argument_list|(
 literal|"Node "
 operator|+
-name|storedGID
+name|nodeId
 operator|+
 literal|" in document "
 operator|+
@@ -4053,7 +4049,7 @@ name|EXistException
 argument_list|(
 literal|"Node "
 operator|+
-name|storedGID
+name|nodeId
 operator|+
 literal|" in document "
 operator|+
@@ -4115,10 +4111,6 @@ name|append
 argument_list|(
 literal|" "
 argument_list|)
-expr_stmt|;
-name|previousGID
-operator|=
-name|storedGID
 expr_stmt|;
 block|}
 block|}
