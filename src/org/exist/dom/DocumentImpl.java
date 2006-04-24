@@ -2690,11 +2690,11 @@ argument_list|()
 expr_stmt|;
 name|newNode
 operator|.
-name|setGID
+name|setNodeId
 argument_list|(
 name|oldNode
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2768,12 +2768,14 @@ operator|.
 name|endRemove
 argument_list|()
 expr_stmt|;
-comment|//TOUNDERSTAND : what are the semantics of this 0 ? -pb
 name|newNode
 operator|.
-name|setGID
+name|setNodeId
 argument_list|(
-literal|0
+name|oldNode
+operator|.
+name|getNodeId
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker
@@ -2814,7 +2816,6 @@ argument_list|,
 literal|"not implemented"
 argument_list|)
 throw|;
-comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = children - 1; i>= 0; i--) {             next = childList[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 idx = i - 1;                 break;             }         }         if (idx< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         last = childList[idx];         StoredNode prev = (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last));         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) newChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childList[++idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
 block|}
 specifier|public
 name|void
@@ -2840,29 +2841,7 @@ argument_list|,
 literal|"not implemented"
 argument_list|)
 throw|;
-comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = 0; i< children; i++) {             next = childList[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 last = next;                 idx = i + 1;                 break;             }         }         if (last< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         StoredNode prev = getLastNode( (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last)) );         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) newChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childList[idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
 block|}
-comment|// Never used locally !
-comment|//    private Node appendChild(Txn transaction, StoredNode last, Node child) throws DOMException {
-comment|//        switch (child.getNodeType()) {
-comment|//            case Node.PROCESSING_INSTRUCTION_NODE :
-comment|//                final ProcessingInstructionImpl pi = new ProcessingInstructionImpl(0);
-comment|//                pi.setTarget(((ProcessingInstruction) child).getTarget());
-comment|//                pi.setData(((ProcessingInstruction) child).getData());
-comment|//                pi.setOwnerDocument(this);
-comment|//                broker.insertNodeAfter(transaction, last, pi);
-comment|//                return pi;
-comment|//            case Node.COMMENT_NODE :
-comment|//                final CommentImpl comment = new CommentImpl(0, ((Comment) child).getData());
-comment|//                comment.setOwnerDocument(this);
-comment|//                broker.insertNodeAfter(transaction, last, comment);
-comment|//                return comment;
-comment|//            default :
-comment|//                throw new DOMException(
-comment|//                    DOMException.INVALID_MODIFICATION_ERR,
-comment|//                    "you cannot append a node of this type");
-comment|//        }
-comment|//    }
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
 specifier|public
 name|Node
@@ -2896,9 +2875,9 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-name|NodeProxy
+name|NodeId
 operator|.
-name|DOCUMENT_ELEMENT_GID
+name|DOCUMENT_NODE
 argument_list|,
 name|address
 argument_list|)
@@ -2967,9 +2946,9 @@ name|NodeProxy
 argument_list|(
 name|this
 argument_list|,
-name|NodeProxy
+name|NodeId
 operator|.
-name|DOCUMENT_ELEMENT_GID
+name|DOCUMENT_NODE
 argument_list|,
 name|childList
 index|[
@@ -3193,7 +3172,7 @@ name|this
 argument_list|,
 name|root
 operator|.
-name|getGID
+name|getNodeId
 argument_list|()
 argument_list|,
 name|root
@@ -3239,85 +3218,6 @@ argument_list|)
 return|;
 block|}
 comment|/************************************************      *       * NodeImpl methods      *      ************************************************/
-specifier|protected
-specifier|static
-name|NodeImpl
-name|createNode
-parameter_list|(
-name|long
-name|gid
-parameter_list|,
-name|short
-name|type
-parameter_list|)
-block|{
-name|NodeImpl
-name|node
-decl_stmt|;
-switch|switch
-condition|(
-name|type
-condition|)
-block|{
-case|case
-name|Node
-operator|.
-name|TEXT_NODE
-case|:
-name|node
-operator|=
-operator|new
-name|TextImpl
-argument_list|(
-name|gid
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Node
-operator|.
-name|ELEMENT_NODE
-case|:
-name|node
-operator|=
-operator|new
-name|ElementImpl
-argument_list|(
-name|gid
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Node
-operator|.
-name|ATTRIBUTE_NODE
-case|:
-name|node
-operator|=
-operator|new
-name|AttrImpl
-argument_list|(
-name|gid
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"unknown node type"
-argument_list|)
-expr_stmt|;
-name|node
-operator|=
-literal|null
-expr_stmt|;
-block|}
-return|return
-name|node
-return|;
-block|}
 specifier|public
 name|DocumentType
 name|getDoctype
