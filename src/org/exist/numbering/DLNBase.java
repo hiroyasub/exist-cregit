@@ -2321,7 +2321,8 @@ literal|'1'
 block|}
 decl_stmt|;
 comment|/**      * Returns a string showing the bit representation      * of the given byte.      *       * @param b the byte to display      * @return string representation      */
-specifier|private
+specifier|public
+specifier|final
 specifier|static
 name|String
 name|toBitString
