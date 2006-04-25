@@ -1018,11 +1018,27 @@ argument_list|,
 literal|"xs:anyType"
 argument_list|)
 expr_stmt|;
+comment|//Duplicate definition : new one first
+name|defineBuiltInType
+argument_list|(
+name|ATOMIC
+argument_list|,
+literal|"xs:anyAtomicType"
+argument_list|)
+expr_stmt|;
 name|defineBuiltInType
 argument_list|(
 name|ATOMIC
 argument_list|,
 literal|"xdt:anyAtomicType"
+argument_list|)
+expr_stmt|;
+comment|//Duplicate definition : new one first
+name|defineBuiltInType
+argument_list|(
+name|UNTYPED_ATOMIC
+argument_list|,
+literal|"xs:untypedAtomic"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType
@@ -1207,11 +1223,27 @@ argument_list|,
 literal|"xs:duration"
 argument_list|)
 expr_stmt|;
+comment|//Duplicate definition : new one first
+name|defineBuiltInType
+argument_list|(
+name|YEAR_MONTH_DURATION
+argument_list|,
+literal|"xs:yearMonthDuration"
+argument_list|)
+expr_stmt|;
 name|defineBuiltInType
 argument_list|(
 name|YEAR_MONTH_DURATION
 argument_list|,
 literal|"xdt:yearMonthDuration"
+argument_list|)
+expr_stmt|;
+comment|//Duplicate definition : new one first
+name|defineBuiltInType
+argument_list|(
+name|DAY_TIME_DURATION
+argument_list|,
+literal|"xs:dayTimeDuration"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType
