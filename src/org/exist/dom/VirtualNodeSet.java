@@ -1550,7 +1550,7 @@ name|getOwnerDocument
 argument_list|()
 operator|)
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

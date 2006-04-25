@@ -273,6 +273,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -318,7 +330,7 @@ decl_stmt|;
 name|Permission
 name|permissions
 decl_stmt|;
-name|String
+name|XmldbURI
 name|resource
 decl_stmt|;
 name|UserManagementService
@@ -366,7 +378,7 @@ parameter_list|,
 name|UserManagementService
 name|mgt
 parameter_list|,
-name|String
+name|XmldbURI
 name|res
 parameter_list|,
 name|Permission
@@ -588,6 +600,9 @@ operator|new
 name|JLabel
 argument_list|(
 name|resource
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|c

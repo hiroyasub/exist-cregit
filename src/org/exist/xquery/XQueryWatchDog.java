@@ -75,6 +75,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -617,6 +629,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      *       * @param docName      * @deprecated Use xmldbURI instead      */
+comment|//TODO: remove this
 specifier|public
 name|void
 name|addTemporaryFragment
@@ -642,6 +656,23 @@ operator|.
 name|add
 argument_list|(
 name|docName
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|addTemporaryFragment
+parameter_list|(
+name|XmldbURI
+name|docName
+parameter_list|)
+block|{
+name|addTemporaryFragment
+argument_list|(
+name|docName
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

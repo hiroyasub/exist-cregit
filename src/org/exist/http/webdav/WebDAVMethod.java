@@ -71,6 +71,18 @@ name|User
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for all WebDAV methods.  *   * @author wolf  */
 end_comment
@@ -93,7 +105,7 @@ parameter_list|,
 name|HttpServletResponse
 name|response
 parameter_list|,
-name|String
+name|XmldbURI
 name|path
 parameter_list|)
 throws|throws

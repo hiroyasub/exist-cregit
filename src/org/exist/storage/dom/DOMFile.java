@@ -9337,7 +9337,7 @@ name|append
 argument_list|(
 name|doc
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

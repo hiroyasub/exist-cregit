@@ -49,6 +49,18 @@ name|CLOptionDescriptor
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author wessels  */
 end_comment
@@ -669,17 +681,17 @@ name|optionRemove
 init|=
 literal|null
 decl_stmt|;
-name|String
+name|XmldbURI
 name|optionGet
 init|=
 literal|null
 decl_stmt|;
-name|String
+name|XmldbURI
 name|optionMkcol
 init|=
 literal|null
 decl_stmt|;
-name|String
+name|XmldbURI
 name|optionRmcol
 init|=
 literal|null

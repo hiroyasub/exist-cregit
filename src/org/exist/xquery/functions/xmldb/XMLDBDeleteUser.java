@@ -35,18 +35,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -207,6 +195,18 @@ name|UserManagementService
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -340,9 +340,9 @@ operator|.
 name|getBrokerPool
 argument_list|()
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|,
 name|context
 operator|.

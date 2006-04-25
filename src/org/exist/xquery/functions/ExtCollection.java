@@ -19,6 +19,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -176,6 +186,18 @@ operator|.
 name|util
 operator|.
 name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -687,6 +709,8 @@ argument_list|(
 literal|521
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -728,7 +752,12 @@ argument_list|()
 operator|.
 name|getCollection
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|next
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -753,6 +782,26 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Invalid resource uri"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 comment|// iterate through all docs and create the node set
 name|NodeSet
@@ -845,7 +894,7 @@ literal|"Locking document: "
 operator|+
 name|doc
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -875,7 +924,7 @@ literal|"Could not acquire read lock on document "
 operator|+
 name|doc
 operator|.
-name|getFileName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

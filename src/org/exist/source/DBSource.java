@@ -125,6 +125,18 @@ name|Lock
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Source implementation that reads from a binary resource  * stored in the database.  *   * @author wolf  */
 end_comment
@@ -141,7 +153,7 @@ name|BinaryDocument
 name|doc
 decl_stmt|;
 specifier|private
-name|String
+name|XmldbURI
 name|key
 decl_stmt|;
 specifier|private
@@ -193,7 +205,7 @@ name|key
 operator|=
 name|doc
 operator|.
-name|getName
+name|getURI
 argument_list|()
 expr_stmt|;
 name|this
@@ -226,7 +238,7 @@ name|key
 return|;
 block|}
 specifier|public
-name|String
+name|XmldbURI
 name|getDocumentPath
 parameter_list|()
 block|{

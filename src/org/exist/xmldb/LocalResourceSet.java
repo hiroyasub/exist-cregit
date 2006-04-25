@@ -995,7 +995,12 @@ name|brokerPool
 argument_list|,
 name|collection
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 literal|""
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|res
@@ -1140,7 +1145,7 @@ operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|,
 name|coll
@@ -1189,7 +1194,12 @@ name|brokerPool
 argument_list|,
 name|collection
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 literal|""
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|res
@@ -1221,7 +1231,12 @@ name|brokerPool
 argument_list|,
 name|collection
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 literal|""
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|res

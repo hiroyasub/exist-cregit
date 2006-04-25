@@ -355,7 +355,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|XMLSecurityManager
+name|User
 import|;
 end_import
 
@@ -367,7 +367,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|XMLSecurityManager
 import|;
 end_import
 
@@ -615,6 +615,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Constants
@@ -706,7 +718,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(String, int)}  * to get a collection with a read or write lock and {@link #release()} to release the lock.  *  * @author wolf  */
+comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, int)}  * to get a collection with a read or write lock and {@link #release()} to release the lock.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -791,10 +803,10 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
-comment|// the name of this collection
+comment|// the path of this collection
 specifier|private
-name|String
-name|name
+name|XmldbURI
+name|path
 decl_stmt|;
 comment|// the permissions assigned to this collection
 specifier|private
@@ -900,13 +912,13 @@ decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
-name|String
-name|name
+name|XmldbURI
+name|path
 parameter_list|)
 block|{
-name|setName
+name|setPath
 argument_list|(
-name|name
+name|path
 argument_list|)
 expr_stmt|;
 name|lock
@@ -914,34 +926,45 @@ operator|=
 operator|new
 name|ReentrantReadWriteLock
 argument_list|(
-name|name
+name|getURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setName
+name|setPath
 parameter_list|(
-name|String
-name|name
+name|XmldbURI
+name|path
 parameter_list|)
 block|{
+name|path
+operator|=
+name|path
+operator|.
+name|toCollectionPathURI
+argument_list|()
+expr_stmt|;
 name|isTempCollection
 operator|=
-name|name
+name|path
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|TEMP_COLLECTION
+name|TEMP_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|name
+name|path
 operator|=
-name|name
+name|path
 expr_stmt|;
 block|}
 specifier|public
@@ -963,7 +986,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/**      *  Add a new sub-collection to the collection.      *      *@param  name      */
+comment|/**      *  Add a new sub-collection to the collection.      *      */
 specifier|public
 name|void
 name|addCollection
@@ -978,34 +1001,16 @@ name|boolean
 name|isNew
 parameter_list|)
 block|{
-comment|//TODO : use dedicated function in XmldbURI
-specifier|final
-name|int
-name|p
-init|=
-name|child
-operator|.
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-operator|+
-literal|1
-decl_stmt|;
-specifier|final
-name|String
+name|XmldbURI
 name|childName
 init|=
 name|child
 operator|.
-name|name
+name|getURI
+argument_list|()
 operator|.
-name|substring
-argument_list|(
-name|p
-argument_list|)
+name|lastSegment
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1061,8 +1066,8 @@ specifier|public
 name|boolean
 name|hasChildCollection
 parameter_list|(
-name|String
-name|name
+name|XmldbURI
+name|path
 parameter_list|)
 block|{
 return|return
@@ -1070,7 +1075,7 @@ name|subcollections
 operator|.
 name|contains
 argument_list|(
-name|name
+name|path
 argument_list|)
 return|;
 block|}
@@ -1107,34 +1112,17 @@ name|Collection
 name|child
 parameter_list|)
 block|{
-comment|//TODO : use dedicated function in XmldbURI
 specifier|final
-name|int
-name|p
-init|=
-name|child
-operator|.
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-operator|+
-literal|1
-decl_stmt|;
-specifier|final
-name|String
+name|XmldbURI
 name|childName
 init|=
 name|child
 operator|.
-name|name
+name|getURI
+argument_list|()
 operator|.
-name|substring
-argument_list|(
-name|p
-argument_list|)
+name|lastSegment
+argument_list|()
 decl_stmt|;
 name|subcollections
 operator|.
@@ -1197,7 +1185,7 @@ name|put
 argument_list|(
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|,
 name|doc
@@ -1219,7 +1207,7 @@ name|remove
 argument_list|(
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1321,7 +1309,7 @@ expr_stmt|;
 name|Collection
 name|child
 decl_stmt|;
-name|String
+name|XmldbURI
 name|childName
 decl_stmt|;
 for|for
@@ -1344,25 +1332,25 @@ block|{
 name|childName
 operator|=
 operator|(
-name|String
+name|XmldbURI
 operator|)
 name|i
 operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//TODO : use dedicated function in XmldbURI
 name|child
 operator|=
 name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|name
-operator|+
-literal|"/"
-operator|+
+name|path
+operator|.
+name|append
+argument_list|(
 name|childName
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -1552,7 +1540,7 @@ expr_stmt|;
 name|Collection
 name|child
 decl_stmt|;
-name|String
+name|XmldbURI
 name|childName
 decl_stmt|;
 name|Iterator
@@ -1574,25 +1562,25 @@ block|{
 name|childName
 operator|=
 operator|(
-name|String
+name|XmldbURI
 operator|)
 name|i
 operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//TODO : use dedicated function in XmldbURI
 name|child
 operator|=
 name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|name
-operator|+
-literal|"/"
-operator|+
+name|path
+operator|.
+name|append
+argument_list|(
 name|childName
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -1994,8 +1982,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|name
+name|XmldbURI
+name|path
 parameter_list|)
 block|{
 try|try
@@ -2020,7 +2008,7 @@ name|documents
 operator|.
 name|get
 argument_list|(
-name|name
+name|path
 argument_list|)
 decl_stmt|;
 if|if
@@ -2035,7 +2023,7 @@ name|debug
 argument_list|(
 literal|"Document "
 operator|+
-name|name
+name|path
 operator|+
 literal|" not found!"
 argument_list|)
@@ -2084,76 +2072,24 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
+name|XmldbURI
 name|name
 parameter_list|)
 throws|throws
 name|LockException
 block|{
-try|try
-block|{
-name|getLock
-argument_list|()
-operator|.
-name|acquire
+return|return
+name|getDocumentWithLock
 argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|documents
-operator|.
-name|get
-argument_list|(
+name|broker
+argument_list|,
 name|name
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|doc
-operator|==
-literal|null
-condition|)
-return|return
-literal|null
-return|;
-name|Lock
-name|updateLock
-init|=
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-decl_stmt|;
-name|updateLock
-operator|.
-name|acquire
-argument_list|(
+argument_list|,
 name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
-return|return
-name|doc
 return|;
-block|}
-finally|finally
-block|{
-name|getLock
-argument_list|()
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return      * @throws LockException      */
 specifier|public
@@ -2163,8 +2099,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|name
+name|XmldbURI
+name|uri
 parameter_list|,
 name|int
 name|lockMode
@@ -2194,7 +2130,7 @@ name|documents
 operator|.
 name|get
 argument_list|(
-name|name
+name|uri
 argument_list|)
 decl_stmt|;
 if|if
@@ -2334,69 +2270,39 @@ return|;
 block|}
 comment|/**      *  Get the name of this collection.      *      *@return    The name value      */
 specifier|public
-name|String
-name|getName
+name|XmldbURI
+name|getURI
 parameter_list|()
 block|{
 return|return
-name|name
+name|path
 return|;
 block|}
 comment|/**      *  Returns the parent-collection.      *      *@return    The parent-collection or null if this      *is the root collection.      */
 specifier|public
-name|String
-name|getParentPath
+name|XmldbURI
+name|getParentURI
 parameter_list|()
 block|{
-comment|///TODO : use dedicated function in XmldbURI
 if|if
 condition|(
-name|name
+name|path
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 condition|)
 return|return
 literal|null
 return|;
-name|String
-name|parent
-init|=
-operator|(
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-operator|<
-literal|1
-condition|?
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-else|:
-name|name
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-argument_list|)
-operator|)
-decl_stmt|;
 return|return
-name|parent
+name|path
+operator|.
+name|removeLastSegment
+argument_list|()
 return|;
 block|}
 comment|/**      *  Gets the permissions attribute of the Collection object      *      *@return    The permissions value      */
@@ -2458,8 +2364,8 @@ specifier|public
 name|boolean
 name|hasDocument
 parameter_list|(
-name|String
-name|name
+name|XmldbURI
+name|uri
 parameter_list|)
 block|{
 return|return
@@ -2467,7 +2373,7 @@ name|documents
 operator|.
 name|containsKey
 argument_list|(
-name|name
+name|uri
 argument_list|)
 return|;
 block|}
@@ -2476,7 +2382,7 @@ specifier|public
 name|boolean
 name|hasSubcollection
 parameter_list|(
-name|String
+name|XmldbURI
 name|name
 parameter_list|)
 block|{
@@ -2626,10 +2532,15 @@ name|subcollections
 operator|.
 name|add
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|istream
 operator|.
 name|readUTF
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2769,7 +2680,7 @@ specifier|public
 name|void
 name|removeCollection
 parameter_list|(
-name|String
+name|XmldbURI
 name|name
 parameter_list|)
 throws|throws
@@ -2816,8 +2727,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docname
+name|XmldbURI
+name|docUri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -2845,7 +2756,7 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-name|docname
+name|docUri
 argument_list|)
 decl_stmt|;
 if|if
@@ -2870,7 +2781,7 @@ literal|"Document "
 operator|+
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" is locked for write"
@@ -2946,11 +2857,11 @@ condition|(
 operator|!
 name|CollectionConfiguration
 operator|.
-name|DEFAULT_COLLECTION_CONFIG_FILE
+name|DEFAULT_COLLECTION_CONFIG_FILE_URI
 operator|.
 name|equals
 argument_list|(
-name|docname
+name|docUri
 argument_list|)
 condition|)
 block|{
@@ -3008,7 +2919,7 @@ name|confMgr
 operator|.
 name|invalidateAll
 argument_list|(
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3032,12 +2943,13 @@ name|broker
 argument_list|,
 name|transaction
 argument_list|,
-name|getName
+name|getURI
 argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|docname
+operator|.
+name|append
+argument_list|(
+name|docUri
+argument_list|)
 argument_list|,
 name|doc
 argument_list|)
@@ -3056,7 +2968,7 @@ name|documents
 operator|.
 name|remove
 argument_list|(
-name|docname
+name|docUri
 argument_list|)
 expr_stmt|;
 if|if
@@ -3120,8 +3032,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|uri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -3149,7 +3061,7 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-name|docName
+name|uri
 argument_list|)
 decl_stmt|;
 if|if
@@ -3167,7 +3079,7 @@ literal|"Document "
 operator|+
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" is locked for write"
@@ -3311,7 +3223,7 @@ literal|"document "
 operator|+
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" is not a binary object"
@@ -3332,7 +3244,7 @@ literal|"Document "
 operator|+
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" is locked for write"
@@ -3459,7 +3371,7 @@ name|transaction
 argument_list|,
 name|doc
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|,
 name|doc
@@ -3483,7 +3395,7 @@ name|remove
 argument_list|(
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3937,7 +3849,7 @@ expr_stmt|;
 comment|// if we are running in privileged mode (e.g. backup/restore), notify the SecurityManager about changes
 if|if
 condition|(
-name|getName
+name|getURI
 argument_list|()
 operator|.
 name|equals
@@ -3949,14 +3861,14 @@ argument_list|)
 operator|&&
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|XMLSecurityManager
 operator|.
-name|ACL_FILE
+name|ACL_FILE_URI
 argument_list|)
 operator|&&
 name|privileged
@@ -4062,24 +3974,24 @@ operator|)
 argument_list|)
 expr_stmt|;
 comment|//Is it a collection configuration file ?
-name|String
+name|XmldbURI
 name|docName
 init|=
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|getName
+name|getURI
 argument_list|()
 operator|.
 name|startsWith
 argument_list|(
 name|CollectionConfigurationManager
 operator|.
-name|CONFIG_COLLECTION
+name|CONFIG_COLLECTION_URI
 argument_list|)
 operator|&&
 name|docName
@@ -4088,7 +4000,7 @@ name|endsWith
 argument_list|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_SUFFIX
+name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 condition|)
 block|{
@@ -4122,7 +4034,7 @@ name|manager
 operator|.
 name|invalidateAll
 argument_list|(
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4138,8 +4050,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|String
 name|data
@@ -4162,7 +4074,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|docName
+name|docUri
 argument_list|,
 operator|new
 name|InputSource
@@ -4187,8 +4099,8 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|,
 specifier|final
 name|InputSource
@@ -4212,7 +4124,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|docName
+name|docUri
 argument_list|,
 operator|new
 name|ValidateBlock
@@ -4287,8 +4199,8 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|,
 specifier|final
 name|Node
@@ -4312,7 +4224,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|docName
+name|docUri
 argument_list|,
 operator|new
 name|ValidateBlock
@@ -4381,8 +4293,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|)
 throws|throws
 name|EXistException
@@ -4393,27 +4305,27 @@ comment|//    	Is it a collection configuration file ?
 if|if
 condition|(
 operator|!
-name|getName
+name|getURI
 argument_list|()
 operator|.
 name|startsWith
 argument_list|(
 name|CollectionConfigurationManager
 operator|.
-name|CONFIG_COLLECTION
+name|CONFIG_COLLECTION_URI
 argument_list|)
 condition|)
 return|return;
 if|if
 condition|(
 operator|!
-name|docName
+name|docUri
 operator|.
 name|endsWith
 argument_list|(
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_SUFFIX
+name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 condition|)
 return|return;
@@ -4447,12 +4359,12 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|String
+name|XmldbURI
 name|currentConfDocName
 init|=
 name|confDoc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 decl_stmt|;
 if|if
@@ -4466,7 +4378,7 @@ name|currentConfDocName
 operator|.
 name|equals
 argument_list|(
-name|docName
+name|docUri
 argument_list|)
 condition|)
 block|{
@@ -4476,7 +4388,7 @@ name|EXistException
 argument_list|(
 literal|"Could not store configuration '"
 operator|+
-name|docName
+name|docUri
 operator|+
 literal|"': A configuration document with a different name ("
 operator|+
@@ -4484,7 +4396,7 @@ name|currentConfDocName
 operator|+
 literal|") already exists in this collection ("
 operator|+
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|")"
@@ -4522,7 +4434,7 @@ name|confMgr
 operator|.
 name|invalidateAll
 argument_list|(
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4537,8 +4449,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|ValidateBlock
 name|doValidate
@@ -4560,7 +4472,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|docName
+name|docUri
 argument_list|)
 expr_stmt|;
 if|if
@@ -4610,7 +4522,7 @@ name|documents
 operator|.
 name|get
 argument_list|(
-name|docName
+name|docUri
 argument_list|)
 expr_stmt|;
 name|document
@@ -4622,7 +4534,7 @@ name|broker
 argument_list|,
 name|this
 argument_list|,
-name|docName
+name|docUri
 argument_list|)
 expr_stmt|;
 if|if
@@ -4679,16 +4591,12 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|docName
-argument_list|,
 name|oldDoc
 argument_list|)
 expr_stmt|;
 name|manageDocumentInformation
 argument_list|(
 name|broker
-argument_list|,
-name|docName
 argument_list|,
 name|oldDoc
 argument_list|,
@@ -4745,7 +4653,7 @@ name|setupTriggers
 argument_list|(
 name|broker
 argument_list|,
-name|docName
+name|docUri
 argument_list|,
 name|oldDoc
 operator|!=
@@ -4765,7 +4673,6 @@ operator|.
 name|UPDATE_DOCUMENT_EVENT
 argument_list|)
 expr_stmt|;
-comment|//TODO : use dedicated function in XmldbURI
 name|info
 operator|.
 name|prepareTrigger
@@ -4774,12 +4681,13 @@ name|broker
 argument_list|,
 name|transaction
 argument_list|,
-name|getName
+name|getURI
 argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|docName
+operator|.
+name|append
+argument_list|(
+name|docUri
+argument_list|)
 argument_list|,
 name|oldDoc
 argument_list|)
@@ -4790,12 +4698,13 @@ name|debug
 argument_list|(
 literal|"Scanning document "
 operator|+
-name|getName
+name|getURI
 argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|docName
+operator|.
+name|append
+argument_list|(
+name|docUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|doValidate
@@ -4838,7 +4747,7 @@ literal|"removing old document "
 operator|+
 name|oldDoc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5061,16 +4970,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param name      * @param oldDoc      * @param document      */
+comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param docUri      * @param document      */
 specifier|private
 name|void
 name|manageDocumentInformation
 parameter_list|(
 name|DBBroker
 name|broker
-parameter_list|,
-name|String
-name|name
 parameter_list|,
 name|DocumentImpl
 name|oldDoc
@@ -5184,7 +5090,7 @@ name|metadata
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Check Permissions about user and document, and throw exceptions if necessary.      *      * @param broker      * @param name      * @param oldDoc old Document existing in database prior to adding a new one with same name.      * @throws LockException      * @throws PermissionDeniedException      */
+comment|/**      * Check Permissions about user and document, and throw exceptions if necessary.      *      * @param broker      * @param oldDoc old Document existing in database prior to adding a new one with same name.      * @throws LockException      * @throws PermissionDeniedException      */
 specifier|private
 name|void
 name|checkPermissions
@@ -5194,9 +5100,6 @@ name|transaction
 parameter_list|,
 name|DBBroker
 name|broker
-parameter_list|,
-name|String
-name|name
 parameter_list|,
 name|DocumentImpl
 name|oldDoc
@@ -5369,7 +5272,7 @@ argument_list|()
 operator|+
 literal|"' not allowed to write to collection '"
 operator|+
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|"'"
@@ -5383,8 +5286,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|boolean
 name|update
@@ -5395,11 +5298,11 @@ if|if
 condition|(
 name|CollectionConfiguration
 operator|.
-name|DEFAULT_COLLECTION_CONFIG_FILE
+name|DEFAULT_COLLECTION_CONFIG_FILE_URI
 operator|.
 name|equals
 argument_list|(
-name|docName
+name|docUri
 argument_list|)
 condition|)
 block|{
@@ -5419,7 +5322,7 @@ name|confMgr
 operator|.
 name|invalidateAll
 argument_list|(
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5554,8 +5457,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|name
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|byte
 index|[]
@@ -5580,7 +5483,7 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|name
+name|docUri
 argument_list|,
 name|data
 argument_list|,
@@ -5602,8 +5505,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|name
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|byte
 index|[]
@@ -5653,7 +5556,7 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-name|name
+name|docUri
 argument_list|)
 decl_stmt|;
 name|blob
@@ -5663,9 +5566,9 @@ name|BinaryDocument
 argument_list|(
 name|broker
 argument_list|,
-name|name
-argument_list|,
 name|this
+argument_list|,
+name|docUri
 argument_list|)
 expr_stmt|;
 try|try
@@ -5685,8 +5588,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|broker
-argument_list|,
-name|name
 argument_list|,
 name|oldDoc
 argument_list|)
@@ -5766,7 +5667,7 @@ name|transaction
 argument_list|,
 name|blob
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|,
 name|blob
@@ -5778,8 +5679,6 @@ block|}
 name|manageDocumentInformation
 argument_list|(
 name|broker
-argument_list|,
-name|name
 argument_list|,
 name|oldDoc
 argument_list|,
@@ -5827,7 +5726,7 @@ literal|"removing old document "
 operator|+
 name|oldDoc
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6129,7 +6028,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|String
+name|XmldbURI
 name|childColl
 decl_stmt|;
 for|for
@@ -6152,7 +6051,7 @@ block|{
 name|childColl
 operator|=
 operator|(
-name|String
+name|XmldbURI
 operator|)
 name|i
 operator|.
@@ -6164,6 +6063,9 @@ operator|.
 name|writeUTF
 argument_list|(
 name|childColl
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -6386,13 +6288,14 @@ return|;
 comment|//System collection has no configuration
 if|if
 condition|(
-name|name
+name|getURI
+argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|SYSTEM_COLLECTION
+name|SYSTEM_COLLECTION_URI
 argument_list|)
 condition|)
 return|return
@@ -6449,7 +6352,7 @@ name|warn
 argument_list|(
 literal|"Failed to load collection configuration for '"
 operator|+
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|"'"
@@ -7192,7 +7095,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

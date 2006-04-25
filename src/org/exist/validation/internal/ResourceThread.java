@@ -107,6 +107,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -147,21 +171,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|xmldb
 operator|.
-name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
+name|XmldbURI
 import|;
 end_import
 
@@ -208,8 +220,8 @@ name|BrokerPool
 name|brokerPool
 decl_stmt|;
 specifier|private
-name|String
-name|resourceId
+name|XmldbURI
+name|docUri
 decl_stmt|;
 specifier|private
 name|OutputStream
@@ -222,8 +234,8 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|String
-name|resourceId
+name|XmldbURI
+name|docUri
 parameter_list|,
 name|OutputStream
 name|os
@@ -244,9 +256,9 @@ name|pool
 expr_stmt|;
 name|this
 operator|.
-name|resourceId
+name|docUri
 operator|=
-name|resourceId
+name|docUri
 expr_stmt|;
 name|this
 operator|.
@@ -293,7 +305,7 @@ name|debug
 argument_list|(
 literal|"Writing XML resource '"
 operator|+
-name|resourceId
+name|docUri
 operator|+
 literal|"' as stream."
 argument_list|)
@@ -323,7 +335,7 @@ name|broker
 operator|.
 name|getXMLResource
 argument_list|(
-name|resourceId
+name|docUri
 argument_list|,
 name|Lock
 operator|.
@@ -343,7 +355,7 @@ name|error
 argument_list|(
 literal|"Document '"
 operator|+
-name|resourceId
+name|docUri
 operator|+
 literal|"' does not exist"
 argument_list|)

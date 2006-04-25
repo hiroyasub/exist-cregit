@@ -255,8 +255,9 @@ try|try
 block|{
 name|collection
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist:///db"
 argument_list|)
@@ -361,8 +362,9 @@ try|try
 block|{
 name|collection
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 name|DatabaseResources
 operator|.
@@ -454,8 +456,9 @@ try|try
 block|{
 name|collection
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 name|DatabaseResources
 operator|.
@@ -526,8 +529,9 @@ try|try
 block|{
 name|collection
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 name|DatabaseResources
 operator|.
@@ -641,8 +645,9 @@ try|try
 block|{
 name|resourcePath
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 name|xrid
 operator|.

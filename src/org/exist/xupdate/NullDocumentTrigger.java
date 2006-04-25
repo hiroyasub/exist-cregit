@@ -129,6 +129,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -206,7 +218,7 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
-name|String
+name|XmldbURI
 name|documentPath
 parameter_list|,
 name|DocumentImpl

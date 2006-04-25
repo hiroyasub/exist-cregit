@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|EXistException
@@ -113,11 +125,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|log4j
+name|xmldb
 operator|.
-name|Logger
+name|XmldbURI
 import|;
 end_import
 
@@ -172,7 +184,7 @@ specifier|public
 name|Collection
 name|openCollection
 parameter_list|(
-name|String
+name|XmldbURI
 name|name
 parameter_list|,
 name|long
@@ -245,7 +257,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|String
+name|XmldbURI
 name|name
 parameter_list|)
 throws|throws

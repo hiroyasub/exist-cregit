@@ -27,6 +27,26 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|textui
+operator|.
+name|TestRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -159,6 +179,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|test
+operator|.
+name|TestConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -173,7 +205,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|XmldbURI
 import|;
 end_import
 
@@ -212,54 +244,6 @@ operator|.
 name|base
 operator|.
 name|Database
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Resource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
 import|;
 end_import
 
@@ -383,11 +367,9 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|DBBroker
+name|TestConstants
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/test"
+name|TEST_COLLECTION_URI
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -413,11 +395,9 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|DBBroker
+name|TestConstants
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/test/test2"
+name|TEST_COLLECTION_URI2
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -459,7 +439,9 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-literal|"test.xml"
+name|TestConstants
+operator|.
+name|TEST_XML_URI
 argument_list|,
 operator|new
 name|InputSource
@@ -526,7 +508,12 @@ argument_list|()
 argument_list|,
 name|root
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 literal|"new_test.xml"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|broker
@@ -659,11 +646,14 @@ name|broker
 operator|.
 name|getXMLResource
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/test/new_test.xml"
+name|ROOT_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"test/new_test.xml"
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -747,11 +737,9 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|DBBroker
+name|TestConstants
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/test"
+name|TEST_COLLECTION_URI
 argument_list|,
 name|Lock
 operator|.
@@ -916,7 +904,7 @@ comment|//	    Resource res = test2.createResource("test3.xml", "XMLResource");
 comment|//	    res.setContent(f);
 comment|//	    test2.storeResource(res);
 comment|//
-comment|//	    mgr.moveResource(DBBroker.ROOT_COLLECTION +  "/test/test2/test3.xml", DBBroker.ROOT_COLLECTION + "/test", "new_test3.xml");
+comment|//	    mgr.moveResource(DBBroker.ROOT_COLLECTION +  "/test/test2/test3.xml", TestConstants.TEST_COLLECTION_URI, "new_test3.xml");
 comment|//	}
 comment|//
 comment|//	public void testXMLDBRead() {

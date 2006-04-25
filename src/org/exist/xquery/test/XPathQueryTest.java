@@ -2372,7 +2372,7 @@ name|service
 operator|.
 name|queryResource
 argument_list|(
-literal|"numbers.xml"
+literal|"nested2.xml"
 argument_list|,
 name|query
 argument_list|)

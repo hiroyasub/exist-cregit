@@ -331,6 +331,18 @@ name|ShutdownListener
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -2187,9 +2199,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 operator|==
 literal|null
@@ -2212,9 +2224,9 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 name|transactionManager

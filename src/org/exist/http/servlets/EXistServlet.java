@@ -137,9 +137,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|xmlrpc
+name|log4j
 operator|.
-name|Base64
+name|Logger
 import|;
 end_import
 
@@ -303,6 +303,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Constants
@@ -346,18 +358,6 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
 import|;
 end_import
 
@@ -1071,7 +1071,12 @@ name|broker
 argument_list|,
 name|tempFile
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|path
+argument_list|)
 argument_list|,
 name|request
 argument_list|,
@@ -1723,7 +1728,12 @@ name|doDelete
 argument_list|(
 name|broker
 argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|path
+argument_list|)
 argument_list|,
 name|response
 argument_list|)

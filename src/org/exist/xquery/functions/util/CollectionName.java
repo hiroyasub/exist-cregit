@@ -481,6 +481,7 @@ name|NodeProxy
 operator|)
 name|node
 decl_stmt|;
+comment|//TODO: use xmldbUri
 return|return
 operator|new
 name|StringValue
@@ -493,7 +494,10 @@ operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|getName
+name|getURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 return|;

@@ -23,6 +23,18 @@ name|Date
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Description of a resource, suitable for display by the graphical  * client for instance.  *  * @author gpothier  */
 end_comment
@@ -34,7 +46,7 @@ class|class
 name|ResourceDescriptor
 block|{
 specifier|private
-name|String
+name|XmldbURI
 name|name
 decl_stmt|;
 specifier|private
@@ -56,7 +68,7 @@ decl_stmt|;
 specifier|public
 name|ResourceDescriptor
 parameter_list|(
-name|String
+name|XmldbURI
 name|aName
 parameter_list|,
 name|String
@@ -105,7 +117,7 @@ name|group
 return|;
 block|}
 specifier|public
-name|String
+name|XmldbURI
 name|getName
 parameter_list|()
 block|{
@@ -156,7 +168,7 @@ block|{
 specifier|public
 name|Document
 parameter_list|(
-name|String
+name|XmldbURI
 name|aName
 parameter_list|,
 name|String
@@ -206,7 +218,7 @@ block|{
 specifier|public
 name|Collection
 parameter_list|(
-name|String
+name|XmldbURI
 name|aName
 parameter_list|)
 block|{
@@ -227,7 +239,7 @@ block|}
 specifier|public
 name|Collection
 parameter_list|(
-name|String
+name|XmldbURI
 name|aName
 parameter_list|,
 name|String

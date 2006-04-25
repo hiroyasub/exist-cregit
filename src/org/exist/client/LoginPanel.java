@@ -353,6 +353,18 @@ name|ListSelectionListener
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class implements the graphical login panel used to log into  * local and remote eXist database instances.  *  * @author Wolfgang M. Meier<wolfgang@exist-db.org>  * @author Tobias Wunden<tobias.wunden@o2it.ch>  */
 end_comment
@@ -387,7 +399,12 @@ specifier|final
 name|String
 name|URI_EMBEDDED
 init|=
-literal|"xmldb:exist://"
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI
+operator|.
+name|toString
+argument_list|()
 decl_stmt|;
 comment|/** Default uri for remote connections */
 specifier|public

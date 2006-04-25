@@ -565,7 +565,7 @@ parameter_list|,
 name|LocalCollection
 name|parent
 parameter_list|,
-name|String
+name|XmldbURI
 name|did
 parameter_list|)
 throws|throws
@@ -616,7 +616,7 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1646,6 +1646,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//TODO: use xmldbURI?
 specifier|public
 name|String
 name|getDocumentId
@@ -1655,8 +1656,12 @@ name|XMLDBException
 block|{
 return|return
 name|docId
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
+comment|//TODO: use xmldbURI?
 specifier|public
 name|String
 name|getId
@@ -1666,6 +1671,9 @@ name|XMLDBException
 block|{
 return|return
 name|docId
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -2673,7 +2681,7 @@ literal|"Resource "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" not found"
@@ -2709,7 +2717,7 @@ literal|"User is not allowed to lock resource "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 throw|;

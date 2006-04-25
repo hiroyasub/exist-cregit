@@ -433,6 +433,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -2104,6 +2116,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|//TODO: revisit this class with XmldbURI in mind
 specifier|private
 class|class
 name|CachedStylesheet
@@ -2231,7 +2244,12 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|docPath
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -2557,7 +2575,7 @@ name|path
 operator|=
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|"/"
@@ -2581,7 +2599,12 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|path
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2623,7 +2646,7 @@ literal|" not found in collection "
 operator|+
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

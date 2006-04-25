@@ -82,12 +82,23 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Reindex the collection specified by its path.      *       * @param collectionPath      * @throws XMLDBException      */
+comment|/**      * Reindex the collection specified by its path.      *       * @param collectionPath      * @throws XMLDBException      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void
 name|reindexCollection
 parameter_list|(
 name|String
+name|collectionPath
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Reindex the collection specified by its path.      *       * @param collectionPath      * @throws XMLDBException      */
+specifier|public
+name|void
+name|reindexCollection
+parameter_list|(
+name|XmldbURI
 name|collectionPath
 parameter_list|)
 throws|throws

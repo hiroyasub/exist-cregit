@@ -268,7 +268,7 @@ parameter_list|,
 name|LocalCollection
 name|collection
 parameter_list|,
-name|String
+name|XmldbURI
 name|docId
 parameter_list|)
 block|{
@@ -308,6 +308,9 @@ name|XMLDBException
 block|{
 return|return
 name|docId
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Resource#getResourceType() 	 */

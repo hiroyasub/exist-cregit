@@ -169,6 +169,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|URL
 import|;
 end_import
@@ -483,6 +493,32 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|URIUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -546,7 +582,7 @@ name|InteractiveClient
 name|client
 decl_stmt|;
 specifier|private
-name|String
+name|XmldbURI
 name|resourceName
 decl_stmt|;
 specifier|protected
@@ -597,7 +633,7 @@ parameter_list|(
 name|InteractiveClient
 name|client
 parameter_list|,
-name|String
+name|XmldbURI
 name|resourceName
 parameter_list|,
 name|Properties
@@ -606,7 +642,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|//TODO : use dedicated function in XmldbURI
 name|super
 argument_list|(
 literal|"View Document "
@@ -1862,10 +1897,15 @@ name|setText
 argument_list|(
 literal|"Loading "
 operator|+
+name|URIUtils
+operator|.
+name|urlDecodeUtf8
+argument_list|(
 name|resource
 operator|.
 name|getId
 argument_list|()
+argument_list|)
 operator|+
 literal|" ..."
 argument_list|)
@@ -1945,10 +1985,15 @@ name|setText
 argument_list|(
 literal|"Storing "
 operator|+
+name|URIUtils
+operator|.
+name|urlDecodeUtf8
+argument_list|(
 name|resource
 operator|.
 name|getId
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -2152,7 +2197,15 @@ name|collection
 operator|.
 name|createResource
 argument_list|(
+name|URIUtils
+operator|.
+name|encodeXmldbUriFor
+argument_list|(
 name|nameres
+argument_list|)
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|XMLResource
 operator|.
@@ -2210,6 +2263,27 @@ operator|.
 name|showErrorMessage
 argument_list|(
 literal|"XMLDBException: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+name|ClientFrame
+operator|.
+name|showErrorMessage
+argument_list|(
+literal|"URISyntaxException: "
 operator|+
 name|e
 operator|.
@@ -2520,6 +2594,10 @@ name|setText
 argument_list|(
 literal|"Loaded "
 operator|+
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|client
 operator|.
 name|getCollection
@@ -2527,10 +2605,12 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"/"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|resourceName
+argument_list|)
 operator|+
 literal|" from "
 operator|+

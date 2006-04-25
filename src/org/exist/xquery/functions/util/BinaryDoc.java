@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -76,6 +86,18 @@ operator|.
 name|lock
 operator|.
 name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -330,7 +352,12 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|path
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -400,6 +427,25 @@ argument_list|(
 name|data
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Invalid resource uri"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(

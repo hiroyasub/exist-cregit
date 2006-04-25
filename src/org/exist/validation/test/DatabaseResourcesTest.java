@@ -382,8 +382,9 @@ try|try
 block|{
 name|baseURI
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist:///db"
 argument_list|)

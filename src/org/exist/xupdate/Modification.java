@@ -1275,9 +1275,8 @@ argument_list|()
 argument_list|,
 name|doc
 operator|.
-name|getName
+name|getURI
 argument_list|()
-comment|/* documentPath */
 argument_list|,
 name|doc
 argument_list|)

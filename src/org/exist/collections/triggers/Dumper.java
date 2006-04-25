@@ -109,6 +109,18 @@ name|Txn
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -227,7 +239,7 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
-name|String
+name|XmldbURI
 name|documentName
 parameter_list|,
 name|DocumentImpl
@@ -250,7 +262,7 @@ literal|" into collection "
 operator|+
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -275,7 +287,7 @@ operator|)
 name|existingDocument
 operator|)
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -343,7 +355,7 @@ name|i
 argument_list|)
 operator|)
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;

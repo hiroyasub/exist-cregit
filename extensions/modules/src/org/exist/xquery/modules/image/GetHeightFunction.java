@@ -201,6 +201,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|AnyURIValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -292,7 +306,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -361,16 +375,16 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 comment|//get the path of the image
-name|String
+name|AnyURIValue
 name|imgPath
 init|=
+operator|(
+name|AnyURIValue
+operator|)
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|getStringValue
-argument_list|()
 decl_stmt|;
 comment|//Get the image document from the db
 name|DBBroker
@@ -395,6 +409,9 @@ operator|.
 name|getXMLResource
 argument_list|(
 name|imgPath
+operator|.
+name|toXmldbURI
+argument_list|()
 argument_list|,
 name|Lock
 operator|.

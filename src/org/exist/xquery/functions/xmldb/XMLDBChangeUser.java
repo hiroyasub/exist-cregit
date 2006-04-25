@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -47,9 +57,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|validation
 operator|.
-name|DBBroker
+name|internal
+operator|.
+name|ResourceInputStream
 import|;
 end_import
 
@@ -74,6 +86,18 @@ operator|.
 name|xmldb
 operator|.
 name|UserManagementService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -204,6 +228,20 @@ operator|.
 name|base
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ErrorCodes
 import|;
 end_import
 
@@ -391,9 +429,9 @@ operator|.
 name|getBrokerPool
 argument_list|()
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|,
 name|context
 operator|.
@@ -568,9 +606,15 @@ argument_list|()
 condition|)
 block|{
 comment|// set home collection
+try|try
+block|{
 name|user
 operator|.
 name|setHome
+argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 name|args
 index|[
@@ -580,7 +624,28 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Invalid home collection URI"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 name|user

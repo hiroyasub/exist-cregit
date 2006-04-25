@@ -510,7 +510,7 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

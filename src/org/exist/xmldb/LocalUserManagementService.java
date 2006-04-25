@@ -645,7 +645,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -930,7 +930,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -1455,7 +1455,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -2021,7 +2021,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -3229,7 +3229,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -3416,7 +3416,7 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
 argument_list|,
 name|Lock
@@ -3461,7 +3461,7 @@ name|getChildCollectionCount
 argument_list|()
 index|]
 decl_stmt|;
-name|String
+name|XmldbURI
 name|child
 decl_stmt|;
 name|org
@@ -3500,14 +3500,13 @@ block|{
 name|child
 operator|=
 operator|(
-name|String
+name|XmldbURI
 operator|)
 name|i
 operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//TODO : use dedicated function in XmldbURI
 name|childColl
 operator|=
 name|broker
@@ -3516,12 +3515,13 @@ name|openCollection
 argument_list|(
 name|collection
 operator|.
-name|getPath
+name|getPathURI
 argument_list|()
-operator|+
-literal|"/"
-operator|+
+operator|.
+name|append
+argument_list|(
 name|child
+argument_list|)
 argument_list|,
 name|Lock
 operator|.

@@ -137,6 +137,18 @@ name|VariableByteOutputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a binary resource. Binary resources are just stored  * as binary data in a single overflow page. However, class BinaryDocument  * extends {@link org.exist.dom.DocumentImpl} and thus provides the   * same interface.  *   * @author wolf  */
 end_comment
@@ -197,8 +209,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|fileName
+name|XmldbURI
+name|fileURI
 parameter_list|)
 block|{
 name|super
@@ -207,7 +219,7 @@ name|broker
 argument_list|,
 literal|null
 argument_list|,
-name|fileName
+name|fileURI
 argument_list|)
 expr_stmt|;
 block|}
@@ -217,11 +229,11 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|String
-name|docName
-parameter_list|,
 name|Collection
 name|collection
+parameter_list|,
+name|XmldbURI
+name|fileURI
 parameter_list|)
 block|{
 name|super
@@ -230,7 +242,7 @@ name|broker
 argument_list|,
 name|collection
 argument_list|,
-name|docName
+name|fileURI
 argument_list|)
 expr_stmt|;
 block|}
@@ -290,7 +302,10 @@ name|ostream
 operator|.
 name|writeUTF
 argument_list|(
-name|getFileName
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -427,12 +442,17 @@ name|readInt
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|setFileName
+name|setFileURI
+argument_list|(
+name|XmldbURI
+operator|.
+name|create
 argument_list|(
 name|istream
 operator|.
 name|readUTF
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|pageNr

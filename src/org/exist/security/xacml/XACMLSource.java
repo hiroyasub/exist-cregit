@@ -109,6 +109,18 @@ name|URLSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class represents the source of some content.  It has  * a key, which uniquely identifies this source within its type.  * For possible type values, see {@link XACMLConstants XACMLConstants}.  */
 end_comment
@@ -473,7 +485,7 @@ operator|instanceof
 name|DBSource
 condition|)
 block|{
-name|String
+name|XmldbURI
 name|key
 init|=
 operator|(
@@ -486,6 +498,7 @@ operator|.
 name|getDocumentPath
 argument_list|()
 decl_stmt|;
+comment|/* 			 * TODO: not sure what implications using toString here has, when the key 			 * is really an XmldbURI? 			 */
 return|return
 operator|new
 name|XACMLSource
@@ -495,6 +508,9 @@ operator|.
 name|DB_SOURCE_TYPE
 argument_list|,
 name|key
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 return|;
 block|}

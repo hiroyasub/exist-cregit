@@ -115,18 +115,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|LockToken
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -209,6 +197,18 @@ name|LockException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the WebDAV UNLOCK method.  *  * @author Dannes Wessels  */
 end_comment
@@ -247,7 +247,7 @@ parameter_list|,
 name|HttpServletResponse
 name|response
 parameter_list|,
-name|String
+name|XmldbURI
 name|path
 parameter_list|)
 throws|throws
@@ -553,7 +553,7 @@ name|broker
 argument_list|,
 name|resource
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -568,7 +568,7 @@ name|broker
 argument_list|,
 name|resource
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;

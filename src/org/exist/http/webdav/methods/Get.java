@@ -275,6 +275,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|CompiledXQuery
@@ -417,7 +429,7 @@ parameter_list|,
 name|HttpServletResponse
 name|response
 parameter_list|,
-name|String
+name|XmldbURI
 name|path
 parameter_list|)
 throws|throws
@@ -943,7 +955,7 @@ literal|"collection"
 argument_list|,
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

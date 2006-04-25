@@ -196,6 +196,7 @@ name|DocumentNameOrId
 extends|extends
 name|BasicFunction
 block|{
+comment|//TODO: should this return a uri?
 specifier|public
 specifier|final
 specifier|static
@@ -400,7 +401,10 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
-name|getFileName
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 return|;

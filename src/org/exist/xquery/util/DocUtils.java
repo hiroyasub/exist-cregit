@@ -51,6 +51,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|URL
 import|;
 end_import
@@ -172,6 +182,18 @@ operator|.
 name|lock
 operator|.
 name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -634,30 +656,6 @@ comment|//Database documents
 block|}
 else|else
 block|{
-comment|// relative collection Path: add the current base URI
-comment|//TODO : use another strategy
-if|if
-condition|(
-name|path
-operator|.
-name|charAt
-argument_list|(
-literal|0
-argument_list|)
-operator|!=
-literal|'/'
-condition|)
-name|path
-operator|=
-name|context
-operator|.
-name|getBaseURI
-argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|path
-expr_stmt|;
 comment|// check if the loaded documents should remain locked
 name|boolean
 name|lockOnLoad
@@ -674,6 +672,29 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|XmldbURI
+name|pathUri
+init|=
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
+comment|// relative collection Path: add the current base URI
+name|pathUri
+operator|=
+name|context
+operator|.
+name|getBaseURI
+argument_list|()
+operator|.
+name|resolveCollectionPath
+argument_list|(
+name|pathUri
+argument_list|)
+expr_stmt|;
 comment|// try to open the document and acquire a lock
 name|doc
 operator|=
@@ -687,7 +708,7 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
-name|path
+name|pathUri
 argument_list|,
 name|Lock
 operator|.
@@ -779,6 +800,20 @@ parameter_list|)
 block|{
 throw|throw
 name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+argument_list|)
 throw|;
 block|}
 finally|finally

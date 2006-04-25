@@ -24,6 +24,7 @@ name|io
 operator|.
 name|Serializable
 block|{
+comment|//TODO: should this become XmldbURI?
 specifier|private
 name|org
 operator|.

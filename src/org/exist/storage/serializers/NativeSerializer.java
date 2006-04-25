@@ -895,7 +895,7 @@ literal|" ("
 operator|+
 name|documentImpl
 operator|.
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|")"
@@ -1222,7 +1222,10 @@ name|SOURCE_ATTRIB
 argument_list|,
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1571,7 +1574,10 @@ name|SOURCE_ATTRIB
 argument_list|,
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1740,7 +1746,10 @@ name|SOURCE_ATTRIB
 argument_list|,
 name|doc
 operator|.
-name|getFileName
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

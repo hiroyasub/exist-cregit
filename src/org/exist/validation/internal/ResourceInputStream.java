@@ -49,6 +49,18 @@ name|BrokerPool
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Wrapper between ResourceThread that writes data into outputstream and   * the  needed InputStream that is needed for the Validator. The glue is the  * circulair buffer BlockingOutputStream.  *  * @author dizzzz  * @see java.io.InputStream  * @see org.exist.validation.Validator  * @see org.exist.validation.internal.BlockingOutputStream  */
 end_comment
@@ -88,8 +100,8 @@ parameter_list|(
 name|BrokerPool
 name|brokerPool
 parameter_list|,
-name|String
-name|resourceId
+name|XmldbURI
+name|docUri
 parameter_list|)
 block|{
 name|logger
@@ -113,7 +125,7 @@ name|ResourceThread
 argument_list|(
 name|brokerPool
 argument_list|,
-name|resourceId
+name|docUri
 argument_list|,
 name|bis
 argument_list|)

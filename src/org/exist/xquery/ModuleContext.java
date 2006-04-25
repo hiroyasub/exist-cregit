@@ -67,6 +67,18 @@ name|UpdateListener
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
 end_comment
@@ -215,7 +227,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getBaseURI() 	 */
 specifier|public
-name|String
+name|XmldbURI
 name|getBaseURI
 parameter_list|()
 block|{
@@ -230,7 +242,7 @@ specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
-name|String
+name|XmldbURI
 name|uri
 parameter_list|)
 block|{

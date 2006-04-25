@@ -1073,6 +1073,10 @@ block|{
 if|if
 condition|(
 name|cache
+operator|&&
+name|compiled
+operator|!=
+literal|null
 condition|)
 name|pool
 operator|.

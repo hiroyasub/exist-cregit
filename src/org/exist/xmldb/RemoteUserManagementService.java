@@ -2707,6 +2707,17 @@ operator|.
 name|setHome
 argument_list|(
 name|home
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|home
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -2895,6 +2906,10 @@ index|]
 operator|.
 name|setHome
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 operator|(
 name|String
 operator|)
@@ -2903,6 +2918,7 @@ operator|.
 name|get
 argument_list|(
 literal|"home"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

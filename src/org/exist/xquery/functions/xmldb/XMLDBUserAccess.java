@@ -47,18 +47,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|LocalCollection
@@ -74,6 +62,18 @@ operator|.
 name|xmldb
 operator|.
 name|UserManagementService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -134,6 +134,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|AnyURIValue
 import|;
 end_import
 
@@ -370,6 +384,7 @@ name|ONE_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//TODO: let users know about signature change from string to any_uri
 specifier|public
 specifier|final
 specifier|static
@@ -419,7 +434,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -497,9 +512,9 @@ operator|.
 name|getBrokerPool
 argument_list|()
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|,
 name|context
 operator|.
@@ -633,7 +648,7 @@ comment|// get-user-home
 block|}
 else|else
 block|{
-name|String
+name|XmldbURI
 name|home
 init|=
 name|user
@@ -651,7 +666,7 @@ operator|.
 name|EMPTY_SEQUENCE
 else|:
 operator|new
-name|StringValue
+name|AnyURIValue
 argument_list|(
 name|home
 argument_list|)

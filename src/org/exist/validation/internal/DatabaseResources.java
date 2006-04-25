@@ -433,6 +433,34 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Helper class for accessing grammars.  * @author Dannes Wessels  */
 end_comment
@@ -1132,8 +1160,9 @@ try|try
 block|{
 name|col
 operator|=
-operator|new
 name|XmldbURI
+operator|.
+name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://"
 operator|+
@@ -1181,6 +1210,7 @@ name|dtdPath
 return|;
 block|}
 comment|/**      *  Get document from database.      *      * @param isBinary      Indicate wether resource is binary.      * @param documentPath  Path to the resource.      * @return              Byte array of resource, null if not found.      */
+comment|//TODO: use XmldbURI
 specifier|public
 name|byte
 index|[]
@@ -1190,6 +1220,35 @@ name|String
 name|documentPath
 parameter_list|)
 block|{
+name|XmldbURI
+name|documentURI
+decl_stmt|;
+try|try
+block|{
+name|documentURI
+operator|=
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
+name|documentPath
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 name|MimeType
 name|mime
 init|=
@@ -1200,7 +1259,10 @@ argument_list|()
 operator|.
 name|getContentTypeFor
 argument_list|(
-name|documentPath
+name|documentURI
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1229,7 +1291,7 @@ name|debug
 argument_list|(
 literal|"Get resource '"
 operator|+
-name|documentPath
+name|documentURI
 argument_list|)
 expr_stmt|;
 name|DBBroker
@@ -1265,7 +1327,7 @@ name|broker
 operator|.
 name|getXMLResource
 argument_list|(
-name|documentPath
+name|documentURI
 argument_list|,
 name|Lock
 operator|.
@@ -1286,7 +1348,7 @@ name|error
 argument_list|(
 literal|"Xml document '"
 operator|+
-name|documentPath
+name|documentURI
 operator|+
 literal|" does not exist."
 argument_list|)
@@ -1345,7 +1407,7 @@ name|broker
 operator|.
 name|getXMLResource
 argument_list|(
-name|documentPath
+name|documentURI
 argument_list|,
 name|Lock
 operator|.
@@ -1366,7 +1428,7 @@ name|error
 argument_list|(
 literal|"Binary document '"
 operator|+
-name|documentPath
+name|documentURI
 operator|+
 literal|" does not exist."
 argument_list|)
@@ -1466,6 +1528,7 @@ return|return
 name|data
 return|;
 block|}
+comment|//TODO: use XmldbURI
 specifier|public
 name|boolean
 name|insertResource
@@ -1483,26 +1546,35 @@ name|insertIsSuccesfull
 init|=
 literal|false
 decl_stmt|;
-name|String
-name|collectionName
-init|=
-name|DatabaseResources
+name|XmldbURI
+name|documentURI
+decl_stmt|;
+try|try
+block|{
+name|documentURI
+operator|=
+name|XmldbURI
 operator|.
-name|getCollectionPath
+name|xmldbUriFor
 argument_list|(
 name|documentPath
 argument_list|)
-decl_stmt|;
-name|String
-name|documentName
-init|=
-name|DatabaseResources
-operator|.
-name|getDocumentName
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
 argument_list|(
-name|documentPath
+name|e
 argument_list|)
-decl_stmt|;
+throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1520,7 +1592,10 @@ argument_list|()
 operator|.
 name|getContentTypeFor
 argument_list|(
-name|documentPath
+name|documentURI
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1573,7 +1648,10 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|collectionName
+name|documentURI
+operator|.
+name|removeLastSegment
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|broker
@@ -1604,7 +1682,10 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|documentName
+name|documentURI
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|,
 operator|new
 name|InputSource
@@ -1652,7 +1733,10 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|documentName
+name|documentURI
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|,
 name|grammar
 argument_list|,

@@ -712,7 +712,7 @@ name|equals
 argument_list|(
 name|document
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 operator|)

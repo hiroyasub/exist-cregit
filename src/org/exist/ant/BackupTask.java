@@ -39,6 +39,20 @@ name|Backup
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|URIUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -100,6 +114,15 @@ operator|+
 name|uri
 argument_list|)
 expr_stmt|;
+name|log
+argument_list|(
+literal|"Backup directory: "
+operator|+
+name|dir
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|Backup
 name|backup
 init|=
@@ -112,18 +135,14 @@ name|password
 argument_list|,
 name|dir
 argument_list|,
+name|URIUtils
+operator|.
+name|encodeXmldbUriFor
+argument_list|(
 name|uri
 argument_list|)
-decl_stmt|;
-name|log
-argument_list|(
-literal|"Backup directory: "
-operator|+
-name|dir
 argument_list|)
-expr_stmt|;
-try|try
-block|{
+decl_stmt|;
 name|backup
 operator|.
 name|backup

@@ -29,6 +29,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -86,6 +96,18 @@ operator|.
 name|internal
 operator|.
 name|ResourceInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -575,12 +597,20 @@ block|}
 comment|// Get inputstream
 name|InputStream
 name|is
-init|=
+decl_stmt|;
+try|try
+block|{
+name|is
+operator|=
 operator|new
 name|ResourceInputStream
 argument_list|(
 name|brokerPool
 argument_list|,
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|args
 index|[
 literal|0
@@ -589,7 +619,28 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Invalid resource URI"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 name|ValidationReport
 name|vr
 init|=

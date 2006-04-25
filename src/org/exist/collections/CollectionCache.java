@@ -91,6 +91,18 @@ name|Object2LongHashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Global cache for {@link org.exist.collections.Collection} objects. The  * cache is owned by {@link org.exist.storage.index.CollectionStore}. It is not  * synchronized. Thus a lock should be obtained on the collection store before  * accessing the cache.  *   * @author wolf  */
 end_comment
@@ -191,7 +203,7 @@ name|put
 argument_list|(
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|,
 name|collection
@@ -226,7 +238,7 @@ specifier|public
 name|Collection
 name|get
 parameter_list|(
-name|String
+name|XmldbURI
 name|name
 parameter_list|)
 block|{
@@ -435,7 +447,7 @@ name|invalidate
 argument_list|(
 name|old
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -455,7 +467,7 @@ name|remove
 argument_list|(
 name|old
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -547,7 +559,7 @@ name|remove
 argument_list|(
 name|col
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -570,7 +582,7 @@ name|invalidate
 argument_list|(
 name|col
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -704,7 +716,7 @@ name|i
 index|]
 operator|)
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|,
 name|items

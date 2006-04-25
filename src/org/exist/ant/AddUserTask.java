@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -50,6 +60,18 @@ operator|.
 name|security
 operator|.
 name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -154,7 +176,12 @@ name|usr
 operator|.
 name|setHome
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|home
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -192,6 +219,27 @@ block|}
 catch|catch
 parameter_list|(
 name|XMLDBException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|BuildException
+argument_list|(
+literal|"XMLDB exception caught: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
 name|e
 parameter_list|)
 block|{

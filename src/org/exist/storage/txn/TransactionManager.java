@@ -123,6 +123,18 @@ name|RecoveryManager
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is the central entry point to the transaction management service.  *   * There's only one TransactionManager per database instance that can be  * retrieved via {@link BrokerPool#getTransactionManager()}. TransactionManager  * provides methods to create, commit and rollback a transaction.  *   * @author wolf  *  */
 end_comment
@@ -544,9 +556,9 @@ name|broker
 operator|.
 name|reindexCollection
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 block|}
