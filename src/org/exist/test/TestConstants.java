@@ -49,7 +49,7 @@ name|DECODED_SPECIAL_NAME
 init|=
 literal|"t[e s]t\u00E0\uC5F4"
 decl_stmt|;
-comment|/** 	 * String representing the encoded path: 	 */
+comment|/** 	 * String representing the encoded path: t%5Be%20s%5Dt%C3%A0%EC%97%B4 	 */
 specifier|public
 specifier|static
 specifier|final
