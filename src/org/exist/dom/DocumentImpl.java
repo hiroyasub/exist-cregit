@@ -39,16 +39,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -681,25 +671,6 @@ operator|=
 name|fileName
 expr_stmt|;
 block|}
-comment|//	public DocumentImpl(DocumentImpl old) {
-comment|//		this.broker = old.broker;
-comment|//		this.fileName = old.fileName;
-comment|//		this.collection = old.collection;
-comment|//		if(old.collection == null)
-comment|//			throw new RuntimeException("Collection == null");
-comment|//		this.children = old.children;
-comment|//		this.maxDepth = old.maxDepth;
-comment|//		this.docId = old.docId;
-comment|//		this.childList = old.childList;
-comment|//		this.docType = old.docType;
-comment|//		this.permissions = old.permissions;
-comment|//		treeLevelOrder = new int[old.treeLevelOrder.length];
-comment|//		for (int i = 0; i< treeLevelOrder.length; i++)
-comment|//			treeLevelOrder[i] = old.treeLevelOrder[i];
-comment|//		treeLevelStartPoints = new long[old.treeLevelStartPoints.length];
-comment|//		for (int i = 0; i< treeLevelStartPoints.length; i++)
-comment|//			treeLevelStartPoints[i] = old.treeLevelStartPoints[i];
-comment|//	}
 comment|/************************************************      *       * Document metadata      *      ************************************************/
 specifier|public
 name|Collection
@@ -1796,7 +1767,6 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/*     public long getGID() {         //TOUNDERSTAND : what are the semantics of this 0 ? -pb         return 0;     }      public void setGID(long gid) {     }      public long getInternalAddress() {         return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;     }      public void setInternalAddress(long address) {     }          public long getParentGID() {         return StoredNode.NODE_IMPL_UNKNOWN_GID;     }     */
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|void
