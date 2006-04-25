@@ -436,9 +436,6 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 comment|// Case 2: predicate expression returns a number.
-comment|//Warning : in ((1,2,3,4,5,6,7,8,9,10,11)[(2 to 4)])
-comment|//the range expression has a cardinality Cardinality.EXACTLY_ONE
-comment|//whereas it is obvious that we have more !
 block|}
 if|else if
 condition|(
@@ -653,7 +650,6 @@ name|contextSequence
 argument_list|)
 decl_stmt|;
 comment|//Only if we have an actual *singleton* of numeric items
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|innerSeq
@@ -661,10 +657,16 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
+comment|//TODO : find a workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
+comment|// (1,2,3)[xs:float(.)]
+comment|//Something like :
+comment|//if (!(inner instanceof LocationStep&& ((LocationStep)inner).axis == Constants.SELF_AXIS))
 name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
