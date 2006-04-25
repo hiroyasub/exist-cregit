@@ -2648,7 +2648,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"failed to load module. "
 operator|+
