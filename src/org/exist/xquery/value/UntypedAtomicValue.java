@@ -859,6 +859,22 @@ else|:
 name|other
 return|;
 block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|value
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
