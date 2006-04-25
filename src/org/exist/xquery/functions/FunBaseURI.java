@@ -425,14 +425,10 @@ literal|0
 condition|)
 name|result
 operator|=
-operator|new
-name|AnyURIValue
-argument_list|(
 name|context
 operator|.
 name|getBaseURI
 argument_list|()
-argument_list|)
 expr_stmt|;
 if|else if
 condition|(
@@ -481,14 +477,10 @@ name|IN_MEMORY_NODE
 condition|)
 name|result
 operator|=
-operator|new
-name|AnyURIValue
-argument_list|(
 name|context
 operator|.
 name|getBaseURI
 argument_list|()
-argument_list|)
 expr_stmt|;
 else|else
 block|{
