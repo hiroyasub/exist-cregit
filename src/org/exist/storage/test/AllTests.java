@@ -80,7 +80,15 @@ argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$
 comment|// TODO: some problem here... uncommenting next test causes a db corruption
-comment|//        suite.addTestSuite(ShutdownTest.class);
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|ShutdownTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|suite
 operator|.
 name|addTestSuite
