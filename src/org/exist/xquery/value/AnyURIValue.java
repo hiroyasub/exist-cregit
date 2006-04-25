@@ -99,16 +99,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|security
-operator|.
-name|AccessController
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|Collator
@@ -158,18 +148,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|sun
-operator|.
-name|security
-operator|.
-name|action
-operator|.
-name|GetPropertyAction
 import|;
 end_import
 
@@ -327,6 +305,7 @@ specifier|private
 name|String
 name|uri
 decl_stmt|;
+comment|//TODO: save escaped(URI) version?
 name|AnyURIValue
 parameter_list|()
 block|{
@@ -380,12 +359,20 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|String
+name|escapedString
+init|=
+name|escape
+argument_list|(
+name|s
+argument_list|)
+decl_stmt|;
 try|try
 block|{
 operator|new
 name|URI
 argument_list|(
-name|s
+name|escapedString
 argument_list|)
 expr_stmt|;
 block|}
@@ -401,7 +388,7 @@ name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
-name|s
+name|escapedString
 argument_list|)
 expr_stmt|;
 block|}
@@ -1423,7 +1410,10 @@ name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
+name|escape
+argument_list|(
 name|uri
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1466,7 +1456,10 @@ return|return
 operator|new
 name|URI
 argument_list|(
+name|escape
+argument_list|(
 name|uri
+argument_list|)
 argument_list|)
 return|;
 block|}
