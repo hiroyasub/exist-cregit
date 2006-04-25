@@ -3854,9 +3854,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|SYSTEM_COLLECTION
+name|SYSTEM_COLLECTION_URI
 argument_list|)
 operator|&&
 name|document
