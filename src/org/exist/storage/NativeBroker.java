@@ -1104,22 +1104,6 @@ name|DATABASE_IS_READ_ONLY
 init|=
 literal|"database is read-only"
 decl_stmt|;
-comment|/**      * Log4J Logger for this class      */
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|NativeBroker
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|final
 name|String
@@ -12761,7 +12745,6 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-comment|//        final boolean isTemp = TEMP_COLLECTION.equals(doc.getCollection().getName());
 specifier|final
 name|IndexSpec
 name|idxSpec
@@ -12776,7 +12759,6 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-comment|//        final FulltextIndexSpec ftIdx = idxSpec != null ? idxSpec.getFulltextIndexSpec() : null;
 specifier|final
 name|short
 name|nodeType
@@ -13448,9 +13430,6 @@ name|newDoc
 operator|.
 name|appendChild
 argument_list|(
-operator|(
-name|StoredNode
-operator|)
 name|node
 argument_list|)
 expr_stmt|;
@@ -15698,9 +15677,6 @@ operator|.
 name|getLength
 argument_list|()
 argument_list|,
-operator|(
-name|DocumentImpl
-operator|)
 name|p
 operator|.
 name|getDocument
