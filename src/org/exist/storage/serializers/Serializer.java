@@ -2824,8 +2824,6 @@ name|ee
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|ee
 argument_list|)
 throw|;
 block|}

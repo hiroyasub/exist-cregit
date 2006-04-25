@@ -1245,7 +1245,12 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
+literal|"Invalid URI: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1571,7 +1576,12 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
+literal|"Invalid URI: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
