@@ -690,6 +690,9 @@ operator|.
 name|getBaseURI
 argument_list|()
 operator|.
+name|toXmldbURI
+argument_list|()
+operator|.
 name|resolveCollectionPath
 argument_list|(
 name|pathUri

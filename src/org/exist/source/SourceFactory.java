@@ -110,6 +110,7 @@ name|source
 init|=
 literal|null
 decl_stmt|;
+comment|//TODO: Xmldb source for xmldbURIs?
 if|if
 condition|(
 name|location

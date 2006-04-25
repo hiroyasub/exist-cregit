@@ -531,6 +531,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|AnyURIValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -825,10 +839,10 @@ name|DBBroker
 name|broker
 decl_stmt|;
 specifier|protected
-name|XmldbURI
+name|AnyURIValue
 name|baseURI
 init|=
-name|XmldbURI
+name|AnyURIValue
 operator|.
 name|EMPTY_URI
 decl_stmt|;
@@ -3974,7 +3988,7 @@ specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
-name|XmldbURI
+name|AnyURIValue
 name|uri
 parameter_list|)
 block|{
@@ -3991,7 +4005,7 @@ specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
-name|XmldbURI
+name|AnyURIValue
 name|uri
 parameter_list|,
 name|boolean
@@ -4011,7 +4025,7 @@ literal|null
 condition|)
 name|baseURI
 operator|=
-name|XmldbURI
+name|AnyURIValue
 operator|.
 name|EMPTY_URI
 expr_stmt|;
@@ -4051,7 +4065,7 @@ return|;
 block|}
 comment|/** 	 * Get the base URI of the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() function. 	 *  	 * @return 	 */
 specifier|public
-name|XmldbURI
+name|AnyURIValue
 name|getBaseURI
 parameter_list|()
 block|{

@@ -73,9 +73,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
+name|xquery
 operator|.
-name|XmldbURI
+name|value
+operator|.
+name|AnyURIValue
 import|;
 end_import
 
@@ -227,7 +229,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getBaseURI() 	 */
 specifier|public
-name|XmldbURI
+name|AnyURIValue
 name|getBaseURI
 parameter_list|()
 block|{
@@ -242,7 +244,7 @@ specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
-name|XmldbURI
+name|AnyURIValue
 name|uri
 parameter_list|)
 block|{

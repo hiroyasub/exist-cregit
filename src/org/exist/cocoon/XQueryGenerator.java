@@ -47,6 +47,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -1414,9 +1424,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
-name|String
+name|URI
 name|baseURI
 init|=
+operator|new
+name|File
+argument_list|(
 name|context
 operator|.
 name|getRealPath
@@ -1426,6 +1439,10 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+argument_list|)
+operator|.
+name|toURI
+argument_list|()
 decl_stmt|;
 comment|// check if user and password can be read from the session
 if|if
@@ -1614,6 +1631,9 @@ argument_list|(
 literal|"base-uri"
 argument_list|,
 name|baseURI
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//service.setNamespace(RequestModule.PREFIX, RequestModule.NAMESPACE_URI);
@@ -1622,6 +1642,9 @@ operator|.
 name|setModuleLoadPath
 argument_list|(
 name|baseURI
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
