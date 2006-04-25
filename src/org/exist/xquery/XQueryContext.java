@@ -5380,13 +5380,6 @@ name|targetDoc
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|": "
-operator|+
-name|targetDoc
-operator|.
-name|printTreeLevelOrder
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
