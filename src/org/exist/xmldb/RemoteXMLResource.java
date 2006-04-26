@@ -297,18 +297,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -326,6 +314,18 @@ operator|.
 name|dom
 operator|.
 name|DocumentFragment
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DocumentType
 import|;
 end_import
 
@@ -492,18 +492,6 @@ operator|.
 name|modules
 operator|.
 name|XMLResource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DocumentType
 import|;
 end_import
 

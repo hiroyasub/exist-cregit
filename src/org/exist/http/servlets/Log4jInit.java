@@ -85,18 +85,6 @@ name|DOMConfigurator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Configuration
-import|;
-end_import
-
 begin_comment
 comment|/**  * Helper servlet for initializing the log4j framework in a webcontainer.  */
 end_comment

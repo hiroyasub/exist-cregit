@@ -433,34 +433,6 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Helper class for accessing grammars.  * @author Dannes Wessels  */
 end_comment

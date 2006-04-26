@@ -243,18 +243,6 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Constants
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implements the WebDAV move method.  * @author wolf  */
 end_comment

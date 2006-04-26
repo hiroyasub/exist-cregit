@@ -13,6 +13,16 @@ name|soap
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|rmi
+operator|.
+name|RemoteException
+import|;
+end_import
+
 begin_interface
 specifier|public
 interface|interface
