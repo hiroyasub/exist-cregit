@@ -13,6 +13,16 @@ name|storage
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
 begin_comment
 comment|/**  * This interface should be implemented by all basic types  * to be used as keys in a value index.  *   * @see org.exist.storage.NativeValueIndex  * @author wolf  */
 end_comment
@@ -25,6 +35,7 @@ extends|extends
 name|Comparable
 block|{
 comment|/**      * Serialize the value plus collection and possibly element information      * to an array of bytes.      * @deprecated use following function instead; this API should be local       * to value index class like {@link NativeValueIndex}      *       * The returned byte array has the following format:      *       * (short: collectionId, byte type, byte[] value)      *       * @param collectionId the collection id to use      * @param caseSensitive only relevant for string values: if set to false,      * strings should be serialized in lower case      * @return      */
+comment|//TODO : better exception ?
 specifier|public
 name|byte
 index|[]
@@ -36,8 +47,12 @@ parameter_list|,
 name|boolean
 name|caseSensitive
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 comment|/** Serialize the value to an array of bytes for the persistant storage.      *       * The returned byte array has the following format:      *       * (offset-1 free bytes, byte type, byte[] value)      *       * @param offset, starting index for writing in array data      * @return the size actually writen in the array argument      */
+comment|//TODO : better exception ?
+specifier|public
 name|byte
 index|[]
 name|serializeValue
@@ -48,6 +63,8 @@ parameter_list|,
 name|boolean
 name|caseSensitive
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 comment|/**      * Returns the type of the Indexable as one of the constants defined      * in {@link org.exist.xquery.value.Type}.      *       * @return      */
 name|int

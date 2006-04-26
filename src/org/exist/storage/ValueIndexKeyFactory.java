@@ -13,6 +13,16 @@ name|storage
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
 begin_comment
 comment|/** Factory for Keys for Value Indices;  * provides through serialize() the persistant storage key. */
 end_comment
@@ -36,6 +46,8 @@ parameter_list|,
 name|boolean
 name|caseSensitive
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 block|}
 end_interface

@@ -1413,11 +1413,11 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+comment|//TODO : upgrade so that P365D is *not* equal to P1Y
 return|return
-operator|(
 name|duration
 operator|.
-name|compare
+name|equals
 argument_list|(
 operator|(
 operator|(
@@ -1428,9 +1428,6 @@ operator|)
 operator|.
 name|duration
 argument_list|)
-operator|==
-literal|0
-operator|)
 return|;
 case|case
 name|Constants
@@ -1471,11 +1468,12 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+comment|//TODO : upgrade so that P365D is *not* equal to P1Y
 return|return
-operator|(
+operator|!
 name|duration
 operator|.
-name|compare
+name|equals
 argument_list|(
 operator|(
 operator|(
@@ -1486,9 +1484,6 @@ operator|)
 operator|.
 name|duration
 argument_list|)
-operator|!=
-literal|0
-operator|)
 return|;
 case|case
 name|Constants

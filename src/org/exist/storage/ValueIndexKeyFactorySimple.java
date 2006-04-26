@@ -19,6 +19,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|ByteConversion
@@ -66,6 +76,8 @@ parameter_list|,
 name|boolean
 name|caseSensitive
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 specifier|final
 name|byte
