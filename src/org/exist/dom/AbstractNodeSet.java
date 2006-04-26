@@ -226,6 +226,10 @@ specifier|protected
 name|AbstractNodeSet
 parameter_list|()
 block|{
+name|isEmpty
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 * @return 	 */
 specifier|public
@@ -1478,9 +1482,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 argument_list|,
-name|NodeProxy
+name|StoredNode
 operator|.
-name|UNKNOWN_NODE_ADDRESS
+name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}

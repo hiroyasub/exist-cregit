@@ -2116,9 +2116,9 @@ operator|==
 literal|0
 condition|)
 return|return
-name|NodeProxy
+name|StoredNode
 operator|.
-name|UNKNOWN_NODE_ADDRESS
+name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 return|return
 name|childList

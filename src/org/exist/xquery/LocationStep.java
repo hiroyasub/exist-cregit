@@ -1760,9 +1760,9 @@ operator|.
 name|getInternalAddress
 argument_list|()
 operator|!=
-name|NodeProxy
+name|StoredNode
 operator|.
-name|UNKNOWN_NODE_ADDRESS
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 return|return
 name|contextSet
