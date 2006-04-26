@@ -256,6 +256,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO: decode names?
 specifier|public
 name|Sequence
 name|evalWithCollection

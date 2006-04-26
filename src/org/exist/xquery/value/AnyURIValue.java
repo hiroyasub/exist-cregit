@@ -426,9 +426,8 @@ operator|=
 name|s
 expr_stmt|;
 block|}
-comment|//TODO: TEST TEST TEST!
-comment|// basically copied from URLEncoder.encode
-specifier|protected
+comment|/** 	 * This function accepts a String representation of an xs:anyURI and applies 	 * the escaping method described in Section 5.4 of XML Linking ({@link http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators}) 	 * to turn it into a valid URI 	 *  	 * @param uri The xs:anyURI to escape into a valid URI 	 * @return An escaped string representation of the provided xs:anyURI 	 */
+specifier|public
 specifier|static
 name|String
 name|escape
@@ -437,6 +436,8 @@ name|String
 name|uri
 parameter_list|)
 block|{
+comment|//TODO: TEST TEST TEST!
+comment|// basically copied from URLEncoder.encode
 try|try
 block|{
 name|boolean

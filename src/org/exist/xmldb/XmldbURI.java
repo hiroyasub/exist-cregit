@@ -147,6 +147,20 @@ name|URIUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|AnyURIValue
+import|;
+end_import
+
 begin_comment
 comment|/** A utility class for xmldb URis.  * Since, java.net.URI is<strong>final</strong> this class acts as a wrapper.  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -403,7 +417,12 @@ init|=
 operator|new
 name|URI
 argument_list|(
+name|AnyURIValue
+operator|.
+name|escape
+argument_list|(
 name|xmldbURI
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if

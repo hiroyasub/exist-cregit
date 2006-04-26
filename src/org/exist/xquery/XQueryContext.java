@@ -4588,6 +4588,7 @@ block|{
 comment|// No. Load from file or URL
 try|try
 block|{
+comment|//TODO: use URIs to ensure proper resolution of relative locations
 name|source
 operator|=
 name|SourceFactory

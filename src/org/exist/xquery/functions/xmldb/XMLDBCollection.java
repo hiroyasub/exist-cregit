@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -93,18 +83,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -156,6 +134,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|AnyURIValue
 import|;
 end_import
 
@@ -315,9 +307,11 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"/shakespeare/plays'. "
+literal|"/shakespeare/plays'. While the function "
 operator|+
-literal|"The second argument should specify the name of "
+literal|"accepts a string argument, this argument must conform to the xs:anyURI "
+operator|+
+literal|"type specification. The second argument should specify the name of "
 operator|+
 literal|"a valid user, the third is the password. The method returns a Java object "
 operator|+
@@ -510,12 +504,14 @@ operator|.
 name|getBrokerPool
 argument_list|()
 argument_list|,
-name|XmldbURI
-operator|.
-name|xmldbUriFor
+operator|new
+name|AnyURIValue
 argument_list|(
 name|collectionURI
 argument_list|)
+operator|.
+name|toXmldbURI
+argument_list|()
 argument_list|,
 name|context
 operator|.
@@ -526,7 +522,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|URISyntaxException
+name|XPathException
 name|e
 parameter_list|)
 block|{

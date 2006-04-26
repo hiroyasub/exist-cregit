@@ -645,6 +645,7 @@ control|)
 block|{
 try|try
 block|{
+comment|//TODO: these probably need to be encoded
 name|Resource
 name|resource
 init|=
