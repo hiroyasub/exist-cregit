@@ -4760,6 +4760,24 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//Boolean evaluation for "." (atomic sequence)
+name|query
+operator|=
+literal|"(1,2,3)[xs:decimal(.)]"
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|3
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4767,6 +4785,11 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e

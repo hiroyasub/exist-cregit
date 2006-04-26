@@ -254,6 +254,12 @@ specifier|private
 name|int
 name|outerContextId
 decl_stmt|;
+specifier|private
+name|boolean
+name|innerExpressionDot
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|Predicate
 parameter_list|(
@@ -390,6 +396,23 @@ name|analyze
 argument_list|(
 name|newContextInfo
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|(
+name|newContextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|DOT_TEST
+operator|)
+operator|==
+name|DOT_TEST
+condition|)
+name|innerExpressionDot
+operator|=
+literal|true
 expr_stmt|;
 comment|// Case 1: predicate expression returns a node set.
 comment|// Check the returned node set against the context set
@@ -658,10 +681,26 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
-comment|//TODO : find a workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
-comment|// (1,2,3)[xs:float(.)]
-comment|//Something like :
-comment|//if (!(inner instanceof LocationStep&& ((LocationStep)inner).axis == Constants.SELF_AXIS))
+comment|//Atomic sequences will evaluate "." in BOOLEAN mode
+if|if
+condition|(
+operator|!
+name|innerExpressionDot
+operator|||
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
 name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
@@ -734,7 +773,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"selectByNodeSet"
+literal|"Node selection"
 argument_list|)
 expr_stmt|;
 name|result
@@ -773,7 +812,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"evalBoolean"
+literal|"Boolean evaluation"
 argument_list|)
 expr_stmt|;
 name|result
@@ -814,7 +853,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"selectByPosition"
+literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
 name|result
