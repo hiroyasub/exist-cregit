@@ -58,7 +58,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class uses regex pattern matching to find the latest version of a  * particular jar file.   *   * @see LatestFileResolver#getResolvedFileName(String)  *   */
+comment|/**  * This class uses regex pattern matching to find the latest version of a  * particular jar file.   *   * @see LatestFileResolver#getResolvedFileName(String)  *   * @author Ben Schmaus (exist@benschmaus.com)  * @version $Revision$  */
 end_comment
 
 begin_class
