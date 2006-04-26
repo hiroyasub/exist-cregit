@@ -483,6 +483,18 @@ return|return
 name|qname
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+specifier|public
+name|int
+name|getCardinality
+parameter_list|()
+block|{
+return|return
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#setArguments(java.util.List) 	 */
 specifier|public
 name|void
