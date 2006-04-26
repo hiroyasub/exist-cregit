@@ -459,7 +459,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 argument_list|)
@@ -486,7 +486,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 argument_list|)
@@ -507,7 +507,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 argument_list|)
