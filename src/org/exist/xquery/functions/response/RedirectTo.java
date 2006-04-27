@@ -406,7 +406,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"IO exception occurred during redirect: "
+literal|"An IO exception occurred during redirect: "
 operator|+
 name|e
 operator|.
