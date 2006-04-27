@@ -130,6 +130,15 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|contextNode
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+if|if
+condition|(
 name|Expression
 operator|.
 name|NO_CONTEXT_ID
