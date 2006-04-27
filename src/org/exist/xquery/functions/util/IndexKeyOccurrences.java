@@ -224,7 +224,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|IndexKeyOccurences
+name|IndexKeyOccurrences
 extends|extends
 name|BasicFunction
 block|{
@@ -240,7 +240,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"index-key-occurences"
+literal|"index-key-occurrences"
 argument_list|,
 name|UtilModule
 operator|.
@@ -251,7 +251,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return the number of occurences for an indexed value. "
+literal|"Return the number of occurrences for an indexed value. "
 operator|+
 literal|"The first argument specifies the nodes whose content is indexed. "
 operator|+
@@ -300,7 +300,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
-name|IndexKeyOccurences
+name|IndexKeyOccurrences
 parameter_list|(
 name|XQueryContext
 name|context

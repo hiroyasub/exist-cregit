@@ -478,11 +478,11 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
-name|IndexKeyOccurences
+name|IndexKeyOccurrences
 operator|.
 name|signature
 argument_list|,
-name|IndexKeyOccurences
+name|IndexKeyOccurrences
 operator|.
 name|class
 argument_list|)

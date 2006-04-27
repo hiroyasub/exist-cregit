@@ -755,7 +755,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -780,7 +780,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -950,7 +950,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/a, 1 ) "
+literal|"util:index-key-occurrences( /test/a, 1 ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -970,7 +970,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/b, \"1\" ) "
+literal|"util:index-key-occurrences( /test/b, \"1\" ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1036,7 +1036,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1061,7 +1061,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1220,7 +1220,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1245,7 +1245,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1399,7 +1399,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/a, 1 ) "
+literal|"util:index-key-occurrences( /test/a, 1 ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1419,7 +1419,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/b, \"1\" ) "
+literal|"util:index-key-occurrences( /test/b, \"1\" ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1500,7 +1500,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1525,7 +1525,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1746,7 +1746,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1771,7 +1771,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1992,7 +1992,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/a, 1 ) "
+literal|"util:index-key-occurrences( /test/a, 1 ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2012,7 +2012,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences( /test/b, \"1\" ) "
+literal|"util:index-key-occurrences( /test/b, \"1\" ) "
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2082,7 +2082,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/a, 1)"
+literal|"util:index-key-occurrences(/test/a, 1)"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2107,7 +2107,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"util:index-key-occurences(/test/b, \"1\")"
+literal|"util:index-key-occurrences(/test/b, \"1\")"
 argument_list|)
 expr_stmt|;
 name|assertEquals
