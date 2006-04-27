@@ -1498,12 +1498,9 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|URI
+name|String
 name|moduleLoadPath
 init|=
-operator|new
-name|File
-argument_list|(
 name|context
 operator|.
 name|getRealPath
@@ -1513,10 +1510,6 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-argument_list|)
-operator|.
-name|toURI
-argument_list|()
 decl_stmt|;
 name|XmldbURI
 name|baseUri
@@ -1744,9 +1737,6 @@ operator|.
 name|setModuleLoadPath
 argument_list|(
 name|moduleLoadPath
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
