@@ -39,18 +39,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -368,6 +356,10 @@ operator|+
 literal|"<create qname=\"a\" type=\"xs:integer\"/>"
 operator|+
 literal|"<create qname=\"b\" type=\"xs:string\"/>"
+operator|+
+literal|"<create path=\"//a\" type=\"xs:integer\"/>"
+operator|+
+literal|"<create path=\"//b\" type=\"xs:string\"/>"
 operator|+
 literal|"</index>"
 operator|+
@@ -763,6 +755,56 @@ name|service
 operator|.
 name|query
 argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
 literal|"util:qname-index-lookup(xs:QName(\"a\"), 1 ) "
 argument_list|)
 expr_stmt|;
@@ -803,6 +845,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -903,6 +950,46 @@ name|service
 operator|.
 name|query
 argument_list|(
+literal|"util:index-key-occurences( /test/a, 1 ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No string value because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences( /test/b, \"1\" ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No numeric values because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
 literal|"util:qname-index-lookup( xs:QName(\"a\"), 1 ) "
 argument_list|)
 expr_stmt|;
@@ -941,6 +1028,56 @@ name|idxConf
 operator|.
 name|reindexCollection
 argument_list|()
+expr_stmt|;
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// 3 numeric values
 name|result
@@ -989,6 +1126,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1071,6 +1213,56 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//3 numeric values
 name|result
 operator|=
@@ -1207,6 +1399,46 @@ name|service
 operator|.
 name|query
 argument_list|(
+literal|"util:index-key-occurences( /test/a, 1 ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No string value because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences( /test/b, \"1\" ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No numeric values because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
 literal|"util:qname-index-lookup( xs:QName(\"a\"), 1 ) "
 argument_list|)
 expr_stmt|;
@@ -1260,6 +1492,56 @@ name|idxConf
 operator|.
 name|reindexCollection
 argument_list|()
+expr_stmt|;
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// 3 numeric values
 name|result
@@ -1445,6 +1727,56 @@ name|configurationFileName
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
 argument_list|,
 name|result
 operator|.
@@ -1660,6 +1992,46 @@ name|service
 operator|.
 name|query
 argument_list|(
+literal|"util:index-key-occurences( /test/a, 1 ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No string value because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences( /test/b, \"1\" ) "
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// No numeric values because we have no index
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
 literal|"util:qname-index-lookup( xs:QName(\"a\"), 1 ) "
 argument_list|)
 expr_stmt|;
@@ -1703,6 +2075,56 @@ comment|//WARNING : the code hereafter used to *not* work whereas
 comment|//testCollectionConfigurationService4 did.
 comment|//Adding confMgr.invalidateAll(getName()); in Collection.storeInternal solved the problem
 comment|//Strange case that needs investigations... -pb
+comment|//3 numeric values
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/a, 1)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"3"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//... but 1 string value
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"util:index-key-occurences(/test/b, \"1\")"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// 3 numeric values
 name|result
 operator|=
