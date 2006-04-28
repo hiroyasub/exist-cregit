@@ -10204,7 +10204,12 @@ name|setProperty
 argument_list|(
 literal|"uri"
 argument_list|,
-literal|"xmldb:exist://"
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
