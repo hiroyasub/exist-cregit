@@ -3747,6 +3747,20 @@ argument_list|,
 name|perms
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"indexer.permissions.collection: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"indexer.permissions.collection"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3811,6 +3825,20 @@ argument_list|(
 literal|"indexer.permissions.resource"
 argument_list|,
 name|perms
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"indexer.permissions.resource: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"indexer.permissions.resource"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4103,6 +4131,20 @@ argument_list|,
 name|taskList
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.system-task-config: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.system-task-config"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * @param watchConf      */
 specifier|private
@@ -4158,6 +4200,20 @@ name|timeout
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.watchdog.query-timeout: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.watchdog.query-timeout"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4203,6 +4259,20 @@ operator|new
 name|Integer
 argument_list|(
 name|maxOutput
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.watchdog.output-size-limit: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.watchdog.output-size-limit"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4277,6 +4347,20 @@ name|maxStackSize
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.query-pool.max-stack-size: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.query-pool.max-stack-size"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4322,6 +4406,20 @@ operator|new
 name|Integer
 argument_list|(
 name|maxPoolSize
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.query-pool.size: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.query-pool.size"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4373,6 +4471,20 @@ name|timeout
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.query-pool.timeout: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.query-pool.timeout"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -4418,6 +4530,20 @@ operator|new
 name|Long
 argument_list|(
 name|timeoutCheckInterval
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"db-connection.query-pool.timeout-check-interval: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"db-connection.query-pool.timeout-check-interval"
 argument_list|)
 argument_list|)
 expr_stmt|;
