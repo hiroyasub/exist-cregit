@@ -449,7 +449,7 @@ name|setSize
 argument_list|(
 literal|600
 argument_list|,
-literal|400
+literal|430
 argument_list|)
 expr_stmt|;
 name|this
