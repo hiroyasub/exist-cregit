@@ -2505,7 +2505,234 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
-comment|/* 		if (ltype == Type.ITEM || ltype == Type.ATOMIC || ltype == Type.UNTYPED_ATOMIC) { 			if (Type.subTypeOf(rtype, Type.NUMBER)) { 			    if(isEmptyString(lv)) 			        return false; 				lv = lv.convertTo(Type.DOUBLE); 			} else if (rtype == Type.ITEM || rtype == Type.ATOMIC || rtype == Type.UNTYPED_ATOMIC) { 				lv = lv.convertTo(Type.STRING); 				rv = rv.convertTo(Type.STRING); 			} else 				lv = lv.convertTo(rv.getType()); 		} else if (rtype == Type.ITEM || rtype == Type.ATOMIC || rtype == Type.UNTYPED_ATOMIC) { 			if (Type.subTypeOf(ltype, Type.NUMBER)) { 			    if(isEmptyString(lv)) 			        return false; 				rv = rv.convertTo(Type.DOUBLE); 			} else if (rtype == Type.ITEM || rtype == Type.ATOMIC || rtype == Type.UNTYPED_ATOMIC) { 				lv = lv.convertTo(Type.STRING); 				rv = rv.convertTo(Type.STRING); 			} else 				rv = rv.convertTo(lv.getType()); 		} 		*/
+if|if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of a numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|rtype
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|isEmptyString
+argument_list|(
+name|lv
+argument_list|)
+condition|)
+return|return
+literal|false
+return|;
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
+comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
+block|}
+if|else if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
+block|}
+else|else
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|rv
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of a numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|ltype
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|isEmptyString
+argument_list|(
+name|lv
+argument_list|)
+condition|)
+return|return
+literal|false
+return|;
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
+comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
+block|}
+if|else if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+operator|||
+name|ltype
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
+block|}
+else|else
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|lv
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|backwardsCompatible
