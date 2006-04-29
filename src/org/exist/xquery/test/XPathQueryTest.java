@@ -3568,7 +3568,7 @@ literal|"siblings.xml"
 argument_list|,
 literal|"//a/s[. = 'B']/following::n"
 argument_list|,
-literal|2
+literal|4
 argument_list|)
 expr_stmt|;
 name|ResourceSet
@@ -3718,7 +3718,7 @@ name|service
 argument_list|,
 literal|"siblings.xml"
 argument_list|,
-literal|"//a/s[n = '3']/preceding::s"
+literal|"//a/n[. = '3']/preceding::s"
 argument_list|,
 literal|3
 argument_list|)
