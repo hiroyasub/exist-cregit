@@ -1215,6 +1215,8 @@ argument_list|)
 operator|+
 name|optionBackup
 argument_list|)
+argument_list|,
+name|properties
 argument_list|)
 decl_stmt|;
 name|backup
