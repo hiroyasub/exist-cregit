@@ -2075,29 +2075,6 @@ block|{
 comment|//TODO: CONSIDER whether CollectionXConf Should throw xmldb exception at all?
 block|}
 block|}
-specifier|private
-name|void
-name|tableSelectAction
-parameter_list|(
-name|MouseEvent
-name|ev
-parameter_list|)
-block|{
-name|int
-name|row
-init|=
-name|tblRangeIndexes
-operator|.
-name|rowAtPoint
-argument_list|(
-name|ev
-operator|.
-name|getPoint
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|//CollectionXConf.RangeIndex rangeindex = rangeIndexModel.rangeIndexes[row];
-block|}
 specifier|public
 class|class
 name|ComboBoxCellRenderer

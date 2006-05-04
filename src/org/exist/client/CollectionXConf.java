@@ -25,7 +25,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|ArrayList
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|Properties
 import|;
 end_import
 
@@ -1477,11 +1477,11 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
-name|Vector
-name|vecRangeIndexes
+name|ArrayList
+name|alRangeIndexes
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|()
 decl_stmt|;
 name|NodeList
@@ -1551,7 +1551,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|vecRangeIndexes
+name|alRangeIndexes
 operator|.
 name|add
 argument_list|(
@@ -1583,7 +1583,7 @@ init|=
 operator|new
 name|RangeIndex
 index|[
-name|vecRangeIndexes
+name|alRangeIndexes
 operator|.
 name|size
 argument_list|()
@@ -1598,7 +1598,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|vecRangeIndexes
+name|alRangeIndexes
 operator|.
 name|size
 argument_list|()
@@ -1615,7 +1615,7 @@ operator|=
 operator|(
 name|RangeIndex
 operator|)
-name|vecRangeIndexes
+name|alRangeIndexes
 operator|.
 name|get
 argument_list|(
@@ -1641,11 +1641,11 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
-name|Vector
-name|vecQNameIndexes
+name|ArrayList
+name|alQNameIndexes
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|()
 decl_stmt|;
 name|NodeList
@@ -1715,7 +1715,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|vecQNameIndexes
+name|alQNameIndexes
 operator|.
 name|add
 argument_list|(
@@ -1747,7 +1747,7 @@ init|=
 operator|new
 name|QNameIndex
 index|[
-name|vecQNameIndexes
+name|alQNameIndexes
 operator|.
 name|size
 argument_list|()
@@ -1762,7 +1762,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|vecQNameIndexes
+name|alQNameIndexes
 operator|.
 name|size
 argument_list|()
@@ -1779,7 +1779,7 @@ operator|=
 operator|(
 name|QNameIndex
 operator|)
-name|vecQNameIndexes
+name|alQNameIndexes
 operator|.
 name|get
 argument_list|(
