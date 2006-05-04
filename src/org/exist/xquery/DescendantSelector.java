@@ -127,9 +127,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-return|return
-literal|null
-return|;
+break|break;
 case|case
 name|Node
 operator|.
