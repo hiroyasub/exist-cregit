@@ -2080,6 +2080,27 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
+name|int
+name|bufferSize
+init|=
+name|conf
+operator|.
+name|getInteger
+argument_list|(
+literal|"db-connection.collection-cache-size"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|bufferSize
+operator|==
+operator|-
+literal|1
+condition|)
+name|bufferSize
+operator|=
+name|DEFAULT_COLLECTION_BUFFER_SIZE
+expr_stmt|;
 name|collectionCache
 operator|=
 operator|new
@@ -2087,7 +2108,7 @@ name|CollectionCache
 argument_list|(
 name|this
 argument_list|,
-name|DEFAULT_COLLECTION_BUFFER_SIZE
+name|bufferSize
 argument_list|,
 literal|0.9
 argument_list|)

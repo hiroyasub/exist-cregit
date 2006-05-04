@@ -343,16 +343,13 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"Variable $request is not bound to an Java object."
-argument_list|)
-throw|;
+return|return
+name|args
+index|[
+literal|1
+index|]
+return|;
+comment|//Just return the default, don't: throw new XPathException(getASTNode(), "Variable $request is not bound to an Java object.");
 comment|// get parameters
 name|String
 name|param
