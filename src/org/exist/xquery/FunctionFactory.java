@@ -1036,6 +1036,42 @@ literal|"java:"
 argument_list|)
 condition|)
 block|{
+comment|//Only allow java binding if specified in config file<xquery enable-java-binding="yes">
+name|String
+name|javabinding
+init|=
+operator|(
+name|String
+operator|)
+name|context
+operator|.
+name|broker
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"xquery.enable-java-binding"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|javabinding
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|javabinding
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+condition|)
+block|{
 name|JavaCall
 name|call
 init|=
@@ -1065,6 +1101,46 @@ name|step
 operator|=
 name|call
 expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ast
+argument_list|,
+literal|"Java binding is currently disabled in config.xml. Call to "
+operator|+
+name|qname
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" denied."
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ast
+argument_list|,
+literal|"Java binding is currently disabled in config.xml. Call to "
+operator|+
+name|qname
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" denied."
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// None of the above matched: function is either a builtin function or
 comment|// a user-defined function

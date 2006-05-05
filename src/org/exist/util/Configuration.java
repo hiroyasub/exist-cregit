@@ -312,7 +312,7 @@ name|Configuration
 implements|implements
 name|ErrorHandler
 block|{
-comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static 	 * file and existHome fields and static methods), or if we should allow many instances to 	 * run around in the system.  Right now, any attempts to create multiple instances will 	 * likely get the system confused.  Let's decide which one it should be and fix it properly. 	 */
+comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static 	 * file and existHome fields and static methods), or if we should allow many instances to 	 * run around in the system.  Right now, any attempts to create multiple instances will 	 * likely get the system confused.  Let's decide which one it should be and fix it properly. 	 *  	 * I vote for a Singleton (like Descriptor.java) - deliriumsky 	 */
 specifier|private
 specifier|final
 specifier|static
@@ -1520,6 +1520,49 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+comment|//java binding
+name|String
+name|javabinding
+init|=
+name|xquery
+operator|.
+name|getAttribute
+argument_list|(
+literal|"enable-java-binding"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|javabinding
+operator|!=
+literal|null
+condition|)
+block|{
+name|config
+operator|.
+name|put
+argument_list|(
+literal|"xquery.enable-java-binding"
+argument_list|,
+name|javabinding
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"xquery.enable-java-binding: "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"xquery.enable-java-binding"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|//builin-modules
 name|NodeList
 name|builtins
 init|=
