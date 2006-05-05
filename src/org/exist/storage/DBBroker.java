@@ -1150,7 +1150,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 * 	 * @deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name); 	*/
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 * 	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name); 	*/
 comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
@@ -1161,7 +1161,7 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 * @deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name, long address); 	*/
+comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name, long address); 	*/
 comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 */
 specifier|public
 specifier|abstract
@@ -1189,7 +1189,7 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * @deprecated Use XmldbURI instead! 	 * 	public Collection getOrCreateCollection(Txn transaction, String name) 		throws PermissionDeniedException { 		return null; 	} 	*/
+comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public Collection getOrCreateCollection(Txn transaction, String name) 		throws PermissionDeniedException { 		return null; 	} 	*/
 comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 name|Collection
@@ -1272,7 +1272,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 *  	 * @deprecated Use XmldbURI instead! 	 * 	public abstract Document getXMLResource(String path) throws PermissionDeniedException; 	*/
+comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public abstract Document getXMLResource(String path) throws PermissionDeniedException; 	*/
 comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 */
 specifier|public
 specifier|abstract
@@ -1285,7 +1285,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * @deprecated Use XmldbURI instead! 	 * 	public abstract DocumentImpl getXMLResource(String docPath, int lockMode)  		throws PermissionDeniedException; 	*/
+comment|/** 	 * deprecated Use XmldbURI instead! 	 * 	public abstract DocumentImpl getXMLResource(String docPath, int lockMode)  		throws PermissionDeniedException; 	*/
 comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml, 	 * with the specified lock. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 */
 specifier|public
 specifier|abstract
@@ -1711,7 +1711,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 * @deprecated Use XmldbURI instead 	 * 	public abstract void moveCollection(Txn transaction, Collection collection, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
+comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 * deprecated Use XmldbURI instead 	 * 	public abstract void moveCollection(Txn transaction, Collection collection, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
 comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 */
 specifier|public
 specifier|abstract
@@ -1735,7 +1735,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * @deprecated Use XmldbURI version instead 	 * 	public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
 comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
@@ -1783,7 +1783,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @deprecated Use XmldbURI version instead 	 * 	public abstract void copyXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void copyXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
