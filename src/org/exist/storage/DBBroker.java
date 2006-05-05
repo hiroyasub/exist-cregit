@@ -1175,7 +1175,7 @@ name|long
 name|address
 parameter_list|)
 function_decl|;
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * @deprecated Use XmldbURI instead! 	 * 	public abstract Collection openCollection(String name, int lockMode); 	*/
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection openCollection(String name, int lockMode); 	*/
 comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
@@ -1759,7 +1759,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * @deprecated Use XmldbURI version instead 	 * 	public abstract void copyCollection(Txn transaction, Collection collection, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void copyCollection(Txn transaction, Collection collection, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
 comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
