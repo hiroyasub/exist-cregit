@@ -597,15 +597,14 @@ decl_stmt|;
 comment|//Send email with Sendmail or SMTP?
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|1
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|//SMTP
