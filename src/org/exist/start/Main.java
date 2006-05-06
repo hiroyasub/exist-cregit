@@ -197,6 +197,10 @@ init|=
 literal|"jetty"
 decl_stmt|;
 specifier|private
+name|ClassLoader
+name|mainClassLoader
+decl_stmt|;
+specifier|private
 specifier|static
 name|Main
 name|exist
@@ -2408,6 +2412,10 @@ expr_stmt|;
 comment|// Invoke org.mortbay.jetty.Server.main(args) using new classloader.
 try|try
 block|{
+name|mainClassLoader
+operator|=
+name|cl
+expr_stmt|;
 name|invokeMain
 argument_list|(
 name|cl
@@ -2451,6 +2459,15 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|ClassLoader
+name|getClassLoader
+parameter_list|()
+block|{
+return|return
+name|mainClassLoader
+return|;
 block|}
 comment|/**      * @return      */
 specifier|public
