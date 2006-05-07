@@ -125,6 +125,18 @@ name|exist
 operator|.
 name|memtree
 operator|.
+name|AttributeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
 name|NodeImpl
 import|;
 end_import
@@ -361,6 +373,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|DocumentType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|Node
 import|;
 end_import
@@ -483,18 +507,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DocumentType
-import|;
-end_import
-
 begin_comment
 comment|/**  * Local implementation of XMLResource.  */
 end_comment
@@ -577,7 +589,7 @@ parameter_list|,
 name|LocalCollection
 name|parent
 parameter_list|,
-name|String
+name|XmldbURI
 name|did
 parameter_list|)
 throws|throws
@@ -628,7 +640,7 @@ operator|.
 name|getDocument
 argument_list|()
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1658,6 +1670,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//TODO: use xmldbURI?
 specifier|public
 name|String
 name|getDocumentId
@@ -1667,8 +1680,12 @@ name|XMLDBException
 block|{
 return|return
 name|docId
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
+comment|//TODO: use xmldbURI?
 specifier|public
 name|String
 name|getId
@@ -1678,6 +1695,9 @@ name|XMLDBException
 block|{
 return|return
 name|docId
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -2102,6 +2122,23 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+if|if
+condition|(
+name|root
+operator|instanceof
+name|AttributeImpl
+condition|)
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|WRONG_CONTENT_TYPE
+argument_list|,
+literal|"SENR0001: can not serialize a standalone attribute"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|root
@@ -2423,7 +2460,7 @@ return|return
 name|document
 return|;
 block|}
-specifier|protected
+specifier|public
 name|NodeProxy
 name|getNode
 parameter_list|()
@@ -2687,7 +2724,7 @@ literal|"Resource "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" not found"
@@ -2723,7 +2760,7 @@ literal|"User is not allowed to lock resource "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 throw|;

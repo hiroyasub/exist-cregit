@@ -433,6 +433,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -508,22 +520,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|request
-operator|.
-name|RequestModule
 import|;
 end_import
 
@@ -860,6 +856,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 name|cache
 init|=
@@ -908,10 +905,8 @@ index|[
 literal|0
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|Sequence
@@ -951,15 +946,14 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|args
 index|[
 literal|2
 index|]
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 name|options
 operator|=
@@ -1148,22 +1142,22 @@ return|;
 block|}
 else|else
 block|{
-name|RequestModule
+name|ResponseModule
 name|myModule
 init|=
 operator|(
-name|RequestModule
+name|ResponseModule
 operator|)
 name|context
 operator|.
 name|getModule
 argument_list|(
-name|RequestModule
+name|ResponseModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $request
+comment|// response object is read from global variable $response
 name|Variable
 name|respVar
 init|=
@@ -1189,7 +1183,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"No request object found in the current XQuery context."
+literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
 if|if
@@ -2122,6 +2116,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|//TODO: revisit this class with XmldbURI in mind
 specifier|private
 class|class
 name|CachedStylesheet
@@ -2249,7 +2244,12 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|docPath
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -2575,7 +2575,7 @@ name|path
 operator|=
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|"/"
@@ -2599,7 +2599,12 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
 name|path
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2641,7 +2646,7 @@ literal|" not found in collection "
 operator|+
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

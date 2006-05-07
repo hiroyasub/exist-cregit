@@ -13,15 +13,9 @@ name|storage
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|EOFException
-import|;
-end_import
+begin_comment
+comment|//import java.io.EOFException;
+end_comment
 
 begin_import
 import|import
@@ -177,7 +171,139 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|AttrImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ElementImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ExtArrayNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|Match
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSetHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|TextImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|VirtualNodeSet
 import|;
 end_import
 
@@ -1321,7 +1447,7 @@ parameter_list|)
 block|{
 specifier|final
 name|WordRef
-name|ref
+name|value
 init|=
 operator|new
 name|WordRef
@@ -1343,7 +1469,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1365,11 +1491,6 @@ name|Lock
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
-name|dbTokens
-operator|.
-name|flush
-argument_list|()
 expr_stmt|;
 name|dbTokens
 operator|.
@@ -1427,25 +1548,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|DBException
 name|e
 parameter_list|)
 block|{
@@ -1540,21 +1642,7 @@ name|broker
 operator|.
 name|getDOMIterator
 argument_list|(
-operator|new
-name|NodeProxy
-argument_list|(
-name|document
-argument_list|,
 name|node
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|,
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|collect
@@ -1615,7 +1703,7 @@ name|next
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -1653,7 +1741,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -1664,8 +1752,7 @@ operator|==
 literal|null
 condition|)
 continue|continue;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -1776,15 +1863,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOF is expected here
-block|}
+comment|//}
 comment|//Store new data, if relevant
 if|if
 condition|(
@@ -1809,7 +1890,7 @@ name|dbTokens
 operator|.
 name|remove
 argument_list|(
-name|ref
+name|key
 argument_list|)
 expr_stmt|;
 block|}
@@ -1821,7 +1902,7 @@ name|dbTokens
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -2146,10 +2227,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the node
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -2157,17 +2239,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Value
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -2177,6 +2256,7 @@ argument_list|,
 name|token
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -2199,7 +2279,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -2648,8 +2728,9 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 argument_list|)
 expr_stmt|;
 block|}
@@ -2660,28 +2741,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-comment|// EOF is expected here
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME for confirmation "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//} catch (EOFException e) {
+comment|//    // EOF is expected here
+comment|//    LOG.warn("REPORT ME for confirmation " + e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(
@@ -2985,10 +3047,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -2996,17 +3059,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the token
 name|Value
-name|ref
+name|value
 decl_stmt|;
 if|if
 condition|(
@@ -3022,7 +3082,7 @@ operator|>
 literal|0
 condition|)
 comment|//TODO : case conversion should be handled by the tokenizer -pb
-name|ref
+name|value
 operator|=
 operator|new
 name|WordRef
@@ -3039,7 +3099,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
-name|ref
+name|value
 operator|=
 operator|new
 name|WordRef
@@ -3057,7 +3117,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 try|try
@@ -3206,10 +3266,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3217,17 +3278,14 @@ name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the token
 name|Value
-name|ref
+name|value
 init|=
 operator|new
 name|WordRef
@@ -3245,7 +3303,7 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 argument_list|,
-name|ref
+name|value
 argument_list|)
 decl_stmt|;
 try|try
@@ -3422,10 +3480,11 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Compute a key for the token
-name|Collection
-name|collection
+specifier|final
+name|short
+name|collectionId
 init|=
+operator|(
 operator|(
 name|Collection
 operator|)
@@ -3433,21 +3492,12 @@ name|i
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|short
-name|collectionId
-init|=
-name|collection
+operator|)
 operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-name|Value
-name|startRef
-decl_stmt|;
-name|Value
-name|endRef
-decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 decl_stmt|;
@@ -3458,8 +3508,9 @@ operator|==
 literal|null
 condition|)
 block|{
+name|Value
 name|startRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3470,7 +3521,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|query
 operator|=
 operator|new
@@ -3486,8 +3537,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|Value
 name|startRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3498,9 +3550,10 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|Value
 name|endRef
-operator|=
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -3511,7 +3564,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|query
 operator|=
 operator|new
@@ -4380,11 +4433,6 @@ name|token
 operator|.
 name|startOffset
 argument_list|()
-operator|-
-name|text
-operator|.
-name|startOffset
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|words
@@ -4596,6 +4644,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -4658,14 +4738,6 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|int
-name|termCount
-init|=
-name|occurences
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 comment|//Don't forget this one
 name|occurences
 operator|.
@@ -4689,57 +4761,21 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|occurences
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -4758,11 +4794,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|long
-name|previousGID
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -4999,10 +5030,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|dbTokens
-operator|.
-name|append
-argument_list|(
+name|WordRef
+name|key
+init|=
 operator|new
 name|WordRef
 argument_list|(
@@ -5010,6 +5040,12 @@ name|collectionId
 argument_list|,
 name|token
 argument_list|)
+decl_stmt|;
+name|dbTokens
+operator|.
+name|append
+argument_list|(
+name|key
 argument_list|,
 name|data
 argument_list|)
@@ -5160,6 +5196,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -5222,7 +5290,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -5262,7 +5330,7 @@ name|dbTokens
 operator|.
 name|get
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -5286,8 +5354,7 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -5485,29 +5552,10 @@ block|}
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//Is it expected ? -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"REPORT ME "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
+comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -5519,14 +5567,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|int
-name|termCount
-init|=
-name|newOccurencesList
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 comment|//Don't forget this one
 name|newOccurencesList
 operator|.
@@ -5545,57 +5585,21 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|newOccurencesList
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -5711,7 +5715,6 @@ literal|4
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 comment|//Store the data
 if|if
 condition|(
@@ -5725,65 +5728,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-block|{
 name|dbTokens
 operator|.
 name|remove
 argument_list|(
-name|ref
+name|key
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-comment|//TOUNDERSTAND : is this ever called ? -pb
-if|if
-condition|(
-name|dbTokens
-operator|.
-name|put
-argument_list|(
-name|ref
-argument_list|,
-name|os
-operator|.
-name|data
-argument_list|()
-argument_list|)
-operator|==
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not put index data for token '"
-operator|+
-name|token
-operator|+
-literal|"' in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-expr_stmt|;
-block|}
 if|else 					            if
 condition|(
 name|dbTokens
@@ -5795,7 +5746,7 @@ operator|.
 name|getAddress
 argument_list|()
 argument_list|,
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -5813,6 +5764,50 @@ operator|.
 name|error
 argument_list|(
 literal|"Could not update index data for token '"
+operator|+
+name|token
+operator|+
+literal|"' in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|dbTokens
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|os
+operator|.
+name|data
+argument_list|()
+argument_list|)
+operator|==
+name|BFile
+operator|.
+name|UNKNOWN_ADDRESS
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not put index data for token '"
 operator|+
 name|token
 operator|+
@@ -5981,6 +5976,38 @@ name|currentSection
 operator|++
 control|)
 block|{
+comment|//Not very necessary, but anyway...
+switch|switch
+condition|(
+name|currentSection
+condition|)
+block|{
+case|case
+name|TEXT_SECTION
+case|:
+case|case
+name|ATTRIBUTE_SECTION
+case|:
+break|break;
+default|default :
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid section type in '"
+operator|+
+name|dbTokens
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' (inverted index)"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -6032,7 +6059,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 name|WordRef
-name|ref
+name|key
 init|=
 operator|new
 name|WordRef
@@ -6076,7 +6103,7 @@ name|dbTokens
 operator|.
 name|getAsStream
 argument_list|(
-name|ref
+name|key
 argument_list|)
 decl_stmt|;
 comment|//Does the token already has data in the index ?
@@ -6088,8 +6115,7 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
-try|try
-block|{
+comment|//try {
 while|while
 condition|(
 name|is
@@ -6368,15 +6394,9 @@ block|}
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|//EOF is expected here
-block|}
+comment|//}
 block|}
 if|if
 condition|(
@@ -6389,14 +6409,6 @@ literal|0
 condition|)
 block|{
 comment|//append the data from the new list
-name|int
-name|termCount
-init|=
-name|storedOccurencesList
-operator|.
-name|getTermCount
-argument_list|()
-decl_stmt|;
 name|storedOccurencesList
 operator|.
 name|sort
@@ -6412,57 +6424,21 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
-switch|switch
-condition|(
+name|os
+operator|.
+name|writeByte
+argument_list|(
 name|currentSection
-condition|)
-block|{
-case|case
-name|TEXT_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|TEXT_SECTION
 argument_list|)
 expr_stmt|;
-break|break;
-case|case
-name|ATTRIBUTE_SECTION
-case|:
-name|os
-operator|.
-name|writeByte
-argument_list|(
-name|ATTRIBUTE_SECTION
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid section type in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-throw|;
-block|}
 name|os
 operator|.
 name|writeInt
 argument_list|(
-name|termCount
+name|storedOccurencesList
+operator|.
+name|getTermCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TOUNDERSTAND -pb
@@ -6593,7 +6569,7 @@ name|dbTokens
 operator|.
 name|put
 argument_list|(
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -6654,7 +6630,7 @@ name|update
 argument_list|(
 name|address
 argument_list|,
-name|ref
+name|key
 argument_list|,
 name|os
 operator|.
@@ -7406,6 +7382,7 @@ literal|null
 expr_stmt|;
 block|}
 else|else
+block|{
 name|parentNode
 operator|=
 name|contextSet
@@ -7415,6 +7392,7 @@ argument_list|(
 name|storedNode
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 throw|throw
@@ -7553,20 +7531,15 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch (EOFException e) {
 comment|// EOFExceptions are normal
 block|}
 catch|catch
@@ -8052,13 +8025,7 @@ block|}
 block|}
 block|}
 block|}
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
+comment|//} catch(EOFException e) {
 comment|//EOFExceptions are expected
 block|}
 catch|catch

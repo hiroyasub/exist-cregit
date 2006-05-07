@@ -678,7 +678,7 @@ name|getOwnerDocument
 argument_list|()
 operator|)
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;

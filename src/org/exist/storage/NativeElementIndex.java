@@ -3072,7 +3072,7 @@ literal|"' has no permission to read collection '"
 operator|+
 name|collection
 operator|.
-name|getName
+name|getURI
 argument_list|()
 operator|+
 literal|"'"
@@ -3971,7 +3971,7 @@ literal|" in document "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" not found."
@@ -4011,7 +4011,7 @@ literal|" in document "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getFileURI
 argument_list|()
 operator|+
 literal|" is not an element or attribute node."
@@ -4055,7 +4055,7 @@ literal|" in document "
 operator|+
 name|document
 operator|.
-name|getFileName
+name|getURI
 argument_list|()
 operator|+
 literal|" is not an element or attribute node."

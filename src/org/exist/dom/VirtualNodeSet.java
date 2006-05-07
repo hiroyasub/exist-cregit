@@ -1118,7 +1118,11 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
+operator|new
+name|StoredNode
+argument_list|(
 name|contextNode
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|domIter
@@ -1233,7 +1237,11 @@ argument_list|()
 operator|.
 name|getNodeIterator
 argument_list|(
+operator|new
+name|StoredNode
+argument_list|(
 name|proxy
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|StoredNode
@@ -1368,7 +1376,7 @@ name|getOwnerDocument
 argument_list|()
 operator|)
 operator|.
-name|getName
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;

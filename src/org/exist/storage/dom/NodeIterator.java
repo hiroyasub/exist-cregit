@@ -221,7 +221,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|NodeProxy
+name|StoredNode
 name|node
 init|=
 literal|null
@@ -281,7 +281,7 @@ parameter_list|,
 name|DOMFile
 name|db
 parameter_list|,
-name|NodeProxy
+name|StoredNode
 name|node
 parameter_list|,
 name|boolean
@@ -302,9 +302,12 @@ name|this
 operator|.
 name|doc
 operator|=
+operator|(
+name|DocumentImpl
+operator|)
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|this
@@ -452,6 +455,21 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire read lock on "
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -601,6 +619,21 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire read lock on "
+operator|+
+name|db
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -1204,7 +1237,11 @@ name|findValue
 argument_list|(
 name|lockKey
 argument_list|,
+operator|new
+name|NodeProxy
+argument_list|(
 name|node
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -1375,7 +1412,7 @@ specifier|public
 name|void
 name|setTo
 parameter_list|(
-name|NodeProxy
+name|StoredNode
 name|node
 parameter_list|)
 block|{

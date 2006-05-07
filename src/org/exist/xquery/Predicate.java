@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* *  eXist Open Source Native XML Database *  Copyright (C) 2001-04,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de) * *  This library is free software; you can redistribute it and/or *  modify it under the terms of the GNU Library General Public License *  as published by the Free Software Foundation; either version 2 *  of the License, or (at your option) any later version. * *  This library is distributed in the hope that it will be useful, *  but WITHOUT ANY WARRANTY; without even the implied warranty of *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *  GNU Library General Public License for more details. * *  You should have received a copy of the GNU Library General Public *  License along with this program; if not, write to the Free Software *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. * *  $Id$ */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public  *  License along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -192,7 +192,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Handles predicate expressions.  *  * @author Wolfgang Meier  */
+comment|/**  *  Handles predicate expressions.  *  *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -242,6 +242,12 @@ specifier|private
 name|int
 name|outerContextId
 decl_stmt|;
+specifier|private
+name|boolean
+name|innerExpressionDot
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|Predicate
 parameter_list|(
@@ -255,7 +261,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)       * @see org.exist.xquery.PathExpr#getDependencies()       */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -289,7 +295,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)     * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)     */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
@@ -379,6 +385,23 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|(
+name|newContextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|DOT_TEST
+operator|)
+operator|==
+name|DOT_TEST
+condition|)
+name|innerExpressionDot
+operator|=
+literal|true
+expr_stmt|;
 comment|// Case 1: predicate expression returns a node set.
 comment|// Check the returned node set against the context set
 comment|// and return all nodes from the context, for which the
@@ -408,9 +431,6 @@ operator|.
 name|dependsOn
 argument_list|(
 name|inner
-operator|.
-name|getDependencies
-argument_list|()
 argument_list|,
 name|Dependency
 operator|.
@@ -428,7 +448,7 @@ name|BOOLEAN
 expr_stmt|;
 comment|// Case 2: predicate expression returns a number.
 block|}
-if|else         if
+if|else if
 condition|(
 name|Type
 operator|.
@@ -645,15 +665,35 @@ if|if
 condition|(
 name|innerSeq
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
+condition|)
+block|{
+comment|//Atomic sequences will evaluate "." in BOOLEAN mode
+if|if
+condition|(
+operator|!
+name|innerExpressionDot
+operator|||
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
 condition|)
 name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -688,10 +728,6 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 block|}
-comment|//if (executionMode == POSITIONAL&& Type.subTypeOf(contextSequence.getItemType(), Type.ATOMIC)
-comment|//&& !(contextSequence instanceof VirtualNodeSet)) {
-comment|//recomputedExecutionMode = BOOLEAN;
-comment|//}
 switch|switch
 condition|(
 name|recomputedExecutionMode
@@ -725,7 +761,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"selectByNodeSet"
+literal|"Node selection"
 argument_list|)
 expr_stmt|;
 name|result
@@ -764,7 +800,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"evalBoolean"
+literal|"Boolean evaluation"
 argument_list|)
 expr_stmt|;
 name|result
@@ -805,7 +841,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
-literal|"selectByPosition"
+literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
 name|result
@@ -864,7 +900,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param inner      * @return      * @throws XPathException      */
+comment|/** 	 * @param contextSequence 	 * @param inner 	 * @return 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|evalBoolean
@@ -909,6 +945,13 @@ name|p
 operator|++
 control|)
 block|{
+name|context
+operator|.
+name|setContextPosition
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
 name|Item
 name|item
 init|=
@@ -917,27 +960,21 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
+comment|//Sequence innerSeq = inner.eval(contextSequence, item);
+comment|//We just test against the *current* item
 name|Sequence
 name|innerSeq
-decl_stmt|;
-name|innerSeq
-operator|=
+init|=
 name|inner
 operator|.
 name|eval
 argument_list|(
-name|contextSequence
-argument_list|,
 name|item
+operator|.
+name|toSequence
+argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|innerSeq
@@ -957,7 +994,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @return      * @throws XPathException      */
+comment|/** 	 * @param contextSequence 	 * @return 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|selectByNodeSet
@@ -990,6 +1027,8 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 decl_stmt|;
+comment|/* 		//Uncomment the lines below which are intended to work around a VirtualNodeSet bug 		//No need to say that performance can suffer ! 		NodeSet nodes; 		if (contextIsVirtual) { 			ArraySet copy = new ArraySet(contextSet.getLength()); 			for (Iterator i = contextSet.iterator(); i.hasNext();) { 				copy.add((Item)i.next()); 			} 			nodes =	super.eval(copy, null).toNodeSet(); 		} else 			nodes =	super.eval(contextSet, null).toNodeSet();			 		//End of work-around 		*/
+comment|//Comment the line below if you have uncommented the lines above :-)
 name|NodeSet
 name|nodes
 init|=
@@ -1005,7 +1044,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|/* if the predicate expression returns results from the cache            * we can also return the cached result.            */
+comment|/* if the predicate expression returns results from the cache 		 * we can also return the cached result.  		 */
 if|if
 condition|(
 name|cached
@@ -1250,7 +1289,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param outerSequence      * @param contextSequence      * @param mode      * @param inner      * @return      * @throws XPathException      */
+comment|/** 	 * @param outerSequence 	 * @param contextSequence 	 * @param mode 	 * @param inner 	 * @return 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|selectByPosition
@@ -1272,6 +1311,16 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|outerSequence
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|outerSequence
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -1285,17 +1334,6 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
-operator|&&
-name|outerSequence
-operator|!=
-literal|null
-operator|&&
-name|outerSequence
-operator|.
-name|getLength
-argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|Sequence
@@ -1374,7 +1412,7 @@ init|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|(
-literal|5
+literal|100
 argument_list|)
 decl_stmt|;
 for|for
@@ -1745,12 +1783,11 @@ throw|;
 block|}
 if|if
 condition|(
+operator|!
 name|temp
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|//TODO : build a value sequence *one* time ? -pb
@@ -2087,7 +2124,7 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)       * @see org.exist.xquery.PathExpr#resetState()       */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState

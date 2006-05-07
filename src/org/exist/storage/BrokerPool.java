@@ -355,6 +355,18 @@ name|ShutdownListener
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -2100,6 +2112,27 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
+name|int
+name|bufferSize
+init|=
+name|conf
+operator|.
+name|getInteger
+argument_list|(
+literal|"db-connection.collection-cache-size"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|bufferSize
+operator|==
+operator|-
+literal|1
+condition|)
+name|bufferSize
+operator|=
+name|DEFAULT_COLLECTION_BUFFER_SIZE
+expr_stmt|;
 name|collectionCache
 operator|=
 operator|new
@@ -2107,7 +2140,7 @@ name|CollectionCache
 argument_list|(
 name|this
 argument_list|,
-name|DEFAULT_COLLECTION_BUFFER_SIZE
+name|bufferSize
 argument_list|,
 literal|0.9
 argument_list|)
@@ -2219,9 +2252,9 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 operator|==
 literal|null
@@ -2244,9 +2277,9 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|ROOT_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 name|transactionManager
@@ -3307,6 +3340,11 @@ operator|.
 name|restart
 argument_list|()
 expr_stmt|;
+name|notificationService
+operator|.
+name|debug
+argument_list|()
+expr_stmt|;
 block|}
 else|else
 name|cacheManager
@@ -3315,6 +3353,16 @@ name|checkDistribution
 argument_list|()
 expr_stmt|;
 comment|//TODO : touch this.syncEvent and syncRequired ?
+comment|//After setting the SYSTEM_USER above we must change back to the DEFAULT User to prevent a security problem
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|User
+operator|.
+name|DEFAULT
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.Sync#MINOR_SYNC} or {@link org.exist.storage.Sync#MINOR_SYNC}    	 */
 specifier|public
@@ -3603,6 +3651,11 @@ name|boolean
 name|killed
 parameter_list|)
 block|{
+name|notificationService
+operator|.
+name|debug
+argument_list|()
+expr_stmt|;
 comment|//Notify all running tasks that we are shutting down
 name|syncDaemon
 operator|.
@@ -3748,11 +3801,22 @@ name|broker
 operator|!=
 literal|null
 condition|)
+block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 name|transactionManager
 operator|.
 name|shutdown

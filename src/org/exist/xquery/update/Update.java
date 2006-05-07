@@ -595,10 +595,8 @@ if|if
 condition|(
 name|contentSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 throw|throw
 operator|new
@@ -647,7 +645,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
-comment|//Indicate the failure to perform this update by adding it to the sequence in the context variable "_eXist_xquery_update_error"
+comment|//Indicate the failure to perform this update by adding it to the sequence in the context variable XQueryContext.XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 name|ValueSequence
 name|prevUpdateErrors
 init|=
@@ -679,7 +677,9 @@ name|context
 operator|.
 name|getXQueryContextVar
 argument_list|(
-literal|"_eXist_xquery_update_error"
+name|XQueryContext
+operator|.
+name|XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 argument_list|)
 decl_stmt|;
 if|if
@@ -731,19 +731,20 @@ name|context
 operator|.
 name|setXQueryContextVar
 argument_list|(
-literal|"_eXist_xquery_update_error"
+name|XQueryContext
+operator|.
+name|XQUERY_CONTEXTVAR_XQUERY_UPDATE_ERROR
 argument_list|,
 name|prevUpdateErrors
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|inSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 throw|throw
 name|xpe
@@ -753,12 +754,11 @@ block|}
 comment|//END trap Update failure
 if|if
 condition|(
+operator|!
 name|inSeq
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 try|try
@@ -820,9 +820,6 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
-name|StoredNode
-name|node
-decl_stmt|;
 name|TextImpl
 name|text
 decl_stmt|;
@@ -831,11 +828,6 @@ name|attribute
 decl_stmt|;
 name|ElementImpl
 name|parent
-decl_stmt|;
-name|DocumentImpl
-name|doc
-init|=
-literal|null
 decl_stmt|;
 name|DocumentSet
 name|modifiedDocs
@@ -861,15 +853,17 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|node
-operator|=
+init|=
 name|ql
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -877,7 +871,7 @@ name|node
 operator|.
 name|getOwnerDocument
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|doc
 operator|.
 name|getMetadata
