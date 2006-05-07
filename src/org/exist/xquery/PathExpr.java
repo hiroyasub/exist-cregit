@@ -890,9 +890,9 @@ block|{
 name|Sequence
 name|exprResult
 init|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+operator|new
+name|ValueSequence
+argument_list|()
 decl_stmt|;
 comment|//Restore a position which may have been modified by inner expressions
 name|int
@@ -959,12 +959,6 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
-name|exprResult
-operator|=
-operator|new
-name|ValueSequence
-argument_list|()
-expr_stmt|;
 name|exprResult
 operator|.
 name|addAll
