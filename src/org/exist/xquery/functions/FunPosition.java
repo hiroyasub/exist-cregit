@@ -381,7 +381,19 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
-operator|||
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"FONC0001: undefined context item"
+argument_list|)
+throw|;
+if|else if
+condition|(
 name|contextSequence
 operator|.
 name|isEmpty
