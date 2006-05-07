@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -107,7 +107,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -149,6 +149,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|SequenceIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -163,7 +177,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|Type
 import|;
 end_import
 
@@ -177,7 +191,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|ValueSequence
 import|;
 end_import
 
@@ -450,14 +464,43 @@ argument_list|()
 condition|)
 name|result
 operator|=
-name|StringValue
+name|Sequence
 operator|.
-name|EMPTY_STRING
+name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
+block|{
 name|result
 operator|=
+operator|new
+name|ValueSequence
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|SequenceIterator
+name|i
+init|=
 name|contextSequence
+operator|.
+name|iterate
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|result
+operator|.
+name|add
+argument_list|(
+name|i
+operator|.
+name|nextItem
+argument_list|()
 operator|.
 name|convertTo
 argument_list|(
@@ -465,7 +508,10 @@ name|Type
 operator|.
 name|STRING
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|context
