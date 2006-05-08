@@ -575,6 +575,27 @@ name|int
 name|depth
 parameter_list|)
 block|{
+if|if
+condition|(
+name|depth
+operator|<
+literal|3
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"parameter index-depth should be>= 3 or you will experience a severe "
+operator|+
+literal|"performance loss for node updates (XUpdate or XQuery update extensions)"
+argument_list|)
+expr_stmt|;
+name|depth
+operator|=
+literal|3
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|depth
