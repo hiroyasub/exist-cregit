@@ -2001,6 +2001,17 @@ name|DLNBase
 name|other
 parameter_list|)
 block|{
+if|if
+condition|(
+name|other
+operator|.
+name|bitIndex
+operator|>
+name|bitIndex
+condition|)
+return|return
+literal|false
+return|;
 name|int
 name|bytes
 init|=
