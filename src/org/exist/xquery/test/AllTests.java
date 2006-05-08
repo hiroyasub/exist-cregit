@@ -126,6 +126,15 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
+name|XQueryUpdateTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
 name|XQueryFunctionsTest
 operator|.
 name|class
