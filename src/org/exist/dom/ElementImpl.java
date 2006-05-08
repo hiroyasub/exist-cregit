@@ -2147,9 +2147,6 @@ operator|.
 name|newChild
 argument_list|()
 argument_list|,
-operator|-
-literal|1
-argument_list|,
 operator|new
 name|NodeImplRef
 argument_list|(
@@ -2275,9 +2272,6 @@ operator|.
 name|nextSibling
 argument_list|()
 argument_list|,
-operator|-
-literal|1
-argument_list|,
 operator|new
 name|NodeImplRef
 argument_list|(
@@ -2325,9 +2319,6 @@ name|transaction
 parameter_list|,
 name|NodeId
 name|newNodeId
-parameter_list|,
-name|long
-name|gid
 parameter_list|,
 name|NodeImplRef
 name|last
@@ -2378,12 +2369,6 @@ argument_list|,
 literal|"invalid node"
 argument_list|)
 throw|;
-comment|//        try {
-comment|//            checkTree(nodes.getLength());
-comment|//        } catch (EXistException e) {
-comment|//            throw new DOMException(DOMException.INVALID_MODIFICATION_ERR,
-comment|//                    "max. document size exceeded: " + e.getMessage());
-comment|//        }
 name|children
 operator|+=
 name|nodes
@@ -2425,10 +2410,6 @@ name|transaction
 argument_list|,
 name|newNodeId
 argument_list|,
-name|gid
-operator|+
-name|i
-argument_list|,
 name|last
 argument_list|,
 name|lastPath
@@ -2456,9 +2437,6 @@ name|transaction
 parameter_list|,
 name|NodeId
 name|newNodeId
-parameter_list|,
-name|long
-name|gid
 parameter_list|,
 name|NodeImplRef
 name|last
@@ -2528,8 +2506,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newNodeId
-argument_list|,
-name|gid
 argument_list|,
 name|last
 argument_list|,
@@ -2811,9 +2787,6 @@ name|newNodeId
 operator|.
 name|newChild
 argument_list|()
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 name|last
 argument_list|,
@@ -5482,9 +5455,6 @@ operator|.
 name|insertBefore
 argument_list|()
 argument_list|,
-operator|-
-literal|1
-argument_list|,
 operator|new
 name|NodeImplRef
 argument_list|(
@@ -5522,9 +5492,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
@@ -5664,9 +5631,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newNodeId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
@@ -5873,9 +5837,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newNodeId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
@@ -6476,9 +6437,6 @@ operator|.
 name|newChild
 argument_list|()
 argument_list|,
-operator|-
-literal|1
-argument_list|,
 operator|new
 name|NodeImplRef
 argument_list|(
@@ -6527,9 +6485,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newNodeId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
@@ -6596,9 +6551,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|newNodeId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
@@ -6846,9 +6798,6 @@ argument_list|,
 name|oldNode
 operator|.
 name|nodeId
-argument_list|,
-operator|-
-literal|1
 argument_list|,
 operator|new
 name|NodeImplRef
