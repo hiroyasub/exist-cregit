@@ -1406,10 +1406,18 @@ operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 case|:
 block|{
-comment|//TODO: with in-memory nodes,
+comment|//TODO: in some cases, especially with in-memory nodes,
 comment|//outerSequence.toNodeSet() will generate a document
-comment|//which will be different from the one in contextSet
+comment|//which will be different from the one(s) in contextSet
 comment|//ancestors will thus be empty :-(
+name|NodeSet
+name|outerNodeSet
+init|=
+name|outerSequence
+operator|.
+name|toNodeSet
+argument_list|()
+decl_stmt|;
 name|Sequence
 name|ancestors
 init|=
@@ -1417,10 +1425,7 @@ name|contextSet
 operator|.
 name|selectAncestorDescendant
 argument_list|(
-name|outerSequence
-operator|.
-name|toNodeSet
-argument_list|()
+name|outerNodeSet
 argument_list|,
 name|NodeSet
 operator|.
@@ -1432,6 +1437,33 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|contextSet
+operator|.
+name|getDocumentSet
+argument_list|()
+operator|.
+name|intersection
+argument_list|(
+name|outerNodeSet
+operator|.
+name|getDocumentSet
+argument_list|()
+argument_list|)
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+condition|)
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"contextSet and outerNodeSet don't share any document"
+argument_list|)
+expr_stmt|;
 name|ExtArrayNodeSet
 name|temp
 init|=
