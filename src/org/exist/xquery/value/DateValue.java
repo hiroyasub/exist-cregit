@@ -318,6 +318,19 @@ return|;
 case|case
 name|Type
 operator|.
+name|UNTYPED_ATOMIC
+case|:
+return|return
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|getStringValue
+argument_list|()
+argument_list|)
+return|;
+case|case
+name|Type
+operator|.
 name|STRING
 case|:
 return|return
@@ -333,7 +346,22 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: cannot cast xs:date to "
+literal|"FORG0001: can not convert "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') to "
 operator|+
 name|Type
 operator|.
