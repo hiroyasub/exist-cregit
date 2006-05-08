@@ -337,31 +337,6 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : how can it be possible ?
-name|Expression
-name|inner
-init|=
-name|getExpression
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|inner
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"REPORT ME : null Inner Sequence"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -402,6 +377,14 @@ name|innerExpressionDot
 operator|=
 literal|true
 expr_stmt|;
+name|Expression
+name|inner
+init|=
+name|getExpression
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 comment|// Case 1: predicate expression returns a node set.
 comment|// Check the returned node set against the context set
 comment|// and return all nodes from the context, for which the
@@ -464,6 +447,7 @@ operator|.
 name|NUMBER
 argument_list|)
 operator|&&
+operator|(
 name|inner
 operator|.
 name|getCardinality
@@ -472,6 +456,16 @@ operator|==
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+operator|||
+name|inner
+operator|.
+name|getCardinality
+argument_list|()
+operator|==
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+operator|)
 condition|)
 block|{
 comment|//Just a hint : inner's cardinality may still be potential
@@ -728,6 +722,37 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 block|}
+comment|//(1,2,3)[xs:decimal(.)]
+comment|//TODO : think and find *the* triggering condition that leads to boolean evaluation
+comment|//ideally determine it at analysis time
+if|if
+condition|(
+name|executionMode
+operator|==
+name|POSITIONAL
+operator|&&
+name|innerExpressionDot
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|)
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|BOOLEAN
+expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|recomputedExecutionMode
@@ -960,8 +985,6 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|//Sequence innerSeq = inner.eval(contextSequence, item);
-comment|//We just test against the *current* item
 name|Sequence
 name|innerSeq
 init|=
@@ -969,10 +992,9 @@ name|inner
 operator|.
 name|eval
 argument_list|(
+name|contextSequence
+argument_list|,
 name|item
-operator|.
-name|toSequence
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1384,6 +1406,10 @@ operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 case|:
 block|{
+comment|//TODO: with in-memory nodes,
+comment|//outerSequence.toNodeSet() will generate a document
+comment|//which will be different from the one in contextSet
+comment|//ancestors will thus be empty :-(
 name|Sequence
 name|ancestors
 init|=

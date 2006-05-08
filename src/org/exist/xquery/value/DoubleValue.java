@@ -1153,6 +1153,74 @@ name|Type
 operator|.
 name|DECIMAL
 case|:
+if|if
+condition|(
+name|isNaN
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: can not convert "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+argument_list|)
+throw|;
+if|if
+condition|(
+name|isInfinite
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: can not convert "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+argument_list|)
+throw|;
 return|return
 operator|new
 name|DecimalValue
@@ -1238,12 +1306,29 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert xs:double('"
+literal|"FORG0001: can not convert "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
 operator|+
 name|getStringValue
 argument_list|()
 operator|+
-literal|"') to xs:integer"
+literal|"') to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
 argument_list|)
 throw|;
 if|if
@@ -1259,12 +1344,29 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert xs:double('"
+literal|"FORG0001: can not convert "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
 operator|+
 name|getStringValue
 argument_list|()
 operator|+
-literal|"') to xs:integer"
+literal|"') to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
 argument_list|)
 throw|;
 return|return
