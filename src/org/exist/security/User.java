@@ -748,7 +748,7 @@ argument_list|)
 throw|;
 block|}
 name|Attr
-name|home
+name|homeAttr
 init|=
 name|node
 operator|.
@@ -761,7 +761,7 @@ name|this
 operator|.
 name|home
 operator|=
-name|home
+name|homeAttr
 operator|==
 literal|null
 condition|?
@@ -771,7 +771,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|home
+name|homeAttr
 operator|.
 name|getValue
 argument_list|()
