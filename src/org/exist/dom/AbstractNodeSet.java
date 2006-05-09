@@ -628,10 +628,7 @@ name|al
 operator|instanceof
 name|VirtualNodeSet
 operator|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|al
 operator|.
 name|getLength
@@ -649,18 +646,12 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-else|else
-return|return
-name|quickSelectParentChild
-argument_list|(
-name|al
-argument_list|,
-name|mode
-argument_list|,
-name|contextId
-argument_list|)
-return|;
-block|}
+comment|//		if (!(al instanceof VirtualNodeSet)) {
+comment|//		    if(al.getLength()< 10)
+comment|//		        return hasChildrenInSet(al, mode, contextId);
+comment|//		    else
+comment|//		        return quickSelectParentChild(al, mode, contextId);
+comment|//		}
 return|return
 name|NodeSetHelper
 operator|.
@@ -725,6 +716,28 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|al
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 specifier|final
 name|NodeSet
 name|result
@@ -894,29 +907,37 @@ operator|.
 name|getNodeId
 argument_list|()
 expr_stmt|;
-comment|//			    System.out.println(pa + " -> " + pb);
-name|pb
-operator|=
-name|pb
+name|System
 operator|.
-name|getParentId
-argument_list|()
-expr_stmt|;
-comment|//				System.out.println("comparing " + pa + " -> " + pb);
-name|cmp
-operator|=
-name|pa
+name|out
 operator|.
-name|compareTo
+name|println
 argument_list|(
+name|pa
+operator|+
+literal|" -> "
+operator|+
 name|pb
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|cmp
-operator|==
-literal|0
+name|pb
+operator|.
+name|isDescendantOf
+argument_list|(
+name|pa
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|pb
+operator|.
+name|isChildOf
+argument_list|(
+name|pa
+argument_list|)
 condition|)
 block|{
 if|if
@@ -996,6 +1017,7 @@ name|na
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|ib
@@ -1015,8 +1037,59 @@ argument_list|()
 expr_stmt|;
 else|else
 break|break;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Found: "
+operator|+
+name|pb
+operator|+
+literal|"; next: "
+operator|+
+name|nb
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
-if|else if
+else|else
+block|{
+name|cmp
+operator|=
+name|pa
+operator|.
+name|compareTo
+argument_list|(
+name|pb
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"comparing "
+operator|+
+name|pa
+operator|+
+literal|" -> "
+operator|+
+name|pb
+operator|+
+literal|" = "
+operator|+
+name|cmp
+argument_list|)
+expr_stmt|;
+if|if
 condition|(
 name|cmp
 operator|<
@@ -1064,6 +1137,7 @@ argument_list|()
 expr_stmt|;
 else|else
 break|break;
+block|}
 block|}
 block|}
 block|}
