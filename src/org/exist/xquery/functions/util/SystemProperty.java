@@ -235,12 +235,6 @@ name|ZERO_OR_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|private
-name|Properties
-name|sysProperties
-init|=
-literal|null
-decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|SystemProperty
@@ -274,13 +268,6 @@ name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
-block|{
-if|if
-condition|(
-name|sysProperties
-operator|==
-literal|null
-condition|)
 block|{
 name|Properties
 name|sysProperties
@@ -322,7 +309,6 @@ argument_list|(
 literal|"Unable to load system.properties from class loader"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|String
 name|key
