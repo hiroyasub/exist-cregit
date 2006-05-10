@@ -303,9 +303,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|util
+name|eXist
 operator|.
-name|ExistVersion
+name|GetVersion
 import|;
 end_import
 
@@ -2076,7 +2076,7 @@ name|sysProperties
 operator|.
 name|load
 argument_list|(
-name|ExistVersion
+name|GetVersion
 operator|.
 name|class
 operator|.
