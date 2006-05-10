@@ -650,12 +650,30 @@ name|delete
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 *  getFreePage returns the first free Page from secondary storage. If no 	 *  Pages are available, the file is grown as appropriate. 	 * 	 *@return               The next free Page 	 *@throws  IOException  if an Exception occurs 	 */
 specifier|protected
 specifier|final
 name|Page
 name|getFreePage
 parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|getFreePage
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/** 	 * Returns the first free page it can find, either by reusing a deleted page 	 * or by appending a new one to secondary storage. 	 * 	 * @param reuseDeleted if set to false, the method will not try to reuse a 	 * previously deleted page. This is required by btree page split operations to avoid  	 * concurrency conflicts within a transaction. 	 * 	 * @return a free page 	 * @throws  IOException 	 */
+specifier|protected
+specifier|final
+name|Page
+name|getFreePage
+parameter_list|(
+name|boolean
+name|reuseDeleted
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -678,6 +696,8 @@ name|firstFreePage
 decl_stmt|;
 if|if
 condition|(
+name|reuseDeleted
+operator|&&
 name|pageNum
 operator|!=
 name|Page

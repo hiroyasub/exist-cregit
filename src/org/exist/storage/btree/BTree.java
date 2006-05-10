@@ -1326,6 +1326,9 @@ name|status
 parameter_list|,
 name|BTreeNode
 name|parent
+parameter_list|,
+name|boolean
+name|reuseDeleted
 parameter_list|)
 block|{
 try|try
@@ -1334,7 +1337,9 @@ name|Page
 name|p
 init|=
 name|getFreePage
-argument_list|()
+argument_list|(
+name|reuseDeleted
+argument_list|)
 decl_stmt|;
 name|BTreeNode
 name|node
@@ -1513,6 +1518,8 @@ argument_list|,
 name|LEAF
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|setRootNode
@@ -4170,6 +4177,13 @@ name|ph
 operator|.
 name|getStatus
 argument_list|()
+operator|+
+literal|"; "
+operator|+
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -4767,6 +4781,8 @@ argument_list|,
 name|BRANCH
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Log change of the parent page
@@ -4829,6 +4845,8 @@ name|getStatus
 argument_list|()
 argument_list|,
 name|parent
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Log update of the right node
@@ -5070,6 +5088,8 @@ name|getStatus
 argument_list|()
 argument_list|,
 name|parent
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Log update of the right node
