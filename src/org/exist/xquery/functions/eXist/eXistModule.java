@@ -54,7 +54,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module to provide information and fundtion directly related to a running eXist server  *   * @author Adam Retter (adam.retter@devon.gov.uk)  *   * TODO: add get-uptime()  * TODO: add count-sessions()  * TODO: add count-instances()  */
+comment|/**  * Module to provide information and fundtion directly related to a running eXist server  *   * @author Adam Retter (adam.retter@devon.gov.uk)  *   * TODO: add get-uptime()  * TODO: add count-sessions()  */
 end_comment
 
 begin_class
@@ -88,6 +88,42 @@ index|[]
 name|functions
 init|=
 block|{
+operator|new
+name|FunctionDef
+argument_list|(
+name|CountInstances
+operator|.
+name|countInstancesMax
+argument_list|,
+name|CountInstances
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|CountInstances
+operator|.
+name|countInstancesActive
+argument_list|,
+name|CountInstances
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|CountInstances
+operator|.
+name|countInstancesAvailable
+argument_list|,
+name|CountInstances
+operator|.
+name|class
+argument_list|)
+block|,
 operator|new
 name|FunctionDef
 argument_list|(
