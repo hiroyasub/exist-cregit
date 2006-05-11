@@ -1216,13 +1216,6 @@ argument_list|,
 literal|"Generic evaluation"
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"GENERIC"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|evalGeneric
