@@ -620,38 +620,13 @@ name|int
 name|contextId
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|al
-operator|instanceof
-name|VirtualNodeSet
-operator|)
-operator|&&
-name|al
+name|LOG
 operator|.
-name|getLength
-argument_list|()
-operator|<
-literal|10
-condition|)
-return|return
-name|hasChildrenInSet
+name|debug
 argument_list|(
-name|al
-argument_list|,
-name|mode
-argument_list|,
-name|contextId
+literal|"Node select"
 argument_list|)
-return|;
-comment|//		if (!(al instanceof VirtualNodeSet)) {
-comment|//		    if(al.getLength()< 10)
-comment|//		        return hasChildrenInSet(al, mode, contextId);
-comment|//		    else
-comment|//		        return quickSelectParentChild(al, mode, contextId);
-comment|//		}
+expr_stmt|;
 return|return
 name|NodeSetHelper
 operator|.
