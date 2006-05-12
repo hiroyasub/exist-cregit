@@ -465,7 +465,7 @@ literal|"The query is specified via the first argument. If it is of type xs:stri
 operator|+
 literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
 operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
+literal|"the function will try to load the query from the resource to which the (absolute) URI resolves. "
 operator|+
 literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
 operator|+
@@ -1401,6 +1401,28 @@ argument_list|(
 name|location
 argument_list|)
 decl_stmt|;
+comment|// If location is relative (does not contain any / and does
+comment|// not start with . or .. then the path of the module need to
+comment|// be added.
+if|if
+condition|(
+name|location
+operator|.
+name|indexOf
+argument_list|(
+literal|"/"
+argument_list|)
+operator|<
+literal|0
+operator|||
+name|location
+operator|.
+name|startsWith
+argument_list|(
+literal|"."
+argument_list|)
+condition|)
+block|{
 name|XmldbURI
 name|moduleLoadPathUri
 init|=
@@ -1423,6 +1445,7 @@ argument_list|(
 name|locationUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DocumentImpl
 name|sourceDoc
 init|=
