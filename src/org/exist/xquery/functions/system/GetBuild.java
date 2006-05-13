@@ -13,7 +13,7 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|exist
+name|system
 package|;
 end_package
 
