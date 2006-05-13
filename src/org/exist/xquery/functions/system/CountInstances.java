@@ -158,7 +158,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Return details abount eXist instances  *   * @author Adam Retter (adam.retter@devon.gov.uk)  */
+comment|/**  * Return details about eXist instances  *   * @author Adam Retter (adam.retter@devon.gov.uk)  */
 end_comment
 
 begin_class
@@ -182,11 +182,11 @@ name|QName
 argument_list|(
 literal|"count-instances-max"
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -224,11 +224,11 @@ name|QName
 argument_list|(
 literal|"count-instances-active"
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -266,11 +266,11 @@ name|QName
 argument_list|(
 literal|"count-instances-available"
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|ExistModule
+name|SystemModule
 operator|.
 name|PREFIX
 argument_list|)
