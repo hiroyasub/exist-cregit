@@ -303,7 +303,7 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|eXist
+name|exist
 operator|.
 name|GetVersion
 import|;

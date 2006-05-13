@@ -236,11 +236,11 @@ name|QName
 argument_list|(
 literal|"shutdown"
 argument_list|,
-name|eXistModule
+name|ExistModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|eXistModule
+name|ExistModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -297,11 +297,11 @@ name|QName
 argument_list|(
 literal|"shutdown"
 argument_list|,
-name|eXistModule
+name|ExistModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|eXistModule
+name|ExistModule
 operator|.
 name|PREFIX
 argument_list|)
