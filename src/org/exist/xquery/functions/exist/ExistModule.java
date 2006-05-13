@@ -60,7 +60,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|eXistModule
+name|ExistModule
 extends|extends
 name|AbstractInternalModule
 block|{
@@ -216,7 +216,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|eXistModule
+name|ExistModule
 parameter_list|()
 throws|throws
 name|XPathException
