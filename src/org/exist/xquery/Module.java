@@ -51,7 +51,7 @@ specifier|static
 name|String
 name|EXIST_FUNCTION_NS
 init|=
-literal|"http://exist-db.org/xquery/eXist"
+literal|"http://exist-db.org/xquery/exist"
 decl_stmt|;
 comment|/** 	 * Namespace for the built-in xmldb module. 	 */
 specifier|public
