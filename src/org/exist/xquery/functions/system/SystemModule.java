@@ -245,7 +245,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Internal functions used by the XQuery optimizer."
+literal|"Functions to retrieve information about eXist and the system."
 return|;
 block|}
 block|}
