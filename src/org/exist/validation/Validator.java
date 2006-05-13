@@ -240,15 +240,6 @@ specifier|static
 name|BrokerPool
 name|brokerPool
 decl_stmt|;
-comment|// Required Xerces version.
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|XERCESVERSION
-init|=
-literal|"Xerces-J 2.8.0"
-decl_stmt|;
 comment|// Xerces feature and property names
 specifier|final
 specifier|static
@@ -350,12 +341,10 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|XERCESVERSION
+name|XmlLibraryChecker
 operator|.
-name|equals
-argument_list|(
-name|version
-argument_list|)
+name|isXercesVersionOK
+argument_list|()
 condition|)
 block|{
 name|logger
@@ -364,11 +353,16 @@ name|error
 argument_list|(
 literal|"Xerces version mismatch! eXist requires '"
 operator|+
+name|XmlLibraryChecker
+operator|.
 name|XERCESVERSION
 operator|+
 literal|"' but found '"
 operator|+
-name|version
+name|XmlLibraryChecker
+operator|.
+name|getXercesVersion
+argument_list|()
 operator|+
 literal|"'. "
 operator|+

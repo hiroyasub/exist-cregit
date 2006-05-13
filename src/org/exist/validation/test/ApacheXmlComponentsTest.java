@@ -57,6 +57,18 @@ name|Validator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|XmlLibraryChecker
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Class for testing xerces and xalan configuration.  *  * @author dizzzz  */
 end_comment
@@ -68,13 +80,6 @@ name|ApacheXmlComponentsTest
 extends|extends
 name|TestCase
 block|{
-specifier|public
-specifier|static
-name|String
-name|XALANVERSION
-init|=
-literal|"Xalan Java 2.7.0"
-decl_stmt|;
 specifier|public
 name|ApacheXmlComponentsTest
 parameter_list|(
@@ -177,7 +182,7 @@ name|println
 argument_list|(
 literal|"Required version '"
 operator|+
-name|Validator
+name|XmlLibraryChecker
 operator|.
 name|XERCESVERSION
 operator|+
@@ -197,17 +202,16 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
 literal|"Incorrect Xerces version! "
 operator|+
 literal|"Please put correct jar in endorsed folder"
 argument_list|,
-name|Validator
+name|XmlLibraryChecker
 operator|.
-name|XERCESVERSION
-argument_list|,
-name|version
+name|isXercesVersionOK
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -247,6 +251,8 @@ name|println
 argument_list|(
 literal|"Required version '"
 operator|+
+name|XmlLibraryChecker
+operator|.
 name|XALANVERSION
 operator|+
 literal|"'"
@@ -265,15 +271,16 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
 literal|"Incorrect Xalan version! "
 operator|+
 literal|"Please put correct jar in endorsed folder"
 argument_list|,
-name|XALANVERSION
-argument_list|,
-name|version
+name|XmlLibraryChecker
+operator|.
+name|isXalanVersionOK
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

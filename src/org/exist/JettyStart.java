@@ -15,16 +15,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Timer
@@ -117,6 +107,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|XmlLibraryChecker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|mortbay
 operator|.
 name|jetty
@@ -189,6 +191,113 @@ specifier|public
 name|JettyStart
 parameter_list|()
 block|{
+comment|// Additional checks XML libs @@@@
+if|if
+condition|(
+name|XmlLibraryChecker
+operator|.
+name|isXercesVersionOK
+argument_list|()
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Detected "
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XERCESVERSION
+operator|+
+literal|", OK."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"\nWARN: eXist requires '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XERCESVERSION
+operator|+
+literal|"' but detected '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|getXercesVersion
+argument_list|()
+operator|+
+literal|"'. Please add the correct version to the "
+operator|+
+literal|"class-path, e.g. in the 'endorsed' folder of "
+operator|+
+literal|"eXist or in the 'endorsed' folder of the JRE.\n"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|XmlLibraryChecker
+operator|.
+name|isXalanVersionOK
+argument_list|()
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Detected "
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XALANVERSION
+operator|+
+literal|", OK."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"\nWARN: eXist requires '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XALANVERSION
+operator|+
+literal|"' but detected '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|getXalanVersion
+argument_list|()
+operator|+
+literal|"'. Please add the correct version to the "
+operator|+
+literal|"class-path, e.g. in the 'endorsed' folder of "
+operator|+
+literal|"eXist or the 'endorsed' folder of the JRE.\n"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
