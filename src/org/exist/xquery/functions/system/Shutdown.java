@@ -452,7 +452,7 @@ name|NumericValue
 operator|)
 name|args
 index|[
-literal|1
+literal|2
 index|]
 operator|.
 name|itemAt
