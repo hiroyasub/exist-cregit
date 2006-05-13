@@ -72,18 +72,7 @@ index|[]
 name|functions
 init|=
 block|{
-operator|new
-name|FunctionDef
-argument_list|(
-name|FtIndexLookup
-operator|.
-name|signature
-argument_list|,
-name|FtIndexLookup
-operator|.
-name|class
-argument_list|)
-block|,
+comment|//new FunctionDef(FtIndexLookup.signature, FtIndexLookup.class),
 operator|new
 name|FunctionDef
 argument_list|(

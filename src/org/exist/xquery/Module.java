@@ -44,15 +44,6 @@ specifier|public
 interface|interface
 name|Module
 block|{
-comment|/** 	 * Namespace for the built-in eXist module. 	 */
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|EXIST_FUNCTION_NS
-init|=
-literal|"http://exist-db.org/xquery/exist"
-decl_stmt|;
 comment|/** 	 * Namespace for the built-in xmldb module. 	 */
 specifier|public
 specifier|final
@@ -97,6 +88,15 @@ name|String
 name|SESSION_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/session"
+decl_stmt|;
+comment|/** 	 * Namespace for the built-in system module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SYSTEM_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/system"
 decl_stmt|;
 comment|/** 	 * Namespace for the built-in transform module. 	 */
 specifier|public
