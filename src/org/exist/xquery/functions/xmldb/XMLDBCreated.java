@@ -368,11 +368,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the last-modification date of a resource in the collection specified by $a. "
+literal|"Returns the last-modification date of a resource, whose name is "
 operator|+
-literal|"The collection can be passed as a simple collection "
+literal|"specified by $b, in the collection specified by $a. The collection "
 operator|+
-literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
+literal|"can be passed as a simple collection path, an XMLDB URI or a"
+operator|+
+literal|"collection object (obtained from the collection function)."
 argument_list|,
 operator|new
 name|SequenceType
