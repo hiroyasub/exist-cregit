@@ -1504,6 +1504,38 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|mainGroup
+operator|==
+literal|null
+operator|||
+name|mainGroup
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Main group "
+operator|+
+name|gid
+operator|+
+literal|" for user "
+operator|+
+name|username
+operator|+
+literal|" is not able to be found in LDAP for group property "
+operator|+
+name|gidNumberAttr
+argument_list|)
+throw|;
+block|}
 name|int
 name|uid
 init|=
@@ -1764,6 +1796,34 @@ name|getAttributes
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|name
+operator|==
+literal|null
+operator|||
+name|name
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Group associated with "
+operator|+
+name|username
+operator|+
+literal|" does not have a valid name for attribute "
+operator|+
+name|groupNameAttr
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
