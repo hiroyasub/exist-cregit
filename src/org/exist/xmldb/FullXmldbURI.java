@@ -91,50 +91,6 @@ name|instanceName
 operator|=
 literal|null
 expr_stmt|;
-if|if
-condition|(
-name|wrappedURI
-operator|.
-name|getQuery
-argument_list|()
-operator|!=
-literal|null
-condition|)
-comment|//Put the "right" URI in the message ;-)
-throw|throw
-operator|new
-name|URISyntaxException
-argument_list|(
-name|wrappedURI
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-literal|"xmldb URI should not provide a query part"
-argument_list|)
-throw|;
-if|if
-condition|(
-name|wrappedURI
-operator|.
-name|getFragment
-argument_list|()
-operator|!=
-literal|null
-condition|)
-comment|//Put the "right" URI in the message ;-)
-throw|throw
-operator|new
-name|URISyntaxException
-argument_list|(
-name|wrappedURI
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-literal|"xmldb URI should not provide a fragment part"
-argument_list|)
-throw|;
 comment|//Is an encoded scheme ever possible ?
 name|instanceName
 operator|=
@@ -154,6 +110,8 @@ throw|throw
 operator|new
 name|URISyntaxException
 argument_list|(
+name|XMLDB_URI_PREFIX
+operator|+
 name|wrappedURI
 operator|.
 name|toString
@@ -392,6 +350,8 @@ throw|throw
 operator|new
 name|URISyntaxException
 argument_list|(
+name|XMLDB_URI_PREFIX
+operator|+
 name|wrappedURI
 operator|.
 name|toString
