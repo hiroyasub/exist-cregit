@@ -55,8 +55,6 @@ begin_class
 specifier|public
 class|class
 name|DLNBase
-implements|implements
-name|Comparable
 block|{
 comment|/**      * The default number of bits used per fixed      * size unit.      */
 specifier|public
@@ -1751,143 +1749,27 @@ name|bits
 argument_list|)
 return|;
 block|}
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-specifier|final
-name|DLNBase
-name|other
-parameter_list|)
-block|{
-if|if
-condition|(
-name|other
-operator|==
-literal|null
-condition|)
-return|return
-literal|1
-return|;
-specifier|final
-name|int
-name|a1len
-init|=
-name|bits
-operator|.
-name|length
-decl_stmt|;
-specifier|final
-name|int
-name|a2len
-init|=
-name|other
-operator|.
-name|bits
-operator|.
-name|length
-decl_stmt|;
-name|int
-name|limit
-init|=
-name|a1len
-operator|<=
-name|a2len
-condition|?
-name|a1len
-else|:
-name|a2len
-decl_stmt|;
-name|byte
-index|[]
-name|obits
-init|=
-name|other
-operator|.
-name|bits
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|limit
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|byte
-name|b1
-init|=
-name|bits
-index|[
-name|i
-index|]
-decl_stmt|;
-name|byte
-name|b2
-init|=
-name|obits
-index|[
-name|i
-index|]
-decl_stmt|;
-if|if
-condition|(
-name|b1
-operator|!=
-name|b2
-condition|)
-return|return
-operator|(
-name|b1
-operator|&
-literal|0xFF
-operator|)
-operator|-
-operator|(
-name|b2
-operator|&
-literal|0xFF
-operator|)
-return|;
-block|}
-return|return
-operator|(
-name|a1len
-operator|-
-name|a2len
-operator|)
-return|;
-block|}
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|Object
-name|obj
-parameter_list|)
-block|{
-name|DLNBase
-name|other
-init|=
-operator|(
-name|DLNBase
-operator|)
-name|obj
-decl_stmt|;
-return|return
-name|compareTo
-argument_list|(
-name|other
-argument_list|)
-return|;
-block|}
+comment|//    public int compareTo(final DLNBase other) {
+comment|//        if (other == null)
+comment|//            return 1;
+comment|//        final int a1len = bits.length;
+comment|//        final int a2len = other.bits.length;
+comment|//
+comment|//        int limit = a1len<= a2len ? a1len : a2len;
+comment|//        byte[] obits = other.bits;
+comment|//        for (int i = 0; i< limit; i++) {
+comment|//            byte b1 = bits[i];
+comment|//            byte b2 = obits[i];
+comment|//            if (b1 != b2)
+comment|//                return (b1& 0xFF) - (b2& 0xFF);
+comment|//        }
+comment|//        return (a1len - a2len);
+comment|//    }
+comment|//
+comment|//    public int compareTo(Object obj) {
+comment|//        DLNBase other = (DLNBase) obj;
+comment|//        return compareTo(other);
+comment|//    }
 specifier|public
 name|int
 name|compareBits

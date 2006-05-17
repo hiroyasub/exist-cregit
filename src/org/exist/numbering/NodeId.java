@@ -61,6 +61,22 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IS_CHILD
+init|=
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IS_DESCENDANT
+init|=
+literal|2
+decl_stmt|;
 comment|/**      * Returns a new NodeId representing the first child      * node of this node. The returned id can be used      * for creating new nodes. The actual id of the first      * node might be different, depending on the      * implementation.      *      * @return new child node id      */
 name|NodeId
 name|newChild
@@ -132,7 +148,13 @@ name|NodeId
 name|parent
 parameter_list|)
 function_decl|;
-specifier|public
+name|int
+name|isDescendantOrChildOf
+parameter_list|(
+name|NodeId
+name|ancestor
+parameter_list|)
+function_decl|;
 name|int
 name|isSiblingOf
 parameter_list|(
