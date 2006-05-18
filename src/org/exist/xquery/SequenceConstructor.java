@@ -186,11 +186,16 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//Create a new context info because each sequence expression could modify it (add/remove flags...)
 name|expr
 operator|.
 name|analyze
 argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|contextInfo
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
