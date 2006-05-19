@@ -51,6 +51,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -1711,6 +1721,53 @@ argument_list|(
 name|pageNum
 argument_list|)
 return|;
+block|}
+specifier|public
+name|void
+name|readBinary
+parameter_list|(
+name|long
+name|pageNum
+parameter_list|,
+name|OutputStream
+name|os
+parameter_list|)
+block|{
+try|try
+block|{
+name|OverflowDOMPage
+name|overflow
+init|=
+operator|new
+name|OverflowDOMPage
+argument_list|(
+name|pageNum
+argument_list|)
+decl_stmt|;
+name|overflow
+operator|.
+name|streamTo
+argument_list|(
+name|os
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"io error while loading overflow value"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Insert a new node after the specified node. 	 *  	 * @param key 	 * @param value 	 * @return 	 */
 specifier|public
@@ -17121,23 +17178,23 @@ name|Txn
 name|transaction
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Creating overflow page"
-argument_list|)
-expr_stmt|;
 name|firstPage
 operator|=
 name|createNewPage
 argument_list|()
 expr_stmt|;
-comment|// if (transaction != null) {
-comment|// Loggable loggable = new CreatePageLoggable(transaction, Page.NO_PAGE,
-comment|// firstPage.getPageNum());
-comment|// writeToLog(loggable, firstPage);
-comment|// }
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating overflow page: "
+operator|+
+name|firstPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|OverflowDOMPage
@@ -17388,6 +17445,26 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+name|streamTo
+argument_list|(
+name|os
+argument_list|)
+expr_stmt|;
+return|return
+name|os
+operator|.
+name|toByteArray
+argument_list|()
+return|;
+block|}
+specifier|public
+name|void
+name|streamTo
+parameter_list|(
+name|OutputStream
+name|os
+parameter_list|)
+block|{
 name|Page
 name|page
 init|=
@@ -17486,12 +17563,6 @@ operator|++
 name|count
 expr_stmt|;
 block|}
-return|return
-name|os
-operator|.
-name|toByteArray
-argument_list|()
-return|;
 block|}
 specifier|public
 name|void
