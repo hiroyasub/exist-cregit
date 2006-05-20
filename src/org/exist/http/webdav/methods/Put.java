@@ -770,6 +770,10 @@ argument_list|(
 literal|"storing Binary resource"
 argument_list|)
 expr_stmt|;
+comment|// TODO Here binary data is written as a blob
+comment|// into the database. This can cause Out of (heapsize) memory
+comment|// exceptions
+comment|// Write content of file into ByteArray
 name|byte
 index|[]
 name|chunk
@@ -828,6 +832,7 @@ name|l
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Pass ByteArray in one step to collection
 name|doc
 operator|=
 name|collection
