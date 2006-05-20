@@ -75,6 +75,18 @@ name|Enumeration
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|Cookie
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -100,6 +112,12 @@ name|getInputStream
 parameter_list|()
 throws|throws
 name|IOException
+function_decl|;
+specifier|public
+name|Cookie
+index|[]
+name|getCookies
+parameter_list|()
 function_decl|;
 specifier|public
 name|String

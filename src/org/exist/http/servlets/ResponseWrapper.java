@@ -54,6 +54,18 @@ specifier|public
 interface|interface
 name|ResponseWrapper
 block|{
+comment|/** 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 */
+specifier|public
+name|void
+name|addCookie
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+function_decl|;
 comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|void

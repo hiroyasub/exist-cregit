@@ -123,6 +123,18 @@ name|servlet
 operator|.
 name|http
 operator|.
+name|Cookie
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
 name|HttpServletRequest
 import|;
 end_import
@@ -300,6 +312,20 @@ name|parseMultipartContent
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Returns an array of Cookies      */
+specifier|public
+name|Cookie
+index|[]
+name|getCookies
+parameter_list|()
+block|{
+return|return
+name|servletRequest
+operator|.
+name|getCookies
+argument_list|()
+return|;
 block|}
 comment|/**      * Parses multi-part requests in order to set the parameters.       */
 specifier|private
