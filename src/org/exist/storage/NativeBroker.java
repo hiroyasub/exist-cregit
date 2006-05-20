@@ -16142,9 +16142,7 @@ block|{
 name|flush
 argument_list|()
 expr_stmt|;
-name|cleanUpTempCollection
-argument_list|()
-expr_stmt|;
+comment|//            cleanUpTempCollection();
 name|sync
 argument_list|(
 name|Sync
