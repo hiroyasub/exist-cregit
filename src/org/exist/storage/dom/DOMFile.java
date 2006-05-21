@@ -17397,6 +17397,24 @@ argument_list|,
 name|len
 argument_list|)
 decl_stmt|;
+name|long
+name|nextPage
+init|=
+operator|(
+name|len
+operator|==
+name|chunkSize
+operator|)
+condition|?
+name|next
+operator|.
+name|getPageNum
+argument_list|()
+else|:
+name|Page
+operator|.
+name|NO_PAGE
+decl_stmt|;
 name|page
 operator|.
 name|getPageHeader
@@ -17404,10 +17422,7 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-name|next
-operator|.
-name|getPageNum
-argument_list|()
+name|nextPage
 argument_list|)
 expr_stmt|;
 comment|// TODO DWES ; this seem to be rightm but where to put
@@ -17434,10 +17449,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|next
-operator|.
-name|getPageNum
-argument_list|()
+name|nextPage
 argument_list|,
 name|value
 argument_list|)
@@ -17467,18 +17479,7 @@ comment|//                                    transaction, page.getPageNum(),
 comment|//                                    remaining> 0 ? next.getPageNum() : Page.NO_PAGE, value);
 comment|//                            writeToLog(loggable, page);
 comment|//                        }
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|setNextPage
-argument_list|(
-name|Page
-operator|.
-name|NO_PAGE
-argument_list|)
-expr_stmt|;
+comment|//                        page.getPageHeader().setNextPage(Page.NO_PAGE);
 block|}
 catch|catch
 parameter_list|(
