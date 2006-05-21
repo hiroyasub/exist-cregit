@@ -17362,23 +17362,23 @@ index|]
 decl_stmt|;
 name|int
 name|len
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|len
-operator|=
+init|=
 name|is
 operator|.
 name|read
 argument_list|(
 name|buf
 argument_list|)
-operator|)
-operator|>
-literal|0
+decl_stmt|;
+while|while
+condition|(
+name|len
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
+comment|// len 0=<n=<chunkSize
 name|next
 operator|=
 name|createNewPage
@@ -17398,7 +17398,7 @@ name|len
 argument_list|)
 decl_stmt|;
 name|long
-name|nextPage
+name|nextPageNum
 init|=
 operator|(
 name|len
@@ -17422,11 +17422,9 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-name|nextPage
+name|nextPageNum
 argument_list|)
 expr_stmt|;
-comment|// TODO DWES ; this seem to be rightm but where to put
-comment|// Page.NO_PAGE ?
 if|if
 condition|(
 name|isTransactional
@@ -17449,7 +17447,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|nextPage
+name|nextPageNum
 argument_list|,
 name|value
 argument_list|)
@@ -17472,14 +17470,16 @@ expr_stmt|;
 name|pageCount
 operator|++
 expr_stmt|;
+name|len
+operator|=
+name|is
+operator|.
+name|read
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
 block|}
-comment|//                        if (isTransactional&& transaction != null) {
-comment|//                            Loggable loggable = new WriteOverflowPageLoggable(
-comment|//                                    transaction, page.getPageNum(),
-comment|//                                    remaining> 0 ? next.getPageNum() : Page.NO_PAGE, value);
-comment|//                            writeToLog(loggable, page);
-comment|//                        }
-comment|//                        page.getPageHeader().setNextPage(Page.NO_PAGE);
 block|}
 catch|catch
 parameter_list|(
