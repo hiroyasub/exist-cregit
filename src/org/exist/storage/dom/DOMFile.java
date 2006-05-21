@@ -17391,6 +17391,10 @@ operator|new
 name|Value
 argument_list|(
 name|buf
+argument_list|,
+literal|0
+argument_list|,
+name|len
 argument_list|)
 decl_stmt|;
 name|page
