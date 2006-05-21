@@ -17349,7 +17349,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// Transfer bytes from in to out
+comment|// Transfer bytes from inputstream to db
 name|byte
 index|[]
 name|buf
