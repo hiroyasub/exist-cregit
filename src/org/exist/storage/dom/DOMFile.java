@@ -17410,13 +17410,46 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// What does this?
-comment|//                        if (isTransactional&& transaction != null) {
-comment|//                            Loggable loggable = new WriteOverflowPageLoggable(
-comment|//                                    transaction, page.getPageNum(),
-comment|//                                    remaining> 0 ? next.getPageNum() : Page.NO_PAGE, value);
-comment|//                            writeToLog(loggable, page);
-comment|//                        }
+comment|// TODO DWES ; this seem to be rightm but where to put
+comment|// Page.NO_PAGE ?
+if|if
+condition|(
+name|isTransactional
+operator|&&
+name|transaction
+operator|!=
+literal|null
+condition|)
+block|{
+name|Loggable
+name|loggable
+init|=
+operator|new
+name|WriteOverflowPageLoggable
+argument_list|(
+name|transaction
+argument_list|,
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|,
+name|next
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|,
+name|value
+argument_list|)
+decl_stmt|;
+name|writeToLog
+argument_list|(
+name|loggable
+argument_list|,
+name|page
+argument_list|)
+expr_stmt|;
+block|}
 name|writeValue
 argument_list|(
 name|page
@@ -17428,6 +17461,12 @@ name|pageCount
 operator|++
 expr_stmt|;
 block|}
+comment|//                        if (isTransactional&& transaction != null) {
+comment|//                            Loggable loggable = new WriteOverflowPageLoggable(
+comment|//                                    transaction, page.getPageNum(),
+comment|//                                    remaining> 0 ? next.getPageNum() : Page.NO_PAGE, value);
+comment|//                            writeToLog(loggable, page);
+comment|//                        }
 name|page
 operator|.
 name|getPageHeader
