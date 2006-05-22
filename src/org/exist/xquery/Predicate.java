@@ -334,6 +334,13 @@ name|IN_WHERE_CLAUSE
 argument_list|)
 expr_stmt|;
 comment|// remove where clause flag
+name|contextInfo
+operator|.
+name|removeFlag
+argument_list|(
+name|DOT_TEST
+argument_list|)
+expr_stmt|;
 name|outerContextId
 operator|=
 name|contextInfo
