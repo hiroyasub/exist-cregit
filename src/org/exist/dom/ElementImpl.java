@@ -4425,6 +4425,15 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//How could this be possible ?
+comment|//http://sourceforge.net/tracker/index.php?func=detail&aid=1492390&group_id=17691&atid=117691
+if|if
+condition|(
+name|child
+operator|==
+literal|null
+condition|)
+break|break;
 if|if
 condition|(
 name|child
