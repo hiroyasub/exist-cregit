@@ -5497,26 +5497,21 @@ specifier|public
 name|String
 name|getNodeValue
 parameter_list|()
-throws|throws
-name|DOMException
+comment|/*throws DOMException*/
 block|{
-throw|throw
-operator|new
-name|DOMException
+comment|//TODO : parametrize the boolea value ?
+return|return
+name|getBroker
+argument_list|()
+operator|.
+name|getNodeValue
 argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
+name|this
 argument_list|,
-literal|"getNodeValue() not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+literal|false
 argument_list|)
-throw|;
+return|;
+comment|//throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "getNodeValue() not implemented on class " + getClass().getName());
 block|}
 comment|/**      * @see org.w3c.dom.Element#removeAttribute(java.lang.String)      */
 specifier|public
