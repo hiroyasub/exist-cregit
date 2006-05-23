@@ -672,36 +672,15 @@ operator|.
 name|getLastNode
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-literal|0
-operator|<
-name|lastNode
-operator|&&
-name|doc
-operator|.
-name|nodeKind
-index|[
-name|lastNode
-index|]
-operator|!=
-name|Node
-operator|.
-name|ELEMENT_NODE
-condition|)
-block|{
-name|lastNode
-operator|=
-name|characters
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|lastNode
-operator|=
+comment|//if(0< lastNode&& doc.nodeKind[lastNode] != Node.ELEMENT_NODE) {
+comment|//Definitely wrong !
+comment|//lastNode = characters(value);
+comment|//} else {
+comment|//lastNode = doc.addAttribute(lastNode, qname, value);
+comment|//}
+name|int
+name|nodeNr
+init|=
 name|doc
 operator|.
 name|addAttribute
@@ -712,10 +691,12 @@ name|qname
 argument_list|,
 name|value
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
+comment|//TODO :
+comment|//1) call linkNode(nodeNr); ?
+comment|//2) is there a relationship between lastNode and nodeNr ?
 return|return
-name|lastNode
+name|nodeNr
 return|;
 block|}
 comment|/** 	 * Create a new text node. 	 *  	 * @return the node number of the created node 	 */
