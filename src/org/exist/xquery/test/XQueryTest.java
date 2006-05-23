@@ -569,81 +569,15 @@ name|bowling
 init|=
 literal|"<series>"
 operator|+
-literal|"<game num='1'>"
+literal|"<game>"
 operator|+
-literal|"<frame num='1'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='6'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='2'>"
-operator|+
-literal|"<throw num='1' pins='10'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='3'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='5'/>"
-operator|+
-literal|"</frame>"
+literal|"<frame/>"
 operator|+
 literal|"</game>"
 operator|+
-literal|"<game num='2'>"
+literal|"<game>"
 operator|+
-literal|"<frame num='1'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='6'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='2'>"
-operator|+
-literal|"<throw num='1' pins='10'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='3'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='5'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"</game>"
-operator|+
-literal|"<game num='3'>"
-operator|+
-literal|"<frame num='1'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='6'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='2'>"
-operator|+
-literal|"<throw num='1' pins='10'/>"
-operator|+
-literal|"</frame>"
-operator|+
-literal|"<frame num='3'>"
-operator|+
-literal|"<throw num='1' pins='4'/>"
-operator|+
-literal|"<throw num='1' pins='5'/>"
-operator|+
-literal|"</frame>"
+literal|"<frame/>"
 operator|+
 literal|"</game>"
 operator|+
@@ -8570,11 +8504,11 @@ literal|"update insert\n"
 operator|+
 literal|"<stats>\n"
 operator|+
-literal|"<strikes>{count($game/frame/throw[@num=1][@pins=10])}</strikes>\n"
+literal|"<strikes>4</strikes>\n"
 operator|+
 literal|"<spares>\n"
 operator|+
-literal|"<attempted>{count($game/frame/throw[@num=1][@pins!=10])}</attempted>\n"
+literal|"<attempted>4</attempted>\n"
 operator|+
 literal|"</spares>\n"
 operator|+
@@ -8588,13 +8522,9 @@ literal|"declare function local:update-frames($game) {\n"
 operator|+
 comment|// Uncomment this, and it works:
 comment|//"for $frame in $game/frame return update insert<processed/> into $frame,\n" +
-literal|"for $f in (1 to 3)\n"
+literal|"for $frame in $game/frame\n"
 operator|+
-literal|"let $frame := $game/frame[@num=$f]\n"
-operator|+
-literal|"let $points := sum($frame/throw/@pins)\n"
-operator|+
-literal|"return update insert attribute points {$points} into $frame\n"
+literal|"return update insert attribute points {4} into $frame\n"
 operator|+
 literal|"};\n"
 operator|+
