@@ -762,7 +762,6 @@ block|}
 block|}
 else|else
 block|{
-comment|// contentData = broker.getBinaryResource((BinaryDocument)resource);
 name|broker
 operator|.
 name|readBinaryResource

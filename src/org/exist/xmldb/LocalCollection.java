@@ -2897,7 +2897,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|// Only if Locktoken has Null resource flag set
+comment|// Include only when (1) locktoken is present or (2)
+comment|// locktoken indicates that it is not a null resource
 name|LockToken
 name|lock
 init|=
@@ -2915,14 +2916,13 @@ name|lock
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
 name|lock
 operator|.
-name|getResourceType
+name|isNullResource
 argument_list|()
-operator|!=
-name|LockToken
-operator|.
-name|RESOURCE_TYPE_NULL_RESOURCE
+operator|)
 condition|)
 block|{
 name|allresources
@@ -2937,6 +2937,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// Copy content of list into String array.
 name|int
 name|j
 init|=
