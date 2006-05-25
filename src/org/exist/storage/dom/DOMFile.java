@@ -1693,7 +1693,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param value 	 * @return 	 */
+comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param value     Binary resource as byte array 	 * @return 	 */
 specifier|public
 name|long
 name|addBinary
@@ -1747,7 +1747,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|// TODO DWES under construction
+comment|/**          * Store a raw binary resource into the file. The data will always be          * written into an overflow page.          *           * @param is   Binary resource as stream.          * @return          */
 specifier|public
 name|long
 name|addBinary
@@ -17308,7 +17308,7 @@ name|first
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO DWES under construction
+comment|// Write binary resource from inputstream
 specifier|public
 name|int
 name|write
@@ -17365,11 +17365,41 @@ argument_list|(
 name|buf
 argument_list|)
 decl_stmt|;
-name|Value
-name|value
-init|=
-literal|null
-decl_stmt|;
+comment|// Check if stream does contain any data
+if|if
+condition|(
+name|len
+operator|<
+literal|1
+condition|)
+block|{
+name|page
+operator|.
+name|setPageNum
+argument_list|(
+name|Page
+operator|.
+name|NO_PAGE
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|setNextPage
+argument_list|(
+name|Page
+operator|.
+name|NO_PAGE
+argument_list|)
+expr_stmt|;
+return|return
+operator|-
+literal|1
+return|;
+block|}
+comment|// Read remaining stream
 while|while
 condition|(
 name|len
@@ -17378,8 +17408,17 @@ operator|-
 literal|1
 condition|)
 block|{
+comment|// If there are bytes in stream, read
+if|if
+condition|(
+name|len
+operator|>
+literal|0
+condition|)
+block|{
+name|Value
 name|value
-operator|=
+init|=
 operator|new
 name|Value
 argument_list|(
@@ -17389,7 +17428,7 @@ literal|0
 argument_list|,
 name|len
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|len
@@ -17418,6 +17457,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// there are less then 'chuckSize'
 name|page
 operator|.
 name|getPageHeader
@@ -17431,6 +17471,16 @@ name|NO_PAGE
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If no data is in input stream left, don't write
+if|if
+condition|(
+name|isTransactional
+operator|&&
+name|transaction
+operator|!=
+literal|null
+condition|)
+block|{
 name|long
 name|nextPageNum
 init|=
@@ -17449,15 +17499,6 @@ name|Page
 operator|.
 name|NO_PAGE
 decl_stmt|;
-if|if
-condition|(
-name|isTransactional
-operator|&&
-name|transaction
-operator|!=
-literal|null
-condition|)
-block|{
 name|Loggable
 name|loggable
 init|=
@@ -17502,6 +17543,7 @@ name|next
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|len
 operator|=
 name|is
@@ -17512,6 +17554,7 @@ name|buf
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO what if remaining length=0?
 block|}
 catch|catch
 parameter_list|(
