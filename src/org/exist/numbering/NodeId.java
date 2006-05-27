@@ -77,6 +77,14 @@ name|IS_DESCENDANT
 init|=
 literal|2
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IS_SELF
+init|=
+literal|3
+decl_stmt|;
 comment|/**      * Returns a new NodeId representing the first child      * node of this node. The returned id can be used      * for creating new nodes. The actual id of the first      * node might be different, depending on the      * implementation.      *      * @return new child node id      */
 name|NodeId
 name|newChild
@@ -148,8 +156,9 @@ name|NodeId
 name|parent
 parameter_list|)
 function_decl|;
+comment|/**      * Computes the relationship of this node to the given potential      * ancestor node. The method returns an int constant indicating      * the relation. Possible relations are: {@link #IS_CHILD}, {@link #IS_DESCENDANT}      * or {@link #IS_SELF}. If the nodes are not in a ancestor-descendant relation,      * the method returns -1.      *       * @param ancestor the (potential) ancestor node to check against      * @return an int value indicating the relation      */
 name|int
-name|isDescendantOrChildOf
+name|computeRelation
 parameter_list|(
 name|NodeId
 name|ancestor
