@@ -14465,6 +14465,13 @@ name|boolean
 name|repairMode
 parameter_list|)
 block|{
+name|elementIndex
+operator|.
+name|setInUpdateMode
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|nodeProcessor
 operator|.
 name|reset
