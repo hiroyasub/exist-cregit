@@ -770,6 +770,30 @@ throw|;
 block|}
 if|if
 condition|(
+name|doc
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Document is a binary resource, not "
+operator|+
+literal|"an XML document. Please consider using the function util:binary-resource to "
+operator|+
+literal|"retrieve a reference to it."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|lockOnLoad
 condition|)
 block|{

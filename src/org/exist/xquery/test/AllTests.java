@@ -122,7 +122,15 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
-comment|//        suite.addTestSuite(XQueryUpdateTest.class);
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|XQueryUpdateTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|suite
 operator|.
 name|addTestSuite

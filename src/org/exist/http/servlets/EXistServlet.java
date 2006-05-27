@@ -303,6 +303,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|validation
+operator|.
+name|XmlLibraryChecker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -868,6 +880,109 @@ argument_list|,
 name|containerEncoding
 argument_list|)
 expr_stmt|;
+comment|// XML lib checks....
+if|if
+condition|(
+name|XmlLibraryChecker
+operator|.
+name|isXercesVersionOK
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Detected "
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XERCESVERSION
+operator|+
+literal|", OK."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"eXist requires '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XERCESVERSION
+operator|+
+literal|"' but detected '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|getXercesVersion
+argument_list|()
+operator|+
+literal|"'. Please add the correct version to the "
+operator|+
+literal|"class-path, e.g. in the 'endorsed' folder of "
+operator|+
+literal|"the servlet container or in the 'endorsed' folder "
+operator|+
+literal|"of the JRE."
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|XmlLibraryChecker
+operator|.
+name|isXalanVersionOK
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Detected "
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XALANVERSION
+operator|+
+literal|", OK."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"eXist requires '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|XALANVERSION
+operator|+
+literal|"' but detected '"
+operator|+
+name|XmlLibraryChecker
+operator|.
+name|getXalanVersion
+argument_list|()
+operator|+
+literal|"'. Please add the correct version to the "
+operator|+
+literal|"class-path, e.g. in the 'endorsed' folder of "
+operator|+
+literal|"the servlet container or in the 'endorsed' folder "
+operator|+
+literal|"of the JRE."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected

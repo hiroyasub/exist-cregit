@@ -205,6 +205,9 @@ name|collection
 operator|.
 name|getURI
 argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|collection
 operator|.
@@ -250,6 +253,9 @@ operator|.
 name|get
 argument_list|(
 name|name
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -469,6 +475,9 @@ name|old
 operator|.
 name|getURI
 argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|old
@@ -560,6 +569,9 @@ argument_list|(
 name|col
 operator|.
 name|getURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -717,6 +729,9 @@ index|]
 operator|)
 operator|.
 name|getURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|,
 name|items

@@ -89,6 +89,15 @@ name|SESSION_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/session"
 decl_stmt|;
+comment|/** 	 * Namespace for the built-in system module. 	 */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SYSTEM_FUNCTION_NS
+init|=
+literal|"http://exist-db.org/xquery/system"
+decl_stmt|;
 comment|/** 	 * Namespace for the built-in transform module. 	 */
 specifier|public
 specifier|final

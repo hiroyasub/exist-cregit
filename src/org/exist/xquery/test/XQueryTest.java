@@ -316,6 +316,14 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|BOWLING_XML
+init|=
+literal|"bowling.xml"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|MODULE1_NAME
 init|=
 literal|"module1.xqm"
@@ -552,6 +560,28 @@ operator|+
 literal|"</rdf:Description> \n"
 operator|+
 literal|"</rdf:RDF>"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|bowling
+init|=
+literal|"<series>"
+operator|+
+literal|"<game>"
+operator|+
+literal|"<frame/>"
+operator|+
+literal|"</game>"
+operator|+
+literal|"<game>"
+operator|+
+literal|"<frame/>"
+operator|+
+literal|"</game>"
+operator|+
+literal|"</series>"
 decl_stmt|;
 specifier|private
 name|Collection
@@ -8460,6 +8490,130 @@ operator|.
 name|println
 argument_list|(
 literal|"testXUpdateWithAdvancentTextNodes(): XMLDBException: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** 	 * Fails with NPE 	 * 	 */
+specifier|public
+name|void
+name|testXUpdateAttributesAndElements
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+name|String
+name|query
+decl_stmt|;
+name|query
+operator|=
+literal|"declare function local:update-game($game) {\n"
+operator|+
+literal|"local:update-frames($game),\n"
+operator|+
+literal|"update insert\n"
+operator|+
+literal|"<stats>\n"
+operator|+
+literal|"<strikes>4</strikes>\n"
+operator|+
+literal|"<spares>\n"
+operator|+
+literal|"<attempted>4</attempted>\n"
+operator|+
+literal|"</spares>\n"
+operator|+
+literal|"</stats>\n"
+operator|+
+literal|"into $game\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"declare function local:update-frames($game) {\n"
+operator|+
+comment|// Uncomment this, and it works:
+comment|//"for $frame in $game/frame return update insert<processed/> into $frame,\n" +
+literal|"for $frame in $game/frame\n"
+operator|+
+literal|"return update insert attribute points {4} into $frame\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"let $series := document('bowling.xml')/series\n"
+operator|+
+literal|"let $nul1 := for $game in $series/game return local:update-game($game)\n"
+operator|+
+literal|"return $series/game/stats\n"
+expr_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+name|BOWLING_XML
+argument_list|,
+name|bowling
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testXUpdateAttributesAndElements 1: ========"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|3
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testXUpdateAttributesAndElements(): XMLDBException: "
 operator|+
 name|e
 argument_list|)

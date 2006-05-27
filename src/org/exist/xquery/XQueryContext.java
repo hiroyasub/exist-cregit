@@ -6357,7 +6357,9 @@ name|i
 operator|++
 control|)
 block|{
-operator|(
+name|UpdateListener
+name|listener
+init|=
 operator|(
 name|UpdateListener
 operator|)
@@ -6367,7 +6369,14 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|)
+decl_stmt|;
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
+name|listener
 operator|.
 name|documentUpdated
 argument_list|(

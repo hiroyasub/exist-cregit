@@ -12213,7 +12213,7 @@ name|offset
 expr_stmt|;
 name|markedPage
 operator|=
-name|nextPage
+name|first
 operator|.
 name|getPageNum
 argument_list|()
@@ -13415,6 +13415,19 @@ operator|.
 name|getPageNum
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Marked: "
+operator|+
+name|markedPage
+operator|+
+literal|":"
+operator|+
+name|markedOffset
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -13427,12 +13440,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"REWIND"
-argument_list|)
-expr_stmt|;
-name|offset
-operator|=
+literal|"Rewind: "
+operator|+
+name|markedPage
+operator|+
+literal|":"
+operator|+
 name|markedOffset
+argument_list|)
 expr_stmt|;
 try|try
 block|{
@@ -13447,14 +13462,9 @@ argument_list|)
 expr_stmt|;
 name|nextPage
 operator|=
-operator|(
-name|SinglePage
-operator|)
-name|getDataPage
+name|getSinglePage
 argument_list|(
 name|markedPage
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|pageLen
@@ -13468,7 +13478,7 @@ argument_list|()
 expr_stmt|;
 name|offset
 operator|=
-literal|0
+name|markedOffset
 expr_stmt|;
 name|dataCache
 operator|.

@@ -29,6 +29,50 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -69,9 +113,45 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|DBSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|source
 operator|.
 name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|SourceFactory
 import|;
 end_import
 
@@ -96,6 +176,32 @@ operator|.
 name|storage
 operator|.
 name|XQueryPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -221,6 +327,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -250,20 +370,6 @@ operator|.
 name|value
 operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
 import|;
 end_import
 
@@ -355,6 +461,18 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
 operator|+
+literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the (absolute) URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+operator|+
 literal|"The argument expression will inherit the current execution context, i.e. all "
 operator|+
 literal|"namespace declarations and variable declarations are visible from within the "
@@ -370,7 +488,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -410,6 +528,18 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
 operator|+
+literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+operator|+
 literal|"The argument expression will inherit the current execution context, i.e. all "
 operator|+
 literal|"namespace declarations and variable declarations are visible from within the "
@@ -425,7 +555,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -477,6 +607,18 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
 operator|+
+literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+operator|+
 literal|"A new execution context will be created before the expression is evaluated. Static "
 operator|+
 literal|"context properties can be set via the XML fragment in the second parameter. The "
@@ -494,7 +636,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -558,7 +700,21 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
 operator|+
-literal|"the current instance of the query engine. The evaluation context is taken from "
+literal|"the current instance of the query engine. "
+operator|+
+literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+operator|+
+literal|"The evaluation context is taken from "
 operator|+
 literal|"argument $a."
 argument_list|,
@@ -583,7 +739,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -623,7 +779,21 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
 operator|+
-literal|"the current instance of the query engine. The evaluation context is taken from "
+literal|"the current instance of the query engine. "
+operator|+
+literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+operator|+
+literal|"The evaluation context is taken from "
 operator|+
 literal|"argument $a. The third argument, $c, specifies if the compiled query expression "
 operator|+
@@ -650,7 +820,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -747,22 +917,57 @@ index|]
 expr_stmt|;
 block|}
 comment|// get the query expression
-name|String
+name|Item
 name|expr
 init|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
 name|args
 index|[
 name|argCount
 operator|++
 index|]
 operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|Source
+name|querySource
+decl_stmt|;
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|expr
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ANY_URI
+argument_list|)
+condition|)
+block|{
+name|querySource
+operator|=
+name|loadQueryFromURI
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|String
+name|queryStr
+init|=
+name|expr
+operator|.
 name|getStringValue
 argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -770,7 +975,7 @@ literal|""
 operator|.
 name|equals
 argument_list|(
-name|expr
+name|queryStr
 operator|.
 name|trim
 argument_list|()
@@ -781,6 +986,18 @@ operator|new
 name|EmptySequence
 argument_list|()
 return|;
+name|querySource
+operator|=
+operator|new
+name|StringSource
+argument_list|(
+name|expr
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|NodeValue
 name|contextInit
 init|=
@@ -898,15 +1115,6 @@ name|sequence
 init|=
 literal|null
 decl_stmt|;
-name|Source
-name|source
-init|=
-operator|new
-name|StringSource
-argument_list|(
-name|expr
-argument_list|)
-decl_stmt|;
 name|XQuery
 name|xquery
 init|=
@@ -940,7 +1148,7 @@ operator|.
 name|getBroker
 argument_list|()
 argument_list|,
-name|source
+name|querySource
 argument_list|)
 else|:
 literal|null
@@ -1002,7 +1210,7 @@ name|compile
 argument_list|(
 name|innerContext
 argument_list|,
-name|source
+name|querySource
 argument_list|)
 expr_stmt|;
 block|}
@@ -1082,7 +1290,7 @@ name|pool
 operator|.
 name|returnCompiledXQuery
 argument_list|(
-name|source
+name|querySource
 argument_list|,
 name|compiled
 argument_list|)
@@ -1131,6 +1339,344 @@ name|sequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * @param expr      * @param querySource      * @return      * @throws XPathException      * @throws NullPointerException      * @throws IllegalArgumentException      */
+specifier|private
+name|Source
+name|loadQueryFromURI
+parameter_list|(
+name|Item
+name|expr
+parameter_list|)
+throws|throws
+name|XPathException
+throws|,
+name|NullPointerException
+throws|,
+name|IllegalArgumentException
+block|{
+name|String
+name|location
+init|=
+name|expr
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+name|Source
+name|querySource
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|location
+operator|.
+name|indexOf
+argument_list|(
+literal|':'
+argument_list|)
+operator|<
+literal|0
+operator|||
+name|location
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|XMLDB_URI_PREFIX
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+name|XmldbURI
+name|locationUri
+init|=
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
+name|location
+argument_list|)
+decl_stmt|;
+comment|// If location is relative (does not contain any / and does
+comment|// not start with . or .. then the path of the module need to
+comment|// be added.
+if|if
+condition|(
+name|location
+operator|.
+name|indexOf
+argument_list|(
+literal|"/"
+argument_list|)
+operator|<
+literal|0
+operator|||
+name|location
+operator|.
+name|startsWith
+argument_list|(
+literal|"."
+argument_list|)
+condition|)
+block|{
+name|XmldbURI
+name|moduleLoadPathUri
+init|=
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
+name|context
+operator|.
+name|getModuleLoadPath
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|locationUri
+operator|=
+name|moduleLoadPathUri
+operator|.
+name|resolveCollectionPath
+argument_list|(
+name|locationUri
+argument_list|)
+expr_stmt|;
+block|}
+name|DocumentImpl
+name|sourceDoc
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|sourceDoc
+operator|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getXMLResource
+argument_list|(
+name|locationUri
+operator|.
+name|toCollectionPathURI
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|sourceDoc
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"source for module "
+operator|+
+name|location
+operator|+
+literal|" not found in database"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|sourceDoc
+operator|.
+name|getResourceType
+argument_list|()
+operator|!=
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+operator|||
+operator|!
+name|sourceDoc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"application/xquery"
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"source for module "
+operator|+
+name|location
+operator|+
+literal|" is not an XQuery or "
+operator|+
+literal|"declares a wrong mime-type"
+argument_list|)
+throw|;
+name|querySource
+operator|=
+operator|new
+name|DBSource
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|BinaryDocument
+operator|)
+name|sourceDoc
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"permission denied to read module source from "
+operator|+
+name|location
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|sourceDoc
+operator|!=
+literal|null
+condition|)
+name|sourceDoc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+comment|// No. Load from file or URL
+try|try
+block|{
+comment|//TODO: use URIs to ensure proper resolution of relative locations
+name|querySource
+operator|=
+name|SourceFactory
+operator|.
+name|getSource
+argument_list|(
+name|context
+operator|.
+name|getModuleLoadPath
+argument_list|()
+argument_list|,
+name|location
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|MalformedURLException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"source location for query at "
+operator|+
+name|location
+operator|+
+literal|" should be a valid URL: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"source for query at "
+operator|+
+name|location
+operator|+
+literal|" not found: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+return|return
+name|querySource
+return|;
 block|}
 comment|/** 	 * Read to optional static-context fragment to initialize 	 * the context. 	 *  	 * @param root 	 * @param innerContext 	 * @throws XPathException 	 */
 specifier|private
