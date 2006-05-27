@@ -1743,6 +1743,7 @@ name|prevNode
 operator|==
 literal|null
 condition|)
+block|{
 name|childId
 operator|=
 name|getNodeId
@@ -1751,6 +1752,7 @@ operator|.
 name|newChild
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
