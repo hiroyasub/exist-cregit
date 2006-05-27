@@ -2823,6 +2823,10 @@ name|void
 name|tearDown
 parameter_list|()
 block|{
+name|pool
+operator|=
+literal|null
+expr_stmt|;
 try|try
 block|{
 name|BrokerPool
