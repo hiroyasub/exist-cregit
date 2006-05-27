@@ -3803,6 +3803,14 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|pool
+operator|=
+literal|null
+expr_stmt|;
+name|root
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 end_class
