@@ -666,16 +666,7 @@ literal|"!"
 argument_list|)
 throw|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|current
-operator|.
-name|debugContext
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//				LOG.debug(current.debugContext());
 while|while
 condition|(
 name|context

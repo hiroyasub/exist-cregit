@@ -751,19 +751,14 @@ literal|"};\n"
 operator|+
 literal|"\n"
 decl_stmt|;
-name|XQueryService
+name|XPathQueryService
 name|service
 init|=
-operator|(
-name|XQueryService
-operator|)
-name|testCollection
-operator|.
-name|getService
+name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"XQueryService"
+literal|"items.xml"
 argument_list|,
-literal|"1.0"
+literal|"src/org/exist/xquery/test/items.xml"
 argument_list|)
 decl_stmt|;
 name|String
@@ -843,32 +838,144 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//    public void testUpdates() throws Exception {
-comment|//        String append =
-comment|//            "<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">" +
-comment|//            "<xu:append select=\"/items\">" +
-comment|//            "<item id=\"i100\">" +
-comment|//            "<itemno>10</itemno>" +
-comment|//            "<name>New Item</name>" +
-comment|//            "<price>55.50</price>" +
-comment|//            "</item>" +
-comment|//            "</xu:append>" +
-comment|//            "</xu:modifications>";
-comment|//        String remove =
-comment|//            "<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">" +
-comment|//            "<xu:remove select=\"/items/item[itemno=7]\"/>" +
-comment|//            "</xu:modifications>";
-comment|//
-comment|//        XPathQueryService query = (XPathQueryService) testCollection.getService("XPathQueryService", "1.0");
-comment|//        XUpdateQueryService update = (XUpdateQueryService) testCollection.getService("XUpdateQueryService", "1.0");
-comment|//        long mods = update.updateResource("items.xml", append);
-comment|//		assertEquals(mods, 1);
-comment|//        queryResource(query, "items.xml", "//item[price = 55.50]", 1);
-comment|//        queryResource(query, "items.xml", "//item[@id = 'i100']",1);
-comment|//        mods = update.updateResource("items.xml", remove);
-comment|//		assertEquals(mods, 1);
-comment|//        queryResource(query, "items.xml", "//item[itemno = 7]", 0);
-comment|//    }
+specifier|public
+name|void
+name|testUpdates
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|append
+init|=
+literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+operator|+
+literal|"<xu:append select=\"/items\">"
+operator|+
+literal|"<item id=\"i100\">"
+operator|+
+literal|"<itemno>10</itemno>"
+operator|+
+literal|"<name>New Item</name>"
+operator|+
+literal|"<price>55.50</price>"
+operator|+
+literal|"</item>"
+operator|+
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+name|String
+name|remove
+init|=
+literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+operator|+
+literal|"<xu:remove select=\"/items/item[itemno=7]\"/>"
+operator|+
+literal|"</xu:modifications>"
+decl_stmt|;
+name|XPathQueryService
+name|query
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|XUpdateQueryService
+name|update
+init|=
+operator|(
+name|XUpdateQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XUpdateQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|long
+name|mods
+init|=
+name|update
+operator|.
+name|updateResource
+argument_list|(
+literal|"items.xml"
+argument_list|,
+name|append
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|mods
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[price = 55.50]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[@id = 'i100']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|mods
+operator|=
+name|update
+operator|.
+name|updateResource
+argument_list|(
+literal|"items.xml"
+argument_list|,
+name|remove
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|mods
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|query
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[itemno = 7]"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 specifier|protected
 name|ResourceSet
 name|queryResource
