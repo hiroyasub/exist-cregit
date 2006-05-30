@@ -207,6 +207,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|http
+operator|.
+name|SOAPServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -437,7 +449,11 @@ name|GUEST_USER
 decl_stmt|;
 specifier|private
 name|RESTServer
-name|server
+name|srvREST
+decl_stmt|;
+specifier|private
+name|SOAPServer
+name|srvSOAP
 decl_stmt|;
 specifier|private
 name|Authenticator
@@ -830,7 +846,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|// Instantiate REST server
+comment|//get form and container encoding's
 name|formEncoding
 operator|=
 name|config
@@ -870,10 +886,22 @@ name|containerEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|server
+comment|//Instantiate REST Server
+name|srvREST
 operator|=
 operator|new
 name|RESTServer
+argument_list|(
+name|formEncoding
+argument_list|,
+name|containerEncoding
+argument_list|)
+expr_stmt|;
+comment|//Instantiate SOAP Server
+name|srvSOAP
+operator|=
+operator|new
+name|SOAPServer
 argument_list|(
 name|formEncoding
 argument_list|,
@@ -936,7 +964,7 @@ if|if
 condition|(
 name|XmlLibraryChecker
 operator|.
-name|isXalanVersionOK
+name|isSaxonVersionOK
 argument_list|()
 condition|)
 block|{
@@ -948,7 +976,7 @@ literal|"Detected "
 operator|+
 name|XmlLibraryChecker
 operator|.
-name|XALANVERSION
+name|SAXONVERSION
 operator|+
 literal|", OK."
 argument_list|)
@@ -964,13 +992,13 @@ literal|"eXist requires '"
 operator|+
 name|XmlLibraryChecker
 operator|.
-name|XALANVERSION
+name|SAXONVERSION
 operator|+
 literal|"' but detected '"
 operator|+
 name|XmlLibraryChecker
 operator|.
-name|getXalanVersion
+name|getSaxonVersion
 argument_list|()
 operator|+
 literal|"'. Please add the correct version to the "
@@ -1178,7 +1206,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|server
+name|srvREST
 operator|.
 name|doPut
 argument_list|(
@@ -1428,7 +1456,24 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|server
+comment|//Route the request
+if|if
+condition|(
+name|path
+operator|.
+name|indexOf
+argument_list|(
+name|SOAPServer
+operator|.
+name|WEBSERVICE_MODULE_EXTENSION
+argument_list|)
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+comment|//SOAP Server
+name|srvSOAP
 operator|.
 name|doGet
 argument_list|(
@@ -1441,6 +1486,24 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|//REST Server
+name|srvREST
+operator|.
+name|doGet
+argument_list|(
+name|broker
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|,
+name|path
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1636,7 +1699,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|server
+name|srvREST
 operator|.
 name|doHead
 argument_list|(
@@ -1837,7 +1900,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|server
+name|srvREST
 operator|.
 name|doDelete
 argument_list|(
@@ -2098,7 +2161,24 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|server
+comment|//Route the request
+if|if
+condition|(
+name|path
+operator|.
+name|indexOf
+argument_list|(
+name|SOAPServer
+operator|.
+name|WEBSERVICE_MODULE_EXTENSION
+argument_list|)
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+comment|//SOAP Server
+name|srvSOAP
 operator|.
 name|doPost
 argument_list|(
@@ -2111,6 +2191,24 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|//REST Server
+name|srvREST
+operator|.
+name|doPost
+argument_list|(
+name|broker
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|,
+name|path
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
