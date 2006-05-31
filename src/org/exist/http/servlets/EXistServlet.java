@@ -960,57 +960,17 @@ literal|"of the JRE."
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|XmlLibraryChecker
-operator|.
-name|isSaxonVersionOK
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Detected "
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|SAXONVERSION
-operator|+
-literal|", OK."
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"eXist requires '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|SAXONVERSION
-operator|+
-literal|"' but detected '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|getSaxonVersion
-argument_list|()
-operator|+
-literal|"'. Please add the correct version to the "
-operator|+
-literal|"class-path, e.g. in the 'endorsed' folder of "
-operator|+
-literal|"the servlet container or in the 'endorsed' folder "
-operator|+
-literal|"of the JRE."
-argument_list|)
-expr_stmt|;
-block|}
+comment|//                if( XmlLibraryChecker.isSaxonVersionOK() ){
+comment|//                    LOG.info("Detected "+ XmlLibraryChecker.SAXONVERSION+ ", OK.");
+comment|//
+comment|//                } else {
+comment|//                    LOG.warn("eXist requires '"+ XmlLibraryChecker.SAXONVERSION
+comment|//                            + "' but detected '"+ XmlLibraryChecker.getSaxonVersion()
+comment|//                            +"'. Please add the correct version to the "
+comment|//                            +"class-path, e.g. in the 'endorsed' folder of "
+comment|//                            +"the servlet container or in the 'endorsed' folder "
+comment|//                            +"of the JRE.");
+comment|//                }
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
