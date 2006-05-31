@@ -5559,6 +5559,10 @@ argument_list|)
 argument_list|,
 name|mimeType
 argument_list|,
+name|data
+operator|.
+name|length
+argument_list|,
 name|created
 argument_list|,
 name|modified
@@ -5584,6 +5588,9 @@ name|is
 parameter_list|,
 name|String
 name|mimeType
+parameter_list|,
+name|int
+name|size
 parameter_list|)
 throws|throws
 name|EXistException
@@ -5606,6 +5613,8 @@ argument_list|,
 name|is
 argument_list|,
 name|mimeType
+argument_list|,
+name|size
 argument_list|,
 literal|null
 argument_list|,
@@ -5632,6 +5641,9 @@ name|is
 parameter_list|,
 name|String
 name|mimeType
+parameter_list|,
+name|int
+name|size
 parameter_list|,
 name|Date
 name|created
@@ -5907,6 +5919,13 @@ name|modified
 operator|.
 name|getTime
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|blob
+operator|.
+name|setContentLength
+argument_list|(
+name|size
 argument_list|)
 expr_stmt|;
 name|broker
