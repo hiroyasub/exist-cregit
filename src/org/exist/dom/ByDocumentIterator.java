@@ -32,6 +32,11 @@ name|NodeProxy
 name|nextNode
 parameter_list|()
 function_decl|;
+specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

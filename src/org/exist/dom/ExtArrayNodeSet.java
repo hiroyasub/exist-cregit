@@ -4256,6 +4256,15 @@ return|return
 name|n
 return|;
 block|}
+specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+return|return
+name|next
+return|;
+block|}
 block|}
 block|}
 end_class
