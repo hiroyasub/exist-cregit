@@ -564,21 +564,15 @@ block|}
 specifier|public
 name|DLNBase
 parameter_list|(
+name|short
+name|bitCnt
+parameter_list|,
 name|VariableByteInput
 name|is
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|int
-name|bitCnt
-init|=
-name|is
-operator|.
-name|readShort
-argument_list|()
-decl_stmt|;
 name|int
 name|blen
 init|=
@@ -833,6 +827,9 @@ argument_list|(
 name|units
 argument_list|)
 decl_stmt|;
+comment|//            System.err.println("startBit: " + startBit + "; bitIndex: " + bitIndex +
+comment|//                    "; units: " + units + ": numBits: " + numBits + " " + toBitString() +
+comment|//                    "; bits: " + bits.length);
 name|int
 name|id
 init|=

@@ -276,6 +276,9 @@ comment|/**      * Reads a DLN from the given {@link VariableByteInput} stream. 
 specifier|public
 name|DLN
 parameter_list|(
+name|short
+name|bitCnt
+parameter_list|,
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -284,6 +287,8 @@ name|IOException
 block|{
 name|super
 argument_list|(
+name|bitCnt
+argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
@@ -1239,6 +1244,31 @@ name|isDescendantOf
 argument_list|(
 name|id0
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Doc node: "
+operator|+
+name|DOCUMENT_NODE
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" - "
+operator|+
+operator|(
+operator|(
+name|DLN
+operator|)
+name|DOCUMENT_NODE
+operator|)
+operator|.
+name|bitIndex
 argument_list|)
 expr_stmt|;
 block|}

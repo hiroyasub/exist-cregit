@@ -29,6 +29,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|VariableByteOutputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -111,6 +125,13 @@ comment|/**      * Returns a NodeId representing the document node of a document
 name|NodeId
 name|documentNodeId
 parameter_list|()
+function_decl|;
+name|void
+name|writeEndOfDocument
+parameter_list|(
+name|VariableByteOutputStream
+name|os
+parameter_list|)
 function_decl|;
 block|}
 end_interface
