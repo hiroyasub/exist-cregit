@@ -67,18 +67,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -92,18 +80,6 @@ operator|.
 name|dom
 operator|.
 name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeSetHelper
 import|;
 end_import
 
@@ -2914,9 +2890,6 @@ continue|continue;
 name|StoredNode
 name|parentNode
 init|=
-operator|(
-name|StoredNode
-operator|)
 name|context
 operator|.
 name|getBroker
