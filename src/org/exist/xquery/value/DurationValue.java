@@ -1146,7 +1146,7 @@ name|YEARS
 argument_list|)
 operator|!=
 literal|null
-operator|&&
+operator|||
 name|duration
 operator|.
 name|getField
