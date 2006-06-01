@@ -671,7 +671,12 @@ operator|.
 name|DAY_TIME_DURATION
 case|:
 return|return
-name|this
+operator|new
+name|DayTimeDurationValue
+argument_list|(
+name|getCanonicalDuration
+argument_list|()
+argument_list|)
 return|;
 case|case
 name|Type
@@ -682,7 +687,10 @@ return|return
 operator|new
 name|StringValue
 argument_list|(
-name|getStringValue
+name|getCanonicalDuration
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 return|;
@@ -791,7 +799,10 @@ return|return
 operator|new
 name|UntypedAtomicValue
 argument_list|(
-name|getStringValue
+name|getCanonicalDuration
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 return|;
