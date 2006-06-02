@@ -206,7 +206,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|toString
+name|getRawCollectionPath
 argument_list|()
 argument_list|,
 name|collection
@@ -254,7 +254,7 @@ name|get
 argument_list|(
 name|name
 operator|.
-name|toString
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -476,7 +476,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|toString
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -571,7 +571,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|toString
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -731,7 +731,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|toString
+name|getRawCollectionPath
 argument_list|()
 argument_list|,
 name|items

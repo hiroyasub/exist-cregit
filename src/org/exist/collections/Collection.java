@@ -1197,6 +1197,9 @@ name|doc
 operator|.
 name|getFileURI
 argument_list|()
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|,
 name|doc
 argument_list|)
@@ -1218,6 +1221,9 @@ argument_list|(
 name|doc
 operator|.
 name|getFileURI
+argument_list|()
+operator|.
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1587,7 +1593,7 @@ name|getCollection
 argument_list|(
 name|path
 operator|.
-name|append
+name|appendInternal
 argument_list|(
 name|childName
 argument_list|)
@@ -1606,7 +1612,12 @@ name|warn
 argument_list|(
 literal|"child collection "
 operator|+
+name|path
+operator|.
+name|appendInternal
+argument_list|(
 name|childName
+argument_list|)
 operator|+
 literal|" not found. Skipping ..."
 argument_list|)
@@ -2019,6 +2030,9 @@ operator|.
 name|get
 argument_list|(
 name|path
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2141,6 +2155,9 @@ operator|.
 name|get
 argument_list|(
 name|uri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2384,6 +2401,9 @@ operator|.
 name|containsKey
 argument_list|(
 name|uri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -2979,6 +2999,9 @@ operator|.
 name|remove
 argument_list|(
 name|docUri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -3406,6 +3429,9 @@ argument_list|(
 name|doc
 operator|.
 name|getFileURI
+argument_list|()
+operator|.
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4533,6 +4559,9 @@ operator|.
 name|get
 argument_list|(
 name|docUri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|document
