@@ -179,11 +179,21 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"the value '"
+literal|"The value '"
 operator|+
 name|duration
 operator|+
-literal|"' is not an xdt:yearMonthDuration since it specified days, hours, minutes or seconds values"
+literal|"' is not an "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" since it specifies days, hours, minutes or seconds values"
 argument_list|)
 throw|;
 block|}

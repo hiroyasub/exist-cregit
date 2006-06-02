@@ -1518,7 +1518,7 @@ name|fileURI
 operator|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|istream
 operator|.

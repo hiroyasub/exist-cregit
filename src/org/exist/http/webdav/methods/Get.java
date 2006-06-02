@@ -646,16 +646,7 @@ name|getLastModified
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|response
-operator|.
-name|setContentLength
-argument_list|(
-name|resource
-operator|.
-name|getContentLength
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            response.setContentLength(resource.getContentLength());
 name|ServletOutputStream
 name|os
 init|=
@@ -780,11 +771,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-name|os
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
+comment|//            os.flush();
 block|}
 catch|catch
 parameter_list|(

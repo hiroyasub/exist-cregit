@@ -1197,6 +1197,9 @@ name|doc
 operator|.
 name|getFileURI
 argument_list|()
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|,
 name|doc
 argument_list|)
@@ -1218,6 +1221,9 @@ argument_list|(
 name|doc
 operator|.
 name|getFileURI
+argument_list|()
+operator|.
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1587,7 +1593,7 @@ name|getCollection
 argument_list|(
 name|path
 operator|.
-name|append
+name|appendInternal
 argument_list|(
 name|childName
 argument_list|)
@@ -1606,7 +1612,12 @@ name|warn
 argument_list|(
 literal|"child collection "
 operator|+
+name|path
+operator|.
+name|appendInternal
+argument_list|(
 name|childName
+argument_list|)
 operator|+
 literal|" not found. Skipping ..."
 argument_list|)
@@ -2019,6 +2030,9 @@ operator|.
 name|get
 argument_list|(
 name|path
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2141,6 +2155,9 @@ operator|.
 name|get
 argument_list|(
 name|uri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2384,6 +2401,9 @@ operator|.
 name|containsKey
 argument_list|(
 name|uri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -2979,6 +2999,9 @@ operator|.
 name|remove
 argument_list|(
 name|docUri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -3406,6 +3429,9 @@ argument_list|(
 name|doc
 operator|.
 name|getFileURI
+argument_list|()
+operator|.
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4533,6 +4559,9 @@ operator|.
 name|get
 argument_list|(
 name|docUri
+operator|.
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|document
@@ -5542,6 +5571,10 @@ argument_list|)
 argument_list|,
 name|mimeType
 argument_list|,
+name|data
+operator|.
+name|length
+argument_list|,
 name|created
 argument_list|,
 name|modified
@@ -5567,6 +5600,9 @@ name|is
 parameter_list|,
 name|String
 name|mimeType
+parameter_list|,
+name|int
+name|size
 parameter_list|)
 throws|throws
 name|EXistException
@@ -5589,6 +5625,8 @@ argument_list|,
 name|is
 argument_list|,
 name|mimeType
+argument_list|,
+name|size
 argument_list|,
 literal|null
 argument_list|,
@@ -5615,6 +5653,9 @@ name|is
 parameter_list|,
 name|String
 name|mimeType
+parameter_list|,
+name|int
+name|size
 parameter_list|,
 name|Date
 name|created
@@ -5890,6 +5931,13 @@ name|modified
 operator|.
 name|getTime
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|blob
+operator|.
+name|setContentLength
+argument_list|(
+name|size
 argument_list|)
 expr_stmt|;
 name|broker
