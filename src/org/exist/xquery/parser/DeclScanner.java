@@ -505,13 +505,15 @@ literal|"\"declare\""
 block|,
 literal|"\"default\""
 block|,
-literal|"\"xmlspace\""
+literal|"\"boundary-space\""
 block|,
 literal|"\"ordering\""
 block|,
 literal|"\"construction\""
 block|,
 literal|"\"base-uri\""
+block|,
+literal|"\"copy-namespaces\""
 block|,
 literal|"\"option\""
 block|,
@@ -527,6 +529,14 @@ literal|"\"collation\""
 block|,
 literal|"\"element\""
 block|,
+literal|"\"order\""
+block|,
+literal|"\"empty\""
+block|,
+literal|"\"greatest\""
+block|,
+literal|"\"least\""
+block|,
 literal|"\"preserve\""
 block|,
 literal|"\"strip\""
@@ -534,6 +544,14 @@ block|,
 literal|"\"ordered\""
 block|,
 literal|"\"unordered\""
+block|,
+literal|"COMMA"
+block|,
+literal|"\"no-preserve\""
+block|,
+literal|"\"inherit\""
+block|,
+literal|"\"no-inherit\""
 block|,
 literal|"dollar sign '$'"
 block|,
@@ -551,9 +569,7 @@ literal|"\"schema\""
 block|,
 literal|"\"as\""
 block|,
-literal|"COMMA"
-block|,
-literal|"\"empty\""
+literal|"\"empty-sequence\""
 block|,
 literal|"question mark '?'"
 block|,
@@ -599,17 +615,11 @@ literal|"\"return\""
 block|,
 literal|"\"in\""
 block|,
-literal|"\"order\""
-block|,
 literal|"\"by\""
 block|,
 literal|"\"ascending\""
 block|,
 literal|"\"descending\""
-block|,
-literal|"\"greatest\""
-block|,
-literal|"\"least\""
 block|,
 literal|"\"satisfies\""
 block|,
@@ -628,6 +638,8 @@ block|,
 literal|"\"instance\""
 block|,
 literal|"\"of\""
+block|,
+literal|"\"treat\""
 block|,
 literal|"\"castable\""
 block|,
