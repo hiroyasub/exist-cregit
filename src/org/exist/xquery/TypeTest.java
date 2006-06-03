@@ -287,9 +287,15 @@ return|return
 literal|true
 return|;
 return|return
-name|matches
+name|isOfType
 argument_list|(
 name|proxy
+operator|.
+name|getNode
+argument_list|()
+operator|.
+name|getNodeType
+argument_list|()
 argument_list|)
 return|;
 block|}
