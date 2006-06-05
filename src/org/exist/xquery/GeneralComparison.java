@@ -955,22 +955,9 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
-operator|&&
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|getRight
-argument_list|()
-operator|.
-name|returnsType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|)
 condition|)
+comment|//&&
+comment|//    Type.subTypeOf(getRight().returnsType(), Type.NODE))
 block|{
 if|if
 condition|(
