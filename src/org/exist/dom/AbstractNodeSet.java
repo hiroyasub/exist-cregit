@@ -2684,6 +2684,7 @@ name|int
 name|getIndexType
 parameter_list|()
 block|{
+comment|//Is the index type initialized ?
 if|if
 condition|(
 name|indexType
@@ -2699,14 +2700,8 @@ literal|true
 expr_stmt|;
 name|hasMixedContent
 operator|=
-literal|false
+literal|true
 expr_stmt|;
-name|int
-name|type
-decl_stmt|;
-name|NodeProxy
-name|p
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -2722,8 +2717,9 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|p
-operator|=
+name|NodeProxy
+name|node
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -2731,10 +2727,10 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|p
+name|node
 operator|.
 name|getDocument
 argument_list|()
@@ -2746,6 +2742,7 @@ name|isTempCollection
 argument_list|()
 condition|)
 block|{
+comment|//Temporary nodes return default values
 name|indexType
 operator|=
 name|Type
@@ -2756,15 +2753,22 @@ name|hasTextIndex
 operator|=
 literal|false
 expr_stmt|;
+name|hasMixedContent
+operator|=
+literal|false
+expr_stmt|;
 break|break;
 block|}
-name|type
-operator|=
-name|p
+name|int
+name|nodeIndexType
+init|=
+name|node
 operator|.
 name|getIndexType
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+comment|//Refine type
+comment|//TODO : use common subtype
 if|if
 condition|(
 name|indexType
@@ -2773,46 +2777,22 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|indexType
 operator|=
-name|type
+name|nodeIndexType
 expr_stmt|;
-if|else if
-condition|(
-name|indexType
-operator|!=
-name|type
-condition|)
+block|}
+else|else
 block|{
+comment|//Broaden type
+comment|//TODO : use common supertype
 if|if
 condition|(
 name|indexType
 operator|!=
-name|Type
-operator|.
-name|ITEM
+name|nodeIndexType
 condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found: "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|type
-argument_list|)
-operator|+
-literal|"; node = "
-operator|+
-name|p
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|indexType
 operator|=
 name|Type
@@ -2823,7 +2803,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|p
+name|node
 operator|.
 name|hasTextIndex
 argument_list|()
@@ -2836,7 +2816,8 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|p
+operator|!
+name|node
 operator|.
 name|hasMixedContent
 argument_list|()
@@ -2844,7 +2825,7 @@ condition|)
 block|{
 name|hasMixedContent
 operator|=
-literal|true
+literal|false
 expr_stmt|;
 block|}
 block|}
