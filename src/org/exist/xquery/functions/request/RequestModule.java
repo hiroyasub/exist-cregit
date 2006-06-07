@@ -176,7 +176,18 @@ operator|.
 name|class
 argument_list|)
 block|,
-comment|//		new FunctionDef(GetUploadedFile.signature, GetUploadedFile.class),
+operator|new
+name|FunctionDef
+argument_list|(
+name|GetUploadedFile
+operator|.
+name|signature
+argument_list|,
+name|GetUploadedFile
+operator|.
+name|class
+argument_list|)
+block|,
 operator|new
 name|FunctionDef
 argument_list|(
