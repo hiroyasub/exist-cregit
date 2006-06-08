@@ -738,13 +738,9 @@ operator|&&
 operator|!
 name|Dependency
 operator|.
-name|dependsOn
+name|dependsOnVar
 argument_list|(
 name|searchTerm
-argument_list|,
-name|Dependency
-operator|.
-name|VARS
 argument_list|)
 decl_stmt|;
 if|if
