@@ -522,6 +522,10 @@ decl_stmt|;
 name|DurationValue
 name|duration
 init|=
+operator|new
+name|DurationValue
+argument_list|(
+operator|(
 operator|(
 name|DurationValue
 operator|)
@@ -530,6 +534,11 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
+argument_list|)
+operator|)
+operator|.
+name|getCanonicalDuration
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
