@@ -772,6 +772,18 @@ operator|=
 name|ownerDocument
 expr_stmt|;
 block|}
+specifier|public
+name|int
+name|getDocId
+parameter_list|()
+block|{
+return|return
+name|ownerDocument
+operator|.
+name|getDocId
+argument_list|()
+return|;
+block|}
 comment|/** 	 *  Get the unique node identifier of this node's parent node. 	 * 	 *@return    The parentGID value 	 */
 specifier|public
 name|long
