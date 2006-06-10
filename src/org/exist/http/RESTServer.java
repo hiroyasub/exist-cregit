@@ -1457,6 +1457,7 @@ argument_list|(
 literal|"no"
 argument_list|)
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -1465,9 +1466,23 @@ name|EXistOutputKeys
 operator|.
 name|PROCESS_XSL_PI
 argument_list|,
-name|stylesheet
+literal|"no"
 argument_list|)
 expr_stmt|;
+name|outputProperties
+operator|.
+name|remove
+argument_list|(
+name|EXistOutputKeys
+operator|.
+name|STYLESHEET
+argument_list|)
+expr_stmt|;
+name|stylesheet
+operator|=
+literal|null
+expr_stmt|;
+block|}
 else|else
 name|outputProperties
 operator|.
@@ -1566,9 +1581,6 @@ block|{
 comment|// check if path leads to an XQuery resource
 name|resource
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource
@@ -2258,7 +2270,7 @@ operator|.
 name|isStylesheetApplied
 argument_list|()
 operator|||
-name|Serializer
+name|serializer
 operator|.
 name|hasXSLPi
 argument_list|(
