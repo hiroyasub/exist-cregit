@@ -3959,7 +3959,6 @@ return|;
 block|}
 comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc      * @return      */
 specifier|public
-specifier|static
 name|String
 name|hasXSLPi
 parameter_list|(
@@ -3967,6 +3966,33 @@ name|Document
 name|doc
 parameter_list|)
 block|{
+name|boolean
+name|applyXSLPI
+init|=
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|EXistOutputKeys
+operator|.
+name|PROCESS_XSL_PI
+argument_list|,
+literal|"no"
+argument_list|)
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"yes"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|applyXSLPI
+condition|)
+return|return
+literal|null
+return|;
 name|NodeList
 name|docChildren
 init|=
@@ -4111,15 +4137,6 @@ operator|==
 literal|null
 condition|)
 continue|continue;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"stylesheet = "
-operator|+
-name|href
-argument_list|)
-expr_stmt|;
 return|return
 name|href
 return|;
