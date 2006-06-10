@@ -67,6 +67,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|XMLChar
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -402,6 +414,34 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+comment|//Not in the specs but... makes sense
+if|if
+condition|(
+operator|!
+name|XMLChar
+operator|.
+name|isValidName
+argument_list|(
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004 '"
+operator|+
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|"' is not a valid attribute name"
+argument_list|)
+throw|;
 name|String
 name|value
 decl_stmt|;
