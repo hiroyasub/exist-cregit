@@ -2257,6 +2257,15 @@ name|serializer
 operator|.
 name|isStylesheetApplied
 argument_list|()
+operator|||
+name|Serializer
+operator|.
+name|hasXSLPi
+argument_list|(
+name|resource
+argument_list|)
+operator|!=
+literal|null
 condition|)
 block|{
 name|response
