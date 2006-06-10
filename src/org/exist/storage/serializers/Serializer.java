@@ -2033,9 +2033,6 @@ literal|null
 condition|)
 name|setStylesheet
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|stylesheet
@@ -3097,12 +3094,7 @@ literal|null
 condition|)
 name|xslHandler
 operator|=
-operator|(
-operator|(
-name|SAXTransformerFactory
-operator|)
 name|factory
-operator|)
 operator|.
 name|newTransformerHandler
 argument_list|(
@@ -3353,9 +3345,6 @@ literal|null
 condition|)
 name|setStylesheet
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|stylesheet
@@ -3968,7 +3957,9 @@ return|return
 literal|null
 return|;
 block|}
-specifier|private
+comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc      * @return      */
+specifier|public
+specifier|static
 name|String
 name|hasXSLPi
 parameter_list|(
@@ -4048,13 +4039,6 @@ literal|"xml-stylesheet"
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found stylesheet instruction"
-argument_list|)
-expr_stmt|;
 comment|// found<?xml-stylesheet?>
 name|xsl
 operator|=
