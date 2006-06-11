@@ -76,6 +76,17 @@ name|nodeNumber
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|getStringValue
+parameter_list|()
+block|{
+comment|//Quick and (not so ?) dirty...
+return|return
+name|getData
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Text#splitText(int) 	 */
 specifier|public
 name|Text
@@ -315,18 +326,6 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|isPersistentSet
-argument_list|()
-condition|)
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"persistent "
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|append
