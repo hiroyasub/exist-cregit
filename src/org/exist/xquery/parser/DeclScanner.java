@@ -589,6 +589,8 @@ literal|"\"every\""
 block|,
 literal|"\"if\""
 block|,
+literal|"\"typeswitch\""
+block|,
 literal|"\"update\""
 block|,
 literal|"\"replace\""
@@ -622,8 +624,6 @@ block|,
 literal|"\"descending\""
 block|,
 literal|"\"satisfies\""
-block|,
-literal|"\"typeswitch\""
 block|,
 literal|"\"case\""
 block|,
