@@ -473,6 +473,34 @@ operator|+
 literal|"' is not a valid NCName"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"XML"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XQDY0064 '"
+operator|+
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|"' is not a valid processing intruction name"
+argument_list|)
+throw|;
+block|}
 name|String
 name|value
 decl_stmt|;
@@ -576,6 +604,28 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|value
+operator|.
+name|contains
+argument_list|(
+literal|"?>"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XQDY0026 '"
+operator|+
+name|value
+operator|+
+literal|"' is not a valid processing intruction"
+argument_list|)
+throw|;
 block|}
 name|int
 name|nodeNr
