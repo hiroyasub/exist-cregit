@@ -552,6 +552,11 @@ operator|+
 name|type
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;

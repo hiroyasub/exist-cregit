@@ -1275,7 +1275,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Indexing in-memory node of type "
+literal|"Skipped indexing of in-memory node of type "
 operator|+
 name|doc
 operator|.

@@ -3322,8 +3322,13 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"unknown node type"
+literal|"Unknown node type"
 argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
 expr_stmt|;
 name|node
 operator|=
