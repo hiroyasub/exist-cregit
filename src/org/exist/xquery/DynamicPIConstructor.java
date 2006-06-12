@@ -19,18 +19,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -176,7 +164,13 @@ name|this
 operator|.
 name|name
 operator|=
+operator|new
+name|Atomize
+argument_list|(
+name|context
+argument_list|,
 name|nameExpr
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -191,7 +185,13 @@ name|this
 operator|.
 name|content
 operator|=
+operator|new
+name|Atomize
+argument_list|(
+name|context
+argument_list|,
 name|contentExpr
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
