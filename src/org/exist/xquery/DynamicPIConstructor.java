@@ -419,6 +419,15 @@ operator|==
 name|Type
 operator|.
 name|QNAME
+operator|||
+name|nameItem
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
 operator|)
 condition|)
 throw|throw
@@ -428,7 +437,38 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"The name expression should evaluate to a string or qname"
+literal|"The name expression should evaluate to a "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+operator|+
+literal|" or a "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|Type
+operator|.
+name|QNAME
+argument_list|)
+operator|+
+literal|" or a "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+argument_list|)
 argument_list|)
 throw|;
 name|QName
