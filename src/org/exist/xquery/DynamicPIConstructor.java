@@ -418,7 +418,7 @@ argument_list|()
 operator|==
 name|Type
 operator|.
-name|QNAME
+name|NCNAME
 operator|||
 name|nameItem
 operator|.
@@ -456,7 +456,7 @@ name|getTypeName
 argument_list|(
 name|Type
 operator|.
-name|QNAME
+name|NCNAME
 argument_list|)
 operator|+
 literal|" or a "
@@ -469,23 +469,20 @@ name|Type
 operator|.
 name|UNTYPED_ATOMIC
 argument_list|)
-argument_list|)
-throw|;
-name|QName
-name|qn
-init|=
-name|QName
+operator|+
+literal|". Got: "
+operator|+
+name|Type
 operator|.
-name|parse
+name|getTypeName
 argument_list|(
-name|context
-argument_list|,
-name|nameSeq
+name|nameItem
 operator|.
-name|getStringValue
+name|getType
 argument_list|()
 argument_list|)
-decl_stmt|;
+argument_list|)
+throw|;
 if|if
 condition|(
 operator|!
@@ -493,9 +490,9 @@ name|XMLChar
 operator|.
 name|isValidNCName
 argument_list|(
-name|qn
+name|nameSeq
 operator|.
-name|getLocalName
+name|getStringValue
 argument_list|()
 argument_list|)
 condition|)
@@ -505,19 +502,19 @@ name|XPathException
 argument_list|(
 literal|"XQDY0041 '"
 operator|+
-name|qn
+name|nameSeq
 operator|.
-name|getLocalName
+name|getStringValue
 argument_list|()
 operator|+
-literal|"' is not a valid NCName"
+literal|"' is not a valid processing instruction name"
 argument_list|)
 throw|;
 if|if
 condition|(
-name|qn
+name|nameSeq
 operator|.
-name|getLocalName
+name|getStringValue
 argument_list|()
 operator|.
 name|equalsIgnoreCase
@@ -525,22 +522,20 @@ argument_list|(
 literal|"XML"
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 literal|"XQDY0064 '"
 operator|+
-name|qn
+name|nameSeq
 operator|.
-name|getLocalName
+name|getStringValue
 argument_list|()
 operator|+
-literal|"' is not a valid processing intruction name"
+literal|"' is not a valid processing instruction name"
 argument_list|)
 throw|;
-block|}
 name|String
 name|value
 decl_stmt|;
@@ -632,7 +627,7 @@ name|append
 argument_list|(
 name|next
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -654,7 +649,6 @@ argument_list|(
 literal|"?>"
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|XPathException
@@ -663,10 +657,9 @@ literal|"XQDY0026 '"
 operator|+
 name|value
 operator|+
-literal|"' is not a valid processing intruction"
+literal|"' is not a valid processing intruction value"
 argument_list|)
 throw|;
-block|}
 name|int
 name|nodeNr
 init|=
@@ -674,9 +667,9 @@ name|builder
 operator|.
 name|processingInstruction
 argument_list|(
-name|qn
+name|nameSeq
 operator|.
-name|getLocalName
+name|getStringValue
 argument_list|()
 argument_list|,
 name|value
