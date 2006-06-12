@@ -45,6 +45,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|ProcessingInstruction
 import|;
 end_import
@@ -157,6 +169,16 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+block|}
+specifier|public
+name|Node
+name|getFirstChild
+parameter_list|()
+block|{
+comment|//No child
+return|return
+literal|null
+return|;
 block|}
 specifier|public
 name|String
