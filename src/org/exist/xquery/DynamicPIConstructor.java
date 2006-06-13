@@ -672,10 +672,14 @@ if|if
 condition|(
 name|contentString
 operator|.
-name|contains
+name|indexOf
 argument_list|(
 literal|"?>"
 argument_list|)
+operator|!=
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
 condition|)
 throw|throw
 operator|new
