@@ -537,7 +537,7 @@ literal|"' is not a valid processing instruction name"
 argument_list|)
 throw|;
 name|String
-name|value
+name|contentString
 decl_stmt|;
 name|Sequence
 name|contentSeq
@@ -558,7 +558,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-name|value
+name|contentString
 operator|=
 literal|""
 expr_stmt|;
@@ -632,7 +632,35 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|value
+while|while
+condition|(
+name|buf
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
+name|buf
+operator|.
+name|charAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+condition|)
+name|buf
+operator|.
+name|deleteCharAt
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|contentString
 operator|=
 name|buf
 operator|.
@@ -642,7 +670,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|value
+name|contentString
 operator|.
 name|contains
 argument_list|(
@@ -655,9 +683,9 @@ name|XPathException
 argument_list|(
 literal|"XQDY0026 '"
 operator|+
-name|value
+name|contentString
 operator|+
-literal|"' is not a valid processing intruction value"
+literal|"' is not a valid processing intruction content"
 argument_list|)
 throw|;
 name|int
@@ -672,7 +700,7 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|,
-name|value
+name|contentString
 argument_list|)
 decl_stmt|;
 name|Sequence
