@@ -86,6 +86,16 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|String
+name|getStringValue
+parameter_list|()
+block|{
+return|return
+name|getData
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#getData() 	 */
 specifier|public
 name|String
