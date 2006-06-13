@@ -2254,6 +2254,13 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Null test for document nodes
+if|if
+condition|(
+name|document
+operator|!=
+literal|null
+condition|)
 name|document
 operator|.
 name|copyTo
@@ -2277,6 +2284,13 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Null test for document nodes
+if|if
+condition|(
+name|document
+operator|!=
+literal|null
+condition|)
 name|document
 operator|.
 name|streamTo
