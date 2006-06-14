@@ -3478,13 +3478,18 @@ expr_stmt|;
 name|VariableByteInput
 name|is
 init|=
+literal|null
+decl_stmt|;
+comment|/*                 //TODO : uncomment an implement properly                 //TODO : bewere of null NS prefix : it looks to be polysemic (none vs. all)                 //Test for "*" prefix                 if (qname.getPrefix() == null) {                 	try { 	                    final IndexQuery query = new IndexQuery(IndexQuery.TRUNC_RIGHT, key); 	                    ArrayList elements = dbNodes.findKeys(query);	                                          } catch (BTreeException e) {                         LOG.error(e.getMessage(), e);                         //TODO : throw an exception ? -pb                     } catch (TerminatedException e) {                         LOG.warn(e.getMessage(), e);                                             }                     //TODO : iterate over the keys                  } else */
+name|is
+operator|=
 name|dbNodes
 operator|.
 name|getAsStream
 argument_list|(
 name|key
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//Does the node already has data in the index ?
 if|if
 condition|(
@@ -5050,6 +5055,10 @@ name|getLocalName
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//TODO : should we truncate the key ?
+comment|//TODO : beware of the polysemy for getPrefix == null
+comment|//if (qname.getPrefix() == null)
+comment|//    return new ElementValue(type, collectionId, sym);
 name|short
 name|nsSym
 init|=
