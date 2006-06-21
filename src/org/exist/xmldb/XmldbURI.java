@@ -1841,7 +1841,7 @@ expr_stmt|;
 block|}
 return|return
 name|last
-operator|==
+operator|<=
 literal|0
 condition|?
 name|XmldbURI
