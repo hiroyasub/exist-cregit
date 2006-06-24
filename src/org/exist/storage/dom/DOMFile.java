@@ -7534,22 +7534,8 @@ operator|==
 literal|null
 condition|)
 block|{
-name|SanityCheck
-operator|.
-name|TRACE
-argument_list|(
-literal|"object at "
-operator|+
-name|StorageAddress
-operator|.
-name|toString
-argument_list|(
-name|p
-argument_list|)
-operator|+
-literal|" not found."
-argument_list|)
-expr_stmt|;
+comment|//			SanityCheck.TRACE("object at " + StorageAddress.toString(p)
+comment|//					+ " not found.");
 return|return
 literal|null
 return|;
@@ -8931,7 +8917,7 @@ operator|.
 name|cleanUp
 argument_list|()
 expr_stmt|;
-comment|// LOG.debug(debugPageContents(rec.page));
+comment|//			LOG.debug(debugPageContents(rec.page));
 name|dataCache
 operator|.
 name|add
@@ -9995,14 +9981,33 @@ operator|.
 name|getInternalAddress
 argument_list|()
 decl_stmt|;
+name|RecordPos
+name|rec
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|address
-operator|==
-name|StoredNode
+operator|!=
+name|Page
 operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
+name|NO_PAGE
 condition|)
+name|rec
+operator|=
+name|findRecord
+argument_list|(
+name|address
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|rec
+operator|==
+literal|null
+condition|)
+block|{
 name|address
 operator|=
 name|findValue
@@ -10027,15 +10032,13 @@ condition|)
 return|return
 literal|null
 return|;
-specifier|final
-name|RecordPos
 name|rec
-init|=
+operator|=
 name|findRecord
 argument_list|(
 name|address
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|SanityCheck
 operator|.
 name|THROW_ASSERT
@@ -10063,6 +10066,7 @@ name|address
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -10806,40 +10810,10 @@ return|return
 literal|null
 return|;
 block|}
-name|SanityCheck
-operator|.
-name|TRACE
-argument_list|(
-name|owner
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|": tid "
-operator|+
-name|targetId
-operator|+
-literal|" not found on "
-operator|+
-name|page
-operator|.
-name|page
-operator|.
-name|getPageInfo
-argument_list|()
-operator|+
-literal|". Loading "
-operator|+
-name|pageNr
-operator|+
-literal|"; contents: "
-operator|+
-name|debugPageContents
-argument_list|(
-name|page
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//				SanityCheck.TRACE(owner.toString() + ": tid " + targetId
+comment|//						+ " not found on " + page.page.getPageInfo()
+comment|//						+ ". Loading " + pageNr + "; contents: "
+comment|//						+ debugPageContents(page));
 block|}
 if|else if
 condition|(
@@ -10872,11 +10846,11 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-comment|// LOG.debug("following link on " + pageNr +
-comment|// " to page "
-comment|// + StorageAddress.pageFromPointer(forwardLink)
-comment|// + "; tid="
-comment|// + StorageAddress.tidFromPointer(forwardLink));
+comment|//				 LOG.debug("following link on " + pageNr +
+comment|//				 " to page "
+comment|//				 + StorageAddress.pageFromPointer(forwardLink)
+comment|//				 + "; tid="
+comment|//				 + StorageAddress.tidFromPointer(forwardLink));
 comment|// load the link page
 name|pageNr
 operator|=
