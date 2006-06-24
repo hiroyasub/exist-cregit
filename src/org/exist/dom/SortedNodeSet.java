@@ -1277,6 +1277,15 @@ operator|.
 name|proxy
 return|;
 block|}
+specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
 specifier|public
 name|Item

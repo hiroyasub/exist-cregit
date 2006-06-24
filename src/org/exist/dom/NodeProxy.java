@@ -4108,6 +4108,15 @@ name|node
 return|;
 block|}
 specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+return|return
+name|node
+return|;
+block|}
+specifier|public
 name|void
 name|remove
 parameter_list|()

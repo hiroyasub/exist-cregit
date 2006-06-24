@@ -1627,7 +1627,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|Iterator
+name|NodeSetIterator
 name|ia
 init|=
 name|al
@@ -1697,6 +1697,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|na
 operator|=
 operator|(
@@ -1707,6 +1708,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 break|break;
 block|}
@@ -2402,7 +2404,7 @@ parameter_list|,
 name|NodeProxy
 name|na
 parameter_list|,
-name|Iterator
+name|NodeSetIterator
 name|ia
 parameter_list|,
 name|int
@@ -2609,12 +2611,9 @@ block|{
 name|NodeProxy
 name|next
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|ia
 operator|.
-name|next
+name|peekNode
 argument_list|()
 decl_stmt|;
 if|if
@@ -2643,7 +2642,13 @@ index|]
 expr_stmt|;
 name|na
 operator|=
+operator|(
+name|NodeProxy
+operator|)
+name|ia
+operator|.
 name|next
+argument_list|()
 expr_stmt|;
 name|startPos
 operator|=
@@ -4065,6 +4070,15 @@ argument_list|)
 expr_stmt|;
 return|return
 name|n
+return|;
+block|}
+specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+return|return
+name|next
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *           * @see org.exist.xquery.value.SequenceIterator#nextItem()          */

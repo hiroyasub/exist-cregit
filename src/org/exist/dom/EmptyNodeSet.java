@@ -371,6 +371,15 @@ literal|null
 return|;
 block|}
 specifier|public
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+specifier|public
 name|void
 name|setPosition
 parameter_list|(
