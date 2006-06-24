@@ -287,6 +287,10 @@ parameter_list|,
 name|boolean
 name|poolable
 parameter_list|)
+throws|throws
+name|BTreeException
+throws|,
+name|IOException
 block|{
 name|this
 operator|.
