@@ -1179,7 +1179,7 @@ throw|;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Adding entry to "
 operator|+
@@ -1410,7 +1410,7 @@ block|{
 comment|// get the feed
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Acquiring lock on feed document..."
 argument_list|)
@@ -1502,7 +1502,7 @@ expr_stmt|;
 comment|// Store the changes
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Storing change..."
 argument_list|)
@@ -1525,7 +1525,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Done!"
 argument_list|)
@@ -2396,7 +2396,7 @@ try|try
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Acquiring lock on feed document..."
 argument_list|)
@@ -2511,7 +2511,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Storing change..."
 argument_list|)
@@ -2534,7 +2534,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Done!"
 argument_list|)
@@ -3515,7 +3515,7 @@ throw|;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating entry "
 operator|+
@@ -3568,7 +3568,7 @@ block|{
 comment|// Get the feed
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Acquiring lock on feed document..."
 argument_list|)
@@ -4512,13 +4512,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Get the feed
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Acquiring lock on feed document..."
-argument_list|)
-expr_stmt|;
+comment|//LOG.info("Acquiring lock on feed document...");
 name|feedDoc
 operator|=
 name|collection
@@ -4640,7 +4634,7 @@ argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Found content element, checking for resource "
 operator|+
@@ -4693,7 +4687,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Deleting resource "
 operator|+
@@ -4792,7 +4786,7 @@ expr_stmt|;
 comment|// Store the change on the feed
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Storing change..."
 argument_list|)
@@ -4815,7 +4809,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Done!"
 argument_list|)
