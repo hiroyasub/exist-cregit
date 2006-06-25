@@ -701,6 +701,13 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|loggable
+operator|.
+name|setLsn
+argument_list|(
+name|currentLsn
+argument_list|)
+expr_stmt|;
 name|currentBuffer
 operator|.
 name|put
@@ -753,13 +760,6 @@ name|size
 operator|+
 name|LOG_ENTRY_HEADER_LEN
 operator|)
-argument_list|)
-expr_stmt|;
-name|loggable
-operator|.
-name|setLsn
-argument_list|(
-name|currentLsn
 argument_list|)
 expr_stmt|;
 block|}
