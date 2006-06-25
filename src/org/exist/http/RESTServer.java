@@ -6094,6 +6094,10 @@ decl_stmt|;
 if|if
 condition|(
 name|childCollection
+operator|!=
+literal|null
+operator|&&
+name|childCollection
 operator|.
 name|getPermissions
 argument_list|()
