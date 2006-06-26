@@ -516,6 +516,11 @@ argument_list|(
 name|user
 argument_list|)
 decl_stmt|;
+name|lockToken
+operator|.
+name|createOpaqueLockToken
+argument_list|()
+expr_stmt|;
 name|String
 name|contentType
 init|=

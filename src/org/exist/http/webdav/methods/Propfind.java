@@ -3135,7 +3135,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No lock token"
 argument_list|)
@@ -3222,7 +3222,7 @@ name|LOCK_SCOPE_SHARED
 case|:
 name|lockScope
 operator|=
-literal|"sahred"
+literal|"shared"
 expr_stmt|;
 break|break;
 default|default :
