@@ -341,6 +341,8 @@ name|checkpointFound
 init|=
 literal|false
 decl_stmt|;
+try|try
+block|{
 name|Loggable
 name|lastLog
 init|=
@@ -351,6 +353,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|lastLog
+operator|!=
+literal|null
+operator|&&
 name|lastLog
 operator|.
 name|getLogType
@@ -401,6 +407,34 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|LogException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Reading last journal log entry failed: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|". Will scan the log..."
+argument_list|)
+expr_stmt|;
+comment|// if an exception occurs at this point, the journal file is probably incomplete,
+comment|// which indicates a db crash
+name|checkpointFound
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -913,7 +947,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//            LOG.debug("Redo: " + next.dump());
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Redo: "
+operator|+
+name|next
+operator|.
+name|dump
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// redo the log entry
 name|next
 operator|.
