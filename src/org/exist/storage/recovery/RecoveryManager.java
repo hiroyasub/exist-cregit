@@ -947,18 +947,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Redo: "
-operator|+
-name|next
-operator|.
-name|dump
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("Redo: " + next.dump());
 comment|// redo the log entry
 name|next
 operator|.
