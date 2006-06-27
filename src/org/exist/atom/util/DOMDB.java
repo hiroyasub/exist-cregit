@@ -248,7 +248,7 @@ parameter_list|,
 name|ElementImpl
 name|parent
 parameter_list|,
-name|Element
+name|Node
 name|child
 parameter_list|)
 block|{
