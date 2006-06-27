@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id: EXistServlet.java 3640 2006-06-01 11:30:55Z deliriumsky $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   */
 end_comment
 
 begin_package
@@ -190,6 +190,34 @@ operator|.
 name|modules
 operator|.
 name|AtomProtocol
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|atom
+operator|.
+name|modules
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|atom
+operator|.
+name|modules
+operator|.
+name|Topics
 import|;
 end_import
 
@@ -394,7 +422,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the REST-style interface if eXist is running within  * a servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
+comment|/**  * Implements a rest interface for exist collections as atom feeds  *   * @author Alex Milowski  */
 end_comment
 
 begin_class
@@ -1036,7 +1064,65 @@ name|ModuleContext
 argument_list|(
 name|config
 argument_list|,
-literal|"edit"
+literal|"content"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Topics
+name|topics
+init|=
+operator|new
+name|Topics
+argument_list|()
+decl_stmt|;
+name|modules
+operator|.
+name|put
+argument_list|(
+literal|"topic"
+argument_list|,
+name|topics
+argument_list|)
+expr_stmt|;
+name|topics
+operator|.
+name|init
+argument_list|(
+operator|new
+name|ModuleContext
+argument_list|(
+name|config
+argument_list|,
+literal|"topic"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Query
+name|query
+init|=
+operator|new
+name|Query
+argument_list|()
+decl_stmt|;
+name|modules
+operator|.
+name|put
+argument_list|(
+literal|"query"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|init
+argument_list|(
+operator|new
+name|ModuleContext
+argument_list|(
+name|config
+argument_list|,
+literal|"query"
 argument_list|)
 argument_list|)
 expr_stmt|;
