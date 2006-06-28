@@ -33,17 +33,9 @@ name|ContentHandler
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamReader
-import|;
-end_import
+begin_comment
+comment|//import javax.xml.stream.XMLStreamReader;
+end_comment
 
 begin_import
 import|import
@@ -130,12 +122,7 @@ parameter_list|()
 throws|throws
 name|XQException
 function_decl|;
-name|XMLStreamReader
-name|getItemAsStream
-parameter_list|()
-throws|throws
-name|XQException
-function_decl|;
+comment|//XMLStreamReader getItemAsStream() throws XQException;
 name|String
 name|getItemAsString
 parameter_list|()

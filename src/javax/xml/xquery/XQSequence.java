@@ -71,18 +71,7 @@ parameter_list|()
 throws|throws
 name|XQException
 function_decl|;
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamReader
-name|getSequenceAsStream
-parameter_list|()
-throws|throws
-name|XQException
-function_decl|;
+comment|//javax.xml.stream.XMLStreamReader getSequenceAsStream() throws XQException;
 name|java
 operator|.
 name|lang
