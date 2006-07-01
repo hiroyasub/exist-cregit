@@ -1716,6 +1716,16 @@ name|p
 operator|!=
 literal|null
 condition|)
+block|{
+name|p
+operator|.
+name|clearContext
+argument_list|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
@@ -1723,7 +1733,8 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-comment|//TODO : does null make sense here ?
+block|}
+comment|//TODO : does null make sense here ? Well... sometimes ;-)
 block|}
 block|}
 break|break;
