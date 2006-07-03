@@ -4236,23 +4236,11 @@ name|DOMImplementation
 name|getImplementation
 parameter_list|()
 block|{
-throw|throw
+return|return
 operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getImplementation not implemented on class "
-operator|+
-name|getClass
+name|StoredDOMImplementation
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+return|;
 block|}
 specifier|public
 name|boolean
