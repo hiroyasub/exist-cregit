@@ -1602,12 +1602,6 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|al
-operator|instanceof
-name|VirtualNodeSet
-condition|)
 return|return
 name|super
 operator|.
@@ -1620,146 +1614,29 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-name|NodeSet
-name|result
-init|=
-operator|new
-name|ExtArrayNodeSet
-argument_list|()
-decl_stmt|;
-name|NodeSetIterator
-name|ia
-init|=
-name|al
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-name|NodeProxy
-name|na
-init|=
-operator|(
-name|NodeProxy
-operator|)
-name|ia
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|na
-operator|==
-literal|null
-operator|||
-name|partCount
-operator|==
-literal|0
-condition|)
-return|return
-name|NodeSet
-operator|.
-name|EMPTY_SET
-return|;
-name|int
-name|currentPart
-init|=
-literal|0
-decl_stmt|;
-while|while
-condition|(
-name|currentPart
-operator|<
-name|partCount
-condition|)
-block|{
-comment|// first, try to find nodes belonging to the same doc
-if|if
-condition|(
-name|na
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getDocId
-argument_list|()
-operator|<
-name|documentIds
-index|[
-name|currentPart
-index|]
-condition|)
-block|{
-if|if
-condition|(
-name|ia
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|na
-operator|=
-operator|(
-name|NodeProxy
-operator|)
-name|ia
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-break|break;
-block|}
-if|else if
-condition|(
-name|na
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getDocId
-argument_list|()
-operator|>
-name|documentIds
-index|[
-name|currentPart
-index|]
-condition|)
-block|{
-operator|++
-name|currentPart
-expr_stmt|;
-block|}
-else|else
-block|{
-name|parts
-index|[
-name|currentPart
-index|]
-operator|.
-name|selectParentChild
-argument_list|(
-name|result
-argument_list|,
-name|na
-argument_list|,
-name|ia
-argument_list|,
-name|mode
-argument_list|,
-name|contextId
-argument_list|)
-expr_stmt|;
-operator|++
-name|currentPart
-expr_stmt|;
-block|}
-block|}
-return|return
-name|result
-return|;
+comment|//    	if (al instanceof VirtualNodeSet)
+comment|//    		return super.selectParentChild(al, mode, contextId);
+comment|//    	NodeSet result = new ExtArrayNodeSet();
+comment|//		NodeSetIterator ia = al.iterator();
+comment|//		NodeProxy na = (NodeProxy) ia.next();
+comment|//		if (na == null || partCount == 0)
+comment|//			return NodeSet.EMPTY_SET;
+comment|//		int currentPart = 0;
+comment|//		while (currentPart< partCount) {
+comment|//			// first, try to find nodes belonging to the same doc
+comment|//			if (na.getDocument().getDocId()< documentIds[currentPart]) {
+comment|//				if (ia.hasNext()) {
+comment|//					na = (NodeProxy) ia.next();
+comment|//                } else
+comment|//					break;
+comment|//			} else if (na.getDocument().getDocId()> documentIds[currentPart]) {
+comment|//				++currentPart;
+comment|//			} else {
+comment|//				parts[currentPart].selectParentChild(result, na, ia, mode, contextId);
+comment|//				++currentPart;
+comment|//			}
+comment|//		}
+comment|//		return result;
 block|}
 specifier|private
 name|boolean
@@ -2439,6 +2316,14 @@ index|[
 name|pos
 index|]
 decl_stmt|;
+name|NodeId
+name|lastMarked
+init|=
+name|na
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -2724,13 +2609,38 @@ name|pos
 index|]
 expr_stmt|;
 block|}
-name|na
+else|else
+block|{
+if|if
+condition|(
+operator|!
+name|next
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|lastMarked
+argument_list|)
+condition|)
+block|{
+name|lastMarked
 operator|=
 name|next
+operator|.
+name|getNodeId
+argument_list|()
 expr_stmt|;
 name|startPos
 operator|=
 name|pos
+expr_stmt|;
+block|}
+block|}
+name|na
+operator|=
+name|next
 expr_stmt|;
 block|}
 else|else
@@ -2753,7 +2663,57 @@ name|pos
 index|]
 expr_stmt|;
 else|else
-break|break;
+block|{
+if|if
+condition|(
+name|ia
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|NodeProxy
+name|next
+init|=
+operator|(
+name|NodeProxy
+operator|)
+name|ia
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|next
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|pa
+argument_list|)
+condition|)
+block|{
+name|pos
+operator|=
+name|startPos
+expr_stmt|;
+name|nb
+operator|=
+name|array
+index|[
+name|pos
+index|]
+expr_stmt|;
+block|}
+name|na
+operator|=
+name|next
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 block|}
