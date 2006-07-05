@@ -5999,6 +5999,9 @@ argument_list|(
 literal|"Reindexing collection "
 operator|+
 name|next
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|"..."
 argument_list|)
