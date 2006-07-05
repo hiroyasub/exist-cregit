@@ -676,11 +676,11 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|StringBuilder
+name|StringBuffer
 name|builder
 init|=
 operator|new
-name|StringBuilder
+name|StringBuffer
 argument_list|()
 decl_stmt|;
 name|Reader
