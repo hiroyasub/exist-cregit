@@ -481,6 +481,13 @@ name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 comment|// Save the local variable stack
 name|LocalVariable
 name|mark
@@ -853,6 +860,15 @@ expr_stmt|;
 return|return
 name|resultSequence
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public

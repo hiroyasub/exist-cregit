@@ -511,6 +511,11 @@ operator|+
 name|type
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -720,6 +725,18 @@ name|ownerDocument
 operator|=
 name|ownerDocument
 expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getDocId
+parameter_list|()
+block|{
+return|return
+name|ownerDocument
+operator|.
+name|getDocId
+argument_list|()
+return|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getParentNode() 	 */
 specifier|public

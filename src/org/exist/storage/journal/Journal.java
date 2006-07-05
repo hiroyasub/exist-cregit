@@ -706,6 +706,13 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|loggable
+operator|.
+name|setLsn
+argument_list|(
+name|currentLsn
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|currentBuffer
@@ -784,13 +791,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|loggable
-operator|.
-name|setLsn
-argument_list|(
-name|currentLsn
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**      * Returns the last LSN physically written to the journal.      *       * @return      */
 specifier|public

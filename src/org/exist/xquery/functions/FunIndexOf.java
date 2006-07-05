@@ -639,6 +639,8 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|GeneralComparison
@@ -665,7 +667,6 @@ operator|.
 name|EQ
 argument_list|)
 condition|)
-comment|//TODO : break here ? -pb
 name|result
 operator|.
 name|add
@@ -677,6 +678,15 @@ name|j
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|//Ignore me : values can not be compared
+block|}
 block|}
 block|}
 if|if

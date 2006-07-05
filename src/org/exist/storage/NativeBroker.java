@@ -2323,7 +2323,7 @@ name|NodePath
 name|currentPath
 parameter_list|,
 name|boolean
-name|index
+name|fullTextIndex
 parameter_list|)
 block|{
 for|for
@@ -2365,7 +2365,7 @@ name|attr
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 block|}
@@ -2381,7 +2381,7 @@ name|NodePath
 name|currentPath
 parameter_list|,
 name|boolean
-name|index
+name|fullTextIndex
 parameter_list|)
 block|{
 for|for
@@ -2423,7 +2423,7 @@ name|text
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 block|}
@@ -12831,7 +12831,7 @@ name|NodePath
 name|currentPath
 parameter_list|,
 name|boolean
-name|index
+name|fullTextIndex
 parameter_list|)
 block|{
 name|checkAvailableMemory
@@ -13042,7 +13042,7 @@ name|node
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 name|nodeProcessor
@@ -16690,7 +16690,7 @@ decl_stmt|;
 comment|/** overall switch to activate fulltext indexation */
 specifier|private
 name|boolean
-name|index
+name|fullTextIndex
 init|=
 literal|true
 decl_stmt|;
@@ -16840,7 +16840,7 @@ name|NodePath
 name|currentPath
 parameter_list|,
 name|boolean
-name|index
+name|fullTextIndex
 parameter_list|)
 block|{
 name|reset
@@ -16854,9 +16854,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|index
+name|fullTextIndex
 operator|=
-name|index
+name|fullTextIndex
 expr_stmt|;
 block|}
 specifier|public
@@ -17035,7 +17035,7 @@ name|node
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 name|NodeProxy
@@ -17108,7 +17108,7 @@ expr_stmt|;
 comment|// --move to-- NativeElementIndex NativeValueIndex NativeTextEngine
 if|if
 condition|(
-name|index
+name|fullTextIndex
 operator|&&
 operator|(
 name|ftIdx
@@ -17221,7 +17221,7 @@ name|node
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 comment|// --move to-- NativeTextEngine
@@ -17379,21 +17379,42 @@ comment|// --move to-- NativeTextEngine
 comment|// TODO textEngine.storeText( (TextImpl) node, currentPath, index);
 comment|// check if this textual content should be fulltext-indexed
 comment|// by calling IndexPaths.match(path)
+if|if
+condition|(
+name|fullTextIndex
+operator|&&
+operator|!
+name|isTemp
+condition|)
+block|{
 name|boolean
 name|indexText
-init|=
-literal|true
+decl_stmt|;
+name|boolean
+name|preventTokenization
 decl_stmt|;
 if|if
 condition|(
 name|ftIdx
-operator|!=
+operator|==
 literal|null
-operator|&&
+operator|||
 name|currentPath
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+name|indexText
+operator|=
+literal|true
+expr_stmt|;
+name|preventTokenization
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 name|indexText
 operator|=
 name|ftIdx
@@ -17403,38 +17424,20 @@ argument_list|(
 name|currentPath
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|indexText
-operator|&&
-operator|!
-name|isTemp
-operator|&&
-name|index
-condition|)
-block|{
-name|boolean
-name|valore
-init|=
-operator|(
-name|ftIdx
-operator|==
-literal|null
-operator|||
-name|currentPath
-operator|==
-literal|null
-condition|?
-literal|false
-else|:
+name|preventTokenization
+operator|=
 name|ftIdx
 operator|.
 name|preserveContent
 argument_list|(
 name|currentPath
 argument_list|)
-operator|)
-decl_stmt|;
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|indexText
+condition|)
 name|textEngine
 operator|.
 name|storeText
@@ -17446,7 +17449,7 @@ name|TextImpl
 operator|)
 name|node
 argument_list|,
-name|valore
+name|preventTokenization
 argument_list|)
 expr_stmt|;
 block|}
@@ -17459,7 +17462,7 @@ name|node
 argument_list|,
 name|currentPath
 argument_list|,
-name|index
+name|fullTextIndex
 argument_list|)
 expr_stmt|;
 comment|// storeText( TextImpl node, NodePath currentPath, boolean fullTextIndexSwitch );

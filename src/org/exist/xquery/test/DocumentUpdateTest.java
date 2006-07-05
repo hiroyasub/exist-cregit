@@ -371,6 +371,116 @@ argument_list|,
 literal|"2"
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"-- TEST 5: 'update replace' statement --"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $doc := "
+operator|+
+literal|"<test> "
+operator|+
+literal|"<link href=\"features\"/> "
+operator|+
+literal|"(: it works with only 1 link :) "
+operator|+
+literal|"<link href=\"features/test\"/> "
+operator|+
+literal|"</test> "
+operator|+
+literal|"let $links := $doc/link/@href "
+operator|+
+literal|"return "
+operator|+
+literal|"for $link in $links "
+operator|+
+literal|"return ( "
+operator|+
+literal|"update replace $link with \"123\", "
+operator|+
+literal|"(: without the output on the next line, it works :) "
+operator|+
+literal|"xs:string($link) "
+operator|+
+literal|")"
+expr_stmt|;
+name|XQueryService
+name|service
+init|=
+operator|(
+name|XQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|r
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|r
+operator|.
+name|getSize
+argument_list|()
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|r
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"123"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|r
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"123"
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

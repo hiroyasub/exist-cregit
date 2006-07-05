@@ -2360,6 +2360,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//TODO : does it make sens to outup such a standalone "&" ?
+comment|//<elem>&</elem>
 block|}
 else|else
 block|{

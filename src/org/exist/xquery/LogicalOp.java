@@ -121,6 +121,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+comment|//To optimize, we want nodes
 if|if
 condition|(
 name|Type
@@ -153,6 +154,7 @@ operator|.
 name|NODE
 argument_list|)
 operator|&&
+comment|//No dependency on the context item
 operator|!
 name|Dependency
 operator|.
@@ -166,7 +168,20 @@ operator|.
 name|CONTEXT_ITEM
 argument_list|)
 operator|&&
-comment|//TODO : use Dependency.VARS ?
+operator|!
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|getRight
+argument_list|()
+argument_list|,
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+argument_list|)
+operator|&&
+comment|//and no dependency on *local* variables (context variables are OK)
 operator|!
 name|Dependency
 operator|.
@@ -190,24 +205,8 @@ argument_list|()
 argument_list|,
 name|Dependency
 operator|.
-name|CONTEXT_ITEM
-argument_list|)
-operator|&&
-comment|//TODO : use Dependency.VARS ?
-operator|!
-name|Dependency
-operator|.
-name|dependsOn
-argument_list|(
-name|getRight
-argument_list|()
-argument_list|,
-name|Dependency
-operator|.
 name|LOCAL_VARS
 argument_list|)
-comment|//TODO: is this accurate ? -pb
-comment|/*&& contextInfo.getContextId() != -1*/
 condition|)
 name|optimize
 operator|=

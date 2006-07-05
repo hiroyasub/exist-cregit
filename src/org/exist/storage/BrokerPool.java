@@ -3272,6 +3272,14 @@ argument_list|(
 name|syncEvent
 argument_list|)
 expr_stmt|;
+name|User
+name|user
+init|=
+name|broker
+operator|.
+name|getUser
+argument_list|()
+decl_stmt|;
 comment|//TODO : strange that it is set *after* the sunc method has been called.
 name|broker
 operator|.
@@ -3354,13 +3362,12 @@ argument_list|()
 expr_stmt|;
 comment|//TODO : touch this.syncEvent and syncRequired ?
 comment|//After setting the SYSTEM_USER above we must change back to the DEFAULT User to prevent a security problem
+comment|//broker.setUser(User.DEFAULT);
 name|broker
 operator|.
 name|setUser
 argument_list|(
-name|User
-operator|.
-name|DEFAULT
+name|user
 argument_list|)
 expr_stmt|;
 block|}

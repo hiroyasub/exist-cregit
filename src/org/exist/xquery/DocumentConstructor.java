@@ -21,6 +21,18 @@ name|exist
 operator|.
 name|memtree
 operator|.
+name|DocumentBuilderReceiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
 name|MemTreeBuilder
 import|;
 end_import
@@ -34,18 +46,6 @@ operator|.
 name|memtree
 operator|.
 name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -343,20 +343,16 @@ argument_list|(
 name|builder
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
+operator|!
 name|contentSeq
 operator|.
 name|isEmpty
 argument_list|()
 condition|)
-return|return
-name|builder
-operator|.
-name|getDocument
-argument_list|()
-return|;
-try|try
 block|{
 name|StringBuffer
 name|buf
@@ -579,6 +575,8 @@ name|nextItem
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : design like below ? -pb
+comment|/* 		         		         		        //TODO : wondering whether we shouldn't iterate over a nodeset as the specs would tend to say. -pb	         		         		        SequenceIterator i = contentSeq.iterate(); 		        Item next = i.nextItem(); 		        while(next != null) { 		            context.proceed(this, builder); 		             					if (Type.subTypeOf(next.getType(), Type.NODE)) { 						//flush any collected character data 						if (buf != null&& buf.length()> 0) { 							receiver.characters(buf); 							buf.setLength(0); 						}					 						// copy the node to the target doc 						if(next.getType() == Type.ATTRIBUTE) { 							throw new XPathException(getASTNode(), "XPTY0004 : Found a node of type " +  								Type.getTypeName(next.getType()) +  " inside a document constructor");							 						} else if (next.getType() == Type.DOCUMENT) {		 							//TODO : definitely broken, but that's the way to do 							for (int j = 0 ; j< ((DocumentImpl)next).getChildCount(); j++) {								 								((DocumentImpl)next).getNode(j).copyTo(context.getBroker(), receiver); 							}							 						} else if (Type.subTypeOf(next.getType(), Type.TEXT)) { 							//TODO 							buf.append("#text"); 						} else { 							next.copyTo(context.getBroker(), receiver); 						} 					} else {					 					    if(buf == null) 					        buf = new StringBuffer(); 						//else if (buf.length()> 0) 						//	buf.append(' '); 						buf.append(next.getStringValue());						 					} 					next = i.nextItem(); 					*/
 block|}
 comment|// flush remaining character data
 if|if
@@ -594,6 +592,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|receiver
 operator|.
 name|characters
@@ -601,6 +600,15 @@ argument_list|(
 name|buf
 argument_list|)
 expr_stmt|;
+name|buf
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 catch|catch
 parameter_list|(

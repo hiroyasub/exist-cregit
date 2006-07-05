@@ -158,7 +158,7 @@ argument_list|(
 operator|new
 name|XUpdateTestCases
 argument_list|(
-literal|"newChild"
+literal|"appendChild"
 argument_list|,
 name|test
 argument_list|)

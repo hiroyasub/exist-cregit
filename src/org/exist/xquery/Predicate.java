@@ -1416,18 +1416,85 @@ operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 case|:
 block|{
-comment|//TODO: in some cases, especially with in-memory nodes,
-comment|//outerSequence.toNodeSet() will generate a document
-comment|//which will be different from the one(s) in contextSet
-comment|//ancestors will thus be empty :-(
 name|NodeSet
 name|outerNodeSet
+decl_stmt|;
+comment|//Ugly and costly processing of VirtualNodeSEts
+comment|//TODO : CORRECT THIS !!!
+if|if
+condition|(
+name|outerSequence
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+block|{
+name|outerNodeSet
+operator|=
+operator|new
+name|ExtArrayNodeSet
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
 init|=
+literal|0
+init|;
+name|i
+operator|<
+name|outerSequence
+operator|.
+name|getLength
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|outerNodeSet
+operator|.
+name|add
+argument_list|(
+name|outerSequence
+operator|.
+name|itemAt
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+name|outerNodeSet
+operator|=
 name|outerSequence
 operator|.
 name|toNodeSet
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+comment|//Comment the line below if you have uncommented the lines above :-)
+comment|//TODO: in some cases, especially with in-memory nodes,
+comment|//outerSequence.toNodeSet() will generate a document
+comment|//which will be different from the one(s) in contextSet
+comment|//ancestors will thus be empty :-(
+if|if
+condition|(
+name|outerSequence
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+operator|(
+operator|(
+name|VirtualNodeSet
+operator|)
+name|outerSequence
+operator|)
+operator|.
+name|realize
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|ancestors
 init|=
@@ -1632,6 +1699,16 @@ name|p
 operator|!=
 literal|null
 condition|)
+block|{
+name|p
+operator|.
+name|clearContext
+argument_list|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
@@ -1639,7 +1716,8 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-comment|//TODO : does null make sense here ?
+block|}
+comment|//TODO : does null make sense here ? Well... sometimes ;-)
 block|}
 block|}
 break|break;
