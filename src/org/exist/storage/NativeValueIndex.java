@@ -713,7 +713,21 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Document id and proxy id differ !"
+literal|"Document id ('"
+operator|+
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|"') and proxy id ('"
+operator|+
+name|node
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|"') differ !"
 argument_list|)
 throw|;
 block|}
@@ -822,7 +836,21 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Document id and proxy id differ !"
+literal|"Document id ('"
+operator|+
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|"') and proxy id ('"
+operator|+
+name|node
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|"') differ !"
 argument_list|)
 throw|;
 block|}
