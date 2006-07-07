@@ -120,6 +120,8 @@ parameter_list|(
 name|Context
 name|context
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 name|void
 name|process
