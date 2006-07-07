@@ -55,6 +55,18 @@ name|org
 operator|.
 name|apache
 operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|xmlrpc
 operator|.
 name|Base64
@@ -108,6 +120,21 @@ name|BasicAuthenticator
 implements|implements
 name|Authenticator
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|BasicAuthenticator
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
@@ -157,6 +184,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//LOG.debug("Sending BASIC auth challenge.");
 name|sendChallenge
 argument_list|(
 name|request
@@ -199,6 +227,7 @@ argument_list|(
 name|c
 argument_list|)
 decl_stmt|;
+comment|//LOG.debug("BASIC auth credentials: "+s);
 name|int
 name|p
 init|=
@@ -212,6 +241,12 @@ decl_stmt|;
 name|String
 name|username
 init|=
+name|p
+operator|<
+literal|0
+condition|?
+name|s
+else|:
 name|s
 operator|.
 name|substring
@@ -224,6 +259,12 @@ decl_stmt|;
 name|String
 name|password
 init|=
+name|p
+operator|<
+literal|0
+condition|?
+literal|null
+else|:
 name|s
 operator|.
 name|substring
