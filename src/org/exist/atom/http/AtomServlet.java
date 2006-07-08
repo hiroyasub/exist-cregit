@@ -1397,14 +1397,19 @@ name|formEncoding
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|src
-operator|.
-name|setSystemId
-argument_list|(
+name|URI
+name|docBaseURI
+init|=
 name|atomConf
 operator|.
 name|toURI
 argument_list|()
+decl_stmt|;
+name|src
+operator|.
+name|setSystemId
+argument_list|(
+name|docBaseURI
 operator|.
 name|toString
 argument_list|()
@@ -1758,18 +1763,12 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|// What I want but can't have because of JDK 1.4
+comment|//URI baseURI = URI.create(methodConf.getBaseURI());
 name|URI
 name|baseURI
 init|=
-name|URI
-operator|.
-name|create
-argument_list|(
-name|methodConf
-operator|.
-name|getBaseURI
-argument_list|()
-argument_list|)
+name|docBaseURI
 decl_stmt|;
 name|String
 name|queryRef
