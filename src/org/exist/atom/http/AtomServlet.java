@@ -1649,6 +1649,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// no class means query
 name|Query
 name|query
 init|=
