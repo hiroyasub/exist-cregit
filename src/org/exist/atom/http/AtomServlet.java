@@ -1436,6 +1436,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+comment|// Add all the modules
 name|NodeList
 name|moduleConfList
 init|=
