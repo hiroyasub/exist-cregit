@@ -623,6 +623,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**     * A user principal object that implements XmldbPrincipal     */
 specifier|static
 class|class
 name|UserXmldbPrincipal
@@ -710,6 +711,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**     * Module contexts that default to using the servlet's config     */
 class|class
 name|ModuleContext
 implements|implements
@@ -868,6 +870,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// The database isn't started, so we'll start it
 name|String
 name|confFile
 init|=
@@ -1043,6 +1046,7 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+comment|// The default user is used when there is no authentication
 name|String
 name|option
 init|=
@@ -1178,6 +1182,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// Currently, we only support basic authentication
 name|authenticator
 operator|=
 operator|new
@@ -1266,6 +1271,7 @@ operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
 block|}
+comment|// Load all the modules
 comment|//modules = new HashMap<String,AtomModule>();
 name|modules
 operator|=
