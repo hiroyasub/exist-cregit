@@ -85,6 +85,18 @@ name|DOMConfigurator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
 begin_comment
 comment|/**  * Helper servlet for initializing the log4j framework in a webcontainer.  */
 end_comment
@@ -260,12 +272,10 @@ condition|(
 operator|new
 name|File
 argument_list|(
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
 argument_list|,
 literal|"lib/core"
 argument_list|)
