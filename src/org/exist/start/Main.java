@@ -2042,6 +2042,7 @@ literal|"exist.home"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// DWES #### can this be removed?
 name|System
 operator|.
 name|setProperty
@@ -2478,6 +2479,7 @@ block|{
 comment|//--------------------
 comment|// detect exist.home:
 comment|//--------------------
+comment|// DWES #### use Configuration.getExistHome() ?
 name|File
 name|_home_dir
 init|=

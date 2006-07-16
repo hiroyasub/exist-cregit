@@ -868,6 +868,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
+comment|// DWES #### use Configuration.getExistHome()
 name|path
 operator|=
 name|System
@@ -1025,6 +1026,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
+comment|// DWES #### use Configuration.getExistHome()
 name|path
 operator|=
 name|System
@@ -1074,6 +1076,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
+comment|// DWES #### use Configuration.getExistHome()
 name|view
 operator|=
 name|System
