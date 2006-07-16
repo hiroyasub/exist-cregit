@@ -548,7 +548,6 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        System.setProperty("logger.dir", logsdir.getAbsolutePath() );
 comment|// Get log4j configuration file
 name|File
 name|srcConfigFile

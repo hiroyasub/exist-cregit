@@ -570,7 +570,6 @@ argument_list|(
 name|dbHome
 argument_list|)
 expr_stmt|;
-comment|// DWES ##### remove not needed since COnfiguration uses file?
 name|LOG
 operator|.
 name|info
@@ -580,7 +579,6 @@ operator|+
 name|dbHome
 argument_list|)
 expr_stmt|;
-comment|//				System.setProperty("exist.home", dbHome);
 name|File
 name|f
 init|=
