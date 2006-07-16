@@ -868,15 +868,15 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
-comment|// DWES #### use Configuration.getExistHome()
 name|path
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|path
 operator|.
@@ -1026,15 +1026,15 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
-comment|// DWES #### use Configuration.getExistHome()
 name|path
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|path
 operator|.
@@ -1076,15 +1076,15 @@ argument_list|)
 condition|)
 block|{
 comment|//Replace $EXIST_HOME with the actual path
-comment|// DWES #### use Configuration.getExistHome()
 name|view
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|view
 operator|.

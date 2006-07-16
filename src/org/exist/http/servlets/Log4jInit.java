@@ -461,22 +461,6 @@ parameter_list|()
 throws|throws
 name|ServletException
 block|{
-comment|// DWES #### remove this line?
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"user.dir"
-argument_list|,
-name|getServletContext
-argument_list|()
-operator|.
-name|getRealPath
-argument_list|(
-literal|"/"
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|// We need to check how eXist is running. If eXist is started in a
 comment|// servlet container like Tomcat, then initialization *is* needed.
 comment|//

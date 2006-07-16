@@ -862,7 +862,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Database already started. Skipping configuration ..."
 argument_list|)
@@ -941,17 +941,15 @@ argument_list|(
 name|dbHome
 argument_list|)
 expr_stmt|;
-comment|// DWES #### remove
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"AtomServlet: exist.home="
 operator|+
 name|dbHome
 argument_list|)
 expr_stmt|;
-comment|//            System.setProperty("exist.home", dbHome);
 name|File
 name|f
 init|=
@@ -969,7 +967,7 @@ argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"reading configuration from "
 operator|+
