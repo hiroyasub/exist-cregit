@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|TestConstants
 block|{
-comment|/** 	 * String representing the decoded path: t[e s]tà? 	 */
+comment|/** 	 * String representing the decoded path: t[e s]tÃ¡ì´ 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -63,7 +63,7 @@ argument_list|(
 name|DECODED_SPECIAL_NAME
 argument_list|)
 decl_stmt|;
-comment|/** 	 * XmldbURI representing the decoded path: t[e s]tà? 	 */
+comment|/** 	 * XmldbURI representing the decoded path: t[e s]tÃ¡ì´ 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -121,7 +121,7 @@ argument_list|(
 literal|"test3"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * XmldbURI representing the decoded path: /db/t[e s]tà? 	 */
+comment|/** 	 * XmldbURI representing the decoded path: /db/t[e s]tÃ¡ì´ 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -227,7 +227,7 @@ argument_list|(
 literal|"test3.xml"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * XmldbURI representing the decoded path: t[e s]tà?.xml 	 */
+comment|/** 	 * XmldbURI representing the decoded path: t[e s]tÃ¡ì´.xml 	 */
 specifier|public
 specifier|static
 specifier|final
