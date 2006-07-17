@@ -102,7 +102,7 @@ name|int
 name|arg1
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 The name of the header. 	 * @return A boolean value indicating whether it contains the header name. 	 */
 specifier|public
 name|boolean
 name|containsHeader
@@ -111,7 +111,7 @@ name|String
 name|arg0
 parameter_list|)
 function_decl|;
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 * @return The encoded value 	 */
 specifier|public
 name|String
 name|encodeURL
@@ -120,13 +120,13 @@ name|String
 name|arg0
 parameter_list|)
 function_decl|;
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return Returns the default character encoding 	 */
 specifier|public
 name|String
 name|getCharacterEncoding
 parameter_list|()
 function_decl|;
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return Returns the default locale 	 */
 specifier|public
 name|Locale
 name|getLocale
