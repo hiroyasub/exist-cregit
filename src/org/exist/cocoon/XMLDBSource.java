@@ -846,7 +846,7 @@ name|status
 init|=
 name|ST_UNKNOWN
 decl_stmt|;
-comment|/**      * The constructor.      *      * @param logger the Logger instance.      * @param credential username and password      * @param srcUrl the URL being queried.      * @param manager component manager      */
+comment|/**      * The constructor.      *      * @param logger the Logger instance.      * @param username      * @param password      * @param srcUrl the URL being queried.      */
 specifier|public
 name|XMLDBSource
 parameter_list|(
@@ -2929,7 +2929,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * set content as DOM      * @author frederic.glorieux@ajlsm.com      * @see http://exist.sourceforge.net/api/org/xmldb/api/modules/XMLResource.html#setContentAsDOM(org.w3c.dom.Node)       */
+comment|/**      * set content as DOM      *       * @see<a href="http://exist.sourceforge.net/api/org/xmldb/api/modules/XMLResource.html#setContentAsDOM(org.w3c.dom.Node)">XMLDB API</a>      */
 specifier|public
 name|void
 name|setContentAsDOM
@@ -2942,6 +2942,7 @@ name|IOException
 throws|,
 name|MalformedURLException
 block|{
+comment|// author frederic.glorieux@ajlsm.com
 try|try
 block|{
 if|if
@@ -3056,7 +3057,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * get content as DOM      * @see http://exist.sourceforge.net/api/org/xmldb/api/modules/XMLResource.html#setContentAsDOM(org.w3c.dom.Node)       */
+comment|/**      * get content as DOM      * @see<a href="http://exist.sourceforge.net/api/org/xmldb/api/modules/XMLResource.html#setContentAsDOM(org.w3c.dom.Node)">XMLDB API</a>      */
 specifier|public
 name|Node
 name|getContentAsDOM
