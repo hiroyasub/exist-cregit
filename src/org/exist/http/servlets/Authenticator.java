@@ -70,7 +70,7 @@ specifier|public
 interface|interface
 name|Authenticator
 block|{
-comment|/**      * Try to authenticate the user specified in the HTTP request.      *       * @param request      * @param response      * @return      * @throws IOException      */
+comment|/**      * Try to authenticate the user specified in the HTTP request.      *       * @param request      * @param response      * @return The authenticated user or null if the user isn't autenticated      * @throws IOException      */
 specifier|public
 name|User
 name|authenticate

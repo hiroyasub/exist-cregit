@@ -211,7 +211,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 * @return a boolean indicating whether the header is present 	 */
 specifier|public
 name|boolean
 name|containsHeader
@@ -229,7 +229,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 * @return the encoded value 	 */
 specifier|public
 name|String
 name|encodeURL
@@ -247,7 +247,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return returns the default character encoding 	 */
 specifier|public
 name|String
 name|getCharacterEncoding
@@ -260,7 +260,7 @@ name|getCharacterEncoding
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return returns the locale 	 */
 specifier|public
 name|Locale
 name|getLocale

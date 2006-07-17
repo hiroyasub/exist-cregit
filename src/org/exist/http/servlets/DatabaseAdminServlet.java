@@ -184,7 +184,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Servlet to configure eXist. Use this servlet in a web   * application to launch the database at startup.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    17. Mai 2002  */
+comment|// created    17. Mai 2002
+end_comment
+
+begin_comment
+comment|/**  *  Servlet to configure eXist. Use this servlet in a web   * application to launch the database at startup.  *   *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
