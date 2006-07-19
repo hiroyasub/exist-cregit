@@ -73,6 +73,19 @@ argument_list|(
 literal|"XML:DB"
 argument_list|)
 decl_stmt|;
+comment|/** 	 * This represents when access is made through XQJ 	 */
+specifier|public
+specifier|static
+specifier|final
+name|AccessContext
+name|XQJ
+init|=
+operator|new
+name|AccessContext
+argument_list|(
+literal|"XQJ"
+argument_list|)
+decl_stmt|;
 comment|/** 	 * The context for access through the REST-style interface.  	 */
 specifier|public
 specifier|static
