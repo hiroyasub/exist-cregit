@@ -299,6 +299,17 @@ name|TEMP_COLLECTION
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|EMPTY_URI
+init|=
+name|createInternal
+argument_list|(
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|XmldbURI
@@ -1809,10 +1820,7 @@ block|{
 return|return
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 return|;
 block|}
 comment|// Checks against a trailing slash
@@ -1857,10 +1865,7 @@ literal|0
 condition|?
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 else|:
 name|XmldbURI
 operator|.

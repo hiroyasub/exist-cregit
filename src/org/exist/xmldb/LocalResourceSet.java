@@ -997,10 +997,7 @@ name|collection
 argument_list|,
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 argument_list|)
 decl_stmt|;
 name|res
@@ -1196,10 +1193,7 @@ name|collection
 argument_list|,
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 argument_list|)
 expr_stmt|;
 name|res
@@ -1233,10 +1227,7 @@ name|collection
 argument_list|,
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 argument_list|)
 expr_stmt|;
 name|res
