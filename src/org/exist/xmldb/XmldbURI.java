@@ -299,17 +299,6 @@ name|TEMP_COLLECTION
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
-specifier|static
-name|XmldbURI
-name|EMPTY_URI
-init|=
-name|create
-argument_list|(
-literal|""
-argument_list|)
-decl_stmt|;
-specifier|public
 specifier|static
 specifier|final
 name|XmldbURI
