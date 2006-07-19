@@ -537,7 +537,12 @@ throw|throw
 operator|new
 name|XQException
 argument_list|(
-literal|"Can not access to local database instance"
+literal|"Can not access local database instance: "
+operator|+
+name|ee
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}

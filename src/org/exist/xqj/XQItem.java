@@ -97,6 +97,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -179,7 +191,10 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+name|item
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItem#isClosed() 	 */
 specifier|public
@@ -187,9 +202,10 @@ name|boolean
 name|isClosed
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|item
+operator|==
+literal|null
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getAtomicValue() 	 */
@@ -200,10 +216,44 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+try|try
+block|{
+if|if
+condition|(
+name|item
+operator|!=
+literal|null
+condition|)
+return|return
+name|item
+operator|.
+name|atomize
+argument_list|()
+operator|.
+name|getStringValue
+argument_list|()
+return|;
 return|return
 literal|null
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|xpe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XQException
+argument_list|(
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getBoolean() 	 */
 specifier|public

@@ -133,6 +133,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -198,7 +210,7 @@ specifier|private
 name|Sequence
 name|resultSequence
 decl_stmt|;
-comment|//NB First Item is 1, Java Arrays start at 0 !!!
+comment|//NB First Item is 1, Java Arrays start at 0!!! (before first is 0)
 specifier|private
 name|int
 name|iLength
@@ -280,10 +292,45 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+try|try
+block|{
+name|Item
+name|item
+init|=
+name|resultSequence
+operator|.
+name|itemAt
+argument_list|(
+name|iCurrent
+argument_list|)
+decl_stmt|;
 return|return
-literal|null
+name|item
+operator|.
+name|atomize
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|xpe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XQException
+argument_list|(
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getBoolean() 	 */
 specifier|public
@@ -661,6 +708,8 @@ operator|.
 name|itemAt
 argument_list|(
 name|iCurrent
+operator|-
+literal|1
 argument_list|)
 decl_stmt|;
 return|return
@@ -866,7 +915,7 @@ expr_stmt|;
 return|return
 operator|(
 name|iCurrent
-operator|<
+operator|<=
 name|iLength
 operator|)
 return|;
