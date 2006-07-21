@@ -239,34 +239,6 @@ name|InputSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *  */
 end_comment
@@ -314,6 +286,34 @@ specifier|private
 name|PrintWriter
 name|pwLogWriter
 decl_stmt|;
+specifier|private
+name|XQCommonHandler
+name|handler
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EXIST_DEFAULT_USERNAME
+init|=
+literal|"guest"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EXIST_DEFAULT_PASSWORD
+init|=
+literal|"guest"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EXIST_DEFAULT_CONNECTION_TIMEOUT
+init|=
+literal|"0"
+decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|XQDataSource
@@ -336,7 +336,7 @@ index|[
 literal|0
 index|]
 argument_list|,
-literal|"guest"
+name|EXIST_DEFAULT_USERNAME
 argument_list|)
 expr_stmt|;
 comment|//javax.xml.xquery.property.UserName
@@ -346,10 +346,10 @@ name|setProperty
 argument_list|(
 name|strPropertyNames
 index|[
-literal|0
+literal|1
 index|]
 argument_list|,
-literal|"guest"
+name|EXIST_DEFAULT_PASSWORD
 argument_list|)
 expr_stmt|;
 comment|//javax.xml.xquery.property.Password
@@ -359,10 +359,10 @@ name|setProperty
 argument_list|(
 name|strPropertyNames
 index|[
-literal|0
+literal|2
 index|]
 argument_list|,
-literal|"0"
+name|EXIST_DEFAULT_CONNECTION_TIMEOUT
 argument_list|)
 expr_stmt|;
 comment|//javax.xml.xquery.property.MaxConnections
@@ -390,14 +390,20 @@ name|properties
 operator|.
 name|getProperty
 argument_list|(
-literal|"javax.xml.xquery.property.UserName"
+name|strPropertyNames
+index|[
+literal|0
+index|]
 argument_list|)
 argument_list|,
 name|properties
 operator|.
 name|getProperty
 argument_list|(
-literal|"javax.xml.xquery.property.Password"
+name|strPropertyNames
+index|[
+literal|1
+index|]
 argument_list|)
 argument_list|)
 return|;
@@ -432,19 +438,17 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-name|BrokerPool
-name|pool
-decl_stmt|;
 try|try
 block|{
 comment|//get the broker pool instance
+name|BrokerPool
 name|pool
-operator|=
+init|=
 name|BrokerPool
 operator|.
 name|getInstance
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|//get the user
 name|User
 name|user
@@ -626,7 +630,12 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+name|this
+operator|.
+name|handler
+operator|=
+name|handler
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataSource#setLoginTimeout(int) 	 */
 specifier|public
@@ -821,9 +830,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromByte(byte, javax.xml.xquery.XQItemType) 	 */
@@ -840,9 +860,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromDocument(org.xml.sax.InputSource) 	 */
@@ -858,7 +889,6 @@ name|XQException
 throws|,
 name|IOException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -877,9 +907,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromFloat(float, javax.xml.xquery.XQItemType) 	 */
@@ -896,9 +937,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromInt(int, javax.xml.xquery.XQItemType) 	 */
@@ -915,9 +967,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromLong(long, javax.xml.xquery.XQItemType) 	 */
@@ -934,9 +997,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemFromNode(org.w3c.dom.Node, javax.xml.xquery.XQItemType) 	 */
@@ -991,9 +1065,20 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQItem
+argument_list|(
+name|value
+argument_list|,
+name|type
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQDataFactory#createItemType(int, int, javax.xml.namespace.QName) 	 */
