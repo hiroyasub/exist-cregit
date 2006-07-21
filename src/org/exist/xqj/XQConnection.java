@@ -297,6 +297,9 @@ name|XQConnection
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|XQCommonHandler
+name|handler
 parameter_list|)
 block|{
 name|this
@@ -304,6 +307,12 @@ operator|.
 name|broker
 operator|=
 name|broker
+expr_stmt|;
+name|this
+operator|.
+name|handler
+operator|=
+name|handler
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQConnection#clearWarnings() 	 */
@@ -419,9 +428,18 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|org
+operator|.
+name|exist
+operator|.
+name|xqj
+operator|.
+name|XQMetaData
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQConnection#getMetaDataProperty(java.lang.String) 	 */
@@ -1237,6 +1255,15 @@ block|{
 comment|// TODO Auto-generated method stub
 return|return
 literal|null
+return|;
+block|}
+specifier|protected
+name|DBBroker
+name|getBroker
+parameter_list|()
+block|{
+return|return
+name|broker
 return|;
 block|}
 block|}

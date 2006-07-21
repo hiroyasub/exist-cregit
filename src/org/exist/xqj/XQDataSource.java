@@ -528,6 +528,8 @@ operator|.
 name|XQConnection
 argument_list|(
 name|broker
+argument_list|,
+name|handler
 argument_list|)
 return|;
 block|}
