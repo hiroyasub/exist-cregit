@@ -47,6 +47,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Properties
@@ -193,7 +203,33 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|NodeValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
 import|;
 end_import
 
@@ -222,7 +258,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *  */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *   */
 end_comment
 
 begin_class
@@ -411,7 +447,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItem#close() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItem#close() 	 */
 specifier|public
 name|void
 name|close
@@ -424,7 +460,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItem#isClosed() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItem#isClosed() 	 */
 specifier|public
 name|boolean
 name|isClosed
@@ -436,7 +472,7 @@ operator|==
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getAtomicValue() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getAtomicValue() 	 */
 specifier|public
 name|String
 name|getAtomicValue
@@ -483,7 +519,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getBoolean() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getBoolean() 	 */
 specifier|public
 name|boolean
 name|getBoolean
@@ -511,7 +547,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getByte() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getByte() 	 */
 specifier|public
 name|byte
 name|getByte
@@ -532,12 +568,12 @@ operator|.
 name|BYTE
 argument_list|)
 decl_stmt|;
-comment|//return v.getInt();
+comment|// return v.getInt();
 return|return
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getDouble() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getDouble() 	 */
 specifier|public
 name|double
 name|getDouble
@@ -565,7 +601,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getFloat() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getFloat() 	 */
 specifier|public
 name|float
 name|getFloat
@@ -593,7 +629,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getInt() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getInt() 	 */
 specifier|public
 name|int
 name|getInt
@@ -641,7 +677,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getItemAsString() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getItemAsString() 	 */
 specifier|public
 name|String
 name|getItemAsString
@@ -654,7 +690,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getItemType() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getItemType() 	 */
 specifier|public
 name|XQItemType
 name|getItemType
@@ -662,16 +698,11 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-name|item
-operator|.
-name|getType
-argument_list|()
-expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getLong() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getLong() 	 */
 specifier|public
 name|long
 name|getLong
@@ -699,7 +730,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getNode() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getNode() 	 */
 specifier|public
 name|Node
 name|getNode
@@ -707,12 +738,49 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+try|try
+block|{
+name|NodeValue
+name|n
+init|=
+operator|(
+name|NodeValue
+operator|)
+name|item
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|)
+decl_stmt|;
 return|return
-literal|null
+name|n
+operator|.
+name|getNode
+argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getNodeUri() 	 */
+catch|catch
+parameter_list|(
+name|XPathException
+name|xpe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XQException
+argument_list|(
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getNodeUri() 	 */
 specifier|public
 name|URI
 name|getNodeUri
@@ -720,12 +788,105 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+try|try
+block|{
+name|NodeValue
+name|n
+init|=
+operator|(
+name|NodeValue
+operator|)
+name|item
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|)
+decl_stmt|;
+name|Document
+name|doc
+init|=
+name|n
+operator|.
+name|getOwnerDocument
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|documentURI
+init|=
+name|n
+operator|.
+name|getOwnerDocument
+argument_list|()
+operator|.
+name|getDocumentURI
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|documentURI
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|URI
+argument_list|(
+name|documentURI
+argument_list|)
+return|;
+block|}
+block|}
 return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getObject() 	 */
+catch|catch
+parameter_list|(
+name|XPathException
+name|xpe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XQException
+argument_list|(
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|use
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XQException
+argument_list|(
+name|use
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getObject() 	 */
 specifier|public
 name|Object
 name|getObject
@@ -733,12 +894,11 @@ parameter_list|()
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getObject(javax.xml.xquery.XQCommonHandler) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getObject(javax.xml.xquery.XQCommonHandler) 	 */
 specifier|public
 name|Object
 name|getObject
@@ -749,12 +909,16 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|handler
+operator|.
+name|toObject
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#getShort() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#getShort() 	 */
 specifier|public
 name|short
 name|getShort
@@ -766,7 +930,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#instanceOf(javax.xml.xquery.XQItemType) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#instanceOf(javax.xml.xquery.XQItemType) 	 */
 specifier|public
 name|boolean
 name|instanceOf
@@ -850,7 +1014,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#writeItem(java.io.OutputStream, java.util.Properties) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#writeItem(java.io.OutputStream, 	 *      java.util.Properties) 	 */
 specifier|public
 name|void
 name|writeItem
@@ -866,7 +1030,7 @@ name|XQException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#writeItem(java.io.Writer, java.util.Properties) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#writeItem(java.io.Writer, 	 *      java.util.Properties) 	 */
 specifier|public
 name|void
 name|writeItem
@@ -882,7 +1046,7 @@ name|XQException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQItemAccessor#writeItemToSAX(org.xml.sax.ContentHandler) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.xml.xquery.XQItemAccessor#writeItemToSAX(org.xml.sax.ContentHandler) 	 */
 specifier|public
 name|void
 name|writeItemToSAX

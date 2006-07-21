@@ -275,11 +275,19 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
+specifier|private
+name|XQCommonHandler
+name|handler
+decl_stmt|;
 specifier|public
 name|XQConnection
 parameter_list|()
 block|{
 name|broker
+operator|=
+literal|null
+expr_stmt|;
+name|handler
 operator|=
 literal|null
 expr_stmt|;
@@ -638,7 +646,12 @@ parameter_list|)
 throws|throws
 name|XQException
 block|{
-comment|// TODO Auto-generated method stub
+name|this
+operator|.
+name|handler
+operator|=
+name|handler
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQConnection#setHoldability(int) 	 */
 specifier|public
