@@ -366,7 +366,10 @@ name|void
 name|close
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+name|broker
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQExpression#executeCommand(java.io.Reader) 	 */
 specifier|public
@@ -724,9 +727,10 @@ name|boolean
 name|isClosed
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|broker
+operator|==
+literal|null
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.xquery.XQExpression#setQueryTimeout(int) 	 */
