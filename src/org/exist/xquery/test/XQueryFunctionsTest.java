@@ -3826,6 +3826,81 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|testResolveQName
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace a=\"aes\";"
+operator|+
+literal|"declare namespace n=\"ns1\";"
+operator|+
+literal|"declare variable $d {<c xmlns:x=\"ns1\"><d>x:test</d></c>};"
+operator|+
+literal|"for $e in $d/d "
+operator|+
+literal|"return fn:resolve-QName($e/text(), $e)"
+decl_stmt|;
+try|try
+block|{
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"n:test"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|//ensure the test collection is removed and call collection-exists,
 comment|//which should return false, no exception thrown
 specifier|public
