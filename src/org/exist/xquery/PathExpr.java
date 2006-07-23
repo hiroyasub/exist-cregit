@@ -997,6 +997,13 @@ comment|//it looks like an empty sequence could be considered as a sub-type of T
 comment|//well, no so stupid I think...
 if|if
 condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|1
+operator|&&
 operator|!
 name|result
 operator|.
