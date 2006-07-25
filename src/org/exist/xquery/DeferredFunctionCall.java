@@ -628,16 +628,40 @@ name|boolean
 name|isEmpty
 parameter_list|()
 block|{
+try|try
+block|{
+name|realize
+argument_list|()
+expr_stmt|;
+return|return
+name|sequence
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Exception in deferred function: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
-comment|//        try {
-comment|//            realize();
-comment|//            return sequence.isEmpty();
-comment|//        } catch (XPathException e) {
-comment|//            LOG.error("Exception in deferred function: " + e.getMessage());
-comment|//            return false;
-comment|//        }
+block|}
 block|}
 specifier|public
 name|boolean

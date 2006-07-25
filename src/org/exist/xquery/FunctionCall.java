@@ -179,6 +179,12 @@ literal|null
 decl_stmt|;
 specifier|private
 name|boolean
+name|isRecursive
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|boolean
 name|analyzed
 init|=
 literal|false
@@ -433,6 +439,36 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|tailRecursiveCall
+argument_list|(
+name|functionDef
+operator|.
+name|getSignature
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|isRecursive
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|context
+operator|.
+name|functionStart
+argument_list|(
+name|functionDef
+operator|.
+name|getSignature
+argument_list|()
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|expression
 operator|.
 name|analyze
@@ -444,6 +480,15 @@ name|analyzed
 operator|=
 literal|true
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|functionEnd
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Called by {@link XQueryContext} to resolve a call to a function that has not      * yet been declared. XQueryContext remembers all calls to undeclared functions      * and tries to resolve them after parsing has completed.      *       * @param functionDef      * @throws XPathException      */
@@ -837,15 +882,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|context
-operator|.
-name|tailRecursiveCall
-argument_list|(
-name|functionDef
-operator|.
-name|getSignature
-argument_list|()
-argument_list|)
+name|isRecursive
 condition|)
 block|{
 comment|//            LOG.warn("Tail recursive function: " + functionDef.getSignature().toString());
@@ -900,7 +937,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-if|if
+while|while
 condition|(
 name|returnSeq
 operator|instanceof
@@ -925,6 +962,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+comment|//    				 LOG.debug("Executing function: " + functionDef.getSignature());
 name|returnSeq
 operator|=
 operator|(
@@ -1122,6 +1160,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+comment|//                LOG.debug("Returning from execute()");
 return|return
 name|returnSeq
 return|;
