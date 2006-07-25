@@ -388,10 +388,7 @@ literal|0
 argument_list|,
 name|XmldbURI
 operator|.
-name|create
-argument_list|(
-literal|""
-argument_list|)
+name|EMPTY_URI
 argument_list|,
 literal|null
 argument_list|)

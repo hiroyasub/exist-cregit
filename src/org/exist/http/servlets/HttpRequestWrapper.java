@@ -691,7 +691,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      * @return      */
+comment|/**@see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      * @return An enumeration of header names      */
 specifier|public
 name|Enumeration
 name|getHeaderNames
@@ -1070,7 +1070,7 @@ return|return
 name|documentName
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameterNames(String)      */
+comment|/**@see javax.servlet.http.HttpServletRequest#getParameterNames()      */
 specifier|public
 name|Enumeration
 name|getParameterNames

@@ -1733,10 +1733,13 @@ operator|.
 name|getType
 argument_list|()
 condition|?
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 else|:
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 return|;
 block|}
 block|}

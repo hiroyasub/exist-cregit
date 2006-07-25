@@ -227,6 +227,8 @@ parameter_list|(
 name|Context
 name|context
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 name|this
 operator|.

@@ -222,7 +222,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A wrapper for HttpServletRequest  * - differentiates between POST parameters in the URL or Content Body  * - keeps content Body of the POST request, making it available many times   * 		through {@link #getStringBufferInputStream()} .  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.1  */
+comment|/** A wrapper for HttpServletRequest  * - differentiates between POST parameters in the URL or Content Body  * - keeps content Body of the POST request, making it available many times   * 		through {@link #getContentBodyInputStream()} .  *   * A method of differentiating between POST parameters in the URL or Content Body of the request was needed.  * The standard javax.servlet.http.HTTPServletRequest does not differentiate between URL or content body parameters,  * this class does, the type is indicated in RequestParameter.type.  *   * To differentiate manually we need to read the URL (getQueryString()) and the Content body (getInputStream()),  * this is problematic with the standard javax.servlet.http.HTTPServletRequest as parameter functions (getParameterMap(), getParameterNames(), getParameter(String), getParameterValues(String))   * affect the  input stream functions (getInputStream(), getReader()) and vice versa.  *   * This class solves this by reading the Request Parameters initially from both the URL and the Content Body of the Request  * and storing them in the private variable params for later use.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-02-28  * @version 1.1  */
 end_comment
 
 begin_comment
@@ -1375,7 +1375,7 @@ name|getRequestURI
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see javax.servlet.http.HttpServletRequest#getRequestedURL 	 */
+comment|/** 	 * @see javax.servlet.http.HttpServletRequest#getRequestURL 	 */
 specifier|public
 name|StringBuffer
 name|getRequestURL
@@ -1432,7 +1432,7 @@ name|getSession
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdValie 	 */
+comment|/** 	 * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdValid 	 */
 specifier|public
 name|boolean
 name|isRequestedSessionIdValid

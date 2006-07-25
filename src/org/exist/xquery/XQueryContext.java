@@ -779,6 +779,15 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
+specifier|protected
+specifier|final
+name|Stack
+name|callStack
+init|=
+operator|new
+name|Stack
+argument_list|()
+decl_stmt|;
 comment|// The current size of the variable stack
 specifier|protected
 name|int
@@ -2488,6 +2497,11 @@ name|fragmentStack
 operator|=
 operator|new
 name|Stack
+argument_list|()
+expr_stmt|;
+name|callStack
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 comment|//remove the context-vars, subsequent execution of the query
@@ -4308,6 +4322,55 @@ return|return
 name|variableStackSize
 return|;
 block|}
+comment|/* ----------------- Function call stack ------------------------ */
+comment|/**      * Report the start of a function execution. Adds the reported function signature       * to the function call stack.      */
+specifier|public
+name|void
+name|functionStart
+parameter_list|(
+name|FunctionSignature
+name|signature
+parameter_list|)
+block|{
+name|callStack
+operator|.
+name|push
+argument_list|(
+name|signature
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Report the end of the currently executed function. Pops the last function      * signature from the function call stack.      *      */
+specifier|public
+name|void
+name|functionEnd
+parameter_list|()
+block|{
+name|callStack
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**      * Check if the specified function signature is found in the current function       * called stack. If yes, the function might be tail recursive and needs to be      * optimized.       *       * @param signature      * @return      */
+specifier|public
+name|boolean
+name|tailRecursiveCall
+parameter_list|(
+name|FunctionSignature
+name|signature
+parameter_list|)
+block|{
+return|return
+name|callStack
+operator|.
+name|contains
+argument_list|(
+name|signature
+argument_list|)
+return|;
+block|}
+comment|/* ----------------- Module imports ------------------------ */
 comment|/** 	 * Import a module and make it available in this context. The prefix and 	 * location parameters are optional. If prefix is null, the default prefix specified 	 * by the module is used. If location is null, the module will be read from the 	 * namespace URI. 	 *  	 * @param namespaceURI 	 * @param prefix 	 * @param location 	 * @throws XPathException 	 */
 specifier|public
 name|void

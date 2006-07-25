@@ -631,6 +631,7 @@ literal|" ..."
 argument_list|)
 expr_stmt|;
 comment|// Tell eXist where conf.xml is :
+comment|// DWES #### use Configuration.getExistHome()
 if|if
 condition|(
 name|EXIST_HOME

@@ -35,6 +35,18 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Helper class for webstart.  *  * @author Dannes Wessels  */
 end_comment
@@ -59,15 +71,13 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-name|String
+name|File
 name|existHome
 init|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
 decl_stmt|;
 specifier|private
 name|File
@@ -160,11 +170,7 @@ argument_list|)
 expr_stmt|;
 name|existJarFolder
 operator|=
-operator|new
-name|File
-argument_list|(
 name|existHome
-argument_list|)
 expr_stmt|;
 name|webappFolder
 operator|=

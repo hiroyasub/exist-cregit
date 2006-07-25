@@ -870,12 +870,13 @@ block|{
 comment|//Replace $EXIST_HOME with the actual path
 name|path
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|path
 operator|.
@@ -1027,12 +1028,13 @@ block|{
 comment|//Replace $EXIST_HOME with the actual path
 name|path
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|path
 operator|.
@@ -1076,12 +1078,13 @@ block|{
 comment|//Replace $EXIST_HOME with the actual path
 name|view
 operator|=
-name|System
+name|Configuration
 operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
+name|getExistHome
+argument_list|()
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 name|view
 operator|.
