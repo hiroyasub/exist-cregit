@@ -71,18 +71,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -192,9 +180,13 @@ name|QName
 argument_list|(
 literal|"unescape-uri"
 argument_list|,
-name|Function
+name|UtilModule
 operator|.
-name|BUILTIN_FUNCTION_NS
+name|NAMESPACE_URI
+argument_list|,
+name|UtilModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns an un-escaped URL escaped string identified by $a with the encoding scheme indicated by the string $b (e.g. \"UTF-8\"). Decodes encoded sensitive characters from a URL, for example \"%2F\" becomes \"/\", i.e. does the oposite to escape-uri()"
