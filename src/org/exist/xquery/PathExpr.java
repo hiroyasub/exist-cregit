@@ -869,6 +869,18 @@ expr_stmt|;
 comment|//DESIGN : first test the dependency then the result
 if|if
 condition|(
+operator|(
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|expr
+argument_list|,
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+argument_list|)
+operator|||
 name|Dependency
 operator|.
 name|dependsOn
@@ -879,6 +891,11 @@ name|Dependency
 operator|.
 name|CONTEXT_POSITION
 argument_list|)
+operator|)
+operator|&&
+name|result
+operator|!=
+literal|null
 operator|&&
 operator|!
 name|result
@@ -926,6 +943,15 @@ name|context
 operator|.
 name|setContextPosition
 argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Pos: "
+operator|+
 name|p
 argument_list|)
 expr_stmt|;

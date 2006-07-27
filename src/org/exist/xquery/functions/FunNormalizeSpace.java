@@ -440,6 +440,18 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Context: "
+operator|+
+name|contextSequence
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 name|value
 decl_stmt|;
