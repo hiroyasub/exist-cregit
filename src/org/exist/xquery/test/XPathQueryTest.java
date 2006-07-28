@@ -4219,6 +4219,66 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|query
+operator|=
+literal|"let $test :=<test><a> a</a><a>a</a></test>"
+operator|+
+literal|"return distinct-values($test/a/normalize-space(.))"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|resource
+operator|=
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|"a"
+argument_list|,
+name|resource
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// TODO: clarify
 comment|//            query = "let $a := ('a', 'b', 'c') for $b in $a[position()] return<blah>{$b}</blah>";
 comment|//            result = service.queryResource("numbers.xml", query);
