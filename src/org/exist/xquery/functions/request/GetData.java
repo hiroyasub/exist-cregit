@@ -401,7 +401,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the content of a POST request as an XML document or a string representaion"
+literal|"Returns the content of a POST request as an XML document or a string representaion. Returns an empty sequence if there is no data."
 argument_list|,
 literal|null
 argument_list|,
@@ -547,6 +547,24 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+comment|//if the content length is unknown, return
+if|if
+condition|(
+name|request
+operator|.
+name|getContentLength
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 comment|//first, get the content of the request
 name|byte
 index|[]
