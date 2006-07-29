@@ -1383,20 +1383,6 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|NodeProxy
-name|current
-decl_stmt|;
-name|ContextItem
-name|c
-decl_stmt|;
-name|Sequence
-name|rs
-decl_stmt|;
-name|AtomicValue
-name|lv
-decl_stmt|,
-name|rv
-decl_stmt|;
 name|Collator
 name|collator
 init|=
@@ -1411,11 +1397,11 @@ name|contextSequence
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|contextSequence
-operator|!=
-name|Sequence
 operator|.
-name|EMPTY_SEQUENCE
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 for|for
@@ -1435,8 +1421,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|current
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -1444,17 +1431,18 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
-name|c
-operator|=
+decl_stmt|;
+name|ContextItem
+name|context
+init|=
 name|current
 operator|.
 name|getContext
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|c
+name|context
 operator|==
 literal|null
 condition|)
@@ -1468,24 +1456,26 @@ argument_list|,
 literal|"Internal error: context node missing"
 argument_list|)
 throw|;
+name|AtomicValue
 name|lv
-operator|=
+init|=
 name|current
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|//TODO : review to consider transverse context
 do|do
 block|{
+name|Sequence
 name|rs
-operator|=
+init|=
 name|getRight
 argument_list|()
 operator|.
 name|eval
 argument_list|(
-name|c
+name|context
 operator|.
 name|getNode
 argument_list|()
@@ -1493,7 +1483,7 @@ operator|.
 name|toSequence
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -1511,8 +1501,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|AtomicValue
 name|rv
-operator|=
+init|=
 name|si
 operator|.
 name|nextItem
@@ -1520,7 +1511,7 @@ argument_list|()
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|compareValues
@@ -1546,9 +1537,9 @@ block|}
 do|while
 condition|(
 operator|(
-name|c
+name|context
 operator|=
-name|c
+name|context
 operator|.
 name|getNextDirect
 argument_list|()
@@ -1578,8 +1569,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|NodeProxy
 name|current
-operator|=
+init|=
 operator|(
 name|NodeProxy
 operator|)
@@ -1587,16 +1579,18 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|AtomicValue
 name|lv
-operator|=
+init|=
 name|current
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|Sequence
 name|rs
-operator|=
+init|=
 name|getRight
 argument_list|()
 operator|.
@@ -1604,7 +1598,7 @@ name|eval
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -1622,8 +1616,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|AtomicValue
 name|rv
-operator|=
+init|=
 name|si
 operator|.
 name|nextItem
@@ -1631,7 +1626,7 @@ argument_list|()
 operator|.
 name|atomize
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|compareValues
@@ -1940,7 +1935,14 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION FALLBACK"
 argument_list|,
-literal|"nodeSetCompare"
+literal|"falling back to nodeSetCompare ("
+operator|+
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2267,7 +2269,19 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION FALLBACK"
 argument_list|,
-literal|"nodeSetCompare"
+literal|"falling back to nodeSetCompare (key is of type: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2317,7 +2331,7 @@ name|OPTIMIZATION_FLAGS
 argument_list|,
 literal|"OPTIMIZATION FALLBACK"
 argument_list|,
-literal|"nodeSetCompare"
+literal|"falling back to nodeSetCompare (no index available)"
 argument_list|)
 expr_stmt|;
 block|}
