@@ -959,34 +959,6 @@ condition|)
 comment|//&&
 comment|//    Type.subTypeOf(getRight().returnsType(), Type.NODE))
 block|{
-if|if
-condition|(
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATION_FLAGS
-argument_list|,
-literal|"OPTIMIZATION CHOICE"
-argument_list|,
-literal|"quickNodeSetCompare"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|quickNodeSetCompare
@@ -997,34 +969,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATION_FLAGS
-argument_list|,
-literal|"OPTIMIZATION CHOICE"
-argument_list|,
-literal|"nodeSetCompare"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|nodeSetCompare
@@ -1043,34 +987,6 @@ operator|==
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATION_FLAGS
-argument_list|,
-literal|"OPTIMIZATION CHOICE"
-argument_list|,
-literal|"genericCompare"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|genericCompare
@@ -1123,6 +1039,34 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"genericCompare"
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|ls
 init|=
@@ -1376,6 +1320,34 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"nodeSetCompare"
+argument_list|)
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -1667,6 +1639,34 @@ name|XPathException
 block|{
 comment|/* TODO think about optimising fallback to NodeSetCompare() in the for loop!!! 		 * At the moment when we fallback to NodeSetCompare() we are in effect throwing away any nodes 		 * we have already processed in quickNodeSetCompare() and reprocessing all the nodes in NodeSetCompare(). 		 * Instead - Could we create a NodeCompare() (based on NodeSetCompare() code) to only compare a single node and then union the result? 		 * - deliriumsky  		 */
 comment|/* TODO think about caching of results in this function... 		 * also examine and check if correct (line near the end) - 		 * 	 boolean canCache = contextSequence instanceof NodeSet&& (getRight().getDependencies()& Dependency.VARS) == 0&& (getLeft().getDependencies()& Dependency.VARS) == 0; 		 *  - deliriumsky  		 */
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"quickNodeSetCompare"
+argument_list|)
+expr_stmt|;
 comment|// if the context sequence hasn't changed we can return a cached result
 if|if
 condition|(
@@ -1842,7 +1842,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//Get the index Key
+comment|//Get the index key
 name|Item
 name|key
 init|=
@@ -1854,7 +1854,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
-comment|//if key has truncation convert to string
+comment|//if key has truncation, convert it to string
 if|if
 condition|(
 name|truncation
@@ -1864,6 +1864,7 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
+comment|//TODO : log this conversion ? -pb
 comment|//truncation is only possible on strings
 name|key
 operator|=
@@ -1908,6 +1909,7 @@ name|XPathException
 name|xpe
 parameter_list|)
 block|{
+comment|//TODO : rethorw the exception ? -pb
 comment|//Could not convert the key to a suitable type for the index, fallback to nodeSetCompare()
 if|if
 condition|(
@@ -1956,13 +1958,16 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// If key implements org.exist.storage.Indexable, we can use the index
 if|if
 condition|(
 name|key
 operator|instanceof
 name|Indexable
-operator|&&
+condition|)
+block|{
+comment|// If key implements org.exist.storage.Indexable, we can use the index
+if|if
+condition|(
 name|Type
 operator|.
 name|subTypeOf
@@ -2067,15 +2072,11 @@ name|result
 operator|==
 literal|null
 condition|)
-comment|//if first iteration
-block|{
 name|result
 operator|=
 name|ns
 expr_stmt|;
-block|}
 else|else
-block|{
 name|result
 operator|=
 name|result
@@ -2085,7 +2086,6 @@ argument_list|(
 name|ns
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -2182,15 +2182,11 @@ name|result
 operator|==
 literal|null
 condition|)
-comment|//if first iteration
-block|{
 name|result
 operator|=
 name|ns
 expr_stmt|;
-block|}
 else|else
-block|{
 name|result
 operator|=
 name|result
@@ -2200,7 +2196,6 @@ argument_list|(
 name|ns
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2268,7 +2263,69 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|")"
+literal|") whereas index is of type '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|indexType
+argument_list|)
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+operator|(
+name|nodeSetCompare
+argument_list|(
+name|nodes
+argument_list|,
+name|contextSequence
+argument_list|)
+operator|)
+return|;
+block|}
+block|}
+else|else
+block|{
+comment|//the datatype of our key does not implement org.exist.storage.Indexable
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+block|{
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION FALLBACK"
+argument_list|,
+literal|"Falling back to nodeSetCompare (key is not an indexable type: "
+operator|+
+name|key
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
