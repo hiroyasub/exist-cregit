@@ -1531,12 +1531,14 @@ name|Profiler
 operator|.
 name|OPTIMIZATIONS
 argument_list|,
-literal|"Using index "
+literal|"Using vlaue index '"
 operator|+
 name|index
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"'"
 argument_list|,
 literal|"Regex: "
 operator|+
