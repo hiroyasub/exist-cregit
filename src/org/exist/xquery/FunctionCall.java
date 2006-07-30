@@ -1128,6 +1128,11 @@ name|XPathException
 block|{
 name|context
 operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
 name|functionStart
 argument_list|(
 name|functionDef
@@ -1215,6 +1220,11 @@ expr_stmt|;
 name|context
 operator|.
 name|functionEnd
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|popDocumentContext
 argument_list|()
 expr_stmt|;
 block|}
