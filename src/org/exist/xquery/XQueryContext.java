@@ -4499,6 +4499,18 @@ argument_list|(
 name|location
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|moduleLoadPath
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|XMLDB_URI_PREFIX
+argument_list|)
+condition|)
+block|{
 name|XmldbURI
 name|moduleLoadPathUri
 init|=
@@ -4518,6 +4530,7 @@ argument_list|(
 name|locationUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DocumentImpl
 name|sourceDoc
 init|=
