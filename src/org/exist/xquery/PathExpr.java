@@ -946,15 +946,6 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Pos: "
-operator|+
-name|p
-argument_list|)
-expr_stmt|;
 name|Item
 name|current
 init|=
