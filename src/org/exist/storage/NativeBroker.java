@@ -5767,7 +5767,7 @@ name|transaction
 operator|==
 literal|null
 condition|)
-name|collection
+name|parent
 operator|.
 name|getLock
 argument_list|()
