@@ -772,7 +772,7 @@ operator|)
 operator|.
 name|getInt
 argument_list|()
-operator|>=
+operator|>
 name|string
 operator|.
 name|length
