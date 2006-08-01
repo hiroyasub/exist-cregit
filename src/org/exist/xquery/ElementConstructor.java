@@ -133,6 +133,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|QNameValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -283,17 +297,13 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+comment|//Deferred atomization (we could have a QNameValue)
+comment|//this.qnameExpr = new Atomize(context, expr);
 name|this
 operator|.
 name|qnameExpr
 operator|=
-operator|new
-name|Atomize
-argument_list|(
-name|context
-argument_list|,
 name|expr
-argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -1056,7 +1066,7 @@ argument_list|()
 argument_list|,
 name|attrQName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|,
 literal|"CDATA"
@@ -1103,12 +1113,37 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: the node name should evaluate to a single string"
+literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
 throw|;
 name|QName
 name|qn
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|qnameSeq
+operator|instanceof
+name|QNameValue
+condition|)
+block|{
+name|qn
+operator|=
+operator|(
+operator|(
+name|QNameValue
+operator|)
+name|qnameSeq
+operator|)
+operator|.
+name|getQName
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//Do we have the same result than Atomize there ? -pb
+name|qn
+operator|=
 name|QName
 operator|.
 name|parse
@@ -1120,35 +1155,7 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-decl_stmt|;
-comment|//Not in the specs but... makes sense
-if|if
-condition|(
-operator|!
-name|XMLChar
-operator|.
-name|isValidName
-argument_list|(
-name|qn
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"XPTY0004 '"
-operator|+
-name|qnameSeq
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-literal|"' is not a valid element name"
-argument_list|)
-throw|;
+expr_stmt|;
 comment|//Use the default namespace if specified
 if|if
 condition|(
@@ -1189,6 +1196,35 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|//Not in the specs but... makes sense
+if|if
+condition|(
+operator|!
+name|XMLChar
+operator|.
+name|isValidName
+argument_list|(
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004 '"
+operator|+
+name|qnameSeq
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"' is not a valid element name"
+argument_list|)
+throw|;
 comment|// add namespace declaration nodes
 name|int
 name|nodeNr
