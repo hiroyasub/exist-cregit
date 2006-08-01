@@ -1188,7 +1188,6 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
-comment|//TODO : get rid of getLength
 if|if
 condition|(
 name|rs
