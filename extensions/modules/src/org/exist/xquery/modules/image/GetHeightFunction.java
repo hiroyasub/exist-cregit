@@ -385,6 +385,11 @@ name|args
 index|[
 literal|0
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 comment|//Get the image document from the db
 name|DBBroker
