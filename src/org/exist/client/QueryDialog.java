@@ -2509,6 +2509,16 @@ name|WAIT_CURSOR
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|long
+name|tResult
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|tCompiled
+init|=
+literal|0
+decl_stmt|;
 try|try
 block|{
 name|XQueryService
@@ -2572,13 +2582,12 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|long
 name|tCompiled
-init|=
+operator|=
 name|t1
 operator|-
 name|t0
-decl_stmt|;
+expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -2589,16 +2598,15 @@ argument_list|(
 name|compiled
 argument_list|)
 decl_stmt|;
-name|long
 name|tResult
-init|=
+operator|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
 name|t1
-decl_stmt|;
+expr_stmt|;
 name|StringWriter
 name|writer
 init|=
@@ -2838,7 +2846,24 @@ name|statusMessage
 operator|.
 name|setText
 argument_list|(
-literal|""
+literal|"Error: "
+operator|+
+name|InteractiveClient
+operator|.
+name|getExceptionMessage
+argument_list|(
+name|e
+argument_list|)
+operator|+
+literal|". Compilation: "
+operator|+
+name|tCompiled
+operator|+
+literal|"ms, Execution: "
+operator|+
+name|tResult
+operator|+
+literal|"ms"
 argument_list|)
 expr_stmt|;
 name|progress
