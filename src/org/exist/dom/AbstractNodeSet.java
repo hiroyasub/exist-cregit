@@ -553,33 +553,6 @@ return|return
 name|ds
 return|;
 block|}
-comment|/** 	 * Get all children of the given parent node contained in this node set. 	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all children found in this node set. If mode is {@link #ANCESTOR}, 	 * the parent itself will be returned if it has child nodes in this set. 	 *  	 * @param parent 	 * @param mode 	 * @param rememberContext 	 * @return 	 */
-specifier|public
-name|NodeSet
-name|hasChildrenInSet
-parameter_list|(
-name|NodeSet
-name|al
-parameter_list|,
-name|int
-name|mode
-parameter_list|,
-name|int
-name|contextId
-parameter_list|)
-block|{
-comment|// just forward to selectParentChild. Subclasses may overwrite this.
-return|return
-name|selectParentChild
-argument_list|(
-name|al
-argument_list|,
-name|mode
-argument_list|,
-name|contextId
-argument_list|)
-return|;
-block|}
 comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
 specifier|public
 name|NodeSet
