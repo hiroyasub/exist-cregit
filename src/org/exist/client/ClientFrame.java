@@ -1935,7 +1935,7 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Query the database with XPath"
+literal|"Query the database with Xquery/XPath"
 argument_list|)
 expr_stmt|;
 name|button
