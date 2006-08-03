@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** [Definition:]   integer is ï¿½derivedï¿½ from decimal by fixing the value of ï¿½fractionDigitsï¿½ to be 0.   * This results in the standard mathematical concept of the integer numbers.   * The ï¿½value spaceï¿½ of integer is the infinite set {...,-2,-1,0,1,2,...}.   * The ï¿½base typeï¿½ of integer is decimal.  * cf http://www.w3.org/TR/xmlschema-2/#integer   */
+comment|/** [Definition:]   integer is<i>derived</i> from decimal by fixing the value of<i>fractionDigits<i> to be 0.   * This results in the standard mathematical concept of the integer numbers.   * The<i>value space</i> of integer is the infinite set {...,-2,-1,0,1,2,...}.   * The<i>base type</i> of integer is decimal.  * cf http://www.w3.org/TR/xmlschema-2/#integer   */
 end_comment
 
 begin_class
@@ -1269,13 +1269,30 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert integer '"
+literal|"cannot convert '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
 operator|+
 name|value
 operator|+
-literal|"' to "
+literal|")' "
 operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
 name|requiredType
+argument_list|)
 argument_list|)
 throw|;
 block|}
