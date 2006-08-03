@@ -17647,6 +17647,8 @@ argument_list|,
 name|password
 argument_list|,
 name|destcollection
+operator|+
+literal|"-backup"
 argument_list|,
 name|XmldbURI
 operator|.
