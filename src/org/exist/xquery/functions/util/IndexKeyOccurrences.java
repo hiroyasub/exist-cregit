@@ -461,10 +461,17 @@ argument_list|,
 operator|(
 name|Indexable
 operator|)
+operator|(
 name|args
 index|[
 literal|1
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|)
 argument_list|)
 decl_stmt|;
 if|if
