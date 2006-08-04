@@ -1612,6 +1612,24 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|al
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+return|return
+name|super
+operator|.
+name|selectParentChild
+argument_list|(
+name|al
+argument_list|,
+name|mode
+argument_list|,
+name|contextId
+argument_list|)
+return|;
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -1856,6 +1874,26 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|al
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+return|return
+name|super
+operator|.
+name|selectAncestorDescendant
+argument_list|(
+name|al
+argument_list|,
+name|mode
+argument_list|,
+name|includeSelf
+argument_list|,
+name|contextId
+argument_list|)
+return|;
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -1870,8 +1908,6 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-comment|//        return super.selectAncestorDescendant(al, mode, includeSelf,
-comment|//                contextId);
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectSiblings(org.exist.dom.NodeSet, int)      */
 specifier|public
