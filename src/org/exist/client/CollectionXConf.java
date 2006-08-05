@@ -190,7 +190,6 @@ specifier|public
 class|class
 name|CollectionXConf
 block|{
-comment|//TODO: problem with FullText defaultAll attribute - is not being stored correctly
 specifier|private
 name|String
 name|path
@@ -2934,6 +2933,10 @@ operator|.
 name|append
 argument_list|(
 name|defaultAll
+condition|?
+literal|"all"
+else|:
+literal|"none"
 argument_list|)
 expr_stmt|;
 name|fulltext
