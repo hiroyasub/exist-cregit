@@ -182,11 +182,7 @@ import|;
 end_import
 
 begin_comment
-comment|//TODO: Configuration for Triggers need finishing
-end_comment
-
-begin_comment
-comment|/**  * Class to represent a collection.xconf which holds the configuration data for a collection  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-05-04  * @version 1.0  */
+comment|/**  * Class to represent a collection.xconf which holds the configuration data for a collection  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-05-04  * @version 1.1  */
 end_comment
 
 begin_class
