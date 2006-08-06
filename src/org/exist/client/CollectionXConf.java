@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  *  * Copyright (C) 2001-06 Wolfgang M. Meier wolfgang@exist-db.org  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id  */
+comment|/*  * eXist Open Source Native XML Database  *  * Copyright (C) 2001-06 Wolfgang M. Meier wolfgang@exist-db.org  *  * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *  * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -182,7 +182,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a collection.xconf   *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-05-04  * @version 1.0  */
+comment|//TODO: Configuration for Triggers need finishing
+end_comment
+
+begin_comment
+comment|/**  * Class to represent a collection.xconf which holds the configuration data for a collection  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-05-04  * @version 1.0  */
 end_comment
 
 begin_class
@@ -196,22 +200,26 @@ name|path
 init|=
 literal|null
 decl_stmt|;
+comment|//path of the collection.xconf file
 name|Collection
 name|collection
 init|=
 literal|null
 decl_stmt|;
+comment|//the configuration collection
 name|Resource
 name|resConfig
 init|=
 literal|null
 decl_stmt|;
+comment|//the collection.xconf resource
 specifier|private
 name|FullTextIndex
 name|fulltextIndex
 init|=
 literal|null
 decl_stmt|;
+comment|//fulltext index model
 specifier|private
 name|RangeIndex
 index|[]
@@ -219,11 +227,13 @@ name|rangeIndexes
 init|=
 literal|null
 decl_stmt|;
+comment|//range indexes model
 specifier|private
 name|QNameIndex
 index|[]
 name|qnameIndexes
 decl_stmt|;
+comment|//qname indexes model
 specifier|private
 name|Trigger
 index|[]
@@ -231,12 +241,15 @@ name|triggers
 init|=
 literal|null
 decl_stmt|;
+comment|//triggers model
 specifier|private
 name|boolean
 name|hasChanged
 init|=
 literal|false
 decl_stmt|;
+comment|//indicates if changes have been made to the current collection configuration
+comment|/** 	 * Constructor 	 *  	 * @param collectionName	The path of the collection to retreive the collection.xconf for 	 * @param client	The interactive client 	 */
 name|CollectionXConf
 parameter_list|(
 name|String
@@ -248,6 +261,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|//get configuration collection for the named collection
 name|path
 operator|=
 name|DBBroker
@@ -410,6 +424,7 @@ name|xconf
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Indicates whether the fulltext index defaults to indexing all nodes 	 * 	 * @return true indicates all nodes are indexed, false indicates no nodes are indexed by default 	 */
 specifier|public
 name|boolean
 name|getFullTextIndexDefaultAll
@@ -428,6 +443,7 @@ else|:
 literal|false
 return|;
 block|}
+comment|/** 	 * Set whether all nodes should be indexed into the fulltext index 	 *  	 * @param defaultAll	true indicates all nodes should be indexed, false indicates no nodes should be indexed by default 	 */
 specifier|public
 name|void
 name|setFullTextIndexDefaultAll
@@ -440,6 +456,30 @@ name|hasChanged
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|fulltextIndex
+operator|==
+literal|null
+condition|)
+block|{
+name|fulltextIndex
+operator|=
+operator|new
+name|FullTextIndex
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|fulltextIndex
 operator|.
 name|setDefaultAll
@@ -448,6 +488,8 @@ name|defaultAll
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** 	 * Indicates whether the fulltext index indexes attributes 	 * 	 * @return true indicates attributes are indexed, false indicates attributes are not indexed 	 */
 specifier|public
 name|boolean
 name|getFullTextIndexAttributes
@@ -466,6 +508,7 @@ else|:
 literal|false
 return|;
 block|}
+comment|/** 	 * Set whether attributes should be indexed into the fulltext index 	 *  	 * @param attribues	true indicates attributes should be indexed, false indicates attributes should not be indexed 	 */
 specifier|public
 name|void
 name|setFullTextIndexAttributes
@@ -478,6 +521,30 @@ name|hasChanged
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|fulltextIndex
+operator|==
+literal|null
+condition|)
+block|{
+name|fulltextIndex
+operator|=
+operator|new
+name|FullTextIndex
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|fulltextIndex
 operator|.
 name|setAttributes
@@ -486,6 +553,8 @@ name|attributes
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** 	 * Indicates whether the fulltext index indexes alphanumeric values 	 * 	 * @return true indicates alphanumeric values are indexed, false indicates alphanumeric values are not indexed 	 */
 specifier|public
 name|boolean
 name|getFullTextIndexAlphanum
@@ -504,6 +573,7 @@ else|:
 literal|false
 return|;
 block|}
+comment|/** 	 * Set whether alphanumeric values should be indexed into the fulltext index 	 *  	 * @param alphanum	true indicates alphanumeric values should be indexed, false indicates alphanumeric values should not be indexed 	 */
 specifier|public
 name|void
 name|setFullTextIndexAlphanum
@@ -516,6 +586,30 @@ name|hasChanged
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|fulltextIndex
+operator|==
+literal|null
+condition|)
+block|{
+name|fulltextIndex
+operator|=
+operator|new
+name|FullTextIndex
+argument_list|(
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|fulltextIndex
 operator|.
 name|setAlphanum
@@ -524,6 +618,8 @@ name|alphanum
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** 	 * Returns a full text index path 	 *  	 * @param index	The numeric index of the fulltext index path to retreive 	 *  	 * @return The XPath 	 */
 specifier|public
 name|String
 name|getFullTextIndexPath
@@ -541,6 +637,7 @@ name|index
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Returns a full text index path action 	 *  	 * @param index	The numeric index of the fulltext index path action to retreive 	 *  	 * @return The Action, either "include" or "exclude" 	 */
 specifier|public
 name|String
 name|getFullTextIndexPathAction
@@ -558,6 +655,7 @@ name|index
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Returns the number of full text index paths defined 	 *   	 * @return The number of paths 	 */
 specifier|public
 name|int
 name|getFullTextPathCount
@@ -584,6 +682,7 @@ literal|0
 return|;
 block|}
 block|}
+comment|/** 	 * Add a path to the full text index 	 * 	 * @param XPath		The XPath to index 	 * @param action	The action to take on the path, either "include" or "exclude" 	 */
 specifier|public
 name|void
 name|addFullTextIndex
@@ -599,6 +698,28 @@ name|hasChanged
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|fulltextIndex
+operator|==
+literal|null
+condition|)
+block|{
+name|fulltextIndex
+operator|=
+operator|new
+name|FullTextIndex
+argument_list|(
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 name|fulltextIndex
 operator|.
 name|addIndex
@@ -609,6 +730,7 @@ name|action
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Update the details of a full text index path 	 * 	 * @param index		The numeric index of the path to update 	 * @param XPath		The new XPath, or null to just set the action 	 * @param action	The new action, either "include" or "exclude", or null to just set the XPath 	 */
 specifier|public
 name|void
 name|updateFullTextIndex
@@ -658,6 +780,7 @@ name|action
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Delete a path from the full text index 	 *  	 * @param index	The numeric index of the path to delete 	 */
 specifier|public
 name|void
 name|deleteFullTextIndex
@@ -678,6 +801,7 @@ name|index
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Returns an array of the Range Indexes 	 *  	 * @return Array of Range Indexes 	 */
 specifier|public
 name|RangeIndex
 index|[]
@@ -688,6 +812,7 @@ return|return
 name|rangeIndexes
 return|;
 block|}
+comment|/** 	 * Returns n specific Range Index 	 *  	 * @param index	The numeric index of the Range Index to return 	 *  	 * @return The Range Index 	 */
 specifier|public
 name|RangeIndex
 name|getRangeIndex
@@ -703,6 +828,7 @@ name|index
 index|]
 return|;
 block|}
+comment|/** 	 * Returns the number of Range Indexes defined 	 *   	 * @return The number of Range indexes 	 */
 specifier|public
 name|int
 name|getRangeIndexCount
@@ -728,6 +854,7 @@ literal|0
 return|;
 block|}
 block|}
+comment|/** 	 * Delete a Range Index 	 *  	 * @param index	The numeric index of the Range Index to delete 	 */
 specifier|public
 name|void
 name|deleteRangeIndex
@@ -833,6 +960,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** 	 * Update the details of a Range Index 	 * 	 * @param index		The numeric index of the range index to update 	 * @param XPath		The new XPath, or null to just set the type 	 * @param xsType	The new type of the path, a valid xs:type, or just null to set the path 	 */
 specifier|public
 name|void
 name|updateRangeIndex
@@ -884,6 +1012,7 @@ name|xsType
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Add a Range Index 	 * 	 * @param XPath		The XPath to index 	 * @param xsType	The type of the path, a valid xs:type 	 */
 specifier|public
 name|void
 name|addRangeIndex
@@ -982,6 +1111,7 @@ name|newRangeIndexes
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Returns an array of the QName Indexes 	 *  	 * @return Array of QName Indexes 	 */
 specifier|public
 name|QNameIndex
 index|[]
@@ -992,6 +1122,7 @@ return|return
 name|qnameIndexes
 return|;
 block|}
+comment|/** 	 * Returns a specific QName Index 	 *  	 * @param index	The numeric index of the QName index to return 	 *  	 * @return The QName Index 	 */
 specifier|public
 name|QNameIndex
 name|getQNameIndex
@@ -1007,6 +1138,7 @@ name|index
 index|]
 return|;
 block|}
+comment|/** 	 * Returns the number of QName Indexes defined 	 *   	 * @return The number of QName indexes 	 */
 specifier|public
 name|int
 name|getQNameIndexCount
@@ -1032,6 +1164,7 @@ literal|0
 return|;
 block|}
 block|}
+comment|/** 	 * Delete a QName Index 	 *  	 * @param index	The numeric index of the QName Index to delete 	 */
 specifier|public
 name|void
 name|deleteQNameIndex
@@ -1136,6 +1269,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** 	 * Update the details of a QName Index 	 * 	 * @param index		The numeric index of the qname index to update 	 * @param QName		The new QName, or null to just set the type 	 * @param xsType	The new type of the path, a valid xs:type, or just null to set the QName 	 */
 specifier|public
 name|void
 name|updateQNameIndex
@@ -1187,6 +1321,7 @@ name|xsType
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Add a QName Index 	 * 	 * @param QName		The QName to index 	 * @param xsType	The type of the QName, a valid xs:type 	 */
 specifier|public
 name|void
 name|addQNameIndex
@@ -2094,6 +2229,7 @@ literal|null
 return|;
 block|}
 comment|//has the collection.xconf been modified?
+comment|/** 	 * Indicates whether the collection configuration has changed 	 *  	 * @return true if the configuration has changed, false otherwise 	 */
 specifier|public
 name|boolean
 name|hasChanged
@@ -2333,7 +2469,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|//Save the collection.xconf
+comment|/** 	 * Saves the collection configuation back to the collection.xconf 	 *  	 * @return true if the save succeeds, false otherwise 	 */
 specifier|public
 name|boolean
 name|Save
@@ -2503,6 +2639,7 @@ name|xpaths
 init|=
 literal|null
 decl_stmt|;
+comment|/** 		 * Constructor 		 *  		 * @param defaultAll	Should the fulltext index default to indexing all nodes 		 * @param attributes	Should attributes be indexed into the fulltext index  		 * @param alphanum		Should alphanumeric values be indexed into the fulltext index 		 * @param xpaths		Explicit fulltext index paths to include or exclude, null if there are no explicit paths		 		 */
 name|FullTextIndex
 parameter_list|(
 name|boolean
