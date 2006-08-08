@@ -2597,6 +2597,22 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|os
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|512000
+condition|)
+comment|// garbage collect the output stream if it is larger than 512k, otherwise reuse it
+name|os
+operator|=
+operator|new
+name|VariableByteOutputStream
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl)      */
 comment|//TODO : note that this is *not* this.doc -pb
