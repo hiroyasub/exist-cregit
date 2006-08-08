@@ -32073,7 +32073,11 @@ literal|"single quote '"
 block|,
 literal|"QUOT_ATTRIBUTE_CONTENT"
 block|,
+literal|"ESCAPE_QUOT"
+block|,
 literal|"APOS_ATTRIBUTE_CONTENT"
+block|,
+literal|"ESCAPE_APOS"
 block|,
 literal|"ELEMENT_CONTENT"
 block|,
@@ -32177,7 +32181,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|1L
+literal|4L
 expr_stmt|;
 return|return
 name|data
@@ -32241,7 +32245,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|1L
+literal|4L
 expr_stmt|;
 return|return
 name|data
@@ -32304,7 +32308,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|1L
+literal|4L
 expr_stmt|;
 return|return
 name|data

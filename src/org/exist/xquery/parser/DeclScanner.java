@@ -757,7 +757,11 @@ literal|"single quote '"
 block|,
 literal|"QUOT_ATTRIBUTE_CONTENT"
 block|,
+literal|"ESCAPE_QUOT"
+block|,
 literal|"APOS_ATTRIBUTE_CONTENT"
+block|,
+literal|"ESCAPE_APOS"
 block|,
 literal|"ELEMENT_CONTENT"
 block|,
