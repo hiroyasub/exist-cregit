@@ -137,6 +137,22 @@ argument_list|(
 name|duration
 argument_list|)
 expr_stmt|;
+comment|//Take care : not the same one than above !
+comment|//TODO : sort this out ! test case :
+comment|//xs:yearMonthDuration("P1000Y6M") + xs:yearMonthDuration("P0Y0M")
+if|if
+condition|(
+operator|!
+name|duration
+operator|.
+name|equals
+argument_list|(
+name|DurationValue
+operator|.
+name|CANONICAL_ZERO_DURATION
+argument_list|)
+condition|)
+block|{
 if|if
 condition|(
 name|duration
@@ -166,6 +182,8 @@ operator|.
 name|MINUTES
 argument_list|)
 operator|||
+comment|//Always set !
+comment|//!duration.getField(DatatypeConstants.SECONDS).equals(BigInteger.ZERO))
 name|duration
 operator|.
 name|isSet
@@ -196,6 +214,7 @@ operator|+
 literal|" since it specifies days, hours, minutes or seconds values"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|YearMonthDurationValue
