@@ -8260,17 +8260,6 @@ name|_t
 operator|=
 name|_retTree
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"default:"
-operator|+
-name|returnExpr
-argument_list|)
-expr_stmt|;
 name|tswitch
 operator|.
 name|setDefault
