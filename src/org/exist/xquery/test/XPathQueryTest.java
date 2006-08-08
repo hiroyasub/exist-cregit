@@ -9014,16 +9014,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|String
-name|validQuery
-init|=
-literal|"substring(\"MK-1234\", 4,1)"
-decl_stmt|;
-name|String
-name|invalidQuery
-init|=
-literal|"substring(\"MK-1234\", 4,4)"
-decl_stmt|;
 name|XQueryService
 name|service
 init|=
@@ -9033,8 +9023,14 @@ decl_stmt|;
 name|ResourceSet
 name|result
 decl_stmt|;
+comment|// Testcases by MIKA
 try|try
 block|{
+name|String
+name|validQuery
+init|=
+literal|"substring(\"MK-1234\", 4,1)"
+decl_stmt|;
 name|result
 operator|=
 name|queryAndAssert
@@ -9084,6 +9080,11 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|String
+name|invalidQuery
+init|=
+literal|"substring(\"MK-1234\", 4,4)"
+decl_stmt|;
 name|result
 operator|=
 name|queryAndAssert
@@ -9100,6 +9101,61 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1234"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Testcase by Toar
+try|try
+block|{
+name|String
+name|toarQuery
+init|=
+literal|"let $num := \"2003.123\" \n return substring($num, 1, 7)"
+decl_stmt|;
+name|result
+operator|=
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+name|toarQuery
+argument_list|,
+literal|1
+argument_list|,
+name|toarQuery
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"2003.12"
 argument_list|,
 name|result
 operator|.
