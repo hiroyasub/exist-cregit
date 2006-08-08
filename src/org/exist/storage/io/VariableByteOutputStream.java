@@ -89,7 +89,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|4
+literal|5
 index|]
 decl_stmt|;
 specifier|public
@@ -535,6 +535,10 @@ operator|.
 name|append
 argument_list|(
 name|temp
+argument_list|,
+literal|0
+argument_list|,
+literal|4
 argument_list|)
 expr_stmt|;
 block|}
