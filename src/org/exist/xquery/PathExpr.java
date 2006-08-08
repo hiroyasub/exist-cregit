@@ -869,6 +869,18 @@ expr_stmt|;
 comment|//DESIGN : first test the dependency then the result
 if|if
 condition|(
+operator|(
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|expr
+argument_list|,
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+argument_list|)
+operator|||
 name|Dependency
 operator|.
 name|dependsOn
@@ -879,6 +891,11 @@ name|Dependency
 operator|.
 name|CONTEXT_POSITION
 argument_list|)
+operator|)
+operator|&&
+name|result
+operator|!=
+literal|null
 operator|&&
 operator|!
 name|result

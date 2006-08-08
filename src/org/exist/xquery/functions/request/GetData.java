@@ -249,7 +249,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the content of a POST request as string"
+literal|"Returns the content of a POST request as an XML document or a string representaion. Returns an empty sequence if there is no data."
 argument_list|,
 literal|null
 argument_list|,
@@ -264,6 +264,48 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|deprecated
+init|=
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"get-request-data"
+argument_list|,
+name|RequestModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|RequestModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Returns the content of a POST request as an XML document or a string representaion. Returns an empty sequence if there is no data."
+argument_list|,
+literal|null
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+argument_list|,
+literal|"Renamed to get-data."
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -395,6 +437,25 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+comment|//if the content length is unknown, return
+if|if
+condition|(
+name|request
+operator|.
+name|getContentLength
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+comment|//first, get the content of the request
 try|try
 block|{
 name|InputStream

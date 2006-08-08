@@ -341,7 +341,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|50
+literal|6
 argument_list|,
 literal|3
 argument_list|,
@@ -817,13 +817,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|idxConf
-operator|.
-name|configureCollection
-argument_list|(
-name|CONFIG
-argument_list|)
-expr_stmt|;
+comment|//	        idxConf.configureCollection(CONFIG);
 block|}
 catch|catch
 parameter_list|(

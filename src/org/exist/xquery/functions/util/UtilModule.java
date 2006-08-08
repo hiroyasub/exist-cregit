@@ -65,6 +65,22 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|system
+operator|.
+name|GetVersion
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -675,7 +691,20 @@ name|FunUnEscapeURI
 operator|.
 name|class
 argument_list|)
-block|}
+block|,
+comment|// deprecated functions
+operator|new
+name|FunctionDef
+argument_list|(
+name|GetVersion
+operator|.
+name|deprecated
+argument_list|,
+name|GetVersion
+operator|.
+name|class
+argument_list|)
+block|, 	}
 decl_stmt|;
 specifier|public
 specifier|final

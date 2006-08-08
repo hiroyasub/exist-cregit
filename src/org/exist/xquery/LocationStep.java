@@ -1540,7 +1540,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -1843,7 +1843,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2033,7 +2033,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2227,7 +2227,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2318,7 +2318,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2531,7 +2531,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2721,7 +2721,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -2991,7 +2991,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -3403,7 +3403,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -3546,7 +3546,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -3975,7 +3975,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -4161,7 +4161,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -4350,7 +4350,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.
@@ -4458,7 +4458,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"using index '"
+literal|"Using structural index '"
 operator|+
 name|index
 operator|.

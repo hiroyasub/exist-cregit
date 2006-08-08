@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -69,7 +69,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -409,7 +409,7 @@ return|;
 block|}
 specifier|public
 name|String
-name|toString
+name|getStringValue
 parameter_list|()
 block|{
 if|if
@@ -436,6 +436,40 @@ else|else
 return|return
 name|localName_
 return|;
+block|}
+comment|/** 	 * @deprecated : use for debugging purpose only,  	 * use getStringValue() for production 	 */
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|//TODO : remove this copy of getStringValue()
+if|if
+condition|(
+name|prefix_
+operator|!=
+literal|null
+operator|&&
+name|prefix_
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+return|return
+name|prefix_
+operator|+
+literal|':'
+operator|+
+name|localName_
+return|;
+else|else
+return|return
+name|localName_
+return|;
+comment|//TODO : replace by something like this
+comment|/* 		if (prefix_ != null&& prefix_.length()> 0) 			return prefix_ + ':' + localName_; 		if (needsNamespaceDecl()) { 			if (prefix_ != null&& prefix_.length()> 0) 				return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_; 			return "{" + namespaceURI_ + "}" + localName_; 		} else  			return localName_; 		*/
 block|}
 comment|/** 	 * Compares two QNames by comparing namespace URI 	 * and local names. The prefixes are not relevant. 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
 specifier|public

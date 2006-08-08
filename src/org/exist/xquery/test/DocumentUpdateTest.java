@@ -219,7 +219,7 @@ literal|"let $d1 := local:get-doc($path)\n"
 operator|+
 literal|"let $remove := xdb:remove('/db/testup', 'test1.xml')\n"
 operator|+
-literal|"return string-join((count(local:get-doc($path)), doc-available($path)), ' ')"
+literal|"return string-join((string(count(local:get-doc($path))), string(doc-available($path))), ' ')"
 decl_stmt|;
 name|String
 name|result
@@ -263,7 +263,7 @@ literal|"let $d1 := local:get-doc($path)\n"
 operator|+
 literal|"let $doc := xdb:store($col, 'test1.xml',<test><n>1</n></test>)\n"
 operator|+
-literal|"return string-join((count(local:get-doc($path)), doc-available($path)), ' ')"
+literal|"return string-join((string(count(local:get-doc($path))), string(doc-available($path))), ' ')"
 expr_stmt|;
 name|result
 operator|=

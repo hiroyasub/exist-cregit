@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -24,6 +24,16 @@ operator|.
 name|io
 operator|.
 name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|StringTokenizer
 import|;
 end_import
 
@@ -237,6 +247,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|CollectionManagementService
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -275,13 +299,7 @@ argument_list|)
 argument_list|,
 literal|"Store new resources into the database. Resources are read from the server's "
 operator|+
-literal|"file system, using the file pattern specified in the second argument. File pattern matching "
-operator|+
-literal|"is based on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
+literal|"file system, using file patterns. "
 operator|+
 literal|"The first argument denotes the collection where resources should be stored. "
 operator|+
@@ -289,7 +307,19 @@ literal|"The collection can be either specified as a simple collection path, "
 operator|+
 literal|"an XMLDB URI, or a collection object as returned by the collection or "
 operator|+
-literal|"create-collection functions. The function returns a sequence of all document paths added "
+literal|"create-collection functions. "
+operator|+
+literal|"The second argument is the directory in the file system wherefrom the files are read."
+operator|+
+literal|"The third argument is the file pattern. File pattern matching is based "
+operator|+
+literal|"on code from Apache's Ant, thus following the same conventions. For example: "
+operator|+
+literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
+operator|+
+literal|"in any directory below the current one. "
+operator|+
+literal|"The function returns a sequence of all document paths added "
 operator|+
 literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
 argument_list|,
@@ -366,13 +396,7 @@ argument_list|)
 argument_list|,
 literal|"Store new resources into the database. Resources are read from the server's "
 operator|+
-literal|"file system, using the file pattern specified in the second argument. File pattern matching "
-operator|+
-literal|"is based on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
+literal|"file system, using file patterns. "
 operator|+
 literal|"The first argument denotes the collection where resources should be stored. "
 operator|+
@@ -380,13 +404,27 @@ literal|"The collection can be either specified as a simple collection path, "
 operator|+
 literal|"an XMLDB URI, or a collection object as returned by the collection or "
 operator|+
-literal|"create-collection functions. The function returns a sequence of all document paths added "
+literal|"create-collection functions. "
 operator|+
-literal|"to the db. These can be directly passed to fn:doc() to retrieve the document. The final argument $d is used to specify a mime-type.  If the mime-type "
+literal|"The second argument is the directory in the file system wherefrom the files are read."
+operator|+
+literal|"The third argument is the file pattern. File pattern matching is based "
+operator|+
+literal|"on code from Apache's Ant, thus following the same conventions. For example: "
+operator|+
+literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
+operator|+
+literal|"in any directory below the current one. "
+operator|+
+literal|"The fourth argument $d is used to specify a mime-type.  If the mime-type "
 operator|+
 literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
 operator|+
 literal|"a binary resource."
+operator|+
+literal|"The function returns a sequence of all document paths added "
+operator|+
+literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
 argument_list|,
 operator|new
 name|SequenceType
@@ -453,6 +491,139 @@ operator|.
 name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"store-files-from-pattern"
+argument_list|,
+name|XMLDBModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Store new resources into the database. Resources are read from the server's "
+operator|+
+literal|"file system, using file patterns. "
+operator|+
+literal|"The first argument denotes the collection where resources should be stored. "
+operator|+
+literal|"The collection can be either specified as a simple collection path, "
+operator|+
+literal|"an XMLDB URI, or a collection object as returned by the collection or "
+operator|+
+literal|"create-collection functions. "
+operator|+
+literal|"The second argument is the directory in the file system wherefrom the files are read."
+operator|+
+literal|"The third argument is the file pattern. File pattern matching is based "
+operator|+
+literal|"on code from Apache's Ant, thus following the same conventions. For example: "
+operator|+
+literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
+operator|+
+literal|"in any directory below the current one. "
+operator|+
+literal|"The fourth argument $d is used to specify a mime-type.  If the mime-type "
+operator|+
+literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
+operator|+
+literal|"a binary resource."
+operator|+
+literal|"If the final boolean argument is true(), the directory structure will be kept in the collection, "
+operator|+
+literal|"otherwise all the matching resources, including the ones in sub-directories, will be stored "
+operator|+
+literal|"in the collection given in the first argument flatly."
+operator|+
+literal|"The function returns a sequence of all document paths added "
+operator|+
+literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ONE_OR_MORE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|)
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public
@@ -473,7 +644,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.xmldb.XMLDBAbstractCollectionManipulator#evalWithCollection(org.xmldb.api.base.Collection, org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.functions.xmldb.XMLDBAbstractCollectionManipulator#evalWithCollection(org.xmldb.api.base.Collection, org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)          */
 specifier|protected
 name|Sequence
 name|evalWithCollection
@@ -533,6 +704,11 @@ name|mimeType
 init|=
 literal|"text/xml"
 decl_stmt|;
+name|boolean
+name|keepDirStructure
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|getSignature
@@ -540,8 +716,8 @@ argument_list|()
 operator|.
 name|getArgumentCount
 argument_list|()
-operator|==
-literal|4
+operator|>
+literal|3
 condition|)
 block|{
 name|mimeType
@@ -578,6 +754,26 @@ operator|=
 literal|"BinaryResource"
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|getSignature
+argument_list|()
+operator|.
+name|getArgumentCount
+argument_list|()
+operator|==
+literal|5
+condition|)
+name|keepDirStructure
+operator|=
+name|args
+index|[
+literal|4
+index|]
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+expr_stmt|;
 name|ValueSequence
 name|stored
 init|=
@@ -626,6 +822,29 @@ argument_list|,
 name|pattern
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Found: "
+operator|+
+name|files
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|Collection
+name|col
+init|=
+name|collection
+decl_stmt|;
+name|String
+name|relDir
+decl_stmt|,
+name|prevDir
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -645,11 +864,117 @@ control|)
 block|{
 try|try
 block|{
-comment|//TODO: these probably need to be encoded
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|files
+index|[
+name|j
+index|]
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|String
+name|relPath
+init|=
+name|files
+index|[
+name|j
+index|]
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+name|baseDir
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|length
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
+name|p
+init|=
+name|relPath
+operator|.
+name|lastIndexOf
+argument_list|(
+name|File
+operator|.
+name|separatorChar
+argument_list|)
+decl_stmt|;
+name|relDir
+operator|=
+name|relPath
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|p
+argument_list|)
+expr_stmt|;
+name|relDir
+operator|=
+name|relDir
+operator|.
+name|replace
+argument_list|(
+name|File
+operator|.
+name|separatorChar
+argument_list|,
+literal|'/'
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|keepDirStructure
+operator|&&
+operator|(
+name|prevDir
+operator|==
+literal|null
+operator|||
+operator|(
+operator|!
+name|relDir
+operator|.
+name|equals
+argument_list|(
+name|prevDir
+argument_list|)
+operator|)
+operator|)
+condition|)
+block|{
+name|col
+operator|=
+name|makeColl
+argument_list|(
+name|collection
+argument_list|,
+name|relDir
+argument_list|)
+expr_stmt|;
+name|prevDir
+operator|=
+name|relDir
+expr_stmt|;
+block|}
+comment|//TODO  : these probably need to be encoded
 name|Resource
 name|resource
 init|=
-name|collection
+name|col
 operator|.
 name|createResource
 argument_list|(
@@ -695,7 +1020,7 @@ argument_list|(
 name|mimeType
 argument_list|)
 expr_stmt|;
-name|collection
+name|col
 operator|.
 name|storeResource
 argument_list|(
@@ -710,7 +1035,7 @@ argument_list|(
 operator|new
 name|StringValue
 argument_list|(
-name|collection
+name|col
 operator|.
 name|getName
 argument_list|()
@@ -760,6 +1085,109 @@ block|}
 block|}
 return|return
 name|stored
+return|;
+block|}
+specifier|private
+specifier|final
+name|Collection
+name|makeColl
+parameter_list|(
+name|Collection
+name|parentColl
+parameter_list|,
+name|String
+name|relPath
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+name|CollectionManagementService
+name|mgtService
+decl_stmt|;
+name|Collection
+name|current
+init|=
+name|parentColl
+decl_stmt|,
+name|c
+decl_stmt|;
+name|String
+name|token
+decl_stmt|;
+name|StringTokenizer
+name|tok
+init|=
+operator|new
+name|StringTokenizer
+argument_list|(
+name|relPath
+argument_list|,
+literal|"/"
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+name|tok
+operator|.
+name|hasMoreTokens
+argument_list|()
+condition|)
+block|{
+name|token
+operator|=
+name|tok
+operator|.
+name|nextToken
+argument_list|()
+expr_stmt|;
+name|c
+operator|=
+name|current
+operator|.
+name|getChildCollection
+argument_list|(
+name|token
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|c
+operator|==
+literal|null
+condition|)
+block|{
+name|mgtService
+operator|=
+operator|(
+name|CollectionManagementService
+operator|)
+name|current
+operator|.
+name|getService
+argument_list|(
+literal|"CollectionManagementService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+expr_stmt|;
+name|current
+operator|=
+name|mgtService
+operator|.
+name|createCollection
+argument_list|(
+name|token
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+name|current
+operator|=
+name|c
+expr_stmt|;
+block|}
+return|return
+name|current
 return|;
 block|}
 block|}
