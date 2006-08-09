@@ -2520,7 +2520,7 @@ if|if
 condition|(
 name|qn
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|.
 name|equals

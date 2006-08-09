@@ -531,7 +531,7 @@ decl_stmt|;
 specifier|private
 name|long
 index|[]
-name|childList
+name|childAddress
 init|=
 literal|null
 decl_stmt|;
@@ -984,7 +984,7 @@ name|other
 operator|.
 name|maxDepth
 expr_stmt|;
-name|childList
+name|childAddress
 operator|=
 literal|null
 expr_stmt|;
@@ -1046,11 +1046,11 @@ name|DocumentImpl
 name|other
 parameter_list|)
 block|{
-name|childList
+name|childAddress
 operator|=
 name|other
 operator|.
-name|childList
+name|childAddress
 expr_stmt|;
 name|children
 operator|=
@@ -1334,7 +1334,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|childList
+name|childAddress
 operator|!=
 literal|null
 condition|)
@@ -1342,7 +1342,7 @@ name|System
 operator|.
 name|arraycopy
 argument_list|(
-name|childList
+name|childAddress
 argument_list|,
 literal|0
 argument_list|,
@@ -1350,12 +1350,12 @@ name|newChildList
 argument_list|,
 literal|0
 argument_list|,
-name|childList
+name|childAddress
 operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|childList
+name|childAddress
 operator|=
 name|newChildList
 expr_stmt|;
@@ -1376,7 +1376,7 @@ expr_stmt|;
 name|resizeChildList
 argument_list|()
 expr_stmt|;
-name|childList
+name|childAddress
 index|[
 name|children
 operator|-
@@ -1582,7 +1582,7 @@ name|StorageAddress
 operator|.
 name|pageFromPointer
 argument_list|(
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -1597,7 +1597,7 @@ name|StorageAddress
 operator|.
 name|tidFromPointer
 argument_list|(
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -1835,7 +1835,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|childList
+name|childAddress
 operator|=
 operator|new
 name|long
@@ -1858,7 +1858,7 @@ name|i
 operator|++
 control|)
 block|{
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -2849,7 +2849,7 @@ argument_list|,
 literal|"not implemented"
 argument_list|)
 throw|;
-comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = children - 1; i>= 0; i--) {             next = childList[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 idx = i - 1;                 break;             }         }         if (idx< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         last = childList[idx];         StoredNode prev = (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last));         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) appendChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childList[++idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
+comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = children - 1; i>= 0; i--) {             next = childAddress[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 idx = i - 1;                 break;             }         }         if (idx< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         last = childAddress[idx];         StoredNode prev = (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last));         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) appendChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childAddress[++idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
 block|}
 specifier|public
 name|void
@@ -2875,7 +2875,7 @@ argument_list|,
 literal|"not implemented"
 argument_list|)
 throw|;
-comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = 0; i< children; i++) {             next = childList[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 last = next;                 idx = i + 1;                 break;             }         }         if (last< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         StoredNode prev = getLastNode( (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last)) );         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) appendChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childList[idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
+comment|/*         if (!(refChild instanceof StoredNode))             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, "wrong node type");         StoredNode ref = (StoredNode) refChild;         long next, last = -1;         int idx = -1;         for(int i = 0; i< children; i++) {             next = childAddress[i];             if (StorageAddress.equals(ref.internalAddress, next)) {                 last = next;                 idx = i + 1;                 break;             }         }         if (last< 0)             throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, "reference node not found");         StoredNode prev = getLastNode( (StoredNode) broker.objectWith(                 new NodeProxy(this, NodeProxy.UNKNOWN_NODE_GID, last)) );         for (int i = 0; i< nodes.getLength(); i++) {             prev = (StoredNode) appendChild(null, prev, nodes.item(i));             ++children;             resizeChildList();             childAddress[idx] = prev.internalAddress;         }         broker.storeDocument(null, this);         */
 block|}
 comment|// Never used locally !
 comment|//    private Node appendChild(Txn transaction, StoredNode last, Node child) throws DOMException {
@@ -2913,14 +2913,6 @@ condition|)
 return|return
 literal|null
 return|;
-name|long
-name|address
-init|=
-name|childList
-index|[
-literal|0
-index|]
-decl_stmt|;
 return|return
 name|broker
 operator|.
@@ -2935,7 +2927,10 @@ name|NodeProxy
 operator|.
 name|DOCUMENT_ELEMENT_GID
 argument_list|,
-name|address
+name|childAddress
+index|[
+literal|0
+index|]
 argument_list|)
 argument_list|)
 return|;
@@ -2957,7 +2952,7 @@ operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 return|return
-name|childList
+name|childAddress
 index|[
 literal|0
 index|]
@@ -3006,7 +3001,7 @@ name|NodeProxy
 operator|.
 name|DOCUMENT_ELEMENT_GID
 argument_list|,
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -3921,7 +3916,7 @@ name|children
 operator|==
 literal|0
 condition|)
-name|childList
+name|childAddress
 operator|=
 literal|null
 expr_stmt|;
