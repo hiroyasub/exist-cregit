@@ -753,7 +753,6 @@ operator|=
 name|nodeB
 expr_stmt|;
 block|}
-empty_stmt|;
 name|nodeB
 operator|.
 name|addRightChild
@@ -1035,7 +1034,6 @@ operator|=
 name|nodeB
 expr_stmt|;
 block|}
-empty_stmt|;
 name|nodeB
 operator|.
 name|addLeftChild

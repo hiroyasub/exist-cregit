@@ -226,7 +226,6 @@ name|publicId
 operator|=
 literal|null
 expr_stmt|;
-empty_stmt|;
 name|this
 operator|.
 name|systemId

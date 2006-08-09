@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|File
 import|;
 end_import
@@ -200,16 +190,6 @@ operator|.
 name|util
 operator|.
 name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|ServletOutputStream
 import|;
 end_import
 
@@ -5867,7 +5847,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|": '"
