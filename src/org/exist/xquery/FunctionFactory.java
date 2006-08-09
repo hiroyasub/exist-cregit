@@ -1114,7 +1114,7 @@ literal|"Java binding is currently disabled in config.xml. Call to "
 operator|+
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|" denied."
@@ -1134,7 +1134,7 @@ literal|"Java binding is currently disabled in config.xml. Call to "
 operator|+
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|" denied."
@@ -1239,7 +1239,7 @@ literal|"Function "
 operator|+
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|"() "
@@ -1288,7 +1288,7 @@ literal|"'"
 operator|+
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|"()'. "
@@ -1428,7 +1428,7 @@ literal|"Function "
 operator|+
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|"() is not defined in namespace '"
