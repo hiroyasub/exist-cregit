@@ -175,7 +175,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}
@@ -189,7 +189,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}
