@@ -283,6 +283,46 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//<add a new TestCase Method here>
+comment|// Added by Geoff Shuetrim (geoff@galexy.net) on 15 July 2006 to highlight that root element renaming
+comment|// does not currently succeed, resulting instead in a null pointer exception because the
+comment|// renaming relies upon obtaining the parent element of the element being renamed and this is null
+comment|// for the root element.
+specifier|public
+name|void
+name|rename_root_element
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|test
+operator|.
+name|doTest
+argument_list|(
+literal|"rename_root_element"
+argument_list|,
+literal|"address.xml"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Added by Geoff Shuetrim (geoff@galexy.net) on 15 July 2006 to highlight that renaming of an
+comment|// element fails when the renaming also involves a change of namespace.
+specifier|public
+name|void
+name|rename_including_namespace
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|test
+operator|.
+name|doTest
+argument_list|(
+literal|"rename_including_namespace"
+argument_list|,
+literal|"namespaces.xml"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// TestCases End
 block|}
 end_class
