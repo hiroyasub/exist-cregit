@@ -700,7 +700,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generator for Cocoon which reads an XQuery script, executes it and passes  * the results into the Cocoon pipeline.  *   * The following optional attributes are accepted on the component declaration as default eXist settings:  *<li><tt>collection</tt>: identifies the XML:DB root collection used to process  * the request</li>  *<li><tt>user</tt></li>  *<li><tt>password</tt></li>  *<li><tt>create-session</tt>: if set to "true", indicates that an  * HTTP session should be created upon the first invocation.</li>  *<li><tt>expand-xincludes</tt></li>  *<li><tt>cache-validity</tt>: if specified, the XQuery content is  * cached until the specified delay expressed in milliseconds is elapsed  * or until the XQuery file is modified.  The identity of the cached content is  * computed using the XQuery file URI and the list of all parameters passed to  * the XQuery.</li>  *   * The component also accept default parameters that will be declared as implicit variables in the XQuery.  * See below an example declaration of the XQueryGenerator component with default eXist settings, and an extra user-defined parameter:  *   *<map:generator logger="xmldb" name="xquery"  * 		collection="xmldb:exist:///db/"  * 		user="guest"  * 		password="guest"  *		create-session="false"  * 		expand-xincludes="false"  *		cache-validity="-1"  *		src="org.exist.cocoon.XQueryGenerator">  *<parameter name="myProjectURI" value="/db/myproject"/>  *</map:generator>  *   * These settings and parameters can be overriden on a per-pipeline basis with sitemap parameters, see below with default values and the extra user-defined parameter:  *   *<pre>  *&lt;map:parameter name=&quot;collection&quot; value=&quot;xmldb:exist:///db&quot;/&gt;  *&lt;map:parameter name=&quot;user&quot; value=&quot;guest&quot;/&gt;  *&lt;map:parameter name=&quot;password&quot; value=&quot;guest&quot;/&gt;  *&lt;map:parameter name=&quot;create-session&quot; value=&quot;false&quot;/&gt;  *&lt;map:parameter name=&quot;expand-xincludes&quot; value=&quot;false&quot;/&gt;  *&lt;map:parameter name=&quot;cache-validity&quot; value=&quot;-1quot;/&gt;  *&lt;map:parameter name=&quot;myProjectURI&quot; value=&quot;/db/myproject&quot;/&gt;  *</pre>  *   * The last sitemap parameter overrides the value of the XQuery variable defined in the component parameters,  * whereas others override the default eXist settings defined on the component attributes.  *  * @author wolf  */
+comment|/**  * A generator for Cocoon which reads an XQuery script, executes it and passes  * the results into the Cocoon pipeline.  *   * The following optional attributes are accepted on the component declaration as default eXist settings:  *<li><tt>collection</tt>: identifies the XML:DB root collection used to process  * the request</li>  *<li><tt>user</tt></li>  *<li><tt>password</tt></li>   *<li><tt>authen</tt></li>: if set to session, then use the user and password from the session. Otherwise use the parameter values.  *<li><tt>create-session</tt>: if set to "true", indicates that an  * HTTP session should be created upon the first invocation.</li>  *<li><tt>expand-xincludes</tt></li>  *<li><tt>cache-validity</tt>: if specified, the XQuery content is  * cached until the specified delay expressed in milliseconds is elapsed  * or until the XQuery file is modified.  The identity of the cached content is  * computed using the XQuery file URI and the list of all parameters passed to  * the XQuery.</li>  *   * The component also accept default parameters that will be declared as implicit variables in the XQuery.  * See below an example declaration of the XQueryGenerator component with default eXist settings, and an extra user-defined parameter:  *   *<map:generator logger="xmldb" name="xquery"  * 		collection="xmldb:exist:///db/"  * 		user="guest"  * 		password="guest"  *		create-session="false"  * 		expand-xincludes="false"  	        authen="session"  *		cache-validity="-1"  *		src="org.exist.cocoon.XQueryGenerator">  *<parameter name="myProjectURI" value="/db/myproject"/>  *</map:generator>  *   * These settings and parameters can be overriden on a per-pipeline basis with sitemap parameters, see below with default values and the extra user-defined parameter:  *   *<pre>  *&lt;map:parameter name=&quot;collection&quot; value=&quot;xmldb:exist:///db&quot;/&gt;  *&lt;map:parameter name=&quot;user&quot; value=&quot;guest&quot;/&gt;  *&lt;map:parameter name=&quot;password&quot; value=&quot;guest&quot;/&gt;  *&lt;map:parameter name=&quot;create-session&quot; value=&quot;false&quot;/&gt;  *&lt;map:parameter name=&quot;expand-xincludes&quot; value=&quot;false&quot;/&gt;  *&lt;map:parameter name=&quot;cache-validity&quot; value=&quot;-1quot;/&gt;  *&lt;map:parameter name=&quot;myProjectURI&quot; value=&quot;/db/myproject&quot;/&gt;  *</pre>  *   * The last sitemap parameter overrides the value of the XQuery variable defined in the component parameters,  * whereas others override the default eXist settings defined on the component attributes.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -854,6 +854,24 @@ name|String
 name|PASSWORD
 init|=
 literal|"password"
+decl_stmt|;
+specifier|private
+name|String
+name|authen
+decl_stmt|;
+specifier|private
+name|String
+name|defaultAuthen
+init|=
+literal|"session"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|AUTHEN
+init|=
+literal|"authen"
 decl_stmt|;
 specifier|private
 name|Map
@@ -1058,6 +1076,21 @@ expr_stmt|;
 block|}
 name|this
 operator|.
+name|authen
+operator|=
+name|parameters
+operator|.
+name|getParameter
+argument_list|(
+name|AUTHEN
+argument_list|,
+name|this
+operator|.
+name|defaultAuthen
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
 name|user
 operator|=
 name|parameters
@@ -1184,6 +1217,13 @@ operator|.
 name|equals
 argument_list|(
 name|PASSWORD
+argument_list|)
+operator|||
+name|param
+operator|.
+name|equals
+argument_list|(
+name|AUTHEN
 argument_list|)
 operator|||
 name|param
@@ -1542,6 +1582,13 @@ condition|(
 name|session
 operator|!=
 literal|null
+operator|&&
+name|authen
+operator|.
+name|equals
+argument_list|(
+literal|"session"
+argument_list|)
 operator|&&
 name|request
 operator|.
