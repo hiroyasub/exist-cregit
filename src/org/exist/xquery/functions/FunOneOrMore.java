@@ -360,7 +360,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 name|Sequence
 name|result
 init|=
