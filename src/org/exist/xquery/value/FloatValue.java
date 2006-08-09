@@ -229,7 +229,6 @@ condition|)
 return|return
 literal|"INF"
 return|;
-empty_stmt|;
 if|if
 condition|(
 name|value

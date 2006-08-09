@@ -51,20 +51,6 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|util
-operator|.
-name|URIUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment

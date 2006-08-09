@@ -348,7 +348,7 @@ name|display
 argument_list|(
 name|nodeName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -394,7 +394,7 @@ name|append
 argument_list|(
 name|nodeName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
