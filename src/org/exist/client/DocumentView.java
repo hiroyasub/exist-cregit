@@ -644,9 +644,15 @@ name|XMLDBException
 block|{
 name|super
 argument_list|(
-literal|"View Document "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.0"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|this
 operator|.
 name|resourceName
@@ -675,6 +681,7 @@ literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|this
 operator|.
 name|client
@@ -753,6 +760,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
+comment|//$NON-NLS-1$
 name|setText
 argument_list|(
 operator|(
@@ -799,6 +807,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|User
 name|user
 init|=
@@ -814,6 +823,7 @@ literal|"user"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|String
 name|lockOwner
 init|=
@@ -839,14 +849,32 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Resource is already locked by user "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.6"
+argument_list|)
 operator|+
 name|lockOwner
 operator|+
-literal|". Should I try to relock it?"
+comment|//$NON-NLS-1$
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.7"
+argument_list|)
 argument_list|,
-literal|"Resource locked"
+comment|//$NON-NLS-1$
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.8"
+argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$
 name|JOptionPane
 operator|.
 name|YES_NO_OPTION
@@ -909,9 +937,15 @@ name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Resource cannot be locked. Opening read-only."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.9"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|setReadOnly
 argument_list|()
 expr_stmt|;
@@ -930,7 +964,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XMLDB error: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.10"
+argument_list|)
 operator|+
 name|ex
 operator|.
@@ -940,6 +979,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 specifier|private
@@ -980,6 +1020,7 @@ literal|"Message:"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|msgArea
 operator|.
 name|setEditable
@@ -1087,6 +1128,7 @@ literal|"Exception Stacktrace:"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 name|JOptionPane
 name|optionPane
@@ -1127,9 +1169,15 @@ name|createDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Error"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.13"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|dialog
 operator|.
 name|setResizable
@@ -1211,6 +1259,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|service
 operator|.
 name|unlockResource
@@ -1253,9 +1302,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"File"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.16"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|fileMenu
 operator|.
 name|setMnemonic
@@ -1281,13 +1336,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Save"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.17"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_S
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -1300,6 +1361,7 @@ literal|"control S"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -1357,6 +1419,7 @@ argument_list|(
 literal|"icons/Save24.gif"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|saveButton
 operator|=
 operator|new
@@ -1373,9 +1436,15 @@ name|saveButton
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Store the modified data back into the database."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.20"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|saveButton
 operator|.
 name|addActionListener
@@ -1417,6 +1486,7 @@ argument_list|(
 literal|"icons/SaveAs24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|saveAsButton
 operator|=
 operator|new
@@ -1433,9 +1503,15 @@ name|saveAsButton
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Store a new document into the database."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.22"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|saveAsButton
 operator|.
 name|addActionListener
@@ -1477,6 +1553,7 @@ argument_list|(
 literal|"icons/Export24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|JButton
 name|button
 init|=
@@ -1494,9 +1571,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Export to file."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.24"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1558,6 +1641,7 @@ argument_list|(
 literal|"icons/Copy24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1574,9 +1658,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Copy selection."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.26"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1620,6 +1710,7 @@ argument_list|(
 literal|"icons/Cut24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1636,9 +1727,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Cut selection."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.28"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1682,6 +1779,7 @@ argument_list|(
 literal|"icons/Paste24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1698,9 +1796,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Paste selection."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.30"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1749,6 +1853,7 @@ argument_list|(
 literal|"icons/Refresh24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1765,9 +1870,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Refresh Document."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.32"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1832,9 +1943,15 @@ name|ClientTextArea
 argument_list|(
 literal|true
 argument_list|,
-literal|"XML"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.33"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|getContentPane
 argument_list|()
 operator|.
@@ -1895,7 +2012,12 @@ name|statusMessage
 operator|.
 name|setText
 argument_list|(
-literal|"Loading "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.34"
+argument_list|)
 operator|+
 name|URIUtils
 operator|.
@@ -1907,9 +2029,15 @@ name|getId
 argument_list|()
 argument_list|)
 operator|+
-literal|" ..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.35"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|statusbar
 operator|.
 name|add
@@ -1983,7 +2111,12 @@ name|statusMessage
 operator|.
 name|setText
 argument_list|(
-literal|"Storing "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.36"
+argument_list|)
 operator|+
 name|URIUtils
 operator|.
@@ -1996,6 +2129,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|collection
@@ -2074,7 +2208,13 @@ name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(
-literal|"XMLDBException: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.37"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
 name|e
 operator|.
@@ -2126,9 +2266,15 @@ name|showInputDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Name of the XML resource (extension incluse)"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.38"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|nameres
@@ -2143,11 +2289,17 @@ name|statusMessage
 operator|.
 name|setText
 argument_list|(
-literal|"Storing "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.39"
+argument_list|)
 operator|+
 name|nameres
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|collection
@@ -2262,7 +2414,12 @@ name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(
-literal|"XMLDBException: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.40"
+argument_list|)
 operator|+
 name|e
 operator|.
@@ -2272,6 +2429,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
@@ -2283,7 +2441,12 @@ name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(
-literal|"URISyntaxException: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.41"
+argument_list|)
 operator|+
 name|e
 operator|.
@@ -2293,6 +2456,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 finally|finally
 block|{
@@ -2330,6 +2494,7 @@ argument_list|(
 literal|"working-dir"
 argument_list|,
 name|System
+comment|//$NON-NLS-1$
 operator|.
 name|getProperty
 argument_list|(
@@ -2337,6 +2502,7 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|JFileChooser
 name|chooser
 init|=
@@ -2384,7 +2550,12 @@ name|showDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Select file for export"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.44"
+argument_list|)
 argument_list|)
 operator|==
 name|JFileChooser
@@ -2392,6 +2563,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+comment|//$NON-NLS-1$
 name|File
 name|file
 init|=
@@ -2413,10 +2585,21 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"File exists. Overwrite?"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.45"
+argument_list|)
 argument_list|,
-literal|"Overwrite?"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.46"
+argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|JOptionPane
 operator|.
 name|YES_NO_OPTION
@@ -2454,6 +2637,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|writer
 operator|.
 name|write
@@ -2480,7 +2664,13 @@ name|ClientFrame
 operator|.
 name|showErrorMessage
 argument_list|(
-literal|"XMLDBException: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.48"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
 name|e
 operator|.
@@ -2511,6 +2701,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 specifier|private
@@ -2547,6 +2738,7 @@ literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 comment|//View and lock the resource
 name|viewDocument
 argument_list|()
@@ -2569,6 +2761,7 @@ argument_list|(
 literal|""
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|text
 operator|.
 name|setText
@@ -2592,7 +2785,12 @@ name|statusMessage
 operator|.
 name|setText
 argument_list|(
-literal|"Loaded "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.52"
+argument_list|)
 operator|+
 name|XmldbURI
 operator|.
@@ -2612,7 +2810,12 @@ argument_list|(
 name|resourceName
 argument_list|)
 operator|+
-literal|" from "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"DocumentView.53"
+argument_list|)
 operator|+
 name|properties
 operator|.
@@ -2622,6 +2825,7 @@ literal|"uri"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 block|}
 class|class
 name|ProgressObserver
@@ -2682,6 +2886,7 @@ argument_list|(
 literal|"Storing words"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 if|else if
 condition|(
 name|o
@@ -2695,6 +2900,7 @@ argument_list|(
 literal|"Storing elements"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 block|}
