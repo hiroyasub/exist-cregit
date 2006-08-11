@@ -1786,25 +1786,6 @@ name|EMPTY_SEQUENCE
 operator|)
 return|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"left: "
-operator|+
-name|nodes
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|"; right: "
-operator|+
-name|rightSeq
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//Holds the result
 name|NodeSet
 name|result
@@ -1820,15 +1801,6 @@ operator|.
 name|getIndexType
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found index type: "
-operator|+
-name|indexType
-argument_list|)
-expr_stmt|;
 comment|//See if we have a range index defined on the nodes in this sequence
 comment|//TODO : use isSubType ??? -pb
 if|if
