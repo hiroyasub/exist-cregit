@@ -6346,6 +6346,22 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"NativeBroker.saveCollection called with collection == null! Aborting."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
 name|readOnly
 condition|)
 throw|throw
