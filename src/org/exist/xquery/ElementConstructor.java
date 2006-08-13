@@ -762,8 +762,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
+comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
 name|context
 operator|.
 name|inScopeNamespaces
@@ -778,23 +777,9 @@ operator|.
 name|getLocalName
 argument_list|()
 argument_list|)
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"XQST0085 : can not undefine '"
-operator|+
-name|namespaceDecls
-index|[
-name|i
-index|]
-operator|+
-literal|"'"
-argument_list|)
-throw|;
+expr_stmt|;
+comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|//		        		throw new XPathException("XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 block|}
 else|else
 name|context
