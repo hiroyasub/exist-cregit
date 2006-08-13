@@ -124,29 +124,9 @@ argument_list|(
 literal|"transformer.class"
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"transformerFactoryClassName="
-operator|+
-name|transformerFactoryClassName
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"javax.xml.transform.TransformerFactory="
-operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"javax.xml.transform.TransformerFactory"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//        LOG.debug("transformerFactoryClassName=" + transformerFactoryClassName);
+comment|//        LOG.debug("javax.xml.transform.TransformerFactory="
+comment|//                + System.getProperty("javax.xml.transform.TransformerFactory"));
 comment|//was a TransformerFactory class specified
 if|if
 condition|(
