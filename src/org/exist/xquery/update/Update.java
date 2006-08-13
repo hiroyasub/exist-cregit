@@ -761,6 +761,11 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|NotificationService
@@ -1297,6 +1302,11 @@ block|}
 finally|finally
 block|{
 name|unlockDocuments
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 block|}

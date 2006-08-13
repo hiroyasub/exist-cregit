@@ -739,6 +739,11 @@ name|UPDATE_EMPTY_CONTENT
 argument_list|)
 argument_list|)
 throw|;
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
 name|contentSeq
 operator|=
 name|deepCopy
@@ -1239,6 +1244,11 @@ block|}
 finally|finally
 block|{
 name|unlockDocuments
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 block|}
