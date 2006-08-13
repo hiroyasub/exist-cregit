@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Allow's the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml   *   * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *   * @author Adam Retter<adam.retter@devon.gov.uk>   */
+comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -72,7 +72,7 @@ specifier|public
 class|class
 name|TransformerFactoryAllocator
 block|{
-comment|/*  	 * problem is that even when a Xalan is defined in conf.xml, if Saxon JAR's are on the classpath then 	 * when we create a Xalan TransformerFactory and newInstance() is called on it, it returns a Saxon TransformerFactory :-( 	 */
+comment|/*      * problem is that even when a Xalan is defined in conf.xml, if Saxon JAR's       * are on the classpath then when we create a Xalan TransformerFactory and       * newInstance() is called on it, it returns a Saxon TransformerFactory :-(      */
 specifier|private
 specifier|final
 specifier|static
@@ -88,14 +88,13 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//Logger
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
 parameter_list|()
 block|{
 block|}
-comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *       * @param broker	A database broker, used for reading the conf.xml configuration      *       * @return	A SAXTransformerFactory, for which newInstance() can then be called      *       *       * Typical useage:      *       * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
+comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *      * @param broker A database broker, used for reading the conf.xml configuration      *      * @return  A SAXTransformerFactory, for which newInstance() can then be called      *      *      * Typical usage:      *      * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
 specifier|public
 specifier|static
 name|SAXTransformerFactory
@@ -125,22 +124,18 @@ argument_list|(
 literal|"transformer.class"
 argument_list|)
 decl_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"transformerFactoryClassName="
 operator|+
 name|transformerFactoryClassName
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"javax.xml.transform.TransformerFactory="
 operator|+
@@ -236,7 +231,9 @@ literal|"The indicated class '"
 operator|+
 name|transformerFactoryClassName
 operator|+
-literal|"' is not a TrAX Transformer Factory. Using default TrAX Transformer Factory instead."
+literal|"' is not a TrAX Transformer Factory. "
+operator|+
+literal|"Using default TrAX Transformer Factory instead."
 argument_list|)
 expr_stmt|;
 comment|//fallback to system default
