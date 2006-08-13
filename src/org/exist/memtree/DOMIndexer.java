@@ -853,6 +853,11 @@ name|Node
 operator|.
 name|TEXT_NODE
 case|:
+case|case
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
+case|:
 name|last
 operator|=
 operator|(
