@@ -101,6 +101,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -1100,6 +1112,8 @@ specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 name|sortInDocumentOrder
 argument_list|()

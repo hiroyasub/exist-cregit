@@ -537,6 +537,8 @@ parameter_list|,
 name|Sequence
 name|seq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|int
 name|requiredCardinality

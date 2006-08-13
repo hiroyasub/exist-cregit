@@ -148,6 +148,8 @@ specifier|abstract
 name|SequenceIterator
 name|iterate
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -331,6 +333,8 @@ name|String
 name|toString
 parameter_list|()
 block|{
+try|try
+block|{
 name|StringBuffer
 name|buf
 init|=
@@ -404,6 +408,22 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|"toString() fails: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
 specifier|public

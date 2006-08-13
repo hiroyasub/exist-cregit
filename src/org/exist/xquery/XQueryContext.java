@@ -457,6 +457,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|sanity
+operator|.
+name|SanityCheck
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -2250,7 +2264,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @return      */
+comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @return      * @throws XPathException       */
 specifier|public
 name|DocumentSet
 name|releaseUnusedDocuments
@@ -2258,6 +2272,8 @@ parameter_list|(
 name|Sequence
 name|seq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

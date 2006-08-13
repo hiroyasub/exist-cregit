@@ -2623,6 +2623,8 @@ expr_stmt|;
 name|Item
 name|item
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|SequenceIterator
@@ -2722,8 +2724,6 @@ block|}
 block|}
 else|else
 block|{
-try|try
-block|{
 name|String
 name|value
 init|=
@@ -2748,6 +2748,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
 catch|catch
 parameter_list|(
 name|XPathException
@@ -2766,8 +2768,6 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-block|}
-block|}
 block|}
 block|}
 block|}

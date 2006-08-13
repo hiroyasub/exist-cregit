@@ -244,6 +244,8 @@ specifier|abstract
 name|SequenceIterator
 name|iterate
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
 specifier|public
