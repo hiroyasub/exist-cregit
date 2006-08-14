@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-06 Wolfgang M. Meier  * wolfgang@exist-db.org  * http://exist.sourceforge.net  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 The eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -259,6 +259,18 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Returns the substring of the value of $a that precedes the first occurrence "
+operator|+
+literal|"of a sequence of the value of $b. If the value of $a or $b is the empty "
+operator|+
+literal|"sequence it is interpreted as the zero-length string. If the value of "
+operator|+
+literal|"$b is the zero-length string, the zero-length string is returned. "
+operator|+
+literal|"If the value of $a does not contain a string that is equal to the value "
+operator|+
+literal|"of $b, the zero-length string is returned."
+argument_list|,
 operator|new
 name|SequenceType
 index|[]
@@ -313,6 +325,18 @@ name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
+argument_list|,
+literal|"Returns the substring of the value of $a that precedes the first occurrence "
+operator|+
+literal|"of a sequence of the value of $b in the collation $c. If the value of $a or $b is the empty "
+operator|+
+literal|"sequence it is interpreted as the zero-length string. If the value of "
+operator|+
+literal|"$b is the zero-length string, the zero-length string is returned. "
+operator|+
+literal|"If the value of $a does not contain a string that is equal to the value "
+operator|+
+literal|"of $b, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
