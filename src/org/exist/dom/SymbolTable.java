@@ -287,7 +287,7 @@ operator|=
 name|file
 expr_stmt|;
 block|}
-comment|/**      * Retrieve a shared QName instance from the temporary pool.      *       * @param namespaceURI      * @param localName      * @param prefix      * @return      */
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *       * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
 specifier|synchronized
 name|QName
@@ -338,7 +338,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified element.      *       * @param element      * @return      */
+comment|/**      * Return a unique id for the local node name of the specified element.      *       * @param element      */
 specifier|public
 specifier|synchronized
 name|short
@@ -466,7 +466,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified attribute.      *       * @param attr      * @return      */
+comment|/**      * Return a unique id for the local node name of the specified attribute.      *       * @param attr      */
 specifier|public
 specifier|synchronized
 name|short
@@ -599,7 +599,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *       * @param name      * @return      */
+comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *       * @param name      */
 specifier|public
 specifier|synchronized
 name|short
@@ -679,7 +679,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified namespace URI.      *       * @param ns      * @return      */
+comment|/**      * Returns a unique id for the specified namespace URI.      *       * @param ns      */
 specifier|public
 specifier|synchronized
 name|short
@@ -761,7 +761,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**      * Returns the namespace URI registered for the id or null      * if the namespace URI is not known. Returns the empty string      * if the namespace is empty.      *       * @param id      * @return      */
+comment|/**      * Returns the namespace URI registered for the id or null      * if the namespace URI is not known. Returns the empty string      * if the namespace is empty.      *       * @param id      */
 specifier|public
 specifier|synchronized
 name|String
@@ -789,7 +789,7 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      *       * @return      */
+comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      *       */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -800,7 +800,7 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *       * @param id      * @return      */
+comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *       * @param id      */
 specifier|public
 specifier|synchronized
 name|String
@@ -822,7 +822,7 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a namespace URI for the given prefix if there's      * a default mapping.      *       * @param prefix      * @return      */
+comment|/**      * Returns a namespace URI for the given prefix if there's      * a default mapping.      *       * @param prefix      */
 specifier|public
 specifier|synchronized
 name|String
@@ -859,7 +859,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Returns a list of default prefixes registered.      *       * @return      */
+comment|/**      * Returns a list of default prefixes registered.      *       */
 specifier|public
 specifier|synchronized
 name|String

@@ -312,7 +312,7 @@ operator|=
 name|mimeType
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of pages currently occupied by this document.      *      * @return      */
+comment|/**      * Returns the number of pages currently occupied by this document.      *      */
 specifier|public
 name|int
 name|getPageCount
@@ -322,7 +322,7 @@ return|return
 name|pageCount
 return|;
 block|}
-comment|/**      * Set the number of pages currently occupied by this document.      * @param count      */
+comment|/**      * Set the number of pages currently occupied by this document.      * @param pageCount      */
 specifier|public
 name|void
 name|setPageCount

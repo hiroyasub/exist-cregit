@@ -1052,7 +1052,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  For a given set of potential ancestor nodes, get the 	 * descendants in this node set 	 * 	 *@param  al    Description of the Parameter 	 *@param  mode  Description of the Parameter 	 *@return       The descendants value 	 */
+comment|/** 	 *  For a given set of potential ancestor nodes, get the 	 * descendants in this node set 	 * 	 *@return       The descendants value 	 */
 specifier|public
 name|NodeSet
 name|selectAncestors

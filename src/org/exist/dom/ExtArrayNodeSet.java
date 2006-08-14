@@ -2701,7 +2701,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**          * Find all nodes in the current set being children of the specified          * parent.          *           * @param parent          * @param mode          * @param rememberContext          * @return          */
+comment|/**          * Find all nodes in the current set being children of the specified          * parent.          *           * @param parent          * @param mode          * @param rememberContext          */
 name|NodeSet
 name|getChildrenInSet
 parameter_list|(

@@ -610,7 +610,7 @@ operator|.
 name|position
 expr_stmt|;
 block|}
-comment|/**      * Reset this element to its initial state.      *      * @see org.exist.dom.NodeImpl#clear()      */
+comment|/**      * Reset this element to its initial state.      *      */
 specifier|public
 name|void
 name|clear
@@ -3984,7 +3984,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * @see org.exist.dom.NodeImpl#firstChildID()      */
+comment|/**      */
 specifier|public
 name|long
 name|firstChildID
@@ -4316,7 +4316,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if an attribute is already present in the node's attribute list. Throws a      * DOMException if yes. Otherwise, returns the last attribute in the attribute list.      *       * @param attrs      * @return      * @throws DOMException      */
+comment|/**      * Check if an attribute is already present in the node's attribute list. Throws a      * DOMException if yes. Otherwise, returns the last attribute in the attribute list.      *       * @param attrs      * @throws DOMException      */
 specifier|private
 name|AttrImpl
 name|getLastAttribute
@@ -4398,7 +4398,7 @@ return|return
 name|attr
 return|;
 block|}
-comment|/**      * Returns a list of all attribute nodes in attrs that are already present      * in the current element.      *       * @param attrs      * @return      * @throws DOMException      */
+comment|/**      * Returns a list of all attribute nodes in attrs that are already present      * in the current element.      *       * @param attrs      * @throws DOMException      */
 specifier|private
 name|NodeList
 name|findDupAttributes
@@ -5884,7 +5884,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * @see org.exist.dom.NodeImpl#toString(boolean)      */
+comment|/**      */
 specifier|public
 name|String
 name|toString

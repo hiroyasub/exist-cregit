@@ -367,7 +367,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int)}      * method of the corresponding node class.      *       * @param data      * @param start      * @param len      * @param doc      * @return      */
+comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int,DocumentImpl,boolean)}      * method of the corresponding node class.      *       * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode
@@ -402,7 +402,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int)} 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 * @return 	 */
+comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the deserialize(byte[], int, int,boolean) 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 */
 specifier|public
 specifier|static
 name|StoredNode
@@ -672,7 +672,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Return the broker instance used to create this node. 	 *  	 * @return 	 */
+comment|/** 	 * Return the broker instance used to create this node. 	 *  	 */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -685,7 +685,7 @@ name|getBroker
 argument_list|()
 return|;
 block|}
-comment|/** 	 *  Get the unique identifier assigned to this node. 	 * 	 *@return 	 */
+comment|/** 	 *  Get the unique identifier assigned to this node. 	 * 	 */
 specifier|public
 name|long
 name|getGID
@@ -723,7 +723,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      *  Set the internal storage address of this node.      *      *@param  address  The new internalAddress value      */
+comment|/**      *  Set the internal storage address of this node.      *      *@param  internalAddress  The new internalAddress value      */
 specifier|public
 name|void
 name|setInternalAddress
@@ -761,7 +761,7 @@ return|return
 name|ownerDocument
 return|;
 block|}
-comment|/**      *  Set the owner document.      *      *@param  doc  The new ownerDocument value      */
+comment|/**      *  Set the owner document.      *      *@param  ownerDocument  The new ownerDocument value      */
 specifier|public
 name|void
 name|setOwnerDocument

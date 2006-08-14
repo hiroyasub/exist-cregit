@@ -35,7 +35,7 @@ operator|new
 name|NullNodeIndexListener
 argument_list|()
 decl_stmt|;
-comment|/** @see org.exist.dom.NodeIndexListener#nodeChanged(org.exist.dom.NodeImpl) */
+comment|/** @see org.exist.dom.NodeIndexListener#nodeChanged(StoredNode) */
 specifier|public
 name|void
 name|nodeChanged
@@ -45,7 +45,6 @@ name|node
 parameter_list|)
 block|{
 block|}
-comment|/** @see org.exist.dom.NodeIndexListener#nodeChanged(long, long) */
 specifier|public
 name|void
 name|nodeChanged

@@ -788,7 +788,7 @@ operator|=
 name|docId
 expr_stmt|;
 block|}
-comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or       * {@link #BINARY_FILE}.      *       * @return      */
+comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or       * {@link #BINARY_FILE}.      *       */
 specifier|public
 name|byte
 name|getResourceType
@@ -1059,7 +1059,7 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 * @return 	 */
+comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 */
 specifier|public
 name|boolean
 name|isLockedForWrite
@@ -1073,7 +1073,7 @@ name|isLockedForWrite
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the update lock associated with this      * resource.      *       * @return      */
+comment|/**      * Returns the update lock associated with this      * resource.      *       */
 specifier|public
 specifier|final
 specifier|synchronized
@@ -1167,7 +1167,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 */
 specifier|public
 name|int
 name|getContentLength
