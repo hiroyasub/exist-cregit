@@ -796,6 +796,11 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
 name|contentSeq
 operator|=
 name|deepCopy
@@ -1168,6 +1173,11 @@ block|{
 name|unlockDocuments
 argument_list|()
 expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 if|if
@@ -1209,6 +1219,8 @@ parameter_list|(
 name|Sequence
 name|contentSeq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|NodeListImpl
 name|nl

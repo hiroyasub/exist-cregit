@@ -99,11 +99,13 @@ name|int
 name|getItemType
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @return 	 */
+comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @return 	 * @throws XPathException TODO 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Returns an iterator over all items in the sequence. The returned 	 * items may - but need not - to be in document order. 	 *  	 * @return 	 */
 specifier|public

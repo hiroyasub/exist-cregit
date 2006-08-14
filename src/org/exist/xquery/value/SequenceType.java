@@ -197,7 +197,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      * Check the specified sequence against this SequenceType.      *        * @param seq      * @return      */
+comment|/**      * Check the specified sequence against this SequenceType.      *        * @param seq      * @return      * @throws XPathException       */
 specifier|public
 name|boolean
 name|checkType
@@ -205,6 +205,8 @@ parameter_list|(
 name|Sequence
 name|seq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

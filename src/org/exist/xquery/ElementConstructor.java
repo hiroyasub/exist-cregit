@@ -804,6 +804,42 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|namespaceDecls
+index|[
+name|i
+index|]
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
+name|context
+operator|.
+name|inScopeNamespaces
+operator|.
+name|remove
+argument_list|(
+name|namespaceDecls
+index|[
+name|i
+index|]
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|//		        		throw new XPathException("XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+block|}
+else|else
 name|context
 operator|.
 name|declareInScopeNamespace

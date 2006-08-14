@@ -37,6 +37,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -79,11 +91,13 @@ name|AVLTreeNodeSet
 parameter_list|()
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
+comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#iterate()       */
 specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 return|return
 operator|new
