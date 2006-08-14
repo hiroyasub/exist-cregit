@@ -177,7 +177,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the created document object. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the created document object. 	 *  	 */
 specifier|public
 name|DocumentImpl
 name|getDocument

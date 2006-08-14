@@ -1349,7 +1349,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Get the internal name for the built-in type. 	 *  	 * @param type 	 * @return 	 */
+comment|/** 	 * Get the internal name for the built-in type. 	 *  	 * @param type 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1372,7 +1372,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Get the type code for a type identified by its internal name. 	 *  	 * @param name 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Get the type code for a type identified by its internal name. 	 *  	 * @param name 	 * @throws XPathException 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1430,7 +1430,7 @@ return|return
 name|code
 return|;
 block|}
-comment|/** 	 * Get the type code for a type identified by its QName. 	 *  	 * @param qname 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Get the type code for a type identified by its QName. 	 *  	 * @param qname 	 * @throws XPathException 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1534,7 +1534,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype 	 * @return 	 */
+comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1634,7 +1634,7 @@ name|supertype
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Get the type code of the supertype of the specified subtype. 	 *  	 * @param subtype 	 * @return 	 */
+comment|/** 	 * Get the type code of the supertype of the specified subtype. 	 *  	 * @param subtype 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1699,7 +1699,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Find a common supertype for two given type codes. 	 *  	 * Type.ITEM is returned if no other common supertype 	 * is found. 	 *   	 * @param type1 	 * @param type2 	 * @return 	 */
+comment|/** 	 * Find a common supertype for two given type codes. 	 *  	 * Type.ITEM is returned if no other common supertype 	 * is found. 	 *   	 * @param type1 	 * @param type2 	 */
 specifier|public
 specifier|static
 name|int

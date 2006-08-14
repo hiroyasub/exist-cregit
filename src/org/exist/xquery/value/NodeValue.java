@@ -82,7 +82,7 @@ name|PERSISTENT_NODE
 init|=
 literal|1
 decl_stmt|;
-comment|/** 	 * Returns true if this node has the same identity as another 	 * node. Used to implement "is" and "isnot" comparisons. 	 *  	 * @param other 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Returns true if this node has the same identity as another 	 * node. Used to implement "is" and "isnot" comparisons. 	 *  	 * @param other 	 * @throws XPathException 	 */
 specifier|public
 name|boolean
 name|equals
@@ -93,7 +93,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if this node comes before another node in 	 * document order. 	 *  	 * @param other 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Returns true if this node comes before another node in 	 * document order. 	 *  	 * @param other 	 * @throws XPathException 	 */
 specifier|public
 name|boolean
 name|before
@@ -104,7 +104,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if this node comes after another node in 	 * document order. 	 *  	 * @param other 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Returns true if this node comes after another node in 	 * document order. 	 *  	 * @param other 	 * @throws XPathException 	 */
 specifier|public
 name|boolean
 name|after
@@ -115,7 +115,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the implementation-type of this node, i.e. either 	 * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the implementation-type of this node, i.e. either 	 * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}. 	 *  	 */
 specifier|public
 name|int
 name|getImplementationType

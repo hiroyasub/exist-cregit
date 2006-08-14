@@ -99,7 +99,7 @@ name|int
 name|getItemType
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @return 	 * @throws XPathException TODO 	 */
+comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @throws XPathException TODO 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -107,7 +107,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns an iterator over all items in the sequence. The returned 	 * items may - but need not - to be in document order. 	 *  	 * @return 	 */
+comment|/** 	 * Returns an iterator over all items in the sequence. The returned 	 * items may - but need not - to be in document order. 	 *  	 */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -143,13 +143,13 @@ name|void
 name|removeDuplicates
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the cardinality of this sequence. The returned 	 * value is a combination of flags as defined in 	 * {@link org.exist.xquery.Cardinality}. 	 *  	 * @see org.exist.xquery.Cardinality 	 *  	 * @return 	 */
+comment|/** 	 * Returns the cardinality of this sequence. The returned 	 * value is a combination of flags as defined in 	 * {@link org.exist.xquery.Cardinality}. 	 *  	 * @see org.exist.xquery.Cardinality 	 *  	 */
 specifier|public
 name|int
 name|getCardinality
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the item located at the specified position within 	 * this sequence. Items are counted beginning at 0. 	 *  	 * @param pos 	 * @return 	 */
+comment|/** 	 * Returns the item located at the specified position within 	 * this sequence. Items are counted beginning at 0. 	 *  	 * @param pos 	 */
 specifier|public
 name|Item
 name|itemAt
@@ -158,7 +158,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
-comment|/** 	 * Try to convert the sequence into an atomic value. The target type should be specified by 	 * using one of the constants defined in class {@link Type}. An {@link XPathException} 	 * is thrown if the conversion is impossible. 	 *  	 * @param requiredType one of the type constants defined in class {@link Type} 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Try to convert the sequence into an atomic value. The target type should be specified by 	 * using one of the constants defined in class {@link Type}. An {@link XPathException} 	 * is thrown if the conversion is impossible. 	 *  	 * @param requiredType one of the type constants defined in class {@link Type} 	 * @throws XPathException 	 */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -169,7 +169,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Convert the sequence to a string. 	 *  	 * @return 	 */
+comment|/** 	 * Convert the sequence to a string. 	 *  	 */
 specifier|public
 name|String
 name|getStringValue
@@ -177,7 +177,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Get the effective boolean value of this sequence. Will be false if the sequence is empty, 	 * true otherwise. 	 *  	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Get the effective boolean value of this sequence. Will be false if the sequence is empty, 	 * true otherwise. 	 *  	 * @throws XPathException 	 */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -185,7 +185,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Convert the sequence into a NodeSet. If the sequence contains items 	 * which are not nodes, an XPathException is thrown. 	 * @return 	 * @throws XPathException if the sequence contains items which are not nodes. 	 */
+comment|/** 	 * Convert the sequence into a NodeSet. If the sequence contains items 	 * which are not nodes, an XPathException is thrown. 	 * @throws XPathException if the sequence contains items which are not nodes. 	 */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -193,13 +193,13 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the set of documents from which the node items in this sequence 	 * have been selected. This is for internal use only. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the set of documents from which the node items in this sequence 	 * have been selected. This is for internal use only. 	 *  	 */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns a preference indicator, indicating the preference of 	 * a value to be converted into the given Java class. Low numbers mean 	 * that the value can be easily converted into the given class. 	 *  	 * @param javaClass 	 * @return 	 */
+comment|/** 	 * Returns a preference indicator, indicating the preference of 	 * a value to be converted into the given Java class. Low numbers mean 	 * that the value can be easily converted into the given class. 	 *  	 * @param javaClass 	 */
 specifier|public
 name|int
 name|conversionPreference
@@ -208,7 +208,7 @@ name|Class
 name|javaClass
 parameter_list|)
 function_decl|;
-comment|/** 	 * Convert the value into an instance of the specified 	 * Java class. 	 *  	 * @param target 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Convert the value into an instance of the specified 	 * Java class. 	 *  	 * @param target 	 * @throws XPathException 	 */
 specifier|public
 name|Object
 name|toJavaObject
@@ -219,7 +219,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if the sequence is the result of a previous operation 	 * and has been cached. 	 *  	 * @return 	 */
+comment|/** 	 * Returns true if the sequence is the result of a previous operation 	 * and has been cached. 	 *  	 */
 specifier|public
 name|boolean
 name|isCached

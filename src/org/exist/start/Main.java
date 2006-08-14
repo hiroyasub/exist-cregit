@@ -269,7 +269,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Singleton Factory Method      * @return      */
+comment|/**      * Singleton Factory Method      */
 specifier|public
 specifier|static
 name|Main
@@ -2470,7 +2470,7 @@ return|return
 name|mainClassLoader
 return|;
 block|}
-comment|/**      * @return      */
+comment|/**      */
 specifier|public
 name|File
 name|detectHome
