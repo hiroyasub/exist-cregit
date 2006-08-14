@@ -1416,7 +1416,6 @@ name|TransformerFactoryConfigurationError
 throws|,
 name|XPathException
 block|{
-comment|//SAXTransformerFactory factory = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
 name|SAXTransformerFactory
 name|factory
 init|=
@@ -1432,9 +1431,6 @@ operator|.
 name|getBroker
 argument_list|()
 argument_list|)
-operator|.
-name|newInstance
-argument_list|()
 decl_stmt|;
 name|TransformerHandler
 name|handler
