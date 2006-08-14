@@ -1245,6 +1245,10 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+name|nextChar
+operator|+=
+name|len
+expr_stmt|;
 block|}
 specifier|public
 name|void
