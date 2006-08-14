@@ -479,7 +479,7 @@ decl_stmt|;
 name|JButton
 name|btnImportFavourite
 decl_stmt|;
-comment|/**      * Creates a new login panel with properties      *      * @param a list of properties modified by the panel      */
+comment|/**      * Creates a new login panel with properties      *      * @param props a list of properties modified by the panel      */
 specifier|public
 name|LoginPanel
 parameter_list|(

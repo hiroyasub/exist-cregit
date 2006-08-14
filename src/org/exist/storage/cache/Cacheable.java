@@ -38,7 +38,7 @@ name|long
 name|getKey
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the current reference count. 	 *  	 * @return 	 */
+comment|/** 	 * Get the current reference count. 	 *  	 * @return The count value.  	 */
 specifier|public
 name|int
 name|getReferenceCount
@@ -89,7 +89,7 @@ name|boolean
 name|syncJournal
 parameter_list|)
 function_decl|;
-comment|/** 	 * Is it safe to unload the Cacheable from the cache? 	 *  	 * Called before an object is actually removed. Return 	 * false to avoid being removed. 	 *  	 * @return 	 */
+comment|/** 	 * Is it safe to unload the Cacheable from the cache? 	 *  	 * Called before an object is actually removed. Return 	 * false to avoid being removed. 	 *  	 * @return A boolean where true indicates it can be unloaded. 	 */
 specifier|public
 name|boolean
 name|allowUnload

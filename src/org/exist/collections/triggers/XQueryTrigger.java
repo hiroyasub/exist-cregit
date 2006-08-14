@@ -348,7 +348,7 @@ name|SAXAdapter
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
 specifier|public
 name|void
 name|configure
@@ -462,7 +462,7 @@ name|getXQueryService
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
+comment|/** 	 * @link org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
 specifier|public
 name|void
 name|prepare
@@ -747,7 +747,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
+comment|/**      * @link org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
 specifier|public
 name|void
 name|finish

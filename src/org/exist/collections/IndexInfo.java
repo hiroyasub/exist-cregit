@@ -190,7 +190,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Internal class used to track required fields between calls to  * {@link org.exist.collections.Collection#validate(Txn, DBBroker, String, InputSource)} and  * {@link org.exist.collections.Collection#store(Txn, DBBroker, IndexInfo, InputSource, boolean)}.  *   * @author wolf  */
+comment|/**  * Internal class used to track required fields between calls to  * {@link org.exist.collections.Collection#validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} and  * {@link org.exist.collections.Collection#store(Txn, DBBroker, IndexInfo, InputSource, boolean)}.  *   * @author wolf  */
 end_comment
 
 begin_class

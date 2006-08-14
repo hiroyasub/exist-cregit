@@ -1089,7 +1089,7 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if this is a temporary collection. By default,      * the temporary collection is in /db/system/temp.      *      * @return      */
+comment|/**      * Returns true if this is a temporary collection. By default,      * the temporary collection is in /db/system/temp.      *      * @return A boolean where true means the collection is temporary.      */
 specifier|public
 name|boolean
 name|isTempCollection
@@ -1448,7 +1448,7 @@ return|return
 name|cl
 return|;
 block|}
-comment|/**      * Retrieve all documents contained in this collections.      *      * If recursive is true, documents from sub-collections are      * included.      *      * @param user      * @param recursive      * @return      */
+comment|/**      * Retrieve all documents contained in this collections.      *      * If recursive is true, documents from sub-collections are      * included.      *      * @param broker      * @param docs      * @param recursive      * @param checkPermissions      * @return The set of documents.      */
 specifier|public
 name|DocumentSet
 name|allDocs
@@ -1790,7 +1790,7 @@ return|return
 name|docs
 return|;
 block|}
-comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for      * write.      *      * @return      */
+comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for      * write.      *      * @return A boolean value where true indicates it may be unloaded.      */
 specifier|public
 name|boolean
 name|allowUnload
@@ -1995,7 +1995,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      *@param  name  The name of the document (without collection path)      *@return   the document      */
+comment|/**      *  Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      *@param  broker      *@param  path  The name of the document (without collection path)      *@return   the document      */
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -2088,7 +2088,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return      * @throws LockException      */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2115,7 +2115,7 @@ name|READ_LOCK
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return      * @throws LockException      */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param uri      * @param lockMode      * @return The document that was locked.      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2386,7 +2386,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Check if the collection has a child document.      *      *@param  name  the name (without path) of the document      *@return      */
+comment|/**      *  Check if the collection has a child document.      *      *@param  uri  the name (without path) of the document      *@return A value of true when the collection has the document identified.      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -2407,7 +2407,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      *  Check if the collection has a sub-collection.      *      *@param  name  the name of the subcollection (without path).      *@return      */
+comment|/**      *  Check if the collection has a sub-collection.      *      *@param  name  the name of the subcollection (without path).      *@return A value of true when the subcollection exists.      */
 specifier|public
 name|boolean
 name|hasSubcollection
@@ -2475,7 +2475,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Returns an iterator on the child-documents in this collection.      *      *@return      */
+comment|/**      *  Returns an iterator on the child-documents in this collection.      *      *@return A iterator of all the documents in the collection.      */
 specifier|public
 name|Iterator
 name|iterator
@@ -2746,7 +2746,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Remove the specified document from the collection.      *      *@param  name      */
+comment|/**      *  Remove the specified document from the collection.      *      *@param  transaction      *@param  broker      *@param  docUri      */
 specifier|public
 name|void
 name|removeXMLResource

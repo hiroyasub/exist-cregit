@@ -147,7 +147,7 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 function_decl|;
-comment|/** 	 * Returns a Logger object. Use this to log debugging information. 	 *  	 * @return 	 */
+comment|/** 	 * Returns a Logger object. Use this to log debugging information. 	 *  	 */
 specifier|public
 name|Logger
 name|getLogger

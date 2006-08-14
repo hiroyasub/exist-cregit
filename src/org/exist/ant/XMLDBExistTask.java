@@ -132,7 +132,7 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * @return    * @throws BuildException    * @see org.apache.tools.ant.taskdefs.condition.Condition#eval()    */
+comment|/**    * @return returns true if the eval is successful.     * @throws BuildException    * @see org.apache.tools.ant.taskdefs.condition.Condition#eval()    */
 specifier|public
 name|boolean
 name|eval

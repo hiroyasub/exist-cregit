@@ -81,7 +81,7 @@ operator|=
 name|session
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 */
 specifier|public
 name|Object
 name|getAttribute
@@ -99,7 +99,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|Enumeration
 name|getAttributeNames
@@ -112,7 +112,7 @@ name|getAttributeNames
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|long
 name|getCreationTime
@@ -125,7 +125,7 @@ name|getCreationTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|String
 name|getId
@@ -138,7 +138,7 @@ name|getId
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|long
 name|getLastAccessedTime
@@ -151,7 +151,7 @@ name|getLastAccessedTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|int
 name|getMaxInactiveInterval
@@ -189,7 +189,7 @@ name|invalidate
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|boolean
 name|isNew

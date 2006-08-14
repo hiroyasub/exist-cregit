@@ -260,7 +260,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 */
 specifier|public
 name|boolean
 name|containsHeader
@@ -278,7 +278,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @param arg1 	 * @return 	 */
+comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|Cookie
 name|createCookie
@@ -301,7 +301,7 @@ name|arg1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param arg0 	 * @return 	 */
+comment|/** 	 * @param arg0 	 */
 specifier|public
 name|String
 name|encodeURL
@@ -319,7 +319,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|String
 name|getCharacterEncoding
@@ -332,7 +332,7 @@ name|getCharacterEncoding
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 */
 specifier|public
 name|Locale
 name|getLocale
