@@ -1610,6 +1610,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|nodeKind
+operator|==
+literal|null
+operator|||
 name|nodeNr
 operator|<
 literal|0
