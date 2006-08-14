@@ -492,13 +492,16 @@ argument_list|(
 name|f
 argument_list|)
 decl_stmt|;
+comment|//String nameText = name.getTextContent();
 name|String
 name|nameText
 init|=
-name|name
+name|TreeLevelOrderTest
 operator|.
-name|getTextContent
-argument_list|()
+name|textContent
+argument_list|(
+name|name
+argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
