@@ -311,6 +311,20 @@ name|atom
 operator|.
 name|util
 operator|.
+name|DateFormatter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|atom
+operator|.
+name|util
+operator|.
 name|NodeHandler
 import|;
 end_import
@@ -663,6 +677,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -670,6 +685,7 @@ name|FEED_DOCUMENT_NAME
 init|=
 literal|".feed.atom"
 decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|XmldbURI
@@ -1275,6 +1291,8 @@ decl_stmt|;
 name|String
 name|currentDateTime
 init|=
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -1875,6 +1893,8 @@ decl_stmt|;
 name|String
 name|currentDateTime
 init|=
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -1939,7 +1959,7 @@ throw|throw
 operator|new
 name|BadRequestException
 argument_list|(
-literal|"An edit link relation cannot be specified in the entry."
+literal|"An edit link relation cannot be specified in the feed."
 argument_list|)
 throw|;
 block|}
@@ -1983,6 +2003,13 @@ argument_list|(
 literal|"href"
 argument_list|,
 literal|"#"
+argument_list|)
+expr_stmt|;
+name|root
+operator|.
+name|appendChild
+argument_list|(
+name|editLink
 argument_list|)
 expr_stmt|;
 name|IndexInfo
@@ -2158,6 +2185,40 @@ operator|new
 name|BadRequestException
 argument_list|(
 literal|"Collection "
+operator|+
+name|request
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|" does not exist."
+argument_list|)
+throw|;
+block|}
+name|DocumentImpl
+name|feedDoc
+init|=
+name|collection
+operator|.
+name|getDocument
+argument_list|(
+name|broker
+argument_list|,
+name|FEED_DOCUMENT_URI
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|feedDoc
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|BadRequestException
+argument_list|(
+literal|"Feed at "
 operator|+
 name|request
 operator|.
@@ -2469,11 +2530,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|DocumentImpl
-name|feedDoc
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 name|LOG
@@ -2481,17 +2537,6 @@ operator|.
 name|debug
 argument_list|(
 literal|"Acquiring lock on feed document..."
-argument_list|)
-expr_stmt|;
-name|feedDoc
-operator|=
-name|collection
-operator|.
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|FEED_DOCUMENT_URI
 argument_list|)
 expr_stmt|;
 name|feedDoc
@@ -2531,6 +2576,8 @@ block|}
 name|String
 name|created
 init|=
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -3495,6 +3542,8 @@ name|feedRoot
 argument_list|,
 name|root
 argument_list|,
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -3688,6 +3737,8 @@ decl_stmt|;
 name|String
 name|currentDateTime
 init|=
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -4635,6 +4686,8 @@ decl_stmt|;
 name|String
 name|currentDateTime
 init|=
+name|DateFormatter
+operator|.
 name|toXSDDateTime
 argument_list|(
 operator|new
@@ -5875,7 +5928,7 @@ literal|"id"
 argument_list|)
 condition|)
 block|{
-return|return;
+continue|continue;
 block|}
 comment|// Skip the edit link relations
 if|if
@@ -5905,7 +5958,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
 name|rel
 operator|.
 name|equals
@@ -5914,7 +5966,7 @@ literal|"edit"
 argument_list|)
 condition|)
 block|{
-return|return;
+continue|continue;
 block|}
 block|}
 block|}
@@ -6086,7 +6138,8 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
+specifier|public
+specifier|static
 name|Element
 name|generateMediaEntry
 parameter_list|(
