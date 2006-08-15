@@ -3269,6 +3269,21 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
+if|if
+condition|(
+name|node
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"The node parameter cannot be null."
+argument_list|)
+throw|;
+block|}
 comment|//      domDb.setOwnerObject(this);
 try|try
 block|{
