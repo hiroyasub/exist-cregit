@@ -1565,6 +1565,22 @@ name|SecurityManager
 operator|.
 name|SYSTEM_USER
 expr_stmt|;
+name|readOnly
+operator|=
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"READ: "
+operator|+
+name|readOnly
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// Initialize DOM storage
@@ -1644,7 +1660,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|domDb
 operator|.
 name|isReadOnly
@@ -1727,7 +1743,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|collectionsDb
 operator|.
 name|isReadOnly
@@ -1746,6 +1762,15 @@ operator|.
 name|info
 argument_list|(
 literal|"Database runs in read-only mode"
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"READ: "
+operator|+
+name|readOnly
 argument_list|)
 expr_stmt|;
 block|}
@@ -1996,7 +2021,7 @@ expr_stmt|;
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|dbWords
 operator|.
 name|isReadOnly
@@ -2118,7 +2143,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|db
 operator|.
 name|isReadOnly
