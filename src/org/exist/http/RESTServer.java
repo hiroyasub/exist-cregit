@@ -1172,6 +1172,7 @@ name|NotFoundException
 throws|,
 name|IOException
 block|{
+comment|//if required, set character encoding
 if|if
 condition|(
 name|request
@@ -2564,6 +2565,23 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 block|{
+comment|//if required, set character encoding
+if|if
+condition|(
+name|request
+operator|.
+name|getCharacterEncoding
+argument_list|()
+operator|==
+literal|null
+condition|)
+name|request
+operator|.
+name|setCharacterEncoding
+argument_list|(
+name|formEncoding
+argument_list|)
+expr_stmt|;
 name|Properties
 name|outputProperties
 init|=
