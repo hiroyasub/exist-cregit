@@ -194,7 +194,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|XMLDBMove
+name|XMLDBCopy
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
@@ -212,7 +212,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"move"
+literal|"copy"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -223,7 +223,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a collection $a. The collection can be specified either as "
+literal|"Copy a collection. The collections can be specified either as "
 operator|+
 literal|"a simple collection path, an XMLDB URI or a collection object."
 argument_list|,
@@ -275,7 +275,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"move"
+literal|"copy"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -286,9 +286,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a resource from the collection specified in $a to collection in $b. "
+literal|"Copy a resource from the collection specified in $a to collection in $b. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collections can be either specified as a simple collection path, "
 operator|+
 literal|"an XMLDB URI or a collection object."
 argument_list|,
@@ -348,7 +348,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|XMLDBMove
+name|XMLDBCopy
 parameter_list|(
 name|XQueryContext
 name|context
@@ -495,7 +495,7 @@ argument_list|)
 decl_stmt|;
 name|service
 operator|.
-name|moveResource
+name|copyResource
 argument_list|(
 name|doc
 argument_list|,
@@ -551,7 +551,7 @@ argument_list|)
 decl_stmt|;
 name|service
 operator|.
-name|move
+name|copy
 argument_list|(
 name|collection
 operator|.
@@ -577,7 +577,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Cannot move collection: "
+literal|"Cannot copy collection: "
 operator|+
 name|e
 operator|.

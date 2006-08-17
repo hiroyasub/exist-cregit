@@ -194,7 +194,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|XMLDBMove
+name|XMLDBRename
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
@@ -212,7 +212,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"move"
+literal|"rename"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -223,7 +223,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a collection $a. The collection can be specified either as "
+literal|"Rename a collection $a. The collection can be specified either as "
 operator|+
 literal|"a simple collection path, an XMLDB URI or a collection object."
 argument_list|,
@@ -275,7 +275,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"move"
+literal|"rename"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -286,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a resource from the collection specified in $a to collection in $b. "
+literal|"Rename a resource $b in the collection specified in $a with name in $c. "
 operator|+
 literal|"The collection can be either specified as a simple collection path, "
 operator|+
@@ -348,7 +348,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|XMLDBMove
+name|XMLDBRename
 parameter_list|(
 name|XQueryContext
 name|context
@@ -383,32 +383,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|String
-name|destination
-init|=
-operator|new
-name|AnyURIValue
-argument_list|(
-name|args
-index|[
-literal|1
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-operator|.
-name|toXmldbURI
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|getSignature
@@ -428,7 +402,7 @@ name|AnyURIValue
 argument_list|(
 name|args
 index|[
-literal|2
+literal|1
 index|]
 operator|.
 name|itemAt
@@ -478,6 +452,22 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+name|String
+name|newName
+init|=
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -499,9 +489,9 @@ name|moveResource
 argument_list|(
 name|doc
 argument_list|,
-name|destination
-argument_list|,
 literal|null
+argument_list|,
+name|newName
 argument_list|)
 expr_stmt|;
 block|}
@@ -534,6 +524,22 @@ else|else
 block|{
 try|try
 block|{
+name|String
+name|newName
+init|=
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -558,9 +564,9 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|destination
-argument_list|,
 literal|null
+argument_list|,
+name|newName
 argument_list|)
 expr_stmt|;
 block|}
@@ -577,7 +583,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Cannot move collection: "
+literal|"Cannot rename collection: "
 operator|+
 name|e
 operator|.
