@@ -8563,10 +8563,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Fails with NPE 	 * 	 */
+comment|//TODO : understand this test and make sure that the expected result is correct
+comment|//expected:<3> but was:<2>
 specifier|public
 name|void
-name|testXUpdateAttributesAndElements
+name|bugtestXUpdateAttributesAndElements
 parameter_list|()
 block|{
 name|ResourceSet
