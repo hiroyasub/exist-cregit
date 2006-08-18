@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  *     * Copyright (C) 2001-04 Wolfgang M. Meier wolfgang@exist-db.org  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  *     * Copyright (C) 2001-2004 The eXist team  * http://exist-db.org  *   * This program is free software; you can redistribute it and/or modify it  * under the terms of the GNU Lesser General Public License as published by the  * Free Software Foundation; either version 2 of the License, or (at your  * option) any later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License  * for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc.,  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -1070,6 +1070,15 @@ argument_list|)
 expr_stmt|;
 name|destinationPath
 operator|=
+name|destinationPath
+operator|==
+literal|null
+condition|?
+name|collectionPath
+operator|.
+name|removeLastSegment
+argument_list|()
+else|:
 name|parent
 operator|.
 name|getPathURI
@@ -1945,6 +1954,20 @@ argument_list|(
 name|resourcePath
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|destinationPath
+operator|==
+literal|null
+condition|)
+name|destinationPath
+operator|=
+name|resourcePath
+operator|.
+name|removeLastSegment
+argument_list|()
+expr_stmt|;
+else|else
 name|destinationPath
 operator|=
 name|parent
@@ -2147,6 +2170,21 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|newName
+operator|==
+literal|null
+condition|)
+block|{
+name|newName
+operator|=
+name|resourcePath
+operator|.
+name|lastSegment
+argument_list|()
+expr_stmt|;
 block|}
 name|broker
 operator|.
@@ -2389,6 +2427,15 @@ argument_list|)
 expr_stmt|;
 name|destinationPath
 operator|=
+name|destinationPath
+operator|==
+literal|null
+condition|?
+name|collectionPath
+operator|.
+name|removeLastSegment
+argument_list|()
+else|:
 name|parent
 operator|.
 name|getPathURI
@@ -2397,27 +2444,6 @@ operator|.
 name|resolveCollectionPath
 argument_list|(
 name|destinationPath
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Copying '"
-operator|+
-name|collectionPath
-operator|+
-literal|"' to '"
-operator|+
-name|destinationPath
-operator|+
-literal|"' as '"
-operator|+
-name|newName
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
 name|TransactionManager
@@ -2559,6 +2585,21 @@ operator|+
 literal|"' not found"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|newName
+operator|==
+literal|null
+condition|)
+block|{
+name|newName
+operator|=
+name|collectionPath
+operator|.
+name|lastSegment
+argument_list|()
+expr_stmt|;
 block|}
 name|broker
 operator|.
