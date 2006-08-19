@@ -359,7 +359,6 @@ argument_list|,
 name|qn
 argument_list|)
 decl_stmt|;
-comment|//		System.out.println("start: " + qn + "; nodeNr = " + nodeNr + "; level = " + level);
 if|if
 condition|(
 name|attributes
@@ -735,6 +734,15 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|&&
+name|level
+operator|==
+name|doc
+operator|.
+name|getTreeLevel
+argument_list|(
+name|lastNode
+argument_list|)
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
@@ -826,6 +834,15 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|&&
+name|level
+operator|==
+name|doc
+operator|.
+name|getTreeLevel
+argument_list|(
+name|lastNode
+argument_list|)
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
