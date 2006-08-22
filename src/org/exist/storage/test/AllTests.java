@@ -138,6 +138,15 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
+name|RecoverBinaryTest2
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
 name|RecoveryTest
 operator|.
 name|class
