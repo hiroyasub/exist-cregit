@@ -618,6 +618,23 @@ operator|=
 name|decls
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|inScopeNamespaces
+operator|.
+name|put
+argument_list|(
+name|qn
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|,
+name|qn
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
