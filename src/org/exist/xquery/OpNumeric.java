@@ -1056,6 +1056,23 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+comment|//Sets the return type if not already set
+if|if
+condition|(
+name|returnType
+operator|==
+name|Type
+operator|.
+name|ATOMIC
+condition|)
+comment|//TODO : refine previously set type ? -pb
+name|returnType
+operator|=
+name|result
+operator|.
+name|getItemType
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;
