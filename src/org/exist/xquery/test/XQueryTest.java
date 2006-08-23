@@ -5510,6 +5510,126 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testNamespace 8: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"<result xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>{//rdf:Description}</result>"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"<result xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n"
+operator|+
+literal|"<rdf:Description id=\"3\">\n"
+operator|+
+literal|"<dc:title xmlns:dc=\"http://purl.org/dc/elements/1.1/\">title</dc:title>\n"
+operator|+
+literal|"<dc:creator xmlns:dc=\"http://purl.org/dc/elements/1.1/\">creator</dc:creator>\n"
+operator|+
+literal|"<x:place xmlns:x=\"http://exist.sourceforge.net/dc-ext\">place</x:place>\n"
+operator|+
+literal|"<x:edition xmlns:x=\"http://exist.sourceforge.net/dc-ext\">place</x:edition>\n"
+operator|+
+literal|"</rdf:Description>\n"
+operator|+
+literal|"</result>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testNamespace 9: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"<result xmlns='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>{//Description}</result>"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|"<result xmlns=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n"
+operator|+
+literal|"<rdf:Description xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" id=\"3\">\n"
+operator|+
+literal|"<dc:title xmlns:dc=\"http://purl.org/dc/elements/1.1/\">title</dc:title>\n"
+operator|+
+literal|"<dc:creator xmlns:dc=\"http://purl.org/dc/elements/1.1/\">creator</dc:creator>\n"
+operator|+
+literal|"<x:place xmlns:x=\"http://exist.sourceforge.net/dc-ext\">place</x:place>\n"
+operator|+
+literal|"<x:edition xmlns:x=\"http://exist.sourceforge.net/dc-ext\">place</x:edition>\n"
+operator|+
+literal|"</rdf:Description>\n"
+operator|+
+literal|"</result>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//Interesting one : let's see with XQuery gurus :-)
 comment|//declare namespace fn="";
 comment|//fn:current-time()
