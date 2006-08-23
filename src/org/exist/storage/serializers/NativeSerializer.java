@@ -1203,6 +1203,7 @@ name|gid
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*               * This is a proposed fix-up that the serializer could do              * to make sure elements always have the namespace declarations              *             } else {                // This is fix-up for when the node has a namespace but there is no                // namespace declaration.                String elementNS = node.getNamespaceURI();                Node parent = node.getParentNode();                if (parent instanceof ElementImpl) {                   ElementImpl parentElement = (ElementImpl)parent;                   String declaredNS = parentElement.getNamespaceForPrefix(node.getPrefix());                   if (elementNS!=null&& declaredNS==null) {                      // We need to declare the prefix as it was missed somehow                      receiver.startPrefixMapping(node.getPrefix(), elementNS);                   } else if (elementNS==null&& declaredNS!=null) {                      // We need to declare the default namespace to be the no namespace                      receiver.startPrefixMapping(node.getPrefix(), elementNS);                   } else if (!elementNS.equals(defaultNS)) {                      // Same prefix but different namespace                      receiver.startPrefixMapping(node.getPrefix(), elementNS);                   }                } else if (elementNS!=null) {                   // If the parent is the document, we must have a namespace                   // declaration when there is a namespace URI.                   receiver.startPrefixMapping(node.getPrefix(), elementNS);                }              */
 block|}
 if|if
 condition|(
@@ -1285,6 +1286,10 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+name|child
+operator|!=
+literal|null
+operator|&&
 name|child
 operator|.
 name|getNodeType
