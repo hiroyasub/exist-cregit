@@ -1081,6 +1081,12 @@ argument_list|(
 name|nodeNr
 argument_list|,
 name|data
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
+name|data
 argument_list|)
 expr_stmt|;
 name|linkNode
