@@ -320,22 +320,11 @@ name|pool
 expr_stmt|;
 block|}
 comment|// Check xerces version
-try|try
-block|{
-name|String
-name|version
+name|StringBuffer
+name|xmlLibMessage
 init|=
-name|org
-operator|.
-name|apache
-operator|.
-name|xerces
-operator|.
-name|impl
-operator|.
-name|Version
-operator|.
-name|getVersion
+operator|new
+name|StringBuffer
 argument_list|()
 decl_stmt|;
 if|if
@@ -343,51 +332,17 @@ condition|(
 operator|!
 name|XmlLibraryChecker
 operator|.
-name|isXercesVersionOK
-argument_list|()
+name|hasValidParser
+argument_list|(
+name|xmlLibMessage
+argument_list|)
 condition|)
 block|{
 name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Xerces version mismatch! eXist requires '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|XERCESVERSION
-operator|+
-literal|"' but found '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|getXercesVersion
-argument_list|()
-operator|+
-literal|"'. "
-operator|+
-literal|"Please add correct Xerces libraries to the "
-operator|+
-literal|"endorsed folder of your JRE or webcontainer."
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Could not determine Xerces version. "
-operator|+
-literal|"Please add correct Xerces libraries to the "
-operator|+
-literal|"endorsed folder of your JRE or webcontainer."
+name|xmlLibMessage
 argument_list|)
 expr_stmt|;
 block|}
