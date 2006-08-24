@@ -58,7 +58,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class for testing xerces and xalan configuration.  *  * @author dizzzz  */
+comment|/**  *  Class for testing XML Parser and XML Transformer configuration.  *  * @author dizzzz  */
 end_comment
 
 begin_class
