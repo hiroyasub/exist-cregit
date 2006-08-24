@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-06 Wolfgang M. Meier  * meier@ifs.tu-darmstadt.de  * http://exist.sourceforge.net  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -223,6 +223,8 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|"Returns the value of the context item with whitespace normalized by stripping leading and trailing whitespace and replacing sequences of one or more whitespace character with a single space."
+argument_list|,
 operator|new
 name|SequenceType
 index|[
@@ -254,6 +256,18 @@ name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
+argument_list|,
+literal|"Returns the value of $a with whitespace normalized by stripping "
+operator|+
+literal|"leading and trailing whitespace and replacing sequences of one "
+operator|+
+literal|"or more whitespace character with a single space."
+operator|+
+literal|"If the value of $a is the empty sequence, returns the "
+operator|+
+literal|"zero-length string. If no argument is supplied  $a defaults "
+operator|+
+literal|"to the string value of the context item."
 argument_list|,
 operator|new
 name|SequenceType
@@ -597,6 +611,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Zero-length string constant? -ljo
 block|}
 if|if
 condition|(

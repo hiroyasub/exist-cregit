@@ -537,7 +537,7 @@ operator|.
 name|position
 expr_stmt|;
 block|}
-comment|/**      * Reset this element to its initial state.      *      * @see org.exist.dom.NodeImpl#clear()      */
+comment|/**      * Reset this element to its initial state.      *      */
 specifier|public
 name|void
 name|clear
@@ -2660,6 +2660,7 @@ argument_list|(
 literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 name|ch
 operator|.
 name|add
@@ -2667,6 +2668,49 @@ argument_list|(
 name|attr
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|String
+name|xmlnsDecl
+init|=
+name|attr
+operator|.
+name|getNodeName
+argument_list|()
+decl_stmt|;
+name|String
+name|prefix
+init|=
+name|xmlnsDecl
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|5
+condition|?
+literal|""
+else|:
+name|xmlnsDecl
+operator|.
+name|substring
+argument_list|(
+literal|6
+argument_list|)
+decl_stmt|;
+name|elem
+operator|.
+name|addNamespaceMapping
+argument_list|(
+name|prefix
+argument_list|,
+name|attr
+operator|.
+name|getNodeValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|NodeList
 name|cl
@@ -4246,7 +4290,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}
@@ -4686,7 +4730,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * @see org.exist.dom.NodeImpl#toString(boolean)      */
+comment|/**      */
 specifier|public
 name|String
 name|toString

@@ -504,7 +504,7 @@ else|:
 literal|false
 return|;
 block|}
-comment|/** 	 * Set whether attributes should be indexed into the fulltext index 	 *  	 * @param attribues	true indicates attributes should be indexed, false indicates attributes should not be indexed 	 */
+comment|/** 	 * Set whether attributes should be indexed into the fulltext index 	 *  	 * @param attributes	true indicates attributes should be indexed, false indicates attributes should not be indexed 	 */
 specifier|public
 name|void
 name|setFullTextIndexAttributes

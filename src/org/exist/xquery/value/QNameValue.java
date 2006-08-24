@@ -167,7 +167,7 @@ operator|.
 name|QNAME
 return|;
 block|}
-comment|/**      * Returns the wrapped QName object.      * @return      */
+comment|/**      * Returns the wrapped QName object.      */
 specifier|public
 name|QName
 name|getQName

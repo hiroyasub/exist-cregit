@@ -1846,7 +1846,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Collapses all sequences of adjacent whitespace chars in the input string 	 * into a single space. 	 *   	 * @param in 	 * @return 	 */
+comment|/** 	 * Collapses all sequences of adjacent whitespace chars in the input string 	 * into a single space. 	 *   	 * @param in 	 */
 specifier|public
 specifier|static
 name|String

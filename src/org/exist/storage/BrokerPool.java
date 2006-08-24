@@ -219,6 +219,20 @@ name|storage
 operator|.
 name|lock
 operator|.
+name|FileLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
 name|Lock
 import|;
 end_import
@@ -316,6 +330,18 @@ operator|.
 name|util
 operator|.
 name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ReadOnlyException
 import|;
 end_import
 
@@ -1116,6 +1142,10 @@ specifier|private
 name|boolean
 name|isReadOnly
 decl_stmt|;
+specifier|private
+name|FileLock
+name|dataLock
+decl_stmt|;
 comment|/**      * The transaction manager of the database instance.      */
 specifier|private
 name|TransactionManager
@@ -1802,6 +1832,15 @@ argument_list|(
 name|conf
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"isReadOnly: "
+operator|+
+name|isReadOnly
+argument_list|)
+expr_stmt|;
 comment|//Configuration is valid, save it
 name|this
 operator|.
@@ -1978,6 +2017,73 @@ name|getAbsolutePath
 argument_list|()
 operator|+
 literal|". Switching to read-only mode."
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+comment|// try to acquire lock on the data dir
+name|dataLock
+operator|=
+operator|new
+name|FileLock
+argument_list|(
+name|this
+argument_list|,
+name|dir
+argument_list|,
+literal|"dbx_dir.lck"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|boolean
+name|locked
+init|=
+name|dataLock
+operator|.
+name|tryLock
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|locked
+condition|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"The database directory seems to be locked by another "
+operator|+
+literal|"database instance. Found a valid lock file: "
+operator|+
+name|dataLock
+operator|.
+name|getFile
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|". Switching to read-only mode!!!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -2178,6 +2284,37 @@ name|isTransactional
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|transactionManager
+operator|.
+name|initialize
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ReadOnlyException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|". Switching to read-only mode!!!"
+argument_list|)
+expr_stmt|;
+name|isReadOnly
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: I would rather tend to keep this broker reserved as a system broker.
 comment|// create a first broker to initialize the security manager
@@ -2741,6 +2878,15 @@ operator|!
 name|isReadOnly
 operator|&&
 name|transactionsEnabled
+return|;
+block|}
+specifier|public
+name|boolean
+name|isReadOnly
+parameter_list|()
+block|{
+return|return
+name|isReadOnly
 return|;
 block|}
 specifier|public
@@ -3841,6 +3987,17 @@ name|remove
 argument_list|(
 name|instanceName
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|isReadOnly
+condition|)
+comment|// release the lock on the data directory
+name|dataLock
+operator|.
+name|release
+argument_list|()
 expr_stmt|;
 name|LOG
 operator|.

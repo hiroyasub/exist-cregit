@@ -92,7 +92,7 @@ specifier|public
 interface|interface
 name|WebDAVMethod
 block|{
-comment|/** 	 * Process a WebDAV request. The collection and resource parameters 	 * are set to the corresponding objects selected by the request path. 	 * The user parameter represents a valid database user. 	 *  	 * @param user 	 * @param request 	 * @param response 	 * @param collection 	 * @param resource 	 * @throws ServletException 	 * @throws IOException 	 */
+comment|/** 	 * Process a WebDAV request. The collection and resource parameters 	 * are set to the corresponding objects selected by the request path. 	 * The user parameter represents a valid database user. 	 *  	 * @param user 	 * @param request 	 * @param response 	 * @param path 	 * @throws ServletException 	 * @throws IOException 	 */
 name|void
 name|process
 parameter_list|(

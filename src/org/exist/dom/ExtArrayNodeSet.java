@@ -3163,7 +3163,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**          * Find all nodes in the current set being children or descendants of the given parent          * node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          * @return          */
+comment|/**          * Find all nodes in the current set being children or descendants of the given parent          * node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
 name|NodeSet
 name|getDescendantsInSet
 parameter_list|(

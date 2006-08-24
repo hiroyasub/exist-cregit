@@ -846,7 +846,7 @@ name|status
 init|=
 name|ST_UNKNOWN
 decl_stmt|;
-comment|/**      * The constructor.      *      * @param logger the Logger instance.      * @param username      * @param password      * @param srcUrl the URL being queried.      */
+comment|/**      * The constructor.      *      * @param logger the Logger instance.      * @param user      * @param password      * @param srcUrl the URL being queried.      */
 specifier|public
 name|XMLDBSource
 parameter_list|(

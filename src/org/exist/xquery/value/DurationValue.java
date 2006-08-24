@@ -207,7 +207,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// TODO: replace with BigDecimal.ZERO in JDK 1.5
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|Duration

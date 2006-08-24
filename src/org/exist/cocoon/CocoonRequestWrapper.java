@@ -235,7 +235,7 @@ operator|=
 name|cocoonRequest
 expr_stmt|;
 block|}
-comment|/** Constructs a wrapper for the given Cocoon request. 	 * @param cocoonRequest The request as viewed by Cocoon. 	 * @param httpRequest The request as viewed by Cocoon's servlet 	 */
+comment|/** Constructs a wrapper for the given Cocoon request. 	 * @param cocoonRequest The request as viewed by Cocoon. 	 * @param servletRequest The request as viewed by Cocoon's servlet 	 */
 specifier|public
 name|CocoonRequestWrapper
 parameter_list|(

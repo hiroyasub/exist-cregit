@@ -257,7 +257,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}
@@ -270,7 +270,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}
@@ -299,6 +299,21 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+block|}
+specifier|public
+name|String
+name|getNodeValue
+parameter_list|()
+throws|throws
+name|DOMException
+block|{
+return|return
+name|getQName
+argument_list|()
+operator|.
+name|getNamespaceURI
+argument_list|()
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#getOwnerElement() 	 */
 specifier|public

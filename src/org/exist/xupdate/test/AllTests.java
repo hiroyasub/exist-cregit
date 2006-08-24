@@ -242,6 +242,10 @@ name|test
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// bugtest ; fails
+comment|//        suite.addTest(new XUpdateTestCases("rename_root_element", test));
+comment|// butest ; fails
+comment|//        suite.addTest(new XUpdateTestCases("rename_including_namespace", test));
 comment|//        suite.addTestSuite(RemoveAppendTest.class);
 comment|/*          * create new TestCase          * -------------------          * add the following line:          *          * suite.addTest(new XUpdateTests(<TestName>, exist));          *           * Param: TestName is the filename of the XUpdateStatement xml file (without '.xml').          *           */
 comment|//$JUnit-END$

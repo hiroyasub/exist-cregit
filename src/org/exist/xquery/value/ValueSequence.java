@@ -254,6 +254,22 @@ block|}
 specifier|public
 name|ValueSequence
 parameter_list|(
+name|int
+name|initialSize
+parameter_list|)
+block|{
+name|values
+operator|=
+operator|new
+name|Item
+index|[
+name|initialSize
+index|]
+expr_stmt|;
+block|}
+specifier|public
+name|ValueSequence
+parameter_list|(
 name|Sequence
 name|otherSequence
 parameter_list|)
@@ -653,6 +669,15 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// make this document persistent: doc.makePersistent()
 comment|// returns a map of all root node ids mapped to the corresponding
 comment|// persistent node. We scan the current sequence and replace all

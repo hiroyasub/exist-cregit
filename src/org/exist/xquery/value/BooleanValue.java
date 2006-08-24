@@ -84,7 +84,7 @@ specifier|private
 name|boolean
 name|value
 decl_stmt|;
-comment|/** 	 * Returns one of the static fields TRUE or FALSE depending on 	 * the value of the parameter. 	 *  	 * @param bool 	 * @return 	 */
+comment|/** 	 * Returns one of the static fields TRUE or FALSE depending on 	 * the value of the parameter. 	 *  	 * @param bool 	 */
 specifier|public
 specifier|final
 specifier|static

@@ -893,6 +893,29 @@ name|CONTEXT_POSITION
 argument_list|)
 operator|)
 operator|&&
+comment|//A positionnal predicate will be evaluated one time
+comment|//TODO : reconsider since that may be expensive (type evaluation)
+operator|!
+operator|(
+name|this
+operator|.
+name|inPredicate
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|this
+operator|.
+name|returnsType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+operator|)
+operator|&&
 name|result
 operator|!=
 literal|null

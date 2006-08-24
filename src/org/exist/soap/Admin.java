@@ -74,7 +74,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/** 	 * Create a new user session. Authenticates the user against the database. 	 * The user has to be a valid database user. If the provided user information 	 * is valid, a new session will be registered on the server and a session id 	 * will be returned. 	 *  	 * The session will be valid for at least 60 minutes. Please call disconnect() to 	 * release the session. 	 *  	 * Sessions are shared between the Query and Admin services. A session created 	 * through the Query service can be used with the Admin service and vice versa. 	 *  	 * @param user 	 * @param password 	 * @return session-id a unique id for the created session  	 * @throws RemoteException if the user cannot log in 	 */
+comment|/** 	 * Create a new user session. Authenticates the user against the database. 	 * The user has to be a valid database user. If the provided user information 	 * is valid, a new session will be registered on the server and a session id 	 * will be returned. 	 *  	 * The session will be valid for at least 60 minutes. Please call disconnect() to 	 * release the session. 	 *  	 * Sessions are shared between the Query and Admin services. A session created 	 * through the Query service can be used with the Admin service and vice versa. 	 *  	 * @param userId 	 * @param password 	 * @return session-id a unique id for the created session  	 * @throws RemoteException if the user cannot log in 	 */
 specifier|public
 name|java
 operator|.
@@ -175,7 +175,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/** 	 * Create a new collection using the specified path. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param path the full path to the collection. 	 * @return 	 * @throws RemoteException 	 */
+comment|/** 	 * Create a new collection using the specified path. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param path the full path to the collection. 	 * @throws RemoteException 	 */
 specifier|public
 name|boolean
 name|createCollection
@@ -201,7 +201,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/** 	 * Apply a set of XUpdate modifications to a collection. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param collectionName the full path to the collection. 	 * @param xupdate the XUpdate document to be applied. 	 * @return 	 * @throws RemoteException 	 */
+comment|/** 	 * Apply a set of XUpdate modifications to a collection. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param collectionName the full path to the collection. 	 * @param xupdate the XUpdate document to be applied. 	 * @throws RemoteException 	 */
 specifier|public
 name|int
 name|xupdate
@@ -234,7 +234,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/** 	 * Apply a set of XUpdate modifications to the specified document. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param documentName the full path to the document. 	 * @param xupdate the XUpdate document to be applied. 	 * @return 	 * @throws RemoteException 	 */
+comment|/** 	 * Apply a set of XUpdate modifications to the specified document. 	 *  	 * @param sessionId a unique id for the created session. 	 * @param documentName the full path to the document. 	 * @param xupdate the XUpdate document to be applied. 	 * @throws RemoteException 	 */
 specifier|public
 name|int
 name|xupdateResource
@@ -326,7 +326,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/**      * Set the owner, group and access permissions for a document or collection      * @param sessionId the session id      * @param resource the document/collection that will get new permissions      * @param owner the new owner      * @param ownerGroup the new group      * @param permissions the new access permissions      * @return      * @throws java.rmi.RemoteException      */
+comment|/**      * Set the owner, group and access permissions for a document or collection      * @param sessionId the session id      * @param resource the document/collection that will get new permissions      * @param owner the new owner      * @param ownerGroup the new group      * @param permissions the new access permissions      * @throws java.rmi.RemoteException      */
 specifier|public
 name|void
 name|setPermissions

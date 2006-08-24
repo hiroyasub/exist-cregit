@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|File
 import|;
 end_import
@@ -200,16 +190,6 @@ operator|.
 name|util
 operator|.
 name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|ServletOutputStream
 import|;
 end_import
 
@@ -1192,6 +1172,7 @@ name|NotFoundException
 throws|,
 name|IOException
 block|{
+comment|//if required, set character encoding
 if|if
 condition|(
 name|request
@@ -2584,6 +2565,23 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 block|{
+comment|//if required, set character encoding
+if|if
+condition|(
+name|request
+operator|.
+name|getCharacterEncoding
+argument_list|()
+operator|==
+literal|null
+condition|)
+name|request
+operator|.
+name|setCharacterEncoding
+argument_list|(
+name|formEncoding
+argument_list|)
+expr_stmt|;
 name|Properties
 name|outputProperties
 init|=
@@ -5867,7 +5865,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|": '"

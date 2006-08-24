@@ -382,7 +382,7 @@ name|result
 init|=
 name|NO_OPTION
 decl_stmt|;
-comment|/** 	 * @param owner 	 * @param title 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
+comment|/** 	 * @param owner 	 * @param mgt 	 * @param res          * @param perm          * @param created          * @param modified          * @param mimeType 	 * @throws java.awt.HeadlessException 	 */
 specifier|public
 name|ResourcePropertyDialog
 parameter_list|(

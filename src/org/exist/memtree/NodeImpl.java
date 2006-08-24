@@ -540,10 +540,11 @@ name|nodeNumber
 index|]
 argument_list|)
 decl_stmt|;
+comment|//TODO : check !
 return|return
 name|qn
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 case|case
@@ -552,6 +553,10 @@ operator|.
 name|ATTRIBUTE_NODE
 case|:
 return|return
+operator|(
+operator|(
+name|QName
+operator|)
 name|document
 operator|.
 name|namePool
@@ -565,8 +570,9 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
+operator|)
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 case|case
@@ -575,6 +581,10 @@ operator|.
 name|NAMESPACE_NODE
 case|:
 return|return
+operator|(
+operator|(
+name|QName
+operator|)
 name|document
 operator|.
 name|namePool
@@ -588,8 +598,9 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
+operator|)
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 case|case

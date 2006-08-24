@@ -344,7 +344,7 @@ operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if the QName defines a namespace URI. 	 *  	 * @return 	 */
+comment|/** 	 * Returns true if the QName defines a namespace URI. 	 *  	 */
 specifier|public
 name|boolean
 name|needsNamespaceDecl
@@ -853,7 +853,7 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Extract the local name from a QName string. 	 *  	 * @param qname 	 * @return 	 * @exception IllegalArgumentException if the qname starts with a leading : or ends with a : 	 */
+comment|/** 	 * Extract the local name from a QName string. 	 *  	 * @param qname 	 * @exception IllegalArgumentException if the qname starts with a leading : or ends with a : 	 */
 specifier|public
 specifier|static
 name|String
@@ -1015,7 +1015,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * This method uses the default element namespace for qnames without prefix. 	 *  	 * @param context 	 * @param qname 	 * @return 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
+comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * This method uses the default element namespace for qnames without prefix. 	 *  	 * @param context 	 * @param qname 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
 specifier|public
 specifier|static
 name|QName

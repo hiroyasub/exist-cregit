@@ -265,7 +265,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Singleton Factory Method      * @return      */
+comment|/**      * Singleton Factory Method      */
 specifier|public
 specifier|static
 name|Main
@@ -2453,7 +2453,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @return      */
+comment|/**      */
 specifier|public
 name|File
 name|detectHome

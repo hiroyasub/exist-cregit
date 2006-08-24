@@ -177,7 +177,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the created document object. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the created document object. 	 *  	 */
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -1080,6 +1080,12 @@ name|addChars
 argument_list|(
 name|nodeNr
 argument_list|,
+name|data
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
 name|data
 argument_list|)
 expr_stmt|;

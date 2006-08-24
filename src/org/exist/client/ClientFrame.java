@@ -319,18 +319,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|Charset
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -1088,24 +1076,42 @@ specifier|static
 name|String
 name|CUT
 init|=
-literal|"Cut"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.0"
+argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 specifier|public
 specifier|final
 specifier|static
 name|String
 name|COPY
 init|=
-literal|"Copy"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.1"
+argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 specifier|public
 specifier|final
 specifier|static
 name|String
 name|PASTE
 init|=
-literal|"Paste"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.2"
+argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 specifier|public
 specifier|final
 specifier|static
@@ -1255,9 +1261,15 @@ name|HeadlessException
 block|{
 name|super
 argument_list|(
-literal|"eXist Admin Client"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.3"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|this
 operator|.
 name|path
@@ -1344,6 +1356,7 @@ argument_list|(
 literal|"icons/Up24.gif"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|JButton
 name|button
 init|=
@@ -1361,9 +1374,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Go to parent collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.5"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1406,6 +1425,7 @@ argument_list|(
 literal|"icons/Refresh24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1422,9 +1442,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Refresh collection view"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.7"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1482,6 +1508,7 @@ argument_list|(
 literal|"icons/New24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1498,9 +1525,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Create new collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.9"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1543,6 +1576,7 @@ argument_list|(
 literal|"icons/Add24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1559,9 +1593,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Stores one or more files to the database"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.11"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1604,6 +1644,7 @@ argument_list|(
 literal|"icons/Delete24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1620,9 +1661,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Delete selected files or collections"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.13"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1662,9 +1709,15 @@ argument_list|()
 operator|.
 name|getResource
 argument_list|(
-literal|"icons/Preferences24.gif"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.14"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1681,9 +1734,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Edit owners/permissions for selected resource"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.15"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1731,6 +1790,7 @@ argument_list|(
 literal|"icons/Export24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1747,9 +1807,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Create backup"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.17"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1792,6 +1858,7 @@ argument_list|(
 literal|"icons/Import24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1808,9 +1875,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Restore files from backup"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.19"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1855,9 +1928,15 @@ argument_list|()
 operator|.
 name|getResource
 argument_list|(
-literal|"icons/keyring-small.png"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.20"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1874,9 +1953,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Manage users"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.21"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -1919,6 +2004,7 @@ argument_list|(
 literal|"icons/Find24.gif"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|=
 operator|new
@@ -1935,9 +2021,15 @@ name|button
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Query the database with Xquery/XPath"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.23"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|button
 operator|.
 name|addActionListener
@@ -2064,9 +2156,15 @@ operator|=
 operator|new
 name|JPopupMenu
 argument_list|(
-literal|"Console Menu"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.24"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|shellPopup
 operator|.
 name|add
@@ -2137,6 +2235,7 @@ argument_list|(
 literal|"text/plain; charset=UTF-8"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|shell
 operator|.
 name|setFont
@@ -2154,6 +2253,7 @@ literal|12
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|shell
 operator|.
 name|setMargin
@@ -2205,7 +2305,12 @@ operator|=
 operator|new
 name|JLabel
 argument_list|(
-literal|"eXist Admin Client connected - "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.27"
+argument_list|)
 operator|+
 name|properties
 operator|.
@@ -2224,6 +2329,7 @@ literal|"uri"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 name|statusbar
 operator|.
 name|setMinimumSize
@@ -2306,9 +2412,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"File"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.31"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|fileMenu
 operator|.
 name|setMnemonic
@@ -2331,13 +2443,19 @@ init|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Store files/directories"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.32"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_S
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2350,6 +2468,7 @@ literal|"control S"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2387,13 +2506,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Create collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.34"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_N
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2406,6 +2531,7 @@ literal|"control N"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2443,13 +2569,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Create blank document"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.36"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_B
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2462,6 +2594,7 @@ literal|"control B"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2500,9 +2633,15 @@ name|showInputDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Name of the XML resource (extension incluse)"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.38"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|nameres
@@ -2537,9 +2676,15 @@ name|result
 operator|.
 name|setContent
 argument_list|(
-literal|"<template></template>"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.39"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|collection
 operator|.
 name|storeResource
@@ -2597,9 +2742,15 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Remove"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.40"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2612,6 +2763,7 @@ literal|"control D"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2649,13 +2801,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Copy"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.42"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_C
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2668,6 +2826,7 @@ literal|"control C"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2705,13 +2864,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Move"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.44"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_M
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2724,6 +2889,7 @@ literal|"control M"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2761,13 +2927,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Rename"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.46"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_R
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2780,6 +2952,7 @@ literal|"control R"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2878,13 +3051,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Reindex collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.48"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_I
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2897,6 +3076,7 @@ literal|"control I"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2934,9 +3114,15 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Resource properties"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.50"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -2949,6 +3135,7 @@ literal|"control P"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -2991,13 +3178,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Quit"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.52"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_Q
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -3010,6 +3203,7 @@ literal|"control Q"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3046,9 +3240,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"Tools"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.54"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|toolsMenu
 operator|.
 name|setMnemonic
@@ -3070,13 +3270,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Find"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.55"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_F
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -3089,6 +3295,7 @@ literal|"control F"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3131,13 +3338,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Edit Users"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.57"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_U
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -3150,6 +3363,7 @@ literal|"control U"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3187,13 +3401,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Edit Indexes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.59"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_U
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -3206,6 +3426,7 @@ literal|"control I"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3299,13 +3520,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Edit Policies"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.61"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_O
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setAccelerator
@@ -3318,6 +3545,7 @@ literal|"control O"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3358,13 +3586,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Backup"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.63"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_B
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3402,13 +3636,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Restore"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.64"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_R
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3447,9 +3687,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"Connection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.65"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|connectMenu
 operator|.
 name|setMnemonic
@@ -3471,13 +3717,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Shutdown"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.66"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_S
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3496,9 +3748,15 @@ parameter_list|)
 block|{
 name|display
 argument_list|(
-literal|"shutdown\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.67"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|process
 operator|.
 name|setAction
@@ -3506,6 +3764,7 @@ argument_list|(
 literal|"shutdown"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 argument_list|)
@@ -3523,20 +3782,32 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Connect"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.69"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_U
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Open login panel to connect to change server or identity."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.70"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -3585,7 +3856,12 @@ name|statusbar
 operator|.
 name|setText
 argument_list|(
-literal|"eXist Admin Client connected - "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.71"
+argument_list|)
 operator|+
 name|properties
 operator|.
@@ -3604,6 +3880,7 @@ literal|"uri"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 try|try
 block|{
 name|client
@@ -3632,7 +3909,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Connection to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.75"
+argument_list|)
 operator|+
 name|properties
 operator|.
@@ -3641,11 +3923,17 @@ argument_list|(
 literal|"uri"
 argument_list|)
 operator|+
-literal|" failed!"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.77"
+argument_list|)
 argument_list|,
 name|u
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 name|properties
 operator|=
 name|oldProps
@@ -3666,7 +3954,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Can't reconnect to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.78"
+argument_list|)
 operator|+
 name|properties
 operator|.
@@ -3678,6 +3971,7 @@ argument_list|,
 name|u
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 block|}
 block|}
 block|}
@@ -3697,9 +3991,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"Options"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.80"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|optionsMenu
 operator|.
 name|setMnemonic
@@ -3722,9 +4022,15 @@ init|=
 operator|new
 name|JCheckBoxMenuItem
 argument_list|(
-literal|"Indent"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.81"
+argument_list|)
 argument_list|,
 name|properties
+comment|//$NON-NLS-1$
 operator|.
 name|getProperty
 argument_list|(
@@ -3735,10 +4041,16 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.82"
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|check
 operator|.
 name|addActionListener
@@ -3776,11 +4088,23 @@ operator|.
 name|isSelected
 argument_list|()
 condition|?
-literal|"yes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.83"
+argument_list|)
+comment|//$NON-NLS-1$
 else|:
-literal|"no"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.84"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 try|try
 block|{
 name|client
@@ -3812,9 +4136,15 @@ operator|=
 operator|new
 name|JCheckBoxMenuItem
 argument_list|(
-literal|"Expand-XIncludes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.85"
+argument_list|)
 argument_list|,
 name|properties
+comment|//$NON-NLS-1$
 operator|.
 name|getProperty
 argument_list|(
@@ -3825,10 +4155,16 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.86"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|check
 operator|.
 name|addActionListener
@@ -3866,11 +4202,23 @@ operator|.
 name|isSelected
 argument_list|()
 condition|?
-literal|"yes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.87"
+argument_list|)
+comment|//$NON-NLS-1$
 else|:
-literal|"no"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.88"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 try|try
 block|{
 name|client
@@ -3903,9 +4251,15 @@ init|=
 operator|new
 name|JMenu
 argument_list|(
-literal|"Help"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.89"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|HelpMenu
 operator|.
 name|setMnemonic
@@ -3927,13 +4281,19 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"About"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.90"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
 name|VK_A
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -4009,11 +4369,17 @@ name|insertString
 argument_list|(
 name|commandStart
 argument_list|,
-literal|"exist:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.91"
+argument_list|)
 argument_list|,
 name|promptAttrs
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|commandStart
 operator|+=
 literal|6
@@ -4047,11 +4413,17 @@ argument_list|(
 name|commandStart
 operator|++
 argument_list|,
-literal|" "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.92"
+argument_list|)
 argument_list|,
 name|defaultAttrs
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|shell
 operator|.
 name|setCaretPosition
@@ -4451,7 +4823,12 @@ argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-literal|"Backspace"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.93"
+argument_list|)
 argument_list|)
 operator|>
 name|Constants
@@ -4459,6 +4836,7 @@ operator|.
 name|STRING_NOT_FOUND
 condition|)
 block|{
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|shell
@@ -4547,9 +4925,15 @@ parameter_list|)
 block|{
 name|display
 argument_list|(
-literal|"cd ..\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.94"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|process
 operator|.
 name|setAction
@@ -4557,6 +4941,7 @@ argument_list|(
 literal|"cd .."
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 specifier|private
 name|void
@@ -4575,9 +4960,15 @@ name|showInputDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Please enter name of new collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.96"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|newCol
@@ -4594,6 +4985,7 @@ name|newCol
 operator|+
 literal|'"'
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|display
 argument_list|(
 name|command
@@ -4601,6 +4993,7 @@ operator|+
 literal|"\n"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|process
 operator|.
 name|setAction
@@ -4632,11 +5025,23 @@ name|showInputDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Please enter a valid XML:DB base URI (without "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.99"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
-literal|"collection path)"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.100"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|newURI
@@ -4653,6 +5058,7 @@ argument_list|,
 name|newURI
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 try|try
 block|{
 name|client
@@ -4676,15 +5082,26 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Connection to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.102"
+argument_list|)
 operator|+
 name|newURI
 operator|+
-literal|" failed!"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.103"
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 block|}
 block|}
 block|}
@@ -4780,11 +5197,27 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Are you sure you want to remove the selected "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.104"
+argument_list|)
 operator|+
-literal|"resources?"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.105"
+argument_list|)
 argument_list|,
-literal|"Confirm deletion"
+comment|//$NON-NLS-1$ //$NON-NLS-2$
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.106"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
@@ -4796,6 +5229,7 @@ operator|.
 name|YES_OPTION
 condition|)
 block|{
+comment|//$NON-NLS-1$
 name|Runnable
 name|removeTask
 init|=
@@ -4818,9 +5252,19 @@ name|ClientFrame
 operator|.
 name|this
 argument_list|,
-literal|"Remove Progress"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.107"
+argument_list|)
 argument_list|,
-literal|""
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.108"
+argument_list|)
 argument_list|,
 literal|1
 argument_list|,
@@ -4829,6 +5273,7 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|monitor
 operator|.
 name|setMillisToDecideToPopup
@@ -4892,9 +5337,11 @@ name|getService
 argument_list|(
 literal|"CollectionManagementService"
 argument_list|,
+comment|//$NON-NLS-1$
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|mgtService
 operator|.
 name|removeCollection
@@ -5127,9 +5574,19 @@ name|showInputDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Select target collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.111"
+argument_list|)
 argument_list|,
-literal|"Copy"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.112"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
@@ -5145,6 +5602,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 if|if
 condition|(
 name|val
@@ -5197,6 +5655,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 for|for
 control|(
 name|int
@@ -5216,7 +5675,12 @@ control|)
 block|{
 name|setStatus
 argument_list|(
-literal|"Moving "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.115"
+argument_list|)
 operator|+
 name|res
 index|[
@@ -5226,13 +5690,24 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.116"
+argument_list|)
 operator|+
 name|destinationPath
 operator|+
-literal|"..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.117"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 if|if
 condition|(
 name|res
@@ -5304,9 +5779,15 @@ expr_stmt|;
 block|}
 name|setStatus
 argument_list|(
-literal|"Move completed."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.118"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 decl_stmt|;
@@ -5345,15 +5826,26 @@ name|showInputDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Please enter a new filename"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.119"
+argument_list|)
 argument_list|,
-literal|"Rename"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.120"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
 name|QUESTION_MESSAGE
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 if|if
 condition|(
 name|val
@@ -5387,7 +5879,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Could not parse new name as a valid uri: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.121"
+argument_list|)
 operator|+
 name|e
 operator|.
@@ -5397,6 +5894,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 return|return;
 block|}
 specifier|final
@@ -5436,6 +5934,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 for|for
 control|(
 name|int
@@ -5455,7 +5954,12 @@ control|)
 block|{
 name|setStatus
 argument_list|(
-literal|"Renaming "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.124"
+argument_list|)
 operator|+
 name|res
 index|[
@@ -5465,13 +5969,24 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.125"
+argument_list|)
 operator|+
 name|destinationFilename
 operator|+
-literal|"..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.126"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 if|if
 condition|(
 name|res
@@ -5543,9 +6058,15 @@ expr_stmt|;
 block|}
 name|setStatus
 argument_list|(
-literal|"Rename completed."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.127"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 decl_stmt|;
@@ -5655,9 +6176,19 @@ name|showInputDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Select target collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.128"
+argument_list|)
 argument_list|,
-literal|"Copy"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.129"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
@@ -5673,6 +6204,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 if|if
 condition|(
 name|val
@@ -5725,6 +6257,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 for|for
 control|(
 name|int
@@ -5752,7 +6285,12 @@ comment|//
 comment|//Its too late and brain hurts - deliriumsky
 name|setStatus
 argument_list|(
-literal|"Copying "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.132"
+argument_list|)
 operator|+
 name|res
 index|[
@@ -5762,13 +6300,24 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" to "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.133"
+argument_list|)
 operator|+
 name|destinationPath
 operator|+
-literal|"..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.134"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 if|if
 condition|(
 name|res
@@ -5840,9 +6389,15 @@ expr_stmt|;
 block|}
 name|setStatus
 argument_list|(
-literal|"Copy completed."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.135"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 decl_stmt|;
@@ -6060,15 +6615,26 @@ name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Only collections can be reindexed."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.136"
+argument_list|)
 argument_list|,
-literal|"Error"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.137"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
 name|ERROR_MESSAGE
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 return|return;
 block|}
 block|}
@@ -6081,9 +6647,20 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Are you sure you want to reindex the selected collections \nand all resources below them?"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.138"
+argument_list|)
 argument_list|,
-literal|"Confirm reindex"
+comment|//$NON-NLS-1$
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.139"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
@@ -6095,6 +6672,7 @@ operator|.
 name|YES_OPTION
 condition|)
 block|{
+comment|//$NON-NLS-1$
 specifier|final
 name|ResourceDescriptor
 name|collections
@@ -6151,6 +6729,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 for|for
 control|(
 name|int
@@ -6178,16 +6757,24 @@ index|]
 decl_stmt|;
 name|setStatus
 argument_list|(
-literal|"Reindexing collection "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.142"
+argument_list|)
 operator|+
 name|next
-operator|.
-name|getName
-argument_list|()
 operator|+
-literal|"..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.143"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|service
 operator|.
 name|reindexCollection
@@ -6201,9 +6788,15 @@ expr_stmt|;
 block|}
 name|setStatus
 argument_list|(
-literal|"Reindex completed."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.144"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
@@ -6264,7 +6857,12 @@ name|properties
 operator|.
 name|getProperty
 argument_list|(
-literal|"working-dir"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.145"
+argument_list|)
 argument_list|,
 name|Configuration
 operator|.
@@ -6272,6 +6870,7 @@ name|getPath
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|JFileChooser
 name|chooser
 init|=
@@ -6323,7 +6922,12 @@ name|showDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Select files or directories to store"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.146"
+argument_list|)
 argument_list|)
 operator|==
 name|JFileChooser
@@ -6331,6 +6935,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+comment|//$NON-NLS-1$
 specifier|final
 name|File
 index|[]
@@ -6391,7 +6996,13 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XMLDBException: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.147"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
 name|e
 operator|.
@@ -6421,7 +7032,12 @@ name|properties
 operator|.
 name|setProperty
 argument_list|(
-literal|"working-dir"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.148"
+argument_list|)
 argument_list|,
 name|selectedDir
 operator|.
@@ -6429,6 +7045,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 specifier|private
@@ -6454,6 +7071,7 @@ argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -6463,6 +7081,7 @@ argument_list|,
 literal|"admin"
 argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -6472,6 +7091,7 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$
 name|properties
 operator|.
 name|getProperty
@@ -6484,6 +7104,7 @@ name|getProperty
 argument_list|(
 literal|"user.home"
 argument_list|)
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 operator|+
 name|File
 operator|.
@@ -6493,6 +7114,7 @@ literal|"backup"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|JOptionPane
@@ -6503,8 +7125,14 @@ name|this
 argument_list|,
 name|dialog
 argument_list|,
-literal|"Create Backup"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.157"
+argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$
 name|JOptionPane
 operator|.
 name|OK_CANCEL_OPTION
@@ -6558,6 +7186,7 @@ argument_list|,
 literal|"admin"
 argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -6569,6 +7198,7 @@ argument_list|)
 argument_list|,
 name|dir
 argument_list|,
+comment|//$NON-NLS-1$
 name|XmldbURI
 operator|.
 name|xmldbUriFor
@@ -6581,6 +7211,7 @@ literal|"uri"
 argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 operator|+
 name|collection
 argument_list|)
@@ -6614,6 +7245,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
@@ -6633,6 +7265,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
@@ -6652,6 +7285,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
@@ -6671,6 +7305,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 block|}
@@ -6740,9 +7375,15 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"__contents__.xml"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.167"
+argument_list|)
 argument_list|)
 condition|)
+comment|//$NON-NLS-1$
 return|return
 literal|true
 return|;
@@ -6756,8 +7397,14 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"__contents__.xml files"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.168"
+argument_list|)
 return|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 argument_list|)
@@ -6770,7 +7417,12 @@ name|showDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Select backup file for restore"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.169"
+argument_list|)
 argument_list|)
 operator|==
 name|JFileChooser
@@ -6778,6 +7430,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+comment|//$NON-NLS-1$
 name|JPanel
 name|askPass
 init|=
@@ -6796,7 +7449,12 @@ argument_list|(
 operator|new
 name|JLabel
 argument_list|(
-literal|"dba/admin password to use for the restore process:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.170"
+argument_list|)
 argument_list|)
 argument_list|,
 name|BorderLayout
@@ -6804,6 +7462,7 @@ operator|.
 name|NORTH
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|JPasswordField
 name|passInput
 init|=
@@ -6834,8 +7493,14 @@ name|this
 argument_list|,
 name|askPass
 argument_list|,
-literal|"Admin Password"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.171"
+argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$
 name|JOptionPane
 operator|.
 name|OK_CANCEL_OPTION
@@ -6909,6 +7574,7 @@ name|getProperty
 argument_list|(
 literal|"user"
 argument_list|,
+comment|//$NON-NLS-1$
 literal|"admin"
 argument_list|)
 argument_list|,
@@ -6921,6 +7587,7 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|newDbaPass
 argument_list|,
 operator|new
@@ -6935,10 +7602,12 @@ name|getProperty
 argument_list|(
 literal|"uri"
 argument_list|,
+comment|//$NON-NLS-1$
 literal|"xmldb:exist://"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|restore
 operator|.
 name|restore
@@ -6968,6 +7637,7 @@ name|newDbaPass
 operator|!=
 literal|null
 condition|)
+comment|//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 name|properties
 operator|.
 name|setProperty
@@ -6977,6 +7647,7 @@ argument_list|,
 name|newDbaPass
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|client
 operator|.
 name|reloadCollection
@@ -6991,7 +7662,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Exception: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.181"
+argument_list|)
 operator|+
 name|e
 operator|.
@@ -7001,6 +7677,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 block|}
@@ -7038,6 +7715,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|UserDialog
 name|dialog
 init|=
@@ -7046,11 +7724,17 @@ name|UserDialog
 argument_list|(
 name|service
 argument_list|,
-literal|"Edit Users"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.184"
+argument_list|)
 argument_list|,
 name|client
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|dialog
 operator|.
 name|setVisible
@@ -7067,11 +7751,17 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Failed to retrieve UserManagementService"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.185"
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|e
 operator|.
 name|printStackTrace
@@ -7472,11 +8162,17 @@ init|=
 operator|new
 name|IndexDialog
 argument_list|(
-literal|"Edit Indexes"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.186"
+argument_list|)
 argument_list|,
 name|client
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|dialog
 operator|.
 name|setVisible
@@ -7542,11 +8238,17 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Could not get system collection"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.187"
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 return|return;
 block|}
 try|try
@@ -7566,6 +8268,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 if|if
 condition|(
 operator|!
@@ -7577,11 +8280,17 @@ condition|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XACML is not currently enabled.  To enable it, add\n\n<xacml enable=\"yes\"/>\n\nto conf.xml and restart eXist."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.190"
+argument_list|)
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 return|return;
 block|}
 block|}
@@ -7593,11 +8302,17 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"Could not get database instance manager to determine if XACML is enabled"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.191"
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 return|return;
 block|}
 name|XACMLEditor
@@ -7695,6 +8410,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|Permission
 name|perm
 init|=
@@ -7868,23 +8584,40 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-literal|"..."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.194"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|perm
 operator|=
 operator|new
 name|Permission
 argument_list|(
-literal|""
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.195"
+argument_list|)
 argument_list|,
-literal|""
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.196"
+argument_list|)
 argument_list|,
 name|Permission
 operator|.
 name|DEFAULT_PERM
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$ //$NON-NLS-2$
 block|}
 name|ResourcePropertyDialog
 name|dialog
@@ -8047,7 +8780,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XMLDB Exception: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.197"
+argument_list|)
 operator|+
 name|e
 operator|.
@@ -8057,6 +8795,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|e
 operator|.
 name|printStackTrace
@@ -8113,11 +8852,17 @@ argument_list|(
 name|commandStart
 operator|++
 argument_list|,
-literal|"\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.198"
+argument_list|)
 argument_list|,
 name|defaultAttrs
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 if|if
 condition|(
 name|command
@@ -8379,15 +9124,45 @@ name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"eXist version 1.0, Copyright (C) 2001-2006 Wolfgang Meier\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.199"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
-literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.200"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
-literal|"This is free software, and you are welcome to\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.201"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
-literal|"redistribute it under certain conditions;\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.202"
+argument_list|)
+comment|//$NON-NLS-1$
 operator|+
-literal|"for details read the license file."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.203"
+argument_list|)
+comment|//$NON-NLS-1$
 argument_list|)
 expr_stmt|;
 return|return;
@@ -8446,7 +9221,12 @@ comment|// cd into collection
 name|String
 name|command
 init|=
-literal|"cd \""
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.204"
+argument_list|)
 operator|+
 name|URIUtils
 operator|.
@@ -8460,13 +9240,20 @@ argument_list|)
 operator|+
 literal|'"'
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|display
 argument_list|(
 name|command
 operator|+
-literal|"\n"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.205"
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|process
 operator|.
 name|setAction
@@ -8539,7 +9326,12 @@ parameter_list|)
 block|{
 name|showErrorMessage
 argument_list|(
-literal|"XMLDB error: "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.206"
+argument_list|)
 operator|+
 name|ex
 operator|.
@@ -8549,6 +9341,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 name|ClientFrame
 operator|.
@@ -8842,15 +9635,45 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"Resource"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.207"
+argument_list|)
+comment|//$NON-NLS-1$
 block|,
-literal|"Date"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.208"
+argument_list|)
+comment|//$NON-NLS-1$
 block|,
-literal|"Owner"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.209"
+argument_list|)
+comment|//$NON-NLS-1$
 block|,
-literal|"Group"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.210"
+argument_list|)
+comment|//$NON-NLS-1$
 block|,
-literal|"Permissions"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.211"
+argument_list|)
+comment|//$NON-NLS-1$
 block|}
 decl_stmt|;
 specifier|private
@@ -9030,9 +9853,15 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Column does not eXist!"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.212"
+argument_list|)
 argument_list|)
 throw|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 block|}
@@ -9065,8 +9894,14 @@ literal|null
 argument_list|,
 name|login
 argument_list|,
-literal|"eXist Database Login"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.213"
+argument_list|)
 argument_list|,
+comment|//$NON-NLS-1$
 name|JOptionPane
 operator|.
 name|OK_CANCEL_OPTION
@@ -9132,10 +9967,16 @@ name|BorderFactory
 operator|.
 name|createTitledBorder
 argument_list|(
-literal|"Message:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.214"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|msgArea
 operator|.
 name|setEditable
@@ -9239,10 +10080,16 @@ name|BorderFactory
 operator|.
 name|createTitledBorder
 argument_list|(
-literal|"Exception Stacktrace:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.215"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 name|JOptionPane
 name|optionPane
@@ -9283,9 +10130,15 @@ name|createDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Error"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.216"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|dialog
 operator|.
 name|setResizable
@@ -9341,10 +10194,16 @@ name|BorderFactory
 operator|.
 name|createTitledBorder
 argument_list|(
-literal|"Message:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.217"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 name|msgArea
 operator|.
 name|setEditable
@@ -9448,10 +10307,16 @@ name|BorderFactory
 operator|.
 name|createTitledBorder
 argument_list|(
-literal|"Exception Stacktrace:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.218"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 name|JOptionPane
 name|optionPane
@@ -9501,9 +10366,15 @@ name|createDialog
 argument_list|(
 literal|null
 argument_list|,
-literal|"Error"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.219"
+argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//$NON-NLS-1$
 name|dialog
 operator|.
 name|setResizable
@@ -9969,8 +10840,14 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Binary resources"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.220"
+argument_list|)
 return|;
+comment|//$NON-NLS-1$
 block|}
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
 specifier|public
@@ -10020,8 +10897,14 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"XML files"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.221"
+argument_list|)
 return|;
+comment|//$NON-NLS-1$
 block|}
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
 specifier|public

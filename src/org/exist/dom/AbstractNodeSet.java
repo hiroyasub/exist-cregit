@@ -231,7 +231,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 * @return 	 */
+comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 */
 specifier|public
 specifier|abstract
 name|NodeSetIterator
@@ -266,7 +266,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/** 	 * Check if this node set contains a node matching the document and 	 * node-id of the given NodeProxy object. 	 *  	 * @param proxy 	 * @return 	 */
+comment|/** 	 * Check if this node set contains a node matching the document and 	 * node-id of the given NodeProxy object. 	 *  	 * @param proxy 	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -276,7 +276,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 function_decl|;
-comment|/** 	 * Check if this node set contains nodes belonging to the given document. 	 *  	 * @param doc 	 * @return 	 */
+comment|/** 	 * Check if this node set contains nodes belonging to the given document. 	 *  	 * @param doc 	 */
 specifier|public
 name|boolean
 name|containsDoc
@@ -480,7 +480,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the node at position pos within this node set. 	 * @param pos 	 * @return 	 */
+comment|/** 	 * Get the node at position pos within this node set. 	 * @param pos 	 */
 specifier|public
 specifier|abstract
 name|NodeProxy
@@ -490,7 +490,7 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get a node from this node set matching the document and node id of 	 * the given NodeProxy. 	 *   	 * @param p 	 * @return 	 */
+comment|/** 	 * Get a node from this node set matching the document and node id of 	 * the given NodeProxy. 	 *   	 * @param p 	 */
 specifier|public
 specifier|abstract
 name|NodeProxy
@@ -555,7 +555,7 @@ return|return
 name|ds
 return|;
 block|}
-comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @return 	 */
+comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential parent nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 */
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -580,7 +580,7 @@ name|NO_CONTEXT_ID
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 * @return 	 */
+comment|/** 	 * Check if any child nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all child nodes found in this node set for each parent node. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those parent nodes, 	 * for which children have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -610,7 +610,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 *  	 * @return 	 */
+comment|/** 	 * Check if any descendant nodes are found within this node set for a given 	 * set of potential ancestor nodes. 	 *  	 * If mode is {@link #DESCENDANT}, the returned node set will contain 	 * all descendant nodes found in this node set for each ancestor. If mode is 	 * {@link #ANCESTOR}, the returned set will contain those ancestor nodes, 	 * for which descendants have been found. 	 *   	 * @param al a node set containing potential parent nodes 	 * @param mode selection mode 	 * @param includeSelf if true, check if the ancestor node itself is contained in 	 * the set of descendant nodes (descendant-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 *  	 */
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -645,7 +645,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 * @param  al    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param rememberContext if true, add the matching nodes to the context node 	 * list of each returned node (this is used to track matches for predicate evaluation) 	 * @return 	 */
+comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 * @param  dl    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId 	 */
 specifier|public
 name|NodeSet
 name|selectAncestors
@@ -717,7 +717,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Select all nodes from the passed node set, which 	 * are preceding or following siblings of the nodes in 	 * this set. If mode is {@link #FOLLOWING}, only nodes following 	 * the context node are selected. {@link #PRECEDING} selects 	 * preceding nodes. 	 *  	 * @param siblings a node set containing potential siblings 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 * @return 	 */
+comment|/** 	 * Select all nodes from the passed node set, which 	 * are preceding or following siblings of the nodes in 	 * this set. If mode is {@link #FOLLOWING}, only nodes following 	 * the context node are selected. {@link #PRECEDING} selects 	 * preceding nodes. 	 *  	 * @param siblings a node set containing potential siblings 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
@@ -916,7 +916,7 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Return a new node set containing the parent nodes of all nodes in the  	 * current set. 	 * @return 	 */
+comment|/** 	 * Return a new node set containing the parent nodes of all nodes in the  	 * current set. 	 */
 specifier|public
 name|NodeSet
 name|getParents
@@ -1291,7 +1291,7 @@ return|return
 name|ancestors
 return|;
 block|}
-comment|/** 	 * Get a hint about how many nodes in this node set belong to the  	 * specified document. This is just used for allocating new node sets. 	 * The information does not need to be exact. -1 is returned if the 	 * size cannot be determined (the default). 	 *  	 * @param doc 	 * @return 	 */
+comment|/** 	 * Get a hint about how many nodes in this node set belong to the  	 * specified document. This is just used for allocating new node sets. 	 * The information does not need to be exact. -1 is returned if the 	 * size cannot be determined (the default). 	 *  	 * @param doc 	 */
 specifier|public
 name|int
 name|getSizeHint
@@ -1306,7 +1306,7 @@ operator|.
 name|NO_SIZE_HINT
 return|;
 block|}
-comment|/** 	 * Return a new node set, which represents the intersection of the current 	 * node set with the given node set. 	 *  	 * @param other 	 * @return 	 */
+comment|/** 	 * Return a new node set, which represents the intersection of the current 	 * node set with the given node set. 	 *  	 * @param other 	 */
 specifier|public
 name|NodeSet
 name|intersection
@@ -1701,7 +1701,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/** 	 * Return a new node set which represents the union of the 	 * current node set and the given node set. 	 *  	 * @param other 	 * @return 	 */
+comment|/** 	 * Return a new node set which represents the union of the 	 * current node set and the given node set. 	 *  	 * @param other 	 */
 specifier|public
 name|NodeSet
 name|union
@@ -1800,7 +1800,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Returns all context nodes associated with the nodes in 	 * this node set. 	 *   	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 * @return 	 */
+comment|/** 	 * Returns all context nodes associated with the nodes in 	 * this node set. 	 *   	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
 specifier|public
 name|NodeSet
 name|getContextNodes
@@ -2018,7 +2018,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * If all nodes in this set have an index, returns the common 	 * supertype used to build the index, e.g. xs:integer or xs:string. 	 * If the nodes have different index types or no node has been indexed, 	 * returns {@link Type#ITEM}. 	 *  	 * @see org.exist.xquery.GeneralComparison 	 * @see org.exist.xquery.ValueComparison 	 * @return 	 */
+comment|/** 	 * If all nodes in this set have an index, returns the common 	 * supertype used to build the index, e.g. xs:integer or xs:string. 	 * If the nodes have different index types or no node has been indexed, 	 * returns {@link Type#ITEM}. 	 *  	 * @see org.exist.xquery.GeneralComparison 	 * @see org.exist.xquery.ValueComparison 	 */
 specifier|public
 name|int
 name|getIndexType

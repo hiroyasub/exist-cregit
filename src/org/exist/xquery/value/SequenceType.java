@@ -123,7 +123,7 @@ operator|=
 name|cardinality
 expr_stmt|;
 block|}
-comment|/**      * Returns the primary type as one of the      * constants defined in {@link Type}.      * @return      */
+comment|/**      * Returns the primary type as one of the      * constants defined in {@link Type}.      */
 specifier|public
 name|int
 name|getPrimaryType
@@ -148,7 +148,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**      * Returns the expected cardinality. See the constants       * defined in {@link Cardinality}.      *       * @return      */
+comment|/**      * Returns the expected cardinality. See the constants       * defined in {@link Cardinality}.      *       */
 specifier|public
 name|int
 name|getCardinality
@@ -197,7 +197,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      * Check the specified sequence against this SequenceType.      *        * @param seq      * @return      * @throws XPathException       */
+comment|/**      * Check the specified sequence against this SequenceType.      *        * @param seq      * @throws XPathException       * @throws XPathException       */
 specifier|public
 name|boolean
 name|checkType
@@ -275,7 +275,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Check a single item against this SequenceType.      *       * @param item      * @return      */
+comment|/**      * Check a single item against this SequenceType.      *       * @param item      */
 specifier|public
 name|boolean
 name|checkType

@@ -1513,6 +1513,13 @@ name|SecurityManager
 operator|.
 name|SYSTEM_USER
 expr_stmt|;
+name|readOnly
+operator|=
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 comment|// Initialize DOM storage
@@ -1592,7 +1599,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|domDb
 operator|.
 name|isReadOnly
@@ -1675,7 +1682,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|collectionsDb
 operator|.
 name|isReadOnly
@@ -1944,7 +1951,7 @@ expr_stmt|;
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|dbWords
 operator|.
 name|isReadOnly
@@ -2066,7 +2073,7 @@ block|}
 name|readOnly
 operator|=
 name|readOnly
-operator|&
+operator|||
 name|db
 operator|.
 name|isReadOnly
@@ -3145,6 +3152,21 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
+if|if
+condition|(
+name|node
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"The node parameter cannot be null."
+argument_list|)
+throw|;
+block|}
 comment|//      domDb.setOwnerObject(this);
 try|try
 block|{
@@ -6220,6 +6242,22 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"NativeBroker.saveCollection called with collection == null! Aborting."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|readOnly

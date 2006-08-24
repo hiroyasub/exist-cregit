@@ -1054,7 +1054,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 return|;
 block|}

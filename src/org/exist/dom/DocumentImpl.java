@@ -533,7 +533,7 @@ decl_stmt|;
 specifier|private
 name|long
 index|[]
-name|childList
+name|childAddress
 init|=
 literal|null
 decl_stmt|;
@@ -732,7 +732,7 @@ operator|=
 name|docId
 expr_stmt|;
 block|}
-comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or       * {@link #BINARY_FILE}.      *       * @return      */
+comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or       * {@link #BINARY_FILE}.      *       */
 specifier|public
 name|byte
 name|getResourceType
@@ -913,7 +913,7 @@ name|DocumentImpl
 name|other
 parameter_list|)
 block|{
-name|childList
+name|childAddress
 operator|=
 literal|null
 expr_stmt|;
@@ -963,11 +963,11 @@ name|DocumentImpl
 name|other
 parameter_list|)
 block|{
-name|childList
+name|childAddress
 operator|=
 name|other
 operator|.
-name|childList
+name|childAddress
 expr_stmt|;
 name|children
 operator|=
@@ -976,7 +976,7 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 * @return 	 */
+comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 */
 specifier|public
 name|boolean
 name|isLockedForWrite
@@ -990,7 +990,7 @@ name|isLockedForWrite
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the update lock associated with this      * resource.      *       * @return      */
+comment|/**      * Returns the update lock associated with this      * resource.      *       */
 specifier|public
 specifier|final
 specifier|synchronized
@@ -1084,7 +1084,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 */
 specifier|public
 name|int
 name|getContentLength
@@ -1227,7 +1227,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|childList
+name|childAddress
 operator|!=
 literal|null
 condition|)
@@ -1235,7 +1235,7 @@ name|System
 operator|.
 name|arraycopy
 argument_list|(
-name|childList
+name|childAddress
 argument_list|,
 literal|0
 argument_list|,
@@ -1243,12 +1243,12 @@ name|newChildList
 argument_list|,
 literal|0
 argument_list|,
-name|childList
+name|childAddress
 operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|childList
+name|childAddress
 operator|=
 name|newChildList
 expr_stmt|;
@@ -1269,7 +1269,7 @@ expr_stmt|;
 name|resizeChildList
 argument_list|()
 expr_stmt|;
-name|childList
+name|childAddress
 index|[
 name|children
 operator|-
@@ -1442,7 +1442,7 @@ name|StorageAddress
 operator|.
 name|pageFromPointer
 argument_list|(
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -1457,7 +1457,7 @@ name|StorageAddress
 operator|.
 name|tidFromPointer
 argument_list|(
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -1652,7 +1652,7 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
-name|childList
+name|childAddress
 operator|=
 operator|new
 name|long
@@ -1675,7 +1675,7 @@ name|i
 operator|++
 control|)
 block|{
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -2110,14 +2110,6 @@ condition|)
 return|return
 literal|null
 return|;
-name|long
-name|address
-init|=
-name|childList
-index|[
-literal|0
-index|]
-decl_stmt|;
 return|return
 name|broker
 operator|.
@@ -2132,7 +2124,10 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 argument_list|,
-name|address
+name|childAddress
+index|[
+literal|0
+index|]
 argument_list|)
 argument_list|)
 return|;
@@ -2154,7 +2149,7 @@ operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 return|return
-name|childList
+name|childAddress
 index|[
 literal|0
 index|]
@@ -2203,7 +2198,7 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 argument_list|,
-name|childList
+name|childAddress
 index|[
 name|i
 index|]
@@ -3050,7 +3045,7 @@ name|children
 operator|==
 literal|0
 condition|)
-name|childList
+name|childAddress
 operator|=
 literal|null
 expr_stmt|;

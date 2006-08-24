@@ -570,7 +570,7 @@ name|groupBase
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Set the message format pattern for selecting users in this Realm.     * This may be one simple pattern, or multiple patterns to be tried,     * separated by parentheses. (for example, either "cn={0}", or     * "(cn={0})(cn={0},o=myorg)" Full LDAP search strings are also supported,     * but only the "OR", "|" syntax, so "(|(cn={0})(cn={0},o=myorg))" is     * also valid. Complex search strings with&, etc are NOT supported.     *     * @param userPattern The new user pattern     */
+comment|/**     * Set the message format pattern for selecting users in this Realm.     * This may be one simple pattern, or multiple patterns to be tried,     * separated by parentheses. (for example, either "cn={0}", or     * "(cn={0})(cn={0},o=myorg)" Full LDAP search strings are also supported,     * but only the "OR", "|" syntax, so "(|(cn={0})(cn={0},o=myorg))" is     * also valid. Complex search strings with&, etc are NOT supported.     *     * @param pattern The new user pattern     */
 specifier|public
 name|void
 name|setUserByNamePattern

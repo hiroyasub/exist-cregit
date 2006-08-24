@@ -339,7 +339,6 @@ operator|=
 name|owner
 expr_stmt|;
 block|}
-empty_stmt|;
 specifier|public
 name|long
 name|getTimeOut
@@ -388,7 +387,6 @@ operator|=
 name|token
 expr_stmt|;
 block|}
-empty_stmt|;
 comment|//
 specifier|public
 name|byte
