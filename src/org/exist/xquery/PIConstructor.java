@@ -149,13 +149,14 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Syntax error in processing instruction"
-argument_list|)
-throw|;
+block|{
+name|target
+operator|=
+name|pi
+expr_stmt|;
+block|}
+else|else
+block|{
 name|target
 operator|=
 name|pi
@@ -186,6 +187,25 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|target
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"xml"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPST0003 : The target 'xml' is not allowed in XML processing instructions."
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public

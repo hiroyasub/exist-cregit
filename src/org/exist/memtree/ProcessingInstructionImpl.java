@@ -133,9 +133,17 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+comment|// TODO: this could be optimized
 return|return
 name|getData
 argument_list|()
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"^\\s+"
+argument_list|,
+literal|""
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#getData() 	 */
