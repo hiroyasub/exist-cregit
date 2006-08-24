@@ -1598,6 +1598,13 @@ specifier|public
 name|CheckBoxCellRenderer
 parameter_list|()
 block|{
+name|setHorizontalAlignment
+argument_list|(
+name|JLabel
+operator|.
+name|CENTER
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|Component
@@ -1635,8 +1642,7 @@ name|getSelectionForeground
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|super
-operator|.
+comment|//super.setBackground(table.getSelectionBackground());
 name|setBackground
 argument_list|(
 name|table
@@ -1668,7 +1674,21 @@ block|}
 comment|// Set the state
 name|setSelected
 argument_list|(
-name|isSelected
+operator|(
+name|value
+operator|!=
+literal|null
+operator|&&
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|value
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 return|return
