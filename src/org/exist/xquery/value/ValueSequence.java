@@ -666,6 +666,15 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// make this document persistent: doc.makePersistent()
 comment|// returns a map of all root node ids mapped to the corresponding
 comment|// persistent node. We scan the current sequence and replace all
