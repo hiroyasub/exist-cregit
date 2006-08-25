@@ -475,19 +475,6 @@ argument_list|(
 name|windowListener
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|setMinimumSize
-argument_list|(
-operator|new
-name|Dimension
-argument_list|(
-literal|500
-argument_list|,
-literal|500
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|//draw the GUI
 name|setupComponents
 argument_list|()
