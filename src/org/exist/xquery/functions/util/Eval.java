@@ -1353,6 +1353,12 @@ argument_list|,
 name|compiled
 argument_list|)
 expr_stmt|;
+else|else
+name|compiled
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|oldDocs
