@@ -130,9 +130,32 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|Variable
+name|var
+init|=
 name|getVariable
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|var
+operator|.
+name|isInitialized
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XQST0054: variable declaration cannot "
+operator|+
+literal|"be executed because of a circularity."
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
