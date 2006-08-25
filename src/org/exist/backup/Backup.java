@@ -574,7 +574,7 @@ name|backupDir
 argument_list|,
 name|XmldbURI
 operator|.
-name|xmldbUriFor
+name|create
 argument_list|(
 literal|"xmldb:exist://"
 operator|+
