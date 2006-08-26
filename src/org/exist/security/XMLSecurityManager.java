@@ -2036,10 +2036,26 @@ name|buf
 operator|.
 name|append
 argument_list|(
+literal|"<!-- Central user configuration. Editing this document will cause the security "
+operator|+
+literal|"to reload and update its internal database. Please handle with care! -->"
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 literal|"<auth version='1.0'>"
 argument_list|)
 expr_stmt|;
 comment|// save groups
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"<!-- Please do not remove the guest and admin groups -->"
+argument_list|)
+expr_stmt|;
 name|buf
 operator|.
 name|append
@@ -2108,6 +2124,13 @@ literal|"</groups>"
 argument_list|)
 expr_stmt|;
 comment|//save users
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"<!-- Please do not remove the admin user. -->"
+argument_list|)
+expr_stmt|;
 name|buf
 operator|.
 name|append
