@@ -13426,36 +13426,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Page is clean: "
-operator|+
-name|Lsn
-operator|.
-name|dump
-argument_list|(
-name|loggable
-operator|.
-name|getLsn
-argument_list|()
-argument_list|)
-operator|+
-literal|"<= "
-operator|+
-name|Lsn
-operator|.
-name|dump
-argument_list|(
-name|ph
-operator|.
-name|getLsn
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -13603,19 +13573,6 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Page is clean: "
-operator|+
-name|loggable
-operator|.
-name|dump
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
