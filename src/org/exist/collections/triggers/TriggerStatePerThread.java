@@ -99,7 +99,6 @@ name|NO_TRIGGER_RUNNING
 argument_list|)
 return|;
 block|}
-empty_stmt|;
 block|}
 decl_stmt|;
 comment|/** */
