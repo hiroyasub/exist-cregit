@@ -7213,18 +7213,9 @@ name|address
 return|;
 block|}
 else|else
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found directly"
-argument_list|)
-expr_stmt|;
 return|return
 name|p
 return|;
-block|}
 block|}
 comment|/** 	 * Find matching nodes for the given query. 	 *  	 * @param query 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 * @exception IOException 	 *                           Description of the Exception 	 * @exception BTreeException 	 *                           Description of the Exception 	 */
 specifier|public
