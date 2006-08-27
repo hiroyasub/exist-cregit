@@ -2806,7 +2806,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
-name|NodeSet
+name|ExtArrayNodeSet
 name|result
 init|=
 operator|new
@@ -3082,7 +3082,7 @@ implements|implements
 name|NodeVisitor
 block|{
 specifier|private
-name|NodeSet
+name|ExtArrayNodeSet
 name|resultSet
 decl_stmt|;
 specifier|private
@@ -3092,7 +3092,7 @@ decl_stmt|;
 specifier|public
 name|SiblingVisitor
 parameter_list|(
-name|NodeSet
+name|ExtArrayNodeSet
 name|resultSet
 parameter_list|)
 block|{
@@ -3281,6 +3281,18 @@ operator|.
 name|add
 argument_list|(
 name|sibling
+argument_list|)
+expr_stmt|;
+name|resultSet
+operator|.
+name|setSorted
+argument_list|(
+name|sibling
+operator|.
+name|getDocument
+argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
