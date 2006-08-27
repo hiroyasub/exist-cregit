@@ -756,6 +756,15 @@ literal|false
 return|;
 block|}
 specifier|public
+name|int
+name|getChildCount
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+specifier|public
 name|Node
 name|getFirstChild
 parameter_list|()
