@@ -267,6 +267,11 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+name|int
+name|deps
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 name|getLength
@@ -275,7 +280,8 @@ operator|==
 literal|1
 condition|)
 block|{
-return|return
+name|deps
+operator|=
 name|getExpression
 argument_list|(
 literal|0
@@ -283,17 +289,37 @@ argument_list|)
 operator|.
 name|getDependencies
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
-return|return
+name|deps
+operator|=
 name|super
 operator|.
 name|getDependencies
 argument_list|()
-return|;
+expr_stmt|;
 block|}
+if|if
+condition|(
+name|executionMode
+operator|==
+name|POSITIONAL
+condition|)
+comment|// in a positional predicate, remove the dependency on the context item
+name|deps
+operator|=
+name|deps
+operator|&
+operator|~
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+expr_stmt|;
+return|return
+name|deps
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
@@ -877,6 +903,15 @@ argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
 literal|"Positional evaluation"
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|setEvalFlag
+argument_list|(
+name|XQueryContext
+operator|.
+name|IN_POSITIONAL_PREDICATE
 argument_list|)
 expr_stmt|;
 name|result
