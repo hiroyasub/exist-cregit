@@ -2223,22 +2223,6 @@ init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Children: "
-operator|+
-name|cl
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|"; at: "
-operator|+
-name|child
-argument_list|)
-expr_stmt|;
 name|StoredNode
 name|last
 init|=
