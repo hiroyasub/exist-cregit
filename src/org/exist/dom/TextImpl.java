@@ -652,6 +652,15 @@ argument_list|()
 return|;
 block|}
 specifier|public
+name|int
+name|getChildCount
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+specifier|public
 name|boolean
 name|hasChildNodes
 parameter_list|()
