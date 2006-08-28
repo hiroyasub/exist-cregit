@@ -7158,7 +7158,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** test involving ancestor:: 	*>>>>>>> currently this produces variable corruption : 	* 			The result is the ancestor<<<<<<<<<< */
+comment|/** test involving ancestor::      *>>>>>>> currently this produces variable corruption :      * 			The result is the ancestor<<<<<<<<<< */
 specifier|public
 name|void
 name|testAncestor
@@ -7244,7 +7244,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Helper that performs an XQuery and does JUnit assertion on result size. 	 * @see #queryResource(XQueryService, String, String, int, String) 	 */
+comment|/** Helper that performs an XQuery and does JUnit assertion on result size.      * @see #queryResource(XQueryService, String, String, int, String)      */
 specifier|private
 name|ResourceSet
 name|queryResource
@@ -7279,7 +7279,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Helper that performs an XQuery and does JUnit assertion on result size. 	 * @param service XQuery service 	 * @param resource database resource (collection) to query 	 * @param query 	 * @param expected size of result 	 * @param message for JUnit 	 * @return a ResourceSet, allowing to do more assertions if necessary. 	 * @throws XMLDBException 	 */
+comment|/** Helper that performs an XQuery and does JUnit assertion on result size.      * @param service XQuery service      * @param resource database resource (collection) to query      * @param query      * @param expected size of result      * @param message for JUnit      * @return a ResourceSet, allowing to do more assertions if necessary.      * @throws XMLDBException      */
 specifier|private
 name|ResourceSet
 name|queryResource
@@ -7439,7 +7439,7 @@ return|return
 name|service
 return|;
 block|}
-comment|/** stores XML String and get Query Service 	 * @param documentName to be stored in the DB 	 * @param content to be stored in the DB 	 * @return the XQuery Service 	 * @throws XMLDBException 	 */
+comment|/** stores XML String and get Query Service      * @param documentName to be stored in the DB      * @param content to be stored in the DB      * @return the XQuery Service      * @throws XMLDBException      */
 specifier|private
 name|XQueryService
 name|storeXMLStringAndGetQueryService
@@ -8062,7 +8062,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param result 	 * @throws XMLDBException 	 */
+comment|/**      * @param result      * @throws XMLDBException      */
 specifier|private
 name|void
 name|printResult
@@ -9227,7 +9227,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Added by Geoff Shuetrim on 15 July 2006 (geoff@galexy.net). 	 * This test has been added following identification of a problem running 	 * XPath queries that involved the name of elements with the name 'xpointer'. 	 * @throws XMLDBException 	 */
+comment|/**      * Added by Geoff Shuetrim on 15 July 2006 (geoff@galexy.net).      * This test has been added following identification of a problem running      * XPath queries that involved the name of elements with the name 'xpointer'.      * @throws XMLDBException      */
 specifier|public
 name|void
 name|bugtestXPointerElementNameHandling
