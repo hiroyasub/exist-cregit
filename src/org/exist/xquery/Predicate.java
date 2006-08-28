@@ -905,15 +905,6 @@ argument_list|,
 literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
-name|context
-operator|.
-name|setEvalFlag
-argument_list|(
-name|XQueryContext
-operator|.
-name|IN_POSITIONAL_PREDICATE
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|selectByPosition
