@@ -6330,22 +6330,17 @@ name|group
 operator|==
 literal|null
 condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"The group "
-operator|+
-name|permissions
+name|group
+operator|=
+name|secman
 operator|.
-name|getOwnerGroup
-argument_list|()
-operator|+
-literal|" for the collection cannot be found."
+name|getGroup
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST_GROUP
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|ostream
 operator|.
 name|writeInt
