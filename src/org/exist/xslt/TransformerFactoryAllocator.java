@@ -72,7 +72,6 @@ specifier|public
 class|class
 name|TransformerFactoryAllocator
 block|{
-comment|/*      * problem is that even when a Xalan is defined in conf.xml, if Saxon JAR's       * are on the classpath then when we create a Xalan TransformerFactory and       * newInstance() is called on it, it returns a Saxon TransformerFactory :-(      */
 specifier|private
 specifier|final
 specifier|static

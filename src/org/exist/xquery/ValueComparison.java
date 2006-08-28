@@ -476,6 +476,24 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|context
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Context is missing for node set comparison"
+argument_list|)
+throw|;
+block|}
 do|do
 block|{
 name|AtomicValue

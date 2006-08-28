@@ -22984,21 +22984,28 @@ name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
 condition|)
-throw|throw
+block|{
+comment|//	throw new XPathException(n, "Cannot test for node() on the attribute axis");
+name|test
+operator|=
 operator|new
-name|XPathException
+name|TypeTest
 argument_list|(
-name|n
-argument_list|,
-literal|"Cannot test for node() on the attribute axis"
+name|Type
+operator|.
+name|ATTRIBUTE
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+else|else
+block|{
 name|test
 operator|=
 operator|new
 name|AnyNodeTest
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 block|}
 case|case

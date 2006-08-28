@@ -2339,25 +2339,28 @@ throw|;
 block|}
 block|}
 comment|// XML lib checks....
+name|StringBuffer
+name|xmlLibMessage
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|XmlLibraryChecker
 operator|.
-name|isXercesVersionOK
-argument_list|()
+name|hasValidParser
+argument_list|(
+name|xmlLibMessage
+argument_list|)
 condition|)
 block|{
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Detected "
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|XERCESVERSION
-operator|+
-literal|", OK."
+name|xmlLibMessage
 argument_list|)
 expr_stmt|;
 block|}
@@ -2367,48 +2370,37 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"eXist requires '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|XERCESVERSION
-operator|+
-literal|"' but detected '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|getXercesVersion
-argument_list|()
-operator|+
-literal|"'. Please add the correct version to the "
-operator|+
-literal|"class-path, e.g. in the 'endorsed' folder of "
-operator|+
-literal|"the servlet container or in the 'endorsed' folder "
-operator|+
-literal|"of the JRE."
+name|xmlLibMessage
 argument_list|)
 expr_stmt|;
 block|}
+name|xmlLibMessage
+operator|.
+name|delete
+argument_list|(
+literal|0
+argument_list|,
+name|xmlLibMessage
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|XmlLibraryChecker
 operator|.
-name|isXalanVersionOK
-argument_list|()
+name|hasValidTransformer
+argument_list|(
+name|xmlLibMessage
+argument_list|)
 condition|)
 block|{
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Detected "
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|XALANVERSION
-operator|+
-literal|", OK."
+name|xmlLibMessage
 argument_list|)
 expr_stmt|;
 block|}
@@ -2418,26 +2410,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"eXist requires '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|XALANVERSION
-operator|+
-literal|"' but detected '"
-operator|+
-name|XmlLibraryChecker
-operator|.
-name|getXalanVersion
-argument_list|()
-operator|+
-literal|"'. Please add the correct version to the "
-operator|+
-literal|"class-path, e.g. in the 'endorsed' folder of "
-operator|+
-literal|"the servlet container or in the 'endorsed' folder "
-operator|+
-literal|"of the JRE."
+name|xmlLibMessage
 argument_list|)
 expr_stmt|;
 block|}
