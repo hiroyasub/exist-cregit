@@ -766,7 +766,13 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not call getNodeValue() on node type "
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": can not call getNodeValue() on node type "
 operator|+
 name|this
 operator|.

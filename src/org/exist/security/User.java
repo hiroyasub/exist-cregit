@@ -1398,6 +1398,13 @@ argument_list|(
 literal|">"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|groups
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -1439,6 +1446,7 @@ argument_list|(
 literal|"</group>"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|buf
 operator|.
