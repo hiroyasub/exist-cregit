@@ -2210,7 +2210,7 @@ if|if
 condition|(
 name|child
 operator|>
-literal|0
+literal|1
 operator|&&
 name|child
 operator|<=
@@ -2223,6 +2223,22 @@ init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Children: "
+operator|+
+name|cl
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|"; at: "
+operator|+
+name|child
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|last
 init|=
@@ -2235,7 +2251,7 @@ name|item
 argument_list|(
 name|child
 operator|-
-literal|1
+literal|2
 argument_list|)
 decl_stmt|;
 name|insertAfter
