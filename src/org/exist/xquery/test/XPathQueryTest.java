@@ -5635,9 +5635,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|.
-name|trim
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
@@ -5660,14 +5657,11 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|.
-name|trim
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"SFBUG 1537355 nr of results"
+literal|"SFBUG 1460791 nr of results"
 argument_list|,
 literal|2
 argument_list|,
@@ -5679,7 +5673,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"SFBUG 1537355 result part 1"
+literal|"SFBUG 1460791 result part 1"
 argument_list|,
 literal|"<one><z>zzz</z></one>"
 argument_list|,
@@ -5699,9 +5693,126 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"SFBUG 1537355 result part 2"
+literal|"SFBUG 1460791 result part 2"
 argument_list|,
 literal|"<two><z>zzz</z></two>"
+argument_list|,
+name|rs
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// @see http://sourceforge.net/tracker/index.php?func=detail&aid=1462120&group_id=17691&atid=117691
+specifier|public
+name|void
+name|bugtestXpathBUG1462120
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|xQuery
+init|=
+literal|"declare option exist:serialize \"method=xml indent=no\"; "
+operator|+
+literal|"let $m:=<Units><Unit name=\"g\" size=\"1\"/>"
+operator|+
+literal|"<Unit name=\"kg\" size=\"1000\"/></Units> "
+operator|+
+literal|"let $list:=(<Product aaa=\"g\"/>,<Product aaa=\"kg\"/>) "
+operator|+
+literal|"let $one:=$list[1] return ( "
+operator|+
+literal|"$m/Unit[string(data(@name)) eq string(data($list[1]/@aaa))],"
+operator|+
+literal|"<br/>,$m/Unit[string(data(@name)) eq string(data($one/@aaa))] )"
+decl_stmt|;
+name|XQueryService
+name|service
+init|=
+name|getQueryService
+argument_list|()
+decl_stmt|;
+name|ResourceSet
+name|rs
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|xQuery
+argument_list|)
+decl_stmt|;
+comment|//        System.out.println("BUG1462120/1"+rs.getResource(0).getContent().toString() );
+comment|//        System.out.println("BUG1462120/2"+rs.getResource(1).getContent().toString() );
+comment|//        System.out.println("BUG1462120/3"+rs.getResource(2).getContent().toString() );
+name|assertEquals
+argument_list|(
+literal|"SFBUG 1462120 nr of results"
+argument_list|,
+literal|3
+argument_list|,
+name|rs
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"SFBUG 1462120 result part 1"
+argument_list|,
+literal|"<Unit name=\"g\" size=\"1\"/>"
+argument_list|,
+name|rs
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"SFBUG 1462120 result part 2"
+argument_list|,
+literal|"<br/>"
+argument_list|,
+name|rs
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"SFBUG 1462120 result part 3"
+argument_list|,
+literal|"<Unit name=\"g\" size=\"1\"/>"
 argument_list|,
 name|rs
 operator|.
