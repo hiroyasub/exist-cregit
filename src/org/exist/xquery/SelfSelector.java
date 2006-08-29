@@ -243,7 +243,6 @@ name|contextId
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 else|else
 block|{
 name|p
@@ -259,6 +258,13 @@ block|}
 return|return
 name|p
 return|;
+block|}
+else|else
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 block|}
 end_class
