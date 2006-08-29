@@ -5931,7 +5931,7 @@ block|}
 comment|/*      * removing Self: makes the query work OK      * @see http://wiki.exist-db.org/space/XQueryBugs      */
 specifier|public
 name|void
-name|bugtestCardinalitySelfBUG_wiki_2
+name|testCardinalitySelfBUG_wiki_2
 parameter_list|()
 block|{
 name|String
