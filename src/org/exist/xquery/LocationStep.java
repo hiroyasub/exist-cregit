@@ -237,7 +237,7 @@ specifier|final
 name|int
 name|ATTR_DIRECT_SELECT_THRESHOLD
 init|=
-literal|3
+literal|10
 decl_stmt|;
 specifier|protected
 name|NodeSet
@@ -1733,6 +1733,20 @@ argument_list|,
 literal|"direct attribute selection"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|contextSet
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
 name|NodeProxy
 name|proxy
 init|=
