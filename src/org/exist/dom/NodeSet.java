@@ -494,6 +494,19 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|setProcessInReverseOrder
+parameter_list|(
+name|boolean
+name|inReverseOrder
+parameter_list|)
+function_decl|;
+specifier|public
+name|boolean
+name|getProcessInReverseOrder
+parameter_list|()
+function_decl|;
 comment|/** 	 * Returns all context nodes associated with the nodes in 	 * this node set. 	 *   	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
 specifier|public
 name|NodeSet
