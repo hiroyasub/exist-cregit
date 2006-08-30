@@ -238,6 +238,15 @@ name|void
 name|resetState
 parameter_list|()
 function_decl|;
+comment|/** 	 * Start traversing the expression tree using the specified {@link ExpressionVisitor}. 	 * @param visitor 	 */
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+function_decl|;
 comment|/** 	 * Write a diagnostic dump of the expression to the passed 	 * {@link ExpressionDumper}. 	 *   	 * @param dumper the expression dumper to write to 	 */
 specifier|public
 name|void

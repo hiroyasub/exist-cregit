@@ -3646,6 +3646,13 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+name|result
+operator|.
+name|setProcessInReverseOrder
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Iterator

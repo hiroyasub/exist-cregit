@@ -3516,6 +3516,25 @@ else|:
 name|this
 return|;
 block|}
+specifier|public
+name|void
+name|setProcessInReverseOrder
+parameter_list|(
+name|boolean
+name|inReverseOrder
+parameter_list|)
+block|{
+comment|//Nothing to do
+block|}
+specifier|public
+name|boolean
+name|getProcessInReverseOrder
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getParents(boolean)      */
 specifier|public
 name|NodeSet
