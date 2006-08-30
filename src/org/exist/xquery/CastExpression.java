@@ -661,6 +661,10 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
+operator||
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
