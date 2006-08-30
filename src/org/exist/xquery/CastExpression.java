@@ -205,6 +205,15 @@ name|expression
 argument_list|)
 expr_stmt|;
 block|}
+specifier|protected
+name|Expression
+name|getInnerExpression
+parameter_list|()
+block|{
+return|return
+name|expression
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
 specifier|public
 name|void
@@ -652,10 +661,6 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
-operator|+
-name|Dependency
-operator|.
-name|CONTEXT_ITEM
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
@@ -708,6 +713,22 @@ name|expression
 operator|.
 name|resetState
 argument_list|()
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+name|visitor
+operator|.
+name|visitCastExpr
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 block|}

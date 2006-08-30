@@ -329,6 +329,10 @@ name|invalidNodeEvaluation
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|int
+name|rightOpDeps
+decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
@@ -649,6 +653,62 @@ name|SELF_AXIS
 expr_stmt|;
 comment|//Unfortunately, we lose the possibility to make a nodeset optimization
 comment|//(we still don't know anything about the contextSequence that will be processed)
+comment|// check if the right-hand operand is a simple cast expression
+comment|// if yes, use the dependencies of the casted expression to compute
+comment|// optimizations
+name|rightOpDeps
+operator|=
+name|getRight
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+expr_stmt|;
+name|getRight
+argument_list|()
+operator|.
+name|accept
+argument_list|(
+operator|new
+name|BasicExpressionVisitor
+argument_list|()
+block|{
+specifier|public
+name|void
+name|visitCastExpr
+parameter_list|(
+name|CastExpression
+name|expression
+parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Right operand is a cast expression"
+argument_list|)
+expr_stmt|;
+name|rightOpDeps
+operator|=
+name|expression
+operator|.
+name|getInnerExpression
+argument_list|()
+operator|.
+name|getDependencies
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
 specifier|public
@@ -943,18 +1003,15 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|Dependency
-operator|.
-name|dependsOn
-argument_list|(
-name|getRight
-argument_list|()
-argument_list|,
+operator|(
+name|rightOpDeps
+operator|&
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
-argument_list|)
+operator|)
+operator|==
+literal|0
 condition|)
 comment|//&&
 comment|//    Type.subTypeOf(getRight().returnsType(), Type.NODE))
