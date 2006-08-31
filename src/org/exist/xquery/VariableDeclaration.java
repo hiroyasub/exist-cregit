@@ -445,11 +445,6 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
-name|context
-operator|.
-name|pushDocumentContext
-argument_list|()
-expr_stmt|;
 comment|// declare the variable
 name|Sequence
 name|seq
