@@ -644,6 +644,36 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// Mark ".", which is expanded as self::node() by the parser
+comment|//even though it may *also* be relevant with atomic sequences
+if|if
+condition|(
+name|this
+operator|.
+name|axis
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+operator|&&
+name|this
+operator|.
+name|test
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|NODE
+condition|)
+name|contextInfo
+operator|.
+name|addFlag
+argument_list|(
+name|DOT_TEST
+argument_list|)
+expr_stmt|;
 comment|// TODO : log somewhere ?
 name|super
 operator|.
