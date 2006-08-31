@@ -978,15 +978,10 @@ block|{
 name|String
 name|queryStr
 init|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
 name|expr
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1010,7 +1005,10 @@ operator|=
 operator|new
 name|StringSource
 argument_list|(
-name|queryStr
+name|expr
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
