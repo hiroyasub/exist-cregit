@@ -3129,23 +3129,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|declaredFunctions
-operator|.
-name|get
-argument_list|(
-name|function
-operator|.
-name|getSignature
-argument_list|()
-operator|.
-name|getFunctionId
-argument_list|()
-argument_list|)
-operator|==
-literal|null
-condition|)
+comment|// TODO: redeclaring functions should be forbidden. however, throwing an
+comment|// exception will currently break util:eval.
 name|declaredFunctions
 operator|.
 name|put
@@ -3161,21 +3146,10 @@ argument_list|,
 name|function
 argument_list|)
 expr_stmt|;
-else|else
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"XQST0034: function "
-operator|+
-name|function
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" is already defined with the same arity"
-argument_list|)
-throw|;
+comment|//		if (declaredFunctions.get(function.getSignature().getFunctionId()) == null)
+comment|//				declaredFunctions.put(function.getSignature().getFunctionId(), function);
+comment|//		else
+comment|//			throw new XPathException("XQST0034: function " + function.getName() + " is already defined with the same arity");
 block|}
 comment|/** 	 * Resolve a user-defined function. 	 *  	 * @param name 	 * @return 	 * @throws XPathException 	 */
 specifier|public
