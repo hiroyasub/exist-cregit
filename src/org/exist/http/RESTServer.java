@@ -1122,6 +1122,10 @@ specifier|private
 name|String
 name|containerEncoding
 decl_stmt|;
+specifier|private
+name|boolean
+name|useDynamicContentType
+decl_stmt|;
 comment|//Constructor
 specifier|public
 name|RESTServer
@@ -1131,6 +1135,9 @@ name|formEncoding
 parameter_list|,
 name|String
 name|containerEncoding
+parameter_list|,
+name|boolean
+name|useDynamicContentType
 parameter_list|)
 block|{
 name|this
@@ -1144,6 +1151,12 @@ operator|.
 name|containerEncoding
 operator|=
 name|containerEncoding
+expr_stmt|;
+name|this
+operator|.
+name|useDynamicContentType
+operator|=
+name|useDynamicContentType
 expr_stmt|;
 block|}
 comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a binary      * resource with mime-type "application/xquery", this resource will be      * loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type "application/xquery" is requested      * then the xquery will not be executed, instead the source of the document will be returned.      * Must be enabled in descriptor.xml with the following syntax       *<xquery-app><allow-source><xquery path="/db/mycollection/myquery.xql"/></allow-source></xquery-app>      *</li>      *       *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
@@ -2222,6 +2235,13 @@ argument_list|(
 name|outputProperties
 argument_list|)
 expr_stmt|;
+name|serializer
+operator|.
+name|prepareStylesheets
+argument_list|(
+name|resource
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|asMimeType
@@ -2261,11 +2281,46 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|asMimeType
+operator|=
+name|serializer
+operator|.
+name|getStylesheetProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|MEDIA_TYPE
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|useDynamicContentType
+operator|||
+name|asMimeType
+operator|==
+literal|null
+condition|)
+name|asMimeType
+operator|=
+literal|"text/html"
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"media-type: "
+operator|+
+name|asMimeType
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/html; charset="
+name|asMimeType
+operator|+
+literal|"; charset="
 operator|+
 name|encoding
 argument_list|)
