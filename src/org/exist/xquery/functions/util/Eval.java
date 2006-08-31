@@ -1280,11 +1280,14 @@ finally|finally
 block|{
 if|if
 condition|(
-name|cache
-operator|&&
 name|compiled
 operator|!=
 literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|cache
 condition|)
 name|pool
 operator|.
@@ -1301,6 +1304,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|oldDocs
