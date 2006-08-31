@@ -442,19 +442,7 @@ name|client
 operator|=
 name|client
 expr_stmt|;
-name|this
-operator|.
-name|setSize
-argument_list|(
-operator|new
-name|Dimension
-argument_list|(
-literal|500
-argument_list|,
-literal|300
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//this.setPreferredSize(new Dimension(500, 300));	//JDK1.5 only, although setMinimumSize() and setSize() appear to do nothing :-(
 comment|//capture the frame's close event
 name|WindowListener
 name|windowListener
