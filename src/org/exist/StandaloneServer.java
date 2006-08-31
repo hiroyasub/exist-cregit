@@ -751,6 +751,15 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
+name|DEFAULT_PROPERTIES
+operator|.
+name|setProperty
+argument_list|(
+literal|"rest.param.dynamic-content-type"
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|HttpServer
