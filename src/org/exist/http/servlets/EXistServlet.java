@@ -889,6 +889,26 @@ name|containerEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
+name|String
+name|useDynamicContentType
+init|=
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"dynamic-content-type"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|useDynamicContentType
+operator|==
+literal|null
+condition|)
+name|useDynamicContentType
+operator|=
+literal|"no"
+expr_stmt|;
 comment|//Instantiate REST Server
 name|srvREST
 operator|=
@@ -898,6 +918,20 @@ argument_list|(
 name|formEncoding
 argument_list|,
 name|containerEncoding
+argument_list|,
+name|useDynamicContentType
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"yes"
+argument_list|)
+operator|||
+name|useDynamicContentType
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"true"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Instantiate SOAP Server
