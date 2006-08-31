@@ -444,7 +444,7 @@ name|client
 expr_stmt|;
 name|this
 operator|.
-name|setPreferredSize
+name|setSize
 argument_list|(
 operator|new
 name|Dimension
