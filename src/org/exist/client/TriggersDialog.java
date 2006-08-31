@@ -285,6 +285,18 @@ name|swing
 operator|.
 name|table
 operator|.
+name|JTableHeader
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|swing
+operator|.
+name|table
+operator|.
 name|TableCellRenderer
 import|;
 end_import
@@ -430,6 +442,19 @@ name|client
 operator|=
 name|client
 expr_stmt|;
+name|this
+operator|.
+name|setPreferredSize
+argument_list|(
+operator|new
+name|Dimension
+argument_list|(
+literal|500
+argument_list|,
+literal|300
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|//capture the frame's close event
 name|WindowListener
 name|windowListener
@@ -478,6 +503,35 @@ expr_stmt|;
 comment|//draw the GUI
 name|setupComponents
 argument_list|()
+expr_stmt|;
+name|JTableHeader
+name|tblTriggersHeader
+init|=
+name|tblTriggers
+operator|.
+name|getTableHeader
+argument_list|()
+decl_stmt|;
+name|tblTriggersHeader
+operator|.
+name|setPreferredSize
+argument_list|(
+operator|new
+name|Dimension
+argument_list|(
+name|tblTriggersHeader
+operator|.
+name|getWidth
+argument_list|()
+argument_list|,
+name|tblTriggersHeader
+operator|.
+name|getHeight
+argument_list|()
+operator|*
+literal|2
+argument_list|)
+argument_list|)
 expr_stmt|;
 comment|//Get the indexes for the root collection
 name|actionGetTriggers
@@ -1063,9 +1117,9 @@ argument_list|(
 operator|new
 name|Dimension
 argument_list|(
-literal|250
+literal|350
 argument_list|,
-literal|150
+literal|100
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1079,13 +1133,13 @@ name|c
 operator|.
 name|gridy
 operator|=
-literal|3
+literal|0
 expr_stmt|;
 name|c
 operator|.
 name|gridwidth
 operator|=
-literal|2
+literal|1
 expr_stmt|;
 name|c
 operator|.
@@ -1093,7 +1147,7 @@ name|anchor
 operator|=
 name|GridBagConstraints
 operator|.
-name|WEST
+name|CENTER
 expr_stmt|;
 name|c
 operator|.
@@ -1275,7 +1329,7 @@ name|c
 operator|.
 name|gridwidth
 operator|=
-literal|2
+literal|4
 expr_stmt|;
 name|c
 operator|.
@@ -1706,17 +1760,17 @@ index|[]
 block|{
 literal|"class"
 block|,
-literal|"Store Document"
+literal|"<html>Store<br>Document</html>"
 block|,
-literal|"Update Document"
+literal|"<html>Update<br>Document</html>"
 block|,
-literal|"Remove Document"
+literal|"<html>Remove<br>Document</html>"
 block|,
-literal|"Create Collection"
+literal|"<html>Create<br>Collection</html>"
 block|,
-literal|"Rename Collection"
+literal|"<html>Rename<br>Collection</html>"
 block|,
-literal|"Delete Collection"
+literal|"<html>Delete<br>Collection</html>"
 block|}
 decl_stmt|;
 specifier|public
