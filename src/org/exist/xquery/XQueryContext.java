@@ -1189,6 +1189,36 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** 	 * Prepares the current context before xquery execution 	 */
+specifier|public
+name|void
+name|prepare
+parameter_list|()
+block|{
+comment|//if there is an existing user in the current http session
+comment|//then set the DBBroker user
+name|User
+name|user
+init|=
+name|getUserFromHttpSession
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|AccessContext
 name|getAccessContext
@@ -3806,30 +3836,11 @@ name|User
 name|getUser
 parameter_list|()
 block|{
-comment|/* if there is a user cached in the http session use that, 		 * otherwise return the current user */
-name|User
-name|user
-init|=
-name|getUserFromHttpSession
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|user
-operator|==
-literal|null
-condition|)
-block|{
-name|user
-operator|=
+return|return
 name|broker
 operator|.
 name|getUser
 argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|user
 return|;
 block|}
 comment|/** 	 * If there is a HTTP Session, and a User has been stored in the session then this will 	 * return the user object from the session 	 *  	 * @return The user or null if there is no session or no user 	 */
