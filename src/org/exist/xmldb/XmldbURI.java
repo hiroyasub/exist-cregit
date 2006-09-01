@@ -1514,6 +1514,9 @@ operator|.
 name|compareTo
 argument_list|(
 operator|(
+name|Object
+operator|)
+operator|(
 operator|(
 name|XmldbURI
 operator|)
