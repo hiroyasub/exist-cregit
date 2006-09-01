@@ -4041,12 +4041,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.82"
-argument_list|)
+literal|"yes"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4145,12 +4140,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.86"
-argument_list|)
+literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
