@@ -1720,6 +1720,17 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+comment|//only write the response if it is not already committed,
+comment|//some xquery functions can write directly to the response
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+condition|)
+block|{
 name|String
 name|mimeType
 init|=
@@ -1734,14 +1745,6 @@ argument_list|,
 literal|"text/html"
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|response
-operator|.
-name|isCommitted
-argument_list|()
-condition|)
 name|response
 operator|.
 name|setContentType
@@ -1758,6 +1761,7 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1849,6 +1853,17 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+comment|//only write the response if it is not already committed,
+comment|//some xquery functions can write directly to the response
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+condition|)
+block|{
 name|String
 name|mimeType
 init|=
@@ -1879,6 +1894,7 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -6847,36 +6863,6 @@ parameter_list|(
 name|HttpServletResponse
 name|response
 parameter_list|,
-name|byte
-index|[]
-name|data
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|OutputStream
-name|is
-init|=
-name|response
-operator|.
-name|getOutputStream
-argument_list|()
-decl_stmt|;
-name|is
-operator|.
-name|write
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-block|}
-specifier|private
-name|void
-name|writeResponse
-parameter_list|(
-name|HttpServletResponse
-name|response
-parameter_list|,
 name|String
 name|data
 parameter_list|,
@@ -6886,7 +6872,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//        response.setCharacterEncoding(encoding);
+comment|//response.setCharacterEncoding(encoding);
 comment|// possible format contentType: text/xml; charset=UTF-8
 name|String
 name|contentType
