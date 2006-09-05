@@ -1851,6 +1851,7 @@ name|result
 argument_list|)
 expr_stmt|;
 comment|//END
+comment|/**              * TODO: Validation should be done before WSDL is sent to the client. org.exist.validation.Validator              * will need to make use of org.exist.validation.internal.BlockingOutputStream to connect to the Validator.              *               */
 name|handler
 operator|.
 name|startDocument
