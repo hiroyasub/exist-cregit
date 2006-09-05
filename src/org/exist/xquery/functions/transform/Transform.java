@@ -999,6 +999,7 @@ literal|"transform"
 argument_list|)
 condition|)
 block|{
+comment|//transform:transform()
 name|ValueSequence
 name|seq
 init|=
@@ -1148,6 +1149,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//transform:stream-transform()
 name|ResponseModule
 name|myModule
 init|=
@@ -1330,6 +1332,17 @@ expr_stmt|;
 name|handler
 operator|.
 name|endDocument
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|//commit the response
+name|response
+operator|.
+name|flushBuffer
 argument_list|()
 expr_stmt|;
 block|}
