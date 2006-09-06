@@ -9216,6 +9216,8 @@ name|command
 init|=
 literal|"cd "
 operator|+
+literal|'"'
+operator|+
 name|URIUtils
 operator|.
 name|urlDecodeUtf8
