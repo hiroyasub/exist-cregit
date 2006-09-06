@@ -10203,7 +10203,34 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"bad link to next page"
+literal|"bad link to next page! offset: "
+operator|+
+name|rec
+operator|.
+name|offset
+operator|+
+literal|"; len: "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getDataLength
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -10343,6 +10370,11 @@ name|rec
 operator|.
 name|offset
 decl_stmt|;
+name|boolean
+name|inOverflow
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|len
@@ -10372,6 +10404,12 @@ argument_list|(
 name|op
 argument_list|)
 expr_stmt|;
+name|rec
+operator|.
+name|offset
+operator|+=
+literal|10
+expr_stmt|;
 name|len
 operator|=
 name|data
@@ -10382,11 +10420,9 @@ name|readOffset
 operator|=
 literal|0
 expr_stmt|;
-name|rec
-operator|.
-name|offset
-operator|+=
-literal|8
+name|inOverflow
+operator|=
+literal|true
 expr_stmt|;
 block|}
 specifier|final
@@ -10638,9 +10674,8 @@ break|break;
 block|}
 if|if
 condition|(
-name|len
-operator|!=
-name|OVERFLOW
+operator|!
+name|inOverflow
 condition|)
 name|rec
 operator|.
