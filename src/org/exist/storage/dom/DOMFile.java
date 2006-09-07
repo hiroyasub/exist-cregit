@@ -419,20 +419,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|journal
-operator|.
-name|Lsn
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|lock
 operator|.
 name|Lock
@@ -10118,7 +10104,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve the string value of the specified node. 	 *  	 * @param proxy 	 * @return 	 */
+comment|/** 	 * Retrieve the string value of the specified node. This is an optimized low-level method 	 * which will directly traverse the stored DOM nodes and collect the string values of 	 * the specified root node and all its descendants. By directly scanning the stored 	 * node data, we do not need to create a potentially large amount of node objects 	 * and thus save memory and time for garbage collection.  	 *  	 * @param proxy 	 * @return 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -10145,6 +10131,7 @@ name|rec
 init|=
 literal|null
 decl_stmt|;
+comment|// try to directly locate the root node through its storage address
 if|if
 condition|(
 name|address
@@ -10167,6 +10154,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// fallback to a btree lookup if the node could not be found
+comment|// by its storage address
 name|address
 operator|=
 name|findValue
@@ -10206,26 +10195,11 @@ name|rec
 operator|!=
 literal|null
 argument_list|,
-literal|"Node data could not be found! Page: "
-operator|+
-name|StorageAddress
-operator|.
-name|pageFromPointer
-argument_list|(
-name|address
-argument_list|)
-operator|+
-literal|"; tid: "
-operator|+
-name|StorageAddress
-operator|.
-name|tidFromPointer
-argument_list|(
-name|address
-argument_list|)
+literal|"Node data could not be found!"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// we collect the string values in binary format and append to a ByteArrayOutputStream
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -10234,6 +10208,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+comment|// now traverse the tree
 name|getNodeValue
 argument_list|(
 operator|(
@@ -10334,6 +10309,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * Recursive method to retrieve the string values of the root node 	 * and all its descendants. 	 */
 specifier|private
 name|void
 name|getNodeValue
@@ -10354,6 +10330,7 @@ name|boolean
 name|addWhitespace
 parameter_list|)
 block|{
+comment|// locate the next real node, skipping relocated nodes
 name|boolean
 name|foundNext
 init|=
@@ -10378,6 +10355,7 @@ name|getDataLength
 argument_list|()
 condition|)
 block|{
+comment|// end of page reached, proceed to the next page
 specifier|final
 name|long
 name|nextPage
@@ -10405,7 +10383,34 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"bad link to next page"
+literal|"bad link to next page! offset: "
+operator|+
+name|rec
+operator|.
+name|offset
+operator|+
+literal|"; len: "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getDataLength
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|rec
+operator|.
+name|page
+operator|.
+name|page
+operator|.
+name|getPageInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -10468,6 +10473,7 @@ name|tid
 argument_list|)
 condition|)
 block|{
+comment|// this is a link: skip it
 name|rec
 operator|.
 name|offset
@@ -10476,6 +10482,7 @@ literal|10
 expr_stmt|;
 block|}
 else|else
+comment|// ok: node found
 name|foundNext
 operator|=
 literal|true
@@ -10487,6 +10494,7 @@ operator|!
 name|foundNext
 condition|)
 do|;
+comment|// read the page len
 name|int
 name|len
 init|=
@@ -10511,6 +10519,7 @@ name|offset
 operator|+=
 literal|2
 expr_stmt|;
+comment|// check if the node was relocated
 if|if
 condition|(
 name|ItemId
@@ -10545,6 +10554,11 @@ name|rec
 operator|.
 name|offset
 decl_stmt|;
+name|boolean
+name|inOverflow
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|len
@@ -10552,6 +10566,7 @@ operator|==
 name|OVERFLOW
 condition|)
 block|{
+comment|// if we have an overflow value, load it from the overflow page
 specifier|final
 name|long
 name|op
@@ -10574,6 +10589,12 @@ argument_list|(
 name|op
 argument_list|)
 expr_stmt|;
+name|rec
+operator|.
+name|offset
+operator|+=
+literal|10
+expr_stmt|;
 name|len
 operator|=
 name|data
@@ -10584,13 +10605,12 @@ name|readOffset
 operator|=
 literal|0
 expr_stmt|;
-name|rec
-operator|.
-name|offset
-operator|+=
-literal|8
+name|inOverflow
+operator|=
+literal|true
 expr_stmt|;
 block|}
+comment|// check the type of the node
 specifier|final
 name|short
 name|type
@@ -10606,6 +10626,7 @@ operator|++
 index|]
 argument_list|)
 decl_stmt|;
+comment|// switch on the node type
 switch|switch
 condition|(
 name|type
@@ -10966,10 +10987,10 @@ break|break;
 block|}
 if|if
 condition|(
-name|len
-operator|!=
-name|OVERFLOW
+operator|!
+name|inOverflow
 condition|)
+comment|// if it isn't an overflow value, add the value length to the current offset
 name|rec
 operator|.
 name|offset
@@ -12052,9 +12073,6 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|short
-name|l
-init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -12069,7 +12087,7 @@ name|rec
 operator|.
 name|offset
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|rec
 operator|.
 name|offset

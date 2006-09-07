@@ -478,7 +478,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $request
+comment|// request object is read from global variable $response
 name|Variable
 name|respVar
 init|=
@@ -624,6 +624,17 @@ operator|.
 name|getBinaryData
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|//commit the response
+name|response
+operator|.
+name|flushBuffer
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch

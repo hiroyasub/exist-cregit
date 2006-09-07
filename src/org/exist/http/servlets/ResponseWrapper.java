@@ -120,6 +120,14 @@ name|String
 name|arg0
 parameter_list|)
 function_decl|;
+comment|/***/
+specifier|public
+name|void
+name|flushBuffer
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/** 	 * @return Returns the default character encoding 	 */
 specifier|public
 name|String

@@ -435,7 +435,7 @@ name|password
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Create a new user :ewith name      *      *@param  user  Description of the Parameter      */
+comment|/**      *  Create a new user with name      *      *@param  user  Description of the Parameter      */
 specifier|public
 name|User
 parameter_list|(

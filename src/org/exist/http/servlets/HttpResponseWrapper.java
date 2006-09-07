@@ -247,6 +247,19 @@ name|arg0
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|flushBuffer
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|response
+operator|.
+name|flushBuffer
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** 	 * @return returns the default character encoding 	 */
 specifier|public
 name|String

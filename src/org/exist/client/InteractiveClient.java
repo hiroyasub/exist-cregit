@@ -13476,9 +13476,33 @@ name|void
 name|printNotice
 parameter_list|()
 block|{
+name|Properties
+name|sysProperties
+init|=
+name|ClientFrame
+operator|.
+name|getSystemProperties
+argument_list|()
+decl_stmt|;
 name|messageln
 argument_list|(
-literal|"eXist version 1.0, Copyright (C) 2001-2006 Wolfgang Meier"
+name|sysProperties
+operator|.
+name|getProperty
+argument_list|(
+literal|"product-name"
+argument_list|)
+operator|+
+literal|" version "
+operator|+
+name|sysProperties
+operator|.
+name|getProperty
+argument_list|(
+literal|"product-version"
+argument_list|)
+operator|+
+literal|", Copyright (C) 2001-2006 Wolfgang Meier"
 argument_list|)
 expr_stmt|;
 name|messageln

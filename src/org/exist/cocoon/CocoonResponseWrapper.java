@@ -319,6 +319,15 @@ name|arg0
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Does nothing! 	 */
+specifier|public
+name|void
+name|flushBuffer
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+block|}
 comment|/** 	 */
 specifier|public
 name|String
