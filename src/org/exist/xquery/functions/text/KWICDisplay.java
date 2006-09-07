@@ -399,9 +399,17 @@ literal|"result of the function call is inserted into the resulting node set whe
 operator|+
 literal|"For example, you can use this to mark all matching terms with a<span class=\"highlight\">abc</span>. "
 operator|+
-literal|"The callback function should take 3 arguments: 1) the text sequence corresponding to the match as xs:string, "
+literal|"The callback function should take 3 or 4 arguments: 1) the text sequence corresponding to the match as xs:string, "
 operator|+
-literal|"2) the text node to which this match belongs, 3) the sequence passed as last argument to kwic-display."
+literal|"2) the text node to which this match belongs, 3) the sequence passed as last argument to kwic-display. "
+operator|+
+literal|"If the callback function accepts 4 arguments, the last argument will contain additional "
+operator|+
+literal|"information on the match as a sequence of 4 integers: a) the number of the match if there's more than "
+operator|+
+literal|"one match in a text node - the first match will be numbered 1; b) the offset of the match into the original text node "
+operator|+
+literal|"string; c) the length of the match as reported by the index."
 argument_list|,
 operator|new
 name|SequenceType
@@ -508,9 +516,17 @@ literal|"result of the function call is inserted into the resulting node set whe
 operator|+
 literal|"For example, you can use this to mark all matching terms with a<span class=\"highlight\">abc</span>. "
 operator|+
-literal|"The callback function should take 3 arguments: 1) the text sequence corresponding to the match as xs:string, "
+literal|"The callback function should take 3 or 4 arguments: 1) the text sequence corresponding to the match as xs:string, "
 operator|+
-literal|"2) the text node to which this match belongs, 3) the sequence passed as last argument to kwic-display."
+literal|"2) the text node to which this match belongs, 3) the sequence passed as last argument to kwic-display. "
+operator|+
+literal|"If the callback function accepts 4 arguments, the last argument will contain additional "
+operator|+
+literal|"information on the match as a sequence of 4 integers: a) the number of the match if there's more than "
+operator|+
+literal|"one match in a text node - the first match will be numbered 1; b) the offset of the match into the original text node "
+operator|+
+literal|"string; c) the length of the match as reported by the index."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1147,7 +1163,13 @@ init|=
 operator|new
 name|Sequence
 index|[
-literal|3
+name|callback
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getArgumentCount
+argument_list|()
 index|]
 decl_stmt|;
 name|params
@@ -1320,6 +1342,7 @@ operator|+=
 name|leftWidth
 expr_stmt|;
 block|}
+comment|// put the matching term into argument 0 of the callback function
 name|params
 index|[
 literal|0
@@ -1349,6 +1372,82 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// if the callback function accepts 4 arguments, the last argument should contain additional
+comment|// information on the match:
+if|if
+condition|(
+name|callback
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getArgumentCount
+argument_list|()
+operator|==
+literal|4
+condition|)
+block|{
+name|params
+index|[
+literal|3
+index|]
+operator|=
+operator|new
+name|ValueSequence
+argument_list|()
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|nextOffset
+operator|-
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|firstMatch
+operator|.
+name|getOffset
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|firstMatch
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// now execute the callback func.
 name|Sequence
 name|callbackResult
 init|=
@@ -1363,6 +1462,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+comment|// iterate through the result of the callback
 for|for
 control|(
 name|SequenceIterator
@@ -1635,6 +1735,7 @@ operator|<
 name|width
 condition|)
 block|{
+comment|// put the matching term into argument 0 of the callback function
 name|params
 index|[
 literal|0
@@ -1664,6 +1765,80 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// if the callback function accepts 4 arguments, the last argument should contain additional
+comment|// information on the match:
+if|if
+condition|(
+name|callback
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getArgumentCount
+argument_list|()
+operator|==
+literal|4
+condition|)
+block|{
+name|params
+index|[
+literal|3
+index|]
+operator|=
+operator|new
+name|ValueSequence
+argument_list|()
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|offset
+operator|.
+name|getOffset
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+index|[
+literal|3
+index|]
+operator|.
+name|add
+argument_list|(
+operator|new
+name|IntegerValue
+argument_list|(
+name|offset
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// execute the callback function
 name|Sequence
 name|callbackResult
 init|=
@@ -1948,6 +2123,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// if the user specified a result callback function, call it now
 if|if
 condition|(
 name|resultCallback
