@@ -2095,7 +2095,12 @@ literal|false
 argument_list|)
 return|;
 block|}
-else|else
+if|else if
+condition|(
+name|e
+operator|!=
+literal|null
+condition|)
 block|{
 return|return
 name|doc
@@ -2114,6 +2119,11 @@ literal|false
 argument_list|)
 return|;
 block|}
+else|else
+comment|// probably a binary resource
+return|return
+literal|""
+return|;
 block|}
 else|else
 block|{
