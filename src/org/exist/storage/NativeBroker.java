@@ -10693,6 +10693,18 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+comment|// Remove all (webdav) Lock token data when document is removed.
+comment|// [ 1509776 ] webDAV : Lock retains after MOVE
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setLockToken
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|doc
 operator|.
 name|setFileURI

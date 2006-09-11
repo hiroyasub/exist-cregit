@@ -7401,6 +7401,9 @@ operator|.
 name|getUsedBuffers
 argument_list|()
 operator|/
+operator|(
+name|float
+operator|)
 name|dataCache
 operator|.
 name|getBuffers
@@ -7412,7 +7415,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|" (out of "
+literal|" ("
+operator|+
+name|dataCache
+operator|.
+name|getUsedBuffers
+argument_list|()
+operator|+
+literal|" out of "
 operator|+
 name|dataCache
 operator|.
@@ -7468,6 +7478,9 @@ operator|.
 name|getHits
 argument_list|()
 operator|/
+operator|(
+name|float
+operator|)
 operator|(
 name|dataCache
 operator|.
