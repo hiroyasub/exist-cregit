@@ -5472,6 +5472,71 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//@see http://sourceforge.net/tracker/index.php?func=detail&aid=1533053&group_id=17691&atid=117691
+specifier|public
+name|void
+name|testNestedPredicates
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+name|xQuery
+init|=
+literal|"let $doc :=<objects>"
+operator|+
+literal|"<detail><class/><source><dynamic>false</dynamic></source></detail>"
+operator|+
+literal|"<detail><class/><source><dynamic>true</dynamic></source></detail>"
+operator|+
+literal|"</objects> "
+operator|+
+literal|"let $matches := $doc/detail[source[dynamic='false'] or class] "
+operator|+
+literal|"return count($matches) eq 2"
+decl_stmt|;
+name|XQueryService
+name|service
+init|=
+name|getQueryService
+argument_list|()
+decl_stmt|;
+name|ResourceSet
+name|rs
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|xQuery
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|rs
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"true"
+argument_list|,
+name|rs
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|// @see http://sourceforge.net/tracker/index.php?func=detail&aid=1488303&group_id=17691&atid=117691
 specifier|public
 name|void
