@@ -246,7 +246,11 @@ argument_list|()
 operator|.
 name|analyze
 argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|contextInfo
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|getRight
@@ -254,7 +258,11 @@ argument_list|()
 operator|.
 name|analyze
 argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|contextInfo
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

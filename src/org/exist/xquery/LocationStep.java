@@ -643,17 +643,7 @@ operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
-operator|&&
-name|this
-operator|.
-name|test
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|NODE
+comment|/*&& this.test.getType()== Type.NODE*/
 condition|)
 name|contextInfo
 operator|.

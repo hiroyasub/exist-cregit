@@ -697,6 +697,8 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+try|try
+block|{
 name|Sequence
 name|innerSeq
 init|=
@@ -734,6 +736,16 @@ name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|//Keep in boolean mide : How ugly !!!
+comment|//innerExpressionDot is false for (1,2,3)[. lt 3]
 block|}
 block|}
 block|}
@@ -760,6 +772,8 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
+try|try
+block|{
 name|Sequence
 name|innerSeq
 init|=
@@ -797,6 +811,16 @@ name|recomputedExecutionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|//Keep in boolean mide : How ugly !!!
+comment|//innerExpressionDot is false for (1,2,3)[. lt 3]
 block|}
 block|}
 if|if
