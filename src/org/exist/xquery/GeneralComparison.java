@@ -628,19 +628,8 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|contextInfo
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
 comment|// (1)[.= 1] works...
-comment|//        LOG.debug("Context: " + Type.getTypeName(contextInfo.getStaticType()));
 name|invalidNodeEvaluation
 operator|=
 literal|false
@@ -1108,18 +1097,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|result
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found: "
-operator|+
-name|result
-operator|.
-name|getLength
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
