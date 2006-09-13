@@ -628,8 +628,40 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|contextInfo
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//Ugly workaround for the polysemy of "." which is expanded as self::node() even when it is not relevant
 comment|// (1)[.= 1] works...
+comment|//        LOG.debug("Context: " + Type.getTypeName(contextInfo.getStaticType()));
+name|invalidNodeEvaluation
+operator|=
+literal|false
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextInfo
+operator|.
+name|getStaticType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
 name|invalidNodeEvaluation
 operator|=
 name|getLeft
@@ -1078,6 +1110,18 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Found: "
+operator|+
+name|result
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -1402,6 +1446,20 @@ argument_list|,
 literal|"OPTIMIZATION CHOICE"
 argument_list|,
 literal|"nodeSetCompare"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"No index: fall back to nodeSetCompare"
 argument_list|)
 expr_stmt|;
 name|NodeSet
@@ -2548,6 +2606,25 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"No suitable index found for key: "
+operator|+
+name|rightSeq
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//no range index defined on the nodes in this sequence, so fallback to nodeSetCompare
 if|if
 condition|(

@@ -407,6 +407,16 @@ argument_list|)
 expr_stmt|;
 name|newContextInfo
 operator|.
+name|setStaticType
+argument_list|(
+name|contextInfo
+operator|.
+name|getStaticType
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|newContextInfo
+operator|.
 name|setParent
 argument_list|(
 name|this
@@ -901,6 +911,15 @@ operator|=
 name|BOOLEAN
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"executionMode == "
+operator|+
+name|recomputedExecutionMode
+argument_list|)
+expr_stmt|;
 switch|switch
 condition|(
 name|recomputedExecutionMode
