@@ -349,9 +349,12 @@ block|{
 name|AnalyzeContextInfo
 name|newContext
 init|=
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|contextInfo
+argument_list|)
 decl_stmt|;
-comment|// new AnalyzeContextInfo(contextInfo);
 name|newContext
 operator|.
 name|setStaticType
