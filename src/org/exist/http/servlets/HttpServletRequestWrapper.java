@@ -1539,15 +1539,6 @@ parameter_list|)
 throws|throws
 name|UnsupportedEncodingException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"here"
-argument_list|)
-expr_stmt|;
 name|request
 operator|.
 name|setCharacterEncoding
