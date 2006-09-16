@@ -169,6 +169,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|http
@@ -444,6 +456,21 @@ name|XQueryServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|XQueryServlet
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -676,7 +703,9 @@ name|formEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"form-encoding = "
 operator|+
@@ -702,7 +731,9 @@ name|containerEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"container-encoding = "
 operator|+
@@ -728,7 +759,9 @@ name|encoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"encoding = "
 operator|+
@@ -800,11 +833,27 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|String
+name|errorMessage
+init|=
+literal|"Failed to initialize database driver"
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorMessage
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"Failed to initialize database driver: "
+name|errorMessage
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -1766,13 +1815,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|log
-argument_list|(
-name|e
+name|LOG
 operator|.
-name|getMessage
-argument_list|()
-argument_list|,
+name|debug
+argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
