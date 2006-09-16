@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -434,7 +434,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Servlet to generate HTML output from an XQuery file.  *   * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *   * The servlet accepts the following initialization parameters in web.xml:  *   *<table border="0">  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML forms.</td></tr>  *</table>  *   * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Servlet to generate HTML output from an XQuery file.  *  * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *  * The servlet accepts the following initialization parameters in web.xml:  *  *<table border="0">  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML forms.</td></tr>  *</table>  *  * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -543,7 +543,7 @@ name|contentType
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)      */
 specifier|public
 name|void
 name|init
@@ -816,7 +816,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 specifier|protected
 name|void
 name|doGet
@@ -840,7 +840,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 specifier|protected
 name|void
 name|doPost
@@ -920,7 +920,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	Processes incoming HTTP requests for XQuery 	*/
+comment|/**      * Processes incoming HTTP requests for XQuery      */
 specifier|protected
 name|void
 name|process
