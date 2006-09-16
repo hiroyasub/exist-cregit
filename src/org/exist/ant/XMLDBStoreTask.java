@@ -397,6 +397,10 @@ operator|+
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
+argument_list|,
+name|user
+argument_list|,
+name|password
 argument_list|)
 expr_stmt|;
 name|root
