@@ -148,7 +148,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Returns the path corresponding to this index.      *       * @return      */
+comment|/**      * Returns the path corresponding to this index.      */
 specifier|public
 name|NodePath
 name|getPath

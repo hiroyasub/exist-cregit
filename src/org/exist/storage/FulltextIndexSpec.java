@@ -207,7 +207,7 @@ name|includeAlphaNum
 init|=
 literal|true
 decl_stmt|;
-comment|/**      * Constructor for the IndexPaths object      *      * @param def if set to true, include everything by default. In this case      * use exclude elements to specify the excluded parts.      */
+comment|/**      * Constructor for the IndexPaths object      *      * param def if set to true, include everything by default. In this case      * use exclude elements to specify the excluded parts.      */
 specifier|public
 name|FulltextIndexSpec
 parameter_list|(
@@ -564,7 +564,7 @@ name|ARRAY_TYPE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Returns false if all elements are indexed, true  	 * if indexation is selective. 	 *  	 * @return 	 */
+comment|/** 	 * @return False if all elements are indexed, True if indexation is selective. 	 */
 specifier|public
 name|boolean
 name|isSelective
@@ -616,7 +616,7 @@ operator|=
 name|index
 expr_stmt|;
 block|}
-comment|/**      * Include alpha-numeric data?      *      * @return       */
+comment|/**      * Include alpha-numeric data?      */
 specifier|public
 name|boolean
 name|getIncludeAlphaNum

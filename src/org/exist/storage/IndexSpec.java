@@ -264,7 +264,7 @@ name|index
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Read index configurations from an "index" element node. The node should have      * exactly one "fulltext" child node and zero or more "create" nodes. The "fulltext"      * section  is forwarded to class {@link FulltextIndexSpec}. The "create" elements      * add a {@link GeneralRangeIndexSpec} to the current configuration.      *        * @param index      * @param namespaces      * @throws DatabaseConfigurationException      */
+comment|/**      * Read index configurations from an "index" element node. The node should have      * exactly one "fulltext" child node and zero or more "create" nodes. The "fulltext"      * section  is forwarded to class {@link FulltextIndexSpec}. The "create" elements      * add a {@link GeneralRangeIndexSpec} to the current configuration.      *        * @param index      * @throws DatabaseConfigurationException      */
 specifier|public
 name|void
 name|read
@@ -556,7 +556,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Returns the current index depth, i.e. the level in the tree up to which      * node ids are added to the B+-tree in the main dom.dbx. Nodes below      * the current index depth are not added. The main B+-tree is only required when      * retrieving nodes for display. Usually, it is not necessary to add all node levels      * there. Nodes in lower levels of the tree can be retrieved via their parent      * nodes.      *       * @return      */
+comment|/**      * Returns the current index depth, i.e. the level in the tree up to which      * node ids are added to the B+-tree in the main dom.dbx. Nodes below      * the current index depth are not added. The main B+-tree is only required when      * retrieving nodes for display. Usually, it is not necessary to add all node levels      * there. Nodes in lower levels of the tree can be retrieved via their parent      * nodes.      *       * @return Current index depth.      */
 specifier|public
 name|int
 name|getIndexDepth
@@ -566,7 +566,7 @@ return|return
 name|depth
 return|;
 block|}
-comment|/**      * Set the current index depth {@see #getIndexDepth()}.      *       * @param depth      */
+comment|/**      * Set the current index depth {@see #getIndexDepth()}.      *       * @param depth Current index depth      */
 specifier|public
 name|void
 name|setIndexDepth
@@ -582,7 +582,7 @@ operator|=
 name|depth
 expr_stmt|;
 block|}
-comment|/**      * Returns the fulltext index configuration object for the current      * configuration.      *       * @return      */
+comment|/**      * Returns the fulltext index configuration object for the current      * configuration.      */
 specifier|public
 name|FulltextIndexSpec
 name|getFulltextIndexSpec
@@ -592,7 +592,7 @@ return|return
 name|ftSpec
 return|;
 block|}
-comment|/**      * Returns the {@link GeneralRangeIndexSpec} defined for the given      * node path or null if no index has been configured.      *       * @param path      * @return      */
+comment|/**      * Returns the {@link GeneralRangeIndexSpec} defined for the given      * node path or null if no index has been configured.      *       * @param path      */
 specifier|public
 name|GeneralRangeIndexSpec
 name|getIndexByPath

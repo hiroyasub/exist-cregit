@@ -367,7 +367,7 @@ name|getBuffers
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Called by a cache if it wants to grow. The cache manager      * will either deny the request, for example, if there are no spare      * pages left, or calculate a new cache size and call the cache's      * {@link Cache#resize(int)} method to resize the cache. The amount      * of pages by which the cache will grow is determined by the cache's      * growthFactor: {@link Cache#getGrowthFactor()}.      *       * @param cache      * @return      */
+comment|/**      * Called by a cache if it wants to grow. The cache manager      * will either deny the request, for example, if there are no spare      * pages left, or calculate a new cache size and call the cache's      * {@link Cache#resize(int)} method to resize the cache. The amount      * of pages by which the cache will grow is determined by the cache's      * growthFactor: {@link Cache#getGrowthFactor()}.      *       * @param cache      * @return new cache size, or -1 if no free pages available.      */
 specifier|public
 name|int
 name|requestMem
@@ -823,7 +823,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Returns the default initial size for all caches.      *       * @return      */
+comment|/**      * Returns the default initial size for all caches.      *       * @return Default initial size 64.      */
 specifier|public
 name|int
 name|getDefaultInitialSize

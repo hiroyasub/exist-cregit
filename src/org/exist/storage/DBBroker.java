@@ -1116,7 +1116,7 @@ expr_stmt|;
 comment|/*synchronized (this){ 			System.out.println("DBBroker.setUser(" + user.getName() + ")"); 			Thread.dumpStack(); 		}*/
 comment|//debugging user escalation permissions problem - deliriumsky.
 block|}
-comment|/** 	 * Get the user that is currently using this DBBroker object. 	 *  	 * @return 	 */
+comment|/** 	 * @return The user that is currently using this DBBroker object 	 */
 specifier|public
 name|User
 name|getUser
@@ -1126,7 +1126,7 @@ return|return
 name|user
 return|;
 block|}
-comment|/** 	 * Returns a reference to the global {@link XQuery} service. 	 *  	 * @return 	 */
+comment|/** 	 * @return A reference to the global {@link XQuery} service. 	 */
 specifier|public
 name|XQuery
 name|getXQueryService
@@ -1172,7 +1172,7 @@ name|uri
 parameter_list|)
 function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name, long address); 	*/
-comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return Database collection 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1186,7 +1186,7 @@ name|address
 parameter_list|)
 function_decl|;
 comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection openCollection(String name, int lockMode); 	*/
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param uri The collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1265,7 +1265,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting 	 * at the specified node. 	 *  	 * @param proxy 	 * @return 	 */
+comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting 	 * at the specified node. 	 *  	 * @param node 	 * @return NodeIterator of node. 	 */
 specifier|public
 name|Iterator
 name|getNodeIterator
@@ -1776,7 +1776,7 @@ throws|,
 name|LockException
 function_decl|;
 comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1800,7 +1800,7 @@ throws|,
 name|LockException
 function_decl|;
 comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void copyCollection(Txn transaction, Collection collection, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param collection the resource to move 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2033,7 +2033,7 @@ name|void
 name|endRemove
 parameter_list|()
 function_decl|;
-comment|/** 	 * Create a temporary document in the temp collection and store the 	 * supplied data. 	 *  	 * @param data 	 * @return 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Create a temporary document in the temp collection and store the 	 * supplied data. 	 *  	 * @param doc 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
 name|DocumentImpl

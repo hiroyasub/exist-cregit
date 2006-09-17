@@ -52,7 +52,7 @@ name|PROTOCOL
 init|=
 literal|"resource:"
 decl_stmt|;
-comment|/**      * @param url      */
+comment|/**      * @param source The resource name (e.g. url).      *      *<p> The name of a resource is a '<tt>/</tt>'-separated path name that      * identifies the resource. Preceding "/" and "resource:"" are removed.      */
 specifier|public
 name|ClassLoaderSource
 parameter_list|(
