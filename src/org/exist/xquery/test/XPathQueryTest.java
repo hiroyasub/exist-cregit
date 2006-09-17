@@ -7936,7 +7936,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testExternalVars2
+name|bugtestExternalVars2
 parameter_list|()
 block|{
 try|try

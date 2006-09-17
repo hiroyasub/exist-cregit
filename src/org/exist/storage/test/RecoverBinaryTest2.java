@@ -325,17 +325,7 @@ name|directory
 init|=
 literal|"webapp/resources"
 decl_stmt|;
-specifier|private
-specifier|static
-name|File
-name|dir
-init|=
-operator|new
-name|File
-argument_list|(
-name|directory
-argument_list|)
-decl_stmt|;
+comment|//private static File dir = new File(directory);
 specifier|public
 name|void
 name|testStore
@@ -1003,6 +993,22 @@ name|LockException
 throws|,
 name|TriggerException
 block|{
+comment|// Get absolute path
+name|File
+name|dir
+init|=
+operator|new
+name|File
+argument_list|(
+name|Configuration
+operator|.
+name|getExistHome
+argument_list|()
+argument_list|,
+name|directory
+argument_list|)
+decl_stmt|;
+comment|// Get files in directory
 name|File
 name|files
 index|[]
