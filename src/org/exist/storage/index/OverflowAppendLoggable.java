@@ -116,7 +116,7 @@ specifier|protected
 name|int
 name|startOffset
 decl_stmt|;
-comment|/**      * @param type      * @param fileId      * @param transaction      */
+comment|/**      *       *       * @param page       * @param chunk       * @param startOffset       * @param chunkSize       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowAppendLoggable
 parameter_list|(

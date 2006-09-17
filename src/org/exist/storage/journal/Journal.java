@@ -1495,7 +1495,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Find the journal file with the highest file number.      *       * @param files      * @return      */
+comment|/**      * Find the journal file with the highest file number.      *       * @param files      */
 specifier|public
 specifier|final
 specifier|static

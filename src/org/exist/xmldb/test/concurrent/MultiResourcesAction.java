@@ -82,7 +82,7 @@ specifier|private
 name|String
 name|dirPath
 decl_stmt|;
-comment|/**      * @param collectionPath      * @param resourceName      */
+comment|/**      *       *       * @param dirPath       * @param collectionPath       */
 specifier|public
 name|MultiResourcesAction
 parameter_list|(

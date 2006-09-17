@@ -57,7 +57,7 @@ name|UserDefinedFunction
 name|func
 parameter_list|)
 function_decl|;
-comment|/** 	 * Try to find the function identified by qname. Returns null 	 * if the function is undefined. 	 *  	 * @param qname 	 * @return 	 */
+comment|/** 	 * Try to find the function identified by qname. Returns null 	 * if the function is undefined. 	 *  	 * @param qname 	 */
 specifier|public
 name|UserDefinedFunction
 name|getFunction
@@ -106,7 +106,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/** 	 * Is this module still valid or should it be reloaded from its source? 	 *  	 * @return 	 */
+comment|/** 	 * Is this module still valid or should it be reloaded from its source? 	 */
 specifier|public
 name|boolean
 name|moduleIsValid

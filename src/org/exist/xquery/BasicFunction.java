@@ -285,7 +285,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Process the function. All arguments are passed in the array args. The number of 	 * arguments, their type and cardinality have already been checked to match  	 * the function signature. 	 *  	 * @param args 	 * @param contextSequence 	 * @return 	 */
+comment|/** 	 * Process the function. All arguments are passed in the array args. The number of 	 * arguments, their type and cardinality have already been checked to match  	 * the function signature. 	 *  	 * @param args 	 * @param contextSequence 	 */
 specifier|public
 specifier|abstract
 name|Sequence

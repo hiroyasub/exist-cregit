@@ -138,7 +138,7 @@ name|called
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
+comment|/**      *       *       * @param collectionPath       * @param resourceName       * @param xquery       */
 specifier|public
 name|XQueryAction
 parameter_list|(

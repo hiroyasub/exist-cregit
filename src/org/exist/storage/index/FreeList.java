@@ -431,7 +431,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Read the list from a {@link RandomAccessFile}.      *       *       * @param buf       * @param offset       * @throws IOException       * @return       */
+comment|/**      * Read the list from a {@link RandomAccessFile}.      *       *       * @param buf       * @param offset       * @throws IOException       */
 specifier|public
 name|int
 name|read
@@ -530,7 +530,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       *       * @param buf       * @param offset       * @throws IOException       * @return       */
+comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       *       * @param buf       * @param offset       * @throws IOException       */
 specifier|public
 name|int
 name|write

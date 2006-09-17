@@ -97,7 +97,7 @@ specifier|protected
 name|int
 name|size
 decl_stmt|;
-comment|/** 	 * @param type 	 * @param fileId 	 * @param transaction 	 */
+comment|/**      *       *       * @param page       * @param prevPage       * @param chunk       * @param startOffset       * @param chunkSize       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowStoreLoggable
 parameter_list|(

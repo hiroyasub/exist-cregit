@@ -4516,7 +4516,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** set user-defined Reader      * @param dataSource      */
+comment|/** set user-defined Reader      * @param reader      */
 specifier|public
 name|void
 name|setReader

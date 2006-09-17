@@ -52,7 +52,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Fill the provided byte array with data from the input.      *       * @param data      * @return      * @throws IOException      */
+comment|/**      * Fill the provided byte array with data from the input.      *       * @param data      * @throws IOException      */
 specifier|public
 name|int
 name|read
@@ -81,7 +81,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Returns a value> 0 if more bytes can be read      * from the input.      *       * @return      * @throws IOException      */
+comment|/**      * Returns a value> 0 if more bytes can be read      * from the input.      *       * @throws IOException      */
 specifier|public
 name|int
 name|available
@@ -89,7 +89,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a single byte. Throws EOFException if no      * more bytes are available.      *       * @return      * @throws IOException      */
+comment|/**      * Read a single byte. Throws EOFException if no      * more bytes are available.      *       * @throws IOException      */
 specifier|public
 name|byte
 name|readByte
@@ -97,7 +97,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a short value in variable byte encoding.      *       * @return      * @throws IOException      */
+comment|/**      * Read a short value in variable byte encoding.      *       * @throws IOException      */
 specifier|public
 name|short
 name|readShort
@@ -105,7 +105,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read an integer value in variable byte encoding.      *       * @return      * @throws IOException      */
+comment|/**      * Read an integer value in variable byte encoding.      *       * @throws IOException      */
 specifier|public
 name|int
 name|readInt
@@ -120,7 +120,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Read a long value in variable byte encoding.      *       * @return      * @throws IOException      */
+comment|/**      * Read a long value in variable byte encoding.      *       * @throws IOException      */
 specifier|public
 name|long
 name|readLong

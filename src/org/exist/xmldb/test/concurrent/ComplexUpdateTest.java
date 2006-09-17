@@ -94,7 +94,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
+comment|/**      *       *       * @param name       */
 specifier|public
 name|ComplexUpdateTest
 parameter_list|(

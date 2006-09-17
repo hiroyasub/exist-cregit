@@ -92,7 +92,7 @@ specifier|protected
 name|int
 name|oldLength
 decl_stmt|;
-comment|/**      * @param type      * @param fileId      * @param transaction      */
+comment|/**      *       *       * @param pageNum       * @param length       * @param oldLength       * @param lastInChain       * @param fileId       * @param transaction       */
 specifier|public
 name|OverflowModifiedLoggable
 parameter_list|(

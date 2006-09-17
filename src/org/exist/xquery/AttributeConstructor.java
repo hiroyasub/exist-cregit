@@ -502,7 +502,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * If this is a namespace declaration attribute, return 	 * the single string value of the attribute. 	 *  	 * @return 	 */
+comment|/** 	 * If this is a namespace declaration attribute, return 	 * the single string value of the attribute. 	 */
 specifier|public
 name|String
 name|getLiteralValue

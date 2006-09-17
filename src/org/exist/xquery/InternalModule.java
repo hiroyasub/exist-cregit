@@ -46,7 +46,7 @@ name|InternalModule
 extends|extends
 name|Module
 block|{
-comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return 	 */
+comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return implementing class for the function 	 */
 specifier|public
 name|FunctionDef
 name|getFunctionDef
@@ -58,7 +58,7 @@ name|int
 name|argCount
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return 	 */
+comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return all functions defined in this module 	 */
 specifier|public
 name|List
 name|getFunctionsByName

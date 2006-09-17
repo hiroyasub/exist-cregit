@@ -99,7 +99,7 @@ specifier|protected
 name|int
 name|len
 decl_stmt|;
-comment|/**      * @param type      * @param fileId      * @param transaction      */
+comment|/**      *       *       * @param page       * @param tid       * @param oldData       * @param offset       * @param len       * @param fileId       * @param transaction       */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(

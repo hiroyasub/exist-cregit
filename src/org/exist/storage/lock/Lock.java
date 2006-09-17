@@ -100,7 +100,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if there are active or pending      * write locks.      *       * @return      */
+comment|/**      * Returns true if there are active or pending      * write locks.      */
 specifier|public
 name|boolean
 name|isLockedForWrite

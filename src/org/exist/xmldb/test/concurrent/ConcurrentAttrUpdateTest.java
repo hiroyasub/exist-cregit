@@ -98,7 +98,7 @@ specifier|private
 name|File
 name|tempFile
 decl_stmt|;
-comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
+comment|/**      *       *       * @param name       */
 specifier|public
 name|ConcurrentAttrUpdateTest
 parameter_list|(

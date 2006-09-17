@@ -80,7 +80,7 @@ specifier|protected
 name|long
 name|page
 decl_stmt|;
-comment|/**      * @param type      * @param fileId      * @param transaction      */
+comment|/**      *       *       * @param pageNum       * @param fileId       * @param transaction       */
 specifier|public
 name|RemoveEmptyPageLoggable
 parameter_list|(

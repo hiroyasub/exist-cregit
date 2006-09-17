@@ -331,7 +331,7 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Create a built-in function from the specified class. 	 *  	 * @param context 	 * @param fclass 	 * @return the created function or null if the class could not be initialized. 	 */
+comment|/** 	 * Create a built-in function from the specified class. 	 * @return the created function or null if the class could not be initialized. 	 */
 specifier|public
 specifier|static
 name|Function
@@ -603,7 +603,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the expression from which this function 	 * gets called. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the expression from which this function 	 * gets called.          */
 specifier|public
 name|Expression
 name|getParent
@@ -1625,7 +1625,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Get the number of arguments passed to this function. 	 *  	 * @return 	 */
+comment|/** 	 * Get the number of arguments passed to this function. 	 *  	 * @return number of arguments 	 */
 specifier|public
 name|int
 name|getArgumentCount
@@ -1660,7 +1660,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the signature of this function. 	 *  	 * @return 	 */
+comment|/** 	 * Get the signature of this function. 	 *  	 * @return signature of this function 	 */
 specifier|public
 name|FunctionSignature
 name|getSignature

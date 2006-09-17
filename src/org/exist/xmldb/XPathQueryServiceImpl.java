@@ -107,7 +107,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Process an XPath query and sort the results by applying a second XPath expression      * to each of the search results. The result of applying the sort expression is converted      * into a string, which is then used to sort the set of results.      *       * @param query the XPath query      * @param sortExpr another XPath expression, which is executed relative to the      * results of the primary expression.      * @return      * @throws XMLDBException      */
+comment|/**      * Process an XPath query and sort the results by applying a second XPath expression      * to each of the search results. The result of applying the sort expression is converted      * into a string, which is then used to sort the set of results.      *       * @param query the XPath query      * @param sortExpr another XPath expression, which is executed relative to the      * results of the primary expression.      * @throws XMLDBException      */
 specifier|public
 name|ResourceSet
 name|query

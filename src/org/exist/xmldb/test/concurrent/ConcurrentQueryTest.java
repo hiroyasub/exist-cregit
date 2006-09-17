@@ -98,7 +98,7 @@ name|action1
 decl_stmt|,
 name|action2
 decl_stmt|;
-comment|/** 	 * @param name 	 * @param uri 	 * @param testCollection 	 */
+comment|/**      *       *       * @param name       */
 specifier|public
 name|ConcurrentQueryTest
 parameter_list|(

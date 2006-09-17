@@ -5290,7 +5290,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param prettyPrint      *                   result is pretty printed if>0      * @param encoding      *                   character encoding to use      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
+comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|byte
 index|[]

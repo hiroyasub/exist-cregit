@@ -84,7 +84,7 @@ specifier|protected
 name|long
 name|prevPage
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      *       *       * @param transaction       * @param fileId       * @param newPage       * @param prevPage       */
 specifier|public
 name|OverflowCreatePageLoggable
 parameter_list|(

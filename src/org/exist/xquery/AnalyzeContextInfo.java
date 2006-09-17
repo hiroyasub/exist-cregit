@@ -126,7 +126,7 @@ operator|.
 name|contextId
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the current context id. The context id is used 	 * to keep track of the context node set within a predicate 	 * expression or where-clause. The id identifies the ancestor  	 * expression to which the context applies. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the current context id. The context id is used 	 * to keep track of the context node set within a predicate 	 * expression or where-clause. The id identifies the ancestor  	 * expression to which the context applies. 	 *  	 * @return  current context id. 	 */
 specifier|public
 name|int
 name|getContextId
@@ -151,7 +151,7 @@ operator|=
 name|contextId
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the processing flags. Every expression may pass 	 * execution hints to its child expressions, encoded as bit flags.  	 *  	 * @return 	 */
+comment|/** 	 * Returns the processing flags. Every expression may pass 	 * execution hints to its child expressions, encoded as bit flags.  	 *  	 * @return processing flags 	 */
 specifier|public
 name|int
 name|getFlags
@@ -204,7 +204,7 @@ operator|~
 name|flag
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the parent of the current expression. 	 * @return 	 */
+comment|/** 	 * Returns the parent of the current expression. 	 */
 specifier|public
 name|Expression
 name|getParent

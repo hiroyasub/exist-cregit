@@ -122,7 +122,7 @@ name|modules
 operator|.
 name|XQueryService
 block|{
-comment|/** 	 * Execute the specified query and return the results as a {@link ResourceSet}. 	 *  	 * @param query 	 * @return 	 * @throws XMLDBException 	 */
+comment|/** 	 * Execute the specified query and return the results as a {@link ResourceSet}. 	 *  	 * @param query 	 * @throws XMLDBException 	 */
 specifier|public
 name|ResourceSet
 name|query
@@ -158,7 +158,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Tries to compile the specified XQuery and returns a handle to the compiled      * code, which can then be passed to {@link #execute(CompiledExpression)}.      * If a static error is detected, an {@link XPathException} will be thrown.      *       * @param query      * @return      */
+comment|/**      * Tries to compile the specified XQuery and returns a handle to the compiled      * code, which can then be passed to {@link #execute(CompiledExpression)}.      * If a static error is detected, an {@link XPathException} will be thrown.      *       * @param query      */
 specifier|public
 name|CompiledExpression
 name|compileAndCheck
@@ -181,7 +181,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Execute a compiled XQuery. 	 *  	 * The implementation should pass all namespaces and variables declared through 	 * {@link XQueryService} to the compiled XQuery code. 	 *  	 * @param expression 	 * @return 	 * @throws XMLDBException 	 */
+comment|/** 	 * Execute a compiled XQuery. 	 *  	 * The implementation should pass all namespaces and variables declared through 	 * {@link XQueryService} to the compiled XQuery code. 	 *  	 * @param expression 	 * @throws XMLDBException 	 */
 specifier|public
 name|ResourceSet
 name|execute
@@ -216,7 +216,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	* Sets a namespace mapping in the internal namespace map used to evaluate 	* queries. If<code>prefix</code> is null or empty the default namespace is 	* associated with the provided URI. A null or empty<code>uri</code> results 	* in an exception being thrown. 	* 	* @param prefix The prefix to set in the map. If 	*<code>prefix</code> is empty or null the 	*  default namespace will be associated with the provided URI. 	* @param uri The URI for the namespace to be associated with prefix. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*  TODO: probably need some special error here. 	*/
+comment|/** 	* Sets a namespace mapping in the internal namespace map used to evaluate 	* queries. If<code>prefix</code> is null or empty the default namespace is 	* associated with the provided URI. A null or empty<code>uri</code> results 	* in an exception being thrown. 	* 	* @param prefix The prefix to set in the map. If 	*<code>prefix</code> is empty or null the 	*  default namespace will be associated with the provided URI. 	* @param namespace The URI for the namespace to be associated with prefix. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*  TODO: probably need some special error here. 	*/
 specifier|public
 name|void
 name|setNamespace
@@ -230,7 +230,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	* Removes the namespace mapping associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* mapping for the default namespace will be removed. 	* 	* @param prefix The prefix to remove from the namespace map. If 	*<code>prefix</code> is null or empty the mapping for the default 	*  namespace will be removed. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
+comment|/** 	* Removes the namespace mapping associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* mapping for the default namespace will be removed. 	* 	* @param ns The prefix to remove from the namespace map. If 	*<code>prefix</code> is null or empty the mapping for the default 	*  namespace will be removed. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
 specifier|public
 name|void
 name|removeNamespace

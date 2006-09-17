@@ -3283,7 +3283,7 @@ operator|+
 name|currentPath
 return|;
 block|}
-comment|/** @deprecated Legacy method used here and there in the code      * @param fileName      * @param parentPath      * @return      */
+comment|/** @deprecated Legacy method used here and there in the code      * @param fileName      * @param parentPath      */
 specifier|public
 specifier|static
 name|String
@@ -3308,7 +3308,7 @@ name|parentPath
 argument_list|)
 return|;
 block|}
-comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      * @return      */
+comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      */
 comment|//TODO : changes // into /  */
 specifier|public
 name|String
@@ -3478,7 +3478,7 @@ return|return
 name|name2
 return|;
 block|}
-comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      * @return      */
+comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      */
 comment|//TODO : changes // into /  */
 specifier|public
 specifier|final

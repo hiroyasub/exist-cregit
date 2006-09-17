@@ -557,7 +557,7 @@ return|return
 name|first
 return|;
 block|}
-comment|/**      * Remove the entry specified by key from the map.      *       * @param key      * @return      */
+comment|/**      * Remove the entry specified by key from the map.      *       * @param key      */
 specifier|public
 name|Object
 name|remove
