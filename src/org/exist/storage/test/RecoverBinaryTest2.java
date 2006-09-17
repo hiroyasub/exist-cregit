@@ -1014,6 +1014,15 @@ argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(
+literal|"Check directory '"
+operator|+
+name|dir
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|"'."
+argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
