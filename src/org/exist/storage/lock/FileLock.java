@@ -478,7 +478,7 @@ name|delete
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Returns the last heartbeat written to the lock file.      *       * @return      */
+comment|/**      * Returns the last heartbeat written to the lock file.      *       * @return last heartbeat      */
 specifier|public
 name|Date
 name|getLastHeartbeat
@@ -492,7 +492,7 @@ name|lastHeartbeat
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the lock file that represents the active lock held by      * the FileLock.      *       * @return      */
+comment|/**      * Returns the lock file that represents the active lock held by      * the FileLock.      *       * @return lock file      */
 specifier|public
 name|File
 name|getFile

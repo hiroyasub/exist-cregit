@@ -66,7 +66,7 @@ specifier|public
 class|class
 name|StorageAddress
 block|{
-comment|/** 	 *  Create virtual address from page number and offset (tid) 	 * 	 *@param  page    page number 	 *@param  offset  offset (tid) 	 *@return         new virtual address in a long 	 */
+comment|/** 	 *  Create virtual address from page number and offset (tid) 	 * 	 *@param  page    page number 	 *@param  tid     offset  	 *@return         new virtual address in a long 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -191,7 +191,7 @@ literal|0xFFFFFFFFL
 operator|)
 return|;
 block|}
-comment|/** 	 * Get the type indicator from a virtual address. 	 *  	 * Returns a short corresponding to the type constants defined 	 * in {@link org.exist.xquery.value.Type}. 	 *  	 * @param pointer 	 * @return 	 */
+comment|/** 	 * Get the type indicator from a virtual address. 	 *  	 * Returns a short corresponding to the type constants defined 	 * in {@link org.exist.xquery.value.Type}. 	 *  	 * @param pointer 	 * @return type indicator from a virtual address 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -247,7 +247,7 @@ literal|0xFFFF0000L
 operator|)
 return|;
 block|}
-comment|/** 	 * Returns true if the page number and tid of the two storage 	 * addresses is equal. The type indicator is ignored. 	 *  	 * @param p0 	 * @param p1 	 * @return 	 */
+comment|/** 	 * Returns true if the page number and tid of the two storage 	 * addresses is equal. The type indicator is ignored. 	 *  	 * @param p0 	 * @param p1 	 * @return true if the page number and tid of the two storage addresses is equal 	 */
 specifier|public
 specifier|final
 specifier|static

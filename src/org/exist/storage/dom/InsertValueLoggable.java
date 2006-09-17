@@ -127,7 +127,7 @@ specifier|protected
 name|int
 name|offset
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      * @param transaction       * @param pageNum       * @param isOverflow       * @param tid       * @param value       * @param offset       */
 specifier|public
 name|InsertValueLoggable
 parameter_list|(

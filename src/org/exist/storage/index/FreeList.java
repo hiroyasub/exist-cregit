@@ -252,7 +252,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Retrieve the record stored for the given page number. 	 *  	 * @param pageNum 	 * @return 	 */
+comment|/** 	 * Retrieve the record stored for the given page number. 	 *  	 * @param pageNum 	 */
 specifier|public
 name|FreeSpace
 name|retrieve
@@ -295,7 +295,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Try to find a page that has at least requiredSize bytes 	 * available. This method selects the page with the smallest 	 * possible space. This guarantees that all pages will be filled before 	 * creating a new page.  	 *  	 * @param requiredSize 	 * @return 	 */
+comment|/** 	 * Try to find a page that has at least requiredSize bytes 	 * available. This method selects the page with the smallest 	 * possible space. This guarantees that all pages will be filled before 	 * creating a new page.  	 *  	 * @param requiredSize 	 */
 specifier|public
 name|FreeSpace
 name|find
@@ -431,7 +431,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Read the list from a {@link RandomAccessFile}.      *       * @param raf      * @throws IOException      */
+comment|/**      * Read the list from a {@link RandomAccessFile}.      *       *       * @param buf       * @param offset       * @throws IOException       * @return       */
 specifier|public
 name|int
 name|read
@@ -530,7 +530,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       * @param raf      * @throws IOException      */
+comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       *       * @param buf       * @param offset       * @throws IOException       * @return       */
 specifier|public
 name|int
 name|write

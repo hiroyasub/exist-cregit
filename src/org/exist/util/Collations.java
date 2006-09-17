@@ -198,7 +198,7 @@ name|EXIST_COLLATION_URI
 init|=
 literal|"http://exist-db.org/collation"
 decl_stmt|;
-comment|/**      * Get a {@link Comparator}from the specified URI.      *       * The original code is from saxon (@linkplain http://saxon.sf.net).      *       * @param uri      * @return      * @throws XPathException      */
+comment|/**      * Get a {@link Comparator}from the specified URI.      *       * The original code is from saxon (@linkplain http://saxon.sf.net).      *       * @param uri      * @throws XPathException      */
 specifier|public
 specifier|final
 specifier|static

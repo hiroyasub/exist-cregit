@@ -120,7 +120,7 @@ name|domDb
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      * @param transaction       * @param pageNum       * @param tid       * @param link       */
 specifier|public
 name|AddLinkLoggable
 parameter_list|(

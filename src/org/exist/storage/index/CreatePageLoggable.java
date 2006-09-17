@@ -80,7 +80,7 @@ specifier|protected
 name|long
 name|newPage
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      *       *       * @param transaction       * @param fileId       * @param newPage       */
 specifier|public
 name|CreatePageLoggable
 parameter_list|(

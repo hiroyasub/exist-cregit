@@ -66,7 +66,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Execute this task. 	 *  	 * @param pool the BrokerPool for this database instance. 	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException 	 */
+comment|/** 	 * Execute this task. 	 *  	 * @param broker a DBBroker object that can be used 	 *  	 * @throws EXistException 	 */
 name|void
 name|execute
 parameter_list|(

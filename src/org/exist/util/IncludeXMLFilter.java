@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Description of the Class  *  *@author     wolf  *@created    17. Juni 2002  */
+comment|/**  *  Description of the Class  *  *@author     wolf  *created    17. Juni 2002  */
 end_comment
 
 begin_class

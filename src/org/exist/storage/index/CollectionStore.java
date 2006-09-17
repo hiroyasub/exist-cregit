@@ -118,7 +118,7 @@ name|NEXT_COLLECTION_ID_KEY
 init|=
 literal|"__next_collection_id"
 decl_stmt|;
-comment|/** 	 * @param file 	 * @param btreeBuffers 	 * @param dataBuffers 	 * @throws DBException  	 */
+comment|/**      *       *       * @param pool       * @param cacheManager       * @param file       * @throws DBException       */
 specifier|public
 name|CollectionStore
 parameter_list|(

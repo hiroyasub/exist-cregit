@@ -261,7 +261,7 @@ operator|=
 name|DATE_TIME
 expr_stmt|;
 block|}
-comment|/** 	 * For a given index type bit, return the corresponding 	 * atomic XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type a bit set indicating the type 	 * @return 	 */
+comment|/** 	 * For a given index type bit, return the corresponding 	 * atomic XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type a bit set indicating the type 	 * @return atomic XPath type 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -281,7 +281,7 @@ name|RANGE_INDEX_MASK
 index|]
 return|;
 block|}
-comment|/** 	 * Returns true if the index type specifier has the fulltext index flag 	 * set. 	 *  	 * @param type a bit set indicating the type 	 * @return 	 */
+comment|/** 	 * Returns true if the index type specifier has the fulltext index flag 	 * set. 	 *  	 * @param type a bit set indicating the type 	 * @return true if the index type specifier has the fulltext index flag set. 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -302,7 +302,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/** 	 * Returns true if the index type specifier has the mixed content 	 * flag set. 	 *  	 * @param type a bit set indicating the type 	 * @return 	 */
+comment|/** 	 * Returns true if the index type specifier has the mixed content 	 * flag set. 	 *  	 * @param type a bit set indicating the type 	 * @return true if the index type specifier has the mixed content 	 * flag set. 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -323,7 +323,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/** 	 * Returns the index type bit mask corresponding to a given 	 * XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type 	 * @return 	 */
+comment|/** 	 * Returns the index type bit mask corresponding to a given 	 * XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type XPath type 	 * @return the index type bit mask 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -341,7 +341,7 @@ name|type
 index|]
 return|;
 block|}
-comment|/** 	 * Returns true if the index type bit mask has a range index 	 * bit set. 	 *  	 * @param type a bit set indicating the type 	 * @return 	 */
+comment|/** 	 * Returns true if the index type bit mask has a range index 	 * bit set. 	 *  	 * @param type a bit set indicating the type 	 * @return True if the index type bit mask has a range index bit set. 	 */
 specifier|public
 specifier|static
 specifier|final
@@ -411,7 +411,7 @@ name|RangeIndexSpec
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Returns the XPath type code for this index 	 * (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @return 	 */
+comment|/** 	 * Returns the XPath type code for this index 	 * (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @return XPath type code 	 */
 specifier|public
 name|int
 name|getType
@@ -421,7 +421,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/** 	 * Returns the index type for this index, corresponding 	 * to the constants defined in this class. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the index type for this index, corresponding 	 * to the constants defined in this class. 	 *  	 * @return index type 	 */
 specifier|public
 name|int
 name|getIndexType

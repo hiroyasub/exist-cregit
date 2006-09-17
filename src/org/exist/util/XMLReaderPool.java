@@ -102,7 +102,7 @@ operator|new
 name|DefaultHandler2
 argument_list|()
 decl_stmt|;
-comment|/**      * @param arg0      * @param arg1      * @param arg2      */
+comment|/**      *       *       * @param factory       * @param maxIdle       * @param initIdleCapacity       */
 specifier|public
 name|XMLReaderPool
 parameter_list|(

@@ -34,19 +34,19 @@ specifier|public
 interface|interface
 name|Loggable
 block|{
-comment|/** 	 * Returns the type id of the log entry. This is the type registered 	 * with class {@link LogEntryTypes}. The returned id is used by 	 * {@link JournalReader} to find the correct Loggable instance 	 * that can handle the entry.  	 *  	 * @return 	 */
+comment|/** 	 * Returns the type id of the log entry. This is the type registered 	 * with class {@link LogEntryTypes}. The returned id is used by 	 * {@link JournalReader} to find the correct Loggable instance 	 * that can handle the entry.  	 *  	 * @return Type id of the log entry 	 */
 specifier|public
 name|byte
 name|getLogType
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the transaction id of the transaction to which the      * logged operation belongs.      *       * @return      */
+comment|/**      * Returns the transaction id of the transaction to which the      * logged operation belongs.      *       * @return transaction id       */
 specifier|public
 name|long
 name|getTransactionId
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the {@link Lsn} of the entry.      *       * @return      */
+comment|/**      * Returns the {@link Lsn} of the entry.      *       * @return LSN      */
 specifier|public
 name|long
 name|getLsn
@@ -79,7 +79,7 @@ name|ByteBuffer
 name|in
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the size of the work load of this      * entry.      *       * @return      */
+comment|/**      * Returns the size of the work load of this      * entry.      *       * @return size of the work load of this entry.      */
 specifier|public
 name|int
 name|getLogSize
@@ -101,7 +101,7 @@ parameter_list|()
 throws|throws
 name|LogException
 function_decl|;
-comment|/**      * Returns a description of the entry for debugging purposes.      *       * @return      */
+comment|/**      * Returns a description of the entry for debugging purposes.      *       * @return description      */
 specifier|public
 name|String
 name|dump

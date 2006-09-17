@@ -128,7 +128,7 @@ name|domDb
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      *       *       * @param transaction       * @param prevPage       * @param pageNum       * @param nextPage       * @param oldPrev       * @param oldNext       */
 specifier|public
 name|UpdateHeaderLoggable
 parameter_list|(

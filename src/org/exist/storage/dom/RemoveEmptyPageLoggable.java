@@ -118,7 +118,7 @@ specifier|protected
 name|long
 name|nextPage
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      * @param transaction       * @param pageNum       * @param prevPage       * @param nextPage       */
 specifier|public
 name|RemoveEmptyPageLoggable
 parameter_list|(

@@ -83,7 +83,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Returns the time of creation of the collection. 	 * @return 	 */
+comment|/** 	 * Returns the time of creation of the collection. 	 */
 name|Date
 name|getCreationTime
 parameter_list|()

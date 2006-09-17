@@ -904,7 +904,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the last LSN physically written to the journal.      *       * @return      */
+comment|/**      * Returns the last LSN physically written to the journal.      *       * @return last written LSN      */
 specifier|public
 name|long
 name|lastWrittenLsn
@@ -1605,7 +1605,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**      * Returns all journal files found in the data directory.      *       * @return      */
+comment|/**      * Returns all journal files found in the data directory.      *       * @return all journal files      */
 specifier|public
 name|File
 index|[]
@@ -1651,7 +1651,7 @@ return|return
 name|files
 return|;
 block|}
-comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      * @return      */
+comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      */
 specifier|public
 name|File
 name|getFile

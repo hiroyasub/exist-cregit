@@ -69,7 +69,7 @@ literal|32
 operator|)
 return|;
 block|}
-comment|/**      * Returns the file number encoded in the passed LSN.      *       * @param lsn      * @return      */
+comment|/**      * Returns the file number encoded in the passed LSN.      *       * @param lsn      * @return file number      */
 specifier|public
 specifier|static
 name|long
@@ -89,7 +89,7 @@ operator|&
 name|INT_MASK
 return|;
 block|}
-comment|/**      * Returns the file offset encoded in the passed LSN.      *       * @param lsn      * @return      */
+comment|/**      * Returns the file offset encoded in the passed LSN.      *       * @param lsn      * @return file offset      */
 specifier|public
 specifier|static
 name|long

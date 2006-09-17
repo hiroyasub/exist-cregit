@@ -191,7 +191,7 @@ operator|++
 name|hits
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of total cache hits during the      * lifetime of the cache.      *       * @return      */
+comment|/**      * Returns the number of total cache hits during the      * lifetime of the cache.      *       * @return number of total cache hits      */
 specifier|public
 name|int
 name|getHits
@@ -211,7 +211,7 @@ operator|++
 name|misses
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of total cache faults.      * @return      */
+comment|/**      * Returns the number of total cache faults.      * @return number of total cache faults      */
 specifier|public
 name|int
 name|getMisses
@@ -308,7 +308,7 @@ name|DUMMY
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Return the current amount of trashing.      * @return      */
+comment|/**      * Return the current amount of trashing.      * @return current amount of trashing      */
 specifier|public
 name|int
 name|getThrashing
@@ -318,7 +318,7 @@ return|return
 name|thrashing
 return|;
 block|}
-comment|/**      * Returns true if a cache resize would increase the      * cache efficiency.      *       * @return      */
+comment|/**      * Returns true if a cache resize would increase the      * cache efficiency.      *       * @return True if a cache resize would increase the      * cache efficiency      */
 specifier|public
 name|boolean
 name|resizeNeeded

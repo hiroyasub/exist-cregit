@@ -802,7 +802,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Returns the Tokenizer used for tokenizing strings into 	 * words. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the Tokenizer used for tokenizing strings into 	 * words. 	 *  	 * @return tokenizer 	 */
 specifier|public
 name|Tokenizer
 name|getTokenizer
@@ -877,7 +877,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * This method uses MATCH_EXACT for comparing search terms. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
+comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * This method uses MATCH_EXACT for comparing search terms. 	 *  	 * @return node-set of matching nodes 	 */
 specifier|public
 name|NodeSet
 name|getNodesContaining
@@ -914,7 +914,7 @@ name|MATCH_EXACT
 argument_list|)
 return|;
 block|}
-comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 *  	 * @param doc 	 * @param expr 	 * @return 	 */
+comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 */
 specifier|public
 specifier|abstract
 name|NodeSet

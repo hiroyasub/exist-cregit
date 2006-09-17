@@ -623,7 +623,7 @@ operator|=
 name|dbNodes
 expr_stmt|;
 block|}
-comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy The node's proxy      */
+comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param p     The node's proxy      */
 specifier|public
 name|void
 name|addNode
@@ -3403,7 +3403,7 @@ name|selector
 argument_list|)
 return|;
 block|}
-comment|/**      * Find elements by their tag name. This method is comparable to the DOM's      * method call getElementsByTagName. All elements matching tagName and      * belonging to one of the documents in the DocumentSet docs are returned.      *       * @param docs      *                  Description of the Parameter      * @param tagName      *                  Description of the Parameter      * @return      */
+comment|/**      * Find elements by their tag name. This method is comparable to the DOM's      * method call getElementsByTagName. All elements matching tagName and      * belonging to one of the documents in the DocumentSet docs are returned.      */
 specifier|public
 name|NodeSet
 name|findElementsByTagName

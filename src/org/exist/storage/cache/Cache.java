@@ -96,7 +96,7 @@ name|Cacheable
 name|item
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the cache contains any dirty      * items that need to be written to disk.      *       * @return      */
+comment|/**      * Returns true if the cache contains any dirty      * items that need to be written to disk.      *       */
 specifier|public
 name|boolean
 name|hasDirtyItems
@@ -108,13 +108,13 @@ name|boolean
 name|flush
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the size of this cache. 	 *  	 * @return 	 */
+comment|/** 	 * Get the size of this cache. 	 *  	 * @return size 	 */
 specifier|public
 name|int
 name|getBuffers
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the factor by which the cache should grow      * if it can be resized. The returned factor f will be      * between 0 and 2. A value smaller or equal to 1 means the cache      * can't grow, 1.5 means it grows by 50 percent. A cache with      * growth factor&lt;= 1.0 can also not be shrinked.      *       * A cache is resized by the {@link CacheManager}.      *       * @return      */
+comment|/**      * Returns the factor by which the cache should grow      * if it can be resized. The returned factor f will be      * between 0 and 2. A value smaller or equal to 1 means the cache      * can't grow, 1.5 means it grows by 50 percent. A cache with      * growth factor&lt;= 1.0 can also not be shrinked.      *       * A cache is resized by the {@link CacheManager}.      *       * @return growth factor      */
 specifier|public
 name|double
 name|getGrowthFactor
@@ -138,19 +138,19 @@ name|CacheManager
 name|manager
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the number of buffers currently used. 	 *  	 * @return 	 */
+comment|/** 	 * Get the number of buffers currently used. 	 *  	 */
 specifier|public
 name|int
 name|getUsedBuffers
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the number of times where an object has been successfully 	 * loaded from the cache. 	 * @return 	 */
+comment|/** 	 * Get the number of times where an object has been successfully 	 * loaded from the cache. 	 */
 specifier|public
 name|int
 name|getHits
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the number of times where an object could not be 	 * found in the cache. 	 *  	 * @return 	 */
+comment|/** 	 * Get the number of times where an object could not be 	 * found in the cache. 	 *  	 * @return number of times where an object could not be 	 * found in the cache 	 */
 specifier|public
 name|int
 name|getFails

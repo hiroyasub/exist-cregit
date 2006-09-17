@@ -97,7 +97,7 @@ specifier|protected
 name|byte
 name|fileId
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      *       *       * @param fileId       * @param transaction       * @param type       */
 specifier|public
 name|AbstractBFileLoggable
 parameter_list|(

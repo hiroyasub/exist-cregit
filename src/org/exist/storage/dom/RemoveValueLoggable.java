@@ -131,7 +131,7 @@ specifier|protected
 name|long
 name|backLink
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      * @param transaction       * @param pageNum       * @param tid       * @param offset       * @param oldData       * @param isOverflow       * @param backLink       */
 specifier|public
 name|RemoveValueLoggable
 parameter_list|(

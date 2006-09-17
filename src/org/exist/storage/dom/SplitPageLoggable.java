@@ -198,7 +198,7 @@ operator|=
 name|oldLen
 expr_stmt|;
 block|}
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      *       *       * @param broker       * @param transactId       */
 specifier|public
 name|SplitPageLoggable
 parameter_list|(

@@ -135,7 +135,7 @@ specifier|protected
 name|short
 name|oldRecCnt
 decl_stmt|;
-comment|/**      * @param type      * @param transactionId      */
+comment|/**      * @param transaction       * @param pageNum       * @param prevPage       * @param nextPage       * @param oldData       * @param oldLen       * @param oldTid       * @param oldRecCnt       */
 specifier|public
 name|RemovePageLoggable
 parameter_list|(

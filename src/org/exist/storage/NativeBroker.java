@@ -6862,7 +6862,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the next free collection id. If a collection is removed, its collection id      * is released so it can be reused.      *       * @return      * @throws ReadOnlyException      */
+comment|/**      * Get the next free collection id. If a collection is removed, its collection id      * is released so it can be reused.      *       * @return next free collection id.      * @throws ReadOnlyException      */
 specifier|public
 name|short
 name|getFreeCollectionId
@@ -7062,7 +7062,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the next available unique collection id.      *       * @return      * @throws ReadOnlyException      */
+comment|/**      * Get the next available unique collection id.      *       * @return next available unique collection id      * @throws ReadOnlyException      */
 specifier|public
 name|short
 name|getNextCollectionId
@@ -9433,7 +9433,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  get all the documents in this database matching the given      *  document-type's name.      *      *@param  doctypeName  Description of the Parameter      *@param  user         Description of the Parameter      *@return              The documentsByDoctype value      */
+comment|/**      *  Get all the documents in this database matching the given      *  document-type's name.      * @return The documentsByDoctype value      */
 specifier|public
 name|DocumentSet
 name|getXMLResourcesByDoctype
@@ -11662,7 +11662,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
+comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return Next unused document id 	 * @throws ReadOnlyException 	 */
 specifier|public
 name|int
 name|getFreeResourceId

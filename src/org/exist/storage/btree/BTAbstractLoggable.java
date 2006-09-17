@@ -97,7 +97,7 @@ specifier|protected
 name|NativeBroker
 name|broker
 decl_stmt|;
-comment|/** 	 * @param type 	 * @param transactionId 	 */
+comment|/** 	 * @param type 	 * @param fileId 	 */
 specifier|public
 name|BTAbstractLoggable
 parameter_list|(

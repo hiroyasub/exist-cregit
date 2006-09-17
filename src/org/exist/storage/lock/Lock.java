@@ -57,7 +57,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** 	 * Acquire a lock for read. 	 *  	 * @return 	 * @throws LockException 	 */
+comment|/** 	 * Acquire a lock for read. 	 *  	 * @throws LockException 	 */
 specifier|public
 name|boolean
 name|acquire
@@ -65,7 +65,7 @@ parameter_list|( )
 throws|throws
 name|LockException
 function_decl|;
-comment|/**      * Acquire a lock for read or write.      * mode is one of {@link #READ_LOCK} or      * {@link #WRITE_LOCK}.      *       * @param mode      * @return      * @throws LockException      */
+comment|/**      * Acquire a lock for read or write.      * mode is one of {@link #READ_LOCK} or      * {@link #WRITE_LOCK}.      *       * @param mode      * @throws LockException      */
 specifier|public
 name|boolean
 name|acquire
@@ -76,7 +76,7 @@ parameter_list|)
 throws|throws
 name|LockException
 function_decl|;
-comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *   	 * @param mode 	 * @return 	 * @throws LockException 	 */
+comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *   	 * @param mode 	 * @throws LockException 	 */
 specifier|public
 name|boolean
 name|attempt

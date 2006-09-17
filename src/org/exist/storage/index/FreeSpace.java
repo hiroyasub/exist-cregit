@@ -154,7 +154,7 @@ operator|.
 name|page
 return|;
 block|}
-comment|/**      * Returns the amount of unused space in the page (in bytes).      *       * @return      */
+comment|/**      * Returns the amount of unused space in the page (in bytes).      *       * @return amount of unused space      */
 specifier|public
 name|int
 name|getFree
@@ -164,7 +164,7 @@ return|return
 name|free
 return|;
 block|}
-comment|/**      * The unique page number.      *       * @return      */
+comment|/**      * The unique page number.      *       * @return unique page number      */
 specifier|public
 name|long
 name|getPage

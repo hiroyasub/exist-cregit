@@ -335,7 +335,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new loggable object for the given type.      *       * @param type      * @param transactId the id of the current transaction.      * @return      * @throws LogException      */
+comment|/**      * Create a new loggable object for the given type.      *       * @param type      * @param transactId the id of the current transaction.      * @throws LogException      */
 specifier|public
 specifier|final
 specifier|static

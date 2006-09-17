@@ -465,7 +465,7 @@ return|return
 name|next
 return|;
 block|}
-comment|/**      * Returns the value for key or null if the key      * is not in the map.      *       * @param key      * @return      */
+comment|/**      * Returns the value for key or null if the key      * is not in the map.      *       * @param key      */
 specifier|public
 name|Object
 name|get
@@ -547,7 +547,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Returns the first entry added to the map.      *       * @return      */
+comment|/**      * Returns the first entry added to the map.      */
 specifier|public
 name|Entry
 name|getFirstEntry
@@ -751,7 +751,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Remove the first entry added to the map. 	 *  	 * @return 	 */
+comment|/** 	 * Remove the first entry added to the map. 	 */
 specifier|public
 name|Object
 name|removeFirst
