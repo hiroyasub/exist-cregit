@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Implementation of ResourceSet (a container of Resource objects), using internally both a Map and a Vector.  *  The Map is keyed by the Id of each resource.  *   *@author     Jean-Marc Vanel  *@created    2 April 2003  */
+comment|/**  *  Implementation of ResourceSet (a container of Resource objects), using internally both a Map and a Vector.  *  The Map is keyed by the Id of each resource.  *   *@author     Jean-Marc Vanel (2 April 2003)  */
 end_comment
 
 begin_class

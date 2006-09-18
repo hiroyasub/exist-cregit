@@ -914,7 +914,7 @@ return|return
 name|lastLsnWritten
 return|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @throws TransactionException      */
 specifier|public
 name|void
 name|flushToLog
@@ -931,7 +931,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
 specifier|public
 specifier|synchronized
 name|void

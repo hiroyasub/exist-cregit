@@ -3503,7 +3503,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Regular expression search 	 * @param type  like type argument for {@link RegexMatcher} constructor 	 * @param flags like flags argument for {@link RegexMatcher} constructor 	 *  */
+comment|/** Regular expression search 	 * @param type  like type argument for {@link org.exist.storage.RegexMatcher} constructor 	 * @param flags like flags argument for {@link org.exist.storage.RegexMatcher} constructor 	 *  */
 specifier|public
 name|NodeSet
 name|match

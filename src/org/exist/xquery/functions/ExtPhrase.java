@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  phrase() function : search an exact phrase in a NodeSet  *  *@author     Bruno Chatel<bcha@chadocs.com>  *@created    March 30, 2005  */
+comment|/**  *  phrase() function : search an exact phrase in a NodeSet  *  *@author     Bruno Chatel<bcha@chadocs.com> (March 30, 2005)  */
 end_comment
 
 begin_class

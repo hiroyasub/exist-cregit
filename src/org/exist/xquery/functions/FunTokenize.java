@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @see http://www.w3.org/TR/xpath-functions/#func-tokenize  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**   * @see<a href="http://www.w3.org/TR/xpath-functions/#func-tokenize">http://www.w3.org/TR/xpath-functions/#func-tokenize</a>  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class

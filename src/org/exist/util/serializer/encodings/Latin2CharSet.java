@@ -18,7 +18,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Latin2 character set. Adopted from Saxon {@link http://saxon.sourceforge.net}.  *   */
+comment|/**  * Latin2 character set. Adopted from Saxon (http://saxon.sourceforge.net).  */
 end_comment
 
 begin_class

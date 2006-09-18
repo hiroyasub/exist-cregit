@@ -1907,7 +1907,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync.MAJOR_SYNC}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 *            Sync.MAJOR_SYNC or Sync.MINOR_SYNC 	 */
+comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync#MAJOR_SYNC}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 *            Sync.MAJOR_SYNC or Sync.MINOR_SYNC 	 */
 specifier|public
 specifier|abstract
 name|void

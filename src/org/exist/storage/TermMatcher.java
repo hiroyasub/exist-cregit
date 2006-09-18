@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Implementations of this interface can be passed to method  * {@link org.exist.storage.TextSearchEngine#getNodes(DocumentSet, NodeSet, TermMatcher, CharSequence)}   * to check if an index entry matches a given search term.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implementations of this interface can be passed to method * {@link org.exist.storage.TextSearchEngine#getNodes(XQueryContext, DocumentSet, NodeSet, TermMatcher, CharSequence)}   * to check if an index entry matches a given search term.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_interface

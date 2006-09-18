@@ -3355,7 +3355,7 @@ name|FILE_FORMAT_VERSION_ID
 argument_list|)
 return|;
 block|}
-comment|/**      * Put data under given key.      *       *       * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @see {@link BFile#put(Value, ByteArray, boolean)}      * @param key       * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      * @throws ReadOnlyException       */
+comment|/**      * Put data under given key.      *       * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @see BFile#put(Value,byte[],boolean)      * @param key       * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      * @throws ReadOnlyException       */
 specifier|public
 name|long
 name|put
@@ -3451,7 +3451,7 @@ name|overwrite
 argument_list|)
 return|;
 block|}
-comment|/**      * Convinience method for {@link BFile#put(Value, byte[], true)}.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
+comment|/**      * Convinience method for {@link BFile#put(Value, byte[], boolean)}, overwrite is true.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put

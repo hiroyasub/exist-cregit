@@ -3473,7 +3473,7 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.Sync#MINOR_SYNC} or {@link org.exist.storage.Sync#MINOR_SYNC}    	 */
+comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or           * {@link org.exist.storage.sync.Sync#MINOR_SYNC}    	 */
 specifier|public
 name|void
 name|triggerSync

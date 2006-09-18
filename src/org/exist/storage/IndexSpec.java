@@ -566,7 +566,7 @@ return|return
 name|depth
 return|;
 block|}
-comment|/**      * Set the current index depth {@see #getIndexDepth()}.      *       * @param depth Current index depth      */
+comment|/**      * Set the current index depth.      *       * @see #getIndexDepth()      * @param depth Current index depth      */
 specifier|public
 name|void
 name|setIndexDepth
