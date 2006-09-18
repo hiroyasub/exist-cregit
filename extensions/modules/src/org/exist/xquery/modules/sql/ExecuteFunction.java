@@ -617,7 +617,7 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<sql:table xmlns=\""
+literal|"<sql:table xmlns:sql=\""
 operator|+
 name|SQLModule
 operator|.
