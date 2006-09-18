@@ -69,7 +69,27 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -168,6 +188,18 @@ operator|.
 name|xacml
 operator|.
 name|XACMLConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
 import|;
 end_import
 
@@ -2032,7 +2064,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.growth-factor"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
 argument_list|,
 operator|new
 name|Integer
@@ -2045,13 +2079,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.growth-factor: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.growth-factor"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2077,7 +2117,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.fragmentation"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|,
 operator|new
 name|Integer
@@ -2090,13 +2132,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.fragmentation: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.fragmentation"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2122,7 +2170,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.consistency-checks"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
 argument_list|,
 name|Boolean
 operator|.
@@ -2141,13 +2191,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.consistency-checks: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.consistency-checks"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
 argument_list|)
 argument_list|)
 expr_stmt|;

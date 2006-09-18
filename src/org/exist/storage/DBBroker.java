@@ -408,7 +408,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the base class for all database backends. All the basic database operations like storing,  * removing or index access are provided by subclasses of this class.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the base class for all database backends. All the basic database  * operations like storing, removing or index access are provided by subclasses  * of this class.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -570,17 +570,41 @@ name|referenceCount
 init|=
 literal|0
 decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
+init|=
+literal|"xupdate.growth-factor"
+decl_stmt|;
 specifier|protected
 name|int
 name|xupdateGrowthFactor
 init|=
 literal|1
 decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
+init|=
+literal|"xupdate.fragmentation"
+decl_stmt|;
 specifier|protected
 name|int
 name|docFragmentationLimit
 init|=
 literal|25
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+init|=
+literal|"xupdate.consistency-checks"
 decl_stmt|;
 specifier|protected
 name|boolean
@@ -592,7 +616,7 @@ specifier|protected
 name|String
 name|id
 decl_stmt|;
-comment|/** 	 * Save the global symbol table. The global symbol table stores 	 * QNames and namespace/prefix mappings. 	 *   	 * @throws EXistException 	 */
+comment|/** 	 * Save the global symbol table. The global symbol table stores QNames and 	 * namespace/prefix mappings. 	 *  	 * @throws EXistException 	 */
 specifier|protected
 name|void
 name|saveSymbols
@@ -699,7 +723,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** 	 * Read the global symbol table. The global symbol table stores 	 * QNames and namespace/prefix mappings. 	 *   	 * @throws EXistException 	 */
+comment|/** 	 * Read the global symbol table. The global symbol table stores QNames and 	 * namespace/prefix mappings. 	 *  	 * @throws EXistException 	 */
 specifier|protected
 name|void
 name|loadSymbols
@@ -1020,11 +1044,12 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"xupdate.growth-factor"
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
 argument_list|)
 operator|)
-operator|<
-literal|0
+operator|==
+operator|-
+literal|1
 condition|)
 name|xupdateGrowthFactor
 operator|=
@@ -1039,11 +1064,12 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"xupdate.fragmentation"
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|)
 operator|)
-operator|<
-literal|0
+operator|==
+operator|-
+literal|1
 condition|)
 name|docFragmentationLimit
 operator|=
@@ -1061,7 +1087,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"xupdate.consistency-checks"
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
 argument_list|)
 operator|)
 operator|!=
@@ -1113,8 +1139,8 @@ name|user
 operator|=
 name|user
 expr_stmt|;
-comment|/*synchronized (this){ 			System.out.println("DBBroker.setUser(" + user.getName() + ")"); 			Thread.dumpStack(); 		}*/
-comment|//debugging user escalation permissions problem - deliriumsky.
+comment|/* 		 * synchronized (this){ System.out.println("DBBroker.setUser(" + 		 * user.getName() + ")"); Thread.dumpStack(); } 		 */
+comment|// debugging user escalation permissions problem - deliriumsky.
 block|}
 comment|/** 	 * @return The user that is currently using this DBBroker object 	 */
 specifier|public
@@ -1142,15 +1168,15 @@ name|ElementIndex
 name|getElementIndex
 parameter_list|()
 function_decl|;
-comment|/**  Flush all data that has not been written before. */
+comment|/** Flush all data that has not been written before. */
 specifier|public
 name|void
 name|flush
 parameter_list|()
 block|{
-comment|/* 		 *  do nothing 		 */
+comment|/* 		 * do nothing 		 */
 block|}
-comment|/** 	 *  Adds all the documents in the database to the specified DocumentSet.      *        *  @param docs a (possibly empty) document set to which the found      *  documents are added. 	 * 	 */
+comment|/** 	 * Adds all the documents in the database to the specified DocumentSet. 	 *  	 * @param docs 	 *            a (possibly empty) document set to which the found documents 	 *            are added. 	 *  	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
@@ -1160,8 +1186,8 @@ name|DocumentSet
 name|docs
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 * 	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name); 	*/
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection getCollection(String name); 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1171,8 +1197,8 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return 	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection getCollection(String name, long address); 	*/
-comment|/** 	 * Returns the database collection identified by the specified path. 	 * The storage address is used to locate the collection without 	 * looking up the path in the btree. 	 *  	 * @return Database collection 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. The 	 * storage address is used to locate the collection without looking up the 	 * path in the btree. 	 *  	 * @return deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection getCollection(String name, long address); 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. The 	 * storage address is used to locate the collection without looking up the 	 * path in the btree. 	 *  	 * @return Database collection 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1185,8 +1211,8 @@ name|long
 name|address
 parameter_list|)
 function_decl|;
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name the collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public abstract Collection openCollection(String name, int lockMode); 	*/
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by its 	 * absolute path, e.g. /db/shakespeare. It will be loaded and locked according to the 	 * lockMode argument.  	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param uri The collection path 	 * @param lockMode one of the modes specified in class {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by 	 * its absolute path, e.g. /db/shakespeare. It will be loaded and locked 	 * according to the lockMode argument. 	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name 	 *            the collection path 	 * @param lockMode 	 *            one of the modes specified in class 	 *            {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection openCollection(String name, int lockMode); 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by 	 * its absolute path, e.g. /db/shakespeare. It will be loaded and locked 	 * according to the lockMode argument. 	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param uri 	 *            The collection path 	 * @param lockMode 	 *            one of the modes specified in class 	 *            {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -1199,8 +1225,8 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public Collection getOrCreateCollection(Txn transaction, String name) 		throws PermissionDeniedException { 		return null; 	} 	*/
-comment|/** 	 *  Returns the database collection identified by the specified path. 	 * If the collection does not yet exist, it is created - including all 	 * ancestors. The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public Collection getOrCreateCollection(Txn transaction, String name) 	 * throws PermissionDeniedException { return null; } 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -1218,7 +1244,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 *  Returns the configuration object used to initialize the  	 * current database instance. 	 *  	 */
+comment|/** 	 * Returns the configuration object used to initialize the current database 	 * instance. 	 *  	 */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -1228,7 +1254,7 @@ return|return
 name|config
 return|;
 block|}
-comment|/** 	 *  Return a {@link org.exist.storage.dom.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
+comment|/** 	 * Return a {@link org.exist.storage.dom.DOMFileIterator} starting at the 	 * specified node. 	 *  	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1248,7 +1274,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Return a {@link org.exist.storage.dom.DOMFileIterator} starting 	 * at the specified node. 	 * 	 */
+comment|/** 	 * Return a {@link org.exist.storage.dom.DOMFileIterator} starting at the 	 * specified node. 	 *  	 */
 specifier|public
 name|Iterator
 name|getDOMIterator
@@ -1265,7 +1291,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting 	 * at the specified node. 	 *  	 * @param node 	 * @return NodeIterator of node. 	 */
+comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting at the 	 * specified node. 	 *  	 * @param node 	 * @return NodeIterator of node. 	 */
 specifier|public
 name|Iterator
 name|getNodeIterator
@@ -1282,8 +1308,8 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 *  	 * deprecated Use XmldbURI instead! 	 * 	public abstract Document getXMLResource(String path) throws PermissionDeniedException; 	*/
-comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 */
+comment|/** 	 * Return the document stored at the specified path. The path should be 	 * absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 *         specified location. 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Document getXMLResource(String path) throws 	 * PermissionDeniedException; 	 */
+comment|/** 	 * Return the document stored at the specified path. The path should be 	 * absolute, e.g. /db/shakespeare/plays/hamlet.xml. 	 *  	 * @return the document or null if no document could be found at the 	 *         specified location. 	 */
 specifier|public
 specifier|abstract
 name|Document
@@ -1295,8 +1321,8 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * deprecated Use XmldbURI instead! 	 * 	public abstract DocumentImpl getXMLResource(String docPath, int lockMode)  		throws PermissionDeniedException; 	*/
-comment|/** 	 *  Return the document stored at the specified path. The 	 * path should be absolute, e.g. /db/shakespeare/plays/hamlet.xml, 	 * with the specified lock. 	 *  	 * @return the document or null if no document could be found at the 	 * specified location. 	 */
+comment|/** 	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract DocumentImpl getXMLResource(String docPath, int lockMode) 	 * throws PermissionDeniedException; 	 */
+comment|/** 	 * Return the document stored at the specified path. The path should be 	 * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock. 	 *  	 * @return the document or null if no document could be found at the 	 *         specified location. 	 */
 specifier|public
 specifier|abstract
 name|DocumentImpl
@@ -1324,7 +1350,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be      * added between adjacent elements in mixed content nodes. 	 */
+comment|/** 	 * Get the string value of the specified node. 	 *  	 * If addWhitespace is set to true, an extra space character will be added 	 * between adjacent elements in mixed content nodes. 	 */
 specifier|public
 name|String
 name|getNodeValue
@@ -1344,7 +1370,7 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Find all Nodes whose string value is equal to expr in the document set. 	 * 	 *@param  context   the set of nodes to process 	 *@param  docs      the current set of documents 	 *@param  relation  less-than, equal etc. One of the constants specified in 	 *{@link org.exist.xquery.Constants} 	 *@param  expr      the string value to search for         	 */
+comment|/** 	 * Find all Nodes whose string value is equal to expr in the document set. 	 *  	 * @param context 	 *            the set of nodes to process 	 * @param docs 	 *            the current set of documents 	 * @param relation 	 *            less-than, equal etc. One of the constants specified in 	 *            {@link org.exist.xquery.Constants} 	 * @param expr 	 *            the string value to search for 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -1369,7 +1395,7 @@ name|Collator
 name|collator
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Get a range of nodes with given owner document from the database, 	 *  starting at first and ending at last. 	 * 	 *@param  doc    the document the nodes belong to 	 *@param  first  unique id of the first node to retrieve 	 *@param  last   unique id of the last node to retrieve 	 */
+comment|/** 	 * Get a range of nodes with given owner document from the database, 	 * starting at first and ending at last. 	 *  	 * @param doc 	 *            the document the nodes belong to 	 * @param first 	 *            unique id of the first node to retrieve 	 * @param last 	 *            unique id of the last node to retrieve 	 */
 specifier|public
 specifier|abstract
 name|NodeList
@@ -1385,14 +1411,14 @@ name|long
 name|last
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Get an instance of the Serializer used for converting nodes back to XML. 	 *  Subclasses of DBBroker may have specialized subclasses of Serializer to 	 *  convert a node into an XML-string 	 */
+comment|/** 	 * Get an instance of the Serializer used for converting nodes back to XML. 	 * Subclasses of DBBroker may have specialized subclasses of Serializer to 	 * convert a node into an XML-string 	 */
 specifier|public
 specifier|abstract
 name|Serializer
 name|getSerializer
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Get the TextSearchEngine associated with this broker. Every subclass of 	 *  DBBroker will have it's own implementation of TextSearchEngine. 	 */
+comment|/** 	 * Get the TextSearchEngine associated with this broker. Every subclass of 	 * DBBroker will have it's own implementation of TextSearchEngine. 	 */
 specifier|public
 specifier|abstract
 name|TextSearchEngine
@@ -1411,7 +1437,7 @@ name|NativeValueIndexByQName
 name|getQNameValueIndex
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Is string comparison case sensitive? 	 * 	 */
+comment|/** 	 * Is string comparison case sensitive? 	 *  	 */
 specifier|public
 name|boolean
 name|isCaseSensitive
@@ -1427,7 +1453,7 @@ name|Serializer
 name|newSerializer
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Get a node with given owner document and id from the database. 	 * 	 *@param  doc  the document the node belongs to 	 *@param  gid  the node's unique identifier 	 */
+comment|/** 	 * Get a node with given owner document and id from the database. 	 *  	 * @param doc 	 *            the document the node belongs to 	 * @param gid 	 *            the node's unique identifier 	 */
 specifier|public
 specifier|abstract
 name|StoredNode
@@ -1449,7 +1475,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove the collection and all its subcollections from 	 * the database. 	 *  	 */
+comment|/** 	 * Remove the collection and all its subcollections from the database. 	 *  	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -1464,7 +1490,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Remove a document from the database. 	 * 	 */
+comment|/** 	 * Remove a document from the database. 	 *  	 */
 specifier|public
 name|void
 name|removeXMLResource
@@ -1505,7 +1531,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Reindex a collection. 	 *  	 * @param collectionName 	 * @throws PermissionDeniedException 	 * 	public abstract void reindexCollection(String collectionName)  		throws PermissionDeniedException; 	*/
+comment|/** 	 * Reindex a collection. 	 *  	 * @param collectionName 	 * @throws PermissionDeniedException 	 *  	 * public abstract void reindexCollection(String collectionName) throws 	 * PermissionDeniedException; 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1525,7 +1551,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      *      * @param collection to store 	 */
+comment|/** 	 * Saves the specified collection to storage. Collections are usually cached 	 * in memory. If a collection is modified, this method needs to be called to 	 * make the changes persistent. Note: appending a new document to a 	 * collection does not require a save. Instead, 	 * {@link #addDocument(Collection, DocumentImpl)} is called. 	 *  	 * @param collection 	 *            to store 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1546,14 +1572,14 @@ name|closeDocument
 parameter_list|()
 block|{
 block|}
-comment|/** 	 *  Shut down the database instance. All open files, jdbc connections etc. should be 	 *  closed. 	 */
+comment|/** 	 * Shut down the database instance. All open files, jdbc connections etc. 	 * should be closed. 	 */
 specifier|public
 name|void
 name|shutdown
 parameter_list|()
 block|{
 block|}
-comment|/** 	 *  Store a node into the database. This method is called by the parser to 	 *  write a node to the storage backend. 	 * 	 *@param  node         the node to be stored 	 *@param  currentPath  path expression which points to this node's 	 *      element-parent or to itself if it is an element (currently used by 	 *      the Broker to determine if a node's content should be 	 *      fulltext-indexed). 	 */
+comment|/** 	 * Store a node into the database. This method is called by the parser to 	 * write a node to the storage backend. 	 *  	 * @param node 	 *            the node to be stored 	 * @param currentPath 	 *            path expression which points to this node's element-parent or 	 *            to itself if it is an element (currently used by the Broker to 	 *            determine if a node's content should be fulltext-indexed). 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1627,7 +1653,7 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Update indexes for the given element node. This method is called when the indexer      * encounters a closing element tag. It updates any range indexes defined on the      * element value and adds the element id to the structural index.      *       * @param node the current element node      * @param currentPath node path leading to the element      * @param content contains the string value of the element. Needed if a range index      * is defined on it.      * @param oldAddress when copying a node, contains the storage address of the old node.      */
+comment|/** 	 * Update indexes for the given element node. This method is called when the 	 * indexer encounters a closing element tag. It updates any range indexes 	 * defined on the element value and adds the element id to the structural 	 * index. 	 *  	 * @param node 	 *            the current element node 	 * @param currentPath 	 *            node path leading to the element 	 * @param content 	 *            contains the string value of the element. Needed if a range 	 *            index is defined on it. 	 * @param oldAddress 	 *            when copying a node, contains the storage address of the old 	 *            node. 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1647,7 +1673,7 @@ name|long
 name|oldAddress
 parameter_list|)
 function_decl|;
-comment|/** 	 * Store a document (descriptor) into the database      * (all metadata information which is returned by       * {@link org.exist.dom.DocumentImpl#serialize()}). 	 * 	 * @param doc the document's metadata to store. 	 */
+comment|/** 	 * Store a document (descriptor) into the database (all metadata information 	 * which is returned by {@link org.exist.dom.DocumentImpl#serialize()}). 	 *  	 * @param doc 	 *            the document's metadata to store. 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1660,7 +1686,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Stores the given data under the given binary resource descriptor       * (BinaryDocument).      *       * @param blob the binary document descriptor      * @param data the document binary data      */
+comment|/** 	 * Stores the given data under the given binary resource descriptor 	 * (BinaryDocument). 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @param data 	 *            the document binary data 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1677,7 +1703,7 @@ index|[]
 name|data
 parameter_list|)
 function_decl|;
-comment|/**      * Stores the given data under the given binary resource descriptor       * (BinaryDocument).      *       * @param blob the binary document descriptor      * @param is the document binary data as input stream      */
+comment|/** 	 * Stores the given data under the given binary resource descriptor 	 * (BinaryDocument). 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @param is 	 *            the document binary data as input stream 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1702,7 +1728,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/**      * Retrieve the binary data stored under the resource descriptor      * BinaryDocument.      *       * @param blob the binary document descriptor      * @return the document binary data      */
+comment|/** 	 * Retrieve the binary data stored under the resource descriptor 	 * BinaryDocument. 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @return the document binary data 	 */
 specifier|public
 specifier|abstract
 name|byte
@@ -1736,7 +1762,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Completely delete this binary document (descriptor and binary      * data).      *       * @param blob the binary document descriptor      * @throws PermissionDeniedException if you don't have the right to do this      */
+comment|/** 	 * Completely delete this binary document (descriptor and binary data). 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @throws PermissionDeniedException 	 *             if you don't have the right to do this 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1751,8 +1777,8 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 * deprecated Use XmldbURI instead 	 * 	public abstract void moveCollection(Txn transaction, Collection collection, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Move a collection and all its subcollections to another collection and rename it. 	 * Moving a collection just modifies the collection path and all resource paths. The 	 * data itself remains in place. 	 *  	 * @param collection the collection to move 	 * @param destination the destination collection 	 * @param newName the new name the collection should have in the destination collection 	 */
+comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection deprecated Use XmldbURI instead 	 *  	 * public abstract void moveCollection(Txn transaction, Collection 	 * collection, Collection destination, String newName) throws 	 * PermissionDeniedException, LockException; 	 */
+comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1775,8 +1801,8 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param new 	 *            Name the new name the resource should have in the destination 	 *            collection deprecated Use XmldbURI version instead 	 *  	 * public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, 	 * Collection destination, String newName) throws PermissionDeniedException, 	 * LockException; 	 */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1799,8 +1825,8 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc the resource to move 	 * @param destination the destination collection 	 * @param new Name the new name the resource should have in the destination collection 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void copyCollection(Txn transaction, Collection collection, Collection destination, String newName) 	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param collection the resource to move 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param new 	 *            Name the new name the resource should have in the destination 	 *            collection deprecated Use XmldbURI version instead 	 *  	 * public abstract void copyCollection(Txn transaction, Collection 	 * collection, Collection destination, String newName) throws 	 * PermissionDeniedException, LockException; 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param collection 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1823,8 +1849,8 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * deprecated Use XmldbURI version instead 	 * 	public abstract void copyXMLResource(Txn transaction, DocumentImpl doc, Collection destination, String newName)  	throws PermissionDeniedException, LockException; 	*/
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 *             deprecated Use XmldbURI version instead 	 *  	 * public abstract void copyXMLResource(Txn transaction, DocumentImpl doc, 	 * Collection destination, String newName) throws PermissionDeniedException, 	 * LockException; 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1847,7 +1873,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Defragment pages of this document. This will minimize the number of      * split pages.      *       * @param doc to defrag      */
+comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1881,7 +1907,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/**      * Sync dom and collection state data (pages) to disk.      * In case of {@link org.exist.storage.sync.Sync.MAJOR_SYNC}, sync all      * states (dom, collection, text and element) to disk.      *       * @param syncEvent Sync.MAJOR_SYNC or Sync.MINOR_SYNC      */
+comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync.MAJOR_SYNC}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 *            Sync.MAJOR_SYNC or Sync.MINOR_SYNC 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1891,7 +1917,7 @@ name|int
 name|syncEvent
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Update a node's data. To keep nodes in a correct sequential order, it is sometimes  	 * necessary to update a previous written node. Warning: don't use it for other purposes. 	 * 	 *@param  node  Description of the Parameter 	 */
+comment|/** 	 * Update a node's data. To keep nodes in a correct sequential order, it is 	 * sometimes necessary to update a previous written node. Warning: don't use 	 * it for other purposes. 	 *  	 * @param node 	 *            Description of the Parameter 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1904,7 +1930,7 @@ name|StoredNode
 name|node
 parameter_list|)
 function_decl|;
-comment|/** 	 * Is the database running read-only? Returns false by default. 	 * Storage backends should override this if they support read-only 	 * mode. 	 *  	 * @return boolean 	 */
+comment|/** 	 * Is the database running read-only? Returns false by default. Storage 	 * backends should override this if they support read-only mode. 	 *  	 * @return boolean 	 */
 specifier|public
 name|boolean
 name|isReadOnly
@@ -2033,7 +2059,7 @@ name|void
 name|endRemove
 parameter_list|()
 function_decl|;
-comment|/** 	 * Create a temporary document in the temp collection and store the 	 * supplied data. 	 *  	 * @param doc 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Create a temporary document in the temp collection and store the supplied 	 * data. 	 *  	 * @param doc 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
 name|DocumentImpl
@@ -2055,21 +2081,21 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Clean up any temporary resources. 	 * 	 */
+comment|/** 	 * Clean up any temporary resources. 	 *  	 */
 specifier|public
 specifier|abstract
 name|void
 name|cleanUpTempCollection
 parameter_list|()
 function_decl|;
-comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 * 	 */
+comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 */
 specifier|public
 specifier|abstract
 name|void
 name|cleanUpTempResources
 parameter_list|()
 function_decl|;
-comment|/**      * Remove the temporary document fragments specified by a list      * of names.      *       * @param docs      */
+comment|/** 	 * Remove the temporary document fragments specified by a list of names. 	 *  	 * @param docs 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -2079,7 +2105,7 @@ name|List
 name|docs
 parameter_list|)
 function_decl|;
-comment|/** 	 *    	 */
+comment|/** 	 *  	 */
 specifier|public
 specifier|abstract
 name|DocumentSet
