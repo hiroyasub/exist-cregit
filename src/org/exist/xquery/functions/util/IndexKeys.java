@@ -355,7 +355,7 @@ name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
+comment|/**      * @param context      */
 specifier|public
 name|IndexKeys
 parameter_list|(

@@ -324,7 +324,7 @@ argument_list|,
 literal|"Moved to 'response' module."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|RedirectTo
 parameter_list|(

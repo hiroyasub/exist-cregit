@@ -479,7 +479,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns just the error message, not including      * line numbers or the call stack.      *       * @return      */
+comment|/**      * Returns just the error message, not including      * line numbers or the call stack.      *       * @return error message      */
 specifier|public
 name|String
 name|getDetailMessage

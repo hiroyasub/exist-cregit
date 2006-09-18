@@ -681,7 +681,7 @@ return|return
 name|accessCtx
 return|;
 block|}
-comment|/** 	 * Process the modification. This is the main method that has to be implemented  	 * by all subclasses. 	 *  	 * @return 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException 	 * @throws XPathException 	 */
+comment|/**      * Process the modification. This is the main method that has to be implemented       * by all subclasses.      *       * @param transaction       * @throws PermissionDeniedException       * @throws LockException       * @throws EXistException       * @throws XPathException       */
 specifier|public
 specifier|abstract
 name|long

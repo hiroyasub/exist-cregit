@@ -97,7 +97,7 @@ specifier|final
 name|XQueryContext
 name|parentContext
 decl_stmt|;
-comment|/** 	 * @param broker 	 */
+comment|/** 	 * @param parentContext 	 */
 specifier|public
 name|ModuleContext
 parameter_list|(

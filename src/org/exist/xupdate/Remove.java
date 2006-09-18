@@ -202,7 +202,7 @@ name|Remove
 extends|extends
 name|Modification
 block|{
-comment|/** 	 * Constructor for Remove. 	 *  	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
+comment|/**      * Constructor for Remove.      *       *       * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
 specifier|public
 name|Remove
 parameter_list|(

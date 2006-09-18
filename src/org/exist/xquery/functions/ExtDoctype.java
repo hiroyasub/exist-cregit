@@ -313,7 +313,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|ExtDoctype
 parameter_list|(

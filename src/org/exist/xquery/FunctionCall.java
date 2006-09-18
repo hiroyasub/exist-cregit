@@ -667,7 +667,7 @@ name|seq
 argument_list|)
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @return      * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @throws XPathException      */
 specifier|public
 name|Sequence
 name|evalFunction

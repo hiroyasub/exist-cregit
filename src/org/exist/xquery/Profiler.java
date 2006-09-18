@@ -368,7 +368,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**      * Is profiling enabled?      *       * @return      */
+comment|/**      * Is profiling enabled?      *       * @return True if profiling is enabled      */
 specifier|public
 specifier|final
 name|boolean
@@ -1087,7 +1087,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Print out a single profiling message for the given       * expression object.      *       * @param expr      * @param message      */
+comment|/**      * Print out a single profiling message for the given       * expression object.      *       *       * @param level       * @param title       * @param sequence       * @param expr       */
 specifier|public
 specifier|final
 name|void

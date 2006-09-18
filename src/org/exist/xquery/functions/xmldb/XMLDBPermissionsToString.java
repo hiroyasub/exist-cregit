@@ -247,7 +247,7 @@ name|ZERO_OR_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|XMLDBPermissionsToString
 parameter_list|(

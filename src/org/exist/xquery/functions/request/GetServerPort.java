@@ -278,7 +278,7 @@ argument_list|,
 literal|"Renamed to request:get-server-port."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|GetServerPort
 parameter_list|(

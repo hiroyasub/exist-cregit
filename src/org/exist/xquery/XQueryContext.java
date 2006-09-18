@@ -1275,7 +1275,7 @@ operator|=
 name|expr
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the root expression of the XQuery associated with 	 * this context. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the root expression of the XQuery associated with 	 * this context. 	 *  	 * @return root expression 	 */
 specifier|public
 name|Expression
 name|getRootExpression
@@ -1296,7 +1296,7 @@ name|expressionCounter
 operator|++
 return|;
 block|}
-comment|/**      * Returns the number of expression objects in the internal      * representation of the query. Used to estimate the size      * of the query.      *       * @return      */
+comment|/**      * Returns the number of expression objects in the internal      * representation of the query. Used to estimate the size      * of the query.      *       * @return number of expression objects       */
 specifier|public
 name|int
 name|getExpressionCount
@@ -1681,7 +1681,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the current default function namespace. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the current default function namespace. 	 *  	 * @return current default function namespace 	 */
 specifier|public
 name|String
 name|getDefaultFunctionNamespace
@@ -1850,7 +1850,7 @@ return|return
 name|defaultCollator
 return|;
 block|}
-comment|/** 	 * Return the namespace URI mapped to the registered prefix 	 * or null if the prefix is not registered. 	 *  	 * @param prefix 	 * @return 	 */
+comment|/** 	 * Return the namespace URI mapped to the registered prefix 	 * or null if the prefix is not registered. 	 *  	 * @param prefix 	 * @return namespace 	 */
 specifier|public
 name|String
 name|getURIForPrefix
@@ -1907,7 +1907,7 @@ return|;
 block|}
 comment|/* old code checked namespaces first 		String ns = (String) namespaces.get(prefix); 		if (ns == null) 			// try in-scope namespace declarations 			return inScopeNamespaces == null 				? null 				: (String) inScopeNamespaces.get(prefix); 		else 			return ns;             */
 block|}
-comment|/** 	 * Return the prefix mapped to the registered URI or 	 * null if the URI is not registered. 	 *  	 * @param uri 	 * @return 	 */
+comment|/** 	 * @param uri          * @return the prefix mapped to the registered URI or null if the URI           * is not registered. 	 */
 specifier|public
 name|String
 name|getPrefixForURI
@@ -2152,7 +2152,7 @@ operator|=
 name|set
 expr_stmt|;
 block|}
-comment|/** 	 * Get the set of statically known documents. 	 *  	 * @return 	 */
+comment|/** 	 * @return set of statically known documents. 	 */
 specifier|public
 name|DocumentSet
 name|getStaticallyKnownDocuments
@@ -2357,7 +2357,7 @@ return|return
 name|staticDocuments
 return|;
 block|}
-comment|/** 	 * Should loaded documents be locked? 	 *       * @see #setLockDocumentsOnLoad(boolean)      *  	 * @return 	 */
+comment|/** 	 * Should loaded documents be locked? 	 *           * @see #setLockDocumentsOnLoad(boolean)          *  	 */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
@@ -2391,7 +2391,7 @@ name|DocumentSet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the set of documents that have been loaded and 	 * locked during query execution. 	 *       * @see #setLockDocumentsOnLoad(boolean)      *  	 * @return 	 */
+comment|/** 	 * Returns the set of documents that have been loaded and 	 * locked during query execution. 	 *           * @see #setLockDocumentsOnLoad(boolean)          *  	 * @return set of loaded and locked documents 	 */
 specifier|public
 name|DocumentSet
 name|getLockedDocuments
@@ -2429,7 +2429,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @return      * @throws XPathException       */
+comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @throws XPathException       */
 specifier|public
 name|DocumentSet
 name|releaseUnusedDocuments
@@ -2744,7 +2744,7 @@ name|clearUpdateListeners
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if whitespace between constructed element nodes 	 * should be stripped by default. 	 *  	 * @return 	 */
+comment|/** 	 * Returns true if whitespace between constructed element nodes 	 * should be stripped by default. 	 */
 specifier|public
 name|boolean
 name|stripWhitespace
@@ -2769,7 +2769,7 @@ operator|=
 name|strip
 expr_stmt|;
 block|}
-comment|/** 	 * Return an iterator over all built-in modules currently 	 * registered. 	 *  	 * @return 	 */
+comment|/** 	 * @return iterator over all built-in modules currently 	 * registered. 	 */
 specifier|public
 name|Iterator
 name|getModules
@@ -2785,7 +2785,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the built-in module registered for the given namespace 	 * URI. 	 *  	 * @param namespaceURI 	 * @return 	 */
+comment|/** 	 * Get the built-in module registered for the given namespace 	 * URI. 	 *  	 * @param namespaceURI 	 * @return built-in module 	 */
 specifier|public
 name|Module
 name|getModule
@@ -2806,7 +2806,7 @@ name|namespaceURI
 argument_list|)
 return|;
 block|}
-comment|/** 	 * For compiled expressions: check if the source of any 	 * module imported by the current query has changed since 	 * compilation. 	 *  	 * @return 	 */
+comment|/** 	 * For compiled expressions: check if the source of any 	 * module imported by the current query has changed since 	 * compilation. 	 */
 specifier|public
 name|boolean
 name|checkModulesValid
@@ -3205,7 +3205,7 @@ comment|//				declaredFunctions.put(function.getSignature().getFunctionId(), fun
 comment|//		else
 comment|//			throw new XPathException("XQST0034: function " + function.getName() + " is already defined with the same arity");
 block|}
-comment|/** 	 * Resolve a user-defined function. 	 *  	 * @param name 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Resolve a user-defined function. 	 *  	 * @param name 	 * @return user-defined function 	 * @throws XPathException 	 */
 specifier|public
 name|UserDefinedFunction
 name|resolveFunction
@@ -3340,7 +3340,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Declare a local variable. This is called by variable binding expressions like 	 * "let" and "for". 	 *  	 * @param var 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Declare a local variable. This is called by variable binding expressions like 	 * "let" and "for". 	 *  	 * @param var 	 * @throws XPathException 	 */
 specifier|public
 name|LocalVariable
 name|declareVariableBinding
@@ -3386,7 +3386,7 @@ return|return
 name|var
 return|;
 block|}
-comment|/** 	 * Declare a global variable as by "declare variable". 	 *  	 * @param qname 	 * @param value 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Declare a global variable as by "declare variable". 	 *  	 * @param var 	 * @throws XPathException 	 */
 specifier|public
 name|Variable
 name|declareGlobalVariable
@@ -3545,7 +3545,7 @@ return|return
 name|var
 return|;
 block|}
-comment|/** 	 * Try to resolve a variable. 	 *  	 * @param qname the qualified name of the variable as string 	 * @return the declared Variable object 	 * @throws XPathException if the variable is unknown 	 */
+comment|/** 	 * Try to resolve a variable. 	 *  	 * @param name the qualified name of the variable as string 	 * @return the declared Variable object 	 * @throws XPathException if the variable is unknown 	 */
 specifier|public
 name|Variable
 name|resolveVariable
@@ -3817,7 +3817,7 @@ operator|=
 name|backwardsCompatible
 expr_stmt|;
 block|}
-comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 *  	 * In XPath 1.0 compatible mode, additional conversions 	 * will be applied to values if a numeric value is expected. 	 *   	 * @return 	 */
+comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 *  	 * In XPath 1.0 compatible mode, additional conversions 	 * will be applied to values if a numeric value is expected. 	 *   	 */
 specifier|public
 name|boolean
 name|isBackwardsCompatible
@@ -3829,7 +3829,7 @@ operator|.
 name|backwardsCompatible
 return|;
 block|}
-comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * The DBBroker is the main database access object, providing 	 * access to all internal database functions. 	 *  	 * @return 	 */
+comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * The DBBroker is the main database access object, providing 	 * access to all internal database functions. 	 *  	 * @return DBBroker instance 	 */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -3854,7 +3854,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/** 	 * Get the user which executes the current query. 	 *  	 * @return 	 */
+comment|/** 	 * Get the user which executes the current query. 	 *  	 * @return user 	 */
 specifier|public
 name|User
 name|getUser
@@ -3996,7 +3996,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Get the document builder currently used for creating 	 * temporary document fragments. A new document builder 	 * will be created on demand. 	 *  	 * @return 	 */
+comment|/** 	 * Get the document builder currently used for creating 	 * temporary document fragments. A new document builder 	 * will be created on demand. 	 *  	 * @return document builder 	 */
 specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
@@ -4245,7 +4245,7 @@ return|return
 name|moduleLoadPath
 return|;
 block|}
-comment|/** 	 * Get the base URI of the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() function. 	 *  	 * @return 	 */
+comment|/** 	 * Get the base URI of the evaluation context. 	 *  	 * This is the URI returned by the fn:base-uri() function. 	 *  	 * @return base URI of the evaluation context 	 */
 specifier|public
 name|AnyURIValue
 name|getBaseURI
@@ -4269,7 +4269,7 @@ operator|=
 name|pos
 expr_stmt|;
 block|}
-comment|/** 	 * Get the current context position, i.e. the position of 	 * the currently processed item in the context sequence. 	 *   	 * @return 	 */
+comment|/** 	 * Get the current context position, i.e. the position of 	 * the currently processed item in the context sequence. 	 *   	 * @return current context position 	 */
 specifier|public
 name|int
 name|getContextPosition
@@ -4400,7 +4400,7 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the last variable on the local variable stack. 	 * The current variable context can be restored by passing 	 * the return value to {@link #popLocalVariables(LocalVariable)}. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the last variable on the local variable stack. 	 * The current variable context can be restored by passing 	 * the return value to {@link #popLocalVariables(LocalVariable)}. 	 *  	 * @return last variable on the local variable stack 	 */
 specifier|public
 name|LocalVariable
 name|markLocalVariables
@@ -4480,7 +4480,7 @@ name|variableStackSize
 operator|--
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the current size of the stack. This is used to determine 	 * where a variable has been declared. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the current size of the stack. This is used to determine 	 * where a variable has been declared. 	 *  	 * @return current size of the stack 	 */
 specifier|public
 name|int
 name|getCurrentStackSize
@@ -4520,7 +4520,7 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Check if the specified function signature is found in the current function       * called stack. If yes, the function might be tail recursive and needs to be      * optimized.       *       * @param signature      * @return      */
+comment|/**      * Check if the specified function signature is found in the current function       * called stack. If yes, the function might be tail recursive and needs to be      * optimized.       *       * @param signature      */
 specifier|public
 name|boolean
 name|tailRecursiveCall
@@ -5856,7 +5856,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Store the supplied data to a temporary document fragment. 	 *  	 * @param data 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Store the supplied data to a temporary document fragment. 	 *  	 * @param doc 	 * @throws XPathException 	 */
 specifier|public
 name|DocumentImpl
 name|storeTemporaryDoc
@@ -5974,7 +5974,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Set an XQuery Context variable. 	 * Used by the context extension module; called by context:set-var(). 	 *  	 * @param name The variable name 	 * @param XQVar The variable value, may be of any xs: type  	 */
+comment|/** 	 * Set an XQuery Context variable. 	 * Used by the context extension module; called by context:set-var(). 	 *  	 * @param name The variable name 	 * @param XQvar The variable value, may be of any xs: type  	 */
 specifier|public
 name|void
 name|setXQueryContextVar

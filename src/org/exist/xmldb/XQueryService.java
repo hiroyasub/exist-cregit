@@ -147,7 +147,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Compiles the specified XQuery and returns a handle to the compiled 	 * code, which can then be passed to {@link #execute(CompiledExpression)}. 	 *   	 * @param query 	 * @return 	 * @throws XMLDBException 	 */
+comment|/** 	 * Compiles the specified XQuery and returns a handle to the compiled 	 * code, which can then be passed to {@link #execute(CompiledExpression)}. 	 *   	 * @param query 	 * @throws XMLDBException 	 */
 specifier|public
 name|CompiledExpression
 name|compile

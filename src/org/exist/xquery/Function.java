@@ -1609,7 +1609,7 @@ return|return
 name|args
 return|;
 block|}
-comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos 	 * @return 	 */
+comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos 	 */
 specifier|public
 name|Expression
 name|getArgument
@@ -1647,7 +1647,7 @@ name|axis
 parameter_list|)
 block|{
 block|}
-comment|/** 	 * Return the name of this function. 	 *  	 * @return 	 */
+comment|/** 	 * Return the name of this function. 	 *  	 * @return name of this function 	 */
 specifier|public
 name|QName
 name|getName

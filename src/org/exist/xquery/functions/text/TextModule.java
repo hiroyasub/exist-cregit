@@ -236,7 +236,7 @@ name|class
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * @param functions      */
+comment|/**      *       */
 specifier|public
 name|TextModule
 parameter_list|()
