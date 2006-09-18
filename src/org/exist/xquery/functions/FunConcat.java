@@ -360,7 +360,7 @@ operator|.
 name|STRING
 return|;
 block|}
-comment|/** 	 * Overloaded function: no static type checking. 	 *  	 * @see org.exist.xquery.functions.Function#setArguments(java.util.List) 	 */
+comment|/** 	 * Overloaded function: no static type checking. 	 *  	 * @see org.exist.xquery.Function#setArguments(java.util.List) 	 */
 specifier|public
 name|void
 name|setArguments
