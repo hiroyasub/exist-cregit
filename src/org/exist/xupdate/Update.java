@@ -238,7 +238,7 @@ name|Update
 extends|extends
 name|Modification
 block|{
-comment|/**      * @param pool      * @param user      * @param selectStmt      */
+comment|/**      * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
 specifier|public
 name|Update
 parameter_list|(

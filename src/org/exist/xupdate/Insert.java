@@ -224,7 +224,7 @@ name|mode
 init|=
 name|INSERT_BEFORE
 decl_stmt|;
-comment|/**      * Constructor for Insert.      *       * @param pool      * @param user      * @param selectStmt      */
+comment|/**      * Constructor for Insert.      *       *       * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
 specifier|public
 name|Insert
 parameter_list|(
