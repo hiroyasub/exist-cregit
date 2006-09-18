@@ -236,7 +236,7 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet) 	 */
+comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.storage.txn.Txn) 	 */
 specifier|public
 name|long
 name|process
