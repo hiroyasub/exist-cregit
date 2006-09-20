@@ -392,7 +392,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval

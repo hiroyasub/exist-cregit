@@ -1550,7 +1550,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Saves the specified collection to storage. Collections are usually cached 	 * in memory. If a collection is modified, this method needs to be called to 	 * make the changes persistent. Note: appending a new document to a 	 * collection does not require a save. Instead, 	 * {@link #addDocument(Collection, DocumentImpl)} is called. 	 *  	 * @param collection 	 *            to store 	 */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached      * in memory. If a collection is modified, this method needs to be called to      * make the changes persistent. Note: appending a new document to a      * collection does not require a save.       *       * @param transaction       * @param collection Collection to store      * @throws org.exist.security.PermissionDeniedException       */
 specifier|public
 specifier|abstract
 name|void
@@ -1672,7 +1672,7 @@ name|long
 name|oldAddress
 parameter_list|)
 function_decl|;
-comment|/** 	 * Store a document (descriptor) into the database (all metadata information 	 * which is returned by {@link org.exist.dom.DocumentImpl#serialize()}). 	 *  	 * @param doc 	 *            the document's metadata to store. 	 */
+comment|/** 	 * Store a document (descriptor) into the database. 	 *  	 * @param doc 	 *            the document's metadata to store. 	 */
 specifier|public
 specifier|abstract
 name|void

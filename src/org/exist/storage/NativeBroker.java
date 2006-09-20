@@ -3024,7 +3024,7 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode()}. */
+comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode(Txn, StoredNode, NodePath, String)}. */
 specifier|public
 name|void
 name|endRemove
@@ -6352,7 +6352,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      */
 specifier|public
 name|void
 name|saveCollection
@@ -13273,7 +13273,7 @@ expr_stmt|;
 comment|//          elementIndex.consistencyCheck(doc);
 block|}
 block|}
-comment|/** consistency Check of the database; useful after XUpdates;      * called by {@link #checkResourceConsistency()} */
+comment|/** consistency Check of the database; useful after XUpdates;      * called by {@link #checkXMLResourceConsistency(DocumentImpl)} */
 specifier|public
 name|void
 name|checkXMLResourceTree

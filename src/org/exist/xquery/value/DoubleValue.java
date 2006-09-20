@@ -2093,7 +2093,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** size writen by {@link #serialize(byte[] data, int offset)} */
+comment|/** size writen by {@link #serialize(short, boolean)} */
 specifier|public
 name|int
 name|getSerializedSize
