@@ -199,6 +199,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|DBBroker
 import|;
 end_import
@@ -4886,7 +4898,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.min"
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|,
 operator|new
 name|Integer
@@ -4899,13 +4913,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.min: "
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.min"
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4948,7 +4968,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.max"
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|,
 operator|new
 name|Integer
@@ -4961,13 +4983,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.max: "
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.max"
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5010,7 +5038,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
 argument_list|,
 operator|new
 name|Long
@@ -5023,13 +5053,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.sync-period: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5056,7 +5092,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|)
 decl_stmt|;
 if|if
@@ -5072,7 +5110,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|,
 operator|new
 name|Long
@@ -5085,13 +5125,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"wait-before-shutdown: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|)
 argument_list|)
 expr_stmt|;

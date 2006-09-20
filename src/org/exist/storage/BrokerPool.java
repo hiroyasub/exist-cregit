@@ -416,6 +416,39 @@ name|DEFAULT_INSTANCE_NAME
 init|=
 literal|"exist"
 decl_stmt|;
+comment|//Various configuration property keys (set by the configuration manager)
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_MIN_CONNECTIONS
+init|=
+literal|"db-connection.pool.min"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_MAX_CONNECTIONS
+init|=
+literal|"db-connection.pool.min"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SYNC_PERIOD
+init|=
+literal|"db-connection.pool.sync-period"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SHUTDOWN_DELAY
+init|=
+literal|"wait-before-shutdown"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -1331,7 +1364,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.min"
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1358,7 +1391,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.max"
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1411,7 +1444,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|PROPERTY_SYNC_PERIOD
 argument_list|)
 expr_stmt|;
 if|if
