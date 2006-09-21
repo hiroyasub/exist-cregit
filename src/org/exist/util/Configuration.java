@@ -269,6 +269,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryWatchDog
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -4516,7 +4528,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.watchdog.query-timeout"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
 argument_list|,
 operator|new
 name|Long
@@ -4529,13 +4543,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.watchdog.query-timeout: "
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.watchdog.query-timeout"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4578,7 +4598,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
 argument_list|,
 operator|new
 name|Integer
@@ -4591,13 +4613,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit: "
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6103,7 +6131,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the absolut path to the configuration file.      *       * @return the path to the configuration file      */
+comment|/**      * Returns the absolute path to the configuration file.      *       * @return the path to the configuration file      */
 specifier|public
 specifier|static
 name|String
