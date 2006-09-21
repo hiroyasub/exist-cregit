@@ -657,6 +657,13 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_SUPPRESS_WHITESPACE
+init|=
+literal|"indexer.suppress-whitespace"
+decl_stmt|;
 comment|/** 	 *  Create a new parser using the given database broker and 	 * user to store the document. 	 * 	 *@param  broker 	 *@exception  EXistException   	 */
 specifier|public
 name|Indexer
@@ -708,6 +715,7 @@ name|transaction
 operator|=
 name|transaction
 expr_stmt|;
+comment|//TODO : move the configuration in the constructor or in a dedicated method
 name|Configuration
 name|config
 init|=
@@ -726,7 +734,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.suppress-whitespace"
+name|PROPERTY_SUPPRESS_WHITESPACE
 argument_list|)
 decl_stmt|;
 if|if
@@ -738,11 +746,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|suppressWS
+literal|"leading"
 operator|.
 name|equals
 argument_list|(
-literal|"leading"
+name|suppressWS
 argument_list|)
 condition|)
 name|normalize
@@ -753,11 +761,11 @@ name|SUPPRESS_LEADING_WS
 expr_stmt|;
 if|else if
 condition|(
-name|suppressWS
+literal|"trailing"
 operator|.
 name|equals
 argument_list|(
-literal|"trailing"
+name|suppressWS
 argument_list|)
 condition|)
 name|normalize
@@ -768,11 +776,11 @@ name|SUPPRESS_TRAILING_WS
 expr_stmt|;
 if|else if
 condition|(
-name|suppressWS
+literal|"none"
 operator|.
 name|equals
 argument_list|(
-literal|"none"
+name|suppressWS
 argument_list|)
 condition|)
 name|normalize

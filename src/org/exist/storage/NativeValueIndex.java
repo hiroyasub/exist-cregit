@@ -613,6 +613,13 @@ init|=
 literal|true
 decl_stmt|;
 specifier|public
+specifier|static
+name|String
+name|PROPERTY_INDEX_CASE_SENSITIVE
+init|=
+literal|"indexer.case-sensitive"
+decl_stmt|;
+specifier|public
 name|NativeValueIndex
 parameter_list|(
 name|DBBroker
@@ -648,7 +655,9 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|)
 decl_stmt|;
 if|if

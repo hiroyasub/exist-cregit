@@ -918,7 +918,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|)
 operator|)
 operator|!=

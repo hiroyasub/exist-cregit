@@ -378,6 +378,27 @@ name|Serializer
 operator|.
 name|TAG_ELEMENT_MATCHES
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_INDEX_NUMBERS
+init|=
+literal|"indexer.indexNumbers"
+decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_STEM
+init|=
+literal|"indexer.stem"
+decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_STORE_TERM_FREQUENCY
+init|=
+literal|"indexer.store-term-freq"
+decl_stmt|;
 comment|/** 	 * Construct a new instance and configure it. 	 *  	 * @param broker 	 * @param conf 	 */
 specifier|public
 name|TextSearchEngine
@@ -425,7 +446,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.indexNumbers"
+name|PROPERTY_INDEX_NUMBERS
 argument_list|)
 operator|)
 operator|!=
@@ -450,7 +471,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.stem"
+name|PROPERTY_STEM
 argument_list|)
 operator|)
 operator|!=
@@ -475,7 +496,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.store-term-freq"
+name|PROPERTY_STORE_TERM_FREQUENCY
 argument_list|)
 operator|)
 operator|!=

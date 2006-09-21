@@ -159,6 +159,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Indexer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|SAXAdapter
@@ -248,6 +258,30 @@ operator|.
 name|storage
 operator|.
 name|NativeBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NativeValueIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
 import|;
 end_import
 
@@ -5332,7 +5366,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.indexNumbers"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
 argument_list|,
 name|Boolean
 operator|.
@@ -5351,13 +5387,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.indexNumbers: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.indexNumbers"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5383,7 +5425,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.stem"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
 argument_list|,
 name|Boolean
 operator|.
@@ -5402,13 +5446,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.stem: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.stem"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5434,7 +5484,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.store-term-freq"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
 argument_list|,
 name|Boolean
 operator|.
@@ -5453,13 +5505,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.store-term-freq: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.store-term-freq"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5485,7 +5543,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|,
 name|Boolean
 operator|.
@@ -5504,13 +5564,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.case-sensitive: "
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5536,7 +5602,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.suppress-whitespace"
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
 argument_list|,
 name|suppressWS
 argument_list|)
@@ -5545,13 +5613,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.suppress-whitespace: "
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.suppress-whitespace"
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
 argument_list|)
 argument_list|)
 expr_stmt|;
