@@ -626,7 +626,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// otherise, secondly try to read configuration from file. Guess the
+comment|// otherwise, secondly try to read configuration from file. Guess the
 comment|// location if necessary
 if|if
 condition|(
@@ -2860,6 +2860,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|buffers
 init|=
@@ -2992,6 +2993,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|collBuffers
 init|=
@@ -3054,6 +3056,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|wordBuffers
 init|=
@@ -3114,6 +3117,7 @@ name|nfe
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Unused !
 name|String
 name|elementBuffers
 init|=
@@ -3246,6 +3250,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Not clear : rather looks like a buffers count
 name|String
 name|collCacheSize
 init|=
@@ -3269,7 +3274,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -3282,13 +3289,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.collection-cache-size: "
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;

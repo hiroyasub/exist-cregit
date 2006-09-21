@@ -449,6 +449,14 @@ name|PROPERTY_SHUTDOWN_DELAY
 init|=
 literal|"wait-before-shutdown"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_COLLECTION_CACHE_SIZE
+init|=
+literal|"db-connection.collection-cache-size"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -2226,7 +2234,7 @@ name|conf
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|)
 decl_stmt|;
 if|if
