@@ -185,7 +185,9 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.page-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|)
 operator|)
 operator|<
@@ -204,7 +206,9 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.cache-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|)
 operator|)
 operator|<

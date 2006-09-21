@@ -2901,7 +2901,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.page-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -2914,13 +2916,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.page-size: "
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.page-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3147,7 +3155,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.min_free_memory"
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
 argument_list|,
 operator|new
 name|Integer
@@ -3160,13 +3170,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.min_free_memory: "
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.min_free_memory"
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
 argument_list|)
 argument_list|)
 expr_stmt|;
