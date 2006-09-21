@@ -399,6 +399,13 @@ name|PROPERTY_STORE_TERM_FREQUENCY
 init|=
 literal|"indexer.store-term-freq"
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_TOKENIZER
+init|=
+literal|"indexer.tokenizer"
+decl_stmt|;
 comment|/** 	 * Construct a new instance and configure it. 	 *  	 * @param broker 	 * @param conf 	 */
 specifier|public
 name|TextSearchEngine
@@ -590,7 +597,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.tokenizer"
+name|PROPERTY_TOKENIZER
 argument_list|)
 operator|)
 operator|!=

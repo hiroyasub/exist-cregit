@@ -156,6 +156,13 @@ name|VALIDATION_DISABLED
 init|=
 literal|2
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_VALIDATION
+init|=
+literal|"indexer.validation"
+decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
@@ -210,7 +217,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.validation"
+name|PROPERTY_VALIDATION
 argument_list|)
 decl_stmt|;
 if|if

@@ -1120,6 +1120,14 @@ name|PROPERTY_MIN_FREE_MEMORY
 init|=
 literal|"db-connection.min_free_memory"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_INDEX_DEPTH
+init|=
+literal|"indexer.index-depth"
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -1531,7 +1539,7 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"indexer.index-depth"
+name|PROPERTY_INDEX_DEPTH
 argument_list|)
 expr_stmt|;
 if|if

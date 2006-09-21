@@ -5651,7 +5651,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.validation"
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
 argument_list|,
 name|validation
 argument_list|)
@@ -5660,13 +5662,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.validation: "
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.validation"
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5692,7 +5700,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.tokenizer"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
 argument_list|,
 name|tokenizer
 argument_list|)
@@ -5701,13 +5711,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.tokenizer: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.tokenizer"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5745,7 +5761,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.index-depth"
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
 argument_list|,
 operator|new
 name|Integer
@@ -5758,13 +5776,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.index-depth: "
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.index-depth"
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
 argument_list|)
 argument_list|)
 expr_stmt|;
