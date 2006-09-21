@@ -185,6 +185,38 @@ specifier|private
 name|long
 name|timeoutCheckInterval
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_MAX_STACK_SIZE
+init|=
+literal|"db-connection.query-pool.max-stack-size"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_POOL_SIZE
+init|=
+literal|"db-connection.query-pool.size"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_TIMEOUT
+init|=
+literal|"db-connection.query-pool.timeout"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
+init|=
+literal|"db-connection.query-pool.timeout-check-interval"
+decl_stmt|;
 comment|/**      * @param conf      */
 specifier|public
 name|XQueryPool
@@ -215,7 +247,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size"
+name|PROPERTY_MAX_STACK_SIZE
 argument_list|)
 decl_stmt|;
 name|Integer
@@ -228,7 +260,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.query-pool.size"
+name|PROPERTY_POOL_SIZE
 argument_list|)
 decl_stmt|;
 name|Long
@@ -241,7 +273,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.query-pool.timeout"
+name|PROPERTY_TIMEOUT
 argument_list|)
 decl_stmt|;
 name|Long
@@ -254,7 +286,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval"
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|)
 decl_stmt|;
 if|if
@@ -311,6 +343,7 @@ name|timeout
 operator|=
 name|TIMEOUT
 expr_stmt|;
+comment|//TODO : check that it is inferior to t
 if|if
 condition|(
 name|tci

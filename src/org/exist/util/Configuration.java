@@ -257,6 +257,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|XQueryPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|resolver
@@ -4691,7 +4703,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size"
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -4704,13 +4718,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size: "
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size"
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4753,7 +4773,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.size"
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -4766,13 +4788,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.size: "
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.size"
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4815,7 +4843,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.timeout"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
 argument_list|,
 operator|new
 name|Long
@@ -4828,13 +4858,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.timeout: "
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.timeout"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4877,7 +4913,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|,
 operator|new
 name|Long
@@ -4890,13 +4928,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval: "
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|)
 argument_list|)
 expr_stmt|;
