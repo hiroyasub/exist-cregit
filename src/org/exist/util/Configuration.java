@@ -211,6 +211,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|CacheManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|DBBroker
 import|;
 end_import
@@ -2775,7 +2787,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.cache-size"
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -2788,13 +2802,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.cache-size: "
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.cache-size"
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
 argument_list|)
 operator|+
 literal|"m"

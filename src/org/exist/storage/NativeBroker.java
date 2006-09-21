@@ -1183,6 +1183,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|DEFAULT_DATA_DIR
@@ -1190,6 +1191,7 @@ init|=
 literal|"data"
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_PAGE_SIZE
@@ -1197,6 +1199,7 @@ init|=
 literal|4096
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_INDEX_DEPTH
@@ -1204,6 +1207,7 @@ init|=
 literal|1
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_MIN_MEMORY
@@ -1220,8 +1224,8 @@ literal|300000
 decl_stmt|;
 comment|/** default buffer size setting */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BUFFERS
 init|=
@@ -1229,14 +1233,15 @@ literal|256
 decl_stmt|;
 comment|/** check available memory after storing DEFAULT_NODES_BEFORE_MEMORY_CHECK nodes */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_NODES_BEFORE_MEMORY_CHECK
 init|=
 literal|10000
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_CACHE_GROWTH
@@ -1244,6 +1249,7 @@ init|=
 literal|1.25
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_KEY_THRESHOLD
@@ -1251,6 +1257,7 @@ init|=
 literal|0.01
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_VALUE_THRESHOLD
@@ -1258,6 +1265,7 @@ init|=
 literal|0.04
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_CACHE_GROWTH
@@ -1265,6 +1273,7 @@ init|=
 literal|1.4
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_KEY_THRESHOLD
@@ -1272,6 +1281,7 @@ init|=
 literal|0.01
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_VALUE_THRESHOLD

@@ -131,6 +131,21 @@ name|SHRINK_THRESHOLD
 init|=
 literal|10000
 decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|DEFAULT_CACHE_SIZE
+init|=
+literal|64
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_CACHE_SIZE
+init|=
+literal|"db-connection.cache-size"
+decl_stmt|;
 comment|/** Caches maintained by this class */
 specifier|private
 name|List
@@ -193,9 +208,12 @@ operator|)
 operator|<
 literal|0
 condition|)
+comment|//TODO : should we share the page size with the native broker ?
 name|pageSize
 operator|=
-literal|4096
+name|NativeBroker
+operator|.
+name|DEFAULT_PAGE_SIZE
 expr_stmt|;
 if|if
 condition|(
@@ -206,9 +224,7 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-name|NativeBroker
-operator|.
-name|PROPERTY_PAGE_SIZE
+name|PROPERTY_CACHE_SIZE
 argument_list|)
 operator|)
 operator|<
@@ -217,7 +233,7 @@ condition|)
 block|{
 name|cacheSize
 operator|=
-literal|64
+name|DEFAULT_CACHE_SIZE
 expr_stmt|;
 block|}
 name|long
@@ -834,7 +850,7 @@ name|getDefaultInitialSize
 parameter_list|()
 block|{
 return|return
-literal|64
+name|DEFAULT_CACHE_SIZE
 return|;
 block|}
 block|}
