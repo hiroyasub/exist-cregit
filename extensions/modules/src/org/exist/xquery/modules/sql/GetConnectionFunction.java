@@ -41,16 +41,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|sql
-operator|.
-name|SQLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -186,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction   *   * Get a connection to an sql db  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-18  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetConnectionFunction   *   * Get a connection to a SQL Database  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-24  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -230,12 +220,24 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JDBC Style URL in $a. Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JDBC Driver class name in $a and a JDBC URL in $b. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
 operator|new
 name|SequenceType
 argument_list|(
@@ -279,12 +281,24 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JDBC Style URL in $a, a username in $b and a password in $c. Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JDBC Driver class name in $a, a JDBC URL in $b, a username in $c and a password in $d. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
 operator|new
 name|SequenceType
 argument_list|(
@@ -370,12 +384,20 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//was a db url specified?
+comment|//was a db driver and url specified?
 if|if
 condition|(
 name|args
 index|[
 literal|0
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|args
+index|[
+literal|1
 index|]
 operator|.
 name|isEmpty
@@ -395,7 +417,7 @@ literal|null
 decl_stmt|;
 comment|//get the db connection details
 name|String
-name|dbURL
+name|dbDriver
 init|=
 name|args
 index|[
@@ -405,13 +427,35 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+name|String
+name|dbURL
+init|=
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+comment|//load the driver
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|dbDriver
+argument_list|)
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|args
 operator|.
 name|length
 operator|>
-literal|1
+literal|2
 condition|)
 block|{
 name|String
@@ -419,7 +463,7 @@ name|dbUser
 init|=
 name|args
 index|[
-literal|1
+literal|2
 index|]
 operator|.
 name|getStringValue
@@ -430,7 +474,7 @@ name|dbPassword
 init|=
 name|args
 index|[
-literal|2
+literal|3
 index|]
 operator|.
 name|getStringValue
@@ -539,7 +583,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|SQLException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -555,7 +599,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//return a unique id
+comment|/** 	 * Returns a Unique ID based on the System Time 	 *  	 * @return The Unique ID 	 */
 specifier|private
 specifier|static
 specifier|synchronized

@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-18  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-24  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -113,6 +113,21 @@ name|GetConnectionFunction
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|ExecuteFunction
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|ExecuteFunction
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public
@@ -149,7 +164,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"A module for performing SQL queries against Databases, returning XML representations of the result sets. JDBC drivers must be placed in lib/user or exist on the CLASSPATH."
+literal|"A module for performing SQL queries against Databases, returning XML representations of the result sets."
 return|;
 block|}
 block|}
