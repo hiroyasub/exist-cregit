@@ -287,6 +287,13 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|myModule
+operator|==
+literal|null
+condition|)
+return|return;
 comment|// response servlet object is read from global variable $response
 name|Variable
 name|var
