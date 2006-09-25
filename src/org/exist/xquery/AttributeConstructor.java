@@ -417,11 +417,9 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|result
-operator|.
-name|expand
-argument_list|()
-expr_stmt|;
+comment|// String values as expressions are already expanded by
+comment|// the parser -- Alex
+comment|//result.expand();
 return|return
 name|result
 return|;
