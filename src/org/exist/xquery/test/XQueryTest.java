@@ -7704,7 +7704,7 @@ name|result
 argument_list|)
 expr_stmt|;
 name|Resource
-name|res
+name|res1
 init|=
 name|result
 operator|.
@@ -7714,9 +7714,9 @@ literal|0
 argument_list|)
 decl_stmt|;
 name|String
-name|textResult
+name|textResult1
 init|=
-name|res
+name|res1
 operator|.
 name|getContent
 argument_list|()
@@ -7724,6 +7724,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+comment|//check the result is correct
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -7732,7 +7733,22 @@ name|query
 argument_list|,
 literal|"ab"
 argument_list|,
-name|textResult
+name|textResult1
+argument_list|)
+expr_stmt|;
+comment|//check there is only one result
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
