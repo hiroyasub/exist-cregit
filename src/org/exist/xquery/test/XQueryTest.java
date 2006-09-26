@@ -7669,7 +7669,7 @@ expr_stmt|;
 name|String
 name|query
 init|=
-literal|"text{ \"a\" }, text{ \"b\" }"
+literal|"text{ \"a\" }, text{ \"b\" }, text{ \"c\" }, text{ \"d\" }"
 decl_stmt|;
 try|try
 block|{
@@ -7731,7 +7731,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"ab"
+literal|"abcd"
 argument_list|,
 name|textResult1
 argument_list|)
