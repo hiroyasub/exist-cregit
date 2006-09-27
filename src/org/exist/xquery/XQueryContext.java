@@ -3886,6 +3886,33 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
+comment|//Sanity check : one may *not* want to bind the module !
+if|if
+condition|(
+name|myModule
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Module '"
+operator|+
+name|SessionModule
+operator|.
+name|NAMESPACE_URI
+operator|+
+literal|"' is not bound"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 name|Variable
 name|var
 init|=
