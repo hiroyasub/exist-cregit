@@ -230,7 +230,7 @@ name|documentName
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Initialize EntityResolver.      * @param pool  BrokerPool      */
+comment|/**      *  Initialize EntityResolver.      *       * @param resources       */
 specifier|public
 name|EntityResolver
 parameter_list|(

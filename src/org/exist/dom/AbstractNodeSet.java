@@ -1920,17 +1920,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|result
-operator|.
-name|contains
-argument_list|(
-name|context
-argument_list|)
-condition|)
-block|{
+comment|//if (!result.contains(context)) {
 if|if
 condition|(
 name|Expression
@@ -1996,7 +1986,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-block|}
+comment|//}
 block|}
 name|contextNode
 operator|=

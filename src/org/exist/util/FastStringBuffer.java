@@ -1320,7 +1320,7 @@ argument_list|()
 return|;
 block|}
 comment|//Quick copies from old eXist's FastStringBuffer
-comment|/**      *  Manefest constant: Suppress leading whitespace. This should be used when      *  normalize-to-SAX is called for the first chunk of a multi-chunk output,      *  or one following unsuppressed whitespace in a previous chunk.      *      *@see    sendNormalizedSAXcharacters(char[],int,int,org.xml.sax.ContentHandler,int)      */
+comment|/**      *  Manefest constant: Suppress leading whitespace. This should be used when      *  normalize-to-SAX is called for the first chunk of a multi-chunk output,      *  or one following unsuppressed whitespace in a previous chunk.      *      *  see    #sendNormalizedSAXcharacters(char[],int,int,org.xml.sax.ContentHandler,int)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1338,7 +1338,7 @@ name|SUPPRESS_TRAILING_WS
 init|=
 literal|0x02
 decl_stmt|;
-comment|/**      *  Manefest constant: Suppress both leading and trailing whitespace. This      *  should be used when normalize-to-SAX is called for a complete string.      *  (I'm not wild about the name of this one. Ideas welcome.)      *      *@see    sendNormalizedSAXcharacters(char[],int,int,org.xml.sax.ContentHandler,int)      */
+comment|/**      *  Manefest constant: Suppress both leading and trailing whitespace. This      *  should be used when normalize-to-SAX is called for a complete string.      *  (I'm not wild about the name of this one. Ideas welcome.)      *      * see    sendNormalizedSAXcharacters(char[],int,int,org.xml.sax.ContentHandler,int)      */
 specifier|public
 specifier|final
 specifier|static

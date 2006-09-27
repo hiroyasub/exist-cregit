@@ -337,7 +337,7 @@ name|recover
 argument_list|()
 return|;
 block|}
-comment|/**      * Create a new transaction. Creates a new transaction id that will      * be logged to disk immediately.       *       * @return      * @throws TransactionException      */
+comment|/**      * Create a new transaction. Creates a new transaction id that will      * be logged to disk immediately.       *       * @throws TransactionException      */
 specifier|public
 name|Txn
 name|beginTransaction

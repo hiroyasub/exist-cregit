@@ -641,6 +641,25 @@ argument_list|(
 name|ast
 argument_list|)
 expr_stmt|;
+comment|//TODO : not sure for parent -pb
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|parent
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Rewritten start-with as a general comparison with a right truncature"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|params
@@ -764,6 +783,25 @@ operator|.
 name|TRUNC_LEFT
 argument_list|)
 decl_stmt|;
+comment|//TODO : not sure for parent -pb
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|parent
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Rewritten ends-with as a general comparison with a left truncature"
+argument_list|)
+expr_stmt|;
 name|op
 operator|.
 name|setASTNode
@@ -894,6 +932,25 @@ operator|.
 name|TRUNC_BOTH
 argument_list|)
 decl_stmt|;
+comment|//TODO : not sure for parent -pb
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|parent
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Rewritten contains as a general comparison with left and right truncatures"
+argument_list|)
+expr_stmt|;
 name|op
 operator|.
 name|setASTNode

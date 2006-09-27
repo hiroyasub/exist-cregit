@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -162,6 +162,18 @@ operator|.
 name|transform
 operator|.
 name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -434,7 +446,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Servlet to generate HTML output from an XQuery file.  *   * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *   * The servlet accepts the following initialization parameters in web.xml:  *   *<table border="0">  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML forms.</td></tr>  *</table>  *   * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Servlet to generate HTML output from an XQuery file.  *  * The servlet responds to an URL pattern as specified in the  * WEB-INF/web.xml configuration file of the application. It will  * interpret the path with which it is called as leading to a valid  * XQuery file. The XQuery file is loaded, compiled and executed.  * Any output of the script is sent back to the client.  *  * The servlet accepts the following initialization parameters in web.xml:  *  *<table border="0">  *<tr><td>user</td><td>The user identity with which the script is executed.</td></tr>  *<tr><td>password</td><td>Password for the user.</td></tr>  *<tr><td>uri</td><td>A valid XML:DB URI leading to the root collection used to  * 	process the request.</td></tr>  *<tr><td>encoding</td><td>The character encoding used for XQuery files.</td></tr>  *<tr><td>container-encoding</td><td>The character encoding used by the servlet  * 	container.</td></tr>  *<tr><td>form-encoding</td><td>The character encoding used by parameters posted  * 	from HTML forms.</td></tr>  *</table>  *  * User identity and password may also be specified through the HTTP session attributes  * "user" and "password". These attributes will overwrite any other settings.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -444,6 +456,21 @@ name|XQueryServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|XQueryServlet
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -543,7 +570,7 @@ name|contentType
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)      */
 specifier|public
 name|void
 name|init
@@ -676,7 +703,9 @@ name|formEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"form-encoding = "
 operator|+
@@ -702,7 +731,9 @@ name|containerEncoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"container-encoding = "
 operator|+
@@ -728,7 +759,9 @@ name|encoding
 operator|=
 name|DEFAULT_ENCODING
 expr_stmt|;
-name|log
+name|LOG
+operator|.
+name|info
 argument_list|(
 literal|"encoding = "
 operator|+
@@ -800,11 +833,27 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|String
+name|errorMessage
+init|=
+literal|"Failed to initialize database driver"
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorMessage
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"Failed to initialize database driver: "
+name|errorMessage
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -816,7 +865,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 specifier|protected
 name|void
 name|doGet
@@ -840,7 +889,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 specifier|protected
 name|void
 name|doPost
@@ -920,7 +969,7 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	Processes incoming HTTP requests for XQuery 	*/
+comment|/**      * Processes incoming HTTP requests for XQuery      */
 specifier|protected
 name|void
 name|process
@@ -1766,13 +1815,10 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|log
-argument_list|(
-name|e
+name|LOG
 operator|.
-name|getMessage
-argument_list|()
-argument_list|,
+name|debug
+argument_list|(
 name|e
 argument_list|)
 expr_stmt|;

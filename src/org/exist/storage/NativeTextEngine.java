@@ -2122,7 +2122,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Get all nodes whose content exactly matches the give expression. 	 * @param context 	 * @param docs 	 * @param contextSet 	 * @param expr 	 * @return 	 * @throws TerminatedException 	 */
+comment|/**           * Get all nodes whose content exactly matches the give expression. 	 */
 specifier|public
 name|NodeSet
 name|getNodesExact

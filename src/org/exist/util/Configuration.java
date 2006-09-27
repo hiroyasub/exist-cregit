@@ -69,7 +69,27 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -139,6 +159,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Indexer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|SAXAdapter
@@ -179,6 +209,42 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|CacheManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|IndexSpec
 import|;
 end_import
@@ -201,11 +267,59 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|NativeValueIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|XQueryPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|resolver
 operator|.
 name|eXistCatalogResolver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryWatchDog
 import|;
 end_import
 
@@ -546,7 +660,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// otherise, secondly try to read configuration from file. Guess the
+comment|// otherwise, secondly try to read configuration from file. Guess the
 comment|// location if necessary
 if|if
 condition|(
@@ -2032,7 +2146,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.growth-factor"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
 argument_list|,
 operator|new
 name|Integer
@@ -2045,13 +2161,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.growth-factor: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.growth-factor"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2077,7 +2199,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.fragmentation"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|,
 operator|new
 name|Integer
@@ -2090,13 +2214,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.fragmentation: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.fragmentation"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2122,7 +2252,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xupdate.consistency-checks"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
 argument_list|,
 name|Boolean
 operator|.
@@ -2141,13 +2273,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xupdate.consistency-checks: "
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xupdate.consistency-checks"
+name|DBBroker
+operator|.
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2707,7 +2845,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.cache-size"
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -2720,13 +2860,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.cache-size: "
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.cache-size"
+name|CacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
 argument_list|)
 operator|+
 literal|"m"
@@ -2748,6 +2894,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|buffers
 init|=
@@ -2833,7 +2980,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.page-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -2846,13 +2995,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.page-size: "
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.page-size"
+name|NativeBroker
+operator|.
+name|PROPERTY_PAGE_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2872,6 +3027,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|collBuffers
 init|=
@@ -2934,6 +3090,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Unused !
 name|String
 name|wordBuffers
 init|=
@@ -2994,6 +3151,7 @@ name|nfe
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Unused !
 name|String
 name|elementBuffers
 init|=
@@ -3079,7 +3237,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.min_free_memory"
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
 argument_list|,
 operator|new
 name|Integer
@@ -3092,13 +3252,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.min_free_memory: "
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.min_free_memory"
+name|NativeBroker
+operator|.
+name|PROPERTY_MIN_FREE_MEMORY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3118,6 +3284,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Not clear : rather looks like a buffers count
 name|String
 name|collCacheSize
 init|=
@@ -3141,7 +3308,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -3154,13 +3323,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.collection-cache-size: "
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4412,7 +4587,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.watchdog.query-timeout"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
 argument_list|,
 operator|new
 name|Long
@@ -4425,13 +4602,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.watchdog.query-timeout: "
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.watchdog.query-timeout"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_QUERY_TIMEOUT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4474,7 +4657,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
 argument_list|,
 operator|new
 name|Integer
@@ -4487,13 +4672,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit: "
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.watchdog.output-size-limit"
+name|XQueryWatchDog
+operator|.
+name|PROPERTY_OUTPUT_SIZE_LIMIT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4559,7 +4750,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size"
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -4572,13 +4765,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size: "
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.max-stack-size"
+name|XQueryPool
+operator|.
+name|PROPERTY_MAX_STACK_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4621,7 +4820,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.size"
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
 argument_list|,
 operator|new
 name|Integer
@@ -4634,13 +4835,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.size: "
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.size"
+name|XQueryPool
+operator|.
+name|PROPERTY_POOL_SIZE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4683,7 +4890,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.timeout"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
 argument_list|,
 operator|new
 name|Long
@@ -4696,13 +4905,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.timeout: "
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.timeout"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4745,7 +4960,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|,
 operator|new
 name|Long
@@ -4758,13 +4975,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval: "
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.query-pool.timeout-check-interval"
+name|XQueryPool
+operator|.
+name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4830,7 +5053,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.min"
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|,
 operator|new
 name|Integer
@@ -4843,13 +5068,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.min: "
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.min"
+name|BrokerPool
+operator|.
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4892,7 +5123,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.max"
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|,
 operator|new
 name|Integer
@@ -4905,13 +5138,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.max: "
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.max"
+name|BrokerPool
+operator|.
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4954,7 +5193,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
 argument_list|,
 operator|new
 name|Long
@@ -4967,13 +5208,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.pool.sync-period: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYNC_PERIOD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5000,7 +5247,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|)
 decl_stmt|;
 if|if
@@ -5016,7 +5265,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|,
 operator|new
 name|Long
@@ -5029,13 +5280,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"wait-before-shutdown: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5109,7 +5366,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.indexNumbers"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
 argument_list|,
 name|Boolean
 operator|.
@@ -5128,13 +5387,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.indexNumbers: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.indexNumbers"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_INDEX_NUMBERS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5160,7 +5425,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.stem"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
 argument_list|,
 name|Boolean
 operator|.
@@ -5179,13 +5446,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.stem: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.stem"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STEM
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5211,7 +5484,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.store-term-freq"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
 argument_list|,
 name|Boolean
 operator|.
@@ -5230,13 +5505,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.store-term-freq: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.store-term-freq"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_STORE_TERM_FREQUENCY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5262,7 +5543,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|,
 name|Boolean
 operator|.
@@ -5281,13 +5564,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.case-sensitive: "
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.case-sensitive"
+name|NativeValueIndex
+operator|.
+name|PROPERTY_INDEX_CASE_SENSITIVE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5313,7 +5602,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.suppress-whitespace"
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
 argument_list|,
 name|suppressWS
 argument_list|)
@@ -5322,13 +5613,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.suppress-whitespace: "
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.suppress-whitespace"
+name|Indexer
+operator|.
+name|PROPERTY_SUPPRESS_WHITESPACE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5354,7 +5651,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.validation"
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
 argument_list|,
 name|validation
 argument_list|)
@@ -5363,13 +5662,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.validation: "
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.validation"
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5395,7 +5700,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.tokenizer"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
 argument_list|,
 name|tokenizer
 argument_list|)
@@ -5404,13 +5711,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.tokenizer: "
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.tokenizer"
+name|TextSearchEngine
+operator|.
+name|PROPERTY_TOKENIZER
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5473,7 +5786,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.index-depth"
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
 argument_list|,
 operator|new
 name|Integer
@@ -5486,13 +5801,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.index-depth: "
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.index-depth"
+name|NativeBroker
+operator|.
+name|PROPERTY_INDEX_DEPTH
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5997,7 +6318,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the absolut path to the configuration file.      *       * @return the path to the configuration file      */
+comment|/**      * Returns the absolute path to the configuration file.      *       * @return the path to the configuration file      */
 specifier|public
 specifier|static
 name|String

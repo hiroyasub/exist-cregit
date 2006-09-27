@@ -102,7 +102,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/** 	 * Create a new user session. Authenticates the user against the database. 	 * The user has to be a valid database user. If the provided user information 	 * is valid, a new session will be registered on the server and a session id 	 * will be returned. 	 *  	 * The session will be valid for at least 60 minutes. Please call disconnect() to 	 * release the session. 	 *  	 * Sessions are shared between the Query and Admin services. A session created 	 * through the Query service can be used with the Admin service and vice versa. 	 *  	 * @param user 	 * @param password 	 * @return session-id a unique id for the created session  	 * @throws RemoteException if the user cannot log in 	 */
+comment|/** 	 * Create a new user session. Authenticates the user against the database. 	 * The user has to be a valid database user. If the provided user information 	 * is valid, a new session will be registered on the server and a session id 	 * will be returned. 	 *  	 * The session will be valid for at least 60 minutes. Please call disconnect() to 	 * release the session. 	 *  	 * Sessions are shared between the Query and Admin services. A session created 	 * through the Query service can be used with the Admin service and vice versa. 	 *  	 * @param userId 	 * @param password 	 * @return session-id a unique id for the created session  	 * @throws RemoteException if the user cannot log in 	 */
 specifier|public
 name|java
 operator|.
@@ -230,7 +230,7 @@ name|rmi
 operator|.
 name|RemoteException
 function_decl|;
-comment|/**      * Execute an XQuery.      *       * @param sessionId a valid session id as returned by connect().      * @param xquery the XQuery script in binary encoding.      * @return      * @throws RemoteException      */
+comment|/**      * Execute an XQuery.      *       * @param sessionId a valid session id as returned by connect().      * @param xquery the XQuery script in binary encoding.      * @return query response      * @throws RemoteException      */
 specifier|public
 name|org
 operator|.

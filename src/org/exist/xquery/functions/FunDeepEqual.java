@@ -803,8 +803,18 @@ literal|true
 return|;
 try|try
 block|{
+comment|//Don't use this shortcut for in-memory nodes since the symbol table is ignored.
 if|if
 condition|(
+name|nva
+operator|.
+name|getImplementationType
+argument_list|()
+operator|!=
+name|NodeValue
+operator|.
+name|IN_MEMORY_NODE
+operator|&&
 name|nva
 operator|.
 name|equals

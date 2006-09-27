@@ -93,7 +93,7 @@ name|bis
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates a new instance of ResourceInputStream.      *       * @param brokerPool          BrokerPool      * @param resourceId    XML resource that must be streamed.      */
+comment|/**      * Creates a new instance of ResourceInputStream.      *       * @param brokerPool          BrokerPool      * @param docUri    XML resource that must be streamed.      */
 specifier|public
 name|ResourceInputStream
 parameter_list|(

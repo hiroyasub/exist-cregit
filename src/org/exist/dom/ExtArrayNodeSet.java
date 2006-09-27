@@ -3297,13 +3297,14 @@ index|[
 name|i
 index|]
 operator|.
-name|addContextNode
+name|deepCopyContext
 argument_list|(
-name|contextId
-argument_list|,
 name|parent
+argument_list|,
+name|contextId
 argument_list|)
 expr_stmt|;
+comment|//            					array[i].addContextNode(contextId, parent);
 else|else
 name|array
 index|[
@@ -3349,16 +3350,17 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+comment|//            					parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
-name|addContextNode
+name|deepCopyContext
 argument_list|(
-name|contextId
-argument_list|,
 name|array
 index|[
 name|i
 index|]
+argument_list|,
+name|contextId
 argument_list|)
 expr_stmt|;
 else|else
@@ -3618,16 +3620,17 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+comment|//            						array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
 index|]
 operator|.
-name|addContextNode
+name|deepCopyContext
 argument_list|(
-name|contextId
-argument_list|,
 name|parent
+argument_list|,
+name|contextId
 argument_list|)
 expr_stmt|;
 else|else
@@ -3675,16 +3678,17 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+comment|//            						parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
-name|addContextNode
+name|deepCopyContext
 argument_list|(
-name|contextId
-argument_list|,
 name|array
 index|[
 name|i
 index|]
+argument_list|,
+name|contextId
 argument_list|)
 expr_stmt|;
 else|else

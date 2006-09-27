@@ -202,7 +202,7 @@ name|Remove
 extends|extends
 name|Modification
 block|{
-comment|/** 	 * Constructor for Remove. 	 *  	 * @param pool 	 * @param user 	 * @param selectStmt 	 */
+comment|/**      * Constructor for Remove.      *       *       * @param broker       * @param docs       * @param namespaces       * @param variables       * @param selectStmt       */
 specifier|public
 name|Remove
 parameter_list|(
@@ -236,7 +236,7 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet) 	 */
+comment|/** 	 * @see org.exist.xupdate.Modification#process(org.exist.storage.txn.Txn) 	 */
 specifier|public
 name|long
 name|process

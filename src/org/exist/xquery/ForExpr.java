@@ -506,7 +506,7 @@ name|mark
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * This implementation tries to process the "where" clause in advance, i.e. in one single 	 * step. This is possible if the input sequence is a node set and the where expression 	 * has no dependencies on other variables than those declared in this "for" statement. 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/** 	 * This implementation tries to process the "where" clause in advance, i.e. in one single 	 * step. This is possible if the input sequence is a node set and the where expression 	 * has no dependencies on other variables than those declared in this "for" statement. 	 *  	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval

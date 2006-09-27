@@ -1692,7 +1692,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/** The div operator performs floating-point division according to IEEE 754. 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
+comment|/** The div operator performs floating-point division according to IEEE 754. 	 * @see org.exist.xquery.value.NumericValue#idiv(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
 name|ComputableValue
 name|div

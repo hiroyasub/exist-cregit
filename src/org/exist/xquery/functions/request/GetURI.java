@@ -278,7 +278,7 @@ argument_list|,
 literal|"Renamed to request:get-uri."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|GetURI
 parameter_list|(

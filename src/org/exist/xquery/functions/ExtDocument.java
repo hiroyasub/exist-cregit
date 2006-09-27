@@ -445,7 +445,7 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|ExtDocument
 parameter_list|(

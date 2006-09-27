@@ -338,7 +338,7 @@ return|return
 name|readOnly
 return|;
 block|}
-comment|/**      * Close the underlying files.      *       * @return      * @throws DBException      */
+comment|/**      * Close the underlying files.      *       * @return TRUE if closed.      * @throws DBException      */
 specifier|public
 name|boolean
 name|close
@@ -3432,7 +3432,7 @@ return|return
 name|dirty
 return|;
 block|}
-comment|/**          * Returns the LSN, i.e. the log sequence number, of the last          * operation that modified this page. This information is used          * during recovery: if the log sequence number of a log record          * is smaller or equal to the LSN stored in this page header, then          * the page has already been written to disk before the database          * failure. Otherwise, the modification is not yet reflected in the page          * and the operation needs to be redone.          *           * @return          */
+comment|/**          * Returns the LSN, i.e. the log sequence number, of the last          * operation that modified this page. This information is used          * during recovery: if the log sequence number of a log record          * is smaller or equal to the LSN stored in this page header, then          * the page has already been written to disk before the database          * failure. Otherwise, the modification is not yet reflected in the page          * and the operation needs to be redone.          *           * @return log sequence number of the last operation that modified this page.          */
 specifier|public
 specifier|final
 name|long

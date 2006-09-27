@@ -399,7 +399,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.dom.NodeSet, org.exist.dom.NodeProxy) 	 */
+comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval

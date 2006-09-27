@@ -556,7 +556,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node as returned by  * {@link org.exist.dom.NodeImpl#serialize()}. Within a page, a node is  * identified by a unique id, called tuple id (tid). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tid | length | data |  *   * 3) Relocated record:  *  | tid | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tid | address pointer |  *   * tid and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tid are used to indicate the type of the record  * (see {@see org.exist.storage.store.ItemId}).  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node. Within a page, a node is  * identified by a unique id, called tuple id (tid). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tid | length | data |  *   * 3) Relocated record:  *  | tid | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tid | address pointer |  *   * tid and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tid are used to indicate the type of the record  * (see {@link org.exist.storage.dom.ItemId}).  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -1064,7 +1064,7 @@ return|return
 name|dataCache
 return|;
 block|}
-comment|/** 	 * @return 	 */
+comment|/** 	 * @return file version. 	 */
 specifier|public
 name|short
 name|getFileVersion
@@ -1669,7 +1669,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param value     Binary resource as byte array 	 * @return 	 */
+comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param value     Binary resource as byte array 	 */
 specifier|public
 name|long
 name|addBinary
@@ -1723,7 +1723,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**          * Store a raw binary resource into the file. The data will always be          * written into an overflow page.          *           * @param is   Binary resource as stream.          * @return          */
+comment|/**          * Store a raw binary resource into the file. The data will always be          * written into an overflow page.          *           * @param is   Binary resource as stream.          */
 specifier|public
 name|long
 name|addBinary
@@ -1776,7 +1776,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Return binary data stored with {@link #addBinary(byte[])}. 	 *  	 * @param pageNum 	 * @return 	 */
+comment|/** 	 * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}. 	 *  	 * @param pageNum 	 */
 specifier|public
 name|byte
 index|[]
@@ -1840,7 +1840,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Insert a new node after the specified node. 	 *  	 * @param key 	 * @param value 	 * @return 	 */
+comment|/** 	 * Insert a new node after the specified node. 	 *  	 * @param key 	 * @param value 	 */
 specifier|public
 name|long
 name|insertAfter
@@ -1930,7 +1930,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/** 	 * Insert a new node after the node located at the specified address. 	 *  	 * If the previous node is in the middle of a page, the page is split. If 	 * the node is appended at the end and the page does not have enough room 	 * for the node, a new page is added to the page sequence. 	 *  	 * @param doc 	 *                     the document to which the new node belongs. 	 * @param address 	 *                     the storage address of the node after which the new value 	 *                     should be inserted. 	 * @param value 	 *                     the value of the new node. 	 * @return 	 */
+comment|/** 	 * Insert a new node after the node located at the specified address. 	 *  	 * If the previous node is in the middle of a page, the page is split. If 	 * the node is appended at the end and the page does not have enough room 	 * for the node, a new page is added to the page sequence. 	 *  	 * @param doc 	 *                     the document to which the new node belongs. 	 * @param address 	 *                     the storage address of the node after which the new value 	 *                     should be inserted. 	 * @param value 	 *                     the value of the new node. 	 */
 specifier|public
 name|long
 name|insertAfter
@@ -9917,7 +9917,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Update the key/value pair where the value is found at address p. 	 *  	 * @param key 	 *                     Description of the Parameter 	 * @param p 	 *                     Description of the Parameter 	 * @param value 	 *                     Description of the Parameter 	 */
+comment|/**      * Update the key/value pair where the value is found at address p.      *      * @param transaction       * @param p       * @param value       * @throws org.exist.util.ReadOnlyException       */
 specifier|public
 name|void
 name|update
@@ -10117,7 +10117,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve the string value of the specified node. This is an optimized low-level method 	 * which will directly traverse the stored DOM nodes and collect the string values of 	 * the specified root node and all its descendants. By directly scanning the stored 	 * node data, we do not need to create a potentially large amount of node objects 	 * and thus save memory and time for garbage collection.  	 *  	 * @param proxy 	 * @return 	 */
+comment|/** 	 * Retrieve the string value of the specified node. This is an optimized low-level method 	 * which will directly traverse the stored DOM nodes and collect the string values of 	 * the specified root node and all its descendants. By directly scanning the stored 	 * node data, we do not need to create a potentially large amount of node objects 	 * and thus save memory and time for garbage collection.  	 *  	 * @param node 	 * @return string value of the specified node 	 */
 specifier|public
 name|String
 name|getNodeValue

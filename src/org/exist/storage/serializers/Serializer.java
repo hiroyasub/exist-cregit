@@ -4073,7 +4073,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc      * @return      */
+comment|/**      * Check if the document has an xml-stylesheet processing instruction      * that references an XSLT stylesheet. Return the link to the stylesheet.      *        * @param doc      * @return link to the stylesheet      */
 specifier|public
 name|String
 name|hasXSLPi

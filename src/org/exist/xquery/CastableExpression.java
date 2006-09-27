@@ -119,7 +119,7 @@ specifier|final
 name|int
 name|requiredType
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param expr 	 * @param requiredType 	 * @param cardinality 	 */
+comment|/**      *       *       * @param requiredCardinality       * @param context       * @param expr       * @param requiredType       */
 specifier|public
 name|CastableExpression
 parameter_list|(

@@ -1792,6 +1792,12 @@ name|int
 name|addContextId
 parameter_list|)
 block|{
+if|if
+condition|(
+name|context
+operator|==
+literal|null
+condition|)
 name|deepCopyContext
 argument_list|(
 name|node

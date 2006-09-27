@@ -278,7 +278,7 @@ argument_list|,
 literal|"Renamed to request:get-hostname."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|GetHostname
 parameter_list|(

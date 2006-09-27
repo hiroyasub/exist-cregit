@@ -2998,7 +2998,7 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/** 	 *  Description of the Method 	 * 	 *@param  name                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/** 	 *@exception  XMLDBException   	 */
 specifier|public
 name|void
 name|removeUser

@@ -294,7 +294,7 @@ argument_list|,
 literal|"Moved to the 'session' module. See session:create."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|Create
 parameter_list|(

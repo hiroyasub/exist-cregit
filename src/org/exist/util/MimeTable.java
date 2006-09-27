@@ -258,7 +258,7 @@ specifier|private
 name|String
 name|src
 decl_stmt|;
-comment|/**      * Returns the singleton.      *       * @return      */
+comment|/**      * Returns the singleton.      */
 specifier|public
 specifier|static
 name|MimeTable
@@ -313,7 +313,7 @@ name|load
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Inform from where a mime-table is loaded      * @return      */
+comment|/**      * Inform from where a mime-table is loaded      */
 specifier|public
 name|String
 name|getSrc

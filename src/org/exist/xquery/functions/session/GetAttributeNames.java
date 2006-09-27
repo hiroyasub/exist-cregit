@@ -322,7 +322,7 @@ argument_list|,
 literal|"Moved to session module and renamed to session:get-attribute-names."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|GetAttributeNames
 parameter_list|(

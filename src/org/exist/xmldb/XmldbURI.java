@@ -1230,7 +1230,7 @@ throw|;
 block|}
 comment|/* 	 * It is an error for any of the following private members to throw an exception. 	 */
 comment|/* 	private void setInstanceName(String instanceName) {		  		String oldInstanceName = this.instanceName; 		try { 			this.instanceName = instanceName; 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.instanceName = oldInstanceName; 			throw new IllegalArgumentException("Invalid URI: "+e.getMessage()); 		}			 	} 	 	private void setContext(String context) throws URISyntaxException { 		String oldContext = this.context; 		try { 			//trims any trailing slash  	    	if (context != null&& context.endsWith("/")) {   		 	    		//include root slash if we have a host 	    		if (this.getHost() != null) 	    			context = context.substring(0, context.length() - 1);  	    	} 			this.context = "".equals(context) ? null : context; 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.context = oldContext; 			throw e; 		} 	} 	 	private void setCollectionPath(String collectionPath) throws URISyntaxException { 		String oldCollectionPath = collectionPath; 		try { 			if (collectionPath == null) 				this.encodedCollectionPath = null; 			else {                 String escaped = URIUtils.escapeHtmlURI(collectionPath); 				 				this.encodedCollectionPath = escaped; 			} 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.encodedCollectionPath = oldCollectionPath; 			throw e;     	} catch (UnsupportedEncodingException e) {         	wrappedURI = null;        	         	throw new URISyntaxException(this.toString(), e.getMessage());  	     	} 	} 	*/
-comment|/** 	 * This returns a proper heirarchical URI - the xmldb scheme is trimmed 	 * from the beginning.  The scheme will be the instance name, and all 	 * other fields will be populated as would be expected from a heirarchical 	 * URI 	 *  	 * @see getXmldbURI 	 */
+comment|/** 	 * This returns a proper heirarchical URI - the xmldb scheme is trimmed 	 * from the beginning.  The scheme will be the instance name, and all 	 * other fields will be populated as would be expected from a heirarchical 	 * URI 	 *  	 * @see #getXmldbURI 	 */
 specifier|public
 name|URI
 name|getURI
@@ -3283,7 +3283,7 @@ operator|+
 name|currentPath
 return|;
 block|}
-comment|/** @deprecated Legacy method used here and there in the code      * @param fileName      * @param parentPath      * @return      */
+comment|/** @deprecated Legacy method used here and there in the code      * @param fileName      * @param parentPath      */
 specifier|public
 specifier|static
 name|String
@@ -3308,7 +3308,7 @@ name|parentPath
 argument_list|)
 return|;
 block|}
-comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      * @return      */
+comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      */
 comment|//TODO : changes // into /  */
 specifier|public
 name|String
@@ -3478,7 +3478,7 @@ return|return
 name|name2
 return|;
 block|}
-comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      * @return      */
+comment|/**@deprecated Legacy method used here and there in the code and copied as such      * @param name      */
 comment|//TODO : changes // into /  */
 specifier|public
 specifier|final

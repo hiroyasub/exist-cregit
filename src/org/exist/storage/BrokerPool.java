@@ -440,6 +440,47 @@ name|DEFAULT_INSTANCE_NAME
 init|=
 literal|"exist"
 decl_stmt|;
+comment|//Various configuration property keys (set by the configuration manager)
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_MIN_CONNECTIONS
+init|=
+literal|"db-connection.pool.min"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_MAX_CONNECTIONS
+init|=
+literal|"db-connection.pool.min"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SYNC_PERIOD
+init|=
+literal|"db-connection.pool.sync-period"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SHUTDOWN_DELAY
+init|=
+literal|"wait-before-shutdown"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_COLLECTION_CACHE_SIZE
+init|=
+literal|"db-connection.collection-cache-size"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -1363,7 +1404,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.min"
+name|PROPERTY_MIN_CONNECTIONS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1390,7 +1431,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.max"
+name|PROPERTY_MAX_CONNECTIONS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1443,7 +1484,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.sync-period"
+name|PROPERTY_SYNC_PERIOD
 argument_list|)
 expr_stmt|;
 if|if
@@ -2225,7 +2266,7 @@ name|conf
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.collection-cache-size"
+name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3359,10 +3400,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Reloads the security manager of the database instance. This method is called for example when the 	 *<code>users.xml</code> file has been changed. 	 *  	 * @param A broker responsible for executing the job 	 */
-comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done?
-comment|// WM: this is called from the Collection.store() methods to signal that /db/system/users.xml has changed.
-comment|// A broker is already available in these methods, so we use it here.
+comment|/** 	 * Reloads the security manager of the database instance. This method is           * called for example when the<code>users.xml</code> file has been changed. 	 *  	 * @param broker A broker responsible for executing the job          *          *  TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and           *  release one when we're done?          *  WM: this is called from the Collection.store() methods to signal           *  that /db/system/users.xml has changed.          *  A broker is already available in these methods, so we use it here.          */
 specifier|public
 name|void
 name|reloadSecurityManager
@@ -3517,7 +3555,7 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.Sync#MINOR_SYNC} or {@link org.exist.storage.Sync#MINOR_SYNC}    	 */
+comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or           * {@link org.exist.storage.sync.Sync#MINOR_SYNC}    	 */
 specifier|public
 name|void
 name|triggerSync

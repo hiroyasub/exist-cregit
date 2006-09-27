@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @see http://www.w3.org/TR/xpath-functions/#func-tokenize  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**   * @see<a href="http://www.w3.org/TR/xpath-functions/#func-tokenize">http://www.w3.org/TR/xpath-functions/#func-tokenize</a>  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -392,7 +392,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval

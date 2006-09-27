@@ -466,7 +466,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Does the actual escaping. This method is copied from Michael Kay's      * saxon (see http://saxon.sf.net).      *       * @param s      * @param escapeReserved      * @return      */
+comment|/**      * Does the actual escaping. This method is copied from Michael Kay's      * saxon (see http://saxon.sf.net).      *       * @param s      * @param escapeReserved      */
 specifier|public
 specifier|static
 name|String

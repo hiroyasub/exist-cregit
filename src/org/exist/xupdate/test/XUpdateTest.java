@@ -415,7 +415,7 @@ name|col
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Constructor for xupdate. 	 * @param arg0 	 */
+comment|/** 	 * Constructor for xupdate. 	 */
 specifier|public
 name|XUpdateTest
 parameter_list|()

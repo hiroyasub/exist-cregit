@@ -116,31 +116,31 @@ name|TEXT_FUNCTION_NS
 init|=
 literal|"http://exist-db.org/xquery/text"
 decl_stmt|;
-comment|/** 	 * Returns the namespace URI that uniquely identifies this module. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the namespace URI that uniquely identifies this module. 	 *  	 * @return namespace URI  	 */
 specifier|public
 name|String
 name|getNamespaceURI
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns an optional default prefix (used if no prefix is supplied with 	 * the "import module" directive). 	 *  	 * @return 	 */
+comment|/** 	 * Returns an optional default prefix (used if no prefix is supplied with 	 * the "import module" directive). 	 *  	 * @return optional default prefix  	 */
 specifier|public
 name|String
 name|getDefaultPrefix
 parameter_list|()
 function_decl|;
-comment|/** 	 * Return a short description of this module to be displayed to a user. 	 *  	 * @return 	 */
+comment|/** 	 * Return a short description of this module to be displayed to a user. 	 *  	 * @return short description of this module 	 */
 specifier|public
 name|String
 name|getDescription
 parameter_list|()
 function_decl|;
-comment|/** 	 * Is this an internal module? 	 *  	 * @return 	 */
+comment|/** 	 * Is this an internal module? 	 *  	 * @return True if is internal module. 	 */
 specifier|public
 name|boolean
 name|isInternalModule
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the signatures of all functions defined within this module. 	 *  	 * @return 	 */
+comment|/** 	 * Returns the signatures of all functions defined within this module. 	 *  	 * @return signatures of all functions 	 */
 specifier|public
 name|FunctionSignature
 index|[]

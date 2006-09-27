@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -464,7 +464,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  A local implementation of the Collection interface. This  * is used when the database is running in embedded mode.  *  * Extends Observable to allow status callbacks during indexing.  * Methods storeResource notifies registered observers about the  * progress of the indexer by passing an object of type ProgressIndicator  * to the observer.  *   *@author     wolf  */
+comment|/**  *  A local implementation of the Collection interface. This  * is used when the database is running in embedded mode.  *  * Extends Observable to allow status callbacks during indexing.  * Methods storeResource notifies registered observers about the  * progress of the indexer by passing an object of type ProgressIndicator  * to the observer.  *  *@author     wolf  */
 end_comment
 
 begin_class
@@ -615,7 +615,7 @@ name|LocalCollection
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Create a collection with no parent (root collection). 	 *  	 * @param user 	 * @param brokerPool 	 * @param collection 	 * @throws XMLDBException 	 */
+comment|/**      * Create a collection with no parent (root collection).      *      * @param user      * @param brokerPool      * @param collection      * @throws XMLDBException      */
 specifier|public
 name|LocalCollection
 parameter_list|(
@@ -648,7 +648,7 @@ name|accessCtx
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a collection identified by its name. Load the collection from the database. 	 *  	 * @param user 	 * @param brokerPool 	 * @param parent 	 * @param name 	 * @throws XMLDBException 	 */
+comment|/**      * Create a collection identified by its name. Load the collection from the database.      *      * @param user      * @param brokerPool      * @param parent      * @param name      * @throws XMLDBException      */
 specifier|public
 name|LocalCollection
 parameter_list|(
@@ -1209,7 +1209,7 @@ name|perm
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Close the current collection. Calling this method will flush all 	 * open buffers to disk. 	 */
+comment|/**      * Close the current collection. Calling this method will flush all      * open buffers to disk.      */
 specifier|public
 name|void
 name|close
@@ -2320,7 +2320,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Possible services: XPathQueryService, XQueryService, 	 * CollectionManagementService (CollectionManager), UserManagementService, 	 * DatabaseInstanceManager, XUpdateQueryService,  IndexQueryService, 	 * ValidationService. */
+comment|/** Possible services: XPathQueryService, XQueryService,      * CollectionManagementService (CollectionManager), UserManagementService,      * DatabaseInstanceManager, XUpdateQueryService,  IndexQueryService,      * ValidationService. */
 specifier|public
 name|Service
 name|getService
@@ -4325,10 +4325,12 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|debug
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
@@ -4475,7 +4477,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Add a new observer to the list. Observers are just passed 	 * on to the indexer to be notified about the indexing progress. 	 */
+comment|/**      * Add a new observer to the list. Observers are just passed      * on to the indexer to be notified about the indexing progress.      */
 specifier|public
 name|void
 name|addObserver
@@ -4514,7 +4516,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** set user-defined Reader  	 * @param dataSource */
+comment|/** set user-defined Reader      * @param reader      */
 specifier|public
 name|void
 name|setReader

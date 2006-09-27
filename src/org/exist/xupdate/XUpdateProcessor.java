@@ -3425,7 +3425,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.xml.sax.ContentHandler#characters(char, int, int) 	 */
+comment|/** 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int) 	 */
 specifier|public
 name|void
 name|characters
@@ -3524,7 +3524,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char, int, int) 	 */
+comment|/** 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int) 	 */
 specifier|public
 name|void
 name|ignorableWhitespace

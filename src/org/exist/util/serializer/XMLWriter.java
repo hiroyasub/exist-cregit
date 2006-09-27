@@ -351,7 +351,7 @@ operator|=
 name|writer
 expr_stmt|;
 block|}
-comment|/** 	 * Set the output properties. 	 *  	 * @param outputProperties 	 */
+comment|/** 	 * Set the output properties. 	 *  	 * @param properties outputProperties 	 */
 specifier|public
 name|void
 name|setOutputProperties

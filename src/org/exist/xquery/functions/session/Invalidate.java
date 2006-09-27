@@ -280,7 +280,7 @@ argument_list|,
 literal|"Moved to 'session' module and renamed to session:invalidate"
 argument_list|)
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
+comment|/**      * @param context      */
 specifier|public
 name|Invalidate
 parameter_list|(

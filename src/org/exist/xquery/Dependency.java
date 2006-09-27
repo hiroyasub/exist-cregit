@@ -10,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Defines bit flags to indicate, upon which parts of the execution context an expression  * depends ({@see org.exist.xquery.Expression#getDependencies()}).  *    * @author wolf  */
+comment|/**  * Defines bit flags to indicate, upon which parts of the execution context an expression  * depends ({@link org.exist.xquery.Expression#getDependencies()}).  *    * @author wolf  */
 end_comment
 
 begin_class

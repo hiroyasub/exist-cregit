@@ -318,7 +318,7 @@ argument_list|,
 literal|"Moved to the util module. See util:unescape-uri."
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|FunUnEscapeURI
 parameter_list|(

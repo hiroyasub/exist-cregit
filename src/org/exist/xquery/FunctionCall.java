@@ -146,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a call to a user-defined function   * {@link org.exist.xquery.functions.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
+comment|/**  * Represents a call to a user-defined function   * {@link org.exist.xquery.UserDefinedFunction}.  *   * FunctionCall wraps around a user-defined function. It makes sure that all function parameters  * are checked against the signature of the function.   *   * @author wolf  */
 end_comment
 
 begin_class
@@ -555,7 +555,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**  	 * Evaluates all arguments, then forwards them to the user-defined function. 	 *  	 * The return value of the user-defined function will be checked against the 	 * provided function signature. 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/**  	 * Evaluates all arguments, then forwards them to the user-defined function. 	 *  	 * The return value of the user-defined function will be checked against the 	 * provided function signature. 	 *  	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -667,7 +667,7 @@ name|seq
 argument_list|)
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @return      * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @throws XPathException      */
 specifier|public
 name|Sequence
 name|evalFunction

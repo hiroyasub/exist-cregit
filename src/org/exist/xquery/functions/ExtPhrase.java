@@ -278,7 +278,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  phrase() function : search an exact phrase in a NodeSet  *  *@author     Bruno Chatel<bcha@chadocs.com>  *@created    March 30, 2005  */
+comment|/**  *  phrase() function : search an exact phrase in a NodeSet  *  *@author     Bruno Chatel<bcha@chadocs.com> (March 30, 2005)  */
 end_comment
 
 begin_class
@@ -306,7 +306,7 @@ name|FULLTEXT_AND
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *       * @param searchArg      * @param nodes       * @return       */
+comment|/**      *       * @param searchArg      * @param nodes       */
 specifier|public
 name|Sequence
 name|evalQuery
@@ -421,7 +421,7 @@ name|hits
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  	 * @param context 	 * @param result 	 * @return 	 */
+comment|/** 	 *  	 * @param context 	 * @param result 	 */
 specifier|private
 name|Sequence
 name|exactMatch

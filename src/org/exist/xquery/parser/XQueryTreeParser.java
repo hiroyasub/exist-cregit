@@ -16268,6 +16268,11 @@ name|name
 operator|.
 name|getText
 argument_list|()
+argument_list|,
+name|staticContext
+operator|.
+name|getDefaultFunctionNamespace
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -29237,10 +29242,15 @@ name|attrib
 operator|.
 name|addValue
 argument_list|(
+name|StringValue
+operator|.
+name|expand
+argument_list|(
 name|attrVal
 operator|.
 name|getText
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;

@@ -455,7 +455,7 @@ operator|=
 name|dbNodes
 expr_stmt|;
 block|}
-comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy The node's proxy      */
+comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param p     The node's proxy      */
 specifier|public
 name|void
 name|addNode

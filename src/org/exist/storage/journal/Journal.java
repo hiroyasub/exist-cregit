@@ -933,7 +933,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Returns the last LSN physically written to the journal.      *       * @return      */
+comment|/**      * Returns the last LSN physically written to the journal.      *       * @return last written LSN      */
 specifier|public
 name|long
 name|lastWrittenLsn
@@ -943,7 +943,7 @@ return|return
 name|lastLsnWritten
 return|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @throws TransactionException      */
 specifier|public
 name|void
 name|flushToLog
@@ -960,7 +960,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to {@link #SYNC_ON_COMMIT}.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @param forceSync force changes to disk even if syncMode doesn't require it.      * @throws TransactionException      */
 specifier|public
 specifier|synchronized
 name|void
@@ -1524,7 +1524,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Find the journal file with the highest file number.      *       * @param files      * @return      */
+comment|/**      * Find the journal file with the highest file number.      *       * @param files      */
 specifier|public
 specifier|final
 specifier|static
@@ -1634,7 +1634,7 @@ return|return
 name|max
 return|;
 block|}
-comment|/**      * Returns all journal files found in the data directory.      *       * @return      */
+comment|/**      * Returns all journal files found in the data directory.      *       * @return all journal files      */
 specifier|public
 name|File
 index|[]
@@ -1680,7 +1680,7 @@ return|return
 name|files
 return|;
 block|}
-comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      * @return      */
+comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      */
 specifier|public
 name|File
 name|getFile

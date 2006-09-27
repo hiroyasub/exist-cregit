@@ -1181,7 +1181,7 @@ return|return
 name|dtdPath
 return|;
 block|}
-comment|/**      *  Get document from database.      *      * @param isBinary      Indicate wether resource is binary.      * @param documentPath  Path to the resource.      * @return              Byte array of resource, null if not found.      */
+comment|/**      *  Get document from database.      *      * @param documentPath  Path to the resource.      * @return              Byte array of resource, null if not found.      */
 comment|//TODO: use XmldbURI
 specifier|public
 name|byte

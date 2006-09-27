@@ -1068,6 +1068,30 @@ name|WORDS_DBX
 init|=
 literal|"words.dbx"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_PAGE_SIZE
+init|=
+literal|"db-connection.page-size"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_MIN_FREE_MEMORY
+init|=
+literal|"db-connection.min_free_memory"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_INDEX_DEPTH
+init|=
+literal|"indexer.index-depth"
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -1115,6 +1139,7 @@ init|=
 literal|"database is read-only"
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|DEFAULT_DATA_DIR
@@ -1122,6 +1147,7 @@ init|=
 literal|"data"
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_PAGE_SIZE
@@ -1129,6 +1155,7 @@ init|=
 literal|4096
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_INDEX_DEPTH
@@ -1136,6 +1163,7 @@ init|=
 literal|1
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DEFAULT_MIN_MEMORY
@@ -1152,8 +1180,8 @@ literal|300000
 decl_stmt|;
 comment|/** default buffer size setting */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|BUFFERS
 init|=
@@ -1161,14 +1189,15 @@ literal|256
 decl_stmt|;
 comment|/** check available memory after storing DEFAULT_NODES_BEFORE_MEMORY_CHECK nodes */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_NODES_BEFORE_MEMORY_CHECK
 init|=
 literal|10000
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_CACHE_GROWTH
@@ -1176,6 +1205,7 @@ init|=
 literal|1.25
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_KEY_THRESHOLD
@@ -1183,6 +1213,7 @@ init|=
 literal|0.01
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_VALUE_VALUE_THRESHOLD
@@ -1190,6 +1221,7 @@ init|=
 literal|0.04
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_CACHE_GROWTH
@@ -1197,6 +1229,7 @@ init|=
 literal|1.4
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_KEY_THRESHOLD
@@ -1204,6 +1237,7 @@ init|=
 literal|0.01
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|double
 name|DEFAULT_WORD_VALUE_THRESHOLD
@@ -1427,7 +1461,7 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.page-size"
+name|PROPERTY_PAGE_SIZE
 argument_list|)
 expr_stmt|;
 if|if
@@ -1453,7 +1487,7 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"indexer.index-depth"
+name|PROPERTY_INDEX_DEPTH
 argument_list|)
 expr_stmt|;
 if|if
@@ -1472,7 +1506,7 @@ name|config
 operator|.
 name|getInteger
 argument_list|(
-literal|"db-connection.min_free_memory"
+name|PROPERTY_MIN_FREE_MEMORY
 argument_list|)
 expr_stmt|;
 if|if
@@ -2896,7 +2930,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode()}. */
+comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode(Txn, StoredNode, NodePath, String)}. */
 specifier|public
 name|void
 name|endRemove
@@ -6228,7 +6262,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      * Instead, {@link #addDocument(Collection, DocumentImpl)} is called.      */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      */
 specifier|public
 name|void
 name|saveCollection
@@ -6738,7 +6772,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the next free collection id. If a collection is removed, its collection id      * is released so it can be reused.      *       * @return      * @throws ReadOnlyException      */
+comment|/**      * Get the next free collection id. If a collection is removed, its collection id      * is released so it can be reused.      *       * @return next free collection id.      * @throws ReadOnlyException      */
 specifier|public
 name|short
 name|getFreeCollectionId
@@ -6938,7 +6972,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the next available unique collection id.      *       * @return      * @throws ReadOnlyException      */
+comment|/**      * Get the next available unique collection id.      *       * @return next available unique collection id      * @throws ReadOnlyException      */
 specifier|public
 name|short
 name|getNextCollectionId
@@ -9316,7 +9350,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  get all the documents in this database matching the given      *  document-type's name.      *      *@param  doctypeName  Description of the Parameter      *@param  user         Description of the Parameter      *@return              The documentsByDoctype value      */
+comment|/**      *  Get all the documents in this database matching the given      *  document-type's name.      * @return The documentsByDoctype value      */
 specifier|public
 name|DocumentSet
 name|getXMLResourcesByDoctype
@@ -11547,7 +11581,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return 	 * @throws ReadOnlyException 	 */
+comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return Next unused document id 	 * @throws ReadOnlyException 	 */
 specifier|public
 name|int
 name|getFreeResourceId
@@ -12612,6 +12646,39 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+name|boolean
+name|xupdateConsistencyChecks
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|customProperties
+operator|.
+name|get
+argument_list|(
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+argument_list|)
+operator|!=
+literal|null
+condition|)
+name|xupdateConsistencyChecks
+operator|=
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|customProperties
+operator|.
+name|get
+argument_list|(
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+argument_list|)
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|xupdateConsistencyChecks
@@ -12637,7 +12704,7 @@ expr_stmt|;
 comment|//          elementIndex.consistencyCheck(doc);
 block|}
 block|}
-comment|/** consistency Check of the database; useful after XUpdates;      * called by {@link #checkResourceConsistency()} */
+comment|/** consistency Check of the database; useful after XUpdates;      * called by {@link #checkXMLResourceConsistency(DocumentImpl)} */
 specifier|public
 name|void
 name|checkXMLResourceTree
@@ -12658,6 +12725,39 @@ operator|.
 name|getFileURI
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|boolean
+name|xupdateConsistencyChecks
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|customProperties
+operator|.
+name|get
+argument_list|(
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+argument_list|)
+operator|!=
+literal|null
+condition|)
+name|xupdateConsistencyChecks
+operator|=
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|customProperties
+operator|.
+name|get
+argument_list|(
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+argument_list|)
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
