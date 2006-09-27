@@ -1200,6 +1200,10 @@ name|void
 name|release
 parameter_list|()
 block|{
+name|ownerDocument
+operator|=
+literal|null
+expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
