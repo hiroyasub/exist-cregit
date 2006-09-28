@@ -4334,6 +4334,15 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+comment|// clear instance variables
+name|service
+operator|=
+literal|null
+expr_stmt|;
+name|root
+operator|=
+literal|null
+expr_stmt|;
 comment|//System.out.println("tearDown PASSED");
 block|}
 block|}
