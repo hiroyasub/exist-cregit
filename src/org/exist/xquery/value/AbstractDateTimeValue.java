@@ -233,6 +233,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|lexicalValue
+operator|=
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
+name|lexicalValue
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|this
@@ -264,7 +273,12 @@ literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|lexicalValue
 operator|+
-literal|"'"
+literal|"' "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
