@@ -132,6 +132,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|str
+operator|=
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
+name|str
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if

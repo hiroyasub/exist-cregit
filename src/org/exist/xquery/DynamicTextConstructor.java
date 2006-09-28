@@ -315,6 +315,11 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+name|builder
+operator|.
+name|startDocument
+argument_list|()
+expr_stmt|;
 name|context
 operator|.
 name|proceed
