@@ -263,7 +263,7 @@ block|{
 case|case
 name|Type
 operator|.
-name|TIME
+name|GMONTHDAY
 case|:
 case|case
 name|Type

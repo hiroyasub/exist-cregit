@@ -272,7 +272,7 @@ block|{
 case|case
 name|Type
 operator|.
-name|TIME
+name|GYEAR
 case|:
 case|case
 name|Type

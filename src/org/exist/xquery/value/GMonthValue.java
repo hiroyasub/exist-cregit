@@ -275,7 +275,7 @@ block|{
 case|case
 name|Type
 operator|.
-name|TIME
+name|GMONTH
 case|:
 case|case
 name|Type
