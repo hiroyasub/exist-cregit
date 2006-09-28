@@ -560,32 +560,16 @@ name|qname
 argument_list|)
 expr_stmt|;
 break|break;
-comment|//TODO : what kind of default do we expect here ? -pb
 default|default:
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Tried to obtain node name for node type "
-operator|+
-name|n
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// return empty sequence for all other nodes
 name|result
 operator|=
-operator|new
-name|QNameValue
-argument_list|(
-name|context
-argument_list|,
-name|QName
+name|Sequence
 operator|.
-name|EMPTY_QNAME
-argument_list|)
+name|EMPTY_SEQUENCE
 expr_stmt|;
+comment|//                	LOG.warn("Tried to obtain node name for node type " + n.getNodeType());
+comment|//                    result = new QNameValue(context, QName.EMPTY_QNAME);
 block|}
 block|}
 if|if
