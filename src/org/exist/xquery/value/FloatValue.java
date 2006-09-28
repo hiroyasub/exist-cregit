@@ -1139,10 +1139,6 @@ argument_list|)
 return|;
 else|else
 return|return
-operator|(
-operator|(
-name|FloatValue
-operator|)
 name|convertTo
 argument_list|(
 name|other
@@ -1150,7 +1146,6 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
-operator|)
 operator|.
 name|max
 argument_list|(
@@ -1212,10 +1207,6 @@ argument_list|)
 return|;
 else|else
 return|return
-operator|(
-operator|(
-name|FloatValue
-operator|)
 name|convertTo
 argument_list|(
 name|other
@@ -1223,7 +1214,6 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
-operator|)
 operator|.
 name|min
 argument_list|(
