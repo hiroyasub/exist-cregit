@@ -455,7 +455,7 @@ operator|=
 name|dbNodes
 expr_stmt|;
 block|}
-comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param p     The node's proxy      */
+comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy     The node's proxy      */
 specifier|public
 name|void
 name|addNode
@@ -2584,7 +2584,7 @@ name|node
 parameter_list|)
 block|{
 block|}
-comment|/**      * Lookup elements or attributes in the index matching a given {@link QName} and      * {@link NodeSelector}. The NodeSelector argument is optional. If selector is      * null, all elements or attributes matching qname will be returned.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID}      * @param docs the set of documents to look up in the index      * @param qname the QName of the attribute or element      * @param selector an (optional) NodeSelector      *       * @return      */
+comment|/**      * Lookup elements or attributes in the index matching a given {@link QName} and      * {@link NodeSelector}. The NodeSelector argument is optional. If selector is      * null, all elements or attributes matching qname will be returned.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID}      * @param docs the set of documents to look up in the index      * @param qname the QName of the attribute or element      * @param selector an (optional) NodeSelector      */
 specifier|public
 name|NodeSet
 name|findElementsByTagName

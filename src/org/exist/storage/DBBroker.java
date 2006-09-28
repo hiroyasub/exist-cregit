@@ -1438,7 +1438,7 @@ name|Serializer
 name|newSerializer
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get a node with given owner document and id from the database. 	 *  	 * @param doc 	 *            the document the node belongs to 	 * @param gid 	 *            the node's unique identifier 	 */
+comment|/** 	 * Get a node with given owner document and id from the database. 	 *  	 * @param doc 	 *            the document the node belongs to 	 * @param nodeId 	 *            the node's unique identifier 	 */
 specifier|public
 specifier|abstract
 name|StoredNode

@@ -34,7 +34,7 @@ name|NodeSetIterator
 extends|extends
 name|Iterator
 block|{
-comment|/**      * Look ahead: returns the node at the iterator's current position but      * does not move the iterator to the next node.      *       * @return      */
+comment|/**      * Look ahead: returns the node at the iterator's current position but      * does not move the iterator to the next node.      */
 specifier|public
 name|NodeProxy
 name|peekNode

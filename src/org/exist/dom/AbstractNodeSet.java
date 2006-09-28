@@ -651,7 +651,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 * @param  dl    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId 	 */
+comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 * @param  descendants    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId 	 */
 specifier|public
 name|NodeSet
 name|selectAncestors

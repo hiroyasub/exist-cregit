@@ -887,7 +887,7 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the level within the document tree at which      * this node occurs.      *      * @return      */
+comment|/**      * Returns the level within the document tree at which      * this node occurs.      */
 specifier|public
 name|int
 name|getTreeLevel

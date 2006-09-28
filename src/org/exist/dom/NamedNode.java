@@ -84,7 +84,7 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      * @param nodeType      * @param gid      */
+comment|/**      *       *       * @param nodeId       * @param qname       * @param nodeType       */
 specifier|public
 name|NamedNode
 parameter_list|(

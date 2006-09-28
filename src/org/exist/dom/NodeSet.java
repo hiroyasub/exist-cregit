@@ -278,7 +278,7 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 *@param  al    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
+comment|/** 	 * For a given set of potential ancestor nodes, return all ancestors 	 * having descendants in this node set. 	 * 	 * @param  descendants    node set containing potential ancestors 	 * @param includeSelf if true, check if the ancestor node itself is contained 	 * in this node set (ancestor-or-self axis) 	 * @param contextId used to track context nodes when evaluating predicate  	 * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context 	 * will be added to each result of the of the selection.  	 */
 specifier|public
 name|NodeSet
 name|selectAncestors

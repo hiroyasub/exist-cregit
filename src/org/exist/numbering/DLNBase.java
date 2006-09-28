@@ -1122,7 +1122,7 @@ return|return
 name|count
 return|;
 block|}
-comment|/**      * Returns the number of sub-levels in the id starting at      * startOffset. This is required to determine where a node      * can be inserted.      *       * @param startOffset      * @return      */
+comment|/**      * Returns the number of sub-levels in the id starting at      * startOffset. This is required to determine where a node      * can be inserted.      *       * @param startOffset      * @return number of sub-levels      */
 specifier|public
 name|int
 name|getSubLevelCount
@@ -1906,7 +1906,7 @@ index|]
 operator|)
 return|;
 block|}
-comment|/**      * Checks if the current DLN starts with the      * same bit sequence as other. This is used      * to test ancestor-descendant relationships.      *       * @param other      * @return      */
+comment|/**      * Checks if the current DLN starts with the      * same bit sequence as other. This is used      * to test ancestor-descendant relationships.      *       * @param other      */
 specifier|public
 name|boolean
 name|startsWith
