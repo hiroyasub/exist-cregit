@@ -594,6 +594,7 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
+comment|// fn:namespace-uri-from-QName
 name|String
 name|uri
 init|=
@@ -612,20 +613,6 @@ name|uri
 operator|=
 literal|""
 expr_stmt|;
-if|if
-condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|uri
-argument_list|)
-condition|)
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
 name|result
 operator|=
 operator|new
