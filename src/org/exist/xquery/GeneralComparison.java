@@ -3106,6 +3106,28 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// if truncation is set, we always do a string comparison
+if|if
+condition|(
+name|truncation
+operator|!=
+name|Constants
+operator|.
+name|TRUNC_NONE
+condition|)
+block|{
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+block|}
 comment|//			System.out.println(
 comment|//				lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 switch|switch
