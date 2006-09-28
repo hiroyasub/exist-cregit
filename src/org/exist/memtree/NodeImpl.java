@@ -2677,18 +2677,9 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getBaseURI() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
 specifier|public
