@@ -928,6 +928,13 @@ operator|new
 name|FunId
 argument_list|(
 name|context
+argument_list|,
+name|FunId
+operator|.
+name|signature
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 name|List

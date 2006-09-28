@@ -7638,7 +7638,7 @@ name|service
 argument_list|,
 literal|"ids.xml"
 argument_list|,
-literal|"id(//a/@ref)"
+literal|"/test/id(//a/@ref)"
 argument_list|,
 literal|1
 argument_list|)
@@ -7737,7 +7737,7 @@ name|service
 argument_list|,
 literal|"ids.xml"
 argument_list|,
-literal|"id('id3')"
+literal|"/test/id('id3')"
 argument_list|,
 literal|1
 argument_list|)
@@ -7763,7 +7763,7 @@ name|service
 argument_list|,
 literal|"ids.xml"
 argument_list|,
-literal|"id('id4')"
+literal|"id('id4', /test)"
 argument_list|,
 literal|1
 argument_list|)

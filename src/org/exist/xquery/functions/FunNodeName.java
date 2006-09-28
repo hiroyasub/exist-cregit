@@ -581,7 +581,9 @@ name|QNameValue
 argument_list|(
 name|context
 argument_list|,
-literal|""
+name|QName
+operator|.
+name|EMPTY_QNAME
 argument_list|)
 expr_stmt|;
 block|}
