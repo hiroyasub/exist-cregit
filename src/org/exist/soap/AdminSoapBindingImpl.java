@@ -1151,7 +1151,7 @@ block|{
 try|try
 block|{
 return|return
-name|removeCollection
+name|removeDocument
 argument_list|(
 name|sessionId
 argument_list|,
