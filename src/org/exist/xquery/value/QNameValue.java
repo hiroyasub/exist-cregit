@@ -105,6 +105,22 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|name
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0001: An empty string is not a valid lexical representation of xs:QName."
+argument_list|)
+throw|;
 name|this
 operator|.
 name|context
