@@ -7863,6 +7863,13 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+comment|//store the currentUser
+name|User
+name|currentUser
+init|=
+name|user
+decl_stmt|;
+comment|//elevate user to DBA_USER
 name|user
 operator|=
 name|pool
@@ -8080,6 +8087,11 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+comment|//restore the user
+name|user
+operator|=
+name|currentUser
+expr_stmt|;
 return|return
 name|targetDoc
 return|;
@@ -8105,6 +8117,11 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
+comment|//restore the user
+name|user
+operator|=
+name|currentUser
+expr_stmt|;
 return|return
 literal|null
 return|;
