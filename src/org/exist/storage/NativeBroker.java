@@ -8087,11 +8087,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-comment|//restore the user
-name|user
-operator|=
-name|currentUser
-expr_stmt|;
 return|return
 name|targetDoc
 return|;
@@ -8117,11 +8112,14 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
 comment|//restore the user
 name|user
 operator|=
 name|currentUser
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
