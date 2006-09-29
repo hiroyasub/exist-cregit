@@ -431,7 +431,7 @@ specifier|static
 name|String
 name|PROPERTY_MAX_CONNECTIONS
 init|=
-literal|"db-connection.pool.min"
+literal|"db-connection.pool.max"
 decl_stmt|;
 specifier|public
 specifier|final
