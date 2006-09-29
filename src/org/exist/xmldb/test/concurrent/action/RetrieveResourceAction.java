@@ -14,6 +14,8 @@ operator|.
 name|test
 operator|.
 name|concurrent
+operator|.
+name|action
 package|;
 end_package
 
@@ -72,6 +74,7 @@ import|;
 end_import
 
 begin_class
+specifier|public
 class|class
 name|RetrieveResourceAction
 extends|extends

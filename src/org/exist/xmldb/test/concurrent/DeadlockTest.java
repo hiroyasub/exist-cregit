@@ -214,6 +214,18 @@ index|[
 name|i
 index|]
 operator|.
+name|setName
+argument_list|(
+literal|"T"
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+name|writerThreads
+index|[
+name|i
+index|]
+operator|.
 name|start
 argument_list|()
 expr_stmt|;
@@ -506,7 +518,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"#"
+literal|"_"
 operator|+
 name|i
 argument_list|,

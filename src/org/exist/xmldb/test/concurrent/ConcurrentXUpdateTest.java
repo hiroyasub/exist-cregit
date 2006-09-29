@@ -51,6 +51,24 @@ name|IndexQueryService
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|test
+operator|.
+name|concurrent
+operator|.
+name|action
+operator|.
+name|RemoveAppendAction
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test concurrent XUpdates on the same document.  *   * @author wolf  */
 end_comment

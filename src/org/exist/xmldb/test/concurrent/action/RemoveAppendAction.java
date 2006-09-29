@@ -14,8 +14,26 @@ operator|.
 name|test
 operator|.
 name|concurrent
+operator|.
+name|action
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|test
+operator|.
+name|concurrent
+operator|.
+name|XMLGenerator
+import|;
+end_import
 
 begin_import
 import|import
@@ -76,6 +94,7 @@ comment|/**  * Removes the 10 last elements from the resource and inserts 10   *
 end_comment
 
 begin_class
+specifier|public
 class|class
 name|RemoveAppendAction
 extends|extends
