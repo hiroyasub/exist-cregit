@@ -323,7 +323,12 @@ argument_list|()
 operator|.
 name|newDuration
 argument_list|(
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
 name|str
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1908,6 +1913,31 @@ name|target
 operator|.
 name|getName
 argument_list|()
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0006: value of type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" has no boolean value."
 argument_list|)
 throw|;
 block|}

@@ -317,7 +317,12 @@ operator|=
 operator|new
 name|BigInteger
 argument_list|(
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
 name|stringValue
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Long.parseLong(stringValue);
@@ -374,7 +379,12 @@ operator|=
 operator|new
 name|BigInteger
 argument_list|(
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
 name|stringValue
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Long.parseLong(stringValue);
