@@ -439,6 +439,24 @@ argument_list|()
 operator|==
 name|Type
 operator|.
+name|QNAME
+condition|)
+name|result
+operator|=
+name|item
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
+if|else if
+condition|(
+name|item
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
 name|ATOMIC
 operator|||
 name|Type
