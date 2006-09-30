@@ -89,6 +89,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|in
+operator|=
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|(

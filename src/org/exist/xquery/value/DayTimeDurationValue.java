@@ -193,7 +193,12 @@ name|this
 argument_list|(
 name|createDurationDayTime
 argument_list|(
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
 name|str
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
