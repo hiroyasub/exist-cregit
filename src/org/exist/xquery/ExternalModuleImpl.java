@@ -622,6 +622,14 @@ condition|(
 name|decl
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|mStaticVariables
+operator|.
+name|containsKey
+argument_list|(
+name|qname
+argument_list|)
 condition|)
 block|{
 name|decl
