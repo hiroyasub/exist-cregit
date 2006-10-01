@@ -1167,7 +1167,7 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Java binding is currently disabled in config.xml. Call to "
+literal|"Java binding is disabled in the current configuration. Call to "
 operator|+
 name|qname
 operator|.
@@ -1187,7 +1187,7 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Java binding is currently disabled in config.xml. Call to "
+literal|"Java binding is disabled in the current configuration . Call to "
 operator|+
 name|qname
 operator|.
