@@ -1364,7 +1364,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param doc	The document 	 */
+comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 */
 specifier|private
 name|void
 name|finishTrigger
