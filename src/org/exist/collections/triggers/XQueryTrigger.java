@@ -296,7 +296,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  * The XQuery source executed is the value of the context parameter named "query".  * These external variables are accessible to the user XQuery statement :  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  * The XQuery source executed is the value of the context parameter named "query".  * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
 end_comment
 
 begin_class
@@ -567,6 +567,21 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|/*         	Variable globalVar;         	         	globalVar = new Variable(new QName("collectionName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(collection.getName()));	         	        context.declareGlobalVariable(globalVar);	          	        globalVar = new Variable(new QName("documentName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(documentName)); 	        context.declareGlobalVariable(globalVar);	                  	        globalVar = new Variable(new QName("triggerEvent", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(eventToString(event))); 	        context.declareGlobalVariable(globalVar);  	        globalVar = new Variable(new QName("document", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new NodeProxy((DocumentImpl)existingDocument)); 	        context.declareGlobalVariable(globalVar); 	        */
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+literal|"eventType"
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+literal|"prepare"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|declareVariable
@@ -844,6 +859,21 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|/*         	Variable globalVar;          	globalVar = new Variable(new QName("collectionName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(collection.getName()));	     	        context.declareGlobalVariable(globalVar); 	         	        globalVar = new Variable(new QName("documentName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(documentName)); 	        context.declareGlobalVariable(globalVar);  	        globalVar = new Variable(new QName("triggerEvent", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(eventToString(event))); 	        context.declareGlobalVariable(globalVar);	    	        globalVar = new Variable(new QName("document", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new NodeProxy((DocumentImpl)document)); 	        context.declareGlobalVariable(globalVar); 	        */
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+literal|"eventType"
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+literal|"finish"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|declareVariable
