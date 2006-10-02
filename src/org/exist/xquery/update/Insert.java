@@ -45,18 +45,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeImpl
 import|;
 end_import
@@ -824,6 +812,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+comment|//start a transaction
 name|Txn
 name|transaction
 init|=
@@ -870,13 +859,6 @@ decl_stmt|;
 name|NodeImpl
 name|parent
 decl_stmt|;
-name|DocumentSet
-name|modifiedDocs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
 name|NodeList
 name|contentList
 init|=
@@ -921,16 +903,6 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-name|doc
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|setIndexListener
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -961,13 +933,17 @@ argument_list|,
 literal|"permission to remove document denied"
 argument_list|)
 throw|;
-name|modifiedDocs
-operator|.
-name|add
-argument_list|(
 name|doc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setIndexListener
+argument_list|(
+name|listener
 argument_list|)
 expr_stmt|;
+comment|//update the document
 if|if
 condition|(
 name|mode
@@ -1063,6 +1039,13 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|modifiedDocuments
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getBroker
@@ -1091,9 +1074,10 @@ name|checkFragmentation
 argument_list|(
 name|transaction
 argument_list|,
-name|modifiedDocs
+name|modifiedDocuments
 argument_list|)
 expr_stmt|;
+comment|//commit the transaction
 name|transact
 operator|.
 name|commit

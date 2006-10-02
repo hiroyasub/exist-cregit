@@ -45,18 +45,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeImpl
 import|;
 end_import
@@ -675,6 +663,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+comment|//start a transaction
 name|Txn
 name|transaction
 init|=
@@ -722,13 +711,6 @@ argument_list|)
 decl_stmt|;
 name|NodeImpl
 name|parent
-decl_stmt|;
-name|DocumentSet
-name|modifiedDocs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -815,13 +797,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
-name|modifiedDocs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//update the document
 name|parent
 operator|=
 operator|(
@@ -914,6 +890,13 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|modifiedDocuments
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getBroker
@@ -942,9 +925,10 @@ name|checkFragmentation
 argument_list|(
 name|transaction
 argument_list|,
-name|modifiedDocs
+name|modifiedDocuments
 argument_list|)
 expr_stmt|;
+comment|//commit the transaction
 name|transact
 operator|.
 name|commit
