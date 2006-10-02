@@ -280,10 +280,10 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setTimeoutFromPragma
+name|setTimeoutFromOption
 parameter_list|(
-name|Pragma
-name|pragma
+name|Option
+name|option
 parameter_list|)
 throws|throws
 name|XPathException
@@ -292,7 +292,7 @@ name|String
 index|[]
 name|contents
 init|=
-name|pragma
+name|option
 operator|.
 name|tokenizeContents
 argument_list|()
@@ -309,7 +309,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Pragma 'timeout' should have exactly one parameter: the timeout value."
+literal|"Option 'timeout' should have exactly one parameter: the timeout value."
 argument_list|)
 throw|;
 try|try
@@ -337,9 +337,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Error parsing timeout value in pragma "
+literal|"Error parsing timeout value in option "
 operator|+
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -353,7 +353,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"timeout set from pragma: "
+literal|"timeout set from option: "
 operator|+
 name|timeout
 operator|+
@@ -363,10 +363,10 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setMaxNodesFromPragma
+name|setMaxNodesFromOption
 parameter_list|(
-name|Pragma
-name|pragma
+name|Option
+name|option
 parameter_list|)
 throws|throws
 name|XPathException
@@ -375,7 +375,7 @@ name|String
 index|[]
 name|contents
 init|=
-name|pragma
+name|option
 operator|.
 name|tokenizeContents
 argument_list|()
@@ -392,7 +392,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Pragma 'output-size-limit' should have exactly one parameter: the timeout value."
+literal|"Option 'output-size-limit' should have exactly one parameter: the timeout value."
 argument_list|)
 throw|;
 try|try
@@ -420,9 +420,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Error parsing size-limit value in pragma "
+literal|"Error parsing size-limit value in option "
 operator|+
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -436,7 +436,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"output-size-limit set from pragma: "
+literal|"output-size-limit set from option: "
 operator|+
 name|maxNodesLimit
 argument_list|)

@@ -719,7 +719,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Pragma
+name|Option
 import|;
 end_import
 
@@ -5860,14 +5860,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Pragma
+name|Option
 name|pragma
 init|=
 name|context
 operator|.
-name|getPragma
+name|getOption
 argument_list|(
-name|Pragma
+name|Option
 operator|.
 name|SERIALIZE_QNAME
 argument_list|)
@@ -5909,7 +5909,7 @@ name|String
 index|[]
 name|pair
 init|=
-name|Pragma
+name|Option
 operator|.
 name|parseKeyValuePair
 argument_list|(

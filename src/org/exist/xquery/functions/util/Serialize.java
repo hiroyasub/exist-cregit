@@ -217,7 +217,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Pragma
+name|Option
 import|;
 end_import
 
@@ -906,7 +906,7 @@ name|String
 name|opt
 index|[]
 init|=
-name|Pragma
+name|Option
 operator|.
 name|parseKeyValuePair
 argument_list|(

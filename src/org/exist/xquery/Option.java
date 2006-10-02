@@ -70,13 +70,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an XQuery pragma. Pragmas are used to pass   * vendor-specific information to the XQuery engine. They may  * occur anywhere inside the query. The specified pragmas can  * be accessed through method   * {@link org.exist.xquery.XQueryContext#getPragma(QName)}.  *   * @author wolf  */
+comment|/**  * Represents an XQuery option declared via "declare option".  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|Pragma
+name|Option
 block|{
 specifier|public
 specifier|final
@@ -187,7 +187,7 @@ name|String
 name|contents
 decl_stmt|;
 specifier|public
-name|Pragma
+name|Option
 parameter_list|(
 name|QName
 name|qname
@@ -405,7 +405,7 @@ if|if
 condition|(
 name|other
 operator|instanceof
-name|Pragma
+name|Option
 condition|)
 block|{
 return|return
@@ -415,7 +415,7 @@ name|equalsSimple
 argument_list|(
 operator|(
 operator|(
-name|Pragma
+name|Option
 operator|)
 name|other
 operator|)

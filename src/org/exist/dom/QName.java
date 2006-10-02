@@ -979,7 +979,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"No namespace defined for prefix "
+literal|"XPST0081: No namespace defined for prefix "
 operator|+
 name|prefix
 argument_list|)
