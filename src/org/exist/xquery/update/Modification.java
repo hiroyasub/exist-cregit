@@ -1078,8 +1078,9 @@ argument_list|)
 expr_stmt|;
 block|}
 name|modifiedDocuments
-operator|=
-literal|null
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 comment|//unlock documents
 name|lockedDocuments
@@ -1324,6 +1325,42 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Trigger event UPDATE_DOCUMENT_EVENT for collection: "
+operator|+
+name|doc
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" with: "
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1384,6 +1421,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|trigger
 operator|.
 name|finish
@@ -1402,6 +1441,43 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Trigger event UPDATE_DOCUMENT_EVENT for collection: "
+operator|+
+name|doc
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" with: "
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
