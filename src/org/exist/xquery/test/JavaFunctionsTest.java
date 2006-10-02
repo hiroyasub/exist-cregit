@@ -291,7 +291,7 @@ argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-literal|"Java binding is currently disabled"
+literal|"Java binding is disabled in the current configuration"
 argument_list|)
 operator|>
 operator|-
