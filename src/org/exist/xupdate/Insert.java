@@ -366,13 +366,6 @@ decl_stmt|;
 name|NodeImpl
 name|parent
 decl_stmt|;
-name|DocumentSet
-name|modifiedDocs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
 name|int
 name|len
 init|=
@@ -472,13 +465,6 @@ argument_list|(
 literal|"permission to update document denied"
 argument_list|)
 throw|;
-name|modifiedDocs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
 name|parent
 operator|=
 operator|(
@@ -546,6 +532,13 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|modifiedDocuments
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|storeXMLResource
@@ -571,7 +564,7 @@ name|checkFragmentation
 argument_list|(
 name|transaction
 argument_list|,
-name|modifiedDocs
+name|modifiedDocuments
 argument_list|)
 expr_stmt|;
 return|return
