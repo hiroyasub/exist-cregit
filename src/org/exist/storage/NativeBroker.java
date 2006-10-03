@@ -13089,6 +13089,12 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 operator|||
+name|nodeType
+operator|==
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
+operator|||
 name|node
 operator|.
 name|getNodeId
