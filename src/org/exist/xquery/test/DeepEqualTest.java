@@ -1131,6 +1131,30 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testReferenceNode
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"let $expr1 :=<Value>Hello</Value> "
+operator|+
+literal|"return "
+operator|+
+literal|"deep-equal(<Result><Value>Hello</Value></Result>,"
+operator|+
+literal|"<Result><Value>{$expr1/node()}</Value></Result> )"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{
