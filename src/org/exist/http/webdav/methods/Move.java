@@ -1297,6 +1297,24 @@ argument_list|,
 name|docUri
 argument_list|)
 expr_stmt|;
+comment|// [1509776] After a webDAV MOVE all locks need to be removed.
+name|resource
+operator|.
+name|setUserLock
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setLockToken
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|transact
 operator|.
 name|commit

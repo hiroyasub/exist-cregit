@@ -262,7 +262,7 @@ block|{
 return|return
 name|Type
 operator|.
-name|DOUBLE
+name|NUMBER
 return|;
 block|}
 specifier|public

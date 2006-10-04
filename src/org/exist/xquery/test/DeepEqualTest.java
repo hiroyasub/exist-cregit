@@ -1106,6 +1106,55 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testElements17
+parameter_list|()
+block|{
+comment|// Test deep-equal is used with in-memory nodes
+name|String
+name|query
+init|=
+literal|"let $one :=<foo/> "
+operator|+
+literal|"let $two :=<bar/> "
+operator|+
+literal|"return "
+operator|+
+literal|"deep-equal($one, $two)"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|false
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testReferenceNode
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"let $expr1 :=<Value>Hello</Value> "
+operator|+
+literal|"return "
+operator|+
+literal|"deep-equal(<Result><Value>Hello</Value></Result>,"
+operator|+
+literal|"<Result><Value>{$expr1/node()}</Value></Result> )"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{

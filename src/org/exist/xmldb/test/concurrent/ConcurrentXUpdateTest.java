@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on Sep 25, 2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -47,24 +47,36 @@ name|exist
 operator|.
 name|xmldb
 operator|.
+name|IndexQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
 name|test
 operator|.
 name|concurrent
 operator|.
 name|action
 operator|.
-name|AttributeUpdateAction
+name|RemoveAppendAction
 import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * Test concurrent XUpdates on the same document.  *   * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ConcurrentAttrUpdateTest
+name|ConcurrentXUpdateTest
 extends|extends
 name|ConcurrentTestBase
 block|{
@@ -84,9 +96,23 @@ specifier|private
 specifier|final
 specifier|static
 name|String
-name|QUERY
+name|CONFIG
 init|=
-literal|"//ELEMENT[@attribute-1]"
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
+operator|+
+literal|"<index>"
+operator|+
+literal|"<fulltext default=\"none\">"
+operator|+
+literal|"</fulltext>"
+operator|+
+literal|"<create path=\"//ELEMENT-1/@attribute-3\" type=\"xs:string\"/>"
+operator|+
+literal|"<create path=\"//ELEMENT-1/@attribute-1\" type=\"xs:string\"/>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -106,7 +132,7 @@ name|TestRunner
 operator|.
 name|run
 argument_list|(
-name|ConcurrentAttrUpdateTest
+name|ConcurrentXUpdateTest
 operator|.
 name|class
 argument_list|)
@@ -116,9 +142,8 @@ specifier|private
 name|File
 name|tempFile
 decl_stmt|;
-comment|/**      *       *       * @param name       */
 specifier|public
-name|ConcurrentAttrUpdateTest
+name|ConcurrentXUpdateTest
 parameter_list|(
 name|String
 name|name
@@ -146,6 +171,34 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|IndexQueryService
+name|idxConf
+init|=
+operator|(
+name|IndexQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"IndexQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|idxConf
+argument_list|)
+expr_stmt|;
+name|idxConf
+operator|.
+name|configureCollection
+argument_list|(
+name|CONFIG
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|wordList
@@ -168,7 +221,7 @@ name|DBUtils
 operator|.
 name|generateXMLFile
 argument_list|(
-literal|250
+literal|500
 argument_list|,
 literal|10
 argument_list|,
@@ -187,10 +240,12 @@ argument_list|,
 name|tempFile
 argument_list|)
 expr_stmt|;
+comment|//String query0 = "document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
+comment|//String query1 = "document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
 name|addAction
 argument_list|(
 operator|new
-name|AttributeUpdateAction
+name|RemoveAppendAction
 argument_list|(
 name|URI
 operator|+
@@ -201,14 +256,18 @@ argument_list|,
 name|wordList
 argument_list|)
 argument_list|,
-literal|20
+literal|50
 argument_list|,
 literal|0
 argument_list|,
-literal|0
+literal|200
 argument_list|)
 expr_stmt|;
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", QUERY), 100, 100, 30);
+comment|//addAction(new RemoveAppendAction(URI + "/C1", "R1.xml", wordList), 50, 100, 200);
+comment|//addAction(new MultiResourcesAction("samples/mods", URI + "/C1"), 1, 0, 300);
+comment|//addAction(new RetrieveResourceAction(URI + "/C1", "R1.xml"), 10, 1000, 2000);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 100, 100);
+comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 200, 100);
 block|}
 catch|catch
 parameter_list|(
@@ -234,10 +293,13 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|super
+comment|//super.tearDown();
+name|DBUtils
 operator|.
-name|tearDown
-argument_list|()
+name|shutdownDB
+argument_list|(
+name|URI
+argument_list|)
 expr_stmt|;
 name|tempFile
 operator|.

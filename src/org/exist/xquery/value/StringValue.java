@@ -1557,23 +1557,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|other
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|)
-condition|)
-block|{
+comment|//if (Type.subTypeOf(other.getType(), Type.STRING)) {
 name|int
 name|cmp
 init|=
@@ -1665,24 +1649,10 @@ literal|"Type error: cannot apply operand to string value"
 argument_list|)
 throw|;
 block|}
-block|}
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Type error: operands are not comparable; expected xs:string; got "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|other
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-argument_list|)
-throw|;
+comment|//}
+comment|//throw new XPathException(
+comment|//	"Type error: operands are not comparable; expected xs:string; got "
+comment|//		+ Type.getTypeName(other.getType()));
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public

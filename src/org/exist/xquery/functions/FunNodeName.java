@@ -611,15 +611,30 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-comment|// return empty sequence for all other nodes
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Tried to obtain node name for node type "
+operator|+
+name|n
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
-name|Sequence
+operator|new
+name|QNameValue
+argument_list|(
+name|context
+argument_list|,
+name|QName
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_QNAME
+argument_list|)
 expr_stmt|;
-comment|//                	LOG.warn("Tried to obtain node name for node type " + n.getNodeType());
-comment|//                    result = new QNameValue(context, QName.EMPTY_QNAME);
 block|}
 block|}
 if|if

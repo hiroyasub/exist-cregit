@@ -7723,6 +7723,28 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 block|{
+comment|//store the currentUser
+name|User
+name|currentUser
+init|=
+name|user
+decl_stmt|;
+comment|//elevate user to DBA_USER
+name|user
+operator|=
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|DBA_USER
+argument_list|)
+expr_stmt|;
+comment|//start a transaction
 name|TransactionManager
 name|transact
 init|=
@@ -7739,20 +7761,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|user
-operator|=
-name|pool
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|DBA_USER
-argument_list|)
-expr_stmt|;
+comment|//create a name for the temporary document
 name|XmldbURI
 name|docName
 init|=
@@ -7788,6 +7797,7 @@ operator|+
 literal|".xml"
 argument_list|)
 decl_stmt|;
+comment|//get the temp collection
 name|Collection
 name|temp
 init|=
@@ -7804,12 +7814,15 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+comment|//if no temp collection
 if|if
 condition|(
 name|temp
 operator|==
 literal|null
 condition|)
+block|{
+comment|//creates temp collection with lock
 name|temp
 operator|=
 name|createTempCollection
@@ -7817,7 +7830,10 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+comment|//lock the temp collection
 name|transaction
 operator|.
 name|registerLock
@@ -7832,6 +7848,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
+comment|//create a temporary document
 name|DocumentImpl
 name|targetDoc
 init|=
@@ -7900,6 +7918,7 @@ name|temp
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//index the temporary document
 name|DOMIndexer
 name|indexer
 init|=
@@ -7925,6 +7944,7 @@ operator|.
 name|store
 argument_list|()
 expr_stmt|;
+comment|//store the temporary document
 name|temp
 operator|.
 name|addDocument
@@ -7949,6 +7969,7 @@ expr_stmt|;
 name|flush
 argument_list|()
 expr_stmt|;
+comment|//commit the transaction
 name|transact
 operator|.
 name|commit
@@ -7980,12 +8001,21 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//abort the transaction
 name|transact
 operator|.
 name|abort
 argument_list|(
 name|transaction
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|//restore the user
+name|user
+operator|=
+name|currentUser
 expr_stmt|;
 block|}
 return|return
@@ -10725,18 +10755,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|doc
-argument_list|)
-expr_stmt|;
-comment|// Remove all (webdav) Lock token data when document is removed.
-comment|// [ 1509776 ] webDAV : Lock retains after MOVE
-name|doc
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|setLockToken
-argument_list|(
-literal|null
 argument_list|)
 expr_stmt|;
 name|doc

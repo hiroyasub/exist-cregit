@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on Sep 25, 2004  *  * TODO To change the template for this generated file go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,16 +16,6 @@ operator|.
 name|concurrent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
 
 begin_import
 import|import
@@ -53,18 +43,18 @@ name|concurrent
 operator|.
 name|action
 operator|.
-name|AttributeUpdateAction
+name|TextUpdateAction
 import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ConcurrentAttrUpdateTest
+name|TextUpdateTest
 extends|extends
 name|ConcurrentTestBase
 block|{
@@ -84,9 +74,9 @@ specifier|private
 specifier|final
 specifier|static
 name|String
-name|QUERY
+name|XML
 init|=
-literal|"//ELEMENT[@attribute-1]"
+literal|"<article/>"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -106,19 +96,14 @@ name|TestRunner
 operator|.
 name|run
 argument_list|(
-name|ConcurrentAttrUpdateTest
+name|TextUpdateTest
 operator|.
 name|class
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|File
-name|tempFile
-decl_stmt|;
-comment|/**      *       *       * @param name       */
 specifier|public
-name|ConcurrentAttrUpdateTest
+name|TextUpdateTest
 parameter_list|(
 name|String
 name|name
@@ -146,35 +131,6 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|String
-index|[]
-name|wordList
-init|=
-name|DBUtils
-operator|.
-name|wordList
-argument_list|(
-name|rootCol
-argument_list|)
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|wordList
-argument_list|)
-expr_stmt|;
-name|tempFile
-operator|=
-name|DBUtils
-operator|.
-name|generateXMLFile
-argument_list|(
-literal|250
-argument_list|,
-literal|10
-argument_list|,
-name|wordList
-argument_list|)
-expr_stmt|;
 name|DBUtils
 operator|.
 name|addXMLResource
@@ -184,65 +140,27 @@ argument_list|()
 argument_list|,
 literal|"R1.xml"
 argument_list|,
-name|tempFile
+name|XML
 argument_list|)
 expr_stmt|;
 name|addAction
 argument_list|(
 operator|new
-name|AttributeUpdateAction
+name|TextUpdateAction
 argument_list|(
 name|URI
 operator|+
 literal|"/C1"
 argument_list|,
 literal|"R1.xml"
-argument_list|,
-name|wordList
 argument_list|)
 argument_list|,
-literal|20
+literal|1000
 argument_list|,
 literal|0
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", QUERY), 100, 100, 30);
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.ConcurrentTestBase#tearDown() 	 */
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{
-try|try
-block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
-name|tempFile
-operator|.
-name|delete
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch

@@ -14,6 +14,8 @@ operator|.
 name|test
 operator|.
 name|concurrent
+operator|.
+name|action
 package|;
 end_package
 
@@ -226,11 +228,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|service
-operator|.
-name|beginProtected
-argument_list|()
-expr_stmt|;
+comment|//		service.beginProtected();
 name|ResourceSet
 name|result
 init|=
@@ -312,11 +310,7 @@ name|handler
 argument_list|)
 expr_stmt|;
 block|}
-name|service
-operator|.
-name|endProtected
-argument_list|()
-expr_stmt|;
+comment|//		service.endProtected();
 name|runningTime
 operator|+=
 operator|(

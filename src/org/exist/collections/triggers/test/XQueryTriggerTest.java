@@ -462,6 +462,8 @@ literal|"module namespace log='log'; "
 operator|+
 literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
 operator|+
+literal|"declare variable $log:eventType external;"
+operator|+
 literal|"declare variable $log:collectionName external;"
 operator|+
 literal|"declare variable $log:documentName external;"
@@ -493,6 +495,8 @@ operator|+
 literal|"<xu:attribute name='id'>{$id}</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
+operator|+
+literal|"<xu:attribute name='type'>{$log:eventType}</xu:attribute>"
 operator|+
 literal|"<xu:element name='collectionName'>{$log:collectionName}</xu:element>"
 operator|+
@@ -1040,7 +1044,7 @@ block|}
 comment|/** test a trigger fired by a Document Update */
 specifier|public
 name|void
-name|bugtestUpdateDocument
+name|testUpdateDocument
 parameter_list|()
 block|{
 name|ResourceSet
@@ -1508,7 +1512,7 @@ argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
-name|DOCUMENT_CONTENT
+name|MODIFIED_DOCUMENT_CONTENT
 argument_list|,
 name|result
 operator|.
@@ -1524,8 +1528,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : use when we have working update triggers
-comment|//assertXMLEqual(MODIFIED_DOCUMENT_CONTENT, result.getResource(0).getContent().toString());
 block|}
 catch|catch
 parameter_list|(
