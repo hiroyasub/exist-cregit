@@ -2870,13 +2870,6 @@ argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
-name|p
-operator|.
-name|setIndexType
-argument_list|(
-name|indexType
-argument_list|)
-expr_stmt|;
 comment|// TODO move_to NativeValueIndex
 if|if
 condition|(
@@ -3036,6 +3029,13 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
+name|p
+operator|.
+name|setIndexType
+argument_list|(
+name|indexType
+argument_list|)
+expr_stmt|;
 comment|// TODO move_to NativeElementIndex; name change (See ContentLoadingObserver ): addRow() --> endElement()
 comment|// save element by calling ElementIndex
 name|elementIndex
