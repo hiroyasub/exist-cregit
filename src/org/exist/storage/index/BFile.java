@@ -1682,6 +1682,9 @@ specifier|public
 name|void
 name|removeAll
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|IndexQuery
 name|query
 parameter_list|)
@@ -1703,6 +1706,8 @@ argument_list|()
 decl_stmt|;
 name|remove
 argument_list|(
+name|transaction
+argument_list|,
 name|query
 argument_list|,
 name|cb
@@ -1768,6 +1773,8 @@ try|try
 block|{
 name|remove
 argument_list|(
+name|transaction
+argument_list|,
 name|cb
 operator|.
 name|pointers
@@ -3852,6 +3859,9 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 name|long
 name|p
 parameter_list|)
@@ -3880,7 +3890,7 @@ argument_list|)
 decl_stmt|;
 name|remove
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|page
 argument_list|,
