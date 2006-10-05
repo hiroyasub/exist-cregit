@@ -805,10 +805,10 @@ operator|new
 name|Stack
 argument_list|()
 decl_stmt|;
-comment|// List of pragmas declared for this query
+comment|// List of options declared for this query
 specifier|protected
 name|List
-name|pragmas
+name|options
 init|=
 literal|null
 decl_stmt|;
@@ -5598,7 +5598,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|addPragma
+name|addOption
 parameter_list|(
 name|String
 name|qnameString
@@ -5634,23 +5634,23 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|// unknown pragma: just ignore it
+comment|// unknown option: just ignore it
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Ignoring unknown pragma: "
+literal|"Ignoring unknown option: "
 operator|+
 name|qnameString
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|Pragma
-name|pragma
+name|Option
+name|option
 init|=
 operator|new
-name|Pragma
+name|Option
 argument_list|(
 name|qn
 argument_list|,
@@ -5659,23 +5659,23 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|pragmas
+name|options
 operator|==
 literal|null
 condition|)
-name|pragmas
+name|options
 operator|=
 operator|new
 name|ArrayList
 argument_list|()
 expr_stmt|;
-comment|// check if this overwrites an already existing pragma
+comment|// check if this overwrites an already existing option
 name|boolean
 name|added
 init|=
 literal|false
 decl_stmt|;
-name|Pragma
+name|Option
 name|old
 decl_stmt|;
 for|for
@@ -5687,7 +5687,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|pragmas
+name|options
 operator|.
 name|size
 argument_list|()
@@ -5699,9 +5699,9 @@ block|{
 name|old
 operator|=
 operator|(
-name|Pragma
+name|Option
 operator|)
-name|pragmas
+name|options
 operator|.
 name|get
 argument_list|(
@@ -5714,17 +5714,17 @@ name|old
 operator|.
 name|equals
 argument_list|(
-name|pragma
+name|option
 argument_list|)
 condition|)
 block|{
-name|pragmas
+name|options
 operator|.
 name|add
 argument_list|(
 name|i
 argument_list|,
-name|pragma
+name|option
 argument_list|)
 expr_stmt|;
 name|added
@@ -5734,23 +5734,23 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|// add the pragma to the list if it does not yet exist
+comment|// add the option to the list if it does not yet exist
 if|if
 condition|(
 operator|!
 name|added
 condition|)
-name|pragmas
+name|options
 operator|.
 name|add
 argument_list|(
-name|pragma
+name|option
 argument_list|)
 expr_stmt|;
-comment|// check predefined pragmas
+comment|// check predefined options
 if|if
 condition|(
-name|Pragma
+name|Option
 operator|.
 name|PROFILE_QNAME
 operator|.
@@ -5767,13 +5767,13 @@ name|profiler
 operator|.
 name|configure
 argument_list|(
-name|pragma
+name|option
 argument_list|)
 expr_stmt|;
 block|}
 if|else if
 condition|(
-name|Pragma
+name|Option
 operator|.
 name|TIMEOUT_QNAME
 operator|.
@@ -5786,14 +5786,14 @@ literal|0
 condition|)
 name|watchdog
 operator|.
-name|setTimeoutFromPragma
+name|setTimeoutFromOption
 argument_list|(
-name|pragma
+name|option
 argument_list|)
 expr_stmt|;
 if|else if
 condition|(
-name|Pragma
+name|Option
 operator|.
 name|OUTPUT_SIZE_QNAME
 operator|.
@@ -5806,15 +5806,15 @@ literal|0
 condition|)
 name|watchdog
 operator|.
-name|setMaxNodesFromPragma
+name|setMaxNodesFromOption
 argument_list|(
-name|pragma
+name|option
 argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|Pragma
-name|getPragma
+name|Option
+name|getOption
 parameter_list|(
 name|QName
 name|qname
@@ -5822,13 +5822,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|pragmas
+name|options
 operator|!=
 literal|null
 condition|)
 block|{
-name|Pragma
-name|pragma
+name|Option
+name|option
 decl_stmt|;
 for|for
 control|(
@@ -5839,7 +5839,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|pragmas
+name|options
 operator|.
 name|size
 argument_list|()
@@ -5848,12 +5848,12 @@ name|i
 operator|++
 control|)
 block|{
-name|pragma
+name|option
 operator|=
 operator|(
-name|Pragma
+name|Option
 operator|)
-name|pragmas
+name|options
 operator|.
 name|get
 argument_list|(
@@ -5866,7 +5866,7 @@ name|qname
 operator|.
 name|compareTo
 argument_list|(
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -5875,7 +5875,74 @@ operator|==
 literal|0
 condition|)
 return|return
-name|pragma
+name|option
+return|;
+block|}
+block|}
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|Pragma
+name|getPragma
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|contents
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|QName
+name|qname
+init|=
+name|QName
+operator|.
+name|parse
+argument_list|(
+name|this
+argument_list|,
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|.
+name|equals
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|TimerPragma
+operator|.
+name|TIMER_PRAGMA
+operator|.
+name|equalsSimple
+argument_list|(
+name|qname
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|TimerPragma
+argument_list|(
+name|qname
+argument_list|,
+name|contents
+argument_list|)
 return|;
 block|}
 block|}
@@ -5912,16 +5979,6 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|watchdog
-operator|.
-name|addTemporaryFragment
-argument_list|(
-name|targetDoc
-operator|.
-name|getFileURI
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -6060,10 +6117,10 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Pragma
-name|pragma
+name|Option
+name|option
 decl_stmt|;
-comment|//Has a exist:serialize pragma already been set?
+comment|//Has a exist:serialize option already been set?
 for|for
 control|(
 name|int
@@ -6073,7 +6130,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|pragmas
+name|options
 operator|.
 name|size
 argument_list|()
@@ -6082,12 +6139,12 @@ name|i
 operator|++
 control|)
 block|{
-name|pragma
+name|option
 operator|=
 operator|(
-name|Pragma
+name|Option
 operator|)
-name|pragmas
+name|options
 operator|.
 name|get
 argument_list|(
@@ -6096,8 +6153,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|(
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -6106,15 +6162,13 @@ name|equals
 argument_list|(
 literal|"exist:serialize"
 argument_list|)
-operator|)
-comment|/*&& (pragma.getContents().indexOf("method") != Constants.STRING_NOT_FOUND)*/
 condition|)
 block|{
-comment|//yes, so modify the content from the existing pragma
+comment|//yes, so modify the content from the existing option
 name|String
 name|content
 init|=
-name|pragma
+name|option
 operator|.
 name|getContents
 argument_list|()
@@ -6254,16 +6308,16 @@ literal|"no"
 operator|)
 expr_stmt|;
 block|}
-comment|//Delete the existing serialize pragma
-name|pragmas
+comment|//Delete the existing serialize option
+name|options
 operator|.
 name|remove
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-comment|//Add the new serialize pragma
-name|addPragma
+comment|//Add the new serialize option
+name|addOption
 argument_list|(
 literal|"exist:serialize"
 argument_list|,
@@ -6274,8 +6328,8 @@ return|return;
 comment|//done
 block|}
 block|}
-comment|//no, so set a pragma for serialization
-name|addPragma
+comment|//no, so set a option for serialization
+name|addOption
 argument_list|(
 literal|"exist:serialize"
 argument_list|,

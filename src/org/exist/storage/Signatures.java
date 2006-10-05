@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Static methods to deal with the signature of a node stored  *  in the first byte of the node data in the persistent dom.  */
+comment|/**  *  Static methods to deal with the signature of a node stored  *  in the first byte of the node data in the persistent dom.  *    *  The bits in the signature are used as follows:  *    *<pre>  *  8 4 2 1 8 4 2 1  *  T T T N 0 0 I I  *</pre>  *    *   where T = node type, N = has-namespace flag, I = no of bytes used to store  *   the name of the node (local name for elements and attributes).  */
 end_comment
 
 begin_class
@@ -47,9 +47,17 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|Attr
+name|Char
 init|=
-literal|0x4
+literal|0x0
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|Elem
+init|=
+literal|0x1
 decl_stmt|;
 specifier|public
 specifier|final
@@ -63,14 +71,6 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|Char
-init|=
-literal|0x0
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|Comm
 init|=
 literal|0x3
@@ -79,9 +79,17 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|Elem
+name|Attr
 init|=
-literal|0x1
+literal|0x4
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|Cdata
+init|=
+literal|0x5
 decl_stmt|;
 specifier|public
 specifier|final
@@ -272,6 +280,14 @@ return|return
 name|Node
 operator|.
 name|COMMENT_NODE
+return|;
+case|case
+name|Cdata
+case|:
+return|return
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
 return|;
 block|}
 name|System

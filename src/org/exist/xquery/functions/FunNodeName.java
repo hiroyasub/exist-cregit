@@ -219,6 +219,18 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|ProcessingInstruction
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the fn:node-name library function.  *   * @author wolf  */
 end_comment
@@ -518,6 +530,9 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
+name|QName
+name|qname
+decl_stmt|;
 switch|switch
 condition|(
 name|n
@@ -536,9 +551,8 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-name|QName
 name|qname
-init|=
+operator|=
 operator|(
 operator|(
 name|QNameable
@@ -548,7 +562,7 @@ operator|)
 operator|.
 name|getQName
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|result
 operator|=
 operator|new
@@ -560,18 +574,29 @@ name|qname
 argument_list|)
 expr_stmt|;
 break|break;
-comment|//TODO : what kind of default do we expect here ? -pb
-default|default:
-name|LOG
+case|case
+name|Node
 operator|.
-name|warn
+name|PROCESSING_INSTRUCTION_NODE
+case|:
+name|qname
+operator|=
+operator|new
+name|QName
 argument_list|(
-literal|"Tried to obtain node name for node type "
-operator|+
+operator|(
+operator|(
+name|ProcessingInstruction
+operator|)
 name|n
+operator|)
 operator|.
-name|getNodeType
+name|getTarget
 argument_list|()
+argument_list|,
+literal|""
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 name|result
@@ -581,11 +606,20 @@ name|QNameValue
 argument_list|(
 name|context
 argument_list|,
-name|QName
-operator|.
-name|EMPTY_QNAME
+name|qname
 argument_list|)
 expr_stmt|;
+break|break;
+default|default:
+comment|// return empty sequence for all other nodes
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+comment|//                	LOG.warn("Tried to obtain node name for node type " + n.getNodeType());
+comment|//                    result = new QNameValue(context, QName.EMPTY_QNAME);
 block|}
 block|}
 if|if

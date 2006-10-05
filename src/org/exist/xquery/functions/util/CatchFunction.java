@@ -361,6 +361,29 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|e
+operator|instanceof
+name|XPathException
+operator|)
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 comment|//            context.popDocumentContext();
 name|context
 operator|.

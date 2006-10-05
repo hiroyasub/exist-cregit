@@ -479,6 +479,8 @@ literal|"COMP_NS_CONSTRUCTOR"
 block|,
 literal|"COMP_DOC_CONSTRUCTOR"
 block|,
+literal|"PRAGMA"
+block|,
 literal|"\"xpointer\""
 block|,
 literal|"opening parenthesis '('"
@@ -685,6 +687,10 @@ literal|"\"idiv\""
 block|,
 literal|"\"mod\""
 block|,
+literal|"PRAGMA_START"
+block|,
+literal|"pragma expression"
+block|,
 literal|"\"union\""
 block|,
 literal|"union"
@@ -795,15 +801,11 @@ literal|"WS"
 block|,
 literal|"XQuery comment"
 block|,
-literal|"XQuery pragma"
-block|,
-literal|"PRAGMA_CONTENT"
-block|,
-literal|"PRAGMA_QNAME"
-block|,
 literal|"PREDEFINED_ENTITY_REF"
 block|,
 literal|"CHAR_REF"
+block|,
+literal|"S"
 block|,
 literal|"NEXT_TOKEN"
 block|,

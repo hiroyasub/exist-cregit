@@ -364,7 +364,12 @@ name|escapedString
 init|=
 name|escape
 argument_list|(
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
 name|s
+argument_list|)
 argument_list|)
 decl_stmt|;
 try|try

@@ -1228,7 +1228,7 @@ specifier|final
 name|long
 name|TEMP_FRAGMENT_TIMEOUT
 init|=
-literal|300000
+literal|60000
 decl_stmt|;
 comment|/** default buffer size setting */
 specifier|public
@@ -5935,6 +5935,41 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|// remove the metadata of all documents in the collection
+name|Value
+name|docKey
+init|=
+operator|new
+name|DocumentKey
+argument_list|(
+name|collection
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|IndexQuery
+name|query
+init|=
+operator|new
+name|IndexQuery
+argument_list|(
+name|IndexQuery
+operator|.
+name|TRUNC_RIGHT
+argument_list|,
+name|docKey
+argument_list|)
+decl_stmt|;
+name|collectionsDb
+operator|.
+name|removeAll
+argument_list|(
+name|transaction
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
 comment|// if this is not the root collection remove it...
 if|if
 condition|(
@@ -6081,6 +6116,48 @@ name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|BTreeException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception while removing collection: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception while removing collection: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 finally|finally
 block|{
 name|lock
@@ -6133,13 +6210,8 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//Remove doc's metadata
-name|removeResourceMetadata
-argument_list|(
-name|transaction
-argument_list|,
-name|doc
-argument_list|)
-expr_stmt|;
+comment|// WM: now removed in one step. see above.
+comment|//                removeResourceMetadata(transaction, doc);
 comment|//Remove document nodes' index entries
 operator|new
 name|DOMTransaction
@@ -11422,6 +11494,18 @@ operator|.
 name|acquire
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Removing resource metadata for "
+operator|+
+name|document
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Value
 name|key
 init|=
@@ -13750,6 +13834,12 @@ operator|==
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
+operator|||
+name|nodeType
+operator|==
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
 operator|||
 name|doc
 operator|.

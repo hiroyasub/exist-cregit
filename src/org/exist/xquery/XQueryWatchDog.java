@@ -15,26 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -66,18 +46,6 @@ operator|.
 name|util
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
 import|;
 end_import
 
@@ -164,12 +132,6 @@ name|boolean
 name|terminate
 init|=
 literal|false
-decl_stmt|;
-specifier|private
-name|List
-name|tempFragments
-init|=
-literal|null
 decl_stmt|;
 comment|/**      *       */
 specifier|public
@@ -280,10 +242,10 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setTimeoutFromPragma
+name|setTimeoutFromOption
 parameter_list|(
-name|Pragma
-name|pragma
+name|Option
+name|option
 parameter_list|)
 throws|throws
 name|XPathException
@@ -292,7 +254,7 @@ name|String
 index|[]
 name|contents
 init|=
-name|pragma
+name|option
 operator|.
 name|tokenizeContents
 argument_list|()
@@ -309,7 +271,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Pragma 'timeout' should have exactly one parameter: the timeout value."
+literal|"Option 'timeout' should have exactly one parameter: the timeout value."
 argument_list|)
 throw|;
 try|try
@@ -337,9 +299,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Error parsing timeout value in pragma "
+literal|"Error parsing timeout value in option "
 operator|+
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -353,7 +315,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"timeout set from pragma: "
+literal|"timeout set from option: "
 operator|+
 name|timeout
 operator|+
@@ -363,10 +325,10 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setMaxNodesFromPragma
+name|setMaxNodesFromOption
 parameter_list|(
-name|Pragma
-name|pragma
+name|Option
+name|option
 parameter_list|)
 throws|throws
 name|XPathException
@@ -375,7 +337,7 @@ name|String
 index|[]
 name|contents
 init|=
-name|pragma
+name|option
 operator|.
 name|tokenizeContents
 argument_list|()
@@ -392,7 +354,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Pragma 'output-size-limit' should have exactly one parameter: the timeout value."
+literal|"Option 'output-size-limit' should have exactly one parameter: the timeout value."
 argument_list|)
 throw|;
 try|try
@@ -420,9 +382,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Error parsing size-limit value in pragma "
+literal|"Error parsing size-limit value in option "
 operator|+
-name|pragma
+name|option
 operator|.
 name|getQName
 argument_list|()
@@ -436,7 +398,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"output-size-limit set from pragma: "
+literal|"output-size-limit set from option: "
 operator|+
 name|maxNodesLimit
 argument_list|)
@@ -643,79 +605,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      *       * @param docName      * @deprecated Use xmldbURI instead      */
-comment|//TODO: remove this
-specifier|public
-name|void
-name|addTemporaryFragment
-parameter_list|(
-name|String
-name|docName
-parameter_list|)
-block|{
-if|if
-condition|(
-name|tempFragments
-operator|==
-literal|null
-condition|)
-name|tempFragments
-operator|=
-operator|new
-name|LinkedList
-argument_list|()
-expr_stmt|;
-name|tempFragments
-operator|.
-name|add
-argument_list|(
-name|docName
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|addTemporaryFragment
-parameter_list|(
-name|XmldbURI
-name|docName
-parameter_list|)
-block|{
-name|addTemporaryFragment
-argument_list|(
-name|docName
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 specifier|public
 name|void
 name|cleanUp
 parameter_list|()
 block|{
-if|if
-condition|(
-name|tempFragments
-operator|==
-literal|null
-condition|)
-return|return;
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|cleanUpTempResources
-argument_list|(
-name|tempFragments
-argument_list|)
-expr_stmt|;
-name|tempFragments
-operator|=
-literal|null
-expr_stmt|;
 block|}
 specifier|public
 name|void

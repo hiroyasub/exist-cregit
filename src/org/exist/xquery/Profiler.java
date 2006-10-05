@@ -187,7 +187,7 @@ specifier|final
 name|void
 name|configure
 parameter_list|(
-name|Pragma
+name|Option
 name|pragma
 parameter_list|)
 block|{
@@ -223,7 +223,7 @@ control|)
 block|{
 name|params
 operator|=
-name|Pragma
+name|Option
 operator|.
 name|parseKeyValuePair
 argument_list|(

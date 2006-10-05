@@ -744,6 +744,31 @@ argument_list|()
 return|;
 block|}
 block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0006: value of type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" has no boolean value."
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

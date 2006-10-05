@@ -1088,6 +1088,36 @@ name|initializing
 init|=
 literal|true
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|OPERATING
+init|=
+literal|0
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|INITIALIZING
+init|=
+literal|1
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|SHUTDOWN
+init|=
+literal|2
+decl_stmt|;
+specifier|private
+name|int
+name|status
+init|=
+name|OPERATING
+decl_stmt|;
 comment|/** 	 * The number of brokers for the database instance  	 */
 specifier|private
 name|int
@@ -2180,9 +2210,9 @@ literal|"'..."
 argument_list|)
 expr_stmt|;
 comment|//Flag to indicate that we are initializing
-name|initializing
+name|status
 operator|=
-literal|true
+name|INITIALIZING
 expr_stmt|;
 comment|//REFACTOR : construct then configure
 name|cacheManager
@@ -2489,9 +2519,9 @@ name|securityManager
 operator|=
 name|localSecurityManager
 expr_stmt|;
-name|initializing
+name|status
 operator|=
-literal|false
+name|OPERATING
 expr_stmt|;
 comment|//have to do this after initializing = false
 comment|// so that the policies collection is saved
@@ -2745,7 +2775,9 @@ name|isInitializing
 parameter_list|()
 block|{
 return|return
-name|initializing
+name|status
+operator|==
+name|INITIALIZING
 return|;
 block|}
 comment|/** Returns the database instance's name.      * @return The id      */
@@ -3433,6 +3465,12 @@ operator|.
 name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|status
+operator|!=
+name|SHUTDOWN
+condition|)
 name|broker
 operator|.
 name|cleanUpTempResources
@@ -3801,6 +3839,10 @@ name|boolean
 name|killed
 parameter_list|)
 block|{
+name|status
+operator|=
+name|SHUTDOWN
+expr_stmt|;
 name|notificationService
 operator|.
 name|debug
@@ -4054,6 +4096,10 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|status
+operator|=
+name|OPERATING
 expr_stmt|;
 block|}
 comment|//TODO : move this elsewhere

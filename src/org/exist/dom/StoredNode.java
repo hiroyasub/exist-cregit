@@ -542,6 +542,27 @@ argument_list|,
 name|pooled
 argument_list|)
 return|;
+case|case
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
+case|:
+return|return
+name|CDATASectionImpl
+operator|.
+name|deserialize
+argument_list|(
+name|data
+argument_list|,
+name|start
+argument_list|,
+name|len
+argument_list|,
+name|doc
+argument_list|,
+name|pooled
+argument_list|)
+return|;
 default|default :
 name|LOG
 operator|.

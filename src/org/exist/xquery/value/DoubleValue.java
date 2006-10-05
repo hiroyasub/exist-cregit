@@ -1588,8 +1588,9 @@ name|other
 operator|.
 name|convertTo
 argument_list|(
-name|getType
-argument_list|()
+name|Type
+operator|.
+name|DOUBLE
 argument_list|)
 operator|)
 operator|.
@@ -1667,8 +1668,9 @@ name|other
 operator|.
 name|convertTo
 argument_list|(
-name|getType
-argument_list|()
+name|Type
+operator|.
+name|DOUBLE
 argument_list|)
 operator|)
 operator|.

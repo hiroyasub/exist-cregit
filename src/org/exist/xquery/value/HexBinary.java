@@ -89,6 +89,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|in
+operator|=
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|(
@@ -494,6 +503,31 @@ name|target
 operator|.
 name|getName
 argument_list|()
+argument_list|)
+throw|;
+block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0006: value of type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" has no boolean value."
 argument_list|)
 throw|;
 block|}
