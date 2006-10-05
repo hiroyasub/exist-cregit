@@ -1496,6 +1496,8 @@ name|dbTokens
 operator|.
 name|removeAll
 argument_list|(
+literal|null
+argument_list|,
 name|query
 argument_list|)
 expr_stmt|;

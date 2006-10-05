@@ -5992,16 +5992,6 @@ argument_list|(
 literal|"Internal error: failed to store temporary doc fragment"
 argument_list|)
 throw|;
-name|watchdog
-operator|.
-name|addTemporaryFragment
-argument_list|(
-name|targetDoc
-operator|.
-name|getFileURI
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|debug
