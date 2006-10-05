@@ -167,6 +167,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Variable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A sequence that may contain a mixture of atomic values and nodes.  *   * @author wolf  */
 end_comment
@@ -237,6 +249,12 @@ name|boolean
 name|noDuplicates
 init|=
 literal|false
+decl_stmt|;
+specifier|private
+name|Variable
+name|holderVar
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|ValueSequence
@@ -568,6 +586,21 @@ name|pos
 index|]
 return|;
 block|}
+specifier|public
+name|void
+name|setHolderVariable
+parameter_list|(
+name|Variable
+name|var
+parameter_list|)
+block|{
+name|this
+operator|.
+name|holderVar
+operator|=
+name|var
+expr_stmt|;
+block|}
 comment|/**      * Makes all in-memory nodes in this sequence persistent,      * so they can be handled like other node sets.      *  	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
 specifier|public
 name|NodeSet
@@ -808,6 +841,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|holderVar
+operator|!=
+literal|null
+condition|)
+name|holderVar
+operator|.
+name|setValue
+argument_list|(
+name|set
+argument_list|)
+expr_stmt|;
 return|return
 name|set
 return|;
