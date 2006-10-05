@@ -278,6 +278,8 @@ specifier|private
 name|void
 name|callAfter
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 for|for
 control|(
@@ -314,6 +316,8 @@ name|pragma
 operator|.
 name|after
 argument_list|(
+name|context
+argument_list|,
 name|innerExpression
 argument_list|)
 expr_stmt|;
@@ -323,6 +327,8 @@ specifier|private
 name|void
 name|callBefore
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 for|for
 control|(
@@ -359,6 +365,8 @@ name|pragma
 operator|.
 name|before
 argument_list|(
+name|context
+argument_list|,
 name|innerExpression
 argument_list|)
 expr_stmt|;
