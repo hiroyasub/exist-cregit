@@ -245,7 +245,7 @@ index|[
 literal|0
 index|]
 argument_list|,
-name|XMLDBMove
+name|XMLDBCopy
 operator|.
 name|class
 argument_list|)
@@ -260,7 +260,7 @@ index|[
 literal|1
 index|]
 argument_list|,
-name|XMLDBMove
+name|XMLDBCopy
 operator|.
 name|class
 argument_list|)
