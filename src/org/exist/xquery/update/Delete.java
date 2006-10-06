@@ -119,20 +119,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|Txn
 import|;
 end_import
@@ -347,6 +333,10 @@ end_import
 
 begin_comment
 comment|/**  * @author wolf  *  */
+end_comment
+
+begin_comment
+comment|//TODO: this is the only update function that uses transaction.abort() do we really need to use it and if so shouldnt the others use it as well?!?
 end_comment
 
 begin_class
@@ -649,27 +639,11 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|TransactionManager
-name|transact
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
 comment|//start a transaction
 name|Txn
 name|transaction
 init|=
-name|transact
-operator|.
-name|beginTransaction
+name|getTransaction
 argument_list|()
 decl_stmt|;
 try|try
@@ -769,13 +743,7 @@ name|UPDATE
 argument_list|)
 condition|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+comment|//transact.abort(transaction);
 throw|throw
 operator|new
 name|XPathException
@@ -839,13 +807,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+comment|//transact.abort(transaction);
 throw|throw
 operator|new
 name|XPathException
@@ -929,9 +891,7 @@ name|modifiedDocuments
 argument_list|)
 expr_stmt|;
 comment|//commit the transaction
-name|transact
-operator|.
-name|commit
+name|commitTransaction
 argument_list|(
 name|transaction
 argument_list|)
@@ -943,13 +903,7 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+comment|//transact.abort(transaction);
 throw|throw
 operator|new
 name|XPathException
@@ -972,13 +926,7 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+comment|//transact.abort(transaction);
 throw|throw
 operator|new
 name|XPathException
@@ -1001,13 +949,7 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+comment|//transact.abort(transaction);
 throw|throw
 operator|new
 name|XPathException
