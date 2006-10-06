@@ -1155,6 +1155,42 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|bugtestReferenceNode2
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace dst = \"http://www.test.com/DeeperEqualTest\"; "
+operator|+
+literal|"declare function dst:value($value as element(Value), "
+operator|+
+literal|"$result as element(Result)) as element(Result) { "
+operator|+
+literal|"<Result><Value>{($result/Value/node(), $value/node())}</Value></Result>}; "
+operator|+
+literal|"let $value1 :=<Value>hello</Value> "
+operator|+
+literal|"let $result0 :=<Result><Value/></Result> "
+operator|+
+literal|"let $result1 := dst:value($value1, $result0) "
+operator|+
+literal|"let $value2 :=<Value/> "
+operator|+
+literal|"let $result2 := dst:value($value2, $result1) "
+operator|+
+literal|"return deep-equal($result1, $result2)"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{
