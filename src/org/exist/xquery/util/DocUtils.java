@@ -21,6 +21,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -446,11 +456,31 @@ name|httpConnection
 operator|.
 name|getResponseCode
 argument_list|()
+operator|==
+name|HttpURLConnection
+operator|.
+name|HTTP_NOT_FOUND
+condition|)
+block|{
+comment|// Special case: '404'
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+if|else if
+condition|(
+name|httpConnection
+operator|.
+name|getResponseCode
+argument_list|()
 operator|!=
 name|HttpURLConnection
 operator|.
 name|HTTP_OK
 condition|)
+block|{
 comment|//TODO : return another type
 throw|throw
 operator|new
@@ -464,6 +494,7 @@ name|getResponseCode
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 comment|//TODO : process pseudo-protocols URLs more efficiently.
 name|org
@@ -639,6 +670,22 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// Special case: FileNotFoundException
+if|if
+condition|(
+name|e
+operator|instanceof
+name|FileNotFoundException
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -651,6 +698,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 comment|//Database documents
 block|}
