@@ -880,6 +880,15 @@ name|contextDocs
 argument_list|)
 expr_stmt|;
 comment|//DESIGN : first test the dependency then the result
+specifier|final
+name|int
+name|exprDeps
+init|=
+name|expr
+operator|.
+name|getDependencies
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|(
@@ -887,7 +896,7 @@ name|Dependency
 operator|.
 name|dependsOn
 argument_list|(
-name|expr
+name|exprDeps
 argument_list|,
 name|Dependency
 operator|.
@@ -898,7 +907,7 @@ name|Dependency
 operator|.
 name|dependsOn
 argument_list|(
-name|expr
+name|exprDeps
 argument_list|,
 name|Dependency
 operator|.

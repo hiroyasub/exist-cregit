@@ -446,16 +446,22 @@ comment|// Case 1: predicate expression returns a node set.
 comment|// Check the returned node set against the context set
 comment|// and return all nodes from the context, for which the
 comment|// predicate expression returns a non-empty sequence.
+specifier|final
+name|int
+name|innerType
+init|=
+name|inner
+operator|.
+name|returnsType
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|Type
 operator|.
 name|subTypeOf
 argument_list|(
-name|inner
-operator|.
-name|returnsType
-argument_list|()
+name|innerType
 argument_list|,
 name|Type
 operator|.
@@ -494,10 +500,7 @@ name|Type
 operator|.
 name|subTypeOf
 argument_list|(
-name|inner
-operator|.
-name|returnsType
-argument_list|()
+name|innerType
 argument_list|,
 name|Type
 operator|.
