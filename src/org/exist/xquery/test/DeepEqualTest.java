@@ -1155,7 +1155,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|bugtestReferenceNode2
+name|testReferenceNode2
 parameter_list|()
 block|{
 name|String
