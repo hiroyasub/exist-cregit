@@ -287,7 +287,25 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"to install without GUI.\n"
+literal|"to install without GUI. If you are running JDK 1.4, you may"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"also try to pass: -Djava.awt.headless=true -p install-path"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"as arguments to the Java executable."
 argument_list|)
 expr_stmt|;
 comment|// can't load the GUIInstaller class on headless machines,
