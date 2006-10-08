@@ -1638,11 +1638,6 @@ operator|&&
 name|realSetIsComplete
 condition|)
 return|return;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
 name|realSet
 operator|=
 name|getNodes
