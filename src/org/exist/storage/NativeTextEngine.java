@@ -2044,6 +2044,9 @@ name|expr
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|boolean
+name|matchAll
 parameter_list|)
 throws|throws
 name|TerminatedException
@@ -2106,6 +2109,8 @@ argument_list|,
 name|expr
 argument_list|,
 name|type
+argument_list|,
+name|matchAll
 argument_list|)
 return|;
 block|}
@@ -2822,6 +2827,9 @@ name|expr
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|boolean
+name|matchAll
 parameter_list|)
 throws|throws
 name|TerminatedException
@@ -2858,9 +2866,18 @@ argument_list|()
 expr_stmt|;
 comment|// if the regexp starts with a char sequence, we restrict the index scan to entries starting with
 comment|// the same sequence. Otherwise, we have to scan the whole index.
-specifier|final
+name|CharSequence
+name|start
+init|=
+literal|""
+decl_stmt|;
+if|if
+condition|(
+name|matchAll
+condition|)
+block|{
 name|StringBuffer
-name|token
+name|buf
 init|=
 operator|new
 name|StringBuffer
@@ -2898,7 +2915,7 @@ name|i
 argument_list|)
 argument_list|)
 condition|)
-name|token
+name|buf
 operator|.
 name|append
 argument_list|(
@@ -2912,6 +2929,11 @@ argument_list|)
 expr_stmt|;
 else|else
 break|break;
+block|}
+name|start
+operator|=
+name|buf
+expr_stmt|;
 block|}
 try|try
 block|{
@@ -2932,6 +2954,8 @@ operator||
 name|Pattern
 operator|.
 name|UNICODE_CASE
+argument_list|,
+name|matchAll
 argument_list|)
 decl_stmt|;
 return|return
@@ -2945,7 +2969,7 @@ name|contextSet
 argument_list|,
 name|comparator
 argument_list|,
-name|token
+name|start
 argument_list|)
 return|;
 block|}
