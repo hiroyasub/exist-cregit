@@ -59,6 +59,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -962,7 +972,7 @@ argument_list|(
 name|href
 argument_list|)
 expr_stmt|;
-comment|/* 			if(!stylesheetUri.toCollectionPathURI().equals(stylesheetUri)) { 				externalUri = stylesheetUri.getXmldbURI(); 			} 			*/
+comment|/*                if(!stylesheetUri.toCollectionPathURI().equals(stylesheetUri)) {                    externalUri = stylesheetUri.getXmldbURI();                }                */
 block|}
 catch|catch
 parameter_list|(
@@ -971,7 +981,7 @@ name|e
 parameter_list|)
 block|{
 comment|//could be an external URI!
-comment|/* 			try { 				externalUri = new URI(href); 			} catch (URISyntaxException ee) { 			*/
+comment|/*                try {                    externalUri = new URI(href);                } catch (URISyntaxException ee) {                */
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1073,17 +1083,10 @@ expr_stmt|;
 block|}
 comment|// if docName has no collection specified, assume
 comment|// current collection
-if|if
-condition|(
-name|docUri
-operator|.
-name|numSegments
-argument_list|()
-operator|==
-literal|1
-condition|)
-name|docUri
-operator|=
+comment|// Patch 1520454 start
+name|String
+name|base
+init|=
 name|document
 operator|.
 name|getCollection
@@ -1091,12 +1094,59 @@ argument_list|()
 operator|.
 name|getURI
 argument_list|()
-operator|.
-name|append
-argument_list|(
+operator|+
+literal|"/"
+decl_stmt|;
+name|String
+name|child
+init|=
+literal|"./"
+operator|+
 name|docUri
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|URI
+name|baseUri
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|base
+argument_list|)
+decl_stmt|;
+name|URI
+name|childUri
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+name|child
+argument_list|)
+decl_stmt|;
+name|URI
+name|uri
+init|=
+name|baseUri
+operator|.
+name|resolve
+argument_list|(
+name|childUri
+argument_list|)
+decl_stmt|;
+name|docUri
+operator|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|uri
 argument_list|)
 expr_stmt|;
+comment|// Patch 1520454 end
 comment|// retrieve the document
 name|DocumentImpl
 name|doc
@@ -1176,7 +1226,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|/* if document has not been found and xpointer is 			 * null, throw an exception. If xpointer != null 			 * we retry below and interpret docName as 			 * a collection. 			 */
+comment|/* if document has not been found and xpointer is                * null, throw an exception. If xpointer != null                * we retry below and interpret docName as                * a collection.                */
 if|if
 condition|(
 name|doc
