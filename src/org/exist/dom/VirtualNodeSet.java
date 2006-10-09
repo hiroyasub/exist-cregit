@@ -579,6 +579,15 @@ name|Constants
 operator|.
 name|DESCENDANT_SELF_AXIS
 operator|&&
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+operator|&&
 name|test
 operator|.
 name|matches
