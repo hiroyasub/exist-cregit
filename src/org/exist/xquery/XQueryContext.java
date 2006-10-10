@@ -1396,7 +1396,7 @@ return|return
 name|rootExpression
 return|;
 block|}
-comment|/** 	 * Returns the next unique expression id. Every expression 	 * in the XQuery is identified by a unique id. During compilation, 	 * expressions are assigned their id by calling this method. 	 *   	 * @return 	 */
+comment|/** 	 * Returns the next unique expression id. Every expression 	 * in the XQuery is identified by a unique id. During compilation, 	 * expressions are assigned their id by calling this method. 	 *   	 * @return The next unique expression id. 	 */
 specifier|protected
 name|int
 name|nextExpressionId
@@ -5105,7 +5105,7 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param namespaceURI      * @param location      * @param module      * @param source      * @return      * @throws XPathException      */
+comment|/**      * @param namespaceURI      * @param location      * @param module      * @param source      * @return The compiled module.      * @throws XPathException      */
 specifier|private
 name|Module
 name|compileModule
@@ -5722,11 +5722,7 @@ name|XPathException
 block|{
 name|QName
 name|qn
-decl_stmt|;
-try|try
-block|{
-name|qn
-operator|=
+init|=
 name|QName
 operator|.
 name|parse
@@ -5737,26 +5733,7 @@ name|qnameString
 argument_list|,
 name|defaultFunctionNamespace
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-comment|// unknown option: just ignore it
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Ignoring unknown option: "
-operator|+
-name|qnameString
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
+decl_stmt|;
 name|Option
 name|option
 init|=
@@ -5920,6 +5897,22 @@ operator|.
 name|setMaxNodesFromOption
 argument_list|(
 name|option
+argument_list|)
+expr_stmt|;
+else|else
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Ignored option : "
+operator|+
+name|qn
+operator|+
+literal|" = '"
+operator|+
+name|contents
+operator|+
+literal|"';"
 argument_list|)
 expr_stmt|;
 block|}
