@@ -5899,22 +5899,6 @@ argument_list|(
 name|option
 argument_list|)
 expr_stmt|;
-else|else
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Ignored option : "
-operator|+
-name|qn
-operator|+
-literal|" = '"
-operator|+
-name|contents
-operator|+
-literal|"';"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|Option
