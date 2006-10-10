@@ -1264,15 +1264,24 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//Copied from Saxon 8.6.1
-if|if
-condition|(
-operator|(
+name|DecimalValue
+name|dv
+init|=
 operator|(
 name|DecimalValue
 operator|)
 name|other
-operator|)
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DECIMAL
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|dv
 operator|.
 name|value
 operator|.
@@ -1295,12 +1304,7 @@ name|value
 operator|.
 name|divide
 argument_list|(
-operator|(
-operator|(
-name|DecimalValue
-operator|)
-name|other
-operator|)
+name|dv
 operator|.
 name|value
 argument_list|,
@@ -1321,7 +1325,6 @@ argument_list|(
 name|quot
 argument_list|)
 return|;
-comment|//End of copy
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
