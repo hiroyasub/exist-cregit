@@ -562,6 +562,7 @@ name|n
 operator|>
 name|holds_
 condition|)
+block|{
 name|log
 operator|.
 name|warn
@@ -580,6 +581,8 @@ operator|+
 name|owner_
 argument_list|)
 expr_stmt|;
+return|return;
+block|}
 name|holds_
 operator|-=
 name|n
