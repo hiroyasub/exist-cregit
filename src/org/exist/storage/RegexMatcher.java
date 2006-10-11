@@ -215,17 +215,6 @@ name|matchAll
 operator|=
 name|matchAll
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"matchAll: "
-operator|+
-name|matchAll
-argument_list|)
-expr_stmt|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.util.Comparator#equals(java.lang.Object) 	 */
 specifier|public
