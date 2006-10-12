@@ -9147,7 +9147,18 @@ argument_list|(
 literal|"product-version"
 argument_list|)
 operator|+
-literal|", Copyright (C) 2001-2006 Wolfgang Meier\n\n"
+literal|" (revision "
+operator|+
+name|sysProperties
+operator|.
+name|getProperty
+argument_list|(
+literal|"svn-revision"
+argument_list|)
+operator|+
+literal|") \n\n"
+operator|+
+literal|"Copyright (C) 2001-2006 Wolfgang Meier\n\n"
 operator|+
 literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
 operator|+
