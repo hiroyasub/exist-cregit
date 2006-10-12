@@ -37,6 +37,14 @@ name|NodeProxy
 name|peekNode
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|setPosition
+parameter_list|(
+name|NodeProxy
+name|node
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

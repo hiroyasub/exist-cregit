@@ -2685,9 +2685,6 @@ name|key
 init|=
 name|computeTypedKey
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|type
 argument_list|,
 name|collectionId
@@ -3152,9 +3149,6 @@ name|key
 init|=
 name|computeTypedKey
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|type
 argument_list|,
 name|collectionId
@@ -3175,8 +3169,6 @@ argument_list|)
 expr_stmt|;
 name|VariableByteInput
 name|is
-init|=
-literal|null
 decl_stmt|;
 comment|/*                 //TODO : uncomment an implement properly                 //TODO : bewere of null NS prefix : it looks to be polysemic (none vs. all)                 //Test for "*" prefix                 if (qname.getPrefix() == null) {                 	try { 	                    final IndexQuery query = new IndexQuery(IndexQuery.TRUNC_RIGHT, key); 	                    ArrayList elements = dbNodes.findKeys(query);	                                          } catch (BTreeException e) {                         LOG.error(e.getMessage(), e);                         //TODO : throw an exception ? -pb                     } catch (TerminatedException e) {                         LOG.warn(e.getMessage(), e);                                             }                     //TODO : iterate over the keys                  } else */
 name|is
@@ -3368,7 +3360,12 @@ name|lastMarked
 init|=
 name|ancestorId
 decl_stmt|;
-comment|//Process the nodes for the current document
+name|NodeProxy
+name|lastAncestor
+init|=
+literal|null
+decl_stmt|;
+comment|// Process the nodes for the current document
 name|NodeId
 name|nodeId
 init|=
@@ -3410,7 +3407,7 @@ argument_list|(
 name|ancestorId
 argument_list|)
 decl_stmt|;
-comment|//                        LOG.debug(ancestorId + " -> " + nodeId + ": " + relation);
+comment|//                        System.out.println(ancestorId + " -> " + nodeId + ": " + relation);
 if|if
 condition|(
 name|relation
@@ -3487,31 +3484,6 @@ argument_list|,
 name|address
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|Expression
-operator|.
-name|NO_CONTEXT_ID
-operator|!=
-name|contextId
-condition|)
-name|storedNode
-operator|.
-name|addContextNode
-argument_list|(
-name|contextId
-argument_list|,
-name|ancestor
-argument_list|)
-expr_stmt|;
-else|else
-name|storedNode
-operator|.
-name|copyContext
-argument_list|(
-name|ancestor
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|add
@@ -3937,6 +3909,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// We need to remember the last ancestor in case there are more docs to process.
+comment|// Next document should start with this ancestor.
+if|if
+condition|(
+name|lastAncestor
+operator|==
+literal|null
+condition|)
+name|lastAncestor
+operator|=
+name|ancestor
+expr_stmt|;
 comment|// check if we have more ancestors
 if|if
 condition|(
@@ -4052,6 +4036,25 @@ operator|==
 name|ENTRIES_ORDERED
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lastAncestor
+operator|!=
+literal|null
+condition|)
+block|{
+name|ancestor
+operator|=
+name|lastAncestor
+expr_stmt|;
+name|citer
+operator|.
+name|setPosition
+argument_list|(
+name|ancestor
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -5022,14 +5025,11 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-name|byte
-name|ordered
-init|=
 name|is
 operator|.
 name|readByte
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|int
 name|gidsCount
 init|=
@@ -5039,14 +5039,11 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//TOUNDERSTAND -pb
-name|int
-name|size
-init|=
 name|is
 operator|.
 name|readFixedInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|//unused
 if|if
 condition|(
@@ -5547,7 +5544,6 @@ return|;
 block|}
 block|}
 specifier|private
-specifier|final
 specifier|static
 name|boolean
 name|containsNode
