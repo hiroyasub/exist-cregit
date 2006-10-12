@@ -475,7 +475,7 @@ literal|"Get or generate thumbnails from the given database collection $a"
 operator|+
 literal|"$b point to a location where the thumbnails should be created, $b can be a local path, with the prefix 'xmldb:' a absolute path within the database or with 'rel:' path relative to the given collection at $a."
 operator|+
-literal|"You can leave $b empty then the default is 'rel:/thumbs'. The third argument specifies the dimension of the thumbnails, it can be empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value of $c are 'maxheight' the second 'maxwidth'."
+literal|"You can leave $b empty then the default is 'rel:/thumbs'. $c specifies the dimension of the thumbnails, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value of $c is 'maxheight' and the second 'maxwidth'. $d is the prefix (if any) for the thumbnails"
 argument_list|,
 operator|new
 name|SequenceType
