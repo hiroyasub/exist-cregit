@@ -932,7 +932,6 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * This method uses MATCH_EXACT for comparing search terms. 	 *  	 * @return node-set of matching nodes 	 */
 specifier|public
 name|NodeSet
 name|getNodesContaining
@@ -948,6 +947,9 @@ name|contextSet
 parameter_list|,
 name|String
 name|expr
+parameter_list|,
+name|int
+name|type
 parameter_list|)
 throws|throws
 name|TerminatedException
@@ -963,9 +965,9 @@ name|contextSet
 argument_list|,
 name|expr
 argument_list|,
-name|DBBroker
-operator|.
-name|MATCH_EXACT
+name|type
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
@@ -989,6 +991,9 @@ name|expr
 parameter_list|,
 name|int
 name|type
+parameter_list|,
+name|boolean
+name|matchAll
 parameter_list|)
 throws|throws
 name|TerminatedException

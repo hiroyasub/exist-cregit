@@ -1022,6 +1022,11 @@ index|[
 name|argCount
 operator|++
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 expr_stmt|;
 block|}
 comment|// should the compiled query be cached?
@@ -1350,7 +1355,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param expr      * @param querySource      * @return      * @throws XPathException      * @throws NullPointerException      * @throws IllegalArgumentException      */
+comment|/**      * @param expr      * @return      * @throws XPathException      * @throws NullPointerException      * @throws IllegalArgumentException      */
 specifier|private
 name|Source
 name|loadQueryFromURI
