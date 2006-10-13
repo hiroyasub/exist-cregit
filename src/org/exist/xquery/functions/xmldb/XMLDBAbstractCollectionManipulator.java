@@ -371,7 +371,7 @@ throw|;
 name|boolean
 name|collectionNeedsClose
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|// If the incoming is a collection object, use it:
 name|Collection

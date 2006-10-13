@@ -388,6 +388,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|//If ? is specified after the target type, the result of the cast expression is an empty sequence.
 if|if
 condition|(
 name|Cardinality
@@ -405,14 +406,16 @@ name|result
 operator|=
 name|BooleanValue
 operator|.
-name|FALSE
+name|TRUE
 expr_stmt|;
+comment|//If ? is not specified after the target type, a type error is raised [err:XPTY0004].
 else|else
+comment|//TODO : raise the error ?
 name|result
 operator|=
 name|BooleanValue
 operator|.
-name|TRUE
+name|FALSE
 expr_stmt|;
 block|}
 else|else
@@ -431,6 +434,7 @@ argument_list|(
 name|requiredType
 argument_list|)
 expr_stmt|;
+comment|//If ? is specified after the target type, the result of the cast expression is an empty sequence.
 if|if
 condition|(
 name|Cardinality
@@ -451,6 +455,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
+comment|//If ? is not specified after the target type, a type error is raised [err:XPTY0004].
 else|else
 name|result
 operator|=

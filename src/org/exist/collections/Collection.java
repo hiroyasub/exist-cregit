@@ -5009,7 +5009,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param docUri      * @param document      */
+comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param document      */
 specifier|private
 name|void
 name|manageDocumentInformation

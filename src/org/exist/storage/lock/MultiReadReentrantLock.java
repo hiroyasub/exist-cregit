@@ -575,16 +575,11 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Illegal lock usage: thread does not hold the write lock"
+literal|"Possible lock problem: a thread released a write lock it didn't hold. Either the "
+operator|+
+literal|"thread was interrupted or it never acquired the lock."
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"Thread does not have lock"
-argument_list|)
-throw|;
 block|}
 comment|//        log.debug("writeLock released: " + outstandingWriteLocks +
 comment|//                "; thread: " + Thread.currentThread().getName());
@@ -667,13 +662,17 @@ block|}
 return|return;
 block|}
 else|else
-throw|throw
-operator|new
-name|IllegalStateException
+block|{
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Attempt to release a non-existing read lock."
+literal|"Possible lock problem: a thread released a read lock it didn't hold. Either the "
+operator|+
+literal|"thread was interrupted or it never acquired the lock."
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|synchronized

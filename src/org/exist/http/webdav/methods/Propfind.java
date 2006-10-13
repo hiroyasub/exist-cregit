@@ -3133,13 +3133,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"No lock token"
-argument_list|)
-expr_stmt|;
+comment|//                LOG.debug("No lock token");
 block|}
 else|else
 block|{

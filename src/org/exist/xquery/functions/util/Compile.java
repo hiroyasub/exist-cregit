@@ -356,10 +356,6 @@ comment|// get the query expression
 name|String
 name|expr
 init|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
 name|args
 index|[
 literal|0
@@ -367,7 +363,6 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|)
 decl_stmt|;
 if|if
 condition|(

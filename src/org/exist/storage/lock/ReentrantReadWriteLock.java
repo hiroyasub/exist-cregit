@@ -27,6 +27,18 @@ name|LockException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * A lock with the same semantics as builtin  * Java synchronized locks: Once a thread has a lock, it  * can re-obtain it any number of times without blocking.  * The lock is made available to other threads when  * as many releases as acquires have occurred.  *   * The lock has a timeout: a read lock will be released if the  * timeout is reached. */
 end_comment
@@ -38,6 +50,21 @@ name|ReentrantReadWriteLock
 implements|implements
 name|Lock
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|log
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ReentrantReadWriteLock
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|protected
 name|String
 name|id_
@@ -466,26 +493,27 @@ argument_list|()
 operator|!=
 name|owner_
 condition|)
-throw|throw
-operator|new
-name|Error
+block|{
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Illegal lock usage. Thread "
+literal|"Possible lock problem: thread "
 operator|+
 name|Thread
 operator|.
 name|currentThread
 argument_list|()
 operator|+
-literal|" tried to release lock on "
+literal|" released a lock it didn't hold. Either the "
 operator|+
-name|id_
-operator|+
-literal|" but owner is "
+literal|"thread was interrupted or it never acquired the lock. The lock was owned by: "
 operator|+
 name|owner_
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 operator|--
@@ -534,13 +562,27 @@ name|n
 operator|>
 name|holds_
 condition|)
-throw|throw
-operator|new
-name|Error
+block|{
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Illegal Lock usage"
+literal|"Possible lock problem: thread "
+operator|+
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|+
+literal|" released a lock it didn't hold. Either the "
+operator|+
+literal|"thread was interrupted or it never acquired the lock. The lock was owned by: "
+operator|+
+name|owner_
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 name|holds_
 operator|-=
 name|n
