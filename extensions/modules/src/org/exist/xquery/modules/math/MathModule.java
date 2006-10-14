@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels  */
+comment|/**  *  eXist module for mathematical operations.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
