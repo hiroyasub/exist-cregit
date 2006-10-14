@@ -184,13 +184,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels  */
+comment|/**  * Class containing math functions that accept one parameter.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|SimpleFunctions
+name|OneParamFunctions
 extends|extends
 name|BasicFunction
 block|{
@@ -202,7 +202,6 @@ name|signature
 index|[]
 init|=
 block|{
-comment|// Functions, one parameter
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -881,7 +880,7 @@ block|}
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public
-name|SimpleFunctions
+name|OneParamFunctions
 parameter_list|(
 name|XQueryContext
 name|context
@@ -898,7 +897,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)          */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1402,12 +1401,15 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// DWES: can this be thrown here?
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Function not found."
+literal|"Function "
+operator|+
+name|functionName
+operator|+
+literal|" not found."
 argument_list|)
 throw|;
 block|}
