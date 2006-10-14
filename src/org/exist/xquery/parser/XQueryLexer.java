@@ -25084,17 +25084,6 @@ operator|-
 name|_begin
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Comment: "
-operator|+
-name|comment
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -25124,20 +25113,9 @@ argument_list|)
 operator|==
 literal|'\n'
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found newline"
-argument_list|)
-expr_stmt|;
 name|newline
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 name|_ttype
 operator|=
