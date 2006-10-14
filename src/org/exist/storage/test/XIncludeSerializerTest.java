@@ -188,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author jim fuller at webcomposite.com  *   * Test XInclude Serialiser via REST/XMLRPC/WEBDAV/SOAP interfaces  *   * @todo: need to refacotr to avoid catching unexpected exceptions  *   *   */
+comment|/**  * @author jim fuller at webcomposite.com  *   * Test XInclude Serialiser via REST/XMLRPC/WEBDAV/SOAP interfaces  *   * TODO: need to refacotr to avoid catching unexpected exceptions  *   *   */
 end_comment
 
 begin_class

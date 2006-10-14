@@ -898,7 +898,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Check if the element corresponding to the given path      * should be indexed as an element with mixed content,      * i.e. the string value of the element will be indexed      * as a single text sequence. Descendant elements will be ignored and      * will not break the text into chunks.      *      * Example: a mixed content index on the element      *<![CDATA[<mixed><s>un</s>even</mixed>]]>       *      * @param path      * @return      */
+comment|/**      * Check if the element corresponding to the given path      * should be indexed as an element with mixed content,      * i.e. the string value of the element will be indexed      * as a single text sequence. Descendant elements will be ignored and      * will not break the text into chunks.      *      * Example: a mixed content index on the element      *<![CDATA[<mixed><s>un</s>even</mixed>]]>       *      * @param path      */
 specifier|public
 name|boolean
 name|matchMixedElement
