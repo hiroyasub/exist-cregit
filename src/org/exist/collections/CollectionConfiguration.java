@@ -1696,7 +1696,21 @@ name|parameters
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* else {                 throw new CollectionConfigurationException("Expected '" + PARAM_NAME_ATTRIBUTE +                         "' elements in namespace '" + NAMESPACE + "' in trigger's configuration.");                  } */
+else|else
+block|{
+comment|// Params do not need to be passed to invoke a trigger
+name|trigger
+operator|.
+name|configure
+argument_list|(
+name|broker
+argument_list|,
+name|collection
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|trigger
 return|;
