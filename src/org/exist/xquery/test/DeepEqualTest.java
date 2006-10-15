@@ -1191,6 +1191,98 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testsiblingCornerCase
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare  namespace ve = 'http://www.test.com/deepestEqualError'; "
+operator|+
+literal|"declare function ve:functionVerifications() as element(FunctionVerifications) { "
+operator|+
+literal|"let $parVers := "
+operator|+
+literal|"<ParameterVerifications> "
+operator|+
+literal|"<Parameter/> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<Specification>ATP</Specification> "
+operator|+
+literal|"<Specification>PE</Specification> "
+operator|+
+literal|"<Specification>SPC</Specification> "
+operator|+
+literal|"</ParameterVerifications> "
+operator|+
+literal|"let $dummy := $parVers/PassedLevel  (: cause deep-equal bug!!! :) "
+operator|+
+literal|"return "
+operator|+
+literal|"<FunctionVerifications> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"  {$parVers} "
+operator|+
+literal|"</FunctionVerifications> "
+operator|+
+literal|"}; "
+operator|+
+literal|"let $expected := "
+operator|+
+literal|"<FunctionVerifications> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<ParameterVerifications> "
+operator|+
+literal|"<Parameter/> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<Specification>ATP</Specification> "
+operator|+
+literal|"<Specification>PE</Specification> "
+operator|+
+literal|"<Specification>SPC</Specification> "
+operator|+
+literal|"</ParameterVerifications> "
+operator|+
+literal|"</FunctionVerifications> "
+operator|+
+literal|"let $got := ve:functionVerifications() "
+operator|+
+literal|"return deep-equal($expected, $got)"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{
