@@ -2165,7 +2165,14 @@ decl_stmt|;
 name|String
 name|file
 init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
 literal|"server.xml"
+argument_list|,
+literal|"server.xml"
+argument_list|)
 decl_stmt|;
 name|File
 name|f
@@ -2213,9 +2220,32 @@ argument_list|(
 literal|"Server configuration not found!"
 argument_list|)
 throw|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Reading server configuration from exist.jar"
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Reading server configuration from: "
+operator|+
+name|f
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|is
 operator|=
 operator|new
