@@ -956,8 +956,6 @@ name|isSiblingOf
 argument_list|(
 name|nodeId
 argument_list|)
-operator|==
-literal|0
 condition|?
 name|sibling
 else|:

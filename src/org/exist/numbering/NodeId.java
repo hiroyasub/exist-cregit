@@ -176,7 +176,7 @@ name|NodeId
 name|ancestor
 parameter_list|)
 function_decl|;
-name|int
+name|boolean
 name|isSiblingOf
 parameter_list|(
 name|NodeId
