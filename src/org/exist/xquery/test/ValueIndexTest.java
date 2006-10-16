@@ -27,6 +27,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -232,6 +242,30 @@ operator|.
 name|modules
 operator|.
 name|XUpdateQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|PropertyConfigurator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|BasicConfigurator
 import|;
 end_import
 
@@ -962,7 +996,7 @@ name|service
 argument_list|,
 literal|"mondial-test.xml"
 argument_list|,
-literal|"//city[matches(name, '^Berlin$', 'i')]"
+literal|"//city[matches(name, '^Berlin$')]"
 argument_list|,
 literal|1
 argument_list|)
