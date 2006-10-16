@@ -2273,6 +2273,13 @@ block|}
 else|else
 block|{
 comment|//key with truncation, match key
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
 name|context
 operator|.
 name|getProfiler
@@ -2361,21 +2368,20 @@ name|docs
 argument_list|,
 name|nodes
 argument_list|,
+name|getRegexp
+argument_list|(
 name|key
 operator|.
 name|getStringValue
 argument_list|()
-operator|.
-name|replace
-argument_list|(
-literal|'%'
-argument_list|,
-literal|'*'
 argument_list|)
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|DBBroker
 operator|.
-name|MATCH_WILDCARDS
+name|MATCH_REGEXP
 argument_list|)
 decl_stmt|;
 if|if
@@ -2575,10 +2581,6 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|//removed by Pierrick Brihaye
-comment|//REMOVED : a *general* comparison should not be dependant of the settings of a fulltext index
-comment|/* 	    } else if (key.getType() == Type.ATOMIC || Type.subTypeOf(key.getType(), Type.STRING)) { 	        if (!nodes.hasMixedContent()&& relation == Constants.EQ&& nodes.hasTextIndex()) { 		        // we can use the fulltext index 		        String cmp = rightSeq.getStringValue(); 		        if(cmp.length()< NativeTextEngine.MAX_WORD_LENGTH) 		            nodes = useFulltextIndex(cmp, nodes, docs); 		         		        // now compare the input node set to the search expression 				result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, cmp, getCollator(contextSequence)); 	 			} else { 			     			    // no usable index found. Fall back to a sequential scan of the nodes 			    result = 					context.getBroker().getNodesEqualTo(nodes, docs, relation, truncation, rightSeq.getStringValue(),  					        getCollator(contextSequence)); 			}         */
-comment|/* end */
 block|}
 block|}
 else|else
@@ -2694,8 +2696,65 @@ return|return
 name|result
 return|;
 block|}
-comment|//removed by Pierrick Brihaye
-comment|/*     protected NodeSet useFulltextIndex(String cmp, NodeSet nodes, DocumentSet docs) throws XPathException { //	    LOG.debug("Using fulltext index for expression " + ExpressionDumper.dump(this)); 	    String cmpCopy = cmp; 		// try to use a fulltext search expression to reduce the number 		// of potential nodes to scan through 		SimpleTokenizer tokenizer = new SimpleTokenizer(); 		tokenizer.setText(cmp);  		TextToken token; 		String term; 		boolean foundNumeric = false; 		// setup up an&= expression using the fulltext index 		ExtFulltext containsExpr = new ExtFulltext(context, Constants.FULLTEXT_AND); 		containsExpr.setASTNode(getASTNode()); 		// disable default match highlighting 		int oldFlags = context.getBroker().getTextEngine().getTrackMatches(); 		context.getBroker().getTextEngine().setTrackMatches(Serializer.TAG_NONE); 		 		int i = 0; 		for (; i< 5&& (token = tokenizer.nextToken(false)) != null; i++) { 			// remember if we find an alphanumeric token 			if (token.getType() == TextToken.ALPHANUM) 				foundNumeric = true; 		} 		// check if all elements are indexed. If not, we can't use the 		// fulltext index. 		if (foundNumeric) 			foundNumeric = checkArgumentTypes(context, docs); 		if ((!foundNumeric)&& i> 0) { 			// all elements are indexed: use the fulltext index 			cmp = handleTruncation(cmp); 			containsExpr.addTerm(new LiteralValue(context, new StringValue(cmp))); 			nodes = (NodeSet) containsExpr.eval(nodes, null); 		} 		context.getBroker().getTextEngine().setTrackMatches(oldFlags); 		cmp = cmpCopy; 		return nodes; 	}     	 	private String handleTruncation(String cmp) { 		switch (truncation) { 			case Constants.TRUNC_RIGHT: 				return cmp + '*'; 			case Constants.TRUNC_LEFT: 				return '*' + cmp; 			case Constants.TRUNC_BOTH: 				return '*' + cmp + '*'; 			default: 				return cmp; 		} 	}     */
+specifier|private
+name|CharSequence
+name|getRegexp
+parameter_list|(
+name|String
+name|expr
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|truncation
+condition|)
+block|{
+case|case
+name|Constants
+operator|.
+name|TRUNC_LEFT
+case|:
+return|return
+operator|new
+name|StringBuffer
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|expr
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|'$'
+argument_list|)
+return|;
+case|case
+name|Constants
+operator|.
+name|TRUNC_RIGHT
+case|:
+return|return
+operator|new
+name|StringBuffer
+argument_list|()
+operator|.
+name|append
+argument_list|(
+literal|'^'
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|expr
+argument_list|)
+return|;
+default|default :
+return|return
+name|expr
+return|;
+block|}
+block|}
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
 specifier|protected
 name|boolean
