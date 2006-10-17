@@ -420,6 +420,7 @@ argument_list|)
 throw|;
 block|}
 comment|//Then, if numeric, try to refine the type
+comment|//xs:decimal(3) treat as xs:integer
 block|}
 if|else if
 condition|(
@@ -440,9 +441,7 @@ name|subTypeOf
 argument_list|(
 name|type
 argument_list|,
-name|Type
-operator|.
-name|NUMBER
+name|requiredType
 argument_list|)
 condition|)
 block|{
@@ -507,6 +506,9 @@ argument_list|)
 throw|;
 block|}
 comment|//Then, if duration, try to refine the type
+comment|//No test on the type hierarchy ; this has to pass :
+comment|//fn:months-from-duration(xs:duration("P1Y2M3DT10H30M"))
+comment|//TODO : find a way to enforce the test (by making a difference between casting and treating as ?)
 block|}
 if|else if
 condition|(
@@ -520,17 +522,7 @@ name|Type
 operator|.
 name|DURATION
 argument_list|)
-operator|&&
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|type
-argument_list|,
-name|Type
-operator|.
-name|DURATION
-argument_list|)
+comment|/*&& Type.subTypeOf(type, requiredType)*/
 condition|)
 block|{
 try|try
@@ -593,6 +585,60 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+block|}
+if|else 					if
+condition|(
+operator|!
+operator|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|type
+argument_list|,
+name|requiredType
+argument_list|)
+operator|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|expression
+operator|.
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"FORG0001: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|item
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|item
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|") is not a sub-type of "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+argument_list|)
+throw|;
 block|}
 else|else
 throw|throw
