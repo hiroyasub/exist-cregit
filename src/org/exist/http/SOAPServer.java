@@ -1182,13 +1182,6 @@ parameter_list|)
 block|{
 name|response
 operator|.
-name|setContentType
-argument_list|(
-literal|"text/html"
-argument_list|)
-expr_stmt|;
-name|response
-operator|.
 name|setStatus
 argument_list|(
 name|HttpServletResponse
@@ -1208,6 +1201,8 @@ name|path
 argument_list|,
 name|e
 argument_list|)
+argument_list|,
+literal|"text/html"
 argument_list|,
 name|ENCODING
 argument_list|)
@@ -1880,13 +1875,6 @@ parameter_list|)
 block|{
 name|response
 operator|.
-name|setContentType
-argument_list|(
-literal|"text/html"
-argument_list|)
-expr_stmt|;
-name|response
-operator|.
 name|setStatus
 argument_list|(
 name|HttpServletResponse
@@ -1919,6 +1907,8 @@ argument_list|,
 name|tce
 argument_list|)
 argument_list|)
+argument_list|,
+literal|"text/html"
 argument_list|,
 name|ENCODING
 argument_list|)
@@ -1932,13 +1922,6 @@ parameter_list|)
 block|{
 name|response
 operator|.
-name|setContentType
-argument_list|(
-literal|"text/html"
-argument_list|)
-expr_stmt|;
-name|response
-operator|.
 name|setStatus
 argument_list|(
 name|HttpServletResponse
@@ -1971,6 +1954,8 @@ argument_list|,
 name|e
 argument_list|)
 argument_list|)
+argument_list|,
+literal|"text/html"
 argument_list|,
 name|ENCODING
 argument_list|)
@@ -2736,6 +2721,9 @@ name|String
 name|data
 parameter_list|,
 name|String
+name|contentType
+parameter_list|,
+name|String
 name|encoding
 parameter_list|)
 throws|throws
@@ -2743,14 +2731,6 @@ name|IOException
 block|{
 comment|//        response.setCharacterEncoding(encoding);
 comment|// possible format contentType: text/xml; charset=UTF-8
-name|String
-name|contentType
-init|=
-name|response
-operator|.
-name|getContentType
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|contentType

@@ -1860,16 +1860,10 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/xml"
+literal|"text/xml; charset=UTF-8"
 argument_list|)
 expr_stmt|;
-name|response
-operator|.
-name|setCharacterEncoding
-argument_list|(
-literal|"utf-8"
-argument_list|)
-expr_stmt|;
+comment|//        response.setCharacterEncoding("utf-8");
 name|ServletOutputStream
 name|sos
 init|=

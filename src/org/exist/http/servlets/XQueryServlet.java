@@ -1405,56 +1405,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//-------------------------------
-name|URI
-name|baseUri
-decl_stmt|;
-try|try
-block|{
-name|baseUri
-operator|=
-operator|new
-name|URI
-argument_list|(
-name|request
-operator|.
-name|getScheme
-argument_list|()
-argument_list|,
-literal|null
-comment|/*user info?*/
-argument_list|,
-name|request
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|,
-name|request
-operator|.
-name|getLocalPort
-argument_list|()
-argument_list|,
-name|request
-operator|.
-name|getRequestURI
-argument_list|()
-argument_list|,
-literal|null
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|URISyntaxException
-name|e
-parameter_list|)
-block|{
-name|baseUri
-operator|=
-literal|null
-expr_stmt|;
-block|}
+comment|//        URI baseUri;
+comment|//        try {
+comment|//            baseUri = new URI(request.getScheme(),
+comment|//                    null/*user info?*/, request.getLocalName(), request.getLocalPort(),
+comment|//                    request.getRequestURI(), null, null);
+comment|//        } catch(URISyntaxException e) {
+comment|//            baseUri = null;
+comment|//        }
 name|String
 name|requestPath
 init|=

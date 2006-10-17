@@ -1046,6 +1046,14 @@ name|void
 name|flushBuffer
 parameter_list|()
 block|{
+if|if
+condition|(
+name|currentBuffer
+operator|==
+literal|null
+condition|)
+return|return;
+comment|// the db has probably shut down already
 synchronized|synchronized
 init|(
 name|latch
@@ -1711,6 +1719,14 @@ name|long
 name|txnId
 parameter_list|)
 block|{
+if|if
+condition|(
+name|currentBuffer
+operator|==
+literal|null
+condition|)
+return|return;
+comment|// the db has probably shut down already
 if|if
 condition|(
 operator|!
