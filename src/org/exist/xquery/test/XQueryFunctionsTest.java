@@ -278,30 +278,6 @@ name|database
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|TEST_COLLECTION
-init|=
-literal|"/db/test"
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|BINARY_RESOURCE_FILENAME
-init|=
-literal|"logo.jpg"
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|XML_RESOURCE_FILENAME
-init|=
-literal|"logo.xml"
-decl_stmt|;
 specifier|public
 specifier|static
 name|void
@@ -4305,6 +4281,32 @@ name|void
 name|bugtestBase64BinaryCast
 parameter_list|()
 block|{
+specifier|final
+name|String
+name|TEST_BINARY_COLLECTION
+init|=
+literal|"testBinary"
+decl_stmt|;
+specifier|final
+name|String
+name|TEST_COLLECTION
+init|=
+literal|"/db/"
+operator|+
+name|TEST_BINARY_COLLECTION
+decl_stmt|;
+specifier|final
+name|String
+name|BINARY_RESOURCE_FILENAME
+init|=
+literal|"logo.jpg"
+decl_stmt|;
+specifier|final
+name|String
+name|XML_RESOURCE_FILENAME
+init|=
+literal|"logo.xml"
+decl_stmt|;
 try|try
 block|{
 comment|//create a test collection
@@ -4330,7 +4332,7 @@ name|colService
 operator|.
 name|createCollection
 argument_list|(
-literal|"test"
+name|TEST_BINARY_COLLECTION
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -4350,7 +4352,6 @@ operator|+
 name|BINARY_RESOURCE_FILENAME
 argument_list|)
 decl_stmt|;
-comment|/*BufferedInputStream is = new BufferedInputStream(new FileInputStream(fLogo)); 			int logoSize = is.available(); 			byte[] bufLogo = new byte[logoSize]; 			is.read(bufLogo); 			is.close();*/
 name|BinaryResource
 name|br
 init|=
@@ -4366,7 +4367,6 @@ argument_list|,
 literal|"BinaryResource"
 argument_list|)
 decl_stmt|;
-comment|//br.setContent(bufLogo);
 name|br
 operator|.
 name|setContent
@@ -4374,7 +4374,7 @@ argument_list|(
 name|fLogo
 argument_list|)
 expr_stmt|;
-name|root
+name|testCollection
 operator|.
 name|storeResource
 argument_list|(
@@ -4520,7 +4520,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*catch(IOException e) 		{ 			System.out.println("testBase64Binary: XMLDBException: "+e); 			fail(e.getMessage()); 		}*/
 block|}
 comment|/* 	 * @see TestCase#setUp() 	 */
 specifier|protected
