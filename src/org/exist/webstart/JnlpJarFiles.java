@@ -91,7 +91,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"antlr"
+literal|"antlr-%latest%"
 block|,
 literal|"commons-pool-%latest%"
 block|,
