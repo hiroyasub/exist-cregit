@@ -4278,7 +4278,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestBase64BinaryCast
+name|testBase64BinaryCast
 parameter_list|()
 block|{
 specifier|final
