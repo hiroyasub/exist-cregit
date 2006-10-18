@@ -271,6 +271,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+block|{
+name|contextSequence
+operator|=
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
+block|}
 comment|// evaluate the expression
 name|context
 operator|.
@@ -284,7 +299,7 @@ name|super
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
