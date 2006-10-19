@@ -370,6 +370,15 @@ comment|// if item is an atomic value, collect the string values of all
 comment|// following atomic values and seperate them by a space.
 if|if
 condition|(
+name|next
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|TEXT
+operator|||
 name|Type
 operator|.
 name|subTypeOf
