@@ -1951,6 +1951,7 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+comment|//depends whether we have strict type checking or not
 name|assertTrue
 argument_list|(
 name|message
@@ -1958,6 +1959,16 @@ operator|.
 name|indexOf
 argument_list|(
 literal|"FORG0001"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"FOCH0002"
 argument_list|)
 operator|>
 operator|-
@@ -2224,6 +2235,7 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+comment|//depends whether we have strict type checking or not
 name|assertTrue
 argument_list|(
 name|message
@@ -2231,6 +2243,16 @@ operator|.
 name|indexOf
 argument_list|(
 literal|"FORG0001"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"FOCH0002"
 argument_list|)
 operator|>
 operator|-
