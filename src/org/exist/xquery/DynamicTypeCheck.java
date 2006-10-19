@@ -585,6 +585,85 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//Then, if date, try to refine the type
+comment|//No test on the type hierarchy
+comment|//TODO : find a way to enforce the test (by making a difference between casting and treating as ?)
+block|}
+if|else if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|requiredType
+argument_list|,
+name|Type
+operator|.
+name|DATE
+argument_list|)
+comment|/*&& Type.subTypeOf(type, requiredType)*/
+condition|)
+block|{
+try|try
+block|{
+name|item
+operator|=
+name|item
+operator|.
+name|convertTo
+argument_list|(
+name|requiredType
+argument_list|)
+expr_stmt|;
+comment|//No way
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|expression
+operator|.
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"FOCH0002: Required type is "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+operator|+
+literal|" but got '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|item
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|item
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|")'"
+argument_list|)
+throw|;
+block|}
 block|}
 if|else 					if
 condition|(
