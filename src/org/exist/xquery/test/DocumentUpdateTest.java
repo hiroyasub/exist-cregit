@@ -526,7 +526,7 @@ decl_stmt|;
 name|String
 name|query2
 init|=
-literal|"let $doc := doc(\"/db/data/docs/test/marktest7.xml\") "
+literal|"let $doc := doc(\"/db/marktest7.xml\") "
 operator|+
 literal|"return "
 operator|+
