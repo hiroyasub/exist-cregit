@@ -503,6 +503,100 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|bugtestUpdateAttribute
+parameter_list|()
+block|{
+name|String
+name|query1
+init|=
+literal|"let $content :="
+operator|+
+literal|"<A><B><C d=\"xxx\">ccc1</C><C d=\"yyy\" e=\"zzz\">ccc2</C></B></A> "
+operator|+
+literal|"let $uri := xmldb:store(\"/db/\", \"marktest7.xml\", $content) "
+operator|+
+literal|"let $doc := doc($uri) "
+operator|+
+literal|"let $xxx := update delete $doc//@*"
+operator|+
+literal|"return $doc"
+decl_stmt|;
+name|String
+name|query2
+init|=
+literal|"let $doc := doc(\"/db/data/docs/test/marktest7.xml\") "
+operator|+
+literal|"return "
+operator|+
+literal|"( for $elem in $doc//* "
+operator|+
+literal|"return update insert attribute AAA {\"BBB\"} into $elem, $doc) "
+decl_stmt|;
+try|try
+block|{
+name|String
+name|result1
+init|=
+name|execQuery
+argument_list|(
+name|query1
+argument_list|)
+decl_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|String
+name|result2
+init|=
+name|execQuery
+argument_list|(
+name|query2
+argument_list|)
+decl_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|private
 name|String
 name|execQuery
