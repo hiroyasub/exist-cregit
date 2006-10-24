@@ -9000,6 +9000,122 @@ block|}
 block|}
 specifier|public
 name|void
+name|bugtestAttributeNamespace
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare function local:copy($nodes as node()*) as node()* {"
+operator|+
+literal|"for $n in $nodes return "
+operator|+
+literal|"if ($n instance of element()) then "
+operator|+
+literal|"  element {node-name($n)} {(local:copy($n/@*), local:copy($n/node()))} "
+operator|+
+literal|"else if ($n instance of attribute()) then "
+operator|+
+literal|"  attribute {node-name($n)} {$n} "
+operator|+
+literal|"else if ($n instance of text()) then "
+operator|+
+literal|"  text {$n} "
+operator|+
+literal|"else "
+operator|+
+literal|"<Other/>"
+operator|+
+literal|"};"
+operator|+
+literal|"let $c :="
+operator|+
+literal|"<c:C  xmlns:c=\"http://c\" xmlns:d=\"http://d\" d:d=\"ddd\">"
+operator|+
+literal|"ccc"
+operator|+
+literal|"</c:C>"
+operator|+
+literal|"return local:copy($c)"
+decl_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"<c:C xmlns:c=\"http://c\" xmlns:d=\"http://d\" d:d=\"ddd\">"
+operator|+
+literal|"ccc"
+operator|+
+literal|"</c:C>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
 name|testNameConflicts
 parameter_list|()
 block|{
