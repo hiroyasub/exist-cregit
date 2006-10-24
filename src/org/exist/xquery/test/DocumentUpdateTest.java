@@ -505,7 +505,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestUpdateAttribute
+name|testUpdateAttribute
 parameter_list|()
 block|{
 name|String
