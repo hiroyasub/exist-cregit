@@ -1191,6 +1191,138 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testsiblingCornerCase
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare  namespace ve = 'http://www.test.com/deepestEqualError'; "
+operator|+
+literal|"declare function ve:functionVerifications() as element(FunctionVerifications) { "
+operator|+
+literal|"let $parVers := "
+operator|+
+literal|"<ParameterVerifications> "
+operator|+
+literal|"<Parameter/> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<Specification>ATP</Specification> "
+operator|+
+literal|"<Specification>PE</Specification> "
+operator|+
+literal|"<Specification>SPC</Specification> "
+operator|+
+literal|"</ParameterVerifications> "
+operator|+
+literal|"let $dummy := $parVers/PassedLevel  (: cause deep-equal bug!!! :) "
+operator|+
+literal|"return "
+operator|+
+literal|"<FunctionVerifications> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"  {$parVers} "
+operator|+
+literal|"</FunctionVerifications> "
+operator|+
+literal|"}; "
+operator|+
+literal|"let $expected := "
+operator|+
+literal|"<FunctionVerifications> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<ParameterVerifications> "
+operator|+
+literal|"<Parameter/> "
+operator|+
+literal|"<PassedLevel>ATP</PassedLevel> "
+operator|+
+literal|"<PassedLevel>PE</PassedLevel> "
+operator|+
+literal|"<PassedLevel>SPC</PassedLevel> "
+operator|+
+literal|"<Specification>ATP</Specification> "
+operator|+
+literal|"<Specification>PE</Specification> "
+operator|+
+literal|"<Specification>SPC</Specification> "
+operator|+
+literal|"</ParameterVerifications> "
+operator|+
+literal|"</FunctionVerifications> "
+operator|+
+literal|"let $got := ve:functionVerifications() "
+operator|+
+literal|"return deep-equal($expected, $got)"
+decl_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|testSequenceError1
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace ds = \"http://www.test.com/SequenceError\"; "
+operator|+
+literal|"declare function ds:result(  $current as element(Result)?, "
+operator|+
+literal|"$value  as element(Value)?) as element(Result) {"
+operator|+
+literal|"<Result><Value>{ ($current/Value/node(), $value/node()) }</Value></Result> };"
+operator|+
+literal|"let $v1 :=<Value>1234</Value> "
+operator|+
+literal|"let $result1 := ds:result((), $v1) "
+operator|+
+literal|"let $v2 :=<Value>abcd</Value> "
+operator|+
+literal|"let $expected :=<Value>{($v1, $v2)/node()}</Value> "
+operator|+
+literal|"let $result2 := ds:result($result1, $v2) "
+operator|+
+literal|"return deep-equal($expected, $result2/Value)"
+decl_stmt|;
+comment|//                for(int i=1; i<20;i++){
+comment|//                    System.out.println("nr="+i);
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+comment|//               }
+block|}
+empty_stmt|;
+specifier|public
+name|void
 name|testNSElements1
 parameter_list|()
 block|{
