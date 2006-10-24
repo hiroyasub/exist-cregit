@@ -2434,22 +2434,8 @@ return|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|contextSet
-operator|instanceof
-name|VirtualNodeSet
-condition|)
-operator|(
-operator|(
-name|VirtualNodeSet
-operator|)
-name|contextSet
-operator|)
-operator|.
-name|realize
-argument_list|()
-expr_stmt|;
+comment|//            	if (contextSet instanceof VirtualNodeSet)
+comment|//            		((VirtualNodeSet)contextSet).realize();
 name|NodeSelector
 name|selector
 init|=
