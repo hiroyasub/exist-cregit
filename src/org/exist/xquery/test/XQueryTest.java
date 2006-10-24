@@ -9034,7 +9034,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestXUpdateWithAdvancentTextNodes
+name|bugtestXUpdateWithAdjacentTextNodes
 parameter_list|()
 block|{
 name|ResourceSet
@@ -9266,7 +9266,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestSelfElement
+name|testNodeName
 parameter_list|()
 block|{
 name|String
@@ -9274,7 +9274,7 @@ name|query
 init|=
 literal|"declare function local:name($node as node()) as xs:string? { "
 operator|+
-literal|" if ($node/self::element()) then name($node) else () }; "
+literal|" if ($node/self::element() != '') then name($node) else () }; "
 operator|+
 literal|" let $n :=<!-- Just a comment! --> return local:name($n) "
 decl_stmt|;
