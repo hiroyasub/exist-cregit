@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Add the xmlns:tns namespace to the definitions element of the WSDL stylesheet  * we do this here as a workaround for Xalan, Xalan has no easy  * way to declare additional dynamic namespaces.  * There are two possible known Xalan hacks to do this -  * 	  * 	1) declare a dummy attribute with the namespace.  * 	This seems to break WSDL compatibilty though!  * 	2) declare a variable containing an element with namespace and copy the  * 	namespace using xsl:copy-of and xalan:nodeset() but this doesnt seem to work!  *   * http://sources.redhat.com/ml/xsl-list/2001-09/msg01204.html  *   * If we were using Saxon instead of Xalan then the workaround is easy as XSLT 2.0  * supports xsl:namespace for declaring dynamic namespaces  *   *   * @author Adam Retter (adam.retter@devon.gov.uk)  */
+comment|/**  * Add the xmlns:tns and xmlns:soapenc namespaces to the definitions element of the WSDL stylesheet  * we do this here as a workaround for Xalan, Xalan has no easy  * way to declare additional dynamic namespaces.  * There are two possible known Xalan hacks to do this -  * 	  * 	1) declare a dummy attribute with the namespace.  * 	This seems to break WSDL compatibilty though!  * 	2) declare a variable containing an element with namespace and copy the  * 	namespace using xsl:copy-of and xalan:nodeset() but this doesnt seem to work!  *   * http://sources.redhat.com/ml/xsl-list/2001-09/msg01204.html  *   * If we were using Saxon instead of Xalan then the workaround is easy as XSLT 2.0  * supports xsl:namespace for declaring dynamic namespaces  *   *   * @author Adam Retter (adam.retter@devon.gov.uk)  */
 end_comment
 
 begin_class
@@ -85,6 +85,14 @@ name|String
 name|tnsNamespaceUri
 init|=
 literal|null
+decl_stmt|;
+specifier|protected
+specifier|final
+specifier|static
+name|String
+name|soapencNamespaceUri
+init|=
+literal|"http://schemas.xmlsoap.org/soap/encoding/"
 decl_stmt|;
 specifier|public
 name|WSDLFilter
@@ -236,6 +244,15 @@ argument_list|,
 name|tnsNamespaceUri
 argument_list|)
 expr_stmt|;
+name|outputHandler
+operator|.
+name|startPrefixMapping
+argument_list|(
+literal|"soapenc"
+argument_list|,
+name|soapencNamespaceUri
+argument_list|)
+expr_stmt|;
 block|}
 name|outputHandler
 operator|.
@@ -283,6 +300,13 @@ operator|.
 name|endPrefixMapping
 argument_list|(
 literal|"tns"
+argument_list|)
+expr_stmt|;
+name|outputHandler
+operator|.
+name|endPrefixMapping
+argument_list|(
+literal|"soapenc"
 argument_list|)
 expr_stmt|;
 block|}

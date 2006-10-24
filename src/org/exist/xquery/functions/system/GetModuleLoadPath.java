@@ -112,7 +112,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"module-load-path"
+literal|"get-module-load-path"
 argument_list|,
 name|SystemModule
 operator|.

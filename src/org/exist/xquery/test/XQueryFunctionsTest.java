@@ -1809,8 +1809,19 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+comment|//depends whether we have strict type checking or not
 name|assertTrue
 argument_list|(
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"FORG0001"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
 name|message
 operator|.
 name|indexOf
@@ -2082,8 +2093,19 @@ name|getMessage
 argument_list|()
 expr_stmt|;
 block|}
+comment|//depends whether we have strict type checking or not
 name|assertTrue
 argument_list|(
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"FORG0001"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
 name|message
 operator|.
 name|indexOf
@@ -4136,7 +4158,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestBase64BinaryCast
+name|testBase64BinaryCast
 parameter_list|()
 block|{
 specifier|final
