@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A remote implementation of the Collection interface. This   * implementation communicates with the server through the XMLRPC  * protocol.  *   * @author wolf  */
+comment|/**  * A remote implementation of the Collection interface. This  * implementation communicates with the server through the XMLRPC  * protocol.  *  * @author wolf  * Updated Andy Foster - Updated code to allow child collection cache to  * resync with the remote collection.  */
 end_comment
 
 begin_class
@@ -775,15 +775,51 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+comment|// AF get the child collection refreshing cache from server if not found
+return|return
+name|getChildCollection
+argument_list|(
+name|name
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+comment|// AF - NEW METHOD
+specifier|protected
+name|Collection
+name|getChildCollection
+parameter_list|(
+name|XmldbURI
+name|name
+parameter_list|,
+name|boolean
+name|refreshCacheIfNotFound
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
 if|if
 condition|(
 name|childCollections
 operator|==
 literal|null
 condition|)
+block|{
 name|readCollection
 argument_list|()
 expr_stmt|;
+name|refreshCacheIfNotFound
+operator|=
+literal|false
+expr_stmt|;
+block|}
+comment|// stores reference to the collection found
+name|Collection
+name|foundCollection
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|name
@@ -793,7 +829,8 @@ argument_list|()
 operator|>
 literal|1
 condition|)
-return|return
+name|foundCollection
+operator|=
 operator|(
 name|Collection
 operator|)
@@ -803,9 +840,10 @@ name|get
 argument_list|(
 name|name
 argument_list|)
-return|;
+expr_stmt|;
 else|else
-return|return
+name|foundCollection
+operator|=
 operator|(
 name|Collection
 operator|)
@@ -821,6 +859,33 @@ argument_list|(
 name|name
 argument_list|)
 argument_list|)
+expr_stmt|;
+comment|// if we did not find collection in cache set cache back to null to force full refresh
+if|if
+condition|(
+name|foundCollection
+operator|==
+literal|null
+operator|&&
+name|refreshCacheIfNotFound
+condition|)
+block|{
+name|childCollections
+operator|=
+literal|null
+expr_stmt|;
+return|return
+name|getChildCollection
+argument_list|(
+name|name
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+comment|// return the found collection
+return|return
+name|foundCollection
 return|;
 block|}
 specifier|public
@@ -830,12 +895,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-if|if
-condition|(
-name|childCollections
-operator|==
-literal|null
-condition|)
+comment|//  AF Always refresh cache for latest set - if (childCollections == null)
 name|readCollection
 argument_list|()
 expr_stmt|;
@@ -1372,12 +1432,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-if|if
-condition|(
-name|childCollections
-operator|==
-literal|null
-condition|)
+comment|//  AF Always refresh cache for latest set - if (childCollections == null)
 name|readCollection
 argument_list|()
 expr_stmt|;
@@ -1436,12 +1491,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-if|if
-condition|(
-name|childCollections
-operator|==
-literal|null
-condition|)
+comment|// Always refresh cache for latest set - if (childCollections == null)
 name|readCollection
 argument_list|()
 expr_stmt|;
@@ -3256,7 +3306,7 @@ name|XmlRpcException
 name|xre
 parameter_list|)
 block|{
-comment|/* the error code previously was INVALID_RESOURCE, but this was also thrown 		     * in case of insufficient persmissions. As you cannot tell here any more what the  		     * error really was, use UNKNOWN_ERROR. The reason is in XmlRpcResponseProcessor#processException 		     * which will only pass on the error message. 		     */
+comment|/* the error code previously was INVALID_RESOURCE, but this was also thrown 		     * in case of insufficient persmissions. As you cannot tell here any more what the 		     * error really was, use UNKNOWN_ERROR. The reason is in XmlRpcResponseProcessor#processException 		     * which will only pass on the error message. 		     */
 throw|throw
 operator|new
 name|XMLDBException
