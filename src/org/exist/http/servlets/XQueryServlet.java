@@ -1898,7 +1898,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></head>"
+literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></link></head>"
 argument_list|)
 expr_stmt|;
 name|out
@@ -2027,7 +2027,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></head>"
+literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></link></head>"
 argument_list|)
 expr_stmt|;
 name|out
