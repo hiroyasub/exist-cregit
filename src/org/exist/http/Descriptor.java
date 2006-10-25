@@ -305,6 +305,14 @@ argument_list|(
 literal|"line.separator"
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EXIST_HOME_VAR_NAME
+init|=
+literal|"${EXIST_HOME}"
+decl_stmt|;
 comment|//References
 specifier|private
 specifier|static
@@ -855,18 +863,18 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Does the path contain $EXIST_HOME?
+comment|//Does the path contain ${EXIST_HOME}?
 if|if
 condition|(
 name|path
 operator|.
 name|startsWith
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 argument_list|)
 condition|)
 block|{
-comment|//Replace $EXIST_HOME with the actual path
+comment|//Replace ${EXIST_HOME} with the actual path
 name|path
 operator|=
 name|Configuration
@@ -881,7 +889,7 @@ name|path
 operator|.
 name|substring
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 operator|.
 name|length
 argument_list|()
@@ -1020,7 +1028,7 @@ name|path
 operator|.
 name|startsWith
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 argument_list|)
 condition|)
 block|{
@@ -1039,7 +1047,7 @@ name|path
 operator|.
 name|substring
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 operator|.
 name|length
 argument_list|()
@@ -1070,7 +1078,7 @@ name|view
 operator|.
 name|startsWith
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 argument_list|)
 condition|)
 block|{
@@ -1089,7 +1097,7 @@ name|view
 operator|.
 name|substring
 argument_list|(
-literal|"{$EXIST_HOME}"
+name|EXIST_HOME_VAR_NAME
 operator|.
 name|length
 argument_list|()
