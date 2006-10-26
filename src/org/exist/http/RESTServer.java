@@ -1655,6 +1655,8 @@ else|else
 block|{
 comment|//we are not allowed to show the source - query not allowed in descriptor.xml
 comment|//TODO: is this the correct exception to throw or should we return a http response?
+comment|//DWES: this must be a 403 !!!
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN, "Permission to view XQuery source for: " + path + " denied. Must be explicitly defined in descriptor.xml");
 throw|throw
 operator|new
 name|PermissionDeniedException

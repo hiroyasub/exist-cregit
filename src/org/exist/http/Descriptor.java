@@ -855,39 +855,31 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Does the path contain $EXIST_HOME?
-if|if
-condition|(
-name|path
-operator|.
-name|startsWith
-argument_list|(
-literal|"{$EXIST_HOME}"
-argument_list|)
-condition|)
-block|{
-comment|//Replace $EXIST_HOME with the actual path
 name|path
 operator|=
+name|path
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\$\\{WEBAPP_HOME\\}"
+argument_list|,
 name|Configuration
 operator|.
-name|getExistHome
+name|getWebappHome
 argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
-operator|+
-name|path
 operator|.
-name|substring
+name|replace
 argument_list|(
-literal|"{$EXIST_HOME}"
-operator|.
-name|length
-argument_list|()
+literal|"\\"
+argument_list|,
+literal|"/"
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
+comment|//            System.out.println(path);
 comment|//store the path
 name|allowSourceXQueryList
 index|[
@@ -1013,39 +1005,30 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Does the path contain $EXIST_HOME?
-if|if
-condition|(
-name|path
-operator|.
-name|startsWith
-argument_list|(
-literal|"{$EXIST_HOME}"
-argument_list|)
-condition|)
-block|{
-comment|//Replace $EXIST_HOME with the actual path
 name|path
 operator|=
+name|path
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\$\\{WEBAPP_HOME\\}"
+argument_list|,
 name|Configuration
 operator|.
-name|getExistHome
+name|getWebappHome
 argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
-operator|+
-name|path
 operator|.
-name|substring
+name|replace
 argument_list|(
-literal|"{$EXIST_HOME}"
-operator|.
-name|length
-argument_list|()
+literal|"\\"
+argument_list|,
+literal|"/"
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 comment|//must be a view to map to
 if|if
 condition|(
@@ -1063,39 +1046,30 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Does the view contain $EXIST_HOME?
-if|if
-condition|(
-name|view
-operator|.
-name|startsWith
-argument_list|(
-literal|"{$EXIST_HOME}"
-argument_list|)
-condition|)
-block|{
-comment|//Replace $EXIST_HOME with the actual path
 name|view
 operator|=
+name|view
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\$\\{WEBAPP_HOME\\}"
+argument_list|,
 name|Configuration
 operator|.
-name|getExistHome
+name|getWebappHome
 argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
-operator|+
-name|view
 operator|.
-name|substring
+name|replace
 argument_list|(
-literal|"{$EXIST_HOME}"
-operator|.
-name|length
-argument_list|()
+literal|"\\"
+argument_list|,
+literal|"/"
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 comment|//store what to map from
 comment|/* if(path != null)             {*/
 comment|//store the path
@@ -1157,6 +1131,18 @@ name|i
 operator|++
 control|)
 block|{
+comment|// DWES: this helps a lot. quickfix not the final solution
+name|path
+operator|=
+name|path
+operator|.
+name|replace
+argument_list|(
+literal|"\\"
+argument_list|,
+literal|"/"
+argument_list|)
+expr_stmt|;
 comment|//does the path match the<allow-source><xquery path=""/></allow-source> path
 if|if
 condition|(

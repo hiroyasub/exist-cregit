@@ -6784,6 +6784,30 @@ literal|"webapp"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// convert to real path
+try|try
+block|{
+name|File
+name|tmpFolder
+init|=
+name|webappFolder
+operator|.
+name|getCanonicalFile
+argument_list|()
+decl_stmt|;
+name|webappFolder
+operator|=
+name|tmpFolder
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// oops ; use previous path
+block|}
 return|return
 name|webappFolder
 return|;
