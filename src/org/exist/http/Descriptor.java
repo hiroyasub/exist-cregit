@@ -873,13 +873,12 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-literal|"\\"
+literal|'\\'
 argument_list|,
-literal|"/"
+literal|'/'
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//            System.out.println(path);
 comment|//store the path
 name|allowSourceXQueryList
 index|[
@@ -1023,9 +1022,9 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-literal|"\\"
+literal|'\\'
 argument_list|,
-literal|"/"
+literal|'/'
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1064,9 +1063,9 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-literal|"\\"
+literal|'\\'
 argument_list|,
-literal|"/"
+literal|'/'
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1138,9 +1137,9 @@ name|path
 operator|.
 name|replace
 argument_list|(
-literal|"\\"
+literal|'\\'
 argument_list|,
-literal|"/"
+literal|'/'
 argument_list|)
 expr_stmt|;
 comment|//does the path match the<allow-source><xquery path=""/></allow-source> path
