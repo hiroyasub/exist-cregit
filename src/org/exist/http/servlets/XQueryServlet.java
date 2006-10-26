@@ -1252,6 +1252,7 @@ condition|)
 block|{
 comment|//show the source
 comment|//check are we allowed to show the xquery source - descriptor.xml
+comment|//                System.out.println("path="+path);
 if|if
 condition|(
 name|descriptor
@@ -1307,6 +1308,8 @@ else|else
 block|{
 comment|//we are not allowed to show the source - query not allowed in descriptor.xml
 comment|//TODO: is this the correct exception to throw or should we return a http response?
+comment|//DWES: this must be a 403 !!!
+comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN, "Permission to view XQuery source for: " + path + " denied. Must be explicitly defined in descriptor.xml");return;
 throw|throw
 operator|new
 name|ServletException
@@ -1898,7 +1901,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></head>"
+literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></link></head>"
 argument_list|)
 expr_stmt|;
 name|out
@@ -2027,7 +2030,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></head>"
+literal|"<link rel=\"stylesheet\" type=\"text/css\" href=\"error.css\"></link></head>"
 argument_list|)
 expr_stmt|;
 name|out

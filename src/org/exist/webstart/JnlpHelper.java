@@ -105,6 +105,8 @@ block|{
 comment|// Setup path based on installation (in jetty, container)
 if|if
 condition|(
+name|Configuration
+operator|.
 name|isInWarFile
 argument_list|()
 condition|)
@@ -137,16 +139,6 @@ argument_list|,
 literal|"lib/"
 argument_list|)
 expr_stmt|;
-name|webappFolder
-operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|".."
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -172,17 +164,14 @@ name|existJarFolder
 operator|=
 name|existHome
 expr_stmt|;
+block|}
 name|webappFolder
 operator|=
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"webapp"
-argument_list|)
+name|Configuration
+operator|.
+name|getWebappHome
+argument_list|()
 expr_stmt|;
-block|}
 name|logger
 operator|.
 name|debug
@@ -220,40 +209,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Check wether exist runs in Servlet container (as war file).      * @return TRUE if exist runs in servlet container.      */
-specifier|public
-name|boolean
-name|isInWarFile
-parameter_list|()
-block|{
-name|boolean
-name|retVal
-init|=
-literal|true
-decl_stmt|;
-if|if
-condition|(
-operator|new
-name|File
-argument_list|(
-name|existHome
-argument_list|,
-literal|"lib/core"
-argument_list|)
-operator|.
-name|isDirectory
-argument_list|()
-condition|)
-block|{
-name|retVal
-operator|=
-literal|false
-expr_stmt|;
-block|}
-return|return
-name|retVal
-return|;
-block|}
+comment|//    /**
+comment|//     *  Check wether exist runs in Servlet container (as war file).
+comment|//     * @return TRUE if exist runs in servlet container.
+comment|//     */
+comment|//    public boolean isInWarFile(){
+comment|//
+comment|//        boolean retVal =true;
+comment|//        if( new File(existHome, "lib/core").isDirectory() ) {
+comment|//            retVal=false;
+comment|//        }
+comment|//        return retVal;
+comment|//    }
 specifier|public
 name|File
 name|getWebappFolder
