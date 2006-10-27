@@ -5841,7 +5841,7 @@ block|}
 comment|// @see http://sourceforge.net/tracker/index.php?func=detail&aid=1488303&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestPredicateBUG1488303
+name|testPredicateBUG1488303
 parameter_list|()
 throws|throws
 name|Exception
@@ -6238,7 +6238,7 @@ block|}
 comment|/*      * In Predicate.java, the contextSet and the outerSequence.toNodeSet()      * documents are different so that no match can occur.      *      * @see http://wiki.exist-db.org/space/XQueryBugs      */
 specifier|public
 name|void
-name|bugtestPredicateBUG_wiki_1
+name|testPredicateBUG_wiki_1
 parameter_list|()
 throws|throws
 name|Exception
@@ -6376,7 +6376,7 @@ block|}
 comment|/*      * Problem in VirtualNodeSet which return 2 attributes because it       * computes every level      * @see http://wiki.exist-db.org/space/XQueryBugs      */
 specifier|public
 name|void
-name|bugtestVirtualNodesetBUG_wiki_3
+name|testVirtualNodesetBUG_wiki_3
 parameter_list|()
 block|{
 name|String
@@ -6457,7 +6457,7 @@ block|}
 comment|/*      * Problem in VirtualNodeSet because it computes the wrong level      *      *@see http://wiki.exist-db.org/space/XQueryBugs      */
 specifier|public
 name|void
-name|bugtestVirtualNodesetBUG_wiki_4
+name|testVirtualNodesetBUG_wiki_4
 parameter_list|()
 block|{
 name|String
@@ -6540,7 +6540,7 @@ block|}
 comment|/*      * Problem in VirtualNodeSet because it computes the wrong level      *      *@see http://wiki.exist-db.org/space/XQueryBugs      */
 specifier|public
 name|void
-name|bugtestVirtualNodesetBUG_wiki_5
+name|testVirtualNodesetBUG_wiki_5
 parameter_list|()
 block|{
 name|String
@@ -6780,7 +6780,7 @@ block|}
 comment|/*       * Miscomputation of the expression context in where clause when no        * wrapper expression is used. Using, e.g. where data($x/@id) eq "id" works !       */
 specifier|public
 name|void
-name|bugtestComputationBug_wiki_8
+name|testComputationBug_wiki_8
 parameter_list|()
 block|{
 name|String
