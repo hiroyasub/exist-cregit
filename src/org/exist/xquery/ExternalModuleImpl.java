@@ -730,6 +730,11 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+name|mStaticVariables
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
