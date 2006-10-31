@@ -1425,7 +1425,7 @@ name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
 operator|=
-literal|false
+literal|true
 expr_stmt|;
 name|BrokerPool
 name|pool
