@@ -4005,21 +4005,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Module '"
-operator|+
-name|SessionModule
-operator|.
-name|NAMESPACE_URI
-operator|+
-literal|"' is not bound"
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
