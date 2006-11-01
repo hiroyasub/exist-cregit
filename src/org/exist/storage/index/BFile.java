@@ -536,7 +536,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|4
+literal|5
 decl_stmt|;
 specifier|public
 specifier|final
