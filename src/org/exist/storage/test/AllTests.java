@@ -134,17 +134,105 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-comment|//        suite.addTestSuite(RecoverBinaryTest2.class);
-comment|//        suite.addTestSuite(RecoveryTest.class);
-comment|//        suite.addTestSuite(RemoveCollectionTest.class);
-comment|//        suite.addTestSuite(AppendTest.class);
-comment|//        suite.addTestSuite(RemoveTest.class);
-comment|//        suite.addTestSuite(RenameTest.class);
-comment|//        suite.addTestSuite(ReplaceTest.class);
-comment|//        suite.addTestSuite(UpdateTest.class);
-comment|//        suite.addTestSuite(UpdateAttributeTest.class);
-comment|//        suite.addTestSuite(UpdateRecoverTest.class);
-comment|//        suite.addTestSuite(ResourceTest.class);
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RecoverBinaryTest2
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RecoveryTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RemoveCollectionTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|AppendTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RemoveTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|RenameTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|ReplaceTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|UpdateTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|UpdateAttributeTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|UpdateRecoverTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTestSuite
+argument_list|(
+name|ResourceTest
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 comment|//$JUnit-END$
 return|return
 name|suite
