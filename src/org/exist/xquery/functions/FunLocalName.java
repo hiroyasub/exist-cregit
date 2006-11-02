@@ -519,12 +519,25 @@ else|else
 block|{
 if|if
 condition|(
-operator|!
+name|contextSequence
+operator|==
+literal|null
+operator|||
 name|contextSequence
 operator|.
 name|isEmpty
 argument_list|()
 condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 name|item
 operator|=
 name|contextSequence
@@ -534,17 +547,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-else|else
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"undefined context item"
-argument_list|)
-throw|;
 block|}
 name|Sequence
 name|result

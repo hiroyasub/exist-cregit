@@ -441,6 +441,22 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 name|String
 name|strval
 init|=

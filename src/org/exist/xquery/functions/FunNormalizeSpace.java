@@ -454,6 +454,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+comment|//if (contextSequence == null)
+comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
 name|String
 name|value
 decl_stmt|;

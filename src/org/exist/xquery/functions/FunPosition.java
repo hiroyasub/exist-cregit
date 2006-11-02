@@ -377,9 +377,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
-name|result
-decl_stmt|;
 if|if
 condition|(
 name|contextSequence
@@ -396,7 +393,10 @@ argument_list|,
 literal|"XPDY0002: Undefined context item"
 argument_list|)
 throw|;
-if|else if
+name|Sequence
+name|result
+decl_stmt|;
+if|if
 condition|(
 name|contextSequence
 operator|.

@@ -522,6 +522,22 @@ name|seq
 operator|=
 name|contextSequence
 expr_stmt|;
+if|if
+condition|(
+name|seq
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 name|result
 operator|=
 operator|new

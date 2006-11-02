@@ -536,6 +536,10 @@ block|{
 if|if
 condition|(
 name|contextSequence
+operator|==
+literal|null
+operator|||
+name|contextSequence
 operator|.
 name|getLength
 argument_list|()

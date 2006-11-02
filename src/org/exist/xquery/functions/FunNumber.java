@@ -462,6 +462,8 @@ name|arg
 operator|=
 name|contextSequence
 expr_stmt|;
+comment|//if (arg == null)
+comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
 if|if
 condition|(
 name|arg

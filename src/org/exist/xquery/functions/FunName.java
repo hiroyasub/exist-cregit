@@ -519,7 +519,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
-comment|//If we have one argumment, we take it into account
+comment|//If we have one argument, we take it into account
 if|if
 condition|(
 name|getSignature
@@ -550,6 +550,22 @@ name|seq
 operator|=
 name|contextSequence
 expr_stmt|;
+if|if
+condition|(
+name|seq
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 name|result
 operator|=
 operator|new
