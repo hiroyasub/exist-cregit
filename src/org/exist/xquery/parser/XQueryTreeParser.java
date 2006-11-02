@@ -740,6 +740,15 @@ name|step
 init|=
 literal|null
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Processing XPOINTER"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// for error handling
@@ -921,6 +930,29 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Creating XPointer query: "
+operator|+
+name|nc
+operator|.
+name|getText
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|PathExpr
+name|p
+init|=
+operator|new
+name|PathExpr
+argument_list|(
+name|context
+argument_list|)
+decl_stmt|;
 name|RootNode
 name|root
 init|=
@@ -930,7 +962,7 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
-name|path
+name|p
 operator|.
 name|add
 argument_list|(
@@ -989,11 +1021,18 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
+name|p
+operator|.
+name|addPath
+argument_list|(
+name|fun
+argument_list|)
+expr_stmt|;
 name|path
 operator|.
 name|add
 argument_list|(
-name|fun
+name|p
 argument_list|)
 expr_stmt|;
 break|break;
