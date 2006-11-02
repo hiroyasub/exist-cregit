@@ -1162,6 +1162,15 @@ block|}
 comment|// if docName has no collection specified, assume
 comment|// current collection
 comment|// Patch 1520454 start
+if|if
+condition|(
+operator|!
+name|docUri
+operator|.
+name|isAbsolute
+argument_list|()
+condition|)
+block|{
 name|String
 name|base
 init|=
@@ -1224,6 +1233,7 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Patch 1520454 end
 comment|// retrieve the document
 name|DocumentImpl
@@ -1919,7 +1929,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Process xmlns() schema. We process these here, because namespace mappings should 	 * already been known when parsing the xpointer() expression. 	 *  	 * @param context 	 * @param xpointer 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Process xmlns() schema. We process these here, because namespace mappings should 	 * already been known when parsing the xpointer() expression. 	 *  	 * @param xpointer 	 * @return 	 * @throws XPathException 	 */
 specifier|private
 name|String
 name|checkNamespaces
