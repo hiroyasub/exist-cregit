@@ -340,40 +340,63 @@ name|w
 operator|.
 name|write
 argument_list|(
-literal|"<?xml version=\"1.0\"?>"
+literal|"<AutomatedInstallation langpack=\"eng\">\n"
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|write
+argument_list|(
+literal|"<com.izforge.izpack.panels.HelloPanel/>\n"
 operator|+
-literal|"<AutomatedInstallation langpack=\"en\">"
+literal|"<com.izforge.izpack.panels.PacksPanel>\n"
 operator|+
-literal|"<com.izforge.izpack.panels.HelloPanel/>"
+literal|"<selected>\n"
 operator|+
-literal|"<com.izforge.izpack.panels.PacksPanel>"
+literal|"<pack index=\"0\"/>\n"
 operator|+
-literal|"<pack name=\"core\" index=\"0\" selected=\"true\"/>"
+literal|"<pack index=\"1\"/>\n"
 operator|+
-literal|"<pack name=\"sources\" index=\"1\" selected=\"true\"/>"
+literal|"<pack index=\"2\"/>\n"
 operator|+
-literal|"<pack name=\"javadoc\" index=\"2\" selected=\"true\"/>"
+literal|"</selected>\n"
 operator|+
-literal|"</com.izforge.izpack.panels.PacksPanel>"
-operator|+
-literal|"<com.izforge.izpack.panels.TargetPanel>"
+literal|"</com.izforge.izpack.panels.PacksPanel>\n"
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|write
+argument_list|(
+literal|"<com.izforge.izpack.panels.TargetPanel>\n"
 operator|+
 literal|"<installpath>"
 operator|+
 name|installPath
 operator|+
-literal|"</installpath>"
+literal|"</installpath>\n"
 operator|+
-literal|"</com.izforge.izpack.panels.TargetPanel>"
-operator|+
-literal|"<com.izforge.izpack.panels.InstallPanel/>"
-operator|+
-literal|"<com.izforge.izpack.panels.ShortcutPanel/>"
-operator|+
-literal|"<com.izforge.izpack.panels.HTMLInfoPanel/>"
-operator|+
-literal|"<com.izforge.izpack.panels.FinishPanel/>"
-operator|+
+literal|"</com.izforge.izpack.panels.TargetPanel>\n"
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|write
+argument_list|(
+literal|"<com.izforge.izpack.panels.InstallPanel/>\n"
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|write
+argument_list|(
+literal|"<com.izforge.izpack.panels.FinishPanel/>\n"
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|write
+argument_list|(
 literal|"</AutomatedInstallation>"
 argument_list|)
 expr_stmt|;
