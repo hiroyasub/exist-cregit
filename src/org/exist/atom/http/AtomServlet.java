@@ -1859,6 +1859,16 @@ condition|(
 name|responseContentType
 operator|!=
 literal|null
+operator|&&
+name|responseContentType
+operator|.
+name|trim
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|!=
+literal|0
 condition|)
 block|{
 name|mconf
