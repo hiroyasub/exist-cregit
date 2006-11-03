@@ -1191,6 +1191,79 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testReferenceNode3
+parameter_list|()
+block|{
+name|createDocument
+argument_list|(
+literal|"test"
+argument_list|,
+literal|"<root><value>A</value><value>B</value></root>"
+argument_list|)
+expr_stmt|;
+comment|// two adjacent reference text nodes from another document should be merged into one
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"let $a :=<v>{/root/value[1]/node(), /root/value[2]/node()}</v>"
+operator|+
+literal|"let $b :=<v>AB</v>"
+operator|+
+literal|"return deep-equal($a, $b)"
+argument_list|)
+expr_stmt|;
+comment|// one reference node after a text node
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"let $a :=<v>{/root/value[1]/node(), /root/value[2]/node()}</v>"
+operator|+
+literal|"let $b :=<v>A{/root/value[2]/node()}</v>"
+operator|+
+literal|"return deep-equal($a, $b)"
+argument_list|)
+expr_stmt|;
+comment|// reference node before a text node
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"let $a :=<v>{/root/value[1]/node(), /root/value[2]/node()}</v>"
+operator|+
+literal|"let $b :=<v>{/root/value[1]/node()}B</v>"
+operator|+
+literal|"return deep-equal($a, $b)"
+argument_list|)
+expr_stmt|;
+comment|// reference node before an atomic value
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"let $a :=<v>{/root/value[1]/node(), 'B'}</v>"
+operator|+
+literal|"let $b :=<v>AB</v>"
+operator|+
+literal|"return deep-equal($a, $b)"
+argument_list|)
+expr_stmt|;
+comment|// reference node after an atomic value
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"let $a :=<v>{'A', /root/value[2]/node()}</v>"
+operator|+
+literal|"let $b :=<v>AB</v>"
+operator|+
+literal|"return deep-equal($a, $b)"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testsiblingCornerCase
 parameter_list|()
 block|{
