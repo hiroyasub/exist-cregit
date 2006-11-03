@@ -454,8 +454,6 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-comment|//if (contextSequence == null)
-comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
 name|String
 name|value
 decl_stmt|;
@@ -469,6 +467,23 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
+if|if
+condition|(
+name|contextSequence
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 name|value
 operator|=
 operator|!
@@ -489,6 +504,7 @@ argument_list|()
 else|:
 literal|""
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Sequence
@@ -504,6 +520,22 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|seq
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002: Undefined context item"
+argument_list|)
+throw|;
 if|if
 condition|(
 name|seq
