@@ -1551,6 +1551,8 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|recursive
+operator|&&
 name|subColls
 operator|!=
 literal|null
@@ -1595,7 +1597,12 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
+name|path
+operator|.
+name|appendInternal
+argument_list|(
 name|childName
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -1629,6 +1636,44 @@ return|return
 name|docs
 return|;
 block|}
+comment|//    public DocumentSet allDocs(DBBroker broker, DocumentSet docs,
+comment|//            boolean recursive, boolean checkPermissions) {
+comment|//        if (permissions.validate(broker.getUser(), Permission.READ)) {
+comment|//            CollectionCache cache = broker.getBrokerPool().getCollectionsCache();
+comment|//            synchronized (cache) {
+comment|//                getDocuments(broker, docs, checkPermissions);
+comment|//                if (recursive)
+comment|//                    allDocs(broker, docs, checkPermissions);
+comment|//            }
+comment|//        }
+comment|//        return docs;
+comment|//    }
+comment|//
+comment|//    private DocumentSet allDocs(DBBroker broker, DocumentSet docs, boolean checkPermissions) {
+comment|//        try {
+comment|//            getLock().acquire(Lock.READ_LOCK);
+comment|//            Collection child;
+comment|//            XmldbURI childName;
+comment|//            Iterator i = subcollections.iterator();
+comment|//            while (i.hasNext() ) {
+comment|//                childName = (XmldbURI) i.next();
+comment|//                child = broker.getCollection(path.appendInternal(childName));
+comment|//                if(child == null) {
+comment|//                    LOG.warn("child collection " + path.appendInternal(childName) + " not found. Skipping ...");
+comment|//                    // we always check if we have permissions to read the child collection
+comment|//                } else if (child.permissions.validate(broker.getUser(), Permission.READ)) {
+comment|//                    child.getDocuments(broker, docs, checkPermissions);
+comment|//                    if (child.getChildCollectionCount()> 0)
+comment|//                        child.allDocs(broker, docs, checkPermissions);
+comment|//                }
+comment|//            }
+comment|//        } catch (LockException e) {
+comment|//            LOG.warn(e.getMessage(), e);
+comment|//        } finally {
+comment|//            getLock().release();
+comment|//        }
+comment|//        return docs;
+comment|//    }
 comment|/**      * Add all documents to the specified document set.      *      * @param docs      */
 specifier|public
 name|DocumentSet
