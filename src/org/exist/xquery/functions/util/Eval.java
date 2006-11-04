@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -483,13 +483,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
+literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+literal|"If the first argument is of type xs:string, the function "
 operator|+
-literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
 operator|+
-literal|"the function will try to load the query from the resource to which the (absolute) URI resolves. "
+literal|"the function will try to load the query from the resource to which the URI resolves. "
 operator|+
 literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
 operator|+
@@ -497,11 +497,14 @@ literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
 literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
-literal|"The argument expression will inherit the current execution context, i.e. all "
+comment|//TODO : to be discussed ; until now, it's been used with a null context
+literal|"The query inherits the current execution context, i.e. all "
 operator|+
 literal|"namespace declarations and variable declarations are visible from within the "
 operator|+
-literal|"inner expression. It will return an empty sequence if you pass a whitespace string."
+literal|"inner expression. "
+operator|+
+literal|"The function returns an empty sequence if a whitespace string is passed."
 argument_list|,
 operator|new
 name|SequenceType
@@ -550,11 +553,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
+literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+literal|"If the first argument is of type xs:string, the function "
 operator|+
-literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
 operator|+
 literal|"the function will try to load the query from the resource to which the URI resolves. "
 operator|+
@@ -564,11 +567,17 @@ literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
 literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
-literal|"The argument expression will inherit the current execution context, i.e. all "
+literal|"The query inherits the current execution context, i.e. all "
 operator|+
 literal|"namespace declarations and variable declarations are visible from within the "
 operator|+
-literal|"inner expression. It will return an empty sequence if you pass a whitespace string."
+literal|"inner expression. "
+operator|+
+literal|"The function returns an empty sequence if a whitespace string is passed. "
+operator|+
+literal|"The third argument specifies if the compiled query expression "
+operator|+
+literal|"should be cached. The cached query will be globally available within the db instance."
 argument_list|,
 operator|new
 name|SequenceType
@@ -629,11 +638,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates its string argument as an XPath/XQuery expression. "
+literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
+literal|"If the first argument is of type xs:string, the function "
 operator|+
-literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
 operator|+
 literal|"the function will try to load the query from the resource to which the URI resolves. "
 operator|+
@@ -643,13 +652,15 @@ literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
 literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
-literal|"A new execution context will be created before the expression is evaluated. Static "
+literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
-literal|"context properties can be set via the XML fragment in the second parameter. The "
+literal|"It should have the format:<static-context><variable name=\"qname\">"
 operator|+
-literal|"XML fragment should have the format:<static-context><variable name=\"qname\">"
+literal|"variable value</variable></static-context>. "
 operator|+
-literal|"variable value</variable></static-context>."
+literal|"The third argument specifies if the compiled query expression "
+operator|+
+literal|"should be cached. The cached query will be globally available within the db instance."
 argument_list|,
 operator|new
 name|SequenceType
@@ -722,13 +733,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
+literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"the current instance of the query engine. "
+literal|"If the first argument is of type xs:string, the function "
 operator|+
-literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
 operator|+
 literal|"the function will try to load the query from the resource to which the URI resolves. "
 operator|+
@@ -738,9 +747,13 @@ literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
 literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
-literal|"The evaluation context is taken from "
+literal|"The query inherits the first argument's context, i.e. all "
 operator|+
-literal|"argument $a."
+literal|"namespace declarations and variable declarations are visible from within the "
+operator|+
+literal|"inner expression. "
+operator|+
+literal|"The function returns an empty sequence if a whitespace string is passed."
 argument_list|,
 operator|new
 name|SequenceType
@@ -801,13 +814,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
+literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"the current instance of the query engine. "
+literal|"If the first argument is of type xs:string, the function "
 operator|+
-literal|"The query is specified via the first argument. If it is of type xs:string, util:eval "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is an xs:anyURI, "
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
 operator|+
 literal|"the function will try to load the query from the resource to which the URI resolves. "
 operator|+
@@ -817,9 +828,15 @@ literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
 literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
-literal|"The evaluation context is taken from "
+literal|"The query inherits the first argument's context, i.e. all "
 operator|+
-literal|"argument $a. The third argument, $c, specifies if the compiled query expression "
+literal|"namespace declarations and variable declarations are visible from within the "
+operator|+
+literal|"inner expression. "
+operator|+
+literal|"The function returns an empty sequence if a whitespace string is passed."
+operator|+
+literal|"The third argument specifies if the compiled query expression "
 operator|+
 literal|"should be cached. The cached query will be globally available within the db instance."
 argument_list|,
