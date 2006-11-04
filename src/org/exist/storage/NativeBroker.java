@@ -17053,7 +17053,7 @@ name|XmldbURI
 operator|.
 name|TEMP_COLLECTION_URI
 operator|.
-name|equals
+name|equalsInternal
 argument_list|(
 operator|(
 operator|(
