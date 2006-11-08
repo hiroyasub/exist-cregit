@@ -1496,66 +1496,14 @@ name|READ
 argument_list|)
 condition|)
 block|{
-name|CollectionCache
-name|cache
+name|List
+name|subColls
 init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getCollectionsCache
-argument_list|()
+literal|null
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|cache
-init|)
-block|{
-name|getDocuments
-argument_list|(
-name|broker
-argument_list|,
-name|docs
-argument_list|,
-name|checkPermissions
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|recursive
-condition|)
-name|allDocs
-argument_list|(
-name|broker
-argument_list|,
-name|docs
-argument_list|,
-name|checkPermissions
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-return|return
-name|docs
-return|;
-block|}
-specifier|private
-name|DocumentSet
-name|allDocs
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
-name|boolean
-name|checkPermissions
-parameter_list|)
-block|{
 try|try
 block|{
+comment|// acquire a lock on the collection
 name|getLock
 argument_list|()
 operator|.
@@ -1566,98 +1514,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|Collection
-name|child
-decl_stmt|;
-name|XmldbURI
-name|childName
-decl_stmt|;
-name|Iterator
-name|i
-init|=
-name|subcollections
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|childName
-operator|=
-operator|(
-name|XmldbURI
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-name|child
-operator|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|path
-operator|.
-name|appendInternal
-argument_list|(
-name|childName
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|child
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"child collection "
-operator|+
-name|path
-operator|.
-name|appendInternal
-argument_list|(
-name|childName
-argument_list|)
-operator|+
-literal|" not found. Skipping ..."
-argument_list|)
-expr_stmt|;
-comment|// we always check if we have permissions to read the child collection
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|permissions
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-block|{
-name|child
-operator|.
+comment|// add all docs in this collection to the returned set
 name|getDocuments
 argument_list|(
 name|broker
@@ -1667,28 +1524,15 @@ argument_list|,
 name|checkPermissions
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|child
+comment|// get a list of subcollection URIs. We will process them after unlocking this collection.
+comment|// otherwise we may deadlock ourselves
+name|subColls
+operator|=
+name|subcollections
 operator|.
-name|getChildCollectionCount
+name|keys
 argument_list|()
-operator|>
-literal|0
-condition|)
-name|child
-operator|.
-name|allDocs
-argument_list|(
-name|broker
-argument_list|,
-name|docs
-argument_list|,
-name|checkPermissions
-argument_list|)
 expr_stmt|;
-block|}
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1718,10 +1562,131 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|recursive
+operator|&&
+name|subColls
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// process the child collections
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|subColls
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|XmldbURI
+name|childName
+init|=
+operator|(
+name|XmldbURI
+operator|)
+name|subColls
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+name|Collection
+name|child
+init|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|path
+operator|.
+name|appendInternal
+argument_list|(
+name|childName
+argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|NO_LOCK
+argument_list|)
+decl_stmt|;
+comment|// a collection may have been removed in the meantime, so check first
+if|if
+condition|(
+name|child
+operator|!=
+literal|null
+condition|)
+name|child
+operator|.
+name|allDocs
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+name|recursive
+argument_list|,
+name|checkPermissions
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 return|return
 name|docs
 return|;
 block|}
+comment|//    public DocumentSet allDocs(DBBroker broker, DocumentSet docs,
+comment|//            boolean recursive, boolean checkPermissions) {
+comment|//        if (permissions.validate(broker.getUser(), Permission.READ)) {
+comment|//            CollectionCache cache = broker.getBrokerPool().getCollectionsCache();
+comment|//            synchronized (cache) {
+comment|//                getDocuments(broker, docs, checkPermissions);
+comment|//                if (recursive)
+comment|//                    allDocs(broker, docs, checkPermissions);
+comment|//            }
+comment|//        }
+comment|//        return docs;
+comment|//    }
+comment|//
+comment|//    private DocumentSet allDocs(DBBroker broker, DocumentSet docs, boolean checkPermissions) {
+comment|//        try {
+comment|//            getLock().acquire(Lock.READ_LOCK);
+comment|//            Collection child;
+comment|//            XmldbURI childName;
+comment|//            Iterator i = subcollections.iterator();
+comment|//            while (i.hasNext() ) {
+comment|//                childName = (XmldbURI) i.next();
+comment|//                child = broker.getCollection(path.appendInternal(childName));
+comment|//                if(child == null) {
+comment|//                    LOG.warn("child collection " + path.appendInternal(childName) + " not found. Skipping ...");
+comment|//                    // we always check if we have permissions to read the child collection
+comment|//                } else if (child.permissions.validate(broker.getUser(), Permission.READ)) {
+comment|//                    child.getDocuments(broker, docs, checkPermissions);
+comment|//                    if (child.getChildCollectionCount()> 0)
+comment|//                        child.allDocs(broker, docs, checkPermissions);
+comment|//                }
+comment|//            }
+comment|//        } catch (LockException e) {
+comment|//            LOG.warn(e.getMessage(), e);
+comment|//        } finally {
+comment|//            getLock().release();
+comment|//        }
+comment|//        return docs;
+comment|//    }
 comment|/**      * Add all documents to the specified document set.      *      * @param docs      */
 specifier|public
 name|DocumentSet
