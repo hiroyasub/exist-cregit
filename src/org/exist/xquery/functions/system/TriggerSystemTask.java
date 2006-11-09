@@ -183,7 +183,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Trigger a system task."
+literal|"Trigger a system task. The first argument specifies the name of the Java class to be executed. The "
+operator|+
+literal|"class has to implement org.exist.storage.SystemTask. An XML fragment may be passed as second "
+operator|+
+literal|"argument. It should have the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
+operator|+
+literal|"</parameters>. The parameters are transformed into Java properties and passed to the system task."
 argument_list|,
 operator|new
 name|SequenceType
