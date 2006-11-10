@@ -4293,14 +4293,172 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: clarify
-comment|//            query = "let $a := ('a', 'b', 'c') for $b in $a[position()] return<blah>{$b}</blah>";
-comment|//            result = service.queryResource("numbers.xml", query);
-comment|//            assertEquals("XPath: " + query, 3, result.getSize());
+name|query
+operator|=
+literal|"let $doc := document {<a><b n='1'/><b n='2'/></a>} "
+operator|+
+literal|"return $doc//b/(if (@n = '1') then position() else ())"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//Try a second time to see if the position is reset
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $doc := document {<a><b/></a>} "
+operator|+
+literal|"return $doc/a[1] [b[1]]"
+expr_stmt|;
+name|service
+operator|.
+name|setProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|INDENT
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<a><b/></a>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO : make this work ! It currently returns some content
+comment|//query = "let $doc := document {<a><b><c>1</c></b><b><c>a</c></b></a>} " +
+comment|//	"return $doc/a[b[position() = 2]/c[.='1']]";
+comment|//result = service.queryResource("numbers.xml", query);
+comment|//assertEquals("XPath: " + query, 0, result.getSize());
+comment|// TODO: make this work ! It currently returns 1
+comment|//query = "let $a := ('a', 'b', 'c') for $b in $a[position()] return<blah>{$b}</blah>";
+comment|//result = service.queryResource("numbers.xml", query);
+comment|//assertEquals("XPath: " + query, 3, result.getSize());
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
+name|Exception
 name|e
 parameter_list|)
 block|{

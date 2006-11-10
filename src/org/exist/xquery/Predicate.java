@@ -1938,15 +1938,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|p
-operator|.
-name|clearContext
-argument_list|(
-name|Expression
-operator|.
-name|IGNORE_CONTEXT
-argument_list|)
-expr_stmt|;
+comment|//Commented out : but this is probably more complicated (see test case in the same commit)
+comment|//p.clearContext(Expression.IGNORE_CONTEXT);
 name|result
 operator|.
 name|add

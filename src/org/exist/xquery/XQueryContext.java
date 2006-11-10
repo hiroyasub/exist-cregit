@@ -1315,6 +1315,12 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Reset current context position
+name|setContextPosition
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|AccessContext
