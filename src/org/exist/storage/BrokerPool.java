@@ -2975,6 +2975,15 @@ name|isReadOnly
 return|;
 block|}
 specifier|public
+name|boolean
+name|isInServiceMode
+parameter_list|()
+block|{
+return|return
+name|inServiceMode
+return|;
+block|}
+specifier|public
 name|TransactionManager
 name|getTransactionManager
 parameter_list|()

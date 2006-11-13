@@ -231,6 +231,17 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 function_decl|;
+name|boolean
+name|isInServiceMode
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+function_decl|;
 specifier|public
 name|boolean
 name|sync
