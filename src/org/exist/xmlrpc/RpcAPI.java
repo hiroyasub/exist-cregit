@@ -220,7 +220,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 function_decl|;
-name|void
+name|boolean
 name|exitServiceMode
 parameter_list|(
 name|User

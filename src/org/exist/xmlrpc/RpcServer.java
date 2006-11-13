@@ -6513,7 +6513,7 @@ literal|true
 return|;
 block|}
 specifier|public
-name|void
+name|boolean
 name|exitServiceMode
 parameter_list|(
 name|User
@@ -6541,6 +6541,9 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 specifier|public
 name|boolean
