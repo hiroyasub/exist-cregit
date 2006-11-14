@@ -1382,8 +1382,32 @@ literal|"let $result2 := ds:result($result1, $v2) "
 operator|+
 literal|"return deep-equal($expected, $result2/Value)"
 decl_stmt|;
-comment|//                for(int i=1; i<20;i++){
-comment|//                    System.out.println("nr="+i);
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+literal|20
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"nr="
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
 name|assertQuery
 argument_list|(
 literal|true
@@ -1391,7 +1415,7 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-comment|//               }
+block|}
 block|}
 empty_stmt|;
 specifier|public
