@@ -389,7 +389,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"src/org/exist/xmldb/test/PerformanceTest.xml"
+literal|"test/src/org/exist/xmldb/test/PerformanceTest.xml"
 argument_list|)
 decl_stmt|;
 specifier|public

@@ -355,7 +355,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"src/org/exist/xupdate/test/modifications"
+literal|"test/src/org/exist/xupdate/test/modifications"
 argument_list|)
 operator|)
 operator|.
@@ -374,7 +374,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"src/org/exist/xupdate/test/results"
+literal|"test/src/org/exist/xupdate/test/results"
 argument_list|)
 operator|)
 operator|.
@@ -393,7 +393,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"src/org/exist/xupdate/test/input"
+literal|"test/src/org/exist/xupdate/test/input"
 argument_list|)
 operator|)
 operator|.
