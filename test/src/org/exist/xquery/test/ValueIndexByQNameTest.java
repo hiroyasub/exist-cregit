@@ -91,7 +91,7 @@ name|storeXMLFileAndGetQueryService
 argument_list|(
 literal|"items.xml"
 argument_list|,
-literal|"src/org/exist/xquery/test/items.xml"
+literal|"test/src/org/exist/xquery/test/items.xml"
 argument_list|)
 decl_stmt|;
 comment|// queryResource(service, "items.xml", "//item[name> 'Racing Bicycle']", 4 );
