@@ -215,6 +215,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|scheduler
+operator|.
+name|Scheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|scheduler
+operator|.
+name|SystemTaskJob
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|lock
@@ -262,20 +286,6 @@ operator|.
 name|sync
 operator|.
 name|Sync
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|sync
-operator|.
-name|SyncDaemon
 import|;
 end_import
 
@@ -1229,15 +1239,36 @@ specifier|private
 name|long
 name|maxShutdownWait
 decl_stmt|;
-comment|/** 	 * The daemon which periodically triggers system tasks and cache synchronization on the database instance. 	 */
+comment|/** 	 * The scheduler for the database instance. 	 */
 specifier|private
-name|SyncDaemon
-name|syncDaemon
+name|Scheduler
+name|scheduler
 decl_stmt|;
+comment|/** 	 * Cache synchronization on the database instance. 	 */
+specifier|private
+name|long
+name|majorSyncPeriod
+init|=
+name|DEFAULT_SYNCH_PERIOD
+decl_stmt|;
+comment|//the period after which a major sync should occur
+specifier|private
+name|long
+name|lastMajorSync
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
+comment|//time the last major sync occurred
 specifier|private
 name|Sync
 name|sync
+init|=
+literal|null
 decl_stmt|;
+comment|//the Sync Job
 comment|/** 	 * The listener that is notified when the database instance shuts down. 	 */
 specifier|private
 name|ShutdownListener
@@ -1405,12 +1436,6 @@ name|maxBrokers
 operator|=
 name|DEFAULT_MAX_BROKERS
 expr_stmt|;
-comment|//TODO : make a member of it ? or, better, use a SystemTask (see below)
-name|long
-name|syncPeriod
-init|=
-name|DEFAULT_SYNCH_PERIOD
-decl_stmt|;
 name|this
 operator|.
 name|maxShutdownWait
@@ -1536,7 +1561,7 @@ operator|!=
 literal|null
 condition|)
 comment|/*this.*/
-name|syncPeriod
+name|majorSyncPeriod
 operator|=
 name|aLong
 operator|.
@@ -1555,17 +1580,19 @@ operator|+
 literal|"' will be synchronized every "
 operator|+
 comment|/*this.*/
-name|syncPeriod
+name|majorSyncPeriod
 operator|+
 literal|" ms"
 argument_list|)
 expr_stmt|;
 comment|//TODO : move this to initialize ?
-name|syncDaemon
+name|scheduler
 operator|=
 operator|new
-name|SyncDaemon
-argument_list|()
+name|Scheduler
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|aLong
 operator|=
@@ -1938,29 +1965,21 @@ expr_stmt|;
 comment|//TODO : move this to initialize ?
 if|if
 condition|(
-name|syncPeriod
+name|majorSyncPeriod
 operator|>
 literal|0
 condition|)
 block|{
 comment|//TODO : why not automatically register Sync in system tasks ?
-name|sync
-operator|=
-operator|new
-name|Sync
-argument_list|(
-name|this
-argument_list|,
-name|syncPeriod
-argument_list|)
-expr_stmt|;
-name|syncDaemon
+name|scheduler
 operator|.
-name|executePeriodically
+name|createPeriodicJob
 argument_list|(
 literal|2500
 argument_list|,
-name|sync
+operator|new
+name|Sync
+argument_list|()
 argument_list|,
 literal|false
 argument_list|)
@@ -2758,9 +2777,9 @@ operator|+
 literal|" ms"
 argument_list|)
 expr_stmt|;
-name|syncDaemon
+name|scheduler
 operator|.
-name|executePeriodically
+name|createPeriodicJob
 argument_list|(
 name|period
 operator|.
@@ -2768,10 +2787,8 @@ name|longValue
 argument_list|()
 argument_list|,
 operator|new
-name|SystemTaskRunnable
+name|SystemTaskJob
 argument_list|(
-name|this
-argument_list|,
 name|task
 argument_list|)
 argument_list|,
@@ -2932,14 +2949,14 @@ return|return
 name|securityManager
 return|;
 block|}
-comment|/** Returns the daemon which periodically executes system tasks, including cache synchronization, on the database instance.      * @return The daemon      */
+comment|/** Returns the Scheduler      * @return The scheduler      */
 specifier|public
-name|SyncDaemon
-name|getSyncDaemon
+name|Scheduler
+name|getScheduler
 parameter_list|()
 block|{
 return|return
-name|syncDaemon
+name|scheduler
 return|;
 block|}
 specifier|public
@@ -3670,6 +3687,24 @@ literal|"Security manager reloaded"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|long
+name|getMajorSyncPeriod
+parameter_list|()
+block|{
+return|return
+name|majorSyncPeriod
+return|;
+block|}
+specifier|public
+name|long
+name|getLastMajorSync
+parameter_list|()
+block|{
+return|return
+name|lastMajorSync
+return|;
+block|}
 comment|/**      * Executes a waiting cache synchronization for the database instance. 	 * @param broker A broker responsible for executing the job  	 * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC} 	 */
 comment|//TODO : rename as runSync ? executeSync ?
 comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ? "executes" (WM)
@@ -3772,9 +3807,11 @@ operator|.
 name|checkCaches
 argument_list|()
 expr_stmt|;
-name|sync
+name|lastMajorSync
+operator|=
+name|System
 operator|.
-name|restart
+name|currentTimeMillis
 argument_list|()
 expr_stmt|;
 name|notificationService
@@ -4097,9 +4134,9 @@ name|debug
 argument_list|()
 expr_stmt|;
 comment|//Notify all running tasks that we are shutting down
-name|syncDaemon
+name|scheduler
 operator|.
-name|shutDown
+name|shutdown
 argument_list|()
 expr_stmt|;
 comment|//Notify all running XQueries that we are shutting down
@@ -4379,77 +4416,6 @@ expr_stmt|;
 name|checkpoint
 operator|=
 literal|true
-expr_stmt|;
-block|}
-block|}
-comment|/** A wrapper class for executing a database instance's system task. 	 */
-comment|//TODO : make it protected ?
-specifier|private
-specifier|static
-class|class
-name|SystemTaskRunnable
-implements|implements
-name|Runnable
-block|{
-name|SystemTask
-name|task
-decl_stmt|;
-name|BrokerPool
-name|pool
-decl_stmt|;
-comment|/** Creates a wrapper for executing a database instance's system task.          * @param pool The database instance          * @param task The system task          */
-specifier|public
-name|SystemTaskRunnable
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
-name|SystemTask
-name|task
-parameter_list|)
-block|{
-name|this
-operator|.
-name|pool
-operator|=
-name|pool
-expr_stmt|;
-name|this
-operator|.
-name|task
-operator|=
-name|task
-expr_stmt|;
-block|}
-comment|/** Runs the wrapper for executing a system task.          */
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Running system task '"
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
-name|pool
-operator|.
-name|triggerSystemTask
-argument_list|(
-name|task
-argument_list|)
 expr_stmt|;
 block|}
 block|}
