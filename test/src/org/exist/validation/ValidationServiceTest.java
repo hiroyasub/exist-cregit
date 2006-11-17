@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|validation
-operator|.
-name|test
 package|;
 end_package
 

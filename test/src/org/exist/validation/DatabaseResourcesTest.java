@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|validation
-operator|.
-name|test
 package|;
 end_package
 
@@ -96,30 +94,6 @@ operator|.
 name|util
 operator|.
 name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|ValidationReport
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|Validator
 import|;
 end_import
 

@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|validation
-operator|.
-name|test
 package|;
 end_package
 
@@ -42,18 +40,6 @@ operator|.
 name|framework
 operator|.
 name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|XmlLibraryChecker
 import|;
 end_import
 
