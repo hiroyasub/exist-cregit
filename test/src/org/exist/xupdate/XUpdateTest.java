@@ -6,8 +6,6 @@ operator|.
 name|exist
 operator|.
 name|xupdate
-operator|.
-name|test
 package|;
 end_package
 
@@ -355,7 +353,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"test/src/org/exist/xupdate/test/modifications"
+literal|"test/src/org/exist/xupdate/modifications"
 argument_list|)
 operator|)
 operator|.
@@ -374,7 +372,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"test/src/org/exist/xupdate/test/results"
+literal|"test/src/org/exist/xupdate/results"
 argument_list|)
 operator|)
 operator|.
@@ -393,7 +391,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"test/src/org/exist/xupdate/test/input"
+literal|"test/src/org/exist/xupdate/input"
 argument_list|)
 operator|)
 operator|.

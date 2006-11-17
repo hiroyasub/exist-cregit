@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|xupdate
-operator|.
-name|test
 package|;
 end_package
 
