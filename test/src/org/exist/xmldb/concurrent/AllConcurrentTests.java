@@ -48,7 +48,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|AllTests
+name|AllConcurrentTests
 block|{
 specifier|public
 specifier|static
@@ -62,7 +62,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Test suite for org.exist.xmldb.test.concurrent"
+literal|"Test suite for org.exist.xmldb.concurrent"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$

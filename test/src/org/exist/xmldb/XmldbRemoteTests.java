@@ -40,7 +40,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|RemoteTests
+name|XmldbRemoteTests
 block|{
 specifier|public
 specifier|static
@@ -54,7 +54,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Remote tests for org.exist.xmldb.test"
+literal|"Remote tests for org.exist.xmldb"
 argument_list|)
 decl_stmt|;
 name|suite

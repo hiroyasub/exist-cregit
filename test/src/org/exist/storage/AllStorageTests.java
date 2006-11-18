@@ -36,7 +36,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|AllTests
+name|AllStorageTests
 block|{
 specifier|public
 specifier|static
@@ -73,7 +73,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Test for org.exist.storage.test"
+literal|"Test for org.exist.storage"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$

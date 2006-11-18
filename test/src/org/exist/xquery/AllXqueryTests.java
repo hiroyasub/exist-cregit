@@ -66,7 +66,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|AllTests
+name|AllXqueryTests
 block|{
 specifier|public
 specifier|static
@@ -103,7 +103,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Test for org.exist.xquery.test"
+literal|"Test for org.exist.xquery"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$

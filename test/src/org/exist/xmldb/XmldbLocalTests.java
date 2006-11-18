@@ -32,7 +32,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|LocalTests
+name|XmldbLocalTests
 block|{
 specifier|public
 specifier|static
@@ -69,7 +69,7 @@ init|=
 operator|new
 name|TestSuite
 argument_list|(
-literal|"Test suite for org.exist.xmldb.test"
+literal|"Test suite for org.exist.xmldb"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$
