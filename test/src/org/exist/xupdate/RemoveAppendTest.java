@@ -93,8 +93,6 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|test
-operator|.
 name|concurrent
 operator|.
 name|DBUtils
