@@ -77,6 +77,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Cardinality
@@ -92,6 +104,18 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|numbering
+operator|.
+name|NodeId
 import|;
 end_import
 
@@ -493,6 +517,18 @@ name|DocumentSet
 operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
+block|}
+specifier|public
+name|void
+name|nodeMoved
+parameter_list|(
+name|NodeId
+name|oldNodeId
+parameter_list|,
+name|StoredNode
+name|newNode
+parameter_list|)
+block|{
 block|}
 comment|/** See 	 *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a> 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
 specifier|public

@@ -57,6 +57,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -226,6 +238,18 @@ operator|.
 name|value
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|numbering
+operator|.
+name|NodeId
 import|;
 end_import
 
@@ -728,6 +752,19 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+block|}
+specifier|public
+name|void
+name|nodeMoved
+parameter_list|(
+name|NodeId
+name|oldNodeId
+parameter_list|,
+name|StoredNode
+name|newNode
+parameter_list|)
+block|{
+comment|// not relevant
 block|}
 specifier|public
 name|void

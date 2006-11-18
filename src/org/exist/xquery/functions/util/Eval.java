@@ -1008,6 +1008,8 @@ literal|0
 decl_stmt|;
 name|Sequence
 name|exprContext
+init|=
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1027,11 +1029,6 @@ operator|++
 index|]
 expr_stmt|;
 block|}
-else|else
-name|exprContext
-operator|=
-name|contextSequence
-expr_stmt|;
 comment|// get the query expression
 name|Item
 name|expr

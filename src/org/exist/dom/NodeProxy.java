@@ -2044,7 +2044,45 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
+specifier|public
+name|void
+name|nodeMoved
+parameter_list|(
+name|NodeId
+name|oldNodeId
+parameter_list|,
+name|StoredNode
+name|newNode
+parameter_list|)
+block|{
+if|if
+condition|(
+name|nodeId
+operator|.
+name|equals
+argument_list|(
+name|oldNodeId
+argument_list|)
+condition|)
+block|{
+comment|// update myself
+name|nodeId
+operator|=
+name|newNode
+operator|.
+name|getNodeId
+argument_list|()
+expr_stmt|;
+name|internalAddress
+operator|=
+name|newNode
+operator|.
+name|getInternalAddress
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/* (non-Javadoc)       * @see org.exist.xquery.value.Item#toSequence()       */
 specifier|public
 name|Sequence
 name|toSequence
