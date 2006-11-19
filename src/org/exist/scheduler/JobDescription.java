@@ -20,7 +20,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|Job
+name|JobDescription
 block|{
 comment|/** 	 * Get the name of the job 	 *  	 *  @return The job's name 	 */
 specifier|public

@@ -23,7 +23,7 @@ specifier|abstract
 class|class
 name|UserJob
 implements|implements
-name|Job
+name|JobDescription
 implements|,
 name|org
 operator|.

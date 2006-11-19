@@ -76,7 +76,7 @@ specifier|public
 class|class
 name|SystemTaskJob
 implements|implements
-name|Job
+name|JobDescription
 implements|,
 name|org
 operator|.

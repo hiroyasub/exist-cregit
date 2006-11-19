@@ -65,6 +65,16 @@ name|JobExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|Job
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class to represent a System Job  * Should be extended by all classes wishing to  * schedule as a Job that perform core system functions  *   * Classes extending SystemJob may only have a Single Instance  * running in the scheduler at once, intersecting schedules will be queued.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
@@ -75,13 +85,9 @@ specifier|abstract
 class|class
 name|SystemJob
 implements|implements
-name|Job
+name|JobDescription
 implements|,
-name|org
-operator|.
-name|quartz
-operator|.
-name|StatefulJob
+name|Job
 block|{
 specifier|public
 specifier|final
