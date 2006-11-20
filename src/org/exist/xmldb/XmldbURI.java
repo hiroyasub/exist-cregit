@@ -2388,6 +2388,13 @@ literal|null
 operator|&&
 name|encodedCollectionPath
 operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|encodedCollectionPath
+operator|.
 name|charAt
 argument_list|(
 literal|0
