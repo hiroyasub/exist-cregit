@@ -192,6 +192,11 @@ name|hashCode
 argument_list|()
 argument_list|)
 throw|;
+name|listener
+operator|.
+name|unsubscribe
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** 	 * Notify all subscribers that a document has been updated/removed or 	 * a new document has been added. 	 *  	 * @param document 	 * @param event 	 */
 specifier|public

@@ -103,6 +103,7 @@ name|event
 parameter_list|)
 function_decl|;
 comment|/**      * nodeMoved is called after a defragmentation run occurred for a document during which      * the address and the nodeId of a node may have changed. Defragmentation      * may only occur after a node update.      *      * @param oldNodeId      * @param newNode      */
+specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
@@ -112,6 +113,12 @@ parameter_list|,
 name|StoredNode
 name|newNode
 parameter_list|)
+function_decl|;
+comment|/**      * Called when the listener is removed from the notification service      */
+specifier|public
+name|void
+name|unsubscribe
+parameter_list|()
 function_decl|;
 specifier|public
 name|void

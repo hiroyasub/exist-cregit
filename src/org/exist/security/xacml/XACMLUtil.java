@@ -841,6 +841,13 @@ parameter_list|)
 block|{
 comment|// not relevant
 block|}
+specifier|public
+name|void
+name|unsubscribe
+parameter_list|()
+block|{
+comment|// not relevant
+block|}
 comment|/** 	 * Returns true if the specified document is in the policy collection. 	 * This does not check subcollections. 	 *  	 * @param document The document in question 	 * @return if the document is in the policy collection 	 */
 specifier|public
 specifier|static

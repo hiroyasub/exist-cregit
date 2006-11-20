@@ -1307,6 +1307,8 @@ expr_stmt|;
 block|}
 else|else
 comment|// use the existing outer context
+comment|// TODO: check if copying the static context would be sufficient???
+comment|//			innerContext = context.copyContext();
 name|innerContext
 operator|=
 name|context
