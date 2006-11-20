@@ -2738,30 +2738,6 @@ name|long
 name|oldAddress
 parameter_list|)
 block|{
-name|node
-operator|.
-name|getQName
-argument_list|()
-operator|.
-name|setNameType
-argument_list|(
-name|ElementValue
-operator|.
-name|ELEMENT
-argument_list|)
-expr_stmt|;
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|node
-operator|.
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
 specifier|final
 name|int
 name|indexType
@@ -2776,16 +2752,8 @@ operator|.
 name|getIndexType
 argument_list|()
 decl_stmt|;
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-comment|// TODO move_to NativeValueIndex
+comment|//TODO : do not care about the current code redundancy : this will move in the (near) future
+comment|// TODO : move to NativeValueIndex
 if|if
 condition|(
 name|RangeIndexSpec
@@ -2796,6 +2764,18 @@ name|indexType
 argument_list|)
 condition|)
 block|{
+name|node
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|setNameType
+argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|content
@@ -2803,6 +2783,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|NodeProxy
+name|p
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|node
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|oldAddress
@@ -2827,7 +2816,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//Curious...
+comment|//Curious... I assume getNodeValue() needs the old address
 name|p
 operator|.
 name|setInternalAddress
@@ -2843,7 +2832,13 @@ name|valueIndex
 operator|.
 name|setDocument
 argument_list|(
-name|doc
+operator|(
+name|DocumentImpl
+operator|)
+name|node
+operator|.
+name|getOwnerDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|valueIndex
@@ -2869,7 +2864,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO move_to NativeValueIndexByQName
+comment|// TODO : move to NativeValueIndexByQName
 if|if
 condition|(
 name|RangeIndexSpec
@@ -2880,6 +2875,18 @@ name|indexType
 argument_list|)
 condition|)
 block|{
+name|node
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|setNameType
+argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|content
@@ -2887,6 +2894,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|NodeProxy
+name|p
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|node
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|oldAddress
@@ -2911,7 +2927,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//Curious...
+comment|//Curious... I assume getNodeValue() needs the old address
 name|p
 operator|.
 name|setInternalAddress
@@ -2944,6 +2960,7 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO : move to NativeTextEngine
 if|if
 condition|(
 name|RangeIndexSpec
@@ -2954,6 +2971,18 @@ name|indexType
 argument_list|)
 condition|)
 block|{
+name|node
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|setNameType
+argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|content
@@ -2961,6 +2990,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|NodeProxy
+name|p
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|node
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|oldAddress
@@ -2985,7 +3023,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//Curious...
+comment|//Curious... I assume getNodeValue() needs the old address
 name|p
 operator|.
 name|setInternalAddress
@@ -3001,7 +3039,13 @@ name|textEngine
 operator|.
 name|setDocument
 argument_list|(
-name|doc
+operator|(
+name|DocumentImpl
+operator|)
+name|node
+operator|.
+name|getOwnerDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|textEngine
@@ -3016,13 +3060,7 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
-name|p
-operator|.
-name|setIndexType
-argument_list|(
-name|indexType
-argument_list|)
-expr_stmt|;
+comment|//p.setIndexType(indexType);
 block|}
 comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode(Txn, StoredNode, NodePath, String)}. */
 specifier|public
@@ -3145,36 +3183,6 @@ name|idxConf
 return|;
 block|}
 specifier|public
-name|Serializer
-name|getSerializer
-parameter_list|()
-block|{
-name|xmlSerializer
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-return|return
-name|xmlSerializer
-return|;
-block|}
-specifier|public
-name|Serializer
-name|newSerializer
-parameter_list|()
-block|{
-return|return
-operator|new
-name|NativeSerializer
-argument_list|(
-name|this
-argument_list|,
-name|getConfiguration
-argument_list|()
-argument_list|)
-return|;
-block|}
-specifier|public
 name|ElementIndex
 name|getElementIndex
 parameter_list|()
@@ -3244,7 +3252,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"failed to create DOM iterator"
 argument_list|,
@@ -3260,7 +3268,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"failed to create DOM iterator"
 argument_list|,
@@ -3286,7 +3294,6 @@ name|node
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -3294,8 +3301,6 @@ argument_list|(
 literal|"The node parameter cannot be null."
 argument_list|)
 throw|;
-block|}
-comment|//      domDb.setOwnerObject(this);
 try|try
 block|{
 return|return
@@ -3320,7 +3325,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"failed to create node iterator"
 argument_list|,
@@ -3336,7 +3341,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"failed to create node iterator"
 argument_list|,
@@ -3347,6 +3352,92 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|Serializer
+name|getSerializer
+parameter_list|()
+block|{
+name|xmlSerializer
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+return|return
+name|xmlSerializer
+return|;
+block|}
+specifier|public
+name|Serializer
+name|newSerializer
+parameter_list|()
+block|{
+return|return
+operator|new
+name|NativeSerializer
+argument_list|(
+name|this
+argument_list|,
+name|getConfiguration
+argument_list|()
+argument_list|)
+return|;
+block|}
+specifier|public
+name|XmldbURI
+name|prepend
+parameter_list|(
+name|XmldbURI
+name|uri
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|prepend
+condition|)
+block|{
+case|case
+name|PREPEND_DB_ALWAYS
+case|:
+return|return
+name|uri
+operator|.
+name|prepend
+argument_list|(
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+argument_list|)
+return|;
+case|case
+name|PREPEND_DB_AS_NEEDED
+case|:
+return|return
+name|uri
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+argument_list|)
+condition|?
+name|uri
+else|:
+name|uri
+operator|.
+name|prepend
+argument_list|(
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+argument_list|)
+return|;
+default|default:
+return|return
+name|uri
+return|;
+block|}
 block|}
 comment|/** create temporary collection */
 specifier|private
@@ -3557,62 +3648,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-specifier|public
-name|XmldbURI
-name|prepend
-parameter_list|(
-name|XmldbURI
-name|uri
-parameter_list|)
-block|{
-switch|switch
-condition|(
-name|prepend
-condition|)
-block|{
-case|case
-name|PREPEND_DB_ALWAYS
-case|:
-return|return
-name|uri
-operator|.
-name|prepend
-argument_list|(
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-argument_list|)
-return|;
-case|case
-name|PREPEND_DB_AS_NEEDED
-case|:
-return|return
-name|uri
-operator|.
-name|startsWith
-argument_list|(
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-argument_list|)
-condition|?
-name|uri
-else|:
-name|uri
-operator|.
-name|prepend
-argument_list|(
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-argument_list|)
-return|;
-default|default:
-return|return
-name|uri
-return|;
 block|}
 block|}
 specifier|public
@@ -6561,7 +6596,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 name|ioe
 argument_list|)
@@ -12027,9 +12062,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"database read-only"
+literal|"Database is read-only"
 argument_list|)
 expr_stmt|;
 return|return
@@ -13467,7 +13502,7 @@ argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Exception while storing "
 operator|+
@@ -17091,7 +17126,7 @@ literal|null
 condition|)
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"illegal node: "
 operator|+
@@ -18197,7 +18232,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"EOFException while reading document data"
 argument_list|,
@@ -18213,7 +18248,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"IOException while reading document data"
 argument_list|,
