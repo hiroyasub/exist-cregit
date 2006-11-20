@@ -1140,6 +1140,30 @@ specifier|public
 specifier|static
 specifier|final
 name|double
+name|DEFAULT_STRUCTURAL_CACHE_GROWTH
+init|=
+literal|1.25
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|DEFAULT_STRUCTURAL_KEY_THRESHOLD
+init|=
+literal|0.01
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|DEFAULT_STRUCTURAL_VALUE_THRESHOLD
+init|=
+literal|0.04
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|double
 name|DEFAULT_VALUE_CACHE_GROWTH
 init|=
 literal|1.25
@@ -1496,6 +1520,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|//TODO : refactor so that we can,
+comment|//1) customize the different properties (file names, cache settings...)
+comment|//2) have a consistent READ-ONLY behaviour (based on *mandatory* files ?)
+comment|//3) have consistent file creation behaviour (we can probably avoid some unnecessary files)
+comment|//4) use... *customized* factories for a better index plugability ;-)
 comment|// Initialize DOM storage
 name|domDb
 operator|=
@@ -1663,7 +1692,23 @@ name|isReadOnly
 argument_list|()
 expr_stmt|;
 comment|//TODO : is it necessary to create them if we are in read-only mode ?
-name|createIndexFiles
+name|createStructuralIndexFile
+argument_list|()
+expr_stmt|;
+comment|//TODO : don't create if unnecessary ?
+name|createValueIndexFile
+argument_list|()
+expr_stmt|;
+comment|//Like this ;-)
+if|if
+condition|(
+name|qnameValueIndexation
+condition|)
+name|createQNameValueIndexFiles
+argument_list|()
+expr_stmt|;
+comment|//TODO : don't create if unnecessary ?
+name|createFulltextIndexFiles
 argument_list|()
 expr_stmt|;
 if|if
@@ -1705,16 +1750,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Creates the (mandatory) indexed structural file.      * @throws DBException      */
 specifier|private
 name|void
-name|createIndexFiles
+name|createStructuralIndexFile
 parameter_list|()
 throws|throws
 name|DBException
 block|{
 name|elementsDb
 operator|=
-name|createValueIndexFile
+name|createNativeFile
 argument_list|(
 name|ELEMENTS_DBX_ID
 argument_list|,
@@ -1728,7 +1774,11 @@ name|ELEMENTS_DBX
 argument_list|,
 literal|"db-connection.elements"
 argument_list|,
-name|DEFAULT_VALUE_VALUE_THRESHOLD
+name|DEFAULT_STRUCTURAL_CACHE_GROWTH
+argument_list|,
+name|DEFAULT_STRUCTURAL_KEY_THRESHOLD
+argument_list|,
+name|DEFAULT_STRUCTURAL_VALUE_THRESHOLD
 argument_list|)
 expr_stmt|;
 name|elementIndex
@@ -1746,9 +1796,18 @@ argument_list|(
 name|elementIndex
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Creates the indexed values (by path) file.      * @throws DBException      */
+specifier|private
+name|void
+name|createValueIndexFile
+parameter_list|()
+throws|throws
+name|DBException
+block|{
 name|valuesDb
 operator|=
-name|createValueIndexFile
+name|createNativeFile
 argument_list|(
 name|VALUES_DBX_ID
 argument_list|,
@@ -1761,6 +1820,10 @@ argument_list|,
 name|VALUES_DBX
 argument_list|,
 literal|"db-connection.values"
+argument_list|,
+name|DEFAULT_VALUE_CACHE_GROWTH
+argument_list|,
+name|DEFAULT_VALUE_KEY_THRESHOLD
 argument_list|,
 name|DEFAULT_VALUE_VALUE_THRESHOLD
 argument_list|)
@@ -1780,14 +1843,18 @@ argument_list|(
 name|valueIndex
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
+block|}
+comment|/** Creates the indexed values (by QName) file.      * @throws DBException      */
+specifier|private
+name|void
+name|createQNameValueIndexFiles
+parameter_list|()
+throws|throws
+name|DBException
 block|{
 name|valuesDbQname
 operator|=
-name|createValueIndexFile
+name|createNativeFile
 argument_list|(
 name|VALUES_QNAME_DBX_ID
 argument_list|,
@@ -1800,6 +1867,10 @@ argument_list|,
 name|VALUES_QNAME_DBX
 argument_list|,
 literal|"db-connection2.values"
+argument_list|,
+name|DEFAULT_VALUE_CACHE_GROWTH
+argument_list|,
+name|DEFAULT_VALUE_KEY_THRESHOLD
 argument_list|,
 name|DEFAULT_VALUE_VALUE_THRESHOLD
 argument_list|)
@@ -1820,73 +1891,31 @@ name|qnameValueIndex
 argument_list|)
 expr_stmt|;
 block|}
-name|dbWords
-operator|=
-operator|(
-name|BFile
-operator|)
-name|config
-operator|.
-name|getProperty
-argument_list|(
-literal|"db-connection.words"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|dbWords
-operator|==
-literal|null
-condition|)
+comment|/** Creates the fulltext values (aka "words") file.      * @throws DBException      */
+specifier|private
+name|void
+name|createFulltextIndexFiles
+parameter_list|()
+throws|throws
+name|DBException
 block|{
-name|File
-name|file
-init|=
-operator|new
-name|File
-argument_list|(
-name|dataDir
-operator|+
-name|File
-operator|.
-name|separatorChar
-operator|+
-name|WORDS_DBX
-argument_list|)
-decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Creating '"
-operator|+
-name|file
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"'..."
-argument_list|)
-expr_stmt|;
 name|dbWords
 operator|=
-operator|new
-name|BFile
+name|createNativeFile
 argument_list|(
-name|pool
-argument_list|,
 name|NativeBroker
 operator|.
 name|WORDS_DBX_ID
 argument_list|,
 literal|false
 argument_list|,
-name|file
+name|config
 argument_list|,
-name|pool
-operator|.
-name|getCacheManager
-argument_list|()
+name|dataDir
+argument_list|,
+name|WORDS_DBX
+argument_list|,
+literal|"db-connection.words"
 argument_list|,
 name|DEFAULT_WORD_CACHE_GROWTH
 argument_list|,
@@ -1895,16 +1924,6 @@ argument_list|,
 name|DEFAULT_WORD_VALUE_THRESHOLD
 argument_list|)
 expr_stmt|;
-name|config
-operator|.
-name|setProperty
-argument_list|(
-literal|"db-connection.words"
-argument_list|,
-name|dbWords
-argument_list|)
-expr_stmt|;
-block|}
 name|textEngine
 operator|=
 operator|new
@@ -1922,19 +1941,11 @@ argument_list|(
 name|textEngine
 argument_list|)
 expr_stmt|;
-name|readOnly
-operator|=
-name|readOnly
-operator|||
-name|dbWords
-operator|.
-name|isReadOnly
-argument_list|()
-expr_stmt|;
+comment|/*         dbWords = (BFile) config.getProperty("db-connection.words");         if (dbWords == null) {             File file = new File(dataDir + File.separatorChar + WORDS_DBX);             LOG.debug("Creating '" + file.getName() + "'...");         	dbWords = new BFile(pool, NativeBroker.WORDS_DBX_ID, false, file,                              	        pool.getCacheManager(), DEFAULT_WORD_CACHE_GROWTH, DEFAULT_WORD_KEY_THRESHOLD, DEFAULT_WORD_VALUE_THRESHOLD);             config.setProperty("db-connection.words", dbWords);          }         textEngine = new NativeTextEngine(this, config, dbWords);         addContentLoadingObserver(textEngine);         readOnly = readOnly || dbWords.isReadOnly();         */
 block|}
 specifier|private
 name|BFile
-name|createValueIndexFile
+name|createNativeFile
 parameter_list|(
 name|byte
 name|id
@@ -1955,13 +1966,19 @@ name|String
 name|propertyName
 parameter_list|,
 name|double
-name|thresholdData
+name|cacheGrowth
+parameter_list|,
+name|double
+name|keyThreshold
+parameter_list|,
+name|double
+name|valueThreshold
 parameter_list|)
 throws|throws
 name|DBException
 block|{
 name|BFile
-name|db
+name|nativeFile
 init|=
 operator|(
 name|BFile
@@ -1975,7 +1992,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|db
+name|nativeFile
 operator|==
 literal|null
 condition|)
@@ -2009,7 +2026,7 @@ operator|+
 literal|"'..."
 argument_list|)
 expr_stmt|;
-name|db
+name|nativeFile
 operator|=
 operator|new
 name|BFile
@@ -2027,11 +2044,11 @@ operator|.
 name|getCacheManager
 argument_list|()
 argument_list|,
-name|DEFAULT_VALUE_CACHE_GROWTH
+name|cacheGrowth
 argument_list|,
-name|DEFAULT_VALUE_KEY_THRESHOLD
+name|keyThreshold
 argument_list|,
-name|thresholdData
+name|valueThreshold
 argument_list|)
 expr_stmt|;
 name|config
@@ -2040,21 +2057,22 @@ name|setProperty
 argument_list|(
 name|propertyName
 argument_list|,
-name|db
+name|nativeFile
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : move this out of this method ?
 name|readOnly
 operator|=
 name|readOnly
 operator|||
-name|db
+name|nativeFile
 operator|.
 name|isReadOnly
 argument_list|()
 expr_stmt|;
 return|return
-name|db
+name|nativeFile
 return|;
 block|}
 comment|/** Observer Design Pattern: List of ContentLoadingObserver objects */
@@ -4092,6 +4110,7 @@ name|toCollectionPathURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//We *must* declare it here (see below)
 name|Collection
 name|collection
 decl_stmt|;
@@ -16184,7 +16203,23 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|createIndexFiles
+name|createStructuralIndexFile
+argument_list|()
+expr_stmt|;
+comment|//TODO : don't create if unnecessary ?
+name|createValueIndexFile
+argument_list|()
+expr_stmt|;
+comment|//Like this ;-)
+if|if
+condition|(
+name|qnameValueIndexation
+condition|)
+name|createQNameValueIndexFiles
+argument_list|()
+expr_stmt|;
+comment|//TODO : don't create if unnecessary ?
+name|createFulltextIndexFiles
 argument_list|()
 expr_stmt|;
 block|}
