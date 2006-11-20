@@ -669,9 +669,28 @@ condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
+argument_list|(
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
 argument_list|()
+argument_list|)
+operator|+
+literal|" differs from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
 throw|;
-comment|// not a match after all
 name|Duration
 name|a
 init|=
@@ -734,9 +753,28 @@ condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
+argument_list|(
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
 argument_list|()
+argument_list|)
+operator|+
+literal|" differs from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
 throw|;
-comment|// not a match after all
 name|Duration
 name|a
 init|=
@@ -785,7 +823,19 @@ default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
+argument_list|(
+literal|"Invalid Type: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
 argument_list|()
+argument_list|)
+argument_list|)
 throw|;
 comment|// caught and converted to XPathException in subclass
 block|}
