@@ -62,7 +62,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|ExceptionIfIndexNotUsed
+name|ForceIndexUse
 extends|extends
 name|Pragma
 block|{
@@ -83,7 +83,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"exceptionIfIndexNotUsed"
+literal|"force-index-use"
 argument_list|,
 name|Namespaces
 operator|.
@@ -93,7 +93,7 @@ literal|"exist"
 argument_list|)
 decl_stmt|;
 specifier|public
-name|ExceptionIfIndexNotUsed
+name|ForceIndexUse
 parameter_list|(
 name|QName
 name|qname

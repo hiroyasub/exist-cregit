@@ -475,18 +475,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NativeValueIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|UpdateListener
 import|;
 end_import
@@ -6182,7 +6170,7 @@ return|;
 block|}
 if|if
 condition|(
-name|ExceptionIfIndexNotUsed
+name|ForceIndexUse
 operator|.
 name|EXCEPTION_IF_INDEX_NOT_USED_PRAGMA
 operator|.
@@ -6194,7 +6182,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|ExceptionIfIndexNotUsed
+name|ForceIndexUse
 argument_list|(
 name|qname
 argument_list|,

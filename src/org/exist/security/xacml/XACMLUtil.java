@@ -1378,7 +1378,7 @@ argument_list|,
 name|nodeSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : should we honour (# exist:exceptionIfIndexNotUsed #) ?
+comment|//TODO : should we honour (# exist:force-index-use #) ?
 return|return
 operator|(
 name|results

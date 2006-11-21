@@ -2639,7 +2639,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/c[(# exist:exceptionIfIndexNotUsed #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
+literal|"/test/c[(# exist:force-index-use #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2658,7 +2658,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { c = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
+literal|"/test[(# exist:force-index-use #) { c = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2677,7 +2677,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/d[(# exist:exceptionIfIndexNotUsed #) { . = xs:double(1) }]"
+literal|"/test/d[(# exist:force-index-use #) { . = xs:double(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2696,7 +2696,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { d = xs:double(1) }]"
+literal|"/test[(# exist:force-index-use #) { d = xs:double(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2715,7 +2715,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/e[(# exist:exceptionIfIndexNotUsed #) { . = xs:float(1) }]"
+literal|"/test/e[(# exist:force-index-use #) { . = xs:float(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2734,7 +2734,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { e = xs:float(1) }]"
+literal|"/test[(# exist:force-index-use #) { e = xs:float(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2753,7 +2753,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/f[(# exist:exceptionIfIndexNotUsed #) { . = true() }]"
+literal|"/test/f[(# exist:force-index-use #) { . = true() }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2772,7 +2772,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { f = true() }]"
+literal|"/test[(# exist:force-index-use #) { f = true() }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2791,7 +2791,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/g[(# exist:exceptionIfIndexNotUsed #) { . = 1 }]"
+literal|"/test/g[(# exist:force-index-use #) { . = 1 }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2810,7 +2810,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { g = 1 }]"
+literal|"/test[(# exist:force-index-use #) { g = 1 }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2829,7 +2829,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/h[(# exist:exceptionIfIndexNotUsed #) { . = '1' }]"
+literal|"/test/h[(# exist:force-index-use #) { . = '1' }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2848,7 +2848,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:exceptionIfIndexNotUsed #) { h = '1' }]"
+literal|"/test[(# exist:force-index-use #) { h = '1' }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2976,7 +2976,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/c[(# exist:exceptionIfIndexNotUsed #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
+literal|"/test/c[(# exist:force-index-use #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3030,7 +3030,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/d[(# exist:exceptionIfIndexNotUsed #) { . = xs:double(1) }]"
+literal|"/test/d[(# exist:force-index-use #) { . = xs:double(1) }]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3084,7 +3084,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/e[(# exist:exceptionIfIndexNotUsed #) { . = xs:float(1) }]"
+literal|"/test/e[(# exist:force-index-use #) { . = xs:float(1) }]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3138,7 +3138,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/f[(# exist:exceptionIfIndexNotUsed #) { . = true() }]"
+literal|"/test/f[(# exist:force-index-use #) { . = true() }]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3192,7 +3192,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/g[(# exist:exceptionIfIndexNotUsed #) { . = 1 }]"
+literal|"/test/g[(# exist:force-index-use #) { . = 1 }]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3246,7 +3246,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/h[(# exist:exceptionIfIndexNotUsed #) { . = '1' }]"
+literal|"/test/h[(# exist:force-index-use #) { . = '1' }]"
 argument_list|)
 expr_stmt|;
 block|}

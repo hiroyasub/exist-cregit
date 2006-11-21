@@ -1673,11 +1673,11 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"for $prod in //product return\n"
+literal|"for $prod at $i in //product return\n"
 operator|+
 literal|"	update value $prod/description\n"
 operator|+
-literal|"	with 'Updated Description'"
+literal|"	with concat('Updated Description', $i)"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -1702,6 +1702,76 @@ operator|.
 name|execute
 argument_list|(
 literal|"//product[starts-with(description, 'Updated')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+name|ITEMS_TO_APPEND
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<=
+name|ITEMS_TO_APPEND
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[description&= 'Updated"
+operator|+
+name|i
+operator|+
+literal|"']"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[description&= 'Updated']"
 argument_list|,
 literal|null
 argument_list|,
@@ -1752,11 +1822,11 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"for $prod in //product return\n"
+literal|"for $prod at $count in //product return\n"
 operator|+
 literal|"	update value $prod/stock/text()\n"
 operator|+
-literal|"	with 400"
+literal|"	with (400 + $count)"
 expr_stmt|;
 name|seq
 operator|=
@@ -1779,7 +1849,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//product[stock = 400]"
+literal|"//product[stock> 400]"
 argument_list|,
 literal|null
 argument_list|,
@@ -1796,6 +1866,31 @@ name|getLength
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//product[stock&= '401']"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|seq
+operator|.
+name|getLength
+argument_list|()
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|System
