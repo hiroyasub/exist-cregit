@@ -593,6 +593,12 @@ name|pat
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|boolean
+name|hasUsedIndex
+init|=
+literal|false
+decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|FunMatches
@@ -917,6 +923,15 @@ return|return
 name|Type
 operator|.
 name|BOOLEAN
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasUsedIndex
+parameter_list|()
+block|{
+return|return
+name|hasUsedIndex
 return|;
 block|}
 specifier|public
@@ -1256,7 +1271,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return 	 * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return The resulting sequence 	 * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalWithIndex
@@ -1531,6 +1546,10 @@ operator|.
 name|getValueIndex
 argument_list|()
 decl_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 comment|//TODO : check index' case compatibility with flags' one ? -pb
 if|if
 condition|(
@@ -1737,7 +1756,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 *  	 * @param pattern 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 *  	 * @param pattern 	 * @return The translated regexp 	 * @throws XPathException 	 */
 specifier|protected
 name|String
 name|translateRegexp
@@ -1793,7 +1812,7 @@ return|return
 name|pattern
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return      * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return The resulting sequence      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalGeneric
@@ -1890,7 +1909,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * @param string      * @param pattern      * @param flags      * @return      * @throws XPathException      */
+comment|/**      * @param string      * @param pattern      * @param flags      * @return Whether or not the string matches the given pattern with the given flags           * @throws XPathException      */
 specifier|private
 name|boolean
 name|match
@@ -2108,6 +2127,21 @@ block|}
 return|return
 name|flags
 return|;
+block|}
+specifier|public
+name|void
+name|reset
+parameter_list|()
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 end_class

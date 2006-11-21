@@ -45,6 +45,20 @@ name|QName
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|FunMatches
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -188,6 +202,7 @@ name|expr
 operator|)
 operator|.
 name|hasUsedIndex
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -198,7 +213,40 @@ operator|.
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Can not use index"
+literal|"XQDYxxxx: Can not use index"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|expr
+operator|instanceof
+name|FunMatches
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+operator|(
+name|FunMatches
+operator|)
+name|expr
+operator|)
+operator|.
+name|hasUsedIndex
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|expression
+operator|.
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XQDYxxxx: Can not use index"
 argument_list|)
 throw|;
 block|}

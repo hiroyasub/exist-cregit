@@ -333,11 +333,11 @@ specifier|protected
 name|int
 name|rightOpDeps
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|hasUsedIndex
 init|=
-literal|true
+literal|false
 decl_stmt|;
 specifier|public
 name|GeneralComparison
@@ -417,6 +417,15 @@ operator|.
 name|TRUNC_NONE
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|hasUsedIndex
+parameter_list|()
+block|{
+return|return
+name|hasUsedIndex
+return|;
 block|}
 specifier|public
 name|GeneralComparison
@@ -1109,7 +1118,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Generic, slow implementation. Applied if none of the possible  	 * optimizations can be used. 	 *  	 * @param contextSequence 	 * @param contextItem 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Generic, slow implementation. Applied if none of the possible  	 * optimizations can be used. 	 *  	 * @param contextSequence 	 * @param contextItem 	 * @return The Sequence resulting from the comparison 	 * @throws XPathException 	 */
 specifier|protected
 name|Sequence
 name|genericCompare
@@ -2255,6 +2264,10 @@ operator|)
 name|key
 argument_list|)
 decl_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|result
@@ -2390,6 +2403,10 @@ operator|.
 name|MATCH_REGEXP
 argument_list|)
 decl_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|result
@@ -2591,10 +2608,6 @@ block|}
 block|}
 else|else
 block|{
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -3264,7 +3277,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * @param lv      * @return 	 * @throws XPathException      */
+comment|/**      * @param lv      * @return Whether or not<code>lv</code> is an empty string 	 * @throws XPathException      */
 specifier|private
 specifier|static
 name|boolean
@@ -3917,6 +3930,10 @@ expr_stmt|;
 name|cached
 operator|=
 literal|null
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
 expr_stmt|;
 block|}
 block|}
