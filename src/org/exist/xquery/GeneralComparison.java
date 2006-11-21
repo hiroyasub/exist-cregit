@@ -333,6 +333,12 @@ specifier|protected
 name|int
 name|rightOpDeps
 decl_stmt|;
+specifier|protected
+name|boolean
+name|hasUsedIndex
+init|=
+literal|true
+decl_stmt|;
 specifier|public
 name|GeneralComparison
 parameter_list|(
@@ -2585,6 +2591,10 @@ block|}
 block|}
 else|else
 block|{
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|LOG
