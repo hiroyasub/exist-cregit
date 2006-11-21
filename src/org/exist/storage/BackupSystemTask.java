@@ -214,7 +214,7 @@ init|=
 operator|new
 name|SimpleDateFormat
 argument_list|(
-literal|"yyyy-MM-dd'T'HH:mm:ss"
+literal|"yyyy-MM-dd'T'HHmm"
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -323,6 +323,10 @@ name|collection
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|". User: "
+operator|+
+name|user
 argument_list|)
 expr_stmt|;
 name|suffix
