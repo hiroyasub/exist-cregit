@@ -471,6 +471,8 @@ argument_list|(
 name|contextInfo
 argument_list|,
 name|orderSpecs
+argument_list|,
+name|groupSpecs
 argument_list|)
 expr_stmt|;
 block|}
@@ -484,6 +486,10 @@ name|contextInfo
 parameter_list|,
 name|OrderSpec
 name|orderBy
+index|[]
+parameter_list|,
+name|GroupSpec
+name|groupBy
 index|[]
 parameter_list|)
 throws|throws
@@ -511,6 +517,8 @@ argument_list|,
 name|contextItem
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
@@ -528,6 +536,9 @@ name|contextItem
 parameter_list|,
 name|Sequence
 name|resultSequence
+parameter_list|,
+name|GroupedValueSequenceList
+name|groupedSequence
 parameter_list|)
 throws|throws
 name|XPathException

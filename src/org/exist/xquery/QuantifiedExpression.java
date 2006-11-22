@@ -210,6 +210,10 @@ parameter_list|,
 name|OrderSpec
 name|orderBy
 index|[]
+parameter_list|,
+name|GroupSpec
+name|groupBy
+index|[]
 parameter_list|)
 throws|throws
 name|XPathException
@@ -285,6 +289,9 @@ name|contextItem
 parameter_list|,
 name|Sequence
 name|resultSequence
+parameter_list|,
+name|GroupedValueSequenceList
+name|groupedSequence
 parameter_list|)
 throws|throws
 name|XPathException
