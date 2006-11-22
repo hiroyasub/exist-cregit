@@ -5085,6 +5085,15 @@ return|return
 literal|""
 return|;
 block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
 specifier|public
 name|String

@@ -105,6 +105,15 @@ return|return
 literal|""
 return|;
 block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#getData() 	 */
 specifier|public
 name|String

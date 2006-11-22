@@ -156,6 +156,15 @@ name|getTarget
 argument_list|()
 return|;
 block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#getData() 	 */
 specifier|public
 name|String

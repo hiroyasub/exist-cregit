@@ -235,6 +235,15 @@ return|return
 name|target
 return|;
 block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/**      *  Gets the data attribute of the ProcessingInstructionImpl object      *      *@return    The data value      */
 specifier|public
 name|String

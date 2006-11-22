@@ -465,11 +465,6 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-comment|//if (contextSequence == null)
-comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
-name|Sequence
-name|result
-decl_stmt|;
 name|Item
 name|item
 init|=
@@ -562,6 +557,9 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+name|Sequence
+name|result
+decl_stmt|;
 if|if
 condition|(
 name|item
@@ -627,24 +625,6 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
-switch|switch
-condition|(
-name|n
-operator|.
-name|getNodeType
-argument_list|()
-condition|)
-block|{
-case|case
-name|Node
-operator|.
-name|ELEMENT_NODE
-case|:
-case|case
-name|Node
-operator|.
-name|ATTRIBUTE_NODE
-case|:
 name|result
 operator|=
 operator|new
@@ -656,29 +636,6 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-break|break;
-comment|//TODO : what kind of default do we expect here ? -pb
-default|default:
-comment|//TODO : raise an exception ?
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Tried to obtain namespace URI for node type "
-operator|+
-name|n
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|AnyURIValue
-operator|.
-name|EMPTY_URI
-expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

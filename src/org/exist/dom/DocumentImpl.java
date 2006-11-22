@@ -705,6 +705,15 @@ return|return
 literal|""
 return|;
 block|}
+specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/************************************************      *       * Document metadata      *      ************************************************/
 specifier|public
 name|Collection

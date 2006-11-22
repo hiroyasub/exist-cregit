@@ -185,6 +185,15 @@ literal|""
 return|;
 block|}
 specifier|public
+name|String
+name|getNamespaceURI
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
+specifier|public
 name|Node
 name|getFirstChild
 parameter_list|()
