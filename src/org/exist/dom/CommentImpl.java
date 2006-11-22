@@ -173,6 +173,15 @@ expr_stmt|;
 block|}
 specifier|public
 name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
+specifier|public
+name|String
 name|toString
 parameter_list|()
 block|{

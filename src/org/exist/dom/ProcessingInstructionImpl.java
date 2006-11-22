@@ -226,6 +226,15 @@ return|return
 name|target
 return|;
 block|}
+specifier|public
+name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+name|target
+return|;
+block|}
 comment|/**      *  Gets the data attribute of the ProcessingInstructionImpl object      *      *@return    The data value      */
 specifier|public
 name|String

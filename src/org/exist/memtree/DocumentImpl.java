@@ -5076,6 +5076,15 @@ return|return
 name|count
 return|;
 block|}
+specifier|public
+name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
 specifier|public
 name|String

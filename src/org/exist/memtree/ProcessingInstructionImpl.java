@@ -146,6 +146,16 @@ literal|""
 argument_list|)
 return|;
 block|}
+specifier|public
+name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+name|getTarget
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#getData() 	 */
 specifier|public
 name|String

@@ -696,6 +696,15 @@ operator|=
 name|fileURI
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+literal|""
+return|;
+block|}
 comment|/************************************************      *       * Document metadata      *      ************************************************/
 specifier|public
 name|Collection
