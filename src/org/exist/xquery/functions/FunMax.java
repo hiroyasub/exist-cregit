@@ -756,6 +756,53 @@ operator|instanceof
 name|NumericValue
 condition|)
 block|{
+comment|//Don't mix comparisons
+if|if
+condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|max
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FORG0006: Cannot compare "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|max
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" and "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|value
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
 if|if
 condition|(
 operator|(
@@ -808,6 +855,10 @@ block|}
 comment|//Ugly test
 if|if
 condition|(
+name|max
+operator|instanceof
+name|ComputableValue
+operator|&&
 name|value
 operator|instanceof
 name|ComputableValue
