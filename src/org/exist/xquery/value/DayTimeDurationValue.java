@@ -21,7 +21,17 @@ name|java
 operator|.
 name|math
 operator|.
-name|*
+name|BigDecimal
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigInteger
 import|;
 end_import
 
@@ -58,6 +68,18 @@ operator|.
 name|util
 operator|.
 name|FastStringBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -874,6 +896,58 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|other
+operator|instanceof
+name|NumericValue
+condition|)
+block|{
+comment|//If $arg2 is NaN an error is raised [err:FOCA0005]
+if|if
+condition|(
+operator|(
+operator|(
+name|NumericValue
+operator|)
+name|other
+operator|)
+operator|.
+name|isNaN
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FOCA0005: Operand is not a number"
+argument_list|)
+throw|;
+block|}
+comment|//If $arg2 is positive or negative infinity, the result overflows
+if|if
+condition|(
+operator|(
+operator|(
+name|NumericValue
+operator|)
+name|other
+operator|)
+operator|.
+name|isInfinite
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FODT0002: Multiplication by infinity overflow"
+argument_list|)
+throw|;
+block|}
+block|}
 name|BigDecimal
 name|factor
 init|=
@@ -1039,6 +1113,7 @@ literal|"FOCA0005: Operand is not a number"
 argument_list|)
 throw|;
 block|}
+comment|//If $arg2 is positive or negative infinity, the result is a zero-length duration
 if|if
 condition|(
 operator|(
@@ -1059,6 +1134,36 @@ argument_list|(
 literal|"PT0S"
 argument_list|)
 return|;
+block|}
+comment|//If $arg2 is positive or negative zero, the result overflows and is handled as discussed in 10.1.1 Limits and Precision
+if|if
+condition|(
+operator|(
+operator|(
+name|NumericValue
+operator|)
+name|other
+operator|)
+operator|.
+name|compareTo
+argument_list|(
+name|IntegerValue
+operator|.
+name|ZERO
+argument_list|)
+operator|==
+name|Constants
+operator|.
+name|EQUAL
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FODT0002: Division by zero"
+argument_list|)
+throw|;
 block|}
 block|}
 name|BigDecimal
