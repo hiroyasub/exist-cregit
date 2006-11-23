@@ -191,18 +191,14 @@ operator|.
 name|length
 index|]
 decl_stmt|;
-name|Item
-name|keyItem
-index|[]
+name|Sequence
+name|keySequence
 init|=
 operator|new
-name|Item
-index|[
-name|groupSpecs
-operator|.
-name|length
-index|]
+name|ValueSequence
+argument_list|()
 decl_stmt|;
+comment|/* new Sequence[groupSpecs.length]; */
 name|boolean
 name|groupAdded
 init|=
@@ -247,11 +243,10 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|keyItem
-index|[
-name|i
-index|]
-operator|=
+name|keySequence
+operator|.
+name|add
+argument_list|(
 name|specEvaluation
 index|[
 name|i
@@ -260,6 +255,7 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -303,7 +299,7 @@ name|currentGroup
 operator|.
 name|checkKeys
 argument_list|(
-name|keyItem
+name|keySequence
 argument_list|)
 condition|)
 block|{
@@ -339,7 +335,7 @@ name|groupSpecs
 argument_list|,
 literal|1
 argument_list|,
-name|keyItem
+name|keySequence
 argument_list|,
 name|context
 argument_list|)

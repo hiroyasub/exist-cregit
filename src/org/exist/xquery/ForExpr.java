@@ -1716,9 +1716,11 @@ name|currentGroup
 operator|.
 name|getGroupKey
 argument_list|()
-index|[
+operator|.
+name|itemAt
+argument_list|(
 name|i
-index|]
+argument_list|)
 operator|.
 name|toSequence
 argument_list|()
