@@ -181,7 +181,7 @@ name|exist
 operator|.
 name|client
 operator|.
-name|ClientFrame
+name|Messages
 import|;
 end_import
 
@@ -366,7 +366,12 @@ init|=
 operator|new
 name|JLabel
 argument_list|(
-literal|"Collection:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.1"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|c
@@ -478,7 +483,12 @@ operator|=
 operator|new
 name|JLabel
 argument_list|(
-literal|"Target:"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.2"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|c
@@ -587,7 +597,12 @@ init|=
 operator|new
 name|JButton
 argument_list|(
-literal|"Select"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.3"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|select
@@ -654,7 +669,12 @@ name|select
 operator|.
 name|setToolTipText
 argument_list|(
-literal|"Select ZIP file or directory."
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.4"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|add
@@ -859,7 +879,12 @@ name|showDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Select target for backup"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.5"
+argument_list|)
 argument_list|)
 operator|==
 name|JFileChooser
@@ -891,16 +916,35 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
-literal|"Target "
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6a"
+argument_list|)
+operator|+
+literal|" "
 operator|+
 name|f
 operator|.
 name|getAbsolutePath
 argument_list|()
 operator|+
-literal|" exists. OK to delete?"
+literal|" "
+operator|+
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6b"
+argument_list|)
 argument_list|,
-literal|"Confirm deletion"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6c"
+argument_list|)
 argument_list|,
 name|JOptionPane
 operator|.
