@@ -138,6 +138,7 @@ name|NodeValue
 name|node
 parameter_list|)
 function_decl|;
+comment|/** Retrieve the actual node. This operation is<strong>expensive</strong>. 	 * @return The actual node. 	 */
 specifier|public
 name|Node
 name|getNode

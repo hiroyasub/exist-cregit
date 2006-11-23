@@ -577,7 +577,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"context item is not a node; got: "
+literal|"XPTY0004: item is not a node; got '"
 operator|+
 name|Type
 operator|.
@@ -588,6 +588,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 comment|//TODO : how to improve performance ?

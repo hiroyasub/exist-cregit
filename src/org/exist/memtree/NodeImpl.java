@@ -593,6 +593,7 @@ literal|"#unknown"
 return|;
 block|}
 block|}
+comment|//TODO : what are the semantics ? IMHO, QName.EMPTY_QNAME shouldn't be QNameable ! -pb
 specifier|public
 name|QName
 name|getQName
@@ -604,16 +605,6 @@ name|getNodeType
 argument_list|()
 condition|)
 block|{
-case|case
-name|Node
-operator|.
-name|DOCUMENT_NODE
-case|:
-return|return
-name|QName
-operator|.
-name|DOCUMENT_QNAME
-return|;
 case|case
 name|Node
 operator|.
@@ -655,12 +646,22 @@ return|;
 case|case
 name|Node
 operator|.
+name|DOCUMENT_NODE
+case|:
+return|return
+name|QName
+operator|.
+name|EMPTY_QNAME
+return|;
+case|case
+name|Node
+operator|.
 name|COMMENT_NODE
 case|:
 return|return
 name|QName
 operator|.
-name|COMMENT_QNAME
+name|EMPTY_QNAME
 return|;
 case|case
 name|Node
@@ -670,7 +671,7 @@ case|:
 return|return
 name|QName
 operator|.
-name|TEXT_QNAME
+name|EMPTY_QNAME
 return|;
 default|default :
 return|return
