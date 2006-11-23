@@ -470,6 +470,26 @@ name|value
 argument_list|)
 return|;
 block|}
+specifier|public
+name|boolean
+name|isZero
+parameter_list|()
+block|{
+return|return
+name|Double
+operator|.
+name|compare
+argument_list|(
+name|value
+argument_list|,
+literal|0.0
+argument_list|)
+operator|==
+name|Constants
+operator|.
+name|EQUAL
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
