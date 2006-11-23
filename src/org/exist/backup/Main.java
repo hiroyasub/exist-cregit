@@ -1093,7 +1093,7 @@ name|File
 operator|.
 name|separatorChar
 operator|+
-literal|"backup"
+literal|"eXist-backup.zip"
 argument_list|)
 argument_list|)
 decl_stmt|;
