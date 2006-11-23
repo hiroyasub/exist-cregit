@@ -878,7 +878,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//Profiling for eval
 if|if
 condition|(
 name|context
@@ -980,8 +979,6 @@ expr_stmt|;
 block|}
 name|Sequence
 name|result
-init|=
-literal|null
 decl_stmt|;
 comment|/*  		 * If we are inside a predicate and one of the arguments is a node set,  		 * we try to speed up the query by returning nodes from the context set. 		 * This works only inside a predicate. The node set will always be the left  		 * operand. 		 */
 if|if
@@ -990,12 +987,8 @@ name|inPredicate
 operator|&&
 operator|!
 name|invalidNodeEvaluation
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|!
-operator|(
 name|Dependency
 operator|.
 name|dependsOn
@@ -1006,7 +999,6 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
-operator|)
 operator|&&
 name|Type
 operator|.
@@ -1049,8 +1041,6 @@ operator|)
 operator|==
 literal|0
 condition|)
-comment|//&&
-comment|//    Type.subTypeOf(getRight().returnsType(), Type.NODE))
 block|{
 name|result
 operator|=
@@ -1071,14 +1061,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|//TODO : better design. Should a (buggy) null previous result be returned, we would evaluate this !
-if|if
-condition|(
-name|result
-operator|==
-literal|null
-condition|)
+else|else
 block|{
 name|result
 operator|=
@@ -1160,6 +1143,7 @@ argument_list|,
 literal|"genericCompare"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|ls
 init|=
@@ -1173,6 +1157,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -1186,6 +1171,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -1461,6 +1447,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -1542,7 +1529,6 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
-comment|//TODO : review to consider transverse context
 do|do
 block|{
 name|Sequence
@@ -1601,7 +1587,6 @@ argument_list|,
 name|rv
 argument_list|)
 condition|)
-block|{
 name|result
 operator|.
 name|add
@@ -1609,7 +1594,6 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 do|while
@@ -1716,7 +1700,6 @@ argument_list|,
 name|rv
 argument_list|)
 condition|)
-block|{
 name|result
 operator|.
 name|add
@@ -1724,7 +1707,6 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -1798,7 +1780,6 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1817,7 +1798,6 @@ argument_list|,
 literal|"Returned cached result"
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 operator|(
 name|cached
@@ -1857,7 +1837,6 @@ name|isEmpty
 argument_list|()
 condition|)
 comment|//nothing on the left, so nothing to do
-block|{
 return|return
 operator|(
 name|Sequence
@@ -1865,7 +1844,6 @@ operator|.
 name|EMPTY_SEQUENCE
 operator|)
 return|;
-block|}
 comment|//get the Sequence on the right
 name|Sequence
 name|rightSeq
@@ -1886,7 +1864,6 @@ name|isEmpty
 argument_list|()
 condition|)
 comment|//nothing on the right, so nothing to do
-block|{
 return|return
 operator|(
 name|Sequence
@@ -1894,7 +1871,6 @@ operator|.
 name|EMPTY_SEQUENCE
 operator|)
 return|;
-block|}
 comment|//Holds the result
 name|NodeSet
 name|result
@@ -1912,6 +1888,7 @@ argument_list|()
 decl_stmt|;
 comment|//See if we have a range index defined on the nodes in this sequence
 comment|//TODO : use isSubType ??? -pb
+comment|//rememeber that Type.ITEM means... no index ;-)
 if|if
 condition|(
 name|indexType
@@ -2036,7 +2013,7 @@ name|XPathException
 name|xpe
 parameter_list|)
 block|{
-comment|//TODO : rethorw the exception ? -pb
+comment|//TODO : rethrow the exception ? -pb
 comment|//Could not convert the key to a suitable type for the index, fallback to nodeSetCompare()
 if|if
 condition|(
@@ -2048,7 +2025,6 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -2074,7 +2050,6 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -2118,6 +2093,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// If key implements org.exist.storage.Indexable, we can use the index
 if|if
 condition|(
 name|key
@@ -2144,7 +2120,6 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// If key implements org.exist.storage.Indexable, we can use the index
 if|if
 condition|(
 name|Type
@@ -2349,8 +2324,6 @@ operator|+
 literal|")'"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|LOG
@@ -2370,6 +2343,8 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|NodeSet
 name|ns
 init|=
@@ -2466,7 +2441,6 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -2506,7 +2480,6 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -2565,7 +2538,6 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -2592,7 +2564,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 operator|(
 name|nodeSetCompare
@@ -2638,7 +2609,6 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -2657,7 +2627,6 @@ argument_list|,
 literal|"falling back to nodeSetCompare (no index available)"
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 operator|(
 name|nodeSetCompare
@@ -2699,7 +2668,6 @@ if|if
 condition|(
 name|canCache
 condition|)
-block|{
 name|cached
 operator|=
 operator|new
@@ -2713,7 +2681,6 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-block|}
 comment|//return the result of the range index lookup(s) :-)
 return|return
 name|result
