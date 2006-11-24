@@ -1766,11 +1766,8 @@ operator|)
 name|other
 operator|)
 operator|.
-name|value
-operator|==
-name|BigInteger
-operator|.
-name|ZERO
+name|isZero
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -1881,6 +1878,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|other
+operator|.
+name|isZero
+argument_list|()
+condition|)
+comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FOAR0001: division by zero"
+argument_list|)
+throw|;
 name|ComputableValue
 name|result
 init|=
