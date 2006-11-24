@@ -7207,7 +7207,6 @@ argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
 argument_list|,
-comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -7217,7 +7216,6 @@ argument_list|,
 literal|"admin"
 argument_list|)
 argument_list|,
-comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -7227,7 +7225,6 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-comment|//$NON-NLS-1$
 name|properties
 operator|.
 name|getProperty
@@ -7240,7 +7237,6 @@ name|getProperty
 argument_list|(
 literal|"user.home"
 argument_list|)
-comment|//$NON-NLS-1$ //$NON-NLS-2$
 operator|+
 name|File
 operator|.
@@ -7250,7 +7246,6 @@ literal|"eXist-backup.zip"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//$NON-NLS-1$
 if|if
 condition|(
 name|JOptionPane
@@ -7268,7 +7263,6 @@ argument_list|(
 literal|"ClientFrame.157"
 argument_list|)
 argument_list|,
-comment|//$NON-NLS-1$
 name|JOptionPane
 operator|.
 name|OK_CANCEL_OPTION
@@ -7298,13 +7292,26 @@ name|getCollection
 argument_list|()
 decl_stmt|;
 name|String
-name|dir
+name|target
 init|=
 name|dialog
 operator|.
-name|getBackupDir
+name|getBackupTarget
 argument_list|()
 decl_stmt|;
+comment|//            // DWES add check here?
+comment|//            if(new File(target).exists()){
+comment|//                if (JOptionPane.showConfirmDialog(
+comment|//                        this,
+comment|//                        Messages.getString("CreateBackupDialog.6a") + " "+ target + " "+ Messages.getString("CreateBackupDialog.6b"),
+comment|//                        Messages.getString("CreateBackupDialog.6c"),
+comment|//                        JOptionPane.YES_NO_OPTION)
+comment|//                        == JOptionPane.NO_OPTION)
+comment|//                {
+comment|//                    new File(target).delete();
+comment|//                }
+comment|//
+comment|//            }
 try|try
 block|{
 name|Backup
@@ -7322,7 +7329,6 @@ argument_list|,
 literal|"admin"
 argument_list|)
 argument_list|,
-comment|//$NON-NLS-1$ //$NON-NLS-2$
 name|properties
 operator|.
 name|getProperty
@@ -7332,9 +7338,8 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-name|dir
+name|target
 argument_list|,
-comment|//$NON-NLS-1$
 name|XmldbURI
 operator|.
 name|xmldbUriFor
@@ -7347,7 +7352,6 @@ literal|"uri"
 argument_list|,
 literal|"xmldb:exist://"
 argument_list|)
-comment|//$NON-NLS-1$ //$NON-NLS-2$
 operator|+
 name|collection
 argument_list|)

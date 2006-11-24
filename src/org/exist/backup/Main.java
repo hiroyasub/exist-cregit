@@ -1144,7 +1144,7 @@ literal|"backup-dir"
 argument_list|,
 name|dialog
 operator|.
-name|getBackupDir
+name|getBackupTarget
 argument_list|()
 argument_list|)
 expr_stmt|;
