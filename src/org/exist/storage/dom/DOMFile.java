@@ -419,20 +419,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|journal
-operator|.
-name|Lsn
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|lock
 operator|.
 name|Lock
@@ -10287,6 +10273,16 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"UTF-8 error while reading node value"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+comment|//TODO : why not store another string like "OOOPS !" ?
 name|value
 operator|=
 operator|new
@@ -10767,6 +10763,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|//recursive call
 name|getNodeValue
 argument_list|(
 name|doc
@@ -18269,13 +18266,6 @@ name|page
 init|=
 name|firstPage
 decl_stmt|;
-name|byte
-index|[]
-name|chunk
-decl_stmt|;
-name|long
-name|np
-decl_stmt|;
 name|int
 name|count
 init|=
@@ -18290,13 +18280,15 @@ condition|)
 block|{
 try|try
 block|{
+name|byte
+index|[]
 name|chunk
-operator|=
+init|=
 name|page
 operator|.
 name|read
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|os
 operator|.
 name|write
@@ -18304,8 +18296,9 @@ argument_list|(
 name|chunk
 argument_list|)
 expr_stmt|;
+name|long
 name|np
-operator|=
+init|=
 name|page
 operator|.
 name|getPageHeader
@@ -18313,7 +18306,7 @@ argument_list|()
 operator|.
 name|getNextPage
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|page
 operator|=
 operator|(

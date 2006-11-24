@@ -1926,6 +1926,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 block|}
@@ -5791,6 +5792,7 @@ operator|+
 literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 else|else
@@ -5835,6 +5837,7 @@ operator|+
 literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 block|}
@@ -6619,6 +6622,7 @@ operator|+
 literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 else|else
@@ -6680,6 +6684,7 @@ operator|+
 literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 block|}

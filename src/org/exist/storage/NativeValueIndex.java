@@ -1334,6 +1334,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception?
 block|}
 block|}
 name|os
@@ -1409,6 +1410,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 block|}
 catch|catch
@@ -1954,6 +1956,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TOO : throw exception ?
 block|}
 block|}
 name|os
@@ -2008,6 +2011,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO: throw exception ?
 block|}
 block|}
 else|else
@@ -2042,6 +2046,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 block|}
 block|}
@@ -2574,7 +2579,7 @@ block|}
 else|else
 block|{
 comment|// data are related to our document:
-comment|// skip them
+comment|// skip them. They will be processed at the end
 name|is
 operator|.
 name|skipBytes
@@ -2648,6 +2653,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 block|}
 block|}

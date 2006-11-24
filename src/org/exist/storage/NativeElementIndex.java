@@ -424,7 +424,7 @@ specifier|protected
 name|BFile
 name|dbNodes
 decl_stmt|;
-comment|/** Work output Stream taht should be cleared before every use */
+comment|/** Work output Stream that should be cleared before every use */
 specifier|private
 name|VariableByteOutputStream
 name|os
@@ -1117,6 +1117,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception ?
 block|}
 block|}
 catch|catch
@@ -1826,6 +1827,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 name|StorageAddress
 operator|.
@@ -1909,6 +1911,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 block|}
 else|else
@@ -1948,6 +1951,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 block|}
 block|}
@@ -2409,7 +2413,7 @@ block|}
 else|else
 block|{
 comment|// data are related to our document:
-comment|// skip them
+comment|// skip them, they will be processed soon
 name|changed
 operator|=
 literal|true
@@ -2470,6 +2474,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : thow exception ?
 block|}
 block|}
 block|}
@@ -3185,7 +3190,7 @@ expr_stmt|;
 name|VariableByteInput
 name|is
 decl_stmt|;
-comment|/*                 //TODO : uncomment an implement properly                 //TODO : bewere of null NS prefix : it looks to be polysemic (none vs. all)                 //Test for "*" prefix                 if (qname.getPrefix() == null) {                 	try { 	                    final IndexQuery query = new IndexQuery(IndexQuery.TRUNC_RIGHT, key); 	                    ArrayList elements = dbNodes.findKeys(query);	                                          } catch (BTreeException e) {                         LOG.error(e.getMessage(), e);                         //TODO : throw an exception ? -pb                     } catch (TerminatedException e) {                         LOG.warn(e.getMessage(), e);                                             }                     //TODO : iterate over the keys                  } else */
+comment|/*                 //TODO : uncomment and implement properly                 //TODO : beware of null NS prefix : it looks to be polysemic (none vs. all)                 //Test for "*" prefix                 if (qname.getPrefix() == null) {                 	try { 	                    final IndexQuery query = new IndexQuery(IndexQuery.TRUNC_RIGHT, key); 	                    ArrayList elements = dbNodes.findKeys(query);	                                          } catch (BTreeException e) {                         LOG.error(e.getMessage(), e);                         //TODO : throw an exception ? -pb                     } catch (TerminatedException e) {                         LOG.warn(e.getMessage(), e);                                             }                     //TODO : iterate over the keys                  } else */
 name|is
 operator|=
 name|dbNodes
@@ -4079,7 +4084,6 @@ name|e
 parameter_list|)
 block|{
 comment|//EOFExceptions are expected here
-comment|//                LOG.warn("EOF: " + e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(
