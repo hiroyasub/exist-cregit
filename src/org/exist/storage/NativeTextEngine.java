@@ -563,7 +563,9 @@ name|os
 init|=
 operator|new
 name|VariableByteOutputStream
-argument_list|()
+argument_list|(
+literal|7
+argument_list|)
 decl_stmt|;
 specifier|public
 name|NativeTextEngine
@@ -2021,6 +2023,11 @@ block|{
 name|lock
 operator|.
 name|release
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
@@ -4315,16 +4322,6 @@ index|[
 literal|2
 index|]
 decl_stmt|;
-specifier|private
-name|VariableByteOutputStream
-name|os
-init|=
-operator|new
-name|VariableByteOutputStream
-argument_list|(
-literal|7
-argument_list|)
-decl_stmt|;
 specifier|public
 name|InvertedIndex
 parameter_list|()
@@ -5150,6 +5147,11 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/** 		 * Remove the entries in the current list from the index. 		 */
@@ -5924,6 +5926,11 @@ block|{
 name|lock
 operator|.
 name|release
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
@@ -6768,6 +6775,11 @@ name|Lock
 operator|.
 name|WRITE_LOCK
 argument_list|)
+expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 block|}

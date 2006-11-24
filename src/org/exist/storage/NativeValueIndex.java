@@ -1505,6 +1505,11 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 name|pending
@@ -2138,6 +2143,11 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 name|pending
@@ -2641,6 +2651,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 catch|catch

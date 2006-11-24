@@ -1201,6 +1201,11 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 name|progress
 operator|.
@@ -2024,6 +2029,11 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 name|pending
@@ -2421,6 +2431,14 @@ name|e
 parameter_list|)
 block|{
 comment|//EOF is expected here
+block|}
+finally|finally
+block|{
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
