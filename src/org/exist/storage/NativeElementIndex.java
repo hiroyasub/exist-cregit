@@ -2432,14 +2432,6 @@ parameter_list|)
 block|{
 comment|//EOF is expected here
 block|}
-finally|finally
-block|{
-name|os
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|changed
@@ -2570,6 +2562,11 @@ block|{
 name|lock
 operator|.
 name|release
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
