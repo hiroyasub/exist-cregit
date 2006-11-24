@@ -791,6 +791,42 @@ argument_list|,
 name|offset
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|l
+operator|<
+literal|0
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Got negative length"
+operator|+
+name|l
+operator|+
+literal|" at offset "
+operator|+
+name|offset
+operator|+
+literal|"!!!"
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|db
+operator|.
+name|debugPageContents
+argument_list|(
+name|p
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//TODO : throw an exception right now ?
+block|}
 name|offset
 operator|+=
 literal|2
