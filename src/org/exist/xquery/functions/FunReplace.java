@@ -1122,6 +1122,31 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+comment|//Some JVMs seem to raise this one
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Invalid replace expression: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 if|if
