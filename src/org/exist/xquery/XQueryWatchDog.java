@@ -565,7 +565,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Query exceeded predefined limit for document fragments: "
+literal|"Query exceeded predefined limit ("
+operator|+
+name|maxNodesLimit
+operator|+
+literal|") for document fragments: "
 operator|+
 name|ExpressionDumper
 operator|.
