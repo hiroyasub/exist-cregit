@@ -21,7 +21,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|MemTreeBuilder
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|DocumentBuilderReceiver
+name|MemTreeBuilder
 import|;
 end_import
 
@@ -62,20 +62,6 @@ operator|.
 name|value
 operator|.
 name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|NodeValue
 import|;
 end_import
 

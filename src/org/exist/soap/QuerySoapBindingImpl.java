@@ -1196,6 +1196,13 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 name|xml
 operator|.
@@ -1480,6 +1487,7 @@ comment|//			if (xml != null)
 comment|//				try {
 comment|//					return xml.getBytes("UTF-8");
 comment|//				} catch (java.io.UnsupportedEncodingException e) {
+comment|//					LOG.warn(e);
 comment|//					return xml.getBytes();
 comment|//				}
 comment|//
@@ -1980,6 +1988,13 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 operator|new

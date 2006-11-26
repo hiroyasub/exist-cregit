@@ -45,6 +45,18 @@ name|UnsupportedEncodingException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base class for implementations of VariableByteInput.  *   * @author wolf  */
 end_comment
@@ -57,6 +69,23 @@ name|AbstractVariableByteInput
 implements|implements
 name|VariableByteInput
 block|{
+specifier|private
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|AbstractVariableByteInput
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|public
 name|AbstractVariableByteInput
 parameter_list|()
@@ -396,6 +425,13 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|s
 operator|=
 operator|new

@@ -1050,6 +1050,13 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 comment|// remove the fragment part from the URI for further processing
 name|URI
