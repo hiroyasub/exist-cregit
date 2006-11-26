@@ -670,15 +670,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|" differs from "
+literal|"Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -689,6 +681,32 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
 argument_list|)
 throw|;
 name|Duration
@@ -754,15 +772,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|" differs from "
+literal|"Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -773,6 +783,32 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
 argument_list|)
 throw|;
 name|Duration
