@@ -860,7 +860,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid Type: "
+literal|"Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -871,9 +871,34 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
 argument_list|)
 throw|;
-comment|// caught and converted to XPathException in subclass
 block|}
 comment|/* 		if(other.getType() == getType()) { 			return createSameKind(duration.subtract(((OrderedDurationValue)other).duration)); 		} 		throw new XPathException("Operand to minus should be of type " + Type.getTypeName(getType()) + "; got: " + 			Type.getTypeName(other.getType())); 		*/
 block|}
