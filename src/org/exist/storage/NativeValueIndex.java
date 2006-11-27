@@ -4872,6 +4872,11 @@ block|}
 name|NodeId
 name|nodeId
 decl_stmt|;
+name|NodeId
+name|lastParentId
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -4957,6 +4962,27 @@ name|oc
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Handle this very special case : /item[foo = "bar"] vs. /item[@foo = "bar"]
+comment|//Same value, same parent but different nodes !
+comment|//Not sure if we should track the contextSet's parentId... (just like we do)
+comment|//... or the way the contextSet is created (thus keeping track of the NodeTest)
+if|if
+condition|(
+name|lastParentId
+operator|==
+literal|null
+operator|||
+operator|!
+name|lastParentId
+operator|.
+name|equals
+argument_list|(
+name|parentNode
+operator|.
+name|getNodeId
+argument_list|()
+argument_list|)
+condition|)
 name|oc
 operator|.
 name|addOccurrences
@@ -4982,6 +5008,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|lastParentId
+operator|=
+name|parentNode
+operator|.
+name|getNodeId
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|//TODO : what if contextSet == null ? -pb

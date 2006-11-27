@@ -1785,10 +1785,8 @@ if|if
 condition|(
 name|contextSet
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return
 name|NodeSet

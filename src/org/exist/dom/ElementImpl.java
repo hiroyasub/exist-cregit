@@ -3792,9 +3792,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|next
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3810,8 +3807,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|next
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -3819,19 +3817,21 @@ name|iterator
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+comment|//if (next.getNodeType() != Node.ATTRIBUTE_NODE)
+comment|//	break;
 if|if
 condition|(
 name|next
 operator|.
 name|getNodeType
 argument_list|()
-operator|!=
+operator|==
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
-break|break;
+block|{
 if|if
 condition|(
 name|next
@@ -3850,6 +3850,7 @@ name|AttrImpl
 operator|)
 name|next
 return|;
+block|}
 block|}
 return|return
 literal|null
