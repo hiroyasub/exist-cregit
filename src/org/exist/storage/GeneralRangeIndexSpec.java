@@ -194,7 +194,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"\type : "
+literal|"\ttype : "
 argument_list|)
 operator|.
 name|append
@@ -203,12 +203,9 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|indexTypeToXPath
-argument_list|(
 name|this
 operator|.
 name|type
-argument_list|)
 argument_list|)
 argument_list|)
 operator|.
