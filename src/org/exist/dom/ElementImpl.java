@@ -3818,20 +3818,18 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//if (next.getNodeType() != Node.ATTRIBUTE_NODE)
-comment|//	break;
 if|if
 condition|(
 name|next
 operator|.
 name|getNodeType
 argument_list|()
-operator|==
+operator|!=
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
-block|{
+break|break;
 if|if
 condition|(
 name|next
@@ -3850,7 +3848,6 @@ name|AttrImpl
 operator|)
 name|next
 return|;
-block|}
 block|}
 return|return
 literal|null

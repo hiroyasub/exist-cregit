@@ -3332,7 +3332,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/c/@c[(# exist:force-index-use #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
+literal|"/test//@c[(# exist:force-index-use #) { . = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3351,7 +3351,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@c = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
+literal|"/test[(# exist:force-index-use #) { .//@c = xs:dateTime(\"2002-12-07T12:20:46.275+01:00\") }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3370,7 +3370,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test/@d[(# exist:force-index-use #) { . = xs:double(1) }]"
+literal|"/test/d/@d[(# exist:force-index-use #) { . = xs:double(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3389,7 +3389,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@d = xs:double(1) }]"
+literal|"/test[(# exist:force-index-use #) { .//@d = xs:double(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3427,7 +3427,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@e = xs:float(1) }]"
+literal|"/test[(# exist:force-index-use #) { .//@e = xs:float(1) }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3465,7 +3465,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@f = true() }]"
+literal|"/test[(# exist:force-index-use #) { .//@f = true() }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3503,7 +3503,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@g = 1 }]"
+literal|"/test[(# exist:force-index-use #) { .//@g = 1 }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3541,7 +3541,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/test[(# exist:force-index-use #) { //@h = '1' }]"
+literal|"/test[(# exist:force-index-use #) { .//@h = '1' }]"
 argument_list|)
 expr_stmt|;
 name|assertEquals

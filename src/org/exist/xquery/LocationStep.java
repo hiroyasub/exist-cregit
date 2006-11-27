@@ -1793,44 +1793,11 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-name|NodeProxy
-name|proxy
-init|=
-name|contextSet
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|proxy
-operator|!=
-literal|null
-operator|&&
-name|proxy
-operator|.
-name|getInternalAddress
-argument_list|()
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-return|return
-name|contextSet
-operator|.
-name|directSelectAttribute
-argument_list|(
-name|test
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|contextId
-argument_list|)
-return|;
+comment|//NodeProxy proxy = contextSet.get(0);
+comment|//if (proxy != null
+comment|//&& proxy.getInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//return contextSet.directSelectAttribute(test.getName(),
+comment|//        contextId);
 block|}
 if|if
 condition|(
