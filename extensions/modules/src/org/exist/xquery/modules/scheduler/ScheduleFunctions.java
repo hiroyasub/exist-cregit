@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * Schedules job's with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension ScheduleFunctions  *   * Schedules job's with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -398,7 +398,7 @@ name|getUser
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery send-email function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the send-email() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the send-email() function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * evaluate the call to the xquery function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the  function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
