@@ -6208,10 +6208,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|builderFunction
-operator|.
-name|characters
-argument_list|(
 name|functionResult
 operator|.
 name|itemAt
@@ -6219,10 +6215,14 @@ argument_list|(
 literal|0
 argument_list|)
 operator|.
-name|getStringValue
-argument_list|()
+name|copyTo
+argument_list|(
+name|broker
+argument_list|,
+name|receiver
 argument_list|)
 expr_stmt|;
+comment|//builderFunction.characters(functionResult.itemAt(0).getStringValue());
 name|builderFunction
 operator|.
 name|endElement
