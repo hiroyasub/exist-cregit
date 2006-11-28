@@ -7185,6 +7185,85 @@ comment|//$NON-NLS-1$
 block|}
 block|}
 specifier|private
+name|boolean
+name|deleteDirectory
+parameter_list|(
+name|File
+name|target
+parameter_list|)
+block|{
+if|if
+condition|(
+name|target
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
+name|String
+index|[]
+name|children
+init|=
+name|target
+operator|.
+name|list
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|children
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|boolean
+name|success
+init|=
+name|deleteDirectory
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|target
+argument_list|,
+name|children
+index|[
+name|i
+index|]
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+block|}
+comment|// The directory is now empty so delete it
+return|return
+name|target
+operator|.
+name|delete
+argument_list|()
+return|;
+block|}
+specifier|private
 name|void
 name|backupAction
 parameter_list|(
@@ -7292,26 +7371,83 @@ name|getCollection
 argument_list|()
 decl_stmt|;
 name|String
-name|target
+name|backuptarget
 init|=
 name|dialog
 operator|.
 name|getBackupTarget
 argument_list|()
 decl_stmt|;
-comment|//            // DWES add check here?
-comment|//            if(new File(target).exists()){
-comment|//                if (JOptionPane.showConfirmDialog(
-comment|//                        this,
-comment|//                        Messages.getString("CreateBackupDialog.6a") + " "+ target + " "+ Messages.getString("CreateBackupDialog.6b"),
-comment|//                        Messages.getString("CreateBackupDialog.6c"),
-comment|//                        JOptionPane.YES_NO_OPTION)
-comment|//                        == JOptionPane.NO_OPTION)
-comment|//                {
-comment|//                    new File(target).delete();
-comment|//                }
-comment|//
-comment|//            }
+comment|// DWES add check here?
+name|File
+name|target
+init|=
+operator|new
+name|File
+argument_list|(
+name|backuptarget
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|target
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|JOptionPane
+operator|.
+name|showConfirmDialog
+argument_list|(
+name|this
+argument_list|,
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6a"
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|backuptarget
+operator|+
+literal|" "
+operator|+
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6b"
+argument_list|)
+argument_list|,
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"CreateBackupDialog.6c"
+argument_list|)
+argument_list|,
+name|JOptionPane
+operator|.
+name|YES_NO_OPTION
+argument_list|)
+operator|==
+name|JOptionPane
+operator|.
+name|NO_OPTION
+condition|)
+block|{
+name|deleteDirectory
+argument_list|(
+name|target
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 try|try
 block|{
 name|Backup
@@ -7338,7 +7474,7 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
-name|target
+name|backuptarget
 argument_list|,
 name|XmldbURI
 operator|.
