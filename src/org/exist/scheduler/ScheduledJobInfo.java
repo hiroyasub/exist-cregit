@@ -224,18 +224,6 @@ name|getPreviousFireTime
 argument_list|()
 return|;
 block|}
-specifier|public
-name|Date
-name|getPreviousFireTime
-parameter_list|()
-block|{
-return|return
-name|trigger
-operator|.
-name|getPreviousFireTime
-argument_list|()
-return|;
-block|}
 comment|/** 	 * Get the Time the Job will Next be Fired 	 *  	 * @retun the time the Job will Next be Fired, or null if the job wont fire again 	 */
 specifier|public
 name|Date
