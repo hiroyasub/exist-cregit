@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2006 The eXist team  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -49,6 +53,10 @@ name|SchedulerException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Information about a Scheduled Job  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -66,7 +74,7 @@ name|trigger
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -75,7 +83,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -83,7 +91,7 @@ name|TRIGGER_STATE_NONE
 init|=
 literal|0
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -91,7 +99,7 @@ name|TRIGGER_STATE_NORMAL
 init|=
 literal|1
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -99,7 +107,7 @@ name|TRIGGER_STATE_PAUSED
 init|=
 literal|2
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -107,7 +115,7 @@ name|TRIGGER_STATE_BLOCKED
 init|=
 literal|3
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -138,6 +146,7 @@ operator|=
 name|trigger
 expr_stmt|;
 block|}
+comment|/** 	 * Get the Job's Name 	 *  	 * @return the Job's Name 	 */
 specifier|public
 name|String
 name|getName
@@ -150,6 +159,7 @@ name|getJobName
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the Job's Group 	 *  	 * @return the Job's Group 	 */
 specifier|public
 name|String
 name|getGroup
@@ -162,6 +172,7 @@ name|getJobGroup
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the Name of the Job's Trigger 	 *  	 * @return the Name of the Job's Trigger 	 */
 specifier|public
 name|String
 name|getTriggerName
@@ -174,6 +185,7 @@ name|getName
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the Start time of the Job 	 *  	 * @retun the Start time of the Job 	 */
 specifier|public
 name|Date
 name|getStartTime
@@ -186,6 +198,7 @@ name|getStartTime
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the End time of the Job 	 *  	 * @retun the End time of the Job, or null of the job is Scheduled forever 	 */
 specifier|public
 name|Date
 name|getEndTime
@@ -195,6 +208,19 @@ return|return
 name|trigger
 operator|.
 name|getEndTime
+argument_list|()
+return|;
+block|}
+comment|/** 	 * Get the Previous Fired time of the Job 	 *  	 * @retun the time the Job was Previously Fired, or null if the job hasnt fired yet 	 */
+specifier|public
+name|Date
+name|getPreviousFireTime
+parameter_list|()
+block|{
+return|return
+name|trigger
+operator|.
+name|getPreviousFireTime
 argument_list|()
 return|;
 block|}
@@ -210,6 +236,7 @@ name|getPreviousFireTime
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the Time the Job will Next be Fired 	 *  	 * @retun the time the Job will Next be Fired, or null if the job wont fire again 	 */
 specifier|public
 name|Date
 name|getNextFireTime
@@ -222,6 +249,7 @@ name|getNextFireTime
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the Final Time the Job will be Fired 	 *  	 * @retun the time the Job will be Fired for the Final time, or null of the job is Scheduled forever 	 */
 specifier|public
 name|Date
 name|getFinalFireTime
@@ -234,6 +262,7 @@ name|getNextFireTime
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Get the State of the Job's Trigger 	 *  	 * @return the TRIGGER_STATE_* 	 */
 specifier|public
 name|int
 name|getTriggerState
