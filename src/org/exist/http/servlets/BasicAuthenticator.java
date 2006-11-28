@@ -51,6 +51,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpSession
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -106,6 +118,18 @@ operator|.
 name|util
 operator|.
 name|Base64Decoder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -167,6 +191,54 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//get the user from the session if possible
+name|HttpSession
+name|session
+init|=
+name|request
+operator|.
+name|getSession
+argument_list|()
+decl_stmt|;
+name|User
+name|user
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|session
+operator|!=
+literal|null
+condition|)
+block|{
+name|user
+operator|=
+operator|(
+name|User
+operator|)
+name|session
+operator|.
+name|getAttribute
+argument_list|(
+name|XQueryContext
+operator|.
+name|HTTP_SESSIONVAR_XMLDB_USER
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|user
+return|;
+block|}
+block|}
+comment|//get the credentials
 name|String
 name|credentials
 init|=
@@ -184,6 +256,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//prompt for credentials
 comment|//LOG.debug("Sending BASIC auth challenge.");
 name|sendChallenge
 argument_list|(
@@ -283,6 +356,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+comment|//authenticate the credentials
 name|SecurityManager
 name|secman
 init|=
@@ -291,16 +365,15 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
 name|user
-init|=
+operator|=
 name|secman
 operator|.
 name|getUser
 argument_list|(
 name|username
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|user
@@ -345,6 +418,27 @@ return|return
 literal|null
 return|;
 block|}
+comment|//store the user in the session
+if|if
+condition|(
+name|session
+operator|!=
+literal|null
+condition|)
+block|{
+name|session
+operator|.
+name|setAttribute
+argument_list|(
+name|XQueryContext
+operator|.
+name|HTTP_SESSIONVAR_XMLDB_USER
+argument_list|,
+name|user
+argument_list|)
+expr_stmt|;
+block|}
+comment|//return the authenicated user
 return|return
 name|user
 return|;
