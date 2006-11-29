@@ -7613,7 +7613,7 @@ name|setFileSelectionMode
 argument_list|(
 name|JFileChooser
 operator|.
-name|FILES_AND_DIRECTORIES
+name|FILES_ONLY
 argument_list|)
 expr_stmt|;
 name|chooser
