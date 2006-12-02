@@ -105,7 +105,7 @@ literal|"jline-%latest%"
 block|,
 literal|"log4j-%latest%"
 block|,
-literal|"resolver"
+literal|"resolver-%latest%"
 block|,
 literal|"xmldb"
 block|,
