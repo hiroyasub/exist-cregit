@@ -653,6 +653,15 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|&&
+name|proxy
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|TEXT_NODE
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
@@ -706,6 +715,15 @@ name|references
 index|[
 name|p
 index|]
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|TEXT_NODE
+operator|&&
+name|proxy
 operator|.
 name|getNodeType
 argument_list|()
