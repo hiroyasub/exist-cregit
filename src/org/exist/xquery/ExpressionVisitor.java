@@ -9,6 +9,20 @@ name|xquery
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|ExtFulltext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Defines a visitor to be used for traversing and analyzing the  * expression tree.  *   * @author wolf  *  */
 end_comment
@@ -36,6 +50,23 @@ name|PathExpr
 name|expression
 parameter_list|)
 function_decl|;
+comment|/** Found a LocationStep */
+specifier|public
+name|void
+name|visitLocationStep
+parameter_list|(
+name|LocationStep
+name|locationStep
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|visitPredicate
+parameter_list|(
+name|Predicate
+name|predicate
+parameter_list|)
+function_decl|;
 comment|/** Found a CastExpression */
 specifier|public
 name|void
@@ -43,6 +74,13 @@ name|visitCastExpr
 parameter_list|(
 name|CastExpression
 name|expression
+parameter_list|)
+function_decl|;
+name|void
+name|visitFtExpression
+parameter_list|(
+name|ExtFulltext
+name|fulltext
 parameter_list|)
 function_decl|;
 block|}

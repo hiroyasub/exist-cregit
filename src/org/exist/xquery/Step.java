@@ -757,6 +757,15 @@ operator|=
 name|test
 expr_stmt|;
 block|}
+specifier|public
+name|NodeTest
+name|getTest
+parameter_list|()
+block|{
+return|return
+name|test
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
