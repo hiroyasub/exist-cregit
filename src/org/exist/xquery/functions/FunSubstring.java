@@ -842,13 +842,14 @@ return|;
 comment|//if the start position extends beyond $sourceString return EMPTY_STRING
 try|try
 block|{
+comment|//fn:substring("he",2) must return "e"
 if|if
 condition|(
 name|startPosition
 operator|.
 name|getInt
 argument_list|()
-operator|>=
+operator|>
 name|stringLength
 condition|)
 return|return
