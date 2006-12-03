@@ -984,8 +984,6 @@ argument_list|()
 argument_list|,
 name|nodes
 argument_list|,
-literal|null
-argument_list|,
 operator|(
 name|String
 operator|)
