@@ -370,6 +370,33 @@ argument_list|(
 literal|"<j2se version=\"1.4+\"/>"
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"<jar href=\""
+operator|+
+name|jnlpFiles
+operator|.
+name|getMainJar
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"\" size=\""
+operator|+
+name|jnlpFiles
+operator|.
+name|getMainJar
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|"\"  main=\"true\" />"
+argument_list|)
+expr_stmt|;
 name|File
 name|coreJars
 index|[]
@@ -428,33 +455,6 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"<jar href=\""
-operator|+
-name|jnlpFiles
-operator|.
-name|getMainJar
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"\" size=\""
-operator|+
-name|jnlpFiles
-operator|.
-name|getMainJar
-argument_list|()
-operator|.
-name|length
-argument_list|()
-operator|+
-literal|"\"  main=\"true\" />"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
 literal|"</resources>"
 argument_list|)
 expr_stmt|;
@@ -474,6 +474,13 @@ operator|+
 name|startUrl
 operator|+
 literal|"</argument>"
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"<argument>--no-embedded-mode</argument>"
 argument_list|)
 expr_stmt|;
 name|out

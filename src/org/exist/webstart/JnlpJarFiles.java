@@ -91,7 +91,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"antlr-%latest%"
+literal|"xmldb"
+block|,
+literal|"xmlrpc-%latest%-patched"
 block|,
 literal|"commons-pool-%latest%"
 block|,
@@ -99,17 +101,9 @@ literal|"excalibur-cli-%latest%"
 block|,
 literal|"jEdit-syntax"
 block|,
-literal|"jgroups-all"
-block|,
 literal|"jline-%latest%"
 block|,
 literal|"log4j-%latest%"
-block|,
-literal|"resolver-%latest%"
-block|,
-literal|"xmldb"
-block|,
-literal|"xmlrpc-%latest%-patched"
 block|}
 decl_stmt|;
 comment|// Resolves jar file patterns from jars[].
