@@ -383,6 +383,10 @@ name|ZERO_OR_MORE
 argument_list|)
 argument_list|,
 literal|true
+argument_list|,
+literal|"This function is eXist-specific and should not be in the standard functions namespace. Please "
+operator|+
+literal|"use text:match-all instead."
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -979,6 +983,8 @@ name|getDocumentSet
 argument_list|()
 argument_list|,
 name|nodes
+argument_list|,
+literal|null
 argument_list|,
 operator|(
 name|String
