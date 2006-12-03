@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExtDoctype.java 4403 2006-09-27 12:27:37Z wolfgang_m $  */
 end_comment
 
 begin_package
@@ -12,6 +12,8 @@ operator|.
 name|xquery
 operator|.
 name|functions
+operator|.
+name|util
 package|;
 end_package
 
@@ -270,7 +272,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ExtDoctype
+name|FunDoctype
 extends|extends
 name|Function
 block|{
@@ -288,9 +290,13 @@ name|QName
 argument_list|(
 literal|"doctype"
 argument_list|,
-name|Function
+name|UtilModule
 operator|.
-name|BUILTIN_FUNCTION_NS
+name|NAMESPACE_URI
+argument_list|,
+name|UtilModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the document nodes of the documents whose DOCTYPE is given by $a."
@@ -310,7 +316,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|)
-block|, 			}
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -324,14 +330,12 @@ operator|.
 name|ZERO_OR_MORE
 argument_list|)
 argument_list|,
-literal|"This function is eXist-specific and should not be in the standard functions namespace. Please "
-operator|+
-literal|"use util:doctype instead."
+literal|true
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|ExtDoctype
+name|FunDoctype
 parameter_list|(
 name|XQueryContext
 name|context
