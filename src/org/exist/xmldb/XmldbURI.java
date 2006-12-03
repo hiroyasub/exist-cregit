@@ -186,7 +186,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|class
 argument_list|)
