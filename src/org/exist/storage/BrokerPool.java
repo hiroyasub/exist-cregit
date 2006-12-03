@@ -1114,14 +1114,6 @@ specifier|private
 name|String
 name|instanceName
 decl_stmt|;
-comment|/** 	 *<code>true</code> if the database instance is not yet initialized 	 */
-comment|//TODO : let's be positive and rename it as initialized ?
-specifier|private
-name|boolean
-name|initializing
-init|=
-literal|true
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -1262,13 +1254,6 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//time the last major sync occurred
-specifier|private
-name|Sync
-name|sync
-init|=
-literal|null
-decl_stmt|;
-comment|//the Sync Job
 comment|/** 	 * The listener that is notified when the database instance shuts down. 	 */
 specifier|private
 name|ShutdownListener
