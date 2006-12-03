@@ -209,18 +209,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    /**
-comment|//     *  Check wether exist runs in Servlet container (as war file).
-comment|//     * @return TRUE if exist runs in servlet container.
-comment|//     */
-comment|//    public boolean isInWarFile(){
-comment|//
-comment|//        boolean retVal =true;
-comment|//        if( new File(existHome, "lib/core").isDirectory() ) {
-comment|//            retVal=false;
-comment|//        }
-comment|//        return retVal;
-comment|//    }
 specifier|public
 name|File
 name|getWebappFolder

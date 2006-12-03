@@ -203,7 +203,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Creates a new instance of JnlpJarFiles      *       * @param jnlpHelper      */
+comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param jnlpHelper      */
 specifier|public
 name|JnlpJarFiles
 parameter_list|(
@@ -328,7 +328,7 @@ operator|=
 name|mainJar
 expr_stmt|;
 block|}
-comment|/**      *  Get File reference of associated jar-file.      * @param name       * @return File reference to resource.      */
+comment|/**      *  Get File reference of associated jar-file.      * @param name      * @return File reference to resource.      */
 specifier|public
 name|File
 name|getFile
