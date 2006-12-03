@@ -758,6 +758,7 @@ init|=
 operator|(
 name|int
 operator|)
+operator|(
 name|duration
 operator|.
 name|getTimeInMillis
@@ -771,8 +772,9 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 argument_list|)
-operator|*
-literal|1000
+operator|/
+literal|1000L
+operator|)
 decl_stmt|;
 operator|(
 operator|(
