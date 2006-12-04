@@ -216,10 +216,6 @@ import|;
 end_import
 
 begin_comment
-comment|// import sun.security.action.GetLongAction;
-end_comment
-
-begin_comment
 comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
@@ -478,6 +474,23 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//could probably be detected by the parser
+if|if
+condition|(
+name|varName
+operator|.
+name|equals
+argument_list|(
+name|positionalVariable
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XQST0089: bound variable and positional variable have the same name"
+argument_list|)
+throw|;
 name|LocalVariable
 name|posVar
 init|=
