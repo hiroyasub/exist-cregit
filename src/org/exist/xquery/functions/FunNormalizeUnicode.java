@@ -222,7 +222,7 @@ specifier|public
 class|class
 name|FunNormalizeUnicode
 extends|extends
-name|CollatingFunction
+name|Function
 block|{
 specifier|private
 name|String
@@ -403,17 +403,6 @@ argument_list|,
 name|signature
 argument_list|)
 expr_stmt|;
-block|}
-specifier|public
-name|int
-name|returnsType
-parameter_list|()
-block|{
-return|return
-name|Type
-operator|.
-name|BOOLEAN
-return|;
 block|}
 specifier|public
 name|Sequence
