@@ -488,9 +488,6 @@ argument_list|(
 name|LocalCollection
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -4384,10 +4381,37 @@ name|equals
 argument_list|(
 literal|"text/html"
 argument_list|)
+operator|||
+name|res
+operator|.
+name|getId
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|".htm"
+argument_list|)
+operator|||
+name|res
+operator|.
+name|getId
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|".html"
+argument_list|)
 condition|)
 block|{
 try|try
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Converting HTML to XML using NekoHTML parser."
+argument_list|)
+expr_stmt|;
 name|Class
 name|clazz
 init|=
@@ -4425,13 +4449,35 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|info
+name|error
 argument_list|(
-literal|"nekohtml parser not found. If you want to parse non-wellformed HTML files, put nekohtml.jar into "
+literal|"Error while involing NekoHTML parser. ("
 operator|+
-literal|"directory lib/optional/"
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"). If you want to parse non-wellformed HTML files, put "
+operator|+
+literal|"nekohtml.jar into directory 'lib/optional'."
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+literal|"NekoHTML parser error"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
