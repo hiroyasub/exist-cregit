@@ -816,7 +816,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  * @contributor Jose Maria Fernandez  *   * @serial 20061128T11:49:00  *   * The SOAPServer allows Web Services to be written in XQuery; it translates a   * SOAP Request to an XQuery function call and then translates the result of the  * XQuery function to a SOAP Response.  *   * This is done by managing an internal representation of an XQWS (XQuery Web Service),  * through this it is able to provide enough information to an XSLT proccessor to  * generate WSDL and human readable descriptions of the web service and individual  * functions.  *   * XSLT's are provided for document-oriented Web Service's and are located  * in $EXIST_HOME/tools/SOAPServer  *   */
+comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author Jose Maria Fernandez (contributor)  *   * @serial 20061128T11:49:00  *   * The SOAPServer allows Web Services to be written in XQuery; it translates a   * SOAP Request to an XQuery function call and then translates the result of the  * XQuery function to a SOAP Response.  *   * This is done by managing an internal representation of an XQWS (XQuery Web Service),  * through this it is able to provide enough information to an XSLT proccessor to  * generate WSDL and human readable descriptions of the web service and individual  * functions.  *   * XSLT's are provided for document-oriented Web Service's and are located  * in $EXIST_HOME/tools/SOAPServer  *   */
 end_comment
 
 begin_class

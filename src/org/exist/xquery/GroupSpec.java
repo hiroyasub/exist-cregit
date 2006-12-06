@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A XQuery grouping specifier as specified in an "group by" clause (based on   * {@link org.exist.xquery.OrderSpec}).   *    * Used by {@link org.exist.xquery.BindingEpression}.    *  *     * @author boris   */
+comment|/**   * A XQuery grouping specifier as specified in an "group by" clause (based on   * {@link org.exist.xquery.OrderSpec}).   *    * Used by {@link org.exist.xquery.BindingExpression}.    *  *     * @author boris   */
 end_comment
 
 begin_class

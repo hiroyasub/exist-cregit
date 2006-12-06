@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An arrayList that containts a GroupedValueSequence for each group.   * Groups are specified by the group specs of a "group by" clause. Used by    * {@link org.exist.xquery.value.ForExpr}.   *   *  WARNING : don't use except for group by clause    *     * @author Boris Verhaegen (boris.verhaegen@gmail.com)   */
+comment|/**   * An arrayList that containts a GroupedValueSequence for each group.   * Groups are specified by the group specs of a "group by" clause. Used by    * {@link org.exist.xquery.ForExpr} et al.   *   *  WARNING : don't use except for group by clause    *     * @author Boris Verhaegen (boris.verhaegen@gmail.com)   */
 end_comment
 
 begin_class

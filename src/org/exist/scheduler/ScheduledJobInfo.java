@@ -185,7 +185,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the Start time of the Job 	 *  	 * @retun the Start time of the Job 	 */
+comment|/** 	 * Get the Start time of the Job 	 *  	 * @return the Start time of the Job 	 */
 specifier|public
 name|Date
 name|getStartTime
@@ -198,7 +198,7 @@ name|getStartTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the End time of the Job 	 *  	 * @retun the End time of the Job, or null of the job is Scheduled forever 	 */
+comment|/** 	 * Get the End time of the Job 	 *  	 * @return the End time of the Job, or null of the job is Scheduled forever 	 */
 specifier|public
 name|Date
 name|getEndTime
@@ -211,7 +211,7 @@ name|getEndTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the Previous Fired time of the Job 	 *  	 * @retun the time the Job was Previously Fired, or null if the job hasnt fired yet 	 */
+comment|/** 	 * Get the Previous Fired time of the Job 	 *  	 * @return the time the Job was Previously Fired, or null if the job hasnt fired yet 	 */
 specifier|public
 name|Date
 name|getPreviousFireTime
@@ -224,7 +224,7 @@ name|getPreviousFireTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the Time the Job will Next be Fired 	 *  	 * @retun the time the Job will Next be Fired, or null if the job wont fire again 	 */
+comment|/** 	 * Get the Time the Job will Next be Fired 	 *  	 * @return the time the Job will Next be Fired, or null if the job wont fire again 	 */
 specifier|public
 name|Date
 name|getNextFireTime
@@ -237,7 +237,7 @@ name|getNextFireTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the Final Time the Job will be Fired 	 *  	 * @retun the time the Job will be Fired for the Final time, or null of the job is Scheduled forever 	 */
+comment|/** 	 * Get the Final Time the Job will be Fired 	 *  	 * @return the time the Job will be Fired for the Final time, or null of the job is Scheduled forever 	 */
 specifier|public
 name|Date
 name|getFinalFireTime
