@@ -4175,6 +4175,7 @@ name|debug
 argument_list|()
 expr_stmt|;
 comment|//Notify all running tasks that we are shutting down
+comment|//Shutdown the scheduler
 name|scheduler
 operator|.
 name|shutdown
@@ -4183,6 +4184,33 @@ operator|!
 name|killed
 argument_list|)
 expr_stmt|;
+comment|//asynchronous
+while|while
+condition|(
+operator|!
+name|scheduler
+operator|.
+name|isShutdown
+argument_list|()
+condition|)
+comment|//wait for shutdown
+block|{
+try|try
+block|{
+name|wait
+argument_list|(
+literal|250
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+block|}
+block|}
 comment|//Notify all running XQueries that we are shutting down
 name|xQueryMonitor
 operator|.
