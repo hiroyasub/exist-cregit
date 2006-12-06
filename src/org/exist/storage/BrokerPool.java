@@ -3888,6 +3888,13 @@ name|syncEvent
 parameter_list|)
 block|{
 comment|//TOUNDERSTAND (pb) : synchronized, so... "schedules" or, rather, "executes" ? "schedules" (WM)
+if|if
+condition|(
+name|status
+operator|==
+name|SHUTDOWN
+condition|)
+return|return;
 synchronized|synchronized
 init|(
 name|this
@@ -4157,7 +4164,6 @@ expr_stmt|;
 block|}
 comment|/** 	 * Shuts downs the database instance 	 * @param killed<code>true</code> when the JVM is (cleanly) exiting 	 */
 specifier|public
-specifier|synchronized
 name|void
 name|shutdown
 parameter_list|(
@@ -4180,8 +4186,7 @@ name|scheduler
 operator|.
 name|shutdown
 argument_list|(
-operator|!
-name|killed
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//asynchronous
