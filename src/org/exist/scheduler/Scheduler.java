@@ -314,18 +314,23 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Shutdown the running Scheduler 	 */
+comment|/** 	 * Shutdown the running Scheduler 	 *  	 * Asynchronous method. use isShutdown() to determine if the 	 * Scheduler has Shutdown 	 */
 specifier|public
 name|void
 name|shutdown
-parameter_list|()
+parameter_list|(
+name|boolean
+name|waitForJobsToComplete
+parameter_list|)
 block|{
 try|try
 block|{
 name|scheduler
 operator|.
 name|shutdown
-argument_list|()
+argument_list|(
+name|waitForJobsToComplete
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -334,7 +339,33 @@ name|SchedulerException
 name|se
 parameter_list|)
 block|{
-comment|//TODO: something here!?!
+comment|//TODO: LOG something here!?!
+block|}
+block|}
+specifier|public
+name|boolean
+name|isShutdown
+parameter_list|()
+block|{
+try|try
+block|{
+return|return
+name|scheduler
+operator|.
+name|isShutdown
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|SchedulerException
+name|se
+parameter_list|)
+block|{
+comment|//TODO: LOG something here!?!
+return|return
+literal|false
+return|;
 block|}
 block|}
 comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param startNow	true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 *  	 * @return	true if thejob was successfully scheduled, false otherwise 	 */

@@ -4178,7 +4178,10 @@ comment|//Notify all running tasks that we are shutting down
 name|scheduler
 operator|.
 name|shutdown
-argument_list|()
+argument_list|(
+operator|!
+name|killed
+argument_list|)
 expr_stmt|;
 comment|//Notify all running XQueries that we are shutting down
 name|xQueryMonitor
