@@ -1465,29 +1465,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|LogException
-argument_list|(
-literal|"Failed to open new journal: "
-operator|+
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|". It might be used by another process."
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 name|inFilePos
 operator|=
@@ -1544,11 +1521,6 @@ name|files
 index|[]
 parameter_list|)
 block|{
-name|File
-name|last
-init|=
-literal|null
-decl_stmt|;
 name|int
 name|max
 init|=
@@ -1629,13 +1601,7 @@ name|max
 operator|=
 name|num
 expr_stmt|;
-name|last
-operator|=
-name|files
-index|[
-name|i
-index|]
-expr_stmt|;
+comment|/*File last = files[i];*/
 block|}
 block|}
 return|return

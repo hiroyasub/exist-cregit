@@ -38,12 +38,7 @@ name|DATA
 init|=
 literal|1
 decl_stmt|;
-specifier|private
-name|int
-name|type
-init|=
-literal|0
-decl_stmt|;
+comment|//private int type = 0;
 specifier|private
 name|int
 name|size
