@@ -399,7 +399,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
-if|if
+if|else if
 condition|(
 name|args
 index|[
