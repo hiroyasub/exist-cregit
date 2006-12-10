@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -107,7 +107,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -150,20 +150,6 @@ operator|.
 name|value
 operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
 import|;
 end_import
 
@@ -481,11 +467,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+comment|//result = StringValue.EMPTY_STRING;
+comment|//Despite : fn:string($arg as item()?) as xs:string in the specs
 name|result
 operator|=
-name|StringValue
+name|Sequence
 operator|.
-name|EMPTY_STRING
+name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 name|result
