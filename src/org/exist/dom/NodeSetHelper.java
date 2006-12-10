@@ -1313,6 +1313,22 @@ condition|(
 name|cmp
 operator|>
 literal|0
+operator|&&
+name|candidate
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|<=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getTreeLevel
+argument_list|()
 condition|)
 block|{
 comment|// wrong parent: proceed
@@ -1345,8 +1361,31 @@ condition|(
 name|cmp
 operator|<
 literal|0
+operator|||
+operator|(
+name|cmp
+operator|>
+literal|0
+operator|&&
+name|candidate
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|>=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|)
 condition|)
 block|{
+comment|//Why did I have to invert the test ? ----------------------------^^^^^
 comment|// wrong parent: proceed
 name|firstCandidate
 operator|=
