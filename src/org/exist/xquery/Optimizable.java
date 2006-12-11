@@ -66,7 +66,13 @@ name|Expression
 block|{
 name|boolean
 name|canOptimize
-parameter_list|()
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
+parameter_list|)
 function_decl|;
 name|NodeSet
 name|preSelect

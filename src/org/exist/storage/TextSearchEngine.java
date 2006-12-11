@@ -175,6 +175,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -867,6 +879,9 @@ parameter_list|,
 name|StoredNode
 name|parent
 parameter_list|,
+name|boolean
+name|idxAsQName
+parameter_list|,
 name|String
 name|text
 parameter_list|)
@@ -882,6 +897,9 @@ name|idx
 parameter_list|,
 name|AttrImpl
 name|text
+parameter_list|,
+name|boolean
+name|idxAsQName
 parameter_list|)
 function_decl|;
 specifier|public
@@ -933,6 +951,9 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|,
+name|QName
+name|qname
+parameter_list|,
 name|String
 name|expr
 parameter_list|,
@@ -951,6 +972,8 @@ name|docs
 argument_list|,
 name|contextSet
 argument_list|,
+name|qname
+argument_list|,
 name|expr
 argument_list|,
 name|type
@@ -959,7 +982,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes.  	 *  	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 */
+comment|/** 	 * For each of the given search terms and each of the documents in the 	 * document set, return a node-set of matching nodes. 	 * 	 * The type-argument indicates if search terms should be compared using 	 * a regular expression. Valid values are DBBroker.MATCH_EXACT or 	 * DBBroker.MATCH_REGEXP. 	 */
 specifier|public
 specifier|abstract
 name|NodeSet
@@ -973,6 +996,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|contextSet
+parameter_list|,
+name|QName
+name|qname
 parameter_list|,
 name|String
 name|expr
@@ -999,6 +1025,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|contextSet
+parameter_list|,
+name|QName
+name|qname
 parameter_list|,
 name|TermMatcher
 name|matcher

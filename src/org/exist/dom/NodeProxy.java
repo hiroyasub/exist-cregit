@@ -1771,7 +1771,6 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
-comment|//          System.out.println("NodeProxy.copyContext: " + next.getNode().debugContext());
 name|next
 operator|=
 name|next
@@ -1780,6 +1779,7 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
+comment|//        System.out.println(debugContext());
 block|}
 specifier|public
 name|void

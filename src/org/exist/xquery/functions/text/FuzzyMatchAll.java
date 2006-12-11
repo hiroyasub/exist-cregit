@@ -508,6 +508,8 @@ argument_list|()
 argument_list|,
 name|nodes
 argument_list|,
+literal|null
+argument_list|,
 name|matcher
 argument_list|,
 name|term

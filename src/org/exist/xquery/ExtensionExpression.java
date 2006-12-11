@@ -443,9 +443,6 @@ argument_list|)
 decl_stmt|;
 name|dumper
 operator|.
-name|nl
-argument_list|()
-operator|.
 name|display
 argument_list|(
 literal|"(# "
@@ -503,20 +500,17 @@ name|display
 argument_list|(
 literal|'{'
 argument_list|)
-operator|.
-name|nl
-argument_list|()
 expr_stmt|;
 name|dumper
 operator|.
 name|startIndent
 argument_list|()
 expr_stmt|;
-name|dumper
+name|innerExpression
 operator|.
 name|dump
 argument_list|(
-name|innerExpression
+name|dumper
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -525,6 +519,9 @@ name|endIndent
 argument_list|()
 expr_stmt|;
 name|dumper
+operator|.
+name|nl
+argument_list|()
 operator|.
 name|display
 argument_list|(
