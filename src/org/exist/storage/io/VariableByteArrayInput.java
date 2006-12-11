@@ -758,21 +758,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|count
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|os
 operator|.
 name|buf
@@ -780,13 +765,19 @@ operator|.
 name|append
 argument_list|(
 name|data
-index|[
+argument_list|,
 name|position
-operator|++
-index|]
+argument_list|,
+name|count
 argument_list|)
 expr_stmt|;
-block|}
+name|position
+operator|+=
+name|count
+expr_stmt|;
+comment|//        for (int i = 0; i< count; i++) {
+comment|//    		os.buf.append(data[position++]);
+comment|//    	}
 block|}
 specifier|public
 name|void
