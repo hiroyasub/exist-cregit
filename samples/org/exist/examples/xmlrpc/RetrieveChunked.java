@@ -101,6 +101,18 @@ name|XmlRpcException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Example code for demonstrating XMLRPC methods getDocumentData  * and getNextChunk. Please run 'admin-examples setup' first, this will  * download the required mondial.xml document.  *  * @author dizzzz  */
 end_comment
@@ -121,16 +133,48 @@ index|[]
 name|args
 parameter_list|)
 block|{
+comment|// Download file (ohoh not in spec) using xmldb url
 name|String
+name|xmldbUri
+init|=
+literal|"xmldb:exist://guest:guest@localhost:8080/exist/xmlrpc/db/mondial/mondial.xml"
+decl_stmt|;
+name|XmldbURI
 name|uri
 init|=
-literal|"http://guest:guest@localhost:8080/exist/xmlrpc"
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|xmldbUri
+argument_list|)
+decl_stmt|;
+comment|// Construct url for xmlrpc, without collections / document
+comment|// username/password yet hardcoded, need to update XmldbUri fir this
+name|String
+name|url
+init|=
+literal|"http://guest:guest@"
+operator|+
+name|uri
+operator|.
+name|getAuthority
+argument_list|()
+operator|+
+name|uri
+operator|.
+name|getContext
+argument_list|()
 decl_stmt|;
 name|String
 name|path
 init|=
-literal|"/db/mondial/mondial.xml"
+name|uri
+operator|.
+name|getCollectionPath
+argument_list|()
 decl_stmt|;
+comment|// Hardcoded yet too
 name|String
 name|filename
 init|=
@@ -152,7 +196,7 @@ init|=
 operator|new
 name|XmlRpcClient
 argument_list|(
-name|uri
+name|url
 argument_list|)
 decl_stmt|;
 comment|// Setup xml serializer
