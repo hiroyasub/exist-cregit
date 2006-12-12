@@ -108,7 +108,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|RetrieveChuncked
+name|RetrieveChunked
 block|{
 comment|/**      * @param args ignored command line arguments      */
 specifier|public
