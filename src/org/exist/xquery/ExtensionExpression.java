@@ -581,6 +581,22 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setPrimaryAxis
+parameter_list|(
+name|int
+name|axis
+parameter_list|)
+block|{
+name|innerExpression
+operator|.
+name|setPrimaryAxis
+argument_list|(
+name|axis
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
