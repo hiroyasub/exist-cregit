@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
+name|StoredNode
 import|;
 end_import
 
@@ -67,9 +67,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|numbering
 operator|.
-name|StoredNode
+name|NodeId
 import|;
 end_import
 
@@ -140,18 +140,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|NodeId
 import|;
 end_import
 
