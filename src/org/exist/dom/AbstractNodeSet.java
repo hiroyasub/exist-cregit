@@ -1533,7 +1533,7 @@ name|equals
 argument_list|(
 name|l
 operator|.
-name|getNode
+name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
