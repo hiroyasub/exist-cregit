@@ -1902,34 +1902,7 @@ argument_list|,
 name|token
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Using qname: "
-operator|+
-name|qname
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|key
-operator|.
-name|dump
-argument_list|()
-operator|+
-literal|" '"
-operator|+
-name|key
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
+comment|//                LOG.debug("Using qname: " + qname.toString() + " " + key.dump() + " '" + key.toString() + "'");
 block|}
 specifier|final
 name|Lock
