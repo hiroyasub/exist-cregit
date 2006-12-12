@@ -651,9 +651,6 @@ block|}
 block|}
 try|try
 block|{
-name|Sequence
-name|result
-init|=
 name|xquery
 operator|.
 name|execute
@@ -662,7 +659,7 @@ name|compiled
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 finally|finally
 block|{

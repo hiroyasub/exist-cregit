@@ -1210,14 +1210,7 @@ operator|.
 name|length
 condition|)
 block|{
-name|Pattern
-name|term
-init|=
-name|patterns
-index|[
-name|j
-index|]
-decl_stmt|;
+comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1403,14 +1396,7 @@ name|j
 operator|=
 literal|0
 expr_stmt|;
-name|Pattern
-name|term
-init|=
-name|patterns
-index|[
-name|j
-index|]
-decl_stmt|;
+comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1426,14 +1412,7 @@ continue|continue;
 block|}
 else|else
 block|{
-name|Pattern
-name|term
-init|=
-name|patterns
-index|[
-name|j
-index|]
-decl_stmt|;
+comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1463,14 +1442,7 @@ name|j
 operator|=
 literal|1
 expr_stmt|;
-name|Pattern
-name|term
-init|=
-name|patterns
-index|[
-name|j
-index|]
-decl_stmt|;
+comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1491,14 +1463,7 @@ name|j
 operator|=
 literal|0
 expr_stmt|;
-name|Pattern
-name|term
-init|=
-name|patterns
-index|[
-name|j
-index|]
-decl_stmt|;
+comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers

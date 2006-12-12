@@ -1393,21 +1393,7 @@ argument_list|,
 name|attrs
 argument_list|)
 decl_stmt|;
-name|String
-name|g_dn
-init|=
-name|groupByIdPatternFormat
-operator|.
-name|format
-argument_list|(
-operator|new
-name|String
-index|[]
-block|{
-name|gid
-block|}
-argument_list|)
-decl_stmt|;
+comment|//String g_dn = groupByIdPatternFormat.format(new String[] { gid });
 name|LOG
 operator|.
 name|info

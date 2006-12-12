@@ -776,30 +776,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|VALIDATION_ENABLED
-init|=
-literal|0
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|VALIDATION_AUTO
-init|=
-literal|1
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|VALIDATION_DISABLED
-init|=
-literal|2
-decl_stmt|;
+comment|//private final static int VALIDATION_ENABLED = 0;
+comment|//private final static int VALIDATION_AUTO = 1;
+comment|//private final static int VALIDATION_DISABLED = 2;
 specifier|public
 specifier|final
 specifier|static

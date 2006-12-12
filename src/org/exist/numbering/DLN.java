@@ -848,14 +848,7 @@ name|NodeId
 name|sibling
 parameter_list|)
 block|{
-name|DLN
-name|other
-init|=
-operator|(
-name|DLN
-operator|)
-name|sibling
-decl_stmt|;
+comment|//DLN other = (DLN) sibling;
 name|NodeId
 name|parent
 init|=

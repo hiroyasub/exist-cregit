@@ -640,9 +640,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|Configuration
-name|config
-init|=
+comment|/*Configuration config = */
 operator|new
 name|Configuration
 argument_list|(
@@ -651,7 +649,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
