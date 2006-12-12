@@ -1733,6 +1733,7 @@ operator|.
 name|realize
 argument_list|()
 expr_stmt|;
+comment|//                Sequence ancestors = outerNodeSet.selectAncestors(contextSet, true, getExpressionId());
 name|Sequence
 name|ancestors
 init|=

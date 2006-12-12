@@ -1066,27 +1066,9 @@ name|short
 name|nodeType
 parameter_list|)
 block|{
-if|if
-condition|(
-name|this
-operator|.
-name|nodeType
-operator|!=
-name|UNKNOWN_NODE_TYPE
-operator|&&
-name|this
-operator|.
-name|nodeType
-operator|!=
-name|nodeType
-condition|)
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Node type already affected"
-argument_list|)
-throw|;
+comment|//        if (this.nodeType != UNKNOWN_NODE_TYPE&& this.nodeType != nodeType)
+comment|//            throw new IllegalArgumentException("Node type already affected");
+comment|//            throw new IllegalArgumentException("Node type already affected");
 name|this
 operator|.
 name|nodeType

@@ -384,6 +384,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|newContext
+operator|.
+name|setContextStep
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Iterator
