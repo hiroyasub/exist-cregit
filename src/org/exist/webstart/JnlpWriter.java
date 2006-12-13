@@ -242,6 +242,12 @@ condition|(
 name|mainJar
 operator|==
 literal|null
+operator|||
+operator|!
+name|mainJar
+operator|.
+name|exists
+argument_list|()
 condition|)
 block|{
 name|response
@@ -291,6 +297,15 @@ name|i
 index|]
 operator|==
 literal|null
+operator|||
+operator|!
+name|coreJars
+index|[
+name|i
+index|]
+operator|.
+name|exists
+argument_list|()
 condition|)
 block|{
 name|response
@@ -677,6 +692,12 @@ condition|(
 name|localJarFile
 operator|==
 literal|null
+operator|||
+operator|!
+name|localJarFile
+operator|.
+name|exists
+argument_list|()
 condition|)
 block|{
 name|response
@@ -691,7 +712,7 @@ literal|"Jar file '"
 operator|+
 name|filename
 operator|+
-literal|"' could not be found."
+literal|"' not found."
 argument_list|)
 expr_stmt|;
 return|return;
@@ -993,6 +1014,36 @@ argument_list|,
 name|filename
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|imageFile
+operator|==
+literal|null
+operator|||
+operator|!
+name|imageFile
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_NOT_FOUND
+argument_list|,
+literal|"Image file '"
+operator|+
+name|filename
+operator|+
+literal|"' not found."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|response
 operator|.
 name|setContentLength
