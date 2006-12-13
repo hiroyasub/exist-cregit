@@ -262,7 +262,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|//Current Position in Enumeration
-comment|/** 		 * StringEnumeration Constructor 		 * @param strings[] 	an array of strings for the Enumeration 		 */
+comment|/** 		 * StringEnumeration Constructor 		 * @param strings 	an array of strings for the Enumeration 		 */
 name|StringEnumeration
 parameter_list|(
 name|String

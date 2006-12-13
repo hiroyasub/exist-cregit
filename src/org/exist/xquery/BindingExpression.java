@@ -910,7 +910,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/** 	 * Check all order specs to see if we can process them in 	 * one single step. In general, this is possible if all order  	 * expressions return nodes. 	 *  	 * @return 	 */
+comment|/** 	 * Check all order specs to see if we can process them in 	 * one single step. In general, this is possible if all order  	 * expressions return nodes. 	 *  	 * @return Whether or not the order specs can be processed in one signle step. 	 */
 specifier|protected
 name|boolean
 name|checkOrderSpecs

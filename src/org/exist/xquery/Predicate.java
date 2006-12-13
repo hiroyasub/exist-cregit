@@ -1074,7 +1074,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param contextSequence 	 * @param inner 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * @param contextSequence 	 * @param inner 	 * @return The result of the boolean evaluation of the predicate. 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|evalBoolean
@@ -1264,7 +1264,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param contextSequence 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * @param contextSequence 	 * @return The result of the node set evaluation of the predicate. 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|selectByNodeSet
@@ -1559,7 +1559,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param outerSequence 	 * @param contextSequence 	 * @param mode 	 * @param inner 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * @param outerSequence 	 * @param contextSequence 	 * @param mode 	 * @param inner 	 * @return The result of the positional evaluation of the predicate. 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|selectByPosition

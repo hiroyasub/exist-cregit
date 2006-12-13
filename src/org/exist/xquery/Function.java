@@ -765,7 +765,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Statically check an argument against the sequence type specified in 	 * the signature. 	 *  	 * @param expr 	 * @param type 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Statically check an argument against the sequence type specified in 	 * the signature. 	 *  	 * @param expr 	 * @param type 	 * @return The passed expression 	 * @throws XPathException 	 */
 specifier|protected
 name|Expression
 name|checkArgument

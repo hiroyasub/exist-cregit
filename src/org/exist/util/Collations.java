@@ -1304,7 +1304,7 @@ comment|// loop round to try again
 block|}
 comment|//End of copy
 block|}
-comment|/**      * @param lang      * @param strength      * @param decomposition      * @return      */
+comment|/**      * @param lang      * @param strength      * @param decomposition      * @return The collator      */
 specifier|private
 specifier|static
 name|Collator
@@ -1604,7 +1604,7 @@ return|return
 name|collator
 return|;
 block|}
-comment|/**      * @param lang      * @return      */
+comment|/**      * @param lang      * @return The locale      */
 specifier|private
 specifier|static
 name|Locale

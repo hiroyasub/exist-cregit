@@ -1332,39 +1332,9 @@ name|char
 operator|)
 literal|0x0F
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|char
-name|b00000111
-init|=
-operator|(
-name|char
-operator|)
-literal|0x07
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|char
-name|b00000011
-init|=
-operator|(
-name|char
-operator|)
-literal|0x03
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|char
-name|b00000001
-init|=
-operator|(
-name|char
-operator|)
-literal|0x01
-decl_stmt|;
+comment|//private final static char b00000111 = (char) 0x07;
+comment|//private final static char b00000011 = (char) 0x03;
+comment|//private final static char b00000001 = (char) 0x01;
 comment|/** 	 * Returns the length of the string encoded in UTF-8. 	 */
 specifier|public
 specifier|final
@@ -1392,9 +1362,8 @@ literal|0
 decl_stmt|;
 name|char
 name|ch
-decl_stmt|,
-name|sch
 decl_stmt|;
+comment|//char sch;
 for|for
 control|(
 name|int
@@ -1489,9 +1458,8 @@ literal|0
 decl_stmt|;
 name|char
 name|ch
-decl_stmt|,
-name|sch
 decl_stmt|;
+comment|//char sch;
 name|int
 name|end
 init|=

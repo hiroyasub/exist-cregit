@@ -388,7 +388,7 @@ return|return
 name|deps
 return|;
 block|}
-comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return      */
+comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return Whether or not we can optimize       */
 specifier|protected
 name|boolean
 name|preloadNodeSets

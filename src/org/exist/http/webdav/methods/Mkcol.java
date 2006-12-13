@@ -230,14 +230,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-name|String
-name|origPath
-init|=
-name|request
-operator|.
-name|getPathInfo
-argument_list|()
-decl_stmt|;
+comment|//String origPath = request.getPathInfo();
 if|if
 condition|(
 name|path

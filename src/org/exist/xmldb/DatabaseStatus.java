@@ -146,13 +146,7 @@ name|getId
 argument_list|()
 expr_stmt|;
 comment|// paths
-name|confPath
-operator|=
-name|conf
-operator|.
-name|getPath
-argument_list|()
-expr_stmt|;
+comment|//confPath = conf.getPath();
 name|dataDir
 operator|=
 operator|(

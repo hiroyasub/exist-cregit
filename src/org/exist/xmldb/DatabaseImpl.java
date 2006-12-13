@@ -673,7 +673,7 @@ name|xmldbURI
 argument_list|)
 throw|;
 block|}
-comment|/**      * @param xmldbURI      * @param user      * @param password      * @return      * @throws XMLDBException      */
+comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
 specifier|private
 name|Collection
 name|getLocalCollection
@@ -861,7 +861,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * @param xmldbURI      * @param user      * @param password      * @return      * @throws XMLDBException      */
+comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
 specifier|private
 name|Collection
 name|getRemoteCollection

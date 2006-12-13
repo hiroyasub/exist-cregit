@@ -704,7 +704,7 @@ operator|=
 name|nodes
 expr_stmt|;
 block|}
-comment|/** 	 * Evaluate the select expression. 	 *  	 * @param docs 	 * @return 	 * @throws PermissionDeniedException 	 * @throws EXistException 	 * @throws XPathException 	 */
+comment|/** 	 * Evaluate the select expression. 	 *  	 * @param docs 	 * @return The selected nodes. 	 * @throws PermissionDeniedException 	 * @throws EXistException 	 * @throws XPathException 	 */
 specifier|protected
 name|NodeList
 name|select
@@ -1081,7 +1081,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Acquire a lock on all documents processed by this modification. We have 	 * to avoid that node positions change during the operation. 	 * feature trigger_update : 	 * At the same time we leverage on the fact that it's called before  	 * database modification to call the eventual triggers.  	 * @param transaction 	 *            TODO 	 * @param nl 	 *  	 * @return 	 * @throws LockException 	 */
+comment|/** 	 * Acquire a lock on all documents processed by this modification. We have 	 * to avoid that node positions change during the operation. 	 * feature trigger_update : 	 * At the same time we leverage on the fact that it's called before  	 * database modification to call the eventual triggers.  	 * @param transaction 	 *            TODO 	 * @param nl 	 *  	 * @return The selected document nodes. 	 * @throws LockException 	 */
 specifier|protected
 specifier|final
 name|StoredNode

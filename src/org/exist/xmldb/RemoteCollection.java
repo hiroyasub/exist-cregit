@@ -1877,9 +1877,6 @@ return|return
 literal|null
 return|;
 comment|// resource does not exist!
-name|int
-name|p
-decl_stmt|;
 try|try
 block|{
 name|docUri
