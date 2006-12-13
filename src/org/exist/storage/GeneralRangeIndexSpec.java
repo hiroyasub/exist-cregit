@@ -158,7 +158,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/**      * Check if the path argument matches the path      * of this index spec.      *       * @param otherPath      * @return      */
+comment|/**      * Check if the path argument matches the path      * of this index spec.      *       * @param otherPath      * @return Whether or not the 2 paths match      */
 specifier|protected
 name|boolean
 name|matches

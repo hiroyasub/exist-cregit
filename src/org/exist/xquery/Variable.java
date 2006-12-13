@@ -634,6 +634,7 @@ name|ATOMIC
 argument_list|)
 condition|)
 block|{
+comment|//if(!Type.subTypeOf(value.getItemType(), Type.ATOMIC))ll
 if|if
 condition|(
 operator|!

@@ -265,7 +265,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Returns the previous entry found by scanning backwards from the current position.      *       * @return the previous entry      * @throws LogException if an entry could not be read due to an inconsistency on disk.      * @throws IOException       */
+comment|/**      * Returns the previous entry found by scanning backwards from the current position.      *       * @return the previous entry      * @throws LogException if an entry could not be read due to an inconsistency on disk.      * @throws LogException       */
 specifier|public
 name|Loggable
 name|previousEntry
@@ -455,7 +455,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Read a single entry.      *       * @return      * @throws LogException      */
+comment|/**      * Read a single entry.      *       * @return The entry      * @throws LogException      */
 specifier|private
 name|Loggable
 name|readEntry
@@ -781,7 +781,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Re-position the file position so it points to the start of the entry      * with the given LSN.      *       * @param lsn      * @throws IOException       */
+comment|/**      * Re-position the file position so it points to the start of the entry      * with the given LSN.      *       * @param lsn      * @throws LogException       */
 specifier|public
 name|void
 name|position

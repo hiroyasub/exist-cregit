@@ -770,7 +770,7 @@ name|nspecs
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns a map containing all prefix/namespace mappings declared in      * the index element.      *       * @param elem      * @return      */
+comment|/**      * Returns a map containing all prefix/namespace mappings declared in      * the index element.      *       * @param elem      * @return The namespaces map.      */
 specifier|private
 name|Map
 name|getNamespaceMap

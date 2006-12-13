@@ -587,7 +587,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @param collectionPath      * @return      * @throws CollectionConfigurationException      */
+comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @param collectionPath      * @return The collection configuration      * @throws CollectionConfigurationException      */
 specifier|protected
 name|CollectionConfiguration
 name|getConfiguration

@@ -76,7 +76,7 @@ parameter_list|)
 throws|throws
 name|LockException
 function_decl|;
-comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *   	 * @param mode 	 * @throws LockException 	 */
+comment|/** 	 * Attempt to acquire a lock for read or write. This method 	 * will fail immediately if the lock cannot be acquired. 	 *   	 * @param mode 	 */
 specifier|public
 name|boolean
 name|attempt

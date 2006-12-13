@@ -1089,7 +1089,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/** 	 * Append a value to the current page. 	 *  	 * This method is called when storing a new document. Each writing thread 	 * gets its own sequence of pages for writing a document, so all document 	 * nodes are stored in sequential order. A new page will be allocated if the 	 * current page is full. If the value is larger than the page size, it will 	 * be written to an overflow page. 	 *  	 * @param value 	 *                     the value to append 	 * @return the virtual storage address of the value 	 */
+comment|/** 	 * Append a value to the current page. 	 *  	 * This method is called when storing a new document. Each writing thread 	 * gets its own sequence of pages for writing a document, so all document 	 * nodes are stored in sequential order. A new page will be allocated if the 	 * current page is full. If the value is larger than the page size, it will 	 * be written to an overflow page. 	 *  	 * @param value the value to append 	 * @return the virtual storage address of the value 	 */
 specifier|public
 name|long
 name|add
@@ -1197,7 +1197,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Append a value to the current page. If overflowPage is true, the value 	 * will be saved into its own, reserved chain of pages. The current page 	 * will just contain a link to the first overflow page. 	 *  	 * @param value 	 * @param overflowPage 	 * @return 	 * @throws ReadOnlyException 	 */
+comment|/** 	 * Append a value to the current page. If overflowPage is true, the value 	 * will be saved into its own, reserved chain of pages. The current page 	 * will just contain a link to the first overflow page. 	 *  	 * @param value 	 * @param overflowPage 	 * @return the virtual storage address of the value 	 * @throws ReadOnlyException 	 */
 specifier|private
 name|long
 name|add
@@ -5854,7 +5854,7 @@ return|return
 name|rec
 return|;
 block|}
-comment|/** 	 * Returns the number of records stored in a page. 	 *  	 * @param page 	 * @return 	 */
+comment|/** 	 * Returns the number of records stored in a page. 	 *  	 * @param page 	 * @return The number of records 	 */
 specifier|private
 name|short
 name|countRecordsInPage
@@ -6949,7 +6949,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lock 	 * @param node 	 * @return 	 * @throws IOException 	 * @throws BTreeException 	 */
+comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lock 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
 specifier|protected
 name|long
 name|findValue
@@ -11046,7 +11046,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Find a record within the page or the pages linked to it. 	 *  	 * @param p 	 * @return 	 */
+comment|/** 	 * Find a record within the page or the pages linked to it. 	 *  	 * @param p 	 * @return The record position in the page 	 */
 specifier|protected
 name|RecordPos
 name|findRecord
