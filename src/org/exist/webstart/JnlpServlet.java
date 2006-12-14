@@ -320,16 +320,21 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Invalid file type"
+literal|"Invalid filename extension."
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|ServletException
+name|response
+operator|.
+name|sendError
 argument_list|(
-literal|"Invalid file type"
+name|HttpServletResponse
+operator|.
+name|SC_FORBIDDEN
+argument_list|,
+literal|"Invalid filename extension."
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
 block|}
 block|}
 block|}
