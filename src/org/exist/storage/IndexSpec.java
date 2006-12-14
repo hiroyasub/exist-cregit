@@ -275,13 +275,6 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Reading configuration ..."
-argument_list|)
-expr_stmt|;
 name|Map
 name|namespaces
 init|=
@@ -825,16 +818,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|attr
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|attr

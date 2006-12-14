@@ -97,7 +97,7 @@ name|EmptyNodeSet
 extends|extends
 name|AbstractNodeSet
 block|{
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|EmptyNodeSetIterator

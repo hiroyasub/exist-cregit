@@ -363,6 +363,16 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -454,6 +464,17 @@ return|return
 name|DocumentSet
 operator|.
 name|EMPTY_DOCUMENT_SET
+return|;
+block|}
+specifier|public
+name|Iterator
+name|getCollectionIterator
+parameter_list|()
+block|{
+return|return
+name|EmptyNodeSet
+operator|.
+name|EMPTY_ITERATOR
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getNode() 	 */

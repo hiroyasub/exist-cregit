@@ -75,6 +75,16 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * This interface represents a sequence as defined in the XPath 2.0 specification.  *   * A sequence is a sequence of items. Each item is either an atomic value or a  * node. A single item is also a sequence, containing only the item. The base classes for   * {@link org.exist.xquery.value.AtomicValue atomic values} and {@link org.exist.dom.NodeProxy  * nodes} thus implement the Sequence interface.  *   * Also, a {@link org.exist.dom.NodeSet node set} is a special type of sequence, where all   * items are of type node.    */
 end_comment
@@ -221,6 +231,12 @@ comment|/** 	 * Returns the set of documents from which the node items in this s
 specifier|public
 name|DocumentSet
 name|getDocumentSet
+parameter_list|()
+function_decl|;
+comment|/**      * Return an iterator on all collections referenced by documents      * contained in this sequence..      *      * @return      */
+specifier|public
+name|Iterator
+name|getCollectionIterator
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns a preference indicator, indicating the preference of 	 * a value to be converted into the given Java class. Low numbers mean 	 * that the value can be easily converted into the given class. 	 *  	 * @param javaClass 	 */

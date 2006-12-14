@@ -89,6 +89,16 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -160,9 +170,16 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 function_decl|;
+comment|/**      * Returns a DocumentSet containing all documents referenced      * in this node set.      *      * @return      */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
+parameter_list|()
+function_decl|;
+comment|/**      * Return an iterator on all collections referenced by documents      * contained in this node set.      *      * @return      */
+specifier|public
+name|Iterator
+name|getCollectionIterator
 parameter_list|()
 function_decl|;
 comment|/** 	 * Add a new proxy object to the node set. Please note: node set 	 * implementations may allow duplicates. 	 *  	 * @param proxy 	 */
