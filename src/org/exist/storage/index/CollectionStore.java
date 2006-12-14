@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CacheManager
+name|DefaultCacheManager
 import|;
 end_import
 
@@ -202,7 +202,7 @@ parameter_list|,
 name|File
 name|file
 parameter_list|,
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
 parameter_list|)
 throws|throws
