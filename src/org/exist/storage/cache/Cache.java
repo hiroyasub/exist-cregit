@@ -114,13 +114,13 @@ name|int
 name|getBuffers
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the factor by which the cache should grow      * if it can be resized. The returned factor f will be      * between 0 and 2. A value smaller or equal to 1 means the cache      * can't grow, 1.5 means it grows by 50 percent. A cache with      * growth factor&lt;= 1.0 can also not be shrinked.      *       * A cache is resized by the {@link CacheManager}.      *       * @return growth factor      */
+comment|/**      * Returns the factor by which the cache should grow      * if it can be resized. The returned factor f will be      * between 0 and 2. A value smaller or equal to 1 means the cache      * can't grow, 1.5 means it grows by 50 percent. A cache with      * growth factor&lt;= 1.0 can also not be shrinked.      *       * A cache is resized by the {@link org.exist.storage.DefaultCacheManager}.      *       * @return growth factor      */
 specifier|public
 name|double
 name|getGrowthFactor
 parameter_list|()
 function_decl|;
-comment|/**      * Resize the cache. This method is called by the      * {@link CacheManager}. The newSize parameter      * can either be larger or smaller than the current      * cache size.      *       * @param newSize the new size of the cache.      */
+comment|/**      * Resize the cache. This method is called by the      * {@link org.exist.storage.DefaultCacheManager}. The newSize parameter      * can either be larger or smaller than the current      * cache size.      *       * @param newSize the new size of the cache.      */
 specifier|public
 name|void
 name|resize

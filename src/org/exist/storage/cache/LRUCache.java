@@ -21,9 +21,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|CacheManager
+name|hashtable
+operator|.
+name|SequencedLongHashMap
 import|;
 end_import
 
@@ -33,11 +35,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|hashtable
-operator|.
-name|SequencedLongHashMap
+name|CacheManager
 import|;
 end_import
 

@@ -217,7 +217,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CacheManager
+name|DefaultCacheManager
 import|;
 end_import
 
@@ -936,7 +936,7 @@ parameter_list|,
 name|File
 name|file
 parameter_list|,
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
 parameter_list|)
 throws|throws
@@ -6325,6 +6325,24 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
+specifier|public
+name|void
+name|closeAndRemove
+parameter_list|()
+block|{
+name|super
+operator|.
+name|closeAndRemove
+argument_list|()
+expr_stmt|;
+name|cacheManager
+operator|.
+name|deregisterCache
+argument_list|(
+name|dataCache
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|boolean

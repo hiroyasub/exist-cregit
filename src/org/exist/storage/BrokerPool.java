@@ -1306,8 +1306,12 @@ argument_list|()
 decl_stmt|;
 comment|/** 	 * The cache in which the database instance may store items. 	 */
 specifier|private
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
+decl_stmt|;
+specifier|private
+name|CollectionCacheManager
+name|collectionCacheMgr
 decl_stmt|;
 comment|/** 	 * The pool in which the database instance's<strong>compiled</strong> XQueries are stored. 	 */
 specifier|private
@@ -2259,7 +2263,7 @@ comment|//REFACTOR : construct then configure
 name|cacheManager
 operator|=
 operator|new
-name|CacheManager
+name|DefaultCacheManager
 argument_list|(
 name|conf
 argument_list|)
@@ -2328,7 +2332,17 @@ name|this
 argument_list|,
 name|bufferSize
 argument_list|,
-literal|0.9
+literal|0.001
+argument_list|)
+expr_stmt|;
+name|collectionCacheMgr
+operator|=
+operator|new
+name|CollectionCacheManager
+argument_list|(
+name|conf
+argument_list|,
+name|collectionCache
 argument_list|)
 expr_stmt|;
 name|notificationService
@@ -3075,7 +3089,7 @@ return|;
 block|}
 comment|/**      * Returns a cache in which the database instance's may store items.      *       * @return The cache 	 */
 specifier|public
-name|CacheManager
+name|DefaultCacheManager
 name|getCacheManager
 parameter_list|()
 block|{
@@ -4371,6 +4385,13 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+name|collectionCacheMgr
+operator|.
+name|deregisterCache
+argument_list|(
+name|collectionCache
+argument_list|)
+expr_stmt|;
 name|transactionManager
 operator|.
 name|shutdown

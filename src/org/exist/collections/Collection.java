@@ -764,6 +764,22 @@ block|}
 specifier|private
 specifier|final
 specifier|static
+name|int
+name|SHALLOW_SIZE
+init|=
+literal|550
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|DOCUMENT_SIZE
+init|=
+literal|450
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|Logger
 name|LOG
 init|=
@@ -1893,6 +1909,23 @@ operator|.
 name|collectionId
 operator|==
 name|collectionId
+return|;
+block|}
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+specifier|public
+name|int
+name|getMemorySize
+parameter_list|()
+block|{
+return|return
+name|SHALLOW_SIZE
+operator|+
+name|documents
+operator|.
+name|size
+argument_list|()
+operator|*
+name|DOCUMENT_SIZE
 return|;
 block|}
 comment|/**      *  Return the number of child-collections managed by this      * collection.      *      *@return    The childCollectionCount value      */

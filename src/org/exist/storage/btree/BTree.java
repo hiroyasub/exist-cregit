@@ -97,7 +97,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CacheManager
+name|DefaultCacheManager
 import|;
 end_import
 
@@ -415,7 +415,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|protected
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
 decl_stmt|;
 comment|/** Cache of BTreeNode(s) */
@@ -466,7 +466,7 @@ parameter_list|,
 name|boolean
 name|transactional
 parameter_list|,
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
 parameter_list|,
 name|double
@@ -569,7 +569,7 @@ parameter_list|,
 name|boolean
 name|transactional
 parameter_list|,
-name|CacheManager
+name|DefaultCacheManager
 name|cacheManager
 parameter_list|,
 name|File

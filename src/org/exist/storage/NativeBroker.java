@@ -4544,6 +4544,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+else|else
+name|collectionsCache
+operator|.
+name|add
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
 block|}
 comment|//Important :
 comment|//This code must remain ouside of the synchonized block
