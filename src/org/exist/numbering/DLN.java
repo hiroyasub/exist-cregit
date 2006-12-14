@@ -667,9 +667,6 @@ decl_stmt|;
 return|return
 name|startsWith
 argument_list|(
-operator|(
-name|DLN
-operator|)
 name|ancestor
 argument_list|)
 operator|&&
@@ -683,9 +680,6 @@ operator|||
 name|isLevelSeparator
 argument_list|(
 operator|(
-operator|(
-name|DLN
-operator|)
 name|ancestor
 operator|)
 operator|.

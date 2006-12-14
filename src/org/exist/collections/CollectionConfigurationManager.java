@@ -587,7 +587,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @param collectionPath      * @return The collection configuration      * @throws CollectionConfigurationException      */
+comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @return The collection configuration      * @throws CollectionConfigurationException      */
 specifier|protected
 name|CollectionConfiguration
 name|getConfiguration
@@ -733,9 +733,16 @@ operator|!
 name|configFound
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|debug
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"Reading collection configuration for '"
 operator|+
@@ -780,6 +787,13 @@ break|break;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -834,9 +848,16 @@ operator|!
 name|configFound
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|debug
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"Reading collection configuration for '"
 operator|+
