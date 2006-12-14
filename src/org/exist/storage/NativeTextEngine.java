@@ -2008,35 +2008,6 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-if|if
-condition|(
-name|contextSet
-operator|!=
-literal|null
-condition|)
-block|{
-comment|//Exit if the document is not concerned
-if|if
-condition|(
-operator|!
-name|contextSet
-operator|.
-name|containsDoc
-argument_list|(
-name|storedDocument
-argument_list|)
-condition|)
-block|{
-name|is
-operator|.
-name|skipBytes
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
-continue|continue;
-block|}
-block|}
 comment|//Process the nodes
 for|for
 control|(

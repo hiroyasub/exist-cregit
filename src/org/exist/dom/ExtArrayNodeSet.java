@@ -534,33 +534,6 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-specifier|public
-name|boolean
-name|containsDoc
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|)
-block|{
-return|return
-name|ArrayUtils
-operator|.
-name|binarySearch
-argument_list|(
-name|documentIds
-argument_list|,
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|,
-name|partCount
-argument_list|)
-operator|>
-operator|-
-literal|1
-return|;
-block|}
 specifier|private
 name|void
 name|insertPart
@@ -1707,31 +1680,144 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
-comment|//    	return hasChildrenInSet(al, mode, contextId);
-comment|//        return super.selectParentChild(al, mode, contextId);
-comment|//    	if (al instanceof VirtualNodeSet)
-comment|//    		return super.selectParentChild(al, mode, contextId);
-comment|//    	NodeSet result = new ExtArrayNodeSet();
-comment|//		NodeSetIterator ia = al.iterator();
-comment|//		NodeProxy na = (NodeProxy) ia.next();
-comment|//		if (na == null || partCount == 0)
-comment|//			return NodeSet.EMPTY_SET;
-comment|//		int currentPart = 0;
-comment|//		while (currentPart< partCount) {
-comment|//			// first, try to find nodes belonging to the same doc
-comment|//			if (na.getDocument().getDocId()< documentIds[currentPart]) {
-comment|//				if (ia.hasNext()) {
-comment|//					na = (NodeProxy) ia.next();
-comment|//                } else
-comment|//					break;
-comment|//			} else if (na.getDocument().getDocId()> documentIds[currentPart]) {
-comment|//				++currentPart;
-comment|//			} else {
-comment|//				parts[currentPart].selectParentChild(result, na, ia, mode, contextId);
-comment|//				++currentPart;
-comment|//			}
-comment|//		}
-comment|//		return result;
+block|}
+specifier|public
+name|NodeSet
+name|filterDocuments
+parameter_list|(
+name|ExtArrayNodeSet
+name|otherSet
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Filtering..."
+argument_list|)
+expr_stmt|;
+name|ExtArrayNodeSet
+name|other
+init|=
+operator|(
+name|ExtArrayNodeSet
+operator|)
+name|otherSet
+decl_stmt|;
+name|ExtArrayNodeSet
+name|result
+init|=
+operator|new
+name|ExtArrayNodeSet
+argument_list|(
+name|partCount
+argument_list|,
+name|other
+operator|.
+name|initalSize
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|other
+operator|.
+name|partCount
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|int
+name|idx
+init|=
+name|ArrayUtils
+operator|.
+name|binarySearch
+argument_list|(
+name|documentIds
+argument_list|,
+name|other
+operator|.
+name|documentIds
+index|[
+name|i
+index|]
+argument_list|,
+name|partCount
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|idx
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+name|Part
+name|part
+init|=
+name|parts
+index|[
+name|idx
+index|]
+decl_stmt|;
+name|int
+name|otherIdx
+init|=
+name|ArrayUtils
+operator|.
+name|binarySearch
+argument_list|(
+name|result
+operator|.
+name|documentIds
+argument_list|,
+name|documentIds
+index|[
+name|idx
+index|]
+argument_list|,
+name|result
+operator|.
+name|partCount
+argument_list|)
+decl_stmt|;
+name|otherIdx
+operator|=
+operator|-
+operator|(
+name|otherIdx
+operator|+
+literal|1
+operator|)
+expr_stmt|;
+name|result
+operator|.
+name|insertPart
+argument_list|(
+name|documentIds
+index|[
+name|idx
+index|]
+argument_list|,
+name|part
+argument_list|,
+name|otherIdx
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|result
+return|;
 block|}
 specifier|private
 name|boolean
@@ -3464,16 +3550,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-name|ancestor
-operator|.
-name|addMatches
-argument_list|(
-name|array
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
+comment|//                        ancestor.addMatches(array[i]);
 block|}
 block|}
 else|else

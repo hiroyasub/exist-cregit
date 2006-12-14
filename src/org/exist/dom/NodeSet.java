@@ -19,6 +19,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|numbering
+operator|.
+name|NodeId
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Expression
@@ -62,18 +74,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|NodeId
 import|;
 end_import
 
@@ -158,15 +158,6 @@ name|contains
 parameter_list|(
 name|NodeProxy
 name|proxy
-parameter_list|)
-function_decl|;
-comment|/** 	 * Check if this node set contains nodes belonging to the given document. 	 *  	 * @param doc 	 */
-specifier|public
-name|boolean
-name|containsDoc
-parameter_list|(
-name|DocumentImpl
-name|doc
 parameter_list|)
 function_decl|;
 specifier|public
@@ -464,6 +455,15 @@ name|except
 parameter_list|(
 name|NodeSet
 name|other
+parameter_list|)
+function_decl|;
+comment|/**      * Create a new node set from this set containing only nodes in documents      * that are also contained in the argument set.      *      * @param otherSet      * @return      */
+specifier|public
+name|NodeSet
+name|filterDocuments
+parameter_list|(
+name|NodeSet
+name|otherSet
 parameter_list|)
 function_decl|;
 specifier|public
