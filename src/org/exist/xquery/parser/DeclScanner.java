@@ -451,6 +451,8 @@ literal|"MODULE"
 block|,
 literal|"ORDER_BY"
 block|,
+literal|"GROUP_BY"
+block|,
 literal|"POSITIONAL_VAR"
 block|,
 literal|"BEFORE"
@@ -624,6 +626,8 @@ block|,
 literal|"\"ascending\""
 block|,
 literal|"\"descending\""
+block|,
+literal|"\"group\""
 block|,
 literal|"\"satisfies\""
 block|,
