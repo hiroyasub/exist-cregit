@@ -2218,7 +2218,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Internal append.      *      * @return Node      * @throws DOMException      */
+comment|/**      * Internal append.      *          * @throws DOMException      */
 specifier|protected
 name|void
 name|appendChildren
@@ -3875,7 +3875,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Returns a list of all attribute nodes in attrs that are already present      * in the current element.      *      * @param attrs      * @return      * @throws DOMException      */
+comment|/**      * Returns a list of all attribute nodes in attrs that are already present      * in the current element.      *      * @param attrs      * @return The attributes list      * @throws DOMException      */
 specifier|private
 name|NodeList
 name|findDupAttributes

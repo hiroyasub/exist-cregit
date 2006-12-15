@@ -149,16 +149,6 @@ name|javax
 operator|.
 name|swing
 operator|.
-name|JOptionPane
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|swing
-operator|.
 name|JPanel
 import|;
 end_import
@@ -170,18 +160,6 @@ operator|.
 name|swing
 operator|.
 name|JTextField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|client
-operator|.
-name|BackupContentsFilter
 import|;
 end_import
 

@@ -701,8 +701,6 @@ argument_list|)
 operator|+
 literal|"('"
 operator|+
-name|other
-operator|.
 name|getStringValue
 argument_list|()
 operator|+
@@ -803,8 +801,6 @@ argument_list|)
 operator|+
 literal|"('"
 operator|+
-name|other
-operator|.
 name|getStringValue
 argument_list|()
 operator|+
@@ -891,8 +887,6 @@ argument_list|)
 operator|+
 literal|"('"
 operator|+
-name|other
-operator|.
 name|getStringValue
 argument_list|()
 operator|+

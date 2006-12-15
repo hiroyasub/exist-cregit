@@ -1227,7 +1227,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Read a node from the given page.      *       * @param page      * @param parent      * @return      */
+comment|/**      * Read a node from the given page.      *       * @param page      * @param parent      * @return The BTree node      */
 specifier|private
 name|BTreeNode
 name|getBTreeNode
@@ -1333,7 +1333,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Create a new node with the given status and parent.      *       * @param transaction      * @param status      * @param parent      * @return      */
+comment|/**      * Create a new node with the given status and parent.      *       * @param transaction      * @param status      * @param parent      * @return The BTree node      */
 specifier|private
 name|BTreeNode
 name|createBTreeNode
@@ -1517,7 +1517,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create the root node.      *       * @param transaction      * @return      * @throws IOException      */
+comment|/**      * Create the root node.      *       * @param transaction      * @return The root node      * @throws IOException      */
 specifier|protected
 name|long
 name|createRootNode
@@ -3096,7 +3096,7 @@ return|return
 name|timestamp
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#sync()          */
+comment|/**          * @see org.exist.storage.cache.Cacheable#sync(boolean syncJournal)          */
 specifier|public
 name|boolean
 name|sync
@@ -3258,7 +3258,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** 		 * Returns the raw data size (in bytes) required by this node. 		 *  		 * @return 		 */
+comment|/** 		 * Returns the raw data size (in bytes) required by this node. 		 *  		 * @return The data length 		 */
 specifier|private
 name|int
 name|getDataLen
@@ -3275,7 +3275,7 @@ else|:
 name|currentDataLen
 return|;
 block|}
-comment|/** 		 * Recalculates the raw data size (in bytes) required by this node. 		 *  		 * @return 		 */
+comment|/** 		 * Recalculates the raw data size (in bytes) required by this node. 		 *  		 * @return the data length 		 */
 specifier|private
 name|int
 name|recalculateDataLen
@@ -3336,7 +3336,7 @@ return|return
 name|currentDataLen
 return|;
 block|}
-comment|/**          * Decrements the raw data size of this node by the space          * required for storing removedValue.          *           * @param removedValue          * @return          */
+comment|/**          * Decrements the raw data size of this node by the space          * required for storing removedValue.          *           * @param removedValue          * @return The new data length          */
 specifier|private
 name|int
 name|decrementDataLen
@@ -3848,7 +3848,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**          * Retrieve the child node at index idx.          *           * @param idx          * @return          * @throws IOException          */
+comment|/**          * Retrieve the child node at index idx.          *           * @param idx          * @return The BTree node          * @throws IOException          */
 specifier|private
 name|BTreeNode
 name|getChildNode

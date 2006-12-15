@@ -172,7 +172,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/**      * Check if the XQuery file declares a content encoding in the      * XQuery declaration.      *       * @param is      * @return      */
+comment|/**      * Check if the XQuery file declares a content encoding in the      * XQuery declaration.      *       * @param is      * @return The guessed encoding.      */
 specifier|protected
 specifier|final
 specifier|static
