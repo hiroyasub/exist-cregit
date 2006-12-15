@@ -31,7 +31,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|OutputStream
+name|InputStream
 import|;
 end_import
 
@@ -42,9 +42,9 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|BlockingOutputStream
+name|BlockingInputStream
 extends|extends
-name|OutputStream
+name|InputStream
 block|{
 specifier|private
 specifier|final
