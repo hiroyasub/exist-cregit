@@ -199,6 +199,15 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
+name|xmlrpc
+operator|.
+name|setBasicAuthentication
+argument_list|(
+literal|"guest"
+argument_list|,
+literal|"guest"
+argument_list|)
+expr_stmt|;
 comment|// Setup xml serializer
 name|Hashtable
 name|options
