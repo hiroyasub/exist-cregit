@@ -9076,10 +9076,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 return|return
-name|doc
-operator|!=
-literal|null
+literal|true
 return|;
+comment|// when arrived here, insert/update was successfull
 block|}
 specifier|public
 name|boolean
