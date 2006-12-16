@@ -155,6 +155,16 @@ index|]
 argument_list|)
 return|;
 block|}
+specifier|public
+name|String
+name|getNodeValue
+parameter_list|()
+block|{
+return|return
+name|getData
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#substringData(int, int)      */
 specifier|public
 name|String

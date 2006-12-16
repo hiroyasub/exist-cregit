@@ -19,6 +19,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -191,13 +201,10 @@ name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
-comment|//TODO: remove
 return|return
-name|getQName
-argument_list|()
+name|Namespaces
 operator|.
-name|getNamespaceURI
-argument_list|()
+name|XMLNS_NS
 return|;
 block|}
 specifier|public

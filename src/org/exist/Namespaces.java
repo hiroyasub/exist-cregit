@@ -76,6 +76,14 @@ name|XML_NS
 init|=
 literal|"http://www.w3.org/XML/1998/namespace"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XMLNS_NS
+init|=
+literal|"http://www.w3.org/2000/xmlns/"
+decl_stmt|;
 comment|/** QName representing xml:id */
 specifier|public
 specifier|final
