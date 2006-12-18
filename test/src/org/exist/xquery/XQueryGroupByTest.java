@@ -1111,7 +1111,9 @@ name|query
 operator|=
 literal|"for $item in //item group $item as $partition by $item/key1 "
 operator|+
-literal|"as $key1, $item/key2 as $key2 return<group>{$partition}</group>"
+literal|"as $key1, $item/key2 as $key2 order by $key1 descending, "
+operator|+
+literal|"$key2 descending return<group>{$partition}</group>"
 expr_stmt|;
 name|result
 operator|=
@@ -1642,6 +1644,8 @@ operator|+
 literal|"for $cell in local:cube(($pub,$b/year))\n"
 operator|+
 literal|"group $b as $partition by $cell as $cell2\n"
+operator|+
+literal|"order by $cell2 \n"
 operator|+
 literal|"return\n"
 operator|+

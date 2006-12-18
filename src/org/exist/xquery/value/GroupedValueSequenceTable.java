@@ -21,7 +21,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Hashtable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -34,34 +44,6 @@ operator|.
 name|xquery
 operator|.
 name|GroupSpec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|GroupedValueSequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
 import|;
 end_import
 
@@ -90,15 +72,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An arrayList that containts a GroupedValueSequence for each group.   * Groups are specified by the group specs of a "group by" clause. Used by    * {@link org.exist.xquery.ForExpr} et al.   *   *  WARNING : don't use except for group by clause    *     * @author Boris Verhaegen (boris.verhaegen@gmail.com)   */
+comment|/** * An Hashtable that containts a GroupedValueSequence for each group. * Groups are specified by the group specs of a "group by" clause. Used by * {@link org.exist.xquery.ForExpr} et al. * * WARNING : don't use except for experimental "group by" clause * * @author Boris Verhaegen (boris.verhaegen@gmail.com) */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 extends|extends
-name|ArrayList
+name|Hashtable
 block|{
 specifier|private
 name|GroupSpec
@@ -114,7 +96,7 @@ name|XQueryContext
 name|context
 decl_stmt|;
 specifier|public
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 parameter_list|(
 name|GroupSpec
 name|groupSpecs
@@ -127,6 +109,17 @@ name|XQueryContext
 name|aContext
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|11
+argument_list|,
+operator|(
+name|float
+operator|)
+literal|0.75
+argument_list|)
+expr_stmt|;
+comment|//Hashtable parameters
 name|this
 operator|.
 name|groupSpecs
@@ -168,7 +161,27 @@ return|return
 name|toGroupVarName
 return|;
 block|}
-comment|/**       * Add<code>item</code> in the correct<code>GroupedValueSequence</code>.       * Create correct GroupedValueSequence if needed. Insertion based on        * the group specs of a "group by" clause.       *         * @throws     XPathException       */
+specifier|public
+name|Iterator
+name|iterate
+parameter_list|()
+block|{
+name|Iterator
+name|it
+init|=
+name|this
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+return|return
+name|it
+return|;
+block|}
+comment|/**  	     * Add<code>item</code> in the correct<code>GroupedValueSequence</code>.  	     * Create correct GroupedValueSequence if needed. Insertion based on   	     * the group specs of a "group by" clause.  	     *    	     * @throws     XPathException  	     */
 specifier|public
 name|void
 name|add
@@ -191,18 +204,12 @@ operator|.
 name|length
 index|]
 decl_stmt|;
-name|Sequence
+name|ValueSequence
 name|keySequence
 init|=
 operator|new
 name|ValueSequence
 argument_list|()
-decl_stmt|;
-comment|/* new Sequence[groupSpecs.length]; */
-name|boolean
-name|groupAdded
-init|=
-literal|false
 decl_stmt|;
 for|for
 control|(
@@ -243,6 +250,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : too early evaluation !
 name|keySequence
 operator|.
 name|add
@@ -259,51 +267,37 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-for|for
-control|(
-name|int
-name|k
+name|String
+name|hashKey
 init|=
-literal|0
-init|;
-operator|(
-name|k
-operator|<
-name|this
+name|keySequence
 operator|.
-name|size
+name|getHashKey
 argument_list|()
-operator|)
-comment|/*&& (groupAdded == false)*/
-condition|;
-name|k
-operator|++
-control|)
-block|{
-name|GroupedValueSequence
-name|currentGroup
-init|=
-operator|(
-name|GroupedValueSequence
-operator|)
-name|this
-operator|.
-name|get
-argument_list|(
-name|k
-argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|currentGroup
+name|this
 operator|.
-name|checkKeys
+name|containsKey
 argument_list|(
-name|keySequence
+name|hashKey
 argument_list|)
 condition|)
 block|{
-comment|//this group already exists, then add to this group
+name|GroupedValueSequence
+name|currentGroup
+init|=
+operator|(
+name|GroupedValueSequence
+operator|)
+name|super
+operator|.
+name|get
+argument_list|(
+name|hashKey
+argument_list|)
+decl_stmt|;
 name|currentGroup
 operator|.
 name|add
@@ -311,18 +305,8 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
-name|groupAdded
-operator|=
-literal|true
-expr_stmt|;
 block|}
-block|}
-if|if
-condition|(
-name|groupAdded
-operator|==
-literal|false
-condition|)
+else|else
 block|{
 comment|//this group doesn't exists, then creates this group
 name|GroupedValueSequence
@@ -349,18 +333,16 @@ argument_list|)
 expr_stmt|;
 name|super
 operator|.
-name|add
+name|put
 argument_list|(
+name|hashKey
+argument_list|,
 name|newGroup
 argument_list|)
 expr_stmt|;
-name|groupAdded
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
-comment|/**       * Add all items of a sequence       *        * @param sequence       * @throws XPathException       */
+comment|/**  	     * Add all items of a sequence  	     *   	     * @param sequence  	     * @throws XPathException  	     */
 specifier|public
 name|void
 name|addAll

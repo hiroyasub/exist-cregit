@@ -63,7 +63,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 import|;
 end_import
 
@@ -290,7 +290,7 @@ parameter_list|,
 name|Sequence
 name|resultSequence
 parameter_list|,
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 name|groupedSequence
 parameter_list|)
 throws|throws

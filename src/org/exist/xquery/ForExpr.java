@@ -99,7 +99,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 import|;
 end_import
 
@@ -212,6 +212,16 @@ operator|.
 name|value
 operator|.
 name|ValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -731,7 +741,7 @@ parameter_list|,
 name|Sequence
 name|resultSequence
 parameter_list|,
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 name|groupedSequence
 parameter_list|)
 throws|throws
@@ -882,7 +892,7 @@ block|{
 name|groupedSequence
 operator|=
 operator|new
-name|GroupedValueSequenceList
+name|GroupedValueSequenceTable
 argument_list|(
 name|groupSpecs
 argument_list|,
@@ -1655,22 +1665,29 @@ condition|)
 block|{
 for|for
 control|(
-name|int
-name|k
+name|Iterator
+name|it
 init|=
-literal|0
-init|;
-name|k
-operator|<
 name|groupedSequence
 operator|.
-name|size
+name|iterate
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
 argument_list|()
 condition|;
-name|k
-operator|++
 control|)
 block|{
+name|Object
+name|key
+init|=
+name|it
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
 name|GroupedValueSequence
 name|currentGroup
 init|=
@@ -1681,7 +1698,7 @@ name|groupedSequence
 operator|.
 name|get
 argument_list|(
-name|k
+name|key
 argument_list|)
 decl_stmt|;
 name|context
@@ -1691,14 +1708,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|context
-operator|.
-name|setContextPosition
-argument_list|(
-name|k
-argument_list|)
-expr_stmt|;
-comment|//bv : not tested
+comment|//context.setContextPosition(k); //bv : not tested
 comment|// set the grouping variable to current group nodes
 name|groupVar
 operator|.
