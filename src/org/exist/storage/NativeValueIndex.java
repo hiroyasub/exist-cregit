@@ -2480,6 +2480,13 @@ argument_list|(
 name|searchKey
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+continue|continue;
 name|boolean
 name|changed
 init|=
