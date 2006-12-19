@@ -233,7 +233,7 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
-comment|/**      * Return an iterator on all collections referenced by documents      * contained in this sequence..      *      * @return      */
+comment|/**      * Return an iterator on all collections referenced by documents      * contained in this sequence..      */
 specifier|public
 name|Iterator
 name|getCollectionIterator

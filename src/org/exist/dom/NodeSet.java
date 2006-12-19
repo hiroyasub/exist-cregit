@@ -170,13 +170,13 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 function_decl|;
-comment|/**      * Returns a DocumentSet containing all documents referenced      * in this node set.      *      * @return      */
+comment|/**      * Returns a DocumentSet containing all documents referenced      * in this node set.      */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
-comment|/**      * Return an iterator on all collections referenced by documents      * contained in this node set.      *      * @return      */
+comment|/**      * Return an iterator on all collections referenced by documents      * contained in this node set.      */
 specifier|public
 name|Iterator
 name|getCollectionIterator
@@ -474,7 +474,7 @@ name|NodeSet
 name|other
 parameter_list|)
 function_decl|;
-comment|/**      * Create a new node set from this set containing only nodes in documents      * that are also contained in the argument set.      *      * @param otherSet      * @return      */
+comment|/**      * Create a new node set from this set containing only nodes in documents      * that are also contained in the argument set.      *      * @param otherSet      */
 specifier|public
 name|NodeSet
 name|filterDocuments

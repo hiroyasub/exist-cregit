@@ -178,7 +178,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sequence that may contain a mixture of atomic values and nodes.  *   * @author wolf  */
+comment|/**  * A sequence that may contain a mixture of atomic values and nodes.  * @author wolf  */
 end_comment
 
 begin_class
@@ -1720,7 +1720,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**     * Returns a hashKey based on sequence item string values.     * This function is faster than toString() but need to be enhanced.     *      * Warning : don't use except for experimental GroupBy clause.     *      * @see org.exist.xquery.value.GroupedValueSequenceTable      * @author Boris Verhaegen     *     */
+comment|/**     * Returns a hashKey based on sequence item string values.     * This function is faster than toString() but need to be enhanced.     *      * Warning : don't use except for experimental GroupBy clause.     * author Boris Verhaegen     *     * @see org.exist.xquery.value.GroupedValueSequenceTable      *      *     */
 specifier|public
 name|String
 name|getHashKey
