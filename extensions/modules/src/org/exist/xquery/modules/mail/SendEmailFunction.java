@@ -1567,6 +1567,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 literal|false
@@ -3161,27 +3168,15 @@ name|result
 operator|=
 name|result
 operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|result
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
 name|replaceAll
 argument_list|(
 literal|"\n"
 argument_list|,
-literal|"?=\n =?UTF-8?B?"
+literal|"?=\n =?"
+operator|+
+name|charset
+operator|+
+literal|"?B?"
 argument_list|)
 expr_stmt|;
 name|result
