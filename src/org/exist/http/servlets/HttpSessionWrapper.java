@@ -31,6 +31,16 @@ name|javax
 operator|.
 name|servlet
 operator|.
+name|ServletContext
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
 name|http
 operator|.
 name|HttpSession
@@ -52,6 +62,19 @@ specifier|private
 name|HttpSession
 name|session
 decl_stmt|;
+comment|/** 	 * @return the javax.servlet.ServletContext 	 */
+specifier|public
+name|ServletContext
+name|getServletContext
+parameter_list|()
+block|{
+return|return
+name|session
+operator|.
+name|getServletContext
+argument_list|()
+return|;
+block|}
 comment|/** 	 *  	 */
 specifier|public
 name|HttpSessionWrapper
