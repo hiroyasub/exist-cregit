@@ -203,6 +203,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -224,6 +236,16 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
 import|;
 end_import
 
@@ -261,7 +283,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the name of the collection to which the passed node belongs."
+literal|"Returns the name of the collection from a passed node or path string. If the argument is "
+operator|+
+literal|"a node, the function returns the name of the collection to which the node's document belongs. "
+operator|+
+literal|"If the argument is a string, it is interpreted as path to a resource and the function returns the "
+operator|+
+literal|"computed parent collection path for this resource."
 argument_list|,
 operator|new
 name|SequenceType
@@ -432,6 +460,77 @@ argument_list|,
 literal|"Failed to retrieve collection name"
 argument_list|,
 name|e
+argument_list|)
+throw|;
+block|}
+block|}
+if|else if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|item
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|)
+condition|)
+block|{
+name|String
+name|path
+init|=
+name|item
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|XmldbURI
+name|uri
+init|=
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
+name|path
+argument_list|)
+operator|.
+name|removeLastSegment
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|StringValue
+argument_list|(
+name|uri
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Illegal URI for resource path: "
+operator|+
+name|path
 argument_list|)
 throw|;
 block|}
