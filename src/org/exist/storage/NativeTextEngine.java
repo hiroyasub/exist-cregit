@@ -6039,14 +6039,13 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-comment|//Does the token already has data in the index ?
 if|if
 condition|(
 name|value
-operator|!=
+operator|==
 literal|null
 condition|)
-block|{
+continue|continue;
 comment|//Add its data to the new list
 name|VariableByteArrayInput
 name|is
@@ -6060,7 +6059,6 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -6258,10 +6256,6 @@ block|}
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//Is it expected ? -pb
-comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
-comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -6441,7 +6435,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
-if|else 					            if
+if|else if
 condition|(
 name|dbTokens
 operator|.
@@ -6487,52 +6481,6 @@ literal|"' (inverted index)"
 argument_list|)
 expr_stmt|;
 comment|//TODO : throw an exception ?
-block|}
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|dbTokens
-operator|.
-name|put
-argument_list|(
-name|key
-argument_list|,
-name|os
-operator|.
-name|data
-argument_list|()
-argument_list|)
-operator|==
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not put index data for token '"
-operator|+
-name|token
-operator|+
-literal|"' in '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw an exception ?
-block|}
 block|}
 block|}
 catch|catch
