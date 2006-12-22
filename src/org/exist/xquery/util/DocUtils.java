@@ -404,7 +404,6 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
-comment|//URLs
 if|if
 condition|(
 name|path
@@ -415,6 +414,7 @@ literal|"^[a-z]+://.*"
 argument_list|)
 condition|)
 block|{
+comment|/* URL */
 try|try
 block|{
 comment|//Basic tests on the URL
@@ -700,10 +700,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//Database documents
 block|}
 else|else
 block|{
+comment|/* Database documents */
 comment|// check if the loaded documents should remain locked
 name|boolean
 name|lockOnLoad
@@ -832,11 +832,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Document is a binary resource, not "
-operator|+
-literal|"an XML document. Please consider using the function util:binary-resource to "
-operator|+
-literal|"retrieve a reference to it."
+literal|"Document is a binary resource, not an XML document. Please consider using the function util:binary-resource to retrieve a reference to it."
 argument_list|)
 throw|;
 block|}
