@@ -4178,6 +4178,7 @@ expr_stmt|;
 block|}
 comment|/** 	 * Shuts downs the database instance 	 * @param killed<code>true</code> when the JVM is (cleanly) exiting 	 */
 specifier|public
+specifier|synchronized
 name|void
 name|shutdown
 parameter_list|(
