@@ -321,6 +321,8 @@ literal|"in descendants of the nodes in $a. The second argument $b specifies "
 operator|+
 literal|"a start string. Only terms starting with the specified character sequence are returned. "
 operator|+
+literal|"If $a is the empty sequence, all terms in the index will be selected. "
+operator|+
 literal|"$c is a function reference, which points to a callback function that will be called "
 operator|+
 literal|"for every term occurrence. $d defines the maximum number of terms that should be "
@@ -362,7 +364,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|)
 block|,
 operator|new
@@ -470,6 +472,21 @@ decl_stmt|;
 name|String
 name|start
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+name|start
+operator|=
 name|args
 index|[
 literal|1
@@ -477,7 +494,7 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|FunctionReference
 name|ref
 init|=
