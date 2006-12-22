@@ -3272,6 +3272,16 @@ block|{
 name|Value
 name|startRef
 init|=
+name|start
+operator|==
+literal|null
+condition|?
+operator|new
+name|WordRef
+argument_list|(
+name|collectionId
+argument_list|)
+else|:
 operator|new
 name|WordRef
 argument_list|(
