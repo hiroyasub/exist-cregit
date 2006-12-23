@@ -1376,6 +1376,7 @@ expr_stmt|;
 comment|//TODO : throw exception?
 block|}
 block|}
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -1998,6 +1999,7 @@ expr_stmt|;
 comment|//TOO : throw exception ?
 block|}
 block|}
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt

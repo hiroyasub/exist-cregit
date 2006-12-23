@@ -1093,6 +1093,7 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -1900,6 +1901,7 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -2996,6 +2998,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//What does this 3 stand for ?
 name|is
 operator|.
 name|skip

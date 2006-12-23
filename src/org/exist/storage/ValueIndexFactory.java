@@ -293,7 +293,7 @@ comment|//2
 specifier|public
 specifier|static
 name|int
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 init|=
 literal|1
 decl_stmt|;
@@ -307,7 +307,7 @@ name|OFFSET_TYPE
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 decl_stmt|;
 comment|//3
 specifier|public
@@ -378,7 +378,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|,
 name|len
@@ -390,7 +390,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|,
 literal|"UTF-8"
@@ -460,7 +460,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 decl_stmt|;
@@ -566,7 +566,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 operator|^
@@ -602,7 +602,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 operator|^
@@ -654,7 +654,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 operator|^
@@ -703,7 +703,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 index|]
 operator|==
@@ -818,7 +818,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 index|]
 decl_stmt|;
@@ -922,7 +922,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 operator|+
 literal|8
@@ -1022,7 +1022,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 operator|+
 literal|8
@@ -1094,7 +1094,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 operator|+
 literal|8
@@ -1187,7 +1187,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 operator|+
 literal|4
@@ -1284,7 +1284,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 operator|+
 literal|1
@@ -1438,7 +1438,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 name|UTF8
 operator|.
@@ -1474,7 +1474,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 argument_list|)
 expr_stmt|;
 return|return
@@ -1539,7 +1539,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 literal|8
 index|]
@@ -1609,7 +1609,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 literal|8
 index|]
@@ -1655,7 +1655,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 argument_list|)
 expr_stmt|;
 return|return
@@ -1687,7 +1687,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 literal|8
 index|]
@@ -1737,7 +1737,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 argument_list|)
 expr_stmt|;
 return|return
@@ -1769,7 +1769,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 literal|4
 index|]
@@ -1824,7 +1824,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 argument_list|)
 expr_stmt|;
 return|return
@@ -1856,7 +1856,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|+
 literal|1
 index|]
@@ -1876,7 +1876,7 @@ name|offset
 operator|+
 name|ValueIndexFactory
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 index|]
 operator|=
 operator|(

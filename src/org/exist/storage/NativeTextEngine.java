@@ -3719,6 +3719,7 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
+comment|//TODO : named constant
 name|short
 name|type
 init|=
@@ -3742,6 +3743,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+comment|//TODO : named constant
 name|int
 name|children
 init|=
@@ -3781,6 +3783,7 @@ name|Node
 operator|.
 name|TEXT_NODE
 case|:
+comment|//TODO : named constant
 name|int
 name|dlnLen
 init|=
@@ -3793,6 +3796,7 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
+comment|//TODO : named constant
 name|int
 name|nodeIdLen
 init|=
@@ -3818,6 +3822,7 @@ name|s
 decl_stmt|;
 try|try
 block|{
+comment|//TODO : named constant
 name|s
 operator|=
 operator|new
@@ -3924,6 +3929,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+comment|//TODO : named constant
 name|byte
 name|idSizeType
 init|=
@@ -3939,6 +3945,7 @@ operator|&
 literal|0x3
 operator|)
 decl_stmt|;
+comment|//TODO : named constant
 name|boolean
 name|hasNamespace
 init|=
@@ -3953,6 +3960,7 @@ operator|)
 operator|==
 literal|0x10
 decl_stmt|;
+comment|//TODO : named constant
 name|dlnLen
 operator|=
 name|ByteConversion
@@ -3964,6 +3972,7 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+comment|//TODO : named constant
 name|nodeIdLen
 operator|=
 name|broker
@@ -3983,6 +3992,7 @@ argument_list|,
 literal|3
 argument_list|)
 expr_stmt|;
+comment|//TODO : named constant
 name|int
 name|readOffset
 init|=
@@ -4349,6 +4359,7 @@ argument_list|(
 literal|256
 argument_list|)
 expr_stmt|;
+comment|//seems to be linked with QName indexes
 name|words
 index|[
 literal|2
@@ -5142,6 +5153,7 @@ operator|+=
 name|freq
 expr_stmt|;
 block|}
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -6578,6 +6590,7 @@ operator|+=
 name|freq
 expr_stmt|;
 block|}
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -7420,6 +7433,7 @@ operator|+=
 name|freq
 expr_stmt|;
 block|}
+comment|//What does this 4 stand for ?
 name|os
 operator|.
 name|writeFixedInt
@@ -7990,7 +8004,7 @@ name|qname
 operator|==
 literal|null
 condition|)
-comment|//What does 1 stands for ?
+comment|//What does this 1 stand for ?
 name|word
 operator|=
 name|UTF8
@@ -8027,7 +8041,7 @@ name|word
 argument_list|)
 expr_stmt|;
 else|else
-comment|//What does 1 stands for ?
+comment|//What does this 1 stand for ?
 name|word
 operator|=
 name|UTF8
@@ -8677,7 +8691,7 @@ name|term
 decl_stmt|;
 try|try
 block|{
-comment|//What does 1 stands for ?
+comment|//What does this 1 stand for ?
 name|term
 operator|=
 operator|new
@@ -10188,7 +10202,7 @@ comment|//1
 specifier|public
 specifier|static
 name|int
-name|OFFSET_VALUE
+name|OFFSET_QNAME
 init|=
 name|OFFSET_COLLECTION_ID
 operator|+
@@ -10314,7 +10328,7 @@ name|qname
 argument_list|,
 name|data
 argument_list|,
-name|OFFSET_VALUE
+name|OFFSET_QNAME
 argument_list|,
 name|broker
 argument_list|)
@@ -10397,7 +10411,7 @@ name|qname
 argument_list|,
 name|data
 argument_list|,
-name|OFFSET_VALUE
+name|OFFSET_QNAME
 argument_list|,
 name|broker
 argument_list|)

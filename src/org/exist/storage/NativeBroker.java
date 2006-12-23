@@ -17186,12 +17186,20 @@ extends|extends
 name|Value
 block|{
 specifier|public
+specifier|static
+name|int
+name|OFFSET_DOCUMENT_ID
+init|=
+literal|0
+decl_stmt|;
+specifier|public
 name|NodeRef
 parameter_list|(
 name|int
 name|docId
 parameter_list|)
 block|{
+comment|//What does this 4 stand for ?
 name|data
 operator|=
 operator|new
@@ -17208,16 +17216,17 @@ name|docId
 argument_list|,
 name|data
 argument_list|,
-literal|0
+name|OFFSET_DOCUMENT_ID
 argument_list|)
 expr_stmt|;
+comment|//What does this 4 stand for ?
 name|len
 operator|=
 literal|4
 expr_stmt|;
 name|pos
 operator|=
-literal|0
+name|OFFSET_DOCUMENT_ID
 expr_stmt|;
 block|}
 specifier|public
@@ -17230,10 +17239,7 @@ name|NodeId
 name|nodeId
 parameter_list|)
 block|{
-name|pos
-operator|=
-literal|0
-expr_stmt|;
+comment|//What does this 4 stand for ?
 name|len
 operator|=
 name|nodeId
@@ -17259,9 +17265,10 @@ name|docId
 argument_list|,
 name|data
 argument_list|,
-literal|0
+name|OFFSET_DOCUMENT_ID
 argument_list|)
 expr_stmt|;
+comment|//What does this 4 stand for ?
 name|nodeId
 operator|.
 name|serialize
@@ -17270,6 +17277,10 @@ name|data
 argument_list|,
 literal|4
 argument_list|)
+expr_stmt|;
+name|pos
+operator|=
+name|OFFSET_DOCUMENT_ID
 expr_stmt|;
 block|}
 name|int
@@ -17283,7 +17294,7 @@ name|byteToInt
 argument_list|(
 name|data
 argument_list|,
-literal|0
+name|OFFSET_DOCUMENT_ID
 argument_list|)
 return|;
 block|}
@@ -18506,7 +18517,7 @@ name|TerminatedException
 block|{
 try|try
 block|{
-comment|//TODO : 1 stands for the type's length
+comment|//What does this 1 stand for ?
 name|byte
 name|type
 init|=

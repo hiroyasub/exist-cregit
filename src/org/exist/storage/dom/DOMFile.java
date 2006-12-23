@@ -7352,6 +7352,14 @@ operator|.
 name|getPercentInstance
 argument_list|()
 decl_stmt|;
+name|NumberFormat
+name|nf2
+init|=
+name|NumberFormat
+operator|.
+name|getInstance
+argument_list|()
+decl_stmt|;
 name|StringBuffer
 name|buf
 init|=
@@ -7435,17 +7443,27 @@ name|append
 argument_list|(
 literal|" ("
 operator|+
+name|nf2
+operator|.
+name|format
+argument_list|(
 name|dataCache
 operator|.
 name|getUsedBuffers
 argument_list|()
+argument_list|)
 operator|+
 literal|" out of "
 operator|+
+name|nf2
+operator|.
+name|format
+argument_list|(
 name|dataCache
 operator|.
 name|getBuffers
 argument_list|()
+argument_list|)
 operator|+
 literal|")"
 argument_list|)
