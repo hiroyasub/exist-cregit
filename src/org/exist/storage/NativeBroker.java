@@ -1226,6 +1226,7 @@ name|Collection
 operator|.
 name|LENGTH_COLLECTION_ID
 decl_stmt|;
+comment|//2
 comment|/** the database files */
 specifier|protected
 name|CollectionStore
@@ -7094,7 +7095,9 @@ name|data
 operator|.
 name|length
 operator|-
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 argument_list|)
 expr_stmt|;
 comment|//              LOG.debug("reusing collection id: " + freeCollectionId);
@@ -7104,7 +7107,9 @@ name|data
 operator|.
 name|length
 operator|-
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 operator|>
 literal|0
 condition|)
@@ -7120,7 +7125,9 @@ name|data
 operator|.
 name|length
 operator|-
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 index|]
 decl_stmt|;
 name|System
@@ -7133,7 +7140,7 @@ literal|0
 argument_list|,
 name|ndata
 argument_list|,
-literal|0
+name|OFFSET_COLLECTION_ID
 argument_list|,
 name|ndata
 operator|.
@@ -7298,7 +7305,7 @@ operator|.
 name|getData
 argument_list|()
 argument_list|,
-literal|0
+name|OFFSET_COLLECTION_ID
 argument_list|)
 expr_stmt|;
 operator|++
@@ -7312,7 +7319,9 @@ init|=
 operator|new
 name|byte
 index|[
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 index|]
 decl_stmt|;
 name|ByteConversion
@@ -7323,7 +7332,7 @@ name|nextCollectionId
 argument_list|,
 name|d
 argument_list|,
-literal|0
+name|OFFSET_COLLECTION_ID
 argument_list|)
 expr_stmt|;
 name|collectionsDb
@@ -18497,6 +18506,7 @@ name|TerminatedException
 block|{
 try|try
 block|{
+comment|//TODO : 1 stands for the type's length
 name|byte
 name|type
 init|=
@@ -18510,7 +18520,11 @@ operator|.
 name|start
 argument_list|()
 operator|+
-literal|3
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
+operator|+
+literal|1
 index|]
 decl_stmt|;
 name|VariableByteInput

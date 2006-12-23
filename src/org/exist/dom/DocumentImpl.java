@@ -527,6 +527,14 @@ name|BINARY_FILE
 init|=
 literal|1
 decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|LENGTH_DOCUMENT_ID
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
 comment|//public final static byte DOCUMENT_NODE_SIGNATURE = 0x0F;
 specifier|private
 specifier|transient
