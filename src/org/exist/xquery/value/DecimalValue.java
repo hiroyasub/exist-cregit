@@ -452,6 +452,18 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
+comment|//Provisional hack : 10.0 mod 10.0 to trigger the bug
+if|if
+condition|(
+operator|!
+literal|"0"
+operator|.
+name|equals
+argument_list|(
+name|s
+argument_list|)
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -477,6 +489,7 @@ argument_list|(
 literal|'0'
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|sb
@@ -1609,6 +1622,8 @@ name|other
 operator|)
 operator|.
 name|value
+argument_list|,
+literal|0
 argument_list|,
 name|BigDecimal
 operator|.
