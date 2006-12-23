@@ -183,6 +183,22 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|LENGTH_SYMBOL
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+name|int
+name|LENGTH_NSSYMBOL
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
 comment|/** Maps local node names to an integer id */
 specifier|protected
 name|Object2IntHashMap

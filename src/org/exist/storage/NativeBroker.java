@@ -1208,6 +1208,24 @@ name|DEFAULT_WORD_VALUE_THRESHOLD
 init|=
 literal|0.015
 decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|OFFSET_COLLECTION_ID
+init|=
+literal|0
+decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|OFFSET_VALUE
+init|=
+name|OFFSET_COLLECTION_ID
+operator|+
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
+decl_stmt|;
 comment|/** the database files */
 specifier|protected
 name|CollectionStore
@@ -6853,7 +6871,9 @@ name|data
 operator|.
 name|length
 operator|+
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 index|]
 decl_stmt|;
 name|System
@@ -6866,7 +6886,7 @@ literal|0
 argument_list|,
 name|ndata
 argument_list|,
-literal|2
+name|OFFSET_VALUE
 argument_list|,
 name|data
 operator|.
@@ -6881,7 +6901,7 @@ name|id
 argument_list|,
 name|ndata
 argument_list|,
-literal|0
+name|OFFSET_COLLECTION_ID
 argument_list|)
 expr_stmt|;
 name|collectionsDb
@@ -6907,7 +6927,9 @@ init|=
 operator|new
 name|byte
 index|[
-literal|2
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
 index|]
 decl_stmt|;
 name|ByteConversion
@@ -6918,7 +6940,7 @@ name|id
 argument_list|,
 name|data
 argument_list|,
-literal|0
+name|OFFSET_COLLECTION_ID
 argument_list|)
 expr_stmt|;
 name|collectionsDb

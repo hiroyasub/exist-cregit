@@ -757,6 +757,14 @@ implements|,
 name|Cacheable
 block|{
 specifier|public
+specifier|static
+name|int
+name|LENGTH_COLLECTION_ID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
 name|Collection
 parameter_list|()
 block|{
