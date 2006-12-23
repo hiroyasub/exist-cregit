@@ -186,7 +186,7 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|int
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 init|=
 literal|2
 decl_stmt|;
@@ -194,7 +194,7 @@ comment|//sizeof short
 specifier|public
 specifier|static
 name|int
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 init|=
 literal|2
 decl_stmt|;

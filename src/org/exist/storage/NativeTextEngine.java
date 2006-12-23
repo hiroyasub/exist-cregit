@@ -4002,11 +4002,12 @@ condition|(
 name|hasNamespace
 condition|)
 block|{
+comment|//TODO : check the order in wich both info are read (and discarded)
 name|readOffset
 operator|+=
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 expr_stmt|;
 comment|// skip namespace id
 specifier|final
@@ -4028,7 +4029,7 @@ name|prefixLen
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 expr_stmt|;
 comment|// skip prefix
 block|}
@@ -8047,11 +8048,11 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|)
 argument_list|,
 name|key
@@ -8068,11 +8069,11 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|)
 argument_list|,
 name|word
@@ -10280,11 +10281,11 @@ name|LENGTH_IDX_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 literal|1
 index|]
@@ -10356,11 +10357,11 @@ name|LENGTH_IDX_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 literal|1
 expr_stmt|;
@@ -10420,11 +10421,11 @@ name|LENGTH_IDX_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 literal|1
 argument_list|)
@@ -10511,7 +10512,7 @@ name|offset
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 literal|1
 argument_list|)
@@ -10552,11 +10553,11 @@ name|LENGTH_IDX_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 literal|1
 operator|)
@@ -10574,11 +10575,11 @@ name|LENGTH_IDX_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 literal|1
 operator|)

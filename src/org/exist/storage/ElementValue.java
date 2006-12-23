@@ -158,7 +158,7 @@ name|OFFSET_SYMBOL
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 decl_stmt|;
 comment|//5
 specifier|public
@@ -296,7 +296,7 @@ name|LENGTH_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 expr_stmt|;
 name|data
 operator|=
@@ -367,7 +367,7 @@ name|LENGTH_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 name|OFFSET_NSSYMBOL
 expr_stmt|;
@@ -617,7 +617,7 @@ name|LENGTH_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 condition|)
 name|buf
 operator|.
@@ -649,11 +649,11 @@ name|LENGTH_TYPE
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 condition|)
 block|{
 name|buf

@@ -444,7 +444,7 @@ name|OFFSET_SYMBOL
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 decl_stmt|;
 comment|//5
 specifier|private

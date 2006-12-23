@@ -432,12 +432,12 @@ name|OFFSET_COLLECTION_ID
 init|=
 literal|0
 decl_stmt|;
-comment|//Notice that the conventional sedign is to serialize OFFSET_SYMBOL *then* OFFSET_NSSYMBOL
+comment|//Notice that the conventional design is to serialize OFFSET_SYMBOL *then* OFFSET_NSSYMBOL
 comment|//TODO : investigate
 specifier|public
 specifier|static
 name|int
-name|OFFSET_NSSYMBOL
+name|OFFSET_NS_URI
 init|=
 name|OFFSET_COLLECTION_ID
 operator|+
@@ -449,13 +449,13 @@ comment|//2
 specifier|public
 specifier|static
 name|int
-name|OFFSET_SYMBOL
+name|OFFSET_LOCAL_NAME
 init|=
-name|OFFSET_NSSYMBOL
+name|OFFSET_NS_URI
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_NSSYMBOL
+name|LENGTH_NS_URI
 decl_stmt|;
 comment|//4
 specifier|public
@@ -463,11 +463,11 @@ specifier|static
 name|int
 name|OFFSET_VALUE
 init|=
-name|OFFSET_SYMBOL
+name|OFFSET_LOCAL_NAME
 operator|+
 name|SymbolTable
 operator|.
-name|LENGTH_SYMBOL
+name|LENGTH_LOCAL_NAME
 decl_stmt|;
 comment|//6
 comment|/** switch to activate/deactivate the feature "new index by QName" */
@@ -1179,7 +1179,7 @@ name|namespaceId
 argument_list|,
 name|data
 argument_list|,
-name|OFFSET_NSSYMBOL
+name|OFFSET_NS_URI
 argument_list|)
 expr_stmt|;
 name|short
@@ -1203,7 +1203,7 @@ name|localNameId
 argument_list|,
 name|data
 argument_list|,
-name|OFFSET_SYMBOL
+name|OFFSET_LOCAL_NAME
 argument_list|)
 expr_stmt|;
 return|return
