@@ -583,7 +583,7 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|int
-name|OFFSET_TYPE
+name|OFFSET_VALUE_TYPE
 init|=
 name|OFFSET_COLLECTION_ID
 operator|+
@@ -595,7 +595,7 @@ comment|//2
 specifier|public
 specifier|static
 name|int
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 init|=
 literal|1
 decl_stmt|;
@@ -605,11 +605,11 @@ specifier|static
 name|int
 name|OFFSET_DATA
 init|=
-name|OFFSET_TYPE
+name|OFFSET_VALUE_TYPE
 operator|+
 name|NativeValueIndex
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 decl_stmt|;
 comment|//3
 comment|/** The broker that is using this value index */
@@ -2929,7 +2929,7 @@ specifier|final
 name|Value
 name|keyPrefix
 init|=
-name|computeKeyPrefix
+name|computeTypeCollectionKey
 argument_list|(
 name|value
 operator|.
@@ -3338,7 +3338,7 @@ else|else
 block|{
 name|searchKey
 operator|=
-name|computeKeyPrefix
+name|computeTypeCollectionKey
 argument_list|(
 name|Type
 operator|.
@@ -3618,7 +3618,7 @@ block|{
 name|Value
 name|keyPrefix
 init|=
-name|computeKeyPrefix
+name|computeTypeCollectionKey
 argument_list|(
 name|start
 operator|.
@@ -3791,7 +3791,7 @@ block|}
 comment|/**      * Returns a search key for a collectionId/type combination.      */
 specifier|private
 name|Value
-name|computeKeyPrefix
+name|computeTypeCollectionKey
 parameter_list|(
 name|int
 name|type
@@ -3813,7 +3813,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|NativeValueIndex
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 index|]
 decl_stmt|;
 name|ByteConversion
@@ -3829,7 +3829,7 @@ argument_list|)
 expr_stmt|;
 name|data
 index|[
-name|OFFSET_TYPE
+name|OFFSET_VALUE_TYPE
 index|]
 operator|=
 operator|(
@@ -4601,7 +4601,7 @@ name|LENGTH_COLLECTION_ID
 operator|+
 name|NativeValueIndex
 operator|.
-name|LENGTH_TYPE
+name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|,
 name|key
