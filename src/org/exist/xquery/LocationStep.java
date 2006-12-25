@@ -290,6 +290,12 @@ name|inUpdate
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|boolean
+name|useDirectAttrSelect
+init|=
+literal|true
+decl_stmt|;
 comment|// Cache for the current NodeTest type
 specifier|private
 name|Integer
@@ -669,6 +675,25 @@ block|{
 name|preload
 operator|=
 literal|true
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|(
+name|contextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|NEED_INDEX_INFO
+operator|)
+operator|>
+literal|0
+condition|)
+block|{
+name|useDirectAttrSelect
+operator|=
+literal|false
 expr_stmt|;
 block|}
 comment|// Mark ".", which is expanded as self::node() by the parser
@@ -1759,6 +1784,8 @@ comment|// do directly search for the attribute in the parent node.
 block|}
 if|else if
 condition|(
+name|useDirectAttrSelect
+operator|&&
 operator|!
 operator|(
 name|contextSet
@@ -1820,11 +1847,44 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-comment|//NodeProxy proxy = contextSet.get(0);
-comment|//if (proxy != null
-comment|//&& proxy.getInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
-comment|//return contextSet.directSelectAttribute(test.getName(),
-comment|//        contextId);
+name|NodeProxy
+name|proxy
+init|=
+name|contextSet
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|proxy
+operator|!=
+literal|null
+operator|&&
+name|proxy
+operator|.
+name|getInternalAddress
+argument_list|()
+operator|!=
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
+condition|)
+return|return
+name|contextSet
+operator|.
+name|directSelectAttribute
+argument_list|(
+name|test
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|contextId
+argument_list|)
+return|;
 block|}
 if|if
 condition|(
@@ -4594,6 +4654,21 @@ expr_stmt|;
 return|return
 name|ds
 return|;
+block|}
+specifier|public
+name|void
+name|setUseDirectAttrSelect
+parameter_list|(
+name|boolean
+name|useDirectAttrSelect
+parameter_list|)
+block|{
+name|this
+operator|.
+name|useDirectAttrSelect
+operator|=
+name|useDirectAttrSelect
+expr_stmt|;
 block|}
 specifier|protected
 name|void

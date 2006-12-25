@@ -131,6 +131,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|NEED_INDEX_INFO
+init|=
+literal|16
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DOT_TEST
 init|=
 literal|128
