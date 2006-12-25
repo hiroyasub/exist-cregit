@@ -768,6 +768,16 @@ index|[
 name|i
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|items
+index|[
+name|i
+index|]
+operator|!=
+literal|null
+condition|)
+block|{
 name|newMap
 operator|.
 name|put
@@ -815,6 +825,7 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|this
 operator|.
