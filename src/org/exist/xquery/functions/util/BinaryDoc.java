@@ -419,18 +419,9 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-name|path
-operator|+
-literal|" exists but is not a binary resource"
-argument_list|)
-throw|;
+return|return
+name|defaultReturn
+return|;
 if|if
 condition|(
 name|isCalledAs
