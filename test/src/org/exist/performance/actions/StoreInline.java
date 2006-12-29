@@ -453,8 +453,6 @@ throws|throws
 name|XMLDBException
 throws|,
 name|EXistException
-throws|,
-name|FileNotFoundException
 block|{
 name|Collection
 name|collection

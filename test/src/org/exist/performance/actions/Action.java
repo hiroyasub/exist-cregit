@@ -115,8 +115,6 @@ throws|throws
 name|XMLDBException
 throws|,
 name|EXistException
-throws|,
-name|FileNotFoundException
 function_decl|;
 name|String
 name|getDescription
