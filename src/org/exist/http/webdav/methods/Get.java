@@ -816,6 +816,11 @@ operator|.
 name|SC_FORBIDDEN
 argument_list|,
 name|READ_PERMISSION_DENIED
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;

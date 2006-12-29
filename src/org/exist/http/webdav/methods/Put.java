@@ -971,6 +971,11 @@ argument_list|(
 name|HttpServletResponse
 operator|.
 name|SC_FORBIDDEN
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1002,6 +1007,11 @@ argument_list|(
 name|HttpServletResponse
 operator|.
 name|SC_FORBIDDEN
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1033,6 +1043,11 @@ argument_list|(
 name|HttpServletResponse
 operator|.
 name|SC_BAD_REQUEST
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1064,6 +1079,11 @@ argument_list|(
 name|HttpServletResponse
 operator|.
 name|SC_CONFLICT
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;

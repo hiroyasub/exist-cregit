@@ -1025,6 +1025,11 @@ argument_list|(
 name|HttpServletResponse
 operator|.
 name|SC_UNAUTHORIZED
+argument_list|,
+name|ex
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
