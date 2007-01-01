@@ -1469,6 +1469,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|contextSequence
+operator|==
+literal|null
+operator|||
 name|contextQName
 operator|==
 literal|null
