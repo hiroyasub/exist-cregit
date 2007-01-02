@@ -1581,6 +1581,8 @@ operator|new
 name|Scheduler
 argument_list|(
 name|this
+argument_list|,
+name|conf
 argument_list|)
 expr_stmt|;
 name|aLong
@@ -1943,6 +1945,14 @@ expr_stmt|;
 comment|//TODO : in the future, we should implement an Initializable interface
 name|initialize
 argument_list|()
+expr_stmt|;
+comment|//setup any configured jobs for the scheduler
+name|scheduler
+operator|.
+name|setupConfiguredJobs
+argument_list|(
+name|conf
+argument_list|)
 expr_stmt|;
 comment|//TODO : move this to initialize ?
 if|if
