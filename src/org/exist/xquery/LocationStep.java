@@ -898,6 +898,13 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using cached results"
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getProfiler

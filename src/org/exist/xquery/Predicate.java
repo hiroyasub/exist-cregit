@@ -1334,6 +1334,13 @@ name|isCached
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using cached results"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|context
