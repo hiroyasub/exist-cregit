@@ -1440,10 +1440,6 @@ operator|||
 name|contextQName
 operator|==
 literal|null
-operator|||
-name|contextSequence
-operator|instanceof
-name|VirtualNodeSet
 condition|)
 return|return
 literal|false
