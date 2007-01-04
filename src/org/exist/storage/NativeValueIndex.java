@@ -2818,7 +2818,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|SearchCallback
-name|callback
+name|cb
 init|=
 operator|new
 name|SearchCallback
@@ -2922,29 +2922,15 @@ name|searchKey
 argument_list|)
 decl_stmt|;
 comment|//Compute a key for the value's type in the collection
-specifier|final
-name|Value
-name|keyPrefix
-init|=
-name|computeTypedKey
-argument_list|(
-name|collectionId
-argument_list|,
-name|value
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-decl_stmt|;
+comment|//final Value keyPrefix = computeTypedKey(collectionId, value.getType());
+comment|//dbValues.query(query, keyPrefix, cb);
 name|dbValues
 operator|.
 name|query
 argument_list|(
 name|query
 argument_list|,
-name|keyPrefix
-argument_list|,
-name|callback
+name|cb
 argument_list|)
 expr_stmt|;
 block|}
@@ -3241,7 +3227,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|RegexCallback
-name|callback
+name|cb
 init|=
 operator|new
 name|RegexCallback
@@ -3334,7 +3320,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//Compute a key for a string in the collection
+comment|//Compute a key for an arbitrary string in the collection
 name|searchKey
 operator|=
 name|computeTypedKey
@@ -3367,7 +3353,7 @@ name|query
 argument_list|(
 name|query
 argument_list|,
-name|callback
+name|cb
 argument_list|)
 expr_stmt|;
 block|}
@@ -3493,20 +3479,6 @@ name|STRING
 argument_list|)
 decl_stmt|;
 specifier|final
-name|int
-name|op
-init|=
-name|stringType
-condition|?
-name|IndexQuery
-operator|.
-name|TRUNC_RIGHT
-else|:
-name|IndexQuery
-operator|.
-name|GEQ
-decl_stmt|;
-specifier|final
 name|IndexScanCallback
 name|cb
 init|=
@@ -3571,6 +3543,11 @@ name|getId
 argument_list|()
 decl_stmt|;
 comment|//Compute a key for the start value in the collection
+if|if
+condition|(
+name|stringType
+condition|)
+block|{
 specifier|final
 name|Value
 name|startKey
@@ -3588,22 +3565,19 @@ name|caseSensitive
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|final
 name|IndexQuery
 name|query
 init|=
 operator|new
 name|IndexQuery
 argument_list|(
-name|op
+name|IndexQuery
+operator|.
+name|TRUNC_RIGHT
 argument_list|,
 name|startKey
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|stringType
-condition|)
 name|dbValues
 operator|.
 name|query
@@ -3613,29 +3587,46 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
-comment|//Compute a key for the start value's type in the collection
+specifier|final
 name|Value
-name|keyPrefix
+name|startKey
 init|=
-name|computeTypedKey
+operator|new
+name|Value
 argument_list|(
-name|collectionId
-argument_list|,
 name|start
 operator|.
-name|getType
-argument_list|()
+name|serialize
+argument_list|(
+name|collectionId
+argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
+name|IndexQuery
+name|query
+init|=
+operator|new
+name|IndexQuery
+argument_list|(
+name|IndexQuery
+operator|.
+name|GEQ
+argument_list|,
+name|startKey
+argument_list|)
+decl_stmt|;
+comment|//Compute a key for the start value's type in the collection
+comment|//Value keyPrefix = computeTypedKey(collectionId, start.getType());
+comment|//dbValues.query(query, keyPrefix, cb);
 name|dbValues
 operator|.
 name|query
 argument_list|(
 name|query
-argument_list|,
-name|keyPrefix
 argument_list|,
 name|cb
 argument_list|)

@@ -107,7 +107,7 @@ operator|=
 name|indexable
 expr_stmt|;
 block|}
-comment|/** called from {@link NativeValueIndex}; 	 * provides the persistant storage key : 	 * (collectionId, qname, indexType, indexData) */
+comment|/* provides the persistent storage key : collectionId + qname + indexType + indexData 	 * @deprecated 	 * @see org.exist.storage.ValueIndexKeyFactory#serialize(short, boolean) 	 */
 specifier|public
 name|byte
 index|[]
@@ -134,6 +134,45 @@ argument_list|(
 name|OFFSET_VALUE
 argument_list|,
 name|caseSensitive
+argument_list|)
+decl_stmt|;
+name|ByteConversion
+operator|.
+name|shortToByte
+argument_list|(
+name|collectionId
+argument_list|,
+name|data
+argument_list|,
+name|OFFSET_COLLECTION_ID
+argument_list|)
+expr_stmt|;
+return|return
+name|data
+return|;
+block|}
+comment|/* provides the persistent storage key : collectionId + qname + indexType + indexData 	 * @see org.exist.storage.ValueIndexKeyFactory#serialize(short, boolean) 	 */
+specifier|public
+name|byte
+index|[]
+name|serialize
+parameter_list|(
+name|short
+name|collectionId
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|indexable
+operator|.
+name|serializeValue
+argument_list|(
+name|OFFSET_VALUE
 argument_list|)
 decl_stmt|;
 name|ByteConversion

@@ -1118,6 +1118,30 @@ name|serialize
 parameter_list|(
 name|short
 name|collectionId
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+comment|//TODO : pass the factory as an argument
+return|return
+name|ValueIndexFactory
+operator|.
+name|serialize
+argument_list|(
+name|this
+argument_list|,
+name|collectionId
+argument_list|)
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @deprecated 	 * @see org.exist.storage.Indexable#serialize(short, boolean) 	 */
+specifier|public
+name|byte
+index|[]
+name|serialize
+parameter_list|(
+name|short
+name|collectionId
 parameter_list|,
 name|boolean
 name|caseSensitive
@@ -1139,6 +1163,30 @@ name|caseSensitive
 argument_list|)
 return|;
 block|}
+specifier|public
+name|byte
+index|[]
+name|serializeValue
+parameter_list|(
+name|int
+name|offset
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+comment|//TODO : pass the factory as an argument
+return|return
+name|ValueIndexFactory
+operator|.
+name|serialize
+argument_list|(
+name|this
+argument_list|,
+name|offset
+argument_list|)
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @deprecated 	 * @see org.exist.storage.Indexable#serializeValue(int, boolean) 	 */
 specifier|public
 name|byte
 index|[]
