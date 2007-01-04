@@ -1728,7 +1728,6 @@ name|getData
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//try {
 while|while
 condition|(
 name|is
@@ -1867,10 +1866,6 @@ block|}
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//Is it expected ? if not, remove the block -pb
-comment|//LOG.warn("REPORT ME " + e.getMessage(), e);
-comment|//}
 comment|//append the data from the new list
 if|if
 condition|(
@@ -2489,12 +2484,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-name|os
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-comment|//Compute a key for the value
+comment|//Compute a key for the indexed value in the collection
 name|Value
 name|searchKey
 init|=
@@ -2528,11 +2518,6 @@ operator|==
 literal|null
 condition|)
 continue|continue;
-name|boolean
-name|changed
-init|=
-literal|false
-decl_stmt|;
 name|VariableByteArrayInput
 name|is
 init|=
@@ -2544,6 +2529,11 @@ operator|.
 name|getData
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|boolean
+name|changed
+init|=
+literal|false
 decl_stmt|;
 name|os
 operator|.
@@ -2595,7 +2585,7 @@ argument_list|()
 condition|)
 block|{
 comment|// data are related to another document:
-comment|// copy them to any existing data
+comment|// copy them (keep them)
 name|os
 operator|.
 name|writeInt
@@ -2630,7 +2620,7 @@ block|}
 else|else
 block|{
 comment|// data are related to our document:
-comment|// skip them. They will be processed at the end
+comment|// skip them (remove them)
 name|is
 operator|.
 name|skipBytes
@@ -2663,7 +2653,8 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//Well, nothing to store : remove the existing data
+comment|// nothing to store:
+comment|// remove the existing key/value pair
 name|dbValues
 operator|.
 name|remove
@@ -2674,6 +2665,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// still something to store:
+comment|// modify the existing value for the key
 if|if
 condition|(
 name|dbValues
@@ -2708,11 +2701,6 @@ comment|//TODO : throw exception ?
 block|}
 block|}
 block|}
-name|os
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -2783,6 +2771,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|os
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|lock
 operator|.
 name|release
@@ -2889,6 +2882,7 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the value in the collection
 specifier|final
 name|Value
 name|searchKey
@@ -2927,18 +2921,19 @@ argument_list|,
 name|searchKey
 argument_list|)
 decl_stmt|;
+comment|//Compute a key for the value's type in the collection
 specifier|final
 name|Value
 name|keyPrefix
 init|=
-name|computeTypeCollectionKey
+name|computeTypedKey
 argument_list|(
+name|collectionId
+argument_list|,
 name|value
 operator|.
 name|getType
 argument_list|()
-argument_list|,
-name|collectionId
 argument_list|)
 decl_stmt|;
 name|dbValues
@@ -3320,6 +3315,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//Compute a key for the start term in the collection
 name|searchKey
 operator|=
 operator|new
@@ -3338,15 +3334,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//Compute a key for a string in the collection
 name|searchKey
 operator|=
-name|computeTypeCollectionKey
+name|computeTypedKey
 argument_list|(
+name|collectionId
+argument_list|,
 name|Type
 operator|.
 name|STRING
-argument_list|,
-name|collectionId
 argument_list|)
 expr_stmt|;
 block|}
@@ -3573,6 +3570,7 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+comment|//Compute a key for the start value in the collection
 specifier|final
 name|Value
 name|startKey
@@ -3617,17 +3615,18 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
+comment|//Compute a key for the start value's type in the collection
 name|Value
 name|keyPrefix
 init|=
-name|computeTypeCollectionKey
+name|computeTypedKey
 argument_list|(
+name|collectionId
+argument_list|,
 name|start
 operator|.
 name|getType
 argument_list|()
-argument_list|,
-name|collectionId
 argument_list|)
 decl_stmt|;
 name|dbValues
@@ -3793,13 +3792,13 @@ block|}
 comment|/**      * Returns a search key for a collectionId/type combination.      */
 specifier|private
 name|Value
-name|computeTypeCollectionKey
+name|computeTypedKey
 parameter_list|(
-name|int
-name|type
-parameter_list|,
 name|short
 name|collectionId
+parameter_list|,
+name|int
+name|type
 parameter_list|)
 block|{
 name|byte
@@ -4345,9 +4344,6 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|//Process the nodes
-name|NodeId
-name|nodeId
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -4363,8 +4359,9 @@ name|j
 operator|++
 control|)
 block|{
+name|NodeId
 name|nodeId
-operator|=
+init|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -4377,7 +4374,7 @@ name|createFromStream
 argument_list|(
 name|is
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|NodeProxy
 name|storedNode
 init|=
@@ -4468,15 +4465,14 @@ name|add
 argument_list|(
 name|storedNode
 argument_list|,
-operator|-
-literal|1
+name|Constants
+operator|.
+name|NO_SIZE_HINT
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|// EOF is expected here
 block|}
 catch|catch
 parameter_list|(
@@ -4890,9 +4886,6 @@ expr_stmt|;
 continue|continue;
 block|}
 name|NodeId
-name|nodeId
-decl_stmt|;
-name|NodeId
 name|lastParentId
 init|=
 literal|null
@@ -4912,8 +4905,9 @@ name|j
 operator|++
 control|)
 block|{
+name|NodeId
 name|nodeId
-operator|=
+init|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -4926,7 +4920,7 @@ name|createFromStream
 argument_list|(
 name|is
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|contextSet
@@ -5042,9 +5036,6 @@ comment|//See above where we have this behaviour :
 comment|//otherwise, we add all nodes without check
 block|}
 block|}
-comment|//} catch(EOFException e) {
-comment|//Is it expected ? -pb
-comment|//LOG.warn("REPORT ME" + e.getMessage(), e);
 block|}
 catch|catch
 parameter_list|(
