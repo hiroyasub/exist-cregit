@@ -203,14 +203,6 @@ name|splitCount
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * if set to> -1, the document needs to be partially reindexed      *  - beginning at the tree-level defined by reindex      */
-specifier|protected
-specifier|transient
-name|int
-name|reindex
-init|=
-name|REINDEX_ALL
-decl_stmt|;
 specifier|public
 name|DocumentMetadata
 parameter_list|()
