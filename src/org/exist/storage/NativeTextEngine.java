@@ -173,6 +173,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentMetadata
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -7301,6 +7313,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : investigate because this should aaways be false !
 if|if
 condition|(
 name|nodeId
@@ -7308,13 +7321,9 @@ operator|.
 name|getTreeLevel
 argument_list|()
 operator|<
-name|document
+name|DocumentMetadata
 operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|reindexRequired
-argument_list|()
+name|REINDEX_ALL
 condition|)
 block|{
 for|for
