@@ -781,7 +781,6 @@ argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
 specifier|protected
-specifier|final
 name|TreeMap
 name|declaredFunctions
 init|=
@@ -791,7 +790,6 @@ argument_list|()
 decl_stmt|;
 comment|// Globally declared variables
 specifier|protected
-specifier|final
 name|TreeMap
 name|globalVariables
 init|=
@@ -1319,6 +1317,38 @@ operator|=
 name|this
 operator|.
 name|stripWhitespace
+expr_stmt|;
+name|ctx
+operator|.
+name|declaredFunctions
+operator|=
+operator|new
+name|TreeMap
+argument_list|(
+name|this
+operator|.
+name|declaredFunctions
+argument_list|)
+expr_stmt|;
+name|ctx
+operator|.
+name|globalVariables
+operator|=
+operator|new
+name|TreeMap
+argument_list|(
+name|this
+operator|.
+name|globalVariables
+argument_list|)
+expr_stmt|;
+name|ctx
+operator|.
+name|watchdog
+operator|=
+name|this
+operator|.
+name|watchdog
 expr_stmt|;
 return|return
 name|ctx
