@@ -455,6 +455,8 @@ argument_list|()
 operator|.
 name|write
 argument_list|(
+name|broker
+argument_list|,
 name|ostream
 argument_list|)
 expr_stmt|;
@@ -635,6 +637,8 @@ name|metadata
 operator|.
 name|read
 argument_list|(
+name|broker
+argument_list|,
 name|istream
 argument_list|)
 expr_stmt|;

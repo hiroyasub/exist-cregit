@@ -536,7 +536,7 @@ literal|4
 decl_stmt|;
 comment|//sizeof int
 comment|//public final static byte DOCUMENT_NODE_SIGNATURE = 0x0F;
-specifier|private
+specifier|protected
 specifier|transient
 name|DBBroker
 name|broker
@@ -1539,6 +1539,8 @@ name|metadata
 operator|.
 name|write
 argument_list|(
+name|broker
+argument_list|,
 name|ostream
 argument_list|)
 expr_stmt|;
@@ -1832,6 +1834,8 @@ name|metadata
 operator|.
 name|read
 argument_list|(
+name|broker
+argument_list|,
 name|istream
 argument_list|)
 expr_stmt|;
