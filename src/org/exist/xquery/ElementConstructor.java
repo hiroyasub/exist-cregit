@@ -976,9 +976,6 @@ control|)
 block|{
 name|constructor
 operator|=
-operator|(
-name|AttributeConstructor
-operator|)
 name|attributes
 index|[
 name|i
@@ -1086,9 +1083,6 @@ argument_list|)
 expr_stmt|;
 name|constructor
 operator|=
-operator|(
-name|AttributeConstructor
-operator|)
 name|attributes
 index|[
 name|i
@@ -1524,9 +1518,6 @@ argument_list|()
 expr_stmt|;
 name|attr
 operator|=
-operator|(
-name|AttributeConstructor
-operator|)
 name|attributes
 index|[
 name|i
@@ -1718,9 +1709,6 @@ argument_list|)
 expr_stmt|;
 name|attr
 operator|=
-operator|(
-name|AttributeConstructor
-operator|)
 name|attributes
 index|[
 name|i
@@ -1891,9 +1879,6 @@ block|{
 name|Expression
 name|next
 init|=
-operator|(
-name|Expression
-operator|)
 name|attributes
 index|[
 name|i
