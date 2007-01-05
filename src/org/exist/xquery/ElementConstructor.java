@@ -1221,12 +1221,22 @@ argument_list|(
 literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
 throw|;
+name|Item
+name|qnitem
+init|=
+name|qnameSeq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 name|QName
 name|qn
 decl_stmt|;
 if|if
 condition|(
-name|qnameSeq
+name|qnitem
 operator|instanceof
 name|QNameValue
 condition|)
@@ -1237,7 +1247,7 @@ operator|(
 operator|(
 name|QNameValue
 operator|)
-name|qnameSeq
+name|qnitem
 operator|)
 operator|.
 name|getQName
@@ -1255,7 +1265,7 @@ name|parse
 argument_list|(
 name|context
 argument_list|,
-name|qnameSeq
+name|qnitem
 operator|.
 name|getStringValue
 argument_list|()
@@ -1322,7 +1332,7 @@ name|XPathException
 argument_list|(
 literal|"XPTY0004 '"
 operator|+
-name|qnameSeq
+name|qnitem
 operator|.
 name|getStringValue
 argument_list|()
@@ -1405,15 +1415,10 @@ expr_stmt|;
 name|NodeImpl
 name|node
 init|=
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|builder
 operator|.
 name|getDocument
 argument_list|()
-operator|)
 operator|.
 name|getNode
 argument_list|(
