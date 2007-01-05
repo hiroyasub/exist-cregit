@@ -1280,7 +1280,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//TODO: api change to XmldbURI?
+comment|/**      * Creates a unique name for a database resource      * Uniqueness is only guaranteed within the eXist instance      *       * The name is based on a hex encoded string of a random integer      * and will have the format xxxxxxxx.xml where x is in the range      * 0 to 9 and a to f       *       * @return the unique resource name       */
 specifier|public
 name|String
 name|createId
@@ -1288,6 +1288,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+comment|//TODO: api change to XmldbURI?
 name|Collection
 name|collection
 init|=
