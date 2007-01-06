@@ -150,7 +150,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Top class for index definitions as specified in a collection configuration  * or the main configuration file. The IndexSpec for a given collection can be retrieved through method  * {@link org.exist.collections.Collection#getIdxConf(DBBroker)}.  *    *  An index definition should have the following structure:  *    *<pre>  *&lt;index index-depth="idx-depth"&gt;  *&lt;fulltext default="all|none" attributes="true|false"&gt;  *&lt;include path="node-path"/&gt;  *&lt;exclude path="node-path"/&gt;  *&lt;/fulltext&gt;  *&lt;create path="node-path" type="schema-type"&gt;  *&lt;/index&gt;  *</pre>  *    * @author wolf  */
+comment|/**  * Top class for index definitions as specified in a collection configuration  * or the main configuration file. The IndexSpec for a given collection can be retrieved through method  * {@link org.exist.collections.Collection#getIndexConfiguration(DBBroker)}.  *    *  An index definition should have the following structure:  *    *<pre>  *&lt;index index-depth="idx-depth"&gt;  *&lt;fulltext default="all|none" attributes="true|false"&gt;  *&lt;include path="node-path"/&gt;  *&lt;exclude path="node-path"/&gt;  *&lt;/fulltext&gt;  *&lt;create path="node-path" type="schema-type"&gt;  *&lt;/index&gt;  *</pre>  *    * @author wolf  */
 end_comment
 
 begin_class
