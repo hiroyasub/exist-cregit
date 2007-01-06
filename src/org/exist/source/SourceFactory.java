@@ -323,6 +323,13 @@ name|XMLDB_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+name|DocumentImpl
+name|resource
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 name|XmldbURI
 name|pathUri
 init|=
@@ -333,9 +340,8 @@ argument_list|(
 name|location
 argument_list|)
 decl_stmt|;
-name|DocumentImpl
 name|resource
-init|=
+operator|=
 name|broker
 operator|.
 name|getXMLResource
@@ -346,7 +352,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|source
 operator|=
 operator|new
@@ -362,6 +368,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
 name|resource
 operator|.
 name|getUpdateLock
@@ -370,6 +385,7 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/* resource: */
 if|else if
