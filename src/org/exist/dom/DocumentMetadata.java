@@ -124,15 +124,6 @@ name|HAS_LOCKTOKEN
 init|=
 literal|2
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|REINDEX_ALL
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|/** the mimeType of the document */
 specifier|private
 name|String

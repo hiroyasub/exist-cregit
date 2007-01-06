@@ -1093,19 +1093,6 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/** 	 * Reindex a document or node. 	 *  	 * If node is null, all levels of the document tree starting with 	 * DocumentImpl.reindexRequired() will be reindexed. 	 *   	 * @param oldDoc 	 * @param node 	 */
-specifier|public
-specifier|abstract
-name|void
-name|reindex
-parameter_list|(
-name|DocumentImpl
-name|oldDoc
-parameter_list|,
-name|StoredNode
-name|node
-parameter_list|)
-function_decl|;
 block|}
 end_class
 

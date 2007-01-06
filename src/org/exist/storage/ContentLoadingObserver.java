@@ -69,18 +69,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|TextImpl
 import|;
 end_import
@@ -231,19 +219,6 @@ name|doc
 parameter_list|)
 throws|throws
 name|ReadOnlyException
-function_decl|;
-comment|/**      * Reindexes all pending items for the specified document.       *       * @param oldDoc the document to be reindexed.      * @param node if != null, only nodes being descendants of the specified node will be      * reindexed. Other nodes are not touched. This is used for a partial reindex.      */
-specifier|public
-specifier|abstract
-name|void
-name|reindex
-parameter_list|(
-name|DocumentImpl
-name|oldDoc
-parameter_list|,
-name|StoredNode
-name|node
-parameter_list|)
 function_decl|;
 comment|/** remove all pending modifications, for the current document. */
 specifier|public

@@ -2639,20 +2639,6 @@ name|VariableByteOutputStream
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#reindex(org.exist.dom.DocumentImpl, org.exist.dom.NodeImpl)      */
-comment|//TODO : note that this is *not* this.doc -pb
-specifier|public
-name|void
-name|reindex
-parameter_list|(
-name|DocumentImpl
-name|document
-parameter_list|,
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-block|}
 comment|/**      * Lookup elements or attributes in the index matching a given {@link QName} and      * {@link NodeSelector}. The NodeSelector argument is optional. If selector is      * null, all elements or attributes matching qname will be returned.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID}      * @param docs the set of documents to look up in the index      * @param qname the QName of the attribute or element      * @param selector an (optional) NodeSelector      */
 specifier|public
 name|NodeSet
