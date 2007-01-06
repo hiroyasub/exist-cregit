@@ -1793,6 +1793,11 @@ name|getSource
 argument_list|(
 name|context
 operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+name|context
+operator|.
 name|getModuleLoadPath
 argument_list|()
 argument_list|,
@@ -1840,6 +1845,29 @@ operator|+
 name|location
 operator|+
 literal|" not found: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Permission denied to access query at "
+operator|+
+name|location
+operator|+
+literal|" : "
 operator|+
 name|e
 operator|.
