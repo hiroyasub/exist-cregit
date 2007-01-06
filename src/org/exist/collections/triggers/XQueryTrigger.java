@@ -263,7 +263,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|BooleanValue
+name|Base64Binary
 import|;
 end_import
 
@@ -320,7 +320,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  * The XQuery source executed is the value of the context parameter named "query".  * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the url indicated by the parameter named "url".  *   * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * xxx is the namespace prefix within the XQuery  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
 end_comment
 
 begin_class
@@ -330,6 +330,22 @@ name|XQueryTrigger
 extends|extends
 name|FilteringTrigger
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EVENT_TYPE_PREPARE
+init|=
+literal|"pepare"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EVENT_TYPE_FINISH
+init|=
+literal|"finish"
+decl_stmt|;
 specifier|private
 name|SAXAdapter
 name|adapter
@@ -341,8 +357,14 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|Source
-name|query
+name|String
+name|strQuery
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
+name|urlQuery
 init|=
 literal|null
 decl_stmt|;
@@ -389,29 +411,23 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Configured XQuery trigger for collection : '"
-operator|+
-name|parent
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|collection
 operator|=
 name|parent
 expr_stmt|;
-name|String
-name|url
-init|=
+comment|//for an xquery trigger there must be at least
+comment|//one parameter to specify the xquery
+if|if
+condition|(
+name|parameters
+operator|!=
+literal|null
+condition|)
+block|{
+name|urlQuery
+operator|=
 operator|(
 name|String
 operator|)
@@ -421,52 +437,9 @@ name|get
 argument_list|(
 literal|"url"
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|url
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|this
-operator|.
-name|query
-operator|=
-name|SourceFactory
-operator|.
-name|getSource
-argument_list|(
-name|broker
-argument_list|,
-literal|null
-argument_list|,
-name|url
-argument_list|,
-literal|false
-argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|CollectionConfigurationException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-name|String
-name|query
-init|=
+name|strQuery
+operator|=
 operator|(
 name|String
 operator|)
@@ -476,32 +449,18 @@ name|get
 argument_list|(
 literal|"query"
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|query
-operator|!=
-literal|null
-condition|)
-name|this
-operator|.
-name|query
-operator|=
-operator|new
-name|StringSource
-argument_list|(
-name|query
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|this
-operator|.
-name|query
-operator|==
+name|urlQuery
+operator|!=
+literal|null
+operator|||
+name|strQuery
+operator|!=
 literal|null
 condition|)
-return|return;
+block|{
 name|this
 operator|.
 name|bindingPrefix
@@ -537,6 +496,7 @@ name|trim
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|bindingPrefix
@@ -550,6 +510,17 @@ argument_list|()
 operator|+
 literal|":"
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|//if no binding prefix is specified default to local
+name|this
+operator|.
+name|bindingPrefix
+operator|=
+literal|"local:"
+expr_stmt|;
+block|}
 name|service
 operator|=
 name|broker
@@ -557,6 +528,99 @@ operator|.
 name|getXQueryService
 argument_list|()
 expr_stmt|;
+return|return;
+block|}
+block|}
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"XQuery Trigger for: '"
+operator|+
+name|parent
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' is missing its XQuery parameter"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Get's a Source for the Trigger's XQuery 	 *  	 * @param the database broker 	 *  	 * @return the Source for the XQuery  	 */
+specifier|private
+name|Source
+name|getQuerySource
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+name|Source
+name|querySource
+init|=
+literal|null
+decl_stmt|;
+comment|//try and get the xquery from a url
+if|if
+condition|(
+name|urlQuery
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|querySource
+operator|=
+name|SourceFactory
+operator|.
+name|getSource
+argument_list|(
+name|broker
+argument_list|,
+literal|null
+argument_list|,
+name|urlQuery
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//try and get the xquery from a string
+if|else if
+condition|(
+name|strQuery
+operator|!=
+literal|null
+condition|)
+block|{
+name|querySource
+operator|=
+operator|new
+name|StringSource
+argument_list|(
+name|strQuery
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|querySource
+return|;
 block|}
 comment|/** 	 * @link org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
 specifier|public
@@ -592,13 +656,22 @@ argument_list|(
 name|event
 argument_list|)
 operator|+
-literal|"XQuery trigger for document : '"
+literal|"XQuery trigger for document: '"
 operator|+
 name|documentName
 operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//get the query
+name|Source
+name|query
+init|=
+name|getQuerySource
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|query
@@ -647,6 +720,7 @@ name|compiledQuery
 decl_stmt|;
 try|try
 block|{
+comment|//compile the xquery
 name|compiledQuery
 operator|=
 name|service
@@ -658,7 +732,7 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-comment|/*         	Variable globalVar;         	         	globalVar = new Variable(new QName("collectionName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(collection.getName()));	         	        context.declareGlobalVariable(globalVar);	          	        globalVar = new Variable(new QName("documentName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(documentName)); 	        context.declareGlobalVariable(globalVar);	                  	        globalVar = new Variable(new QName("triggerEvent", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(eventToString(event))); 	        context.declareGlobalVariable(globalVar);  	        globalVar = new Variable(new QName("document", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new NodeProxy((DocumentImpl)existingDocument)); 	        context.declareGlobalVariable(globalVar); 	        */
+comment|//declare external variables
 name|context
 operator|.
 name|declareVariable
@@ -667,11 +741,7 @@ name|bindingPrefix
 operator|+
 literal|"eventType"
 argument_list|,
-operator|new
-name|StringValue
-argument_list|(
-literal|"prepare"
-argument_list|)
+name|EVENT_TYPE_PREPARE
 argument_list|)
 expr_stmt|;
 name|context
@@ -725,14 +795,36 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//if (existingDocument == null)
 if|if
 condition|(
 name|existingDocument
 operator|instanceof
 name|BinaryDocument
 condition|)
-comment|//        		TODO : encode in Base64 ?
+block|{
+comment|//binary document
+name|BinaryDocument
+name|bin
+init|=
+operator|(
+name|BinaryDocument
+operator|)
+name|existingDocument
+decl_stmt|;
+name|byte
+index|[]
+name|data
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBinaryResource
+argument_list|(
+name|bin
+argument_list|)
+decl_stmt|;
 name|context
 operator|.
 name|declareVariable
@@ -741,12 +833,17 @@ name|bindingPrefix
 operator|+
 literal|"document"
 argument_list|,
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+operator|new
+name|Base64Binary
+argument_list|(
+name|data
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+comment|//xml document
 name|context
 operator|.
 name|declareVariable
@@ -762,17 +859,13 @@ name|existingDocument
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|XPathException
 name|e
 parameter_list|)
 block|{
-name|query
-operator|=
-literal|null
-expr_stmt|;
-comment|//prevents future use
 throw|throw
 operator|new
 name|TriggerException
@@ -789,11 +882,6 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|query
-operator|=
-literal|null
-expr_stmt|;
-comment|//prevents future use
 throw|throw
 operator|new
 name|TriggerException
@@ -804,6 +892,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|//execute the xquery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
@@ -828,7 +917,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"done."
+literal|"Trigger fired for prepare"
 argument_list|)
 expr_stmt|;
 block|}
@@ -838,11 +927,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-name|query
-operator|=
-literal|null
-expr_stmt|;
-comment|//prevents future use
 throw|throw
 operator|new
 name|TriggerException
@@ -872,6 +956,43 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Finishing "
+operator|+
+name|eventToString
+argument_list|(
+name|event
+argument_list|)
+operator|+
+literal|" XQuery trigger for document : '"
+operator|+
+name|document
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+comment|//get the query
+name|Source
+name|query
+init|=
+name|getQuerySource
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|query
+operator|==
+literal|null
+condition|)
+return|return;
 comment|// avoid infinite recursion by allowing just one trigger per thread
 if|if
 condition|(
@@ -888,34 +1009,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Finishing "
-operator|+
-name|eventToString
-argument_list|(
-name|event
-argument_list|)
-operator|+
-literal|"XQuery trigger for document : '"
-operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|query
-operator|==
-literal|null
-condition|)
-return|return;
 name|XQueryContext
 name|context
 init|=
@@ -935,6 +1028,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|//compile the xquery
 name|compiledQuery
 operator|=
 name|service
@@ -946,7 +1040,7 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-comment|/*         	Variable globalVar;          	globalVar = new Variable(new QName("collectionName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(collection.getName()));	     	        context.declareGlobalVariable(globalVar); 	         	        globalVar = new Variable(new QName("documentName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(documentName)); 	        context.declareGlobalVariable(globalVar);  	        globalVar = new Variable(new QName("triggerEvent", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(eventToString(event))); 	        context.declareGlobalVariable(globalVar);	    	        globalVar = new Variable(new QName("document", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new NodeProxy((DocumentImpl)document)); 	        context.declareGlobalVariable(globalVar); 	        */
+comment|//declare external variables
 name|context
 operator|.
 name|declareVariable
@@ -955,11 +1049,7 @@ name|bindingPrefix
 operator|+
 literal|"eventType"
 argument_list|,
-operator|new
-name|StringValue
-argument_list|(
-literal|"finish"
-argument_list|)
+name|EVENT_TYPE_FINISH
 argument_list|)
 expr_stmt|;
 name|context
@@ -1022,7 +1112,8 @@ name|event
 operator|==
 name|REMOVE_DOCUMENT_EVENT
 condition|)
-comment|//        		Document does not exist any more -> Sequence.EMPTY_SEQUENCE
+block|{
+comment|//Document does not exist any more -> Sequence.EMPTY_SEQUENCE
 name|context
 operator|.
 name|declareVariable
@@ -1036,13 +1127,37 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|document
 operator|instanceof
 name|BinaryDocument
 condition|)
-comment|//        		TODO : encode in Base64 ?
+block|{
+comment|//binary document
+name|BinaryDocument
+name|bin
+init|=
+operator|(
+name|BinaryDocument
+operator|)
+name|document
+decl_stmt|;
+name|byte
+index|[]
+name|data
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBinaryResource
+argument_list|(
+name|bin
+argument_list|)
+decl_stmt|;
 name|context
 operator|.
 name|declareVariable
@@ -1051,12 +1166,17 @@ name|bindingPrefix
 operator|+
 literal|"document"
 argument_list|,
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+operator|new
+name|Base64Binary
+argument_list|(
+name|data
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+comment|//xml document
 name|context
 operator|.
 name|declareVariable
@@ -1072,6 +1192,7 @@ name|document
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|XPathException
@@ -1079,6 +1200,13 @@ name|e
 parameter_list|)
 block|{
 comment|//Should never be reached
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1087,7 +1215,15 @@ name|e
 parameter_list|)
 block|{
 comment|//Should never be reached
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
+comment|//execute the xquery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
@@ -1132,7 +1268,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"trigger done."
+literal|"Trigger fired for finish"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1147,7 +1283,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"trigger done with error: "
+literal|"Error during trigger finish "
 operator|+
 name|e
 argument_list|)
@@ -1166,7 +1302,7 @@ operator|=
 name|getOutputHandler
 argument_list|()
 expr_stmt|;
-comment|//		TODO : uncomment when it works
+comment|//TODO : uncomment when it works
 comment|/* 		if (isValidating())  			setOutputHandler(adapter);	 		*/
 name|super
 operator|.
@@ -1191,128 +1327,32 @@ argument_list|(
 name|originalOutputHandler
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|isValidating
-argument_list|()
-condition|)
-return|return;
-name|XQueryContext
-name|context
-init|=
-name|service
-operator|.
-name|newContext
-argument_list|(
-name|AccessContext
-operator|.
-name|TRIGGER
-argument_list|)
-decl_stmt|;
+comment|//if (!isValidating())
+comment|//		return;
+comment|//XQueryContext context = service.newContext(AccessContext.TRIGGER);
 comment|//TODO : futher initializations ?
 comment|// CompiledXQuery compiledQuery;
-try|try
-block|{
+comment|//try {
 comment|// compiledQuery =
-name|service
-operator|.
-name|compile
-argument_list|(
-name|context
-argument_list|,
-name|query
-argument_list|)
-expr_stmt|;
-comment|/*         	Variable globalVar;         	         	globalVar = new Variable(new QName("collectionName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(collection.getName()));	         	        context.declareGlobalVariable(globalVar);	          	        globalVar = new Variable(new QName("documentName", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(documentName)); 	        context.declareGlobalVariable(globalVar);	                  	        globalVar = new Variable(new QName("triggerEvent", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new StringValue(eventToString(event))); 	        context.declareGlobalVariable(globalVar);  	        globalVar = new Variable(new QName("document", XQueryContext.EXIST_NS, "exist")); 	        globalVar.setValue(new NodeProxy((DocumentImpl)existingDocument)); 	        context.declareGlobalVariable(globalVar); 	        */
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|bindingPrefix
-operator|+
-literal|"validating"
-argument_list|,
-operator|new
-name|BooleanValue
-argument_list|(
-name|isValidating
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|adapter
-operator|.
-name|getDocument
-argument_list|()
-operator|==
-literal|null
-condition|)
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|bindingPrefix
-operator|+
-literal|"document"
-argument_list|,
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-argument_list|)
-expr_stmt|;
+comment|//service.compile(context, query);
+comment|//context.declareVariable(bindingPrefix + "validating", new BooleanValue(isValidating()));
+comment|//if (adapter.getDocument() == null)
+comment|//context.declareVariable(bindingPrefix + "document", Sequence.EMPTY_SEQUENCE);
 comment|//TODO : find the right method ;-)
 comment|/*         	else         		context.declareVariable(bindingPrefix + "document", (DocumentImpl)adapter.getDocument());         	*/
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|query
-operator|=
-literal|null
-expr_stmt|;
-comment|//prevents future use
-throw|throw
-operator|new
-name|SAXException
-argument_list|(
-literal|"Error during endDocument"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|query
-operator|=
-literal|null
-expr_stmt|;
-comment|//prevents future use
-throw|throw
-operator|new
-name|SAXException
-argument_list|(
-literal|"Error during endDocument"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
+comment|//} catch (XPathException e) {
+comment|//query = null; //prevents future use
+comment|//	throw new SAXException("Error during endDocument", e);
+comment|//} catch (IOException e) {
+comment|//query = null; //prevents future use
+comment|//	throw new SAXException("Error during endDocument", e);
+comment|//}
 comment|//TODO : uncomment when it works
 comment|/*         try {         	//TODO : should we provide another contextSet ? 	        NodeSet contextSet = NodeSet.EMPTY_SET;	         			//Sequence result = service.execute(compiledQuery, contextSet); 			//TODO : should we have a special processing ? 			LOG.debug("done."); 			         } catch (XPathException e) {         	query = null; //prevents future use         	throw new SAXException("Error during endDocument", e); 		}	 		*/
 comment|//TODO : check that result is a document node
 comment|//TODO : Stream result to originalOutputHandler
 block|}
+comment|/** 	 * Returns a String representation of the Trigger event 	 *  	 * @event The Trigger event 	 *  	 * @return The String representation 	 */
 specifier|public
 specifier|static
 name|String

@@ -158,7 +158,7 @@ specifier|public
 class|class
 name|SourceFactory
 block|{
-comment|/**      * Create a {@link Source} object for the given URL.      *       * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *       * @param contextPath      * @param location      * @throws MalformedURLException      * @throws IOException      */
+comment|/**      * Create a {@link Source} object for the given URL.      *       * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *       * @param broker, can be null if not asking for a database resource      * @param contextPath      * @param location      * @throws MalformedURLException      * @throws IOException      */
 specifier|public
 specifier|static
 specifier|final
@@ -371,6 +371,8 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|//TODO: this is nasty!!! as we are unlocking the resource whilst there
+comment|//is still a source
 if|if
 condition|(
 name|resource
