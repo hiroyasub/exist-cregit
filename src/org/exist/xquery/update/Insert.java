@@ -768,6 +768,8 @@ name|inSeq
 operator|.
 name|getLength
 argument_list|()
+operator|+
+literal|" nodes"
 argument_list|)
 expr_stmt|;
 name|context
@@ -825,9 +827,6 @@ name|IndexListener
 argument_list|(
 name|ql
 argument_list|)
-decl_stmt|;
-name|NodeImpl
-name|parent
 decl_stmt|;
 name|NodeList
 name|contentList
@@ -936,8 +935,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|NodeImpl
 name|parent
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -945,7 +945,7 @@ name|node
 operator|.
 name|getParentNode
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 switch|switch
 condition|(
 name|mode

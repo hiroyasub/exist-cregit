@@ -5862,6 +5862,8 @@ index|]
 operator|.
 name|size
 argument_list|()
+operator|+
+literal|" tokens"
 argument_list|)
 expr_stmt|;
 for|for

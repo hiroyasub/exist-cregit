@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -311,17 +321,39 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
 literal|"timeout set from option: "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|timeout
+argument_list|)
 operator|+
-literal|"ms."
+literal|" ms."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -394,15 +426,37 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
 literal|"output-size-limit set from option: "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|maxNodesLimit
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -479,15 +533,28 @@ operator|.
 name|getRootExpression
 argument_list|()
 expr_stmt|;
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
 literal|"Query exceeded predefined timeout ("
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|elapsed
+argument_list|)
 operator|+
-literal|"ms.): "
+literal|" ms.): "
 operator|+
 name|ExpressionDumper
 operator|.
@@ -561,13 +628,26 @@ operator|.
 name|getRootExpression
 argument_list|()
 expr_stmt|;
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
 literal|"Query exceeded predefined limit ("
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|maxNodesLimit
+argument_list|)
 operator|+
 literal|") for document fragments: "
 operator|+
@@ -595,14 +675,24 @@ argument_list|()
 argument_list|,
 literal|"The constructed document fragment exceeded the predefined size limit (current: "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|builder
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
 operator|+
 literal|"; allowed: "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|maxNodesLimit
+argument_list|)
 operator|+
 literal|"). The query has been killed."
 argument_list|)
