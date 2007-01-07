@@ -745,6 +745,10 @@ expr_stmt|;
 if|if
 condition|(
 name|contextStep
+operator|!=
+literal|null
+operator|&&
+name|contextStep
 operator|.
 name|getTest
 argument_list|()
