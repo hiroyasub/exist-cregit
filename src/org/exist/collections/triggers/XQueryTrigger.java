@@ -1352,7 +1352,7 @@ comment|/*         try {         	//TODO : should we provide another contextSet 
 comment|//TODO : check that result is a document node
 comment|//TODO : Stream result to originalOutputHandler
 block|}
-comment|/** 	 * Returns a String representation of the Trigger event 	 *  	 * @event The Trigger event 	 *  	 * @return The String representation 	 */
+comment|/** 	 * Returns a String representation of the Trigger event 	 *  	 * @param event The Trigger event 	 *  	 * @return The String representation 	 */
 specifier|public
 specifier|static
 name|String

@@ -7258,7 +7258,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * @deprecated Make private ASAP      * @param broker      * @return      */
+comment|/**      * @deprecated Make private ASAP      * @param broker      */
 specifier|public
 name|IndexSpec
 name|getIndexConfiguration

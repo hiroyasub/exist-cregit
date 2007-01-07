@@ -460,7 +460,7 @@ name|Configuration
 implements|implements
 name|ErrorHandler
 block|{
-comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static 	 * file and existHome fields and static methods), or if we should allow many instances to 	 * run around in the system.  Right now, any attempts to create multiple instances will 	 * likely get the system confused.  Let's decide which one it should be and fix it properly. 	 *  	 * This class cannot be a singleton as it is possible to run multiple instances of the database 	 * on the same system. 	 */
+comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static          * file and existHome fields and static methods), or if we should allow many instances to          * run around in the system.  Right now, any attempts to create multiple instances will          * likely get the system confused.  Let's decide which one it should be and fix it properly.          *          * This class cannot be a singleton as it is possible to run multiple instances of the database          * on the same system.          */
 specifier|private
 specifier|final
 specifier|static
@@ -2147,7 +2147,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Takes the passed string and converts it to a non-null      *<code>Boolean</code> object.  If value is null, the specified      * default value is used.  Otherwise, Boolean.TRUE is returned if      * and only if the passed string equals&quot;yes&quot; or      *&quot;true&quot;, ignoring case.       *       * @param value The string to parse      * @param defaultValue The default if the string is null      * @return The parsed<code>Boolean</code>      */
+comment|/**      * Takes the passed string and converts it to a non-null      *<code>Boolean</code> object.  If value is null, the specified      * default value is used.  Otherwise, Boolean.TRUE is returned if      * and only if the passed string equals&quot;yes&quot; or      *&quot;true&quot;, ignoring case.      *      * @param value The string to parse      * @param defaultValue The default if the string is null      * @return The parsed<code>Boolean</code>      */
 specifier|private
 name|Boolean
 name|parseBoolean
@@ -2748,7 +2748,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Reads the scheduler configuration      *       * @param transformers A Node List of all the transformers nodes      */
+comment|/**      * Reads the scheduler configuration      *      * @param transformers A Node List of all the transformers nodes      */
 specifier|private
 name|void
 name|configureScheduler
@@ -6768,7 +6768,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the absolute path to the configuration file.      *       * @return the path to the configuration file      */
+comment|/**      * Returns the absolute path to the configuration file.      *      * @return the path to the configuration file      */
 specifier|public
 specifier|static
 name|String
@@ -6801,7 +6801,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are being interpreted relative to<code>exist.home</code>      * or the current working directory, in case<code>exist.home</code> was not set.      *       * @param path the file path      * @return the file handle      */
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * Note that relative paths are being interpreted relative to<code>exist.home</code>      * or the current working directory, in case<code>exist.home</code> was not set.      *      * @param path the file path      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -6820,7 +6820,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * If<code>parent</code> is null, then relative paths are being interpreted      * relative to<code>exist.home</code> or the current working directory, in      * case<code>exist.home</code> was not set.      *       * @param path path to the file or directory      * @param parent parent directory used to lookup<code>path</code>      * @return the file handle      */
+comment|/**      * Returns a file handle for the given path, while<code>path</code> specifies      * the path to an eXist configuration file or directory.      *<br>      * If<code>parent</code> is null, then relative paths are being interpreted      * relative to<code>exist.home</code> or the current working directory, in      * case<code>exist.home</code> was not set.      *      * @param path path to the file or directory      * @param parent parent directory used to lookup<code>path</code>      * @return the file handle      */
 specifier|public
 specifier|static
 name|File
@@ -6906,7 +6906,7 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for eXist's home directory.      *<p>      * If either none of the directories identified by the system properties      *<code>exist.home</code> and<code>user.home</code> exist or none of      * them contain a configuration file, this method returns<code>null</code>.      *       * @return the file handle or<code>null</code>      */
+comment|/**      * Returns a file handle for eXist's home directory.      *<p>      * If either none of the directories identified by the system properties      *<code>exist.home</code> and<code>user.home</code> exist or none of      * them contain a configuration file, this method returns<code>null</code>.      *      * @return the file handle or<code>null</code>      */
 specifier|public
 specifier|static
 name|File
@@ -7312,7 +7312,7 @@ return|return
 name|webappFolder
 return|;
 block|}
-comment|/**      * Returns<code>true</code> if the directory<code>dir</code> contains a file      * named<tt>conf.xml</tt>.      *       * @param dir the directory      * @return<code>true</code> if the directory contains a configuration file      */
+comment|/**      * Returns<code>true</code> if the directory<code>dir</code> contains a file      * named<tt>conf.xml</tt>.      *      * @param dir the directory      * @return<code>true</code> if the directory contains a configuration file      */
 specifier|private
 specifier|static
 name|boolean
@@ -7379,7 +7379,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Resolves the given path by means of eventually replacing<tt>~</tt> with the users      * home directory, taken from the system property<code>user.home</code>.      *       * @param path the path to resolve      * @return the resolved path      */
+comment|/**      * Resolves the given path by means of eventually replacing<tt>~</tt> with the users      * home directory, taken from the system property<code>user.home</code>.      *      * @param path the path to resolve      * @return the resolved path      */
 specifier|private
 specifier|static
 name|String
@@ -7431,7 +7431,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|error

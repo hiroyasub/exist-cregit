@@ -758,7 +758,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @deprecated 	 * @param value 	 * @param collectionId 	 * @param caseSensitive 	 * @return 	 * @throws EXistException 	 */
+comment|/** 	 * @deprecated 	 * @param value 	 * @param collectionId 	 * @param caseSensitive 	 * @throws EXistException 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -1417,7 +1417,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @deprecated 	 * @param value 	 * @param offset 	 * @param caseSensitive 	 * @return 	 * @throws EXistException 	 */
+comment|/** 	 * @deprecated 	 * @param value 	 * @param offset 	 * @param caseSensitive 	 * @throws EXistException 	 */
 specifier|public
 specifier|final
 specifier|static
