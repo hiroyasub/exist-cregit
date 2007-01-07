@@ -79,6 +79,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|btree
+operator|.
+name|DBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|ReadOnlyException
@@ -96,7 +110,6 @@ name|ContentLoadingObserver
 block|{
 comment|/** store and index given attribute */
 specifier|public
-specifier|abstract
 name|void
 name|storeAttribute
 parameter_list|(
@@ -112,7 +125,6 @@ parameter_list|)
 function_decl|;
 comment|/** store and index given text node */
 specifier|public
-specifier|abstract
 name|void
 name|storeText
 parameter_list|(
@@ -128,7 +140,6 @@ parameter_list|)
 function_decl|;
 comment|/** corresponds to SAX function of the same name */
 specifier|public
-specifier|abstract
 name|void
 name|startElement
 parameter_list|(
@@ -144,7 +155,6 @@ parameter_list|)
 function_decl|;
 comment|/** store and index given element (called storeElement before) */
 specifier|public
-specifier|abstract
 name|void
 name|endElement
 parameter_list|(
@@ -160,7 +170,6 @@ parameter_list|)
 function_decl|;
 comment|/** Mark given Element for removal; 	 * added entries are written to the list of pending entries.      * {@link #flush()} is called later to flush all pending entries. 	 *<br> 	 * Notes: changed name from storeElement() */
 specifier|public
-specifier|abstract
 name|void
 name|removeElement
 parameter_list|(
@@ -176,7 +185,6 @@ parameter_list|)
 function_decl|;
 comment|/** set the current document; generally called before calling an operation */
 specifier|public
-specifier|abstract
 name|void
 name|setDocument
 parameter_list|(
@@ -184,23 +192,8 @@ name|DocumentImpl
 name|document
 parameter_list|)
 function_decl|;
-comment|/** writes the pending items, for the current document's collection */
-specifier|public
-specifier|abstract
-name|void
-name|flush
-parameter_list|()
-function_decl|;
-comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 sync() is called from time to time by the background sync daemon. */
-specifier|public
-specifier|abstract
-name|void
-name|sync
-parameter_list|()
-function_decl|;
 comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection 	 */
 specifier|public
-specifier|abstract
 name|void
 name|dropIndex
 parameter_list|(
@@ -210,7 +203,6 @@ parameter_list|)
 function_decl|;
 comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 * @throws ReadOnlyException 	 */
 specifier|public
-specifier|abstract
 name|void
 name|dropIndex
 parameter_list|(
@@ -222,9 +214,39 @@ name|ReadOnlyException
 function_decl|;
 comment|/** remove all pending modifications, for the current document. */
 specifier|public
-specifier|abstract
 name|void
 name|remove
+parameter_list|()
+function_decl|;
+comment|/* The following methods are rather related to file management : create a dedicated interface ? /*  	/** writes the pending items, for the current document's collection */
+specifier|public
+name|void
+name|flush
+parameter_list|()
+throws|throws
+name|DBException
+function_decl|;
+comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 sync() is called from time to time by the background sync daemon. */
+specifier|public
+name|void
+name|sync
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|close
+parameter_list|()
+throws|throws
+name|DBException
+function_decl|;
+specifier|public
+name|void
+name|closeAndRemove
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|printStatistics
 parameter_list|()
 function_decl|;
 block|}
