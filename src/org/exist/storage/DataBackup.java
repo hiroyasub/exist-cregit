@@ -508,6 +508,9 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
+name|getSymbols
+argument_list|()
+operator|.
 name|backupSymbolsTo
 argument_list|(
 name|out
