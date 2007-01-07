@@ -67,6 +67,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -233,7 +243,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DefaultCacheManager
+name|CollectionCacheManager
 import|;
 end_import
 
@@ -246,6 +256,18 @@ operator|.
 name|storage
 operator|.
 name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DefaultCacheManager
 import|;
 end_import
 
@@ -306,18 +328,6 @@ operator|.
 name|storage
 operator|.
 name|XQueryPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|CollectionCacheManager
 import|;
 end_import
 
@@ -6910,7 +6920,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>proposed path : if exists      *<li>exist.home    : if exists      *<li>user.home     : if exists, with a conf.xml file      *<li>user.dir      : if exists, with a conf.xml file      *</ol>      *      * @param path path to eXist home directory      * @return the file handle or<code>null</code>      */
+comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>proposed path   : if exists      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @param path path to eXist home directory      * @return the file handle or<code>null</code>      */
 specifier|public
 specifier|static
 name|File
@@ -7107,6 +7117,56 @@ operator|.
 name|debug
 argument_list|(
 literal|"Got eXist home from system property 'user.dir': "
+operator|+
+name|existHome
+argument_list|)
+expr_stmt|;
+return|return
+name|existHome
+return|;
+block|}
+comment|// try classpath
+name|URL
+name|configUrl
+init|=
+name|Configuration
+operator|.
+name|class
+operator|.
+name|getClassLoader
+argument_list|()
+operator|.
+name|getResource
+argument_list|(
+name|config
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|configUrl
+operator|!=
+literal|null
+condition|)
+block|{
+name|existHome
+operator|=
+operator|new
+name|File
+argument_list|(
+name|configUrl
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+operator|.
+name|getParentFile
+argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Got eXist home from classpath: "
 operator|+
 name|existHome
 argument_list|)
