@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -131,9 +141,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|numbering
+name|collections
 operator|.
-name|NodeIdFactory
+name|CollectionCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -155,9 +177,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
+name|numbering
 operator|.
-name|CollectionCache
+name|NodeIdFactory
 import|;
 end_import
 
@@ -167,9 +189,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
+name|scheduler
 operator|.
-name|CollectionConfigurationManager
+name|Scheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|scheduler
+operator|.
+name|SystemTaskJob
 import|;
 end_import
 
@@ -206,30 +240,6 @@ operator|.
 name|security
 operator|.
 name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|scheduler
-operator|.
-name|Scheduler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|scheduler
-operator|.
-name|SystemTaskJob
 import|;
 end_import
 
@@ -1403,6 +1413,14 @@ decl_stmt|;
 name|Boolean
 name|aBoolean
 decl_stmt|;
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 comment|//TODO : ensure that the instance name is unique ?
 comment|//WM: needs to be done in the configure method.
 name|this
@@ -1517,15 +1535,25 @@ name|instanceName
 operator|+
 literal|"' will have between "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|this
 operator|.
 name|minBrokers
+argument_list|)
 operator|+
 literal|" and "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|this
 operator|.
 name|maxBrokers
+argument_list|)
 operator|+
 literal|" brokers"
 argument_list|)
@@ -1568,8 +1596,13 @@ name|instanceName
 operator|+
 literal|"' will be synchronized every "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 comment|/*this.*/
 name|majorSyncPeriod
+argument_list|)
 operator|+
 literal|" ms"
 argument_list|)
@@ -1625,9 +1658,14 @@ name|instanceName
 operator|+
 literal|"' will wait  "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|this
 operator|.
 name|maxShutdownWait
+argument_list|)
 operator|+
 literal|" ms during shutdown"
 argument_list|)
@@ -1825,6 +1863,10 @@ argument_list|()
 operator|+
 literal|"' to be executed every "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|systemTasksConfigs
 index|[
 name|i
@@ -1832,6 +1874,7 @@ index|]
 operator|.
 name|getPeriod
 argument_list|()
+argument_list|)
 operator|+
 literal|" ms"
 argument_list|)

@@ -17,6 +17,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -289,6 +299,14 @@ argument_list|(
 name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|)
 decl_stmt|;
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getNumberInstance
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|maxPoolSz
@@ -368,19 +386,39 @@ name|info
 argument_list|(
 literal|"QueryPool: size = "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|maxPoolSize
+argument_list|)
 operator|+
 literal|"; maxStackSize = "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|maxStackSize
+argument_list|)
 operator|+
 literal|"; timeout = "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|timeout
+argument_list|)
 operator|+
 literal|"; timeoutCheckInterval = "
 operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
 name|timeoutCheckInterval
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
