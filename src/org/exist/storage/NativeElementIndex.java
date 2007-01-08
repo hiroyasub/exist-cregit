@@ -801,9 +801,8 @@ name|this
 operator|.
 name|configKeyForFile
 operator|=
-name|NativeElementIndex
-operator|.
-name|FILE_KEY_IN_CONFIG
+name|getConfigKeyForFile
+argument_list|()
 expr_stmt|;
 comment|//TODO : read from configuration (key ?)
 name|double
@@ -859,9 +858,8 @@ name|File
 operator|.
 name|separatorChar
 operator|+
-name|NativeElementIndex
-operator|.
-name|ELEMENTS_DBX
+name|getFileName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|LOG
@@ -925,6 +923,24 @@ name|dbNodes
 operator|=
 name|nativeFile
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getFileName
+parameter_list|()
+block|{
+return|return
+name|ELEMENTS_DBX
+return|;
+block|}
+specifier|public
+name|String
+name|getConfigKeyForFile
+parameter_list|()
+block|{
+return|return
+name|FILE_KEY_IN_CONFIG
+return|;
 block|}
 comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy     The node's proxy      */
 specifier|public

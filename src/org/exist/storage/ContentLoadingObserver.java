@@ -249,6 +249,16 @@ name|void
 name|printStatistics
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|getFileName
+parameter_list|()
+function_decl|;
+specifier|public
+name|String
+name|getConfigKeyForFile
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

@@ -574,9 +574,13 @@ argument_list|()
 argument_list|,
 literal|"Collections storage ("
 operator|+
-name|NativeBroker
+name|db
 operator|.
-name|COLLECTIONS_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)
@@ -608,9 +612,13 @@ argument_list|()
 argument_list|,
 literal|"Resource storage ("
 operator|+
-name|NativeBroker
+name|db
 operator|.
-name|DOM_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)
@@ -641,9 +649,13 @@ argument_list|()
 argument_list|,
 literal|"Structural index ("
 operator|+
-name|NativeElementIndex
+name|db
 operator|.
-name|ELEMENTS_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)
@@ -680,9 +692,13 @@ argument_list|()
 argument_list|,
 literal|"Values index ("
 operator|+
-name|NativeBroker
+name|db
 operator|.
-name|VALUES_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)
@@ -719,9 +735,13 @@ argument_list|()
 argument_list|,
 literal|"QName values index ("
 operator|+
-name|NativeBroker
+name|db
 operator|.
-name|VALUES_QNAME_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)
@@ -752,9 +772,13 @@ argument_list|()
 argument_list|,
 literal|"Fulltext index ("
 operator|+
-name|NativeBroker
+name|db
 operator|.
-name|WORDS_DBX
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|")"
 argument_list|)

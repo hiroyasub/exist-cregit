@@ -586,6 +586,22 @@ decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
+name|String
+name|FILE_NAME
+init|=
+literal|"values.dbx"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FILE_KEY_IN_CONFIG
+init|=
+literal|"db-connection.values"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
 name|double
 name|DEFAULT_VALUE_CACHE_GROWTH
 init|=
@@ -712,14 +728,8 @@ parameter_list|,
 name|String
 name|dataDir
 parameter_list|,
-name|String
-name|dataFile
-parameter_list|,
 name|Configuration
 name|config
-parameter_list|,
-name|String
-name|configKeyForFile
 parameter_list|)
 throws|throws
 name|DBException
@@ -736,11 +746,13 @@ name|config
 operator|=
 name|config
 expr_stmt|;
+comment|//use inheritance
 name|this
 operator|.
 name|configKeyForFile
 operator|=
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 expr_stmt|;
 comment|//TODO : read from configuration (key ?)
 name|double
@@ -784,6 +796,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//use inheritance
 name|File
 name|file
 init|=
@@ -796,7 +809,8 @@ name|File
 operator|.
 name|separatorChar
 operator|+
-name|dataFile
+name|getFileName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|LOG
@@ -887,6 +901,24 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getFileName
+parameter_list|()
+block|{
+return|return
+name|FILE_NAME
+return|;
+block|}
+specifier|public
+name|String
+name|getConfigKeyForFile
+parameter_list|()
+block|{
+return|return
+name|FILE_KEY_IN_CONFIG
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#setDocument(org.exist.dom.DocumentImpl)      */
 specifier|public
