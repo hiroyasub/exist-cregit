@@ -1032,14 +1032,6 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|ELEMENTS_DBX
-init|=
-literal|"elements.dbx"
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|String
 name|VALUES_DBX
 init|=
 literal|"values.dbx"
@@ -1785,6 +1777,19 @@ name|symbols
 argument_list|)
 expr_stmt|;
 block|}
+name|readOnly
+operator|=
+name|readOnly
+operator|||
+operator|!
+name|symbols
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|canWrite
+argument_list|()
+expr_stmt|;
 comment|//TODO : is it necessary to create them if we are in read-only mode ?
 name|createStructuralIndexFile
 argument_list|()
@@ -1863,11 +1868,7 @@ name|ELEMENTS_DBX_ID
 argument_list|,
 name|dataDir
 argument_list|,
-name|ELEMENTS_DBX
-argument_list|,
 name|config
-argument_list|,
-literal|"db-connection.elements"
 argument_list|)
 expr_stmt|;
 name|addContentLoadingObserver
@@ -11463,7 +11464,6 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-comment|/*         if (elementIndex != null) 	        elementIndex.dropIndex(document);         if (valueIndex != null)         	valueIndex.dropIndex(document);                if (qnameValueIndex != null)             qnameValueIndex.dropIndex(document);         if (textEngine != null)         	textEngine.dropIndex(document);         */
 block|}
 specifier|public
 name|void
@@ -14092,9 +14092,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|child
-decl_stmt|;
 name|NodeId
 name|nodeId
 init|=
@@ -14118,8 +14115,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|child
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -14127,7 +14125,7 @@ name|iterator
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|oldNodeId
 operator|=
 name|child
@@ -14787,9 +14785,6 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
-name|RemovedNode
-name|next
-decl_stmt|;
 while|while
 condition|(
 operator|!
@@ -14799,8 +14794,9 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|RemovedNode
 name|next
-operator|=
+init|=
 operator|(
 name|RemovedNode
 operator|)
@@ -14808,7 +14804,7 @@ name|stack
 operator|.
 name|pop
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|removeNode
 argument_list|(
 name|transaction
@@ -14978,9 +14974,6 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
-name|StoredNode
-name|child
-decl_stmt|;
 name|int
 name|childCount
 init|=
@@ -15004,8 +14997,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|child
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -15013,7 +15007,7 @@ name|iterator
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|child
@@ -15203,9 +15197,6 @@ operator|.
 name|getChildCount
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|child
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -15221,8 +15212,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|child
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -15230,7 +15222,7 @@ name|iterator
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|child
@@ -15340,9 +15332,6 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
-name|StoredNode
-name|child
-decl_stmt|;
 specifier|final
 name|int
 name|count
@@ -15367,8 +15356,9 @@ name|i
 operator|++
 control|)
 block|{
+name|StoredNode
 name|child
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -15376,7 +15366,7 @@ name|iterator
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|child
@@ -16508,23 +16498,11 @@ block|{
 name|notifyFlush
 argument_list|()
 expr_stmt|;
-comment|//TODO : create a flush() method in symbolTable !
-if|if
-condition|(
-name|symbols
-operator|!=
-literal|null
-operator|&&
-name|symbols
-operator|.
-name|hasChanged
-argument_list|()
-condition|)
 try|try
 block|{
 name|symbols
 operator|.
-name|saveSymbols
+name|flush
 argument_list|()
 expr_stmt|;
 block|}
@@ -16538,11 +16516,6 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
 name|e
 argument_list|)
 expr_stmt|;

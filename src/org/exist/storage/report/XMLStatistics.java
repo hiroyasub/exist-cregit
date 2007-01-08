@@ -69,6 +69,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|NativeElementIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|dom
 operator|.
 name|DOMFile
@@ -629,7 +641,7 @@ argument_list|()
 argument_list|,
 literal|"Structural index ("
 operator|+
-name|NativeBroker
+name|NativeElementIndex
 operator|.
 name|ELEMENTS_DBX
 operator|+

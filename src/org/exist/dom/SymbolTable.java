@@ -2055,6 +2055,22 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|flush
+parameter_list|()
+throws|throws
+name|EXistException
+block|{
+if|if
+condition|(
+name|hasChanged
+argument_list|()
+condition|)
+name|saveSymbols
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

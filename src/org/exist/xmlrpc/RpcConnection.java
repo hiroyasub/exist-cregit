@@ -2525,7 +2525,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|": '"
