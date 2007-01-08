@@ -45,30 +45,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|DatatypeConstants
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|Duration
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -626,10 +602,45 @@ return|;
 default|default:
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
+argument_list|(
+literal|"XPTY0004: cannot add "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
 argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"') from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
+argument_list|)
 throw|;
-comment|// caught and converted to XPathException in subclass
 block|}
 block|}
 specifier|public
@@ -854,9 +865,9 @@ comment|/* 		case Type.TIME: 		case Type.DATE_TIME: 		case Type.DATE: 			Abstrac
 default|default:
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
-literal|"Tried to substract "
+literal|"XPTY0004: cannot substract "
 operator|+
 name|Type
 operator|.
