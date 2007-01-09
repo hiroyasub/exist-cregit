@@ -936,7 +936,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *   * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  * @link org.exist.storage.NativeElementIndex,  * @link org.exist.storage.NativeTextEngine,  * @link org.exist.storage.NativeValueIndex,   * @link org.exist.storage.NativeValueIndexByQName  *   * This class dispatches the various events (defined by the methods   * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  *   *@author     Wolfgang Meier  */
+comment|/**  *  Main class for the native XML storage backend.  *  By "native" it is meant file-based, embedded backend.  *   * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *   * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  * @link org.exist.storage.NativeElementIndex  * @link org.exist.storage.NativeTextEngine  * @link org.exist.storage.NativeValueIndex   * @link org.exist.storage.NativeValueIndexByQName  *   * This class dispatches the various events (defined by the methods   * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  *   *@author     Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -1579,7 +1579,6 @@ name|symbols
 operator|==
 literal|null
 condition|)
-block|{
 name|symbols
 operator|=
 operator|new
@@ -1592,7 +1591,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-block|}
 name|readOnly
 operator|=
 name|readOnly
@@ -1620,11 +1618,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|elementIndex
-argument_list|)
-expr_stmt|;
 name|valueIndex
 operator|=
 operator|new
@@ -1637,11 +1630,6 @@ argument_list|,
 name|dataDir
 argument_list|,
 name|config
-argument_list|)
-expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|valueIndex
 argument_list|)
 expr_stmt|;
 name|qnameValueIndex
@@ -1658,11 +1646,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|qnameValueIndex
-argument_list|)
-expr_stmt|;
 name|textEngine
 operator|=
 operator|new
@@ -1675,11 +1658,6 @@ argument_list|,
 name|dataDir
 argument_list|,
 name|config
-argument_list|)
-expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|textEngine
 argument_list|)
 expr_stmt|;
 if|if
@@ -16129,11 +16107,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|elementIndex
-argument_list|)
-expr_stmt|;
 name|valueIndex
 operator|=
 operator|new
@@ -16146,11 +16119,6 @@ argument_list|,
 name|dataDir
 argument_list|,
 name|config
-argument_list|)
-expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|valueIndex
 argument_list|)
 expr_stmt|;
 name|qnameValueIndex
@@ -16167,11 +16135,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|qnameValueIndex
-argument_list|)
-expr_stmt|;
 name|textEngine
 operator|=
 operator|new
@@ -16184,11 +16147,6 @@ argument_list|,
 name|dataDir
 argument_list|,
 name|config
-argument_list|)
-expr_stmt|;
-name|addContentLoadingObserver
-argument_list|(
-name|textEngine
 argument_list|)
 expr_stmt|;
 block|}

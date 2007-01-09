@@ -632,7 +632,7 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|ELEMENTS_DBX
+name|FILE_NAME
 init|=
 literal|"elements.dbx"
 decl_stmt|;
@@ -914,6 +914,14 @@ name|dbNodes
 operator|=
 name|nativeFile
 expr_stmt|;
+name|broker
+operator|.
+name|addContentLoadingObserver
+argument_list|(
+name|getInstance
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|String
@@ -921,7 +929,7 @@ name|getFileName
 parameter_list|()
 block|{
 return|return
-name|ELEMENTS_DBX
+name|FILE_NAME
 return|;
 block|}
 specifier|public
@@ -6133,14 +6141,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|broker
-operator|.
-name|removeContentLoadingObserver
-argument_list|(
-name|getInstance
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//Do not uncomment yet !
+comment|//broker.removeContentLoadingObserver(getInstance());
 name|dbNodes
 operator|.
 name|closeAndRemove
@@ -6164,6 +6166,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+comment|//Do not uncomment yet !
+comment|//broker.removeContentLoadingObserver(getInstance());
 return|return
 name|dbNodes
 operator|.

@@ -984,6 +984,14 @@ operator|new
 name|InvertedIndex
 argument_list|()
 expr_stmt|;
+name|broker
+operator|.
+name|addContentLoadingObserver
+argument_list|(
+name|getInstance
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|String

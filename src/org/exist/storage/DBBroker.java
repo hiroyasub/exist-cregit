@@ -774,6 +774,15 @@ name|ContentLoadingObserver
 name|observer
 parameter_list|)
 block|{
+if|if
+condition|(
+name|contentLoadingObservers
+operator|.
+name|contains
+argument_list|(
+name|observer
+argument_list|)
+condition|)
 name|contentLoadingObservers
 operator|.
 name|remove
