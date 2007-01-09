@@ -755,10 +755,6 @@ specifier|protected
 name|Configuration
 name|config
 decl_stmt|;
-specifier|protected
-name|String
-name|configKeyForFile
-decl_stmt|;
 comment|/** Work output Stream that should be cleared before every use */
 specifier|private
 name|VariableByteOutputStream
@@ -797,13 +793,6 @@ name|config
 operator|=
 name|config
 expr_stmt|;
-name|this
-operator|.
-name|configKeyForFile
-operator|=
-name|getConfigKeyForFile
-argument_list|()
-expr_stmt|;
 comment|//TODO : read from configuration (key ?)
 name|double
 name|cacheGrowth
@@ -836,7 +825,8 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -911,7 +901,8 @@ name|config
 operator|.
 name|setProperty
 argument_list|(
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|,
 name|nativeFile
 argument_list|)
@@ -940,6 +931,15 @@ parameter_list|()
 block|{
 return|return
 name|FILE_KEY_IN_CONFIG
+return|;
+block|}
+specifier|public
+name|NativeElementIndex
+name|getInstance
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 comment|/** Store the given node in the node index.      * @param qname The node's identity      * @param proxy     The node's proxy      */
@@ -6127,11 +6127,18 @@ name|config
 operator|.
 name|setProperty
 argument_list|(
-name|this
-operator|.
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|,
 literal|null
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|removeContentLoadingObserver
+argument_list|(
+name|getInstance
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|dbNodes
@@ -6151,9 +6158,8 @@ name|config
 operator|.
 name|setProperty
 argument_list|(
-name|this
-operator|.
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)

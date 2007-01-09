@@ -485,6 +485,7 @@ name|closeEntry
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : could we mutualize there ?
 comment|// backup the symbols.dbx file (not included above)
 name|out
 operator|.

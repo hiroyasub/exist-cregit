@@ -484,14 +484,6 @@ operator|.
 name|LENGTH_LOCAL_NAME
 decl_stmt|;
 comment|//6
-comment|/** switch to activate/deactivate the feature "new index by QName" */
-specifier|private
-name|boolean
-name|qnameValueIndexation
-init|=
-literal|true
-decl_stmt|;
-comment|// false;
 specifier|public
 name|NativeValueIndexByQName
 parameter_list|(
@@ -538,6 +530,15 @@ parameter_list|()
 block|{
 return|return
 name|FILE_KEY_IN_CONFIG
+return|;
+block|}
+specifier|public
+name|NativeValueIndex
+name|getInstance
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 comment|/** @see org.exist.storage.NativeValueIndex#storeAttribute(org.exist.storage.RangeIndexSpec, org.exist.dom.AttrImpl) 	 */
@@ -595,11 +596,6 @@ name|boolean
 name|index
 parameter_list|)
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
-block|{
 name|DocumentImpl
 name|doc
 init|=
@@ -655,7 +651,6 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public
@@ -735,11 +730,6 @@ name|boolean
 name|index
 parameter_list|)
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
-block|{
 name|DocumentImpl
 name|doc
 init|=
@@ -803,7 +793,6 @@ name|getIndexType
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public
@@ -1731,11 +1720,6 @@ name|String
 name|content
 parameter_list|)
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
-block|{
 name|DocumentImpl
 name|doc
 init|=
@@ -1798,7 +1782,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 specifier|public
 name|void
 name|dropIndex
@@ -1809,10 +1792,6 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
 name|super
 operator|.
 name|dropIndex
@@ -1826,10 +1805,6 @@ name|void
 name|closeAndRemove
 parameter_list|()
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
 name|super
 operator|.
 name|closeAndRemove
@@ -1843,18 +1818,11 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
-name|qnameValueIndexation
-condition|)
 return|return
 name|super
 operator|.
 name|close
 argument_list|()
-return|;
-return|return
-literal|true
 return|;
 block|}
 block|}

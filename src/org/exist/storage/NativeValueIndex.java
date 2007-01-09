@@ -675,10 +675,6 @@ specifier|protected
 name|Configuration
 name|config
 decl_stmt|;
-specifier|protected
-name|String
-name|configKeyForFile
-decl_stmt|;
 comment|/** A collection of key-value pairs that pending modifications for this value index.        * The keys are {@link org.exist.xquery.value.AtomicValue atomic values}      * that implement {@link Indexable Indexable}. 	 * The values are {@link org.exist.util.LongLinkedList lists} containing 	 * the nodes GIDs (global identifiers.      */
 specifier|protected
 name|TreeMap
@@ -746,14 +742,7 @@ name|config
 operator|=
 name|config
 expr_stmt|;
-comment|//use inheritance
-name|this
-operator|.
-name|configKeyForFile
-operator|=
-name|getConfigKeyForFile
-argument_list|()
-expr_stmt|;
+comment|//use inheritance if necessary !
 comment|//TODO : read from configuration (key ?)
 name|double
 name|cacheGrowth
@@ -786,7 +775,8 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -862,7 +852,8 @@ name|config
 operator|.
 name|setProperty
 argument_list|(
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|,
 name|nativeFile
 argument_list|)
@@ -918,6 +909,15 @@ parameter_list|()
 block|{
 return|return
 name|FILE_KEY_IN_CONFIG
+return|;
+block|}
+specifier|public
+name|NativeValueIndex
+name|getInstance
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#setDocument(org.exist.dom.DocumentImpl)      */
@@ -4310,13 +4310,13 @@ name|void
 name|closeAndRemove
 parameter_list|()
 block|{
+comment|//Use inheritance if necessary ;-)
 name|config
 operator|.
 name|setProperty
 argument_list|(
-name|this
-operator|.
-name|configKeyForFile
+name|getConfigKeyForFile
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)
@@ -4334,6 +4334,17 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+comment|//Use inheritance if necessary ;-)
+name|config
+operator|.
+name|setProperty
+argument_list|(
+name|getConfigKeyForFile
+argument_list|()
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 return|return
 name|dbValues
 operator|.
