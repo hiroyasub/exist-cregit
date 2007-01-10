@@ -10253,9 +10253,9 @@ if|if
 condition|(
 name|address
 operator|!=
-name|Page
+name|StoredNode
 operator|.
-name|NO_PAGE
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 name|rec
 operator|=
@@ -10387,6 +10387,7 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|//TODO : why not store another string like "OOOPS !" ?
+comment|//then return null
 name|value
 operator|=
 operator|new

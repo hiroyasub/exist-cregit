@@ -142,6 +142,12 @@ init|=
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
 specifier|private
+name|long
+name|oldInternalAddress
+init|=
+name|UNKNOWN_NODE_IMPL_ADDRESS
+decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|ownerDocument
 init|=
@@ -226,6 +232,14 @@ name|internalAddress
 expr_stmt|;
 name|this
 operator|.
+name|oldInternalAddress
+operator|=
+name|other
+operator|.
+name|oldInternalAddress
+expr_stmt|;
+name|this
+operator|.
 name|ownerDocument
 operator|=
 name|other
@@ -276,6 +290,16 @@ operator|.
 name|getInternalAddress
 argument_list|()
 expr_stmt|;
+comment|//Take the same address
+name|this
+operator|.
+name|oldInternalAddress
+operator|=
+name|other
+operator|.
+name|getInternalAddress
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * Reset this object to its initial state. Required by the      * parser to be able to reuse node objects.      */
 specifier|public
@@ -292,6 +316,12 @@ expr_stmt|;
 name|this
 operator|.
 name|internalAddress
+operator|=
+name|UNKNOWN_NODE_IMPL_ADDRESS
+expr_stmt|;
+name|this
+operator|.
+name|oldInternalAddress
 operator|=
 name|UNKNOWN_NODE_IMPL_ADDRESS
 expr_stmt|;
@@ -707,6 +737,32 @@ operator|.
 name|internalAddress
 operator|=
 name|internalAddress
+expr_stmt|;
+block|}
+comment|/** 	 *  Get the internal storage address of this node 	 * 	 *@return    The oldInternalAddress value 	 */
+specifier|public
+name|long
+name|getOldInternalAddress
+parameter_list|()
+block|{
+return|return
+name|oldInternalAddress
+return|;
+block|}
+comment|/**      *  Set the old internal storage address of this node.      *      *@param  oldInternalAddress  The new internalAddress value      */
+specifier|public
+name|void
+name|setOldInternalAddress
+parameter_list|(
+name|long
+name|oldInternalAddress
+parameter_list|)
+block|{
+name|this
+operator|.
+name|oldInternalAddress
+operator|=
+name|oldInternalAddress
 expr_stmt|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getNodeType() 	 */

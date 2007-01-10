@@ -2396,9 +2396,6 @@ name|currentPath
 parameter_list|,
 name|String
 name|content
-parameter_list|,
-name|long
-name|oldAddress
 parameter_list|)
 block|{
 specifier|final
@@ -2446,30 +2443,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|oldAddress
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|oldAddress
-argument_list|)
-expr_stmt|;
+comment|//NodeProxy p = new NodeProxy(node);
+comment|//if (node.getOldInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//    p.setInternalAddress(node.getOldInternalAddress());
 name|content
 operator|=
 name|getNodeValue
@@ -2480,16 +2456,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|//Curious... I assume getNodeValue() needs the old address
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//p.setInternalAddress(node.getInternalAddress());
 block|}
 name|valueIndex
 operator|.
@@ -2557,30 +2524,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|oldAddress
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|oldAddress
-argument_list|)
-expr_stmt|;
+comment|//NodeProxy p = new NodeProxy(node);
+comment|//if (node.getOldInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//    p.setInternalAddress(node.getOldInternalAddress());
 name|content
 operator|=
 name|getNodeValue
@@ -2591,23 +2537,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|//Curious... I assume getNodeValue() needs the old address
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//p.setInternalAddress(node.getInternalAddress());
 block|}
-if|if
-condition|(
-name|qnameValueIndex
-operator|!=
-literal|null
-condition|)
 name|qnameValueIndex
 operator|.
 name|endElement
@@ -2653,30 +2584,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|oldAddress
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|oldAddress
-argument_list|)
-expr_stmt|;
+comment|//NodeProxy p = new NodeProxy(node);
+comment|//if (node.getOldInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//    p.setInternalAddress(node.getOldInternalAddress());
 name|content
 operator|=
 name|getNodeValue
@@ -2687,16 +2597,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|//Curious... I assume getNodeValue() needs the old address
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//p.setInternalAddress(node.getInternalAddress());
 block|}
 name|textEngine
 operator|.
@@ -2770,30 +2671,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|oldAddress
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|oldAddress
-argument_list|)
-expr_stmt|;
+comment|//NodeProxy p = new NodeProxy(node);
+comment|//if (node.getOldInternalAddress() != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//    p.setInternalAddress(node.getOldInternalAddress());
 name|content
 operator|=
 name|getNodeValue
@@ -2804,16 +2684,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|//Curious... I assume getNodeValue() needs the old address
-name|p
-operator|.
-name|setInternalAddress
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//p.setInternalAddress(node.getInternalAddress());
 block|}
 name|textEngine
 operator|.
@@ -13695,6 +13566,23 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
+comment|//save old value, whatever it is
+name|long
+name|address
+init|=
+name|node
+operator|.
+name|getOldInternalAddress
+argument_list|()
+decl_stmt|;
+name|node
+operator|.
+name|setOldInternalAddress
+argument_list|(
+name|oldAddress
+argument_list|)
+expr_stmt|;
 name|endElement
 argument_list|(
 name|node
@@ -13702,10 +13590,17 @@ argument_list|,
 name|currentPath
 argument_list|,
 literal|null
-argument_list|,
-name|oldAddress
 argument_list|)
 expr_stmt|;
+comment|//restore old value, whatever it was
+name|node
+operator|.
+name|setOldInternalAddress
+argument_list|(
+name|address
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|node

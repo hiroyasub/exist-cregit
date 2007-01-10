@@ -1212,36 +1212,6 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|void
-name|endElement
-parameter_list|(
-specifier|final
-name|StoredNode
-name|node
-parameter_list|,
-name|NodePath
-name|currentPath
-parameter_list|,
-name|String
-name|content
-parameter_list|)
-block|{
-name|endElement
-argument_list|(
-name|node
-argument_list|,
-name|currentPath
-argument_list|,
-name|content
-argument_list|,
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** 	 * Update indexes for the given element node. This method is called when the 	 * indexer encounters a closing element tag. It updates any range indexes 	 * defined on the element value and adds the element id to the structural 	 * index. 	 *  	 * @param node 	 *            the current element node 	 * @param currentPath 	 *            node path leading to the element 	 * @param content 	 *            contains the string value of the element. Needed if a range 	 *            index is defined on it. 	 * @param oldAddress 	 *            when copying a node, contains the storage address of the old 	 *            node. 	 */
-specifier|public
 specifier|abstract
 name|void
 name|endElement
@@ -1255,9 +1225,6 @@ name|currentPath
 parameter_list|,
 name|String
 name|content
-parameter_list|,
-name|long
-name|oldAddress
 parameter_list|)
 function_decl|;
 comment|/** 	 * Store a document (descriptor) into the database. 	 *  	 * @param doc 	 *            the document's metadata to store. 	 */
