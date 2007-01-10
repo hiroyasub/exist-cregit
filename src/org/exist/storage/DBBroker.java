@@ -813,21 +813,9 @@ name|uri
 parameter_list|)
 function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. The 	 * storage address is used to locate the collection without looking up the 	 * path in the btree. 	 *  	 * @return deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection getCollection(String name, long address); 	 */
-comment|/** 	 * Returns the database collection identified by the specified path. The 	 * storage address is used to locate the collection without looking up the 	 * path in the btree. 	 *  	 * @return Database collection 	 */
-specifier|public
-specifier|abstract
-name|Collection
-name|getCollection
-parameter_list|(
-name|XmldbURI
-name|uri
-parameter_list|,
-name|long
-name|address
-parameter_list|)
-function_decl|;
+comment|/** 	 * Returns the database collection identified by the specified path. The 	 * storage address is used to locate the collection without looking up the 	 * path in the btree. 	 *  	 * @return Database collection 	 *  	 * public abstract Collection getCollection(XmldbURI uri, long address); 	 */
 comment|/** 	 * Open a collection for reading or writing. The collection is identified by 	 * its absolute path, e.g. /db/shakespeare. It will be loaded and locked 	 * according to the lockMode argument. 	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param name 	 *            the collection path 	 * @param lockMode 	 *            one of the modes specified in class 	 *            {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection openCollection(String name, int lockMode); 	 */
-comment|/** 	 * Open a collection for reading or writing. The collection is identified by 	 * its absolute path, e.g. /db/shakespeare. It will be loaded and locked 	 * according to the lockMode argument. 	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param uri 	 *            The collection path 	 * @param lockMode 	 *            one of the modes specified in class 	 *            {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 */
+comment|/** 	 * Open a collection for reading or writing. The collection is identified by 	 * its absolute path, e.g. /db/shakespeare. It will be loaded and locked 	 * according to the lockMode argument. 	 *  	 * The caller should take care to release the collection lock properly. 	 *  	 * @param uri 	 *            The collection path 	 * @param lockMode 	 *            one of the modes specified in class 	 *            {@link org.exist.storage.lock.Lock} 	 * @return collection or null if no collection matches the path 	 *  	 */
 specifier|public
 specifier|abstract
 name|Collection

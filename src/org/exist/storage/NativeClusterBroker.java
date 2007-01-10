@@ -187,9 +187,6 @@ parameter_list|(
 name|XmldbURI
 name|name
 parameter_list|,
-name|long
-name|addr
-parameter_list|,
 name|int
 name|lockMode
 parameter_list|)
@@ -202,8 +199,6 @@ operator|.
 name|openCollection
 argument_list|(
 name|name
-argument_list|,
-name|addr
 argument_list|,
 name|lockMode
 argument_list|)
