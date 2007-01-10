@@ -16937,13 +16937,6 @@ name|void
 name|doIndex
 parameter_list|()
 block|{
-name|int
-name|indexType
-init|=
-name|RangeIndexSpec
-operator|.
-name|NO_INDEX
-decl_stmt|;
 specifier|final
 name|boolean
 name|isTemp
@@ -16984,46 +16977,44 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
+comment|//Compute index type
+name|int
+name|indexType
+init|=
+name|RangeIndexSpec
+operator|.
+name|NO_INDEX
+decl_stmt|;
 if|if
 condition|(
 name|idxSpec
 operator|!=
 literal|null
-condition|)
-block|{
-comment|// --move to-- NativeValueIndex
-name|RangeIndexSpec
-name|spec
-init|=
+operator|&&
 name|idxSpec
 operator|.
 name|getIndexByPath
 argument_list|(
 name|currentPath
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|spec
 operator|!=
 literal|null
 condition|)
 block|{
 name|indexType
-operator|=
-name|spec
+operator||=
+name|idxSpec
+operator|.
+name|getIndexByPath
+argument_list|(
+name|currentPath
+argument_list|)
 operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                        // --move to-- NativeValueIndexByQName
-comment|//                        RangeIndexSpec qnIdx = idxSpec.getIndexByQName(node.getQName());
-comment|//                        if (qnIdx != null&& qnameValueIndexation) {
-comment|//                            indexType |= RangeIndexSpec.QNAME_INDEX;
-comment|//                        }
-block|}
-comment|// --move to-- NativeTextEngine
 if|if
 condition|(
 name|ftIdx
@@ -17092,7 +17083,6 @@ operator|.
 name|MIXED_CONTENT
 expr_stmt|;
 block|}
-comment|// --move to-- NativeValueIndex NativeTextEngine
 operator|(
 operator|(
 name|ElementImpl
@@ -17105,7 +17095,6 @@ argument_list|(
 name|indexType
 argument_list|)
 expr_stmt|;
-comment|// qnameValueIndex.startElement((ElementImpl)node, currentPath, index);
 name|notifyStartElement
 argument_list|(
 operator|(
@@ -17162,11 +17151,13 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+block|{
 name|boolean
 name|indexAttribs
 init|=
@@ -17193,7 +17184,14 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-comment|// --move to-- NativeElementIndex NativeValueIndex NativeTextEngine
+comment|//Compute index type
+name|int
+name|indexType
+init|=
+name|RangeIndexSpec
+operator|.
+name|NO_INDEX
+decl_stmt|;
 if|if
 condition|(
 name|fullTextIndex
@@ -17227,48 +17225,47 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// --move to-- NativeValueIndex
-comment|// TODO : valueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
-name|GeneralRangeIndexSpec
-name|valSpec
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|idxSpec
 operator|!=
 literal|null
-condition|)
-block|{
-name|valSpec
-operator|=
+operator|&&
 name|idxSpec
 operator|.
 name|getIndexByPath
 argument_list|(
 name|currentPath
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|valSpec
 operator|!=
 literal|null
 condition|)
 block|{
 name|indexType
 operator||=
-name|valSpec
+name|idxSpec
+operator|.
+name|getIndexByPath
+argument_list|(
+name|currentPath
+argument_list|)
 operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
 block|}
-block|}
 if|if
 condition|(
-name|valSpec
+name|idxSpec
+operator|!=
+literal|null
+operator|&&
+name|idxSpec
+operator|.
+name|getIndexByPath
+argument_list|(
+name|currentPath
+argument_list|)
 operator|!=
 literal|null
 condition|)
@@ -17290,7 +17287,12 @@ name|valueIndex
 operator|.
 name|storeAttribute
 argument_list|(
-name|valSpec
+name|idxSpec
+operator|.
+name|getIndexByPath
+argument_list|(
+name|currentPath
+argument_list|)
 argument_list|,
 operator|(
 name|AttrImpl
@@ -17299,7 +17301,6 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
-comment|// qnameValueIndex.storeAttribute( (AttrImpl)node, currentPath, index);
 name|notifyStoreAttribute
 argument_list|(
 operator|(
@@ -17312,8 +17313,8 @@ argument_list|,
 name|fullTextIndex
 argument_list|)
 expr_stmt|;
-comment|// --move to-- NativeTextEngine
-comment|// TODO : textEngine.storeAttribute( (AttrImpl)node, currentPath, index);
+comment|//Special handling for fulltext index
+comment|//TODO : harmonize
 if|if
 condition|(
 name|indexAttribs
@@ -17367,8 +17368,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|//                  --move to-- NativeElementIndex
-comment|// TODO : elementIndex.storeAttribute(node, currentPath, index);
 name|elementIndex
 operator|.
 name|setDocument
@@ -17498,6 +17497,7 @@ name|removeLastComponent
 argument_list|()
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
