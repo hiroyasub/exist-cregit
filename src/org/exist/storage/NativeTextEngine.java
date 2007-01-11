@@ -1195,7 +1195,7 @@ name|FulltextIndexSpec
 name|indexSpec
 parameter_list|,
 name|AttrImpl
-name|attr
+name|node
 parameter_list|,
 name|boolean
 name|idxByQName
@@ -1208,7 +1208,7 @@ init|=
 operator|(
 name|DocumentImpl
 operator|)
-name|attr
+name|node
 operator|.
 name|getOwnerDocument
 argument_list|()
@@ -1218,7 +1218,7 @@ name|tokenizer
 operator|.
 name|setText
 argument_list|(
-name|attr
+name|node
 operator|.
 name|getValue
 argument_list|()
@@ -1336,7 +1336,7 @@ name|addAttribute
 argument_list|(
 name|token
 argument_list|,
-name|attr
+name|node
 argument_list|)
 expr_stmt|;
 else|else
@@ -1346,7 +1346,7 @@ name|addAttribute
 argument_list|(
 name|token
 argument_list|,
-name|attr
+name|node
 operator|.
 name|getNodeId
 argument_list|()
@@ -1377,8 +1377,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 comment|//TODO Auto-generated method stub

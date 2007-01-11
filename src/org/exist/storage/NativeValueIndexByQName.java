@@ -658,7 +658,7 @@ name|void
 name|removeAttribute
 parameter_list|(
 name|AttrImpl
-name|attr
+name|node
 parameter_list|,
 name|NodePath
 name|currentPath
@@ -669,7 +669,7 @@ parameter_list|)
 block|{
 name|storeAttribute
 argument_list|(
-name|attr
+name|node
 argument_list|,
 name|currentPath
 argument_list|,

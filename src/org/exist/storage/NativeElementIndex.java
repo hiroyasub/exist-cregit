@@ -1062,8 +1062,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
@@ -1089,7 +1089,7 @@ name|void
 name|startElement
 parameter_list|(
 name|ElementImpl
-name|impl
+name|node
 parameter_list|,
 name|NodePath
 name|currentPath

@@ -1908,8 +1908,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndex
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 for|for
@@ -1951,7 +1951,7 @@ name|attr
 argument_list|,
 name|currentPath
 argument_list|,
-name|fullTextIndex
+name|indexingHint
 argument_list|)
 expr_stmt|;
 block|}
@@ -17344,6 +17344,7 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : investigate. 0/1 seem tobe totally unused !
 name|notifyStoreAttribute
 argument_list|(
 operator|(
@@ -17354,6 +17355,10 @@ argument_list|,
 name|currentPath
 argument_list|,
 name|fullTextIndex
+condition|?
+literal|1
+else|:
+literal|0
 argument_list|)
 expr_stmt|;
 comment|//Special handling for fulltext index
