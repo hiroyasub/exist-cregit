@@ -134,8 +134,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
+name|int
+name|indexingHint
 parameter_list|)
 function_decl|;
 comment|/** corresponds to SAX function of the same name */

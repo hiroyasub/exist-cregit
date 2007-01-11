@@ -1395,8 +1395,8 @@ parameter_list|,
 name|TextImpl
 name|text
 parameter_list|,
-name|boolean
-name|noTokenizing
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 specifier|final
@@ -1429,7 +1429,9 @@ name|token
 decl_stmt|;
 if|if
 condition|(
-name|noTokenizing
+name|indexingHint
+operator|==
+name|DO_NOT_TOKENIZE
 condition|)
 block|{
 name|token
@@ -1471,7 +1473,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|else if
+condition|(
+name|indexingHint
+operator|==
+name|TOKENIZE
+condition|)
 block|{
 name|tokenizer
 operator|.
@@ -1771,8 +1778,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub

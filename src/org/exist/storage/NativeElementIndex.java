@@ -1078,8 +1078,8 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
+name|int
+name|indexingHint
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
