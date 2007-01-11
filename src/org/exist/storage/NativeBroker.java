@@ -14150,7 +14150,9 @@ name|AttrImpl
 operator|)
 name|node
 argument_list|,
-literal|false
+name|NativeTextEngine
+operator|.
+name|NOT_BY_QNAME
 argument_list|)
 expr_stmt|;
 name|GeneralRangeIndexSpec
@@ -17381,7 +17383,9 @@ name|AttrImpl
 operator|)
 name|node
 argument_list|,
-literal|false
+name|NativeTextEngine
+operator|.
+name|NOT_BY_QNAME
 argument_list|)
 expr_stmt|;
 if|if
@@ -17412,7 +17416,9 @@ name|AttrImpl
 operator|)
 name|node
 argument_list|,
-literal|true
+name|NativeTextEngine
+operator|.
+name|BY_QNAME
 argument_list|)
 expr_stmt|;
 block|}

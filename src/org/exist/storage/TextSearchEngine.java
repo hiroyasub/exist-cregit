@@ -866,6 +866,22 @@ return|return
 name|tokenizer
 return|;
 block|}
+comment|/** 	 * Tokenize and index the given attribute node. 	 *  	 * @param idx 	 * @param text 	 */
+specifier|public
+specifier|abstract
+name|void
+name|storeAttribute
+parameter_list|(
+name|FulltextIndexSpec
+name|idx
+parameter_list|,
+name|AttrImpl
+name|text
+parameter_list|,
+name|int
+name|indexingHint
+parameter_list|)
+function_decl|;
 comment|/** 	 * Tokenize and index the given text node. 	 *  	 * @param idx 	 * @param text 	 */
 specifier|public
 specifier|abstract
@@ -898,22 +914,6 @@ name|idxAsQName
 parameter_list|,
 name|String
 name|text
-parameter_list|)
-function_decl|;
-comment|/** 	 * Tokenize and index the given attribute node. 	 *  	 * @param idx 	 * @param text 	 */
-specifier|public
-specifier|abstract
-name|void
-name|storeAttribute
-parameter_list|(
-name|FulltextIndexSpec
-name|idx
-parameter_list|,
-name|AttrImpl
-name|text
-parameter_list|,
-name|boolean
-name|idxAsQName
 parameter_list|)
 function_decl|;
 specifier|public
