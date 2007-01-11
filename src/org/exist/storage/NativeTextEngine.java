@@ -1354,6 +1354,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|storeAttribute
+parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
+name|AttrImpl
+name|node
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|storeAttribute
+parameter_list|(
+name|AttrImpl
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|boolean
+name|fullTextIndexSwitch
+parameter_list|)
+block|{
+comment|//TODO Auto-generated method stub
+block|}
 comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param text The text node to be indexed      * @param noTokenizing      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
 specifier|public
@@ -1731,35 +1760,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-specifier|public
-name|void
-name|storeAttribute
-parameter_list|(
-name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|AttrImpl
-name|node
-parameter_list|)
-block|{
-comment|// TODO Auto-generated method stub
-block|}
-specifier|public
-name|void
-name|storeAttribute
-parameter_list|(
-name|AttrImpl
-name|node
-parameter_list|,
-name|NodePath
-name|currentPath
-parameter_list|,
-name|boolean
-name|fullTextIndexSwitch
-parameter_list|)
-block|{
-comment|//TODO Auto-generated method stub
 block|}
 specifier|public
 name|void
