@@ -563,6 +563,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|btree
+operator|.
+name|Paged
+operator|.
+name|Page
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|dom
 operator|.
 name|DOMFile
@@ -3157,17 +3173,14 @@ decl_stmt|;
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+empty_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -3386,6 +3399,7 @@ init|)
 block|{
 try|try
 block|{
+comment|//TODO : resolve URIs !
 name|XmldbURI
 index|[]
 name|segments
@@ -3815,13 +3829,13 @@ name|Collection
 name|getCollection
 parameter_list|(
 name|XmldbURI
-name|name
+name|uri
 parameter_list|)
 block|{
 return|return
 name|openCollection
 argument_list|(
-name|name
+name|uri
 argument_list|,
 name|BFile
 operator|.
@@ -3838,7 +3852,7 @@ name|Collection
 name|openCollection
 parameter_list|(
 name|XmldbURI
-name|name
+name|uri
 parameter_list|,
 name|int
 name|lockMode
@@ -3847,7 +3861,7 @@ block|{
 return|return
 name|openCollection
 argument_list|(
-name|name
+name|uri
 argument_list|,
 name|BFile
 operator|.
@@ -3863,7 +3877,7 @@ name|Collection
 name|openCollection
 parameter_list|(
 name|XmldbURI
-name|name
+name|uri
 parameter_list|,
 name|long
 name|addr
@@ -3872,11 +3886,11 @@ name|int
 name|lockMode
 parameter_list|)
 block|{
-name|name
+name|uri
 operator|=
 name|prepend
 argument_list|(
-name|name
+name|uri
 operator|.
 name|toCollectionPathURI
 argument_list|()
@@ -3906,7 +3920,7 @@ name|collectionsCache
 operator|.
 name|get
 argument_list|(
-name|name
+name|uri
 argument_list|)
 expr_stmt|;
 if|if
@@ -3956,7 +3970,7 @@ name|CollectionStore
 operator|.
 name|CollectionKey
 argument_list|(
-name|name
+name|uri
 operator|.
 name|toString
 argument_list|()
@@ -3998,7 +4012,7 @@ operator|=
 operator|new
 name|Collection
 argument_list|(
-name|name
+name|uri
 argument_list|)
 expr_stmt|;
 name|collection
@@ -4040,7 +4054,7 @@ name|error
 argument_list|(
 literal|"Unable to encode '"
 operator|+
-name|name
+name|uri
 operator|+
 literal|"' in UTF-8"
 argument_list|)
@@ -4155,7 +4169,7 @@ name|warn
 argument_list|(
 literal|"Failed to acquire lock on collection '"
 operator|+
-name|name
+name|uri
 operator|+
 literal|"'"
 argument_list|)
@@ -4180,7 +4194,7 @@ name|Collection
 name|destination
 parameter_list|,
 name|XmldbURI
-name|newName
+name|newUri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -4198,13 +4212,14 @@ argument_list|(
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
+comment|//TODO : resolve URIs !!!
 if|if
 condition|(
-name|newName
+name|newUri
 operator|!=
 literal|null
 operator|&&
-name|newName
+name|newUri
 operator|.
 name|numSegments
 argument_list|()
@@ -4299,12 +4314,12 @@ argument_list|)
 throw|;
 if|if
 condition|(
-name|newName
+name|newUri
 operator|==
 literal|null
 condition|)
 block|{
-name|newName
+name|newUri
 operator|=
 name|collection
 operator|.
@@ -4316,6 +4331,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//  check if another collection with the same name exists at the destination
+comment|//TODO : resolve URIs !!! (destination.getURI().resolve(newURI))
 name|Collection
 name|old
 init|=
@@ -4328,7 +4344,7 @@ argument_list|()
 operator|.
 name|append
 argument_list|(
-name|newName
+name|newUri
 argument_list|)
 argument_list|,
 name|Lock
@@ -4349,7 +4365,7 @@ name|debug
 argument_list|(
 literal|"removing old collection: "
 operator|+
-name|newName
+name|newUri
 argument_list|)
 expr_stmt|;
 try|try
@@ -4379,17 +4395,13 @@ decl_stmt|;
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -4399,7 +4411,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|newName
+comment|//TODO : resolve URIs !!!
+name|newUri
 operator|=
 name|destination
 operator|.
@@ -4408,7 +4421,7 @@ argument_list|()
 operator|.
 name|append
 argument_list|(
-name|newName
+name|newUri
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -4417,7 +4430,7 @@ name|debug
 argument_list|(
 literal|"Copying collection to '"
 operator|+
-name|newName
+name|newUri
 operator|+
 literal|"'"
 argument_list|)
@@ -4428,7 +4441,7 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|newName
+name|newUri
 argument_list|)
 expr_stmt|;
 for|for
@@ -4680,6 +4693,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|//TODO : resolve URIs ! collection.getURI().resolve(childName)
 name|Collection
 name|child
 init|=
@@ -4955,7 +4969,7 @@ expr_stmt|;
 block|}
 block|}
 name|XmldbURI
-name|name
+name|uri
 init|=
 name|collection
 operator|.
@@ -5000,11 +5014,12 @@ condition|)
 block|{
 try|try
 block|{
+comment|//TODO : resolve URIs
 name|parent
 operator|.
 name|removeCollection
 argument_list|(
-name|name
+name|uri
 operator|.
 name|lastSegment
 argument_list|()
@@ -5023,17 +5038,13 @@ block|}
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire
@@ -5058,7 +5069,7 @@ name|CollectionStore
 operator|.
 name|CollectionKey
 argument_list|(
-name|name
+name|uri
 operator|.
 name|toString
 argument_list|()
@@ -5165,12 +5176,6 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-name|XmldbURI
-name|childName
-decl_stmt|;
-name|Collection
-name|child
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -5188,8 +5193,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|XmldbURI
 name|childName
-operator|=
+init|=
 operator|(
 name|XmldbURI
 operator|)
@@ -5197,12 +5203,14 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+comment|//TODO : resolve URIs !!! name.resolve(childName)
+name|Collection
 name|child
-operator|=
+init|=
 name|openCollection
 argument_list|(
-name|name
+name|uri
 operator|.
 name|append
 argument_list|(
@@ -5213,7 +5221,7 @@ name|Lock
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|child
@@ -5386,8 +5394,9 @@ name|isRoot
 condition|)
 block|{
 comment|// remove from parent collection
+comment|//TODO : resolve URIs ! (uri.resolve(".."))
 name|Collection
-name|parent
+name|parentCollection
 init|=
 name|openCollection
 argument_list|(
@@ -5412,7 +5421,7 @@ name|transaction
 operator|.
 name|registerLock
 argument_list|(
-name|parent
+name|parentCollection
 operator|.
 name|getLock
 argument_list|()
@@ -5424,7 +5433,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|parent
+name|parentCollection
 operator|!=
 literal|null
 condition|)
@@ -5443,7 +5452,7 @@ literal|"' from its parent..."
 argument_list|)
 expr_stmt|;
 comment|//TODO : resolve from collection's base URI
-name|parent
+name|parentCollection
 operator|.
 name|removeCollection
 argument_list|(
@@ -5457,7 +5466,7 @@ name|saveCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|parent
+name|parentCollection
 argument_list|)
 expr_stmt|;
 block|}
@@ -5487,7 +5496,7 @@ name|transaction
 operator|==
 literal|null
 condition|)
-name|parent
+name|parentCollection
 operator|.
 name|getLock
 argument_list|()
@@ -5547,6 +5556,7 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//TODO : resolve from collection's base URI
+comment|//TODO : resulve URIs !!! (uri.resolve(childName))
 name|Collection
 name|childCollection
 init|=
@@ -6007,8 +6017,9 @@ if|if
 condition|(
 name|page
 operator|>
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 name|domDb
 operator|.
@@ -7244,6 +7255,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|//TODO : resolve URIs !!! (collection.getURI().resolve(next))
 name|Collection
 name|child
 init|=
@@ -8591,6 +8603,7 @@ name|toCollectionPathURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : resolve URIs !!!
 name|XmldbURI
 name|collUri
 init|=
@@ -8728,6 +8741,7 @@ name|toCollectionPathURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : resolve URIs !
 name|XmldbURI
 name|collUri
 init|=
@@ -9190,12 +9204,6 @@ name|DocumentSet
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
-name|DocumentType
-name|doctype
-decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -9213,8 +9221,9 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -9222,14 +9231,15 @@ name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|DocumentType
 name|doctype
-operator|=
+init|=
 name|doc
 operator|.
 name|getDoctype
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|doctype
@@ -9310,13 +9320,13 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 name|Collection
-name|root
+name|rootCollection
 init|=
 literal|null
 decl_stmt|;
 try|try
 block|{
-name|root
+name|rootCollection
 operator|=
 name|openCollection
 argument_list|(
@@ -9329,7 +9339,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|root
+name|rootCollection
 operator|.
 name|allDocs
 argument_list|(
@@ -9391,7 +9401,13 @@ return|;
 block|}
 finally|finally
 block|{
-name|root
+if|if
+condition|(
+name|rootCollection
+operator|!=
+literal|null
+condition|)
+name|rootCollection
 operator|.
 name|release
 argument_list|()
@@ -9630,17 +9646,13 @@ block|}
 name|Lock
 name|lock
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|lock
-operator|=
 name|collectionsDb
 operator|.
 name|getLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+try|try
+block|{
 name|lock
 operator|.
 name|acquire

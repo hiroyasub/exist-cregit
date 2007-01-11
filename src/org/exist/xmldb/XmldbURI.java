@@ -2995,6 +2995,7 @@ literal|" cannot start with null!"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : resolve URIs !!! xmldbUri.resolve(this)
 return|return
 name|xmldbUri
 operator|.
