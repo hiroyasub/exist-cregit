@@ -2654,9 +2654,9 @@ literal|null
 argument_list|,
 name|node
 argument_list|,
-literal|false
-argument_list|,
 name|content
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2754,9 +2754,9 @@ name|ftIdx
 argument_list|,
 name|node
 argument_list|,
-literal|true
-argument_list|,
 name|content
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

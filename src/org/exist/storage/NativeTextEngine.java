@@ -1412,7 +1412,7 @@ name|FulltextIndexSpec
 name|indexSpec
 parameter_list|,
 name|TextImpl
-name|text
+name|node
 parameter_list|,
 name|int
 name|indexingHint
@@ -1425,7 +1425,7 @@ init|=
 operator|(
 name|DocumentImpl
 operator|)
-name|text
+name|node
 operator|.
 name|getOwnerDocument
 argument_list|()
@@ -1435,7 +1435,7 @@ specifier|final
 name|XMLString
 name|t
 init|=
-name|text
+name|node
 operator|.
 name|getXMLString
 argument_list|()
@@ -1485,7 +1485,7 @@ name|addText
 argument_list|(
 name|token
 argument_list|,
-name|text
+name|node
 operator|.
 name|getNodeId
 argument_list|()
@@ -1608,7 +1608,7 @@ name|addText
 argument_list|(
 name|token
 argument_list|,
-name|text
+name|node
 operator|.
 name|getNodeId
 argument_list|()
@@ -1627,11 +1627,11 @@ parameter_list|,
 name|StoredNode
 name|parent
 parameter_list|,
-name|boolean
-name|idxByQName
-parameter_list|,
 name|String
 name|text
+parameter_list|,
+name|boolean
+name|idxByQName
 parameter_list|)
 block|{
 specifier|final

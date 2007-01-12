@@ -882,17 +882,17 @@ name|int
 name|indexingHint
 parameter_list|)
 function_decl|;
-comment|/** 	 * Tokenize and index the given text node. 	 *  	 * @param idx 	 * @param text 	 */
+comment|/** 	 * Tokenize and index the given text node. 	 *  	 * @param indexSpec 	 * @param node 	 */
 specifier|public
 specifier|abstract
 name|void
 name|storeText
 parameter_list|(
 name|FulltextIndexSpec
-name|idx
+name|indexSpec
 parameter_list|,
 name|TextImpl
-name|text
+name|node
 parameter_list|,
 name|int
 name|indexingHint
@@ -909,11 +909,11 @@ parameter_list|,
 name|StoredNode
 name|parent
 parameter_list|,
-name|boolean
-name|idxAsQName
-parameter_list|,
 name|String
 name|text
+parameter_list|,
+name|boolean
+name|idxAsQName
 parameter_list|)
 function_decl|;
 specifier|public
