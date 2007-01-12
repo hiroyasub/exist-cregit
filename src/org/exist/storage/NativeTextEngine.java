@@ -749,6 +749,13 @@ init|=
 literal|1
 decl_stmt|;
 specifier|public
+specifier|static
+name|int
+name|THIRD_OPTION
+init|=
+literal|2
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -1211,10 +1218,24 @@ parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
 name|int
 name|indexingHint
 parameter_list|)
 block|{
+if|if
+condition|(
+name|indexingHint
+operator|!=
+name|BY_QNAME
+operator|&&
+name|indexingHint
+operator|!=
+name|NOT_BY_QNAME
+condition|)
+return|return;
 specifier|final
 name|DocumentImpl
 name|doc
@@ -1375,20 +1396,7 @@ name|void
 name|storeAttribute
 parameter_list|(
 name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|AttrImpl
-name|node
-parameter_list|)
-block|{
-comment|// TODO Auto-generated method stub
-block|}
-specifier|public
-name|void
-name|storeAttribute
-parameter_list|(
-name|RangeIndexSpec
-name|spec
+name|idx
 parameter_list|,
 name|AttrImpl
 name|node
@@ -1400,7 +1408,19 @@ name|int
 name|indexingHint
 parameter_list|)
 block|{
-comment|//TODO Auto-generated method stub
+block|}
+specifier|public
+name|void
+name|storeAttribute
+parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
+name|AttrImpl
+name|node
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param node The text node to be indexed      * @param indexingHint      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>

@@ -14155,6 +14155,8 @@ name|AttrImpl
 operator|)
 name|node
 argument_list|,
+literal|null
+argument_list|,
 name|NativeTextEngine
 operator|.
 name|NOT_BY_QNAME
@@ -17365,6 +17367,8 @@ expr_stmt|;
 block|}
 comment|//TODO : investigate. 0/1 seem tobe totally unused !
 comment|//And so is null ;-)
+comment|//notifyStoreAttribute(null, (AttrImpl)node, currentPath, fullTextIndex ? -1 : -2);
+comment|//Let's try this then
 name|notifyStoreAttribute
 argument_list|(
 literal|null
@@ -17376,13 +17380,9 @@ name|node
 argument_list|,
 name|currentPath
 argument_list|,
-name|fullTextIndex
-condition|?
-operator|-
-literal|1
-else|:
-operator|-
-literal|2
+name|NativeValueIndex
+operator|.
+name|WITH_PATH
 argument_list|)
 expr_stmt|;
 comment|//Special handling for fulltext index
@@ -17404,6 +17404,8 @@ operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+literal|null
 argument_list|,
 name|NativeTextEngine
 operator|.
@@ -17437,6 +17439,8 @@ operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+literal|null
 argument_list|,
 name|NativeTextEngine
 operator|.
