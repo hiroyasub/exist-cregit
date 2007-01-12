@@ -1402,7 +1402,7 @@ parameter_list|)
 block|{
 comment|//TODO Auto-generated method stub
 block|}
-comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param text The text node to be indexed      * @param noTokenizing      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
+comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param node The text node to be indexed      * @param indexingHint      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
 specifier|public
 name|void

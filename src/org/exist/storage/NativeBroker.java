@@ -14199,6 +14199,12 @@ operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+literal|null
+argument_list|,
+name|NativeValueIndex
+operator|.
+name|WITHOUT_PATH
 argument_list|)
 expr_stmt|;
 block|}
@@ -17348,6 +17354,12 @@ operator|(
 name|AttrImpl
 operator|)
 name|node
+argument_list|,
+literal|null
+argument_list|,
+name|NativeValueIndex
+operator|.
+name|WITHOUT_PATH
 argument_list|)
 expr_stmt|;
 block|}
@@ -17366,9 +17378,11 @@ name|currentPath
 argument_list|,
 name|fullTextIndex
 condition|?
+operator|-
 literal|1
 else|:
-literal|0
+operator|-
+literal|2
 argument_list|)
 expr_stmt|;
 comment|//Special handling for fulltext index
