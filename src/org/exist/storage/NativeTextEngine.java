@@ -1199,7 +1199,7 @@ parameter_list|)
 block|{
 comment|//TODO Auto-generated method stub
 block|}
-comment|/**      * Indexes the tokens contained in an attribute.      *       * @param attr The attribute to be indexed      */
+comment|/**      * Indexes the tokens contained in an attribute.      *       * @param node The attribute to be indexed      */
 comment|//TODO : unify functionalities with storeText -pb
 specifier|public
 name|void
@@ -1387,6 +1387,9 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,

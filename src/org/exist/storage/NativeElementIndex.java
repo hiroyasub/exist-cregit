@@ -1056,6 +1056,9 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,

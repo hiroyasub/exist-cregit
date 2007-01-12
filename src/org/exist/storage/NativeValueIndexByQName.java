@@ -586,6 +586,9 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,
@@ -669,6 +672,8 @@ parameter_list|)
 block|{
 name|storeAttribute
 argument_list|(
+literal|null
+argument_list|,
 name|node
 argument_list|,
 name|currentPath

@@ -1902,6 +1902,9 @@ specifier|private
 name|void
 name|notifyStoreAttribute
 parameter_list|(
+name|RangeIndexSpec
+name|spec
+parameter_list|,
 name|AttrImpl
 name|attr
 parameter_list|,
@@ -1947,6 +1950,8 @@ name|observer
 operator|.
 name|storeAttribute
 argument_list|(
+name|spec
+argument_list|,
 name|attr
 argument_list|,
 name|currentPath
@@ -17347,8 +17352,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO : investigate. 0/1 seem tobe totally unused !
+comment|//And so is null ;-)
 name|notifyStoreAttribute
 argument_list|(
+literal|null
+argument_list|,
 operator|(
 name|AttrImpl
 operator|)
