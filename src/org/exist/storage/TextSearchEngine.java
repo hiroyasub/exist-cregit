@@ -867,8 +867,8 @@ parameter_list|,
 name|String
 name|text
 parameter_list|,
-name|boolean
-name|idxAsQName
+name|int
+name|indexingHint
 parameter_list|,
 name|FulltextIndexSpec
 name|indexSpec

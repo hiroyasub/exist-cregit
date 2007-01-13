@@ -2654,7 +2654,9 @@ name|node
 argument_list|,
 name|content
 argument_list|,
-literal|false
+name|NativeTextEngine
+operator|.
+name|FOURTH_OPTION
 argument_list|,
 literal|null
 argument_list|)
@@ -2754,7 +2756,9 @@ name|node
 argument_list|,
 name|content
 argument_list|,
-literal|true
+name|NativeTextEngine
+operator|.
+name|TEXT_BY_QNAME
 argument_list|,
 name|ftIdx
 argument_list|)
