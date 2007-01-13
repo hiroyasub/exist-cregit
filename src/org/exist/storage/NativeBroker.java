@@ -17054,6 +17054,8 @@ name|ELEMENT_NODE
 case|:
 block|{
 comment|//Compute index type
+comment|//TODO : let indexers OR it themselves
+comment|//we'd need to notify the ElementIndexer at the very end then...
 name|int
 name|indexType
 init|=
@@ -17233,11 +17235,6 @@ operator|.
 name|ATTRIBUTE_NODE
 case|:
 block|{
-name|boolean
-name|indexAttribs
-init|=
-literal|false
-decl_stmt|;
 name|QName
 name|qname
 init|=
@@ -17259,7 +17256,14 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+name|boolean
+name|fullTextIndexing
+init|=
+literal|false
+decl_stmt|;
 comment|//Compute index type
+comment|//TODO : let indexers OR it themselves
+comment|//we'd need to notify the ElementIndexer at the very end then...
 name|int
 name|indexType
 init|=
@@ -17295,7 +17299,7 @@ name|RangeIndexSpec
 operator|.
 name|TEXT
 expr_stmt|;
-name|indexAttribs
+name|fullTextIndexing
 operator|=
 literal|true
 expr_stmt|;
@@ -17358,6 +17362,7 @@ name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//Oh dear : is it the right semantics then ?
 name|valueIndex
 operator|.
 name|storeAttribute
@@ -17367,7 +17372,7 @@ name|AttrImpl
 operator|)
 name|node
 argument_list|,
-literal|null
+name|currentPath
 argument_list|,
 name|NativeValueIndex
 operator|.
@@ -17382,31 +17387,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : investigate. 0/1 seem tobe totally unused !
-comment|//And so is null ;-)
-comment|//notifyStoreAttribute(null, (AttrImpl)node, currentPath, fullTextIndex ? -1 : -2);
-comment|//Let's try this then
-name|notifyStoreAttribute
-argument_list|(
-operator|(
-name|AttrImpl
-operator|)
-name|node
-argument_list|,
-name|currentPath
-argument_list|,
-name|NativeValueIndex
-operator|.
-name|WITH_PATH
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
 comment|//Special handling for fulltext index
 comment|//TODO : harmonize
 if|if
 condition|(
-name|indexAttribs
+name|fullTextIndexing
 operator|&&
 operator|!
 name|isTemp
@@ -17465,6 +17450,22 @@ name|ftIdx
 argument_list|)
 expr_stmt|;
 block|}
+name|notifyStoreAttribute
+argument_list|(
+operator|(
+name|AttrImpl
+operator|)
+name|node
+argument_list|,
+name|currentPath
+argument_list|,
+name|NativeValueIndex
+operator|.
+name|WITH_PATH
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|elementIndex
 operator|.
 name|setDocument
@@ -17581,7 +17582,6 @@ name|tempProxy
 argument_list|)
 expr_stmt|;
 block|}
-comment|//                    // --move to-- ???
 if|if
 condition|(
 name|currentPath

@@ -863,6 +863,11 @@ specifier|protected
 name|InvertedIndex
 name|invertedIndex
 decl_stmt|;
+comment|/** The current document */
+specifier|private
+name|DocumentImpl
+name|doc
+decl_stmt|;
 comment|/** Work output Stream that should be cleared before every use */
 specifier|private
 name|VariableByteOutputStream
@@ -1225,7 +1230,12 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|//TODO Auto-generated method stub
+name|this
+operator|.
+name|doc
+operator|=
+name|document
+expr_stmt|;
 block|}
 comment|/**      * Indexes the tokens contained in an attribute.      *       * @param node The attribute to be indexed      */
 comment|//TODO : unify functionalities with storeText -pb
