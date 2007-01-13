@@ -535,6 +535,14 @@ init|=
 literal|4
 decl_stmt|;
 comment|//sizeof int
+specifier|public
+specifier|static
+name|int
+name|LENGTH_DOCUMENT_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
 comment|//public final static byte DOCUMENT_NODE_SIGNATURE = 0x0F;
 specifier|protected
 specifier|transient
