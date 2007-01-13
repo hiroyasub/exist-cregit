@@ -8435,8 +8435,9 @@ name|blob
 operator|.
 name|setPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 return|return;
@@ -8526,8 +8527,9 @@ name|blob
 operator|.
 name|setPage
 argument_list|(
-operator|-
-literal|1
+name|Page
+operator|.
+name|NO_PAGE
 argument_list|)
 expr_stmt|;
 return|return;
@@ -11097,9 +11099,10 @@ name|blob
 operator|.
 name|getPage
 argument_list|()
-operator|>
-operator|-
-literal|1
+operator|!=
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 block|{
 operator|new
@@ -14303,6 +14306,13 @@ condition|)
 block|{
 name|textEngine
 operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|textEngine
+operator|.
 name|storeText
 argument_list|(
 operator|(
@@ -14328,6 +14338,13 @@ name|currentPath
 argument_list|)
 condition|)
 block|{
+name|textEngine
+operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|textEngine
 operator|.
 name|storeText
@@ -16595,19 +16612,35 @@ init|=
 literal|0
 decl_stmt|;
 specifier|public
+specifier|static
+name|int
+name|OFFSET_NODE_ID
+init|=
+name|OFFSET_DOCUMENT_ID
+operator|+
+name|DocumentImpl
+operator|.
+name|LENGTH_DOCUMENT_ID
+decl_stmt|;
+specifier|public
 name|NodeRef
 parameter_list|(
 name|int
 name|docId
 parameter_list|)
 block|{
-comment|//What does this 4 stand for ?
+name|len
+operator|=
+name|DocumentImpl
+operator|.
+name|LENGTH_DOCUMENT_ID
+expr_stmt|;
 name|data
 operator|=
 operator|new
 name|byte
 index|[
-literal|4
+name|len
 index|]
 expr_stmt|;
 name|ByteConversion
@@ -16620,11 +16653,6 @@ name|data
 argument_list|,
 name|OFFSET_DOCUMENT_ID
 argument_list|)
-expr_stmt|;
-comment|//What does this 4 stand for ?
-name|len
-operator|=
-literal|4
 expr_stmt|;
 name|pos
 operator|=
@@ -16641,15 +16669,16 @@ name|NodeId
 name|nodeId
 parameter_list|)
 block|{
-comment|//What does this 4 stand for ?
 name|len
 operator|=
+name|DocumentImpl
+operator|.
+name|LENGTH_DOCUMENT_ID
+operator|+
 name|nodeId
 operator|.
 name|size
 argument_list|()
-operator|+
-literal|4
 expr_stmt|;
 name|data
 operator|=
@@ -16670,14 +16699,13 @@ argument_list|,
 name|OFFSET_DOCUMENT_ID
 argument_list|)
 expr_stmt|;
-comment|//What does this 4 stand for ?
 name|nodeId
 operator|.
 name|serialize
 argument_list|(
 name|data
 argument_list|,
-literal|4
+name|OFFSET_NODE_ID
 argument_list|)
 expr_stmt|;
 name|pos
@@ -16994,6 +17022,7 @@ name|void
 name|doIndex
 parameter_list|()
 block|{
+comment|//TODO : resolve URI !
 specifier|final
 name|boolean
 name|isTemp
@@ -17635,6 +17664,13 @@ condition|)
 block|{
 name|textEngine
 operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|textEngine
+operator|.
 name|storeText
 argument_list|(
 operator|(
@@ -17678,6 +17714,13 @@ name|NativeTextEngine
 operator|.
 name|TOKENIZE
 decl_stmt|;
+name|textEngine
+operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|textEngine
 operator|.
 name|storeText
@@ -18004,7 +18047,6 @@ name|TerminatedException
 block|{
 try|try
 block|{
-comment|//What does this 1 stand for ?
 name|byte
 name|type
 init|=
@@ -18022,7 +18064,9 @@ name|Collection
 operator|.
 name|LENGTH_COLLECTION_ID
 operator|+
-literal|1
+name|DocumentImpl
+operator|.
+name|LENGTH_DOCUMENT_TYPE
 index|]
 decl_stmt|;
 name|VariableByteInput

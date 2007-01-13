@@ -845,6 +845,14 @@ name|OFFSET_TEXT_DLN_LENGTH
 operator|+
 name|LENGTH_DLN
 decl_stmt|;
+specifier|public
+specifier|static
+name|int
+name|LENGTH_NODE_IDS_FREQ_OFFSETS
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
 comment|/** Length limit for the tokens */
 specifier|public
 specifier|final
@@ -1230,11 +1238,41 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|doc
+operator|!=
+literal|null
+operator|&&
+name|this
+operator|.
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|!=
+name|document
+operator|.
+name|getDocId
+argument_list|()
+condition|)
+name|flush
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|doc
 operator|=
 name|document
+expr_stmt|;
+name|invertedIndex
+operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Indexes the tokens contained in an attribute.      *       * @param node The attribute to be indexed      */
@@ -1258,27 +1296,24 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|(
 name|indexingHint
+operator|&
+name|ATTRIBUTE_BY_QNAME
+operator|)
 operator|==
 name|ATTRIBUTE_BY_QNAME
 operator|||
+operator|(
 name|indexingHint
+operator|&
+name|ATTRIBUTE_NOT_BY_QNAME
+operator|)
 operator|==
 name|ATTRIBUTE_NOT_BY_QNAME
 condition|)
 block|{
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|node
-operator|.
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
+comment|//final DocumentImpl doc = (DocumentImpl)node.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|tokenizer
 operator|.
@@ -1359,39 +1394,28 @@ condition|)
 block|{
 continue|continue;
 block|}
-if|if
-condition|(
-name|indexSpec
-operator|!=
-literal|null
-condition|)
-block|{
 comment|//TODO : the tokenizer should strip unwanted token types itself -pb
 if|if
 condition|(
-operator|!
-name|indexSpec
-operator|.
-name|getIncludeAlphaNum
-argument_list|()
-operator|&&
 operator|!
 name|token
 operator|.
 name|isAlpha
 argument_list|()
+operator|&&
+name|indexSpec
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|indexSpec
+operator|.
+name|getIncludeAlphaNum
+argument_list|()
 condition|)
 block|{
 continue|continue;
 block|}
-block|}
-name|invertedIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|indexingHint
@@ -1471,18 +1495,7 @@ operator|==
 name|DO_NOT_TOKENIZE
 condition|)
 block|{
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|node
-operator|.
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
+comment|//final DocumentImpl doc = (DocumentImpl)node.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 specifier|final
 name|XMLString
@@ -1525,13 +1538,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|invertedIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//invertedIndex.setDocument(doc);
 name|invertedIndex
 operator|.
 name|addText
@@ -1648,13 +1655,7 @@ block|{
 continue|continue;
 block|}
 block|}
-name|invertedIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//invertedIndex.setDocument(doc);
 name|invertedIndex
 operator|.
 name|addText
@@ -1688,18 +1689,7 @@ name|FulltextIndexSpec
 name|indexSpec
 parameter_list|)
 block|{
-specifier|final
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|parent
-operator|.
-name|getOwnerDocument
-argument_list|()
-decl_stmt|;
+comment|//final DocumentImpl doc = (DocumentImpl)parent.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|TextToken
 name|token
@@ -1803,13 +1793,7 @@ block|{
 continue|continue;
 block|}
 block|}
-name|invertedIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//invertedIndex.setDocument(doc);
 if|if
 condition|(
 name|indexingHint
@@ -2507,9 +2491,9 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Read (variable) length of node IDs + frequency + offsets
 name|int
-name|size
+name|length
 init|=
 name|is
 operator|.
@@ -2538,7 +2522,7 @@ name|is
 operator|.
 name|skipBytes
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -2547,15 +2531,15 @@ comment|//Process the nodes
 for|for
 control|(
 name|int
-name|j
+name|m
 init|=
 literal|0
 init|;
-name|j
+name|m
 operator|<
 name|gidsCount
 condition|;
-name|j
+name|m
 operator|++
 control|)
 block|{
@@ -4077,15 +4061,15 @@ block|{
 for|for
 control|(
 name|int
-name|k
+name|n
 init|=
 literal|0
 init|;
-name|k
+name|n
 operator|<
 name|freq
 condition|;
-name|k
+name|n
 operator|++
 control|)
 block|{
@@ -5459,7 +5443,7 @@ name|getTermCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Mark position
 name|int
 name|lenOffset
 init|=
@@ -5468,6 +5452,7 @@ operator|.
 name|position
 argument_list|()
 decl_stmt|;
+comment|//Dummy value : actual one will be written below
 name|os
 operator|.
 name|writeFixedInt
@@ -5478,11 +5463,11 @@ expr_stmt|;
 for|for
 control|(
 name|int
-name|j
+name|m
 init|=
 literal|0
 init|;
-name|j
+name|m
 operator|<
 name|occurences
 operator|.
@@ -5497,7 +5482,7 @@ name|occurences
 operator|.
 name|nodes
 index|[
-name|j
+name|m
 index|]
 operator|.
 name|write
@@ -5534,7 +5519,7 @@ name|occurences
 operator|.
 name|getOccurrences
 argument_list|(
-name|j
+name|m
 argument_list|)
 decl_stmt|;
 name|os
@@ -5547,15 +5532,15 @@ expr_stmt|;
 for|for
 control|(
 name|int
-name|k
+name|n
 init|=
 literal|0
 init|;
-name|k
+name|n
 operator|<
 name|freq
 condition|;
-name|k
+name|n
 operator|++
 control|)
 block|{
@@ -5567,19 +5552,19 @@ name|occurences
 operator|.
 name|offsets
 index|[
-name|j
+name|m
 operator|+
-name|k
+name|n
 index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|j
+name|m
 operator|+=
 name|freq
 expr_stmt|;
 block|}
-comment|//What does this 4 stand for ?
+comment|//Write (variable) length of node IDs + frequency + offsets
 name|os
 operator|.
 name|writeFixedInt
@@ -5593,7 +5578,7 @@ argument_list|()
 operator|-
 name|lenOffset
 operator|-
-literal|4
+name|LENGTH_NODE_IDS_FREQ_OFFSETS
 argument_list|)
 expr_stmt|;
 name|flushWord
@@ -6166,9 +6151,9 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Read (variable) length of node IDs + frequency + offsets
 name|int
-name|size
+name|length
 init|=
 name|is
 operator|.
@@ -6212,7 +6197,7 @@ name|os
 operator|.
 name|writeFixedInt
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 name|is
@@ -6221,7 +6206,7 @@ name|copyRaw
 argument_list|(
 name|os
 argument_list|,
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 block|}
@@ -6237,7 +6222,7 @@ name|is
 operator|.
 name|skipBytes
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 block|}
@@ -6721,9 +6706,9 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Read (variable) length of node IDs + frequency + offsets
 name|int
-name|size
+name|length
 init|=
 name|is
 operator|.
@@ -6773,7 +6758,7 @@ name|os
 operator|.
 name|writeFixedInt
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 name|is
@@ -6782,7 +6767,7 @@ name|copyRaw
 argument_list|(
 name|os
 argument_list|,
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 block|}
@@ -6793,15 +6778,15 @@ comment|// feed the new list with the GIDs
 for|for
 control|(
 name|int
-name|j
+name|m
 init|=
 literal|0
 init|;
-name|j
+name|m
 operator|<
 name|termCount
 condition|;
-name|j
+name|m
 operator|++
 control|)
 block|{
@@ -6845,15 +6830,15 @@ block|{
 for|for
 control|(
 name|int
-name|k
+name|n
 init|=
 literal|0
 init|;
-name|k
+name|n
 operator|<
 name|freq
 condition|;
-name|k
+name|n
 operator|++
 control|)
 block|{
@@ -6930,7 +6915,7 @@ name|getTermCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Mark position
 name|int
 name|lenOffset
 init|=
@@ -6939,6 +6924,7 @@ operator|.
 name|position
 argument_list|()
 decl_stmt|;
+comment|//Dummy value : actual one will be written below
 name|os
 operator|.
 name|writeFixedInt
@@ -7026,7 +7012,7 @@ operator|+=
 name|freq
 expr_stmt|;
 block|}
-comment|//What does this 4 stand for ?
+comment|//Write (variable) length of node IDs + frequency + offsets
 name|os
 operator|.
 name|writeFixedInt
@@ -7040,7 +7026,7 @@ argument_list|()
 operator|-
 name|lenOffset
 operator|-
-literal|4
+name|LENGTH_NODE_IDS_FREQ_OFFSETS
 argument_list|)
 expr_stmt|;
 block|}
@@ -7623,9 +7609,9 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Read (variable) length of node IDs + frequency + offsets
 name|int
-name|size
+name|length
 init|=
 name|is
 operator|.
@@ -7654,7 +7640,7 @@ name|is
 operator|.
 name|skipBytes
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -7662,15 +7648,15 @@ block|}
 for|for
 control|(
 name|int
-name|j
+name|m
 init|=
 literal|0
 init|;
-name|j
+name|m
 operator|<
 name|termCount
 condition|;
-name|j
+name|m
 operator|++
 control|)
 block|{
@@ -8299,9 +8285,9 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-comment|//TOUNDERSTAND -pb
+comment|//Read (variable) length of node IDs + frequency + offsets
 name|int
-name|size
+name|length
 init|=
 name|is
 operator|.
@@ -8330,7 +8316,7 @@ name|is
 operator|.
 name|skipBytes
 argument_list|(
-name|size
+name|length
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -8338,15 +8324,15 @@ block|}
 for|for
 control|(
 name|int
-name|j
+name|m
 init|=
 literal|0
 init|;
-name|j
+name|m
 operator|<
 name|termCount
 condition|;
-name|j
+name|m
 operator|++
 control|)
 block|{

@@ -679,6 +679,14 @@ operator|.
 name|LENGTH_VALUE_TYPE
 decl_stmt|;
 comment|//3
+specifier|public
+specifier|static
+name|int
+name|LENGTH_NODE_IDS
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
 comment|/** The broker that is using this value index */
 name|DBBroker
 name|broker
@@ -1106,16 +1114,12 @@ name|RangeIndexSpec
 name|spec
 parameter_list|)
 block|{
-comment|//Return early
 if|if
 condition|(
-name|indexingHint
+name|doc
 operator|!=
-name|WITHOUT_PATH
-condition|)
-return|return;
-if|if
-condition|(
+literal|null
+operator|&&
 name|doc
 operator|.
 name|getDocId
@@ -1149,6 +1153,14 @@ literal|"') differ !"
 argument_list|)
 throw|;
 block|}
+comment|//Return early
+if|if
+condition|(
+name|indexingHint
+operator|!=
+name|WITHOUT_PATH
+condition|)
+return|return;
 name|AtomicValue
 name|atomic
 init|=
@@ -1529,14 +1541,16 @@ argument_list|(
 name|gidsCount
 argument_list|)
 expr_stmt|;
+comment|//Mark position
 name|int
-name|lenOffset
+name|nodeIDsLength
 init|=
 name|os
 operator|.
 name|position
 argument_list|()
 decl_stmt|;
+comment|//Dummy value : actual one will be written below
 name|os
 operator|.
 name|writeFixedInt
@@ -1606,21 +1620,21 @@ expr_stmt|;
 comment|//TODO : throw exception?
 block|}
 block|}
-comment|//What does this 4 stand for ?
+comment|//Write (variable) length of node IDs
 name|os
 operator|.
 name|writeFixedInt
 argument_list|(
-name|lenOffset
+name|nodeIDsLength
 argument_list|,
 name|os
 operator|.
 name|position
 argument_list|()
 operator|-
-name|lenOffset
+name|nodeIDsLength
 operator|-
-literal|4
+name|LENGTH_NODE_IDS
 argument_list|)
 expr_stmt|;
 try|try
@@ -2148,14 +2162,16 @@ argument_list|(
 name|gidsCount
 argument_list|)
 expr_stmt|;
+comment|//Mark position
 name|int
-name|lenOffset
+name|nodeIDsLength
 init|=
 name|os
 operator|.
 name|position
 argument_list|()
 decl_stmt|;
+comment|//Dummy value : actual one will be written below
 name|os
 operator|.
 name|writeFixedInt
@@ -2221,24 +2237,24 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TOO : throw exception ?
+comment|//TODO : throw exception ?
 block|}
 block|}
-comment|//What does this 4 stand for ?
+comment|//Write (variable) length of node IDs
 name|os
 operator|.
 name|writeFixedInt
 argument_list|(
-name|lenOffset
+name|nodeIDsLength
 argument_list|,
 name|os
 operator|.
 name|position
 argument_list|()
 operator|-
-name|lenOffset
+name|nodeIDsLength
 operator|-
-literal|4
+name|LENGTH_NODE_IDS
 argument_list|)
 expr_stmt|;
 block|}
