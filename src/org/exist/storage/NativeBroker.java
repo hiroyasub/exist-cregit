@@ -2496,22 +2496,19 @@ name|valueIndex
 operator|.
 name|storeElement
 argument_list|(
-name|RangeIndexSpec
-operator|.
-name|indexTypeToXPath
-argument_list|(
-name|indexType
-argument_list|)
-argument_list|,
 operator|(
 name|ElementImpl
 operator|)
 name|node
 argument_list|,
 name|content
+argument_list|,
+name|RangeIndexSpec
 operator|.
-name|toString
-argument_list|()
+name|indexTypeToXPath
+argument_list|(
+name|indexType
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -10330,6 +10327,7 @@ block|}
 try|try
 block|{
 comment|// check if the move would overwrite a collection
+comment|//TODO : resolve URIs : destination.getURI().resolve(newName)
 if|if
 condition|(
 name|getCollection
@@ -14045,17 +14043,17 @@ name|valueIndex
 operator|.
 name|storeElement
 argument_list|(
-name|spec1
-operator|.
-name|getType
-argument_list|()
-argument_list|,
 operator|(
 name|ElementImpl
 operator|)
 name|node
 argument_list|,
 name|content
+argument_list|,
+name|spec1
+operator|.
+name|getType
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -14078,23 +14076,6 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-name|currentPath
-operator|.
-name|addComponent
-argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
 name|qname
 operator|=
 name|node
@@ -14111,6 +14092,20 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+name|currentPath
+operator|.
+name|addComponent
+argument_list|(
+name|qname
+argument_list|)
+expr_stmt|;
+name|elementIndex
+operator|.
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|elementIndex
 operator|.
 name|addNode
@@ -14118,52 +14113,6 @@ argument_list|(
 name|qname
 argument_list|,
 name|p
-argument_list|)
-expr_stmt|;
-comment|// check if attribute value should be fulltext-indexed
-comment|// by calling IndexPaths.match(path)
-name|boolean
-name|indexAttribs
-init|=
-literal|true
-decl_stmt|;
-if|if
-condition|(
-name|ftIdx
-operator|!=
-literal|null
-condition|)
-block|{
-name|indexAttribs
-operator|=
-name|ftIdx
-operator|.
-name|matchAttribute
-argument_list|(
-name|currentPath
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|indexAttribs
-condition|)
-name|textEngine
-operator|.
-name|storeAttribute
-argument_list|(
-operator|(
-name|AttrImpl
-operator|)
-name|node
-argument_list|,
-literal|null
-argument_list|,
-name|NativeTextEngine
-operator|.
-name|ATTRIBUTE_NOT_BY_QNAME
-argument_list|,
-name|ftIdx
 argument_list|)
 expr_stmt|;
 name|GeneralRangeIndexSpec
@@ -14214,17 +14163,6 @@ name|spec2
 argument_list|)
 expr_stmt|;
 block|}
-comment|//              RangeIndexSpec qnIdx = idxSpec.getIndexByQName(idxQName);
-comment|//              if (qnIdx != null&& qnameValueIndexation) {
-comment|//                  qnameValueIndex.setDocument(doc);
-comment|//                  qnameValueIndex.storeAttribute(qnIdx, (AttrImpl) node);
-comment|//              }
-if|if
-condition|(
-name|qnameValueIndex
-operator|!=
-literal|null
-condition|)
 name|qnameValueIndex
 operator|.
 name|storeAttribute
@@ -14241,6 +14179,42 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// check if attribute value should be fulltext-indexed
+comment|// by calling IndexPaths.match(path)
+if|if
+condition|(
+name|ftIdx
+operator|!=
+literal|null
+operator|&&
+name|ftIdx
+operator|.
+name|matchAttribute
+argument_list|(
+name|currentPath
+argument_list|)
+condition|)
+block|{
+name|textEngine
+operator|.
+name|storeAttribute
+argument_list|(
+operator|(
+name|AttrImpl
+operator|)
+name|node
+argument_list|,
+literal|null
+argument_list|,
+name|NativeTextEngine
+operator|.
+name|ATTRIBUTE_NOT_BY_QNAME
+argument_list|,
+name|ftIdx
+argument_list|)
+expr_stmt|;
+block|}
+comment|//Strange : why this hasn't been done earlier ?
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if

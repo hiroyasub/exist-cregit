@@ -966,14 +966,14 @@ specifier|public
 name|void
 name|storeElement
 parameter_list|(
-name|int
-name|xpathType
-parameter_list|,
 name|ElementImpl
 name|node
 parameter_list|,
 name|String
 name|content
+parameter_list|,
+name|int
+name|xpathType
 parameter_list|)
 block|{
 if|if
