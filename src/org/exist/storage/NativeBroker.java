@@ -14159,7 +14159,7 @@ literal|null
 argument_list|,
 name|NativeTextEngine
 operator|.
-name|NOT_BY_QNAME
+name|ATTRIBUTE_NOT_BY_QNAME
 argument_list|)
 expr_stmt|;
 name|GeneralRangeIndexSpec
@@ -14337,11 +14337,11 @@ name|ftIdx
 operator|==
 literal|null
 condition|?
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|TOKENIZE
 else|:
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|DO_NOT_TOKENIZE
 argument_list|)
@@ -17410,7 +17410,7 @@ literal|null
 argument_list|,
 name|NativeTextEngine
 operator|.
-name|NOT_BY_QNAME
+name|ATTRIBUTE_NOT_BY_QNAME
 argument_list|)
 expr_stmt|;
 if|if
@@ -17445,7 +17445,7 @@ literal|null
 argument_list|,
 name|NativeTextEngine
 operator|.
-name|BY_QNAME
+name|ATTRIBUTE_BY_QNAME
 argument_list|)
 expr_stmt|;
 block|}
@@ -17619,7 +17619,7 @@ literal|true
 expr_stmt|;
 name|tokenize
 operator|=
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|TOKENIZE
 expr_stmt|;
@@ -17644,11 +17644,11 @@ argument_list|(
 name|currentPath
 argument_list|)
 condition|?
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|DO_NOT_TOKENIZE
 else|:
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|TOKENIZE
 expr_stmt|;
@@ -17683,11 +17683,11 @@ name|currentPath
 argument_list|,
 name|fullTextIndex
 condition|?
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|DO_NOT_TOKENIZE
 else|:
-name|TextSearchEngine
+name|NativeTextEngine
 operator|.
 name|TOKENIZE
 argument_list|)

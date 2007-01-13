@@ -109,6 +109,7 @@ interface|interface
 name|ContentLoadingObserver
 block|{
 comment|/** store and index given attribute */
+comment|//TODO : remove the RangeIndexSpec dependency ASAP
 specifier|public
 name|void
 name|storeAttribute
