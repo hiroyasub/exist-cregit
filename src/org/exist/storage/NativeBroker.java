@@ -14223,8 +14223,10 @@ literal|null
 condition|)
 name|qnameValueIndex
 operator|.
-name|removeAttribute
+name|storeAttribute
 argument_list|(
+literal|null
+argument_list|,
 operator|(
 name|AttrImpl
 operator|)
@@ -14235,7 +14237,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// qnameValueIndex.storeAttribute( (AttrImpl)node, currentPath, true);
 comment|// if the attribute has type ID, store the ID-value
 comment|// to the element index as well
 if|if

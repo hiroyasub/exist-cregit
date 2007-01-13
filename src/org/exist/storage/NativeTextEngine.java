@@ -1391,6 +1391,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//TODO : unify with above choosing one of these 2 strategies :
+comment|//1) compute the indexing strategy from thhe broker (introduce some kind of dependency)
+comment|//2) read the configuration from the indexer (possible performance loss)
 specifier|public
 name|void
 name|storeAttribute
@@ -1408,19 +1411,6 @@ name|int
 name|indexingHint
 parameter_list|)
 block|{
-block|}
-specifier|public
-name|void
-name|storeAttribute
-parameter_list|(
-name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|AttrImpl
-name|node
-parameter_list|)
-block|{
-comment|// TODO Auto-generated method stub
 block|}
 comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param node The text node to be indexed      * @param indexingHint      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
