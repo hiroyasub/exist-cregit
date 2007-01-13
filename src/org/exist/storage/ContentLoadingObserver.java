@@ -114,9 +114,6 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|RangeIndexSpec
-name|spec
-parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,
@@ -125,6 +122,9 @@ name|currentPath
 parameter_list|,
 name|int
 name|indexingHint
+parameter_list|,
+name|RangeIndexSpec
+name|spec
 parameter_list|)
 function_decl|;
 comment|/** store and index given text node */

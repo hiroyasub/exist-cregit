@@ -846,14 +846,14 @@ specifier|abstract
 name|void
 name|storeText
 parameter_list|(
-name|FulltextIndexSpec
-name|indexSpec
-parameter_list|,
 name|TextImpl
 name|node
 parameter_list|,
 name|int
 name|indexingHint
+parameter_list|,
+name|FulltextIndexSpec
+name|indexSpec
 parameter_list|)
 function_decl|;
 specifier|public
@@ -861,9 +861,6 @@ specifier|abstract
 name|void
 name|storeText
 parameter_list|(
-name|FulltextIndexSpec
-name|indexSpec
-parameter_list|,
 name|StoredNode
 name|parent
 parameter_list|,
@@ -872,6 +869,9 @@ name|text
 parameter_list|,
 name|boolean
 name|idxAsQName
+parameter_list|,
+name|FulltextIndexSpec
+name|indexSpec
 parameter_list|)
 function_decl|;
 specifier|public

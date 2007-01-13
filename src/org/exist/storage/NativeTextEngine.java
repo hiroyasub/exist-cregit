@@ -1233,9 +1233,6 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|FulltextIndexSpec
-name|indexSpec
-parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,
@@ -1244,6 +1241,9 @@ name|currentPath
 parameter_list|,
 name|int
 name|indexingHint
+parameter_list|,
+name|FulltextIndexSpec
+name|indexSpec
 parameter_list|)
 block|{
 if|if
@@ -1420,9 +1420,6 @@ specifier|public
 name|void
 name|storeAttribute
 parameter_list|(
-name|RangeIndexSpec
-name|idx
-parameter_list|,
 name|AttrImpl
 name|node
 parameter_list|,
@@ -1431,6 +1428,9 @@ name|currentPath
 parameter_list|,
 name|int
 name|indexingHint
+parameter_list|,
+name|RangeIndexSpec
+name|idx
 parameter_list|)
 block|{
 block|}
@@ -1440,14 +1440,14 @@ specifier|public
 name|void
 name|storeText
 parameter_list|(
-name|FulltextIndexSpec
-name|indexSpec
-parameter_list|,
 name|TextImpl
 name|node
 parameter_list|,
 name|int
 name|indexingHint
+parameter_list|,
+name|FulltextIndexSpec
+name|indexSpec
 parameter_list|)
 block|{
 if|if
@@ -1665,9 +1665,6 @@ specifier|public
 name|void
 name|storeText
 parameter_list|(
-name|FulltextIndexSpec
-name|indexSpec
-parameter_list|,
 name|StoredNode
 name|parent
 parameter_list|,
@@ -1676,6 +1673,9 @@ name|text
 parameter_list|,
 name|boolean
 name|idxByQName
+parameter_list|,
+name|FulltextIndexSpec
+name|indexSpec
 parameter_list|)
 block|{
 specifier|final
