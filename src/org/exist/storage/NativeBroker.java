@@ -8925,8 +8925,10 @@ name|blob
 operator|.
 name|getPage
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 return|return
 operator|new
@@ -9002,8 +9004,10 @@ name|blob
 operator|.
 name|getPage
 argument_list|()
-operator|<
-literal|0
+operator|==
+name|Page
+operator|.
+name|NO_PAGE
 condition|)
 return|return;
 operator|new
