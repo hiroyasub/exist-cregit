@@ -4019,6 +4019,23 @@ operator|.
 name|getEntry
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|entry
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|BadRequestException
+argument_list|(
+literal|"Cannot find entry with id "
+operator|+
+name|id
+argument_list|)
+throw|;
+block|}
 name|mergeEntry
 argument_list|(
 name|transaction
