@@ -1114,6 +1114,14 @@ name|RangeIndexSpec
 name|spec
 parameter_list|)
 block|{
+comment|//Return early
+if|if
+condition|(
+name|indexingHint
+operator|!=
+name|WITHOUT_PATH
+condition|)
+return|return;
 if|if
 condition|(
 name|doc
@@ -1153,14 +1161,6 @@ literal|"') differ !"
 argument_list|)
 throw|;
 block|}
-comment|//Return early
-if|if
-condition|(
-name|indexingHint
-operator|!=
-name|WITHOUT_PATH
-condition|)
-return|return;
 name|AtomicValue
 name|atomic
 init|=
