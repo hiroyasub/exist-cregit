@@ -504,6 +504,26 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|image
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unable to read image data!"
+argument_list|)
+expr_stmt|;
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 comment|//scale the image
 name|bImage
 operator|=
