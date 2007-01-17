@@ -985,6 +985,9 @@ name|docName
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|EXistException
@@ -1008,6 +1011,9 @@ name|docName
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|,
 name|Date
 name|created

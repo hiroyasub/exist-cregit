@@ -358,6 +358,13 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|addElement
+argument_list|(
+literal|"image/png"
+argument_list|)
+expr_stmt|;
 name|Boolean
 name|result
 init|=

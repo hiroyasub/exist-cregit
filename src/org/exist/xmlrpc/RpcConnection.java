@@ -8500,6 +8500,9 @@ name|documentPath
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|Exception
@@ -8516,6 +8519,8 @@ argument_list|,
 name|documentPath
 argument_list|,
 name|replace
+argument_list|,
+name|mimeType
 argument_list|,
 literal|null
 argument_list|,
@@ -8538,6 +8543,9 @@ name|docUri
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|)
 throws|throws
 name|Exception
@@ -8552,6 +8560,8 @@ argument_list|,
 name|docUri
 argument_list|,
 name|replace
+argument_list|,
+name|mimeType
 argument_list|,
 literal|null
 argument_list|,
@@ -8574,6 +8584,9 @@ name|documentPath
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|,
 name|Date
 name|created
@@ -8602,6 +8615,8 @@ argument_list|)
 argument_list|,
 name|replace
 argument_list|,
+name|mimeType
+argument_list|,
 name|created
 argument_list|,
 name|modified
@@ -8623,6 +8638,9 @@ name|docUri
 parameter_list|,
 name|boolean
 name|replace
+parameter_list|,
+name|String
+name|mimeType
 parameter_list|,
 name|Date
 name|created
@@ -8694,9 +8712,9 @@ operator|.
 name|getInstance
 argument_list|()
 operator|.
-name|getContentTypeFor
+name|getContentType
 argument_list|(
-name|docUri
+name|mimeType
 argument_list|)
 decl_stmt|;
 if|if
