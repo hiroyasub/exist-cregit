@@ -600,6 +600,11 @@ argument_list|,
 name|elapsed
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|gc
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
