@@ -3694,16 +3694,13 @@ index|]
 argument_list|)
 expr_stmt|;
 comment|//                        ancestor.addMatches(array[i]);
-return|return
-name|ancestor
-return|;
 block|}
 block|}
 else|else
 break|break;
 block|}
 return|return
-literal|null
+name|ancestor
 return|;
 block|}
 comment|/**          * Find all nodes in the current set being children or descendants of the given parent          * node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
