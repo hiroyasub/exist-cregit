@@ -7974,7 +7974,7 @@ init|=
 operator|new
 name|Match
 argument_list|(
-literal|null
+name|nodeId
 argument_list|,
 name|word
 operator|.
