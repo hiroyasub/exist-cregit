@@ -309,13 +309,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|isEmpty
+name|getArgumentCount
 argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 return|return
