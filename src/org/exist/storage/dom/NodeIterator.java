@@ -1245,8 +1245,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|DOMFile
-operator|.
 name|RecordPos
 name|rec
 init|=
@@ -1323,7 +1321,8 @@ name|page
 operator|=
 name|rec
 operator|.
-name|page
+name|getPage
+argument_list|()
 operator|.
 name|getPageNum
 argument_list|()
@@ -1332,7 +1331,8 @@ name|p
 operator|=
 name|rec
 operator|.
-name|page
+name|getPage
+argument_list|()
 expr_stmt|;
 name|offset
 operator|=
@@ -1356,8 +1356,6 @@ name|startAddress
 condition|)
 block|{
 specifier|final
-name|DOMFile
-operator|.
 name|RecordPos
 name|rec
 init|=
@@ -1385,7 +1383,8 @@ name|page
 operator|=
 name|rec
 operator|.
-name|page
+name|getPage
+argument_list|()
 operator|.
 name|getPageNum
 argument_list|()
@@ -1402,7 +1401,8 @@ name|p
 operator|=
 name|rec
 operator|.
-name|page
+name|getPage
+argument_list|()
 expr_stmt|;
 name|startAddress
 operator|=
