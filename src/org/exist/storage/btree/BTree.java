@@ -601,6 +601,19 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+name|short
+name|getFileVersion
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"getFileVersion() called"
+argument_list|)
+throw|;
+block|}
+specifier|public
 name|boolean
 name|open
 parameter_list|(

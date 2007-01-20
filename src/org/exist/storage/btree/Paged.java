@@ -481,14 +481,11 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+specifier|abstract
 name|short
 name|getFileVersion
 parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
+function_decl|;
 specifier|public
 specifier|final
 specifier|static
