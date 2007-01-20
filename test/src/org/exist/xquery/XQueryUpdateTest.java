@@ -410,7 +410,7 @@ specifier|static
 name|int
 name|ITEMS_TO_APPEND
 init|=
-literal|500
+literal|1000
 decl_stmt|;
 specifier|private
 name|BrokerPool
