@@ -1199,8 +1199,7 @@ operator|==
 literal|0
 condition|)
 return|return
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 return|;
 comment|// overflow value?
 if|if
@@ -1959,8 +1958,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 return|return
-operator|-
-literal|1
+name|p
 return|;
 return|return
 name|insertAfter
@@ -2008,8 +2006,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 return|;
 block|}
 comment|/** 	 * Insert a new node after the node located at the specified address. 	 *  	 * If the previous node is in the middle of a page, the page is split. If 	 * the node is appended at the end and the page does not have enough room 	 * for the node, a new page is added to the page sequence. 	 *  	 * @param doc 	 *                     the document to which the new node belongs. 	 * @param address 	 *                     the storage address of the node after which the new value 	 *                     should be inserted. 	 * @param value 	 *                     the value of the new node. 	 */
@@ -2122,8 +2119,7 @@ literal|"page not found"
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 return|;
 block|}
 name|short
@@ -7135,8 +7131,7 @@ decl_stmt|;
 name|long
 name|parentPointer
 init|=
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 decl_stmt|;
 do|do
 block|{
@@ -8278,8 +8273,7 @@ name|ioe
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 return|;
 block|}
 catch|catch
@@ -8296,8 +8290,7 @@ name|bte
 argument_list|)
 expr_stmt|;
 return|return
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 return|;
 block|}
 return|return
@@ -9801,8 +9794,7 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
-operator|-
-literal|1
+name|KEY_NOT_FOUND
 operator|<
 name|pnum
 condition|)
