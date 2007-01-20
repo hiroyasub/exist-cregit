@@ -17255,6 +17255,10 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
+name|pos
+operator|+=
+literal|2
+expr_stmt|;
 name|byte
 name|flags
 init|=
@@ -17296,8 +17300,6 @@ operator|new
 name|RecordPos
 argument_list|(
 name|pos
-operator|+
-literal|2
 argument_list|,
 name|this
 argument_list|,
@@ -17315,8 +17317,6 @@ operator|new
 name|RecordPos
 argument_list|(
 name|pos
-operator|+
-literal|2
 argument_list|,
 name|this
 argument_list|,
@@ -17341,15 +17341,11 @@ condition|)
 block|{
 name|pos
 operator|+=
-literal|2
-operator|+
 literal|8
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// vlen = (short) ( ( data[pos + 2]& 0xff ) + ( ( data[pos
-comment|// + 3]& 0xff )<< 8 ) );
 name|short
 name|vlen
 init|=
@@ -17360,10 +17356,12 @@ argument_list|(
 name|data
 argument_list|,
 name|pos
-operator|+
-literal|2
 argument_list|)
 decl_stmt|;
+name|pos
+operator|+=
+literal|2
+expr_stmt|;
 if|if
 condition|(
 name|vlen
@@ -17418,8 +17416,6 @@ operator|+=
 name|vlen
 operator|+
 literal|8
-operator|+
-literal|4
 expr_stmt|;
 block|}
 else|else
@@ -17427,8 +17423,6 @@ block|{
 name|pos
 operator|+=
 name|vlen
-operator|+
-literal|4
 expr_stmt|;
 block|}
 if|if
