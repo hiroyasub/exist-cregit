@@ -509,11 +509,9 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|'['
 operator|+
@@ -553,11 +551,9 @@ argument_list|()
 operator|-
 name|start
 decl_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|'['
 operator|+
@@ -600,11 +596,7 @@ argument_list|,
 name|elapsed
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
+comment|//                System.gc();
 block|}
 block|}
 block|}
