@@ -634,6 +634,15 @@ init|=
 literal|8
 decl_stmt|;
 comment|//sizeof long
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_OVERFLOW_LOCATION
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
 comment|/* 	 * Byte ids for the records written to the log file. 	 */
 specifier|public
 specifier|final
@@ -1244,7 +1253,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -1334,7 +1345,7 @@ name|ReadOnlyException
 block|{
 specifier|final
 name|int
-name|valueLen
+name|vlen
 init|=
 name|value
 operator|.
@@ -1360,9 +1371,11 @@ name|page
 operator|.
 name|len
 operator|+
-literal|4
+literal|2
 operator|+
-name|valueLen
+literal|2
+operator|+
+name|vlen
 operator|>
 name|page
 operator|.
@@ -1636,7 +1649,7 @@ else|:
 operator|(
 name|short
 operator|)
-name|valueLen
+name|vlen
 argument_list|,
 name|page
 operator|.
@@ -1670,14 +1683,14 @@ name|page
 operator|.
 name|len
 argument_list|,
-name|valueLen
+name|vlen
 argument_list|)
 expr_stmt|;
 name|page
 operator|.
 name|len
 operator|+=
-name|valueLen
+name|vlen
 expr_stmt|;
 name|ph
 operator|.
@@ -2077,7 +2090,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -2212,7 +2227,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 else|else
 name|rec
@@ -2222,7 +2237,7 @@ operator|+=
 name|len
 expr_stmt|;
 name|int
-name|dataLen
+name|dlen
 init|=
 name|rec
 operator|.
@@ -2242,18 +2257,20 @@ name|rec
 operator|.
 name|offset
 operator|<
-name|dataLen
+name|dlen
 condition|)
 block|{
 if|if
 condition|(
-name|dataLen
+name|dlen
 operator|+
 name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|<
 name|fileHeader
 operator|.
@@ -2287,7 +2304,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 decl_stmt|;
 name|System
 operator|.
@@ -2313,7 +2332,7 @@ name|data
 argument_list|,
 name|end
 argument_list|,
-name|dataLen
+name|dlen
 operator|-
 name|rec
 operator|.
@@ -2327,13 +2346,15 @@ argument_list|()
 operator|.
 name|len
 operator|=
-name|dataLen
+name|dlen
 operator|+
 name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2378,7 +2399,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -2775,7 +2798,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2829,7 +2854,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2849,7 +2876,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|dataLen
+name|dlen
 operator|=
 name|rec
 operator|.
@@ -2860,13 +2887,15 @@ block|}
 block|}
 if|else if
 condition|(
-name|dataLen
+name|dlen
 operator|+
 name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -3235,7 +3264,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -3265,13 +3296,15 @@ argument_list|()
 operator|.
 name|len
 operator|=
-name|dataLen
+name|dlen
 operator|+
 name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -4465,7 +4498,7 @@ name|storedLen
 operator|==
 name|OVERFLOW
 condition|?
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|storedLen
 operator|)
@@ -6264,7 +6297,7 @@ name|OVERFLOW
 condition|?
 name|LENGTH_ORIGINAL_LOCATION
 operator|+
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|LENGTH_ORIGINAL_LOCATION
 operator|+
@@ -6278,7 +6311,7 @@ name|vlen
 operator|==
 name|OVERFLOW
 condition|?
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|vlen
 expr_stmt|;
@@ -8652,7 +8685,11 @@ argument_list|()
 operator|.
 name|len
 operator|-
-literal|10
+operator|(
+literal|2
+operator|+
+literal|8
+operator|)
 expr_stmt|;
 name|ph
 operator|.
@@ -8843,7 +8880,7 @@ name|getPageHeader
 argument_list|()
 decl_stmt|;
 name|short
-name|valueLen
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -8870,7 +8907,7 @@ expr_stmt|;
 name|short
 name|l
 init|=
-name|valueLen
+name|vlen
 decl_stmt|;
 if|if
 condition|(
@@ -8987,7 +9024,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 try|try
 block|{
@@ -9026,11 +9063,11 @@ expr_stmt|;
 block|}
 name|l
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
-name|valueLen
+name|vlen
 operator|=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 block|}
 if|if
@@ -9049,7 +9086,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|valueLen
+name|vlen
 index|]
 decl_stmt|;
 name|System
@@ -9071,7 +9108,7 @@ name|data
 argument_list|,
 literal|0
 argument_list|,
-name|valueLen
+name|vlen
 argument_list|)
 expr_stmt|;
 name|RemoveValueLoggable
@@ -9122,7 +9159,9 @@ name|end
 init|=
 name|startOffset
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|+
 name|l
 decl_stmt|;
@@ -9177,9 +9216,11 @@ operator|=
 name|len
 operator|-
 operator|(
-name|l
+literal|2
 operator|+
-literal|4
+literal|2
+operator|+
+name|l
 operator|)
 expr_stmt|;
 name|ph
@@ -10893,7 +10934,9 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|10
+literal|2
+operator|+
+literal|8
 expr_stmt|;
 name|len
 operator|=
@@ -11434,10 +11477,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|//				SanityCheck.TRACE(owner.toString() + ": tid " + targetId
-comment|//						+ " not found on " + page.getPage().getPageInfo()
-comment|//						+ ". Loading " + pageNr + "; contents: "
-comment|//						+ debugPageContents(page));
 block|}
 if|else if
 condition|(
@@ -11773,22 +11812,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//        if (loggable.prevPage> Page.NO_PAGE) {
-comment|//            DOMPage oldPage = getCurrentPage(loggable.prevPage);
-comment|//            oldPage.ph.setNextDataPage(
-comment|//                    newPage.getPageNum());
-comment|//            oldPage.setDirty(true);
-comment|//            dataCache.add(oldPage);
-comment|//            ph.setPrevDataPage(oldPage.getPageNum());
-comment|//        }
-comment|//        if (loggable.nextPage> Page.NO_PAGE) {
-comment|//            DOMPage oldPage = getCurrentPage(loggable.nextPage);
-comment|//            oldPage.ph.setPrevDataPage(
-comment|//                    newPage.getPageNum());
-comment|//            oldPage.setDirty(true);
-comment|//            dataCache.add(oldPage);
-comment|//            newPage.ph.setNextDataPage(oldPage.getPageNum());
-comment|//        }
 name|dataCache
 operator|.
 name|add
@@ -11985,7 +12008,7 @@ expr_stmt|;
 comment|// save data length
 comment|// overflow pages have length 0
 name|short
-name|valueLen
+name|vlen
 init|=
 operator|(
 name|short
@@ -12000,7 +12023,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|valueLen
+name|vlen
 argument_list|,
 name|page
 operator|.
@@ -12036,14 +12059,14 @@ name|page
 operator|.
 name|len
 argument_list|,
-name|valueLen
+name|vlen
 argument_list|)
 expr_stmt|;
 name|page
 operator|.
 name|len
 operator|+=
-name|valueLen
+name|vlen
 expr_stmt|;
 name|ph
 operator|.
@@ -12219,7 +12242,9 @@ name|end
 init|=
 name|startOffset
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|+
 name|l
 decl_stmt|;
@@ -12267,7 +12292,9 @@ operator|-
 operator|(
 name|l
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|)
 expr_stmt|;
 name|ph
@@ -12895,7 +12922,7 @@ name|OVERFLOW
 condition|)
 name|l
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 comment|// end offset
 name|int
@@ -12903,7 +12930,9 @@ name|end
 init|=
 name|startOffset
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|+
 name|l
 decl_stmt|;
@@ -12951,7 +12980,9 @@ operator|-
 operator|(
 name|l
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 operator|)
 expr_stmt|;
 name|page
@@ -14507,7 +14538,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 decl_stmt|;
 try|try
 block|{
@@ -14680,7 +14713,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|4
+literal|2
+operator|+
+literal|2
 expr_stmt|;
 name|ph
 operator|.
@@ -14860,7 +14895,7 @@ name|OVERFLOW
 condition|)
 name|l
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 comment|// end offset
 name|int
@@ -14870,9 +14905,13 @@ name|loggable
 operator|.
 name|offset
 operator|+
-literal|4
+operator|(
+literal|2
+operator|+
+literal|2
 operator|+
 name|l
+operator|)
 decl_stmt|;
 name|int
 name|len
@@ -14968,9 +15007,11 @@ operator|=
 name|len
 operator|-
 operator|(
-name|l
+literal|2
 operator|+
-literal|4
+literal|2
+operator|+
+name|l
 operator|)
 expr_stmt|;
 name|page
@@ -15747,7 +15788,7 @@ operator|+=
 name|LENGTH_TID
 expr_stmt|;
 name|short
-name|valueLen
+name|vlen
 init|=
 operator|(
 name|short
@@ -15764,7 +15805,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|valueLen
+name|vlen
 argument_list|,
 name|page
 operator|.
@@ -15823,14 +15864,14 @@ name|page
 operator|.
 name|len
 argument_list|,
-name|valueLen
+name|vlen
 argument_list|)
 expr_stmt|;
 name|page
 operator|.
 name|len
 operator|+=
-name|valueLen
+name|vlen
 expr_stmt|;
 name|ph
 operator|.
@@ -16127,9 +16168,9 @@ operator|=
 name|len
 operator|-
 operator|(
-name|LENGTH_DATA_LENGTH
-operator|+
 literal|2
+operator|+
+name|LENGTH_DATA_LENGTH
 operator|+
 literal|8
 operator|+
@@ -17482,7 +17523,7 @@ name|OVERFLOW
 condition|)
 name|pos
 operator|+=
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 block|}
 block|}
@@ -18068,7 +18109,7 @@ name|OVERFLOW
 condition|?
 name|LENGTH_ORIGINAL_LOCATION
 operator|+
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|LENGTH_ORIGINAL_LOCATION
 operator|+
@@ -18082,7 +18123,7 @@ name|vlen
 operator|==
 name|OVERFLOW
 condition|?
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|vlen
 expr_stmt|;
