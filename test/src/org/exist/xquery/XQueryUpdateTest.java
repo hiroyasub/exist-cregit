@@ -1673,6 +1673,8 @@ decl_stmt|;
 name|String
 name|query
 init|=
+literal|"declare option exist:output-size-limit '-1';\n"
+operator|+
 literal|"for $prod at $i in //product return\n"
 operator|+
 literal|"	update value $prod/description\n"
@@ -1866,6 +1868,8 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
+literal|"declare option exist:output-size-limit '-1';\n"
+operator|+
 literal|"for $prod at $count in //product return\n"
 operator|+
 literal|"	update value $prod/stock/text()\n"
@@ -1961,6 +1965,8 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
+literal|"declare option exist:output-size-limit '-1';\n"
+operator|+
 literal|"for $prod in //product return\n"
 operator|+
 literal|"	update value $prod/@num\n"
@@ -2056,6 +2062,8 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
+literal|"declare option exist:output-size-limit '-1';\n"
+operator|+
 literal|"for $prod in //product return\n"
 operator|+
 literal|"	update value $prod/stock\n"
