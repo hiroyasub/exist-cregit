@@ -2200,7 +2200,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 if|if
 condition|(
@@ -4481,7 +4481,7 @@ name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
 operator|+
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
 name|realLen
 operator|>
@@ -4733,7 +4733,7 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|RecordPos
 name|origRec
@@ -5033,7 +5033,7 @@ name|nextSplitPage
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 comment|// now save the data
 try|try
@@ -6262,13 +6262,13 @@ name|vlen
 operator|==
 name|OVERFLOW
 condition|?
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
 literal|8
 else|:
-name|vlen
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
-literal|8
+name|vlen
 expr_stmt|;
 block|}
 else|else
@@ -6521,7 +6521,7 @@ argument_list|)
 condition|)
 name|pos
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|buf
 operator|.
@@ -7945,7 +7945,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|Value
 name|v
@@ -8938,7 +8938,11 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
+expr_stmt|;
+name|l
+operator|+=
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|removeLink
 argument_list|(
@@ -8946,10 +8950,6 @@ name|transaction
 argument_list|,
 name|backLink
 argument_list|)
-expr_stmt|;
-name|l
-operator|+=
-literal|8
 expr_stmt|;
 block|}
 if|if
@@ -10188,7 +10188,7 @@ name|p
 argument_list|)
 decl_stmt|;
 name|short
-name|l
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -10228,7 +10228,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 if|if
 condition|(
@@ -10236,7 +10236,7 @@ name|value
 operator|.
 name|length
 operator|<
-name|l
+name|vlen
 condition|)
 block|{
 comment|// value is smaller than before
@@ -10254,7 +10254,7 @@ name|value
 operator|.
 name|length
 operator|>
-name|l
+name|vlen
 condition|)
 block|{
 throw|throw
@@ -10269,7 +10269,7 @@ name|length
 operator|+
 literal|"; got: "
 operator|+
-name|l
+name|vlen
 argument_list|)
 throw|;
 block|}
@@ -10832,7 +10832,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|byte
 index|[]
@@ -12408,7 +12408,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -12426,7 +12426,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|System
 operator|.
@@ -12616,7 +12616,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|System
 operator|.
@@ -12876,11 +12876,11 @@ name|pos
 operator|.
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|l
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
 if|if
@@ -13100,7 +13100,7 @@ argument_list|)
 condition|)
 name|required
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|int
 name|end
@@ -13345,13 +13345,13 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|page
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
 comment|// save data
@@ -14837,11 +14837,11 @@ condition|)
 block|{
 name|offset
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 name|l
 operator|+=
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
 if|if
@@ -15428,11 +15428,7 @@ name|page
 operator|.
 name|data
 argument_list|,
-name|rec
-operator|.
-name|offset
-operator|+
-literal|8
+name|end
 argument_list|,
 name|page
 operator|.
@@ -16116,14 +16112,14 @@ name|len
 operator|=
 name|len
 operator|-
-name|l
-operator|-
 operator|(
 name|LENGTH_DATA_LENGTH
 operator|+
 literal|2
 operator|+
 literal|8
+operator|+
+name|l
 operator|)
 expr_stmt|;
 name|page
@@ -17452,9 +17448,9 @@ condition|)
 block|{
 name|pos
 operator|+=
-name|vlen
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
-literal|8
+name|vlen
 expr_stmt|;
 block|}
 else|else
@@ -18056,13 +18052,13 @@ name|vlen
 operator|==
 name|OVERFLOW
 condition|?
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
 literal|8
 else|:
-name|vlen
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
-literal|8
+name|vlen
 expr_stmt|;
 block|}
 else|else
