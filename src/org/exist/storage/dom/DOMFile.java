@@ -598,6 +598,42 @@ name|FILE_KEY_IN_CONFIG
 init|=
 literal|"db-connection.dom"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_TID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_DATA_LENGTH
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_ORIGINAL_LOCATION
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_FORWARD_LOCATION
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
 comment|/* 	 * Byte ids for the records written to the log file. 	 */
 specifier|public
 specifier|final
@@ -1585,7 +1621,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 comment|// save data length
 comment|// overflow pages have length 0
@@ -2124,7 +2160,7 @@ name|KEY_NOT_FOUND
 return|;
 block|}
 name|short
-name|l
+name|len
 init|=
 name|ByteConversion
 operator|.
@@ -2168,7 +2204,7 @@ literal|8
 expr_stmt|;
 if|if
 condition|(
-name|l
+name|len
 operator|==
 name|OVERFLOW
 condition|)
@@ -2183,7 +2219,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-name|l
+name|len
 expr_stmt|;
 name|int
 name|dataLen
@@ -3346,7 +3382,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 comment|// writing value length
 name|ByteConversion
@@ -3552,7 +3588,7 @@ condition|;
 control|)
 block|{
 name|short
-name|currentId
+name|tid
 init|=
 name|ByteConversion
 operator|.
@@ -3570,7 +3606,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
@@ -3579,7 +3615,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 condition|)
 block|{
@@ -3859,13 +3895,6 @@ argument_list|()
 operator|)
 argument_list|)
 expr_stmt|;
-name|short
-name|currentId
-decl_stmt|,
-name|currentLen
-decl_stmt|,
-name|realLen
-decl_stmt|;
 name|long
 name|backLink
 decl_stmt|;
@@ -3934,8 +3963,9 @@ operator|++
 control|)
 block|{
 comment|// read the current id
-name|currentId
-operator|=
+name|short
+name|tid
+init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -3944,10 +3974,10 @@ name|oldData
 argument_list|,
 name|pos
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
@@ -3955,7 +3985,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 condition|)
 block|{
@@ -4288,7 +4318,7 @@ literal|null
 condition|)
 block|{
 name|long
-name|link
+name|oldLink
 init|=
 name|ByteConversion
 operator|.
@@ -4319,10 +4349,10 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|,
-name|link
+name|oldLink
 argument_list|)
 decl_stmt|;
 name|writeToLog
@@ -4342,7 +4372,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|currentId
+name|tid
 argument_list|,
 name|rec
 operator|.
@@ -4366,7 +4396,7 @@ argument_list|()
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 name|System
 operator|.
@@ -4409,8 +4439,9 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|// read data length
-name|currentLen
-operator|=
+name|short
+name|storedLen
+init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -4419,25 +4450,26 @@ name|oldData
 argument_list|,
 name|pos
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|pos
 operator|+=
 literal|2
 expr_stmt|;
 comment|// if this is an overflow page, the real data length is always 8
 comment|// byte for the page number of the overflow page
+name|short
 name|realLen
-operator|=
+init|=
 operator|(
-name|currentLen
+name|storedLen
 operator|==
 name|OVERFLOW
 condition|?
 literal|8
 else|:
-name|currentLen
+name|storedLen
 operator|)
-expr_stmt|;
+decl_stmt|;
 comment|// check if we have room in the current split page
 if|if
 condition|(
@@ -4445,9 +4477,13 @@ name|nextSplitPage
 operator|.
 name|len
 operator|+
-name|realLen
+name|LENGTH_TID
 operator|+
-literal|12
+literal|2
+operator|+
+literal|8
+operator|+
+name|realLen
 operator|>
 name|fileHeader
 operator|.
@@ -4680,7 +4716,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 condition|)
 block|{
@@ -4747,7 +4783,7 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4859,7 +4895,7 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4911,7 +4947,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|currentId
+name|tid
 argument_list|,
 name|logData
 argument_list|,
@@ -4937,7 +4973,7 @@ name|ItemId
 operator|.
 name|setIsRelocated
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|,
 name|nextSplitPage
@@ -4953,14 +4989,14 @@ name|nextSplitPage
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 comment|// save length field
 name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|currentLen
+name|storedLen
 argument_list|,
 name|nextSplitPage
 operator|.
@@ -5048,7 +5084,7 @@ name|realLen
 operator|+
 literal|"; tid = "
 operator|+
-name|currentId
+name|tid
 operator|+
 literal|"; page = "
 operator|+
@@ -5084,7 +5120,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 condition|)
 block|{
@@ -5097,7 +5133,7 @@ argument_list|()
 operator|.
 name|len
 operator|+
-literal|2
+name|LENGTH_TID
 operator|+
 literal|8
 operator|>
@@ -5419,7 +5455,7 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -5448,7 +5484,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|currentId
+name|tid
 argument_list|,
 name|forwardLink
 argument_list|)
@@ -5474,7 +5510,7 @@ name|ItemId
 operator|.
 name|setIsLink
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 argument_list|,
 name|rec
@@ -5499,7 +5535,7 @@ argument_list|()
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -6173,7 +6209,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
@@ -6333,7 +6369,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
@@ -7869,7 +7905,7 @@ literal|null
 return|;
 block|}
 name|short
-name|l
+name|storedLen
 init|=
 name|ByteConversion
 operator|.
@@ -7916,7 +7952,7 @@ name|v
 decl_stmt|;
 if|if
 condition|(
-name|l
+name|storedLen
 operator|==
 name|OVERFLOW
 condition|)
@@ -7975,7 +8011,7 @@ name|rec
 operator|.
 name|offset
 argument_list|,
-name|l
+name|storedLen
 argument_list|)
 expr_stmt|;
 name|v
@@ -10734,7 +10770,7 @@ operator|.
 name|offset
 operator|+=
 operator|(
-literal|2
+name|LENGTH_TID
 operator|+
 literal|8
 operator|)
@@ -11938,6 +11974,14 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
+name|page
+operator|.
+name|len
+operator|+=
+name|LENGTH_TID
+expr_stmt|;
+comment|// save data length
+comment|// overflow pages have length 0
 name|short
 name|valueLen
 init|=
@@ -11950,14 +11994,6 @@ name|value
 operator|.
 name|length
 decl_stmt|;
-name|page
-operator|.
-name|len
-operator|+=
-literal|2
-expr_stmt|;
-comment|// save data length
-comment|// overflow pages have length 0
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -12798,7 +12834,11 @@ name|page
 operator|.
 name|len
 operator|-
-literal|10
+operator|(
+literal|8
+operator|+
+literal|2
+operator|)
 expr_stmt|;
 block|}
 else|else
@@ -13187,7 +13227,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
@@ -13224,7 +13264,11 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|10
+operator|(
+name|LENGTH_TID
+operator|+
+literal|8
+operator|)
 expr_stmt|;
 block|}
 else|else
@@ -13334,9 +13378,13 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|4
+operator|(
+literal|2
+operator|+
+literal|2
 operator|+
 name|valueLen
+operator|)
 expr_stmt|;
 block|}
 name|ph
@@ -14540,7 +14588,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 comment|// writing value length
 name|ByteConversion
@@ -14742,7 +14790,11 @@ name|page
 operator|.
 name|len
 operator|-
-literal|10
+operator|(
+literal|2
+operator|+
+literal|8
+operator|)
 expr_stmt|;
 block|}
 else|else
@@ -15242,7 +15294,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -16064,7 +16116,13 @@ name|len
 operator|-
 name|l
 operator|-
-literal|12
+operator|(
+literal|2
+operator|+
+literal|2
+operator|+
+literal|8
+operator|)
 expr_stmt|;
 name|page
 operator|.
@@ -17241,10 +17299,8 @@ name|dlen
 condition|;
 control|)
 block|{
-comment|// currentId = (short) ( ( data[pos]& 0xff ) + ( ( data[pos +
-comment|// 1]& 0xff )<< 8 ) );
 name|short
-name|currentId
+name|tid
 init|=
 name|ByteConversion
 operator|.
@@ -17257,7 +17313,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 name|byte
 name|flags
@@ -17266,7 +17322,7 @@ name|ItemId
 operator|.
 name|getFlags
 argument_list|(
-name|currentId
+name|tid
 argument_list|)
 decl_stmt|;
 if|if
@@ -17275,7 +17331,7 @@ name|ItemId
 operator|.
 name|matches
 argument_list|(
-name|currentId
+name|tid
 argument_list|,
 name|targetId
 argument_list|)
@@ -17303,7 +17359,7 @@ name|pos
 argument_list|,
 name|this
 argument_list|,
-name|currentId
+name|tid
 argument_list|,
 literal|true
 argument_list|)
@@ -17320,7 +17376,7 @@ name|pos
 argument_list|,
 name|this
 argument_list|,
-name|currentId
+name|tid
 argument_list|)
 expr_stmt|;
 block|}
@@ -17390,7 +17446,7 @@ name|vlen
 operator|+
 literal|"; tid = "
 operator|+
-name|currentId
+name|tid
 operator|+
 literal|"; target = "
 operator|+
@@ -17911,7 +17967,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 if|if
 condition|(
