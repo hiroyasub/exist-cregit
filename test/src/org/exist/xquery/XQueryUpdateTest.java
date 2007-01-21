@@ -947,7 +947,11 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"/test[@attr1 = 'eee']"
+literal|"document('"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/attribs.xml')/test[@attr1 = 'eee']"
 argument_list|,
 literal|null
 argument_list|,
