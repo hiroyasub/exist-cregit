@@ -1651,7 +1651,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// save data
 name|System
@@ -2182,7 +2182,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -3416,7 +3416,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// writing data
 name|System
@@ -3999,7 +3999,7 @@ argument_list|()
 operator|.
 name|len
 operator|+
-literal|2
+name|LENGTH_TID
 operator|+
 literal|8
 operator|>
@@ -4453,7 +4453,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// if this is an overflow page, the real data length is always 8
 comment|// byte for the page number of the overflow page
@@ -4479,7 +4479,7 @@ name|len
 operator|+
 name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 literal|8
 operator|+
@@ -5011,7 +5011,7 @@ name|nextSplitPage
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// save link to the original page
 name|ByteConversion
@@ -6244,7 +6244,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -6468,7 +6468,7 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -7927,7 +7927,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -8865,7 +8865,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 name|short
 name|l
@@ -10210,7 +10210,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -10813,7 +10813,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// check if the node was relocated
 if|if
@@ -12013,7 +12013,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// save data
 name|System
@@ -12563,7 +12563,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|short
-name|l
+name|len
 init|=
 name|ByteConversion
 operator|.
@@ -12585,7 +12585,7 @@ name|SanityCheck
 operator|.
 name|THROW_ASSERT
 argument_list|(
-name|l
+name|len
 operator|==
 name|loggable
 operator|.
@@ -12598,7 +12598,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -12835,9 +12835,9 @@ operator|.
 name|len
 operator|-
 operator|(
-literal|8
+name|LENGTH_DATA_LENGTH
 operator|+
-literal|2
+literal|8
 operator|)
 expr_stmt|;
 block|}
@@ -13076,7 +13076,7 @@ argument_list|)
 condition|)
 name|required
 operator|=
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 literal|8
 expr_stmt|;
@@ -13314,7 +13314,7 @@ expr_stmt|;
 block|}
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -13379,9 +13379,9 @@ operator|.
 name|len
 operator|+=
 operator|(
-literal|2
+name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 name|valueLen
 operator|)
@@ -14600,7 +14600,7 @@ operator|.
 name|isOverflow
 argument_list|()
 condition|?
-literal|0
+name|OVERFLOW
 else|:
 operator|(
 name|short
@@ -14620,7 +14620,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// writing data
 name|System
@@ -14791,7 +14791,7 @@ operator|.
 name|len
 operator|-
 operator|(
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 literal|8
 operator|)
@@ -15730,6 +15730,12 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
+name|page
+operator|.
+name|len
+operator|+=
+name|LENGTH_TID
+expr_stmt|;
 name|short
 name|valueLen
 init|=
@@ -15742,12 +15748,6 @@ name|value
 operator|.
 name|length
 decl_stmt|;
-name|page
-operator|.
-name|len
-operator|+=
-literal|2
-expr_stmt|;
 comment|// save data length
 comment|// overflow pages have length 0
 name|ByteConversion
@@ -15769,7 +15769,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -16015,7 +16015,9 @@ name|rec
 operator|.
 name|offset
 operator|+
-literal|10
+literal|2
+operator|+
+literal|8
 operator|+
 name|l
 decl_stmt|;
@@ -16117,7 +16119,7 @@ operator|-
 name|l
 operator|-
 operator|(
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 literal|2
 operator|+
@@ -17315,16 +17317,6 @@ name|pos
 operator|+=
 name|LENGTH_TID
 expr_stmt|;
-name|byte
-name|flags
-init|=
-name|ItemId
-operator|.
-name|getFlags
-argument_list|(
-name|tid
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|ItemId
@@ -17339,15 +17331,12 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
-name|flags
-operator|&
 name|ItemId
 operator|.
-name|LINK_FLAG
-operator|)
-operator|!=
-literal|0
+name|isLink
+argument_list|(
+name|tid
+argument_list|)
 condition|)
 block|{
 name|rec
@@ -17384,15 +17373,12 @@ break|break;
 block|}
 if|else if
 condition|(
-operator|(
-name|flags
-operator|&
 name|ItemId
 operator|.
-name|LINK_FLAG
-operator|)
-operator|!=
-literal|0
+name|isLink
+argument_list|(
+name|tid
+argument_list|)
 condition|)
 block|{
 name|pos
@@ -17416,7 +17402,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -17456,15 +17442,12 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-operator|(
-name|flags
-operator|&
 name|ItemId
 operator|.
-name|RELOCATED_FLAG
-operator|)
-operator|!=
-literal|0
+name|isRelocated
+argument_list|(
+name|tid
+argument_list|)
 condition|)
 block|{
 name|pos
@@ -18055,7 +18038,7 @@ argument_list|)
 decl_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -19061,8 +19044,6 @@ literal|0
 decl_stmt|;
 name|int
 name|mode
-init|=
-name|VALUES
 decl_stmt|;
 name|ArrayList
 name|values
@@ -19122,7 +19103,7 @@ name|pointer
 argument_list|)
 decl_stmt|;
 name|short
-name|l
+name|len
 init|=
 name|ByteConversion
 operator|.
@@ -19140,18 +19121,6 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-name|int
-name|dataStart
-init|=
-name|rec
-operator|.
-name|offset
-operator|+
-literal|2
-decl_stmt|;
-comment|// int l = (int) VariableByteCoding.decode( page.data,
-comment|// offset );
-comment|// int dataStart = VariableByteCoding.getSize( l );
 name|values
 operator|.
 name|add
@@ -19166,9 +19135,13 @@ argument_list|()
 operator|.
 name|data
 argument_list|,
-name|dataStart
+name|rec
+operator|.
+name|offset
+operator|+
+name|LENGTH_DATA_LENGTH
 argument_list|,
-name|l
+name|len
 argument_list|)
 argument_list|)
 expr_stmt|;
