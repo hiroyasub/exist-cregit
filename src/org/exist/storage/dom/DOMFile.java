@@ -3627,7 +3627,7 @@ break|break;
 block|}
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 if|if
@@ -4001,7 +4001,7 @@ name|len
 operator|+
 name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|>
 name|fileHeader
 operator|.
@@ -4420,7 +4420,7 @@ argument_list|()
 operator|.
 name|len
 argument_list|,
-literal|8
+name|LENGTH_FORWARD_LOCATION
 argument_list|)
 expr_stmt|;
 name|rec
@@ -4430,11 +4430,11 @@ argument_list|()
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 continue|continue;
 block|}
@@ -5135,7 +5135,7 @@ name|len
 operator|+
 name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|>
 name|fileHeader
 operator|.
@@ -5565,7 +5565,7 @@ argument_list|()
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 block|}
@@ -6223,7 +6223,7 @@ condition|)
 block|{
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 else|else
@@ -6438,7 +6438,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|8
+name|LENGTH_FORWARD_LOCATION
 argument_list|)
 operator|.
 name|append
@@ -6448,7 +6448,7 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 else|else
@@ -9176,9 +9176,11 @@ name|len
 operator|=
 name|len
 operator|-
+operator|(
 name|l
-operator|-
+operator|+
 literal|4
+operator|)
 expr_stmt|;
 name|ph
 operator|.
@@ -10772,7 +10774,7 @@ operator|+=
 operator|(
 name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|)
 expr_stmt|;
 block|}
@@ -12262,9 +12264,11 @@ name|len
 operator|=
 name|len
 operator|-
+operator|(
 name|l
-operator|-
+operator|+
 literal|4
+operator|)
 expr_stmt|;
 name|ph
 operator|.
@@ -12797,7 +12801,7 @@ name|pos
 operator|.
 name|offset
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 decl_stmt|;
 name|System
 operator|.
@@ -12837,7 +12841,7 @@ operator|-
 operator|(
 name|LENGTH_DATA_LENGTH
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|)
 expr_stmt|;
 block|}
@@ -12944,9 +12948,11 @@ name|len
 operator|=
 name|len
 operator|-
+operator|(
 name|l
-operator|-
+operator|+
 literal|4
+operator|)
 expr_stmt|;
 name|page
 operator|.
@@ -13076,16 +13082,18 @@ argument_list|)
 condition|)
 name|required
 operator|=
-name|LENGTH_DATA_LENGTH
+name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 else|else
 name|required
 operator|=
-name|valueLen
+name|LENGTH_TID
 operator|+
-literal|4
+name|LENGTH_DATA_LENGTH
+operator|+
+name|valueLen
 expr_stmt|;
 if|if
 condition|(
@@ -13257,7 +13265,7 @@ name|data
 argument_list|,
 name|offset
 argument_list|,
-literal|8
+name|LENGTH_FORWARD_LOCATION
 argument_list|)
 expr_stmt|;
 name|page
@@ -13267,7 +13275,7 @@ operator|+=
 operator|(
 name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|)
 expr_stmt|;
 block|}
@@ -14753,7 +14761,7 @@ name|loggable
 operator|.
 name|offset
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 decl_stmt|;
 name|System
 operator|.
@@ -14793,7 +14801,7 @@ operator|-
 operator|(
 name|LENGTH_DATA_LENGTH
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 operator|)
 expr_stmt|;
 block|}
@@ -14959,9 +14967,11 @@ name|len
 operator|=
 name|len
 operator|-
+operator|(
 name|l
-operator|-
+operator|+
 literal|4
+operator|)
 expr_stmt|;
 name|page
 operator|.
@@ -15317,7 +15327,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 name|page
 operator|.
@@ -15418,7 +15428,7 @@ name|rec
 operator|.
 name|offset
 operator|+
-literal|8
+name|LENGTH_FORWARD_LOCATION
 decl_stmt|;
 name|System
 operator|.
@@ -15455,7 +15465,11 @@ name|page
 operator|.
 name|len
 operator|-
-literal|10
+operator|(
+literal|2
+operator|+
+name|LENGTH_FORWARD_LOCATION
+operator|)
 expr_stmt|;
 name|ph
 operator|.
@@ -15788,7 +15802,7 @@ name|page
 operator|.
 name|len
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 comment|// save data
 name|System
@@ -17379,7 +17393,7 @@ condition|)
 block|{
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 else|else
@@ -18015,7 +18029,7 @@ condition|)
 block|{
 name|pos
 operator|+=
-literal|8
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 block|}
 else|else
