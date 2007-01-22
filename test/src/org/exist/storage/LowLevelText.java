@@ -311,7 +311,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|bugtestBorrowCompiledXQuery2
+name|testBorrowCompiledXQuery2
 parameter_list|()
 block|{
 name|pool
@@ -336,7 +336,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|bugtestBorrowCompiledXQuery3
+name|testBorrowCompiledXQuery3
 parameter_list|()
 block|{
 name|pool
@@ -397,7 +397,7 @@ block|}
 comment|/** test with a new StringSource object having same content */
 specifier|public
 name|void
-name|bugtestBorrowCompiledXQueryNewStringSource2
+name|testBorrowCompiledXQueryNewStringSource2
 parameter_list|()
 block|{
 name|pool
