@@ -1524,7 +1524,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestConstructedNode1
+name|testConstructedNode1
 parameter_list|()
 block|{
 try|try
@@ -9185,7 +9185,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestConstructedAttributeValue
+name|testConstructedAttributeValue
 parameter_list|()
 block|{
 name|String
