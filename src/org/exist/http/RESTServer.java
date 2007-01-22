@@ -247,6 +247,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -2184,6 +2196,9 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+comment|//Serialize the document
+try|try
+block|{
 comment|//use a stylesheet if specified in query parameters
 if|if
 condition|(
@@ -2202,9 +2217,6 @@ name|stylesheet
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Serialize the document
-try|try
-block|{
 name|serializer
 operator|.
 name|setProperties
@@ -2385,6 +2397,30 @@ operator|+
 name|saxe
 operator|.
 name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|TransformerConfigurationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|BadRequestException
+argument_list|(
+name|e
+operator|.
+name|getMessageAndLocation
 argument_list|()
 argument_list|)
 throw|;
