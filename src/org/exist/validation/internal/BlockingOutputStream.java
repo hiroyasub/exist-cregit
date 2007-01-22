@@ -382,7 +382,7 @@ comment|/**      * Closes this input stream and releases any system resources as
 specifier|public
 specifier|synchronized
 name|void
-name|closeInputStream
+name|close
 parameter_list|()
 throws|throws
 name|IOException
@@ -718,7 +718,7 @@ comment|/**      * Equivalent of the<code>close()</code> method of an output str
 specifier|public
 specifier|synchronized
 name|void
-name|close
+name|closeOutputStream
 parameter_list|()
 throws|throws
 name|IOException
