@@ -1899,6 +1899,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|isSorted
+condition|)
+return|return;
+if|if
+condition|(
 name|hasOne
 condition|)
 block|{
@@ -1919,13 +1924,9 @@ argument_list|(
 name|mergeContexts
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 comment|//        long start = System.currentTimeMillis();
-if|if
-condition|(
-name|isSorted
-condition|)
-return|return;
 name|Part
 name|part
 decl_stmt|;
