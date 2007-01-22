@@ -1901,11 +1901,25 @@ if|if
 condition|(
 name|hasOne
 condition|)
+block|{
 name|isSorted
 operator|=
 literal|true
 expr_stmt|;
 comment|// shortcut: don't sort if there's just one item
+name|size
+operator|=
+name|parts
+index|[
+literal|0
+index|]
+operator|.
+name|removeDuplicates
+argument_list|(
+name|mergeContexts
+argument_list|)
+expr_stmt|;
+block|}
 comment|//        long start = System.currentTimeMillis();
 if|if
 condition|(
