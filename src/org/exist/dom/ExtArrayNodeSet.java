@@ -1699,13 +1699,6 @@ name|ExtArrayNodeSet
 name|otherSet
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Filtering..."
-argument_list|)
-expr_stmt|;
 name|ExtArrayNodeSet
 name|other
 init|=
@@ -1904,6 +1897,15 @@ name|boolean
 name|mergeContexts
 parameter_list|)
 block|{
+if|if
+condition|(
+name|hasOne
+condition|)
+name|isSorted
+operator|=
+literal|true
+expr_stmt|;
+comment|// shortcut: don't sort if there's just one item
 comment|//        long start = System.currentTimeMillis();
 if|if
 condition|(
