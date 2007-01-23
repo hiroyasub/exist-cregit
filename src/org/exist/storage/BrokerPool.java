@@ -3922,6 +3922,13 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|notificationService
 operator|.
 name|debug

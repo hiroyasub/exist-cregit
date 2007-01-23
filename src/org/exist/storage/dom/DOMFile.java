@@ -1253,9 +1253,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|2
+name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|>
 name|fileHeader
 operator|.
@@ -1557,7 +1557,6 @@ name|newPage
 argument_list|)
 expr_stmt|;
 block|}
-comment|// save tuple identifier
 specifier|final
 name|DOMFilePageHeader
 name|ph
@@ -1576,9 +1575,6 @@ operator|.
 name|getNextTID
 argument_list|()
 decl_stmt|;
-comment|// LOG.debug("writing to " + page.getPageNum() + "; " + page.len + ";
-comment|// tid = " + tid +
-comment|// "; len = " + valueLen + "; dataLen = " + page.data.length);
 if|if
 condition|(
 name|isTransactional
@@ -1614,7 +1610,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-comment|// save TID
+comment|// save tuple identifier
 name|ByteConversion
 operator|.
 name|shortToByte
@@ -1722,11 +1718,8 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-comment|// create pointer from pageNum and offset into page
-specifier|final
-name|long
-name|p
-init|=
+comment|// return pointer from pageNum and offset into page
+return|return
 name|StorageAddress
 operator|.
 name|createPointer
@@ -1741,9 +1734,6 @@ argument_list|()
 argument_list|,
 name|tid
 argument_list|)
-decl_stmt|;
-return|return
-name|p
 return|;
 block|}
 specifier|private
@@ -1854,7 +1844,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**          * Store a raw binary resource into the file. The data will always be          * written into an overflow page.          *           * @param is   Binary resource as stream.          */
+comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param is   Binary resource as stream. 	 */
 specifier|public
 name|long
 name|addBinary
@@ -2008,7 +1998,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 return|return
-name|p
+name|KEY_NOT_FOUND
 return|;
 return|return
 name|insertAfter
@@ -2090,9 +2080,9 @@ name|value
 operator|.
 name|length
 operator|+
-literal|2
+name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|>
 name|fileHeader
 operator|.
@@ -2264,13 +2254,13 @@ if|if
 condition|(
 name|dlen
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 operator|<
 name|fileHeader
 operator|.
@@ -2300,13 +2290,13 @@ name|rec
 operator|.
 name|offset
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 decl_stmt|;
 name|System
 operator|.
@@ -2348,13 +2338,13 @@ name|len
 operator|=
 name|dlen
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2395,13 +2385,13 @@ name|rec
 operator|.
 name|offset
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -2794,13 +2784,13 @@ argument_list|()
 operator|.
 name|len
 operator|=
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2850,13 +2840,13 @@ name|rec
 operator|.
 name|offset
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -2889,13 +2879,13 @@ if|else if
 condition|(
 name|dlen
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 operator|>
 name|fileHeader
 operator|.
@@ -3260,13 +3250,13 @@ argument_list|()
 operator|.
 name|len
 operator|=
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -3298,13 +3288,13 @@ name|len
 operator|=
 name|dlen
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 expr_stmt|;
 name|rec
 operator|.
@@ -6357,9 +6347,6 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-name|short
-name|vlen
-decl_stmt|;
 name|int
 name|dlen
 init|=
@@ -6486,8 +6473,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|short
 name|vlen
-operator|=
+init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -6498,7 +6486,7 @@ name|data
 argument_list|,
 name|pos
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|pos
 operator|+=
 name|LENGTH_DATA_LENGTH
@@ -9160,7 +9148,7 @@ operator|+
 name|l
 decl_stmt|;
 name|int
-name|len
+name|dlen
 init|=
 name|ph
 operator|.
@@ -9190,7 +9178,7 @@ name|data
 argument_list|,
 name|startOffset
 argument_list|,
-name|len
+name|dlen
 operator|-
 name|end
 argument_list|)
@@ -9212,7 +9200,7 @@ argument_list|()
 operator|.
 name|len
 operator|=
-name|len
+name|dlen
 operator|-
 operator|(
 literal|2
@@ -10926,13 +10914,14 @@ argument_list|(
 name|op
 argument_list|)
 expr_stmt|;
+comment|//Strange : isn't this 2 a place holder for LENGTH_DATA_LENGTH which already been taken into account ?
 name|rec
 operator|.
 name|offset
 operator|+=
 literal|2
 operator|+
-literal|8
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 name|len
 operator|=
@@ -12245,7 +12234,7 @@ operator|+
 name|l
 decl_stmt|;
 name|int
-name|len
+name|dlen
 init|=
 name|ph
 operator|.
@@ -12269,7 +12258,7 @@ name|data
 argument_list|,
 name|startOffset
 argument_list|,
-name|len
+name|dlen
 operator|-
 name|end
 argument_list|)
@@ -12285,7 +12274,7 @@ name|page
 operator|.
 name|len
 operator|=
-name|len
+name|dlen
 operator|-
 operator|(
 name|LENGTH_TID
@@ -12931,7 +12920,7 @@ operator|+
 name|l
 decl_stmt|;
 name|int
-name|len
+name|dlen
 init|=
 name|ph
 operator|.
@@ -12955,7 +12944,7 @@ name|data
 argument_list|,
 name|startOffset
 argument_list|,
-name|len
+name|dlen
 operator|-
 name|end
 argument_list|)
@@ -12971,7 +12960,7 @@ name|page
 operator|.
 name|len
 operator|=
-name|len
+name|dlen
 operator|-
 operator|(
 name|LENGTH_TID
@@ -14522,15 +14511,15 @@ name|end
 init|=
 name|offset
 operator|+
+name|LENGTH_TID
+operator|+
+name|LENGTH_DATA_LENGTH
+operator|+
 name|loggable
 operator|.
 name|value
 operator|.
 name|length
-operator|+
-literal|2
-operator|+
-literal|2
 decl_stmt|;
 try|try
 block|{
@@ -14912,7 +14901,7 @@ name|l
 operator|)
 decl_stmt|;
 name|int
-name|len
+name|dlen
 init|=
 name|ph
 operator|.
@@ -14940,7 +14929,7 @@ name|loggable
 operator|.
 name|offset
 argument_list|,
-name|len
+name|dlen
 operator|-
 name|end
 argument_list|)
@@ -14982,14 +14971,14 @@ operator|+
 literal|"; len: "
 operator|+
 operator|(
-name|len
+name|dlen
 operator|-
 name|end
 operator|)
 operator|+
 literal|"; dataLength: "
 operator|+
-name|len
+name|dlen
 argument_list|)
 expr_stmt|;
 block|}
@@ -14997,7 +14986,7 @@ name|page
 operator|.
 name|len
 operator|=
-name|len
+name|dlen
 operator|-
 operator|(
 name|LENGTH_TID
@@ -16060,7 +16049,7 @@ operator|+
 name|l
 decl_stmt|;
 name|int
-name|len
+name|dlen
 init|=
 name|ph
 operator|.
@@ -16090,7 +16079,7 @@ name|offset
 operator|-
 literal|2
 argument_list|,
-name|len
+name|dlen
 operator|-
 name|end
 argument_list|)
@@ -16136,7 +16125,7 @@ operator|+
 literal|"; len: "
 operator|+
 operator|(
-name|len
+name|dlen
 operator|-
 name|end
 operator|)
@@ -16154,7 +16143,7 @@ name|page
 operator|.
 name|len
 operator|=
-name|len
+name|dlen
 operator|-
 operator|(
 name|LENGTH_TID
