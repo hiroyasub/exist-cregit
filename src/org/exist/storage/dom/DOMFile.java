@@ -7052,7 +7052,9 @@ break|break;
 block|}
 block|}
 return|return
-name|KEY_NOT_FOUND
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 block|}
 specifier|private
@@ -7160,7 +7162,9 @@ name|iter
 argument_list|)
 operator|)
 operator|!=
-name|KEY_NOT_FOUND
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 return|return
 name|p
@@ -7168,7 +7172,9 @@ return|;
 block|}
 block|}
 return|return
-name|KEY_NOT_FOUND
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 block|}
 comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lock 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
@@ -7404,7 +7410,9 @@ if|if
 condition|(
 name|address
 operator|==
-name|KEY_NOT_FOUND
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 block|{
 comment|// if(LOG.isDebugEnabled())

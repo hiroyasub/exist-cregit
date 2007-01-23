@@ -240,8 +240,9 @@ specifier|private
 name|short
 name|lastTID
 init|=
-operator|-
-literal|1
+name|ItemId
+operator|.
+name|UNKNOWN_ID
 decl_stmt|;
 specifier|private
 name|DOMFile
@@ -259,8 +260,9 @@ specifier|private
 name|long
 name|startAddress
 init|=
-operator|-
-literal|1
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
 specifier|private
 name|Object
@@ -576,11 +578,6 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
-name|StoredNode
-name|nextNode
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 try|try
@@ -627,6 +624,11 @@ argument_list|(
 name|lockKey
 argument_list|)
 expr_stmt|;
+name|StoredNode
+name|nextNode
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|gotoNextPosition
@@ -725,7 +727,7 @@ argument_list|(
 name|nextPage
 argument_list|)
 expr_stmt|;
-comment|//						LOG.debug(" -> " + nextPage + "; len = " + p.len + "; " + p.page.getPageInfo());
+comment|//LOG.debug(" -> " + nextPage + "; len = " + p.len + "; " + p.page.getPageInfo());
 name|db
 operator|.
 name|addToBuffer
@@ -754,7 +756,9 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|DOMFile
+operator|.
+name|LENGTH_TID
 expr_stmt|;
 comment|//	check if this is just a link to a relocated node
 if|if
@@ -770,15 +774,18 @@ block|{
 comment|// skip this
 name|offset
 operator|+=
-literal|8
+name|DOMFile
+operator|.
+name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-comment|//						System.out.println("skipping link on p " + page + " -> " +
-comment|//								StorageAddress.pageFromPointer(link));
+comment|//System.out.println("skipping link on p " + page + " -> " +
+comment|//StorageAddress.pageFromPointer(link));
+comment|//continue the iteration
 continue|continue;
 block|}
 comment|// read data length
 name|short
-name|l
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -791,9 +798,15 @@ argument_list|,
 name|offset
 argument_list|)
 decl_stmt|;
+name|offset
+operator|+=
+name|DOMFile
+operator|.
+name|LENGTH_DATA_LENGTH
+expr_stmt|;
 if|if
 condition|(
-name|l
+name|vlen
 operator|<
 literal|0
 condition|)
@@ -804,7 +817,7 @@ name|warn
 argument_list|(
 literal|"Got negative length"
 operator|+
-name|l
+name|vlen
 operator|+
 literal|" at offset "
 operator|+
@@ -827,10 +840,6 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : throw an exception right now ?
 block|}
-name|offset
-operator|+=
-literal|2
-expr_stmt|;
 if|if
 condition|(
 name|ItemId
@@ -857,24 +866,26 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|DOMFile
+operator|.
+name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
 comment|//	overflow page? load the overflow value
 if|if
 condition|(
-name|l
+name|vlen
 operator|==
 name|DOMFile
 operator|.
 name|OVERFLOW
 condition|)
 block|{
-comment|//					    LOG.warn("unexpected overflow page at " + p.getPageNum() + "; tid = " +
-comment|//					            ItemId.getId(lastTID) + "; offset = " + offset + "; skipped = " + skipped);
-name|l
+name|vlen
 operator|=
-literal|8
+name|DOMFile
+operator|.
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 specifier|final
 name|long
@@ -893,7 +904,9 @@ argument_list|)
 decl_stmt|;
 name|offset
 operator|+=
-literal|8
+name|DOMFile
+operator|.
+name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 try|try
 block|{
@@ -975,7 +988,7 @@ name|data
 argument_list|,
 name|offset
 argument_list|,
-name|l
+name|vlen
 argument_list|,
 name|doc
 argument_list|,
@@ -984,7 +997,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-name|l
+name|vlen
 expr_stmt|;
 block|}
 catch|catch
@@ -1017,7 +1030,7 @@ name|offset
 operator|+
 literal|"; len = "
 operator|+
-name|l
+name|vlen
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -1050,7 +1063,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"illegal node on page "
 operator|+
@@ -1093,7 +1106,7 @@ operator|+
 operator|(
 name|offset
 operator|-
-name|l
+name|vlen
 operator|)
 operator|+
 literal|"; len = "
@@ -1107,8 +1120,8 @@ name|getDataLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//					    LOG.debug(db.debugPageContents(p));
-comment|//					    LOG.debug(p.dumpPage());
+comment|//LOG.debug(db.debugPageContents(p));
+comment|//LOG.debug(p.dumpPage());
 return|return
 literal|null
 return|;
@@ -1163,8 +1176,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//					System.out.println("Next: " + nextNode.getNodeName() + ": " + p.getPageNum() + " [" +
-comment|//                            ItemId.getId(lastTID) + ":" + offset + "] " + p.ph.getDataLength());
+comment|//YES ! needed because of the continue statement above
 block|}
 do|while
 condition|(
@@ -1257,9 +1269,9 @@ operator|.
 name|getInternalAddress
 argument_list|()
 operator|!=
-name|Page
+name|StoredNode
 operator|.
-name|NO_PAGE
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 name|rec
 operator|=
@@ -1349,10 +1361,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-operator|-
-literal|1
-operator|<
 name|startAddress
+operator|!=
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 block|{
 specifier|final
@@ -1406,8 +1419,9 @@ argument_list|()
 expr_stmt|;
 name|startAddress
 operator|=
-operator|-
-literal|1
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
 expr_stmt|;
 block|}
 if|else if
