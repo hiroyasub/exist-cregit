@@ -643,6 +643,15 @@ init|=
 literal|8
 decl_stmt|;
 comment|//sizeof long
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_ELEMENT_CHILD_COUNT
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
 comment|/* 	 * Byte ids for the records written to the log file. 	 */
 specifier|public
 specifier|final
@@ -2226,6 +2235,8 @@ name|offset
 operator|+=
 name|len
 expr_stmt|;
+comment|//See the statement below that prevents the method to be final
+comment|//final int dlen = rec.getPage().getPageHeader().getDataLength();
 name|int
 name|dlen
 init|=
@@ -2283,6 +2294,7 @@ comment|//				 LOG.debug("copying data in page " + rec.getPage().getPageNum()
 comment|//				 + "; offset = " + rec.offset + "; dataLen = "
 comment|//				 + dataLen + "; valueLen = " + value.length);
 comment|// new value fits into the page
+specifier|final
 name|int
 name|end
 init|=
@@ -2866,6 +2878,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
+comment|//Ooops ! this prevents dlen to be final :-(
 name|dlen
 operator|=
 name|rec
@@ -3692,6 +3705,7 @@ name|rec
 return|;
 block|}
 comment|// copy the old data up to the split point into a new array
+specifier|final
 name|int
 name|oldDataLen
 init|=
@@ -3706,6 +3720,7 @@ operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|oldData
@@ -4462,6 +4477,7 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|// read data length
+specifier|final
 name|short
 name|storedLen
 init|=
@@ -4480,6 +4496,7 @@ name|LENGTH_DATA_LENGTH
 expr_stmt|;
 comment|// if this is an overflow page, the real data length is always 8
 comment|// byte for the page number of the overflow page
+specifier|final
 name|short
 name|realLen
 init|=
@@ -6347,6 +6364,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -8608,6 +8626,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|end
 init|=
@@ -8668,7 +8687,7 @@ operator|.
 name|len
 operator|-
 operator|(
-literal|2
+name|LENGTH_TID
 operator|+
 literal|8
 operator|)
@@ -9136,17 +9155,19 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|end
 init|=
 name|startOffset
 operator|+
-literal|2
+name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 name|l
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -9203,9 +9224,9 @@ operator|=
 name|dlen
 operator|-
 operator|(
-literal|2
+name|LENGTH_TID
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
 name|l
 operator|)
@@ -10749,7 +10770,6 @@ operator|=
 literal|2
 expr_stmt|;
 block|}
-comment|//TODO : understand this ! -pb
 name|short
 name|tid
 init|=
@@ -10914,14 +10934,14 @@ argument_list|(
 name|op
 argument_list|)
 expr_stmt|;
-comment|//Strange : isn't this 2 a place holder for LENGTH_DATA_LENGTH which already been taken into account ?
+comment|//We position the offset *after* the TID
 name|rec
 operator|.
 name|offset
 operator|+=
-literal|2
-operator|+
 name|LENGTH_OVERFLOW_LOCATION
+operator|+
+name|LENGTH_TID
 expr_stmt|;
 name|len
 operator|=
@@ -10980,7 +11000,7 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-literal|4
+name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
 name|int
 name|dlnLen
@@ -12195,6 +12215,7 @@ argument_list|,
 literal|"Record not found!"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|startOffset
 init|=
@@ -12222,6 +12243,7 @@ name|offset
 argument_list|)
 decl_stmt|;
 comment|// end offset
+specifier|final
 name|int
 name|end
 init|=
@@ -12233,6 +12255,7 @@ name|LENGTH_DATA_LENGTH
 operator|+
 name|l
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -12783,6 +12806,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|startOffset
 init|=
@@ -12804,6 +12828,7 @@ name|tid
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|end
 init|=
@@ -12908,6 +12933,7 @@ operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 comment|// end offset
+specifier|final
 name|int
 name|end
 init|=
@@ -12919,6 +12945,7 @@ name|LENGTH_DATA_LENGTH
 operator|+
 name|l
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -13120,6 +13147,7 @@ name|required
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -14480,6 +14508,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|dlen
 init|=
@@ -14506,6 +14535,7 @@ operator|<
 name|dlen
 condition|)
 block|{
+specifier|final
 name|int
 name|end
 init|=
@@ -14776,6 +14806,7 @@ name|tid
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|end
 init|=
@@ -14885,6 +14916,7 @@ operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 comment|// end offset
+specifier|final
 name|int
 name|end
 init|=
@@ -14893,13 +14925,14 @@ operator|.
 name|offset
 operator|+
 operator|(
-literal|2
+name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
 operator|+
 name|l
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -15438,6 +15471,7 @@ operator|.
 name|tid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -16035,6 +16069,7 @@ name|offset
 argument_list|)
 decl_stmt|;
 comment|// end offset
+specifier|final
 name|int
 name|end
 init|=
@@ -16042,12 +16077,13 @@ name|rec
 operator|.
 name|offset
 operator|+
-literal|2
+name|LENGTH_DATA_LENGTH
 operator|+
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
 name|l
 decl_stmt|;
+specifier|final
 name|int
 name|dlen
 init|=
@@ -16150,7 +16186,7 @@ name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
 operator|+
-literal|8
+name|LENGTH_ORIGINAL_LOCATION
 operator|+
 name|l
 operator|)
