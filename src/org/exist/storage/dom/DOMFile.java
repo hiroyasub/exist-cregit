@@ -652,6 +652,15 @@ init|=
 literal|4
 decl_stmt|;
 comment|//sizeof int
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_DLN_LENGTH
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
 comment|/* 	 * Byte ids for the records written to the log file. 	 */
 specifier|public
 specifier|final
@@ -2174,7 +2183,7 @@ name|KEY_NOT_FOUND
 return|;
 block|}
 name|short
-name|len
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -2218,7 +2227,7 @@ name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 if|if
 condition|(
-name|len
+name|vlen
 operator|==
 name|OVERFLOW
 condition|)
@@ -2233,7 +2242,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-name|len
+name|vlen
 expr_stmt|;
 comment|//See the statement below that prevents the method to be final
 comment|//final int dlen = rec.getPage().getPageHeader().getDataLength();
@@ -7350,6 +7359,15 @@ name|BTreeException
 name|bte
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"report me"
+argument_list|,
+name|bte
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 do|while
@@ -7946,7 +7964,7 @@ literal|null
 return|;
 block|}
 name|short
-name|storedLen
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -7993,7 +8011,7 @@ name|v
 decl_stmt|;
 if|if
 condition|(
-name|storedLen
+name|vlen
 operator|==
 name|OVERFLOW
 condition|)
@@ -8052,7 +8070,7 @@ name|rec
 operator|.
 name|offset
 argument_list|,
-name|storedLen
+name|vlen
 argument_list|)
 expr_stmt|;
 name|v
@@ -10846,7 +10864,7 @@ condition|)
 do|;
 comment|// read the page len
 name|int
-name|len
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -10914,7 +10932,7 @@ literal|false
 decl_stmt|;
 if|if
 condition|(
-name|len
+name|vlen
 operator|==
 name|OVERFLOW
 condition|)
@@ -10951,7 +10969,7 @@ name|LENGTH_OVERFLOW_LOCATION
 operator|+
 name|LENGTH_TID
 expr_stmt|;
-name|len
+name|vlen
 operator|=
 name|data
 operator|.
@@ -11024,7 +11042,7 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-literal|2
+name|LENGTH_DLN_LENGTH
 expr_stmt|;
 name|readOffset
 operator|+=
@@ -11061,23 +11079,11 @@ argument_list|,
 name|readOffset
 argument_list|)
 decl_stmt|;
-specifier|final
-name|boolean
-name|extraWhitespace
-init|=
-name|addWhitespace
-operator|&&
-name|children
-operator|-
-name|attributes
-operator|>
-literal|1
-decl_stmt|;
 name|rec
 operator|.
 name|offset
 operator|+=
-name|len
+name|vlen
 operator|+
 literal|2
 expr_stmt|;
@@ -11096,6 +11102,18 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|boolean
+name|extraWhitespace
+init|=
+name|addWhitespace
+operator|&&
+name|children
+operator|-
+name|attributes
+operator|>
+literal|1
+decl_stmt|;
 comment|//recursive call
 name|getNodeValue
 argument_list|(
@@ -11149,7 +11167,7 @@ argument_list|)
 expr_stmt|;
 name|readOffset
 operator|+=
-literal|2
+name|LENGTH_DLN_LENGTH
 expr_stmt|;
 name|int
 name|nodeIdLen
@@ -11186,12 +11204,12 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|,
-name|len
-operator|-
-name|nodeIdLen
+name|vlen
 operator|-
 operator|(
 literal|2
+operator|+
+name|nodeIdLen
 operator|+
 literal|1
 operator|)
@@ -11261,7 +11279,7 @@ argument_list|)
 expr_stmt|;
 name|readOffset
 operator|+=
-literal|2
+name|LENGTH_DLN_LENGTH
 expr_stmt|;
 name|nodeIdLen
 operator|=
@@ -11288,7 +11306,9 @@ expr_stmt|;
 name|readOffset
 operator|+=
 name|nodeIdLen
-operator|+
+expr_stmt|;
+name|readOffset
+operator|+=
 name|Signatures
 operator|.
 name|getLength
@@ -11340,7 +11360,7 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|,
-name|len
+name|vlen
 operator|-
 operator|(
 name|readOffset
@@ -11362,7 +11382,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-name|len
+name|vlen
 operator|+
 literal|2
 expr_stmt|;
@@ -12608,7 +12628,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|short
-name|len
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -12630,7 +12650,7 @@ name|SanityCheck
 operator|.
 name|THROW_ASSERT
 argument_list|(
-name|len
+name|vlen
 operator|==
 name|loggable
 operator|.
@@ -19163,7 +19183,7 @@ name|pointer
 argument_list|)
 decl_stmt|;
 name|short
-name|len
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -19201,7 +19221,7 @@ name|offset
 operator|+
 name|LENGTH_DATA_LENGTH
 argument_list|,
-name|len
+name|vlen
 argument_list|)
 argument_list|)
 expr_stmt|;
