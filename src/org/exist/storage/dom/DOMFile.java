@@ -1402,6 +1402,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|newPage
 init|=
@@ -1409,13 +1410,6 @@ operator|new
 name|DOMPage
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|page
-operator|!=
-literal|null
-condition|)
-block|{
 specifier|final
 name|DOMFilePageHeader
 name|ph
@@ -1425,6 +1419,13 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|page
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|isTransactional
@@ -2434,11 +2435,21 @@ argument_list|()
 condition|)
 block|{
 comment|// still not enough free space: create a new page
+specifier|final
 name|DOMPage
 name|newPage
 init|=
 operator|new
 name|DOMPage
+argument_list|()
+decl_stmt|;
+specifier|final
+name|DOMFilePageHeader
+name|nph
+init|=
+name|newPage
+operator|.
+name|getPageHeader
 argument_list|()
 decl_stmt|;
 name|LOG
@@ -2529,10 +2540,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// adjust page links
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -2548,10 +2556,7 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -2659,10 +2664,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -2678,10 +2680,7 @@ name|nextInChain
 init|=
 name|getCurrentPage
 argument_list|(
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -2939,11 +2938,21 @@ argument_list|()
 condition|)
 block|{
 comment|// does value fit into page?
+specifier|final
 name|DOMPage
 name|newPage
 init|=
 operator|new
 name|DOMPage
+argument_list|()
+decl_stmt|;
+specifier|final
+name|DOMFilePageHeader
+name|nph
+init|=
+name|newPage
+operator|.
+name|getPageHeader
 argument_list|()
 decl_stmt|;
 name|LOG
@@ -3024,20 +3033,14 @@ operator|.
 name|getNextDataPage
 argument_list|()
 decl_stmt|;
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|setNextDataPage
 argument_list|(
 name|nextPageNr
 argument_list|)
 expr_stmt|;
-name|newPage
-operator|.
-name|getPageHeader
-argument_list|()
+name|nph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -3145,6 +3148,7 @@ operator|!=
 name|nextPageNr
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|nextPage
 init|=
@@ -4068,6 +4072,7 @@ argument_list|()
 condition|)
 block|{
 comment|/* no room in the old page, append a new one */
+specifier|final
 name|DOMPage
 name|newPage
 init|=
@@ -4555,6 +4560,7 @@ argument_list|()
 condition|)
 block|{
 comment|// not enough room in the split page: append a new page
+specifier|final
 name|DOMPage
 name|newPage
 init|=
@@ -5210,6 +5216,7 @@ argument_list|()
 condition|)
 block|{
 comment|// the link doesn't fit into the old page. Append a new page
+specifier|final
 name|DOMPage
 name|newPage
 init|=
@@ -5970,6 +5977,7 @@ operator|!=
 name|nextPageNr
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|nextPage
 init|=
@@ -9565,6 +9573,7 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|next
 init|=
@@ -9617,6 +9626,7 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|prev
 init|=
@@ -9773,6 +9783,7 @@ operator|!=
 name|pnum
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -9780,6 +9791,15 @@ name|getCurrentPage
 argument_list|(
 name|pnum
 argument_list|)
+decl_stmt|;
+specifier|final
+name|DOMFilePageHeader
+name|ph
+init|=
+name|page
+operator|.
+name|getPageHeader
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -9790,15 +9810,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
-name|DOMFilePageHeader
-name|ph
-init|=
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-decl_stmt|;
 name|RemovePageLoggable
 name|loggable
 init|=
@@ -9867,15 +9878,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-specifier|final
-name|DOMFilePageHeader
-name|ph
-init|=
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
-decl_stmt|;
 name|ph
 operator|.
 name|setNextDataPage
@@ -10041,6 +10043,7 @@ operator|!=
 name|pnum
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -11476,6 +11479,7 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -13602,6 +13606,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DOMPage
 name|newPage
 init|=
