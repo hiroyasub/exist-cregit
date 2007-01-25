@@ -1416,6 +1416,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -10724,12 +10725,10 @@ literal|false
 decl_stmt|;
 do|do
 block|{
-if|if
-condition|(
-name|rec
-operator|.
-name|offset
-operator|>
+specifier|final
+name|DOMFilePageHeader
+name|ph
+init|=
 name|rec
 operator|.
 name|getPage
@@ -10737,6 +10736,14 @@ argument_list|()
 operator|.
 name|getPageHeader
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|rec
+operator|.
+name|offset
+operator|>
+name|ph
 operator|.
 name|getDataLength
 argument_list|()
@@ -10747,13 +10754,7 @@ specifier|final
 name|long
 name|nextPage
 init|=
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|getPageHeader
-argument_list|()
+name|ph
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -10779,13 +10780,7 @@ name|offset
 operator|+
 literal|"; len: "
 operator|+
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|getPageHeader
-argument_list|()
+name|ph
 operator|.
 name|getDataLength
 argument_list|()
@@ -11650,6 +11645,7 @@ name|CreatePageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|newPage
 init|=
@@ -11660,6 +11656,7 @@ operator|.
 name|newPage
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -11897,6 +11894,7 @@ name|CreatePageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -11907,6 +11905,7 @@ operator|.
 name|newPage
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -12012,6 +12011,7 @@ name|AddValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -12022,6 +12022,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -12233,6 +12234,7 @@ name|AddValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -12243,6 +12245,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -12401,6 +12404,7 @@ name|UpdateValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -12411,6 +12415,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -12781,6 +12786,7 @@ name|RemoveValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -12791,7 +12797,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
-comment|//        LOG.debug(debugPageContents(page));
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -13118,6 +13124,7 @@ name|RemoveValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -13128,7 +13135,6 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
-comment|//		LOG.debug(debugPageContents(page));
 specifier|final
 name|DOMFilePageHeader
 name|ph
@@ -13540,6 +13546,7 @@ name|RemoveEmptyPageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -13550,6 +13557,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -13817,6 +13825,7 @@ name|RemovePageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -13827,6 +13836,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -13964,6 +13974,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -13974,6 +13985,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -14331,6 +14343,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Page
 name|page
 init|=
@@ -14346,6 +14359,7 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
+specifier|final
 name|PageHeader
 name|ph
 init|=
@@ -14419,6 +14433,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Page
 name|page
 init|=
@@ -14434,6 +14449,7 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
+specifier|final
 name|PageHeader
 name|ph
 init|=
@@ -14534,6 +14550,7 @@ name|InsertValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -14544,6 +14561,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -14575,10 +14593,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|page
-operator|.
-name|getPageHeader
-argument_list|()
+name|ph
 operator|.
 name|getDataLength
 argument_list|()
@@ -14839,6 +14854,7 @@ name|InsertValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -14849,6 +14865,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15145,6 +15162,7 @@ name|SplitPageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15155,6 +15173,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15273,6 +15292,7 @@ name|SplitPageLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15283,6 +15303,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15354,6 +15375,7 @@ name|AddLinkLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15364,6 +15386,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15504,6 +15527,7 @@ name|AddLinkLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15514,6 +15538,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15637,6 +15662,7 @@ name|UpdateLinkLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15647,6 +15673,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15725,6 +15752,7 @@ name|UpdateLinkLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15735,6 +15763,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -15793,6 +15822,7 @@ name|AddMovedValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -15803,6 +15833,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -16052,6 +16083,7 @@ name|AddMovedValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -16062,6 +16094,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -16299,6 +16332,7 @@ name|UpdateHeaderLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -16309,6 +16343,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -16410,6 +16445,7 @@ name|UpdateHeaderLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -16420,6 +16456,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -17260,12 +17297,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Page
 name|page
 init|=
 name|getFreePage
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=
@@ -18262,12 +18301,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Page
 name|page
 init|=
 name|getFreePage
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DOMFilePageHeader
 name|ph
 init|=

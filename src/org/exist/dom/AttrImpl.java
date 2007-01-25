@@ -951,6 +951,13 @@ name|UnsupportedEncodingException
 name|uee
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|uee
+argument_list|)
+expr_stmt|;
 name|value
 operator|=
 operator|new
@@ -1035,6 +1042,21 @@ name|nodeId
 operator|=
 name|dln
 expr_stmt|;
+if|if
+condition|(
+name|dln
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"no node id "
+operator|+
+name|id
+argument_list|)
+throw|;
 name|attr
 operator|.
 name|setType
