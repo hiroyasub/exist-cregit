@@ -6490,6 +6490,7 @@ literal|false
 expr_stmt|;
 try|try
 block|{
+comment|//TODO: AR: if a Trigger throws CollectionConfigurationException from its configure() method, is the rest of the collection configurartion (indexes etc.) ignored even though they might be fine?
 name|configuration
 operator|=
 name|manager
@@ -6500,6 +6501,10 @@ name|broker
 argument_list|,
 name|this
 argument_list|)
+expr_stmt|;
+name|collectionConfEnabled
+operator|=
+literal|true
 expr_stmt|;
 block|}
 catch|catch
@@ -6523,11 +6528,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : we should not consider the collectiona configured after a failure ! -pb
-name|collectionConfEnabled
-operator|=
-literal|true
-expr_stmt|;
 return|return
 name|configuration
 return|;
