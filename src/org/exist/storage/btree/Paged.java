@@ -708,6 +708,13 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"report me"
+argument_list|)
+expr_stmt|;
 comment|//TODO : this exception is *silently* ignored ?
 block|}
 return|return
@@ -1428,6 +1435,13 @@ literal|"r"
 argument_list|)
 expr_stmt|;
 comment|//TODO : log this !!!
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -3088,7 +3102,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"error while reading page: "
 operator|+

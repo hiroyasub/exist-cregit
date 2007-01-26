@@ -2237,7 +2237,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2258,7 +2258,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2378,6 +2378,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -2469,7 +2476,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2490,7 +2497,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2621,7 +2628,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2642,7 +2649,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Failed to undo: "
 operator|+
