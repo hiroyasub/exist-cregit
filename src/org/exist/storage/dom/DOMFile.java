@@ -2017,9 +2017,18 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"couldn't find value"
+argument_list|)
+expr_stmt|;
 return|return
 name|KEY_NOT_FOUND
 return|;
+block|}
 return|return
 name|insertAfter
 argument_list|(
@@ -4422,7 +4431,7 @@ block|}
 comment|// read data length
 specifier|final
 name|short
-name|storedLen
+name|vlen
 init|=
 name|ByteConversion
 operator|.
@@ -4444,13 +4453,13 @@ name|short
 name|realLen
 init|=
 operator|(
-name|storedLen
+name|vlen
 operator|==
 name|OVERFLOW
 condition|?
 name|LENGTH_OVERFLOW_LOCATION
 else|:
-name|storedLen
+name|vlen
 operator|)
 decl_stmt|;
 comment|// check if we have room in the current split page
@@ -4974,7 +4983,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|storedLen
+name|vlen
 argument_list|,
 name|nextSplitPage
 operator|.
@@ -8743,6 +8752,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|vlen
 init|=
@@ -8769,7 +8779,7 @@ operator|+=
 name|LENGTH_DATA_LENGTH
 expr_stmt|;
 name|short
-name|l
+name|realLen
 init|=
 name|vlen
 decl_stmt|;
@@ -8841,7 +8851,7 @@ name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
-name|l
+name|realLen
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
@@ -8855,7 +8865,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|l
+name|vlen
 operator|==
 name|OVERFLOW
 condition|)
@@ -8925,12 +8935,8 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|l
+name|realLen
 operator|+=
-name|LENGTH_OVERFLOW_LOCATION
-expr_stmt|;
-name|vlen
-operator|=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 block|}
@@ -8950,6 +8956,12 @@ init|=
 operator|new
 name|byte
 index|[
+name|vlen
+operator|==
+name|OVERFLOW
+condition|?
+name|LENGTH_OVERFLOW_LOCATION
+else|:
 name|vlen
 index|]
 decl_stmt|;
@@ -8972,6 +8984,12 @@ name|data
 argument_list|,
 literal|0
 argument_list|,
+name|vlen
+operator|==
+name|OVERFLOW
+condition|?
+name|LENGTH_OVERFLOW_LOCATION
+else|:
 name|vlen
 argument_list|)
 expr_stmt|;
@@ -9020,6 +9038,15 @@ expr_stmt|;
 block|}
 specifier|final
 name|int
+name|dlen
+init|=
+name|ph
+operator|.
+name|getDataLength
+argument_list|()
+decl_stmt|;
+specifier|final
+name|int
 name|end
 init|=
 name|startOffset
@@ -9028,16 +9055,7 @@ name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
 operator|+
-name|l
-decl_stmt|;
-specifier|final
-name|int
-name|dlen
-init|=
-name|ph
-operator|.
-name|getDataLength
-argument_list|()
+name|realLen
 decl_stmt|;
 comment|// remove old value
 name|System
@@ -9091,7 +9109,7 @@ name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
 operator|+
-name|l
+name|realLen
 operator|)
 expr_stmt|;
 name|rec
