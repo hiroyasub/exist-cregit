@@ -656,6 +656,15 @@ specifier|public
 specifier|static
 specifier|final
 name|int
+name|LENGTH_ATTRIBUTES_COUNT
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
 name|LENGTH_DLN_LENGTH
 init|=
 literal|2
@@ -2193,6 +2202,7 @@ return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
+specifier|final
 name|short
 name|vlen
 init|=
@@ -6118,6 +6128,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|short
 name|vlen
 init|=
@@ -6341,6 +6352,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|short
 name|vlen
 init|=
@@ -7818,6 +7830,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|short
 name|vlen
 init|=
@@ -10110,6 +10123,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|vlen
 init|=
@@ -10706,7 +10720,8 @@ name|foundNext
 condition|)
 do|;
 comment|// read the page len
-name|int
+specifier|final
+name|short
 name|vlen
 init|=
 name|ByteConversion
@@ -10724,6 +10739,11 @@ name|rec
 operator|.
 name|offset
 argument_list|)
+decl_stmt|;
+name|int
+name|realLen
+init|=
+name|vlen
 decl_stmt|;
 name|rec
 operator|.
@@ -10812,7 +10832,7 @@ name|LENGTH_OVERFLOW_LOCATION
 operator|+
 name|LENGTH_TID
 expr_stmt|;
-name|vlen
+name|realLen
 operator|=
 name|data
 operator|.
@@ -10854,6 +10874,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 specifier|final
 name|int
 name|children
@@ -10871,6 +10892,7 @@ name|readOffset
 operator|+=
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -10926,9 +10948,9 @@ name|rec
 operator|.
 name|offset
 operator|+=
-name|vlen
+name|realLen
 operator|+
-literal|2
+name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
 for|for
 control|(
@@ -10951,9 +10973,11 @@ name|extraWhitespace
 init|=
 name|addWhitespace
 operator|&&
+operator|(
 name|children
 operator|-
 name|attributes
+operator|)
 operator|>
 literal|1
 decl_stmt|;
@@ -10987,6 +11011,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return;
+block|}
 case|case
 name|Node
 operator|.
@@ -10997,8 +11022,11 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
+specifier|final
+name|int
 name|dlnLen
-operator|=
+init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -11007,11 +11035,12 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|readOffset
 operator|+=
 name|LENGTH_DLN_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|nodeIdLen
 init|=
@@ -11047,7 +11076,7 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|,
-name|vlen
+name|realLen
 operator|-
 operator|(
 literal|2
@@ -11059,6 +11088,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
@@ -11109,8 +11139,10 @@ operator|)
 operator|==
 literal|0x10
 decl_stmt|;
+specifier|final
+name|int
 name|dlnLen
-operator|=
+init|=
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -11119,13 +11151,15 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|readOffset
 operator|+=
 name|LENGTH_DLN_LENGTH
 expr_stmt|;
+specifier|final
+name|int
 name|nodeIdLen
-operator|=
+init|=
 name|doc
 operator|.
 name|getBroker
@@ -11145,7 +11179,7 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|readOffset
 operator|+=
 name|nodeIdLen
@@ -11203,7 +11237,7 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|,
-name|vlen
+name|realLen
 operator|-
 operator|(
 name|readOffset
@@ -11225,7 +11259,7 @@ name|rec
 operator|.
 name|offset
 operator|+=
-name|vlen
+name|realLen
 operator|+
 literal|2
 expr_stmt|;
@@ -11890,6 +11924,7 @@ name|LENGTH_TID
 expr_stmt|;
 comment|// save data length
 comment|// overflow pages have length 0
+specifier|final
 name|short
 name|vlen
 init|=
@@ -12482,6 +12517,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|short
 name|vlen
 init|=
@@ -15732,6 +15768,7 @@ name|len
 operator|+=
 name|LENGTH_TID
 expr_stmt|;
+specifier|final
 name|short
 name|vlen
 init|=
@@ -17397,6 +17434,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|short
 name|vlen
 init|=
@@ -18033,6 +18071,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|short
 name|vlen
 init|=
@@ -19113,6 +19152,7 @@ argument_list|(
 name|pointer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|vlen
 init|=
