@@ -3371,6 +3371,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// write the data
+specifier|final
 name|short
 name|tid
 init|=
@@ -3663,6 +3664,7 @@ name|len
 condition|;
 control|)
 block|{
+specifier|final
 name|short
 name|tid
 init|=
@@ -4024,6 +4026,7 @@ operator|++
 control|)
 block|{
 comment|// read the current id
+specifier|final
 name|short
 name|tid
 init|=
@@ -4742,6 +4745,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|oldLink
 init|=
@@ -4761,6 +4765,7 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|forwardLink
 init|=
@@ -5378,6 +5383,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|forwardLink
 init|=
@@ -6252,6 +6258,7 @@ name|count
 operator|++
 control|)
 block|{
+specifier|final
 name|short
 name|tid
 init|=
@@ -7668,6 +7675,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -7682,9 +7690,20 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"value not found : "
+operator|+
+name|key
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|get
 argument_list|(
@@ -7739,6 +7758,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -7755,9 +7775,20 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"node value not found : "
+operator|+
+name|node
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|get
 argument_list|(
@@ -7824,8 +7855,22 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//			SanityCheck.TRACE("object at " + StorageAddress.toString(p)
-comment|//					+ " not found.");
+name|SanityCheck
+operator|.
+name|TRACE
+argument_list|(
+literal|"object at "
+operator|+
+name|StorageAddress
+operator|.
+name|toString
+argument_list|(
+name|p
+argument_list|)
+operator|+
+literal|" not found."
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -7884,6 +7929,7 @@ operator|==
 name|OVERFLOW
 condition|)
 block|{
+specifier|final
 name|long
 name|pnum
 init|=
@@ -7903,6 +7949,7 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -8255,6 +8302,7 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -8345,6 +8393,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -8359,7 +8408,18 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"value not found : "
+operator|+
+name|key
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
 name|remove
 argument_list|(
 name|transaction
@@ -8735,6 +8795,7 @@ name|long
 name|p
 parameter_list|)
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -10041,9 +10102,20 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"node value not found : "
+operator|+
+name|key
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
 name|update
 argument_list|(
 name|transaction
@@ -10115,6 +10187,7 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -10379,9 +10452,20 @@ name|BTree
 operator|.
 name|KEY_NOT_FOUND
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"node value not found : "
+operator|+
+name|node
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+block|}
 name|rec
 operator|=
 name|findRecord
