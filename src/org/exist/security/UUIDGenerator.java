@@ -98,7 +98,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"java.util.UUID not found"
+literal|"Skipping java.util.UUID"
 argument_list|)
 expr_stmt|;
 return|return
@@ -137,7 +137,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Method UUID.randomUUID not found."
+literal|"Method UUID.randomUUID not found"
 argument_list|,
 name|ex
 argument_list|)
@@ -178,7 +178,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not invoke method randomUUID."
+literal|"Could not invoke method randomUUID"
 argument_list|,
 name|ex
 argument_list|)
@@ -187,6 +187,13 @@ return|return
 literal|null
 return|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using preferred java.util.UUID"
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 operator|.
@@ -232,7 +239,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"org.safehaus.uuid.UUIDGenerator no found."
+literal|"Skipping org.safehaus.uuid.UUIDGenerator"
 argument_list|)
 expr_stmt|;
 return|return
@@ -271,7 +278,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Method UUIDGenerator.getInstance not found."
+literal|"Method UUIDGenerator.getInstance not found"
 argument_list|,
 name|ex
 argument_list|)
@@ -312,7 +319,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not invoke method UUIDGenerator.getInstance."
+literal|"Could not invoke method UUIDGenerator.getInstance"
 argument_list|,
 name|ex
 argument_list|)
@@ -403,7 +410,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not invoke method generateRandomBasedUUID."
+literal|"Could not invoke method generateRandomBasedUUID"
 argument_list|,
 name|ex
 argument_list|)
@@ -413,6 +420,13 @@ return|return
 literal|null
 return|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Fallback to org.safehaus.uuid.UUIDGenerator"
+argument_list|)
+expr_stmt|;
 return|return
 name|result2
 operator|.
@@ -431,7 +445,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Using org.exist.security.RandomGUID"
+literal|"Fallback to org.exist.security.RandomGUID"
 argument_list|)
 expr_stmt|;
 name|RandomGUID
