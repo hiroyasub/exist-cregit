@@ -469,9 +469,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|security
 operator|.
-name|DBBroker
+name|UUIDGenerator
 import|;
 end_import
 
@@ -483,7 +483,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NativeBroker
+name|DBBroker
 import|;
 end_import
 
@@ -586,30 +586,6 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|safehaus
-operator|.
-name|uuid
-operator|.
-name|UUID
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|safehaus
-operator|.
-name|uuid
-operator|.
-name|UUIDGenerator
 import|;
 end_import
 
@@ -1393,10 +1369,7 @@ literal|"urn:uuid:"
 operator|+
 name|UUIDGenerator
 operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|generateRandomBasedUUID
+name|getUUID
 argument_list|()
 decl_stmt|;
 name|String
@@ -1990,15 +1963,12 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
-name|UUID
+name|String
 name|id
 init|=
 name|UUIDGenerator
 operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|generateRandomBasedUUID
+name|getUUID
 argument_list|()
 decl_stmt|;
 name|String
@@ -2807,10 +2777,7 @@ literal|"urn:uuid:"
 operator|+
 name|UUIDGenerator
 operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|generateRandomBasedUUID
+name|getUUID
 argument_list|()
 decl_stmt|;
 name|Element
