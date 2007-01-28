@@ -2114,13 +2114,13 @@ literal|false
 decl_stmt|;
 if|if
 condition|(
-name|value
-operator|.
-name|length
-operator|+
 name|LENGTH_TID
 operator|+
 name|LENGTH_DATA_LENGTH
+operator|+
+name|value
+operator|.
+name|length
 operator|>
 name|fileHeader
 operator|.
@@ -2265,8 +2265,8 @@ name|offset
 operator|+=
 name|vlen
 expr_stmt|;
-comment|//See the statement below that prevents the method to be final
-comment|//final int dlen = rec.getPage().getPageHeader().getDataLength();
+comment|//OK : we now have an offset
+specifier|final
 name|int
 name|dlen
 init|=
@@ -2291,6 +2291,7 @@ operator|<
 name|dlen
 condition|)
 block|{
+comment|// new value fits into the page
 if|if
 condition|(
 name|dlen
@@ -2323,7 +2324,6 @@ block|{
 comment|//				 LOG.debug("copying data in page " + rec.getPage().getPageNum()
 comment|//				 + "; offset = " + rec.offset + "; dataLen = "
 comment|//				 + dataLen + "; valueLen = " + value.length);
-comment|// new value fits into the page
 specifier|final
 name|int
 name|end
@@ -2406,10 +2406,10 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
+comment|// doesn't fit: split the page
 block|}
 else|else
 block|{
-comment|// doesn't fit: split the page
 name|rec
 operator|=
 name|splitDataPage
@@ -2421,6 +2421,7 @@ argument_list|,
 name|rec
 argument_list|)
 expr_stmt|;
+comment|// still not enough free space: create a new page
 if|if
 condition|(
 name|rec
@@ -2453,7 +2454,6 @@ name|hasRoom
 argument_list|()
 condition|)
 block|{
-comment|// still not enough free space: create a new page
 specifier|final
 name|DOMPage
 name|newPage
@@ -2813,6 +2813,7 @@ name|getPage
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//switch record to new page...
 name|rec
 operator|.
 name|setPage
@@ -2875,6 +2876,7 @@ operator|)
 literal|1
 argument_list|)
 expr_stmt|;
+comment|//enough space in split page
 block|}
 else|else
 block|{
@@ -2915,15 +2917,9 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-comment|//Ooops ! this prevents dlen to be final :-(
-name|dlen
-operator|=
-name|rec
-operator|.
-name|offset
-expr_stmt|;
 block|}
 block|}
+comment|// does value fit into page?
 block|}
 if|else if
 condition|(
@@ -2955,7 +2951,6 @@ name|hasRoom
 argument_list|()
 condition|)
 block|{
-comment|// does value fit into page?
 specifier|final
 name|DOMPage
 name|newPage
@@ -3285,6 +3280,7 @@ name|getPage
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//switch record to new page
 name|rec
 operator|.
 name|setPage
@@ -3538,16 +3534,6 @@ operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -3574,7 +3560,16 @@ operator|.
 name|triggerDefrag
 argument_list|()
 expr_stmt|;
-comment|// LOG.debug(debugPageContents(rec.page));
+name|rec
+operator|.
+name|getPage
+argument_list|()
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|dataCache
 operator|.
 name|add
@@ -3585,7 +3580,6 @@ name|getPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        LOG.debug(debugPages(doc));
 return|return
 name|StorageAddress
 operator|.
@@ -4287,13 +4281,7 @@ name|getPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|dataCache
-operator|.
-name|add
-argument_list|(
-name|newPage
-argument_list|)
-expr_stmt|;
+comment|//switch record to new page...
 name|rec
 operator|.
 name|setPage
@@ -4309,6 +4297,13 @@ operator|.
 name|len
 operator|=
 literal|0
+expr_stmt|;
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|newPage
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -5359,13 +5354,7 @@ name|getPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|dataCache
-operator|.
-name|add
-argument_list|(
-name|newPage
-argument_list|)
-expr_stmt|;
+comment|//switch record to new page...
 name|rec
 operator|.
 name|setPage
@@ -5381,6 +5370,13 @@ operator|.
 name|len
 operator|=
 literal|0
+expr_stmt|;
+name|dataCache
+operator|.
+name|add
+argument_list|(
+name|newPage
+argument_list|)
 expr_stmt|;
 block|}
 specifier|final
@@ -7293,9 +7289,15 @@ operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 condition|)
 block|{
-comment|// if(LOG.isDebugEnabled())
-comment|// LOG.debug("Node data location not found for node " +
-comment|// node.gid);
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Node data location not found for node "
+operator|+
+name|node
+argument_list|)
+expr_stmt|;
 return|return
 name|KEY_NOT_FOUND
 return|;
@@ -13012,13 +13014,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|decRecordCount
@@ -13038,6 +13033,13 @@ name|page
 operator|.
 name|cleanUp
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -13457,15 +13459,15 @@ argument_list|)
 expr_stmt|;
 name|page
 operator|.
+name|cleanUp
+argument_list|()
+expr_stmt|;
+name|page
+operator|.
 name|setDirty
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|page
-operator|.
-name|cleanUp
-argument_list|()
 expr_stmt|;
 name|dataCache
 operator|.
@@ -13476,7 +13478,6 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-comment|//        LOG.debug(debugPageContents(page));
 block|}
 specifier|protected
 name|void
@@ -13610,6 +13611,16 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+name|nph
+operator|.
+name|setPrevDataPage
+argument_list|(
+name|oldPage
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|oph
 operator|.
 name|setNextDataPage
@@ -13632,16 +13643,6 @@ operator|.
 name|add
 argument_list|(
 name|oldPage
-argument_list|)
-expr_stmt|;
-name|nph
-operator|.
-name|setPrevDataPage
-argument_list|(
-name|oldPage
-operator|.
-name|getPageNum
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -15079,13 +15080,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|decRecordCount
@@ -15105,6 +15099,13 @@ name|page
 operator|.
 name|cleanUp
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -15298,13 +15299,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setLsn
@@ -15319,6 +15313,13 @@ name|page
 operator|.
 name|cleanUp
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -15426,13 +15427,6 @@ name|len
 operator|+=
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setNextTID
@@ -15470,6 +15464,13 @@ name|ph
 operator|.
 name|incRecordCount
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -15580,13 +15581,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|decRecordCount
@@ -15606,6 +15600,13 @@ name|page
 operator|.
 name|cleanUp
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -15679,13 +15680,6 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setLsn
@@ -15694,6 +15688,13 @@ name|loggable
 operator|.
 name|getLsn
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|dataCache
@@ -15750,13 +15751,6 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setLsn
@@ -15765,6 +15759,13 @@ name|loggable
 operator|.
 name|getLsn
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|dataCache
@@ -15953,13 +15954,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setNextTID
@@ -15987,6 +15981,13 @@ name|loggable
 operator|.
 name|getLsn
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|dataCache
@@ -16235,13 +16236,6 @@ expr_stmt|;
 block|}
 name|page
 operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|page
-operator|.
 name|len
 operator|=
 name|dlen
@@ -16284,6 +16278,13 @@ name|page
 operator|.
 name|cleanUp
 argument_list|()
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|dataCache
 operator|.
@@ -16378,13 +16379,6 @@ operator|.
 name|prevPage
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setLsn
@@ -16393,6 +16387,13 @@ name|loggable
 operator|.
 name|getLsn
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|dataCache
@@ -16472,13 +16473,6 @@ operator|.
 name|oldNext
 argument_list|)
 expr_stmt|;
-name|page
-operator|.
-name|setDirty
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ph
 operator|.
 name|setLsn
@@ -16487,6 +16481,13 @@ name|loggable
 operator|.
 name|getLsn
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|page
+operator|.
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|dataCache
