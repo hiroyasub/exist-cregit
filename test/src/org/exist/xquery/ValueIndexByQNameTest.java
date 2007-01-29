@@ -71,7 +71,6 @@ literal|"</index>"
 operator|+
 literal|"</collection>"
 decl_stmt|;
-comment|/** @see org.exist.xquery.test.ValueIndexTest#testStrings() */
 specifier|public
 name|void
 name|testStrings
@@ -80,7 +79,9 @@ throws|throws
 name|Exception
 block|{
 name|configureCollection
-argument_list|()
+argument_list|(
+name|config
+argument_list|)
 expr_stmt|;
 name|XPathQueryService
 name|service
@@ -143,7 +144,6 @@ argument_list|)
 expr_stmt|;
 comment|//		queryResource(service, "items.xml", "//item[fn:matches(mixed, 'un.*')]", 2);
 block|}
-comment|/** @see org.exist.xquery.test.ValueIndexTest#getCollectionConfig() */
 specifier|protected
 name|String
 name|getCollectionConfig
