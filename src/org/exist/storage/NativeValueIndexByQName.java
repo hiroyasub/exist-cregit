@@ -824,6 +824,9 @@ decl_stmt|;
 if|if
 condition|(
 name|pending
+index|[
+name|IDX_GENERIC
+index|]
 operator|.
 name|containsKey
 argument_list|(
@@ -836,6 +839,9 @@ operator|(
 name|ArrayList
 operator|)
 name|pending
+index|[
+name|IDX_GENERIC
+index|]
 operator|.
 name|get
 argument_list|(
@@ -853,6 +859,9 @@ literal|8
 argument_list|)
 expr_stmt|;
 name|pending
+index|[
+name|IDX_GENERIC
+index|]
 operator|.
 name|put
 argument_list|(

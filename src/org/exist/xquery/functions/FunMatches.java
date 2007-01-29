@@ -1271,7 +1271,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return The resulting sequence 	 * @throws XPathException      */
+comment|/**      * @param contextSequence      * @param contextItem      * @param input      * @return The resulting sequence 	 * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalWithIndex
@@ -1612,6 +1612,8 @@ argument_list|,
 name|nodes
 argument_list|,
 name|pattern
+argument_list|,
+literal|null
 argument_list|,
 name|DBBroker
 operator|.

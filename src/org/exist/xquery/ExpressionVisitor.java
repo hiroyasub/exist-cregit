@@ -67,6 +67,14 @@ name|Predicate
 name|predicate
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|visitGeneralComparison
+parameter_list|(
+name|GeneralComparison
+name|comparison
+parameter_list|)
+function_decl|;
 comment|/** Found a CastExpression */
 specifier|public
 name|void
@@ -76,6 +84,15 @@ name|CastExpression
 name|expression
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|visitUnionExpr
+parameter_list|(
+name|Union
+name|union
+parameter_list|)
+function_decl|;
+specifier|public
 name|void
 name|visitFtExpression
 parameter_list|(

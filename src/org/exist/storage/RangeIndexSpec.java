@@ -37,6 +37,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
 begin_class
 specifier|public
 specifier|abstract
@@ -468,6 +480,16 @@ name|indexTypes
 index|[
 name|type
 index|]
+return|;
+block|}
+comment|/**      * Returns the QName for which this index is created. Might be      * null if it is a generic index.      *       * @return      */
+specifier|public
+name|QName
+name|getQName
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}

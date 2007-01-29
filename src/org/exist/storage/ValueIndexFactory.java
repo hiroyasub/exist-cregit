@@ -335,10 +335,6 @@ init|=
 name|data
 index|[
 name|start
-operator|+
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
 index|]
 decl_stmt|;
 comment|//TODO : improve deserialization (use static methods in the org.exist.xquery.Value package
@@ -372,10 +368,6 @@ argument_list|,
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -384,10 +376,6 @@ argument_list|,
 name|len
 operator|-
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -454,10 +442,6 @@ argument_list|,
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -560,10 +544,6 @@ argument_list|,
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -596,10 +576,6 @@ argument_list|,
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -648,10 +624,6 @@ argument_list|,
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
@@ -697,10 +669,6 @@ index|[
 name|start
 operator|+
 operator|(
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
 name|ValueIndexFactory
 operator|.
 name|LENGTH_VALUE_TYPE
