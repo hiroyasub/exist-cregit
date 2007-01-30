@@ -239,7 +239,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NativeValueIndexByQName
+name|UpdateListener
 import|;
 end_import
 
@@ -251,7 +251,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|UpdateListener
+name|NativeValueIndex
 import|;
 end_import
 
@@ -304,6 +304,18 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -1356,28 +1368,35 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-name|NativeValueIndexByQName
-name|index
+name|NativeValueIndex
+name|valueIndex
 init|=
 name|broker
 operator|.
-name|getQNameValueIndex
+name|getValueIndex
 argument_list|()
 decl_stmt|;
 name|Sequence
 name|results
 init|=
-name|index
+name|valueIndex
 operator|.
-name|findByQName
+name|find
 argument_list|(
+name|Constants
+operator|.
+name|EQ
+argument_list|,
+name|documentSet
+argument_list|,
+literal|null
+argument_list|,
 name|attributeQName
 argument_list|,
 name|comparison
-argument_list|,
-name|nodeSet
 argument_list|)
 decl_stmt|;
+comment|//        Sequence results = index.findByQName(attributeQName, comparison, nodeSet);
 comment|//TODO : should we honour (# exist:force-index-use #) ?
 return|return
 operator|(

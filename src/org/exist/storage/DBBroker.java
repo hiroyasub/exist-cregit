@@ -1018,12 +1018,6 @@ name|NativeValueIndex
 name|getValueIndex
 parameter_list|()
 function_decl|;
-specifier|public
-specifier|abstract
-name|NativeValueIndexByQName
-name|getQNameValueIndex
-parameter_list|()
-function_decl|;
 comment|/** 	 * Is string comparison case sensitive? 	 *  	 */
 specifier|public
 name|boolean
