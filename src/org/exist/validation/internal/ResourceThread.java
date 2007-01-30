@@ -227,6 +227,12 @@ specifier|private
 name|OutputStream
 name|outputStream
 decl_stmt|;
+specifier|private
+name|Exception
+name|exception
+init|=
+literal|null
+decl_stmt|;
 comment|/** Creates a new instance of ResourceThread */
 specifier|public
 name|ResourceThread
@@ -266,6 +272,30 @@ name|outputStream
 operator|=
 name|os
 expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|isExceptionThrown
+parameter_list|()
+block|{
+return|return
+operator|(
+name|exception
+operator|!=
+literal|null
+operator|)
+return|;
+block|}
+specifier|public
+name|Exception
+name|getThrownException
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|exception
+return|;
 block|}
 comment|/**      * Start Thread.      */
 specifier|public
@@ -432,6 +462,10 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
+name|exception
+operator|=
+name|ex
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -445,6 +479,10 @@ name|error
 argument_list|(
 name|ex
 argument_list|)
+expr_stmt|;
+name|exception
+operator|=
+name|ex
 expr_stmt|;
 block|}
 catch|catch
@@ -460,6 +498,10 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
+name|exception
+operator|=
+name|ex
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -473,6 +515,10 @@ name|error
 argument_list|(
 name|ex
 argument_list|)
+expr_stmt|;
+name|exception
+operator|=
+name|ex
 expr_stmt|;
 block|}
 finally|finally
