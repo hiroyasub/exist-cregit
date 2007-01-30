@@ -2701,7 +2701,7 @@ block|{
 comment|// link the next page in the chain back to the new page inserted
 specifier|final
 name|DOMPage
-name|nextInChain
+name|nextPage
 init|=
 name|getCurrentPage
 argument_list|(
@@ -2713,9 +2713,9 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nicph
+name|nextph
 init|=
-name|nextInChain
+name|nextPage
 operator|.
 name|getPageHeader
 argument_list|()
@@ -2742,22 +2742,22 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|nextInChain
+name|nextPage
 operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|nicph
+name|nextph
 operator|.
 name|getNextDataPage
 argument_list|()
 argument_list|,
-name|nicph
+name|nextph
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|nicph
+name|nextph
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -2767,13 +2767,13 @@ name|writeToLog
 argument_list|(
 name|loggable
 argument_list|,
-name|nextInChain
+name|nextPage
 operator|.
 name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|nicph
+name|nextph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -2783,7 +2783,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nextInChain
+name|nextPage
 operator|.
 name|setDirty
 argument_list|(
@@ -2794,7 +2794,7 @@ name|dataCache
 operator|.
 name|add
 argument_list|(
-name|nextInChain
+name|nextPage
 argument_list|)
 expr_stmt|;
 block|}
@@ -2865,22 +2865,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|getPageHeader
-argument_list|()
-operator|.
-name|setRecordCount
-argument_list|(
-operator|(
-name|short
-operator|)
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//rec.getPage().getPageHeader().setRecordCount((short) 1);
 comment|//enough space in split page
 block|}
 else|else
@@ -2924,7 +2909,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// does value fit into page?
+comment|// the value doesn't fit into page : create new page
 block|}
 if|else if
 condition|(
@@ -3329,6 +3314,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
+comment|//append the value
 block|}
 else|else
 block|{
@@ -8113,6 +8099,57 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Set the last page in the sequence to which nodes are currently appended. 	 *  	 * @param page 	 *                     The new currentPage value 	 */
+specifier|private
+specifier|final
+name|void
+name|setCurrentPage
+parameter_list|(
+name|DOMPage
+name|page
+parameter_list|)
+block|{
+name|long
+name|pnum
+init|=
+name|pages
+operator|.
+name|get
+argument_list|(
+name|owner
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|pnum
+operator|==
+name|page
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+condition|)
+return|return;
+comment|// pages.remove(owner);
+comment|// LOG.debug("current page set: " + page.getPage().getPageNum() + " by " +
+comment|// owner.hashCode() +
+comment|// "; thread: " + Thread.currentThread().getName());
+name|pages
+operator|.
+name|put
+argument_list|(
+name|owner
+argument_list|,
+name|page
+operator|.
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 * Retrieve the last page in the current sequence. 	 *  	 * @return The currentPage value 	 */
 specifier|private
 specifier|final
@@ -10130,57 +10167,6 @@ operator|.
 name|toString
 argument_list|()
 return|;
-block|}
-comment|/** 	 * Set the last page in the sequence to which nodes are currently appended. 	 *  	 * @param page 	 *                     The new currentPage value 	 */
-specifier|private
-specifier|final
-name|void
-name|setCurrentPage
-parameter_list|(
-name|DOMPage
-name|page
-parameter_list|)
-block|{
-name|long
-name|pnum
-init|=
-name|pages
-operator|.
-name|get
-argument_list|(
-name|owner
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pnum
-operator|==
-name|page
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-condition|)
-return|return;
-comment|// pages.remove(owner);
-comment|// LOG.debug("current page set: " + page.getPage().getPageNum() + " by " +
-comment|// owner.hashCode() +
-comment|// "; thread: " + Thread.currentThread().getName());
-name|pages
-operator|.
-name|put
-argument_list|(
-name|owner
-argument_list|,
-name|page
-operator|.
-name|page
-operator|.
-name|getPageNum
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** 	 * Get the active Lock object for this file. 	 *  	 * @see org.exist.util.Lockable#getLock() 	 */
 specifier|public
@@ -16215,7 +16201,7 @@ name|len
 operator|+=
 name|vlen
 expr_stmt|;
-comment|//TODO : why 2 in ph.incRecordCount(); ?
+comment|//TODO : why 2 occurences of ph.incRecordCount(); ?
 name|ph
 operator|.
 name|incRecordCount
