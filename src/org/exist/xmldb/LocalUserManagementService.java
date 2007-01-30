@@ -223,6 +223,10 @@ name|XMLDBException
 import|;
 end_import
 
+begin_comment
+comment|/*************************************************  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it **************************************/
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -4090,6 +4094,31 @@ argument_list|(
 name|u
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|addUserGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+block|}
+specifier|public
+name|void
+name|removeGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|rmgroup
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
 block|}
 block|}
 end_class

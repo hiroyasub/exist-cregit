@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  An eXist-specific service which provides methods to manage users and  *  permissions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  *  An eXist-specific service which provides methods to manage users and  *  permissions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_interface
@@ -234,7 +234,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Check if the resource has a user lock.      *       * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *       * @param res      * @throws XMLDBException      */
+comment|/**      * Check if the resource has a user lock.      *       * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *       * @param res      * @return      * @throws XMLDBException      */
 specifier|public
 name|String
 name|hasUserLock
@@ -298,7 +298,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @throws XMLDBException 	 */
+comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @return 	 * @throws XMLDBException 	 */
 specifier|public
 name|String
 index|[]
@@ -383,13 +383,38 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Delete a user from the database      *      *@param user      *@exception  XMLDBException        */
+comment|/**      *  Delete a user from the database      *      *@param  name                Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|removeUser
 parameter_list|(
 name|User
 name|user
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/** 	 *  Update the specified user without update user's password 	 *  Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
+specifier|public
+name|void
+name|addUserGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/** 	 *  Update the specified user removing a group from user's group 	 *  Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@param  rmgroup             Description of group to remove  	 *@exception  XMLDBException  Description of the Exception 	 */
+specifier|public
+name|void
+name|removeGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|,
+name|String
+name|rmgroup
 parameter_list|)
 throws|throws
 name|XMLDBException
