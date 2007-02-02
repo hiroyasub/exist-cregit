@@ -872,9 +872,6 @@ block|}
 name|DocumentImpl
 name|documentImpl
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 decl_stmt|;
 name|LOG
@@ -1741,12 +1738,7 @@ name|tattribs
 operator|.
 name|addAttribute
 argument_list|(
-operator|(
-operator|(
-name|AttrImpl
-operator|)
 name|node
-operator|)
 operator|.
 name|getQName
 argument_list|()
@@ -1772,18 +1764,35 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Error SENR0001: attribute '"
+operator|+
+name|node
+operator|.
+name|getQName
+argument_list|()
+operator|+
+literal|"' has no parent element. "
+operator|+
+literal|"While serializing document "
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|SAXException
 argument_list|(
 literal|"Error SENR0001: attribute '"
 operator|+
-operator|(
-operator|(
-name|AttrImpl
-operator|)
 name|node
-operator|)
 operator|.
 name|getQName
 argument_list|()
@@ -1791,6 +1800,7 @@ operator|+
 literal|"' has no parent element"
 argument_list|)
 throw|;
+block|}
 block|}
 else|else
 name|receiver
