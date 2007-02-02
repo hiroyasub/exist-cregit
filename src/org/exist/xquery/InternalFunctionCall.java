@@ -810,6 +810,22 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+name|function
+operator|.
+name|accept
+argument_list|(
+name|visitor
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

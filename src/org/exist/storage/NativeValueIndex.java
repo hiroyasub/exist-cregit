@@ -4066,6 +4066,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Searching with QName prefix"
+argument_list|)
+expr_stmt|;
 name|searchKey
 operator|=
 operator|new
