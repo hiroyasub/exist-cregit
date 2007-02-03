@@ -124,6 +124,7 @@ name|MultiReadReentrantLock
 parameter_list|()
 block|{
 block|}
+comment|/* @deprecated Use other method      * @see org.exist.storage.lock.Lock#acquire()      */
 specifier|public
 name|boolean
 name|acquire
@@ -406,6 +407,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/* @deprecated : use other method      * @see org.exist.storage.lock.Lock#release()      */
 specifier|public
 name|void
 name|release
@@ -580,6 +582,11 @@ operator|+
 literal|"thread was interrupted or it never acquired the lock."
 argument_list|)
 expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
+expr_stmt|;
 block|}
 comment|//        log.debug("writeLock released: " + outstandingWriteLocks +
 comment|//                "; thread: " + Thread.currentThread().getName());
@@ -671,6 +678,11 @@ literal|"Possible lock problem: a thread released a read lock it didn't hold. Ei
 operator|+
 literal|"thread was interrupted or it never acquired the lock."
 argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
 expr_stmt|;
 block|}
 block|}

@@ -1370,6 +1370,21 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|vlen
@@ -1836,6 +1851,21 @@ index|[]
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -1889,6 +1919,21 @@ name|InputStream
 name|is
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -2107,6 +2152,21 @@ index|[]
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 comment|// check if we need an overflow page
 name|boolean
 name|isOverflow
@@ -2266,7 +2326,7 @@ name|offset
 operator|+=
 name|vlen
 expr_stmt|;
-comment|//OK : we now have an offset
+comment|//OK : we now have an offset for the new node
 specifier|final
 name|int
 name|dlen
@@ -2304,7 +2364,7 @@ operator|+
 name|value
 operator|.
 name|length
-operator|<
+operator|<=
 name|fileHeader
 operator|.
 name|getWorkSize
@@ -3707,7 +3767,31 @@ operator|.
 name|getPageNum
 argument_list|()
 operator|+
-literal|": no split required"
+literal|": no split required. Next :"
+operator|+
+name|rec
+operator|.
+name|getPage
+argument_list|()
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getNextDataPage
+argument_list|()
+operator|+
+literal|" Previous :"
+operator|+
+name|rec
+operator|.
+name|getPage
+argument_list|()
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getPrevDataPage
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|rec
@@ -4034,6 +4118,7 @@ name|pos
 operator|+=
 name|LENGTH_TID
 expr_stmt|;
+comment|/* This is already a link, so we just copy it */
 if|if
 condition|(
 name|ItemId
@@ -4044,7 +4129,7 @@ name|tid
 argument_list|)
 condition|)
 block|{
-comment|/* This is already a link, so we just copy it */
+comment|/* no room in the old page, append a new one */
 if|if
 condition|(
 name|rec
@@ -4064,7 +4149,6 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
-comment|/* no room in the old page, append a new one */
 specifier|final
 name|DOMPage
 name|newPage
@@ -4075,7 +4159,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newph
 init|=
 name|newPage
 operator|.
@@ -4178,7 +4262,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|nph
+name|newph
 operator|.
 name|setNextTID
 argument_list|(
@@ -4188,7 +4272,7 @@ name|getCurrentTID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -4201,7 +4285,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newph
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -4507,7 +4591,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newph
 init|=
 name|newPage
 operator|.
@@ -4612,7 +4696,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|nph
+name|newph
 operator|.
 name|setNextTID
 argument_list|(
@@ -4622,7 +4706,7 @@ name|getCurrentTID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -4632,6 +4716,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//No next page ?
 name|LOG
 operator|.
 name|debug
@@ -5131,6 +5216,7 @@ name|tid
 argument_list|)
 condition|)
 block|{
+comment|// the link doesn't fit into the old page. Append a new page
 if|if
 condition|(
 name|rec
@@ -5150,7 +5236,6 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
-comment|// the link doesn't fit into the old page. Append a new page
 specifier|final
 name|DOMPage
 name|newPage
@@ -5161,7 +5246,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newph
 init|=
 name|newPage
 operator|.
@@ -5264,7 +5349,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|nph
+name|newph
 operator|.
 name|setNextTID
 argument_list|(
@@ -5274,7 +5359,7 @@ name|getCurrentTID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newph
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -5287,7 +5372,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newph
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -7474,6 +7559,21 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|boolean
 name|flushed
 init|=
@@ -8157,6 +8257,21 @@ name|long
 name|pnum
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|OverflowDOMPage
@@ -8541,6 +8656,21 @@ name|Value
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -8978,6 +9108,21 @@ name|long
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|RecordPos
 name|rec
@@ -9644,7 +9789,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Remove the specified page. The page is added to the list of free pages. 	 *  	 * @param page 	 */
-specifier|public
+specifier|private
 name|void
 name|removePage
 parameter_list|(
@@ -9877,6 +10022,21 @@ name|long
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 comment|//		 StringBuffer debug = new StringBuffer();
 comment|//		 debug.append("Removed pages: ");
 name|long
@@ -12536,14 +12696,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -13249,14 +13409,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -15340,14 +15500,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -15491,14 +15651,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -15585,14 +15745,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -15879,14 +16039,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -16571,14 +16731,14 @@ condition|(
 name|page
 operator|.
 name|len
-operator|<=
+operator|<
 literal|0
 condition|)
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length<= 0"
+literal|"page length< 0"
 argument_list|)
 expr_stmt|;
 name|ph
@@ -17404,6 +17564,20 @@ name|int
 name|len
 parameter_list|)
 block|{
+comment|//TODO : how can we get 4032 ?
+if|if
+condition|(
+name|len
+operator|>
+literal|4032
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"too long !"
+argument_list|)
+expr_stmt|;
 name|dataLen
 operator|=
 name|len

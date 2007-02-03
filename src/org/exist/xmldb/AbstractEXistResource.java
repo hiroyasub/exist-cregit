@@ -483,7 +483,9 @@ condition|)
 name|parentCollection
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|lockMode
+argument_list|)
 expr_stmt|;
 block|}
 block|}

@@ -12911,7 +12911,11 @@ block|{
 name|lock
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -13564,7 +13568,11 @@ block|{
 name|lock
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 block|}
 block|}

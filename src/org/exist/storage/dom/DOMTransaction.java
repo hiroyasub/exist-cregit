@@ -88,11 +88,8 @@ decl_stmt|;
 specifier|private
 name|int
 name|mode
-init|=
-name|Lock
-operator|.
-name|READ_LOCK
 decl_stmt|;
+comment|/**      * @deprecated : use other constructors      * @param owner      * @param f      */
 specifier|public
 name|DOMTransaction
 parameter_list|(
@@ -110,6 +107,12 @@ expr_stmt|;
 name|file
 operator|=
 name|f
+expr_stmt|;
+name|mode
+operator|=
+name|Lock
+operator|.
+name|READ_LOCK
 expr_stmt|;
 block|}
 specifier|public
@@ -263,7 +266,9 @@ block|{
 name|lock
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|mode
+argument_list|)
 expr_stmt|;
 block|}
 return|return

@@ -3865,7 +3865,11 @@ name|getUpdateLock
 argument_list|()
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -3975,7 +3979,11 @@ name|getUpdateLock
 argument_list|()
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 comment|//return the result of the transformation
 return|return
@@ -4063,7 +4071,11 @@ name|getUpdateLock
 argument_list|()
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 comment|//return the result of the transformation
 return|return
@@ -4191,7 +4203,11 @@ name|getUpdateLock
 argument_list|()
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 comment|//return the result of the transformation from the cache
 return|return
@@ -5013,7 +5029,11 @@ name|getUpdateLock
 argument_list|()
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 block|}
 return|return

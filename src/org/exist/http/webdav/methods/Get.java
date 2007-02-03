@@ -849,7 +849,11 @@ condition|)
 name|collection
 operator|.
 name|release
-argument_list|()
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
 expr_stmt|;
 name|pool
 operator|.
