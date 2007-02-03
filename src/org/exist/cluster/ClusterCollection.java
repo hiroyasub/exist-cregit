@@ -1521,6 +1521,7 @@ name|lockMode
 argument_list|)
 return|;
 block|}
+comment|/*       * @deprecated Use other method      * @see org.exist.collections.Collection#releaseDocument(org.exist.dom.DocumentImpl)      */
 specifier|public
 name|void
 name|releaseDocument
@@ -1534,6 +1535,27 @@ operator|.
 name|releaseDocument
 argument_list|(
 name|doc
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|releaseDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|int
+name|mode
+parameter_list|)
+block|{
+name|collection
+operator|.
+name|releaseDocument
+argument_list|(
+name|doc
+argument_list|,
+name|mode
 argument_list|)
 expr_stmt|;
 block|}

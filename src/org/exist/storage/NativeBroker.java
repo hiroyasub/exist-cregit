@@ -3154,7 +3154,6 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 try|try
 block|{
 name|lock
@@ -8317,7 +8316,7 @@ name|acquire
 argument_list|(
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -8441,7 +8440,7 @@ name|release
 argument_list|(
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}

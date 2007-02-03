@@ -7714,6 +7714,12 @@ expr_stmt|;
 name|Collection
 name|collection
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|collection
+operator|=
 name|broker
 operator|.
 name|openCollection
@@ -7724,7 +7730,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|Permission
 name|perm
 init|=
@@ -7738,10 +7744,16 @@ literal|null
 condition|)
 block|{
 comment|// TODO check XML/Binary resource
-comment|//                DocumentImpl doc = (DocumentImpl) broker.openDocument(resource, Lock.READ_LOCK);
+comment|// DocumentImpl doc = (DocumentImpl) broker.openDocument(resource, Lock.READ_LOCK);
 name|DocumentImpl
 name|doc
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|doc
+operator|=
 operator|(
 name|DocumentImpl
 operator|)
@@ -7755,7 +7767,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -7780,6 +7792,15 @@ operator|.
 name|getPermissions
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
 name|doc
 operator|.
 name|getUpdateLock
@@ -7793,6 +7814,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 name|perm
@@ -7801,15 +7823,6 @@ name|collection
 operator|.
 name|getPermissions
 argument_list|()
-expr_stmt|;
-name|collection
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
 expr_stmt|;
 block|}
 name|Permissions
@@ -7852,6 +7865,25 @@ expr_stmt|;
 return|return
 name|p
 return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+name|collection
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(

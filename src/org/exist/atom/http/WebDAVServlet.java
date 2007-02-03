@@ -984,6 +984,8 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+try|try
+block|{
 name|broker
 operator|=
 name|pool
@@ -1055,6 +1057,18 @@ name|updateToExisting
 condition|)
 block|{
 comment|// We do nothing right now
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Update to existing resource, skipping feed update."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|collection
@@ -1072,14 +1086,6 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Update to existing resource, skipping feed update."
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
 name|TransactionManager
 name|transact
@@ -2029,6 +2035,8 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+try|try
+block|{
 name|broker
 operator|=
 name|pool
@@ -2058,15 +2066,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -2086,6 +2085,25 @@ literal|" already exists"
 argument_list|)
 expr_stmt|;
 return|return;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+name|collection
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch

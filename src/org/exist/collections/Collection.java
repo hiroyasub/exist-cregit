@@ -2143,7 +2143,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @deprecated Use other method      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2224,15 +2224,10 @@ condition|)
 return|return
 literal|null
 return|;
-name|Lock
-name|updateLock
-init|=
 name|doc
 operator|.
 name|getUpdateLock
 argument_list|()
-decl_stmt|;
-name|updateLock
 operator|.
 name|acquire
 argument_list|(
@@ -2257,7 +2252,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Release any locks held on the document.      *      * @param doc      */
+comment|/**      * Release any locks held on the document.      * @deprecated Use other method      * @param doc      */
 specifier|public
 name|void
 name|releaseDocument
@@ -2283,6 +2278,37 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Release any locks held on the document.      *      * @param doc      */
+specifier|public
+name|void
+name|releaseDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|int
+name|mode
+parameter_list|)
+block|{
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
+block|{
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|mode
 argument_list|)
 expr_stmt|;
 block|}

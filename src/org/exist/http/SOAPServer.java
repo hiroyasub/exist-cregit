@@ -3910,10 +3910,16 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
-comment|//get the WSDL StyleSheet
 name|DocumentImpl
 name|docStyleSheet
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|//get the WSDL StyleSheet
+name|docStyleSheet
+operator|=
 name|broker
 operator|.
 name|getXMLResource
@@ -3929,7 +3935,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//has the stylesheet changed, or is this the first call for this version
 if|if
 condition|(
@@ -3972,6 +3978,19 @@ name|getLastModified
 argument_list|()
 expr_stmt|;
 block|}
+comment|//return the result of the transformation
+return|return
+name|descriptionWSDL
+return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|docStyleSheet
+operator|!=
+literal|null
+condition|)
 comment|//close the Stylesheet Document and release the read lock
 name|docStyleSheet
 operator|.
@@ -3985,10 +4004,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|//return the result of the transformation
-return|return
-name|descriptionWSDL
-return|;
+block|}
 block|}
 comment|/**     	 * Returns the Human Readable description for the XQWS Description     	 * Caches the result, however the cache is regenerated if     	 * the StyleSheet used for the transformation changes     	 *      	 * @return byte array containing the WSDL     	 */
 specifier|public
@@ -4003,10 +4019,16 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
-comment|//get the Human Description StyleSheet
 name|DocumentImpl
 name|docStyleSheet
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|//get the Human Description StyleSheet
+name|docStyleSheet
+operator|=
 name|broker
 operator|.
 name|getXMLResource
@@ -4022,7 +4044,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//has the stylesheet changed, or is this the first call for this version
 if|if
 condition|(
@@ -4064,6 +4086,19 @@ name|getLastModified
 argument_list|()
 expr_stmt|;
 block|}
+comment|//return the result of the transformation
+return|return
+name|descriptionHuman
+return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|docStyleSheet
+operator|!=
+literal|null
+condition|)
 comment|//close the Stylesheet Document and release the read lock
 name|docStyleSheet
 operator|.
@@ -4077,10 +4112,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|//return the result of the transformation
-return|return
-name|descriptionHuman
-return|;
+block|}
 block|}
 comment|/**     	 * Returns the (Human Readable) description of a Function for the XQWS Description     	 * Caches the result, however the cache is regenerated if     	 * the StyleSheet used for the transformation changes     	 *      	 * @param functionName The name of the function to describe     	 *      	 * @return byte array containing the Function Description     	 */
 specifier|public
@@ -4098,10 +4130,16 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
-comment|//get the Function Description StyleSheet
 name|DocumentImpl
 name|docStyleSheet
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|//get the Function Description StyleSheet
+name|docStyleSheet
+operator|=
 name|broker
 operator|.
 name|getXMLResource
@@ -4117,7 +4155,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//has the stylesheet changed?
 if|if
 condition|(
@@ -4196,19 +4234,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//close the Stylesheet Document and release the read lock
-name|docStyleSheet
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 comment|//return the result of the transformation from the cache
 return|return
 operator|(
@@ -4222,6 +4247,29 @@ argument_list|(
 name|functionName
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|docStyleSheet
+operator|!=
+literal|null
+condition|)
+comment|//close the Stylesheet Document and release the read lock
+name|docStyleSheet
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**     	 * Returns the function node from the internal description     	 *      	 * @param functionName	The name of the function to return     	 *      	 * @return the node from the internal description     	 */
 specifier|public
@@ -4988,6 +5036,13 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+name|BinaryDocument
+name|docXQWS
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 name|XmldbURI
 name|pathUri
 init|=
@@ -4998,9 +5053,8 @@ argument_list|(
 name|path
 argument_list|)
 decl_stmt|;
-name|BinaryDocument
 name|docXQWS
-init|=
+operator|=
 operator|(
 name|BinaryDocument
 operator|)
@@ -5014,7 +5068,13 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+return|return
+name|docXQWS
+return|;
+block|}
+finally|finally
+block|{
 comment|//close the XQWS Document and release the read lock
 if|if
 condition|(
@@ -5036,9 +5096,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-name|docXQWS
-return|;
+block|}
 block|}
 comment|/**          * Gets the data from an XQWS Binary Document          *           * @param broker	The Database Broker to use          * @param docXQWS	The XQWS Binary Document          *           * @return	byte array containing the content of the XQWS Binary document          */
 specifier|private

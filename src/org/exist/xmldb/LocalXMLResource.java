@@ -1153,7 +1153,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|true
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 if|if
@@ -1236,6 +1238,10 @@ operator|.
 name|releaseDocument
 argument_list|(
 name|document
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|pool
@@ -1769,7 +1775,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 if|if
@@ -1878,7 +1886,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 if|if
@@ -1988,7 +1998,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 if|if
@@ -2265,7 +2277,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 return|return
@@ -2368,7 +2382,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|boolean
+name|int
 name|lock
 parameter_list|)
 throws|throws
@@ -2382,6 +2396,10 @@ decl_stmt|;
 if|if
 condition|(
 name|lock
+operator|!=
+name|Lock
+operator|.
+name|NO_LOCK
 condition|)
 block|{
 try|try
@@ -2398,6 +2416,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|docId
+argument_list|,
+name|lock
 argument_list|)
 expr_stmt|;
 block|}
@@ -2499,7 +2519,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 comment|// this XMLResource represents a document
@@ -2579,7 +2601,9 @@ name|getDocument
 argument_list|(
 name|broker
 argument_list|,
-literal|false
+name|Lock
+operator|.
+name|NO_LOCK
 argument_list|)
 decl_stmt|;
 if|if

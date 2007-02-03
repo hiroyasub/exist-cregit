@@ -602,6 +602,12 @@ expr_stmt|;
 name|Collection
 name|collection
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|collection
+operator|=
 name|broker
 operator|.
 name|openCollection
@@ -620,7 +626,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|mime
@@ -674,23 +680,6 @@ argument_list|)
 expr_stmt|;
 name|collection
 operator|.
-name|release
-argument_list|(
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
 name|store
 argument_list|(
 name|txn
@@ -733,6 +722,27 @@ literal|0
 index|]
 argument_list|,
 name|contentType
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|collection
+operator|.
+name|release
+argument_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1331,6 +1341,8 @@ argument_list|,
 name|resource
 argument_list|)
 expr_stmt|;
+comment|//TOUNDERSTAND : this lock is released below (in the finally clause)
+comment|//isn't it rather a user lock release attempt ?
 comment|// ?
 name|resource
 operator|.
