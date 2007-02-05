@@ -151,6 +151,26 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+if|if
+condition|(
+name|mode
+operator|==
+name|Lock
+operator|.
+name|NO_LOCK
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"acquired with no lock !"
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 switch|switch
 condition|(
 name|mode

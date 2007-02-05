@@ -992,6 +992,7 @@ expr_stmt|;
 block|}
 comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 */
 specifier|public
+specifier|synchronized
 name|boolean
 name|isLockedForWrite
 parameter_list|()

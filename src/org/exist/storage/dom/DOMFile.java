@@ -8735,21 +8735,6 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
-operator|!
-name|lock
-operator|.
-name|hasLock
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"the file doesn't own a lock"
-argument_list|)
-expr_stmt|;
 return|return
 name|super
 operator|.
@@ -10741,7 +10726,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"changing owner"
+literal|"changing owner from "
+operator|+
+name|owner
+operator|+
+literal|" to "
+operator|+
+name|obj
 argument_list|)
 expr_stmt|;
 block|}

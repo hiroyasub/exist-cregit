@@ -4487,6 +4487,7 @@ operator|.
 name|XML_FILE
 condition|)
 block|{
+comment|//TODO : put a lock on newDoc ?
 name|DocumentImpl
 name|newDoc
 init|=
@@ -9971,6 +9972,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//TODO : put a lock on newDoc ?
 name|DocumentImpl
 name|newDoc
 init|=
@@ -18107,6 +18109,7 @@ operator|<=
 name|depth
 condition|)
 block|{
+comment|//TODO : use NativeBroker.this to avoid owner change ?
 operator|new
 name|DOMTransaction
 argument_list|(
