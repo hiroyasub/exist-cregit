@@ -1134,19 +1134,6 @@ comment|/**      * Closes the collection, i.e. releases the lock held by      * 
 specifier|public
 name|void
 name|release
-parameter_list|()
-block|{
-name|getLock
-argument_list|()
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**      * Closes the collection, i.e. releases the lock held by      * the current thread. This is a shortcut for getLock().release().      */
-specifier|public
-name|void
-name|release
 parameter_list|(
 name|int
 name|mode

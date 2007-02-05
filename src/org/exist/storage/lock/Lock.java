@@ -85,12 +85,6 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/** 	 * Release a lock. This method assumes that the 	 * lock is a read lock. 	 */
-specifier|public
-name|void
-name|release
-parameter_list|( )
-function_decl|;
 comment|/**      * Release a lock of the specified type.      *       * @param mode      */
 specifier|public
 name|void
@@ -104,6 +98,11 @@ comment|/**      * Returns true if there are active or pending      * write lock
 specifier|public
 name|boolean
 name|isLockedForWrite
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|hasLock
 parameter_list|()
 function_decl|;
 block|}

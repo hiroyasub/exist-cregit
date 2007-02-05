@@ -1260,6 +1260,21 @@ name|ReadOnlyException
 block|{
 if|if
 condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|value
 operator|==
 literal|null
@@ -1380,7 +1395,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -1861,7 +1876,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -1929,7 +1944,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -1982,6 +1997,21 @@ name|long
 name|pageNum
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 return|return
 name|getOverflowValue
 argument_list|(
@@ -2000,6 +2030,21 @@ name|OutputStream
 name|os
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|OverflowDOMPage
@@ -2027,7 +2072,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while loading overflow value"
 argument_list|,
@@ -2055,6 +2100,21 @@ index|[]
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -2162,7 +2222,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -6719,6 +6779,21 @@ name|void
 name|closeAndRemove
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|closeAndRemove
@@ -6816,6 +6891,21 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|FindCallback
 name|cb
@@ -7121,6 +7211,21 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|node
 operator|.
 name|hasChildNodes
@@ -7231,7 +7336,7 @@ name|long
 name|findValue
 parameter_list|(
 name|Object
-name|lock
+name|lockObject
 parameter_list|,
 name|NodeProxy
 name|node
@@ -7241,6 +7346,21 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|DocumentImpl
 name|doc
@@ -7423,7 +7543,7 @@ init|=
 operator|new
 name|NodeIterator
 argument_list|(
-name|lock
+name|lockObject
 argument_list|,
 name|this
 argument_list|,
@@ -7508,6 +7628,21 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 name|FindCallback
 name|cb
 init|=
@@ -7559,21 +7694,6 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
-operator|!
-name|lock
-operator|.
-name|isLockedForWrite
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"the file doesn't own a write lock"
-argument_list|)
-expr_stmt|;
 name|boolean
 name|flushed
 init|=
@@ -7873,6 +7993,21 @@ name|Value
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -7956,6 +8091,21 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -8040,6 +8190,21 @@ name|long
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 name|RecordPos
 name|rec
 init|=
@@ -8208,6 +8373,21 @@ name|long
 name|pnum
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|OverflowDOMPage
@@ -8234,7 +8414,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while loading overflow value"
 argument_list|,
@@ -8267,7 +8447,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -8299,7 +8479,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while removing overflow value"
 argument_list|,
@@ -8522,6 +8702,21 @@ name|void
 name|closeDocument
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 name|pages
 operator|.
 name|remove
@@ -8540,6 +8735,21 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 return|return
 name|super
 operator|.
@@ -8567,6 +8777,21 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|long
 name|p
@@ -8637,6 +8862,21 @@ name|Value
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|remove
 argument_list|(
 literal|null
@@ -8666,7 +8906,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -9089,6 +9329,21 @@ name|long
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 name|removeNode
 argument_list|(
 literal|null
@@ -9118,7 +9373,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -9329,7 +9584,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while removing overflow page"
 argument_list|,
@@ -9797,6 +10052,21 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 comment|//dataCache.remove(page);
 specifier|final
 name|DOMFilePageHeader
@@ -10032,7 +10302,7 @@ argument_list|()
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
@@ -10421,6 +10691,7 @@ return|;
 block|}
 comment|/** 	 * The current object owning this file. 	 *  	 * @param obj 	 *                     The new ownerObject value 	 */
 specifier|public
+specifier|synchronized
 specifier|final
 name|void
 name|setOwnerObject
@@ -10443,6 +10714,34 @@ operator|.
 name|warn
 argument_list|(
 literal|"setOwnerObject(null)"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|owner
+operator|!=
+literal|null
+operator|&&
+name|owner
+operator|!=
+name|obj
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|obj
+operator|instanceof
+name|NativeBroker
+operator|)
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"changing owner"
 argument_list|)
 expr_stmt|;
 block|}
@@ -10570,6 +10869,21 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a write lock"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|RecordPos
 name|rec
@@ -10774,6 +11088,21 @@ name|boolean
 name|addWhitespace
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|long
@@ -11010,6 +11339,21 @@ name|boolean
 name|addWhitespace
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 comment|// locate the next real node, skipping relocated nodes
 name|boolean
 name|foundNext
@@ -11760,6 +12104,21 @@ name|boolean
 name|skipLinks
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|lock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"the file doesn't own a lock"
+argument_list|)
+expr_stmt|;
 name|long
 name|pageNr
 init|=
@@ -17573,7 +17932,7 @@ literal|4032
 condition|)
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"too long !"
 argument_list|)
@@ -18403,7 +18762,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 name|ioe
 argument_list|)
@@ -19182,7 +19541,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while writing overflow page"
 argument_list|,
@@ -19394,7 +19753,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while writing overflow page"
 argument_list|,
@@ -19511,7 +19870,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"io error while loading overflow page "
 operator|+
