@@ -518,6 +518,25 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|String
+name|qry2
+init|=
+literal|"for $a in collection('"
+operator|+
+name|testColl
+operator|+
+literal|"')/test/fruit[@name&= 'apple'] return $a"
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|doXQuery
+argument_list|(
+name|qry2
+argument_list|)
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|int

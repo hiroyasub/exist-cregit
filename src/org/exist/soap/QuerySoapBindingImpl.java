@@ -2073,15 +2073,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|xpath
-operator|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
-name|xpath
-argument_list|)
-expr_stmt|;
+comment|//            xpath = StringValue.expand(xpath);
 name|LOG
 operator|.
 name|debug
