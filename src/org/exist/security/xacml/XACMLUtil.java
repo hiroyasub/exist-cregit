@@ -1391,6 +1391,10 @@ name|documentSet
 argument_list|,
 literal|null
 argument_list|,
+name|NodeSet
+operator|.
+name|ANCESTOR
+argument_list|,
 name|attributeQName
 argument_list|,
 name|comparison

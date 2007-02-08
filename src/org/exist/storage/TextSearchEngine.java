@@ -923,6 +923,9 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|,
+name|int
+name|axis
+parameter_list|,
 name|QName
 name|qname
 parameter_list|,
@@ -943,6 +946,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|contextSet
+argument_list|,
+name|axis
 argument_list|,
 name|qname
 argument_list|,
@@ -968,6 +973,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|contextSet
+parameter_list|,
+name|int
+name|axis
 parameter_list|,
 name|QName
 name|qname
@@ -997,6 +1005,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|contextSet
+parameter_list|,
+name|int
+name|axis
 parameter_list|,
 name|QName
 name|qname

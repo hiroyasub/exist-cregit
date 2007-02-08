@@ -69,9 +69,6 @@ name|canOptimize
 parameter_list|(
 name|Sequence
 name|contextSequence
-parameter_list|,
-name|Item
-name|contextItem
 parameter_list|)
 function_decl|;
 name|boolean
@@ -84,8 +81,8 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
-name|Item
-name|contextItem
+name|boolean
+name|useContext
 parameter_list|)
 throws|throws
 name|XPathException

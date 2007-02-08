@@ -508,6 +508,10 @@ argument_list|()
 argument_list|,
 name|nodes
 argument_list|,
+name|NodeSet
+operator|.
+name|ANCESTOR
+argument_list|,
 literal|null
 argument_list|,
 name|matcher

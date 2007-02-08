@@ -3452,6 +3452,9 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|,
+name|int
+name|axis
+parameter_list|,
 name|QName
 name|qname
 parameter_list|,
@@ -3482,7 +3485,11 @@ name|contextSet
 argument_list|,
 name|result
 argument_list|,
-literal|true
+name|axis
+operator|==
+name|NodeSet
+operator|.
+name|ANCESTOR
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3760,6 +3767,9 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|,
+name|int
+name|axis
+parameter_list|,
 name|String
 name|expr
 parameter_list|,
@@ -3780,6 +3790,8 @@ argument_list|(
 name|docs
 argument_list|,
 name|contextSet
+argument_list|,
+name|axis
 argument_list|,
 name|expr
 argument_list|,
@@ -3803,6 +3815,9 @@ name|docs
 parameter_list|,
 name|NodeSet
 name|contextSet
+parameter_list|,
+name|int
+name|axis
 parameter_list|,
 name|String
 name|expr
@@ -3967,6 +3982,12 @@ argument_list|,
 name|result
 argument_list|,
 name|comparator
+argument_list|,
+name|axis
+operator|==
+name|NodeSet
+operator|.
+name|ANCESTOR
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -5304,6 +5325,9 @@ name|result
 parameter_list|,
 name|TermMatcher
 name|matcher
+parameter_list|,
+name|boolean
+name|returnAncestor
 parameter_list|)
 block|{
 name|super
@@ -5314,7 +5338,7 @@ name|contextSet
 argument_list|,
 name|result
 argument_list|,
-literal|true
+name|returnAncestor
 argument_list|)
 expr_stmt|;
 name|this

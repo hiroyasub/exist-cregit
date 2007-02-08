@@ -653,6 +653,10 @@ argument_list|()
 argument_list|,
 literal|null
 argument_list|,
+name|NodeSet
+operator|.
+name|DESCENDANT
+argument_list|,
 literal|null
 argument_list|,
 name|terms
