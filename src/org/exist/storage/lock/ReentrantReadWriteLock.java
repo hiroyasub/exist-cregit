@@ -475,7 +475,7 @@ name|Integer
 operator|)
 name|modeStack
 operator|.
-name|peek
+name|pop
 argument_list|()
 decl_stmt|;
 name|top
