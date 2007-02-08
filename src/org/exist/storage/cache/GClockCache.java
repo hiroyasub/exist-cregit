@@ -146,6 +146,8 @@ operator|new
 name|Long2ObjectHashMap
 argument_list|(
 name|size
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 name|accounting
@@ -849,6 +851,8 @@ operator|new
 name|Long2ObjectHashMap
 argument_list|(
 name|newSize
+operator|*
+literal|2
 argument_list|)
 decl_stmt|;
 for|for
@@ -952,6 +956,8 @@ operator|new
 name|Long2ObjectHashMap
 argument_list|(
 name|newSize
+operator|*
+literal|2
 argument_list|)
 expr_stmt|;
 name|size
