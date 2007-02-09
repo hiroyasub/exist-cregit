@@ -7708,6 +7708,29 @@ block|}
 else|else
 block|{
 comment|//lock the temp collection
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
+block|{
+name|temp
+operator|.
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//lock the temp collection
 name|transaction
 operator|.
 name|registerLock
@@ -7722,6 +7745,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//create a temporary document
 name|DocumentImpl
