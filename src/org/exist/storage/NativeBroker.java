@@ -18191,7 +18191,7 @@ operator|<=
 name|depth
 condition|)
 block|{
-comment|//TODO : use NativeBroker.this to avoid owner change ?
+comment|//TODO : used to be this, but NativeBroker.this avoids an owner change
 operator|new
 name|DOMTransaction
 argument_list|(

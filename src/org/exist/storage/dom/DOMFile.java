@@ -10702,40 +10702,7 @@ literal|"setOwnerObject(null)"
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|owner
-operator|!=
-literal|null
-operator|&&
-name|owner
-operator|!=
-name|obj
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|obj
-operator|instanceof
-name|NativeBroker
-operator|)
-condition|)
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"changing owner from "
-operator|+
-name|owner
-operator|+
-literal|" to "
-operator|+
-name|obj
-argument_list|)
-expr_stmt|;
-block|}
+comment|/* 		if (owner != null&& owner != obj) { 			if (!(obj instanceof NativeBroker)) 				LOG.warn("changing owner from " + owner + " to " + obj);			 		} 		*/
 name|owner
 operator|=
 name|obj
