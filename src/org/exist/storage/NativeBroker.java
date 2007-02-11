@@ -18195,6 +18195,8 @@ comment|//TODO : use NativeBroker.this to avoid owner change ?
 operator|new
 name|DOMTransaction
 argument_list|(
+name|NativeBroker
+operator|.
 name|this
 argument_list|,
 name|domDb
