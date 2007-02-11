@@ -119,6 +119,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|stax
+operator|.
+name|EmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -286,6 +298,30 @@ operator|.
 name|dom
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamException
 import|;
 end_import
 
@@ -2145,30 +2181,17 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|NodeList
-name|cl
-init|=
-name|getChildNodes
-argument_list|()
-decl_stmt|;
+comment|//                    NodeList cl = getChildNodes();
 name|StoredNode
 name|last
 init|=
 operator|(
 name|StoredNode
 operator|)
-name|cl
-operator|.
-name|item
-argument_list|(
-name|cl
-operator|.
-name|getLength
+name|getLastChild
 argument_list|()
-operator|-
-literal|1
-argument_list|)
 decl_stmt|;
+comment|//                    StoredNode last = (StoredNode) cl.item(cl.getLength() - 1);
 name|appendChildren
 argument_list|(
 name|transaction
@@ -4000,26 +4023,62 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|accept
-argument_list|(
-operator|new
-name|NodeVisitor
+try|try
+block|{
+for|for
+control|(
+name|EmbeddedXMLStreamReader
+name|reader
+init|=
+name|ownerDocument
+operator|.
+name|getBroker
 argument_list|()
+operator|.
+name|getXMLStreamReader
+argument_list|(
+name|this
+argument_list|,
+literal|true
+argument_list|)
+init|;
+name|reader
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
 block|{
-specifier|public
-name|boolean
-name|visit
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-comment|//                if (node.getNodeType() != Node.ATTRIBUTE_NODE&&
+name|int
+name|status
+init|=
+name|reader
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|node
+name|status
+operator|!=
+name|XMLStreamReader
 operator|.
-name|nodeId
+name|END_ELEMENT
+condition|)
+block|{
+if|if
+condition|(
+operator|(
+operator|(
+name|NodeId
+operator|)
+name|reader
+operator|.
+name|getProperty
+argument_list|(
+literal|"node-id"
+argument_list|)
+operator|)
 operator|.
 name|isChildOf
 argument_list|(
@@ -4030,16 +4089,64 @@ name|childList
 operator|.
 name|add
 argument_list|(
-name|node
+name|reader
+operator|.
+name|getNode
+argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Internal error while reading child nodes: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLStreamException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Internal error while reading child nodes: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+comment|//        accept(new NodeVisitor() {
+comment|//            public boolean visit(StoredNode node) {
+comment|//                if(node.nodeId.isChildOf(nodeId))
+comment|//                    childList.add(node);
+comment|//                return true;
+comment|//            }
+comment|//        });
 return|return
 name|childList
 return|;
@@ -4231,6 +4338,23 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//        NodeId child = nodeId.newChild();
+comment|//        for (int i = 0; i< children - 1; i++) {
+comment|//            child = child.nextSibling();
+comment|//        }
+comment|//        Node node = getBroker().objectWith(ownerDocument, child);
+name|Node
+name|node
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|node
+operator|==
+literal|null
+condition|)
+block|{
 name|NodeList
 name|cl
 init|=
@@ -4249,6 +4373,10 @@ argument_list|()
 operator|-
 literal|1
 argument_list|)
+return|;
+block|}
+return|return
+name|node
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getTagName()      */
