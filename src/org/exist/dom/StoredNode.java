@@ -811,6 +811,25 @@ operator|=
 name|oldInternalAddress
 expr_stmt|;
 block|}
+comment|/**      * Returns true if the node was modified recently and nodes      * were inserted at the start or in the middle of its children.      *      * @return      */
+specifier|public
+name|boolean
+name|isDirty
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|void
+name|setDirty
+parameter_list|(
+name|boolean
+name|dirty
+parameter_list|)
+block|{
+block|}
 comment|/** 	 * @see org.w3c.dom.Node#getNodeType() 	 */
 specifier|public
 name|short
@@ -951,6 +970,14 @@ condition|)
 return|return
 literal|null
 return|;
+if|if
+condition|(
+name|parent
+operator|.
+name|isDirty
+argument_list|()
+condition|)
+block|{
 try|try
 block|{
 name|EmbeddedXMLStreamReader
@@ -1095,6 +1122,49 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+else|else
+block|{
+name|NodeId
+name|firstChild
+init|=
+name|parent
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|newChild
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|nodeId
+operator|.
+name|equals
+argument_list|(
+name|firstChild
+argument_list|)
+condition|)
+return|return
+literal|null
+return|;
+name|NodeId
+name|siblingId
+init|=
+name|nodeId
+operator|.
+name|precedingSibling
+argument_list|()
+decl_stmt|;
+return|return
+name|ownerDocument
+operator|.
+name|getNode
+argument_list|(
+name|siblingId
+argument_list|)
+return|;
+block|}
 comment|//        PreviousSiblingVisitor visitor = new PreviousSiblingVisitor(this);
 comment|//        ((StoredNode) parent).accept(visitor);
 comment|//        return visitor.last;
@@ -1144,6 +1214,10 @@ decl_stmt|;
 if|if
 condition|(
 name|parent
+operator|==
+literal|null
+operator|||
+name|parent
 operator|.
 name|getNodeType
 argument_list|()
@@ -1155,6 +1229,14 @@ condition|)
 return|return
 literal|null
 return|;
+if|if
+condition|(
+name|parent
+operator|.
+name|isDirty
+argument_list|()
+condition|)
+block|{
 try|try
 block|{
 specifier|final
@@ -1294,6 +1376,26 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+else|else
+block|{
+name|NodeId
+name|siblingId
+init|=
+name|nodeId
+operator|.
+name|nextSibling
+argument_list|()
+decl_stmt|;
+return|return
+name|ownerDocument
+operator|.
+name|getNode
+argument_list|(
+name|siblingId
+argument_list|)
+return|;
+block|}
 comment|//        Iterator iterator = getBroker().getNodeIterator(this);
 comment|//        iterator.next();
 comment|//        getLastNode(iterator, this);

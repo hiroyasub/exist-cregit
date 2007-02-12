@@ -339,18 +339,6 @@ name|XMLStreamException
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|namespace
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * ElementImpl.java  *  * @author Wolfgang Meier  */
 end_comment
@@ -399,6 +387,12 @@ decl_stmt|;
 specifier|private
 name|boolean
 name|preserveWS
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|boolean
+name|isDirty
 init|=
 literal|false
 decl_stmt|;
@@ -545,6 +539,30 @@ block|{
 return|return
 name|indexType
 return|;
+block|}
+specifier|public
+name|boolean
+name|isDirty
+parameter_list|()
+block|{
+return|return
+name|isDirty
+return|;
+block|}
+specifier|public
+name|void
+name|setDirty
+parameter_list|(
+name|boolean
+name|dirty
+parameter_list|)
+block|{
+name|this
+operator|.
+name|isDirty
+operator|=
+name|dirty
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -869,6 +887,14 @@ operator||=
 literal|0x10
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|isDirty
+condition|)
+name|signature
+operator||=
+literal|0x8
+expr_stmt|;
 specifier|final
 name|int
 name|nodeIdLen
@@ -1180,6 +1206,20 @@ literal|0x03
 operator|)
 decl_stmt|;
 name|boolean
+name|isDirty
+init|=
+operator|(
+name|data
+index|[
+name|start
+index|]
+operator|&
+literal|0x8
+operator|)
+operator|==
+literal|0x8
+decl_stmt|;
+name|boolean
 name|hasNamespace
 init|=
 operator|(
@@ -1485,6 +1525,12 @@ operator|.
 name|attributes
 operator|=
 name|attributes
+expr_stmt|;
+name|node
+operator|.
+name|isDirty
+operator|=
+name|isDirty
 expr_stmt|;
 name|node
 operator|.
@@ -2431,7 +2477,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//                    NodeList cl = getChildNodes();
 name|StoredNode
 name|last
 init|=
@@ -2441,7 +2486,6 @@ operator|)
 name|getLastChild
 argument_list|()
 decl_stmt|;
-comment|//                    StoredNode last = (StoredNode) cl.item(cl.getLength() - 1);
 name|appendChildren
 argument_list|(
 name|transaction
@@ -4590,16 +4634,40 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//        NodeId child = nodeId.newChild();
-comment|//        for (int i = 0; i< children - 1; i++) {
-comment|//            child = child.nextSibling();
-comment|//        }
-comment|//        Node node = getBroker().objectWith(ownerDocument, child);
 name|Node
 name|node
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|isDirty
+condition|)
+block|{
+name|NodeId
+name|child
+init|=
+name|nodeId
+operator|.
+name|getChild
+argument_list|(
+name|children
+argument_list|)
+decl_stmt|;
+name|node
+operator|=
+name|getBroker
+argument_list|()
+operator|.
+name|objectWith
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|child
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
@@ -5930,6 +5998,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
@@ -6066,6 +6139,11 @@ argument_list|,
 name|nodes
 argument_list|,
 literal|false
+argument_list|)
+expr_stmt|;
+name|setDirty
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|getBroker
@@ -6684,6 +6762,11 @@ operator|.
 name|endRemove
 argument_list|()
 expr_stmt|;
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
@@ -7002,6 +7085,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+name|setDirty
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 name|attributes
 operator|+=

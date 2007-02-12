@@ -7330,7 +7330,7 @@ operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
 block|}
-comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lock 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
+comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lockObject 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
 specifier|protected
 name|long
 name|findValue
@@ -7412,6 +7412,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 block|{
+comment|//            Thread.dumpStack();
 comment|// node not found in index: try to find the nearest available
 comment|// ancestor and traverse it
 name|NodeId
@@ -7599,6 +7600,9 @@ argument_list|(
 literal|"Node data location not found for node "
 operator|+
 name|node
+operator|.
+name|getNodeId
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -8133,6 +8137,9 @@ argument_list|(
 literal|"node value not found : "
 operator|+
 name|node
+operator|.
+name|getNodeId
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

@@ -102,9 +102,22 @@ name|NodeId
 name|newChild
 parameter_list|()
 function_decl|;
+comment|/**      * Returns a new NodeId representing the nth child node      * of this node. The returned id can be used      * to create new child nodes. The actual id of the      * child might be different, depending on the      * implementation.      *       * @param child      * @return      */
+name|NodeId
+name|getChild
+parameter_list|(
+name|int
+name|child
+parameter_list|)
+function_decl|;
 comment|/**      * Returns a new NodeId representing the next following      * sibling of this node. The returned id can be used      * to create new sibling nodes. The actual id of the      * next sibling might be different, depending on the      * implementation.      *      * @return new sibling node id.      */
 name|NodeId
 name|nextSibling
+parameter_list|()
+function_decl|;
+comment|/**      * Returns a new NodeId representing the prececing      * sibling of this node. The returned id can be used      * to create new sibling nodes. The actual id of the      * next sibling might be different, depending on the      * implementation.      *      * @return new sibling node id.      */
+name|NodeId
+name|precedingSibling
 parameter_list|()
 function_decl|;
 name|NodeId
@@ -123,7 +136,7 @@ name|NodeId
 name|getParentId
 parameter_list|()
 function_decl|;
-comment|/**      * Returns true if the node represented by this node id comes      * after the argument node in document order. If isFollowing is set to true, the method      * behaves as if called to evaluate a following::* XPath select, i.e. it      * returns false for descendants of the current node.       *        * @param other      * @param isFollowing      */
+comment|/**      * Returns true if the node represented by this node id comes      * after the argument node in document order. If isFollowing is set to true, the method      * behaves as if called to evaluate a following::* XPath select, i.e. it      * returns false for descendants of the current node.      *      * @param other      * @param isFollowing      */
 name|boolean
 name|after
 parameter_list|(
@@ -134,7 +147,7 @@ name|boolean
 name|isFollowing
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the node represented by this node id comes      * before the argument node in document order. If isPreceding is set to true, the method      * behaves as if called to evaluate a preceding::* XPath select, i.e. it      * returns false for ancestors of the current node.       *        * @param other      * @param isPreceding      */
+comment|/**      * Returns true if the node represented by this node id comes      * before the argument node in document order. If isPreceding is set to true, the method      * behaves as if called to evaluate a preceding::* XPath select, i.e. it      * returns false for ancestors of the current node.      *      * @param other      * @param isPreceding      */
 name|boolean
 name|before
 parameter_list|(
@@ -160,7 +173,7 @@ name|NodeId
 name|ancestor
 parameter_list|)
 function_decl|;
-comment|/**      * Is the current node a child node of the specified parent?      *       * @param parent the parent node      */
+comment|/**      * Is the current node a child node of the specified parent?      *      * @param parent the parent node      */
 name|boolean
 name|isChildOf
 parameter_list|(
@@ -168,7 +181,7 @@ name|NodeId
 name|parent
 parameter_list|)
 function_decl|;
-comment|/**      * Computes the relationship of this node to the given potential      * ancestor node. The method returns an int constant indicating      * the relation. Possible relations are: {@link #IS_CHILD}, {@link #IS_DESCENDANT}      * or {@link #IS_SELF}. If the nodes are not in a ancestor-descendant relation,      * the method returns -1.      *       * @param ancestor the (potential) ancestor node to check against      * @return an int value indicating the relation      */
+comment|/**      * Computes the relationship of this node to the given potential      * ancestor node. The method returns an int constant indicating      * the relation. Possible relations are: {@link #IS_CHILD}, {@link #IS_DESCENDANT}      * or {@link #IS_SELF}. If the nodes are not in a ancestor-descendant relation,      * the method returns -1.      *      * @param ancestor the (potential) ancestor node to check against      * @return an int value indicating the relation      */
 name|int
 name|computeRelation
 parameter_list|(
