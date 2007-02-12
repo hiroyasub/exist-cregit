@@ -452,7 +452,25 @@ name|owner_
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|" on "
+operator|+
+name|id_
+operator|+
+literal|" ("
+operator|+
+name|modeStack
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" locks)"
 argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|dumpStack
+argument_list|()
 expr_stmt|;
 name|owner_
 operator|=
