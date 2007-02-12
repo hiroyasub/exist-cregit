@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Example code for demonstrating XMLRPC methods getDocumentData  * and getNextChunk. Please run 'admin-examples setup' first, this will  * download the required mondial.xml document.  *  * @author dizzzz  */
+comment|/**  *  Example code for demonstrating XMLRPC methods getDocumentData  * and getNextChunk. Please run 'admin-examples setup' first, this will  * download the required macbeth.xml document.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -137,7 +137,7 @@ comment|// Download file (ohoh not in spec) using xmldb url
 name|String
 name|xmldbUri
 init|=
-literal|"xmldb:exist://guest:guest@localhost:8080/exist/xmlrpc/db/mondial/mondial.xml"
+literal|"xmldb:exist://localhost:8080/exist/xmlrpc/db/shakespeare/plays/macbeth.xml"
 decl_stmt|;
 name|XmldbURI
 name|uri
@@ -150,11 +150,10 @@ name|xmldbUri
 argument_list|)
 decl_stmt|;
 comment|// Construct url for xmlrpc, without collections / document
-comment|// username/password yet hardcoded, need to update XmldbUri fir this
 name|String
 name|url
 init|=
-literal|"http://guest:guest@"
+literal|"http://"
 operator|+
 name|uri
 operator|.
@@ -178,7 +177,7 @@ comment|// Hardcoded yet too
 name|String
 name|filename
 init|=
-literal|"mondial.xml"
+literal|"macbeth.xml"
 decl_stmt|;
 try|try
 block|{
