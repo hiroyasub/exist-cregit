@@ -399,7 +399,12 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Node not found."
+literal|"Node not found: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -1072,6 +1077,17 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|closeDocument
+parameter_list|()
+block|{
+name|db
+operator|.
+name|closeDocument
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

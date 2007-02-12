@@ -4326,7 +4326,9 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-literal|"node-id"
+name|EmbeddedXMLStreamReader
+operator|.
+name|PROPERTY_NODE_ID
 argument_list|)
 operator|)
 operator|.
