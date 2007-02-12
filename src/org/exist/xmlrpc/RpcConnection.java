@@ -4858,6 +4858,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|releaseDocument
@@ -4869,6 +4870,19 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+name|collection
+operator|.
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
