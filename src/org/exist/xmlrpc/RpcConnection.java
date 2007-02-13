@@ -9104,21 +9104,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|// keep the write lock in the transaction
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|collection
-operator|.
-name|getLock
-argument_list|()
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|collection
@@ -9148,6 +9133,21 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|// keep the write lock in the transaction
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|collection
+operator|.
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
