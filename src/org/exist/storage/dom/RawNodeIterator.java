@@ -1313,7 +1313,7 @@ name|closeDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Returns the internal virtual storage address of the node at the cursor's current      * position.      *      * @return      */
+comment|/**      * Returns the internal virtual storage address of the node at the cursor's current      * position.      *      * @return internal virtual storage address of the node      */
 specifier|public
 name|long
 name|currentAddress

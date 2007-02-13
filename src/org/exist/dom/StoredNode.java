@@ -811,7 +811,7 @@ operator|=
 name|oldInternalAddress
 expr_stmt|;
 block|}
-comment|/**      * Returns true if the node was modified recently and nodes      * were inserted at the start or in the middle of its children.      *      * @return      */
+comment|/**      * Returns true if the node was modified recently and nodes      * were inserted at the start or in the middle of its children.      *      * @return TRUE when node is 'dirty'      */
 specifier|public
 name|boolean
 name|isDirty

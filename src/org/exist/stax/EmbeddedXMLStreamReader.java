@@ -2015,7 +2015,7 @@ return|return
 name|node
 return|;
 block|}
-comment|/**      * Returns the (internal) address of the node at the cursor's current      * position.      *       * @return      */
+comment|/**      * Returns the (internal) address of the node at the cursor's current      * position.      *       * @return internal address of node      */
 specifier|public
 name|long
 name|getCurrentPosition

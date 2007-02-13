@@ -234,7 +234,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Check if the resource has a user lock.      *       * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *       * @param res      * @return      * @throws XMLDBException      */
+comment|/**      * Check if the resource has a user lock.      *       * Returns the name of the owner of the lock or null      * if no lock has been set on the resource.      *       * @param res      * @return Name of the owner of the lock      * @throws XMLDBException      */
 specifier|public
 name|String
 name|hasUserLock
@@ -298,7 +298,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @return 	 * @throws XMLDBException 	 */
+comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @return List of all existing groups. 	 * @throws XMLDBException 	 */
 specifier|public
 name|String
 index|[]
@@ -383,7 +383,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Delete a user from the database      *      *@param  name                Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Delete a user from the database      *      *@param  user                User      *@exception  XMLDBException      */
 specifier|public
 name|void
 name|removeUser

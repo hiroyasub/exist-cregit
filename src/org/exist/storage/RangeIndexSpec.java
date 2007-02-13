@@ -482,7 +482,7 @@ name|type
 index|]
 return|;
 block|}
-comment|/**      * Returns the QName for which this index is created. Might be      * null if it is a generic index.      *       * @return      */
+comment|/**      * Returns the QName for which this index is created. Might be      * null if it is a generic index.      *       * @return qname      */
 specifier|public
 name|QName
 name|getQName

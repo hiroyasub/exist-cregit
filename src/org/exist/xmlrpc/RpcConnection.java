@@ -18694,7 +18694,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *   Validate if specified document is Valid.      *      * @param user      Name of user      * @param docPath   Path to XML document in database      * @throws java.lang.Exception  Generic exception      * @throws PermissionDeniedException  User is not allowed to perform action.      * @return TRUE if document is valid, FALSE if not or errors or.....      */
+comment|/**      *   Validate if specified document is Valid.      *      * @param user      Name of user      * @param documentPath   Path to XML document in database      * @throws java.lang.Exception  Generic exception      * @throws PermissionDeniedException  User is not allowed to perform action.      * @return TRUE if document is valid, FALSE if not or errors or.....      */
 specifier|public
 name|boolean
 name|isValid

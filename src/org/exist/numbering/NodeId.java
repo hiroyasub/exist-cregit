@@ -102,7 +102,7 @@ name|NodeId
 name|newChild
 parameter_list|()
 function_decl|;
-comment|/**      * Returns a new NodeId representing the nth child node      * of this node. The returned id can be used      * to create new child nodes. The actual id of the      * child might be different, depending on the      * implementation.      *       * @param child      * @return      */
+comment|/**      * Returns a new NodeId representing the nth child node      * of this node. The returned id can be used      * to create new child nodes. The actual id of the      * child might be different, depending on the      * implementation.      *       * @param child      * @return new node id      */
 name|NodeId
 name|getChild
 parameter_list|(

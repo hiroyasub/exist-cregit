@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementations of this interface can be passed to method * {@link org.exist.storage.TextSearchEngine#getNodes(XQueryContext context, DocumentSet docs, NodeSet contextSet, QName qname, 	        TermMatcher matcher, CharSequence startTerm)}   * to check if an index entry matches a given search term.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implementations of this interface can be passed to method * {@link org.exist.storage.TextSearchEngine#getNodes(XQueryContext context, DocumentSet docs, NodeSet contextSet, int axis, QName qname, 	        TermMatcher matcher, CharSequence startTerm)}   * to check if an index entry matches a given search term.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_interface

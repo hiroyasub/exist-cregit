@@ -752,7 +752,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, int)}  * to get a collection with a read or write lock and {@link #release()} to release the lock.  *  * @author wolf  */
+comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, int)}  * to get a collection with a read or write lock and {@link #release(int)} to release the lock.  *  * @author wolf  */
 end_comment
 
 begin_class

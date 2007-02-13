@@ -5331,7 +5331,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param prettyPrint      *                   result is pretty printed if>0      * @param encoding      *                   character encoding to use      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
+comment|/**      * retrieve a single node from a document. The node is identified by it's      * internal id.      *       * @param doc      *                   the document containing the node      * @param id      *                   the node's internal id      * @param user      *                   Description of the Parameter      * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|byte
 index|[]
@@ -6394,7 +6394,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sets the groups attribute of the RpcServer object.      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *       * @param user      *                   The new user value      * @param groups      *                   The new user's group value      * @param rgroups      *                   The group to remove value       * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
+comment|/**      * Sets the groups attribute of the RpcServer object.      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *       * @param user      *                   The new user value      * @param groups      *                   The new user's group value      * @param rgroup      *                   The group to remove value       * @return Description of the Return Value      * @exception EXistException      *                        Description of the Exception      * @exception PermissionDeniedException      *                        Description of the Exception      */
 specifier|public
 name|boolean
 name|setUser
