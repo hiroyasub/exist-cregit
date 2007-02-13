@@ -561,11 +561,47 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|EmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
 operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamException
 import|;
 end_import
 
@@ -6979,358 +7015,65 @@ name|node
 expr_stmt|;
 block|}
 block|}
-comment|/* TODO: Non-recursive implementation. Should be faster, but no measurable  	 * difference observed so far. Keep as reference for future uses. */
-specifier|private
-name|long
-name|findNode2
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|,
-name|NodeId
-name|target
-parameter_list|,
-name|Iterator
-name|iter
-parameter_list|)
-block|{
-name|Stack
-name|stack
-init|=
-operator|new
-name|Stack
-argument_list|()
-decl_stmt|;
-name|stack
-operator|.
-name|push
-argument_list|(
-operator|new
-name|ChildNode
-argument_list|(
-name|node
-argument_list|)
-argument_list|)
-expr_stmt|;
-while|while
-condition|(
-operator|!
-name|stack
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|StoredNode
-name|temp
-init|=
-operator|(
-operator|(
-name|ChildNode
-operator|)
-name|stack
-operator|.
-name|peek
-argument_list|()
-operator|)
-operator|.
-name|node
-decl_stmt|;
-name|int
-name|index
-init|=
-operator|(
-operator|(
-name|ChildNode
-operator|)
-name|stack
-operator|.
-name|peek
-argument_list|()
-operator|)
-operator|.
-name|index
-decl_stmt|;
-if|if
-condition|(
-name|index
-operator|<
-name|temp
-operator|.
-name|getChildCount
-argument_list|()
-condition|)
-block|{
-operator|(
-operator|(
-name|ChildNode
-operator|)
-name|stack
-operator|.
-name|peek
-argument_list|()
-operator|)
-operator|.
-name|index
-operator|++
-expr_stmt|;
-name|temp
-operator|=
-operator|(
-name|StoredNode
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|target
-operator|.
-name|equals
-argument_list|(
-name|temp
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-condition|)
-return|return
-operator|(
-operator|(
-name|NodeIterator
-operator|)
-name|iter
-operator|)
-operator|.
-name|currentAddress
-argument_list|()
-return|;
-if|if
-condition|(
-name|temp
-operator|.
-name|hasChildNodes
-argument_list|()
-condition|)
-block|{
-name|stack
-operator|.
-name|push
-argument_list|(
-operator|new
-name|ChildNode
-argument_list|(
-name|temp
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|index
-operator|=
-literal|0
-expr_stmt|;
-block|}
-block|}
-while|while
-condition|(
-name|index
-operator|==
-name|temp
-operator|.
-name|getChildCount
-argument_list|()
-condition|)
-block|{
-name|stack
-operator|.
-name|pop
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|stack
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|index
-operator|=
-operator|(
-operator|(
-name|ChildNode
-operator|)
-name|stack
-operator|.
-name|peek
-argument_list|()
-operator|)
-operator|.
-name|index
-expr_stmt|;
-name|temp
-operator|=
-operator|(
-operator|(
-name|ChildNode
-operator|)
-name|stack
-operator|.
-name|peek
-argument_list|()
-operator|)
-operator|.
-name|node
-expr_stmt|;
-block|}
-else|else
-break|break;
-block|}
-block|}
-return|return
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-return|;
-block|}
-specifier|private
-name|long
-name|findNode
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|,
-name|NodeId
-name|target
-parameter_list|,
-name|Iterator
-name|iter
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|lock
-operator|.
-name|hasLock
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"the file doesn't own a lock"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|hasChildNodes
-argument_list|()
-condition|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|node
-operator|.
-name|getChildCount
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|StoredNode
-name|child
-init|=
-operator|(
-name|StoredNode
-operator|)
-name|iter
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-name|SanityCheck
-operator|.
-name|ASSERT
-argument_list|(
-name|child
-operator|!=
-literal|null
-argument_list|,
-literal|"Next node missing."
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|target
-operator|.
-name|equals
-argument_list|(
-name|child
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-condition|)
-block|{
-return|return
-operator|(
-operator|(
-name|NodeIterator
-operator|)
-name|iter
-operator|)
-operator|.
-name|currentAddress
-argument_list|()
-return|;
-block|}
-name|long
-name|p
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|p
-operator|=
-name|findNode
-argument_list|(
-name|child
-argument_list|,
-name|target
-argument_list|,
-name|iter
-argument_list|)
-operator|)
-operator|!=
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-condition|)
-return|return
-name|p
-return|;
-block|}
-block|}
-return|return
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
-return|;
-block|}
-comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 *  	 * @param lockObject 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
+comment|//	private long findNode(StoredNode node, NodeId target, Iterator iter) {
+comment|//		if (!lock.hasLock())
+comment|//			LOG.warn("the file doesn't own a lock");
+comment|//        if (node.hasChildNodes()) {
+comment|//			for (int i = 0; i< node.getChildCount(); i++) {
+comment|//				StoredNode child = (StoredNode) iter.next();
+comment|//
+comment|//				SanityCheck.ASSERT(child != null, "Next node missing.");
+comment|//
+comment|//				if (target.equals(child.getNodeId())) {
+comment|//					return ((NodeIterator) iter).currentAddress();
+comment|//				}
+comment|//				long p;
+comment|//				if ((p = findNode(child, target, iter)) != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
+comment|//					return p;
+comment|//			}
+comment|//		}
+comment|//		return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;
+comment|//	}
+comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 * 	 * @param lockObject 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
+comment|//	protected long findValue2(Object lockObject, NodeProxy node) throws IOException,
+comment|//			BTreeException {
+comment|//		if (!lock.hasLock())
+comment|//			LOG.warn("the file doesn't own a lock");
+comment|//		final DocumentImpl doc = (DocumentImpl) node.getDocument();
+comment|//		final NativeBroker.NodeRef nodeRef = new NativeBroker.NodeRef(doc.getDocId(), node.getNodeId());
+comment|//		// first try to find the node in the index
+comment|//		final long p = findValue(nodeRef);
+comment|//		if (p == KEY_NOT_FOUND) {
+comment|//            Thread.dumpStack();
+comment|//            // node not found in index: try to find the nearest available
+comment|//			// ancestor and traverse it
+comment|//			NodeId id = node.getNodeId();
+comment|//			long parentPointer = KEY_NOT_FOUND;
+comment|//			do {
+comment|//				id = id.getParentId();
+comment|//				if (id == NodeId.DOCUMENT_NODE) {
+comment|//					SanityCheck.TRACE("Node " + node.getDocument().getDocId() + ":" + node.getNodeId() + " not found.");
+comment|//					throw new BTreeException("node " + node.getNodeId() + " not found.");
+comment|//				}
+comment|//				NativeBroker.NodeRef parentRef = new NativeBroker.NodeRef(doc.getDocId(), id);
+comment|//				try {
+comment|//					parentPointer = findValue(parentRef);
+comment|//				} catch (BTreeException bte) {
+comment|//					LOG.info("report me", bte);
+comment|//				}
+comment|//			} while (parentPointer == KEY_NOT_FOUND);
+comment|//
+comment|//			final Iterator iter = new NodeIterator(lockObject, this, node.getDocument(), parentPointer);
+comment|//			final StoredNode n = (StoredNode) iter.next();
+comment|//			final long address = findNode(n, node.getNodeId(), iter);
+comment|//			if (address == StoredNode.UNKNOWN_NODE_IMPL_ADDRESS) {
+comment|//				LOG.warn("Node data location not found for node " + node.getNodeId());
+comment|//				return KEY_NOT_FOUND;
+comment|//			} else
+comment|//				return address;
+comment|//		} else
+comment|//			return p;
+comment|//	}
 specifier|protected
 name|long
 name|findValue
@@ -7365,9 +7108,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getDocument
@@ -7412,7 +7152,6 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 block|{
-comment|//            Thread.dumpStack();
 comment|// node not found in index: try to find the nearest available
 comment|// ancestor and traverse it
 name|NodeId
@@ -7537,82 +7276,161 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 do|;
+try|try
+block|{
 specifier|final
-name|Iterator
-name|iter
+name|NodeProxy
+name|parent
 init|=
 operator|new
-name|NodeIterator
+name|NodeProxy
 argument_list|(
-name|lockObject
+name|doc
 argument_list|,
-name|this
-argument_list|,
-name|node
-operator|.
-name|getDocument
-argument_list|()
+name|id
 argument_list|,
 name|parentPointer
 argument_list|)
 decl_stmt|;
 specifier|final
-name|StoredNode
-name|n
+name|EmbeddedXMLStreamReader
+name|cursor
 init|=
-operator|(
-name|StoredNode
-operator|)
-name|iter
+name|doc
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getXMLStreamReader
+argument_list|(
+name|parent
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+name|cursor
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|int
+name|status
+init|=
+name|cursor
 operator|.
 name|next
 argument_list|()
 decl_stmt|;
-specifier|final
-name|long
-name|address
-init|=
-name|findNode
-argument_list|(
-name|n
-argument_list|,
-name|node
+if|if
+condition|(
+name|status
+operator|!=
+name|XMLStreamReader
 operator|.
-name|getNodeId
-argument_list|()
-argument_list|,
-name|iter
+name|END_ELEMENT
+condition|)
+block|{
+name|NodeId
+name|nextId
+init|=
+operator|(
+name|NodeId
+operator|)
+name|cursor
+operator|.
+name|getProperty
+argument_list|(
+name|EmbeddedXMLStreamReader
+operator|.
+name|PROPERTY_NODE_ID
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|address
-operator|==
-name|StoredNode
+name|nextId
 operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
+name|equals
+argument_list|(
+name|node
+operator|.
+name|getNodeId
+argument_list|()
+argument_list|)
 condition|)
-block|{
+return|return
+name|cursor
+operator|.
+name|getCurrentPosition
+argument_list|()
+return|;
+block|}
+block|}
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Node data location not found for node "
+literal|"Node "
 operator|+
 name|node
 operator|.
 name|getNodeId
 argument_list|()
+operator|+
+literal|" could not be found. Giving up."
 argument_list|)
 expr_stmt|;
 return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
-else|else
-return|return
-name|address
-return|;
+catch|catch
+parameter_list|(
+name|XMLStreamException
+name|e
+parameter_list|)
+block|{
+name|SanityCheck
+operator|.
+name|TRACE
+argument_list|(
+literal|"Node "
+operator|+
+name|node
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|":"
+operator|+
+name|node
+operator|.
+name|getNodeId
+argument_list|()
+operator|+
+literal|" not found."
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|BTreeException
+argument_list|(
+literal|"node "
+operator|+
+name|node
+operator|.
+name|getNodeId
+argument_list|()
+operator|+
+literal|" not found."
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 return|return

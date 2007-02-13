@@ -1790,6 +1790,22 @@ name|IOException
 throws|,
 name|XMLStreamException
 function_decl|;
+specifier|public
+specifier|abstract
+name|EmbeddedXMLStreamReader
+name|getXMLStreamReader
+parameter_list|(
+name|NodeProxy
+name|node
+parameter_list|,
+name|boolean
+name|reportAttributes
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|XMLStreamException
+function_decl|;
 block|}
 end_class
 
