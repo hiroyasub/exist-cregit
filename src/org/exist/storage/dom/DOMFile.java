@@ -107,21 +107,25 @@ end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|xml
 operator|.
-name|Iterator
+name|stream
+operator|.
+name|XMLStreamException
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|xml
 operator|.
-name|Stack
+name|stream
+operator|.
+name|XMLStreamReader
 import|;
 end_import
 
@@ -182,6 +186,18 @@ operator|.
 name|numbering
 operator|.
 name|NodeId
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|EmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -561,47 +577,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|stax
-operator|.
-name|EmbeddedXMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamException
 import|;
 end_import
 
@@ -656,29 +636,35 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|LENGTH_ORIGINAL_LOCATION
+name|LENGTH_LINK
 init|=
 literal|8
 decl_stmt|;
 comment|//sizeof long
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_ORIGINAL_LOCATION
+init|=
+name|LENGTH_LINK
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
 name|int
 name|LENGTH_FORWARD_LOCATION
 init|=
-literal|8
+name|LENGTH_LINK
 decl_stmt|;
-comment|//sizeof long
 specifier|public
 specifier|static
 specifier|final
 name|int
 name|LENGTH_OVERFLOW_LOCATION
 init|=
-literal|8
+name|LENGTH_LINK
 decl_stmt|;
-comment|//sizeof long
 specifier|public
 specifier|static
 specifier|final
@@ -4639,7 +4625,7 @@ name|pos
 operator|+=
 name|LENGTH_DATA_LENGTH
 expr_stmt|;
-comment|// if this is an overflow page, the real data length is always 8
+comment|// if this is an overflow page, the real data length is always LENGTH_LINK
 comment|// byte for the page number of the overflow page
 specifier|final
 name|short
@@ -6986,35 +6972,15 @@ name|getValues
 argument_list|()
 return|;
 block|}
-specifier|private
-specifier|final
-specifier|static
-class|class
-name|ChildNode
-block|{
-name|StoredNode
-name|node
-decl_stmt|;
-name|int
-name|index
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-name|ChildNode
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-name|this
-operator|.
-name|node
-operator|=
-name|node
-expr_stmt|;
-block|}
-block|}
+comment|//	private final static class ChildNode {
+comment|//		StoredNode node;
+comment|//		int index = 0;
+comment|//
+comment|//		public ChildNode(StoredNode node) {
+comment|//			this.node = node;
+comment|//		}
+comment|//	}
+comment|//
 comment|//	private long findNode(StoredNode node, NodeId target, Iterator iter) {
 comment|//		if (!lock.hasLock())
 comment|//			LOG.warn("the file doesn't own a lock");
@@ -8839,7 +8805,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|8
+name|LENGTH_LINK
 index|]
 decl_stmt|;
 name|System
@@ -8861,7 +8827,7 @@ name|data
 argument_list|,
 literal|0
 argument_list|,
-literal|8
+name|LENGTH_LINK
 argument_list|)
 expr_stmt|;
 name|RemoveValueLoggable
@@ -8919,7 +8885,7 @@ name|rec
 operator|.
 name|offset
 operator|+
-literal|8
+name|LENGTH_LINK
 decl_stmt|;
 name|System
 operator|.
@@ -8974,7 +8940,7 @@ operator|-
 operator|(
 name|LENGTH_TID
 operator|+
-literal|8
+name|LENGTH_LINK
 operator|)
 expr_stmt|;
 if|if
@@ -17333,6 +17299,51 @@ init|=
 literal|0
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|short
+name|LENGTH_RECORDS_COUNT
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|LENGTH_DATA_LENGTH
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|LENGTH_NEXT_PAGE_POINTER
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|LENGTH_PREV_PAGE_POINTER
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|final
+specifier|static
+name|short
+name|LENGTH_CURRENT_TID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
 name|DOMFilePageHeader
 parameter_list|()
 block|{
@@ -17532,7 +17543,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_RECORDS_COUNT
 expr_stmt|;
 name|dataLen
 operator|=
@@ -17547,7 +17558,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|4
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 name|nextDataPage
 operator|=
@@ -17562,7 +17573,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_NEXT_PAGE_POINTER
 expr_stmt|;
 name|prevDataPage
 operator|=
@@ -17577,7 +17588,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PREV_PAGE_POINTER
 expr_stmt|;
 name|tid
 operator|=
@@ -17593,7 +17604,7 @@ expr_stmt|;
 return|return
 name|offset
 operator|+
-literal|2
+name|LENGTH_CURRENT_TID
 return|;
 block|}
 specifier|public
@@ -17634,7 +17645,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_RECORDS_COUNT
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -17649,7 +17660,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|4
+name|LENGTH_DATA_LENGTH
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -17664,7 +17675,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_NEXT_PAGE_POINTER
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -17679,7 +17690,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PREV_PAGE_POINTER
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -17695,7 +17706,7 @@ expr_stmt|;
 return|return
 name|offset
 operator|+
-literal|2
+name|LENGTH_CURRENT_TID
 return|;
 block|}
 specifier|public
