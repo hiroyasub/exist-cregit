@@ -905,43 +905,6 @@ return|return
 name|config
 return|;
 block|}
-comment|/** 	 * Return a {@link org.exist.storage.dom.DOMFileIterator} starting at the 	 * specified node. 	 *  	 */
-specifier|public
-name|Iterator
-name|getDOMIterator
-parameter_list|(
-name|Document
-name|doc
-parameter_list|,
-name|long
-name|gid
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented for this storage backend"
-argument_list|)
-throw|;
-block|}
-comment|/** 	 * Return a {@link org.exist.storage.dom.DOMFileIterator} starting at the 	 * specified node. 	 *  	 */
-specifier|public
-name|Iterator
-name|getDOMIterator
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"not implemented for this storage backend"
-argument_list|)
-throw|;
-block|}
 comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting at the 	 * specified node. 	 *  	 * @param node 	 * @return NodeIterator of node. 	 */
 specifier|public
 name|Iterator
