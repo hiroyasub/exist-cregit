@@ -7927,10 +7927,10 @@ argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
-name|closeDocument
+name|flush
 argument_list|()
 expr_stmt|;
-name|flush
+name|closeDocument
 argument_list|()
 expr_stmt|;
 comment|//commit the transaction

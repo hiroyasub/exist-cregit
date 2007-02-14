@@ -3968,12 +3968,12 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|closeDocument
+name|flush
 argument_list|()
 expr_stmt|;
 name|broker
 operator|.
-name|flush
+name|closeDocument
 argument_list|()
 expr_stmt|;
 comment|//			broker.checkTree(document);
