@@ -605,13 +605,11 @@ name|short
 name|getFileVersion
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"getFileVersion() called"
-argument_list|)
-throw|;
+return|return
+operator|-
+literal|1
+return|;
+comment|//		throw new RuntimeException("getFileVersion() called");
 block|}
 specifier|public
 name|boolean
@@ -1240,7 +1238,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Read a node from the given page.      *       * @param page      * @param parent      * @return The BTree node      */
+comment|/**      * Read a node from the given page.      *       * @param page      * @return The BTree node      */
 specifier|private
 name|BTreeNode
 name|getBTreeNode
@@ -6126,6 +6124,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|IndexQuery
 operator|.
