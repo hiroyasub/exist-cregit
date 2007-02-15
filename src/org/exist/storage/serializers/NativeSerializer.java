@@ -631,7 +631,6 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
-comment|//TODO : is this StoredNode construction necessary ?
 name|Iterator
 name|domIter
 init|=
@@ -818,15 +817,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
 name|Iterator
 name|domIter
 init|=
@@ -842,6 +832,15 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|NodeProxy
+name|p
+init|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|node
+argument_list|)
+decl_stmt|;
 name|serializeToReceiver
 argument_list|(
 name|node

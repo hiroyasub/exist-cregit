@@ -7796,7 +7796,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//lock the temp collection
 name|transaction
 operator|.
 name|registerLock
