@@ -47,16 +47,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -131,6 +121,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|IndexController
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|stax
 operator|.
 name|EmbeddedXMLStreamReader
@@ -194,18 +196,6 @@ operator|.
 name|dom
 operator|.
 name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeSet
 import|;
 end_import
 
@@ -294,20 +284,6 @@ operator|.
 name|txn
 operator|.
 name|Txn
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|dom
-operator|.
-name|RawNodeIterator
 import|;
 end_import
 
@@ -422,22 +398,6 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|int
-name|NATIVE
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|NATIVE_CLUSTER
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|String
 name|ROOT_COLLECTION_NAME
 init|=
@@ -491,6 +451,30 @@ name|COLLECTION_CONFIG_FILENAME
 init|=
 literal|"collection.xconf"
 decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_GROWTH_FACTOR
+init|=
+literal|"xupdate.growth-factor"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
+init|=
+literal|"xupdate.fragmentation"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|static
+name|String
+name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
+init|=
+literal|"xupdate.consistency-checks"
+decl_stmt|;
 specifier|protected
 specifier|final
 specifier|static
@@ -536,33 +520,13 @@ name|referenceCount
 init|=
 literal|0
 decl_stmt|;
-comment|//TODO : move elsewhere
-specifier|public
-specifier|static
-name|String
-name|PROPERTY_XUPDATE_GROWTH_FACTOR
-init|=
-literal|"xupdate.growth-factor"
-decl_stmt|;
-comment|//TODO : move elsewhere
-specifier|public
-specifier|static
-name|String
-name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
-init|=
-literal|"xupdate.fragmentation"
-decl_stmt|;
-comment|//TODO : move elsewhere
-specifier|public
-specifier|static
-name|String
-name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS
-init|=
-literal|"xupdate.consistency-checks"
-decl_stmt|;
 specifier|protected
 name|String
 name|id
+decl_stmt|;
+specifier|protected
+name|IndexController
+name|indexDispatch
 decl_stmt|;
 comment|//TODO : use a property object
 specifier|public
@@ -573,13 +537,6 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-comment|//TODO : give more abstraction in the future (Symbolprovider or something like this)
-specifier|public
-specifier|abstract
-name|SymbolTable
-name|getSymbols
-parameter_list|()
-function_decl|;
 specifier|public
 name|DBBroker
 parameter_list|(
@@ -712,8 +669,16 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|indexDispatch
+operator|=
+operator|new
+name|IndexController
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
-comment|/** 	 * Set the user that is currently using this DBBroker object. 	 *  	 * @param user 	 */
+comment|/** 	 * Set the user that is currently using this DBBroker object. 	 * 	 * @param user 	 */
 specifier|public
 name|void
 name|setUser
@@ -741,6 +706,22 @@ return|return
 name|user
 return|;
 block|}
+specifier|public
+name|IndexController
+name|getIndexDispatcher
+parameter_list|()
+block|{
+return|return
+name|indexDispatch
+return|;
+block|}
+comment|//TODO : give more abstraction in the future (Symbolprovider or something like this)
+specifier|public
+specifier|abstract
+name|SymbolTable
+name|getSymbols
+parameter_list|()
+function_decl|;
 comment|/** 	 * @return A reference to the global {@link XQuery} service. 	 */
 specifier|public
 name|XQuery
@@ -984,31 +965,6 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Find all Nodes whose string value is equal to expr in the document set. 	 *  	 * @param context 	 *            the set of nodes to process 	 * @param docs 	 *            the current set of documents 	 * @param relation 	 *            less-than, equal etc. One of the constants specified in 	 *            {@link org.exist.xquery.Constants} 	 * @param expr 	 *            the string value to search for 	 */
-specifier|public
-specifier|abstract
-name|NodeSet
-name|getNodesEqualTo
-parameter_list|(
-name|NodeSet
-name|context
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
-name|int
-name|relation
-parameter_list|,
-name|int
-name|truncation
-parameter_list|,
-name|String
-name|expr
-parameter_list|,
-name|Collator
-name|collator
-parameter_list|)
-function_decl|;
 comment|/** 	 * Get an instance of the Serializer used for converting nodes back to XML. 	 * Subclasses of DBBroker may have specialized subclasses of Serializer to 	 * convert a node into an XML-string 	 */
 specifier|public
 specifier|abstract
@@ -1029,16 +985,6 @@ name|NativeValueIndex
 name|getValueIndex
 parameter_list|()
 function_decl|;
-comment|/** 	 * Is string comparison case sensitive? 	 *  	 */
-specifier|public
-name|boolean
-name|isCaseSensitive
-parameter_list|()
-block|{
-return|return
-name|caseSensitive
-return|;
-block|}
 specifier|public
 specifier|abstract
 name|Serializer
@@ -1336,7 +1282,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection deprecated Use XmldbURI instead 	 *  	 * public abstract void moveCollection(Txn transaction, Collection 	 * collection, Collection destination, String newName) throws 	 * PermissionDeniedException, LockException; 	 */
 comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
@@ -1360,7 +1305,6 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param new 	 *            Name the new name the resource should have in the destination 	 *            collection deprecated Use XmldbURI version instead 	 *  	 * public abstract void moveXMLResource(Txn transaction, DocumentImpl doc, 	 * Collection destination, String newName) throws PermissionDeniedException, 	 * LockException; 	 */
 comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
@@ -1384,7 +1328,6 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param new 	 *            Name the new name the resource should have in the destination 	 *            collection deprecated Use XmldbURI version instead 	 *  	 * public abstract void copyCollection(Txn transaction, Collection 	 * collection, Collection destination, String newName) throws 	 * PermissionDeniedException, LockException; 	 */
 comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param collection 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
 specifier|abstract
@@ -1408,7 +1351,6 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 *             deprecated Use XmldbURI version instead 	 *  	 * public abstract void copyXMLResource(Txn transaction, DocumentImpl doc, 	 * Collection destination, String newName) throws PermissionDeniedException, 	 * LockException; 	 */
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
@@ -1636,16 +1578,6 @@ name|void
 name|cleanUpTempResources
 parameter_list|()
 function_decl|;
-comment|/** 	 * Remove the temporary document fragments specified by a list of names. 	 *  	 * @param docs 	 */
-specifier|public
-specifier|abstract
-name|void
-name|cleanUpTempResources
-parameter_list|(
-name|List
-name|docs
-parameter_list|)
-function_decl|;
 comment|/** 	 *  	 */
 specifier|public
 specifier|abstract
@@ -1731,12 +1663,6 @@ return|return
 name|id
 return|;
 block|}
-specifier|public
-specifier|abstract
-name|int
-name|getBackendType
-parameter_list|()
-function_decl|;
 specifier|public
 specifier|abstract
 name|EmbeddedXMLStreamReader

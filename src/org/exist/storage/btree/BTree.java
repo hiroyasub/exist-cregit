@@ -643,7 +643,7 @@ return|return
 literal|false
 return|;
 block|}
-specifier|protected
+specifier|public
 name|boolean
 name|create
 parameter_list|(

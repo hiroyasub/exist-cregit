@@ -141,6 +141,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|IndexManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|CollectionCache
@@ -347,9 +359,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|Configuration
+name|btree
+operator|.
+name|DBException
 import|;
 end_import
 
@@ -361,31 +375,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|ReadOnlyException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLReaderObjectFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLReaderPool
+name|*
 import|;
 end_import
 
@@ -596,6 +586,8 @@ name|config
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|DatabaseConfigurationException
 block|{
 name|configure
 argument_list|(
@@ -631,6 +623,8 @@ name|config
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|DatabaseConfigurationException
 block|{
 comment|//Check if there is a database instance in the pool with the same id
 name|BrokerPool
@@ -1246,6 +1240,11 @@ specifier|private
 name|Scheduler
 name|scheduler
 decl_stmt|;
+comment|/**      * Manages pluggable index structures.       */
+specifier|private
+name|IndexManager
+name|indexManager
+decl_stmt|;
 comment|/** 	 * Cache synchronization on the database instance. 	 */
 specifier|private
 name|long
@@ -1383,10 +1382,8 @@ init|=
 literal|false
 decl_stmt|;
 comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
-comment|//TODO : shouldn't this constructor be private ? as such it *must* remain under configure() control !
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
-comment|// WM: yes, could be private.
-specifier|public
+specifier|private
 name|BrokerPool
 parameter_list|(
 name|String
@@ -1403,6 +1400,8 @@ name|conf
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|DatabaseConfigurationException
 block|{
 name|Integer
 name|anInteger
@@ -2288,6 +2287,8 @@ name|initialize
 parameter_list|()
 throws|throws
 name|EXistException
+throws|,
+name|DatabaseConfigurationException
 block|{
 if|if
 condition|(
@@ -2462,6 +2463,16 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|indexManager
+operator|=
+operator|new
+name|IndexManager
+argument_list|(
+name|this
+argument_list|,
+name|conf
+argument_list|)
+expr_stmt|;
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: I would rather tend to keep this broker reserved as a system broker.
 comment|// create a first broker to initialize the security manager
@@ -3148,6 +3159,16 @@ parameter_list|()
 block|{
 return|return
 name|cacheManager
+return|;
+block|}
+comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *       * @return      */
+specifier|public
+name|IndexManager
+name|getIndexManager
+parameter_list|()
+block|{
+return|return
+name|indexManager
 return|;
 block|}
 comment|/**      * Returns a pool in which the database instance's<strong>compiled</strong> XQueries are stored.      *       * @return The pool      */
@@ -4372,6 +4393,36 @@ argument_list|(
 literal|"calling shutdown ..."
 argument_list|)
 expr_stmt|;
+comment|// closing down external indexes
+try|try
+block|{
+name|indexManager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Error during index shutdown: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 name|DBBroker

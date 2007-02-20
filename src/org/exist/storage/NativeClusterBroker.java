@@ -340,15 +340,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|public
-name|int
-name|getBackendType
-parameter_list|()
-block|{
-return|return
-name|NATIVE_CLUSTER
-return|;
-block|}
 block|}
 end_class
 
