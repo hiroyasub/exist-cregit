@@ -287,10 +287,8 @@ index|[
 literal|1
 index|]
 operator|.
-name|getLength
+name|hasOne
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|parseParameters

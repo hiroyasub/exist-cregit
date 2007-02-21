@@ -683,10 +683,8 @@ if|if
 condition|(
 name|nodes
 operator|.
-name|getLength
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 throw|throw
 operator|new
