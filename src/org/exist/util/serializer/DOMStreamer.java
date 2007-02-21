@@ -814,25 +814,6 @@ operator|.
 name|getPrefix
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|prefix
-operator|==
-literal|null
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|attrName
-operator|+
-literal|" -> "
-operator|+
-name|prefix
-argument_list|)
-expr_stmt|;
 name|uri
 operator|=
 name|nextAttr
