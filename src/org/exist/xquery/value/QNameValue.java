@@ -438,52 +438,13 @@ name|cmp
 operator|!=
 literal|0
 return|;
-case|case
-name|Constants
-operator|.
-name|GT
-case|:
-return|return
-name|cmp
-operator|>
-literal|0
-return|;
-case|case
-name|Constants
-operator|.
-name|GTEQ
-case|:
-return|return
-name|cmp
-operator|>=
-literal|0
-return|;
-case|case
-name|Constants
-operator|.
-name|LT
-case|:
-return|return
-name|cmp
-operator|<
-literal|0
-return|;
-case|case
-name|Constants
-operator|.
-name|LTEQ
-case|:
-return|return
-name|cmp
-operator|>=
-literal|0
-return|;
+comment|/* 				 * QNames are unordered 				case Constants.GT : 					return cmp> 0; 				case Constants.GTEQ : 					return cmp>= 0; 				case Constants.LT : 					return cmp< 0; 				case Constants.LTEQ : 					return cmp>= 0; 				*/
 default|default :
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: cannot apply operator to QName"
+literal|"XPTY0004 : cannot apply operator to QName"
 argument_list|)
 throw|;
 block|}
