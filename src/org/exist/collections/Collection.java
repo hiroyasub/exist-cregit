@@ -1010,16 +1010,6 @@ expr_stmt|;
 block|}
 specifier|public
 name|Lock
-name|getLockOld
-parameter_list|()
-block|{
-return|return
-name|getLock
-argument_list|()
-return|;
-block|}
-specifier|public
-name|Lock
 name|getLock
 parameter_list|()
 block|{
@@ -2868,6 +2858,25 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
@@ -3136,6 +3145,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
 comment|//Doh ! A READ lock ?
 name|getLock
 argument_list|()
@@ -3176,6 +3191,25 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|getLock
+argument_list|()
+argument_list|,
 name|Lock
 operator|.
 name|WRITE_LOCK
@@ -3284,6 +3318,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -3330,6 +3370,25 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|getLock
+argument_list|()
+argument_list|,
 name|Lock
 operator|.
 name|WRITE_LOCK
@@ -3559,6 +3618,12 @@ block|}
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -4654,6 +4719,25 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|oldDoc
 operator|=
 operator|(
@@ -4931,6 +5015,7 @@ name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TOUNDERSTAND : when is this lock released ?
 name|document
 operator|.
 name|getUpdateLock
@@ -5007,6 +5092,7 @@ block|}
 block|}
 else|else
 block|{
+comment|//TOUNDERSTAND : when is this lock released ?
 name|document
 operator|.
 name|getUpdateLock
@@ -5077,8 +5163,15 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//TOUNDERSTAND : see above
 comment|//if (document != null)
 comment|//document.getUpdateLock().release(Lock.WRITE_LOCK);
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -5888,6 +5981,25 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|checkPermissions
 argument_list|(
 name|transaction
@@ -6164,6 +6276,12 @@ return|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
 name|getLock
 argument_list|()
 operator|.
