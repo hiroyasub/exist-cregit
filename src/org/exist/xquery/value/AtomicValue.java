@@ -1244,6 +1244,155 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+switch|switch
+condition|(
+name|requiredType
+condition|)
+block|{
+case|case
+name|Type
+operator|.
+name|ATOMIC
+case|:
+case|case
+name|Type
+operator|.
+name|ITEM
+case|:
+case|case
+name|Type
+operator|.
+name|STRING
+case|:
+return|return
+name|StringValue
+operator|.
+name|EMPTY_STRING
+return|;
+case|case
+name|Type
+operator|.
+name|NORMALIZED_STRING
+case|:
+case|case
+name|Type
+operator|.
+name|TOKEN
+case|:
+case|case
+name|Type
+operator|.
+name|LANGUAGE
+case|:
+case|case
+name|Type
+operator|.
+name|NMTOKEN
+case|:
+case|case
+name|Type
+operator|.
+name|NAME
+case|:
+case|case
+name|Type
+operator|.
+name|NCNAME
+case|:
+case|case
+name|Type
+operator|.
+name|ID
+case|:
+case|case
+name|Type
+operator|.
+name|IDREF
+case|:
+case|case
+name|Type
+operator|.
+name|ENTITY
+case|:
+return|return
+operator|new
+name|StringValue
+argument_list|(
+literal|""
+argument_list|,
+name|requiredType
+argument_list|)
+return|;
+case|case
+name|Type
+operator|.
+name|ANY_URI
+case|:
+return|return
+name|AnyURIValue
+operator|.
+name|EMPTY_URI
+return|;
+case|case
+name|Type
+operator|.
+name|BOOLEAN
+case|:
+return|return
+name|BooleanValue
+operator|.
+name|FALSE
+return|;
+comment|//case Type.FLOAT :
+comment|//return new FloatValue(value);
+comment|//case Type.DOUBLE :
+comment|//case Type.NUMBER :
+comment|//return new DoubleValue(this);
+comment|//case Type.DECIMAL :
+comment|//return new DecimalValue(value);
+comment|//case Type.INTEGER :
+comment|//case Type.NON_POSITIVE_INTEGER :
+comment|//case Type.NEGATIVE_INTEGER :
+comment|//case Type.POSITIVE_INTEGER :
+comment|//case Type.LONG :
+comment|//case Type.INT :
+comment|//case Type.SHORT :
+comment|//case Type.BYTE :
+comment|//case Type.NON_NEGATIVE_INTEGER :
+comment|//case Type.UNSIGNED_LONG :
+comment|//case Type.UNSIGNED_INT :
+comment|//case Type.UNSIGNED_SHORT :
+comment|//case Type.UNSIGNED_BYTE :
+comment|//return new IntegerValue(value, requiredType);
+comment|//case Type.BASE64_BINARY :
+comment|//return new Base64Binary(value);
+comment|//case Type.HEX_BINARY :
+comment|//return new HexBinary(value);
+comment|//case Type.DATE_TIME :
+comment|//return new DateTimeValue(value);
+comment|//case Type.TIME :
+comment|//return new TimeValue(value);
+comment|//case Type.DATE :
+comment|//return new DateValue(value);
+comment|//case Type.DURATION :
+comment|//return new DurationValue(value);
+comment|//case Type.YEAR_MONTH_DURATION :
+comment|//return new YearMonthDurationValue(value);
+comment|//case Type.DAY_TIME_DURATION :
+comment|//return new DayTimeDurationValue(value);
+comment|//case Type.GYEAR :
+comment|//return new GYearValue(value);
+comment|//case Type.GMONTH :
+comment|//return new GMonthValue(value);
+comment|//case Type.GDAY :
+comment|//return new GDayValue(value);
+comment|//case Type.GYEARMONTH :
+comment|//return new GYearMonthValue(value);
+comment|//case Type.GMONTHDAY :
+comment|//return new GMonthDayValue(value);
+comment|//case Type.UNTYPED_ATOMIC :
+comment|//return new UntypedAtomicValue(getStringValue());
+default|default :
 throw|throw
 operator|new
 name|XPathException
@@ -1253,6 +1402,7 @@ operator|+
 name|requiredType
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#compareTo(java.lang.Object) 		 */
 specifier|public
@@ -1284,6 +1434,27 @@ return|return
 name|Constants
 operator|.
 name|INFERIOR
+return|;
+block|}
+comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 		 */
+specifier|public
+name|boolean
+name|compareTo
+parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
+name|int
+name|operator
+parameter_list|,
+name|AtomicValue
+name|other
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+literal|false
 return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#itemAt(int) 		 */
@@ -1338,31 +1509,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 		 */
-specifier|public
-name|boolean
-name|compareTo
-parameter_list|(
-name|Collator
-name|collator
-parameter_list|,
-name|int
-name|operator
-parameter_list|,
-name|AtomicValue
-name|other
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Cannot compare operand to empty value"
-argument_list|)
-throw|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 		 */
 specifier|public

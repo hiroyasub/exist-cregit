@@ -184,6 +184,16 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|other
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
 name|Type
 operator|.
 name|subTypeOf

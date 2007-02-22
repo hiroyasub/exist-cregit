@@ -131,7 +131,9 @@ case|:
 return|return
 name|r
 operator|==
-literal|0
+name|DatatypeConstants
+operator|.
+name|EQUAL
 return|;
 case|case
 name|Constants
@@ -141,7 +143,9 @@ case|:
 return|return
 name|r
 operator|!=
-literal|0
+name|DatatypeConstants
+operator|.
+name|EQUAL
 return|;
 case|case
 name|Constants
@@ -150,8 +154,10 @@ name|LT
 case|:
 return|return
 name|r
-operator|<
-literal|0
+operator|==
+name|DatatypeConstants
+operator|.
+name|LESSER
 return|;
 case|case
 name|Constants
@@ -160,8 +166,16 @@ name|LTEQ
 case|:
 return|return
 name|r
-operator|<=
-literal|0
+operator|==
+name|DatatypeConstants
+operator|.
+name|LESSER
+operator|||
+name|r
+operator|==
+name|DatatypeConstants
+operator|.
+name|EQUAL
 return|;
 case|case
 name|Constants
@@ -170,8 +184,10 @@ name|GT
 case|:
 return|return
 name|r
-operator|>
-literal|0
+operator|==
+name|DatatypeConstants
+operator|.
+name|GREATER
 return|;
 case|case
 name|Constants
@@ -180,8 +196,16 @@ name|GTEQ
 case|:
 return|return
 name|r
-operator|>=
-literal|0
+operator|==
+name|DatatypeConstants
+operator|.
+name|GREATER
+operator|||
+name|r
+operator|==
+name|DatatypeConstants
+operator|.
+name|EQUAL
 return|;
 default|default :
 throw|throw
@@ -217,6 +241,7 @@ name|getType
 argument_list|()
 condition|)
 block|{
+comment|//Take care : this method doesn't seem to take ms into account
 name|int
 name|r
 init|=
@@ -258,6 +283,7 @@ throw|;
 return|return
 name|r
 return|;
+comment|/* TODO : consider this kind of design 		} else if (Type.getCommonSuperType(getType(), other.getType()) == Type.DURATION) { 			//Take care : this method doesn't seem to take ms into account  			int r = duration.compare(((DurationValue) other).duration); 			if (r == DatatypeConstants.INDETERMINATE) throw new RuntimeException("indeterminate order between totally ordered duration values " + this + " and " + other); 			return r; 		*/
 block|}
 throw|throw
 operator|new
