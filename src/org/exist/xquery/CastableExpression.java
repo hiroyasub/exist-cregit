@@ -368,6 +368,23 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
+comment|//Maybe too strict ? Investigate...
+if|if
+condition|(
+name|Dependency
+operator|.
+name|dependsOnVar
+argument_list|(
+name|expression
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Can not cast a variable reference"
+argument_list|)
+throw|;
 name|Sequence
 name|seq
 init|=
