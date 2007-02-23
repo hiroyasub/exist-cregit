@@ -196,7 +196,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^\\d-(\\d+)-(.*)"
+literal|"^\\d\\d?-(\\d+)-(.*)"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -696,13 +696,6 @@ name|matches
 argument_list|()
 condition|)
 block|{
-comment|//TODO : refactor this -1 shift :
-comment|//OK for :
-comment|//(xs:dateTime("0001-01-01T01:01:01Z") + xs:yearMonthDuration("-P20Y07M"))
-comment|//which goes from "0-20-06-01T01:01:01Z" to correct "-0021-06-01T01:01:01Z"
-comment|//not OK for :
-comment|//xs:string("-0012-05:00") cast as xs:gYear
-comment|//which goes from "0-12-05:00" to incorrectly shifted "-0013-05:00"
 name|int
 name|year
 init|=
@@ -720,8 +713,6 @@ argument_list|)
 operator|.
 name|intValue
 argument_list|()
-operator|+
-literal|1
 decl_stmt|;
 name|DecimalFormat
 name|df
