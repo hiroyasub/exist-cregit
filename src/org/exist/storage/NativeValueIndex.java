@@ -2286,6 +2286,13 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+continue|continue;
 name|boolean
 name|changed
 init|=
