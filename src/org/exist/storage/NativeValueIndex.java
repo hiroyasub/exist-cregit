@@ -2286,13 +2286,6 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-continue|continue;
 name|boolean
 name|changed
 init|=
@@ -2321,6 +2314,13 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+continue|continue;
 name|VariableByteArrayInput
 name|is
 init|=

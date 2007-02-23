@@ -6396,47 +6396,11 @@ argument_list|(
 name|created
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
-name|documents
-operator|.
-name|values
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|doc
-operator|=
-operator|(
-name|DocumentImpl
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-name|doc
-operator|.
-name|write
-argument_list|(
-name|ostream
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        DocumentImpl doc;
+comment|//        for (Iterator i = documents.values().iterator(); i.hasNext(); ) {
+comment|//            doc = (DocumentImpl) i.next();
+comment|//            doc.write(ostream);
+comment|//        }
 block|}
 specifier|public
 name|CollectionConfiguration
