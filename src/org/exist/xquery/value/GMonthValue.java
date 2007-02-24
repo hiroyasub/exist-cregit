@@ -446,7 +446,7 @@ block|{
 return|return
 name|Type
 operator|.
-name|GYEAR
+name|GMONTH
 return|;
 block|}
 specifier|protected

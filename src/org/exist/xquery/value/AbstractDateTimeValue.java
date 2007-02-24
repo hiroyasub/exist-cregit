@@ -288,6 +288,9 @@ argument_list|(
 name|lexicalValue
 argument_list|)
 expr_stmt|;
+comment|//4 digits years should not have leading zeroes
+comment|//xs:gDay("---08-10:60") is invalid also
+comment|//TODO : where to enforce those lexical constains ?
 try|try
 block|{
 name|this
