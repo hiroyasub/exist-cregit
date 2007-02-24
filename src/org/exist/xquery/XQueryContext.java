@@ -6022,9 +6022,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Option
-name|option
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -6043,8 +6040,9 @@ name|i
 operator|++
 control|)
 block|{
+name|Option
 name|option
-operator|=
+init|=
 operator|(
 name|Option
 operator|)
@@ -6054,7 +6052,7 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|qname
