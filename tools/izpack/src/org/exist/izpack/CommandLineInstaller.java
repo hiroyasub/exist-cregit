@@ -15,11 +15,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|izforge
 operator|.
-name|BufferedWriter
+name|izpack
+operator|.
+name|installer
+operator|.
+name|AutomatedInstaller
 import|;
 end_import
 
@@ -53,20 +57,6 @@ name|Writer
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|izforge
-operator|.
-name|izpack
-operator|.
-name|installer
-operator|.
-name|AutomatedInstaller
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -79,18 +69,18 @@ block|{
 specifier|private
 specifier|final
 specifier|static
-name|int
+name|String
 name|HELP_OPT
 init|=
-literal|'h'
+literal|"-h"
 decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|int
+name|String
 name|PATH_OPT
 init|=
-literal|'p'
+literal|"-p"
 decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
@@ -247,7 +237,7 @@ index|]
 operator|.
 name|equals
 argument_list|(
-literal|"-h"
+name|HELP_OPT
 argument_list|)
 condition|)
 block|{
@@ -265,7 +255,7 @@ index|]
 operator|.
 name|equals
 argument_list|(
-literal|"-p"
+name|PATH_OPT
 argument_list|)
 condition|)
 block|{
@@ -351,17 +341,13 @@ literal|"<com.izforge.izpack.panels.HelloPanel/>\n"
 operator|+
 literal|"<com.izforge.izpack.panels.PacksPanel>\n"
 operator|+
-literal|"<selected>\n"
+literal|"<pack name=\"core\" index=\"0\" selected=\"true\"/>\n"
 operator|+
-literal|"<pack index=\"0\"/>\n"
+literal|"<pack name=\"sources\" index=\"1\" selected=\"true\"/>\n"
 operator|+
-literal|"<pack index=\"1\"/>\n"
+literal|"<pack name=\"javadoc\" index=\"2\" selected=\"true\"/>\n"
 operator|+
-literal|"<pack index=\"2\"/>\n"
-operator|+
-literal|"</selected>\n"
-operator|+
-literal|"</com.izforge.izpack.panels.PacksPanel>\n"
+literal|"</com.izforge.izpack.panels.PacksPanel>"
 argument_list|)
 expr_stmt|;
 name|w
@@ -383,14 +369,34 @@ name|w
 operator|.
 name|write
 argument_list|(
-literal|"<com.izforge.izpack.panels.InstallPanel/>\n"
+literal|"<com.izforge.izpack.panels.UserInputPanel>\n"
+operator|+
+literal|"<userInput>\n"
+operator|+
+literal|"<entry key=\"adminPasswd\" value=\"\"/>\n"
+operator|+
+literal|"</userInput>\n"
+operator|+
+literal|"</com.izforge.izpack.panels.UserInputPanel>"
 argument_list|)
 expr_stmt|;
 name|w
 operator|.
 name|write
 argument_list|(
-literal|"<com.izforge.izpack.panels.FinishPanel/>\n"
+literal|"<com.izforge.izpack.panels.InstallPanel />\n"
+operator|+
+literal|"<com.izforge.izpack.panels.ShortcutPanel>\n"
+operator|+
+literal|"<programGroup/>"
+operator|+
+literal|"</com.izforge.izpack.panels.ShortcutPanel>\n"
+operator|+
+literal|"<com.izforge.izpack.panels.ProcessPanel />\n"
+operator|+
+literal|"<com.izforge.izpack.panels.HTMLInfoPanel />\n"
+operator|+
+literal|"<com.izforge.izpack.panels.FinishPanel />"
 argument_list|)
 expr_stmt|;
 name|w
@@ -405,11 +411,19 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|EXistAutomatedInstaller
+name|installer
+init|=
 operator|new
-name|AutomatedInstaller
+name|EXistAutomatedInstaller
 argument_list|(
 name|filename
 argument_list|)
+decl_stmt|;
+name|installer
+operator|.
+name|run
+argument_list|()
 expr_stmt|;
 operator|new
 name|File
@@ -491,6 +505,42 @@ argument_list|(
 literal|"        Print this help message and exit"
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Workaround: AutomatedInstaller.doInstall is protected, so we can't call it      * directly. Instead we have to create a subclass which calls it.      */
+specifier|private
+class|class
+name|EXistAutomatedInstaller
+extends|extends
+name|AutomatedInstaller
+block|{
+specifier|public
+name|EXistAutomatedInstaller
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|super
+argument_list|(
+name|string
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|run
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|doInstall
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 * @param args 	 */
 specifier|public
