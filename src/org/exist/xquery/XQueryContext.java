@@ -6105,6 +6105,31 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPST0081: pragma's ('"
+operator|+
+name|name
+operator|+
+literal|"') namespace URI is empty"
+argument_list|)
+throw|;
+block|}
+if|else if
+condition|(
 name|Namespaces
 operator|.
 name|EXIST_NS
