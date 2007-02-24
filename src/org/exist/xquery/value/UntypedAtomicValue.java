@@ -530,11 +530,23 @@ name|Type
 operator|.
 name|DAY_TIME_DURATION
 case|:
-return|return
+name|DayTimeDurationValue
+name|dtdv
+init|=
 operator|new
 name|DayTimeDurationValue
 argument_list|(
 name|value
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|DayTimeDurationValue
+argument_list|(
+name|dtdv
+operator|.
+name|getCanonicalDuration
+argument_list|()
 argument_list|)
 return|;
 default|default :
