@@ -213,7 +213,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * @uml.associationEnd multiplicity="(0 1)"      */
 specifier|private
 name|FulltextIndexSpec
 name|ftSpec
@@ -235,9 +234,18 @@ operator|new
 name|TreeMap
 argument_list|()
 decl_stmt|;
+specifier|private
+name|Map
+name|customIndexSpecs
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|IndexSpec
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Element
 name|index
 parameter_list|)
@@ -246,6 +254,8 @@ name|DatabaseConfigurationException
 block|{
 name|read
 argument_list|(
+name|broker
+argument_list|,
 name|index
 argument_list|)
 expr_stmt|;
@@ -255,6 +265,9 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Element
 name|index
 parameter_list|)
@@ -491,6 +504,28 @@ block|}
 block|}
 block|}
 block|}
+comment|// configure custom indexes, but not if broker is null (which means we are reading
+comment|// the default index config from conf.xml)
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+name|customIndexSpecs
+operator|=
+name|broker
+operator|.
+name|getIndexDispatcher
+argument_list|()
+operator|.
+name|configure
+argument_list|(
+name|cl
+argument_list|,
+name|namespaces
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Returns the fulltext index configuration object for the current      * configuration.      */
 specifier|public
@@ -500,6 +535,30 @@ parameter_list|()
 block|{
 return|return
 name|ftSpec
+return|;
+block|}
+comment|/**      * Returns the configuration object registered for the non-core      * index identified by id.      *      * @param id the id used to identify this index.      * @return the configuration object registered for the index or null.      */
+specifier|public
+name|Object
+name|getCustomIndexSpec
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{
+return|return
+name|customIndexSpecs
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|customIndexSpecs
+operator|.
+name|get
+argument_list|(
+name|id
+argument_list|)
 return|;
 block|}
 comment|/**      * Returns the {@link GeneralRangeIndexSpec} defined for the given      * node path or null if no index has been configured.      *       * @param path      */

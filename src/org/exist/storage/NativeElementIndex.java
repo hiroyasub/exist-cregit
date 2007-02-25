@@ -1067,6 +1067,9 @@ name|indexingHint
 parameter_list|,
 name|RangeIndexSpec
 name|spec
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub

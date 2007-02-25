@@ -11777,24 +11777,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|rec
-operator|.
-name|getTID
-argument_list|()
-operator|<
-literal|0
-condition|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"tid< 0"
-argument_list|)
-expr_stmt|;
-block|}
+comment|//				if (rec.getTID()< 0) {
+comment|//					LOG.warn("tid< 0");
+comment|//				}
 name|Loggable
 name|loggable
 init|=

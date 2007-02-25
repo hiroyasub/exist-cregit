@@ -125,6 +125,9 @@ name|indexingHint
 parameter_list|,
 name|RangeIndexSpec
 name|spec
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 function_decl|;
 comment|/** store and index given text node */

@@ -1471,6 +1471,9 @@ name|indexingHint
 parameter_list|,
 name|RangeIndexSpec
 name|spec
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 block|{
 for|for
@@ -1515,6 +1518,8 @@ argument_list|,
 name|indexingHint
 argument_list|,
 name|spec
+argument_list|,
+name|remove
 argument_list|)
 expr_stmt|;
 block|}
@@ -1975,6 +1980,9 @@ name|currentPath
 parameter_list|,
 name|String
 name|content
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 block|{
 specifier|final
@@ -2071,6 +2079,8 @@ argument_list|,
 name|NativeValueIndex
 operator|.
 name|IDX_GENERIC
+argument_list|,
+name|remove
 argument_list|)
 expr_stmt|;
 block|}
@@ -2153,6 +2163,8 @@ argument_list|,
 name|NativeValueIndex
 operator|.
 name|IDX_QNAME
+argument_list|,
+name|remove
 argument_list|)
 expr_stmt|;
 comment|//            qnameValueIndex.setDocument((DocumentImpl) node.getOwnerDocument());
@@ -2229,6 +2241,8 @@ operator|.
 name|FOURTH_OPTION
 argument_list|,
 literal|null
+argument_list|,
+name|remove
 argument_list|)
 expr_stmt|;
 block|}
@@ -2331,6 +2345,8 @@ operator|.
 name|TEXT_BY_QNAME
 argument_list|,
 name|ftIdx
+argument_list|,
+name|remove
 argument_list|)
 expr_stmt|;
 block|}
@@ -3505,7 +3521,7 @@ name|lockMode
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Get collection object. If the collection does not exist, null is 	 *  returned. 	 * 	 *@param  name  collection name 	 *@return       The collection value 	 */
+comment|/** 	 *  Get collection object. If the collection does not exist, null is 	 *  returned. 	 * 	 *@param  uri  collection URI 	 *@return       The collection value 	 */
 specifier|private
 name|Collection
 name|openCollection
@@ -13632,6 +13648,8 @@ argument_list|,
 name|NativeValueIndex
 operator|.
 name|IDX_GENERIC
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -13683,6 +13701,8 @@ argument_list|,
 name|NativeValueIndex
 operator|.
 name|IDX_QNAME
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -13835,6 +13855,8 @@ operator|.
 name|WITHOUT_PATH
 argument_list|,
 name|spec2
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -13882,6 +13904,8 @@ operator|.
 name|WITHOUT_PATH
 argument_list|,
 name|qnSpec
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -13924,6 +13948,8 @@ operator|.
 name|ATTRIBUTE_NOT_BY_QNAME
 argument_list|,
 name|ftIdx
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -13968,6 +13994,8 @@ operator|.
 name|TOKENIZE
 argument_list|,
 name|ftIdx
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -14002,6 +14030,8 @@ operator|.
 name|DO_NOT_TOKENIZE
 argument_list|,
 name|ftIdx
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -14707,6 +14737,12 @@ argument_list|,
 name|currentPath
 argument_list|,
 literal|null
+argument_list|,
+name|mode
+operator|==
+name|NodeProcessor
+operator|.
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 name|currentPath
@@ -15274,6 +15310,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|indexController
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 name|nodesCount
 operator|=
 literal|0
@@ -16526,6 +16567,10 @@ operator|.
 name|WITHOUT_PATH
 argument_list|,
 name|rangeSpec
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -16602,6 +16647,10 @@ operator|.
 name|WITHOUT_PATH
 argument_list|,
 name|qnIdx
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -16645,6 +16694,10 @@ operator|.
 name|ATTRIBUTE_NOT_BY_QNAME
 argument_list|,
 name|ftIdx
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -16694,6 +16747,10 @@ operator|.
 name|ATTRIBUTE_BY_QNAME
 argument_list|,
 name|ftIdx
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -16876,6 +16933,10 @@ operator|.
 name|TOKENIZE
 argument_list|,
 name|ftIdx
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -16926,6 +16987,10 @@ argument_list|,
 name|tokenize
 argument_list|,
 name|ftIdx
+argument_list|,
+name|mode
+operator|==
+name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
@@ -17090,6 +17155,10 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|mode
+operator|!=
+name|MODE_REMOVE
+operator|&&
 name|nodesCount
 operator|>
 name|DEFAULT_NODES_BEFORE_MEMORY_CHECK

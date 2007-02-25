@@ -526,7 +526,7 @@ name|id
 decl_stmt|;
 specifier|protected
 name|IndexController
-name|indexDispatch
+name|indexController
 decl_stmt|;
 comment|//TODO : use a property object
 specifier|public
@@ -669,7 +669,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|indexDispatch
+name|indexController
 operator|=
 operator|new
 name|IndexController
@@ -712,7 +712,7 @@ name|getIndexDispatcher
 parameter_list|()
 block|{
 return|return
-name|indexDispatch
+name|indexController
 return|;
 block|}
 comment|//TODO : give more abstraction in the future (Symbolprovider or something like this)
@@ -1163,6 +1163,33 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+name|void
+name|endElement
+parameter_list|(
+specifier|final
+name|StoredNode
+name|node
+parameter_list|,
+name|NodePath
+name|currentPath
+parameter_list|,
+name|String
+name|content
+parameter_list|)
+block|{
+name|endElement
+argument_list|(
+name|node
+argument_list|,
+name|currentPath
+argument_list|,
+name|content
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
 specifier|abstract
 name|void
 name|endElement
@@ -1176,6 +1203,9 @@ name|currentPath
 parameter_list|,
 name|String
 name|content
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 function_decl|;
 comment|/** 	 * Store a document (descriptor) into the database. 	 *  	 * @param doc 	 *            the document's metadata to store. 	 */

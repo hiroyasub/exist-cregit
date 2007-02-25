@@ -854,6 +854,9 @@ name|indexingHint
 parameter_list|,
 name|FulltextIndexSpec
 name|indexSpec
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 function_decl|;
 specifier|public
@@ -872,6 +875,9 @@ name|indexingHint
 parameter_list|,
 name|FulltextIndexSpec
 name|indexSpec
+parameter_list|,
+name|boolean
+name|remove
 parameter_list|)
 function_decl|;
 specifier|public
