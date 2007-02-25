@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an arbitrary index structure that can be used by eXist. This is the  * main interface to be registered with the database instance. It provides methods  * to configure, open and close the index. These methods will be called by the main  * database instance.  */
+comment|/**  * Represents an arbitrary index structure that can be used by eXist. This is the  * main interface to be registered with the database instance. It provides methods  * to configure, open and close the index. These methods will be called by the main  * database instance during startup/shutdown. They don't need to be synchronized.  */
 end_comment
 
 begin_interface
@@ -72,6 +72,7 @@ specifier|public
 interface|interface
 name|Index
 block|{
+comment|/**      * Open and configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
 name|void
 name|open
 parameter_list|(
@@ -87,18 +88,21 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
+comment|/**      * Close the index and all associated resources.      *      * @throws DBException      */
 name|void
 name|close
 parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
+comment|/**      * Sync the index. This method should make sure that all index contents are written to disk.      * It will be called during checkpoint events and the system relies on the index to materialize      * all data.      *      * @throws DBException      */
 name|void
 name|sync
 parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
+comment|/**      * Create a new IndexWorker, which is used to access the index in a multi-threaded      * environment.      *      * Every database instance has a number of      * {@link org.exist.storage.DBBroker} objects. All operations on the db      * have to go through one of these brokers. Each DBBroker retrieves an      * IndexWorker for every index by calling this method.      *      * @return a new IndexWorker that can be used for concurrent access to the index.      */
 name|IndexWorker
 name|getWorker
 parameter_list|()

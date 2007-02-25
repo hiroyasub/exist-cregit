@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Internally used by the {@link DBBroker} to dispatch an operation to each of the  * registered indexes.  *   */
 end_comment
 
 begin_class

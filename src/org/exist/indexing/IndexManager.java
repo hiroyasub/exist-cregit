@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Manages all custom indexes registered with the database instance.  */
 end_comment
 
 begin_class
@@ -141,6 +141,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
 specifier|public
 name|IndexManager
 parameter_list|(
@@ -422,6 +423,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
+comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to do the      * actual work.      *      * @return      */
 specifier|public
 specifier|synchronized
 name|IndexWorker
@@ -498,6 +500,7 @@ return|return
 name|workers
 return|;
 block|}
+comment|/**      * Shutdown all registered indexes by calling {@link org.exist.indexing.Index#close()}      * on them.      *      * @throws DBException      */
 specifier|public
 name|void
 name|shutdown

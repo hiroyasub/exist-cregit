@@ -76,7 +76,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Callback interface which receives index events. StreamListeners are chained;  * events should be forwarded to the next listener in the chain (if there is any).  */
 end_comment
 
 begin_interface
@@ -84,6 +84,7 @@ specifier|public
 interface|interface
 name|StreamListener
 block|{
+comment|/**      * Set the next stream listener in the chain. Events should always be forwarded      * to the next listener.      *      * @param listener the next listener in the chain.      */
 name|void
 name|setNextInChain
 parameter_list|(
@@ -91,6 +92,7 @@ name|StreamListener
 name|listener
 parameter_list|)
 function_decl|;
+comment|/**      * Processed the opening tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
 name|void
 name|startElement
 parameter_list|(
@@ -104,6 +106,7 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
+comment|/**      * An attribute has been stored.      *      * @param transaction the current transaction      * @param attrib the attribute which has been stored to the db      * @param path the current node path      */
 name|void
 name|attribute
 parameter_list|(
@@ -117,6 +120,7 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
+comment|/**      * Processed the closing tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
 name|void
 name|endElement
 parameter_list|(
@@ -130,6 +134,7 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
+comment|/**      * A text node has been stored.      * @param transaction the current transaction      * @param text the text node which has been stored to the db.      * @param path the current node path      */
 name|void
 name|characters
 parameter_list|(

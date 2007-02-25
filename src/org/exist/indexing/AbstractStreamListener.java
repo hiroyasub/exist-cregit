@@ -88,7 +88,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   */
+comment|/**  * Default implementation of a StreamListener. By default forwards all events to  * the next listener in the chain (if there is any). Overwrite methods to handle events  * (but don't forget to call the super method as well).  */
 end_comment
 
 begin_class
