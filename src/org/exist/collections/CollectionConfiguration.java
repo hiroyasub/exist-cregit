@@ -750,6 +750,8 @@ operator|=
 operator|new
 name|IndexSpec
 argument_list|(
+name|broker
+argument_list|,
 name|elem
 argument_list|)
 expr_stmt|;
@@ -758,6 +760,8 @@ name|indexSpec
 operator|.
 name|read
 argument_list|(
+name|broker
+argument_list|,
 name|elem
 argument_list|)
 expr_stmt|;
@@ -960,7 +964,17 @@ expr_stmt|;
 comment|//TODO : throw an exception like above ? -pb
 block|}
 block|}
-else|else
+if|else if
+condition|(
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+condition|)
 block|{
 name|LOG
 operator|.

@@ -6452,6 +6452,8 @@ init|=
 operator|new
 name|IndexSpec
 argument_list|(
+literal|null
+argument_list|,
 name|elem
 argument_list|)
 decl_stmt|;

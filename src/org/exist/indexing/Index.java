@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   */
+comment|/**  * Represents an arbitrary index structure that can be used by eXist. This is the  * main interface to be registered with the database instance. It provides methods  * to configure, open and close the index. These methods will be called by the main  * database instance.  */
 end_comment
 
 begin_interface
@@ -96,6 +96,8 @@ function_decl|;
 name|void
 name|sync
 parameter_list|()
+throws|throws
+name|DBException
 function_decl|;
 name|IndexWorker
 name|getWorker
