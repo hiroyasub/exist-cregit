@@ -1578,6 +1578,11 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+name|metrics
+operator|.
+name|addDataPage
+argument_list|()
+expr_stmt|;
 return|return
 name|page
 return|;

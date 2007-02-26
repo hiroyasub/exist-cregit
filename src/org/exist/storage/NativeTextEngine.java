@@ -2593,6 +2593,11 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|//Process the nodes
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2608,6 +2613,7 @@ name|m
 operator|++
 control|)
 block|{
+comment|//                        NodeId nodeId = broker.getBrokerPool().getNodeFactory().createFromStream(is);
 name|NodeId
 name|nodeId
 init|=
@@ -2621,9 +2627,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 name|int
 name|freq
 init|=
@@ -5750,6 +5762,11 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -5768,6 +5785,8 @@ control|)
 block|{
 try|try
 block|{
+name|previous
+operator|=
 name|occurences
 operator|.
 name|nodes
@@ -5777,9 +5796,12 @@ index|]
 operator|.
 name|write
 argument_list|(
+name|previous
+argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
+comment|//                            occurences.nodes[m].write(os);
 block|}
 catch|catch
 parameter_list|(
@@ -7073,6 +7095,11 @@ else|else
 block|{
 comment|// data are related to our section and document:
 comment|// feed the new list with the GIDs
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -7101,9 +7128,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 name|int
 name|freq
 init|=
@@ -7230,6 +7263,11 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -7246,6 +7284,8 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|previous
+operator|=
 name|newOccurencesList
 operator|.
 name|nodes
@@ -7255,6 +7295,8 @@ index|]
 operator|.
 name|write
 argument_list|(
+name|previous
+argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
@@ -7959,6 +8001,11 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -7987,9 +8034,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 name|int
 name|freq
 init|=
@@ -8659,6 +8712,11 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -8687,9 +8745,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 name|int
 name|freq
 init|=

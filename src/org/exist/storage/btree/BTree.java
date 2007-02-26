@@ -455,6 +455,14 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|protected
+name|TreeMetrics
+name|metrics
+init|=
+operator|new
+name|TreeMetrics
+argument_list|()
+decl_stmt|;
+specifier|protected
 name|BTree
 parameter_list|(
 name|BrokerPool
@@ -1466,6 +1474,13 @@ name|write
 argument_list|()
 expr_stmt|;
 comment|//cache.add(node);
+name|metrics
+operator|.
+name|addPage
+argument_list|(
+name|status
+argument_list|)
+expr_stmt|;
 return|return
 name|node
 return|;
@@ -10610,6 +10625,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//        metrics.toLogger();
 block|}
 specifier|protected
 class|class

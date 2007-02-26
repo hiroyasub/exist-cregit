@@ -1828,6 +1828,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//Compute the GID list
+name|NodeId
+name|nodeId
+decl_stmt|,
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1843,9 +1850,8 @@ name|j
 operator|++
 control|)
 block|{
-name|NodeId
 name|nodeId
-init|=
+operator|=
 operator|(
 name|NodeId
 operator|)
@@ -1855,16 +1861,21 @@ name|get
 argument_list|(
 name|j
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 try|try
 block|{
+name|previous
+operator|=
 name|nodeId
 operator|.
 name|write
 argument_list|(
+name|previous
+argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
+comment|//                        nodeId.write(os);
 block|}
 catch|catch
 parameter_list|(
@@ -2439,6 +2450,11 @@ else|else
 block|{
 comment|// data are related to our document:
 comment|// feed the new list with the GIDs
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2467,9 +2483,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 comment|// add the node to the new list if it is not
 comment|// in the list of removed nodes
 if|if
@@ -5230,6 +5252,17 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|//Process the nodes
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
+name|NodeId
+name|nodeId
+decl_stmt|;
+name|NodeProxy
+name|storedNode
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -5245,9 +5278,8 @@ name|j
 operator|++
 control|)
 block|{
-name|NodeId
 name|nodeId
-init|=
+operator|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -5258,12 +5290,17 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
-decl_stmt|;
-name|NodeProxy
+expr_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 name|storedNode
-init|=
+operator|=
 operator|new
 name|NodeProxy
 argument_list|(
@@ -5271,7 +5308,7 @@ name|storedDocument
 argument_list|,
 name|nodeId
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// if a context set is specified, we can directly check if the
 comment|// matching node is a descendant of one of the nodes
 comment|// in the context set.
@@ -5810,6 +5847,17 @@ name|lastParentId
 init|=
 literal|null
 decl_stmt|;
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
+name|NodeId
+name|nodeId
+decl_stmt|;
+name|NodeProxy
+name|parentNode
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -5825,9 +5873,8 @@ name|j
 operator|++
 control|)
 block|{
-name|NodeId
 name|nodeId
-init|=
+operator|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -5838,9 +5885,15 @@ argument_list|()
 operator|.
 name|createFromStream
 argument_list|(
+name|previous
+argument_list|,
 name|is
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+name|previous
+operator|=
+name|nodeId
+expr_stmt|;
 if|if
 condition|(
 name|contextSet
@@ -5848,9 +5901,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|NodeProxy
 name|parentNode
-init|=
+operator|=
 name|contextSet
 operator|.
 name|parentWithChild
@@ -5863,7 +5915,7 @@ literal|false
 argument_list|,
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|parentNode

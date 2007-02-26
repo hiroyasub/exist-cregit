@@ -102,7 +102,7 @@ name|NodeId
 name|newChild
 parameter_list|()
 function_decl|;
-comment|/**      * Returns a new NodeId representing the nth child node      * of this node. The returned id can be used      * to create new child nodes. The actual id of the      * child might be different, depending on the      * implementation.      *       * @param child      * @return new node id      */
+comment|/**      * Returns a new NodeId representing the nth child node      * of this node. The returned id can be used      * to create new child nodes. The actual id of the      * child might be different, depending on the      * implementation.      *       * @param child the position of the child      * @return new node id      */
 name|NodeId
 name|getChild
 parameter_list|(
@@ -136,7 +136,7 @@ name|NodeId
 name|getParentId
 parameter_list|()
 function_decl|;
-comment|/**      * Returns true if the node represented by this node id comes      * after the argument node in document order. If isFollowing is set to true, the method      * behaves as if called to evaluate a following::* XPath select, i.e. it      * returns false for descendants of the current node.      *      * @param other      * @param isFollowing      */
+comment|/**      * Returns true if the node represented by this node id comes      * after the argument node in document order. If isFollowing is set to true, the method      * behaves as if called to evaluate a following::* XPath select, i.e. it      * returns false for descendants of the current node.      *      * @param other the node id to compare with      * @param isFollowing if true, return false for descendants of the current node       * @return true true if the current node comes after the other node in document order      */
 name|boolean
 name|after
 parameter_list|(
@@ -147,7 +147,7 @@ name|boolean
 name|isFollowing
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the node represented by this node id comes      * before the argument node in document order. If isPreceding is set to true, the method      * behaves as if called to evaluate a preceding::* XPath select, i.e. it      * returns false for ancestors of the current node.      *      * @param other      * @param isPreceding      */
+comment|/**      * Returns true if the node represented by this node id comes      * before the argument node in document order. If isPreceding is set to true, the method      * behaves as if called to evaluate a preceding::* XPath select, i.e. it      * returns false for ancestors of the current node.      *      * @param other the node id to compare with      * @param isPreceding if true, return false for ancestors of the current node      * @return true if the current node comes before the other node in document order.      */
 name|boolean
 name|before
 parameter_list|(
@@ -173,7 +173,7 @@ name|NodeId
 name|ancestor
 parameter_list|)
 function_decl|;
-comment|/**      * Is the current node a child node of the specified parent?      *      * @param parent the parent node      */
+comment|/**      * Is the current node a child node of the specified parent?      *      * @param parent the parent node      * @return true if the current node is a child of the specified parent      */
 name|boolean
 name|isChildOf
 parameter_list|(
@@ -196,7 +196,7 @@ name|NodeId
 name|sibling
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the level within the document tree at which      * this node occurs.      */
+comment|/**      * Returns the level within the document tree at which      * this node occurs.      *      * @return the tree level      */
 name|int
 name|getTreeLevel
 parameter_list|()
@@ -236,10 +236,23 @@ name|int
 name|offset
 parameter_list|)
 function_decl|;
-comment|/**      * Write the node id to a {@link org.exist.storage.io.VariableByteOutputStream}.      *      * @param os      * @throws java.io.IOException      */
+comment|/**      * Write the node id to a {@link org.exist.storage.io.VariableByteOutputStream}.      *      * @param os the output stream      * @throws java.io.IOException if there's a problem with the underlying output stream      */
 name|void
 name|write
 parameter_list|(
+name|VariableByteOutputStream
+name|os
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**      * Write the node id to a {@link org.exist.storage.io.VariableByteOutputStream}. To save      * storage space, only store those byte which are different from the previous node id.      *      * @param previous the node id previously written or null      * @param os the output stream      * @return this node id      * @throws IOException if there's a problem with the underlying output stream      */
+name|NodeId
+name|write
+parameter_list|(
+name|NodeId
+name|previous
+parameter_list|,
 name|VariableByteOutputStream
 name|os
 parameter_list|)
