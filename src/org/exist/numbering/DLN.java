@@ -1393,7 +1393,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|DLN
+name|NodeId
 name|ids
 index|[]
 init|=
@@ -1451,6 +1451,14 @@ name|DLN
 argument_list|(
 literal|"1.2"
 argument_list|)
+block|,
+name|DLN
+operator|.
+name|END_OF_DOCUMENT
+block|,
+name|DLN
+operator|.
+name|END_OF_DOCUMENT
 block|}
 decl_stmt|;
 name|VariableByteOutputStream
@@ -1460,7 +1468,7 @@ operator|new
 name|VariableByteOutputStream
 argument_list|()
 decl_stmt|;
-name|DLN
+name|NodeId
 name|previous
 init|=
 literal|null
@@ -1482,7 +1490,7 @@ name|i
 operator|++
 control|)
 block|{
-name|DLN
+name|NodeId
 name|id
 init|=
 name|ids
@@ -1498,7 +1506,7 @@ name|println
 argument_list|(
 name|id
 operator|.
-name|debug
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1577,9 +1585,6 @@ control|)
 block|{
 name|previous
 operator|=
-operator|(
-name|DLN
-operator|)
 name|fact
 operator|.
 name|createFromStream
@@ -1597,7 +1602,7 @@ name|println
 argument_list|(
 name|previous
 operator|.
-name|debug
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1625,7 +1630,7 @@ name|i
 operator|++
 control|)
 block|{
-name|DLN
+name|NodeId
 name|id
 init|=
 name|ids
@@ -1641,7 +1646,7 @@ name|println
 argument_list|(
 name|id
 operator|.
-name|debug
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

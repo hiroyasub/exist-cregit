@@ -283,6 +283,16 @@ parameter_list|)
 block|{
 name|os
 operator|.
+name|writeByte
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0
+argument_list|)
+expr_stmt|;
+name|os
+operator|.
 name|writeShort
 argument_list|(
 literal|0
