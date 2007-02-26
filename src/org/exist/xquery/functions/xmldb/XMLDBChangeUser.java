@@ -265,7 +265,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Change properties of an existing user. $a is the username, $b is the password, "
+literal|"Change properties of an existing user, you must have appropriate permissions to do this. $a is the username, $b is the password, "
 operator|+
 literal|"$c is the sequence of group memberships, $d is the home collection. The username is mandatory but other values are optional, where if empty the existing value is used."
 argument_list|,
