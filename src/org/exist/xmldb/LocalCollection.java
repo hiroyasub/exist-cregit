@@ -3243,26 +3243,8 @@ argument_list|)
 throw|;
 block|}
 comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|collection
-operator|.
-name|getLock
-argument_list|()
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
+comment|//if (transaction != null)
+comment|//    transaction.registerLock(collection.getLock(), Lock.WRITE_LOCK);
 name|DocumentImpl
 name|doc
 init|=
