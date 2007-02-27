@@ -4101,6 +4101,7 @@ block|}
 block|}
 finally|finally
 block|{
+comment|//This lock has been acquired in validateXMLResourceInternal()
 name|document
 operator|.
 name|getUpdateLock
@@ -5092,7 +5093,8 @@ block|}
 block|}
 else|else
 block|{
-comment|//TOUNDERSTAND : when is this lock released ?
+comment|//This lock is released in storeXMLInternal()
+comment|//TODO : check that we go until there to ensure the lock is released
 name|document
 operator|.
 name|getUpdateLock
@@ -5163,9 +5165,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND : see above
-comment|//if (document != null)
-comment|//document.getUpdateLock().release(Lock.WRITE_LOCK);
 if|if
 condition|(
 name|transaction

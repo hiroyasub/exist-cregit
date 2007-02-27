@@ -4206,6 +4206,8 @@ operator|.
 name|content
 argument_list|)
 expr_stmt|;
+comment|//Notice : the document should now have a Lock.WRITE_LOCK update lock
+comment|//TODO : check that no exception occurs in order to allow it to be released
 name|info
 operator|.
 name|getDocument
@@ -4361,6 +4363,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Notice : the document should now have its update lock released
 name|transact
 operator|.
 name|commit
@@ -4389,7 +4392,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|e
 argument_list|)
