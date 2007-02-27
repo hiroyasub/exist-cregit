@@ -6852,7 +6852,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"(unable to read node ID)"
+literal|"(unable to build node ID from: "
+operator|+
+name|is
+operator|.
+name|toString
+argument_list|(
+name|nodeIdLen
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -7096,7 +7103,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"(unable to read node ID)"
+literal|"(unable to build node ID from: "
+operator|+
+name|is
+operator|.
+name|toString
+argument_list|(
+name|nodeIdLen
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -7410,7 +7424,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"(unable to read node ID)"
+literal|"(unable to build node ID from: "
+operator|+
+name|is
+operator|.
+name|toString
+argument_list|(
+name|nodeIdLen
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -11777,9 +11798,29 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//				if (rec.getTID()< 0) {
-comment|//					LOG.warn("tid< 0");
-comment|//				}
+if|if
+condition|(
+name|ItemId
+operator|.
+name|getId
+argument_list|(
+name|rec
+operator|.
+name|getTID
+argument_list|()
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"tid< 0"
+argument_list|)
+expr_stmt|;
+block|}
 name|Loggable
 name|loggable
 init|=
