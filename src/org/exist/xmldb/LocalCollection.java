@@ -3172,7 +3172,7 @@ name|getTransactionManager
 argument_list|()
 decl_stmt|;
 name|Txn
-name|txn
+name|transaction
 init|=
 name|transact
 operator|.
@@ -3223,7 +3223,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3242,6 +3242,27 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|// keep the lock for the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|collection
+operator|.
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
@@ -3265,7 +3286,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3300,7 +3321,7 @@ name|collection
 operator|.
 name|removeXMLResource
 argument_list|(
-name|txn
+name|transaction
 argument_list|,
 name|broker
 argument_list|,
@@ -3312,7 +3333,7 @@ name|collection
 operator|.
 name|removeBinaryResource
 argument_list|(
-name|txn
+name|transaction
 argument_list|,
 name|broker
 argument_list|,
@@ -3323,7 +3344,7 @@ name|transact
 operator|.
 name|commit
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
@@ -3337,7 +3358,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3367,7 +3388,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3397,7 +3418,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3427,7 +3448,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|txn
+name|transaction
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -3438,7 +3459,10 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"Failed to acquire lock on collections.dbx"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -3448,6 +3472,10 @@ finally|finally
 block|{
 if|if
 condition|(
+name|transaction
+operator|!=
+literal|null
+operator|&&
 name|collection
 operator|!=
 literal|null

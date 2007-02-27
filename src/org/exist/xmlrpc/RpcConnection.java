@@ -1361,6 +1361,7 @@ argument_list|,
 name|collUri
 argument_list|)
 decl_stmt|;
+comment|//TODO : register a lock (wich one ?) within the transaction ?
 if|if
 condition|(
 name|created
@@ -5451,6 +5452,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register a lock (which one ?) in the transaction ?
 name|DocumentSet
 name|docs
 init|=
@@ -5753,6 +5755,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register a lock (which one ?) within the transaction ?
 if|if
 condition|(
 operator|!
@@ -8534,12 +8537,6 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|InputSource
-name|source
-decl_stmt|;
-name|IndexInfo
-name|info
-decl_stmt|;
 name|Collection
 name|collection
 init|=
@@ -8622,6 +8619,7 @@ name|lastSegment
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//TODO : register the lock within the transaction ?
 if|if
 condition|(
 name|old
@@ -8654,16 +8652,18 @@ argument_list|(
 name|xml
 argument_list|)
 decl_stmt|;
+name|InputSource
 name|source
-operator|=
+init|=
 operator|new
 name|InputSource
 argument_list|(
 name|is
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|IndexInfo
 name|info
-operator|=
+init|=
 name|collection
 operator|.
 name|validateXMLResource
@@ -8679,7 +8679,7 @@ argument_list|()
 argument_list|,
 name|source
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|created
@@ -13353,6 +13353,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register the lock within the transaction ?
 name|LOG
 operator|.
 name|debug
@@ -13904,6 +13905,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register the lock within the transaction ?
 name|LOG
 operator|.
 name|debug
@@ -15018,6 +15020,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register the lock within the transaction ?
 if|if
 condition|(
 operator|!
@@ -15563,6 +15566,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+comment|//TODO : start the transaction earlier and register the lock within it ?
 name|TransactionManager
 name|transact
 init|=
@@ -18006,6 +18010,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register the lock within the transaction ?
 comment|// get destination collection
 name|destination
 operator|=
@@ -19261,6 +19266,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+comment|//TODO : register the lock within the transaction ?
 if|if
 condition|(
 operator|!
