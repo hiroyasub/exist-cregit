@@ -301,9 +301,6 @@ operator|(
 name|NodeValue
 operator|)
 name|doc
-operator|.
-name|getDocumentElement
-argument_list|()
 return|;
 block|}
 catch|catch
