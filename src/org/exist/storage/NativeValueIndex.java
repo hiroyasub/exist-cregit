@@ -2571,6 +2571,11 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|NodeId
+name|previous
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2601,10 +2606,14 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|previous
+operator|=
 name|nodeId
 operator|.
 name|write
 argument_list|(
+name|previous
+argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
