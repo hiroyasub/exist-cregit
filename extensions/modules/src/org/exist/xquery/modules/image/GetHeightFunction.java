@@ -276,7 +276,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//was a image speficifed
+comment|//was an image speficifed
 if|if
 condition|(
 name|args
