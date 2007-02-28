@@ -3242,9 +3242,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
-comment|// keep the lock for the transaction
-comment|//if (transaction != null)
-comment|//    transaction.registerLock(collection.getLock(), Lock.WRITE_LOCK);
+comment|//Check that the document exists
 name|DocumentImpl
 name|doc
 init|=
@@ -3454,10 +3452,6 @@ finally|finally
 block|{
 if|if
 condition|(
-name|transaction
-operator|!=
-literal|null
-operator|&&
 name|collection
 operator|!=
 literal|null

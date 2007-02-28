@@ -2858,25 +2858,6 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|getLock
-argument_list|()
-argument_list|,
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
@@ -3145,12 +3126,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
 comment|//Doh ! A READ lock ?
 name|getLock
 argument_list|()
@@ -3191,25 +3166,6 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|getLock
-argument_list|()
-argument_list|,
 name|Lock
 operator|.
 name|WRITE_LOCK
@@ -3318,12 +3274,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -3370,25 +3320,6 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|getLock
-argument_list|()
-argument_list|,
 name|Lock
 operator|.
 name|WRITE_LOCK
@@ -3618,12 +3549,6 @@ block|}
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -3636,6 +3561,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param source      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -3785,6 +3711,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param data      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -3880,6 +3807,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param node      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -3966,6 +3894,7 @@ throws|,
 name|SAXException
 function_decl|;
 block|}
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param privileged      * @param doParse      * @throws EXistException      * @throws SAXException      */
 specifier|private
 name|void
 name|storeXMLInternal
@@ -4015,6 +3944,27 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
+comment|//Sanity check
+if|if
+condition|(
+operator|!
+name|document
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|isLockedForWrite
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"document is not locked for write !"
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|doParse
@@ -4186,6 +4136,7 @@ operator|.
 name|getFileURI
 argument_list|()
 decl_stmt|;
+comment|//WARNING : there is no reason to lock the collection since setPath() is normally called in a safe way
 if|if
 condition|(
 name|getURI
@@ -4244,6 +4195,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri         * @param data        * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -4292,6 +4244,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param source      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -4392,6 +4345,7 @@ block|}
 argument_list|)
 return|;
 block|}
+comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param node      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -4489,7 +4443,7 @@ function_decl|;
 block|}
 specifier|private
 name|void
-name|checkConfiguration
+name|checkConfigurationDocument
 parameter_list|(
 name|Txn
 name|transaction
@@ -4643,6 +4597,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param doValidate      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|private
 name|IndexInfo
 name|validateXMLResourceInternal
@@ -4670,7 +4625,8 @@ name|SAXException
 throws|,
 name|LockException
 block|{
-name|checkConfiguration
+comment|//Make the necessary operations if we process a collection configuration document
+name|checkConfigurationDocument
 argument_list|(
 name|transaction
 argument_list|,
@@ -4694,11 +4650,6 @@ literal|"Database is read-only"
 argument_list|)
 throw|;
 name|DocumentImpl
-name|document
-init|=
-literal|null
-decl_stmt|;
-name|DocumentImpl
 name|oldDoc
 init|=
 literal|null
@@ -4720,25 +4671,19 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
+name|DocumentImpl
+name|document
+init|=
+operator|new
+name|DocumentImpl
 argument_list|(
-name|getLock
-argument_list|()
+name|broker
 argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
+name|this
+argument_list|,
+name|docUri
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|oldDoc
 operator|=
 operator|(
@@ -4752,18 +4697,6 @@ name|docUri
 operator|.
 name|getRawCollectionPath
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|document
-operator|=
-operator|new
-name|DocumentImpl
-argument_list|(
-name|broker
-argument_list|,
-name|this
-argument_list|,
-name|docUri
 argument_list|)
 expr_stmt|;
 if|if
@@ -4991,6 +4924,7 @@ operator|.
 name|BINARY_FILE
 condition|)
 block|{
+comment|//TODO : use a more elaborated method ? No triggers...
 name|broker
 operator|.
 name|removeBinaryResource
@@ -5016,7 +4950,8 @@ name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TOUNDERSTAND : when is this lock released ?
+comment|//This lock is released in storeXMLInternal()
+comment|//TODO : check that we go until there to ensure the lock is released
 name|document
 operator|.
 name|getUpdateLock
@@ -5055,6 +4990,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//TODO : use a more elaborated method ? No triggers...
 name|broker
 operator|.
 name|removeXMLResource
@@ -5080,16 +5016,28 @@ argument_list|(
 name|oldDoc
 argument_list|)
 expr_stmt|;
-name|oldDocLocked
-operator|=
-literal|false
-expr_stmt|;
-comment|// old has become new at this point
+comment|//old has become new at this point
 name|document
 operator|=
 name|oldDoc
 expr_stmt|;
+name|oldDocLocked
+operator|=
+literal|false
+expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"removed old document "
+operator|+
+name|oldDoc
+operator|.
+name|getFileURI
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -5165,12 +5113,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
 name|getLock
 argument_list|()
 operator|.
@@ -5944,8 +5886,17 @@ throw|;
 name|BinaryDocument
 name|blob
 init|=
-literal|null
+operator|new
+name|BinaryDocument
+argument_list|(
+name|broker
+argument_list|,
+name|this
+argument_list|,
+name|docUri
+argument_list|)
 decl_stmt|;
+comment|//TODO : move later, i.e. after the collection lock is acquired ?
 name|DocumentImpl
 name|oldDoc
 init|=
@@ -5956,18 +5907,6 @@ argument_list|,
 name|docUri
 argument_list|)
 decl_stmt|;
-name|blob
-operator|=
-operator|new
-name|BinaryDocument
-argument_list|(
-name|broker
-argument_list|,
-name|this
-argument_list|,
-name|docUri
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|getLock
@@ -5975,25 +5914,6 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-comment|// keep the lock for the transaction
-if|if
-condition|(
-name|transaction
-operator|!=
-literal|null
-condition|)
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|getLock
-argument_list|()
-argument_list|,
 name|Lock
 operator|.
 name|WRITE_LOCK
@@ -6275,12 +6195,6 @@ return|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
 name|getLock
 argument_list|()
 operator|.
