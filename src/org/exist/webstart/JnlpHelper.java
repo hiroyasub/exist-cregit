@@ -43,7 +43,19 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -74,7 +86,7 @@ specifier|private
 name|File
 name|existHome
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()
@@ -105,7 +117,7 @@ block|{
 comment|// Setup path based on installation (in jetty, container)
 if|if
 condition|(
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|isInWarFile
 argument_list|()
@@ -167,7 +179,7 @@ expr_stmt|;
 block|}
 name|webappFolder
 operator|=
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getWebappHome
 argument_list|()

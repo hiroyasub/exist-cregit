@@ -281,18 +281,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|backup
-operator|.
-name|Backup
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|apache
 operator|.
 name|log4j
@@ -308,6 +296,18 @@ operator|.
 name|exist
 operator|.
 name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|Backup
 import|;
 end_import
 

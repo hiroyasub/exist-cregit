@@ -225,6 +225,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -366,18 +378,6 @@ operator|.
 name|value
 operator|.
 name|StringValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|indexing
-operator|.
-name|StreamListener
 import|;
 end_import
 

@@ -173,7 +173,19 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -378,7 +390,7 @@ comment|// from the home folder.
 name|File
 name|f
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(
@@ -863,7 +875,7 @@ name|replaceAll
 argument_list|(
 literal|"\\$\\{WEBAPP_HOME\\}"
 argument_list|,
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getWebappHome
 argument_list|()
@@ -1012,7 +1024,7 @@ name|replaceAll
 argument_list|(
 literal|"\\$\\{WEBAPP_HOME\\}"
 argument_list|,
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getWebappHome
 argument_list|()
@@ -1053,7 +1065,7 @@ name|replaceAll
 argument_list|(
 literal|"\\$\\{WEBAPP_HOME\\}"
 argument_list|,
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getWebappHome
 argument_list|()

@@ -37,19 +37,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Cardinality
+name|ConfigurationHelper
 import|;
 end_import
 
@@ -62,6 +50,18 @@ operator|.
 name|xquery
 operator|.
 name|BasicFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
 import|;
 end_import
 
@@ -139,7 +139,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|StringValue
 import|;
 end_import
 
@@ -153,7 +153,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|Type
 import|;
 end_import
 
@@ -240,11 +240,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// TODO: *CONFIG_REFACORTING* This should read the ecist home from the database configuration stored in the active instances Configuration object.
 return|return
 operator|new
 name|StringValue
 argument_list|(
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()

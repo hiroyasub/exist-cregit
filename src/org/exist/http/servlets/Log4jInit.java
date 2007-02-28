@@ -175,6 +175,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|DatabaseConfigurationException
 import|;
 end_import
@@ -689,7 +701,7 @@ condition|(
 operator|new
 name|File
 argument_list|(
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()

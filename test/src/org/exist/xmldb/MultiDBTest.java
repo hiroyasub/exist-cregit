@@ -53,7 +53,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -677,7 +677,7 @@ block|{
 name|String
 name|homeDir
 init|=
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getPath
 argument_list|()

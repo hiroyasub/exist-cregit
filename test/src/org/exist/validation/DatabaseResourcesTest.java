@@ -103,6 +103,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|internal
@@ -316,7 +328,7 @@ argument_list|)
 expr_stmt|;
 name|eXistHome
 operator|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()

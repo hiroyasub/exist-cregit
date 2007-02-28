@@ -85,6 +85,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|SingleInstanceConfiguration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|XmlLibraryChecker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|DatabaseImpl
@@ -100,18 +124,6 @@ operator|.
 name|xmldb
 operator|.
 name|ShutdownListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|XmlLibraryChecker
 import|;
 end_import
 
@@ -336,7 +348,7 @@ name|println
 argument_list|(
 literal|"Configuring eXist from "
 operator|+
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getPath
 argument_list|()
@@ -353,11 +365,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// configure the database instance
-name|Configuration
+name|SingleInstanceConfiguration
 name|config
 init|=
 operator|new
-name|Configuration
+name|SingleInstanceConfiguration
 argument_list|()
 decl_stmt|;
 name|BrokerPool

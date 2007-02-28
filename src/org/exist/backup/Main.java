@@ -205,7 +205,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
 import|;
 end_import
 
@@ -552,7 +552,7 @@ block|{
 name|File
 name|propFile
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(

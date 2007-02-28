@@ -352,7 +352,7 @@ operator|.
 name|getConfiguration
 argument_list|()
 operator|.
-name|getPath
+name|getConfigFilePath
 argument_list|()
 argument_list|)
 expr_stmt|;

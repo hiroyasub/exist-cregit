@@ -1279,7 +1279,10 @@ expr_stmt|;
 name|File
 name|dbHome
 init|=
-name|Configuration
+name|pool
+operator|.
+name|getConfiguration
+argument_list|()
 operator|.
 name|getExistHome
 argument_list|()

@@ -451,7 +451,7 @@ literal|"<tr><td>Configuration:</td><td>"
 operator|+
 name|conf
 operator|.
-name|getPath
+name|getConfigFilePath
 argument_list|()
 operator|+
 literal|"</td></tr>"

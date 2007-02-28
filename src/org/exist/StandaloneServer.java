@@ -317,6 +317,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|ShutdownListener
@@ -1024,7 +1036,7 @@ name|println
 argument_list|(
 literal|"Loading configuration from "
 operator|+
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()
@@ -2177,7 +2189,7 @@ decl_stmt|;
 name|File
 name|f
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(

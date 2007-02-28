@@ -191,7 +191,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
 import|;
 end_import
 
@@ -536,7 +536,7 @@ block|{
 name|File
 name|f
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(

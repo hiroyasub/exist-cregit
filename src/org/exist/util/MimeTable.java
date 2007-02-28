@@ -576,7 +576,7 @@ decl_stmt|;
 name|File
 name|f
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(

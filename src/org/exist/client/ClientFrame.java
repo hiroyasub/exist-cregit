@@ -833,7 +833,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -7005,7 +7005,7 @@ argument_list|(
 literal|"ClientFrame.145"
 argument_list|)
 argument_list|,
-name|Configuration
+name|SingleInstanceConfiguration
 operator|.
 name|getPath
 argument_list|()

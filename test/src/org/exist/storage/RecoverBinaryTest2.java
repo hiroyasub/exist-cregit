@@ -237,6 +237,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ConfigurationHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|LockException
 import|;
 end_import
@@ -974,7 +986,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()

@@ -591,7 +591,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
 import|;
 end_import
 
@@ -9982,7 +9982,7 @@ decl_stmt|;
 name|File
 name|propFile
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(
@@ -12045,7 +12045,7 @@ comment|// Get exist home directory
 name|File
 name|home
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()
@@ -12085,21 +12085,13 @@ argument_list|(
 literal|"CONF_XML"
 argument_list|)
 decl_stmt|;
-name|File
-name|existHome
-init|=
-name|Configuration
-operator|.
-name|getExistHome
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|CONF_XML
 operator|!=
 literal|null
 operator|&&
-name|existHome
+name|home
 operator|!=
 literal|null
 condition|)
@@ -12107,7 +12099,7 @@ block|{
 name|File
 name|configuration
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|lookup
 argument_list|(

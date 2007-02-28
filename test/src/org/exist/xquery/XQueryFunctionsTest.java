@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
+name|ConfigurationHelper
 import|;
 end_import
 
@@ -4405,10 +4405,11 @@ argument_list|(
 name|testCollection
 argument_list|)
 expr_stmt|;
+comment|// TODO: *CONFIG_REFACORTING* This should read the ecist home from the database configuration stored in the active instances Configuration object.
 name|File
 name|home
 init|=
-name|Configuration
+name|ConfigurationHelper
 operator|.
 name|getExistHome
 argument_list|()
