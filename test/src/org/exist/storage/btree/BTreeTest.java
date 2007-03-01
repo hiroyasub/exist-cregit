@@ -1307,19 +1307,7 @@ operator|-
 literal|4
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|prefix
-operator|+
-literal|" : "
-operator|+
-name|key
-argument_list|)
-expr_stmt|;
+comment|//            System.out.println(prefix + " : " + key);
 name|count
 operator|++
 expr_stmt|;
