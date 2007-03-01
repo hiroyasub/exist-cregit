@@ -977,6 +977,10 @@ operator|.
 name|getStreamListener
 argument_list|(
 name|document
+argument_list|,
+name|StreamListener
+operator|.
+name|STORE
 argument_list|)
 expr_stmt|;
 block|}

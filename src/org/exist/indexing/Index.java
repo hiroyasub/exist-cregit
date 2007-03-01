@@ -72,9 +72,9 @@ specifier|public
 interface|interface
 name|Index
 block|{
-comment|/**      * Open and configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
+comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
 name|void
-name|open
+name|configure
 parameter_list|(
 name|BrokerPool
 name|pool
@@ -85,6 +85,13 @@ parameter_list|,
 name|Element
 name|config
 parameter_list|)
+throws|throws
+name|DatabaseConfigurationException
+function_decl|;
+comment|/**      * Open the index for writing and reading. Will be called during initialization, but also      * if the database had to be restarted.      *      * @throws DatabaseConfigurationException      */
+name|void
+name|open
+parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
@@ -106,6 +113,13 @@ comment|/**      * Create a new IndexWorker, which is used to access the index i
 name|IndexWorker
 name|getWorker
 parameter_list|()
+function_decl|;
+comment|/**      * Close the index and remove it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are reindexed.      */
+name|void
+name|remove
+parameter_list|()
+throws|throws
+name|DBException
 function_decl|;
 block|}
 end_interface
