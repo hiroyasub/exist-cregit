@@ -1034,21 +1034,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Loading configuration from "
-operator|+
-name|ConfigurationHelper
-operator|.
-name|getExistHome
-argument_list|()
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-name|File
-operator|.
-name|separatorChar
-operator|+
-literal|"conf.xml"
+literal|"Loading configuration ..."
 argument_list|)
 expr_stmt|;
 name|Configuration
