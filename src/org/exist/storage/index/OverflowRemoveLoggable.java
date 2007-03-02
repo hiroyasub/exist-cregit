@@ -194,17 +194,6 @@ name|ByteBuffer
 name|out
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Length = "
-operator|+
-name|length
-argument_list|)
-expr_stmt|;
 name|super
 operator|.
 name|write
