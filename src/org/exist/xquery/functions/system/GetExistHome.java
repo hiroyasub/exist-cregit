@@ -240,12 +240,17 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO: *CONFIG_REFACORTING* This should read the ecist home from the database configuration stored in the active instances Configuration object.
 return|return
 operator|new
 name|StringValue
 argument_list|(
-name|ConfigurationHelper
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|()
 operator|.
 name|getExistHome
 argument_list|()
