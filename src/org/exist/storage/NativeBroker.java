@@ -14991,6 +14991,13 @@ argument_list|,
 name|mode
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
+block|{
 switch|switch
 condition|(
 name|node
@@ -15072,6 +15079,7 @@ name|getNodeType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -15198,6 +15206,12 @@ operator|.
 name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
 name|listener
 operator|.
 name|endElement
