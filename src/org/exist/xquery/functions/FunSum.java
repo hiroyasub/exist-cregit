@@ -753,7 +753,7 @@ name|isNaN
 argument_list|()
 condition|)
 block|{
-name|result
+name|sum
 operator|=
 name|DoubleValue
 operator|.
