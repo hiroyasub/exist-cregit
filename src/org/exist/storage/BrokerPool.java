@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|NumberFormat
@@ -2647,6 +2657,20 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|transactionManager
+operator|.
+name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2666,11 +2690,30 @@ comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
 comment|// remove temporary docs
+try|try
+block|{
 name|broker
 operator|.
 name|cleanUpTempCollection
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Can not cleaup tempcollection"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 comment|//create the security manager
 comment|//TODO : why only the first broker has a security manager ? Global or attached to each broker ?
 comment|// WM: there's only one security manager per BrokerPool, but it needs a DBBroker instance to read

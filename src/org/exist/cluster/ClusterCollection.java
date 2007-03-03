@@ -1783,6 +1783,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection
@@ -1825,6 +1827,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection
@@ -1867,6 +1871,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection

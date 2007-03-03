@@ -17,6 +17,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|net
 operator|.
 name|URL
@@ -143,6 +153,8 @@ throws|,
 name|NotFoundException
 throws|,
 name|EXistException
+throws|,
+name|IOException
 function_decl|;
 block|}
 end_interface

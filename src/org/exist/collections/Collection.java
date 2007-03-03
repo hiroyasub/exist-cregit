@@ -4247,6 +4247,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|validateXMLResource
@@ -4298,6 +4300,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|validateXMLResourceInternal
@@ -4399,6 +4403,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|validateXMLResourceInternal
@@ -4476,6 +4482,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 comment|//Make the necessary operations if we process a collection configuration document
 name|checkConfigurationDocument
@@ -4994,6 +5002,8 @@ throws|throws
 name|EXistException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|IOException
 block|{
 comment|//Is it a collection configuration file ?
 if|if

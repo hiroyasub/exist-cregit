@@ -329,18 +329,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|SingleInstanceConfiguration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -872,6 +860,7 @@ function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public Collection getOrCreateCollection(Txn transaction, String name) 	 * throws PermissionDeniedException { return null; } 	 */
 comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
+specifier|abstract
 name|Collection
 name|getOrCreateCollection
 parameter_list|(
@@ -883,11 +872,9 @@ name|uri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
-block|{
-return|return
-literal|null
-return|;
-block|}
+throws|,
+name|IOException
+function_decl|;
 comment|/** 	 * Returns the configuration object used to initialize the current database 	 * instance. 	 *  	 */
 specifier|public
 name|Configuration
@@ -1039,6 +1026,8 @@ name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Remove a document from the database. 	 *  	 */
 specifier|public
@@ -1115,6 +1104,8 @@ name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 specifier|public
 name|void
@@ -1346,6 +1337,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
@@ -1369,6 +1362,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param collection 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
 specifier|public
@@ -1392,6 +1387,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
@@ -1612,6 +1609,8 @@ specifier|abstract
 name|void
 name|cleanUpTempCollection
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 */
 specifier|public

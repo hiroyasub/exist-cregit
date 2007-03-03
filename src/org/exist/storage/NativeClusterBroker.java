@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -229,6 +239,8 @@ name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 block|{
 name|super
 operator|.
@@ -257,6 +269,8 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 block|{
 name|Collection
 name|c
