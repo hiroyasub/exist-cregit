@@ -748,12 +748,22 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
-comment|//Ugly test
+comment|//Numeric tests
 if|if
 condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|value
-operator|instanceof
-name|NumericValue
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
 condition|)
 block|{
 comment|//Don't mix comparisons
@@ -816,6 +826,16 @@ name|isNaN
 argument_list|()
 condition|)
 block|{
+comment|//Type NaN correctly
+name|value
+operator|=
+name|value
+operator|.
+name|promote
+argument_list|(
+name|max
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|value
@@ -840,8 +860,10 @@ name|DoubleValue
 operator|.
 name|NaN
 expr_stmt|;
-break|break;
+comment|//although result will be NaN, we need to continue on order to type correctly
+continue|continue;
 block|}
+else|else
 name|max
 operator|=
 name|max
@@ -864,6 +886,16 @@ operator|instanceof
 name|ComputableValue
 condition|)
 block|{
+comment|//Type value correctly
+name|value
+operator|=
+name|value
+operator|.
+name|promote
+argument_list|(
+name|max
+argument_list|)
+expr_stmt|;
 name|max
 operator|=
 operator|(
