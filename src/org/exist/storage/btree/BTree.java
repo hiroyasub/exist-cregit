@@ -3385,6 +3385,8 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// if this is a leaf page, we use prefix compression to store the keys,
+comment|// so subtract the size of the prefix
 name|int
 name|prefix
 init|=
@@ -3651,6 +3653,10 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// for leaf pages, we use prefix compression to increase the number of
+comment|// keys that can be stored on one page. Each key is stored as follows:
+comment|// [valSize, prefixLen, value], where prefixLen specifies the number of
+comment|// leading bytes the key has in common with the previous key.
 name|int
 name|prefixLen
 init|=
@@ -3682,6 +3688,7 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
+comment|// copy prefixLen leading bytes from the previous key
 name|System
 operator|.
 name|arraycopy
@@ -3713,6 +3720,7 @@ argument_list|,
 name|prefixLen
 argument_list|)
 expr_stmt|;
+comment|// read the remaining bytes
 name|System
 operator|.
 name|arraycopy
@@ -3996,6 +4004,10 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// for leaf pages, we use prefix compression to increase the number of
+comment|// keys that can be stored on one page. Each key is stored as follows:
+comment|// [valSize, prefixLen, value], where prefixLen specifies the number of
+comment|// leading bytes the key has in common with the previous key.
 name|int
 name|prefixLen
 init|=
@@ -4014,6 +4026,7 @@ literal|1
 index|]
 argument_list|)
 decl_stmt|;
+comment|// determine the common prefix
 if|if
 condition|(
 name|prefixLen
@@ -4022,12 +4035,15 @@ literal|0
 operator|||
 name|prefixLen
 operator|>
-literal|255
+name|Byte
+operator|.
+name|MAX_VALUE
 condition|)
 name|prefixLen
 operator|=
 literal|0
 expr_stmt|;
+comment|// store the length of the prefix
 name|temp
 index|[
 name|p
@@ -4039,6 +4055,7 @@ name|byte
 operator|)
 name|prefixLen
 expr_stmt|;
+comment|// copy the remaining bytes, starting at prefixLen
 name|System
 operator|.
 name|arraycopy
@@ -11017,17 +11034,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//        metrics.toLogger();
-comment|//        if (getFile().getName().equals("values.dbx")) {
-comment|//            StringWriter writer = new StringWriter();
-comment|//            try {
-comment|//                dump(writer);
-comment|//            } catch (IOException e) {
-comment|//                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-comment|//            } catch (BTreeException e) {
-comment|//                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-comment|//            }
-comment|//            LOG.debug(writer.toString());
-comment|//        }
 block|}
 specifier|protected
 class|class
