@@ -151,8 +151,18 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringWriter
+import|;
+end_import
+
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wolf  * Date: 14.02.2007  * Time: 20:00:28  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Low-level tests on the B+tree.  */
 end_comment
 
 begin_class
@@ -184,7 +194,7 @@ specifier|final
 name|int
 name|COUNT
 init|=
-literal|10000
+literal|20000
 decl_stmt|;
 specifier|public
 name|void
@@ -200,11 +210,15 @@ argument_list|(
 literal|"------------------ testStrings: START -------------------------"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|BTree
 name|btree
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|btree
+operator|=
 operator|new
 name|BTree
 argument_list|(
@@ -226,7 +240,7 @@ name|file
 argument_list|,
 literal|0.1
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|btree
 operator|.
 name|create
@@ -246,7 +260,7 @@ decl_stmt|;
 name|String
 name|prefixStr
 init|=
-literal|"Common prefix to all keys in this btree "
+literal|"C"
 decl_stmt|;
 for|for
 control|(
@@ -307,6 +321,32 @@ operator|+
 name|file
 operator|.
 name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|StringWriter
+name|writer
+init|=
+operator|new
+name|StringWriter
+argument_list|()
+decl_stmt|;
+name|btree
+operator|.
+name|dump
+argument_list|(
+name|writer
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|writer
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -515,11 +555,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|btree
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -580,6 +615,30 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|btree
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|btree
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DBException
+name|e
+parameter_list|)
+block|{
+block|}
 block|}
 name|System
 operator|.
@@ -1189,6 +1248,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
