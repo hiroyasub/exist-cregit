@@ -378,13 +378,14 @@ argument_list|(
 name|expression
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Can not cast a variable reference"
-argument_list|)
-throw|;
+name|result
+operator|=
+name|BooleanValue
+operator|.
+name|FALSE
+expr_stmt|;
+else|else
+block|{
 name|Sequence
 name|seq
 init|=
@@ -494,6 +495,7 @@ name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
