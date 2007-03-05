@@ -788,6 +788,19 @@ parameter_list|)
 throws|throws
 name|TransactionException
 block|{
+if|if
+condition|(
+name|currentBuffer
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|TransactionException
+argument_list|(
+literal|"Database is shut down."
+argument_list|)
+throw|;
 name|SanityCheck
 operator|.
 name|ASSERT
