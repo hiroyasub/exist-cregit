@@ -888,6 +888,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+comment|//TODO : move to implementations
 if|if
 condition|(
 name|operator
@@ -991,7 +992,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
-comment|//TODO : move to implementations ?
+comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
 if|if
 condition|(
 operator|(
@@ -1004,7 +1005,6 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
-comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
 throw|throw
 operator|new
 name|XPathException
@@ -1012,6 +1012,7 @@ argument_list|(
 literal|"FOAR0001: division by zero"
 argument_list|)
 throw|;
+comment|//If either operand is NaN then an error is raised [err:FOAR0002].
 if|if
 condition|(
 operator|(
@@ -1023,18 +1024,43 @@ operator|)
 operator|.
 name|isNaN
 argument_list|()
-operator|||
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FOAR0002: division of "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|lvalue
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|lvalue
+operator|+
+literal|")'"
+argument_list|)
+throw|;
+comment|//If either operand is NaN then an error is raised [err:FOAR0002].
+if|if
+condition|(
 operator|(
 operator|(
 name|NumericValue
 operator|)
-name|lvalue
+name|rvalue
 operator|)
 operator|.
-name|isInfinite
+name|isNaN
 argument_list|()
 condition|)
-comment|//If either operand is NaN or if $arg1 is INF or -INF then an error is raised [err:FOAR0002].
 throw|throw
 operator|new
 name|XPathException
@@ -1058,40 +1084,30 @@ operator|+
 literal|")'"
 argument_list|)
 throw|;
+comment|//If $arg1 is INF or -INF then an error is raised [err:FOAR0002].
 if|if
 condition|(
 operator|(
 operator|(
 name|NumericValue
 operator|)
-name|rvalue
-operator|)
-operator|.
-name|isNaN
-argument_list|()
-operator|||
-operator|(
-operator|(
-name|NumericValue
-operator|)
-name|rvalue
+name|lvalue
 operator|)
 operator|.
 name|isInfinite
 argument_list|()
 condition|)
-comment|//If either operand is NaN or if $arg1 is INF or -INF then an error is raised [err:FOAR0002].
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOAR0002: division by "
+literal|"FOAR0002: division of "
 operator|+
 name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|rvalue
+name|lvalue
 operator|.
 name|getType
 argument_list|()
@@ -1099,39 +1115,11 @@ argument_list|)
 operator|+
 literal|"("
 operator|+
-name|rvalue
+name|lvalue
 operator|+
 literal|")'"
 argument_list|)
 throw|;
-if|if
-condition|(
-operator|(
-operator|(
-name|NumericValue
-operator|)
-name|rvalue
-operator|)
-operator|.
-name|isZero
-argument_list|()
-condition|)
-comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"FOAR0001: division by zero"
-argument_list|)
-throw|;
-comment|//WARNING :
-comment|//Here are the specs for op:numeric-divide :
-comment|//For xs:float or xs:double values, a positive number divided by positive zero returns INF.
-comment|//A negative number divided by positive zero returns -INF. Division by negative zero returns -INF and INF,
-comment|//respectively. Positive or negative zero divided by positive or negative zero returns NaN.
-comment|//Also, INF or -INF divided by INF or -INF returns NaN.
-comment|//BUT it looks like the XQTS (and thus Saxon) also follows this rule for op:numeric-integer-divide
-comment|//WHAT TO DO THEN ? -pb
 name|result
 operator|=
 operator|(
