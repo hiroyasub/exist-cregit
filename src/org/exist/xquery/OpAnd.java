@@ -326,8 +326,9 @@ expr_stmt|;
 if|if
 condition|(
 name|contextSequence
-operator|==
-literal|null
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|result
