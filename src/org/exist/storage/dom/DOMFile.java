@@ -983,7 +983,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|5
+literal|6
 decl_stmt|;
 comment|// page types
 specifier|public
@@ -18189,6 +18189,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|key
+operator|.
+name|getLength
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return;
 name|writer
 operator|.
 name|write

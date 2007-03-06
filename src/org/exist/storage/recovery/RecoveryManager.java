@@ -597,11 +597,6 @@ name|LogException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -609,6 +604,16 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Caught exception while reading log"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -623,6 +628,7 @@ name|lastLsn
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// if the last checkpoint record is not the last record in the file
 comment|// we need a recovery.
