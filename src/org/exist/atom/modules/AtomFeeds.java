@@ -869,6 +869,13 @@ block|}
 block|}
 else|else
 block|{
+name|response
+operator|.
+name|setStatusCode
+argument_list|(
+literal|200
+argument_list|)
+expr_stmt|;
 name|getEntryById
 argument_list|(
 name|broker
@@ -1429,13 +1436,6 @@ operator|.
 name|getDefaultCharset
 argument_list|()
 decl_stmt|;
-name|response
-operator|.
-name|setStatusCode
-argument_list|(
-literal|200
-argument_list|)
-expr_stmt|;
 name|response
 operator|.
 name|setContentType
