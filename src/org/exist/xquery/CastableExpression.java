@@ -368,9 +368,17 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
-comment|//Maybe too strict ? Investigate...
+comment|//See : http://article.gmane.org/gmane.text.xml.xquery.general/1413
+comment|//... for the rationale
+comment|//may be more complicated : let's see with following XQTS versions
 if|if
 condition|(
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|QNAME
+operator|&&
 name|Dependency
 operator|.
 name|dependsOnVar
