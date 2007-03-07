@@ -446,9 +446,7 @@ name|getType
 parameter_list|()
 block|{
 return|return
-name|Type
-operator|.
-name|STRING
+name|type
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
