@@ -323,30 +323,8 @@ argument_list|(
 name|rl
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|contextSequence
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|result
-operator|=
-name|result
-operator|.
-name|isEmpty
-argument_list|()
-condition|?
-name|BooleanValue
-operator|.
-name|FALSE
-else|:
-name|BooleanValue
-operator|.
-name|TRUE
-expr_stmt|;
-block|}
+comment|//<test>{() and ()}</test> should return<test>false</test>
+comment|/*     			if (contextSequence.isEmpty()) {     				result = result.isEmpty() ? BooleanValue.FALSE : BooleanValue.TRUE;     			}     			*/
 block|}
 else|else
 block|{

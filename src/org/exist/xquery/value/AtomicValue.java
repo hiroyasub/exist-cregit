@@ -717,6 +717,8 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|//TODO : solution that may be worth to investigate
+comment|/* 		if (!effectiveBooleanValue()) 			return NodeSet.EMPTY_SET; 		*/
 throw|throw
 operator|new
 name|XPathException
