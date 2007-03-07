@@ -5850,6 +5850,32 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//The collection doesn't exist : let's see how the query behaves with empty sequences
+name|query
+operator|=
+literal|"let $checkDate := xs:date(adjust-date-to-timezone(current-date(), ()))"
+operator|+
+literal|"for $x in "
+operator|+
+literal|"collection(\"/db/lease\")//Lease/Events/Type/Event[(When/Date<=$checkDate or "
+operator|+
+literal|"When/EstimateDate<=$checkDate) and not(Status='Complete')] "
+operator|+
+literal|"return $x"
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
