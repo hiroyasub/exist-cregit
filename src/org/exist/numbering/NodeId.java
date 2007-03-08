@@ -48,6 +48,15 @@ name|NodeId
 extends|extends
 name|Comparable
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_NODE_ID_UNITS
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
 comment|/**      * Static field representing the document node.      */
 specifier|public
 specifier|final

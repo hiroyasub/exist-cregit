@@ -149,6 +149,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|ElementImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -679,33 +691,6 @@ name|LENGTH_OVERFLOW_LOCATION
 init|=
 name|LENGTH_LINK
 decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|LENGTH_ELEMENT_CHILD_COUNT
-init|=
-literal|4
-decl_stmt|;
-comment|//sizeof int
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|LENGTH_ATTRIBUTES_COUNT
-init|=
-literal|2
-decl_stmt|;
-comment|//sizeof short
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|LENGTH_DLN_LENGTH
-init|=
-literal|2
-decl_stmt|;
-comment|//sizeof short
 comment|/* 	 * Byte ids for the records written to the log file. 	 */
 specifier|public
 specifier|final
@@ -6716,6 +6701,8 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
+name|ElementImpl
+operator|.
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
 specifier|final
@@ -6735,7 +6722,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 comment|//That might happen during recovery runs : TODO, investigate
 if|if
@@ -6986,7 +6975,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 comment|//That might happen during recovery runs : TODO, investigate
 if|if
@@ -7307,7 +7298,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 comment|//That might happen during recovery runs : TODO, investigate
 if|if
@@ -12531,6 +12524,8 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
+name|ElementImpl
+operator|.
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
 specifier|final
@@ -12548,7 +12543,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 name|readOffset
 operator|+=
@@ -12591,6 +12588,8 @@ name|offset
 operator|+=
 name|realLen
 operator|+
+name|ElementImpl
+operator|.
 name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
 specifier|final
@@ -12607,6 +12606,7 @@ operator|)
 operator|>
 literal|1
 decl_stmt|;
+comment|//TODO : where is NS info ?
 for|for
 control|(
 name|int
@@ -12679,7 +12679,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 specifier|final
 name|int
@@ -12795,7 +12797,9 @@ argument_list|)
 decl_stmt|;
 name|readOffset
 operator|+=
-name|LENGTH_DLN_LENGTH
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 specifier|final
 name|int
