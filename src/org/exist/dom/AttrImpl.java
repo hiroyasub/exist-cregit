@@ -191,6 +191,24 @@ implements|implements
 name|Attr
 block|{
 specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_NS_ID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_PREFIX_LENGTH
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -533,7 +551,9 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|2
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 name|nodeId
 operator|.
@@ -609,7 +629,7 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -627,7 +647,7 @@ argument_list|)
 expr_stmt|;
 name|pos
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -767,7 +787,9 @@ argument_list|)
 decl_stmt|;
 name|next
 operator|+=
-literal|2
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 name|NodeId
 name|dln
@@ -881,7 +903,7 @@ argument_list|)
 expr_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|int
 name|prefixLen
@@ -897,7 +919,7 @@ argument_list|)
 decl_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -1179,7 +1201,9 @@ argument_list|)
 decl_stmt|;
 name|next
 operator|+=
-literal|2
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
 name|NodeId
 name|dln
@@ -1290,7 +1314,7 @@ argument_list|)
 expr_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|int
 name|prefixLen
@@ -1306,7 +1330,7 @@ argument_list|)
 decl_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
