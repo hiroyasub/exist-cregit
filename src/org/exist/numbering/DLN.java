@@ -1261,22 +1261,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//        if (prevId == null) {
+comment|//            write(os);
+comment|//            return this;
+comment|//        }
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 name|prevId
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-name|write
-argument_list|(
-name|os
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
 name|DLN
 name|previous
 init|=
@@ -1303,11 +1303,6 @@ name|bits
 operator|.
 name|length
 argument_list|)
-decl_stmt|;
-name|int
-name|i
-init|=
-literal|0
 decl_stmt|;
 for|for
 control|(
@@ -1340,6 +1335,7 @@ name|i
 index|]
 condition|)
 break|break;
+block|}
 block|}
 name|os
 operator|.

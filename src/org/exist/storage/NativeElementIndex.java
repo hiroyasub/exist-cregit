@@ -2868,6 +2868,13 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|is
+operator|==
+literal|null
+condition|)
+continue|continue;
 name|os
 operator|.
 name|clear

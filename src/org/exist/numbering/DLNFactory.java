@@ -138,18 +138,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|previous
-operator|==
-literal|null
-condition|)
-return|return
-name|createFromStream
-argument_list|(
-name|is
-argument_list|)
-return|;
+comment|//        if (previous == null)
+comment|//            return createFromStream(is);
 name|byte
 name|prefix
 init|=
@@ -158,6 +148,18 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|prefix
+operator|==
+literal|0
+condition|)
+return|return
+name|createFromStream
+argument_list|(
+name|is
+argument_list|)
+return|;
 name|short
 name|bitCnt
 init|=
