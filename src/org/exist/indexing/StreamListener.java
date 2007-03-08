@@ -75,6 +75,18 @@ name|TextImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  * Callback interface which receives index events. StreamListeners are chained;  * events should be forwarded to the next listener in the chain (if there is any).  */
 end_comment
@@ -114,6 +126,16 @@ name|setNextInChain
 parameter_list|(
 name|StreamListener
 name|listener
+parameter_list|)
+function_decl|;
+name|void
+name|setDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|,
+name|int
+name|mode
 parameter_list|)
 function_decl|;
 comment|/**      * Processed the opening tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
@@ -171,6 +193,10 @@ parameter_list|,
 name|NodePath
 name|path
 parameter_list|)
+function_decl|;
+name|StreamListener
+name|getNextInChain
+parameter_list|()
 function_decl|;
 block|}
 end_interface

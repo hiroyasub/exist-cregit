@@ -852,6 +852,15 @@ return|return
 name|ownerDocument
 return|;
 block|}
+specifier|public
+name|DocumentImpl
+name|getDocument
+parameter_list|()
+block|{
+return|return
+name|ownerDocument
+return|;
+block|}
 comment|/**      *  Set the owner document.      *      *@param  ownerDocument  The new ownerDocument value      */
 specifier|public
 name|void

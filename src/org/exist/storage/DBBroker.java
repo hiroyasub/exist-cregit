@@ -1468,6 +1468,9 @@ name|transaction
 parameter_list|,
 name|StoredNode
 name|node
+parameter_list|,
+name|boolean
+name|reindex
 parameter_list|)
 function_decl|;
 comment|/** 	 * Is the database running read-only? Returns false by default. Storage 	 * backends should override this if they support read-only mode. 	 *  	 * @return boolean 	 */
