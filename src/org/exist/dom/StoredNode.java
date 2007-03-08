@@ -169,6 +169,15 @@ block|{
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|LENGTH_SIGNATURE_LENGTH
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|final
+specifier|static
 name|long
 name|UNKNOWN_NODE_IMPL_ADDRESS
 init|=
