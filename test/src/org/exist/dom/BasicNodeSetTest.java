@@ -3503,6 +3503,7 @@ argument_list|,
 name|NESTED_XML
 argument_list|)
 expr_stmt|;
+comment|//TODO : unlock the collection here ?
 name|assertNotNull
 argument_list|(
 name|info

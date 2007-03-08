@@ -453,6 +453,7 @@ argument_list|,
 name|config
 argument_list|)
 decl_stmt|;
+comment|//TODO : unlock the collection here ?
 name|confCol
 operator|.
 name|store

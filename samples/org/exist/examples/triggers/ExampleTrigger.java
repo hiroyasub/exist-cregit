@@ -602,6 +602,7 @@ argument_list|,
 literal|"<?xml version=\"1.0\"?><contents></contents>"
 argument_list|)
 decl_stmt|;
+comment|//TODO : unlock the collection here ?
 name|parent
 operator|.
 name|store

@@ -2275,6 +2275,7 @@ argument_list|,
 name|content
 argument_list|)
 decl_stmt|;
+comment|//TODO : unlock the collection here ?
 name|collection
 operator|.
 name|store

@@ -2102,6 +2102,7 @@ argument_list|,
 name|doc
 argument_list|)
 decl_stmt|;
+comment|//TODO : We should probably unlock the collection here
 name|collection
 operator|.
 name|store

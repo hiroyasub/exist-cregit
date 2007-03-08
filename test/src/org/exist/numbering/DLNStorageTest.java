@@ -916,6 +916,7 @@ argument_list|,
 name|TEST_XML
 argument_list|)
 decl_stmt|;
+comment|//TODO : unlock the collection here ?
 name|assertNotNull
 argument_list|(
 name|info

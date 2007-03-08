@@ -658,6 +658,7 @@ argument_list|,
 literal|"<nullresource/>"
 argument_list|)
 decl_stmt|;
+comment|//TODO : unlock the collection here ?
 name|resource
 operator|=
 name|info

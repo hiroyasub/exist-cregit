@@ -887,6 +887,7 @@ argument_list|(
 name|info
 argument_list|)
 expr_stmt|;
+comment|//TODO : unlock the collection here ?
 name|test2
 operator|.
 name|store
