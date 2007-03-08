@@ -366,12 +366,6 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|reopen
-parameter_list|()
-block|{
-block|}
-specifier|public
-name|void
 name|close
 parameter_list|()
 throws|throws

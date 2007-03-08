@@ -128,6 +128,12 @@ name|StreamListener
 name|listener
 parameter_list|)
 function_decl|;
+comment|/**      * Returns the next stream listener in the chain. This should usually be the one      * that was passed in from {@link #setNextInChain(StreamListener)}.      *      * @return the next listener in the chain.      */
+name|StreamListener
+name|getNextInChain
+parameter_list|()
+function_decl|;
+comment|/**      * Reset this listener to operate on the specified document, using the mode      * given. mode will be one of {@link #STORE}, {@link #REMOVE} or      * {@link #REMOVE_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
 parameter_list|(
@@ -193,10 +199,6 @@ parameter_list|,
 name|NodePath
 name|path
 parameter_list|)
-function_decl|;
-name|StreamListener
-name|getNextInChain
-parameter_list|()
 function_decl|;
 block|}
 end_interface
