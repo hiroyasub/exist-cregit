@@ -455,8 +455,6 @@ name|start
 decl_stmt|;
 name|pos
 operator|+=
-name|StoredNode
-operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
 name|int
