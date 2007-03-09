@@ -1502,11 +1502,6 @@ name|pos
 operator|+=
 name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
-name|int
-name|next
-init|=
-name|pos
-decl_stmt|;
 name|short
 name|id
 init|=
@@ -1521,10 +1516,10 @@ name|idSizeType
 argument_list|,
 name|data
 argument_list|,
-name|next
+name|pos
 argument_list|)
 decl_stmt|;
-name|next
+name|pos
 operator|+=
 name|Signatures
 operator|.
@@ -1556,12 +1551,12 @@ name|byteToShort
 argument_list|(
 name|data
 argument_list|,
-name|next
+name|pos
 argument_list|)
 expr_stmt|;
-name|next
+name|pos
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|int
 name|prefixLen
@@ -1572,12 +1567,12 @@ name|byteToShort
 argument_list|(
 name|data
 argument_list|,
-name|next
+name|pos
 argument_list|)
 decl_stmt|;
-name|next
+name|pos
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -1593,7 +1588,7 @@ name|decode
 argument_list|(
 name|data
 argument_list|,
-name|next
+name|pos
 argument_list|,
 name|prefixLen
 argument_list|)
@@ -1601,7 +1596,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-name|next
+name|pos
 operator|+=
 name|prefixLen
 expr_stmt|;
@@ -1727,11 +1722,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+comment|//TO UNDERSTAND : why is this code here ?
 if|if
 condition|(
 name|end
 operator|>
-name|next
+name|pos
 condition|)
 block|{
 name|byte
@@ -1743,7 +1739,7 @@ name|byte
 index|[
 name|end
 operator|-
-name|next
+name|pos
 index|]
 decl_stmt|;
 name|System
@@ -1752,7 +1748,7 @@ name|arraycopy
 argument_list|(
 name|data
 argument_list|,
-name|next
+name|pos
 argument_list|,
 name|pfxData
 argument_list|,
@@ -1760,7 +1756,7 @@ literal|0
 argument_list|,
 name|end
 operator|-
-name|next
+name|pos
 argument_list|)
 expr_stmt|;
 name|ByteArrayInputStream
@@ -1920,7 +1916,11 @@ literal|0x10
 decl_stmt|;
 name|offset
 operator|+=
-literal|9
+name|LENGTH_SIGNATURE_LENGTH
+expr_stmt|;
+name|offset
+operator|+=
+literal|8
 operator|+
 name|nodeId
 operator|.
@@ -1981,7 +1981,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|int
 name|prefixLen
@@ -1997,7 +1997,7 @@ argument_list|)
 decl_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
