@@ -502,6 +502,24 @@ init|=
 literal|2
 decl_stmt|;
 comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_NS_ID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_PREFIX_LENGTH
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
 specifier|private
 name|short
 name|attributes
@@ -1001,8 +1019,8 @@ condition|(
 name|hasNamespace
 condition|)
 block|{
-name|prefixLen
-operator|=
+if|if
+condition|(
 name|nodeName
 operator|.
 name|getPrefix
@@ -1019,7 +1037,9 @@ name|length
 argument_list|()
 operator|>
 literal|0
-condition|?
+condition|)
+name|prefixLen
+operator|=
 name|UTF8
 operator|.
 name|encoded
@@ -1029,8 +1049,6 @@ operator|.
 name|getPrefix
 argument_list|()
 argument_list|)
-else|:
-literal|0
 expr_stmt|;
 name|signature
 operator||=
@@ -1062,11 +1080,16 @@ name|ByteArrayPool
 operator|.
 name|getByteArray
 argument_list|(
+name|LENGTH_SIGNATURE_LENGTH
+operator|+
 name|LENGTH_ELEMENT_CHILD_COUNT
 operator|+
 name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
+operator|+
+operator|+
+name|nodeIdLen
 operator|+
 name|LENGTH_ATTRIBUTES_COUNT
 operator|+
@@ -1098,10 +1121,6 @@ name|length
 else|:
 literal|0
 operator|)
-operator|+
-name|nodeIdLen
-operator|+
-literal|1
 argument_list|)
 decl_stmt|;
 name|int
@@ -1112,10 +1131,13 @@ decl_stmt|;
 name|data
 index|[
 name|next
-operator|++
 index|]
 operator|=
 name|signature
+expr_stmt|;
+name|next
+operator|+=
+name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -1223,7 +1245,7 @@ argument_list|)
 expr_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_NS_ID
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -1241,7 +1263,7 @@ argument_list|)
 expr_stmt|;
 name|next
 operator|+=
-literal|2
+name|LENGTH_PREFIX_LENGTH
 expr_stmt|;
 if|if
 condition|(
@@ -1348,6 +1370,11 @@ name|start
 operator|+
 name|len
 decl_stmt|;
+name|int
+name|pos
+init|=
+name|start
+decl_stmt|;
 name|byte
 name|idSizeType
 init|=
@@ -1357,7 +1384,7 @@ operator|)
 operator|(
 name|data
 index|[
-name|start
+name|pos
 index|]
 operator|&
 literal|0x03
@@ -1369,7 +1396,7 @@ init|=
 operator|(
 name|data
 index|[
-name|start
+name|pos
 index|]
 operator|&
 literal|0x8
@@ -1383,8 +1410,7 @@ init|=
 operator|(
 name|data
 index|[
-name|start
-operator|++
+name|pos
 index|]
 operator|&
 literal|0x10
@@ -1392,6 +1418,10 @@ operator|)
 operator|==
 literal|0x10
 decl_stmt|;
+name|pos
+operator|+=
+name|LENGTH_SIGNATURE_LENGTH
+expr_stmt|;
 name|int
 name|children
 init|=
@@ -1401,10 +1431,10 @@ name|byteToInt
 argument_list|(
 name|data
 argument_list|,
-name|start
+name|pos
 argument_list|)
 decl_stmt|;
-name|start
+name|pos
 operator|+=
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
@@ -1417,10 +1447,10 @@ name|byteToShort
 argument_list|(
 name|data
 argument_list|,
-name|start
+name|pos
 argument_list|)
 decl_stmt|;
-name|start
+name|pos
 operator|+=
 name|NodeId
 operator|.
@@ -1446,10 +1476,10 @@ name|dlnLen
 argument_list|,
 name|data
 argument_list|,
-name|start
+name|pos
 argument_list|)
 decl_stmt|;
-name|start
+name|pos
 operator|+=
 name|dln
 operator|.
@@ -1465,19 +1495,17 @@ name|byteToShort
 argument_list|(
 name|data
 argument_list|,
-name|start
+name|pos
 argument_list|)
 decl_stmt|;
-name|start
+name|pos
 operator|+=
 name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
-comment|//        LOG.debug("children: " + children + "; attributes: " + attributes + "; nodeId: " + dln +
-comment|//                "; dln-size: " + dln.size());
 name|int
 name|next
 init|=
-name|start
+name|pos
 decl_stmt|;
 name|short
 name|id
