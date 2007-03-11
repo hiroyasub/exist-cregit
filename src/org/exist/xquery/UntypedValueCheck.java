@@ -392,9 +392,6 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
-name|Item
-name|item
-decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -412,13 +409,14 @@ argument_list|()
 condition|;
 control|)
 block|{
+name|Item
 name|item
-operator|=
+init|=
 name|i
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|//System.out.println(item.getStringValue() + " converting to " + Type.getTypeName(requiredType));
 comment|//Type untyped values or... refine existing type
 if|if

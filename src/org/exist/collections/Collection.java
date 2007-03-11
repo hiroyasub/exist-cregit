@@ -4145,6 +4145,7 @@ name|getFileURI
 argument_list|()
 decl_stmt|;
 comment|//WARNING : there is no reason to lock the collection since setPath() is normally called in a safe way
+comment|//TODO: resolve URI against CollectionConfigurationManager.CONFIG_COLLECTION_URI
 if|if
 condition|(
 name|getURI
