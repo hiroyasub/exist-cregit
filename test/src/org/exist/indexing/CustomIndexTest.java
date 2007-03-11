@@ -75,18 +75,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -263,16 +251,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|indexing
 operator|.
 name|impl
@@ -335,11 +313,11 @@ name|XML
 init|=
 literal|"<test>"
 operator|+
-literal|"<item id='1' attr='attribute'><name>First</name></item>"
+literal|"<item id='1' attr='attribute'><description>Chair</description></item>"
 operator|+
-literal|"<item id='2'><name>Second</name></item>"
+literal|"<item id='2'><description>Table</description><price>892.25</price></item>"
 operator|+
-literal|"<item id='3'><name>Third</name></item>"
+literal|"<item id='3'><description>Cabinet</description><price>1525.00</price></item>"
 operator|+
 literal|"</test>"
 decl_stmt|;
@@ -438,7 +416,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -463,7 +452,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -526,7 +515,7 @@ name|xupdate
 init|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:remove select=\"//item[@id='2']/name\"/>"
+literal|"<xu:remove select=\"//item[@id='2']/price\"/>"
 operator|+
 name|XUPDATE_END
 decl_stmt|;
@@ -575,7 +564,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"892"
 argument_list|,
 literal|0
 argument_list|)
@@ -586,7 +575,29 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"thi"
+literal|"tab"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"cab"
 argument_list|,
 literal|1
 argument_list|)
@@ -609,7 +620,7 @@ name|xupdate
 operator|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:remove select=\"//item[@id='3']/name/text()\"/>"
+literal|"<xu:remove select=\"//item[@id='3']/description/text()\"/>"
 operator|+
 name|XUPDATE_END
 expr_stmt|;
@@ -656,7 +667,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"thi"
+literal|"cab"
 argument_list|,
 literal|0
 argument_list|)
@@ -748,7 +759,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"rst"
+literal|"cha"
 argument_list|,
 literal|1
 argument_list|)
@@ -818,7 +829,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"rst"
+literal|"cha"
 argument_list|,
 literal|0
 argument_list|)
@@ -921,7 +932,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -946,7 +968,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -1009,9 +1031,9 @@ name|xupdate
 init|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:append select=\"//item\">"
+literal|"<xu:append select=\"/test\">"
 operator|+
-literal|"<item id='4'><name>Fourth</name></item>"
+literal|"<item id='4'><description>Armchair</description><price>340</price></item>"
 operator|+
 literal|"</xu:append>"
 operator|+
@@ -1062,7 +1084,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"fou"
+literal|"arm"
 argument_list|,
 literal|1
 argument_list|)
@@ -1087,7 +1109,7 @@ name|XUPDATE_START
 operator|+
 literal|"<xu:insert-before select=\"//item[@id = '1']\">"
 operator|+
-literal|"<item id='0'><name>Zero</name></item>"
+literal|"<item id='0'><description>Wheelchair</description><price>1230</price></item>"
 operator|+
 literal|"</xu:insert-before>"
 operator|+
@@ -1136,7 +1158,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"zer"
+literal|"hee"
 argument_list|,
 literal|1
 argument_list|)
@@ -1161,7 +1183,7 @@ name|XUPDATE_START
 operator|+
 literal|"<xu:insert-after select=\"//item[@id = '1']\">"
 operator|+
-literal|"<item id='1.1'><name>Inserted</name></item>"
+literal|"<item id='1.1'><description>refrigerator</description><price>777</price></item>"
 operator|+
 literal|"</xu:insert-after>"
 operator|+
@@ -1210,7 +1232,199 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ins"
+literal|"ref"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|setBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|setDocumentSet
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
+name|xupdate
+operator|=
+name|XUPDATE_START
+operator|+
+literal|"<xu:insert-after select=\"//item[@id = '1']/description\">"
+operator|+
+literal|"<price>999</price>"
+operator|+
+literal|"</xu:insert-after>"
+operator|+
+name|XUPDATE_END
+expr_stmt|;
+name|modifications
+operator|=
+name|proc
+operator|.
+name|parse
+argument_list|(
+operator|new
+name|InputSource
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|xupdate
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|modifications
+argument_list|)
+expr_stmt|;
+name|modifications
+index|[
+literal|0
+index|]
+operator|.
+name|process
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"999"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"ir9"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|setBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|setDocumentSet
+argument_list|(
+name|docs
+argument_list|)
+expr_stmt|;
+name|xupdate
+operator|=
+name|XUPDATE_START
+operator|+
+literal|"<xu:insert-before select=\"//item[@id = '1']/description\">"
+operator|+
+literal|"<price>888</price>"
+operator|+
+literal|"</xu:insert-before>"
+operator|+
+name|XUPDATE_END
+expr_stmt|;
+name|modifications
+operator|=
+name|proc
+operator|.
+name|parse
+argument_list|(
+operator|new
+name|InputSource
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|xupdate
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|modifications
+argument_list|)
+expr_stmt|;
+name|modifications
+index|[
+literal|0
+index|]
+operator|.
+name|process
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+name|proc
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"999"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"888"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"88c"
 argument_list|,
 literal|1
 argument_list|)
@@ -1409,7 +1623,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -1434,7 +1659,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -1497,11 +1722,7 @@ name|xupdate
 init|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:update select=\"//item[@id = '1']\">"
-operator|+
-literal|"       Updated text"
-operator|+
-literal|"</xu:update>"
+literal|"<xu:update select=\"//item[@id = '1']/description\">wardrobe</xu:update>"
 operator|+
 name|XUPDATE_END
 decl_stmt|;
@@ -1550,9 +1771,20 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"tex"
+literal|"war"
 argument_list|,
 literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"cha"
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|proc
@@ -1573,11 +1805,7 @@ name|xupdate
 operator|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:update select=\"//item[@id = '1']/text()\">"
-operator|+
-literal|"       Replaced text"
-operator|+
-literal|"</xu:update>"
+literal|"<xu:update select=\"//item[@id = '1']/description/text()\">Wheelchair</xu:update>"
 operator|+
 name|XUPDATE_END
 expr_stmt|;
@@ -1624,7 +1852,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ced"
+literal|"whe"
 argument_list|,
 literal|1
 argument_list|)
@@ -1797,7 +2025,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -1822,7 +2061,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -1887,7 +2126,7 @@ name|XUPDATE_START
 operator|+
 literal|"<xu:replace select=\"//item[@id = '1']\">"
 operator|+
-literal|"<item id='4'><name>Fourth</name></item>"
+literal|"<item id='4'><description>Wheelchair</description><price>809.50</price></item>"
 operator|+
 literal|"</xu:replace>"
 operator|+
@@ -1938,7 +2177,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"fou"
+literal|"whe"
 argument_list|,
 literal|1
 argument_list|)
@@ -1961,9 +2200,9 @@ name|xupdate
 operator|=
 name|XUPDATE_START
 operator|+
-literal|"<xu:replace select=\"//item[@id = '4']/name\">"
+literal|"<xu:replace select=\"//item[@id = '4']/description\">"
 operator|+
-literal|"<name>Replaced</name>"
+literal|"<description>Armchair</description>"
 operator|+
 literal|"</xu:replace>"
 operator|+
@@ -2012,7 +2251,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ced"
+literal|"whe"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"arm"
 argument_list|,
 literal|1
 argument_list|)
@@ -2115,7 +2365,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -2140,7 +2401,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -2252,7 +2513,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"tab"
 argument_list|,
 literal|0
 argument_list|)
@@ -2367,7 +2628,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -2392,7 +2664,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -2520,7 +2792,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -2550,7 +2822,18 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+literal|"le8"
 argument_list|,
 literal|1
 argument_list|)
@@ -2598,7 +2881,7 @@ name|broker
 argument_list|,
 name|docs
 argument_list|,
-literal|"ond"
+literal|"cha"
 argument_list|,
 literal|0
 argument_list|)
@@ -2609,7 +2892,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//item[text:ngram-contains(., 'ond')]"
+literal|"//item[text:ngram-contains(., 'cha')]"
 argument_list|,
 literal|null
 argument_list|,
