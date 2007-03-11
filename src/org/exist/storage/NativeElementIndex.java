@@ -5758,9 +5758,6 @@ name|previous
 init|=
 literal|null
 decl_stmt|;
-name|NodeId
-name|nodeId
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -5776,8 +5773,9 @@ name|j
 operator|++
 control|)
 block|{
+name|NodeId
 name|nodeId
-operator|=
+init|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -5792,7 +5790,7 @@ name|previous
 argument_list|,
 name|is
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|previous
 operator|=
 name|nodeId

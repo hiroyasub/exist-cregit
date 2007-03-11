@@ -652,6 +652,7 @@ literal|0.04
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_COLLECTION_ID
 init|=
@@ -659,6 +660,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_VALUE_TYPE
 init|=
@@ -671,6 +673,7 @@ decl_stmt|;
 comment|//2
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_VALUE_TYPE
 init|=
@@ -679,6 +682,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_DATA
 init|=
@@ -691,6 +695,7 @@ decl_stmt|;
 comment|//3
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_NODE_IDS
 init|=
@@ -1815,8 +1820,6 @@ argument_list|)
 expr_stmt|;
 comment|//Compute the GID list
 name|NodeId
-name|nodeId
-decl_stmt|,
 name|previous
 init|=
 literal|null
@@ -1836,8 +1839,9 @@ name|j
 operator|++
 control|)
 block|{
+name|NodeId
 name|nodeId
-operator|=
+init|=
 operator|(
 name|NodeId
 operator|)
@@ -1847,7 +1851,7 @@ name|get
 argument_list|(
 name|j
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 name|previous

@@ -461,13 +461,16 @@ operator|.
 name|getPageNum
 argument_list|()
 expr_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|offset
 operator|=
 name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|DOMFile
+operator|.
+name|LENGTH_TID
 expr_stmt|;
 name|p
 operator|=
@@ -643,13 +646,16 @@ operator|.
 name|getPageNum
 argument_list|()
 expr_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|offset
 operator|=
 name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|DOMFile
+operator|.
+name|LENGTH_TID
 expr_stmt|;
 name|p
 operator|=
