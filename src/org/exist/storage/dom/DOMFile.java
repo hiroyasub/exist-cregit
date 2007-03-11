@@ -12175,7 +12175,7 @@ name|RecordPos
 name|rec
 parameter_list|,
 name|boolean
-name|firstCall
+name|acceptAttributeValue
 parameter_list|,
 name|boolean
 name|addWhitespace
@@ -12514,10 +12514,15 @@ argument_list|(
 name|data
 index|[
 name|readOffset
-operator|++
 index|]
 argument_list|)
 decl_stmt|;
+name|readOffset
+operator|+=
+name|StoredNode
+operator|.
+name|LENGTH_SIGNATURE_LENGTH
+expr_stmt|;
 comment|// switch on the node type
 switch|switch
 condition|(
@@ -12648,7 +12653,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|//recursive call
+comment|//recursive call : we ignore attributes children
 name|getNodeValue
 argument_list|(
 name|doc
@@ -12767,11 +12772,9 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-comment|// use attribute value if the context node is an attribute, i.e.
-comment|// if this is the first call to the method
 if|if
 condition|(
-name|firstCall
+name|acceptAttributeValue
 condition|)
 block|{
 specifier|final
@@ -16558,10 +16561,9 @@ name|loggable
 operator|.
 name|offset
 operator|+
-literal|2
+name|LENGTH_TID
 decl_stmt|;
-comment|//TODO : strange : what are the semantics of 2 here ?
-comment|//Probably LENGTH_DATA_LENGTH but... isn't the offset computed too early ?
+comment|//TOUNDERSTAND Strange : in the lines above, the offset seems to be positionned after the TID
 name|short
 name|l
 init|=
@@ -16588,10 +16590,6 @@ name|tid
 argument_list|)
 condition|)
 block|{
-name|offset
-operator|+=
-name|LENGTH_ORIGINAL_LOCATION
-expr_stmt|;
 name|l
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
