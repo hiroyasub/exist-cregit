@@ -12349,14 +12349,15 @@ argument_list|)
 condition|)
 block|{
 comment|// this is a link: skip it
+comment|//We position the offset *after* the next TID
 name|rec
 operator|.
 name|offset
 operator|+=
 operator|(
-name|LENGTH_TID
-operator|+
 name|LENGTH_FORWARD_LOCATION
+operator|+
+name|LENGTH_TID
 operator|)
 expr_stmt|;
 block|}
@@ -12477,7 +12478,7 @@ argument_list|(
 name|op
 argument_list|)
 expr_stmt|;
-comment|//We position the offset *after* the TID
+comment|//We position the offset *after* the next TID
 name|rec
 operator|.
 name|offset
@@ -12608,15 +12609,15 @@ argument_list|,
 name|readOffset
 argument_list|)
 decl_stmt|;
+comment|//Ignore the following NS data which are of no use
+comment|//We position the offset *after* the next TID
 name|rec
 operator|.
 name|offset
 operator|+=
 name|realLen
 operator|+
-name|ElementImpl
-operator|.
-name|LENGTH_ATTRIBUTES_COUNT
+name|LENGTH_TID
 expr_stmt|;
 specifier|final
 name|boolean
@@ -12632,7 +12633,6 @@ operator|)
 operator|>
 literal|1
 decl_stmt|;
-comment|//TODO : where is NS info ?
 for|for
 control|(
 name|int
@@ -12649,8 +12649,6 @@ operator|++
 control|)
 block|{
 comment|//recursive call
-comment|//TOUNDERSTAND : usually the method is called after a findRecord
-comment|//which sets the offset after the TID. How is it handled here ?
 name|getNodeValue
 argument_list|(
 name|doc
@@ -12941,6 +12939,7 @@ operator|!
 name|inOverflow
 condition|)
 comment|// if it isn't an overflow value, add the value length to the current offset
+comment|//We position the offset *after* the next TID
 name|rec
 operator|.
 name|offset
@@ -16506,6 +16505,7 @@ name|offset
 operator|+
 name|LENGTH_FORWARD_LOCATION
 decl_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|System
 operator|.
 name|arraycopy
@@ -16524,7 +16524,7 @@ name|loggable
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|,
 name|page
 operator|.
@@ -16560,6 +16560,8 @@ name|offset
 operator|+
 literal|2
 decl_stmt|;
+comment|//TODO : strange : what are the semantics of 2 here ?
+comment|//Probably LENGTH_DATA_LENGTH but... isn't the offset computed too early ?
 name|short
 name|l
 init|=
