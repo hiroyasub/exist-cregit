@@ -827,9 +827,9 @@ operator|+
 name|StoredNode
 operator|.
 name|LENGTH_SIGNATURE_LENGTH
-operator|+
-comment|//what is that 4 for ?
-operator|(
+decl_stmt|;
+if|if
+condition|(
 name|state
 operator|==
 name|START_ELEMENT
@@ -837,12 +837,13 @@ operator|||
 name|state
 operator|==
 name|END_ELEMENT
-condition|?
-literal|4
-else|:
-literal|0
-operator|)
-decl_stmt|;
+condition|)
+name|offset
+operator|+=
+name|ElementImpl
+operator|.
+name|LENGTH_ELEMENT_CHILD_COUNT
+expr_stmt|;
 name|int
 name|dlnLen
 init|=

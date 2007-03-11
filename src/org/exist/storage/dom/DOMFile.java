@@ -9897,6 +9897,7 @@ argument_list|,
 name|LENGTH_LINK
 argument_list|)
 expr_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|RemoveValueLoggable
 name|loggable
 init|=
@@ -9922,7 +9923,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|,
 name|data
 argument_list|,
@@ -9954,6 +9955,7 @@ name|offset
 operator|+
 name|LENGTH_LINK
 decl_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|System
 operator|.
 name|arraycopy
@@ -9978,7 +9980,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|,
 name|rec
 operator|.
@@ -10230,6 +10232,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+comment|//Position the stream at the very beginning of the record
 specifier|final
 name|int
 name|startOffset
@@ -10238,7 +10241,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
@@ -12300,9 +12303,10 @@ name|rec
 operator|.
 name|offset
 operator|=
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 block|}
+comment|//Position the stream at the very beginning of the record
 name|short
 name|tid
 init|=
@@ -12321,7 +12325,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|)
 decl_stmt|;
 name|rec
@@ -12563,8 +12567,10 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
-name|readOffset
-operator|+=
+specifier|final
+name|int
+name|nodeIdLen
+init|=
 name|doc
 operator|.
 name|getBroker
@@ -12584,6 +12590,10 @@ name|data
 argument_list|,
 name|readOffset
 argument_list|)
+decl_stmt|;
+name|readOffset
+operator|+=
+name|nodeIdLen
 expr_stmt|;
 specifier|final
 name|short
@@ -12639,6 +12649,8 @@ operator|++
 control|)
 block|{
 comment|//recursive call
+comment|//TOUNDERSTAND : usually the method is called after a findRecord
+comment|//which sets the offset after the TID. How is it handled here ?
 name|getNodeValue
 argument_list|(
 name|doc
@@ -12738,9 +12750,13 @@ argument_list|,
 name|realLen
 operator|-
 operator|(
-literal|1
+name|StoredNode
+operator|.
+name|LENGTH_SIGNATURE_LENGTH
 operator|+
-literal|2
+name|NodeId
+operator|.
+name|LENGTH_NODE_ID_UNITS
 operator|+
 name|nodeIdLen
 operator|)
@@ -12760,12 +12776,15 @@ condition|(
 name|firstCall
 condition|)
 block|{
+specifier|final
 name|int
 name|start
 init|=
 name|readOffset
 operator|-
-literal|1
+name|StoredNode
+operator|.
+name|LENGTH_SIGNATURE_LENGTH
 decl_stmt|;
 specifier|final
 name|byte
@@ -12884,7 +12903,9 @@ operator|+=
 name|AttrImpl
 operator|.
 name|LENGTH_PREFIX_LENGTH
-operator|+
+expr_stmt|;
+name|readOffset
+operator|+=
 name|prefixLen
 expr_stmt|;
 comment|// skip prefix
@@ -12926,7 +12947,7 @@ name|offset
 operator|+=
 name|realLen
 operator|+
-literal|2
+name|LENGTH_TID
 expr_stmt|;
 block|}
 specifier|protected
@@ -13818,6 +13839,7 @@ argument_list|,
 literal|"Record not found!"
 argument_list|)
 expr_stmt|;
+comment|//Position the stream at the very beginning of the record
 specifier|final
 name|int
 name|startOffset
@@ -13826,7 +13848,7 @@ name|pos
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 decl_stmt|;
 comment|// get the record length
 specifier|final
@@ -14425,6 +14447,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//Position the stream at the very beginning of the record
 specifier|final
 name|int
 name|startOffset
@@ -14433,7 +14456,7 @@ name|pos
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 decl_stmt|;
 if|if
 condition|(
@@ -14471,11 +14494,7 @@ name|page
 operator|.
 name|data
 argument_list|,
-name|pos
-operator|.
-name|offset
-operator|-
-literal|2
+name|startOffset
 argument_list|,
 name|page
 operator|.
@@ -17206,6 +17225,7 @@ name|offset
 operator|+
 name|LENGTH_FORWARD_LOCATION
 decl_stmt|;
+comment|//Position the stream at the very beginning of the record
 name|System
 operator|.
 name|arraycopy
@@ -17224,7 +17244,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|,
 name|page
 operator|.
@@ -17843,6 +17863,7 @@ decl_stmt|;
 comment|// remove value
 try|try
 block|{
+comment|//Position the stream at the very beginning of the record
 name|System
 operator|.
 name|arraycopy
@@ -17861,7 +17882,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 argument_list|,
 name|dlen
 operator|-
@@ -17906,7 +17927,7 @@ name|rec
 operator|.
 name|offset
 operator|-
-literal|2
+name|LENGTH_TID
 operator|)
 operator|+
 literal|"; end: "
