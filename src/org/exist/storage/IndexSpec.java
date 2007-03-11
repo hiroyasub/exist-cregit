@@ -516,7 +516,7 @@ name|customIndexSpecs
 operator|=
 name|broker
 operator|.
-name|getIndexDispatcher
+name|getIndexController
 argument_list|()
 operator|.
 name|configure

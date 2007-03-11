@@ -2682,7 +2682,10 @@ comment|/** Takes care of actually remove entries from the indices;      * must 
 specifier|public
 name|void
 name|endRemove
-parameter_list|()
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
 block|{
 name|notifyRemove
 argument_list|()
@@ -13305,40 +13308,10 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|reindex
-condition|)
-block|{
-name|StreamListener
-name|listener
-init|=
-name|indexController
-operator|.
-name|getStreamListener
-argument_list|(
-name|node
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|StreamListener
-operator|.
-name|STORE
-argument_list|)
-decl_stmt|;
-name|IndexUtils
-operator|.
-name|scanNode
-argument_list|(
-name|transaction
-argument_list|,
-name|node
-argument_list|,
-name|listener
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        if (reindex) {
+comment|//            StreamListener listener = indexController.getStreamListener(node.getDocument(), StreamListener.STORE);
+comment|//            IndexUtils.scanNode(transaction, node, listener);
+comment|//        }
 block|}
 comment|/**      * Physically insert a node into the DOM storage.      */
 specifier|public
@@ -14507,6 +14480,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|StreamListener
+name|listener
 parameter_list|)
 block|{
 name|Iterator
@@ -14522,23 +14498,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|StreamListener
-name|listener
-init|=
-name|indexController
-operator|.
-name|getStreamListener
-argument_list|(
-name|node
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|StreamListener
-operator|.
-name|REMOVE_NODES
-argument_list|)
-decl_stmt|;
 name|Stack
 name|stack
 init|=

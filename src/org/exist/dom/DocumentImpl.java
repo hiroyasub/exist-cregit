@@ -2107,7 +2107,9 @@ expr_stmt|;
 name|broker
 operator|.
 name|endRemove
-argument_list|()
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 name|newNode
 operator|.
@@ -2187,7 +2189,9 @@ expr_stmt|;
 name|broker
 operator|.
 name|endRemove
-argument_list|()
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 name|newNode
 operator|.

@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|DatabaseConfigurationException
@@ -87,6 +99,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NodePath
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -109,10 +133,13 @@ name|String
 name|getIndexId
 parameter_list|()
 function_decl|;
-comment|/**      * Read an index configuration from an collection.xconf configuration document.      *      * This method is called by the {@link org.exist.collections.CollectionConfiguration} while      * reading the collection.xconf configuration file for a given collection. The configNodes      * parameter lists all top-level child nodes below the&lt;index&gt; element in the      * collection.xconf. The IndexWorker should scan this list and handle those elements      * it understands.      *      * The returned Object will be stored in the collection configuration structure associated      * with each collection. It can later be retrieved from the collection configuration, e.g. to      * check if a given node should be indexed or not.      *      * @param configNodes      * @param namespaces      * @return      * @throws DatabaseConfigurationException      */
+comment|/**      * Read an index configuration from an collection.xconf configuration document.      *      * This method is called by the {@link org.exist.collections.CollectionConfiguration} while      * reading the collection.xconf configuration file for a given collection. The configNodes      * parameter lists all top-level child nodes below the&lt;index&gt; element in the      * collection.xconf. The IndexWorker should scan this list and handle those elements      * it understands.      *      * The returned Object will be stored in the collection configuration structure associated      * with each collection. It can later be retrieved from the collection configuration, e.g. to      * check if a given node should be indexed or not.      *      * @param configNodes lists the top-level child nodes below the&lt;index&gt; element in collection.xconf      * @param namespaces the active prefix/namespace map      * @return an arbitrary configuration object to be kept for this index in the collection configuration      * @throws DatabaseConfigurationException if a configuration error occurs      */
 name|Object
 name|configure
 parameter_list|(
+name|IndexController
+name|controller
+parameter_list|,
 name|NodeList
 name|configNodes
 parameter_list|,
@@ -152,6 +179,20 @@ name|scanIndex
 parameter_list|(
 name|DocumentSet
 name|docs
+parameter_list|)
+function_decl|;
+comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to reindex some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be reindexed      */
+name|StoredNode
+name|getReindexRoot
+parameter_list|(
+name|StoredNode
+name|node
+parameter_list|,
+name|NodePath
+name|path
+parameter_list|,
+name|boolean
+name|includeSelf
 parameter_list|)
 function_decl|;
 block|}
