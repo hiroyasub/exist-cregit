@@ -8081,7 +8081,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+comment|/**      * Replaces the oldNode with the newChild      *       * @param transaction      * @param newChild      * @param oldChild      *       * @returns The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      *       * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|replaceChild
@@ -8294,6 +8294,9 @@ operator|.
 name|STORE
 argument_list|)
 expr_stmt|;
+name|Node
+name|newNode
+init|=
 name|appendChild
 argument_list|(
 name|transaction
@@ -8315,7 +8318,7 @@ name|newChild
 argument_list|,
 name|listener
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// reindex if required
 specifier|final
 name|DocumentImpl
@@ -8372,10 +8375,11 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+comment|//return oldChild;	// method is spec'd to return the old child, even though that's probably useless in this case
 return|return
-name|oldChild
+name|newNode
 return|;
-comment|// method is spec'd to return the old child, even though that's probably useless in this case
+comment|//returning the newNode is more sensible than returning the oldNode
 block|}
 specifier|private
 name|String
