@@ -1970,7 +1970,7 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
-name|void
+name|StoredNode
 name|updateChild
 parameter_list|(
 name|Txn
@@ -2215,6 +2215,9 @@ name|newNode
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|newNode
+return|;
 block|}
 comment|/*      * @see org.exist.dom.NodeImpl#insertBefore(org.w3c.dom.NodeList, org.w3c.dom.Node)      */
 specifier|public

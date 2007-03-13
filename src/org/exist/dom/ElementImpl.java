@@ -7016,7 +7016,7 @@ expr_stmt|;
 block|}
 comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
 specifier|public
-name|void
+name|StoredNode
 name|updateChild
 parameter_list|(
 name|Txn
@@ -7398,6 +7398,9 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+return|return
+name|newNode
+return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node)      */
 specifier|public
