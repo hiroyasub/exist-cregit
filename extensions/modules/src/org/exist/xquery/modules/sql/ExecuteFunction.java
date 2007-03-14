@@ -93,6 +93,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -795,7 +805,13 @@ name|SQLModule
 operator|.
 name|NAMESPACE_URI
 operator|+
-literal|"\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" count=\""
+literal|"\" xmlns:xs=\""
+operator|+
+name|Namespaces
+operator|.
+name|SCHEMA_NS
+operator|+
+literal|"\" count=\""
 operator|+
 name|iRows
 operator|+

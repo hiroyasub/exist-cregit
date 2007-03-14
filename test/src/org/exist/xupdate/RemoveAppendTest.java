@@ -218,7 +218,13 @@ specifier|static
 name|String
 name|XU_INSERT_START
 init|=
-literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+literal|"<xu:modifications xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\" version=\"1.0\">"
 operator|+
 literal|"<xu:insert-before select=\"/test/item[@id='5']\">"
 decl_stmt|;
@@ -238,7 +244,13 @@ specifier|static
 name|String
 name|XU_REMOVE
 init|=
-literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">"
+literal|"<xu:modifications xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\" version=\"1.0\">"
 operator|+
 literal|"<xu:remove select=\"/test/item[@id='5'][2]\"/>"
 operator|+

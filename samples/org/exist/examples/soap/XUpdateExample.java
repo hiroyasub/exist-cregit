@@ -95,6 +95,18 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xupdate
+operator|.
+name|XUpdateProcessor
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -122,7 +134,13 @@ name|xupdate
 init|=
 literal|"<?xml version=\"1.0\"?>"
 operator|+
-literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+literal|"<xu:modifications version=\"1.0\" xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\">"
 operator|+
 literal|"<xu:insert-after select=\"//note[1]\">"
 operator|+

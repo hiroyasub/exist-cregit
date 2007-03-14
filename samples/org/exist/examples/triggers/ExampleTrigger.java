@@ -274,7 +274,13 @@ name|xupdate
 operator|=
 literal|"<?xml version=\"1.0\"?>"
 operator|+
-literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+literal|"<xu:modifications version=\"1.0\" xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\">"
 operator|+
 literal|"<xu:append select='/contents'><xu:element name='file'>"
 operator|+
@@ -296,7 +302,13 @@ name|xupdate
 operator|=
 literal|"<?xml version=\"1.0\"?>"
 operator|+
-literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
+literal|"<xu:modifications version=\"1.0\" xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\">"
 operator|+
 literal|"<xu:remove select=\"//file[text()='"
 operator|+

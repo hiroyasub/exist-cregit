@@ -985,14 +985,6 @@ block|{
 specifier|protected
 specifier|final
 specifier|static
-name|String
-name|XUPDATE_NS
-init|=
-literal|"http://www.xmldb.org/xupdate"
-decl_stmt|;
-specifier|protected
-specifier|final
-specifier|static
 name|Logger
 name|LOG
 init|=
@@ -3524,6 +3516,8 @@ name|rootNS
 operator|.
 name|equals
 argument_list|(
+name|XUpdateProcessor
+operator|.
 name|XUPDATE_NS
 argument_list|)
 condition|)
