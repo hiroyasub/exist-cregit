@@ -1776,9 +1776,6 @@ condition|)
 return|return
 literal|true
 return|;
-name|SecurityManager
-name|sm
-decl_stmt|;
 if|if
 condition|(
 name|password
