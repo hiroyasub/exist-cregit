@@ -2280,7 +2280,9 @@ operator|.
 name|start
 argument_list|()
 operator|+
-literal|1
+name|StoredNode
+operator|.
+name|LENGTH_SIGNATURE_LENGTH
 argument_list|)
 expr_stmt|;
 block|}

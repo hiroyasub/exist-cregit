@@ -13,6 +13,16 @@ name|soap
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|Namespaces
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -662,7 +672,9 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|"http://www.w3.org/2001/XMLSchema"
+name|Namespaces
+operator|.
+name|SCHEMA_NS
 argument_list|,
 literal|"string"
 argument_list|)
@@ -735,7 +747,9 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|"http://www.w3.org/2001/XMLSchema"
+name|Namespaces
+operator|.
+name|SCHEMA_NS
 argument_list|,
 literal|"string"
 argument_list|)
@@ -808,7 +822,9 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|"http://www.w3.org/2001/XMLSchema"
+name|Namespaces
+operator|.
+name|SCHEMA_NS
 argument_list|,
 literal|"string"
 argument_list|)
@@ -881,7 +897,9 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-literal|"http://www.w3.org/2001/XMLSchema"
+name|Namespaces
+operator|.
+name|SCHEMA_NS
 argument_list|,
 literal|"int"
 argument_list|)

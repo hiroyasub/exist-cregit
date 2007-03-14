@@ -39,6 +39,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -236,7 +246,9 @@ specifier|final
 name|String
 name|TYPE_XSD
 init|=
-literal|"http://www.w3.org/2001/XMLSchema"
+name|Namespaces
+operator|.
+name|SCHEMA_NS
 decl_stmt|;
 specifier|private
 specifier|final

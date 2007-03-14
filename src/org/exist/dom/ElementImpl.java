@@ -4255,7 +4255,9 @@ name|QName
 argument_list|(
 name|prefix
 argument_list|,
-literal|"http://www.w3.org/XML/1998/namespace"
+name|Namespaces
+operator|.
+name|XML_NS
 argument_list|,
 literal|"xmlns"
 argument_list|)

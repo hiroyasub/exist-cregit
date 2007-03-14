@@ -161,6 +161,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentSet
@@ -1002,7 +1012,7 @@ name|documentSet
 operator|=
 name|docs
 expr_stmt|;
-comment|//namespaces.put("xml", "http://www.w3.org/XML/1998/namespace");
+comment|//namespaces.put("xml", Namespaces.XML_NS);
 comment|//TODO : move this to a dedicated configure() method.
 if|if
 condition|(
@@ -3654,7 +3664,9 @@ name|e
 operator|.
 name|getAttributeNS
 argument_list|(
-literal|"http://www.w3.org/XML/1998/namespace"
+name|Namespaces
+operator|.
+name|XML_NS
 argument_list|,
 literal|"space"
 argument_list|)
@@ -3728,7 +3740,9 @@ name|e
 operator|.
 name|getAttributeNS
 argument_list|(
-literal|"http://www.w3.org/XML/1998/namespace"
+name|Namespaces
+operator|.
+name|XML_NS
 argument_list|,
 literal|"space"
 argument_list|)
@@ -4744,7 +4758,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//this.namespaces.put("xml", "http://www.w3.org/XML/1998/namespace");
+comment|//this.namespaces.put("xml", Namespaces.XML_NS);
 block|}
 block|}
 end_class
