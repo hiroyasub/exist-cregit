@@ -65,6 +65,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|NodeProxy
@@ -790,7 +800,7 @@ name|startPrefixMapping
 argument_list|(
 literal|"exist"
 argument_list|,
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -829,7 +839,7 @@ name|handler
 operator|.
 name|startElement
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|,
@@ -937,7 +947,7 @@ name|handler
 operator|.
 name|endElement
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|,

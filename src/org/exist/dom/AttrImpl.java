@@ -29,6 +29,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -43,7 +53,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|Signatures
+name|DBBroker
 import|;
 end_import
 
@@ -55,7 +65,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|Signatures
 import|;
 end_import
 
@@ -1677,7 +1687,13 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" "
+literal|"xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" "
 argument_list|)
 expr_stmt|;
 name|result

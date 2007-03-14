@@ -17,18 +17,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -87,6 +75,28 @@ name|URL
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  * PostExample  *   * @author wolf  *  */
 end_comment
@@ -100,21 +110,15 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|REQUEST_NS
-init|=
-literal|"http://exist.sourceforge.net/NS/exist"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
 name|REQUEST_HEADER
 init|=
 literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 operator|+
 literal|"<query xmlns=\""
 operator|+
-name|REQUEST_NS
+name|Namespaces
+operator|.
+name|EXIST_NS
 operator|+
 literal|"\" "
 decl_stmt|;

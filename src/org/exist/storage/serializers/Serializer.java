@@ -303,6 +303,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentImpl
@@ -776,14 +786,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|EXIST_NS
-init|=
-literal|"http://exist.sourceforge.net/NS/exist"
-decl_stmt|;
 comment|// constants to configure the highlighting of matches in text and attributes
 specifier|public
 specifier|final
@@ -844,6 +846,8 @@ name|QName
 argument_list|(
 literal|"hits"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -860,6 +864,8 @@ name|QName
 argument_list|(
 literal|"start"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -876,6 +882,8 @@ name|QName
 argument_list|(
 literal|"count"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -892,6 +900,8 @@ name|QName
 argument_list|(
 literal|"result"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -908,6 +918,8 @@ name|QName
 argument_list|(
 literal|"type"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -924,6 +936,8 @@ name|QName
 argument_list|(
 literal|"value"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -3861,6 +3875,8 @@ name|startPrefixMapping
 argument_list|(
 literal|"exist"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;

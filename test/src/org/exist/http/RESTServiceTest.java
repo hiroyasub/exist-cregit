@@ -149,6 +149,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|StandaloneServer
 import|;
 end_import
@@ -279,7 +289,13 @@ name|QUERY_REQUEST
 init|=
 literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 operator|+
-literal|"<query xmlns=\"http://exist.sourceforge.net/NS/exist\">"
+literal|"<query xmlns=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\">"
 operator|+
 literal|"<properties>"
 operator|+

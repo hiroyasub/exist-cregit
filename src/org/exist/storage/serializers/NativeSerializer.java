@@ -95,6 +95,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|AttrImpl
@@ -418,6 +428,8 @@ name|QName
 argument_list|(
 literal|"match"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -434,6 +446,8 @@ name|QName
 argument_list|(
 literal|"text"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -450,6 +464,8 @@ name|QName
 argument_list|(
 literal|"attribute"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -466,6 +482,8 @@ name|QName
 argument_list|(
 literal|"source"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"
@@ -482,6 +500,8 @@ name|QName
 argument_list|(
 literal|"id"
 argument_list|,
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|,
 literal|"exist"

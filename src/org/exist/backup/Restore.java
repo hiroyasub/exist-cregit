@@ -181,6 +181,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentTypeImpl
@@ -513,14 +523,6 @@ name|int
 name|strictUriVersion
 init|=
 literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|NS
-init|=
-literal|"http://exist.sourceforge.net/NS/exist"
 decl_stmt|;
 comment|/** 	 * Constructor for Restore. 	 * @throws XMLDBException  	 * @throws URISyntaxException  	 */
 specifier|public
@@ -1001,7 +1003,9 @@ name|namespaceURI
 operator|.
 name|equals
 argument_list|(
-name|NS
+name|Namespaces
+operator|.
+name|EXIST_NS
 argument_list|)
 condition|)
 block|{

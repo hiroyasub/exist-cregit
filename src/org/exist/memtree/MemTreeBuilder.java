@@ -429,7 +429,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
-comment|//					|| attrNS.equals("http://exist.sourceforge.net/NS/exist"))) {
+comment|//					|| attrNS.equals(Namespaces.EXIST_NS))) {
 name|int
 name|p
 init|=

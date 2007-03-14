@@ -5582,7 +5582,13 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|" xmlns:exist=\"http://exist.sourceforge.net/NS/exist\""
+literal|" xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\""
 argument_list|)
 expr_stmt|;
 name|buf

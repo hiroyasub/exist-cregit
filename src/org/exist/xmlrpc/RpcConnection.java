@@ -305,6 +305,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|backup
 operator|.
 name|Backup
@@ -1150,14 +1160,6 @@ name|RpcConnection
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|EXIST_NS
-init|=
-literal|"http://exist.sourceforge.net/NS/exist"
 decl_stmt|;
 specifier|protected
 name|BrokerPool
@@ -2852,7 +2854,13 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" "
+literal|"<exist:result xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" "
 argument_list|)
 expr_stmt|;
 name|buf
@@ -10074,7 +10082,13 @@ condition|)
 return|return
 literal|"<?xml version=\"1.0\"?>\n"
 operator|+
-literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" "
+literal|"<exist:result xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" "
 operator|+
 literal|"hitCount=\"0\"/>"
 return|;
@@ -10136,6 +10150,8 @@ name|writer
 operator|.
 name|write
 argument_list|(
+name|Namespaces
+operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
@@ -10635,7 +10651,13 @@ condition|)
 return|return
 literal|"<?xml version=\"1.0\"?>\n"
 operator|+
-literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" "
+literal|"<exist:result xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" "
 operator|+
 literal|"hitCount=\"0\"/>"
 return|;
@@ -12958,7 +12980,7 @@ name|startPrefixMapping
 argument_list|(
 literal|"exist"
 argument_list|,
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -12999,7 +13021,7 @@ name|handler
 operator|.
 name|startElement
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|,
@@ -13104,7 +13126,7 @@ name|handler
 operator|.
 name|endElement
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|,

@@ -27,6 +27,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -192,7 +202,13 @@ specifier|final
 name|String
 name|XML_EXPECTED1
 init|=
-literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" hitCount=\"2\">\n"
+literal|"<exist:result xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" hitCount=\"2\">\n"
 operator|+
 literal|"<entry xmlns=\"http://foo.com\">1</entry>\n"
 operator|+
@@ -206,7 +222,13 @@ specifier|final
 name|String
 name|XML_EXPECTED2
 init|=
-literal|"<exist:result xmlns:exist=\"http://exist.sourceforge.net/NS/exist\" hitCount=\"1\">\n"
+literal|"<exist:result xmlns:exist=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\" hitCount=\"1\">\n"
 operator|+
 literal|"<c:Site xmlns:c=\"urn:content\" xmlns=\"urn:content\">\n"
 operator|+

@@ -2558,7 +2558,7 @@ name|attrNS
 operator|.
 name|equals
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -3158,7 +3158,7 @@ name|attrNS
 operator|.
 name|equals
 argument_list|(
-name|Serializer
+name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|)
@@ -3695,7 +3695,7 @@ name|uri
 parameter_list|)
 block|{
 comment|// skip the eXist namespace
-comment|//		if (uri.equals("http://exist.sourceforge.net/NS/exist")) {
+comment|//		if (uri.equals(Namespaces.EXIST_NS)) {
 comment|//			ignorePrefix = prefix;
 comment|//			return;
 comment|//		}
