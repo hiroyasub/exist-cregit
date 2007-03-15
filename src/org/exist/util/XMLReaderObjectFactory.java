@@ -338,7 +338,9 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://xml.org/sax/features/validation"
+name|Namespaces
+operator|.
+name|SAX_VALIDATION
 argument_list|,
 name|validation
 operator|==
@@ -368,7 +370,9 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://apache.org/xml/features/validation/dynamic"
+name|Namespaces
+operator|.
+name|SAX_VALIDATION_DYNAMIC
 argument_list|,
 name|validation
 operator|==
