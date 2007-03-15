@@ -233,6 +233,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentTypeImpl
@@ -1547,7 +1557,9 @@ name|reader
 operator|.
 name|setProperty
 argument_list|(
-literal|"http://xml.org/sax/properties/lexical-handler"
+name|Namespaces
+operator|.
+name|SAX_LEXICAL_HANDLER
 argument_list|,
 name|lexicalHandler
 argument_list|)

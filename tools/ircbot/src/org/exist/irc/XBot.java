@@ -35,16 +35,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -156,6 +146,18 @@ operator|.
 name|xmldb
 operator|.
 name|UserManagementService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xupdate
+operator|.
+name|XUpdateProcessor
 import|;
 end_import
 
@@ -493,7 +495,13 @@ specifier|static
 name|String
 name|XUPDATE_START
 init|=
-literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">\n"
+literal|"<xu:modifications version=\"1.0\" xmlns:xu=\""
+operator|+
+name|XUpdateProcessor
+operator|.
+name|XUPDATE_NS
+operator|+
+literal|"\">\n"
 operator|+
 literal|"<xu:variable name=\"now\" select=\"current-time()\"/>\n"
 decl_stmt|;

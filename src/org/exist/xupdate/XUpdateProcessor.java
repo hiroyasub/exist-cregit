@@ -1141,7 +1141,9 @@ name|reader
 operator|.
 name|setProperty
 argument_list|(
-literal|"http://xml.org/sax/properties/lexical-handler"
+name|Namespaces
+operator|.
+name|SAX_LEXICAL_HANDLER
 argument_list|,
 name|this
 argument_list|)
@@ -1150,7 +1152,9 @@ name|reader
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://xml.org/sax/features/namespaces"
+name|Namespaces
+operator|.
+name|SAX_NAMESPACES
 argument_list|,
 literal|true
 argument_list|)
@@ -1159,7 +1163,9 @@ name|reader
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://xml.org/sax/features/namespace-prefixes"
+name|Namespaces
+operator|.
+name|SAX_NAMESPACES_PREFIXES
 argument_list|,
 literal|false
 argument_list|)

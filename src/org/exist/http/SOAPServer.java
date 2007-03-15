@@ -49,7 +49,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
+name|IOException
 import|;
 end_import
 
@@ -59,7 +59,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStream
 import|;
 end_import
 
@@ -99,7 +99,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|HashMap
 import|;
 end_import
 
@@ -109,7 +109,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Properties
 import|;
 end_import
 
@@ -191,6 +191,18 @@ name|xml
 operator|.
 name|transform
 operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
 name|Transformer
 import|;
 end_import
@@ -204,6 +216,32 @@ operator|.
 name|transform
 operator|.
 name|TransformerConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|dom
+operator|.
+name|DOMSource
 import|;
 end_import
 
@@ -265,39 +303,11 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|xml
+name|exist
 operator|.
-name|transform
-operator|.
-name|OutputKeys
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|TransformerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|dom
-operator|.
-name|DOMSource
+name|Namespaces
 import|;
 end_import
 
@@ -2723,7 +2733,9 @@ argument_list|()
 operator|.
 name|getElementsByTagNameNS
 argument_list|(
-literal|"http://schemas.xmlsoap.org/soap/envelope/"
+name|Namespaces
+operator|.
+name|SOAP_ENVELOPE
 argument_list|,
 literal|"Body"
 argument_list|)
