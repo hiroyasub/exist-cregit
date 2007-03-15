@@ -35,20 +35,7 @@ extends|extends
 name|Comparable
 block|{
 comment|/** this is called from {@link NativeValueIndex}  	 * @return the persistant storage key */
-specifier|public
-name|byte
-index|[]
-name|serialize
-parameter_list|(
-name|short
-name|collectionId
-parameter_list|,
-name|boolean
-name|caseSensitive
-parameter_list|)
-throws|throws
-name|EXistException
-function_decl|;
+comment|//public byte[] serialize(short collectionId, boolean caseSensitive) throws EXistException;
 block|}
 end_interface
 
