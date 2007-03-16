@@ -1837,18 +1837,23 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+comment|//docId
 name|istream
 operator|.
 name|readUTF
 argument_list|()
 expr_stmt|;
+comment|//fileURI.toString()
 name|istream
 operator|.
 name|skip
 argument_list|(
-literal|4
+literal|2
+operator|+
+literal|2
 argument_list|)
 expr_stmt|;
+comment|//uid, gid
 name|istream
 operator|.
 name|skip

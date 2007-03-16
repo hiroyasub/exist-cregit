@@ -654,6 +654,24 @@ specifier|public
 specifier|static
 specifier|final
 name|int
+name|LENGTH_VALUE_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_NODE_IDS
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
+specifier|public
+specifier|static
+specifier|final
+name|int
 name|OFFSET_COLLECTION_ID
 init|=
 literal|0
@@ -675,15 +693,6 @@ specifier|public
 specifier|static
 specifier|final
 name|int
-name|LENGTH_VALUE_TYPE
-init|=
-literal|1
-decl_stmt|;
-comment|//sizeof byte
-specifier|public
-specifier|static
-specifier|final
-name|int
 name|OFFSET_DATA
 init|=
 name|OFFSET_VALUE_TYPE
@@ -693,15 +702,6 @@ operator|.
 name|LENGTH_VALUE_TYPE
 decl_stmt|;
 comment|//3
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|LENGTH_NODE_IDS
-init|=
-literal|4
-decl_stmt|;
-comment|//sizeof int
 specifier|public
 specifier|final
 specifier|static
@@ -6393,18 +6393,26 @@ block|{
 specifier|public
 specifier|static
 name|int
-name|OFFSET_IDX_TYPE
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
 name|LENGTH_IDX_TYPE
 init|=
 literal|1
 decl_stmt|;
 comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|LENGTH_QNAME_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|OFFSET_IDX_TYPE
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 specifier|static
 name|int
@@ -6418,7 +6426,7 @@ comment|//1
 specifier|public
 specifier|static
 name|int
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 init|=
 name|OFFSET_COLLECTION_ID
 operator|+
@@ -6430,17 +6438,9 @@ comment|//3
 specifier|public
 specifier|static
 name|int
-name|LENGTH_QNAME_TYPE
-init|=
-literal|1
-decl_stmt|;
-comment|//sizeof byte
-specifier|public
-specifier|static
-name|int
 name|OFFSET_NS_URI
 init|=
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 operator|+
 name|LENGTH_QNAME_TYPE
 decl_stmt|;
@@ -6600,7 +6600,7 @@ argument_list|)
 expr_stmt|;
 name|data
 index|[
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 index|]
 operator|=
 name|qname
@@ -6733,7 +6733,7 @@ name|data
 index|[
 name|QNameValue
 operator|.
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 index|]
 operator|=
 name|qname

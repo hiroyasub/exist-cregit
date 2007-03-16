@@ -3264,7 +3264,7 @@ return|return
 name|cacheManager
 return|;
 block|}
-comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *       * @return      */
+comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *       * @return The IndexManager      */
 specifier|public
 name|IndexManager
 name|getIndexManager

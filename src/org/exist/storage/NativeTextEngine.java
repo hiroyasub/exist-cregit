@@ -789,6 +789,15 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|LENGTH_NODE_IDS_FREQ_OFFSETS
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|OFFSET_NODE_TYPE
 init|=
 literal|0
@@ -838,15 +847,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|LENGTH_NODE_IDS_FREQ_OFFSETS
-init|=
-literal|4
-decl_stmt|;
-comment|//sizeof int
+comment|//3
 comment|/** Length limit for the tokens */
 specifier|public
 specifier|final
@@ -9304,18 +9305,18 @@ block|{
 specifier|public
 specifier|static
 name|int
-name|OFFSET_IDX_TYPE
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
 name|LENGTH_IDX_TYPE
 init|=
 literal|1
 decl_stmt|;
 comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|OFFSET_IDX_TYPE
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 specifier|static
 name|int
@@ -9396,20 +9397,20 @@ parameter_list|)
 block|{
 name|len
 operator|=
+name|WordRef
+operator|.
+name|LENGTH_IDX_TYPE
+operator|+
+name|Collection
+operator|.
+name|LENGTH_COLLECTION_ID
+operator|+
 name|UTF8
 operator|.
 name|encoded
 argument_list|(
 name|word
 argument_list|)
-operator|+
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-operator|+
-name|WordRef
-operator|.
-name|LENGTH_IDX_TYPE
 expr_stmt|;
 name|data
 operator|=
@@ -9537,18 +9538,26 @@ block|{
 specifier|public
 specifier|static
 name|int
-name|OFFSET_IDX_TYPE
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
 name|LENGTH_IDX_TYPE
 init|=
 literal|1
 decl_stmt|;
 comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|LENGTH_QNAME_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|OFFSET_IDX_TYPE
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 specifier|static
 name|int
@@ -9564,7 +9573,7 @@ comment|//1
 specifier|public
 specifier|static
 name|int
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 init|=
 name|OFFSET_COLLECTION_ID
 operator|+
@@ -9576,17 +9585,9 @@ comment|//3
 specifier|public
 specifier|static
 name|int
-name|LENGTH_QNAME_TYPE
-init|=
-literal|1
-decl_stmt|;
-comment|//sizeof byte
-specifier|public
-specifier|static
-name|int
 name|OFFSET_NS_URI
 init|=
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 operator|+
 name|LENGTH_QNAME_TYPE
 decl_stmt|;
@@ -9754,7 +9755,7 @@ argument_list|)
 expr_stmt|;
 name|data
 index|[
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 index|]
 operator|=
 name|qname
@@ -9884,7 +9885,7 @@ argument_list|)
 expr_stmt|;
 name|data
 index|[
-name|OFFSET_QNAME
+name|OFFSET_QNAME_TYPE
 index|]
 operator|=
 name|qname
