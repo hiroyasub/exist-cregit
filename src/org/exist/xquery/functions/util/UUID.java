@@ -182,10 +182,6 @@ name|UUID
 extends|extends
 name|Function
 block|{
-specifier|private
-name|UUIDGenerator
-name|ug
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static

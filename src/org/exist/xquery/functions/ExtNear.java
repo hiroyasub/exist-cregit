@@ -275,20 +275,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Item
-import|;
-end_import
-
 begin_comment
 comment|/**  * near() function.  *   * @author Wolfgang Meier<wolfgang@exist-db.org> (July 31, 2002)  */
 end_comment
