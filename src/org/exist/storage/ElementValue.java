@@ -113,6 +113,14 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|int
+name|LENGTH_TYPE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
 name|OFFSET_COLLECTION_ID
 init|=
 literal|0
@@ -129,14 +137,6 @@ operator|.
 name|LENGTH_COLLECTION_ID
 decl_stmt|;
 comment|//2
-specifier|public
-specifier|static
-name|int
-name|LENGTH_TYPE
-init|=
-literal|1
-decl_stmt|;
-comment|//sizeof byte
 specifier|public
 specifier|static
 name|int
