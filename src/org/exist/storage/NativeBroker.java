@@ -13872,7 +13872,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Removes the Node Reference from the database.      * The index will be updated later, i.e. after all nodes have been physically       * removed. See {@link #endRemove()}.       * removeNode() just adds the node ids to the list in elementIndex       * for later removal.      */
+comment|/** Removes the Node Reference from the database.      * The index will be updated later, i.e. after all nodes have been physically       * removed. See {@link #endRemove(org.exist.storage.txn.Txn)}.      * removeNode() just adds the node ids to the list in elementIndex       * for later removal.      */
 specifier|public
 name|void
 name|removeNode
