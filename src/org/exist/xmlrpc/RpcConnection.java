@@ -9396,6 +9396,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+comment|// DWES why seperate store?
 if|if
 condition|(
 name|mime
@@ -9456,6 +9457,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+comment|// DWES there are situations the file is not cleaned up
 name|file
 operator|.
 name|delete
