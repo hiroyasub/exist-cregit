@@ -733,16 +733,22 @@ name|is
 init|=
 literal|null
 decl_stmt|;
-comment|// firstly, try to read the configuration from a file within the
-comment|// classpath
-try|try
-block|{
 if|if
 condition|(
 name|configFilename
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+comment|// Default file name
+name|configFilename
+operator|=
+literal|"conf.xml"
+expr_stmt|;
+block|}
+comment|// firstly, try to read the configuration from a file within the
+comment|// classpath
+try|try
 block|{
 name|is
 operator|=
@@ -771,15 +777,6 @@ argument_list|(
 literal|"Reading configuration from classloader"
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// Default file name
-name|configFilename
-operator|=
-literal|"conf.xml"
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
