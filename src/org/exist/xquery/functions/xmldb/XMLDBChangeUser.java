@@ -496,9 +496,11 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
+comment|//use the old password
 name|user
 operator|.
-name|setPasswordDigest
+name|setEncodedPassword
 argument_list|(
 name|oldUser
 operator|.
@@ -506,6 +508,17 @@ name|getPassword
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|user
+operator|.
+name|setPasswordDigest
+argument_list|(
+name|oldUser
+operator|.
+name|getDigestPassword
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
