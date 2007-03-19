@@ -709,6 +709,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"imaginaryTokenDefinitions"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3105,6 +3113,16 @@ operator|=
 name|imaginaryTokenDefinitions_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"imaginaryTokenDefinitions"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -3117,6 +3135,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"xpointer"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3604,6 +3630,16 @@ operator|=
 name|xpointer_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"xpointer"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -3616,6 +3652,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"expr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -3767,6 +3811,16 @@ operator|=
 name|expr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"expr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** top-rule */
 specifier|public
 specifier|final
@@ -3780,6 +3834,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"xpath"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -4259,6 +4321,16 @@ operator|=
 name|xpath_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"xpath"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -4271,6 +4343,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"module"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -4608,6 +4688,16 @@ operator|=
 name|module_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"module"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -4620,6 +4710,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"versionDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5031,6 +5129,16 @@ operator|=
 name|versionDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"versionDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -5043,6 +5151,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"libraryModule"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5113,6 +5229,16 @@ operator|=
 name|libraryModule_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"libraryModule"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -5125,6 +5251,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"mainModule"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5195,6 +5329,16 @@ operator|=
 name|mainModule_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"mainModule"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -5207,6 +5351,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"prolog"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -5970,6 +6122,16 @@ operator|=
 name|prolog_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"prolog"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -5982,6 +6144,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"queryBody"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -6040,6 +6210,16 @@ operator|=
 name|queryBody_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"queryBody"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -6052,6 +6232,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"moduleDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -6353,6 +6541,16 @@ operator|=
 name|moduleDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"moduleDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -6365,6 +6563,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"importDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -6558,6 +6764,16 @@ operator|=
 name|importDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"importDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -6568,6 +6784,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"setter"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -8679,6 +8903,16 @@ operator|=
 name|setter_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"setter"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -8689,6 +8923,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"namespaceDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9048,6 +9290,16 @@ operator|=
 name|namespaceDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"namespaceDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -9058,6 +9310,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"optionDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9385,6 +9645,16 @@ operator|=
 name|optionDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"optionDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -9397,6 +9667,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"functionDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -9910,6 +10188,16 @@ operator|=
 name|functionDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"functionDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -9922,6 +10210,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"varDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -10411,6 +10707,16 @@ operator|=
 name|varDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"varDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -10421,6 +10727,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"moduleImport"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -10838,6 +11152,16 @@ operator|=
 name|moduleImport_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"moduleImport"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -10848,6 +11172,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"schemaImport"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11273,6 +11605,16 @@ operator|=
 name|schemaImport_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"schemaImport"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -11283,6 +11625,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"preserveMode"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11467,6 +11817,16 @@ name|returnAST
 operator|=
 name|preserveMode_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"preserveMode"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -11478,6 +11838,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"inheritMode"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -11662,6 +12030,16 @@ name|returnAST
 operator|=
 name|inheritMode_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"inheritMode"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -11676,6 +12054,14 @@ block|{
 name|String
 name|name
 decl_stmt|;
+name|traceIn
+argument_list|(
+literal|"ncnameOrKeyword"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12143,6 +12529,16 @@ return|return
 name|name
 return|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"ncnameOrKeyword"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|String
@@ -12156,6 +12552,14 @@ block|{
 name|String
 name|name
 decl_stmt|;
+name|traceIn
+argument_list|(
+literal|"qName"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12504,6 +12908,16 @@ return|return
 name|name
 return|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"qName"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -12516,6 +12930,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"typeDeclaration"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12624,6 +13046,16 @@ operator|=
 name|typeDeclaration_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"typeDeclaration"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -12634,6 +13066,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"moduleNamespace"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -12791,6 +13231,16 @@ operator|=
 name|moduleNamespace_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"moduleNamespace"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -12801,6 +13251,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"schemaPrefix"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13162,6 +13620,16 @@ operator|=
 name|schemaPrefix_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"schemaPrefix"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -13174,6 +13642,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"paramList"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13308,6 +13784,16 @@ operator|=
 name|paramList_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"paramList"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -13320,6 +13806,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"returnType"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13428,6 +13922,16 @@ operator|=
 name|returnType_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"returnType"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -13440,6 +13944,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"functionBody"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -13581,6 +14093,16 @@ operator|=
 name|functionBody_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"functionBody"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -13593,6 +14115,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"sequenceType"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14062,6 +14592,16 @@ operator|=
 name|sequenceType_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"sequenceType"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -14074,6 +14614,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"param"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14340,6 +14888,16 @@ operator|=
 name|param_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"param"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -14352,6 +14910,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"itemType"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14708,6 +15274,16 @@ operator|=
 name|itemType_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"itemType"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -14718,6 +15294,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"occurrenceIndicator"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -14991,6 +15575,16 @@ operator|=
 name|occurrenceIndicator_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"occurrenceIndicator"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -15001,6 +15595,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"kindTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -15300,6 +15902,16 @@ operator|=
 name|kindTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"kindTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -15312,6 +15924,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"atomicType"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -15459,6 +16079,16 @@ operator|=
 name|atomicType_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"atomicType"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -15471,6 +16101,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"singleType"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -15786,6 +16424,16 @@ operator|=
 name|singleType_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"singleType"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -15798,6 +16446,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"exprSingle"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -16609,6 +17265,16 @@ operator|=
 name|exprSingle_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"exprSingle"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -16621,6 +17287,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"flworExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17036,6 +17710,16 @@ operator|=
 name|flworExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"flworExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -17048,6 +17732,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"quantifiedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17310,6 +18002,16 @@ operator|=
 name|quantifiedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"quantifiedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -17322,6 +18024,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"ifExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17474,6 +18184,16 @@ operator|=
 name|ifExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"ifExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -17486,6 +18206,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"typeswitchExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -17800,6 +18528,16 @@ operator|=
 name|typeswitchExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"typeswitchExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -17812,6 +18550,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"updateExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18025,6 +18771,16 @@ operator|=
 name|updateExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"updateExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18037,6 +18793,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"orExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18188,6 +18952,16 @@ operator|=
 name|orExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18200,6 +18974,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"replaceExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18325,6 +19107,16 @@ operator|=
 name|replaceExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"replaceExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18337,6 +19129,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"updateValueExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18462,6 +19262,16 @@ operator|=
 name|updateValueExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"updateValueExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18474,6 +19284,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"insertExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18789,6 +19607,16 @@ operator|=
 name|insertExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"insertExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18801,6 +19629,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"deleteExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -18909,6 +19745,16 @@ operator|=
 name|deleteExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"deleteExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -18921,6 +19767,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"renameExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19046,6 +19900,16 @@ operator|=
 name|renameExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"renameExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -19058,6 +19922,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"forClause"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19214,6 +20086,16 @@ operator|=
 name|forClause_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"forClause"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -19226,6 +20108,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"letClause"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19382,6 +20272,16 @@ operator|=
 name|letClause_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"letClause"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -19394,6 +20294,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"groupByClause"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19605,6 +20513,16 @@ operator|=
 name|groupByClause_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"groupByClause"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -19617,6 +20535,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"orderByClause"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -19799,6 +20725,16 @@ operator|=
 name|orderByClause_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orderByClause"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -19811,6 +20747,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"inVarBinding"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20106,6 +21050,16 @@ operator|=
 name|inVarBinding_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"inVarBinding"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -20118,6 +21072,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"letVarBinding"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20364,6 +21326,16 @@ operator|=
 name|letVarBinding_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"letVarBinding"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -20374,6 +21346,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"positionalVar"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20574,6 +21554,16 @@ operator|=
 name|positionalVar_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"positionalVar"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -20586,6 +21576,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"orderSpecList"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20692,6 +21690,16 @@ operator|=
 name|orderSpecList_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orderSpecList"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -20704,6 +21712,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"orderSpec"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -20774,6 +21790,16 @@ operator|=
 name|orderSpec_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orderSpec"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -20784,6 +21810,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"orderModifier"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21360,6 +22394,16 @@ operator|=
 name|orderModifier_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orderModifier"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -21372,6 +22416,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"toGroupVarRef"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21559,6 +22611,16 @@ operator|=
 name|toGroupVarRef_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"toGroupVarRef"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -21571,6 +22633,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"groupVarBinding"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21744,6 +22814,16 @@ operator|=
 name|groupVarBinding_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"groupVarBinding"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -21756,6 +22836,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"groupSpecList"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21862,6 +22950,16 @@ operator|=
 name|groupSpecList_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"groupSpecList"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -21874,6 +22972,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"groupSpec"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -21951,6 +23057,16 @@ operator|=
 name|groupSpec_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"groupSpec"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -21963,6 +23079,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"groupKeyVarBinding"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22136,6 +23260,16 @@ operator|=
 name|groupKeyVarBinding_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"groupKeyVarBinding"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -22148,6 +23282,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"quantifiedInVarBinding"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22389,6 +23531,16 @@ operator|=
 name|quantifiedInVarBinding_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"quantifiedInVarBinding"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -22401,6 +23553,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"caseClause"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -22859,6 +24019,16 @@ operator|=
 name|caseClause_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"caseClause"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -22871,6 +24041,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"defaultVar"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23012,6 +24190,16 @@ operator|=
 name|defaultVar_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"defaultVar"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -23024,6 +24212,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"caseVar"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23215,6 +24411,16 @@ operator|=
 name|caseVar_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"caseVar"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -23227,6 +24433,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"andExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -23378,6 +24592,16 @@ operator|=
 name|andExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"andExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -23390,6 +24614,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"comparisonExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -25104,6 +26336,16 @@ operator|=
 name|comparisonExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"comparisonExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -25116,6 +26358,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"instanceofExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -25439,6 +26689,16 @@ operator|=
 name|instanceofExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"instanceofExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -25451,6 +26711,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"treatExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -25777,6 +27045,16 @@ operator|=
 name|treatExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"treatExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -25789,6 +27067,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"castableExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -26118,6 +27404,16 @@ operator|=
 name|castableExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"castableExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -26130,6 +27426,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"castExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -26462,6 +27766,16 @@ operator|=
 name|castExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"castExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -26474,6 +27788,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"unaryExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27199,6 +28521,16 @@ operator|=
 name|unaryExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"unaryExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -27211,6 +28543,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"rangeExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27496,6 +28836,16 @@ operator|=
 name|rangeExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"rangeExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -27508,6 +28858,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"additiveExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -27755,6 +29113,16 @@ operator|=
 name|additiveExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"additiveExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -27767,6 +29135,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"multiplicativeExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28122,6 +29498,16 @@ operator|=
 name|multiplicativeExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"multiplicativeExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -28134,6 +29520,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"unionExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -28556,6 +29950,16 @@ operator|=
 name|unionExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"unionExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -28568,6 +29972,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"valueExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -29013,6 +30425,16 @@ operator|=
 name|valueExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"valueExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -29025,6 +30447,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"pathExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30115,6 +31545,16 @@ operator|=
 name|pathExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"pathExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -30127,6 +31567,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"extensionExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30270,6 +31718,16 @@ operator|=
 name|extensionExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"extensionExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -30282,6 +31740,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"pragma"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30507,6 +31973,16 @@ operator|=
 name|pragma_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"pragma"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -30519,6 +31995,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"intersectExceptExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -30765,6 +32249,16 @@ name|returnAST
 operator|=
 name|intersectExceptExpr_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"intersectExceptExpr"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -30778,6 +32272,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"relativePathExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -31025,6 +32527,16 @@ operator|=
 name|relativePathExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"relativePathExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -31037,6 +32549,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"stepExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32238,6 +33758,16 @@ operator|=
 name|stepExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"stepExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -32250,6 +33780,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"axisStep"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32322,6 +33860,16 @@ operator|=
 name|axisStep_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"axisStep"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -32334,6 +33882,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"filterStep"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32404,6 +33960,16 @@ operator|=
 name|filterStep_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"filterStep"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -32414,6 +33980,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"literal"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32582,6 +34156,16 @@ operator|=
 name|literal_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"literal"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -32594,6 +34178,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"forwardOrReverseStep"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -32925,6 +34517,16 @@ operator|=
 name|forwardOrReverseStep_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"forwardOrReverseStep"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -32937,6 +34539,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"predicates"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -33026,6 +34636,16 @@ operator|=
 name|predicates_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"predicates"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -33038,6 +34658,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"predicate"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -33248,6 +34876,16 @@ operator|=
 name|predicate_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"predicate"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -33258,6 +34896,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"forwardAxisSpecifier"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -33823,6 +35469,16 @@ operator|=
 name|forwardAxisSpecifier_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"forwardAxisSpecifier"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -33833,6 +35489,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"forwardAxis"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -33901,6 +35565,16 @@ operator|=
 name|forwardAxis_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"forwardAxis"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -33913,6 +35587,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"nodeTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -34112,6 +35794,16 @@ operator|=
 name|nodeTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"nodeTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -34122,6 +35814,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"reverseAxisSpecifier"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -34541,6 +36241,16 @@ operator|=
 name|reverseAxisSpecifier_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"reverseAxisSpecifier"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -34551,6 +36261,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"reverseAxis"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -34619,6 +36337,16 @@ operator|=
 name|reverseAxis_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"reverseAxis"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -34631,6 +36359,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"abbrevStep"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -35443,6 +37179,16 @@ operator|=
 name|abbrevStep_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"abbrevStep"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -35455,6 +37201,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"nameTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -36063,6 +37817,16 @@ operator|=
 name|nameTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"nameTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -36073,6 +37837,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"wildcard"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -36725,6 +38497,16 @@ operator|=
 name|wildcard_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"wildcard"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -36737,6 +38519,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"primaryExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -37628,6 +39418,16 @@ operator|=
 name|primaryExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"primaryExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -37640,6 +39440,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"computedConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -37904,6 +39712,16 @@ operator|=
 name|computedConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"computedConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -37916,6 +39734,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"orderedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -37989,6 +39815,16 @@ operator|=
 name|orderedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"orderedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -38001,6 +39837,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"unorderedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -38074,6 +39918,16 @@ operator|=
 name|unorderedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"unorderedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -38086,6 +39940,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"directConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -38245,6 +40107,16 @@ operator|=
 name|directConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"directConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -38257,6 +40129,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"functionCall"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -39044,6 +40924,16 @@ operator|=
 name|functionCall_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"functionCall"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -39054,6 +40944,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"contextItemExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -39150,6 +41048,16 @@ operator|=
 name|contextItemExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"contextItemExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -39162,6 +41070,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"parenthesizedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -39741,6 +41657,16 @@ operator|=
 name|parenthesizedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"parenthesizedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -39753,6 +41679,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"varRef"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -39940,6 +41874,16 @@ operator|=
 name|varRef_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"varRef"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -39950,6 +41894,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"numericLiteral"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -40223,6 +42175,16 @@ operator|=
 name|numericLiteral_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"numericLiteral"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -40235,6 +42197,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"functionParameters"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -40341,6 +42311,16 @@ operator|=
 name|functionParameters_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"functionParameters"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -40351,6 +42331,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"textTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -40457,6 +42445,16 @@ operator|=
 name|textTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"textTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -40467,6 +42465,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"anyKindTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -40573,6 +42579,16 @@ operator|=
 name|anyKindTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"anyKindTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -40583,6 +42599,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -41161,6 +43185,16 @@ operator|=
 name|elementTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -41171,6 +43205,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -41818,6 +43860,16 @@ operator|=
 name|attributeTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -41828,6 +43880,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"commentTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -41934,6 +43994,16 @@ operator|=
 name|commentTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"commentTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -41944,6 +44014,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"piTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -42050,6 +44128,16 @@ operator|=
 name|piTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"piTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -42060,6 +44148,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"documentTest"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -42166,6 +44262,16 @@ operator|=
 name|documentTest_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"documentTest"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -42176,6 +44282,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementNameOrWildcard"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -42781,6 +44895,16 @@ name|returnAST
 operator|=
 name|elementNameOrWildcard_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementNameOrWildcard"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -42792,6 +44916,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"typeName"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -42939,6 +45071,16 @@ operator|=
 name|typeName_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"typeName"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -42949,6 +45091,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeNameOrWildcard"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -43554,6 +45704,16 @@ name|returnAST
 operator|=
 name|attributeNameOrWildcard_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeNameOrWildcard"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -43567,6 +45727,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -43770,6 +45938,16 @@ operator|=
 name|elementConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -43780,6 +45958,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"xmlComment"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -43881,6 +46067,16 @@ operator|=
 name|xmlComment_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"xmlComment"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -43891,6 +46087,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"xmlPI"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -43992,6 +46196,16 @@ operator|=
 name|xmlPI_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"xmlPI"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -44004,6 +46218,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compElemConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -45280,6 +47502,16 @@ name|returnAST
 operator|=
 name|compElemConstructor_AST
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compElemConstructor"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -45293,6 +47525,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compAttrConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -46626,6 +48866,16 @@ operator|=
 name|compAttrConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compAttrConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -46638,6 +48888,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compTextConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -46898,6 +49156,16 @@ operator|=
 name|compTextConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compTextConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -46910,6 +49178,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compDocumentConstructor"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -47170,6 +49446,16 @@ operator|=
 name|compDocumentConstructor_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compDocumentConstructor"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -47182,6 +49468,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compXmlPI"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -47777,6 +50071,16 @@ operator|=
 name|compXmlPI_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compXmlPI"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -47789,6 +50093,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compXmlComment"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -48049,6 +50361,16 @@ operator|=
 name|compXmlComment_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compXmlComment"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -48061,6 +50383,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"compElemBody"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -48419,6 +50749,16 @@ operator|=
 name|compElemBody_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"compElemBody"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -48429,6 +50769,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"localNamespaceDecl"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -48682,6 +51030,16 @@ operator|=
 name|localNamespaceDecl_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"localNamespaceDecl"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -48694,6 +51052,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementWithAttributes"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -49342,6 +51708,16 @@ operator|=
 name|elementWithAttributes_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementWithAttributes"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -49354,6 +51730,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementWithoutAttributes"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -49977,6 +52361,16 @@ operator|=
 name|elementWithoutAttributes_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementWithoutAttributes"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -49989,6 +52383,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"mixedElementContent"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -50081,6 +52483,16 @@ operator|=
 name|mixedElementContent_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"mixedElementContent"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -50093,6 +52505,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeList"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -50217,6 +52637,16 @@ operator|=
 name|attributeList_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeList"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -50229,6 +52659,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeDef"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -50457,6 +52895,16 @@ operator|=
 name|attributeDef_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeDef"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -50469,6 +52917,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeValue"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -50769,6 +53225,16 @@ operator|=
 name|attributeValue_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeValue"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -50781,6 +53247,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"quotAttrValueContent"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -51204,6 +53678,16 @@ operator|=
 name|quotAttrValueContent_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"quotAttrValueContent"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -51216,6 +53700,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"aposAttrValueContent"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -51639,6 +54131,16 @@ operator|=
 name|aposAttrValueContent_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"aposAttrValueContent"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -51651,6 +54153,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"attrCommonContent"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -52238,6 +54748,16 @@ operator|=
 name|attrCommonContent_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attrCommonContent"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -52250,6 +54770,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"attributeEnclosedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -52407,6 +54935,16 @@ operator|=
 name|attributeEnclosedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"attributeEnclosedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -52419,6 +54957,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"elementContent"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -53275,6 +55821,16 @@ operator|=
 name|elementContent_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"elementContent"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -53285,6 +55841,14 @@ name|RecognitionException
 throws|,
 name|TokenStreamException
 block|{
+name|traceIn
+argument_list|(
+literal|"cdataSection"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -53381,6 +55945,16 @@ operator|=
 name|cdataSection_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"cdataSection"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|void
@@ -53393,6 +55967,14 @@ name|TokenStreamException
 throws|,
 name|XPathException
 block|{
+name|traceIn
+argument_list|(
+literal|"enclosedExpr"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -53561,6 +56143,16 @@ operator|=
 name|enclosedExpr_AST
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"enclosedExpr"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 specifier|final
 name|String
@@ -53574,6 +56166,14 @@ block|{
 name|String
 name|name
 decl_stmt|;
+name|traceIn
+argument_list|(
+literal|"reservedKeywords"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+comment|// debugging
 name|returnAST
 operator|=
 literal|null
@@ -61551,6 +64151,16 @@ expr_stmt|;
 return|return
 name|name
 return|;
+block|}
+finally|finally
+block|{
+comment|// debugging
+name|traceOut
+argument_list|(
+literal|"reservedKeywords"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|static
