@@ -494,6 +494,20 @@ literal|""
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|QName
+name|XPOINTER_ATTRIB
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|"xpointer"
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|private
 name|Receiver
 name|receiver
 decl_stmt|;
@@ -866,6 +880,13 @@ name|getValue
 argument_list|(
 name|HREF_ATTRIB
 argument_list|)
+argument_list|,
+name|attribs
+operator|.
+name|getValue
+argument_list|(
+name|XPOINTER_ATTRIB
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -918,6 +939,9 @@ name|processXInclude
 parameter_list|(
 name|String
 name|href
+parameter_list|,
+name|String
+name|xpointer
 parameter_list|)
 throws|throws
 name|SAXException
@@ -1011,7 +1035,7 @@ expr_stmt|;
 comment|//String xpointer = null;
 comment|//String docName = href;
 name|String
-name|xpointer
+name|fragment
 init|=
 name|docUri
 operator|.
@@ -1020,123 +1044,44 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|xpointer
-operator|!=
+operator|!
+operator|(
+name|fragment
+operator|==
 literal|null
+operator|||
+name|fragment
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|)
 condition|)
-block|{
-try|try
-block|{
-name|xpointer
-operator|=
-name|XMLUtil
-operator|.
-name|decodeAttrMarkup
-argument_list|(
-name|URLDecoder
-operator|.
-name|decode
-argument_list|(
-name|xpointer
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-comment|// remove the fragment part from the URI for further processing
-name|URI
-name|u
-init|=
-name|docUri
-operator|.
-name|getURI
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|u
-operator|=
-operator|new
-name|URI
-argument_list|(
-name|u
-operator|.
-name|getScheme
-argument_list|()
-argument_list|,
-name|u
-operator|.
-name|getUserInfo
-argument_list|()
-argument_list|,
-name|u
-operator|.
-name|getHost
-argument_list|()
-argument_list|,
-name|u
-operator|.
-name|getPort
-argument_list|()
-argument_list|,
-name|u
-operator|.
-name|getPath
-argument_list|()
-argument_list|,
-name|u
-operator|.
-name|getQuery
-argument_list|()
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|docUri
-operator|=
-name|XmldbURI
-operator|.
-name|xmldbUriFor
-argument_list|(
-name|u
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|URISyntaxException
-name|e
-parameter_list|)
-block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|SAXException
 argument_list|(
-literal|"Stylesheet URI could not be parsed: "
+literal|"Fragment identifiers must not be used in an xinclude href attribute. To specify an "
 operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+literal|"xpointer, use the xpointer attribute."
 argument_list|)
 throw|;
-block|}
-block|}
+comment|//        if(xpointer!=null) {
+comment|//            try {
+comment|//                xpointer = XMLUtil.decodeAttrMarkup(URLDecoder.decode(xpointer, "UTF-8"));
+comment|//            } catch (UnsupportedEncodingException e) {
+comment|//            	LOG.warn(e);
+comment|//            }
+comment|//            // remove the fragment part from the URI for further processing
+comment|//            URI u = docUri.getURI();
+comment|//            try {
+comment|//                u = new URI(u.getScheme(), u.getUserInfo(), u.getHost(), u.getPort(), u.getPath(), u.getQuery(), null);
+comment|//                docUri = XmldbURI.xmldbUriFor(u);
+comment|//            } catch (URISyntaxException e) {
+comment|//                throw new IllegalArgumentException("Stylesheet URI could not be parsed: " + e.getMessage());
+comment|//            }
+comment|//        }
 comment|// extract possible parameters in the URI
 name|Map
 name|params
