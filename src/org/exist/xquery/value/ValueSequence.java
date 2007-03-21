@@ -1739,6 +1739,11 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|hashKey
+operator|+=
+literal|"&&"
+expr_stmt|;
+comment|//bv : sentinel value to separate grouping keys values
 block|}
 return|return
 name|hashKey
