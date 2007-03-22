@@ -1288,7 +1288,8 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-name|DRIVER
+name|getDriverName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Database
@@ -2470,6 +2471,15 @@ name|servletRequest
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|String
+name|getDriverName
+parameter_list|()
+block|{
+return|return
+name|DRIVER
+return|;
 block|}
 block|}
 end_class
