@@ -394,6 +394,29 @@ parameter_list|)
 throws|throws
 name|URISyntaxException
 block|{
+return|return
+name|xmldbUriFor
+argument_list|(
+name|xmldbURI
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+specifier|public
+specifier|static
+name|XmldbURI
+name|xmldbUriFor
+parameter_list|(
+name|String
+name|xmldbURI
+parameter_list|,
+name|boolean
+name|escape
+parameter_list|)
+throws|throws
+name|URISyntaxException
+block|{
 if|if
 condition|(
 name|xmldbURI
@@ -409,12 +432,16 @@ init|=
 operator|new
 name|URI
 argument_list|(
+name|escape
+condition|?
 name|AnyURIValue
 operator|.
 name|escape
 argument_list|(
 name|xmldbURI
 argument_list|)
+else|:
+name|xmldbURI
 argument_list|)
 decl_stmt|;
 return|return
@@ -2603,6 +2630,8 @@ argument_list|(
 literal|"The provided child URI is null"
 argument_list|)
 throw|;
+comment|//        if (child.isAbsolute())
+comment|//            return child;
 comment|//Old method:
 comment|/* 		String collectionPath = this.encodedCollectionPath; 		if (collectionPath == null) 			throw new NullPointerException("The current collection path is null");	 		URI collectionPathURI; 		//Adds a final slash if necessary 		if (!collectionPath.endsWith("/")) {             LOG.info("Added a final '/' to '" + collectionPath + "'");  			collectionPathURI = URI.create(collectionPath + "/");         } else 			collectionPathURI = URI.create(collectionPath); 		*/
 name|String

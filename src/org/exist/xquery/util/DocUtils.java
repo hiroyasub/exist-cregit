@@ -728,6 +728,8 @@ operator|.
 name|xmldbUriFor
 argument_list|(
 name|path
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// relative collection Path: add the current base URI
@@ -749,9 +751,6 @@ expr_stmt|;
 comment|// try to open the document and acquire a lock
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|context
 operator|.
 name|getBroker

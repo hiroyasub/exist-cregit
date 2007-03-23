@@ -151,6 +151,20 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|FunEscapeURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -441,392 +455,99 @@ name|String
 name|uri
 parameter_list|)
 block|{
-comment|//TODO: TEST TEST TEST!
-comment|// basically copied from URLEncoder.encode
-try|try
-block|{
-name|boolean
-name|needToChange
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|wroteUnencodedChar
-init|=
-literal|false
-decl_stmt|;
-name|int
-name|maxBytesPerChar
-init|=
-literal|10
-decl_stmt|;
-comment|// rather arbitrary limit, but safe for now
-name|StringBuffer
-name|out
-init|=
-operator|new
-name|StringBuffer
-argument_list|(
-name|uri
-operator|.
-name|length
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|ByteArrayOutputStream
-name|buf
-init|=
-operator|new
-name|ByteArrayOutputStream
-argument_list|(
-name|maxBytesPerChar
-argument_list|)
-decl_stmt|;
-name|OutputStreamWriter
-name|writer
-init|=
-operator|new
-name|OutputStreamWriter
-argument_list|(
-name|buf
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|uri
-operator|.
-name|length
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|int
-name|c
-init|=
-operator|(
-name|int
-operator|)
-name|uri
-operator|.
-name|charAt
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|c
-operator|>
-literal|127
-operator|||
-name|needEncoding
-operator|.
-name|get
-argument_list|(
-name|c
-argument_list|)
-condition|)
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|wroteUnencodedChar
-condition|)
-block|{
-comment|// Fix for 4407610
-name|writer
-operator|=
-operator|new
-name|OutputStreamWriter
-argument_list|(
-name|buf
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
-name|wroteUnencodedChar
-operator|=
-literal|false
-expr_stmt|;
-block|}
-name|writer
-operator|.
-name|write
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
-comment|/* 						 * If this character represents the start of a Unicode 						 * surrogate pair, then pass in two characters. It's not 						 * clear what should be done if a bytes reserved in the  						 * surrogate pairs range occurs outside of a legal 						 * surrogate pair. For now, just treat it as if it were  						 * any other character. 						 */
-if|if
-condition|(
-name|c
-operator|>=
-literal|0xD800
-operator|&&
-name|c
-operator|<=
-literal|0xDBFF
-condition|)
-block|{
-comment|/* 							 System.out.println(Integer.toHexString(c)  							 + " is high surrogate"); 							 */
-if|if
-condition|(
-operator|(
-name|i
-operator|+
-literal|1
-operator|)
-operator|<
-name|uri
-operator|.
-name|length
-argument_list|()
-condition|)
-block|{
-name|int
-name|d
-init|=
-operator|(
-name|int
-operator|)
-name|uri
-operator|.
-name|charAt
-argument_list|(
-name|i
-operator|+
-literal|1
-argument_list|)
-decl_stmt|;
-comment|/* 								 System.out.println("\tExamining "  								 + Integer.toHexString(d)); 								 */
-if|if
-condition|(
-name|d
-operator|>=
-literal|0xDC00
-operator|&&
-name|d
-operator|<=
-literal|0xDFFF
-condition|)
-block|{
-comment|/* 									 System.out.println("\t"  									 + Integer.toHexString(d)  									 + " is low surrogate"); 									 */
-name|writer
-operator|.
-name|write
-argument_list|(
-name|d
-argument_list|)
-expr_stmt|;
-name|i
-operator|++
-expr_stmt|;
-block|}
-block|}
-block|}
-name|writer
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|buf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-continue|continue;
-block|}
-name|byte
-index|[]
-name|ba
-init|=
-name|buf
-operator|.
-name|toByteArray
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|ba
-operator|.
-name|length
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|out
-operator|.
-name|append
-argument_list|(
-literal|'%'
-argument_list|)
-expr_stmt|;
-name|char
-name|ch
-init|=
-name|Character
-operator|.
-name|forDigit
-argument_list|(
-operator|(
-name|ba
-index|[
-name|j
-index|]
-operator|>>
-literal|4
-operator|)
-operator|&
-literal|0xF
-argument_list|,
-literal|16
-argument_list|)
-decl_stmt|;
-comment|// converting to use uppercase letter as part of
-comment|// the hex value if ch is a letter.
-if|if
-condition|(
-name|Character
-operator|.
-name|isLetter
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
-name|ch
-operator|-=
-name|caseDiff
-expr_stmt|;
-block|}
-name|out
-operator|.
-name|append
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-name|ch
-operator|=
-name|Character
-operator|.
-name|forDigit
-argument_list|(
-name|ba
-index|[
-name|j
-index|]
-operator|&
-literal|0xF
-argument_list|,
-literal|16
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|Character
-operator|.
-name|isLetter
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
-name|ch
-operator|-=
-name|caseDiff
-expr_stmt|;
-block|}
-name|out
-operator|.
-name|append
-argument_list|(
-name|ch
-argument_list|)
-expr_stmt|;
-block|}
-name|buf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-name|needToChange
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-name|out
-operator|.
-name|append
-argument_list|(
-operator|(
-name|char
-operator|)
-name|c
-argument_list|)
-expr_stmt|;
-name|wroteUnencodedChar
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
 return|return
-operator|(
-name|needToChange
-condition|?
-name|out
+name|FunEscapeURI
 operator|.
-name|toString
-argument_list|()
-else|:
-name|uri
-operator|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|escape
 argument_list|(
-name|e
+name|uri
+argument_list|,
+literal|false
 argument_list|)
-throw|;
-block|}
+return|;
+comment|//TODO: TEST TEST TEST!
+comment|//			// basically copied from URLEncoder.encode
+comment|//		try {
+comment|//			boolean needToChange = false;
+comment|//			boolean wroteUnencodedChar = false;
+comment|//			int maxBytesPerChar = 10; // rather arbitrary limit, but safe for now
+comment|//			StringBuffer out = new StringBuffer(uri.length());
+comment|//			ByteArrayOutputStream buf = new ByteArrayOutputStream(maxBytesPerChar);
+comment|//
+comment|//			OutputStreamWriter writer = new OutputStreamWriter(buf, "UTF-8");
+comment|//
+comment|//			for (int i = 0; i< uri.length(); i++) {
+comment|//				int c = (int) uri.charAt(i);
+comment|//				if (c>127 || needEncoding.get(c)) {
+comment|//					try {
+comment|//						if (wroteUnencodedChar) { // Fix for 4407610
+comment|//							writer = new OutputStreamWriter(buf, "UTF-8");
+comment|//							wroteUnencodedChar = false;
+comment|//						}
+comment|//						writer.write(c);
+comment|//						/*
+comment|//						 * If this character represents the start of a Unicode
+comment|//						 * surrogate pair, then pass in two characters. It's not
+comment|//						 * clear what should be done if a bytes reserved in the
+comment|//						 * surrogate pairs range occurs outside of a legal
+comment|//						 * surrogate pair. For now, just treat it as if it were
+comment|//						 * any other character.
+comment|//						 */
+comment|//						if (c>= 0xD800&& c<= 0xDBFF) {
+comment|//							/*
+comment|//							 System.out.println(Integer.toHexString(c)
+comment|//							 + " is high surrogate");
+comment|//							 */
+comment|//							if ( (i+1)< uri.length()) {
+comment|//								int d = (int) uri.charAt(i+1);
+comment|//								/*
+comment|//								 System.out.println("\tExamining "
+comment|//								 + Integer.toHexString(d));
+comment|//								 */
+comment|//								if (d>= 0xDC00&& d<= 0xDFFF) {
+comment|//									/*
+comment|//									 System.out.println("\t"
+comment|//									 + Integer.toHexString(d)
+comment|//									 + " is low surrogate");
+comment|//									 */
+comment|//									writer.write(d);
+comment|//									i++;
+comment|//								}
+comment|//							}
+comment|//						}
+comment|//						writer.flush();
+comment|//					} catch(IOException e) {
+comment|//						buf.reset();
+comment|//						continue;
+comment|//					}
+comment|//					byte[] ba = buf.toByteArray();
+comment|//					for (int j = 0; j< ba.length; j++) {
+comment|//						out.append('%');
+comment|//						char ch = Character.forDigit((ba[j]>> 4)& 0xF, 16);
+comment|//						// converting to use uppercase letter as part of
+comment|//						// the hex value if ch is a letter.
+comment|//						if (Character.isLetter(ch)) {
+comment|//							ch -= caseDiff;
+comment|//						}
+comment|//						out.append(ch);
+comment|//						ch = Character.forDigit(ba[j]& 0xF, 16);
+comment|//						if (Character.isLetter(ch)) {
+comment|//							ch -= caseDiff;
+comment|//						}
+comment|//						out.append(ch);
+comment|//					}
+comment|//					buf.reset();
+comment|//					needToChange = true;
+comment|//				} else {
+comment|//					out.append((char)c);
+comment|//					wroteUnencodedChar = true;
+comment|//				}
+comment|//			}
+comment|//
+comment|//			return (needToChange? out.toString() : uri);
+comment|//		} catch(UnsupportedEncodingException e) {
+comment|//			throw new RuntimeException(e);
+comment|//		}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
@@ -1456,10 +1177,9 @@ name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
-name|escape
-argument_list|(
 name|uri
-argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
