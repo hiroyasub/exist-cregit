@@ -2194,21 +2194,9 @@ decl_stmt|;
 if|if
 condition|(
 name|doc
-operator|==
+operator|!=
 literal|null
 condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Document "
-operator|+
-name|path
-operator|+
-literal|" not found!"
-argument_list|)
-expr_stmt|;
-else|else
 name|doc
 operator|.
 name|getUpdateLock
