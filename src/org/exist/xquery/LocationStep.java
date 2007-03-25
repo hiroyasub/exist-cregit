@@ -1789,16 +1789,10 @@ return|;
 comment|// if there's just a single known node in the context, it is faster
 comment|// do directly search for the attribute in the parent node.
 block|}
-if|else if
-condition|(
+name|boolean
+name|selectDirect
+init|=
 name|useDirectAttrSelect
-operator|&&
-operator|!
-operator|(
-name|contextSet
-operator|instanceof
-name|VirtualNodeSet
-operator|)
 operator|&&
 name|axis
 operator|==
@@ -1812,6 +1806,30 @@ name|getLength
 argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
+decl_stmt|;
+if|if
+condition|(
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+name|selectDirect
+operator|=
+name|selectDirect
+operator|&&
+operator|(
+operator|(
+name|VirtualNodeSet
+operator|)
+name|contextSet
+operator|)
+operator|.
+name|preferTreeTraversal
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|selectDirect
 condition|)
 block|{
 if|if
