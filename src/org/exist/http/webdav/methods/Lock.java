@@ -1926,7 +1926,12 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/xml; charset=UTF-8"
+name|MimeType
+operator|.
+name|XML_CONTENT_TYPE
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//        response.setCharacterEncoding("utf-8");

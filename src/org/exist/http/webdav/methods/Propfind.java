@@ -387,6 +387,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|serializer
 operator|.
 name|SAXSerializer
@@ -4004,7 +4016,12 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/xml; charset=UTF-8"
+name|MimeType
+operator|.
+name|XML_CONTENT_TYPE
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|byte

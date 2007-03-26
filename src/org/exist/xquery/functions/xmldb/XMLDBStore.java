@@ -706,7 +706,12 @@ expr_stmt|;
 name|String
 name|mimeType
 init|=
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 decl_stmt|;
 name|boolean
 name|binary
@@ -1170,6 +1175,8 @@ operator|new
 name|XPathException
 argument_list|(
 literal|"XMLDB reported an exception while storing document"
+operator|+
+name|e
 argument_list|,
 name|e
 argument_list|)

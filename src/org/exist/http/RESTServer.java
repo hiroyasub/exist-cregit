@@ -1987,7 +1987,12 @@ argument_list|,
 name|collection
 argument_list|)
 argument_list|,
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|encoding
 argument_list|)
@@ -2866,7 +2871,12 @@ decl_stmt|;
 name|String
 name|mime
 init|=
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 decl_stmt|;
 name|String
 name|query
@@ -3140,7 +3150,12 @@ argument_list|)
 expr_stmt|;
 name|mime
 operator|=
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -3748,7 +3763,12 @@ name|mods
 operator|+
 literal|"modifications processed.</exist:modifications>"
 argument_list|,
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 literal|"UTF-8"
 argument_list|)

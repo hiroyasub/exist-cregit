@@ -211,6 +211,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -258,7 +270,12 @@ specifier|static
 name|String
 name|BINARY_CONTENT
 init|=
-literal|"application/octet-stream"
+name|MimeType
+operator|.
+name|BINARY_TYPE
+operator|.
+name|getName
+argument_list|()
 decl_stmt|;
 specifier|public
 specifier|final
@@ -266,7 +283,12 @@ specifier|static
 name|String
 name|XML_CONTENT
 init|=
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 decl_stmt|;
 comment|/** id of the database registred against the BrokerPool */
 specifier|protected

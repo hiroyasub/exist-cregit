@@ -117,6 +117,18 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|MimeType
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -281,7 +293,12 @@ init|=
 operator|new
 name|DataFlavor
 argument_list|(
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|FLAVOR_DESCRIPTION
 operator|+

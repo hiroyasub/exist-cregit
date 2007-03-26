@@ -45,6 +45,18 @@ name|HttpServletResponse
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|MimeType
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -99,7 +111,12 @@ specifier|private
 name|String
 name|contentType
 init|=
-literal|"text/xml"
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
 decl_stmt|;
 specifier|public
 name|Response
