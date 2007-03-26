@@ -287,11 +287,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates the XPath/XQuery expression specified in $b within "
+literal|"Dynamically evaluates the XPath/XQuery expression specified in $a within "
 operator|+
-literal|"the current instance of the query engine. The evaluation context is taken from "
-operator|+
-literal|"argument $a."
+literal|"the current instance of the query engine."
 argument_list|,
 operator|new
 name|SequenceType
