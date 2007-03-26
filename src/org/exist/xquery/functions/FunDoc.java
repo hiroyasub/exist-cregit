@@ -285,7 +285,7 @@ argument_list|)
 argument_list|,
 literal|"Returns the documents specified in the input sequence. "
 operator|+
-literal|"The arguments are either document pathes like '"
+literal|"The arguments are either document paths like '"
 operator|+
 name|DBBroker
 operator|.
