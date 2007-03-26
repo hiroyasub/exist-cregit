@@ -202,9 +202,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * TODO: change AnyURIValue to directly store the escaped value?      */
 specifier|public
 name|void
-name|testPartiallyEscapedStringToXmldbURI
+name|todoTestPartiallyEscapedStringToXmldbURI
 parameter_list|()
 block|{
 try|try
@@ -258,6 +259,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
