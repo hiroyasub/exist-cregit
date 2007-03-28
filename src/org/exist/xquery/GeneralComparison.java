@@ -4714,7 +4714,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|equals
+name|equalsInternal
 argument_list|(
 name|XmldbURI
 operator|.
