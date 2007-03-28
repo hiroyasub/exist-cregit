@@ -18392,7 +18392,6 @@ block|}
 block|}
 specifier|protected
 specifier|final
-specifier|static
 class|class
 name|DOMFilePageHeader
 extends|extends
@@ -18853,12 +18852,14 @@ name|int
 name|len
 parameter_list|)
 block|{
-comment|//TODO : how can we get 4032 ?
 if|if
 condition|(
 name|len
 operator|>
-literal|4032
+name|fileHeader
+operator|.
+name|getWorkSize
+argument_list|()
 condition|)
 name|LOG
 operator|.
