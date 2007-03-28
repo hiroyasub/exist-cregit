@@ -2771,8 +2771,6 @@ literal|""
 argument_list|,
 literal|null
 argument_list|)
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|attr
@@ -2871,8 +2869,6 @@ name|namespaceURI
 argument_list|,
 name|prefix
 argument_list|)
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|attr
