@@ -249,7 +249,7 @@ name|iLength
 operator|=
 name|resultSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 expr_stmt|;
 comment|//do this once here as getLength() is expensive

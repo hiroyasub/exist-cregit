@@ -2046,15 +2046,34 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemCount() 	 */
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 block|{
 return|return
 literal|1
 return|;
+block|}
+specifier|public
+name|int
+name|getLength
+parameter_list|()
+block|{
+comment|//Let the derived classes do it...
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Can not call getLength() on node type "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getCardinality() 	 */
 specifier|public

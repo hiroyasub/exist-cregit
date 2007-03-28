@@ -265,6 +265,16 @@ return|return
 literal|0
 return|;
 block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
 specifier|public
 name|Node
 name|item

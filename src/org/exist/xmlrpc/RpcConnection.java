@@ -7244,7 +7244,7 @@ name|qr
 operator|.
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 return|;
 block|}
@@ -10100,7 +10100,7 @@ name|howmany
 operator|>
 name|resultSet
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|||
 name|howmany
@@ -10111,7 +10111,7 @@ name|howmany
 operator|=
 name|resultSet
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 expr_stmt|;
 if|if
@@ -10124,7 +10124,7 @@ name|start
 operator|>
 name|resultSet
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 throw|throw
@@ -10174,7 +10174,7 @@ name|toString
 argument_list|(
 name|resultSet
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 argument_list|)
@@ -11112,7 +11112,7 @@ literal|"found "
 operator|+
 name|resultSeq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11632,7 +11632,7 @@ literal|"found "
 operator|+
 name|resultSeq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13014,7 +13014,7 @@ name|qr
 operator|.
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 argument_list|)

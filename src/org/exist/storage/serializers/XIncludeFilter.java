@@ -1717,7 +1717,7 @@ literal|"xpointer found: "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1778,7 +1778,7 @@ name|i
 operator|<
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|;
 name|i

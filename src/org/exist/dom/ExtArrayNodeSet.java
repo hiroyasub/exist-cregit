@@ -1283,6 +1283,26 @@ return|return
 name|size
 return|;
 block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|isSorted
+argument_list|()
+condition|)
+name|sort
+argument_list|()
+expr_stmt|;
+comment|// sort to remove duplicates
+return|return
+name|size
+return|;
+block|}
 comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.NodeList#item(int)      */
 specifier|public
 name|Node

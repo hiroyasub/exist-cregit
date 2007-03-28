@@ -1313,7 +1313,7 @@ name|orderSpecs
 argument_list|,
 name|in
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

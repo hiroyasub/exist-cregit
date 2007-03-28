@@ -455,7 +455,7 @@ name|pos
 operator|>
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 throw|throw
@@ -511,7 +511,7 @@ literal|"; len = "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

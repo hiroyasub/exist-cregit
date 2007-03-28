@@ -478,7 +478,7 @@ literal|"Empty sequence expected; got "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 throw|;

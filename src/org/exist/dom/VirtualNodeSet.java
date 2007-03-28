@@ -135,18 +135,6 @@ name|NodeList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
 begin_comment
 comment|/**  * This node set is called virtual because it is just a placeholder for  * the set of relevant nodes. For XPath expressions like //* or //node(),   * it would be totally unefficient to actually retrieve all descendant nodes.  * In many cases, the expression can be resolved at a later point in time  * without retrieving the whole node set.   *  * VirtualNodeSet basically provides method getFirstParent to retrieve the first  * matching descendant of its context according to the primary type axis.  *  * Class LocationStep will always return an instance of VirtualNodeSet  * if it finds something like descendant::* etc..  *  * @author Wolfgang Meier  * @author Timo Boehme  */
 end_comment
@@ -1912,6 +1900,22 @@ block|}
 specifier|public
 name|int
 name|getLength
+parameter_list|()
+block|{
+name|realize
+argument_list|()
+expr_stmt|;
+return|return
+name|realSet
+operator|.
+name|getLength
+argument_list|()
+return|;
+block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
 parameter_list|()
 block|{
 name|realize

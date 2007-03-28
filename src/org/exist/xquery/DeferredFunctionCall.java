@@ -534,7 +534,7 @@ block|}
 block|}
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 block|{
 try|try
@@ -545,7 +545,7 @@ expr_stmt|;
 return|return
 name|sequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 return|;
 block|}

@@ -536,7 +536,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 decl_stmt|;
 if|if
@@ -548,7 +548,7 @@ index|[
 literal|1
 index|]
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 name|result

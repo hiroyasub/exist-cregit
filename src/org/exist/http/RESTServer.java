@@ -5569,7 +5569,7 @@ literal|"Found "
 operator|+
 name|resultSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" in "
@@ -7162,7 +7162,7 @@ name|rlen
 init|=
 name|results
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 decl_stmt|;
 if|if

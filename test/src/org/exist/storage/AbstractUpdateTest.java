@@ -429,7 +429,7 @@ literal|"Found: "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

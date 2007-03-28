@@ -336,7 +336,7 @@ literal|3
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -437,7 +437,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -489,7 +489,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -634,7 +634,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

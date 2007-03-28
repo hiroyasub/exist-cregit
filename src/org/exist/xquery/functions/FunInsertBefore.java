@@ -530,7 +530,7 @@ name|pos
 operator|>=
 name|seq1
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 block|{
@@ -562,7 +562,7 @@ name|i
 operator|<
 name|seq1
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|;
 name|i

@@ -2630,7 +2630,7 @@ literal|"Found "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" items for value-of"
@@ -4055,7 +4055,7 @@ literal|"found "
 operator|+
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" for variable "

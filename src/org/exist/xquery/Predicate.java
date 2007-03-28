@@ -1120,7 +1120,7 @@ name|p
 operator|=
 name|contextSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 expr_stmt|;
 for|for
@@ -1664,7 +1664,7 @@ block|{
 name|NodeSet
 name|outerNodeSet
 decl_stmt|;
-comment|//Ugly and costly processing of VirtualNodeSEts
+comment|//Ugly and costly processing of VirtualNodeSets
 comment|//TODO : CORRECT THIS !!!
 if|if
 condition|(
@@ -1690,7 +1690,7 @@ name|i
 operator|<
 name|outerSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|;
 name|i
@@ -2229,7 +2229,7 @@ name|reverseAxis
 condition|?
 name|temp
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|-
 name|v
@@ -2256,7 +2256,7 @@ name|pos
 operator|<
 name|temp
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 block|{
@@ -2455,7 +2455,7 @@ name|pos
 operator|<
 name|contextSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 name|result

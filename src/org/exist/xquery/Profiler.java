@@ -845,7 +845,7 @@ name|append
 argument_list|(
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" item(s)"
@@ -1201,7 +1201,7 @@ name|append
 argument_list|(
 name|sequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" item(s)"

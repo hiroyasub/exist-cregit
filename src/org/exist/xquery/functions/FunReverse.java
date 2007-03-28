@@ -468,7 +468,7 @@ name|i
 init|=
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|-
 literal|1

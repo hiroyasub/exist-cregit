@@ -6249,7 +6249,7 @@ name|i
 operator|<
 name|functionResult
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|;
 name|i

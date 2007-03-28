@@ -175,6 +175,16 @@ return|return
 name|size
 return|;
 block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
+parameter_list|()
+block|{
+return|return
+name|size
+return|;
+block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#item(int)       */
 specifier|public
 name|org

@@ -206,7 +206,7 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 function_decl|;
 specifier|public
@@ -867,7 +867,7 @@ name|newInstance
 argument_list|(
 name|componentType
 argument_list|,
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -958,7 +958,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|(
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 decl_stmt|;

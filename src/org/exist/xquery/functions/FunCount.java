@@ -433,7 +433,7 @@ argument_list|(
 name|contextSequence
 argument_list|)
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

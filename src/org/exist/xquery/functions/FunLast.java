@@ -424,7 +424,7 @@ name|IntegerValue
 argument_list|(
 name|contextSequence
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

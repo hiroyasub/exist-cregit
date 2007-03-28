@@ -3852,7 +3852,7 @@ name|toString
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 argument_list|)

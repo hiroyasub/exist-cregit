@@ -438,7 +438,7 @@ block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 block|{
 return|return

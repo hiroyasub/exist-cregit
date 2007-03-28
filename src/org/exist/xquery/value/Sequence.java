@@ -147,10 +147,10 @@ name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the number of items contained in the sequence.      * Call this method<strong>only</strong> when necessary,       * since it can be resource consuming.  	 *  	 * @return The sequence's length 	 */
+comment|/** 	 * Returns the number of items contained in the sequence.      * Call this method<strong>only</strong> when necessary,       * since it can be resource consuming.  	 *  	 * @return The number of items in the sequence 	 */
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns whether the sequence is empty or not. 	 *  	 * @return<code>true</code> is the sequence is empty 	 */

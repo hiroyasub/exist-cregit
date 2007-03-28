@@ -165,6 +165,19 @@ name|getData
 argument_list|()
 return|;
 block|}
+specifier|public
+name|int
+name|getLength
+parameter_list|()
+block|{
+return|return
+name|getData
+argument_list|()
+operator|.
+name|length
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#substringData(int, int)      */
 specifier|public
 name|String

@@ -1082,6 +1082,19 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
+parameter_list|()
+block|{
+return|return
+name|list
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 specifier|public
 name|Node
 name|item

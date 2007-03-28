@@ -413,7 +413,7 @@ name|len
 init|=
 name|groups
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 decl_stmt|;
 for|for

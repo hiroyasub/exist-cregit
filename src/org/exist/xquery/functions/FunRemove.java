@@ -378,7 +378,7 @@ name|pos
 operator|>
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 name|result
@@ -455,7 +455,7 @@ name|i
 operator|<
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|;
 name|i

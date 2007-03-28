@@ -84,10 +84,10 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemCount() 	 */
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 block|{
 return|return

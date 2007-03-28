@@ -765,7 +765,7 @@ name|IntegerValue
 argument_list|(
 name|inner
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 argument_list|)

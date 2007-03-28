@@ -1776,7 +1776,7 @@ literal|"SPEAKER: "
 operator|+
 name|largeSet
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3093,7 +3093,7 @@ name|expected
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3107,7 +3107,7 @@ literal|"Found: "
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" for query:\n"

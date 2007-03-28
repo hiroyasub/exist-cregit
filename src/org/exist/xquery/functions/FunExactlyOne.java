@@ -391,7 +391,7 @@ literal|"fn:exactly-one called with a sequence containing "
 operator|+
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" items"

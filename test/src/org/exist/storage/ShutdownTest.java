@@ -647,7 +647,7 @@ name|assertEquals
 argument_list|(
 name|result
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|160

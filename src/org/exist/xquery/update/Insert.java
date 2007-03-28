@@ -766,7 +766,7 @@ literal|"Found: "
 operator|+
 name|inSeq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" nodes"

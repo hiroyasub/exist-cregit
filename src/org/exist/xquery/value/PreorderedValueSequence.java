@@ -179,7 +179,7 @@ name|OrderedNodeProxy
 index|[
 name|input
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 index|]
 expr_stmt|;
@@ -464,7 +464,7 @@ block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#getLength() 	 */
 specifier|public
 name|int
-name|getLength
+name|getItemCount
 parameter_list|()
 block|{
 return|return

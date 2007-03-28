@@ -926,7 +926,7 @@ literal|"found "
 operator|+
 name|resultSeq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|" for select: "

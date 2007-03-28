@@ -2321,7 +2321,7 @@ name|setHits
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2631,7 +2631,7 @@ name|start
 operator|>
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 condition|)
 throw|throw
@@ -2646,7 +2646,7 @@ literal|" out of bounds ("
 operator|+
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|+
 literal|")"
@@ -2660,7 +2660,7 @@ name|howmany
 operator|>
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|||
 name|howmany
@@ -2671,7 +2671,7 @@ name|howmany
 operator|=
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 operator|-
 name|start

@@ -505,7 +505,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -562,7 +562,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -587,7 +587,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -768,7 +768,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -825,7 +825,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -850,7 +850,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -914,7 +914,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1151,7 +1151,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -1210,7 +1210,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1235,7 +1235,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1450,7 +1450,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -1509,7 +1509,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1534,7 +1534,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1668,7 +1668,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -1744,7 +1744,7 @@ literal|1
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1790,7 +1790,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -1862,7 +1862,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -1887,7 +1887,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -1959,7 +1959,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -1984,7 +1984,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -2056,7 +2056,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -2081,7 +2081,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2204,7 +2204,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|0
@@ -2336,7 +2336,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2382,7 +2382,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2514,7 +2514,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2560,7 +2560,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2606,7 +2606,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
@@ -2900,7 +2900,7 @@ name|assertEquals
 argument_list|(
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
@@ -2957,7 +2957,7 @@ name|ITEMS_TO_APPEND
 argument_list|,
 name|seq
 operator|.
-name|getLength
+name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -2962,6 +2962,17 @@ name|int
 name|getLength
 parameter_list|()
 block|{
+comment|//TODO : how to delegate to the real node implementation's getLength() ?
+return|return
+literal|1
+return|;
+block|}
+comment|//TODO : evaluate both semantics
+specifier|public
+name|int
+name|getItemCount
+parameter_list|()
+block|{
 return|return
 literal|1
 return|;
