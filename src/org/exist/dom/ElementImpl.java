@@ -5862,9 +5862,6 @@ init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
-name|Node
-name|child
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -5883,15 +5880,16 @@ name|i
 operator|++
 control|)
 block|{
+name|Node
 name|child
-operator|=
+init|=
 name|childNodes
 operator|.
 name|item
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 switch|switch
 condition|(
 name|child
@@ -6814,8 +6812,6 @@ argument_list|)
 expr_stmt|;
 block|}
 name|StoredNode
-name|child
-decl_stmt|,
 name|last
 init|=
 name|this
@@ -6839,8 +6835,9 @@ name|i
 operator|--
 control|)
 block|{
+name|StoredNode
 name|child
-operator|=
+init|=
 operator|(
 name|StoredNode
 operator|)
@@ -6852,7 +6849,7 @@ name|i
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|child
