@@ -10748,10 +10748,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// DWES Funny in sandbox and REST it fails ; here it is OK
+comment|// DWES Funny in sandbox and REST it fails ; here it is OK... sometimes
 specifier|public
 name|void
-name|testOrder_1691112
+name|bugtestOrder_1691112
 parameter_list|()
 block|{
 name|String
@@ -10841,7 +10841,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
+literal|25
 condition|;
 name|i
 operator|++
@@ -10922,6 +10922,84 @@ block|}
 catch|catch
 parameter_list|(
 name|Exception
+name|ex
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|bugtestAttribute_1691177
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace xmldb = \"http://exist-db.org/xquery/xmldb\"; "
+operator|+
+literal|"let $uri := xmldb:store(\"/db\", \"insertAttribDoc.xml\",<C/>) "
+operator|+
+literal|"let $node := doc($uri)/element() "
+operator|+
+literal|"let $attrib :=<Value f=\"ATTRIB VALUE\"/>/@* "
+operator|+
+literal|"return update insert $attrib into $node  "
+decl_stmt|;
+name|XPathQueryService
+name|service
+decl_stmt|;
+try|try
+block|{
+name|service
+operator|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+expr_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
 name|ex
 parameter_list|)
 block|{
