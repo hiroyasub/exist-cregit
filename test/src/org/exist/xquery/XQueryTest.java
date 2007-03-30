@@ -33,6 +33,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|net
 operator|.
 name|HttpURLConnection
@@ -90,6 +100,18 @@ operator|.
 name|xmlunit
 operator|.
 name|DetailedDiff
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|Diff
 import|;
 end_import
 
@@ -10726,6 +10748,194 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// DWES Funny in sandbox and REST it fails ; here it is OK
+specifier|public
+name|void
+name|testOrder_1691112
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace tt = \"http://example.com\";"
+operator|+
+literal|"declare function tt:function( $function as element(Function)) {"
+operator|+
+literal|"  let $functions :="
+operator|+
+literal|"    for $subfunction in $function/Function"
+operator|+
+literal|"    return tt:function($subfunction)"
+operator|+
+literal|"   let $unused := distinct-values($functions/NonExistingElement)"
+operator|+
+literal|"  return"
+operator|+
+literal|"<Function>"
+operator|+
+literal|"  {"
+operator|+
+literal|"    $function/Name,"
+operator|+
+literal|"    $functions"
+operator|+
+literal|"  }"
+operator|+
+literal|"</Function>"
+operator|+
+literal|"};"
+operator|+
+literal|"let $funcs :="
+operator|+
+literal|"<Function>"
+operator|+
+literal|"<Name>Airmount 1</Name>"
+operator|+
+literal|"<Function>"
+operator|+
+literal|"<Name>Position</Name>"
+operator|+
+literal|"</Function>"
+operator|+
+literal|"<Function>"
+operator|+
+literal|"<Name>Velocity</Name>"
+operator|+
+literal|"</Function>"
+operator|+
+literal|"</Function>"
+operator|+
+literal|"return"
+operator|+
+literal|"  tt:function($funcs)"
+decl_stmt|;
+name|String
+name|expectedresult
+init|=
+literal|"<Function>\n"
+operator|+
+literal|"<Name>Airmount 1</Name>\n"
+operator|+
+literal|"<Function>\n"
+operator|+
+literal|"<Name>Position</Name>\n"
+operator|+
+literal|"</Function>\n"
+operator|+
+literal|"<Function>\n"
+operator|+
+literal|"<Name>Velocity</Name>\n"
+operator|+
+literal|"</Function>\n"
+operator|+
+literal|"</Function>"
+decl_stmt|;
+try|try
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|10
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|// repeat a few times
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Attempt "
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|expectedresult
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// ======================================
 comment|/** 	 * @return 	 * @throws XMLDBException 	 */
 specifier|private
 name|XPathQueryService
