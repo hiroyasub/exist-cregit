@@ -3134,13 +3134,8 @@ name|String
 name|toString
 parameter_list|()
 block|{
-comment|//TODO : trim trailing slash if necessary
 return|return
-name|getXmldbURI
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+name|encodedCollectionPath
 return|;
 block|}
 specifier|public

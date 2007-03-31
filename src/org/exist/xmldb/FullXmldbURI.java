@@ -1230,6 +1230,20 @@ name|uri
 argument_list|)
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|XMLDB_URI_PREFIX
+operator|+
+name|wrappedURI
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
 specifier|public
 name|String
