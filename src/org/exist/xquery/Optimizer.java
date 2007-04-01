@@ -140,6 +140,7 @@ name|optimize
 init|=
 literal|false
 decl_stmt|;
+comment|// only location steps with predicates can be optimized:
 if|if
 condition|(
 name|locationStep
@@ -156,6 +157,9 @@ operator|.
 name|getPredicates
 argument_list|()
 decl_stmt|;
+comment|// walk through the predicates attached to the current location step.
+comment|// try to find a predicate containing an expression which is an instance
+comment|// of Optimizable.
 for|for
 control|(
 name|Iterator
@@ -222,6 +226,8 @@ condition|(
 name|optimize
 condition|)
 block|{
+comment|// we found at least one Optimizable. Rewrite the whole expression and
+comment|// enclose it in an (#exist:optimize#) pragma.
 name|Expression
 name|parent
 init|=
@@ -280,6 +286,9 @@ name|PathExpr
 operator|)
 name|parent
 decl_stmt|;
+try|try
+block|{
+comment|// Create the pragma
 name|ExtensionExpression
 name|extension
 init|=
@@ -289,8 +298,6 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|extension
 operator|.
 name|addPragma
@@ -306,6 +313,23 @@ name|OPTIMIZE_PRAGMA
 argument_list|,
 literal|null
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|extension
+operator|.
+name|setExpression
+argument_list|(
+name|locationStep
+argument_list|)
+expr_stmt|;
+comment|// Replace the old expression with the pragma
+name|path
+operator|.
+name|replaceExpression
+argument_list|(
+name|locationStep
+argument_list|,
+name|extension
 argument_list|)
 expr_stmt|;
 block|}
@@ -333,24 +357,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
-name|extension
-operator|.
-name|setExpression
-argument_list|(
-name|locationStep
-argument_list|)
-expr_stmt|;
-name|path
-operator|.
-name|replaceExpression
-argument_list|(
-name|locationStep
-argument_list|,
-name|extension
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -498,6 +505,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Try to find an expression object implementing interface Optimizable.      */
 specifier|private
 class|class
 name|FindOptimizable

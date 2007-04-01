@@ -434,6 +434,7 @@ name|pred
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Replace the given expression by a new expression.      *      * @param oldExpr the old expression      * @param newExpr the new expression to replace the old      */
 specifier|public
 name|void
 name|replaceExpression
