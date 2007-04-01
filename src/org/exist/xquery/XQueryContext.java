@@ -2991,6 +2991,11 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|globalVariables
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 comment|//remove the context-vars, subsequent execution of the query
 comment|//may generate different values for the vars based on the
 comment|//content of the db
