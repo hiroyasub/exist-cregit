@@ -4695,6 +4695,17 @@ name|ds
 return|;
 block|}
 specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|parent
+return|;
+block|}
+specifier|public
 name|void
 name|setUseDirectAttrSelect
 parameter_list|(

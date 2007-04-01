@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -223,6 +233,29 @@ argument_list|(
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|hasPredicates
+parameter_list|()
+block|{
+return|return
+name|predicates
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+return|;
+block|}
+specifier|public
+name|List
+name|getPredicates
+parameter_list|()
+block|{
+return|return
+name|predicates
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
