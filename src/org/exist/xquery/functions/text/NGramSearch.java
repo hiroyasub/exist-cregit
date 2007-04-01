@@ -513,6 +513,8 @@ name|search
 argument_list|(
 name|docs
 argument_list|,
+literal|null
+argument_list|,
 name|ngrams
 index|[
 name|i
