@@ -678,7 +678,7 @@ operator|=
 name|arguments
 expr_stmt|;
 block|}
-comment|/**      * @param arguments      * @param argumentTypes      * @throws XPathException      */
+comment|/**      * @throws XPathException      */
 specifier|protected
 name|void
 name|checkArguments
@@ -2019,7 +2019,7 @@ parameter_list|)
 block|{
 name|visitor
 operator|.
-name|visitFunction
+name|visitBuiltinFunction
 argument_list|(
 name|this
 argument_list|)

@@ -1074,6 +1074,23 @@ argument_list|()
 expr_stmt|;
 comment|//TODO : reset expression ?
 block|}
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+comment|// forward to the called function
+name|functionDef
+operator|.
+name|accept
+argument_list|(
+name|visitor
+argument_list|)
+expr_stmt|;
+block|}
 specifier|private
 class|class
 name|DeferredFunctionCallImpl

@@ -1031,7 +1031,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|visitFunction
+name|visitBuiltinFunction
 parameter_list|(
 name|Function
 name|function
