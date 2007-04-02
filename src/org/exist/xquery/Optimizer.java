@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -43,23 +55,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
 operator|.
-name|List
+name|ArrayList
 import|;
 end_import
 
@@ -79,12 +79,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|List
 import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzes the query and marks optimizable expressions for the query engine.  * This class just searches for potentially optimizable expressions in the query tree and  * encloses those expressions with an (#exist:optimize#) pragma. The real optimization  * work is not done by this class but by the pragma (see {@link org.exist.xquery.Optimize}).  * The pragma may also decide that the optimization is not applicable and just execute  * the expression without any optimization.  *  * Currently, the optimizer is disabled by default. To enable it, set attribute enable-query-rewriting  * to yes in conf.xml:  *  *&lt;xquery enable-java-binding="no" enable-query-rewriting="yes"&gt;...  */
+comment|/**  * Analyzes the query and marks optimizable expressions for the query engine.  * This class just searches for potentially optimizable expressions in the query tree and  * encloses those expressions with an (#exist:optimize#) pragma. The real optimization  * work is not done by this class but by the pragma (see {@link org.exist.xquery.Optimize}).  * The pragma may also decide that the optimization is not applicable and just execute  * the expression without any optimization.  *  * Currently, the optimizer is disabled by default. To enable it, set attribute enable-query-rewriting  * to yes in conf.xml:  *  *&lt;xquery enable-java-binding="no" enable-query-rewriting="yes"&gt;...  *   * To enable/disable the optimizer for a single query, use an option:  *  *<pre>declare option exist:optimize "enable=yes|no";</pre>  *  */
 end_comment
 
 begin_class
