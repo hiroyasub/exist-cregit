@@ -3444,6 +3444,12 @@ return|return
 name|NodeProxy
 operator|.
 name|this
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
 return|;
 block|}
 specifier|public
