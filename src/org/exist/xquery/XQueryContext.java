@@ -7408,8 +7408,12 @@ parameter_list|)
 block|{
 comment|//TODO : ignored because it should never happen
 block|}
-name|enableOptimizer
-operator|=
+name|String
+name|param
+init|=
+operator|(
+name|String
+operator|)
 name|getBroker
 argument_list|()
 operator|.
@@ -7420,6 +7424,16 @@ name|getProperty
 argument_list|(
 literal|"xquery.enable-query-rewriting"
 argument_list|)
+decl_stmt|;
+name|enableOptimizer
+operator|=
+name|param
+operator|==
+literal|null
+condition|?
+literal|true
+else|:
+name|param
 operator|.
 name|equals
 argument_list|(
