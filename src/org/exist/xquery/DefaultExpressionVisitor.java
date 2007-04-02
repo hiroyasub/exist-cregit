@@ -13,6 +13,16 @@ name|xquery
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Stack
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link org.exist.xquery.ExpressionVisitor} which traverses the entire  * expression tree. Methods may be overwritten by subclasses to filter out the  * events they need.  */
 end_comment
@@ -24,6 +34,14 @@ name|DefaultExpressionVisitor
 extends|extends
 name|BasicExpressionVisitor
 block|{
+specifier|private
+name|Stack
+name|functionStack
+init|=
+operator|new
+name|Stack
+argument_list|()
+decl_stmt|;
 specifier|public
 name|void
 name|visitPathExpr
@@ -77,6 +95,23 @@ name|UserDefinedFunction
 name|function
 parameter_list|)
 block|{
+if|if
+condition|(
+name|functionStack
+operator|.
+name|contains
+argument_list|(
+name|function
+argument_list|)
+condition|)
+return|return;
+name|functionStack
+operator|.
+name|push
+argument_list|(
+name|function
+argument_list|)
+expr_stmt|;
 name|function
 operator|.
 name|getFunctionBody
@@ -86,6 +121,11 @@ name|accept
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+name|functionStack
+operator|.
+name|pop
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
