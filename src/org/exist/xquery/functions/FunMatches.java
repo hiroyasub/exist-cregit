@@ -1200,6 +1200,10 @@ argument_list|,
 name|caseSensitive
 argument_list|)
 expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

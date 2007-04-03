@@ -1348,6 +1348,10 @@ operator|)
 name|key
 argument_list|)
 expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1393,6 +1397,10 @@ name|DBBroker
 operator|.
 name|MATCH_REGEXP
 argument_list|)
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
 expr_stmt|;
 block|}
 catch|catch
