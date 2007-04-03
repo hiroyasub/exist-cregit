@@ -81,6 +81,16 @@ name|GetVersion
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -784,6 +794,20 @@ name|class
 argument_list|)
 block|, 	}
 decl_stmt|;
+static|static
+block|{
+name|Arrays
+operator|.
+name|sort
+argument_list|(
+name|functions
+argument_list|,
+operator|new
+name|FunctionComparator
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 specifier|final
 specifier|static
@@ -833,6 +857,8 @@ block|{
 name|super
 argument_list|(
 name|functions
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|declareVariable
