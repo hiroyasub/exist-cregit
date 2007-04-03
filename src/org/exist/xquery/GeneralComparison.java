@@ -4803,6 +4803,10 @@ name|cached
 operator|=
 literal|null
 expr_stmt|;
+name|preselectResult
+operator|=
+literal|null
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|false
