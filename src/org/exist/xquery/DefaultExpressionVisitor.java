@@ -267,6 +267,22 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|visitPredicate
+parameter_list|(
+name|Predicate
+name|predicate
+parameter_list|)
+block|{
+name|predicate
+operator|.
+name|accept
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
