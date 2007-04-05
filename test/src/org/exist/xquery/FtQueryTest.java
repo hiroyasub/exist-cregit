@@ -729,56 +729,350 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//    public void testFtMatchFunctions() {
-comment|//        try {
-comment|//	    	System.out.println("----- testFtOperators -----");
-comment|//	        XQueryService service = (XQueryService)
-comment|//	            testCollection.getService("XQueryService", "1.0");
-comment|//	        ResourceSet result = service.query("//SPEECH[match-all(LINE, 'love')]");
-comment|//	        assertEquals(160, result.getSize());
-comment|//            result = service.query("//SPEECH[text:match-all(LINE, 'love')]");
-comment|//	        assertEquals(190, result.getSize());
-comment|//            result = service.query("//SPEECH[text:match-all(LINE, 'love$')]");
-comment|//	        assertEquals(160, result.getSize());
-comment|//
-comment|//            result = service.query("//SPEECH[match-all(LINE, 'fenny', 'snake')]/LINE[1]");
-comment|//	        assertEquals(1, result.getSize());
-comment|//	        assertXMLEqual(result.getResource(0).getContent().toString(), "<LINE>Fillet of a fenny snake,</LINE>");
-comment|//
-comment|//            result = service.query("//SPEECH[text:match-all(LINE, ('fenny', 'snake'))]/LINE[1]");
-comment|//	        assertEquals(1, result.getSize());
-comment|//	        assertXMLEqual(result.getResource(0).getContent().toString(), "<LINE>Fillet of a fenny snake,</LINE>");
-comment|//
-comment|//            result = service.query("//SPEECH[text:match-all(LINE, 'god.*')]");
-comment|//	        assertEquals(79, result.getSize());
-comment|//
-comment|//            result = service.query("//SPEECH[LINE&= 'god in heaven']");
-comment|//	        assertEquals(2, result.getSize());
-comment|//	        result = service.query("//SPEECH[SPEAKER&= 'Nurse']");
-comment|//	        assertEquals(90, result.getSize());
-comment|//	        result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, 'self.*')]");
-comment|//	        assertEquals(2, result.getSize());
-comment|//	        result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, ('self', 'employed'))]");
-comment|//	        assertEquals(1, result.getSize());
-comment|//	        result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, '.*ploy.*')]");
-comment|//	        assertEquals(3, result.getSize());
-comment|//
+specifier|public
+name|void
+name|testFtMatchFunctions
+parameter_list|()
+block|{
+try|try
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"----- testFtOperators -----"
+argument_list|)
+expr_stmt|;
+name|XQueryService
+name|service
+init|=
+operator|(
+name|XQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[match-all(LINE, 'love')]"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|160
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[text:match-all(LINE, 'love')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|190
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[text:match-all(LINE, 'love$')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|160
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[match-all(LINE, 'fenny', 'snake')]/LINE[1]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"<LINE>Fillet of a fenny snake,</LINE>"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[text:match-all(LINE, ('fenny', 'snake'))]/LINE[1]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"<LINE>Fillet of a fenny snake,</LINE>"
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[text:match-all(LINE, 'god.*')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|79
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[LINE&= 'god in heaven']"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//SPEECH[SPEAKER&= 'Nurse']"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|90
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, 'self.*')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, ('self', 'employed'))]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, '.*ploy.*')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; "
+operator|+
+literal|"//mods:titleInfo/mods:title[.&= 'alternative']"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//            result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; " +
-comment|//                    "//mods:titleInfo/mods:title[.&= 'alternative']");
-comment|//            assertEquals(0, result.getSize());
-comment|//
-comment|////            result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; " +
-comment|////                    "//mods:titleInfo/mods:title[text:match-all(attribute(), 'alternative')]");
-comment|////            assertEquals(9, result.getSize());
-comment|//
-comment|//            result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; " +
-comment|//                    "//mods:titleInfo/mods:title[text:match-all(@type, 'alternative')]");
+comment|//                    "//mods:titleInfo/mods:title[text:match-all(attribute(), 'alternative')]");
 comment|//            assertEquals(9, result.getSize());
-comment|//        } catch (Exception e) {
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//		}
-comment|//    }
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; "
+operator|+
+literal|"//mods:titleInfo/mods:title[text:match-all(@type, 'alternative')]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|9
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|void
 name|testFtScan
