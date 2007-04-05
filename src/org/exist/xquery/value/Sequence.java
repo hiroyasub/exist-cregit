@@ -133,7 +133,7 @@ name|int
 name|getItemType
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @throws XPathException TODO 	 * @throws XPathException TODO 	 */
+comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @throws XPathException TODO 	 */
 specifier|public
 name|SequenceIterator
 name|iterate
