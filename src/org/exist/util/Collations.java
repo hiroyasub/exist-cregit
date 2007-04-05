@@ -525,6 +525,35 @@ argument_list|)
 throw|;
 block|}
 block|}
+if|else if
+condition|(
+name|CODEPOINT
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
+return|return
+literal|null
+return|;
+comment|//newest form : todo upgrade..
+block|}
+if|else if
+condition|(
+literal|"http://www.w3.org/2005/xpath-functions/collation/codepoint"
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 else|else
 throw|throw
 operator|new
