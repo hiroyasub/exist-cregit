@@ -417,11 +417,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+comment|//If $uri-part is the empty sequence, returns the zero-length string.
 name|result
 operator|=
-name|Sequence
+name|StringValue
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_STRING
 expr_stmt|;
 else|else
 block|{

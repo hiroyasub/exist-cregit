@@ -104,17 +104,7 @@ argument_list|,
 literal|"%20"
 argument_list|)
 expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
-name|replaceAll
-argument_list|(
-literal|"%23"
-argument_list|,
-literal|"#"
-argument_list|)
-expr_stmt|;
+comment|//result = result.replaceAll("%23", "#");
 name|result
 operator|=
 name|result
@@ -148,17 +138,7 @@ argument_list|,
 literal|"."
 argument_list|)
 expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
-name|replaceAll
-argument_list|(
-literal|"%21"
-argument_list|,
-literal|"!"
-argument_list|)
-expr_stmt|;
+comment|//result = result.replaceAll("%21", "!");
 name|result
 operator|=
 name|result
@@ -176,44 +156,14 @@ name|result
 operator|.
 name|replaceAll
 argument_list|(
+literal|"\\*"
+argument_list|,
 literal|"%2A"
-argument_list|,
-literal|"*"
 argument_list|)
 expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
-name|replaceAll
-argument_list|(
-literal|"%27"
-argument_list|,
-literal|"'"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
-name|replaceAll
-argument_list|(
-literal|"%28"
-argument_list|,
-literal|"("
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|result
-operator|.
-name|replaceAll
-argument_list|(
-literal|"%29"
-argument_list|,
-literal|")"
-argument_list|)
-expr_stmt|;
+comment|//result = result.replaceAll("%27", "'");
+comment|//result = result.replaceAll("%28", "(");
+comment|//result = result.replaceAll("%29", ")");
 return|return
 name|result
 return|;
