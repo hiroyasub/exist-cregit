@@ -240,7 +240,7 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Function near requires two arguments"
+literal|"XPST0017: Function near() requires two arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -453,7 +453,7 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Function phrase requires two arguments"
+literal|"XPST0017: Function phrase() requires two arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -566,7 +566,25 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Function starts-with requires two arguments"
+literal|"XPST0017: Function starts-with() requires two or three arguments"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|params
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|3
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ast
+argument_list|,
+literal|"XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -715,7 +733,25 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Function ends-with requires two arguments"
+literal|"XPST0017 : Function ends-with() requires two or three arguments"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|params
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|3
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ast
+argument_list|,
+literal|"XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -864,7 +900,25 @@ name|XPathException
 argument_list|(
 name|ast
 argument_list|,
-literal|"Function contains requires two arguments"
+literal|"XPST0017: Function contains() requires two or three arguments"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|params
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|3
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ast
+argument_list|,
+literal|"XPST0017: Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
