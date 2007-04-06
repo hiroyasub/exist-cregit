@@ -398,7 +398,7 @@ literal|"Returns true iff every item in $a is deep-equal to the item at the same
 operator|+
 literal|"false otherwise. If both $a and $b are the empty sequence, returns true. "
 operator|+
-literal|"Comparison collation is specficied by $c"
+literal|"Comparison collation is specified by $c"
 argument_list|,
 operator|new
 name|SequenceType
