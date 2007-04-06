@@ -172,13 +172,14 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * The default unicode codepoint collation URI as defined by the XQuery      * spec.      */
+comment|//public final static String CODEPOINT = "http://www.w3.org/2004/07/xpath-functions/collation/codepoint";
 specifier|public
 specifier|final
 specifier|static
 name|String
 name|CODEPOINT
 init|=
-literal|"http://www.w3.org/2004/07/xpath-functions/collation/codepoint"
+literal|"http://www.w3.org/2005/xpath-functions/collation/codepoint"
 decl_stmt|;
 comment|/**      * Short string to select the default codepoint collation      */
 specifier|public
@@ -528,21 +529,6 @@ block|}
 if|else if
 condition|(
 name|CODEPOINT
-operator|.
-name|equals
-argument_list|(
-name|uri
-argument_list|)
-condition|)
-block|{
-return|return
-literal|null
-return|;
-comment|//newest form : todo upgrade..
-block|}
-if|else if
-condition|(
-literal|"http://www.w3.org/2005/xpath-functions/collation/codepoint"
 operator|.
 name|equals
 argument_list|(
