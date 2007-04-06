@@ -265,7 +265,7 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 block|,
 operator|new
@@ -318,7 +318,7 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 block|}
 decl_stmt|;
