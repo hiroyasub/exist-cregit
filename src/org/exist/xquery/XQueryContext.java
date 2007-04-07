@@ -7366,6 +7366,16 @@ argument_list|)
 expr_stmt|;
 name|declareNamespace
 argument_list|(
+literal|"xsi"
+argument_list|,
+name|Namespaces
+operator|.
+name|SCHEMA_INSTANCE_NS
+argument_list|)
+expr_stmt|;
+comment|//required for backward compatibility
+name|declareNamespace
+argument_list|(
 literal|"xdt"
 argument_list|,
 name|Namespaces
@@ -7375,18 +7385,18 @@ argument_list|)
 expr_stmt|;
 name|declareNamespace
 argument_list|(
-literal|"local"
-argument_list|,
-name|XQUERY_LOCAL_NS
-argument_list|)
-expr_stmt|;
-name|declareNamespace
-argument_list|(
 literal|"fn"
 argument_list|,
 name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
+argument_list|)
+expr_stmt|;
+name|declareNamespace
+argument_list|(
+literal|"local"
+argument_list|,
+name|XQUERY_LOCAL_NS
 argument_list|)
 expr_stmt|;
 comment|//*not* as standard NS
@@ -7399,6 +7409,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
+comment|//TODO : include err namespace ?
 block|}
 catch|catch
 parameter_list|(
