@@ -235,6 +235,14 @@ init|=
 literal|"declare namespace mods='http://www.loc.gov/mods/v3';"
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|MSG_OPT_ERROR
+init|=
+literal|"Optimized query should return same number of results."
+decl_stmt|;
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -245,6 +253,8 @@ operator|+
 literal|"<a><b>one</b></a>"
 operator|+
 literal|"<a><c><b>one</b></c></a>"
+operator|+
+literal|"<c><a><c><b>two</b></c></a></c>"
 operator|+
 literal|"</root>"
 decl_stmt|;
@@ -349,7 +359,7 @@ literal|"//SPEECH[LINE&= 'king']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -369,7 +379,47 @@ literal|"//SPEECH[SPEAKER = 'HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SCENE[descendant::LINE&= 'king']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SCENE[descendant::LINE&= 'king']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -389,7 +439,67 @@ literal|"//LINE[.&= 'king']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEAKER[. = 'HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEAKER[. = 'HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//LINE[descendant-or-self::LINE&= 'king']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//LINE[descendant-or-self::LINE&= 'king']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -409,7 +519,7 @@ literal|"//SPEECH/LINE[.&= 'king']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -429,7 +539,27 @@ literal|"//*[LINE&= 'king']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//*[SPEAKER = 'HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//*[SPEAKER = 'HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -458,7 +588,7 @@ literal|"//mods:mods/mods:titleInfo[mods:title&= 'ethnic']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -478,7 +608,7 @@ literal|"//mods:mods/mods:physicalDescription[mods:internetMediaType&= 'applicat
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -498,7 +628,7 @@ literal|"//mods:mods/mods:*[mods:title&= 'ethnic']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -527,7 +657,7 @@ literal|"//SPEECH[LINE&= 'nor*']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -547,7 +677,7 @@ literal|"//SPEECH[LINE&= 'skirts nor*']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -567,7 +697,7 @@ literal|"//SPEECH[near(LINE, 'skirts nor*', 2)]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -587,7 +717,7 @@ literal|"//SPEECH[match-all(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -618,7 +748,7 @@ literal|"//SPEECH[match-any(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -640,7 +770,7 @@ literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -651,7 +781,7 @@ literal|"//SPEECH[text:match-any(LINE, ('skirts', '^nor.*$'))]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -671,7 +801,7 @@ literal|"//SPEECH[matches(SPEAKER, '^HAM.*')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -691,7 +821,7 @@ literal|"//SPEECH[starts-with(SPEAKER, 'HAML')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -711,7 +841,27 @@ literal|"//SPEECH[ends-with(SPEAKER, 'EO')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -740,7 +890,7 @@ literal|"//SPEECH[LINE&= 'king'][SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -760,17 +910,206 @@ literal|"//SPEECH[SPEAKER='HAMLET'][LINE&= 'king']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Ignore
+name|Test
+specifier|public
+name|void
+name|noOptimization
+parameter_list|()
+block|{
+name|int
+name|r
+init|=
+name|execute
 argument_list|(
-literal|"not correctly optimized yet"
+literal|"//mods:title[ancestor-or-self::mods:title&= 'ethnic']"
+argument_list|,
+literal|false
 argument_list|)
+decl_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:title[ancestor-or-self::mods:title&= 'ethnic']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Ancestor axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//node()[parent::mods:title&= 'ethnic']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//node()[parent::mods:title&= 'ethnic']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Parent axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"/root//b[parent::c/b = 'two']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b[parent::c/b = 'two']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Parent axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"/root//b[ancestor::a/c/b = 'two']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b[ancestor::a/c/b = 'two']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Ancestor axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"/root//b[ancestor::a/b = 'two']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b[ancestor::a/b = 'two']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Ancestor axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"/root//b[text()/parent::b = 'two']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b[text()/parent::b = 'two']"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Parent axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"/root//b[matches(text()/parent::b, 'two')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b[matches(text()/parent::b, 'two')]"
+argument_list|,
+literal|true
+argument_list|,
+literal|"Parent axis should not be optimized."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Test
 specifier|public
@@ -794,7 +1133,234 @@ literal|"//mods:mods[mods:titleInfo/mods:title&= 'ethnic']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[text:match-all(mods:titleInfo/mods:title, 'and')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[text:match-all(mods:titleInfo/mods:title, 'and')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[./mods:titleInfo/mods:title&= 'ethnic']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[./mods:titleInfo/mods:title&= 'ethnic']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[*/mods:title&= 'ethnic']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[*/mods:title&= 'ethnic']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[mods:physicalDescription/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[mods:physicalDescription/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[./mods:physicalDescription/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[./mods:physicalDescription/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[*/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[*/mods:internetMediaType = 'text/html']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[matches(mods:physicalDescription/mods:internetMediaType, 'text/html')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[matches(mods:physicalDescription/mods:internetMediaType, 'text/html')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:mods[matches(*/mods:internetMediaType, 'text/html')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[matches(*/mods:internetMediaType, 'text/html')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|reversePaths
+parameter_list|()
+block|{
+name|int
+name|r
+init|=
+name|execute
+argument_list|(
+literal|"/root//b/parent::c[b = 'two']"
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"/root//b/parent::c[b = 'two']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//mods:url/ancestor::mods:mods[mods:titleInfo/mods:title&= 'and']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|11
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:url/ancestor::mods:mods[mods:titleInfo/mods:title&= 'and']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -828,7 +1394,7 @@ literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -848,7 +1414,7 @@ literal|"//SPEECH[LINE&= 'king' or SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Optimized query should return same number of results."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -935,6 +1501,20 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"-- Found: "
+operator|+
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|int
@@ -1056,6 +1636,20 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"-- Found: "
+operator|+
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Assert
 operator|.
 name|assertEquals
