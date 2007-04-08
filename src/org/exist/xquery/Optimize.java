@@ -1266,7 +1266,7 @@ operator|.
 name|getURI
 argument_list|()
 operator|.
-name|equals
+name|startsWith
 argument_list|(
 name|XmldbURI
 operator|.
