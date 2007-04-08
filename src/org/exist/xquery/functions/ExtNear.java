@@ -1062,10 +1062,6 @@ init|=
 name|current_distance
 operator|>=
 name|min_distance
-condition|?
-literal|true
-else|:
-literal|false
 decl_stmt|;
 name|current_distance
 operator|=

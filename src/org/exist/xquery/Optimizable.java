@@ -73,6 +73,10 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+name|int
+name|getOptimizeAxis
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

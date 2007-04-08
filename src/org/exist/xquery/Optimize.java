@@ -580,6 +580,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+comment|//                    switch (optimizables[current].getOptimizeAxis()) {
+comment|//                        case Constants.CHILD_AXIS:
+comment|//                        case Constants.ATTRIBUTE_AXIS:
+comment|//                            selector = new ParentSelector(selection, -1);
+comment|//                            break;
+comment|//                        default:
+comment|//                            selector = new AncestorSelector(selection, -1, true);
+comment|//                            break;
+comment|//                    }
 name|ElementIndex
 name|index
 init|=
@@ -669,13 +678,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//                if (result == null)
 name|result
 operator|=
 name|ancestors
 expr_stmt|;
-comment|//                else
-comment|//                    result = result.intersection(ancestors);
 name|contextSequence
 operator|=
 name|result
@@ -747,10 +753,10 @@ argument_list|()
 decl_stmt|;
 name|contextSequence
 operator|=
+name|originalContext
+operator|.
 name|filterDocuments
 argument_list|(
-name|originalContext
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -819,35 +825,6 @@ name|contextItem
 argument_list|)
 return|;
 block|}
-block|}
-specifier|private
-name|Sequence
-name|filterDocuments
-parameter_list|(
-name|NodeSet
-name|contextSet
-parameter_list|,
-name|NodeSet
-name|ancestors
-parameter_list|)
-block|{
-if|if
-condition|(
-name|contextSet
-operator|instanceof
-name|VirtualNodeSet
-condition|)
-return|return
-name|contextSet
-return|;
-return|return
-name|contextSet
-operator|.
-name|filterDocuments
-argument_list|(
-name|ancestors
-argument_list|)
-return|;
 block|}
 specifier|public
 name|void
