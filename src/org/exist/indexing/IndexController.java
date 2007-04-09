@@ -289,7 +289,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns an {@link org.exist.indexing.IndexWorker} instance corresponding      * to the specified type of index in indexId. The indexId should be the same one      * as returned by {@link org.exist.indexing.IndexWorker#getIndexId()}.      *       * @param indexId      * @return      */
+comment|/**      * Returns an {@link org.exist.indexing.IndexWorker} instance corresponding      * to the specified type of index in indexId. The indexId should be the same one      * as returned by {@link org.exist.indexing.IndexWorker#getIndexId()}.      *       * @param indexId      * @return instance of indexworker      */
 specifier|public
 name|IndexWorker
 name|getIndexWorker
@@ -310,7 +310,7 @@ name|indexId
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured.      *      * @param document      * @param mode      * @return      */
+comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured.      *      * @param document      * @param mode      * @return chain of StreamListeners      */
 specifier|public
 name|StreamListener
 name|getStreamListener

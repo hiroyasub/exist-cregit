@@ -3783,7 +3783,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link #EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"> 	 *  	 * @param seq 	 * @param start 	 * @param count 	 * @param wrap 	 * @throws SAXException 	 */
+comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"> 	 *  	 * @param seq 	 * @param start 	 * @param count 	 * @param wrap 	 * @throws SAXException 	 */
 specifier|public
 name|void
 name|toSAX

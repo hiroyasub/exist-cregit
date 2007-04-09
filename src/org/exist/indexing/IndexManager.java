@@ -428,7 +428,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to do the      * actual work.      *      * @return      */
+comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to do the      * actual work.      *      * @return set of IndexWorkers      */
 specifier|public
 specifier|synchronized
 name|IndexWorker

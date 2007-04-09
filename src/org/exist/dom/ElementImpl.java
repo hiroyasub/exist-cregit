@@ -8098,7 +8098,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Replaces the oldNode with the newChild      *       * @param transaction      * @param newChild      * @param oldChild      *       * @returns The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      *       * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+comment|/**      * Replaces the oldNode with the newChild      *       * @param transaction      * @param newChild      * @param oldChild      *       * @return The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      *       * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|replaceChild
