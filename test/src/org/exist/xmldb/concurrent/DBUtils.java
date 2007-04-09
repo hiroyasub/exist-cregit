@@ -51,16 +51,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|OutputStreamWriter
 import|;
 end_import
@@ -404,6 +394,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @param elementCnt      * @param attrCnt      * @param wordList      * @return File      */
 specifier|public
 specifier|static
 name|File
@@ -435,6 +426,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/**      * @param elementCnt      * @param attrCnt      * @param wordList      * @param namespaces      * @return File      */
 specifier|public
 specifier|static
 name|File
@@ -471,6 +463,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/**      * @param depth      * @param elementCnt      * @param attrCnt      * @param wordList      * @param namespaces      * @return File      */
 specifier|public
 specifier|static
 name|File
@@ -941,6 +934,7 @@ literal|"1.0"
 argument_list|)
 return|;
 block|}
+comment|/** 	 * @param root The root collection 	 * */
 specifier|public
 specifier|static
 name|String
