@@ -406,6 +406,22 @@ return|return
 name|result
 return|;
 block|}
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+name|visitor
+operator|.
+name|visitOrExpr
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
 name|void

@@ -708,6 +708,22 @@ argument_list|(
 name|optimizer
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|optimizer
+operator|.
+name|hasOptimized
+argument_list|()
+condition|)
+name|expr
+operator|.
+name|analyze
+argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Log the query if it is not too large, but avoid
 comment|// dumping huge queries to the log

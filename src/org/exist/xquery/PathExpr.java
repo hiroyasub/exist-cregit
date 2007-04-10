@@ -269,6 +269,10 @@ specifier|protected
 name|XACMLSource
 name|source
 decl_stmt|;
+specifier|protected
+name|Expression
+name|parent
+decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
@@ -498,6 +502,17 @@ name|newExpr
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|parent
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
 specifier|public
 name|void
@@ -509,6 +524,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|this
+operator|.
+name|parent
+operator|=
+name|contextInfo
+operator|.
+name|getParent
+argument_list|()
+expr_stmt|;
 name|inPredicate
 operator|=
 operator|(

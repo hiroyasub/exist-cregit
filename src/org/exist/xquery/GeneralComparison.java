@@ -3223,6 +3223,13 @@ name|contextSequence
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|trace

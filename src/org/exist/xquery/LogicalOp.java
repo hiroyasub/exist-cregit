@@ -74,6 +74,10 @@ name|optimize
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|Expression
+name|parent
+decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|LogicalOp
@@ -114,6 +118,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|this
+operator|.
+name|parent
+operator|=
+name|contextInfo
+operator|.
+name|getParent
+argument_list|()
+expr_stmt|;
 name|super
 operator|.
 name|analyze
@@ -260,6 +273,17 @@ return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
+return|;
+block|}
+specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|parent
 return|;
 block|}
 block|}
