@@ -1241,7 +1241,43 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
-comment|//TODO : log this conversion ? -pb
+if|if
+condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Truncated key. Converted from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" to xs:string"
+argument_list|)
+expr_stmt|;
 comment|//truncation is only possible on strings
 name|key
 operator|=
@@ -1255,8 +1291,9 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//else if key is not the same type as the index
-comment|//TODO : use isSubType ??? -pb
+comment|//TODO : use Type.isSubType() ??? -pb
 if|else if
 condition|(
 name|key
@@ -1267,7 +1304,7 @@ operator|!=
 name|indexType
 condition|)
 block|{
-comment|//try and convert the key to the index type
+comment|//try to convert the key to the index type
 try|try
 block|{
 name|key
@@ -1805,10 +1842,26 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|NodeSet
+name|nodes
+init|=
+operator|(
+name|NodeSet
+operator|)
+name|getLeft
+argument_list|()
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+decl_stmt|;
 name|result
 operator|=
 name|nodeSetCompare
 argument_list|(
+name|nodes
+argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
@@ -2384,39 +2437,6 @@ specifier|protected
 name|Sequence
 name|nodeSetCompare
 parameter_list|(
-name|Sequence
-name|contextSequence
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|NodeSet
-name|nodes
-init|=
-operator|(
-name|NodeSet
-operator|)
-name|getLeft
-argument_list|()
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
-decl_stmt|;
-return|return
-name|nodeSetCompare
-argument_list|(
-name|nodes
-argument_list|,
-name|contextSequence
-argument_list|)
-return|;
-block|}
-specifier|protected
-name|Sequence
-name|nodeSetCompare
-parameter_list|(
 name|NodeSet
 name|nodes
 parameter_list|,
@@ -2674,7 +2694,7 @@ condition|;
 control|)
 block|{
 name|NodeProxy
-name|current
+name|item
 init|=
 operator|(
 name|NodeProxy
@@ -2687,7 +2707,7 @@ decl_stmt|;
 name|AtomicValue
 name|lv
 init|=
-name|current
+name|item
 operator|.
 name|atomize
 argument_list|()
@@ -2746,7 +2766,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|current
+name|item
 argument_list|)
 expr_stmt|;
 block|}
@@ -2768,7 +2788,6 @@ throws|throws
 name|XPathException
 block|{
 comment|/* TODO think about optimising fallback to NodeSetCompare() in the for loop!!! 		 * At the moment when we fallback to NodeSetCompare() we are in effect throwing away any nodes 		 * we have already processed in quickNodeSetCompare() and reprocessing all the nodes in NodeSetCompare(). 		 * Instead - Could we create a NodeCompare() (based on NodeSetCompare() code) to only compare a single node and then union the result? 		 * - deliriumsky 		 */
-comment|/* TODO think about caching of results in this function... 		 * also examine and check if correct (line near the end) - 		 * 	 boolean canCache = contextSequence instanceof NodeSet&& (getRight().getDependencies()& Dependency.VARS) == 0&& (getLeft().getDependencies()& Dependency.VARS) == 0; 		 *  - deliriumsky 		 */
 if|if
 condition|(
 name|context
@@ -2881,8 +2900,7 @@ name|getIndexType
 argument_list|()
 decl_stmt|;
 comment|//See if we have a range index defined on the nodes in this sequence
-comment|//TODO : use isSubType ??? -pb
-comment|//rememeber that Type.ITEM means... no index ;-)
+comment|//remember that Type.ITEM means... no index ;-)
 if|if
 condition|(
 name|indexType
@@ -2914,6 +2932,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Get the documents from the node set
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2968,7 +2987,43 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
-comment|//TODO : log this conversion ? -pb
+if|if
+condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Truncated key. Converted from "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|key
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" to xs:string"
+argument_list|)
+expr_stmt|;
 comment|//truncation is only possible on strings
 name|key
 operator|=
@@ -2982,8 +3037,9 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//else if key is not the same type as the index
-comment|//TODO : use isSubType ??? -pb
+comment|//TODO : use Type.isSubType() ??? -pb
 if|else if
 condition|(
 name|key
@@ -2994,7 +3050,7 @@ operator|!=
 name|indexType
 condition|)
 block|{
-comment|//try and convert the key to the index type
+comment|//try to convert the key to the index type
 try|try
 block|{
 name|key
@@ -3469,8 +3525,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//the datatype of our key does not
-comment|//implement org.exist.storage.Indexable or is not of the correct type
+comment|//our key does is not of the correct type
 if|if
 condition|(
 name|context
@@ -3939,10 +3994,7 @@ name|lv
 operator|.
 name|convertTo
 argument_list|(
-name|rv
-operator|.
-name|getType
-argument_list|()
+name|rtype
 argument_list|)
 expr_stmt|;
 block|}
@@ -4028,10 +4080,7 @@ name|rv
 operator|.
 name|convertTo
 argument_list|(
-name|lv
-operator|.
-name|getType
-argument_list|()
+name|ltype
 argument_list|)
 expr_stmt|;
 block|}
@@ -4046,6 +4095,7 @@ operator|.
 name|TRUNC_NONE
 condition|)
 block|{
+comment|//TODO : log this ?
 name|lv
 operator|=
 name|lv
@@ -4496,6 +4546,7 @@ operator|.
 name|LTEQ
 expr_stmt|;
 break|break;
+comment|//What about Constants.EQ and Constants.NEQ ? Well, it seems to never be called
 block|}
 name|Expression
 name|right
