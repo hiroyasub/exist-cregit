@@ -1367,11 +1367,6 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Ignore
-argument_list|(
-literal|"not correctly optimized yet"
-argument_list|)
-annotation|@
 name|Test
 specifier|public
 name|void
@@ -1383,11 +1378,22 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
+literal|"//SPEECH[LINE&= 'king'][SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
@@ -1417,6 +1423,155 @@ argument_list|,
 name|MSG_OPT_ERROR
 argument_list|,
 name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[LINE&= 'love' and LINE&= \"woman's\" and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[LINE&= 'love' and LINE&= \"woman's\" and SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'king' or LINE&= 'love') and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'king' or LINE&= 'love') and SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') or SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|368
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') or SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') and SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[LINE&= 'juliet' or (LINE&= 'king' and SPEAKER='HAMLET')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertEquals
+argument_list|(
+literal|65
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[LINE&= 'juliet' or (LINE&= 'king' and SPEAKER='HAMLET')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[true() and false()]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[true() and true()]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+literal|2628
 argument_list|)
 expr_stmt|;
 block|}
