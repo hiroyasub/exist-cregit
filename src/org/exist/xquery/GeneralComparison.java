@@ -3883,16 +3883,8 @@ name|NUMBER
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|isEmptyString
-argument_list|(
-name|lv
-argument_list|)
-condition|)
-return|return
-literal|false
-return|;
+comment|//if(isEmptyString(lv))
+comment|//    return false;
 name|lv
 operator|=
 name|lv
@@ -3934,25 +3926,8 @@ operator|.
 name|STRING
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|rtype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-condition|)
-name|rv
-operator|=
-name|rv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
+comment|//if (rtype == Type.UNTYPED_ATOMIC)
+comment|//rv = rv.convertTo(Type.STRING);
 comment|//If one of the atomic values is an instance of xdt:untypedAtomic
 comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
 comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
@@ -3971,7 +3946,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
+if|if
 condition|(
 name|rtype
 operator|==
@@ -3997,16 +3972,8 @@ name|NUMBER
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|isEmptyString
-argument_list|(
-name|lv
-argument_list|)
-condition|)
-return|return
-literal|false
-return|;
+comment|//if(isEmptyString(lv))
+comment|//    return false;
 name|rv
 operator|=
 name|rv
@@ -4048,25 +4015,8 @@ operator|.
 name|STRING
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|ltype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-condition|)
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
+comment|//if (ltype == Type.UNTYPED_ATOMIC)
+comment|//	lv = lv.convertTo(Type.STRING);
 comment|//If one of the atomic values is an instance of xdt:untypedAtomic
 comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
 comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
@@ -4085,88 +4035,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|backwardsCompatible
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|lv
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-operator|&&
-operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|rv
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-condition|)
-block|{
-comment|// in XPath 1.0 compatible mode, if one of the operands is a number, cast
-comment|// both operands to xs:double
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|ltype
-argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
-operator|||
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|rtype
-argument_list|,
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
-condition|)
-block|{
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|)
-expr_stmt|;
-name|rv
-operator|=
-name|rv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+comment|/* 		if (backwardsCompatible) { 			if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 				// in XPath 1.0 compatible mode, if one of the operands is a number, cast 				// both operands to xs:double 				if (Type.subTypeOf(ltype, Type.NUMBER) 					|| Type.subTypeOf(rtype, Type.NUMBER)) { 						lv = lv.convertTo(Type.DOUBLE); 						rv = rv.convertTo(Type.DOUBLE); 				} 			} 		} 		*/
 comment|// if truncation is set, we always do a string comparison
 if|if
 condition|(

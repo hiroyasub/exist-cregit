@@ -7439,6 +7439,37 @@ argument_list|(
 literal|"yes"
 argument_list|)
 expr_stmt|;
+name|param
+operator|=
+operator|(
+name|String
+operator|)
+name|getBroker
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"xquery.backwardCompatible"
+argument_list|)
+expr_stmt|;
+name|backwardsCompatible
+operator|=
+name|param
+operator|==
+literal|null
+condition|?
+literal|true
+else|:
+name|param
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+expr_stmt|;
 comment|// load built-in modules
 comment|// these modules are loaded dynamically. It is not an error if the
 comment|// specified module class cannot be found in the classpath.
