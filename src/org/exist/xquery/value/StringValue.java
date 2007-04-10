@@ -1574,7 +1574,53 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//if (Type.subTypeOf(other.getType(), Type.STRING)) {
+comment|//A value of type xs:anyURI (or any type derived by restriction from xs:anyURI)
+comment|//can be promoted to the type xs:string.
+comment|//The result of this promotion is created by casting the original value to the type xs:string.
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ANY_URI
+argument_list|)
+condition|)
+name|other
+operator|=
+name|other
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|)
+condition|)
+block|{
 name|int
 name|cmp
 init|=
@@ -1666,10 +1712,24 @@ literal|"Type error: cannot apply operand to string value"
 argument_list|)
 throw|;
 block|}
-comment|//}
-comment|//throw new XPathException(
-comment|//	"Type error: operands are not comparable; expected xs:string; got "
-comment|//		+ Type.getTypeName(other.getType()));
+block|}
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: can not compare xs:string() with "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
