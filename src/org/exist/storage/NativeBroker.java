@@ -16410,11 +16410,7 @@ block|{
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
+comment|//                System.gc();
 name|NumberFormat
 name|nf
 init|=
@@ -17954,11 +17950,7 @@ comment|//  "total memory: " + run.totalMemory() + "; free: " + run.freeMemory()
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
+comment|//                    System.gc();
 name|LOG
 operator|.
 name|info
