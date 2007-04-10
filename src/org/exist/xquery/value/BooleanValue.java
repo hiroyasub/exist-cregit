@@ -277,7 +277,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert 'xs:boolean("
+literal|"XPTY0004: cannot convert 'xs:boolean("
 operator|+
 name|value
 operator|+
@@ -439,7 +439,21 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Type error: cannot convert operand to boolean"
+literal|"XPTY0004: cannot convert 'xs:boolean("
+operator|+
+name|value
+operator|+
+literal|")' to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|other
+operator|.
+name|getType
+argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
