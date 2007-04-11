@@ -4451,6 +4451,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                 if (test.matches(p)&& !(p.getNodeId().getParentId() == NodeId.DOCUMENT_NODE&& test.getType() == Type.ELEMENT)) { 				*/
 if|if
 condition|(
 name|test
@@ -4459,30 +4460,6 @@ name|matches
 argument_list|(
 name|p
 argument_list|)
-operator|&&
-operator|!
-operator|(
-name|p
-operator|.
-name|getNodeId
-argument_list|()
-operator|.
-name|getParentId
-argument_list|()
-operator|==
-name|NodeId
-operator|.
-name|DOCUMENT_NODE
-operator|&&
-name|test
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|ELEMENT
-operator|)
 condition|)
 block|{
 comment|// For NodeId.DOCUMENT_NODE add only if

@@ -3177,27 +3177,7 @@ comment|// just check if this node has already been added. We only
 comment|// check the last entry, which should avoid most of the likely
 comment|// duplicates. The remaining duplicates are removed by
 comment|// removeDuplicates().
-name|NodeId
-name|nodeId
-init|=
-name|p
-operator|.
-name|getNodeId
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|NodeId
-operator|.
-name|ROOT_NODE
-operator|.
-name|equals
-argument_list|(
-name|nodeId
-argument_list|)
-condition|)
-block|{
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) : 		NodeId nodeId = p.getNodeId(); 		if (!NodeId.ROOT_NODE.equals(nodeId)) { 			if (length> 0&& 				array[length - 1].getNodeId().equals(nodeId)) {		  		*/
 if|if
 condition|(
 name|length
@@ -3216,12 +3196,15 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|nodeId
+name|p
+operator|.
+name|getNodeId
+argument_list|()
 argument_list|)
 condition|)
 block|{
 return|return;
-block|}
+comment|//} ljo's modification
 block|}
 if|if
 condition|(
@@ -4428,9 +4411,10 @@ name|i
 operator|++
 control|)
 block|{
-name|NodeId
-name|ithId
-init|=
+comment|/* 		ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :         NodeId ithId= array[i].getNodeId(); 		NodeId jthId= array[j].getNodeId(); 		if (NodeId.ROOT_NODE.equals(ithId) || 		    NodeId.ROOT_NODE.equals(jthId)) { 		    j++; 		    continue; 		} else { 		    if (!ithId.equals(jthId)) { 		*/
+if|if
+condition|(
+operator|!
 name|array
 index|[
 name|i
@@ -4438,10 +4422,9 @@ index|]
 operator|.
 name|getNodeId
 argument_list|()
-decl_stmt|;
-name|NodeId
-name|jthId
-init|=
+operator|.
+name|equals
+argument_list|(
 name|array
 index|[
 name|j
@@ -4449,43 +4432,6 @@ index|]
 operator|.
 name|getNodeId
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|NodeId
-operator|.
-name|ROOT_NODE
-operator|.
-name|equals
-argument_list|(
-name|ithId
-argument_list|)
-operator|||
-name|NodeId
-operator|.
-name|ROOT_NODE
-operator|.
-name|equals
-argument_list|(
-name|jthId
-argument_list|)
-condition|)
-block|{
-name|j
-operator|++
-expr_stmt|;
-continue|continue;
-block|}
-else|else
-block|{
-if|if
-condition|(
-operator|!
-name|ithId
-operator|.
-name|equals
-argument_list|(
-name|jthId
 argument_list|)
 condition|)
 block|{
@@ -4527,7 +4473,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
+comment|//} //ljo's modification
 name|length
 operator|=
 operator|++
