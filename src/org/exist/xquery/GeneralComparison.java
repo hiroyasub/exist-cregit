@@ -2111,7 +2111,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2159,7 +2159,7 @@ control|)
 block|{
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2227,7 +2227,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2263,7 +2263,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2330,7 +2330,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2357,7 +2357,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2402,7 +2402,7 @@ control|)
 block|{
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2640,7 +2640,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -2753,7 +2753,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareValues
+name|compareGeneralComparison
 argument_list|(
 name|collator
 argument_list|,
@@ -3815,7 +3815,7 @@ block|}
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
 specifier|protected
 name|boolean
-name|compareValues
+name|compareGeneralComparison
 parameter_list|(
 name|Collator
 name|collator
@@ -3865,7 +3865,46 @@ name|e
 throw|;
 block|}
 block|}
+comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
 specifier|public
+specifier|static
+name|boolean
+name|compareValues
+parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
+name|AtomicValue
+name|lv
+parameter_list|,
+name|AtomicValue
+name|rv
+parameter_list|,
+name|int
+name|truncation
+parameter_list|,
+name|int
+name|relation
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+name|compareAtomic
+argument_list|(
+name|collator
+argument_list|,
+name|lv
+argument_list|,
+name|rv
+argument_list|,
+name|truncation
+argument_list|,
+name|relation
+argument_list|)
+return|;
+block|}
+specifier|private
 specifier|static
 name|boolean
 name|compareAtomic

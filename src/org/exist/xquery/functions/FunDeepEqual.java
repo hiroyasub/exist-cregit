@@ -902,7 +902,7 @@ block|}
 return|return
 name|GeneralComparison
 operator|.
-name|compareAtomic
+name|compareValues
 argument_list|(
 name|collator
 argument_list|,
