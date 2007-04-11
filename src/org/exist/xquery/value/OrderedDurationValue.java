@@ -232,13 +232,27 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|Type
+operator|.
+name|getCommonSuperType
+argument_list|(
+name|getType
+argument_list|()
+argument_list|,
 name|other
 operator|.
 name|getType
 argument_list|()
-operator|==
-name|getType
-argument_list|()
+argument_list|)
+argument_list|,
+name|Type
+operator|.
+name|DURATION
+argument_list|)
 condition|)
 block|{
 comment|//Take care : this method doesn't seem to take ms into account
@@ -251,7 +265,7 @@ name|compare
 argument_list|(
 operator|(
 operator|(
-name|OrderedDurationValue
+name|DurationValue
 operator|)
 name|other
 operator|)
@@ -283,7 +297,6 @@ throw|;
 return|return
 name|r
 return|;
-comment|/* TODO : consider this kind of design 		} else if (Type.getCommonSuperType(getType(), other.getType()) == Type.DURATION) { 			//Take care : this method doesn't seem to take ms into account  			int r = duration.compare(((DurationValue) other).duration); 			if (r == DatatypeConstants.INDETERMINATE) throw new RuntimeException("indeterminate order between totally ordered duration values " + this + " and " + other); 			return r; 		*/
 block|}
 throw|throw
 operator|new
