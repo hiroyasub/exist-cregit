@@ -628,7 +628,7 @@ argument_list|()
 operator|+
 literal|"). If you want to parse non-wellformed HTML files, put "
 operator|+
-literal|"nekohtml.jar into directory 'lib/optional'."
+literal|"nekohtml.jar into directory 'lib/user'."
 argument_list|,
 name|e
 argument_list|)
