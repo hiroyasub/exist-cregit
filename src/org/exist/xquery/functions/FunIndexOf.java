@@ -117,7 +117,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|GeneralComparison
+name|Profiler
 import|;
 end_import
 
@@ -129,7 +129,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Profiler
+name|ValueComparison
 import|;
 end_import
 
@@ -643,9 +643,9 @@ try|try
 block|{
 if|if
 condition|(
-name|GeneralComparison
+name|ValueComparison
 operator|.
-name|compareValues
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,

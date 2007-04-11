@@ -151,6 +151,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -349,7 +363,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|compareValues
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -547,7 +561,7 @@ argument_list|)
 throw|;
 if|if
 condition|(
-name|compareValues
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -678,7 +692,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareValues
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -707,6 +721,310 @@ block|}
 return|return
 name|result
 return|;
+block|}
+comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
+specifier|public
+specifier|static
+name|boolean
+name|compareAtomic
+parameter_list|(
+name|Collator
+name|collator
+parameter_list|,
+name|AtomicValue
+name|lv
+parameter_list|,
+name|AtomicValue
+name|rv
+parameter_list|,
+name|int
+name|truncation
+parameter_list|,
+name|int
+name|relation
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|//TODo : refactor casting according to the specs ; right now, copied from GeneralComparison
+name|int
+name|ltype
+init|=
+name|lv
+operator|.
+name|getType
+argument_list|()
+decl_stmt|;
+name|int
+name|rtype
+init|=
+name|rv
+operator|.
+name|getType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of a numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|rtype
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+comment|//if(isEmptyString(lv))
+comment|//    return false;
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
+comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
+block|}
+if|else if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+comment|//if (rtype == Type.UNTYPED_ATOMIC)
+comment|//rv = rv.convertTo(Type.STRING);
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
+block|}
+else|else
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|rtype
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of a numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|ltype
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+comment|//if(isEmptyString(lv))
+comment|//    return false;
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
+comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
+block|}
+if|else if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+operator|||
+name|ltype
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+comment|//if (ltype == Type.UNTYPED_ATOMIC)
+comment|//	lv = lv.convertTo(Type.STRING);
+comment|//If one of the atomic values is an instance of xdt:untypedAtomic
+comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
+comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
+block|}
+else|else
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|ltype
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* 		if (backwardsCompatible) { 			if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 				// in XPath 1.0 compatible mode, if one of the operands is a number, cast 				// both operands to xs:double 				if (Type.subTypeOf(ltype, Type.NUMBER) 					|| Type.subTypeOf(rtype, Type.NUMBER)) { 						lv = lv.convertTo(Type.DOUBLE); 						rv = rv.convertTo(Type.DOUBLE); 				} 			} 		} 		*/
+comment|// if truncation is set, we always do a string comparison
+if|if
+condition|(
+name|truncation
+operator|!=
+name|Constants
+operator|.
+name|TRUNC_NONE
+condition|)
+block|{
+comment|//TODO : log this ?
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+block|}
+comment|//			System.out.println(
+comment|//				lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
+switch|switch
+condition|(
+name|truncation
+condition|)
+block|{
+case|case
+name|Constants
+operator|.
+name|TRUNC_RIGHT
+case|:
+return|return
+name|lv
+operator|.
+name|startsWith
+argument_list|(
+name|collator
+argument_list|,
+name|rv
+argument_list|)
+return|;
+case|case
+name|Constants
+operator|.
+name|TRUNC_LEFT
+case|:
+return|return
+name|lv
+operator|.
+name|endsWith
+argument_list|(
+name|collator
+argument_list|,
+name|rv
+argument_list|)
+return|;
+case|case
+name|Constants
+operator|.
+name|TRUNC_BOTH
+case|:
+return|return
+name|lv
+operator|.
+name|contains
+argument_list|(
+name|collator
+argument_list|,
+name|rv
+argument_list|)
+return|;
+default|default:
+return|return
+name|lv
+operator|.
+name|compareTo
+argument_list|(
+name|collator
+argument_list|,
+name|relation
+argument_list|,
+name|rv
+argument_list|)
+return|;
+block|}
 block|}
 specifier|public
 name|void

@@ -2111,7 +2111,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2159,7 +2159,7 @@ control|)
 block|{
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2227,7 +2227,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2263,7 +2263,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2330,7 +2330,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2357,7 +2357,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2402,7 +2402,7 @@ control|)
 block|{
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2640,7 +2640,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -2753,7 +2753,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|compareGeneralComparison
+name|compareAtomic
 argument_list|(
 name|collator
 argument_list|,
@@ -3813,9 +3813,9 @@ return|;
 block|}
 block|}
 comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
-specifier|protected
+specifier|private
 name|boolean
-name|compareGeneralComparison
+name|compareAtomic
 parameter_list|(
 name|Collator
 name|collator
@@ -3830,102 +3830,6 @@ throws|throws
 name|XPathException
 block|{
 try|try
-block|{
-return|return
-name|compareAtomic
-argument_list|(
-name|collator
-argument_list|,
-name|lv
-argument_list|,
-name|rv
-argument_list|,
-name|truncation
-argument_list|,
-name|relation
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|setASTNode
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|)
-expr_stmt|;
-throw|throw
-name|e
-throw|;
-block|}
-block|}
-comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
-specifier|public
-specifier|static
-name|boolean
-name|compareValues
-parameter_list|(
-name|Collator
-name|collator
-parameter_list|,
-name|AtomicValue
-name|lv
-parameter_list|,
-name|AtomicValue
-name|rv
-parameter_list|,
-name|int
-name|truncation
-parameter_list|,
-name|int
-name|relation
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|compareAtomic
-argument_list|(
-name|collator
-argument_list|,
-name|lv
-argument_list|,
-name|rv
-argument_list|,
-name|truncation
-argument_list|,
-name|relation
-argument_list|)
-return|;
-block|}
-specifier|private
-specifier|static
-name|boolean
-name|compareAtomic
-parameter_list|(
-name|Collator
-name|collator
-parameter_list|,
-name|AtomicValue
-name|lv
-parameter_list|,
-name|AtomicValue
-name|rv
-parameter_list|,
-name|int
-name|truncation
-parameter_list|,
-name|int
-name|relation
-parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|int
 name|ltype
@@ -4115,7 +4019,7 @@ name|ltype
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 		if (backwardsCompatible) { 			if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 				// in XPath 1.0 compatible mode, if one of the operands is a number, cast 				// both operands to xs:double 				if (Type.subTypeOf(ltype, Type.NUMBER) 					|| Type.subTypeOf(rtype, Type.NUMBER)) { 						lv = lv.convertTo(Type.DOUBLE); 						rv = rv.convertTo(Type.DOUBLE); 				} 			} 		} 		*/
+comment|/* 			if (backwardsCompatible) { 				if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 					// in XPath 1.0 compatible mode, if one of the operands is a number, cast 					// both operands to xs:double 					if (Type.subTypeOf(ltype, Type.NUMBER) 						|| Type.subTypeOf(rtype, Type.NUMBER)) { 							lv = lv.convertTo(Type.DOUBLE); 							rv = rv.convertTo(Type.DOUBLE); 					} 				} 			} 			*/
 comment|// if truncation is set, we always do a string comparison
 if|if
 condition|(
@@ -4139,8 +4043,8 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
-comment|//			System.out.println(
-comment|//				lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
+comment|//				System.out.println(
+comment|//					lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 switch|switch
 condition|(
 name|truncation
@@ -4204,6 +4108,25 @@ argument_list|,
 name|rv
 argument_list|)
 return|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|setASTNode
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 block|}
 comment|/**      * @param lv      * @return Whether or not<code>lv</code> is an empty string 	 * @throws XPathException      */
