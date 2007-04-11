@@ -216,6 +216,7 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
+comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      */
 specifier|public
 name|StoredNode
 parameter_list|(
@@ -230,6 +231,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      * @param nodeId a<code>NodeId</code> value      */
 specifier|public
 name|StoredNode
 parameter_list|(
@@ -253,7 +255,7 @@ operator|=
 name|nodeId
 expr_stmt|;
 block|}
-comment|/**      * Copy constructor: creates a copy of the other node.      *       * @param other      */
+comment|/**      * Copy constructor: creates a copy of the other node.      *      * @param other a<code>StoredNode</code> value      */
 specifier|public
 name|StoredNode
 parameter_list|(
@@ -302,6 +304,7 @@ operator|.
 name|ownerDocument
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param other a<code>NodeProxy</code> value      */
 specifier|public
 name|StoredNode
 parameter_list|(
@@ -744,6 +747,7 @@ name|getBroker
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>setNodeId</code>      *      * @param dln a<code>NodeId</code> value      */
 specifier|public
 name|void
 name|setNodeId
@@ -759,6 +763,7 @@ operator|=
 name|dln
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getNodeId</code>      *      * @return a<code>NodeId</code> value      */
 specifier|public
 name|NodeId
 name|getNodeId

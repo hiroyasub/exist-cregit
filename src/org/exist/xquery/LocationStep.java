@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -303,6 +303,7 @@ name|nodeTestType
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * Creates a new<code>LocationStep</code> instance.      *      * @param context a<code>XQueryContext</code> value      * @param axis an<code>int</code> value      */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -321,6 +322,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>LocationStep</code> instance.      *      * @param context a<code>XQueryContext</code> value      * @param axis an<code>int</code> value      * @param test a<code>NodeTest</code> value      */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -476,6 +478,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**      * The method<code>setPreloadNodeSets</code>      *      * @param doPreload a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setPreloadNodeSets
@@ -491,6 +494,7 @@ operator|=
 name|doPreload
 expr_stmt|;
 block|}
+comment|/**      * The method<code>setPreloadedData</code>      *      * @param docs a<code>DocumentSet</code> value      * @param nodes a<code>NodeSet</code> value      */
 specifier|public
 name|void
 name|setPreloadedData
@@ -515,6 +519,7 @@ operator|=
 name|nodes
 expr_stmt|;
 block|}
+comment|/**      * The method<code>applyPredicate</code>      *      * @param outerSequence a<code>Sequence</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>Sequence</code> value      * @exception XPathException if an error occurs      */
 specifier|protected
 name|Sequence
 name|applyPredicate
@@ -735,6 +740,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>eval</code>      *      * @param contextSequence a<code>Sequence</code> value      * @param contextItem an<code>Item</code> value      * @return a<code>Sequence</code> value      * @exception XPathException if an error occurs      */
 specifier|public
 name|Sequence
 name|eval
@@ -998,7 +1004,9 @@ operator|.
 name|getType
 argument_list|()
 operator|==
-literal|2
+name|Type
+operator|.
+name|ATTRIBUTE
 condition|)
 block|{
 name|this
@@ -1219,12 +1227,14 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|NodeSet
 operator|.
 name|EMPTY_SET
 expr_stmt|;
+block|}
 comment|// Caches the result
 if|if
 condition|(
@@ -1398,7 +1408,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * @param context      * @param contextSet      * @return      */
+comment|/**      * The method<code>getSelf</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>Sequence</code> value      */
 specifier|protected
 name|Sequence
 name|getSelf
@@ -1696,6 +1706,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getSelfAtomic</code>      *      * @param contextSequence a<code>Sequence</code> value      * @return a<code>Sequence</code> value      * @exception XPathException if an error occurs      */
 specifier|protected
 name|Sequence
 name|getSelfAtomic
@@ -1733,6 +1744,7 @@ return|return
 name|contextSequence
 return|;
 block|}
+comment|/**      * The method<code>getAttributes</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getAttributes
@@ -2254,6 +2266,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/**      * The method<code>getChildren</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getChildren
@@ -2560,6 +2573,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/**      * The method<code>getDescendants</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getDescendants
@@ -2942,6 +2956,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getSiblings</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getSiblings
@@ -3475,6 +3490,7 @@ literal|true
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getPreceding</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
 specifier|protected
 name|NodeSet
 name|getPreceding
@@ -3618,6 +3634,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getFollowing</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
 specifier|protected
 name|NodeSet
 name|getFollowing
@@ -3761,6 +3778,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getAncestors</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getAncestors
@@ -4366,6 +4384,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getParents</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|protected
 name|NodeSet
 name|getParents
@@ -4440,7 +4459,34 @@ name|matches
 argument_list|(
 name|p
 argument_list|)
+operator|&&
+operator|!
+operator|(
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getParentId
+argument_list|()
+operator|==
+name|NodeId
+operator|.
+name|DOCUMENT_NODE
+operator|&&
+name|test
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ELEMENT
+operator|)
 condition|)
+block|{
+comment|// For NodeId.DOCUMENT_NODE add only if
+comment|// parent::node() not parent::element().
 name|result
 operator|.
 name|add
@@ -4448,6 +4494,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -4663,6 +4710,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getDocumentSet</code>      *      * @param contextSet a<code>NodeSet</code> value      * @return a<code>DocumentSet</code> value      */
 specifier|protected
 name|DocumentSet
 name|getDocumentSet
@@ -4694,6 +4742,7 @@ return|return
 name|ds
 return|;
 block|}
+comment|/**      * The method<code>getParent</code>      *      * @return an<code>Expression</code> value      */
 specifier|public
 name|Expression
 name|getParent
@@ -4705,6 +4754,7 @@ operator|.
 name|parent
 return|;
 block|}
+comment|/**      * The method<code>setUseDirectAttrSelect</code>      *      * @param useDirectAttrSelect a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setUseDirectAttrSelect
@@ -4720,6 +4770,7 @@ operator|=
 name|useDirectAttrSelect
 expr_stmt|;
 block|}
+comment|/**      * The method<code>registerUpdateListener</code>      *      */
 specifier|protected
 name|void
 name|registerUpdateListener
@@ -4904,6 +4955,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>accept</code>      *      * @param visitor an<code>ExpressionVisitor</code> value      */
 specifier|public
 name|void
 name|accept

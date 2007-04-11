@@ -3744,6 +3744,7 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 name|serializeToReceiver
 argument_list|(
 name|p
@@ -3764,7 +3765,9 @@ literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|serializeToReceiver
 argument_list|(
 name|p
@@ -3782,6 +3785,7 @@ literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"> 	 *  	 * @param seq 	 * @param start 	 * @param count 	 * @param wrap 	 * @throws SAXException 	 */
 specifier|public

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -332,7 +332,7 @@ name|NodeValue
 implements|,
 name|Comparable
 block|{
-comment|/*  	 * Special values for nodes gid : 	 * Chosen in order to facilitate fast arithmetic computations 	 */
+comment|/*       * Special values for nodes gid :      * Chosen in order to facilitate fast arithmetic computations      */
 specifier|public
 specifier|static
 specifier|final
@@ -376,7 +376,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/** 	 * The owner document of this node. 	 */
+comment|/**      * The owner document of this node.      */
 specifier|private
 name|DocumentImpl
 name|doc
@@ -387,7 +387,7 @@ specifier|private
 name|NodeId
 name|nodeId
 decl_stmt|;
-comment|/** 	 * The internal storage address of this node in the 	 * dom.dbx file, if known. 	 * @link #UNKNOWN_NODE_ADDRESS 	 */
+comment|/**      * The internal storage address of this node in the      * dom.dbx file, if known.      * @link #UNKNOWN_NODE_ADDRESS      */
 specifier|private
 name|long
 name|internalAddress
@@ -396,14 +396,14 @@ name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
-comment|/** 	 * The type of this node (as defined by DOM), if known.  	 * @link #UNKNOWN_NODE_TYPE 	 */
+comment|/**      * The type of this node (as defined by DOM), if known.       * @link #UNKNOWN_NODE_TYPE      */
 specifier|private
 name|short
 name|nodeType
 init|=
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
-comment|/** 	 * The first {@link Match} object associated with this node. 	 * Match objects are used to track fulltext hits throughout query processing. 	 *  	 * Matches are stored as a linked list. 	 */
+comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track fulltext hits throughout query processing.      *       * Matches are stored as a linked list.      */
 specifier|private
 name|Match
 name|match
@@ -416,6 +416,7 @@ name|context
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -440,6 +441,7 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param address a<code>long</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -465,6 +467,7 @@ name|address
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -492,6 +495,7 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      * @param address a<code>long</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -533,6 +537,7 @@ operator|=
 name|nodeId
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param p a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -567,6 +572,7 @@ name|match
 expr_stmt|;
 comment|//TODO : what about node's context ?
 block|}
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param n a<code>StoredNode</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -601,7 +607,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** create a proxy to a document node */
+comment|/**      * create a proxy to a document node      * @param doc a<code>DocumentImpl</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -627,6 +633,7 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>setNodeId</code>      *      * @param id a<code>NodeId</code> value      */
 specifier|public
 name|void
 name|setNodeId
@@ -642,6 +649,7 @@ operator|=
 name|id
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getNodeId</code>      *      * @return a<code>NodeId</code> value      */
 specifier|public
 name|NodeId
 name|getNodeId
@@ -651,7 +659,7 @@ return|return
 name|nodeId
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getImplementation() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getImplementation()      */
 specifier|public
 name|int
 name|getImplementationType
@@ -663,7 +671,7 @@ operator|.
 name|PERSISTENT_NODE
 return|;
 block|}
-comment|/** Ordering first according to document ID; then if equal  	 * according to node gid. */
+comment|/**      * Ordering first according to document ID; then if equal       * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|compareTo
@@ -710,6 +718,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|compareTo
@@ -743,6 +752,7 @@ name|other
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>equals</code>      *      * @param other an<code>Object</code> value      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|equals
@@ -800,6 +810,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>equals</code>      *      * @param other a<code>NodeValue</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 specifier|public
 name|boolean
 name|equals
@@ -864,6 +875,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>before</code>      *      * @param other a<code>NodeValue</code> value      * @param isPreceding a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 specifier|public
 name|boolean
 name|before
@@ -933,6 +945,7 @@ name|isPreceding
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>after</code>      *      * @param other a<code>NodeValue</code> value      * @param isFollowing a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 specifier|public
 name|boolean
 name|after
@@ -1002,6 +1015,7 @@ name|isFollowing
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -1011,6 +1025,7 @@ return|return
 name|doc
 return|;
 block|}
+comment|/**      * The method<code>getDocument</code>      *      * @return a<code>DocumentImpl</code> value      */
 specifier|public
 specifier|final
 name|DocumentImpl
@@ -1021,6 +1036,7 @@ return|return
 name|doc
 return|;
 block|}
+comment|/**      * The method<code>isDocument</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|isDocument
@@ -1034,7 +1050,7 @@ operator|.
 name|DOCUMENT_NODE
 return|;
 block|}
-comment|/* Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong><hen necessary 	 * @see org.exist.xquery.value.NodeValue#getNode() 	 */
+comment|/* Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong><hen necessary      * @see org.exist.xquery.value.NodeValue#getNode()      */
 specifier|public
 name|Node
 name|getNode
@@ -1067,7 +1083,7 @@ return|return
 name|nodeType
 return|;
 block|}
-comment|/** 	 * Sets the nodeType. 	 * @param nodeType The nodeType to set 	 */
+comment|/**      * Sets the nodeType.      * @param nodeType The nodeType to set      */
 specifier|public
 name|void
 name|setNodeType
@@ -1086,7 +1102,7 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the storage address of this node in dom.dbx. 	 * @return long 	 */
+comment|/**      * Returns the storage address of this node in dom.dbx.      * @return long      */
 specifier|public
 name|long
 name|getInternalAddress
@@ -1096,7 +1112,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/** 	 * Sets the storage address of this node in dom.dbx. 	 *  	 * @param internalAddress The internalAddress to set 	 */
+comment|/**      * Sets the storage address of this node in dom.dbx.      *       * @param internalAddress The internalAddress to set      */
 specifier|public
 name|void
 name|setInternalAddress
@@ -1488,7 +1504,7 @@ name|nextMatch
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Add a node to the list of context nodes for this node. 	 *  	 * NodeProxy internally stores the context nodes of the XPath context, for which  	 * this node has been selected during a previous processing step. 	 *  	 * Since eXist tries to process many expressions in one, single processing step, 	 * the context information is required to resolve predicate expressions. For 	 * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'], 	 * we have to remember the SCENE nodes for which the equality expression 	 * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the 	 * SCENE nodes become context items of the SPEECH nodes and this context 	 * information is preserved through all following steps. 	 *  	 * To process the predicate expression, {@link org.exist.xquery.Predicate} will take the 	 * context nodes returned by the filter expression and compare them to its context 	 * node set. 	 */
+comment|/**      * Add a node to the list of context nodes for this node.      *       * NodeProxy internally stores the context nodes of the XPath context, for which       * this node has been selected during a previous processing step.      *       * Since eXist tries to process many expressions in one, single processing step,      * the context information is required to resolve predicate expressions. For      * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'],      * we have to remember the SCENE nodes for which the equality expression      * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the      * SCENE nodes become context items of the SPEECH nodes and this context      * information is preserved through all following steps.      *       * To process the predicate expression, {@link org.exist.xquery.Predicate} will take the      * context nodes returned by the filter expression and compare them to its context      * node set.      */
 specifier|public
 name|void
 name|addContextNode
@@ -1659,6 +1675,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>copyContext</code>      *      * @param node a<code>NodeProxy</code> value      */
 specifier|public
 name|void
 name|copyContext
@@ -1675,6 +1692,7 @@ name|getContext
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      */
 specifier|public
 name|void
 name|deepCopyContext
@@ -1773,6 +1791,7 @@ expr_stmt|;
 block|}
 comment|//        System.out.println(debugContext());
 block|}
+comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      * @param addContextId an<code>int</code> value      */
 specifier|public
 name|void
 name|deepCopyContext
@@ -1803,6 +1822,7 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>clearContext</code>      *      * @param contextId an<code>int</code> value      */
 specifier|public
 name|void
 name|clearContext
@@ -1837,6 +1857,7 @@ comment|//            next = next.getNextDirect();
 comment|//        }
 comment|//        this.context = newContext;
 block|}
+comment|/**      * The method<code>getContext</code>      *      * @return a<code>ContextItem</code> value      */
 specifier|public
 name|ContextItem
 name|getContext
@@ -1846,6 +1867,7 @@ return|return
 name|context
 return|;
 block|}
+comment|/**      * The method<code>debugContext</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|debugContext
@@ -1946,7 +1968,7 @@ argument_list|()
 return|;
 block|}
 comment|//	methods of interface Item
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
 specifier|public
 name|int
 name|getType
@@ -2036,6 +2058,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>nodeMoved</code>      *      * @param oldNodeId a<code>NodeId</code> value      * @param newNode a<code>StoredNode</code> value      */
 specifier|public
 name|void
 name|nodeMoved
@@ -2074,7 +2097,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)       * @see org.exist.xquery.value.Item#toSequence()       */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
 specifier|public
 name|Sequence
 name|toSequence
@@ -2084,6 +2107,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * The method<code>getNodeValue</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getNodeValue
@@ -2182,6 +2206,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**      * The method<code>getNodeValueSeparated</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getNodeValueSeparated
@@ -2205,7 +2230,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -2216,7 +2241,7 @@ name|getNodeValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -2241,7 +2266,7 @@ name|requiredType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#atomize() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
 specifier|public
 name|AtomicValue
 name|atomize
@@ -2258,7 +2283,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
 specifier|public
 name|void
 name|toSAX
@@ -2313,7 +2338,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.memtree.DocumentBuilderReceiver) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.memtree.DocumentBuilderReceiver)      */
 specifier|public
 name|void
 name|copyTo
@@ -2372,7 +2397,7 @@ expr_stmt|;
 comment|//	    Serializer serializer = broker.getSerializer();
 comment|//	    serializer.toReceiver(this, receiver);
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -2579,7 +2604,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 specifier|public
 name|Object
 name|toJavaObject
@@ -2653,7 +2678,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* 	 * Methods of interface Sequence: 	 */
+comment|/*      * Methods of interface Sequence:      */
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 specifier|public
 name|int
@@ -2746,8 +2771,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* -----------------------------------------------* 	 * Methods of class NodeSet 	 * -----------------------------------------------*/
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterator() 	 */
+comment|/* -----------------------------------------------*      * Methods of class NodeSet      * -----------------------------------------------*/
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#iterator()      */
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -2761,7 +2786,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#iterate()      */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -2777,7 +2802,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -2791,7 +2816,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy)      */
 specifier|public
 name|boolean
 name|contains
@@ -2837,7 +2862,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet)      */
 specifier|public
 name|void
 name|addAll
@@ -2854,6 +2879,7 @@ literal|"Method not supported"
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|isEmpty
@@ -2863,6 +2889,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|hasOne
@@ -2872,6 +2899,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>hasMany</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|hasMany
@@ -2881,7 +2909,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy)      */
 specifier|public
 name|void
 name|add
@@ -2956,7 +2984,7 @@ literal|"Method not supported"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.NodeList#getLength() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.NodeList#getLength()      */
 specifier|public
 name|int
 name|getLength
@@ -2977,7 +3005,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.NodeList#item(int) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.NodeList#item(int)      */
 specifier|public
 name|Node
 name|item
@@ -2997,7 +3025,7 @@ name|getNode
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 specifier|public
 name|Item
 name|itemAt
@@ -3016,7 +3044,7 @@ else|:
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#get(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#get(int)      */
 specifier|public
 name|NodeProxy
 name|get
@@ -3035,7 +3063,7 @@ else|:
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy) 	 */
+comment|/**      * The method<code>get</code>      * (non-Javadoc)      * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy)      *      *      * @param p a<code>NodeProxy</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|get
@@ -3055,6 +3083,7 @@ else|:
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>get</code>      *      * @param document a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|get
@@ -3102,7 +3131,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)     * @see org.exist.dom.NodeSet#parentWithChild(org.exist.dom.NodeProxy, boolean, boolean, int)     */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#parentWithChild(org.exist.dom.NodeProxy, boolean, boolean, int)      */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -3327,7 +3356,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#getState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getState()      */
 specifier|public
 name|int
 name|getState
@@ -3337,7 +3366,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#hasChanged(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#hasChanged(int)      */
 specifier|public
 name|boolean
 name|hasChanged
@@ -3407,6 +3436,7 @@ return|return
 name|docs
 return|;
 block|}
+comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 specifier|public
 name|Iterator
 name|getCollectionIterator
@@ -3606,6 +3636,7 @@ else|:
 name|this
 return|;
 block|}
+comment|/**      * The method<code>filterDocuments</code>      *      * @param otherSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|filterDocuments
@@ -3643,6 +3674,7 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
+comment|/**      * The method<code>setProcessInReverseOrder</code>      *      * @param inReverseOrder a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setProcessInReverseOrder
@@ -3653,6 +3685,7 @@ parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+comment|/**      * The method<code>getProcessInReverseOrder</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|getProcessInReverseOrder
@@ -3740,6 +3773,7 @@ return|return
 name|parent
 return|;
 block|}
+comment|/**      * The method<code>getAncestors</code>      *      * @param contextId an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|getAncestors
@@ -4036,6 +4070,7 @@ name|preceding
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>selectFollowing</code>      *      * @param following a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
 specifier|public
 name|NodeSet
 name|selectFollowing
@@ -4057,6 +4092,7 @@ name|following
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>directSelectAttribute</code>      *      * @param qname a<code>QName</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|directSelectAttribute
@@ -4200,6 +4236,7 @@ return|return
 name|child
 return|;
 block|}
+comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|toString
@@ -4320,7 +4357,7 @@ literal|"Method not supported"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#nextItem() 	 */
 specifier|public
 name|Item
 name|nextItem

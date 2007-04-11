@@ -270,6 +270,7 @@ name|Type
 operator|.
 name|ANY_TYPE
 decl_stmt|;
+comment|/**      * Creates a new<code>ExtArrayNodeSet</code> instance.      *      */
 specifier|public
 name|ExtArrayNodeSet
 parameter_list|()
@@ -300,6 +301,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>ExtArrayNodeSet</code> instance.      *      * @param initialDocsCount an<code>int</code> value      * @param initialArraySize an<code>int</code> value      */
 specifier|public
 name|ExtArrayNodeSet
 parameter_list|(
@@ -340,6 +342,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>ExtArrayNodeSet</code> instance.      *      * @param initialArraySize an<code>int</code> value      */
 specifier|public
 name|ExtArrayNodeSet
 parameter_list|(
@@ -377,6 +380,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getPart</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param create a<code>boolean</code> value      * @param sizeHint an<code>int</code> value      * @return a<code>Part</code> value      */
 specifier|protected
 name|Part
 name|getPart
@@ -483,6 +487,7 @@ return|return
 name|part
 return|;
 block|}
+comment|/**      * The method<code>reset</code>      *      */
 specifier|public
 name|void
 name|reset
@@ -731,6 +736,7 @@ operator|++
 name|partCount
 expr_stmt|;
 block|}
+comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|isEmpty
@@ -744,6 +750,7 @@ literal|0
 operator|)
 return|;
 block|}
+comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|hasOne
@@ -753,6 +760,7 @@ return|return
 name|hasOne
 return|;
 block|}
+comment|/**      * The method<code>add</code>      *      * @param proxy a<code>NodeProxy</code> value      */
 specifier|public
 name|void
 name|add
@@ -777,6 +785,7 @@ if|if
 condition|(
 name|isSorted
 condition|)
+block|{
 name|hasOne
 operator|=
 name|get
@@ -786,7 +795,9 @@ argument_list|)
 operator|==
 literal|null
 expr_stmt|;
+block|}
 else|else
+block|{
 name|hasOne
 operator|=
 name|lastAdded
@@ -804,11 +815,14 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
+block|{
 name|hasOne
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|getPart
 argument_list|(
 name|proxy
@@ -877,6 +891,7 @@ if|if
 condition|(
 name|isSorted
 condition|)
+block|{
 name|hasOne
 operator|=
 name|get
@@ -886,7 +901,9 @@ argument_list|)
 operator|==
 literal|null
 expr_stmt|;
+block|}
 else|else
+block|{
 name|hasOne
 operator|=
 name|lastAdded
@@ -904,11 +921,14 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
+block|{
 name|hasOne
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|getPart
 argument_list|(
 name|proxy
@@ -998,6 +1018,7 @@ operator|.
 name|NODE
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getItemType</code>      *      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getItemType
@@ -1035,6 +1056,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getSizeHint</code>      *      * @param doc a<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getSizeHint
@@ -1510,6 +1532,7 @@ name|pos
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getDescendantsInSet</code>      *      * @param al a<code>NodeSet</code> value      * @param childOnly a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param mode an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|getDescendantsInSet
@@ -1612,6 +1635,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**      * The method<code>hasDescendantsInSet</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param ancestorId a<code>NodeId</code> value      * @param includeSelf a<code>boolean</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|hasDescendantsInSet
@@ -1661,6 +1685,7 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>selectParentChild</code>      *      * @param al a<code>NodeSet</code> value      * @param mode an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -1711,6 +1736,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>filterDocuments</code>      *      * @param otherSet an<code>ExtArrayNodeSet</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|filterDocuments
@@ -1848,6 +1874,7 @@ return|return
 name|isSorted
 return|;
 block|}
+comment|/**      * The method<code>setSorted</code>      *      * @param document a<code>DocumentImpl</code> value      * @param sorted a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setSorted
@@ -1898,6 +1925,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>sort</code>      *      */
 specifier|public
 name|void
 name|sort
@@ -1909,6 +1937,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>sort</code>      *      * @param mergeContexts a<code>boolean</code> value      */
 specifier|public
 name|void
 name|sort
@@ -1998,6 +2027,7 @@ expr_stmt|;
 comment|//        System.out.println("sort took " + (System.currentTimeMillis() -
 comment|//                start) + "ms.");
 block|}
+comment|/**      * The method<code>sortInDocumentOrder</code>      *      */
 specifier|public
 specifier|final
 name|void
@@ -2128,6 +2158,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param siblings a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
@@ -2184,6 +2215,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -2236,6 +2268,7 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>debugParts</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|debugParts
@@ -2341,6 +2374,7 @@ return|return
 name|indexType
 return|;
 block|}
+comment|/**      * The method<code>getDocumentSet</code>      *      * @return a<code>DocumentSet</code> value      */
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -2405,6 +2439,7 @@ return|return
 name|cachedDocuments
 return|;
 block|}
+comment|/**      * The method<code>setDocumentSet</code>      *      * @param docs a<code>DocumentSet</code> value      */
 specifier|public
 name|void
 name|setDocumentSet
@@ -2418,6 +2453,7 @@ operator|=
 name|docs
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 specifier|public
 name|Iterator
 name|getCollectionIterator
@@ -2429,6 +2465,7 @@ name|CollectionIterator
 argument_list|()
 return|;
 block|}
+comment|/**      * The class<code>CollectionIterator</code>      *      */
 specifier|private
 class|class
 name|CollectionIterator
@@ -2476,6 +2513,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * The method<code>hasNext</code> 	 * 	 * @return a<code>boolean</code> value 	 */
 specifier|public
 name|boolean
 name|hasNext
@@ -2487,6 +2525,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/** 	 * The method<code>next</code> 	 * 	 * @return an<code>Object</code> value 	 */
 specifier|public
 name|Object
 name|next
@@ -2547,6 +2586,7 @@ return|return
 name|oldCollection
 return|;
 block|}
+comment|/** 	 * The method<code>remove</code> 	 * 	 */
 specifier|public
 name|void
 name|remove
@@ -2585,6 +2625,7 @@ return|return
 name|state
 return|;
 block|}
+comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|toString
@@ -2619,6 +2660,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * The class<code>Part</code>      *      */
 specifier|private
 specifier|final
 class|class
@@ -2641,6 +2683,7 @@ name|length
 init|=
 literal|0
 decl_stmt|;
+comment|/** 	 * Creates a new<code>Part</code> instance. 	 * 	 * @param initialSize an<code>int</code> value 	 */
 name|Part
 parameter_list|(
 name|int
@@ -2656,6 +2699,7 @@ name|initialSize
 index|]
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>selectParentChild</code> 	 * 	 * @param result a<code>NodeSet</code> value 	 * @param na a<code>NodeProxy</code> value 	 * @param ia a<code>NodeSetIterator</code> value 	 * @param mode an<code>int</code> value 	 * @param contextId an<code>int</code> value 	 */
 specifier|public
 name|void
 name|selectParentChild
@@ -2733,7 +2777,9 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 break|break;
+block|}
 comment|// same document
 name|NodeId
 name|pa
@@ -2795,6 +2841,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|nb
 operator|.
 name|addContextNode
@@ -2804,7 +2851,9 @@ argument_list|,
 name|na
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|nb
 operator|.
 name|copyContext
@@ -2812,6 +2861,7 @@ argument_list|(
 name|na
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -2830,6 +2880,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|na
 operator|.
 name|addContextNode
@@ -2839,7 +2890,9 @@ argument_list|,
 name|nb
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|na
 operator|.
 name|copyContext
@@ -2847,6 +2900,7 @@ argument_list|(
 name|nb
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -2926,10 +2980,14 @@ name|pos
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
 block|}
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -3029,7 +3087,9 @@ name|next
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -3040,6 +3100,7 @@ name|pos
 operator|<
 name|length
 condition|)
+block|{
 name|nb
 operator|=
 name|array
@@ -3047,6 +3108,7 @@ index|[
 name|pos
 index|]
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -3103,6 +3165,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/** 	 * The method<code>add</code> 	 * 	 * @param p a<code>NodeProxy</code> value 	 */
 name|void
 name|add
 parameter_list|(
@@ -3114,6 +3177,27 @@ comment|// just check if this node has already been added. We only
 comment|// check the last entry, which should avoid most of the likely
 comment|// duplicates. The remaining duplicates are removed by
 comment|// removeDuplicates().
+name|NodeId
+name|nodeId
+init|=
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|NodeId
+operator|.
+name|ROOT_NODE
+operator|.
+name|equals
+argument_list|(
+name|nodeId
+argument_list|)
+condition|)
+block|{
 if|if
 condition|(
 name|length
@@ -3132,14 +3216,12 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|p
-operator|.
-name|getNodeId
-argument_list|()
+name|nodeId
 argument_list|)
 condition|)
 block|{
 return|return;
+block|}
 block|}
 if|if
 condition|(
@@ -3198,6 +3280,7 @@ operator|=
 name|p
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>contains</code> 	 * 	 * @param nodeId a<code>NodeId</code> value 	 * @return a<code>boolean</code> value 	 */
 name|boolean
 name|contains
 parameter_list|(
@@ -3214,6 +3297,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/** 	 * The method<code>get</code> 	 * 	 * @param pos an<code>int</code> value 	 * @return a<code>NodeProxy</code> value 	 */
 name|NodeProxy
 name|get
 parameter_list|(
@@ -3228,6 +3312,7 @@ name|pos
 index|]
 return|;
 block|}
+comment|/** 	 * The method<code>get</code> 	 * 	 * @param nodeId a<code>NodeId</code> value 	 * @return a<code>NodeProxy</code> value 	 */
 name|NodeProxy
 name|get
 parameter_list|(
@@ -3324,6 +3409,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * The method<code>getDocument</code> 	 * 	 * @return a<code>DocumentImpl</code> value 	 */
 name|DocumentImpl
 name|getDocument
 parameter_list|()
@@ -3347,6 +3433,7 @@ name|getDocument
 argument_list|()
 return|;
 block|}
+comment|/** 	 * The method<code>setIsSorted</code> 	 * 	 * @param sorted a<code>boolean</code> value 	 */
 name|void
 name|setIsSorted
 parameter_list|(
@@ -3361,6 +3448,7 @@ operator|=
 name|sorted
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>sort</code> 	 * 	 */
 name|void
 name|sort
 parameter_list|()
@@ -3384,6 +3472,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>sortInDocumentOrder</code> 	 * 	 */
 name|void
 name|sortInDocumentOrder
 parameter_list|()
@@ -3392,7 +3481,7 @@ name|sort
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**          * Check if the node identified by its node id has an ancestor          * contained in this node set and return the ancestor found.          *           * If directParent is true, only immediate ancestors (parents) are          * considered. Otherwise the method will call itself recursively for          * all the node's parents.          *           * If includeSelf is true, the method returns also true if the node          * itself is contained in the node set.          */
+comment|/** 	 * Check if the node identified by its node id has an ancestor          * contained in this node set and return the ancestor found.          *           * If directParent is true, only immediate ancestors (parents) are          * considered. Otherwise the method will call itself recursively for          * all the node's parents.          *           * If includeSelf is true, the method returns also true if the node          * itself is contained in the node set. 	 * @param doc a<code>DocumentImpl</code> value 	 * @param nodeId a<code>NodeId</code> value 	 * @param directParent a<code>boolean</code> value 	 * @param includeSelf a<code>boolean</code> value 	 * @return a<code>NodeProxy</code> value 	 */
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -3481,6 +3570,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** 	 * The method<code>hasDescendantsInSet</code> 	 * 	 * @param ancestorId a<code>NodeId</code> value 	 * @param contextId an<code>int</code> value 	 * @param includeSelf a<code>boolean</code> value 	 * @return a<code>NodeProxy</code> value 	 */
 name|NodeProxy
 name|hasDescendantsInSet
 parameter_list|(
@@ -4308,7 +4398,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**          * Remove all duplicate nodes from this part.          *           * @return the new length of the part, after removing all duplicates          */
+comment|/** 	 * Remove all duplicate nodes from this part.          *  	 * @param mergeContext a<code>boolean</code> value 	 * @return the new length of the part, after removing all duplicates 	 */
 name|int
 name|removeDuplicates
 parameter_list|(
@@ -4321,6 +4411,8 @@ name|j
 init|=
 literal|0
 decl_stmt|;
+comment|// If NodeId.ROOT_NODE.equals(iOrjNodeId)
+comment|// just keep them all /ljo
 for|for
 control|(
 name|int
@@ -4336,9 +4428,9 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-operator|!
+name|NodeId
+name|ithId
+init|=
 name|array
 index|[
 name|i
@@ -4346,9 +4438,10 @@ index|]
 operator|.
 name|getNodeId
 argument_list|()
-operator|.
-name|equals
-argument_list|(
+decl_stmt|;
+name|NodeId
+name|jthId
+init|=
 name|array
 index|[
 name|j
@@ -4356,6 +4449,43 @@ index|]
 operator|.
 name|getNodeId
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|NodeId
+operator|.
+name|ROOT_NODE
+operator|.
+name|equals
+argument_list|(
+name|ithId
+argument_list|)
+operator|||
+name|NodeId
+operator|.
+name|ROOT_NODE
+operator|.
+name|equals
+argument_list|(
+name|jthId
+argument_list|)
+condition|)
+block|{
+name|j
+operator|++
+expr_stmt|;
+continue|continue;
+block|}
+else|else
+block|{
+if|if
+condition|(
+operator|!
+name|ithId
+operator|.
+name|equals
+argument_list|(
+name|jthId
 argument_list|)
 condition|)
 block|{
@@ -4397,6 +4527,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 name|length
 operator|=
 operator|++
@@ -4406,6 +4537,7 @@ return|return
 name|length
 return|;
 block|}
+comment|/** 	 * The method<code>determineIndexType</code> 	 * 	 */
 name|void
 name|determineIndexType
 parameter_list|()
@@ -4554,6 +4686,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/** 	 * The method<code>setSelfAsContext</code> 	 * 	 * @param contextId an<code>int</code> value 	 */
 name|void
 name|setSelfAsContext
 parameter_list|(
@@ -4594,6 +4727,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**      * The class<code>ExtArrayIterator</code>      *      */
 specifier|private
 class|class
 name|ExtArrayIterator
@@ -4622,6 +4756,7 @@ name|next
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Creates a new<code>ExtArrayIterator</code> instance. 	 * 	 */
 name|ExtArrayIterator
 parameter_list|()
 block|{
@@ -4660,6 +4795,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>setPosition</code> 	 * 	 * @param proxy a<code>NodeProxy</code> value 	 */
 specifier|public
 name|void
 name|setPosition
@@ -4941,6 +5077,7 @@ parameter_list|()
 block|{
 block|}
 block|}
+comment|/**      * The class<code>ExtDocIterator</code>      *      */
 specifier|private
 class|class
 name|ExtDocIterator
@@ -4962,6 +5099,7 @@ name|next
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Creates a new<code>ExtDocIterator</code> instance. 	 * 	 */
 specifier|public
 name|ExtDocIterator
 parameter_list|()
@@ -5001,6 +5139,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>nextDocument</code> 	 * 	 * @param document a<code>DocumentImpl</code> value 	 */
 specifier|public
 name|void
 name|nextDocument
@@ -5052,6 +5191,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/** 	 * The method<code>hasNextNode</code> 	 * 	 * @return a<code>boolean</code> value 	 */
 specifier|public
 name|boolean
 name|hasNextNode
@@ -5063,6 +5203,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/** 	 * The method<code>nextNode</code> 	 * 	 * @return a<code>NodeProxy</code> value 	 */
 specifier|public
 name|NodeProxy
 name|nextNode
@@ -5108,6 +5249,7 @@ return|return
 name|n
 return|;
 block|}
+comment|/** 	 * The method<code>peekNode</code> 	 * 	 * @return a<code>NodeProxy</code> value 	 */
 specifier|public
 name|NodeProxy
 name|peekNode
@@ -5117,6 +5259,7 @@ return|return
 name|next
 return|;
 block|}
+comment|/** 	 * The method<code>setPosition</code> 	 * 	 * @param node a<code>NodeProxy</code> value 	 */
 specifier|public
 name|void
 name|setPosition
