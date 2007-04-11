@@ -916,11 +916,6 @@ name|AtomicValue
 operator|)
 name|b
 argument_list|,
-name|context
-operator|.
-name|isBackwardsCompatible
-argument_list|()
-argument_list|,
 name|Constants
 operator|.
 name|TRUNC_NONE

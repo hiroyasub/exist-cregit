@@ -3840,11 +3840,6 @@ name|lv
 argument_list|,
 name|rv
 argument_list|,
-name|context
-operator|.
-name|isBackwardsCompatible
-argument_list|()
-argument_list|,
 name|truncation
 argument_list|,
 name|relation
@@ -3883,9 +3878,6 @@ name|lv
 parameter_list|,
 name|AtomicValue
 name|rv
-parameter_list|,
-name|boolean
-name|backwardsCompatible
 parameter_list|,
 name|int
 name|truncation
