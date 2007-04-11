@@ -746,7 +746,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//TODo : refactor casting according to the specs ; right now, copied from GeneralComparison
+comment|//TODO : refactor casting according to the specs ; right now, copied from GeneralComparison
 name|int
 name|ltype
 init|=
