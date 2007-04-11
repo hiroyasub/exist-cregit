@@ -746,7 +746,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//TODO : refactor casting according to the specs ; right now, copied from GeneralComparison
 name|int
 name|ltype
 init|=
@@ -772,25 +771,117 @@ operator|.
 name|UNTYPED_ATOMIC
 condition|)
 block|{
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of a numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
-if|if
-condition|(
+comment|//If the atomized operand is of type xs:untypedAtomic, it is cast to xs:string.
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
 name|Type
 operator|.
-name|subTypeOf
-argument_list|(
+name|STRING
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|rtype
+operator|==
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+condition|)
+block|{
+comment|//If the atomized operand is of type xs:untypedAtomic, it is cast to xs:string.
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+block|}
+name|ltype
+operator|=
+name|lv
+operator|.
+name|getType
+argument_list|()
+expr_stmt|;
+name|rtype
+operator|=
+name|rv
+operator|.
+name|getType
+argument_list|()
+expr_stmt|;
+name|int
+name|ctype
+init|=
+name|Type
+operator|.
+name|getCommonSuperType
+argument_list|(
+name|ltype
 argument_list|,
+name|rtype
+argument_list|)
+decl_stmt|;
+comment|//Next, if possible, the two operands are converted to their least common type
+comment|//by a combination of type promotion and subtype substitution.
+if|if
+condition|(
+name|ctype
+operator|==
 name|Type
 operator|.
 name|NUMBER
-argument_list|)
 condition|)
 block|{
-comment|//if(isEmptyString(lv))
-comment|//    return false;
+comment|//Numeric type promotion:
+comment|//A value of type xs:decimal (or any type derived by restriction from xs:decimal)
+comment|//can be promoted to either of the types xs:float or xs:double. The result of this promotion is created by casting the original value to the required type. This kind of promotion may cause loss of precision.
+if|if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|DECIMAL
+condition|)
+block|{
+if|if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|FLOAT
+condition|)
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|FLOAT
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|DOUBLE
+condition|)
 name|lv
 operator|=
 name|lv
@@ -802,9 +893,6 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
-comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
 block|}
 if|else if
 condition|(
@@ -812,71 +900,36 @@ name|rtype
 operator|==
 name|Type
 operator|.
-name|UNTYPED_ATOMIC
-operator|||
-name|rtype
-operator|==
-name|Type
-operator|.
-name|STRING
+name|DECIMAL
 condition|)
 block|{
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|)
-expr_stmt|;
-comment|//if (rtype == Type.UNTYPED_ATOMIC)
-comment|//rv = rv.convertTo(Type.STRING);
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
-block|}
-else|else
-name|lv
-operator|=
-name|lv
-operator|.
-name|convertTo
-argument_list|(
-name|rtype
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
-name|rtype
-operator|==
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-condition|)
-block|{
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of a numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the type xs:double.
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
 name|ltype
-argument_list|,
+operator|==
 name|Type
 operator|.
-name|NUMBER
-argument_list|)
+name|FLOAT
 condition|)
-block|{
-comment|//if(isEmptyString(lv))
-comment|//    return false;
+name|rv
+operator|=
+name|rv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|FLOAT
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|DOUBLE
+condition|)
 name|rv
 operator|=
 name|rv
@@ -888,25 +941,51 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is an instance of xdt:untypedAtomic or xs:string,
-comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type xs:string.
 block|}
-if|else if
+else|else
+block|{
+comment|//A value of type xs:float (or any type derived by restriction from xs:float)
+comment|//can be promoted to the type xs:double.
+comment|//The result is the xs:double value that is the same as the original value.
+if|if
 condition|(
 name|ltype
 operator|==
 name|Type
 operator|.
-name|UNTYPED_ATOMIC
-operator|||
+name|FLOAT
+operator|&&
+name|rtype
+operator|==
+name|Type
+operator|.
+name|DOUBLE
+condition|)
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|rtype
+operator|==
+name|Type
+operator|.
+name|FLOAT
+operator|&&
 name|ltype
 operator|==
 name|Type
 operator|.
-name|STRING
+name|DOUBLE
 condition|)
-block|{
 name|rv
 operator|=
 name|rv
@@ -915,27 +994,32 @@ name|convertTo
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|DOUBLE
 argument_list|)
 expr_stmt|;
-comment|//if (ltype == Type.UNTYPED_ATOMIC)
-comment|//	lv = lv.convertTo(Type.STRING);
-comment|//If one of the atomic values is an instance of xdt:untypedAtomic
-comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
-comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
+block|}
 block|}
 else|else
+block|{
+name|lv
+operator|=
+name|lv
+operator|.
+name|convertTo
+argument_list|(
+name|ctype
+argument_list|)
+expr_stmt|;
 name|rv
 operator|=
 name|rv
 operator|.
 name|convertTo
 argument_list|(
-name|ltype
+name|ctype
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 		if (backwardsCompatible) { 			if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 				// in XPath 1.0 compatible mode, if one of the operands is a number, cast 				// both operands to xs:double 				if (Type.subTypeOf(ltype, Type.NUMBER) 					|| Type.subTypeOf(rtype, Type.NUMBER)) { 						lv = lv.convertTo(Type.DOUBLE); 						rv = rv.convertTo(Type.DOUBLE); 				} 			} 		} 		*/
 comment|// if truncation is set, we always do a string comparison
 if|if
 condition|(
@@ -959,8 +1043,6 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
-comment|//			System.out.println(
-comment|//				lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 switch|switch
 condition|(
 name|truncation

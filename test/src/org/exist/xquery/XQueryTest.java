@@ -9041,7 +9041,7 @@ expr_stmt|;
 name|String
 name|query
 init|=
-literal|"xmldb:login(\"xmldb:exist:///db\", \"guest\", \"guest\"), xmldb:get-current-user(), let $node :=<node id=\"1\">value</node>, $null := $node[@id eq 1] return xmldb:get-current-user()"
+literal|"xmldb:login(\"xmldb:exist:///db\", \"guest\", \"guest\"), xmldb:get-current-user(), let $node :=<node id=\"1\">value</node>, $null := $node[@id eq '1'] return xmldb:get-current-user()"
 decl_stmt|;
 try|try
 block|{
