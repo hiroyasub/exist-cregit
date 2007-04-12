@@ -1124,20 +1124,7 @@ name|DOCUMENT_NODE
 condition|)
 block|{
 comment|// fixme! slÃ¥ ihop med ovanstÃ¥ende. /ljo
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type "
-operator|+
-name|current
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type " + current.getNodeId());
 name|parents
 operator|.
 name|add
