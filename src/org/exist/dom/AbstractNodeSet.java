@@ -1121,9 +1121,21 @@ operator|==
 name|NodeId
 operator|.
 name|DOCUMENT_NODE
+operator|&&
+operator|!
+name|current
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|isTempCollection
+argument_list|()
 condition|)
 block|{
-comment|// fixme! slÃ¥ ihop med ovanstÃ¥ende. /ljo
+comment|// fixme! merge with above? /ljo
 comment|//System.out.println("AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type " + current.getNodeId());
 name|parents
 operator|.
@@ -1138,6 +1150,7 @@ return|return
 name|parents
 return|;
 block|}
+comment|/**      * The method<code>getAncestors</code>      *      * @param contextId an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|getAncestors
