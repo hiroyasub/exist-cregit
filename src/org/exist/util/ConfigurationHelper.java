@@ -84,7 +84,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//Logger
-comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the file handle or<code>null</code>      */
+comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the file handle or<code>null</code>      */
 specifier|public
 specifier|static
 name|File
@@ -125,6 +125,15 @@ operator|.
 name|getExistHome
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Got eXist home from broker: "
+operator|+
+name|existHome
+argument_list|)
+expr_stmt|;
 return|return
 name|existHome
 return|;
@@ -132,10 +141,23 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{
+comment|// Catch all potential problems
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Could not retieve instance of brokerpool: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|String
 name|config
