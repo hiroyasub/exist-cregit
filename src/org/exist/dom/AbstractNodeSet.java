@@ -1114,37 +1114,6 @@ name|parent
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|parentID
-operator|==
-name|NodeId
-operator|.
-name|DOCUMENT_NODE
-operator|&&
-operator|!
-name|current
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|isTempCollection
-argument_list|()
-condition|)
-block|{
-comment|// fixme! merge with above? /ljo
-comment|//System.out.println("AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type " + current.getNodeId());
-name|parents
-operator|.
-name|add
-argument_list|(
-name|current
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 return|return
 name|parents
