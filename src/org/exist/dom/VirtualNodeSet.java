@@ -1869,11 +1869,11 @@ condition|)
 return|return
 literal|false
 return|;
-name|StoredNode
+name|NodeImpl
 name|n
 init|=
 operator|(
-name|StoredNode
+name|NodeImpl
 operator|)
 name|p
 operator|.
