@@ -84,6 +84,14 @@ name|COMPRESS_OUTPUT
 init|=
 literal|"compress-output"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ADD_EXIST_ID
+init|=
+literal|"add-exist-id"
+decl_stmt|;
 block|}
 end_class
 
