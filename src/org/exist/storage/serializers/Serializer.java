@@ -859,7 +859,7 @@ specifier|protected
 name|int
 name|showId
 init|=
-name|EXIST_ID_ELEMENT
+name|EXIST_ID_NONE
 decl_stmt|;
 specifier|public
 specifier|final
