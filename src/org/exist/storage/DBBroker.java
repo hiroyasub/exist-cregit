@@ -445,24 +445,6 @@ name|SYSTEM_COLLECTION
 operator|+
 literal|"/temp"
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|CONFIG_COLLECTION
-init|=
-name|SYSTEM_COLLECTION
-operator|+
-literal|"/config"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|COLLECTION_CONFIG_FILENAME
-init|=
-literal|"collection.xconf"
-decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
 specifier|static

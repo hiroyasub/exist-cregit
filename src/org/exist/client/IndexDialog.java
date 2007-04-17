@@ -317,6 +317,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionConfigurationManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -710,6 +722,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|//TODO : use XmldbURIs !
 if|if
 condition|(
 name|alAllCollections
@@ -724,7 +737,7 @@ argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-name|DBBroker
+name|CollectionConfigurationManager
 operator|.
 name|CONFIG_COLLECTION
 argument_list|)

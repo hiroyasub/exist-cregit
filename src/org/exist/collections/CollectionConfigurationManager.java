@@ -268,15 +268,10 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|XmldbURI
-name|CONFIG_COLLECTION_URI
+name|String
+name|COLLECTION_CONFIG_FILENAME
 init|=
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-name|CONFIG_COLLECTION
-argument_list|)
+literal|"collection.xconf"
 decl_stmt|;
 specifier|private
 name|BrokerPool
@@ -336,9 +331,12 @@ name|CollectionConfigurationException
 block|{
 try|try
 block|{
+comment|//TODO : use XmldbURI.resolve() !
 name|XmldbURI
 name|path
 init|=
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 operator|.
 name|append
@@ -655,6 +653,8 @@ decl_stmt|;
 name|XmldbURI
 name|path
 init|=
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 operator|.
 name|append
@@ -681,6 +681,8 @@ name|path
 operator|.
 name|equals
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 condition|)
@@ -958,6 +960,7 @@ name|XmldbURI
 name|collectionPath
 parameter_list|)
 block|{
+comment|//TODO : use XmldbURI.resolve !
 if|if
 condition|(
 operator|!
@@ -965,6 +968,8 @@ name|collectionPath
 operator|.
 name|startsWith
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 condition|)
@@ -975,6 +980,8 @@ name|collectionPath
 operator|.
 name|trimFromBeginning
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 expr_stmt|;
@@ -1093,6 +1100,7 @@ name|XmldbURI
 name|collectionPath
 parameter_list|)
 block|{
+comment|//TODO : use XmldbURI.resolve !
 if|if
 condition|(
 operator|!
@@ -1100,6 +1108,8 @@ name|collectionPath
 operator|.
 name|startsWith
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 condition|)
@@ -1110,6 +1120,8 @@ name|collectionPath
 operator|.
 name|trimFromBeginning
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 expr_stmt|;
@@ -1197,6 +1209,8 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 decl_stmt|;
@@ -1222,6 +1236,8 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
+name|XmldbURI
+operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
 expr_stmt|;

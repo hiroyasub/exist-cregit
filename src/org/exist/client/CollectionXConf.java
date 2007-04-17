@@ -125,9 +125,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|collections
 operator|.
-name|DBBroker
+name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -342,9 +342,10 @@ operator|=
 name|client
 expr_stmt|;
 comment|//get configuration collection for the named collection
+comment|//TODO : use XmldbURIs
 name|path
 operator|=
-name|DBBroker
+name|CollectionConfigurationManager
 operator|.
 name|CONFIG_COLLECTION
 operator|+
@@ -374,7 +375,7 @@ name|collection
 operator|.
 name|getResource
 argument_list|(
-name|DBBroker
+name|CollectionConfigurationManager
 operator|.
 name|COLLECTION_CONFIG_FILENAME
 argument_list|)
@@ -3371,7 +3372,7 @@ name|collection
 operator|.
 name|createResource
 argument_list|(
-name|DBBroker
+name|CollectionConfigurationManager
 operator|.
 name|COLLECTION_CONFIG_FILENAME
 argument_list|,

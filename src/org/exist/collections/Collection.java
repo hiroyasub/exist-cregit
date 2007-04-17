@@ -4133,7 +4133,7 @@ name|getFileURI
 argument_list|()
 decl_stmt|;
 comment|//WARNING : there is no reason to lock the collection since setPath() is normally called in a safe way
-comment|//TODO: resolve URI against CollectionConfigurationManager.CONFIG_COLLECTION_URI
+comment|//TODO: *resolve* URI against CollectionConfigurationManager.CONFIG_COLLECTION_URI
 if|if
 condition|(
 name|getURI
@@ -4141,7 +4141,7 @@ argument_list|()
 operator|.
 name|startsWith
 argument_list|(
-name|CollectionConfigurationManager
+name|XmldbURI
 operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
@@ -4995,6 +4995,7 @@ throws|,
 name|IOException
 block|{
 comment|//Is it a collection configuration file ?
+comment|//TODO : use XmldbURI.resolve() !
 if|if
 condition|(
 operator|!
@@ -5003,7 +5004,7 @@ argument_list|()
 operator|.
 name|startsWith
 argument_list|(
-name|CollectionConfigurationManager
+name|XmldbURI
 operator|.
 name|CONFIG_COLLECTION_URI
 argument_list|)
