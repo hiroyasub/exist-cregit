@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  meier@ifs.tu-darmstadt.de  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  *   */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -704,6 +704,13 @@ name|elementCnt
 init|=
 literal|0
 decl_stmt|;
+comment|// the current nodeFactoryInstanceCnt
+specifier|private
+name|int
+name|nodeFactoryInstanceCnt
+init|=
+literal|0
+decl_stmt|;
 comment|// reusable fields
 specifier|private
 name|TextImpl
@@ -728,7 +735,7 @@ name|PROPERTY_SUPPRESS_WHITESPACE
 init|=
 literal|"indexer.suppress-whitespace"
 decl_stmt|;
-comment|/** 	 *  Create a new parser using the given database broker and 	 * user to store the document. 	 * 	 *@param  broker 	 *@exception  EXistException   	 */
+comment|/**      *  Create a new parser using the given database broker and      * user to store the document.      *      *@param  broker      *@exception  EXistException        */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -751,7 +758,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Create a new parser using the given database broker and 	 * user to store the document. 	 * 	 *@param  broker              The database broker to use.          *@param  transaction         The transaction to use for indexing 	 *@param  priv		      used by the security manager to 	 *							  indicate that it needs privileged 	 *                            access to the db. 	 *@exception  EXistException   	 */
+comment|/**      *  Create a new parser using the given database broker and      * user to store the document.      *      *@param  broker              The database broker to use.      *@param  transaction         The transaction to use for indexing      *@param  priv		      used by the security manager to      *							  indicate that it needs privileged      *                            access to the db.      *@exception  EXistException        */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -970,7 +977,7 @@ name|STORE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Set the document object to be used by this Indexer. This 	 * method doesn't reset the internal state. 	 *  	 * @param doc 	 */
+comment|/**      * Set the document object to be used by this Indexer. This      * method doesn't reset the internal state.      *       * @param doc      */
 specifier|public
 name|void
 name|setDocumentObject
@@ -1111,7 +1118,10 @@ name|getNodeFactory
 argument_list|()
 operator|.
 name|createInstance
-argument_list|()
+argument_list|(
+name|nodeFactoryInstanceCnt
+operator|++
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -1119,6 +1129,7 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|broker
 operator|.
 name|storeNode
@@ -1130,6 +1141,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 name|document
 operator|.
 name|appendChild
@@ -1193,9 +1205,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -1226,6 +1240,7 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|broker
 operator|.
 name|storeNode
@@ -1237,6 +1252,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -2053,7 +2069,10 @@ name|getNodeFactory
 argument_list|()
 operator|.
 name|createInstance
-argument_list|()
+argument_list|(
+name|nodeFactoryInstanceCnt
+operator|++
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -2061,6 +2080,7 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|broker
 operator|.
 name|storeNode
@@ -2072,6 +2092,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 name|document
 operator|.
 name|appendChild
@@ -2157,9 +2178,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -2191,6 +2214,7 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|broker
 operator|.
 name|storeNode
@@ -2202,6 +2226,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -2219,7 +2244,7 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|/** 	 *  set SAX parser feature. This method will catch (and ignore) exceptions 	 *  if the used parser does not support a feature. 	 * 	 *@param  factory   	 *@param  feature   	 *@param  value     	 */
+comment|/**      *  set SAX parser feature. This method will catch (and ignore) exceptions      *  if the used parser does not support a feature.      *      *@param  factory        *@param  feature        *@param  value          */
 specifier|private
 name|void
 name|setFeature
@@ -2903,6 +2928,7 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|setChildCount
@@ -2916,6 +2942,7 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|storeElement
 argument_list|(
 name|node
@@ -2929,6 +2956,7 @@ if|if
 condition|(
 name|validate
 condition|)
+block|{
 name|node
 operator|=
 operator|new
@@ -2937,7 +2965,9 @@ argument_list|(
 name|qn
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|node
 operator|=
 operator|new
@@ -2946,6 +2976,7 @@ argument_list|(
 name|qn
 argument_list|)
 expr_stmt|;
+block|}
 name|rootNode
 operator|=
 name|node
@@ -2953,6 +2984,13 @@ expr_stmt|;
 name|setPrevious
 argument_list|(
 literal|null
+argument_list|)
+expr_stmt|;
+name|node
+operator|.
+name|setOwnerDocument
+argument_list|(
+name|document
 argument_list|)
 expr_stmt|;
 name|node
@@ -2968,14 +3006,10 @@ name|getNodeFactory
 argument_list|()
 operator|.
 name|createInstance
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|node
-operator|.
-name|setOwnerDocument
 argument_list|(
-name|document
+name|nodeFactoryInstanceCnt
+operator|++
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|node
@@ -3049,6 +3083,7 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|setChildCount
@@ -3062,6 +3097,7 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|storeElement
 argument_list|(
 name|node
