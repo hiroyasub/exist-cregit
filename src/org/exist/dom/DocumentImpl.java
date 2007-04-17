@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -614,6 +614,7 @@ name|metadata
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param broker a<code>DBBroker</code> value      */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -631,6 +632,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param broker a<code>DBBroker</code> value      * @param collection a<code>Collection</code> value      */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -651,6 +653,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param broker a<code>DBBroker</code> value      * @param fileURI a<code>XmldbURI</code> value      */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -671,6 +674,7 @@ name|fileURI
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param broker a<code>DBBroker</code> value      * @param collection a<code>Collection</code> value      * @param fileURI a<code>XmldbURI</code> value      */
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -703,6 +707,7 @@ operator|=
 name|fileURI
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getLocalName</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getLocalName
@@ -712,6 +717,7 @@ return|return
 literal|""
 return|;
 block|}
+comment|/**      * The method<code>getNamespaceURI</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -722,6 +728,7 @@ literal|""
 return|;
 block|}
 comment|/************************************************      *       * Document metadata      *      ************************************************/
+comment|/**      * The method<code>getCollection</code>      *      * @return a<code>Collection</code> value      */
 specifier|public
 name|Collection
 name|getCollection
@@ -731,6 +738,7 @@ return|return
 name|collection
 return|;
 block|}
+comment|/**      * The method<code>setCollection</code>      *      * @param parent a<code>Collection</code> value      */
 specifier|public
 name|void
 name|setCollection
@@ -746,6 +754,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getDocId</code>      *      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getDocId
@@ -755,6 +764,7 @@ return|return
 name|docId
 return|;
 block|}
+comment|/**      * The method<code>setDocId</code>      *      * @param docId an<code>int</code> value      */
 specifier|public
 name|void
 name|setDocId
@@ -780,6 +790,7 @@ return|return
 name|XML_FILE
 return|;
 block|}
+comment|/**      * The method<code>getFileURI</code>      *      * @return a<code>XmldbURI</code> value      */
 specifier|public
 name|XmldbURI
 name|getFileURI
@@ -790,6 +801,7 @@ return|return
 name|fileURI
 return|;
 block|}
+comment|/**      * The method<code>setFileURI</code>      *      * @param fileURI a<code>XmldbURI</code> value      */
 specifier|public
 name|void
 name|setFileURI
@@ -805,6 +817,7 @@ operator|=
 name|fileURI
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getURI</code>      *      * @return a<code>XmldbURI</code> value      */
 specifier|public
 name|XmldbURI
 name|getURI
@@ -822,6 +835,7 @@ name|fileURI
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getPermissions</code>      *      * @return a<code>Permission</code> value      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -831,6 +845,7 @@ return|return
 name|permissions
 return|;
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param mode an<code>int</code> value      */
 specifier|public
 name|void
 name|setPermissions
@@ -847,6 +862,7 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param mode a<code>String</code> value      * @exception SyntaxException if an error occurs      */
 specifier|public
 name|void
 name|setPermissions
@@ -865,6 +881,7 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param perm a<code>Permission</code> value      */
 specifier|public
 name|void
 name|setPermissions
@@ -878,6 +895,7 @@ operator|=
 name|perm
 expr_stmt|;
 block|}
+comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      */
 specifier|public
 name|void
 name|setMetadata
@@ -893,6 +911,7 @@ operator|=
 name|meta
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getMetadata</code>      *      * @return a<code>DocumentMetadata</code> value      */
 specifier|public
 name|DocumentMetadata
 name|getMetadata
@@ -918,7 +937,7 @@ name|metadata
 return|;
 block|}
 comment|/************************************************      *       * Persistent node methods      *      ************************************************/
-comment|/** 	 * Copy the relevant internal fields from the specified document object. 	 * This is called by {@link Collection} when replacing a document. 	 *  	 * @param other 	 */
+comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other a<code>DocumentImpl</code> value      */
 specifier|public
 name|void
 name|copyOf
@@ -969,6 +988,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>copyChildren</code>      *      * @param other a<code>DocumentImpl</code> value      */
 specifier|public
 name|void
 name|copyChildren
@@ -990,7 +1010,7 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if the document is currently locked for 	 * write. 	 *  	 */
+comment|/**      * Returns true if the document is currently locked for      * write.      *       */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1029,6 +1049,7 @@ return|return
 name|updateLock
 return|;
 block|}
+comment|/**      * The method<code>setUserLock</code>      *      * @param user an<code>User</code> value      */
 specifier|public
 name|void
 name|setUserLock
@@ -1055,6 +1076,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getUserLock</code>      *      * @return an<code>User</code> value      */
 specifier|public
 name|User
 name|getUserLock
@@ -1099,7 +1121,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns the estimated size of the data in this document. 	 *  	 * As an estimation, the number of pages occupied by the document 	 * is multiplied with the current page size. 	 *  	 */
+comment|/**      * Returns the estimated size of the data in this document.      *       * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      *       */
 specifier|public
 name|int
 name|getContentLength
@@ -1131,6 +1153,7 @@ else|:
 name|length
 return|;
 block|}
+comment|/**      * The method<code>triggerDefrag</code>      *      */
 specifier|public
 name|void
 name|triggerDefrag
@@ -1194,6 +1217,7 @@ name|fragmentationLimit
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getSymbols</code>      *      * @return a<code>SymbolTable</code> value      */
 specifier|public
 name|SymbolTable
 name|getSymbols
@@ -1206,6 +1230,7 @@ name|getSymbols
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>getNode</code>      *      * @param nodeId a<code>NodeId</code> value      * @return a<code>Node</code> value      */
 specifier|public
 name|Node
 name|getNode
@@ -1238,6 +1263,7 @@ name|nodeId
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getNode</code>      *      * @param p a<code>NodeProxy</code> value      * @return a<code>Node</code> value      */
 specifier|public
 name|Node
 name|getNode
@@ -1271,6 +1297,7 @@ name|p
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>resizeChildList</code>      *      */
 specifier|private
 name|void
 name|resizeChildList
@@ -1314,6 +1341,7 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
+comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>StoredNode</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|void
 name|appendChild
@@ -1343,6 +1371,7 @@ name|getInternalAddress
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * The method<code>write</code>      *      * @param ostream a<code>VariableByteOutputStream</code> value      * @exception IOException if an error occurs      */
 specifier|public
 name|void
 name|write
@@ -1596,6 +1625,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>read</code>      *      * @param istream a<code>VariableByteInput</code> value      * @exception IOException if an error occurs      * @exception EOFException if an error occurs      */
 specifier|public
 name|void
 name|read
@@ -1819,6 +1849,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>readDocumentMeta</code>      *      * @param istream a<code>VariableByteInput</code> value      */
 specifier|public
 name|void
 name|readDocumentMeta
@@ -1898,6 +1929,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
 specifier|public
 specifier|final
 name|int
@@ -1949,6 +1981,7 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
+comment|/**      * The method<code>getBroker</code>      *      * @return a<code>DBBroker</code> value      */
 specifier|public
 name|DBBroker
 name|getBroker
@@ -1958,6 +1991,7 @@ return|return
 name|broker
 return|;
 block|}
+comment|/**      * The method<code>setBroker</code>      *      * @param broker a<code>DBBroker</code> value      */
 specifier|public
 name|void
 name|setBroker
@@ -2250,6 +2284,7 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
+comment|/*      * @see org.exist.dom.NodeImpl#insertAfter(org.w3c.dom.NodeList, org.w3c.dom.Node)      */
 specifier|public
 name|void
 name|insertAfter
@@ -2275,7 +2310,7 @@ literal|"not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
 name|Node
 name|getFirstChild
@@ -2312,6 +2347,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getFirstChildAddress</code>      *      * @return a<code>long</code> value      */
 specifier|public
 name|long
 name|getFirstChildAddress
@@ -2335,6 +2371,7 @@ literal|0
 index|]
 return|;
 block|}
+comment|/**      * The method<code>getChildNodes</code>      *      * @return a<code>NodeList</code> value      */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -2397,6 +2434,7 @@ return|return
 name|list
 return|;
 block|}
+comment|/**      * The method<code>getPreviousSibling</code>      *      * @param node a<code>StoredNode</code> value      * @return a<code>Node</code> value      */
 specifier|protected
 name|Node
 name|getPreviousSibling
@@ -2480,6 +2518,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>getFollowingSibling</code>      *      * @param node a<code>StoredNode</code> value      * @return a<code>Node</code> value      */
 specifier|protected
 name|Node
 name|getFollowingSibling
@@ -2565,6 +2604,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>findElementsByTagName</code>      *      * @param root a<code>StoredNode</code> value      * @param qname a<code>QName</code> value      * @return a<code>NodeList</code> value      */
 specifier|protected
 name|NodeList
 name|findElementsByTagName
@@ -2643,6 +2683,7 @@ argument_list|)
 return|;
 block|}
 comment|/************************************************      *       * NodeImpl methods      *      ************************************************/
+comment|/**      * The method<code>getDoctype</code>      *      * @return a<code>DocumentType</code> value      */
 specifier|public
 name|DocumentType
 name|getDoctype
@@ -2656,6 +2697,7 @@ name|getDocType
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>setDocumentType</code>      *      * @param docType a<code>DocumentType</code> value      */
 specifier|public
 name|void
 name|setDocumentType
@@ -2673,6 +2715,7 @@ name|docType
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -2682,6 +2725,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * The method<code>setOwnerDocument</code>      *      * @param doc a<code>Document</code> value      */
 specifier|public
 name|void
 name|setOwnerDocument
@@ -2704,6 +2748,7 @@ literal|"Can't set owner document"
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>getQName</code>      *      * @return a<code>QName</code> value      */
 specifier|public
 name|QName
 name|getQName
@@ -2715,6 +2760,7 @@ operator|.
 name|DOCUMENT_QNAME
 return|;
 block|}
+comment|/**      * The method<code>getNodeType</code>      *      * @return a<code>short</code> value      */
 specifier|public
 name|short
 name|getNodeType
@@ -2726,6 +2772,7 @@ operator|.
 name|DOCUMENT_NODE
 return|;
 block|}
+comment|/**      * The method<code>getPreviousSibling</code>      *      * @return a<code>Node</code> value      */
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -2736,6 +2783,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>getNextSibling</code>      *      * @return a<code>Node</code> value      */
 specifier|public
 name|Node
 name|getNextSibling
@@ -2746,6 +2794,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>createAttribute</code>      *      * @param name a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Attr
 name|createAttribute
@@ -2784,6 +2833,7 @@ return|return
 name|attr
 return|;
 block|}
+comment|/**      * The method<code>createAttributeNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Attr
 name|createAttributeNS
@@ -2882,6 +2932,7 @@ return|return
 name|attr
 return|;
 block|}
+comment|/**      * The method<code>createElement</code>      *      * @param tagName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Element
 name|createElement
@@ -2920,6 +2971,7 @@ return|return
 name|element
 return|;
 block|}
+comment|/**      * The method<code>createElementNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Element
 name|createElementNS
@@ -3018,6 +3070,7 @@ return|return
 name|element
 return|;
 block|}
+comment|/**      * The method<code>createTextNode</code>      *      * @param data a<code>String</code> value      * @return a<code>Text</code> value      */
 specifier|public
 name|Text
 name|createTextNode
@@ -3047,6 +3100,7 @@ name|text
 return|;
 block|}
 comment|/*      *  W3C Document-Methods      */
+comment|/**      * The method<code>getDocumentElement</code>      *      * @return an<code>Element</code> value      */
 specifier|public
 name|Element
 name|getDocumentElement
@@ -3108,6 +3162,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>getElementsByTagName</code>      *      * @param tagname a<code>String</code> value      * @return a<code>NodeList</code> value      */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -3125,6 +3180,7 @@ name|tagname
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getElementsByTagNameNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param localName a<code>String</code> value      * @return a<code>NodeList</code> value      */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -3194,6 +3250,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>getChildCount</code>      *      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getChildCount
@@ -3203,6 +3260,7 @@ return|return
 name|children
 return|;
 block|}
+comment|/**      * The method<code>setChildCount</code>      *      * @param count an<code>int</code> value      */
 specifier|public
 name|void
 name|setChildCount
@@ -3226,6 +3284,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getEncoding</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getEncoding
@@ -3236,6 +3295,7 @@ return|return
 literal|"UTF-8"
 return|;
 block|}
+comment|/**      * The method<code>setEncoding</code>      *      * @param enc a<code>String</code> value      */
 specifier|public
 name|void
 name|setEncoding
@@ -3262,6 +3322,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>getVersion</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getVersion
@@ -3285,6 +3346,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>setVersion</code>      *      * @param version a<code>String</code> value      */
 specifier|public
 name|void
 name|setVersion
@@ -3311,6 +3373,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>getStandalone</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|getStandalone
@@ -3335,6 +3398,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>setStandalone</code>      *      * @param alone a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setStandalone
@@ -3361,6 +3425,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>createCDATASection</code>      *      * @param data a<code>String</code> value      * @return a<code>CDATASection</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|CDATASection
 name|createCDATASection
@@ -3389,6 +3454,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>createComment</code>      *      * @param data a<code>String</code> value      * @return a<code>Comment</code> value      */
 specifier|public
 name|Comment
 name|createComment
@@ -3415,6 +3481,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>createDocumentFragment</code>      *      * @return a<code>DocumentFragment</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|DocumentFragment
 name|createDocumentFragment
@@ -3440,6 +3507,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>createEntityReference</code>      *      * @param name a<code>String</code> value      * @return an<code>EntityReference</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|EntityReference
 name|createEntityReference
@@ -3468,6 +3536,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>createProcessingInstruction</code>      *      * @param target a<code>String</code> value      * @param data a<code>String</code> value      * @return a<code>ProcessingInstruction</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
@@ -3499,6 +3568,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>getElementById</code>      *      * @param elementId a<code>String</code> value      * @return an<code>Element</code> value      */
 specifier|public
 name|Element
 name|getElementById
@@ -3525,6 +3595,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>getImplementation</code>      *      * @return an<code>org.w3c.dom.DOMImplementation</code> value      */
 specifier|public
 name|org
 operator|.
@@ -3542,6 +3613,7 @@ name|StoredDOMImplementation
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>getStrictErrorChecking</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|getStrictErrorChecking
@@ -3565,6 +3637,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>adoptNode</code>      *      * @param node a<code>Node</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Node
 name|adoptNode
@@ -3593,6 +3666,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>importNode</code>      *      * @param importedNode a<code>Node</code> value      * @param deep a<code>boolean</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|Node
 name|importNode
@@ -3624,6 +3698,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>isSupported</code>      *      * @param type a<code>String</code> value      * @param value a<code>String</code> value      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|isSupported
@@ -3653,6 +3728,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>setStrictErrorChecking</code>      *      * @param strict a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setStrictErrorChecking
@@ -3679,7 +3755,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
+comment|/** ? @see org.w3c.dom.Document#getInputEncoding()      */
 specifier|public
 name|String
 name|getInputEncoding
@@ -3703,7 +3779,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlEncoding() 	 */
+comment|/** ? @see org.w3c.dom.Document#getXmlEncoding()      */
 specifier|public
 name|String
 name|getXmlEncoding
@@ -3727,7 +3803,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlStandalone() 	 */
+comment|/** ? @see org.w3c.dom.Document#getXmlStandalone()      */
 specifier|public
 name|boolean
 name|getXmlStandalone
@@ -3751,7 +3827,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean) 	 */
+comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean)      */
 specifier|public
 name|void
 name|setXmlStandalone
@@ -3780,7 +3856,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlVersion() 	 */
+comment|/** ? @see org.w3c.dom.Document#getXmlVersion()      */
 specifier|public
 name|String
 name|getXmlVersion
@@ -3804,7 +3880,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      */
 specifier|public
 name|void
 name|setXmlVersion
@@ -3833,7 +3909,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDocumentURI() 	 */
+comment|/** ? @see org.w3c.dom.Document#getDocumentURI()      */
 specifier|public
 name|String
 name|getDocumentURI
@@ -3858,7 +3934,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      */
 specifier|public
 name|void
 name|setDocumentURI
@@ -3886,7 +3962,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDomConfig() 	 */
+comment|/** ? @see org.w3c.dom.Document#getDomConfig()      */
 specifier|public
 name|DOMConfiguration
 name|getDomConfig
@@ -3910,7 +3986,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#normalizeDocument() 	 */
+comment|/** ? @see org.w3c.dom.Document#normalizeDocument()      */
 specifier|public
 name|void
 name|normalizeDocument
@@ -3934,7 +4010,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      */
 specifier|public
 name|Node
 name|renameNode
@@ -3969,7 +4045,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 specifier|public
 name|String
 name|getBaseURI
@@ -3994,7 +4070,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -4023,7 +4099,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
 specifier|public
 name|String
 name|getTextContent
@@ -4049,7 +4125,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
 specifier|public
 name|void
 name|setTextContent
@@ -4078,7 +4154,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isSameNode
@@ -4106,7 +4182,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
 specifier|public
 name|String
 name|lookupPrefix
@@ -4133,7 +4209,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -4160,7 +4236,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -4188,7 +4264,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isEqualNode
@@ -4215,7 +4291,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
 specifier|public
 name|Object
 name|getFeature
@@ -4245,7 +4321,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
 specifier|public
 name|Object
 name|setUserData
@@ -4278,7 +4354,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
 specifier|public
 name|Object
 name|getUserData
@@ -4305,6 +4381,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|toString

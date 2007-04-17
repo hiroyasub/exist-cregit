@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -10,10 +14,6 @@ operator|.
 name|dom
 package|;
 end_package
-
-begin_comment
-comment|/*  * eXist Open Source Native XML Database   * Copyright (C) 2001-04, Wolfgang M. Meier  * (wolfgang@exist-db.org)  *   * This library is free software; you can redistribute it and/or modify it under  * the terms of the GNU Library General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This library is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Library General Public License for more  * details.  *   * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  *   * $Id$  */
-end_comment
 
 begin_import
 import|import
@@ -703,7 +703,7 @@ name|LENGTH_OVERFLOW_LOCATION
 init|=
 name|LENGTH_LINK
 decl_stmt|;
-comment|/* 	 * Byte ids for the records written to the log file. 	 */
+comment|/*      * Byte ids for the records written to the log file.      */
 specifier|public
 specifier|final
 specifier|static
@@ -1251,7 +1251,7 @@ return|return
 name|dataCache
 return|;
 block|}
-comment|/** 	 * @return file version. 	 */
+comment|/**      * @return file version.      */
 specifier|public
 name|short
 name|getFileVersion
@@ -1276,7 +1276,7 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|/** 	 * Append a value to the current page. 	 *  	 * This method is called when storing a new document. Each writing thread 	 * gets its own sequence of pages for writing a document, so all document 	 * nodes are stored in sequential order. A new page will be allocated if the 	 * current page is full. If the value is larger than the page size, it will 	 * be written to an overflow page. 	 *  	 * @param value the value to append 	 * @return the virtual storage address of the value 	 */
+comment|/**      * Append a value to the current page.      *       * This method is called when storing a new document. Each writing thread      * gets its own sequence of pages for writing a document, so all document      * nodes are stored in sequential order. A new page will be allocated if the      * current page is full. If the value is larger than the page size, it will      * be written to an overflow page.      *       * @param value the value to append      * @return the virtual storage address of the value      */
 specifier|public
 name|long
 name|add
@@ -1400,7 +1400,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Append a value to the current page. If overflowPage is true, the value 	 * will be saved into its own, reserved chain of pages. The current page 	 * will just contain a link to the first overflow page. 	 *  	 * @param value 	 * @param overflowPage 	 * @return the virtual storage address of the value 	 * @throws ReadOnlyException 	 */
+comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value      * @param overflowPage      * @return the virtual storage address of the value      * @throws ReadOnlyException      */
 specifier|private
 name|long
 name|add
@@ -1883,7 +1883,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param value     Binary resource as byte array 	 */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value     Binary resource as byte array      */
 specifier|public
 name|long
 name|addBinary
@@ -1952,7 +1952,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Store a raw binary resource into the file. The data will always be 	 * written into an overflow page. 	 *  	 * @param is   Binary resource as stream. 	 */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param is   Binary resource as stream.      */
 specifier|public
 name|long
 name|addBinary
@@ -2020,7 +2020,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}. 	 *  	 * @param pageNum 	 */
+comment|/**      * Return binary data stored with {@link #addBinary(Txn, DocumentImpl, byte[])}.      *       * @param pageNum      */
 specifier|public
 name|byte
 index|[]
@@ -2114,7 +2114,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Insert a new node after the specified node. 	 *  	 * @param key 	 * @param value 	 */
+comment|/**      * Insert a new node after the specified node.      *       * @param key      * @param value      */
 specifier|public
 name|long
 name|insertAfter
@@ -2226,7 +2226,7 @@ return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
-comment|/** 	 * Insert a new node after the node located at the specified address. 	 *  	 * If the previous node is in the middle of a page, the page is split. If 	 * the node is appended at the end and the page does not have enough room 	 * for the node, a new page is added to the page sequence. 	 *  	 * @param doc 	 *                     the document to which the new node belongs. 	 * @param address 	 *                     the storage address of the node after which the new value 	 *                     should be inserted. 	 * @param value 	 *                     the value of the new node. 	 */
+comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc      *                     the document to which the new node belongs.      * @param address      *                     the storage address of the node after which the new value      *                     should be inserted.      * @param value      *                     the value of the new node.      */
 specifier|public
 name|long
 name|insertAfter
@@ -3738,7 +3738,7 @@ name|tid
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Split a data page at the position indicated by the rec parameter. 	 *  	 * The portion of the page starting at rec.offset is moved into a new page. 	 * Every moved record is marked as relocated and a link is stored into the 	 * original page to point to the new record position. 	 *  	 * @param doc 	 * @param rec 	 */
+comment|/**      * Split a data page at the position indicated by the rec parameter.      *       * The portion of the page starting at rec.offset is moved into a new page.      * Every moved record is marked as relocated and a link is stored into the      * original page to point to the new record position.      *       * @param doc      * @param rec      */
 specifier|private
 name|RecordPos
 name|splitDataPage
@@ -4892,7 +4892,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/* 			 * if the record has already been relocated, read the original 			 * storage address and update the link there. 			 */
+comment|/* 	     * if the record has already been relocated, read the original 	     * storage address and update the link there. 	     */
 if|if
 condition|(
 name|ItemId
@@ -5084,7 +5084,7 @@ name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/*              * save the record to the split page: 			 */
+comment|/*              * save the record to the split page: 	     */
 if|if
 condition|(
 name|isTransactional
@@ -6271,7 +6271,7 @@ return|return
 name|rec
 return|;
 block|}
-comment|/** 	 * Returns the number of records stored in a page. 	 *  	 * @param page 	 * @return The number of records 	 */
+comment|/**      * Returns the number of records stored in a page.      *       * @param page      * @return The number of records      */
 specifier|private
 name|short
 name|countRecordsInPage
@@ -8067,7 +8067,7 @@ comment|//			}
 comment|//		}
 comment|//		return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;
 comment|//	}
-comment|/** 	 * Find a node by searching for a known ancestor in the index. If an 	 * ancestor is found, it is traversed to locate the specified descendant 	 * node. 	 * 	 * @param lockObject 	 * @param node 	 * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found. 	 * @throws IOException 	 * @throws BTreeException 	 */
+comment|/**      * Find a node by searching for a known ancestor in the index. If an      * ancestor is found, it is traversed to locate the specified descendant      * node.      *      * @param lockObject      * @param node      * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found.      * @throws IOException      * @throws BTreeException      */
 comment|//	protected long findValue2(Object lockObject, NodeProxy node) throws IOException,
 comment|//			BTreeException {
 comment|//		if (!lock.hasLock())
@@ -8470,7 +8470,7 @@ return|return
 name|p
 return|;
 block|}
-comment|/** 	 * Find matching nodes for the given query. 	 *  	 * @param query 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 * @exception IOException 	 *                           Description of the Exception 	 * @exception BTreeException 	 *                           Description of the Exception 	 */
+comment|/**      * Find matching nodes for the given query.      *       * @param query      *                     Description of the Parameter      * @return Description of the Return Value      * @exception IOException      *                           Description of the Exception      * @exception BTreeException      *                           Description of the Exception      */
 specifier|public
 name|ArrayList
 name|findValues
@@ -8541,7 +8541,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Flush all buffers to disk. 	 *  	 * @return Description of the Return Value 	 * @exception DBException 	 *                           Description of the Exception 	 */
+comment|/**      * Flush all buffers to disk.      *       * @return Description of the Return Value      * @exception DBException      *                           Description of the Exception      */
 specifier|public
 name|boolean
 name|flush
@@ -8839,7 +8839,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Retrieve a node by key 	 *  	 * @param key 	 * @return Description of the Return Value 	 */
+comment|/**      * Retrieve a node by key      *       * @param key      * @return Description of the Return Value      */
 specifier|public
 name|Value
 name|get
@@ -8937,7 +8937,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * Retrieve a node described by the given NodeProxy. 	 *  	 * @param node 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 */
+comment|/**      * Retrieve a node described by the given NodeProxy.      *       * @param node      *                     Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|Value
 name|get
@@ -9039,7 +9039,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * Retrieve node at virtual address p. 	 *  	 * @param p 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 */
+comment|/**      * Retrieve node at virtual address p.      *       * @param p      *                     Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|Value
 name|get
@@ -9346,7 +9346,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Set the last page in the sequence to which nodes are currently appended. 	 *  	 * @param page 	 *                     The new currentPage value 	 */
+comment|/**      * Set the last page in the sequence to which nodes are currently appended.      *       * @param page      *                     The new currentPage value      */
 specifier|private
 specifier|final
 name|void
@@ -9397,7 +9397,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve the last page in the current sequence. 	 *  	 * @return The currentPage value 	 */
+comment|/**      * Retrieve the last page in the current sequence.      *       * @return The currentPage value      */
 specifier|private
 specifier|final
 name|DOMPage
@@ -9511,7 +9511,7 @@ name|pnum
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Retrieve the page with page number p 	 *  	 * @param p 	 *                     Description of the Parameter 	 * @return The currentPage value 	 */
+comment|/**      * Retrieve the page with page number p      *       * @param p      *                     Description of the Parameter      * @return The currentPage value      */
 specifier|protected
 specifier|final
 name|DOMPage
@@ -9585,7 +9585,7 @@ expr_stmt|;
 comment|// SanityCheck.TRACE("current doc closed by: " + owner +
 comment|// "; thread: " + Thread.currentThread().getName());
 block|}
-comment|/** 	 * Open the file. 	 *  	 * @return Description of the Return Value 	 * @exception DBException 	 *                           Description of the Exception 	 */
+comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException      *                           Description of the Exception      */
 specifier|public
 name|boolean
 name|open
@@ -9602,7 +9602,7 @@ name|FILE_FORMAT_VERSION_ID
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Put a new key/value pair. 	 *  	 * @param key 	 *                     Description of the Parameter 	 * @param value 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 */
+comment|/**      * Put a new key/value pair.      *       * @param key      *                     Description of the Parameter      * @param value      *                     Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|long
 name|put
@@ -9696,7 +9696,7 @@ return|return
 name|p
 return|;
 block|}
-comment|/** 	 * Physically remove a node. The data of the node will be removed from the 	 * page and the occupied space is freed. 	 */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
 specifier|public
 name|void
 name|remove
@@ -9822,7 +9822,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Remove the link at the specified position from the file. 	 *  	 * @param p 	 */
+comment|/**      * Remove the link at the specified position from the file.      *       * @param p      */
 specifier|private
 name|void
 name|removeLink
@@ -10165,7 +10165,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Physically remove a node. The data of the node will be removed from the 	 * page and the occupied space is freed. 	 *  	 * @param p 	 */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *       * @param p      */
 specifier|public
 name|void
 name|removeNode
@@ -10803,7 +10803,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Physically remove a node. The data of the node will be removed from the 	 * page and the occupied space is freed. 	 */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
 specifier|public
 name|void
 name|remove
@@ -10889,7 +10889,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Remove the specified page. The page is added to the list of free pages. 	 *  	 * @param page 	 */
+comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page      */
 specifier|private
 name|void
 name|removePage
@@ -11126,7 +11126,7 @@ name|decPageCount
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Remove a sequence of pages, starting with the page denoted by the passed 	 * address pointer p. 	 *  	 * @param transaction 	 * @param p 	 */
+comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      *       * @param transaction      * @param p      */
 specifier|public
 name|void
 name|removeAll
@@ -11524,7 +11524,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the active Lock object for this file. 	 *  	 * @see org.exist.util.Lockable#getLock() 	 */
+comment|/**      * Get the active Lock object for this file.      *       * @see org.exist.util.Lockable#getLock()      */
 specifier|public
 specifier|final
 name|Lock
@@ -11535,7 +11535,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/** 	 * The current object owning this file. 	 *  	 * @param obj 	 *                     The new ownerObject value 	 */
+comment|/**      * The current object owning this file.      *       * @param obj      *                     The new ownerObject value      */
 specifier|public
 specifier|synchronized
 specifier|final
@@ -11563,13 +11563,13 @@ literal|"setOwnerObject(null)"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 		if (owner != null&& owner != obj) { 			if (!(obj instanceof NativeBroker)) 				LOG.warn("changing owner from " + owner + " to " + obj);			 		} 		*/
+comment|/* 	  if (owner != null&& owner != obj) { 	  if (!(obj instanceof NativeBroker)) 	  LOG.warn("changing owner from " + owner + " to " + obj);			 	  } 	*/
 name|owner
 operator|=
 name|obj
 expr_stmt|;
 block|}
-comment|/** 	 * Update the key/value pair. 	 *  	 * @param key 	 *                     Description of the Parameter 	 * @param value 	 *                     Description of the Parameter 	 * @return Description of the Return Value 	 */
+comment|/**      * Update the key/value pair.      *       * @param key      *                     Description of the Parameter      * @param value      *                     Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|boolean
 name|update
@@ -11918,7 +11918,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve the string value of the specified node. This is an optimized low-level method 	 * which will directly traverse the stored DOM nodes and collect the string values of 	 * the specified root node and all its descendants. By directly scanning the stored 	 * node data, we do not need to create a potentially large amount of node objects 	 * and thus save memory and time for garbage collection.  	 *  	 * @param node 	 * @return string value of the specified node 	 */
+comment|/**      * Retrieve the string value of the specified node. This is an optimized low-level method      * which will directly traverse the stored DOM nodes and collect the string values of      * the specified root node and all its descendants. By directly scanning the stored      * node data, we do not need to create a potentially large amount of node objects      * and thus save memory and time for garbage collection.       *       * @param node      * @return string value of the specified node      */
 specifier|public
 name|String
 name|getNodeValue
@@ -12160,7 +12160,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Recursive method to retrieve the string values of the root node 	 * and all its descendants. 	 */
+comment|/**      * Recursive method to retrieve the string values of the root node      * and all its descendants.      */
 specifier|private
 name|void
 name|getNodeValue
@@ -12969,7 +12969,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Find a record within the page or the pages linked to it. 	 *  	 * @param p 	 * @return The record position in the page 	 */
+comment|/**      * Find a record within the page or the pages linked to it.      *       * @param p      * @return The record position in the page      */
 specifier|protected
 name|RecordPos
 name|findRecord
@@ -13160,7 +13160,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* 	 * --------------------------------------------------------------------------------- 	 * Methods used by recovery and transaction management 	 * --------------------------------------------------------------------------------- 	 */
+comment|/*      * ---------------------------------------------------------------------------------      * Methods used by recovery and transaction management      * ---------------------------------------------------------------------------------      */
 specifier|private
 name|boolean
 name|requiresRedo
@@ -19403,7 +19403,7 @@ return|return
 name|rec
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getKey() 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getKey() 	 */
 specifier|public
 name|long
 name|getKey
@@ -19416,7 +19416,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 	 */
 specifier|public
 name|int
 name|getReferenceCount
@@ -19462,7 +19462,7 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 	 */
 specifier|public
 name|void
 name|setReferenceCount
@@ -19476,7 +19476,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 	 */
 specifier|public
 name|void
 name|setTimestamp
@@ -19492,7 +19492,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getTimestamp() 	 */
 specifier|public
 name|int
 name|getTimestamp
@@ -19769,7 +19769,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#allowUnload() 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#allowUnload() 	 */
 specifier|public
 name|boolean
 name|allowUnload
@@ -19779,7 +19779,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.lang.Object#equals(java.lang.Object) 		 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
 name|boolean
 name|equals
@@ -19826,7 +19826,7 @@ return|return
 name|invalidated
 return|;
 block|}
-comment|/** 		 * Walk through the page after records have been removed. Set the tid 		 * counter to the next spare id that can be used for following 		 * insertions. 		 */
+comment|/** 	 * Walk through the page after records have been removed. Set the tid 	 * counter to the next spare id that can be used for following 	 * insertions. 	 */
 specifier|public
 name|void
 name|cleanUp
@@ -20017,10 +20017,10 @@ name|maxTID
 argument_list|)
 expr_stmt|;
 comment|//Uncommented because of recovery runs where both are not in sync
-comment|/* 			if (ph.getRecordCount() != recordCount) 				LOG.warn("page record count differs from computed record count"); 			*/
+comment|/* 	      if (ph.getRecordCount() != recordCount) 	      LOG.warn("page record count differs from computed record count"); 	    */
 block|}
 block|}
-comment|/** 	 * This represents an overflow page. Overflow pages are created if the node 	 * data exceeds the size of one page. An overflow page is a sequence of 	 * DOMPages. 	 *  	 * @author wolf 	 *  	 */
+comment|/**      * This represents an overflow page. Overflow pages are created if the node      * data exceeds the size of one page. An overflow page is a sequence of      * DOMPages.      *       * @author wolf      *       */
 specifier|protected
 specifier|final
 class|class

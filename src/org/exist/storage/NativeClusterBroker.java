@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created by Francesco Mondora.  *  * @author Francesco Mondora aka Makkina  * @author Michele Danieli aka mdanieli  *         Date: 13-dic-2004  *         Time: 17.12.51  *         Revision $Revision$  */
+comment|/**  * Created by Francesco Mondora.  *  * @author Francesco Mondora aka Makkina  * @author Michele Danieli aka mdanieli  *         Date: 13-dic-2004  *         Time: 17.12.51  *         Revision $Revision: 5432 $  */
 end_comment
 
 begin_class

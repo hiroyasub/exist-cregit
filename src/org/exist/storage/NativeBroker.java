@@ -2713,7 +2713,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*     private String getOldNodeContent(StoredNode node, long oldAddress) {         NodeProxy p = new NodeProxy(node);         if (oldAddress != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)             p.setInternalAddress(oldAddress);         String content = getNodeValue(node, false);         //Curious... I assume getNodeValue() needs the old address         p.setInternalAddress(node.getInternalAddress());         return content;     }*/
+comment|/*       private String getOldNodeContent(StoredNode node, long oldAddress) {       NodeProxy p = new NodeProxy(node);       if (oldAddress != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)       p.setInternalAddress(oldAddress);       String content = getNodeValue(node, false);       //Curious... I assume getNodeValue() needs the old address       p.setInternalAddress(node.getInternalAddress());       return content;       }*/
 comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode(Txn, StoredNode, NodePath, String)}. */
 specifier|public
 name|void
@@ -3892,7 +3892,7 @@ name|lockMode
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Get collection object. If the collection does not exist, null is 	 *  returned. 	 * 	 *@param  uri  collection URI 	 *@return       The collection value 	 */
+comment|/**      *  Get collection object. If the collection does not exist, null is      *  returned.      *      *@param  uri  collection URI      *@return       The collection value      */
 specifier|private
 name|Collection
 name|openCollection
@@ -11300,7 +11300,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Release the document id reserved for a document so it 	 * can be reused. 	 *  	 * @param id 	 * @throws PermissionDeniedException 	 */
+comment|/**      * Release the document id reserved for a document so it      * can be reused.      *       * @param id      * @throws PermissionDeniedException      */
 specifier|protected
 name|void
 name|freeResourceId
@@ -11518,7 +11518,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Get the next unused document id. If a document is removed, its doc id is 	 * released, so it can be reused. 	 *  	 * @return Next unused document id 	 * @throws ReadOnlyException 	 */
+comment|/**      * Get the next unused document id. If a document is removed, its doc id is      * released, so it can be reused.      *       * @return Next unused document id      * @throws ReadOnlyException      */
 specifier|public
 name|int
 name|getFreeResourceId
