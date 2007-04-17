@@ -2053,6 +2053,9 @@ name|writer
 parameter_list|,
 name|Value
 name|value
+parameter_list|,
+name|int
+name|status
 parameter_list|)
 throws|throws
 name|IOException
@@ -7034,6 +7037,11 @@ argument_list|(
 name|writer
 argument_list|,
 name|prefix
+argument_list|,
+name|ph
+operator|.
+name|getStatus
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
@@ -7109,6 +7117,11 @@ name|keys
 index|[
 name|i
 index|]
+argument_list|,
+name|ph
+operator|.
+name|getStatus
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
