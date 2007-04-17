@@ -219,6 +219,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
 comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retreives details of job's that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
@@ -770,6 +782,8 @@ argument_list|(
 literal|"</scheduler:jobs>"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 return|return
 name|ModuleUtils
 operator|.
@@ -783,6 +797,21 @@ name|toString
 argument_list|()
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXException
+name|se
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|se
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class

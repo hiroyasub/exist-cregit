@@ -253,6 +253,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
 comment|/**  * eXist SQL Module Extension ExecuteFunction   *   * Execute a sql statement against a sql db  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-24  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
@@ -867,6 +879,20 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+name|SAXException
+name|se
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|se
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|SQLException
 name|e
 parameter_list|)
@@ -876,9 +902,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 throw|;
 block|}
