@@ -2689,31 +2689,6 @@ block|}
 comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
-comment|// remove temporary docs
-try|try
-block|{
-name|broker
-operator|.
-name|cleanUpTempCollection
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Can not cleaup tempcollection"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 comment|//create the security manager
 comment|//TODO : why only the first broker has a security manager ? Global or attached to each broker ?
 comment|// WM: there's only one security manager per BrokerPool, but it needs a DBBroker instance to read
@@ -2771,15 +2746,6 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|//Create a default configuration file for the root collection
-comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
-name|collectionConfigurationManager
-operator|.
-name|checkRootCollectionConfig
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 if|if
@@ -2826,24 +2792,37 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//Create the minimal number of brokers required by the configuration
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<
-name|minBrokers
-condition|;
-name|i
-operator|++
-control|)
-name|createBroker
+comment|//OK : the DB is repaired; let's make a few RW operations
+comment|// remove temporary docs
+try|try
+block|{
+name|broker
+operator|.
+name|cleanUpTempCollection
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Can not cleanup temp collection"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+comment|//Create a default configuration file for the root collection
+comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
+comment|//TODO : understand why we get a test suite failure
+comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(broker);
+comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
 comment|//Schedule the system tasks
 for|for
 control|(
@@ -2893,6 +2872,24 @@ block|}
 name|systemTasksPeriods
 operator|=
 literal|null
+expr_stmt|;
+comment|//Create the minimal number of brokers required by the configuration
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|minBrokers
+condition|;
+name|i
+operator|++
+control|)
+name|createBroker
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
