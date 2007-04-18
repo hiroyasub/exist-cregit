@@ -285,6 +285,26 @@ operator|.
 name|CONFIG_COLLECTION
 argument_list|)
 decl_stmt|;
+comment|//TODO : create using resolve()
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|ROOT_COLLECTION_CONFIG_URI
+init|=
+name|create
+argument_list|(
+name|CollectionConfigurationManager
+operator|.
+name|CONFIG_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION_NAME
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static

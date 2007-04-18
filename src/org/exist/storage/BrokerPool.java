@@ -2771,6 +2771,15 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+comment|//Create a default configuration file for the root collection
+comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
+name|collectionConfigurationManager
+operator|.
+name|checkRootCollectionConfig
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 if|if
