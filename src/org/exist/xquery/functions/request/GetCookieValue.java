@@ -399,6 +399,13 @@ operator|.
 name|getCookies
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|cookies
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -445,6 +452,7 @@ name|getValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 return|return
