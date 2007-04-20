@@ -100,6 +100,15 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|UNKKNOWN
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|STORE
 init|=
 literal|0

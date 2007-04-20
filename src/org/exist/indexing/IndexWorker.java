@@ -154,7 +154,7 @@ name|void
 name|flush
 parameter_list|()
 function_decl|;
-comment|/**      * Return a stream listener to index the specified document. There will never be more than one      * StreamListener being used per thread, so it is safe for the implementation to reuse a      * single StreamListener.      *      * Parameter mode specifies the type of the current operation.       *      * @param mode one of {@link StreamListener#STORE} or {@link StreamListener#REMOVE}      * @param document the document to be indexed.      * @return a StreamListener      */
+comment|/**      * Return a stream listener to index the specified document in the specified mode.       * There will never be more than one StreamListener being used per thread, so it is safe       * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.       *      * @param mode one of {@link StreamListener#STORE} or {@link StreamListener#REMOVE}      * @param document the document to be indexed.      * @return a StreamListener      */
 name|StreamListener
 name|getListener
 parameter_list|(

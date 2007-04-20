@@ -230,6 +230,14 @@ name|reindexNode
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|int
+name|currentMode
+init|=
+name|StreamListener
+operator|.
+name|UNKKNOWN
+decl_stmt|;
 specifier|public
 name|IndexController
 parameter_list|(
@@ -310,7 +318,7 @@ name|indexId
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured.      *      * @param document      * @param mode      * @return chain of StreamListeners      */
+comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.        *      * @param document      * @param mode      * @return chain of StreamListeners      */
 specifier|public
 name|StreamListener
 name|getStreamListener
@@ -323,6 +331,18 @@ name|mode
 parameter_list|)
 block|{
 if|if
+condition|(
+name|currentMode
+operator|!=
+name|mode
+condition|)
+block|{
+name|currentMode
+operator|=
+name|mode
+expr_stmt|;
+block|}
+if|else if
 condition|(
 name|listener
 operator|!=
