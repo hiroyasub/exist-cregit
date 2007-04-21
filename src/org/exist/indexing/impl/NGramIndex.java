@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -115,16 +125,6 @@ name|Element
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
 begin_comment
 comment|/**  */
 end_comment
@@ -173,6 +173,12 @@ name|BFile
 name|db
 decl_stmt|;
 specifier|private
+name|String
+name|name
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|int
 name|gramSize
 init|=
@@ -211,6 +217,24 @@ name|fileName
 init|=
 literal|"ngram.dbx"
 decl_stmt|;
+if|if
+condition|(
+name|config
+operator|.
+name|hasAttribute
+argument_list|(
+literal|"id"
+argument_list|)
+condition|)
+name|name
+operator|=
+name|config
+operator|.
+name|getAttribute
+argument_list|(
+literal|"id"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|config
@@ -279,6 +303,15 @@ argument_list|,
 name|fileName
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getIndexName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
 block|}
 specifier|public
 name|void

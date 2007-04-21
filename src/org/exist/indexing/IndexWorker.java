@@ -133,6 +133,11 @@ name|String
 name|getIndexId
 parameter_list|()
 function_decl|;
+comment|/**      * Returns an name which uniquely identifies this index.      * @return a unique name identifying this index.      */
+name|String
+name|getIndexName
+parameter_list|()
+function_decl|;
 comment|/**      * Read an index configuration from an collection.xconf configuration document.      *      * This method is called by the {@link org.exist.collections.CollectionConfiguration} while      * reading the collection.xconf configuration file for a given collection. The configNodes      * parameter lists all top-level child nodes below the&lt;index&gt; element in the      * collection.xconf. The IndexWorker should scan this list and handle those elements      * it understands.      *      * The returned Object will be stored in the collection configuration structure associated      * with each collection. It can later be retrieved from the collection configuration, e.g. to      * check if a given node should be indexed or not.      *      * @param configNodes lists the top-level child nodes below the&lt;index&gt; element in collection.xconf      * @param namespaces the active prefix/namespace map      * @return an arbitrary configuration object to be kept for this index in the collection configuration      * @throws DatabaseConfigurationException if a configuration error occurs      */
 name|Object
 name|configure

@@ -72,6 +72,11 @@ specifier|public
 interface|interface
 name|Index
 block|{
+comment|/**      * Returns a name which uniquely identifies this index. This is configured by the user      * @return a unique name identifying this index.      */
+name|String
+name|getIndexName
+parameter_list|()
+function_decl|;
 comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
 name|void
 name|configure

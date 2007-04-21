@@ -451,7 +451,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|getIndexWorker
+name|getIndexWorkerById
 argument_list|(
 name|NGramIndex
 operator|.
