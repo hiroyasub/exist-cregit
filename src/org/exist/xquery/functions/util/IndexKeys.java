@@ -676,6 +676,8 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//Alternate design
+comment|//IndexWorker indexWorker = context.getBroker().getBrokerPool().getIndexManager().getIndexByName(args[4].itemAt(0).getStringValue()).getWorker();
 if|if
 condition|(
 name|indexWorker
