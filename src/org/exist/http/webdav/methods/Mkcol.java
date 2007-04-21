@@ -452,7 +452,7 @@ name|release
 argument_list|(
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
