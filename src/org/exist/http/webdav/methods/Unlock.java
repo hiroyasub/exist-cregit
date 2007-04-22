@@ -436,6 +436,8 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//TODO : release collection lock here ?
+comment|//It is used below though...
 block|}
 name|User
 name|lock
@@ -548,6 +550,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|//TODO : if the collection lock has been released
+comment|//Reacquire one here
 if|if
 condition|(
 name|resource

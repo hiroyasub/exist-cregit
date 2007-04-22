@@ -439,6 +439,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|//TODO : release collection lock here ?
 name|String
 name|destination
 init|=
@@ -945,6 +946,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|//TODO : release collection lock here ?
 name|broker
 operator|.
 name|copyXMLResource
@@ -1276,6 +1278,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|//TODO : release collection lock here ?
 name|broker
 operator|.
 name|copyCollection

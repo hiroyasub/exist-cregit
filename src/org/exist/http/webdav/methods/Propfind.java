@@ -1235,6 +1235,8 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//TODO : release collection lock here ?
+comment|//Take care however : collection is still used below
 comment|// parse the request contents
 name|DocumentBuilderFactory
 name|docFactory
@@ -2574,6 +2576,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|//Doh !
 block|}
 finally|finally
 block|{

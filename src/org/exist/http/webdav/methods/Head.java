@@ -306,6 +306,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//TODO : release collection lock here ?
 name|resource
 operator|=
 name|broker

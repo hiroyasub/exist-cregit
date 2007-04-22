@@ -438,6 +438,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|//TODO : release collection lock here ?
 name|String
 name|destination
 init|=
@@ -1246,6 +1247,7 @@ argument_list|,
 name|docUri
 argument_list|)
 decl_stmt|;
+comment|//TODO : release collection lock here ?
 if|if
 condition|(
 name|oldDoc
