@@ -823,10 +823,17 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-comment|// evaluate input sequence
 name|Sequence
 name|in
-init|=
+decl_stmt|;
+name|boolean
+name|fastOrderBy
+decl_stmt|;
+try|try
+block|{
+comment|// evaluate input sequence
+name|in
+operator|=
 name|inputSequence
 operator|.
 name|eval
@@ -835,7 +842,7 @@ name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|clearContext
 argument_list|(
 name|getExpressionId
@@ -1012,14 +1019,13 @@ return|;
 block|}
 block|}
 comment|// Check if we can speed up the processing of the "order by" clause.
-name|boolean
 name|fastOrderBy
-init|=
+operator|=
 name|checkOrderSpecs
 argument_list|(
 name|in
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//  PreorderedValueSequence applies the order specs to all items
 comment|// in one single processing step
 if|if
@@ -1155,7 +1161,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/* bv : special processing for groupby :                   if returnExpr is a Binding expression, pass the groupedSequence.                   Else, add item to groupedSequence and don't evaluate here !                   */
+comment|/* bv : special processing for groupby :                     if returnExpr is a Binding expression, pass the groupedSequence.                     Else, add item to groupedSequence and don't evaluate here !                     */
 if|if
 condition|(
 name|returnExpr
@@ -1221,6 +1227,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+finally|finally
+block|{
 comment|// Restore the local variable stack
 name|context
 operator|.
@@ -1229,6 +1238,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Special processing for groupBy : one return per group in groupedSequence
 if|if
 condition|(
@@ -1382,14 +1392,8 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
-comment|// Restore the local variable stack
-name|context
-operator|.
-name|popLocalVariables
-argument_list|(
-name|mark
-argument_list|)
-expr_stmt|;
+comment|//            // Restore the local variable stack
+comment|//            context.popLocalVariables(mark);
 if|if
 condition|(
 name|context

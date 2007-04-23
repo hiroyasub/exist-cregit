@@ -707,7 +707,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 name|LocalVariable
-name|mark
+name|mark0
 init|=
 name|context
 operator|.
@@ -734,6 +734,16 @@ name|i
 operator|++
 control|)
 block|{
+name|LocalVariable
+name|mark1
+init|=
+name|context
+operator|.
+name|markLocalVariables
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
 name|Case
 name|next
 init|=
@@ -797,7 +807,7 @@ name|context
 operator|.
 name|popLocalVariables
 argument_list|(
-name|mark
+name|mark1
 argument_list|)
 expr_stmt|;
 block|}
@@ -842,7 +852,7 @@ name|context
 operator|.
 name|popLocalVariables
 argument_list|(
-name|mark
+name|mark0
 argument_list|)
 expr_stmt|;
 block|}
