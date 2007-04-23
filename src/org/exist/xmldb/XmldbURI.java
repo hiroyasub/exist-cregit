@@ -2914,6 +2914,8 @@ argument_list|()
 return|;
 block|}
 comment|//TODO: add unit test for this
+comment|//TODO : come on ! use a URI method name.
+comment|//resolve() is a must here
 specifier|public
 name|boolean
 name|startsWith
@@ -2943,6 +2945,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|//TODO : come on ! use a URI method name.
+comment|//resolve() is a must here
 specifier|public
 name|boolean
 name|startsWith

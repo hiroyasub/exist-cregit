@@ -142,17 +142,6 @@ name|StreamListener
 name|getNextInChain
 parameter_list|()
 function_decl|;
-comment|/**      * Reset this listener to operate on the specified document, using the mode      * given. mode will be one of {@link #STORE}, {@link #REMOVE} or      * {@link #REMOVE_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
-name|void
-name|setDocument
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|int
-name|mode
-parameter_list|)
-function_decl|;
 comment|/**      * Processed the opening tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
 name|void
 name|startElement
