@@ -1465,9 +1465,8 @@ name|ctx
 operator|.
 name|variableStackSize
 operator|=
-name|this
-operator|.
-name|variableStackSize
+name|getCurrentStackSize
+argument_list|()
 expr_stmt|;
 name|ctx
 operator|.
@@ -3786,7 +3785,8 @@ name|var
 operator|.
 name|setStackPosition
 argument_list|(
-name|variableStackSize
+name|getCurrentStackSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -3820,7 +3820,8 @@ name|var
 operator|.
 name|setStackPosition
 argument_list|(
-name|variableStackSize
+name|getCurrentStackSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
