@@ -3963,7 +3963,13 @@ name|int
 name|mode
 parameter_list|)
 block|{
-comment|//setDocument(document, mode);
+name|setDocument
+argument_list|(
+name|document
+argument_list|,
+name|mode
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
