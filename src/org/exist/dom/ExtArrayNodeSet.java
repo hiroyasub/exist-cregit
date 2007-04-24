@@ -1613,6 +1613,7 @@ name|part
 operator|!=
 literal|null
 condition|)
+block|{
 name|part
 operator|.
 name|getDescendantsInSet
@@ -1630,6 +1631,7 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -2103,6 +2105,7 @@ name|al
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 return|return
 name|super
 operator|.
@@ -2117,6 +2120,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -3813,7 +3817,7 @@ return|return
 name|ancestor
 return|;
 block|}
-comment|/**          * Find all nodes in the current set being children or descendants of the given parent          * node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
+comment|/**          * Find all nodes in the current set being children or descendants of  	 * the given parent node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
 name|NodeSet
 name|getDescendantsInSet
 parameter_list|(
@@ -3998,7 +4002,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            					parent.addContextNode(contextId, array[i]);
+block|{
+comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -4011,7 +4016,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4022,6 +4029,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4048,8 +4056,8 @@ block|}
 block|}
 else|else
 block|{
-comment|// do a binary search to pick some node in the range of valid child
-comment|// ids
+comment|// do a binary search to pick some node in the range of valid
+comment|// child ids
 name|int
 name|low
 init|=
@@ -4106,8 +4114,10 @@ argument_list|(
 name|parentId
 argument_list|)
 condition|)
+block|{
 break|break;
 comment|// found a child node, break out.
+block|}
 name|cmp
 operator|=
 name|p
@@ -4126,13 +4136,16 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
@@ -4140,16 +4153,19 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|low
 operator|>
 name|high
 condition|)
+block|{
 return|return
 name|result
 return|;
 comment|// no node found
+block|}
 comment|// find the first child node in the range
 while|while
 condition|(
@@ -4172,11 +4188,14 @@ argument_list|(
 name|parentId
 argument_list|)
 operator|>
-literal|0
+operator|-
+literal|1
 condition|)
+block|{
 operator|--
 name|mid
 expr_stmt|;
+block|}
 comment|// walk through the range of child nodes we found
 for|for
 control|(
@@ -4268,7 +4287,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            						array[i].addContextNode(contextId, parent);
+block|{
+comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
@@ -4281,7 +4301,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|array
 index|[
 name|i
@@ -4292,6 +4314,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|array
 index|[
 name|i
@@ -4374,7 +4397,9 @@ block|}
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 return|return
