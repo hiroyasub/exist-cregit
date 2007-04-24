@@ -234,6 +234,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Sequence result = new DayTimeDurationValue(TimeUtils.getInstance().getLocalTimezoneOffsetMillis());
+comment|//TODO : very ugly workaround that makes implicit-timeout() stable
+comment|//and independant from the context's implicit time zone
+comment|//not counting that its stability might be discussed
 name|Sequence
 name|result
 init|=
