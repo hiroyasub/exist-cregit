@@ -242,7 +242,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|Index
+name|AbstractIndex
 operator|.
 name|class
 operator|.
@@ -262,7 +262,7 @@ name|className
 operator|+
 literal|" does not implement "
 operator|+
-name|Index
+name|AbstractIndex
 operator|.
 name|class
 operator|.
@@ -271,11 +271,11 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|Index
+name|AbstractIndex
 name|index
 init|=
 operator|(
-name|Index
+name|AbstractIndex
 operator|)
 name|clazz
 operator|.
@@ -463,9 +463,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//Awfully tricky !
-try|try
-block|{
 if|if
 condition|(
 name|indexId
@@ -474,27 +471,14 @@ name|equals
 argument_list|(
 name|indexer
 operator|.
-name|getClass
+name|getIndexId
 argument_list|()
-operator|.
-name|getField
-argument_list|(
-literal|"ID"
-argument_list|)
 argument_list|)
 condition|)
 empty_stmt|;
 return|return
 name|indexer
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchFieldException
-name|e
-parameter_list|)
-block|{
-block|}
 block|}
 return|return
 literal|null

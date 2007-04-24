@@ -1820,7 +1820,8 @@ name|nodeId
 init|=
 name|index
 operator|.
-name|pool
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getNodeFactory
 argument_list|()
@@ -4872,7 +4873,8 @@ name|nodeId
 init|=
 name|index
 operator|.
-name|pool
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getNodeFactory
 argument_list|()
@@ -5429,7 +5431,8 @@ name|nodeId
 init|=
 name|index
 operator|.
-name|pool
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getNodeFactory
 argument_list|()

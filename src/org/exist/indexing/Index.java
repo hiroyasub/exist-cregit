@@ -77,6 +77,15 @@ name|String
 name|getIndexName
 parameter_list|()
 function_decl|;
+comment|/**      * Returns an id which uniquely identifies this index. This is usually the class name      * @return a unique name identifying this index.      */
+name|String
+name|getIndexId
+parameter_list|()
+function_decl|;
+name|BrokerPool
+name|getBrokerPool
+parameter_list|()
+function_decl|;
 comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
 name|void
 name|configure
