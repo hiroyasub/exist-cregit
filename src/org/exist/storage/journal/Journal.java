@@ -1658,6 +1658,16 @@ name|endsWith
 argument_list|(
 name|LOG_FILE_SUFFIX
 argument_list|)
+operator|&&
+operator|!
+name|name
+operator|.
+name|endsWith
+argument_list|(
+literal|"_index."
+operator|+
+name|LOG_FILE_SUFFIX
+argument_list|)
 return|;
 block|}
 block|}
