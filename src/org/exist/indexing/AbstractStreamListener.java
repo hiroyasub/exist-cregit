@@ -69,6 +69,7 @@ end_comment
 
 begin_class
 specifier|public
+specifier|abstract
 class|class
 name|AbstractStreamListener
 implements|implements
@@ -254,14 +255,11 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+specifier|abstract
 name|IndexWorker
 name|getWorker
 parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
+function_decl|;
 block|}
 end_class
 
