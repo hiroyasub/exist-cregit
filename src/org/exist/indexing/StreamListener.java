@@ -198,6 +198,11 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
+specifier|public
+name|IndexWorker
+name|getWorker
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

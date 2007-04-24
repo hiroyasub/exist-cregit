@@ -253,6 +253,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|IndexWorker
+name|getWorker
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

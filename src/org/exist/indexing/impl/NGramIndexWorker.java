@@ -4261,6 +4261,17 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|IndexWorker
+name|getWorker
+parameter_list|()
+block|{
+return|return
+name|NGramIndexWorker
+operator|.
+name|this
+return|;
+block|}
 block|}
 specifier|private
 class|class
