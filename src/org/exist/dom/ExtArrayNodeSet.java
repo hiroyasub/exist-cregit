@@ -408,9 +408,11 @@ argument_list|()
 operator|==
 name|lastDoc
 condition|)
+block|{
 return|return
 name|lastPart
 return|;
+block|}
 name|int
 name|idx
 init|=
@@ -997,7 +999,9 @@ name|itemType
 operator|==
 name|type
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|itemType
@@ -1006,17 +1010,21 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|itemType
 operator|=
 name|type
 expr_stmt|;
+block|}
 else|else
+block|{
 name|itemType
 operator|=
 name|Type
 operator|.
 name|NODE
 expr_stmt|;
+block|}
 block|}
 comment|/**      * The method<code>getItemType</code>      *      * @return an<code>int</code> value      */
 specifier|public
@@ -1103,9 +1111,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtArrayIterator
@@ -1141,9 +1151,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtArrayIterator
@@ -1161,9 +1173,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtDocIterator
@@ -3181,7 +3195,7 @@ comment|// just check if this node has already been added. We only
 comment|// check the last entry, which should avoid most of the likely
 comment|// duplicates. The remaining duplicates are removed by
 comment|// removeDuplicates().
-comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) : 		NodeId nodeId = p.getNodeId(); 		if (!NodeId.ROOT_NODE.equals(nodeId)) { 			if (length> 0&& 				array[length - 1].getNodeId().equals(nodeId)) {		  		*/
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) : 	       NodeId nodeId = p.getNodeId(); 	       if (!NodeId.ROOT_NODE.equals(nodeId)) { 	       if (length> 0&& 	       array[length - 1].getNodeId().equals(nodeId)) {		  	    */
 if|if
 condition|(
 name|length
@@ -3369,28 +3383,34 @@ name|cmp
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|p
 return|;
+block|}
 if|if
 condition|(
 name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|null
@@ -3407,9 +3427,11 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|array
 index|[
@@ -3444,7 +3466,9 @@ if|if
 condition|(
 name|isSorted
 condition|)
+block|{
 return|return;
+block|}
 name|FastQSort
 operator|.
 name|sortByNodeId
@@ -3542,9 +3566,11 @@ if|else if
 condition|(
 name|directParent
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|nodeId
 operator|=
 name|nodeId
@@ -3632,8 +3658,10 @@ argument_list|(
 name|ancestorId
 argument_list|)
 condition|)
+block|{
 break|break;
 comment|// found a child node, break out.
+block|}
 name|cmp
 operator|=
 name|id
@@ -3649,13 +3677,16 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
@@ -3663,16 +3694,19 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|low
 operator|>
 name|high
 condition|)
+block|{
 return|return
 literal|null
 return|;
 comment|// no node found
+block|}
 comment|// find the first child node in the range
 while|while
 condition|(
@@ -3697,9 +3731,11 @@ argument_list|)
 operator|>=
 literal|0
 condition|)
+block|{
 operator|--
 name|mid
 expr_stmt|;
+block|}
 name|NodeProxy
 name|ancestor
 init|=
@@ -3767,10 +3803,12 @@ name|NodeId
 operator|.
 name|IS_SELF
 condition|)
+block|{
 name|add
 operator|=
 name|includeSelf
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|add
@@ -3784,6 +3822,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|deepCopyContext
@@ -3796,7 +3835,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -3807,7 +3848,8 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-comment|//                        ancestor.addMatches(array[i]);
+comment|//ancestor.addMatches(array[i]);
+block|}
 block|}
 block|}
 else|else
@@ -3944,6 +3986,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
+comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
@@ -3956,8 +4000,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
-comment|//            					array[i].addContextNode(contextId, parent);
+block|}
 else|else
+block|{
 name|array
 index|[
 name|i
@@ -3968,6 +4013,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|array
 index|[
 name|i
@@ -4244,6 +4290,7 @@ if|if
 condition|(
 name|childOnly
 condition|)
+block|{
 name|add
 operator|=
 name|cmp
@@ -4252,6 +4299,7 @@ name|NodeId
 operator|.
 name|IS_CHILD
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|cmp
@@ -4260,10 +4308,12 @@ name|NodeId
 operator|.
 name|IS_SELF
 condition|)
+block|{
 name|add
 operator|=
 name|includeSelf
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|add
@@ -4349,7 +4399,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            						parent.addContextNode(contextId, array[i]);
+block|{
+comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -4362,7 +4413,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4373,6 +4426,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4419,8 +4473,6 @@ name|j
 init|=
 literal|0
 decl_stmt|;
-comment|// If NodeId.ROOT_NODE.equals(iOrjNodeId)
-comment|// just keep them all /ljo
 for|for
 control|(
 name|int
@@ -4436,7 +4488,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|/* 		ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :         NodeId ithId= array[i].getNodeId(); 		NodeId jthId= array[j].getNodeId(); 		if (NodeId.ROOT_NODE.equals(ithId) || 		    NodeId.ROOT_NODE.equals(jthId)) { 		    j++; 		    continue; 		} else { 		    if (!ithId.equals(jthId)) { 		*/
 if|if
 condition|(
 operator|!
@@ -4467,6 +4518,7 @@ operator|!=
 operator|++
 name|j
 condition|)
+block|{
 name|array
 index|[
 name|j
@@ -4477,6 +4529,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -4498,7 +4551,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//} //ljo's modification
 name|length
 operator|=
 operator|++
@@ -4737,6 +4789,7 @@ name|partPos
 operator|<
 name|partCount
 condition|)
+block|{
 name|currentPart
 operator|=
 name|parts
@@ -4744,6 +4797,7 @@ index|[
 name|partPos
 index|]
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentPart
@@ -4756,6 +4810,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|next
 operator|=
 name|currentPart
@@ -4765,6 +4820,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * The method<code>setPosition</code> 	 * 	 * @param proxy a<code>NodeProxy</code> value 	 */
 specifier|public
@@ -4893,19 +4949,23 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 block|}
 name|next
