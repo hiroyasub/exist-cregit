@@ -749,7 +749,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testCompareFail6
+name|testCompareSucceeds5
 parameter_list|()
 throws|throws
 name|XPathException
@@ -803,7 +803,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testCompareFail7
+name|testCompareSucceeds6
 parameter_list|()
 throws|throws
 name|XPathException
@@ -857,7 +857,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testCompareFail8
+name|testCompareSucceeds7
 parameter_list|()
 throws|throws
 name|XPathException
