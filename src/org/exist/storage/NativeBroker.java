@@ -10971,7 +10971,7 @@ name|document
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE
+name|REMOVE_ALL_NODES
 argument_list|)
 expr_stmt|;
 name|StreamListener
@@ -10985,7 +10985,7 @@ name|document
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE
+name|REMOVE_ALL_NODES
 argument_list|)
 decl_stmt|;
 name|NodeList

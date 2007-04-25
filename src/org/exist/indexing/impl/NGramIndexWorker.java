@@ -1044,7 +1044,7 @@ break|break;
 case|case
 name|StreamListener
 operator|.
-name|REMOVE
+name|REMOVE_ALL_NODES
 case|:
 case|case
 name|StreamListener
@@ -1772,7 +1772,7 @@ name|mode
 operator|==
 name|StreamListener
 operator|.
-name|REMOVE
+name|REMOVE_ALL_NODES
 condition|)
 block|{
 comment|// skip them
