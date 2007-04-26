@@ -513,6 +513,17 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|//return early
+if|if
+condition|(
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
 comment|// for this method to work, all items have to be nodes
 if|if
 condition|(
