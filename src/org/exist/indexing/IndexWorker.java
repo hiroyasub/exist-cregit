@@ -67,6 +67,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|DatabaseConfigurationException
@@ -171,7 +183,7 @@ name|void
 name|flush
 parameter_list|()
 function_decl|;
-comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. mode will be one of {@link #STORE}, {@link #REMOVE} or      * {@link #REMOVE_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. mode will be one of {@link StreamListener#STORE}, {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
 parameter_list|(
@@ -182,7 +194,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Return a stream listener to index the specified document in the specified mode.       * There will never be more than one StreamListener being used per thread, so it is safe       * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.       *      * @param mode one of {@link StreamListener#STORE} or {@link StreamListener#REMOVE}      * @param document the document to be indexed.      * @return a StreamListener      */
+comment|/**      * Return a stream listener to index the specified document in the specified mode.       * There will never be more than one StreamListener being used per thread, so it is safe       * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.       *      * @param mode one of {@link StreamListener#STORE}, {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}      * @param document the document to be indexed.      * @return a StreamListener      */
 name|StreamListener
 name|getListener
 parameter_list|(
