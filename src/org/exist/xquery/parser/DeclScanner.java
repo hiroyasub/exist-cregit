@@ -759,6 +759,8 @@ literal|"DECIMAL_LITERAL"
 block|,
 literal|"INTEGER_LITERAL"
 block|,
+literal|"\"schema-element\""
+block|,
 literal|"XML end tag"
 block|,
 literal|"double quote '\\\"'"

@@ -33784,6 +33784,8 @@ literal|"DECIMAL_LITERAL"
 block|,
 literal|"INTEGER_LITERAL"
 block|,
+literal|"\"schema-element\""
+block|,
 literal|"XML end tag"
 block|,
 literal|"double quote '\\\"'"
@@ -33895,7 +33897,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|128L
+literal|256L
 expr_stmt|;
 return|return
 name|data
@@ -33958,7 +33960,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|128L
+literal|256L
 expr_stmt|;
 return|return
 name|data
@@ -34021,7 +34023,7 @@ index|[
 literal|3
 index|]
 operator|=
-literal|128L
+literal|256L
 expr_stmt|;
 return|return
 name|data
