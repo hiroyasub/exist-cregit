@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -132,7 +132,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory to create new XMLReader objects on demand. The factory is used  * by {@link org.exist.util.XMLReaderPool}.  *   * @author wolf  */
+comment|/**  * Factory to create new XMLReader objects on demand. The factory is used  * by {@link org.exist.util.XMLReaderPool}.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -171,13 +171,13 @@ specifier|static
 name|String
 name|PROPERTY_VALIDATION
 init|=
-literal|"indexer.validation"
+literal|"validation.mode"
 decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/**      *      */
 specifier|public
 name|XMLReaderObjectFactory
 parameter_list|(
@@ -195,7 +195,7 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.commons.pool.BasePoolableObjectFactory#makeObject() 	 */
+comment|/** (non-Javadoc)      * @see org.apache.commons.pool.BasePoolableObjectFactory#makeObject()      */
 specifier|public
 name|Object
 name|makeObject
