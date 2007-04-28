@@ -1328,7 +1328,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*             CLUSTER CONFIGURATION...              */
+comment|//Cluster configuration
 name|NodeList
 name|clusters
 init|=
@@ -1363,7 +1363,37 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*             END CLUSTER CONFIGURATION....              */
+comment|//Validation
+name|NodeList
+name|validation
+init|=
+name|doc
+operator|.
+name|getElementsByTagName
+argument_list|(
+literal|"validation"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|validation
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|configureValidation
+argument_list|(
+name|existHomeDirname
+argument_list|,
+name|doc
+argument_list|,
+name|validation
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -6171,55 +6201,6 @@ argument_list|)
 expr_stmt|;
 block|}
 name|String
-name|validation
-init|=
-name|p
-operator|.
-name|getAttribute
-argument_list|(
-literal|"validation"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|validation
-operator|!=
-literal|null
-condition|)
-block|{
-name|config
-operator|.
-name|put
-argument_list|(
-name|XMLReaderObjectFactory
-operator|.
-name|PROPERTY_VALIDATION
-argument_list|,
-name|validation
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|XMLReaderObjectFactory
-operator|.
-name|PROPERTY_VALIDATION
-operator|+
-literal|": "
-operator|+
-name|config
-operator|.
-name|get
-argument_list|(
-name|XMLReaderObjectFactory
-operator|.
-name|PROPERTY_VALIDATION
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|String
 name|tokenizer
 init|=
 name|p
@@ -6735,7 +6716,87 @@ name|modConfig
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : what does the following code makes here ??? -pb
+block|}
+specifier|private
+name|void
+name|configureValidation
+parameter_list|(
+name|String
+name|dbHome
+parameter_list|,
+name|Document
+name|doc
+parameter_list|,
+name|NodeList
+name|validation
+parameter_list|)
+throws|throws
+name|DatabaseConfigurationException
+block|{
+name|Element
+name|p
+init|=
+operator|(
+name|Element
+operator|)
+name|validation
+operator|.
+name|item
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// Determine validation mode
+name|String
+name|mode
+init|=
+name|p
+operator|.
+name|getAttribute
+argument_list|(
+literal|"mode"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|mode
+operator|!=
+literal|null
+condition|)
+block|{
+name|config
+operator|.
+name|put
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
+argument_list|,
+name|mode
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
+operator|+
+literal|": "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Extract catalogs
 name|eXistCatalogResolver
 name|resolver
 init|=
@@ -6844,7 +6905,7 @@ operator|)
 operator|.
 name|getAttribute
 argument_list|(
-literal|"file"
+literal|"uri"
 argument_list|)
 decl_stmt|;
 name|File
@@ -6885,8 +6946,6 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
-comment|// TODO dizzzz remove debug
-comment|//System.out.println("Loading catalog '"+catalogFile.getAbsolutePath()+"'.");
 try|try
 block|{
 name|resolver
@@ -7154,7 +7213,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+comment|/**      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|error
@@ -7189,7 +7248,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
+comment|/**      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|fatalError
@@ -7224,7 +7283,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+comment|/**      * (non-Javadoc)      *      * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
 specifier|public
 name|void
 name|warning
