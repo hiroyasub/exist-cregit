@@ -181,15 +181,14 @@ argument_list|)
 decl_stmt|;
 comment|/**      *  Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *      *  TODO: check for non-String and NULL values.      */
 specifier|public
-name|eXistXMLCatalogResolver
+name|void
+name|setCatalogs
 parameter_list|(
 name|List
 name|catalogs
 parameter_list|)
 block|{
-name|super
-argument_list|()
-expr_stmt|;
+comment|//        super();
 name|String
 index|[]
 name|allCatalogs

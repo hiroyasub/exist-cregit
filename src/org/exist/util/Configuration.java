@@ -351,7 +351,7 @@ name|validation
 operator|.
 name|resolver
 operator|.
-name|eXistCatalogResolver
+name|eXistXMLCatalogResolver
 import|;
 end_import
 
@@ -6718,34 +6718,6 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-comment|// TODO DWES remove next lines, resolver is not needed here.
-comment|// Create resolver
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Creating eXist catalog resolver"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"xml.catalog.verbosity"
-argument_list|,
-literal|"10"
-argument_list|)
-expr_stmt|;
-name|eXistCatalogResolver
-name|resolver
-init|=
-operator|new
-name|eXistCatalogResolver
-argument_list|(
-literal|true
-argument_list|)
-decl_stmt|;
-comment|// END
 name|Element
 name|p
 init|=
@@ -6891,7 +6863,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/// DWES Why?
+comment|/// DWES Why? makes jUnit happy
 name|webappHome
 operator|=
 operator|new
@@ -7052,58 +7024,50 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
-comment|// Register uri with catalog resolver
-comment|// TODO remove this
-try|try
-block|{
-name|resolver
-operator|.
-name|getCatalog
-argument_list|()
-operator|.
-name|parseCatalog
-argument_list|(
-operator|new
-name|URL
-argument_list|(
-name|uri
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed adding catalog uri"
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
 block|}
 block|}
-block|}
+comment|// Store all configured URI
 name|config
 operator|.
 name|put
 argument_list|(
-literal|"validation.catalog_uris"
+name|XMLReaderObjectFactory
+operator|.
+name|CATALOG_URIS
 argument_list|,
 name|allURIs
 argument_list|)
 expr_stmt|;
-comment|// TODO DWES remove asap, kept for compatibility
+comment|// TODO DWES discuss ; this should not be here?
+comment|// Create resolver
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating eXist catalog resolver"
+argument_list|)
+expr_stmt|;
+name|eXistXMLCatalogResolver
+name|resolver
+init|=
+operator|new
+name|eXistXMLCatalogResolver
+argument_list|()
+decl_stmt|;
+name|resolver
+operator|.
+name|setCatalogs
+argument_list|(
+name|allURIs
+argument_list|)
+expr_stmt|;
 name|config
 operator|.
 name|put
 argument_list|(
-literal|"resolver"
+name|XMLReaderObjectFactory
+operator|.
+name|CATALOG_RESOLVER
 argument_list|,
 name|resolver
 argument_list|)

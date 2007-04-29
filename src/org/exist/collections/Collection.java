@@ -633,6 +633,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|XMLReaderObjectFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|hashtable
 operator|.
 name|ObjectHashSet
@@ -663,7 +675,7 @@ name|validation
 operator|.
 name|resolver
 operator|.
-name|eXistCatalogResolver
+name|eXistXMLCatalogResolver
 import|;
 end_import
 
@@ -885,7 +897,7 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
-name|eXistCatalogResolver
+name|eXistXMLCatalogResolver
 name|resolver
 decl_stmt|;
 specifier|private
@@ -6872,13 +6884,15 @@ decl_stmt|;
 name|resolver
 operator|=
 operator|(
-name|eXistCatalogResolver
+name|eXistXMLCatalogResolver
 operator|)
 name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"resolver"
+name|XMLReaderObjectFactory
+operator|.
+name|CATALOG_RESOLVER
 argument_list|)
 expr_stmt|;
 return|return
