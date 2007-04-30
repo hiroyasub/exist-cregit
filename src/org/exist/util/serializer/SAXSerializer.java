@@ -107,6 +107,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|XMLString
@@ -2350,7 +2362,17 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String) 	 */
+specifier|public
+name|void
+name|highlightText
+parameter_list|(
+name|CharSequence
+name|seq
+parameter_list|)
+block|{
+comment|// not supported with this receiver
+block|}
+comment|/* (non-Javadoc)       * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String)       */
 specifier|public
 name|void
 name|startEntity
@@ -2447,6 +2469,16 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+specifier|public
+name|void
+name|setCurrentNode
+parameter_list|(
+name|StoredNode
+name|node
+parameter_list|)
+block|{
+comment|// just ignore.
 block|}
 block|}
 end_class

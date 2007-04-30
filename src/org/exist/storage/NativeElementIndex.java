@@ -4159,6 +4159,13 @@ argument_list|(
 name|ancestor
 argument_list|)
 expr_stmt|;
+name|storedNode
+operator|.
+name|addMatches
+argument_list|(
+name|ancestor
+argument_list|)
+expr_stmt|;
 block|}
 name|prevPosition
 operator|=

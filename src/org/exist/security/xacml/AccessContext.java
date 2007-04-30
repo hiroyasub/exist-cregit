@@ -181,6 +181,20 @@ argument_list|(
 literal|"XInclude"
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|AccessContext
+name|INITIALIZE
+init|=
+operator|new
+name|AccessContext
+argument_list|(
+literal|"Initialize "
+operator|+
+name|INTERNAL
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 name|String
