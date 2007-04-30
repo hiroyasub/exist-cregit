@@ -1471,7 +1471,7 @@ name|addMatch
 argument_list|(
 name|m
 operator|.
-name|clone
+name|newCopy
 argument_list|()
 argument_list|)
 expr_stmt|;
