@@ -201,6 +201,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|protocolhandler
+operator|.
+name|eXistURLStreamHandlerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|scheduler
 operator|.
 name|Scheduler
@@ -6718,6 +6730,13 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+comment|// Register custom protocol URL
+comment|// TODO DWES move to different location?
+name|eXistURLStreamHandlerFactory
+operator|.
+name|init
+argument_list|()
+expr_stmt|;
 name|Element
 name|p
 init|=
