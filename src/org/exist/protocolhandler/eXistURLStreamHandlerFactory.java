@@ -169,9 +169,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"The application has already set a factory."
-argument_list|,
-name|ex
+literal|"The JVM has already an URLStreamHandlerFactory registered, skipping..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -280,11 +278,7 @@ literal|"System property "
 operator|+
 name|JAVA_PROTOCOL_HANDLER_PKGS
 operator|+
-literal|" has not been changed because it already has "
-operator|+
-name|EXIST_PROTOCOL_HANDLER
-operator|+
-literal|" defined."
+literal|" has not been updated."
 argument_list|)
 expr_stmt|;
 block|}
