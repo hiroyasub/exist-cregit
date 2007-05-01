@@ -7000,10 +7000,13 @@ if|if
 condition|(
 name|uri
 operator|.
-name|startsWith
+name|indexOf
 argument_list|(
 literal|"${WEBAPP_HOME}"
 argument_list|)
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
 name|uri
