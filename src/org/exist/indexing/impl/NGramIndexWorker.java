@@ -4322,6 +4322,11 @@ operator|.
 name|getMatches
 argument_list|()
 expr_stmt|;
+name|setNextInChain
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 comment|/* Check if an index is defined on an ancestor of the current node.              * If yes, scan the ancestor to get the offset of the first character              * in the current node. For example, if the indexed node is&lt;a>abc&lt;b>de&lt;/b></a>              * and we query for //a[text:ngram-contains(., 'de')]/b, proxy will be a&lt;b> node, but              * the offsets of the matches are relative to the start of&lt;a>.              */
 name|NodeSet
 name|ancestors
