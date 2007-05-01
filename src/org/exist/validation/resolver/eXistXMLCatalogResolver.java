@@ -188,7 +188,20 @@ name|List
 name|catalogs
 parameter_list|)
 block|{
-comment|//        super();
+if|if
+condition|(
+name|catalogs
+operator|!=
+literal|null
+operator|&&
+name|catalogs
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|String
 index|[]
 name|allCatalogs
@@ -253,6 +266,7 @@ argument_list|(
 name|allCatalogs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * @see org.apache.xerces.util.XMLCatalogResolver#resolveEntity(String, String)      */
 specifier|public
