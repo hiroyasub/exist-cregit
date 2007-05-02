@@ -435,6 +435,40 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+if|else if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|hasMany
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: expected at most one xs:date"
+argument_list|)
+throw|;
+if|else if
+condition|(
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|hasMany
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPTY0004: expected at most one xs:time"
+argument_list|)
+throw|;
 else|else
 block|{
 name|DateValue
@@ -447,6 +481,11 @@ name|args
 index|[
 literal|0
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 name|TimeValue
 name|tv
@@ -458,6 +497,11 @@ name|args
 index|[
 literal|1
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
