@@ -322,33 +322,9 @@ return|return
 literal|true
 return|;
 block|}
-if|if
-condition|(
-name|context
-operator|.
-name|get
-argument_list|(
-name|p
-operator|.
-name|getDocument
-argument_list|()
-argument_list|,
-name|p
-operator|.
-name|getNodeId
-argument_list|()
-operator|.
-name|getParentId
-argument_list|()
-argument_list|)
-operator|!=
-literal|null
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
+comment|//	if (context.get(p.getDocument(), p.getNodeId().getParentId()) != null) {
+comment|//            return true;
+comment|//	}
 return|return
 literal|false
 return|;
