@@ -120,7 +120,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"XML validation and grammars functions."
+literal|"Functions for determining differences in XML documents."
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.ValidationModule#getNamespaceURI()          */
