@@ -88,7 +88,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Wrapper around the Xerces XMLGrammarPoolImpl, so debugging of  * actions can be monitored. Javadoc copied from xml.apache.org.  *  * @author dizzzz  * @see org.apache.xerces.xni.grammars.XMLGrammarPool  */
+comment|/**  *  Wrapper around the Xerces XMLGrammarPoolImpl, so debugging of  * actions can be monitored. Javadoc copied from xml.apache.org.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  *  * @see org.apache.xerces.xni.grammars.XMLGrammarPool  * @see org.apache.xerces.util.XMLGrammarPoolImpl  * @see org.apache.xerces.xni.grammars.Grammar  * @see org.apache.xerces.xni.grammars.XMLGrammarDescription  */
 end_comment
 
 begin_class
@@ -158,7 +158,7 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/**      *   Retrieve the initial known set of grammars. this method is called      * by a validator before the validation starts. the application can provide       * an initial set of grammars available to the current validation attempt.      *       * @param   type  The type of the grammar, from the       *          org.apache.xerces.xni.grammars.Grammar interface.      * @return  The set of grammars the validator may put in its "bucket"      */
+comment|/**      *   Retrieve the initial known set of grammars. this method is called      * by a validator before the validation starts. the application can provide       * an initial set of grammars available to the current validation attempt.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#retrieveInitialGrammarSet(String)      *       * @param   type  The type of the grammar, from the       *          org.apache.xerces.xni.grammars.Grammar interface.      * @return  The set of grammars the validator may put in its "bucket"      */
 specifier|public
 name|Grammar
 index|[]
@@ -207,7 +207,7 @@ return|return
 name|grammars
 return|;
 block|}
-comment|/**      *  Return the final set of grammars that the validator ended up with.      *       * @param type      The type of the grammars being returned      * @param grammar   an array containing the set of grammars being       *                  returned; order is not significant.      */
+comment|/**      *  Return the final set of grammars that the validator ended up with.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#cacheGrammars(String,Grammar[])      *       * @param type      The type of the grammars being returned      * @param grammar   an array containing the set of grammars being       *                  returned; order is not significant.      */
 specifier|public
 name|void
 name|cacheGrammars
@@ -247,7 +247,7 @@ name|grammar
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Allows the XMLGrammarPool to store grammars when its       * cacheGrammars(String, Grammar[]) method is called. This is the default       * state of the object.      */
+comment|/**      *  Allows the XMLGrammarPool to store grammars when its       * cacheGrammars(String, Grammar[]) method is called. This is the default       * state of the object.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#unlockPool      */
 specifier|public
 name|void
 name|unlockPool
@@ -266,7 +266,7 @@ name|unlockPool
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *   This method requests that the application retrieve a grammar       * corresponding to the given GrammarIdentifier from its cache. If it       * cannot do so it must return null; the parser will then call the       * EntityResolver. An application must not call its EntityResolver itself       * from this method; this may result in infinite recursions.      *      * @param xgd    The description of the Grammar being requested.      * @return       the Grammar corresponding to this description or null       *               if no such Grammar is known.      */
+comment|/**      *   This method requests that the application retrieve a grammar       * corresponding to the given GrammarIdentifier from its cache. If it       * cannot do so it must return null; the parser will then call the       * EntityResolver. An application must not call its EntityResolver itself       * from this method; this may result in infinite recursions.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#retrieveGrammar(XMLGrammarDescription)      *      * @param xgd    The description of the Grammar being requested.      * @return       the Grammar corresponding to this description or null       *               if no such Grammar is known.      */
 specifier|public
 name|Grammar
 name|retrieveGrammar
@@ -352,7 +352,7 @@ name|xgd
 argument_list|)
 return|;
 block|}
-comment|/**      *  Causes the XMLGrammarPool not to store any grammars when the       * cacheGrammars(String, Grammar[[]) method is called.      */
+comment|/**      *  Causes the XMLGrammarPool not to store any grammars when the       * cacheGrammars(String, Grammar[[]) method is called.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#lockPool      */
 specifier|public
 name|void
 name|lockPool
@@ -371,7 +371,7 @@ name|lockPool
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Removes all grammars from the pool.      */
+comment|/**      *  Removes all grammars from the pool.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#clear      */
 specifier|public
 name|void
 name|clear
