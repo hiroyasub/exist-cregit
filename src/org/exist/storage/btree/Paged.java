@@ -164,18 +164,90 @@ block|{
 specifier|public
 specifier|static
 name|int
-name|OFFSET_VERSION_ID
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
 name|LENGTH_VERSION_ID
 init|=
 literal|2
 decl_stmt|;
 comment|//sizeof short
+specifier|public
+specifier|static
+name|int
+name|LENGTH_HEADER_SIZE
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_COUNT
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_SIZE
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
+specifier|public
+specifier|static
+name|int
+name|LENGTH_TOTAL_COUNT
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|LENGTH_FIRST_FREE_PAGE
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|LENGTH_LAST_FREE_PAGE
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_HEADER_SIZE
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|LENGTH_MAX_KEY_SIZE
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+name|int
+name|LENGTH_RECORD_COUNT
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|OFFSET_VERSION_ID
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 specifier|static
 name|int
@@ -189,14 +261,6 @@ comment|//2
 specifier|public
 specifier|static
 name|int
-name|LENGTH_HEADER_SIZE
-init|=
-literal|2
-decl_stmt|;
-comment|//sizeof short
-specifier|public
-specifier|static
-name|int
 name|OFFSET_PAGE_SIZE
 init|=
 name|OFFSET_HEADER_SIZE
@@ -204,14 +268,6 @@ operator|+
 name|LENGTH_HEADER_SIZE
 decl_stmt|;
 comment|//4
-specifier|public
-specifier|static
-name|int
-name|LENGTH_PAGE_SIZE
-init|=
-literal|4
-decl_stmt|;
-comment|//sizeof int
 specifier|public
 specifier|static
 name|int
@@ -225,14 +281,6 @@ comment|//8
 specifier|public
 specifier|static
 name|int
-name|LENGTH_PAGE_COUNT
-init|=
-literal|8
-decl_stmt|;
-comment|//sizeof long
-specifier|public
-specifier|static
-name|int
 name|OFFSET_TOTAL_COUNT
 init|=
 name|OFFSET_PAGE_COUNT
@@ -240,14 +288,6 @@ operator|+
 name|LENGTH_PAGE_COUNT
 decl_stmt|;
 comment|//16
-specifier|public
-specifier|static
-name|int
-name|LENGTH_TOTAL_COUNT
-init|=
-literal|8
-decl_stmt|;
-comment|//sizeof long
 specifier|public
 specifier|static
 name|int
@@ -261,14 +301,6 @@ comment|//24
 specifier|public
 specifier|static
 name|int
-name|LENGTH_FIRST_FREE_PAGE
-init|=
-literal|8
-decl_stmt|;
-comment|//sizeof long
-specifier|public
-specifier|static
-name|int
 name|OFFSET_LAST_FREE_PAGE
 init|=
 name|OFFSET_FIRST_FREE_PAGE
@@ -276,14 +308,6 @@ operator|+
 name|LENGTH_FIRST_FREE_PAGE
 decl_stmt|;
 comment|//32
-specifier|public
-specifier|static
-name|int
-name|LENGTH_LAST_FREE_PAGE
-init|=
-literal|8
-decl_stmt|;
-comment|//sizeof long
 specifier|public
 specifier|static
 name|int
@@ -297,14 +321,6 @@ comment|//40
 specifier|public
 specifier|static
 name|int
-name|LENGTH_PAGE_HEADER_SIZE
-init|=
-literal|1
-decl_stmt|;
-comment|//sizeof byte
-specifier|public
-specifier|static
-name|int
 name|OFFSET_MAX_KEY_SIZE
 init|=
 name|OFFSET_PAGE_HEADER_SIZE
@@ -315,14 +331,6 @@ comment|//41
 specifier|public
 specifier|static
 name|int
-name|LENGTH_MAX_KEY_SIZE
-init|=
-literal|2
-decl_stmt|;
-comment|//sizeof short
-specifier|public
-specifier|static
-name|int
 name|OFFSET_RECORD_COUNT
 init|=
 name|OFFSET_MAX_KEY_SIZE
@@ -330,14 +338,6 @@ operator|+
 name|LENGTH_MAX_KEY_SIZE
 decl_stmt|;
 comment|//43
-specifier|public
-specifier|static
-name|int
-name|LENGTH_RECORD_COUNT
-init|=
-literal|8
-decl_stmt|;
-comment|//sizeof long
 specifier|public
 specifier|static
 name|int
@@ -3461,6 +3461,38 @@ specifier|abstract
 class|class
 name|PageHeader
 block|{
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_STATUS
+init|=
+literal|1
+decl_stmt|;
+comment|//sizeof byte
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_DATA_LENGTH
+init|=
+literal|4
+decl_stmt|;
+comment|//sizeof int
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_NEXT_PAGE
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
+specifier|public
+specifier|static
+name|int
+name|LENGTH_PAGE_LSN
+init|=
+literal|8
+decl_stmt|;
+comment|//sizeof long
 specifier|private
 name|int
 name|dataLen
@@ -3611,8 +3643,11 @@ operator|=
 name|data
 index|[
 name|offset
-operator|++
 index|]
+expr_stmt|;
+name|offset
+operator|+=
+name|LENGTH_PAGE_STATUS
 expr_stmt|;
 name|dataLen
 operator|=
@@ -3627,7 +3662,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|4
+name|LENGTH_PAGE_DATA_LENGTH
 expr_stmt|;
 name|nextPage
 operator|=
@@ -3642,7 +3677,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PAGE_NEXT_PAGE
 expr_stmt|;
 name|lsn
 operator|=
@@ -3657,7 +3692,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PAGE_LSN
 expr_stmt|;
 return|return
 name|offset
@@ -3680,10 +3715,13 @@ block|{
 name|data
 index|[
 name|offset
-operator|++
 index|]
 operator|=
 name|status
+expr_stmt|;
+name|offset
+operator|+=
+name|LENGTH_PAGE_STATUS
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -3698,7 +3736,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|4
+name|LENGTH_PAGE_DATA_LENGTH
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -3713,7 +3751,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PAGE_NEXT_PAGE
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -3728,7 +3766,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|8
+name|LENGTH_PAGE_LSN
 expr_stmt|;
 name|dirty
 operator|=

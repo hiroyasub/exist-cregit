@@ -598,6 +598,24 @@ name|MULTI_PAGE
 init|=
 literal|23
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_RECORDS_COUNT
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LENGTH_NEXT_TID
+init|=
+literal|2
+decl_stmt|;
+comment|//sizeof short
 comment|/*      * Byte ids for the records written to the log file.      */
 specifier|public
 specifier|final
@@ -8880,7 +8898,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_RECORDS_COUNT
 expr_stmt|;
 name|dataLen
 operator|=
@@ -8910,7 +8928,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_NEXT_TID
 expr_stmt|;
 name|nextInChain
 operator|=
@@ -9049,7 +9067,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_RECORDS_COUNT
 expr_stmt|;
 name|ByteConversion
 operator|.
@@ -9079,7 +9097,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-literal|2
+name|LENGTH_NEXT_TID
 expr_stmt|;
 name|ByteConversion
 operator|.
