@@ -1092,6 +1092,8 @@ name|ByteArrayPool
 operator|.
 name|getByteArray
 argument_list|(
+name|StoredNode
+operator|.
 name|LENGTH_SIGNATURE_LENGTH
 operator|+
 name|LENGTH_ELEMENT_CHILD_COUNT
@@ -1149,6 +1151,8 @@ name|signature
 expr_stmt|;
 name|next
 operator|+=
+name|StoredNode
+operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
 name|ByteConversion
@@ -1432,6 +1436,8 @@ literal|0x10
 decl_stmt|;
 name|pos
 operator|+=
+name|StoredNode
+operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
 name|int
@@ -1928,6 +1934,8 @@ literal|0x10
 decl_stmt|;
 name|offset
 operator|+=
+name|StoredNode
+operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
 name|offset

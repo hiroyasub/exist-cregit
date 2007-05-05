@@ -2890,8 +2890,8 @@ literal|null
 operator|&&
 name|getHighlightingMode
 argument_list|()
-operator|>
-literal|0
+operator|!=
+name|TAG_NONE
 condition|)
 block|{
 name|IndexController
