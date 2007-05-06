@@ -349,6 +349,7 @@ decl_stmt|;
 comment|// create the destination document
 try|try
 block|{
+comment|//TODO : how is the transaction handled ? It holds the locks !
 name|Collection
 name|destination
 init|=
