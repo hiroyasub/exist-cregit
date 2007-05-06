@@ -4411,6 +4411,7 @@ name|path
 argument_list|)
 throw|;
 block|}
+comment|//TODO : use getOrCreateCollection() right now ?
 name|Collection
 name|collection
 init|=
