@@ -309,7 +309,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Add a new collection configuration. The XML document is passed as a string. 	 *  	 * @param broker 	 * @param collection the collection to which the configuration applies. 	 * @param config the xconf document as a String. 	 * @throws CollectionConfigurationException 	 */
+comment|/** 	 * Add a new collection configuration. The XML document is passed as a string. 	 *       * @param transaction The transaction that will hold the WRITE locks until they are released by commit()/abort()      * @param broker 	 * @param collection the collection to which the configuration applies. 	 * @param config the xconf document as a String. 	 * @throws CollectionConfigurationException 	 */
 specifier|public
 name|void
 name|addConfiguration

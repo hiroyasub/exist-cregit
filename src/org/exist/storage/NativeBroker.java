@@ -3379,6 +3379,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/* Gets or create the specified collection.      * The transaction registers the acquired write locks. The locks should be released on commit/abort.      * @see org.exist.storage.DBBroker#getOrCreateCollection(org.exist.storage.txn.Txn, org.exist.xmldb.XmldbURI)      */
 specifier|public
 name|Collection
 name|getOrCreateCollection

@@ -999,6 +999,7 @@ operator|.
 name|toCollectionPathURI
 argument_list|()
 expr_stmt|;
+comment|//TODO : see if the URI resolves against DBBroker.TEMP_COLLECTION
 name|isTempCollection
 operator|=
 name|path
@@ -1396,6 +1397,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+comment|//TODO : resolve URI !
 name|child
 operator|=
 name|broker
@@ -1639,6 +1641,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//TODO : resolve URI !
 name|Collection
 name|child
 init|=
@@ -2399,6 +2402,7 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//TODO : resolve URI against ".." !
 return|return
 name|path
 operator|.
