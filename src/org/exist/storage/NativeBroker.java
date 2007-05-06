@@ -3164,7 +3164,7 @@ name|uri
 return|;
 block|}
 block|}
-comment|/** create temporary collection */
+comment|/**      * Creates a temporary collecion      *       * @param transaction : The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @return The temporary collection      * @throws LockException      * @throws PermissionDeniedException      * @throws IOException      */
 specifier|private
 name|Collection
 name|createTempCollection
@@ -3554,6 +3554,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//TODO : acquire lock manually if transaction is null ?
 name|saveCollection
 argument_list|(
 name|transaction
@@ -3777,6 +3778,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//TODO : acquire lock manually if transaction is null ?
 name|current
 operator|.
 name|addCollection
@@ -4206,6 +4208,7 @@ return|return
 name|collection
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.storage.DBBroker#copyCollection(org.exist.storage.txn.Txn, org.exist.collections.Collection, org.exist.collections.Collection, org.exist.xmldb.XmldbURI)      */
 specifier|public
 name|void
 name|copyCollection
