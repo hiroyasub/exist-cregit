@@ -3227,6 +3227,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|mgr
+operator|.
+name|abort
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

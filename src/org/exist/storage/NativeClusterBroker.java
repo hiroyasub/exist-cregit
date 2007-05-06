@@ -256,7 +256,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * get collection object If the collection does not yet exists, it is      * created automatically.      *      * Wraps for cluster the resultant collection in a ClusterCollection      *      * @param name the collection's name      * @return The orCreateCollection value      * @throws org.exist.security.PermissionDeniedException      *          Description of the Exception      */
+comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare.      * Wraps for cluster the resultant collection in a ClusterCollection      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param uri The collection's URI 	 * @return The collection or<code>null</code> if no collection matches the path 	 * @throws PermissionDeniedException 	 * @throws IOException 	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -265,7 +265,7 @@ name|Txn
 name|transaction
 parameter_list|,
 name|XmldbURI
-name|name
+name|uri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -281,7 +281,7 @@ name|getOrCreateCollection
 argument_list|(
 name|transaction
 argument_list|,
-name|name
+name|uri
 argument_list|)
 decl_stmt|;
 return|return
