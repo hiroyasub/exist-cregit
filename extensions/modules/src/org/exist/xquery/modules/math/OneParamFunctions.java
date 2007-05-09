@@ -305,7 +305,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"eturns the arcsine value of a number in radians."
+literal|"Returns the arcsine value of a number in radians."
 argument_list|,
 operator|new
 name|SequenceType
