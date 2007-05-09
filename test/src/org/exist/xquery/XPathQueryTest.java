@@ -1753,11 +1753,7 @@ argument_list|(
 literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1882,11 +1878,7 @@ argument_list|(
 literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1925,11 +1917,7 @@ argument_list|(
 literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1968,11 +1956,7 @@ argument_list|(
 literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
