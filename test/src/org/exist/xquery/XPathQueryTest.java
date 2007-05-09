@@ -1750,7 +1750,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis2 : ========"
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -1879,7 +1879,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis2 : ========"
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -1922,7 +1922,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis2 : ========"
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -1965,7 +1965,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis2 : ========"
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|printResult
@@ -2000,7 +2000,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxis(): XMLDBException: "
+literal|"testStarAxisConstraints(): XMLDBException: "
 operator|+
 name|e
 argument_list|)
