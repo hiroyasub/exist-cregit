@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public  * License along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -626,7 +626,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al a node set containing potential parent nodes      * @param mode selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      * the set of descendant nodes (descendant-or-self axis)      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.      *      */
+comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al a node set containing potential parent nodes      * @param mode selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      * the set of descendant nodes (descendant-or-self axis)      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the selection.       *       */
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -1121,6 +1121,12 @@ name|parent
 argument_list|)
 expr_stmt|;
 block|}
+comment|//if (parentID == NodeId.DOCUMENT_NODE&&
+comment|//  !current.getDocument().getCollection().isTempCollection()) {
+comment|// fixme! merge with above? Causing recursive failures reported by Adam /ljo
+comment|//	System.out.println("AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type " + current.getNodeId());
+comment|//parents.add(current);
+comment|//}
 block|}
 return|return
 name|parents

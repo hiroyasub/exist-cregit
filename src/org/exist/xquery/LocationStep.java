@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -862,6 +862,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -869,6 +870,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 comment|/*          * if(contextSequence == null) //Commented because this the high level          * result nodeset is *really* null result = NodeSet.EMPTY_SET; //Try to          * return cached results else          */
 if|if
 condition|(
@@ -904,6 +906,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -911,6 +914,7 @@ argument_list|(
 literal|"Using cached results"
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|getProfiler
@@ -1031,6 +1035,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|getChildren
@@ -1043,6 +1048,7 @@ name|toNodeSet
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|Constants
@@ -1113,6 +1119,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|getSelfAtomic
@@ -1120,7 +1127,9 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|getSelf
@@ -1133,6 +1142,7 @@ name|toNodeSet
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|Constants
@@ -1434,6 +1444,7 @@ name|nodeTestType
 operator|==
 literal|null
 condition|)
+block|{
 name|nodeTestType
 operator|=
 operator|new
@@ -1445,6 +1456,7 @@ name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|Type
@@ -2748,7 +2760,9 @@ name|Constants
 operator|.
 name|DESCENDANT_SELF_AXIS
 case|:
-return|return
+name|NodeSet
+name|tempSet
+init|=
 name|currentSet
 operator|.
 name|selectAncestorDescendant
@@ -2763,6 +2777,9 @@ literal|true
 argument_list|,
 name|contextId
 argument_list|)
+decl_stmt|;
+return|return
+name|tempSet
 return|;
 case|case
 name|Constants
@@ -2875,6 +2892,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2900,6 +2918,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet
@@ -2935,6 +2954,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|index
 operator|.
@@ -2954,6 +2974,7 @@ argument_list|,
 name|selector
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>getSiblings</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
@@ -4451,7 +4472,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                 if (test.matches(p)&& !(p.getNodeId().getParentId() == NodeId.DOCUMENT_NODE&& test.getType() == Type.ELEMENT)) { 				*/
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                    if (test.matches(p)&& !(p.getNodeId().getParentId() == NodeId.DOCUMENT_NODE&& test.getType() == Type.ELEMENT)) {                 */
 if|if
 condition|(
 name|test
