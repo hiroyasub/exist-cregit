@@ -408,9 +408,11 @@ argument_list|()
 operator|==
 name|lastDoc
 condition|)
+block|{
 return|return
 name|lastPart
 return|;
+block|}
 name|int
 name|idx
 init|=
@@ -997,7 +999,9 @@ name|itemType
 operator|==
 name|type
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|itemType
@@ -1006,17 +1010,21 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|itemType
 operator|=
 name|type
 expr_stmt|;
+block|}
 else|else
+block|{
 name|itemType
 operator|=
 name|Type
 operator|.
 name|NODE
 expr_stmt|;
+block|}
 block|}
 comment|/**      * The method<code>getItemType</code>      *      * @return an<code>int</code> value      */
 specifier|public
@@ -1103,9 +1111,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtArrayIterator
@@ -1141,9 +1151,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtArrayIterator
@@ -1161,9 +1173,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ExtDocIterator
@@ -1613,6 +1627,7 @@ name|part
 operator|!=
 literal|null
 condition|)
+block|{
 name|part
 operator|.
 name|getDescendantsInSet
@@ -1630,6 +1645,7 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -1905,6 +1921,7 @@ name|part
 operator|!=
 literal|null
 condition|)
+block|{
 name|part
 operator|.
 name|setIsSorted
@@ -1912,6 +1929,7 @@ argument_list|(
 name|sorted
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Remove all duplicate nodes, but merge their      * contexts.      */
 specifier|public
@@ -2103,6 +2121,7 @@ name|al
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 return|return
 name|super
 operator|.
@@ -2117,6 +2136,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -2513,7 +2533,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * The method<code>hasNext</code> 	 * 	 * @return a<code>boolean</code> value 	 */
+comment|/**          * The method<code>hasNext</code>          *          * @return a<code>boolean</code> value          */
 specifier|public
 name|boolean
 name|hasNext
@@ -2525,7 +2545,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * The method<code>next</code> 	 * 	 * @return an<code>Object</code> value 	 */
+comment|/**          * The method<code>next</code>          *          * @return an<code>Object</code> value          */
 specifier|public
 name|Object
 name|next
@@ -2586,7 +2606,7 @@ return|return
 name|oldCollection
 return|;
 block|}
-comment|/** 	 * The method<code>remove</code> 	 * 	 */
+comment|/**          * The method<code>remove</code>          *          */
 specifier|public
 name|void
 name|remove
@@ -2683,7 +2703,7 @@ name|length
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * Creates a new<code>Part</code> instance. 	 * 	 * @param initialSize an<code>int</code> value 	 */
+comment|/**          * Creates a new<code>Part</code> instance.          *          * @param initialSize an<code>int</code> value          */
 name|Part
 parameter_list|(
 name|int
@@ -2699,7 +2719,7 @@ name|initialSize
 index|]
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>selectParentChild</code> 	 * 	 * @param result a<code>NodeSet</code> value 	 * @param na a<code>NodeProxy</code> value 	 * @param ia a<code>NodeSetIterator</code> value 	 * @param mode an<code>int</code> value 	 * @param contextId an<code>int</code> value 	 */
+comment|/**          * The method<code>selectParentChild</code>          *          * @param result a<code>NodeSet</code> value          * @param na a<code>NodeProxy</code> value          * @param ia a<code>NodeSetIterator</code> value          * @param mode an<code>int</code> value          * @param contextId an<code>int</code> value          */
 specifier|public
 name|void
 name|selectParentChild
@@ -3165,7 +3185,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * The method<code>add</code> 	 * 	 * @param p a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>add</code>          *          * @param p a<code>NodeProxy</code> value          */
 name|void
 name|add
 parameter_list|(
@@ -3177,7 +3197,7 @@ comment|// just check if this node has already been added. We only
 comment|// check the last entry, which should avoid most of the likely
 comment|// duplicates. The remaining duplicates are removed by
 comment|// removeDuplicates().
-comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) : 		NodeId nodeId = p.getNodeId(); 		if (!NodeId.ROOT_NODE.equals(nodeId)) { 			if (length> 0&& 				array[length - 1].getNodeId().equals(nodeId)) { 		*/
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                NodeId nodeId = p.getNodeId();                if (!NodeId.ROOT_NODE.equals(nodeId)) {                if (length> 0&&                array[length - 1].getNodeId().equals(nodeId)) {		              */
 if|if
 condition|(
 name|length
@@ -3263,7 +3283,7 @@ operator|=
 name|p
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>contains</code> 	 * 	 * @param nodeId a<code>NodeId</code> value 	 * @return a<code>boolean</code> value 	 */
+comment|/**          * The method<code>contains</code>          *          * @param nodeId a<code>NodeId</code> value          * @return a<code>boolean</code> value          */
 name|boolean
 name|contains
 parameter_list|(
@@ -3280,7 +3300,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * The method<code>get</code> 	 * 	 * @param pos an<code>int</code> value 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>get</code>          *          * @param pos an<code>int</code> value          * @return a<code>NodeProxy</code> value          */
 name|NodeProxy
 name|get
 parameter_list|(
@@ -3295,7 +3315,7 @@ name|pos
 index|]
 return|;
 block|}
-comment|/** 	 * The method<code>get</code> 	 * 	 * @param nodeId a<code>NodeId</code> value 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>get</code>          *          * @param nodeId a<code>NodeId</code> value          * @return a<code>NodeProxy</code> value          */
 name|NodeProxy
 name|get
 parameter_list|(
@@ -3365,22 +3385,27 @@ name|cmp
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|p
 return|;
+block|}
 if|if
 condition|(
 name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
@@ -3388,11 +3413,12 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * The method<code>getDocument</code> 	 * 	 * @return a<code>DocumentImpl</code> value 	 */
+comment|/**          * The method<code>getDocument</code>          *          * @return a<code>DocumentImpl</code> value          */
 name|DocumentImpl
 name|getDocument
 parameter_list|()
@@ -3403,9 +3429,11 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|array
 index|[
@@ -3416,7 +3444,7 @@ name|getDocument
 argument_list|()
 return|;
 block|}
-comment|/** 	 * The method<code>setIsSorted</code> 	 * 	 * @param sorted a<code>boolean</code> value 	 */
+comment|/**          * The method<code>setIsSorted</code>          *          * @param sorted a<code>boolean</code> value          */
 name|void
 name|setIsSorted
 parameter_list|(
@@ -3431,7 +3459,7 @@ operator|=
 name|sorted
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>sort</code> 	 * 	 */
+comment|/**          * The method<code>sort</code>          *          */
 name|void
 name|sort
 parameter_list|()
@@ -3440,7 +3468,9 @@ if|if
 condition|(
 name|isSorted
 condition|)
+block|{
 return|return;
+block|}
 name|FastQSort
 operator|.
 name|sortByNodeId
@@ -3455,7 +3485,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>sortInDocumentOrder</code> 	 * 	 */
+comment|/**          * The method<code>sortInDocumentOrder</code>          *          */
 name|void
 name|sortInDocumentOrder
 parameter_list|()
@@ -3464,7 +3494,7 @@ name|sort
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Check if the node identified by its node id has an ancestor          * contained in this node set and return the ancestor found.          *          * If directParent is true, only immediate ancestors (parents) are          * considered. Otherwise the method will call itself recursively for          * all the node's parents.          *          * If includeSelf is true, the method returns also true if the node          * itself is contained in the node set. 	 * @param doc a<code>DocumentImpl</code> value 	 * @param nodeId a<code>NodeId</code> value 	 * @param directParent a<code>boolean</code> value 	 * @param includeSelf a<code>boolean</code> value 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * Check if the node identified by its node id has an ancestor          * contained in this node set and return the ancestor found.          *          * If directParent is true, only immediate ancestors (parents) are          * considered. Otherwise the method will call itself recursively for          * all the node's parents.          *          * If includeSelf is true, the method returns also true if the node          * itself is contained in the node set.          * @param doc a<code>DocumentImpl</code> value          * @param nodeId a<code>NodeId</code> value          * @param directParent a<code>boolean</code> value          * @param includeSelf a<code>boolean</code> value          * @return a<code>NodeProxy</code> value          */
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -3499,9 +3529,11 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|temp
 return|;
+block|}
 name|nodeId
 operator|=
 name|nodeId
@@ -3538,9 +3570,11 @@ if|else if
 condition|(
 name|directParent
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|nodeId
 operator|=
 name|nodeId
@@ -3553,7 +3587,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * The method<code>hasDescendantsInSet</code> 	 * 	 * @param ancestorId a<code>NodeId</code> value 	 * @param contextId an<code>int</code> value 	 * @param includeSelf a<code>boolean</code> value 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>hasDescendantsInSet</code>          *          * @param ancestorId a<code>NodeId</code> value          * @param contextId an<code>int</code> value          * @param includeSelf a<code>boolean</code> value          * @return a<code>NodeProxy</code> value          */
 name|NodeProxy
 name|hasDescendantsInSet
 parameter_list|(
@@ -3628,8 +3662,10 @@ argument_list|(
 name|ancestorId
 argument_list|)
 condition|)
+block|{
 break|break;
 comment|// found a child node, break out.
+block|}
 name|cmp
 operator|=
 name|id
@@ -3645,13 +3681,16 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
@@ -3659,16 +3698,19 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|low
 operator|>
 name|high
 condition|)
+block|{
 return|return
 literal|null
 return|;
 comment|// no node found
+block|}
 comment|// find the first child node in the range
 while|while
 condition|(
@@ -3693,9 +3735,11 @@ argument_list|)
 operator|>=
 literal|0
 condition|)
+block|{
 operator|--
 name|mid
 expr_stmt|;
+block|}
 name|NodeProxy
 name|ancestor
 init|=
@@ -3763,10 +3807,12 @@ name|NodeId
 operator|.
 name|IS_SELF
 condition|)
+block|{
 name|add
 operator|=
 name|includeSelf
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|add
@@ -3780,6 +3826,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|deepCopyContext
@@ -3792,7 +3839,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -3803,6 +3852,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|ancestor
 operator|.
 name|addMatches
@@ -3816,13 +3866,15 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 return|return
 name|ancestor
 return|;
 block|}
-comment|/**          * Find all nodes in the current set being children or descendants of the given parent          * node.          *          * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
+comment|/**          * Find all nodes in the current set being children or descendants of           * the given parent node.          *           * @param result the node set to which matching nodes will be appended.          * @param parent the parent node to search for.          * @param childOnly only include child nodes, not descendant nodes          * @param includeSelf include the self:: axis          * @param mode          * @param contextId          */
 name|NodeSet
 name|getDescendantsInSet
 parameter_list|(
@@ -3888,6 +3940,7 @@ if|if
 condition|(
 name|childOnly
 condition|)
+block|{
 name|add
 operator|=
 name|array
@@ -3903,15 +3956,19 @@ argument_list|()
 operator|==
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|includeSelf
 condition|)
+block|{
 name|add
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
+block|{
 name|add
 operator|=
 name|array
@@ -3926,6 +3983,7 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|add
@@ -3949,6 +4007,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
+comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
@@ -3961,8 +4021,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
-comment|//            					array[i].addContextNode(contextId, parent);
+block|}
 else|else
+block|{
 name|array
 index|[
 name|i
@@ -3973,6 +4034,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|array
 index|[
 name|i
@@ -4007,7 +4069,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            					parent.addContextNode(contextId, array[i]);
+block|{
+comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -4020,7 +4083,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4031,6 +4096,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4057,8 +4123,8 @@ block|}
 block|}
 else|else
 block|{
-comment|// do a binary search to pick some node in the range of valid child
-comment|// ids
+comment|// do a binary search to pick some node in the range of valid
+comment|// child ids
 name|int
 name|low
 init|=
@@ -4115,8 +4181,10 @@ argument_list|(
 name|parentId
 argument_list|)
 condition|)
+block|{
 break|break;
 comment|// found a child node, break out.
+block|}
 name|cmp
 operator|=
 name|p
@@ -4135,13 +4203,16 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
@@ -4149,16 +4220,19 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|low
 operator|>
 name|high
 condition|)
+block|{
 return|return
 name|result
 return|;
 comment|// no node found
+block|}
 comment|// find the first child node in the range
 while|while
 condition|(
@@ -4181,11 +4255,14 @@ argument_list|(
 name|parentId
 argument_list|)
 operator|>
-literal|0
+operator|-
+literal|1
 condition|)
+block|{
 operator|--
 name|mid
 expr_stmt|;
+block|}
 comment|// walk through the range of child nodes we found
 for|for
 control|(
@@ -4234,6 +4311,7 @@ if|if
 condition|(
 name|childOnly
 condition|)
+block|{
 name|add
 operator|=
 name|cmp
@@ -4242,6 +4320,7 @@ name|NodeId
 operator|.
 name|IS_CHILD
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|cmp
@@ -4250,10 +4329,12 @@ name|NodeId
 operator|.
 name|IS_SELF
 condition|)
+block|{
 name|add
 operator|=
 name|includeSelf
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|add
@@ -4277,7 +4358,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            						array[i].addContextNode(contextId, parent);
+block|{
+comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
@@ -4290,7 +4372,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|array
 index|[
 name|i
@@ -4301,6 +4385,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|array
 index|[
 name|i
@@ -4335,7 +4420,8 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
-comment|//            						parent.addContextNode(contextId, array[i]);
+block|{
+comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -4348,7 +4434,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4359,6 +4447,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4383,14 +4472,16 @@ block|}
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Remove all duplicate nodes from this part.          * 	 * @param mergeContext a<code>boolean</code> value 	 * @return the new length of the part, after removing all duplicates 	 */
+comment|/**          * Remove all duplicate nodes from this part.          *          * @param mergeContext a<code>boolean</code> value          * @return the new length of the part, after removing all duplicates          */
 name|int
 name|removeDuplicates
 parameter_list|(
@@ -4403,8 +4494,6 @@ name|j
 init|=
 literal|0
 decl_stmt|;
-comment|// If NodeId.ROOT_NODE.equals(iOrjNodeId)
-comment|// just keep them all /ljo
 for|for
 control|(
 name|int
@@ -4420,7 +4509,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|/* 		ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :         NodeId ithId= array[i].getNodeId(); 		NodeId jthId= array[j].getNodeId(); 		if (NodeId.ROOT_NODE.equals(ithId) || 		    NodeId.ROOT_NODE.equals(jthId)) { 		    j++; 		    continue; 		} else { 		    if (!ithId.equals(jthId)) { 		*/
 if|if
 condition|(
 operator|!
@@ -4451,6 +4539,7 @@ operator|!=
 operator|++
 name|j
 condition|)
+block|{
 name|array
 index|[
 name|j
@@ -4461,6 +4550,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -4482,7 +4572,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//} //ljo's modification
 name|length
 operator|=
 operator|++
@@ -4492,7 +4581,7 @@ return|return
 name|length
 return|;
 block|}
-comment|/** 	 * The method<code>determineIndexType</code> 	 * 	 */
+comment|/**          * The method<code>determineIndexType</code>          *          */
 name|void
 name|determineIndexType
 parameter_list|()
@@ -4641,7 +4730,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * The method<code>setSelfAsContext</code> 	 * 	 * @param contextId an<code>int</code> value 	 */
+comment|/**          * The method<code>setSelfAsContext</code>          *          * @param contextId an<code>int</code> value          */
 name|void
 name|setSelfAsContext
 parameter_list|(
@@ -4711,7 +4800,7 @@ name|next
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Creates a new<code>ExtArrayIterator</code> instance. 	 * 	 */
+comment|/**          * Creates a new<code>ExtArrayIterator</code> instance.          *          */
 name|ExtArrayIterator
 parameter_list|()
 block|{
@@ -4721,6 +4810,7 @@ name|partPos
 operator|<
 name|partCount
 condition|)
+block|{
 name|currentPart
 operator|=
 name|parts
@@ -4728,6 +4818,7 @@ index|[
 name|partPos
 index|]
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentPart
@@ -4740,6 +4831,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|next
 operator|=
 name|currentPart
@@ -4750,7 +4842,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>setPosition</code> 	 * 	 * @param proxy a<code>NodeProxy</code> value 	 */
+block|}
+comment|/**          * The method<code>setPosition</code>          *          * @param proxy a<code>NodeProxy</code> value          */
 specifier|public
 name|void
 name|setPosition
@@ -4877,19 +4970,23 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 block|}
 name|next
@@ -5054,7 +5151,7 @@ name|next
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Creates a new<code>ExtDocIterator</code> instance. 	 * 	 */
+comment|/**          * Creates a new<code>ExtDocIterator</code> instance.          *          */
 specifier|public
 name|ExtDocIterator
 parameter_list|()
@@ -5065,6 +5162,7 @@ name|partCount
 operator|>
 literal|0
 condition|)
+block|{
 name|currentPart
 operator|=
 name|parts
@@ -5072,6 +5170,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentPart
@@ -5084,6 +5183,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|next
 operator|=
 name|currentPart
@@ -5094,7 +5194,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>nextDocument</code> 	 * 	 * @param document a<code>DocumentImpl</code> value 	 */
+block|}
+comment|/**          * The method<code>nextDocument</code>          *          * @param document a<code>DocumentImpl</code> value          */
 specifier|public
 name|void
 name|nextDocument
@@ -5131,6 +5232,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|next
 operator|=
 name|currentPart
@@ -5140,13 +5242,16 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|next
 operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * The method<code>hasNextNode</code> 	 * 	 * @return a<code>boolean</code> value 	 */
+block|}
+comment|/**          * The method<code>hasNextNode</code>          *          * @return a<code>boolean</code> value          */
 specifier|public
 name|boolean
 name|hasNextNode
@@ -5158,7 +5263,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * The method<code>nextNode</code> 	 * 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>nextNode</code>          *          * @return a<code>NodeProxy</code> value          */
 specifier|public
 name|NodeProxy
 name|nextNode
@@ -5170,9 +5275,11 @@ name|next
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|NodeProxy
 name|n
 init|=
@@ -5191,6 +5298,7 @@ name|currentPart
 operator|.
 name|length
 condition|)
+block|{
 name|next
 operator|=
 name|currentPart
@@ -5200,11 +5308,12 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|n
 return|;
 block|}
-comment|/** 	 * The method<code>peekNode</code> 	 * 	 * @return a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>peekNode</code>          *          * @return a<code>NodeProxy</code> value          */
 specifier|public
 name|NodeProxy
 name|peekNode
@@ -5214,7 +5323,7 @@ return|return
 name|next
 return|;
 block|}
-comment|/** 	 * The method<code>setPosition</code> 	 * 	 * @param node a<code>NodeProxy</code> value 	 */
+comment|/**          * The method<code>setPosition</code>          *          * @param node a<code>NodeProxy</code> value          */
 specifier|public
 name|void
 name|setPosition
@@ -5323,19 +5432,23 @@ name|cmp
 operator|>
 literal|0
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 name|next
 operator|=
