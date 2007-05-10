@@ -642,7 +642,7 @@ argument_list|()
 argument_list|,
 literal|"Resource storage ("
 operator|+
-name|db
+name|dom
 operator|.
 name|getFile
 argument_list|()
