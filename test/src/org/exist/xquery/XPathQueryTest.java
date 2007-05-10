@@ -1729,6 +1729,15 @@ argument_list|,
 literal|"http://www.foo.com"
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"// t:title/text() [ . != 'aaaa' ]"
@@ -1744,16 +1753,11 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|printResult
 argument_list|(
-literal|"testStarAxisConstraints : ========"
+name|result
 argument_list|)
 expr_stmt|;
-comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1768,26 +1772,18 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|result
-operator|=
-name|service
+name|System
 operator|.
-name|queryResource
+name|out
+operator|.
+name|println
 argument_list|(
-literal|"namespaces.xml"
-argument_list|,
+literal|"testStarAxisConstraints : ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
 literal|"/t:test/*:section[.&= 'comment']"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|result
 operator|=
@@ -1797,18 +1793,40 @@ name|queryResource
 argument_list|(
 literal|"namespaces.xml"
 argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
 literal|"/t:test/t:*[.&= 'comment']"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|result
 operator|=
@@ -1818,18 +1836,40 @@ name|queryResource
 argument_list|(
 literal|"namespaces.xml"
 argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
 literal|"/t:test/t:section[.&= 'comment']"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|result
 operator|=
@@ -1839,12 +1879,19 @@ name|queryResource
 argument_list|(
 literal|"namespaces.xml"
 argument_list|,
-literal|"/t:test/t:section/*[.&= 'comment']"
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|""
+literal|"XPath: "
+operator|+
+name|query
 argument_list|,
 literal|1
 argument_list|,
@@ -1852,6 +1899,58 @@ name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"/t:test/t:section/*[.&= 'comment']"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+literal|"namespaces.xml"
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XPath: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1869,16 +1968,11 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|printResult
 argument_list|(
-literal|"testStarAxisConstraints : ========"
+name|result
 argument_list|)
 expr_stmt|;
-comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1891,6 +1985,15 @@ name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1908,16 +2011,25 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxisConstraints : ========"
+literal|"g) 1 / "
+operator|+
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1930,6 +2042,15 @@ name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1947,16 +2068,25 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"testStarAxisConstraints : ========"
+literal|"h) 1 / "
+operator|+
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//printResult(result);
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1969,6 +2099,15 @@ name|result
 operator|.
 name|getSize
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 block|}
