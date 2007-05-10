@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote   * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *   * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *   * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *   * @author Wolfgang Meier  */
+comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote  * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *  * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *  * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -442,7 +442,7 @@ operator|=
 name|instanceName
 expr_stmt|;
 block|}
-comment|/* @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.         * @see org.xmldb.api.base.Database#acceptsURI(java.lang.String)      */
+comment|/* @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.xmldb.api.base.Database#acceptsURI(java.lang.String)      */
 specifier|public
 name|boolean
 name|acceptsURI
@@ -534,7 +534,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.           * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)      */
+comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|Collection
 name|getCollection
@@ -851,18 +851,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 switch|switch
 condition|(
 name|e
@@ -890,10 +878,32 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 case|:
+name|LOG
+operator|.
+name|info
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
 default|default:
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 name|e
 throw|;
