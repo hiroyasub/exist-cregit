@@ -1622,6 +1622,13 @@ name|void
 name|cleanUpTempResources
 parameter_list|()
 function_decl|;
+comment|/** Convenience method that allows to check available memory during broker-related processes. 	 * This method should eventually trigger flush() events. 	 */
+specifier|public
+specifier|abstract
+name|void
+name|checkAvailableMemory
+parameter_list|()
+function_decl|;
 comment|/** 	 *  	 */
 specifier|public
 specifier|abstract

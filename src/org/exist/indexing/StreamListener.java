@@ -88,7 +88,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|UNKKNOWN
+name|UNKNOWN
 init|=
 operator|-
 literal|1

@@ -5458,6 +5458,8 @@ operator|.
 name|removeCollection
 argument_list|(
 name|collection
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 if|if
@@ -7449,6 +7451,8 @@ operator|.
 name|removeCollection
 argument_list|(
 name|collection
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 for|for
@@ -16390,7 +16394,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** check available memory */
-specifier|private
+specifier|public
 name|void
 name|checkAvailableMemory
 parameter_list|()

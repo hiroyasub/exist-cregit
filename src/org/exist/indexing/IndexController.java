@@ -236,7 +236,7 @@ name|currentMode
 init|=
 name|StreamListener
 operator|.
-name|UNKKNOWN
+name|UNKNOWN
 decl_stmt|;
 specifier|public
 name|IndexController
@@ -1211,6 +1211,9 @@ name|removeCollection
 parameter_list|(
 name|Collection
 name|collection
+parameter_list|,
+name|DBBroker
+name|broker
 parameter_list|)
 block|{
 name|IndexWorker
@@ -1251,6 +1254,8 @@ operator|.
 name|removeCollection
 argument_list|(
 name|collection
+argument_list|,
+name|broker
 argument_list|)
 expr_stmt|;
 block|}
