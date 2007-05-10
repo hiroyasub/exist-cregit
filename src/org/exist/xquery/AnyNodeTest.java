@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * AnyNodeTest.java - Aug 30, 2003  *   * @author wolf  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -76,6 +76,10 @@ operator|.
 name|Node
 import|;
 end_import
+
+begin_comment
+comment|/**  * The class<code>AnyNodeTest</code>  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+end_comment
 
 begin_class
 specifier|public
@@ -189,7 +193,30 @@ operator|.
 name|ATTRIBUTE_NODE
 return|;
 block|}
+if|else if
+condition|(
+name|type
+operator|==
+name|Type
+operator|.
+name|ATTRIBUTE
+operator|&&
+name|proxy
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 else|else
+block|{
 return|return
 name|type
 operator|!=
@@ -197,6 +224,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 return|;
+block|}
 block|}
 specifier|public
 name|void
