@@ -4026,6 +4026,14 @@ literal|"line.separator"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Patch 1694080 prevents NPE
+if|if
+condition|(
+name|xpaths
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -4109,6 +4117,7 @@ literal|"line.separator"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|fulltext
 operator|.
