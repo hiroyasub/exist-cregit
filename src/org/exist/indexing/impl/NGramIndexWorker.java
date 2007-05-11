@@ -3094,6 +3094,17 @@ block|}
 specifier|public
 name|StreamListener
 name|getListener
+parameter_list|()
+block|{
+return|return
+operator|new
+name|NGramStreamListener
+argument_list|()
+return|;
+block|}
+specifier|public
+name|StreamListener
+name|getListener
 parameter_list|(
 name|int
 name|mode
