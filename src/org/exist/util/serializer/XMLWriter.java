@@ -1448,11 +1448,14 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
-name|writeChars
+name|writer
+operator|.
+name|write
 argument_list|(
 name|data
-argument_list|,
-literal|false
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1520,11 +1523,14 @@ argument_list|(
 literal|"<!--"
 argument_list|)
 expr_stmt|;
-name|writeChars
+name|writer
+operator|.
+name|write
 argument_list|(
 name|data
-argument_list|,
-literal|false
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
