@@ -2589,10 +2589,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -2624,10 +2620,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -2659,10 +2653,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -6351,10 +6343,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -6388,10 +6376,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -6423,10 +6409,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -6660,10 +6644,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -6697,10 +6677,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -6732,10 +6710,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|STORE
@@ -6906,10 +6882,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -6943,10 +6915,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES
@@ -6978,10 +6948,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES
@@ -7440,7 +7408,7 @@ argument_list|)
 decl_stmt|;
 comment|// check if the change affects any ancestor nodes, which then need to be reindexed later
 comment|//May help getReindexRoot() to make some useful things
-comment|//Not sure if it is necessayr here though...
+comment|//Not sure if it is necessary here though...
 name|getBroker
 argument_list|()
 operator|.
@@ -7450,10 +7418,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -7722,10 +7686,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -7757,10 +7717,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES
@@ -7792,10 +7750,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES
@@ -8493,10 +8449,6 @@ operator|.
 name|setDocument
 argument_list|(
 name|ownerDocument
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
 argument_list|)
 expr_stmt|;
 name|StoredNode
@@ -8528,10 +8480,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES
@@ -8563,10 +8513,8 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|setDocument
+name|setMode
 argument_list|(
-name|ownerDocument
-argument_list|,
 name|StreamListener
 operator|.
 name|REMOVE_NODES

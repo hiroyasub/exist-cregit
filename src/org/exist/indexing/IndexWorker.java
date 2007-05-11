@@ -183,6 +183,22 @@ name|void
 name|flush
 parameter_list|()
 function_decl|;
+comment|/**      * Notify this worker to operate on the specified document.      *      * @param doc the document which is processed      */
+name|void
+name|setDocument
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+function_decl|;
+comment|/**      * Notify this worker to operate using the mode      * given. mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      *  {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+name|void
+name|setMode
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
+function_decl|;
 comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. mode will be one of {@link StreamListener#STORE}, {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
