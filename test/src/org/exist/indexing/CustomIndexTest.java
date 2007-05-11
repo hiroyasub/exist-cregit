@@ -2699,6 +2699,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+comment|//Doh ! This reindexes *all* the collections for *every* index
 name|broker
 operator|.
 name|reindexCollection

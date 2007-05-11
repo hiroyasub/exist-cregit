@@ -2579,6 +2579,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -6325,6 +6341,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -6618,6 +6650,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -6848,6 +6896,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -6862,6 +6926,8 @@ argument_list|(
 name|this
 argument_list|,
 name|path
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -7373,6 +7439,23 @@ name|currentPath
 argument_list|)
 decl_stmt|;
 comment|// check if the change affects any ancestor nodes, which then need to be reindexed later
+comment|//May help getReindexRoot() to make some useful things
+comment|//Not sure if it is necessayr here though...
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -7629,6 +7712,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
@@ -8384,6 +8483,22 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
+comment|//May help getReindexRoot() to make some useful things
+name|getBroker
+argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|ownerDocument
+argument_list|,
+name|StreamListener
+operator|.
+name|UNKNOWN
+argument_list|)
+expr_stmt|;
 name|StoredNode
 name|reindexRoot
 init|=
