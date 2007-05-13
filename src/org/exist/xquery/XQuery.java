@@ -715,6 +715,12 @@ operator|.
 name|hasOptimized
 argument_list|()
 condition|)
+block|{
+name|context
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|expr
 operator|.
 name|analyze
@@ -724,6 +730,7 @@ name|AnalyzeContextInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Log the query if it is not too large, but avoid
 comment|// dumping huge queries to the log
