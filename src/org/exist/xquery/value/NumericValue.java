@@ -150,6 +150,12 @@ block|}
 specifier|public
 specifier|abstract
 name|boolean
+name|hasFractionalPart
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|boolean
 name|isNaN
 parameter_list|()
 function_decl|;

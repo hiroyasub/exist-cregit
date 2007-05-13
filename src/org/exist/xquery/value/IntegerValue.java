@@ -1006,6 +1006,16 @@ name|type
 return|;
 block|}
 specifier|public
+name|boolean
+name|hasFractionalPart
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+empty_stmt|;
+specifier|public
 name|Item
 name|itemAt
 parameter_list|(

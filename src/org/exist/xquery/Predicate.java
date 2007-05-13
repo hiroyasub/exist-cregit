@@ -1934,6 +1934,16 @@ operator|.
 name|NUMBER
 argument_list|)
 decl_stmt|;
+comment|//Non integers return... nothing, not even an error !
+if|if
+condition|(
+operator|!
+name|v
+operator|.
+name|hasFractionalPart
+argument_list|()
+condition|)
+block|{
 comment|//... whereas we don't want a sorted array here
 comment|//TODO : rename this method as getInDocumentOrder ? -pb
 name|p
@@ -1968,6 +1978,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO : does null make sense here ? Well... sometimes ;-)
+block|}
 block|}
 block|}
 break|break;

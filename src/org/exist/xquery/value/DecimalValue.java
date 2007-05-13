@@ -659,6 +659,22 @@ return|;
 block|}
 comment|//End of copy
 block|}
+specifier|public
+name|boolean
+name|hasFractionalPart
+parameter_list|()
+block|{
+return|return
+operator|(
+name|value
+operator|.
+name|scale
+argument_list|()
+operator|!=
+literal|0
+operator|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
