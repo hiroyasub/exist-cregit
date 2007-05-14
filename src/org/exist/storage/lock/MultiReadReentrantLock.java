@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -60,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reentrant read/write lock, which allows multiple readers to acquire a lock.  * Waiting writers are preferred.  *   * This is an adapted and bug-fixed version of code taken from Apache's Turbine  * JCS.  *    */
+comment|/**  * A reentrant read/write lock, which allows multiple readers to acquire a lock.  * Waiting writers are preferred.  *<p/>  * This is an adapted and bug-fixed version of code taken from Apache's Turbine  * JCS.  */
 end_comment
 
 begin_class
@@ -85,21 +95,30 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** Number of threads waiting to read. */
+comment|/**      * Number of threads waiting to read.      */
 specifier|private
 name|int
 name|waitingForReadLock
 init|=
 literal|0
 decl_stmt|;
-comment|/** Number of threads reading. */
+comment|/**      * Number of threads reading.      */
 specifier|private
-name|int
+name|List
 name|outstandingReadLocks
 init|=
-literal|0
+name|Collections
+operator|.
+name|synchronizedList
+argument_list|(
+operator|new
+name|ArrayList
+argument_list|(
+literal|4
+argument_list|)
+argument_list|)
 decl_stmt|;
-comment|/** The thread that has the write lock or null. */
+comment|/**      * The thread that has the write lock or null.      */
 specifier|private
 name|Thread
 name|writeLockedThread
@@ -118,7 +137,7 @@ name|waitingForWriteLock
 init|=
 literal|null
 decl_stmt|;
-comment|/** Default constructor. */
+comment|/**      * Default constructor.      */
 specifier|public
 name|MultiReadReentrantLock
 parameter_list|()
@@ -218,18 +237,28 @@ parameter_list|()
 throws|throws
 name|LockException
 block|{
-if|if
-condition|(
-name|writeLockedThread
-operator|==
+specifier|final
+name|Object
+name|owner
+init|=
 name|Thread
 operator|.
 name|currentThread
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|writeLockedThread
+operator|==
+name|owner
 condition|)
 block|{
 name|outstandingReadLocks
-operator|++
+operator|.
+name|add
+argument_list|(
+name|owner
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -245,7 +274,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//            log.debug( "readLock wait" );
+comment|//            LOG.debug("readLock wait");
 try|try
 block|{
 name|wait
@@ -268,14 +297,18 @@ literal|"Interrupted while waiting for read lock"
 argument_list|)
 throw|;
 block|}
-comment|//            log.debug( "wake up from readLock wait" );
+comment|//            LOG.debug("wake up from readLock wait");
 block|}
-comment|//        log.debug( "readLock acquired" );
+comment|//        LOG.debug("readLock acquired");
 name|waitingForReadLock
 operator|--
 expr_stmt|;
 name|outstandingReadLocks
-operator|++
+operator|.
+name|add
+argument_list|(
+name|owner
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -308,29 +341,24 @@ name|writeLockedThread
 operator|==
 literal|null
 operator|&&
-name|outstandingReadLocks
-operator|==
-literal|0
+name|checkReadLocks
+argument_list|()
 condition|)
 block|{
 name|writeLockedThread
 operator|=
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
+name|thisThread
 expr_stmt|;
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//                log.debug( "writeLock acquired without waiting by " + writeLockedThread.getName());
+comment|//                LOG.debug( "writeLock acquired without waiting by " + writeLockedThread.getName());
 return|return
 literal|true
 return|;
 block|}
-comment|//            if ( writeLockedThread == thisThread )
-comment|//            {
-comment|//                log.debug("nested write lock: " + outstandingWriteLocks);
+comment|//            if (writeLockedThread == thisThread) {
+comment|//                LOG.debug("nested write lock: " + outstandingWriteLocks);
 comment|//            }
 if|if
 condition|(
@@ -497,8 +525,7 @@ name|outstandingWriteLocks
 operator|--
 expr_stmt|;
 comment|//            else {
-comment|//                log.info("extra lock release, writelocks are "
-comment|//                        + outstandingWriteLocks + "and done was called");
+comment|//                LOG.info("extra lock release, writelocks are " + outstandingWriteLocks + "and done was called");
 comment|//            }
 if|if
 condition|(
@@ -507,16 +534,15 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//                log.debug( "writeLock released for a nested writeLock request: " + outstandingWriteLocks +
-comment|//                        "; thread: " + writeLockedThread.getName());
+comment|//                LOG.debug("writeLock released for a nested writeLock request: " + outstandingWriteLocks +
+comment|//                    "; thread: " + writeLockedThread.getName());
 return|return;
 block|}
 comment|// could pull out of sub if block to get nested tracking working.
 if|if
 condition|(
-name|outstandingReadLocks
-operator|==
-literal|0
+name|checkReadLocks
+argument_list|()
 operator|&&
 name|waitingForWriteLock
 operator|!=
@@ -542,11 +568,8 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//                if ( log.isDebugEnabled() )
-comment|//                {
-comment|//                    log.debug( "writeLock released and before notifying a write
-comment|// lock waiting thread "
-comment|//                         + writeLockedThread );
+comment|//                if (LOG.isDebugEnabled()) {
+comment|//                    LOG.debug("writeLock released and before notifying a write lock waiting thread " + writeLockedThread);
 comment|//                }
 synchronized|synchronized
 init|(
@@ -559,11 +582,8 @@ name|notify
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                if ( log.isDebugEnabled() )
-comment|//                {
-comment|//                    log.debug( "writeLock released and after notifying a write
-comment|// lock waiting thread "
-comment|//                         + writeLockedThread );
+comment|//                if (LOG.isDebugEnabled()) {
+comment|//                    LOG.debug("writeLock released and after notifying a write lock waiting thread " + writeLockedThread);
 comment|//                }
 block|}
 else|else
@@ -579,16 +599,14 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//                    log.debug( "writeLock released, notified waiting readers"
-comment|// );
+comment|//                    LOG.debug("writeLock released, notified waiting readers");
 name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-else|else
-block|{
-comment|//                    log.debug( "writeLock released, no readers waiting" );
-block|}
+comment|//                } else {
+comment|//                    LOG.debug("writeLock released, no readers waiting");
+comment|//                }
 block|}
 block|}
 else|else
@@ -608,10 +626,10 @@ name|dumpStack
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        log.debug("writeLock released: " + outstandingWriteLocks +
-comment|//                "; thread: " + Thread.currentThread().getName());
+comment|//        LOG.debug("writeLock released: " + outstandingWriteLocks +
+comment|//            "; thread: " + Thread.currentThread().getName());
 block|}
-comment|/**      * Threads call this method to relinquish a lock that they previously got      * from this object.      *       * @throws IllegalStateException      *                   if called when there are no outstanding locks or there is a      *                   write lock issued to a different thread.      */
+comment|/**      * Threads call this method to relinquish a lock that they previously got      * from this object.      *      * @throws IllegalStateException if called when there are no outstanding locks or there is a      *                               write lock issued to a different thread.      */
 specifier|private
 specifier|synchronized
 name|void
@@ -620,19 +638,29 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
 name|outstandingReadLocks
-operator|>
-literal|0
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|outstandingReadLocks
-operator|--
+operator|.
+name|remove
+argument_list|(
+name|outstandingReadLocks
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|outstandingReadLocks
-operator|==
-literal|0
+name|checkReadLocks
+argument_list|()
 operator|&&
 name|writeLockedThread
 operator|==
@@ -662,11 +690,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//                if ( log.isDebugEnabled() )
-comment|//                {
-comment|//                    log.debug( "readLock released and before notifying a write
-comment|// lock waiting thread "
-comment|//                         + writeLockedThread );
+comment|//                if (LOG.isDebugEnabled()) {
+comment|//                    LOG.debug("readLock released and before notifying a write lock waiting thread " + writeLockedThread);
+comment|//                    LOG.debug("remaining read locks: " + outstandingReadLocks.size());
 comment|//                }
 synchronized|synchronized
 init|(
@@ -679,11 +705,8 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                if ( log.isDebugEnabled() )
-comment|//                {
-comment|//                    log.debug( "readLock released and after notifying a write
-comment|// lock waiting thread "
-comment|//                         + writeLockedThread );
+comment|//                if (LOG.isDebugEnabled()) {
+comment|//                    LOG.debug("readLock released and after notifying a write lock waiting thread " + writeLockedThread);
 comment|//                }
 block|}
 return|return;
@@ -738,12 +761,54 @@ name|hasLock
 parameter_list|()
 block|{
 return|return
+operator|!
 name|outstandingReadLocks
-operator|>
-literal|0
+operator|.
+name|isEmpty
+argument_list|()
 operator|||
 name|isLockedForWrite
 argument_list|()
+return|;
+block|}
+specifier|private
+name|boolean
+name|checkReadLocks
+parameter_list|()
+block|{
+specifier|final
+name|int
+name|size
+init|=
+name|outstandingReadLocks
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
+return|return
+name|size
+operator|==
+literal|0
+operator|||
+operator|(
+name|size
+operator|==
+literal|1
+operator|&&
+name|outstandingReadLocks
+operator|.
+name|get
+argument_list|(
+name|size
+operator|-
+literal|1
+argument_list|)
+operator|==
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|)
 return|;
 block|}
 block|}
