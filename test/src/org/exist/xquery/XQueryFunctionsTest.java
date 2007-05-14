@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for various standart XQuery functions  * @author jens  */
+comment|/** Tests for various standard XQuery functions  * @author jens  */
 end_comment
 
 begin_class
