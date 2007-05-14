@@ -203,6 +203,12 @@ init|=
 literal|5
 decl_stmt|;
 specifier|private
+name|DocumentSet
+name|realDocumentSet
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|boolean
 name|knownIsEmptyCardinality
 init|=
@@ -349,6 +355,17 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
+comment|//If we know what are our documents, return them...
+if|if
+condition|(
+name|realDocumentSet
+operator|!=
+literal|null
+condition|)
+return|return
+name|realDocumentSet
+return|;
+comment|//... otherwise, we default to every *ptotentially* concerned document
 return|return
 name|context
 operator|.
@@ -918,6 +935,12 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+comment|//Reset the real document set
+comment|//TODO : use realDocumentSet.add(p.getDocument()) ?
+name|realDocumentSet
+operator|=
+literal|null
+expr_stmt|;
 name|realSetIsComplete
 operator|=
 literal|false
@@ -1429,6 +1452,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|realDocumentSet
+operator|=
+name|result
+operator|.
+name|getDocumentSet
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;
