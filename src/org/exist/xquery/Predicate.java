@@ -1926,13 +1926,6 @@ name|j
 operator|.
 name|nextItem
 argument_list|()
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
 decl_stmt|;
 comment|//Non integers return... nothing, not even an error !
 if|if
@@ -2235,14 +2228,17 @@ name|j
 operator|.
 name|nextItem
 argument_list|()
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
 decl_stmt|;
+comment|//Non integers return... nothing, not even an error !
+if|if
+condition|(
+operator|!
+name|v
+operator|.
+name|hasFractionalPart
+argument_list|()
+condition|)
+block|{
 name|int
 name|pos
 init|=
@@ -2398,6 +2394,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 return|return
 name|result
 return|;
@@ -2448,14 +2445,17 @@ name|i
 operator|.
 name|nextItem
 argument_list|()
-operator|.
-name|convertTo
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|)
 decl_stmt|;
+comment|//Non integers return... nothing, not even an error !
+if|if
+condition|(
+operator|!
+name|v
+operator|.
+name|hasFractionalPart
+argument_list|()
+condition|)
+block|{
 name|int
 name|pos
 init|=
@@ -2492,6 +2492,7 @@ name|pos
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
