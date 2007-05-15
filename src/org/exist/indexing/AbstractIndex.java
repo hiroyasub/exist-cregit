@@ -82,12 +82,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|public
-specifier|abstract
-name|Index
-name|getInstance
-parameter_list|()
-function_decl|;
-specifier|public
 name|String
 name|getIndexName
 parameter_list|()
