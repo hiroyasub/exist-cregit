@@ -7659,6 +7659,8 @@ name|currentUser
 init|=
 name|user
 decl_stmt|;
+try|try
+block|{
 comment|//elevate user to DBA_USER
 name|user
 operator|=
@@ -7674,22 +7676,12 @@ operator|.
 name|DBA_USER
 argument_list|)
 expr_stmt|;
-comment|//start a transaction
-name|TransactionManager
-name|transact
-init|=
-name|pool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
+comment|//transaction is null as temporary resources
+comment|//do not need to be journalled
 name|Txn
 name|transaction
 init|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
+literal|null
 decl_stmt|;
 comment|//create a name for the temporary document
 name|XmldbURI
@@ -7742,17 +7734,30 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-comment|//if no temp collection
 if|if
 condition|(
 name|temp
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-comment|//creates temp collection with lock
+comment|//unlock the temp collection
+name|temp
+operator|.
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//create the temp collection with lock
 name|temp
 operator|=
 name|createTempCollection
@@ -7772,47 +7777,6 @@ operator|.
 name|warn
 argument_list|(
 literal|"Failed to create temporary collection"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|//lock the temp collection
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
-block|{
-name|temp
-operator|.
-name|getLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|temp
-operator|.
-name|getLock
-argument_list|()
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
@@ -7937,14 +7901,6 @@ expr_stmt|;
 name|closeDocument
 argument_list|()
 expr_stmt|;
-comment|//commit the transaction
-name|transact
-operator|.
-name|commit
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 return|return
 name|targetDoc
 return|;
@@ -7967,14 +7923,6 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
-argument_list|)
-expr_stmt|;
-comment|//abort the transaction
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
 argument_list|)
 expr_stmt|;
 block|}
