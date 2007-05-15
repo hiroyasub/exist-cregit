@@ -2794,30 +2794,13 @@ block|}
 block|}
 comment|//OK : the DB is repaired; let's make a few RW operations
 comment|// remove temporary docs
-try|try
-block|{
 name|broker
 operator|.
-name|cleanUpTempCollection
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
+name|cleanUpTempResources
 argument_list|(
-literal|"Can not cleanup temp collection"
-argument_list|,
-name|e
+literal|true
 argument_list|)
 expr_stmt|;
-block|}
 comment|//Create a default configuration file for the root collection
 comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
 comment|//TODO : understand why we get a test suite failure

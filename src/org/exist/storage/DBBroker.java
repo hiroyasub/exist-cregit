@@ -1606,21 +1606,22 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Clean up any temporary resources. 	 *  	 */
-specifier|public
-specifier|abstract
-name|void
-name|cleanUpTempCollection
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 */
 specifier|public
 specifier|abstract
 name|void
 name|cleanUpTempResources
 parameter_list|()
+function_decl|;
+comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 * @param forceRemoval Should temporary resources be forcefully removed 	 */
+specifier|public
+specifier|abstract
+name|void
+name|cleanUpTempResources
+parameter_list|(
+name|boolean
+name|forceRemoval
+parameter_list|)
 function_decl|;
 comment|/** Convenience method that allows to check available memory during broker-related processes. 	 * This method should eventually trigger flush() events. 	 */
 specifier|public
