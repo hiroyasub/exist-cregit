@@ -448,6 +448,7 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+comment|//TODO : (0, 1, 2)[if(. eq 1) then 0 else position()]
 if|if
 condition|(
 operator|(
