@@ -394,8 +394,19 @@ operator|!=
 name|writeLockedThread
 condition|)
 block|{
-comment|//                log.debug( "writeLock wait: outstanding: " +
-comment|// outstandingWriteLocks + " / " + outstandingReadLocks);
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"writeLock wait: outstanding: "
+operator|+
+name|outstandingWriteLocks
+operator|+
+literal|" / "
+operator|+
+name|outstandingReadLocks
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// set this so if there is an error the app will not
@@ -790,11 +801,6 @@ name|size
 operator|==
 literal|0
 operator|||
-operator|(
-name|size
-operator|==
-literal|1
-operator|&&
 name|outstandingReadLocks
 operator|.
 name|get
@@ -808,7 +814,6 @@ name|Thread
 operator|.
 name|currentThread
 argument_list|()
-operator|)
 return|;
 block|}
 block|}
