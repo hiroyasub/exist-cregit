@@ -1043,9 +1043,7 @@ name|updateLock
 operator|=
 operator|new
 name|MultiReadReentrantLock
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 expr_stmt|;
 return|return
 name|updateLock
