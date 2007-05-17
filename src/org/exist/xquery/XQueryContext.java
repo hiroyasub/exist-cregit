@@ -2708,6 +2708,15 @@ name|void
 name|releaseLockedDocuments
 parameter_list|()
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RELEASE LOCKED"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|lockedDocuments
@@ -2741,207 +2750,37 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|lockedDocuments
-operator|==
-literal|null
-condition|)
+comment|//	    if(lockedDocuments == null)
+comment|//	        return null;
+comment|//	    // determine the set of documents referenced by nodes in the sequence
+comment|//        DocumentSet usedDocs = new DocumentSet();
+comment|//        for(SequenceIterator i = seq.iterate(); i.hasNext(); ) {
+comment|//            Item next = i.nextItem();
+comment|//            if(Type.subTypeOf(next.getType(), Type.NODE)) {
+comment|//                NodeValue node = (NodeValue) next;
+comment|//                if(node.getImplementationType() == NodeValue.PERSISTENT_NODE) {
+comment|//                    DocumentImpl doc = ((NodeProxy)node).getDocument();
+comment|//                    if(!usedDocs.contains(doc.getDocId()))
+comment|//	                    usedDocs.add(doc, false);
+comment|//                }
+comment|//            }
+comment|//        }
+comment|//        DocumentSet remaining = new DocumentSet();
+comment|//        for(Iterator i = lockedDocuments.iterator(); i.hasNext(); ) {
+comment|//            DocumentImpl next = (DocumentImpl) i.next();
+comment|//            if(usedDocs.contains(next.getDocId())) {
+comment|//               remaining.add(next);
+comment|//            } else {
+comment|////                LOG.debug("Releasing lock on " + next.getName());
+comment|//                next.getUpdateLock().release(Lock.READ_LOCK);
+comment|//            }
+comment|//        }
+comment|////        LOG.debug("Locks remaining: " + remaining.getLength());
+comment|//        lockDocumentsOnLoad = false;
+comment|//		lockedDocuments = null;
+comment|//        return remaining;
 return|return
-literal|null
-return|;
-comment|// determine the set of documents referenced by nodes in the sequence
-name|DocumentSet
-name|usedDocs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|SequenceIterator
-name|i
-init|=
-name|seq
-operator|.
-name|iterate
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|Item
-name|next
-init|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|next
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|)
-condition|)
-block|{
-name|NodeValue
-name|node
-init|=
-operator|(
-name|NodeValue
-operator|)
-name|next
-decl_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|getImplementationType
-argument_list|()
-operator|==
-name|NodeValue
-operator|.
-name|PERSISTENT_NODE
-condition|)
-block|{
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-operator|(
-name|NodeProxy
-operator|)
-name|node
-operator|)
-operator|.
-name|getDocument
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|usedDocs
-operator|.
-name|contains
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-condition|)
-name|usedDocs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-name|DocumentSet
-name|remaining
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-name|i
-init|=
 name|lockedDocuments
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|DocumentImpl
-name|next
-init|=
-operator|(
-name|DocumentImpl
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|usedDocs
-operator|.
-name|contains
-argument_list|(
-name|next
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|remaining
-operator|.
-name|add
-argument_list|(
-name|next
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//                LOG.debug("Releasing lock on " + next.getName());
-name|next
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//        LOG.debug("Locks remaining: " + remaining.getLength());
-name|lockDocumentsOnLoad
-operator|=
-literal|false
-expr_stmt|;
-name|lockedDocuments
-operator|=
-literal|null
-expr_stmt|;
-return|return
-name|remaining
 return|;
 block|}
 comment|/** 	 * Prepare this XQueryContext to be reused. This should be      * called when adding an XQuery to the cache. 	 */

@@ -201,6 +201,8 @@ operator|.
 name|lock
 argument_list|(
 name|exclusive
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 return|return

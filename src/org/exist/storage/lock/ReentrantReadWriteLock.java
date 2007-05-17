@@ -954,6 +954,19 @@ literal|0
 return|;
 block|}
 specifier|public
+name|boolean
+name|isLockedForRead
+parameter_list|(
+name|Object
+name|owner
+parameter_list|)
+block|{
+comment|// always returns false for this lock
+return|return
+literal|false
+return|;
+block|}
+specifier|public
 specifier|synchronized
 name|boolean
 name|hasLock

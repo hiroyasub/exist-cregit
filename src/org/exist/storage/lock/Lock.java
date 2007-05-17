@@ -100,6 +100,15 @@ name|boolean
 name|isLockedForWrite
 parameter_list|()
 function_decl|;
+comment|/**      * Check if the specified thread does currently hold a read lock.      *      * @param owner the thread to search for      * @return true if the thread holds a read lock      */
+specifier|public
+name|boolean
+name|isLockedForRead
+parameter_list|(
+name|Thread
+name|owner
+parameter_list|)
+function_decl|;
 specifier|public
 name|boolean
 name|hasLock

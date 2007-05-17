@@ -357,6 +357,8 @@ operator|.
 name|lock
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|DocumentImpl
@@ -413,6 +415,7 @@ name|doc
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|lockOnLoad
@@ -428,7 +431,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 name|cached
