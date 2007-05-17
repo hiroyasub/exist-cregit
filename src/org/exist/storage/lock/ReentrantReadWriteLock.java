@@ -957,7 +957,7 @@ specifier|public
 name|boolean
 name|isLockedForRead
 parameter_list|(
-name|Object
+name|Thread
 name|owner
 parameter_list|)
 block|{
