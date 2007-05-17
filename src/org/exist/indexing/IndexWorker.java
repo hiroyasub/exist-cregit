@@ -191,7 +191,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate using the mode      * given. mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      *  {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate using the mode      * given. mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      *  {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
 name|void
 name|setMode
 parameter_list|(
@@ -210,7 +210,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Return a stream listener to index the current document in the current mode.      * There will never be more than one StreamListener being used per thread, so it is safe      * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.      *      * @param mode one of {@link StreamListener#STORE}, {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      * @param document the document to be indexed.      * @return a StreamListener      */
+comment|/**      * Return a stream listener to index the current document in the current mode.      * There will never be more than one StreamListener being used per thread, so it is safe      * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.      *      * @return a StreamListener      */
 name|StreamListener
 name|getListener
 parameter_list|()
