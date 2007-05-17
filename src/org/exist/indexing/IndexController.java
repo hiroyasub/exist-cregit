@@ -917,7 +917,7 @@ return|return
 name|top
 return|;
 block|}
-comment|/**      * Reindex all nodes below the specified root node, using the given mode. mode should be      * one of {@link StreamListener#STORE} or {@link StreamListener#REMOVE_NODES}.      *      * @param transaction the current transaction      * @param reindexRoot the root node to reindex      * @param mode one of {@link StreamListener#STORE} or {@link StreamListener#REMOVE_NODES}.      */
+comment|/**      * Reindex all nodes below the specified root node, using the given mode. Mode should be      * one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param transaction the current transaction      * @param reindexRoot the root node to reindex      * @param mode the mode      */
 specifier|public
 name|void
 name|reindex

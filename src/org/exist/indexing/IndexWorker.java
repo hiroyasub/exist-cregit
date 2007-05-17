@@ -153,11 +153,13 @@ interface|interface
 name|IndexWorker
 block|{
 comment|/**      * Returns an ID which uniquely identifies this index. This will usually be the class name.      * @return a unique ID identifying this index.      */
+specifier|public
 name|String
 name|getIndexId
 parameter_list|()
 function_decl|;
 comment|/**      * Returns an name which uniquely identifies this index.      * @return a unique name identifying this index.      */
+specifier|public
 name|String
 name|getIndexName
 parameter_list|()
@@ -191,7 +193,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate using the mode      * given. mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      *  {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
 name|void
 name|setMode
 parameter_list|(
@@ -199,7 +201,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. mode will be one of {@link StreamListener#STORE}, {@link StreamListener#REMOVE_NODES} or      * {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
 parameter_list|(
