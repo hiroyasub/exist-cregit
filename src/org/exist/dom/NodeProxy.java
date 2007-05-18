@@ -1336,12 +1336,10 @@ if|if
 condition|(
 name|next
 operator|.
-name|compareTo
+name|equals
 argument_list|(
 name|m
 argument_list|)
-operator|==
-literal|0
 condition|)
 return|return;
 if|if
