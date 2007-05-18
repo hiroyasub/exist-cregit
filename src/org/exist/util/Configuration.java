@@ -6801,6 +6801,20 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Extract catalogs
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Creating eXist catalog resolver"
+argument_list|)
+expr_stmt|;
+name|eXistXMLCatalogResolver
+name|resolver
+init|=
+operator|new
+name|eXistXMLCatalogResolver
+argument_list|()
+decl_stmt|;
 name|NodeList
 name|entityResolver
 init|=
@@ -7060,22 +7074,6 @@ argument_list|,
 name|allURIs
 argument_list|)
 expr_stmt|;
-comment|// TODO DWES discuss ; this should not be here?
-comment|// Create resolver
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Creating eXist catalog resolver"
-argument_list|)
-expr_stmt|;
-name|eXistXMLCatalogResolver
-name|resolver
-init|=
-operator|new
-name|eXistXMLCatalogResolver
-argument_list|()
-decl_stmt|;
 name|resolver
 operator|.
 name|setCatalogs
@@ -7083,6 +7081,7 @@ argument_list|(
 name|allURIs
 argument_list|)
 expr_stmt|;
+block|}
 name|config
 operator|.
 name|put
@@ -7094,7 +7093,6 @@ argument_list|,
 name|resolver
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|String
