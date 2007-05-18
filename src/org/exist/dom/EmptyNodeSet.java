@@ -368,7 +368,7 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|other
+name|this
 return|;
 block|}
 specifier|public
@@ -380,7 +380,7 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|other
+name|this
 return|;
 block|}
 specifier|public
