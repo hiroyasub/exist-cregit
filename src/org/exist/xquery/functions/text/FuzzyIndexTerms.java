@@ -217,11 +217,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Fuzzy keyword search, which compares strings based on the Levenshtein distance "
+literal|"Compares the specified argument against the contents of the fulltext index. Returns "
 operator|+
-literal|"(or edit distance). The function tries to match each of the keywords specified in the "
+literal|"a sequence of strings which are similar to the argument. Similarity is based on Levenshtein "
 operator|+
-literal|"keyword string $b against the string value of each item in the sequence $a."
+literal|"distance. This function may not be useful in its current form and is subject to change."
 argument_list|,
 operator|new
 name|SequenceType
@@ -309,12 +309,7 @@ name|NodeSet
 condition|)
 name|docs
 operator|=
-operator|(
-operator|(
-name|NodeSet
-operator|)
 name|contextSequence
-operator|)
 operator|.
 name|getDocumentSet
 argument_list|()
