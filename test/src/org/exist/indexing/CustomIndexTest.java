@@ -2784,7 +2784,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//section[text:ngram-contains(., '123')]"
+literal|"//section[text:ngram-contains(para, '123')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -3184,7 +3184,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//section[text:ngram-contains(., '123')]"
+literal|"//section[text:ngram-contains(*, '123')]"
 argument_list|,
 literal|null
 argument_list|,
