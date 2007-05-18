@@ -197,6 +197,12 @@ case|:
 return|return
 literal|"zero or one"
 return|;
+case|case
+name|MANY
+case|:
+return|return
+literal|"many"
+return|;
 default|default:
 comment|// impossible
 throw|throw
