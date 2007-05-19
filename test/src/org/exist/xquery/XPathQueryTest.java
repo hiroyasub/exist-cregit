@@ -1345,6 +1345,17 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+literal|"(0, 1, 2)[if(. eq 1) then 2 else 3]"
+argument_list|,
+literal|2
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
