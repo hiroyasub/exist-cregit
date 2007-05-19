@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|OrderSpec
 import|;
 end_import
@@ -732,7 +744,6 @@ name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 expr_stmt|;
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|seq
@@ -890,13 +901,16 @@ literal|0
 condition|)
 name|cmp
 operator|=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 expr_stmt|;
 else|else
 name|cmp
 operator|=
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 expr_stmt|;
 block|}
 if|else if
@@ -934,13 +948,16 @@ literal|0
 condition|)
 name|cmp
 operator|=
-literal|1
+name|Constants
+operator|.
+name|SUPERIOR
 expr_stmt|;
 else|else
 name|cmp
 operator|=
-operator|-
-literal|1
+name|Constants
+operator|.
+name|INFERIOR
 expr_stmt|;
 block|}
 else|else
@@ -990,7 +1007,9 @@ if|if
 condition|(
 name|cmp
 operator|!=
-literal|0
+name|Constants
+operator|.
+name|EQUAL
 condition|)
 break|break;
 block|}
