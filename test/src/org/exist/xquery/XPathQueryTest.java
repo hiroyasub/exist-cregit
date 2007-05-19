@@ -1356,6 +1356,17 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+literal|"(0, 1, 2)[remove((1, 'a string'), 2)]"
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

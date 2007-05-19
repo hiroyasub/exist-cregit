@@ -285,7 +285,6 @@ specifier|private
 name|int
 name|outerContextId
 decl_stmt|;
-comment|//private boolean innerExpressionDot = false;
 specifier|private
 name|Expression
 name|parent
@@ -343,9 +342,6 @@ name|getDependencies
 argument_list|()
 expr_stmt|;
 block|}
-comment|//if (executionMode == POSITIONAL)
-comment|// in a positional predicate, remove the dependency on the context item
-comment|//deps = deps& ~Dependency.CONTEXT_ITEM;
 return|return
 name|deps
 return|;
@@ -439,9 +435,6 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
-comment|//TODO : (0, 1, 2)[if(. eq 1) then 0 else position()]
-comment|//if ((newContextInfo.getFlags()& DOT_TEST) == DOT_TEST)
-comment|//innerExpressionDot = true;
 name|Expression
 name|inner
 init|=
@@ -681,6 +674,11 @@ name|recomputedExecutionMode
 init|=
 name|executionMode
 decl_stmt|;
+name|Sequence
+name|innerSeq
+init|=
+literal|null
+decl_stmt|;
 comment|//Atomic context sequences :
 if|if
 condition|(
@@ -784,16 +782,15 @@ name|invalidNodeEvaluation
 operator|)
 condition|)
 block|{
-name|Sequence
 name|innerSeq
-init|=
+operator|=
 name|inner
 operator|.
 name|eval
 argument_list|(
 name|contextSequence
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//Only if we have an actual *singleton* of numeric items
 if|if
 condition|(
@@ -846,16 +843,15 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-name|Sequence
 name|innerSeq
-init|=
+operator|=
 name|inner
 operator|.
 name|eval
 argument_list|(
 name|contextSequence
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//Only if we have an actual *singleton* of numeric items
 if|if
 condition|(
@@ -1002,6 +998,24 @@ argument_list|,
 literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
+comment|//In case it hasn't been evaluated above
+if|if
+condition|(
+name|innerSeq
+operator|==
+literal|null
+condition|)
+block|{
+name|innerSeq
+operator|=
+name|inner
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+expr_stmt|;
+block|}
 name|result
 operator|=
 name|selectByPosition
@@ -1012,7 +1026,7 @@ name|contextSequence
 argument_list|,
 name|mode
 argument_list|,
-name|inner
+name|innerSeq
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1144,6 +1158,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+comment|//Sequence innerSeq = inner.eval(item.toSequence(), null);
 name|Sequence
 name|innerSeq
 init|=
@@ -1151,12 +1166,9 @@ name|inner
 operator|.
 name|eval
 argument_list|(
-name|item
-operator|.
-name|toSequence
-argument_list|()
+name|contextSequence
 argument_list|,
-literal|null
+name|item
 argument_list|)
 decl_stmt|;
 if|if
@@ -1182,7 +1194,7 @@ name|p
 operator|=
 literal|0
 expr_stmt|;
-comment|//TODO : is this block accurate in reverse-order processing ?
+comment|//TODO : is this block also accurate in reverse-order processing ?
 comment|//Compute each position in the boolean-like way...
 comment|//... but grab some context positions ! -<8-P
 if|if
@@ -1753,8 +1765,8 @@ parameter_list|,
 name|int
 name|mode
 parameter_list|,
-name|Expression
-name|inner
+name|Sequence
+name|innerSeq
 parameter_list|)
 throws|throws
 name|XPathException
@@ -2051,16 +2063,6 @@ operator|.
 name|sortInDocumentOrder
 argument_list|()
 expr_stmt|;
-name|Sequence
-name|innerSeq
-init|=
-name|inner
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -2352,17 +2354,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-comment|//TODO : build a value sequence *one* time ? -pb
-name|Sequence
-name|innerSeq
-init|=
-name|inner
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -2576,16 +2567,6 @@ init|=
 operator|new
 name|ValueSequence
 argument_list|()
-decl_stmt|;
-name|Sequence
-name|innerSeq
-init|=
-name|inner
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|)
 decl_stmt|;
 for|for
 control|(
