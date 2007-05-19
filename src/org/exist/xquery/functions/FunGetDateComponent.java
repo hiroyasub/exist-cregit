@@ -1303,6 +1303,17 @@ return|return
 name|result
 return|;
 block|}
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+return|;
+block|}
 block|}
 end_class
 
