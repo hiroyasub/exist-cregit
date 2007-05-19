@@ -1027,7 +1027,7 @@ specifier|private
 name|boolean
 name|backwardsCompatible
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|/** 	 * Should whitespace inside node constructors be stripped? 	 */
 specifier|private

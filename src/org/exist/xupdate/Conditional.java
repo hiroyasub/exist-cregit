@@ -382,13 +382,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
-name|context
-operator|.
-name|setBackwardsCompatibility
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+comment|//context.setBackwardsCompatibility(true);
 name|context
 operator|.
 name|setStaticallyKnownDocuments

@@ -1109,13 +1109,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
-name|context
-operator|.
-name|setBackwardsCompatibility
-argument_list|(
-name|xpathCompatible
-argument_list|)
-expr_stmt|;
+comment|//context.setBackwardsCompatibility(xpathCompatible);
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -1771,13 +1765,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|context
-operator|.
-name|setBackwardsCompatibility
-argument_list|(
-name|xpathCompatible
-argument_list|)
-expr_stmt|;
+comment|//context.setBackwardsCompatibility(xpathCompatible);
 block|}
 comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. 	 * If yes, copy the corresponding settings to the current set of output properties. 	 *  	 * @param context 	 */
 specifier|private
@@ -2122,13 +2110,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|context
-operator|.
-name|setBackwardsCompatibility
-argument_list|(
-name|xpathCompatible
-argument_list|)
-expr_stmt|;
+comment|//context.setBackwardsCompatibility(xpathCompatible);
 name|context
 operator|.
 name|setStaticallyKnownDocuments
