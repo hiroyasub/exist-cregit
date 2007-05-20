@@ -227,7 +227,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Pause the job named in $a with the Scheduler. Will only pause User Scheduled Job's!"
+literal|"Pause the job named in $a with the Scheduler. Will only pause User Scheduled Jobs!"
 argument_list|,
 operator|new
 name|SequenceType

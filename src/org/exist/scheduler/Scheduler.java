@@ -417,7 +417,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param startNow	true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 *  	 * @return	true if thejob was successfully scheduled, false otherwise 	 */
+comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param startNow	true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -445,7 +445,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param startNow	true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if thejob was successfully scheduled, false otherwise 	 */
+comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param startNow	true if the cycle should start with execution 	 * of the task now. Otherwise, the cycle starts with a delay of 	 *<code>period</code> milliseconds. 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -486,7 +486,7 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//Setup the jobs's data map
+comment|//Setup the job's data map
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -623,7 +623,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 *  	 * @return	true if thejob was successfully scheduled, false otherwise 	 */
+comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
 specifier|public
 name|boolean
 name|createCronJob
@@ -646,7 +646,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if thejob was successfully scheduled, false otherwise 	 */
+comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
 specifier|public
 name|boolean
 name|createCronJob
@@ -684,7 +684,7 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//Setup the jobs's data map
+comment|//Setup the job's data map
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -864,7 +864,7 @@ parameter_list|)
 block|{
 block|}
 block|}
-comment|/** 	 * Get's the names of the Job groups 	 *  	 * @return String array of the Job group names 	 */
+comment|/** 	 * Gets the names of the Job groups 	 *  	 * @return String array of the Job group names 	 */
 specifier|public
 name|String
 index|[]
@@ -891,7 +891,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * Get's information about currently Scheduled Job's 	 *  	 * @return An array of ScheduledJobInfo 	 */
+comment|/** 	 * Gets information about currently Scheduled Jobs 	 *  	 * @return An array of ScheduledJobInfo 	 */
 specifier|public
 name|ScheduledJobInfo
 index|[]
@@ -1049,7 +1049,7 @@ return|return
 name|jobsArray
 return|;
 block|}
-comment|/** 	 * Set's up all the job's that are listed in conf.xml and loaded 	 * through org.exist.util.Configuration 	 */
+comment|/** 	 * Set's up all the jobs that are listed in conf.xml and loaded 	 * through org.exist.util.Configuration 	 */
 specifier|public
 name|void
 name|setupConfiguredJobs

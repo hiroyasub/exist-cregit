@@ -227,7 +227,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Delete the job named in $a from the Scheduler. Will only delete User Scheduled Job's! Returns true() if the Job was deleted."
+literal|"Delete the job named in $a from the Scheduler. Will only delete User Scheduled Jobs! Returns true() if the Job was deleted."
 argument_list|,
 operator|new
 name|SequenceType

@@ -118,7 +118,7 @@ operator|=
 name|message
 expr_stmt|;
 block|}
-comment|/** 	 * Should be called after this exception is caught 	 * it cleans up the job, with regards to the scheduler 	 *  	 * Job's may be removed, refired immediately or left 	 * for their next execution 	 */
+comment|/** 	 * Should be called after this exception is caught 	 * it cleans up the job, with regards to the scheduler 	 *  	 * Jobs may be removed, refired immediately or left 	 * for their next execution 	 */
 specifier|public
 name|void
 name|cleanupJob

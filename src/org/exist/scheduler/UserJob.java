@@ -31,7 +31,6 @@ name|quartz
 operator|.
 name|Job
 block|{
-comment|//TODO: Adam: this is a work in progress
 specifier|public
 specifier|final
 specifier|static

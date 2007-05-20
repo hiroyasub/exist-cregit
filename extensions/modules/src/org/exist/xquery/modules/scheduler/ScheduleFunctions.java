@@ -517,6 +517,17 @@ name|UserJavaJob
 operator|)
 condition|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Cannot Schedule job. Class "
+operator|+
+name|resource
+operator|+
+literal|" is not an instance of org.exist.scheduler.UserJavaJob"
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue
@@ -532,7 +543,13 @@ name|ClassNotFoundException
 name|cnfe
 parameter_list|)
 block|{
-comment|//TODO: log?
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|cnfe
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue
@@ -547,7 +564,13 @@ name|IllegalAccessException
 name|iae
 parameter_list|)
 block|{
-comment|//TODO: log?
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|iae
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue
@@ -562,7 +585,13 @@ name|InstantiationException
 name|ie
 parameter_list|)
 block|{
-comment|//TODO: log?
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ie
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue

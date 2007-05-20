@@ -227,7 +227,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Resumes the job named in $a with the Scheduler. Will only resume User Scheduled Job's!"
+literal|"Resumes the job named in $a with the Scheduler. Will only resume User Scheduled Jobs!"
 argument_list|,
 operator|new
 name|SequenceType

@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retreives details of job's that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retreives details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's details of all Scheduled Job's"
+literal|"Get's details of all Scheduled Jobs"
 argument_list|,
 literal|null
 argument_list|,
