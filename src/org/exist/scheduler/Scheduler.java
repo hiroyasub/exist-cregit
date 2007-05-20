@@ -802,7 +802,7 @@ block|}
 block|}
 comment|/** 	 * Pauses a Job with the Scheduler 	 *  	 * @param jobName	The name of the Job 	 * @param jobGroup The group that the Job was Scheduled in 	 */
 specifier|public
-name|void
+name|boolean
 name|pauseJob
 parameter_list|(
 name|String
@@ -823,6 +823,9 @@ argument_list|,
 name|jobGroup
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -830,11 +833,15 @@ name|SchedulerException
 name|se
 parameter_list|)
 block|{
+comment|//TODO: log an error?
+return|return
+literal|false
+return|;
 block|}
 block|}
 comment|/** 	 * Resume a Job with the Scheduler 	 *  	 * @param jobName	The name of the Job 	 * @param jobGroup The group that the Job was Scheduled in 	 */
 specifier|public
-name|void
+name|boolean
 name|resumeJob
 parameter_list|(
 name|String
@@ -855,6 +862,9 @@ argument_list|,
 name|jobGroup
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -862,6 +872,10 @@ name|SchedulerException
 name|se
 parameter_list|)
 block|{
+comment|//TODO: log an error?
+return|return
+literal|false
+return|;
 block|}
 block|}
 comment|/** 	 * Gets the names of the Job groups 	 *  	 * @return String array of the Job group names 	 */
