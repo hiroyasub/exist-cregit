@@ -364,6 +364,14 @@ init|=
 literal|false
 decl_stmt|;
 specifier|private
+name|int
+name|actualReturnType
+init|=
+name|Type
+operator|.
+name|ITEM
+decl_stmt|;
+specifier|private
 name|LocationStep
 name|contextStep
 init|=
@@ -1023,9 +1031,7 @@ block|{
 if|if
 condition|(
 name|inPredicate
-operator|&&
-operator|!
-name|invalidNodeEvaluation
+comment|/*&& !invalidNodeEvaluation */
 operator|&&
 operator|(
 operator|!
@@ -1042,11 +1048,9 @@ argument_list|)
 operator|)
 condition|)
 block|{
-comment|/* If one argument is a node set we directly 			 * return the matching nodes from the context set. This works 			 * only inside predicates. 			 */
+comment|/* If one argument is a node set we directly 			 * return the matching nodes from the context set. This works 			 * only inside predicates. 			 * Since the context sequence can be of Type.ATOMIC, we return actualReturnType (default Type.ITEM) 			 * ... unless we are *sure* we have another type (after evaluation) 			 */
 return|return
-name|Type
-operator|.
-name|NODE
+name|actualReturnType
 return|;
 block|}
 comment|// In all other cases, we return boolean
@@ -2009,6 +2013,13 @@ literal|""
 argument_list|,
 name|result
 argument_list|)
+expr_stmt|;
+name|actualReturnType
+operator|=
+name|result
+operator|.
+name|getItemType
+argument_list|()
 expr_stmt|;
 return|return
 name|result

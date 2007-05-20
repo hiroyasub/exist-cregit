@@ -823,7 +823,6 @@ block|}
 block|}
 else|else
 block|{
-comment|//Try to promote a boolean evaluation to a positional one
 if|if
 condition|(
 name|executionMode
@@ -852,8 +851,33 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
-comment|//Only if we have an actual *singleton* of numeric items
+comment|//Try to promote a boolean evaluation to a nodeset one
+comment|//We are now sure of the inner sequence return type
 if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|innerSeq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|NODE
+expr_stmt|;
+comment|//Try to promote a boolean evaluation to a positional one
+comment|//Only if we have an actual *singleton* of numeric items
+block|}
+if|else if
 condition|(
 name|innerSeq
 operator|.
@@ -1286,6 +1310,7 @@ name|NumericValue
 operator|)
 name|innerSeq
 decl_stmt|;
+comment|//Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -2086,6 +2111,12 @@ name|v
 operator|.
 name|hasFractionalPart
 argument_list|()
+operator|&&
+operator|!
+name|v
+operator|.
+name|isZero
+argument_list|()
 condition|)
 block|{
 comment|//... whereas we don't want a sorted array here
@@ -2377,6 +2408,12 @@ name|v
 operator|.
 name|hasFractionalPart
 argument_list|()
+operator|&&
+operator|!
+name|v
+operator|.
+name|isZero
+argument_list|()
 condition|)
 block|{
 name|int
@@ -2590,6 +2627,12 @@ operator|!
 name|v
 operator|.
 name|hasFractionalPart
+argument_list|()
+operator|&&
+operator|!
+name|v
+operator|.
+name|isZero
 argument_list|()
 condition|)
 block|{

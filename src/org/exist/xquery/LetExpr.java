@@ -1418,6 +1418,13 @@ argument_list|,
 name|resultSequence
 argument_list|)
 expr_stmt|;
+name|actualReturnType
+operator|=
+name|resultSequence
+operator|.
+name|getItemType
+argument_list|()
+expr_stmt|;
 return|return
 name|resultSequence
 return|;
