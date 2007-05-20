@@ -359,6 +359,8 @@ name|Dependency
 operator|.
 name|CONTEXT_SET
 decl_stmt|;
+comment|//TODO : normally, we should call this one...
+comment|//int deps = super.getDependencies(); ???
 for|for
 control|(
 name|Iterator
@@ -1311,6 +1313,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+comment|//actualReturnType = result.getItemType();
 return|return
 name|result
 return|;

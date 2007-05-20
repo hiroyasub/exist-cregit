@@ -380,6 +380,12 @@ block|{
 if|if
 condition|(
 operator|!
+name|other
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
+operator|!
 name|Type
 operator|.
 name|subTypeOf

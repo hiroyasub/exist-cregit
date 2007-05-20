@@ -502,6 +502,7 @@ expr_stmt|;
 name|registerUpdateListener
 argument_list|()
 expr_stmt|;
+comment|//actualReturnType = result.getItemType();
 return|return
 name|result
 return|;

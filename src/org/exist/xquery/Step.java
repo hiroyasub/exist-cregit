@@ -160,6 +160,14 @@ name|inPredicate
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|int
+name|actualReturnType
+init|=
+name|Type
+operator|.
+name|NODE
+decl_stmt|;
 comment|/** 	 * Holds the context id for the context of this expression. 	 */
 specifier|protected
 name|int
@@ -796,11 +804,31 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|//TODO : not sure about this one...
+comment|/*     	public int getDependencies() { 		if (test == null) 			return Dependency.CONTEXT_SET; 		else 			return Dependency.CONTEXT_SET + Dependency.CONTEXT_ITEM; 	} 	*/
 specifier|public
 name|int
 name|returnsType
 parameter_list|()
 block|{
+comment|//Polysemy of "." which might be atomic if the context sequence is atomic itself
+if|if
+condition|(
+name|axis
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+condition|)
+comment|//Type.ITEM by default : this may change *after* evaluation
+comment|//return actualReturnType;
+comment|//Grrrrrrrrrrrrrrrr : I let it as such for now !
+return|return
+name|Type
+operator|.
+name|NODE
+return|;
+else|else
 return|return
 name|Type
 operator|.
