@@ -532,29 +532,7 @@ name|executionMode
 operator|=
 name|BOOLEAN
 expr_stmt|;
-if|if
-condition|(
-name|executionMode
-operator|==
-name|BOOLEAN
-condition|)
-block|{
-name|newContextInfo
-operator|.
-name|addFlag
-argument_list|(
-name|SINGLE_STEP_EXECUTION
-argument_list|)
-expr_stmt|;
-comment|// need to re-analyze:
-name|super
-operator|.
-name|analyze
-argument_list|(
-name|newContextInfo
-argument_list|)
-expr_stmt|;
-block|}
+comment|/* 		if(executionMode == BOOLEAN) { 			newContextInfo.addFlag(SINGLE_STEP_EXECUTION); 		    // need to re-analyze: 		    super.analyze(newContextInfo); 		}*/
 block|}
 specifier|public
 name|Sequence
