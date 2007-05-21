@@ -1702,7 +1702,7 @@ argument_list|)
 expr_stmt|;
 name|attrib
 operator|.
-name|setNodeValue
+name|setValue
 argument_list|(
 name|doc
 operator|.
