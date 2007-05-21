@@ -474,7 +474,6 @@ return|;
 block|}
 comment|/**      * Retrieve a shared QName instance from the temporary pool.      *       * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
-specifier|synchronized
 name|QName
 name|getQName
 parameter_list|(
@@ -508,7 +507,36 @@ name|ElementValue
 operator|.
 name|ELEMENT
 decl_stmt|;
-return|return
+name|QName
+name|qn
+init|=
+name|namePool
+operator|.
+name|get
+argument_list|(
+name|itype
+argument_list|,
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|,
+name|prefix
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|qn
+operator|==
+literal|null
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|qn
+operator|=
 name|namePool
 operator|.
 name|add
@@ -521,6 +549,11 @@ name|localName
 argument_list|,
 name|prefix
 argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|qn
 return|;
 block|}
 comment|/**      * Return a unique id for the local node name of the specified element.      *       * @param element      */
