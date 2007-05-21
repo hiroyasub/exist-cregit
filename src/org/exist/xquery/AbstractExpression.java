@@ -97,6 +97,7 @@ name|contextDocSet
 init|=
 literal|null
 decl_stmt|;
+comment|/** 	 * Holds the context id for the context of this expression. 	 */
 specifier|protected
 name|int
 name|contextId

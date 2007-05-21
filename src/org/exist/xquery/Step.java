@@ -168,15 +168,6 @@ name|Type
 operator|.
 name|NODE
 decl_stmt|;
-comment|/** 	 * Holds the context id for the context of this expression. 	 */
-specifier|protected
-name|int
-name|contextId
-init|=
-name|Expression
-operator|.
-name|NO_CONTEXT_ID
-decl_stmt|;
 specifier|public
 name|Step
 parameter_list|(
