@@ -53,6 +53,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|pool
+operator|.
+name|NodePool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -791,18 +805,20 @@ operator|=
 operator|(
 name|ProcessingInstructionImpl
 operator|)
-name|NodeObjectPool
+name|NodePool
 operator|.
 name|getInstance
 argument_list|()
 operator|.
 name|borrowNode
 argument_list|(
-name|ProcessingInstructionImpl
+name|Node
 operator|.
-name|class
+name|PROCESSING_INSTRUCTION_NODE
 argument_list|)
 expr_stmt|;
+comment|//            pi = (ProcessingInstructionImpl)
+comment|//				NodeObjectPool.getInstance().borrowNode(ProcessingInstructionImpl.class);
 else|else
 name|pi
 operator|=

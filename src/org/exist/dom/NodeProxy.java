@@ -1336,7 +1336,7 @@ if|if
 condition|(
 name|next
 operator|.
-name|equals
+name|matchEquals
 argument_list|(
 name|m
 argument_list|)

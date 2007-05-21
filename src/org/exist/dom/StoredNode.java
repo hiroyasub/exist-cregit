@@ -97,6 +97,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|pool
+operator|.
+name|NodePool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -1789,7 +1803,8 @@ expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
-name|NodeObjectPool
+comment|//		NodeObjectPool.getInstance().returnNode(this);
+name|NodePool
 operator|.
 name|getInstance
 argument_list|()
