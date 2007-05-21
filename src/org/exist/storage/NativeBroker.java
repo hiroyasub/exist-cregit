@@ -7517,7 +7517,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** store into the temporary collection of the database a given in-memory Document      *      * @param doc The in-memory document to store      * @return The document stored in the temp collection      */
+comment|/** Store into the temporary collection of the database a given in-memory Document      *      * The in-memory Document is stored without a transaction and is not journalled,      * if there is no temporary collection, this will first be created with a transaction      *      * @param doc The in-memory Document to store      * @return The document stored in the temp collection      */
 specifier|public
 name|DocumentImpl
 name|storeTempResource
@@ -7544,8 +7544,6 @@ name|currentUser
 init|=
 name|user
 decl_stmt|;
-try|try
-block|{
 comment|//elevate user to DBA_USER
 name|user
 operator|=
@@ -7561,12 +7559,22 @@ operator|.
 name|DBA_USER
 argument_list|)
 expr_stmt|;
-comment|//transaction is null as temporary resources
-comment|//do not need to be journalled
+comment|//start a transaction
+name|TransactionManager
+name|transact
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
 name|Txn
 name|transaction
 init|=
-literal|null
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
 decl_stmt|;
 comment|//create a name for the temporary document
 name|XmldbURI
@@ -7619,30 +7627,17 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 decl_stmt|;
+try|try
+block|{
+comment|//if no temp collection
 if|if
 condition|(
 name|temp
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
-comment|//unlock the temp collection
-name|temp
-operator|.
-name|getLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//create the temp collection with lock
+comment|//creates temp collection (with write lock)
 name|temp
 operator|=
 name|createTempCollection
@@ -7662,6 +7657,47 @@ operator|.
 name|warn
 argument_list|(
 literal|"Failed to create temporary collection"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//lock the temp collection
+if|if
+condition|(
+name|transaction
+operator|==
+literal|null
+condition|)
+block|{
+name|temp
+operator|.
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|transaction
+operator|.
+name|registerLock
+argument_list|(
+name|temp
+operator|.
+name|getLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
@@ -7744,13 +7780,14 @@ name|DOMIndexer
 argument_list|(
 name|this
 argument_list|,
-name|transaction
+literal|null
 argument_list|,
 name|doc
 argument_list|,
 name|targetDoc
 argument_list|)
 decl_stmt|;
+comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|indexer
 operator|.
 name|scan
@@ -7766,25 +7803,35 @@ name|temp
 operator|.
 name|addDocument
 argument_list|(
-name|transaction
+literal|null
 argument_list|,
 name|this
 argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
+comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|storeXMLResource
 argument_list|(
-name|transaction
+literal|null
 argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
+comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|flush
 argument_list|()
 expr_stmt|;
 name|closeDocument
 argument_list|()
+expr_stmt|;
+comment|//commit the transaction
+name|transact
+operator|.
+name|commit
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 return|return
 name|targetDoc
@@ -7808,6 +7855,14 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+comment|//abort the transaction
+name|transact
+operator|.
+name|abort
+argument_list|(
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
