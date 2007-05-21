@@ -664,8 +664,47 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//URI type promotion: A value of type xs:anyURI (or any type derived
+comment|//by restriction from xs:anyURI) can be promoted to the type xs:string.
+comment|//The result of this promotion is created by casting the
+comment|//original value to the type xs:string.
 block|}
-if|else 					if
+if|else if
+condition|(
+name|type
+operator|==
+name|Type
+operator|.
+name|ANY_URI
+operator|&&
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+name|item
+operator|=
+name|item
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
+name|type
+operator|=
+name|Type
+operator|.
+name|STRING
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
 condition|(
 operator|!
 operator|(
@@ -760,6 +799,7 @@ operator|+
 literal|")'"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 return|return
