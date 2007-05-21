@@ -532,7 +532,29 @@ name|executionMode
 operator|=
 name|BOOLEAN
 expr_stmt|;
-comment|/* 		if(executionMode == BOOLEAN) { 			newContextInfo.addFlag(SINGLE_STEP_EXECUTION); 		    // need to re-analyze: 		    super.analyze(newContextInfo); 		}*/
+if|if
+condition|(
+name|executionMode
+operator|==
+name|BOOLEAN
+condition|)
+block|{
+name|newContextInfo
+operator|.
+name|addFlag
+argument_list|(
+name|SINGLE_STEP_EXECUTION
+argument_list|)
+expr_stmt|;
+comment|// need to re-analyze:
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|newContextInfo
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|Sequence
@@ -820,6 +842,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
+comment|/* 	            	 *  	            	 * WARNING : this sequence will be evaluated with preloadable nodesets ! 	            	 *  	            	 */
 name|innerSeq
 operator|=
 name|inner
