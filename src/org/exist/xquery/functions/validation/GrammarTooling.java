@@ -410,7 +410,7 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"clear-grammar-cache"
+literal|"grammar-cache-clear"
 argument_list|)
 condition|)
 block|{
@@ -438,7 +438,7 @@ if|else if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"show-grammar-cache"
+literal|"grammar-cache-show"
 argument_list|)
 condition|)
 block|{
