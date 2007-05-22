@@ -201,7 +201,48 @@ throws|throws
 name|XPathException
 block|{
 comment|//TODO : static checks ?
-comment|/*     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, start.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 1st argument");     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, end.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 2nd argument");     	if (start.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 1st argument");     	if (end.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 2nd argument");     	/*     	// call analyze for each argument     	inPredicate = (contextInfo.getFlags()& IN_PREDICATE)> 0;     	contextId = contextInfo.getContextId();     	contextInfo.setParent(this);         for(int i = 0; i< 2; i++) {         	getExpression(i).analyze(contextInfo);         }         */
+comment|/*     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, start.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 1st argument");     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, end.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 2nd argument");     	if (start.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 1st argument");     	if (end.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 2nd argument");         */
+name|inPredicate
+operator|=
+operator|(
+name|contextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|IN_PREDICATE
+operator|)
+operator|>
+literal|0
+expr_stmt|;
+name|contextId
+operator|=
+name|contextInfo
+operator|.
+name|getContextId
+argument_list|()
+expr_stmt|;
+name|contextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|start
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+name|end
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public

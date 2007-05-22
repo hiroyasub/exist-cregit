@@ -1367,6 +1367,17 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+literal|"let $page-ix := (1,3) return ($page-ix[1] to $page-ix[2])"
+argument_list|,
+literal|3
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
