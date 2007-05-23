@@ -317,6 +317,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
 comment|/**  * Placeholder class for DOM nodes.   *   * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.   * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper   * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain   * the real node for a proxy, simply call {@link #getNode()}.   *   * All sets of type NodeSet operate on NodeProxys. A node set is a special type of   * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also   * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -2202,6 +2212,9 @@ name|broker
 parameter_list|,
 name|ContentHandler
 name|handler
+parameter_list|,
+name|Properties
+name|properties
 parameter_list|)
 throws|throws
 name|SAXException
@@ -2228,6 +2241,19 @@ operator|.
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|properties
+operator|!=
+literal|null
+condition|)
+name|serializer
+operator|.
+name|setProperties
+argument_list|(
+name|properties
 argument_list|)
 expr_stmt|;
 name|serializer

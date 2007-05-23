@@ -1426,6 +1426,9 @@ argument_list|(
 name|broker
 argument_list|,
 name|handler
+argument_list|,
+name|getProperties
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -913,6 +913,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|handler
+argument_list|,
+name|outputProperties
 argument_list|)
 expr_stmt|;
 block|}

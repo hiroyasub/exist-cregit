@@ -373,6 +373,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -2216,6 +2226,9 @@ name|broker
 parameter_list|,
 name|ContentHandler
 name|handler
+parameter_list|,
+name|Properties
+name|properties
 parameter_list|)
 throws|throws
 name|SAXException
@@ -2249,6 +2262,19 @@ operator|.
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|properties
+operator|!=
+literal|null
+condition|)
+name|serializer
+operator|.
+name|setProperties
+argument_list|(
+name|properties
 argument_list|)
 expr_stmt|;
 name|serializer

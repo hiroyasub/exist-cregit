@@ -1095,6 +1095,8 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|serializer
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|resource
@@ -1138,6 +1140,8 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|handler
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|handler

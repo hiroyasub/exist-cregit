@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -542,6 +552,9 @@ name|broker
 parameter_list|,
 name|ContentHandler
 name|handler
+parameter_list|,
+name|Properties
+name|properties
 parameter_list|)
 throws|throws
 name|SAXException
