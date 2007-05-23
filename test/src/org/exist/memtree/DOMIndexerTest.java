@@ -851,6 +851,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|serializer
+argument_list|,
+name|props
 argument_list|)
 expr_stmt|;
 block|}

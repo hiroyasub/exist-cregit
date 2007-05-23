@@ -251,6 +251,16 @@ name|OutputStreamWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 20070428  * @version 1.0  */
 end_comment
@@ -481,6 +491,10 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|sax
+argument_list|,
+operator|new
+name|Properties
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|osw
