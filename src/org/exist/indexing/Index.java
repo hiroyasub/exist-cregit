@@ -17,11 +17,37 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|storage
 operator|.
-name|Element
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|btree
+operator|.
+name|DBException
 import|;
 end_import
 
@@ -41,25 +67,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|w3c
 operator|.
-name|storage
+name|dom
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|btree
-operator|.
-name|DBException
+name|Element
 import|;
 end_import
 
@@ -123,10 +135,13 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Create a new IndexWorker, which is used to access the index in a multi-threaded      * environment.      *      * Every database instance has a number of      * {@link org.exist.storage.DBBroker} objects. All operations on the db      * have to go through one of these brokers. Each DBBroker retrieves an      * IndexWorker for every index by calling this method.      *      * @return a new IndexWorker that can be used for concurrent access to the index.      */
+comment|/**      * Create a new IndexWorker, which is used to access the index in a multi-threaded      * environment.      *      * Every database instance has a number of      * {@link org.exist.storage.DBBroker} objects. All operations on the db      * have to go through one of these brokers. Each DBBroker retrieves an      * IndexWorker for every index by calling this method.      *      * @param broker The DBBroker that owns this worker      * @return a new IndexWorker that can be used for concurrent access to the index.      */
 name|IndexWorker
 name|getWorker
-parameter_list|()
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 function_decl|;
 comment|/**      * Close the index and remove it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are reindexed.      */
 name|void

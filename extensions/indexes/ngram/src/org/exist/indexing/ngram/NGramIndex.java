@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|btree
 operator|.
 name|DBException
@@ -419,11 +431,26 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|checkIndex
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
 name|IndexWorker
 name|getWorker
-parameter_list|()
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 block|{
-comment|//TODO : ensure singleton ?
+comment|//TODO : ensure singleton ? a pool ?
 return|return
 operator|new
 name|NGramIndexWorker

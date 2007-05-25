@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provide concurrent access to the index structure. Implements the core operations on the index.  * The methods in this class are used in a multi-threaded environment. Every thread accessing the  * database will have exactly one IndexWorker for every index. {@link org.exist.indexing.Index#getWorker()}  * should thus return a new IndexWorker whenever it is  called. Implementations of IndexWorker have  * to take care of synchronizing access to shared resources.  */
+comment|/**  * Provide concurrent access to the index structure. Implements the core operations on the index.  * The methods in this class are used in a multi-threaded environment. Every thread accessing the  * database will have exactly one IndexWorker for every index. {@link org.exist.indexing.Index#getWorker(DBBroker)}  * should thus return a new IndexWorker whenever it is  called. Implementations of IndexWorker have  * to take care of synchronizing access to shared resources.  */
 end_comment
 
 begin_interface
@@ -236,6 +236,15 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
+comment|/** Checking index could be delegatezd to a worker. Use this method to do so.      * @param broker The broker that will perform the operation      * @return Whether or not the index if in a suitable state      */
+name|boolean
+name|checkIndex
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+function_decl|;
+comment|/**       * Return<strong>ordered</strong> (whatever the ordering semantics) and<strong>aggregated</strong>      * (on a document count basis) index entries for the specified document set.       * @param docs The documents to which the index entries belong      * @return Occurrences objects that contain :      *<ol>      *<li>a<strong>string</strong> representation of the index entry</li>      *<li>the number of occurrences for the index entry over all the documents</li>      *<li>the list of the documents in which the index entry is</li>      *</ol>       */
 name|Occurrences
 index|[]
 name|scanIndex
@@ -244,6 +253,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 function_decl|;
+comment|//TODO : a scanIndex() method that would return an unaggregated list of index entries ?
 comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to reindex some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be reindexed      */
 name|StoredNode
 name|getReindexRoot
