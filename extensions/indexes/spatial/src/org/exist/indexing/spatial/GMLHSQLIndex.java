@@ -782,7 +782,7 @@ block|{
 name|long
 name|timeOut_
 init|=
-literal|10000L
+literal|100000L
 decl_stmt|;
 name|long
 name|waitTime
