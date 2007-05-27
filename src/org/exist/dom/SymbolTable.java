@@ -472,8 +472,9 @@ return|return
 name|FILE_KEY_IN_CONFIG
 return|;
 block|}
-comment|/**      * Retrieve a shared QName instance from the temporary pool.      *       * @param namespaceURI      * @param localName      * @param prefix      */
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
+specifier|synchronized
 name|QName
 name|getQName
 parameter_list|(
@@ -530,11 +531,6 @@ operator|==
 literal|null
 condition|)
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|qn
 operator|=
 name|namePool
@@ -550,7 +546,6 @@ argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|qn
