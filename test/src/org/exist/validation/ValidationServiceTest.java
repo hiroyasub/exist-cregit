@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  jUnit test for testing the Validation Service.  *  * @author dizzzz  */
+comment|/**  *  Tests for the Validation Service, e.g. used by InteractiveClient  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -151,12 +151,14 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|private
+specifier|static
 name|Collection
 name|rootCollection
 init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|static
 name|ValidationService
 name|service
 init|=
@@ -288,6 +290,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -325,6 +332,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -375,6 +387,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -420,6 +437,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -446,13 +468,43 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|assertTrue
+name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/grammar/addressbook_valid.xml"
+literal|"/db/validationtest/addressbook_valid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/addressbook_valid.xml"
+argument_list|,
+literal|"/db/validationtest/xsd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/addressbook_valid.xml"
+argument_list|,
+literal|"/db/validationtest/xsd/addressbook.xsd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -463,6 +515,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -491,11 +548,41 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/grammar/addressbook_invalid.xml"
+literal|"/db/validationtest/addressbook_invalid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/addressbook_invalid.xml"
+argument_list|,
+literal|"/db/validationtest/xsd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/addressbook_invalid.xml"
+argument_list|,
+literal|"/db/validationtest/xsd/addressbook.xsd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -506,6 +593,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -534,6 +626,8 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
+literal|"non existing document"
+argument_list|,
 name|service
 operator|.
 name|validateResource
@@ -553,6 +647,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -579,13 +678,43 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|assertTrue
+name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/grammar/hamlet_valid.xml"
+literal|"/db/validationtest/hamlet_valid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_valid.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_valid.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -596,6 +725,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -624,11 +758,41 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
 literal|"/db/grammar/hamlet_invalid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_invalid.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_invalid.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -639,6 +803,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -667,11 +836,41 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/grammar/hamlet_nodoctype.xml"
+literal|"/db/validationtest/hamlet_nodoctype.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_nodoctype.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_nodoctype.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -682,6 +881,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -710,11 +914,41 @@ try|try
 block|{
 name|assertFalse
 argument_list|(
+literal|"system catalog"
+argument_list|,
 name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/grammar/hamlet_wrongdoctype.xml"
+literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified catalog"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"specified grammar"
+argument_list|,
+name|service
+operator|.
+name|validateResource
+argument_list|(
+literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+argument_list|,
+literal|"/db/validationtest/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -725,6 +959,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e

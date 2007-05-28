@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -80,7 +80,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Report containing all validation info (errors, warnings).  * @author dizzz  * @see org.xml.sax.ErrorHandler  */
+comment|/**  * Report containing all validation info (errors, warnings).  *  * @author Dannes Wessels (dizzzz@exist-db.org)  *  * @see org.xml.sax.ErrorHandler  */
 end_comment
 
 begin_class
@@ -103,10 +103,24 @@ name|long
 name|duration
 init|=
 operator|-
-literal|1
+literal|1L
 decl_stmt|;
 specifier|private
-name|Exception
+name|long
+name|start
+init|=
+operator|-
+literal|1L
+decl_stmt|;
+specifier|private
+name|long
+name|stop
+init|=
+operator|-
+literal|1L
+decl_stmt|;
+specifier|private
+name|Throwable
 name|exception
 init|=
 literal|null
@@ -532,6 +546,60 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+name|void
+name|start
+parameter_list|()
+block|{
+name|start
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
+name|void
+name|stop
+parameter_list|()
+block|{
+if|if
+condition|(
+name|getValidationDuration
+argument_list|()
+operator|==
+operator|-
+literal|1L
+condition|)
+block|{
+comment|// not already stopped
+name|stop
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+name|setValidationDuration
+argument_list|(
+name|stop
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|void
+name|setThrowable
+parameter_list|(
+name|Throwable
+name|throwable
+parameter_list|)
+block|{
+name|exception
+operator|=
+name|throwable
+expr_stmt|;
 block|}
 block|}
 end_class

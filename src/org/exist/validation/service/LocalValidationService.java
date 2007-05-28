@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -31,7 +31,17 @@ name|java
 operator|.
 name|net
 operator|.
-name|URISyntaxException
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
 import|;
 end_import
 
@@ -115,35 +125,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|validation
-operator|.
-name|internal
-operator|.
-name|ResourceInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|LocalCollection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
 import|;
 end_import
 
@@ -190,7 +174,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  XML validation service for LocalMode of eXist database.  *  * @author dizzzz  */
+comment|/**  *  XML validation service for LocalMode of eXist database.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -299,26 +283,109 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-try|try
-block|{
 return|return
 name|validateResource
 argument_list|(
-name|XmldbURI
-operator|.
-name|xmldbUriFor
-argument_list|(
 name|id
-argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
+specifier|public
+name|boolean
+name|validateResource
+parameter_list|(
+name|String
+name|documentPath
+parameter_list|,
+name|String
+name|grammarPath
+parameter_list|)
+throws|throws
+name|XMLDBException
+block|{
+if|if
+condition|(
+name|documentPath
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+name|documentPath
+operator|=
+literal|"xmldb:exist://"
+operator|+
+name|documentPath
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|grammarPath
+operator|!=
+literal|null
+operator|&&
+name|grammarPath
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+name|grammarPath
+operator|=
+literal|"xmldb:exist://"
+operator|+
+name|grammarPath
+expr_stmt|;
+block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Validating resource '"
+operator|+
+name|documentPath
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+name|InputStream
+name|is
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|is
+operator|=
+operator|new
+name|URL
+argument_list|(
+name|documentPath
+argument_list|)
+operator|.
+name|openStream
+argument_list|()
+expr_stmt|;
+block|}
 catch|catch
 parameter_list|(
-name|URISyntaxException
-name|e
+name|MalformedURLException
+name|ex
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
@@ -327,45 +394,35 @@ name|ErrorCodes
 operator|.
 name|INVALID_URI
 argument_list|,
-name|e
+name|ex
 argument_list|)
 throw|;
 block|}
-block|}
-comment|/**      * Validate specified resource.      */
-specifier|public
-name|boolean
-name|validateResource
+catch|catch
 parameter_list|(
-name|XmldbURI
-name|id
+name|Exception
+name|ex
 parameter_list|)
-throws|throws
-name|XMLDBException
 block|{
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
-literal|"Validating resource '"
-operator|+
-name|id
-operator|+
-literal|"'"
+name|ex
 argument_list|)
 expr_stmt|;
-comment|// Write resource contents into stream, using Thread
-name|InputStream
-name|is
-init|=
+throw|throw
 operator|new
-name|ResourceInputStream
+name|XMLDBException
 argument_list|(
-name|brokerPool
+name|ErrorCodes
+operator|.
+name|UNKNOWN_ERROR
 argument_list|,
-name|id
+name|ex
 argument_list|)
-decl_stmt|;
+throw|;
+block|}
 if|if
 condition|(
 name|is
@@ -377,21 +434,58 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"resource not found"
+literal|"Resource not found"
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|NO_SUCH_RESOURCE
+argument_list|,
+literal|"Resource not found"
+argument_list|)
+throw|;
 block|}
 comment|// Perform validation
 name|ValidationReport
 name|report
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|grammarPath
+operator|==
+literal|null
+condition|)
+block|{
+name|report
+operator|=
 name|validator
 operator|.
 name|validate
 argument_list|(
 name|is
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+else|else
+block|{
+name|report
+operator|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+name|is
+argument_list|,
+name|grammarPath
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Return validation result
 name|logger
 operator|.
@@ -409,38 +503,6 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|//    /**
-comment|//     * Validates a resource given its contents
-comment|//     */
-comment|//    public boolean validateContents(String contents) throws XMLDBException {
-comment|//        Reader rd = new StringReader(contents);
-comment|//        ValidationReport report = validator.validate(rd);
-comment|//        return !( report.hasErrors() || report.hasWarnings() );
-comment|//    }
-comment|//    /**
-comment|//     * find the whole schema as an XMLResource
-comment|//     */
-comment|//    public XMLResource getSchema(String targetNamespace) throws XMLDBException {
-comment|//        String path = grammaraccess.getGrammarPath(DatabaseResources.GRAMMAR_XSD , targetNamespace);
-comment|//        grammaraccess.getGrammar(DatabaseResources.GRAMMAR_XSD, path);
-comment|//        return null;
-comment|//    }
-comment|//    /**
-comment|//     *  Is a schema defining this namespace/id known
-comment|//     * @param namespaceURI
-comment|//     * @return
-comment|//     * @throws XMLDBException
-comment|//     */
-comment|//    public boolean isKnownNamespace(String namespaceURI) throws XMLDBException {
-comment|//        return grammaraccess.hasGrammar(DatabaseResources.GRAMMAR_XSD, namespaceURI);
-comment|//    }
-comment|//    /**
-comment|//     * Stores a new schema given its contents
-comment|//     */
-comment|//    public void putSchema(String schemaContents) throws XMLDBException {
-comment|//        //
-comment|//    }
-comment|//
 comment|// ----------------------------------------------------------
 specifier|public
 name|void

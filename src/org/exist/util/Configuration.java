@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -60,16 +60,6 @@ operator|.
 name|net
 operator|.
 name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
 import|;
 end_import
 
@@ -350,6 +340,18 @@ operator|.
 name|storage
 operator|.
 name|XQueryPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|GrammarPool
 import|;
 end_import
 
@@ -6956,6 +6958,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Get and store all URIs
 name|List
 name|allURIs
 init|=
@@ -7062,7 +7065,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Store all configured URI
+name|resolver
+operator|.
+name|setCatalogs
+argument_list|(
+name|allURIs
+argument_list|)
+expr_stmt|;
+comment|// Store all configured URIs
 name|config
 operator|.
 name|put
@@ -7074,14 +7084,8 @@ argument_list|,
 name|allURIs
 argument_list|)
 expr_stmt|;
-name|resolver
-operator|.
-name|setCatalogs
-argument_list|(
-name|allURIs
-argument_list|)
-expr_stmt|;
 block|}
+comment|// Store resolver
 name|config
 operator|.
 name|put
@@ -7091,6 +7095,25 @@ operator|.
 name|CATALOG_RESOLVER
 argument_list|,
 name|resolver
+argument_list|)
+expr_stmt|;
+comment|// cache
+name|GrammarPool
+name|gp
+init|=
+operator|new
+name|GrammarPool
+argument_list|()
+decl_stmt|;
+name|config
+operator|.
+name|put
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|GRAMMER_POOL
+argument_list|,
+name|gp
 argument_list|)
 expr_stmt|;
 block|}
