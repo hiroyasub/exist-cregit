@@ -355,10 +355,6 @@ name|ParseException
 import|;
 end_import
 
-begin_comment
-comment|/**  *  * Each index entry maps a key (collectionId, ngram) to a list of occurrences, which has the  * following structure:  *  *<pre>[docId : int, nameType: byte, occurrenceCount: int, entrySize: long, [id: NodeId, offset: int, ...]* ]</pre>  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -411,7 +407,8 @@ argument_list|,
 name|broker
 argument_list|)
 expr_stmt|;
-comment|/*         try { 	        getConnection() = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +  					index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
+comment|//TODO : evaluate one connection per worker
+comment|/*         try { 	         conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +  					index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
 block|}
 specifier|public
 name|String
@@ -3263,12 +3260,13 @@ operator|+
 literal|" AND (EPSG4326_MINY = ? AND EPSG4326_MAXY = ?)"
 expr_stmt|;
 break|break;
+comment|//Nothing much we can do with the BBox at this stage
 case|case
 name|SpatialOperator
 operator|.
 name|DISJOINT
 case|:
-comment|//Nothing much we can do with the BBox at this stage
+comment|//Retrieve the BBox though...
 name|extraSelection
 operator|=
 literal|", EPSG4326_MINX, EPSG4326_MAXX, EPSG4326_MINY, EPSG4326_MAXY"
@@ -3302,7 +3300,7 @@ operator|+
 literal|" AND (EPSG4326_MAXY>= ? AND EPSG4326_MINY<= ?)"
 expr_stmt|;
 break|break;
-comment|//BBoxe is fully within
+comment|//BBox is fully within
 case|case
 name|SpatialOperator
 operator|.
@@ -3315,6 +3313,7 @@ operator|+
 literal|" AND (EPSG4326_MINY>= ? AND EPSG4326_MAXY<= ?)"
 expr_stmt|;
 break|break;
+comment|//BBox fully contains
 case|case
 name|SpatialOperator
 operator|.
@@ -3592,7 +3591,7 @@ operator|.
 name|DISJOINT
 condition|)
 block|{
-comment|//Obviously disjoint
+comment|//No BBox intersection : obviously disjoint
 if|if
 condition|(
 name|rs
@@ -3665,7 +3664,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|//Check the geometry
+comment|//Possible match : check the geometry
 if|if
 condition|(
 operator|!

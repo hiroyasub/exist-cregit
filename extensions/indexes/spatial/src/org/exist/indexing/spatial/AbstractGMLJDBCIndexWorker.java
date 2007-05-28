@@ -1295,6 +1295,7 @@ operator|!
 name|isDocumentGMLAware
 condition|)
 return|return;
+comment|//Is the job already done ?
 if|if
 condition|(
 name|mode

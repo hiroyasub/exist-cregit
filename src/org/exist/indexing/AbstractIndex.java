@@ -118,7 +118,7 @@ return|return
 name|pool
 return|;
 block|}
-specifier|protected
+specifier|public
 name|String
 name|getDataDir
 parameter_list|()
