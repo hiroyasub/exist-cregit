@@ -152,13 +152,13 @@ specifier|public
 interface|interface
 name|IndexWorker
 block|{
-comment|/**      * Returns an ID which uniquely identifies this index. This will usually be the class name.      * @return a unique ID identifying this index.      */
+comment|/**      * Returns an ID which uniquely identifies this worker's index.      * @return a unique name identifying this worker's index.      */
 specifier|public
 name|String
 name|getIndexId
 parameter_list|()
 function_decl|;
-comment|/**      * Returns an name which uniquely identifies this index.      * @return a unique name identifying this index.      */
+comment|/**      * Returns a name which uniquely identifies this worker's index.      * @return a unique name identifying this worker's index.      */
 specifier|public
 name|String
 name|getIndexName

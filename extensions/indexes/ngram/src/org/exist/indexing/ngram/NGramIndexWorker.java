@@ -781,7 +781,7 @@ name|getIndexId
 parameter_list|()
 block|{
 return|return
-name|NGramIndex
+name|index
 operator|.
 name|ID
 return|;

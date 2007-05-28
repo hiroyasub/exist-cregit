@@ -15,6 +15,26 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FilenameFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|sql
 operator|.
 name|Connection
@@ -81,43 +101,7 @@ name|exist
 operator|.
 name|indexing
 operator|.
-name|AbstractIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|indexing
-operator|.
 name|IndexWorker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|indexing
-operator|.
-name|StreamListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
 import|;
 end_import
 
@@ -147,30 +131,6 @@ name|DBException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
 begin_comment
 comment|/**  */
 end_comment
@@ -180,21 +140,8 @@ specifier|public
 class|class
 name|GMLHSQLIndex
 extends|extends
-name|AbstractIndex
+name|AbstractGMLJDBCIndex
 block|{
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|ID
-init|=
-name|GMLHSQLIndex
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -210,81 +157,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
-name|Connection
-name|conn
-init|=
-literal|null
-decl_stmt|;
-specifier|public
-interface|interface
-name|SpatialOperator
-block|{
-specifier|public
-specifier|static
-name|int
-name|UNKNOWN
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|EQUALS
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|DISJOINT
-init|=
-literal|2
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|INTERSECTS
-init|=
-literal|3
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|TOUCHES
-init|=
-literal|4
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|CROSSES
-init|=
-literal|5
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|WITHIN
-init|=
-literal|6
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|CONTAINS
-init|=
-literal|7
-decl_stmt|;
-specifier|public
-specifier|static
-name|int
-name|OVERLAPS
-init|=
-literal|8
-decl_stmt|;
-block|}
 specifier|public
 specifier|static
 name|String
@@ -300,189 +172,16 @@ name|TABLE_NAME
 init|=
 literal|"SPATIAL_INDEX_V1"
 decl_stmt|;
-comment|//Make a pool for each broker ?
 specifier|private
-name|AbstractGMLJDBCIndexWorker
-name|worker
-decl_stmt|;
-specifier|private
-name|boolean
-name|workerHasConnection
+name|DBBroker
+name|connectionOwner
 init|=
-literal|false
+literal|null
 decl_stmt|;
 specifier|public
 name|GMLHSQLIndex
 parameter_list|()
 block|{
-block|}
-specifier|public
-name|String
-name|getIndexId
-parameter_list|()
-block|{
-return|return
-name|ID
-return|;
-block|}
-specifier|public
-name|void
-name|configure
-parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
-name|String
-name|dataDir
-parameter_list|,
-name|Element
-name|config
-parameter_list|)
-throws|throws
-name|DatabaseConfigurationException
-block|{
-name|super
-operator|.
-name|configure
-argument_list|(
-name|pool
-argument_list|,
-name|dataDir
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|checkDatabase
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassNotFoundException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|SQLException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
-block|}
-specifier|public
-name|void
-name|open
-parameter_list|()
-throws|throws
-name|DatabaseConfigurationException
-block|{
-comment|//Nothing particular to do : the connection will be opened on request
-block|}
-specifier|public
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|DBException
-block|{
-comment|//Provisional workaround to avoid sending flush() events
-if|if
-condition|(
-name|worker
-operator|!=
-literal|null
-condition|)
-block|{
-name|worker
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|worker
-operator|.
-name|setDocument
-argument_list|(
-literal|null
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
-argument_list|)
-expr_stmt|;
-block|}
-name|shutdownDatabase
-argument_list|()
-expr_stmt|;
-block|}
-comment|//Seems to never be used
-specifier|public
-name|void
-name|sync
-parameter_list|()
-throws|throws
-name|DBException
-block|{
-comment|//TODO : something useful here
-comment|/*     	try {      		if (conn != null)     			conn.commit();         } catch (SQLException e) {         	throw new DBException(e.getMessage());          }         */
-block|}
-specifier|public
-name|void
-name|remove
-parameter_list|()
-throws|throws
-name|DBException
-block|{
-comment|//Provisional workaround to avoid sending flush() events
-name|worker
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|worker
-operator|.
-name|setDocument
-argument_list|(
-literal|null
-argument_list|,
-name|StreamListener
-operator|.
-name|UNKNOWN
-argument_list|)
-expr_stmt|;
-name|remove
-argument_list|(
-name|this
-operator|.
-name|conn
-argument_list|)
-expr_stmt|;
-name|shutdownDatabase
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 name|boolean
@@ -512,13 +211,26 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-comment|//TODO : see above. We might want a pool here
+name|GMLHSQLIndexWorker
+name|worker
+init|=
+operator|(
+name|GMLHSQLIndexWorker
+operator|)
+name|workers
+operator|.
+name|get
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|worker
 operator|==
 literal|null
 condition|)
+block|{
 name|worker
 operator|=
 operator|new
@@ -526,10 +238,19 @@ name|GMLHSQLIndexWorker
 argument_list|(
 name|this
 argument_list|,
-literal|null
+name|broker
 argument_list|)
 expr_stmt|;
-comment|//worker = new GMLHSQLIndexWorker(this, broker);
+name|workers
+operator|.
+name|put
+argument_list|(
+name|broker
+argument_list|,
+name|worker
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|worker
 return|;
@@ -646,7 +367,87 @@ block|}
 block|}
 specifier|protected
 name|void
-name|remove
+name|deleteDatabase
+parameter_list|()
+throws|throws
+name|DBException
+block|{
+name|File
+name|directory
+init|=
+operator|new
+name|File
+argument_list|(
+name|getDataDir
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|File
+index|[]
+name|files
+init|=
+name|directory
+operator|.
+name|listFiles
+argument_list|(
+operator|new
+name|FilenameFilter
+argument_list|()
+block|{
+specifier|public
+name|boolean
+name|accept
+parameter_list|(
+name|File
+name|dir
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|name
+operator|.
+name|startsWith
+argument_list|(
+name|db_file_name_prefix
+argument_list|)
+return|;
+block|}
+block|}
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|files
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|//TODO : raise an error if false is returned ?
+name|files
+index|[
+name|i
+index|]
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+specifier|protected
+name|void
+name|removeIndexContent
 parameter_list|(
 name|Connection
 name|conn
@@ -756,13 +557,14 @@ init|)
 block|{
 if|if
 condition|(
-operator|!
-name|workerHasConnection
+name|connectionOwner
+operator|==
+literal|null
 condition|)
 block|{
-name|workerHasConnection
+name|connectionOwner
 operator|=
-literal|true
+name|broker
 expr_stmt|;
 if|if
 condition|(
@@ -812,13 +614,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|workerHasConnection
+name|connectionOwner
+operator|==
+literal|null
 condition|)
 block|{
-name|workerHasConnection
+name|connectionOwner
 operator|=
-literal|true
+name|broker
 expr_stmt|;
 if|if
 condition|(
@@ -897,9 +700,9 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-name|workerHasConnection
+name|connectionOwner
 operator|=
-literal|false
+literal|null
 expr_stmt|;
 block|}
 specifier|private
@@ -1060,38 +863,85 @@ name|TABLE_NAME
 operator|+
 literal|"("
 operator|+
+comment|/*1*/
 literal|"DOCUMENT_URI VARCHAR, "
 operator|+
 comment|//TODO : use binary format ?
+comment|/*2*/
 literal|"NODE_ID VARCHAR, "
 operator|+
+comment|/*3*/
 literal|"GEOMETRY_TYPE VARCHAR, "
 operator|+
+comment|/*4*/
 literal|"SRS_NAME VARCHAR, "
 operator|+
+comment|/*5*/
 literal|"WKT VARCHAR, "
 operator|+
 comment|//TODO : use binary format ?
+comment|/*6*/
 literal|"BASE64_WKB VARCHAR, "
 operator|+
-literal|"WSG84_WKT VARCHAR, "
+comment|/*7*/
+literal|"MINX DOUBLE, "
+operator|+
+comment|/*8*/
+literal|"MAXX DOUBLE, "
+operator|+
+comment|/*9*/
+literal|"MINY DOUBLE, "
+operator|+
+comment|/*10*/
+literal|"MAXY DOUBLE, "
+operator|+
+comment|/*11*/
+literal|"CENTROID_X DOUBLE, "
+operator|+
+comment|/*12*/
+literal|"CENTROID_Y DOUBLE, "
+operator|+
+comment|/*13*/
+literal|"AREA DOUBLE, "
+operator|+
+comment|//Boundary ?
+comment|/*14*/
+literal|"EPSG4326_WKT VARCHAR, "
 operator|+
 comment|//TODO : use binary format ?
-literal|"WSG84_BASE64_WKB VARCHAR, "
+comment|/*15*/
+literal|"EPSG4326_BASE64_WKB VARCHAR, "
 operator|+
-literal|"WSG84_MINX DOUBLE, "
+comment|/*16*/
+literal|"EPSG4326_MINX DOUBLE, "
 operator|+
-literal|"WSG84_MAXX DOUBLE, "
+comment|/*17*/
+literal|"EPSG4326_MAXX DOUBLE, "
 operator|+
-literal|"WSG84_MINY DOUBLE, "
+comment|/*18*/
+literal|"EPSG4326_MINY DOUBLE, "
 operator|+
-literal|"WSG84_MAXY DOUBLE, "
+comment|/*19*/
+literal|"EPSG4326_MAXY DOUBLE, "
 operator|+
-literal|"WSG84_CENTROID_X DOUBLE, "
+comment|/*20*/
+literal|"EPSG4326_CENTROID_X DOUBLE, "
 operator|+
-literal|"WSG84_CENTROID_Y DOUBLE, "
+comment|/*21*/
+literal|"EPSG4326_CENTROID_Y DOUBLE, "
 operator|+
-literal|"WSG84_AREA DOUBLE, "
+comment|/*22*/
+literal|"EPSG4326_AREA DOUBLE, "
+operator|+
+comment|//Boundary ?
+comment|/*23*/
+literal|"IS_CLOSED BOOLEAN, "
+operator|+
+comment|/*24*/
+literal|"IS_SIMPLE BOOLEAN, "
+operator|+
+comment|/*25*/
+literal|"IS_VALID BOOLEAN, "
 operator|+
 comment|//Enforce uniqueness
 literal|"UNIQUE ("
@@ -1151,66 +1001,66 @@ name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_MINX ON "
+literal|"CREATE INDEX EPSG4326_MINX ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_MINX);"
+literal|" (EPSG4326_MINX);"
 argument_list|)
 expr_stmt|;
 name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_MAXX ON "
+literal|"CREATE INDEX EPSG4326_MAXX ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_MAXX);"
+literal|" (EPSG4326_MAXX);"
 argument_list|)
 expr_stmt|;
 name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_MINY ON "
+literal|"CREATE INDEX EPSG4326_MINY ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_MINY);"
+literal|" (EPSG4326_MINY);"
 argument_list|)
 expr_stmt|;
 name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_MAXY ON "
+literal|"CREATE INDEX EPSG4326_MAXY ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_MAXY);"
+literal|" (EPSG4326_MAXY);"
 argument_list|)
 expr_stmt|;
 name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_CENTROID_X ON "
+literal|"CREATE INDEX EPSG4326_CENTROID_X ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_CENTROID_X);"
+literal|" (EPSG4326_CENTROID_X);"
 argument_list|)
 expr_stmt|;
 name|stmt
 operator|.
 name|executeUpdate
 argument_list|(
-literal|"CREATE INDEX WSG84_CENTROID_Y ON "
+literal|"CREATE INDEX EPSG4326_CENTROID_Y ON "
 operator|+
 name|TABLE_NAME
 operator|+
-literal|" (WSG84_CENTROID_Y);"
+literal|" (EPSG4326_CENTROID_Y);"
 argument_list|)
 expr_stmt|;
 comment|//AREA ?

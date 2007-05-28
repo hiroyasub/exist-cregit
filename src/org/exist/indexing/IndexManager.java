@@ -483,8 +483,7 @@ name|equals
 argument_list|(
 name|indexer
 operator|.
-name|getIndexId
-argument_list|()
+name|ID
 argument_list|)
 condition|)
 empty_stmt|;

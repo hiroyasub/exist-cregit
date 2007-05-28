@@ -90,10 +90,12 @@ name|getIndexName
 parameter_list|()
 function_decl|;
 comment|/**      * Returns an id which uniquely identifies this index. This is usually the class name      * @return a unique name identifying this index.      */
+specifier|public
 name|String
-name|getIndexId
-parameter_list|()
-function_decl|;
+name|ID
+init|=
+literal|null
+decl_stmt|;
 name|BrokerPool
 name|getBrokerPool
 parameter_list|()

@@ -47,7 +47,7 @@ name|indexing
 operator|.
 name|spatial
 operator|.
-name|GMLHSQLIndex
+name|AbstractGMLJDBCIndex
 import|;
 end_import
 
@@ -61,7 +61,7 @@ name|indexing
 operator|.
 name|spatial
 operator|.
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 import|;
 end_import
 
@@ -75,7 +75,7 @@ name|indexing
 operator|.
 name|spatial
 operator|.
-name|GMLHSQLIndex
+name|AbstractGMLJDBCIndex
 operator|.
 name|SpatialOperator
 import|;
@@ -911,11 +911,11 @@ name|nodes
 expr_stmt|;
 else|else
 block|{
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 name|indexWorker
 init|=
 operator|(
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 operator|)
 name|context
 operator|.
@@ -927,7 +927,7 @@ argument_list|()
 operator|.
 name|getIndexWorkerById
 argument_list|(
-name|GMLHSQLIndex
+name|AbstractGMLJDBCIndex
 operator|.
 name|ID
 argument_list|)
@@ -946,7 +946,7 @@ literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;
 name|Geometry
-name|wsg84_geometry
+name|EPSG4326_geometry
 init|=
 literal|null
 decl_stmt|;
@@ -978,7 +978,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 comment|//The node should be indexed
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|=
 name|indexWorker
 operator|.
@@ -997,7 +997,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|==
 literal|null
 condition|)
@@ -1068,6 +1068,27 @@ name|e
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|currentGeometry
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|" is not a GML geometry node"
+argument_list|)
+throw|;
 name|String
 name|srsName
 init|=
@@ -1102,9 +1123,11 @@ name|mathTransform
 init|=
 name|indexWorker
 operator|.
-name|getTransformToWGS84
+name|getTransform
 argument_list|(
 name|srsName
+argument_list|,
+literal|"EPSG:4326"
 argument_list|)
 decl_stmt|;
 if|if
@@ -1138,7 +1161,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|=
 name|indexWorker
 operator|.
@@ -1293,7 +1316,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|,
 name|spatialOp
 argument_list|)

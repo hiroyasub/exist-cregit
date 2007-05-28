@@ -198,15 +198,6 @@ parameter_list|()
 block|{
 block|}
 specifier|public
-name|String
-name|getIndexId
-parameter_list|()
-block|{
-return|return
-name|ID
-return|;
-block|}
-specifier|public
 name|void
 name|configure
 parameter_list|(

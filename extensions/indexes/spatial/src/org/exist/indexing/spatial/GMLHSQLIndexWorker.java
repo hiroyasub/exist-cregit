@@ -165,7 +165,7 @@ name|indexing
 operator|.
 name|spatial
 operator|.
-name|GMLHSQLIndex
+name|AbstractGMLJDBCIndex
 operator|.
 name|SpatialOperator
 import|;
@@ -228,6 +228,62 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|AtomicValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BooleanValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|DoubleValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|StringValue
 import|;
 end_import
 
@@ -357,6 +413,15 @@ argument_list|)
 expr_stmt|;
 comment|/*         try { 	        getConnection() = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +  					index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
 block|}
+specifier|public
+name|String
+name|getID
+parameter_list|()
+block|{
+return|return
+name|ID
+return|;
+block|}
 specifier|protected
 name|boolean
 name|saveGeometryNode
@@ -415,64 +480,76 @@ comment|/*6*/
 literal|"BASE64_WKB, "
 operator|+
 comment|/*7*/
-literal|"WSG84_WKT, "
+literal|"MINX, "
 operator|+
-comment|//TODO : use binary format ?
 comment|/*8*/
-literal|"WSG84_BASE64_WKB, "
+literal|"MAXX, "
 operator|+
 comment|/*9*/
-literal|"WSG84_MINX, "
+literal|"MINY, "
 operator|+
 comment|/*10*/
-literal|"WSG84_MAXX, "
+literal|"MAXY, "
 operator|+
 comment|/*11*/
-literal|"WSG84_MINY, "
+literal|"CENTROID_X, "
 operator|+
 comment|/*12*/
-literal|"WSG84_MAXY, "
+literal|"CENTROID_Y, "
 operator|+
 comment|/*13*/
-literal|"WSG84_CENTROID_X, "
+literal|"AREA, "
 operator|+
+comment|//Boundary ?
 comment|/*14*/
-literal|"WSG84_CENTROID_Y, "
+literal|"EPSG4326_WKT, "
 operator|+
+comment|//TODO : use binary format ?
 comment|/*15*/
-literal|"WSG84_AREA"
+literal|"EPSG4326_BASE64_WKB, "
+operator|+
+comment|/*16*/
+literal|"EPSG4326_MINX, "
+operator|+
+comment|/*17*/
+literal|"EPSG4326_MAXX, "
+operator|+
+comment|/*18*/
+literal|"EPSG4326_MINY, "
+operator|+
+comment|/*19*/
+literal|"EPSG4326_MAXY, "
+operator|+
+comment|/*20*/
+literal|"EPSG4326_CENTROID_X, "
+operator|+
+comment|/*21*/
+literal|"EPSG4326_CENTROID_Y, "
+operator|+
+comment|/*22*/
+literal|"EPSG4326_AREA,"
+operator|+
+comment|//Boundary ?
+comment|/*23*/
+literal|"IS_CLOSED, "
+operator|+
+comment|/*24*/
+literal|"IS_SIMPLE, "
+operator|+
+comment|/*25*/
+literal|"IS_VALID"
 operator|+
 literal|") VALUES ("
 operator|+
-literal|"?, "
+literal|"?, ?, ?, ?, ?, "
 operator|+
-literal|"?, "
+literal|"?, ?, ?, ?, ?, "
 operator|+
-literal|"?, "
+literal|"?, ?, ?, ?, ?, "
 operator|+
-literal|"?, "
+literal|"?, ?, ?, ?, ?, "
 operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?, "
-operator|+
-literal|"?"
+literal|"?, ?, ?, ?, ?"
 operator|+
 literal|")"
 argument_list|)
@@ -515,9 +592,11 @@ block|}
 name|MathTransform
 name|mathTransform
 init|=
-name|getTransformToWGS84
+name|getTransform
 argument_list|(
 name|srsName
+argument_list|,
+literal|"EPSG:4326"
 argument_list|)
 decl_stmt|;
 if|if
@@ -550,13 +629,13 @@ name|mathTransform
 argument_list|)
 expr_stmt|;
 name|Geometry
-name|wsg84_geometry
+name|EPSG4326_geometry
 init|=
 literal|null
 decl_stmt|;
 try|try
 block|{
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|=
 name|coordinateTransformer
 operator|.
@@ -583,6 +662,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/*DOCUMENT_URI*/
 name|ps
 operator|.
 name|setString
@@ -598,6 +678,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*NODE_ID*/
 name|ps
 operator|.
 name|setString
@@ -610,6 +691,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*GEOMETRY_TYPE*/
 name|ps
 operator|.
 name|setString
@@ -622,6 +704,7 @@ name|getGeometryType
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*SRS_NAME*/
 name|ps
 operator|.
 name|setString
@@ -631,6 +714,7 @@ argument_list|,
 name|srsName
 argument_list|)
 expr_stmt|;
+comment|/*WKT*/
 name|ps
 operator|.
 name|setString
@@ -662,6 +746,7 @@ name|geometry
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*BASE64_WKB*/
 name|ps
 operator|.
 name|setString
@@ -678,17 +763,133 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*MINX*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|7
+argument_list|,
+name|geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMinX
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/*MAXX*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|8
+argument_list|,
+name|geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMaxX
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/*MINY*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|9
+argument_list|,
+name|geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMinY
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/*MAXY*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|10
+argument_list|,
+name|geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMaxY
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/*CENTROID_X*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|11
+argument_list|,
+name|geometry
+operator|.
+name|getCentroid
+argument_list|()
+operator|.
+name|getCoordinate
+argument_list|()
+operator|.
+name|x
+argument_list|)
+expr_stmt|;
+comment|/*CENTROID_Y*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|12
+argument_list|,
+name|geometry
+operator|.
+name|getCentroid
+argument_list|()
+operator|.
+name|getCoordinate
+argument_list|()
+operator|.
+name|y
+argument_list|)
+expr_stmt|;
+comment|//geometry.getRepresentativePoint()
+comment|/*AREA*/
+name|ps
+operator|.
+name|setDouble
+argument_list|(
+literal|13
+argument_list|,
+name|geometry
+operator|.
+name|getArea
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//Boundary ?
+comment|/*EPSG4326_WKT*/
 name|ps
 operator|.
 name|setString
 argument_list|(
-literal|7
+literal|14
 argument_list|,
 name|wktWriter
 operator|.
 name|write
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -705,15 +906,16 @@ name|wkbWriter
 operator|.
 name|write
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_BASE64_WKB*/
 name|ps
 operator|.
 name|setString
 argument_list|(
-literal|8
+literal|15
 argument_list|,
 operator|new
 name|String
@@ -725,13 +927,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_MINX*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|9
+literal|16
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -740,13 +943,14 @@ name|getMinX
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_MAXX*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|10
+literal|17
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -755,13 +959,14 @@ name|getMaxX
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_MINY*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|11
+literal|18
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -770,13 +975,14 @@ name|getMinY
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_MAXY*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|12
+literal|19
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -785,13 +991,14 @@ name|getMaxY
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_CENTROID_X*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|13
+literal|20
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getCentroid
 argument_list|()
@@ -802,13 +1009,14 @@ operator|.
 name|x
 argument_list|)
 expr_stmt|;
+comment|/*EPSG4326_CENTROID_Y*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|14
+literal|21
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getCentroid
 argument_list|()
@@ -819,16 +1027,62 @@ operator|.
 name|y
 argument_list|)
 expr_stmt|;
-comment|//wsg84_geometry.getRepresentativePoint()
+comment|//EPSG4326_geometry.getRepresentativePoint()
+comment|/*EPSG4326_AREA*/
 name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|15
+literal|22
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getArea
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//Boundary ?
+comment|//As discussed earlier, all instances of SFS geometry classes
+comment|//are topologically closed by definition.
+comment|//For empty Curves, isClosed is defined to have the value false.
+comment|/*IS_CLOSED*/
+name|ps
+operator|.
+name|setBoolean
+argument_list|(
+literal|23
+argument_list|,
+operator|!
+name|geometry
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|/*IS_SIMPLE*/
+name|ps
+operator|.
+name|setBoolean
+argument_list|(
+literal|24
+argument_list|,
+name|geometry
+operator|.
+name|isSimple
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//Should always be true (the GML SAX parser makes a too severe check)
+comment|/*IS_VALID*/
+name|ps
+operator|.
+name|setBoolean
+argument_list|(
+literal|25
+argument_list|,
+name|geometry
+operator|.
+name|isValid
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1104,6 +1358,42 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|//Since an embedded HSQL has only one connection aailable (unless I'm totally dumb)
+comment|//acquire and release the connection from the index, which is *the* connection's owner
+specifier|protected
+name|Connection
+name|acquireConnection
+parameter_list|()
+block|{
+return|return
+name|index
+operator|.
+name|acquireConnection
+argument_list|(
+name|this
+operator|.
+name|broker
+argument_list|)
+return|;
+block|}
+specifier|protected
+name|void
+name|releaseConnection
+parameter_list|(
+name|Connection
+name|conn
+parameter_list|)
+block|{
+name|index
+operator|.
+name|releaseConnection
+argument_list|(
+name|this
+operator|.
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
 specifier|protected
 name|boolean
 name|checkIndex
@@ -1237,12 +1527,12 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_BASE64_WKB"
+literal|"EPSG4326_BASE64_WKB"
 argument_list|)
 argument_list|)
 expr_stmt|;
 name|Geometry
-name|wsg84_geometry
+name|EPSG4326_geometry
 init|=
 name|wkbReader
 operator|.
@@ -1257,7 +1547,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|equals
 argument_list|(
@@ -1269,7 +1559,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_WKT"
+literal|"EPSG4326_WKT"
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1285,7 +1575,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_WKT"
+literal|"EPSG4326_WKT"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1320,9 +1610,262 @@ literal|"Inconsistent geometry type: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
 literal|"GEOMETRY_TYPE"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMinX
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MINX"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent MinX: "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MINX"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMaxX
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MAXX"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent MaxX: "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MAXX"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMinY
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MINY"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent MinY: "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MINY"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getEnvelopeInternal
+argument_list|()
+operator|.
+name|getMaxY
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MAXY"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent MaxY: "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"MAXY"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getCentroid
+argument_list|()
+operator|.
+name|getCoordinate
+argument_list|()
+operator|.
+name|x
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"CENTROID_X"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent X for centroid : "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"CENTROID_X"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getCentroid
+argument_list|()
+operator|.
+name|getCoordinate
+argument_list|()
+operator|.
+name|y
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"CENTROID_Y"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent Y for centroid : "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"CENTROID_Y"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|getArea
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"AREA"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent area: "
+operator|+
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|"AREA"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1343,9 +1886,11 @@ decl_stmt|;
 name|MathTransform
 name|mathTransform
 init|=
-name|getTransformToWGS84
+name|getTransform
 argument_list|(
 name|srsName
+argument_list|,
+literal|"EPSG:4326"
 argument_list|)
 decl_stmt|;
 if|if
@@ -1393,7 +1938,7 @@ argument_list|)
 operator|.
 name|equals
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 condition|)
 block|{
@@ -1428,7 +1973,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -1440,7 +1985,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MINX"
+literal|"EPSG4326_MINX"
 argument_list|)
 condition|)
 block|{
@@ -1452,9 +1997,9 @@ literal|"Inconsistent MinX: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_MINX"
+literal|"EPSG4326_MINX"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1464,7 +2009,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -1476,7 +2021,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MAXX"
+literal|"EPSG4326_MAXX"
 argument_list|)
 condition|)
 block|{
@@ -1488,9 +2033,9 @@ literal|"Inconsistent MaxX: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_MAXX"
+literal|"EPSG4326_MAXX"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1500,7 +2045,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -1512,7 +2057,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MINY"
+literal|"EPSG4326_MINY"
 argument_list|)
 condition|)
 block|{
@@ -1524,9 +2069,9 @@ literal|"Inconsistent MinY: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_MINY"
+literal|"EPSG4326_MINY"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1536,7 +2081,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -1548,7 +2093,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MAXY"
+literal|"EPSG4326_MAXY"
 argument_list|)
 condition|)
 block|{
@@ -1560,9 +2105,9 @@ literal|"Inconsistent MaxY: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_MAXY"
+literal|"EPSG4326_MAXY"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1572,7 +2117,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getCentroid
 argument_list|()
@@ -1586,7 +2131,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_CENTROID_X"
+literal|"EPSG4326_CENTROID_X"
 argument_list|)
 condition|)
 block|{
@@ -1598,9 +2143,9 @@ literal|"Inconsistent X for centroid : "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_CENTROID_X"
+literal|"EPSG4326_CENTROID_X"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1610,7 +2155,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getCentroid
 argument_list|()
@@ -1624,7 +2169,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_CENTROID_Y"
+literal|"EPSG4326_CENTROID_Y"
 argument_list|)
 condition|)
 block|{
@@ -1636,9 +2181,9 @@ literal|"Inconsistent Y for centroid : "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_CENTROID_Y"
+literal|"EPSG4326_CENTROID_Y"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1648,7 +2193,7 @@ return|;
 block|}
 if|if
 condition|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getArea
 argument_list|()
@@ -1657,7 +2202,7 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_AREA"
+literal|"EPSG4326_AREA"
 argument_list|)
 condition|)
 block|{
@@ -1669,9 +2214,108 @@ literal|"Inconsistent area: "
 operator|+
 name|rs
 operator|.
-name|getString
+name|getDouble
 argument_list|(
-literal|"WSG84_AREA"
+literal|"EPSG4326_AREA"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|isEmpty
+argument_list|()
+operator|==
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_CLOSED"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent area: "
+operator|+
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_CLOSED"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|isSimple
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_SIMPLE"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent area: "
+operator|+
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_SIMPLE"
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
+name|original_geometry
+operator|.
+name|isValid
+argument_list|()
+operator|!=
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_VALID"
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Inconsistent area: "
+operator|+
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|"IS_VALID"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1961,7 +2605,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT WSG84_BASE64_WKB, WSG84_WKT FROM "
+literal|"SELECT EPSG4326_BASE64_WKB, EPSG4326_WKT FROM "
 operator|+
 name|GMLHSQLIndex
 operator|.
@@ -2032,7 +2676,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_BASE64_WKB"
+literal|"EPSG4326_BASE64_WKB"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2059,7 +2703,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_WKT"
+literal|"EPSG4326_WKT"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2134,7 +2778,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT WSG84_BASE64_WKB"
+literal|"SELECT EPSG4326_BASE64_WKB"
 operator|+
 literal|" FROM "
 operator|+
@@ -2217,7 +2861,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_BASE64_WKB"
+literal|"EPSG4326_BASE64_WKB"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2301,6 +2945,289 @@ expr_stmt|;
 block|}
 block|}
 specifier|protected
+name|AtomicValue
+name|getGeometricPropertyForNode
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|NodeProxy
+name|p
+parameter_list|,
+name|Connection
+name|conn
+parameter_list|,
+name|String
+name|propertyName
+parameter_list|)
+throws|throws
+name|SQLException
+block|{
+name|PreparedStatement
+name|ps
+init|=
+name|conn
+operator|.
+name|prepareStatement
+argument_list|(
+literal|"SELECT "
+operator|+
+name|propertyName
+operator|+
+literal|" FROM "
+operator|+
+name|GMLHSQLIndex
+operator|.
+name|TABLE_NAME
+operator|+
+literal|" WHERE DOCUMENT_URI = ? AND NODE_ID = ?;"
+argument_list|)
+decl_stmt|;
+name|ps
+operator|.
+name|setString
+argument_list|(
+literal|1
+argument_list|,
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|ps
+operator|.
+name|setString
+argument_list|(
+literal|2
+argument_list|,
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|ResultSet
+name|rs
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|rs
+operator|=
+name|ps
+operator|.
+name|executeQuery
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|rs
+operator|.
+name|next
+argument_list|()
+condition|)
+comment|//Nothing returned
+return|return
+literal|null
+return|;
+name|AtomicValue
+name|result
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|rs
+operator|.
+name|getMetaData
+argument_list|()
+operator|.
+name|getColumnClassName
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|Boolean
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|BooleanValue
+argument_list|(
+name|rs
+operator|.
+name|getBoolean
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|rs
+operator|.
+name|getMetaData
+argument_list|()
+operator|.
+name|getColumnClassName
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|Double
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|DoubleValue
+argument_list|(
+name|rs
+operator|.
+name|getDouble
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|rs
+operator|.
+name|getMetaData
+argument_list|()
+operator|.
+name|getColumnClassName
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|String
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|StringValue
+argument_list|(
+name|rs
+operator|.
+name|getString
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+throw|throw
+operator|new
+name|SQLException
+argument_list|(
+literal|"Uniable to make an atomic value from '"
+operator|+
+name|rs
+operator|.
+name|getMetaData
+argument_list|()
+operator|.
+name|getColumnClassName
+argument_list|(
+literal|1
+argument_list|)
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|rs
+operator|.
+name|next
+argument_list|()
+condition|)
+block|{
+comment|//Should be impossible
+throw|throw
+operator|new
+name|SQLException
+argument_list|(
+literal|"More than one geometry for node "
+operator|+
+name|p
+argument_list|)
+throw|;
+block|}
+return|return
+name|result
+return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|rs
+operator|!=
+literal|null
+condition|)
+name|rs
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|ps
+operator|!=
+literal|null
+condition|)
+name|ps
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+specifier|protected
 name|NodeSet
 name|search
 parameter_list|(
@@ -2311,7 +3238,7 @@ name|NodeSet
 name|contextSet
 parameter_list|,
 name|Geometry
-name|wsg84_geometry
+name|EPSG4326_geometry
 parameter_list|,
 name|int
 name|spatialOp
@@ -2345,9 +3272,9 @@ name|EQUALS
 case|:
 name|bboxConstraint
 operator|=
-literal|"(WSG84_MINX = ? AND WSG84_MAXX = ?)"
+literal|"(EPSG4326_MINX = ? AND EPSG4326_MAXX = ?)"
 operator|+
-literal|" AND (WSG84_MINY = ? AND WSG84_MAXY = ?)"
+literal|" AND (EPSG4326_MINY = ? AND EPSG4326_MAXY = ?)"
 expr_stmt|;
 break|break;
 case|case
@@ -2358,7 +3285,7 @@ case|:
 comment|//Nothing much we can do with the BBox at this stage
 name|extraSelection
 operator|=
-literal|", WSG84_MINX, WSG84_MAXX, WSG84_MINY, WSG84_MAXY"
+literal|", EPSG4326_MINX, EPSG4326_MAXX, EPSG4326_MINY, EPSG4326_MAXY"
 expr_stmt|;
 break|break;
 comment|//BBoxes intersect themselves
@@ -2384,9 +3311,9 @@ name|OVERLAPS
 case|:
 name|bboxConstraint
 operator|=
-literal|"(WSG84_MAXX>= ? AND WSG84_MINX<= ?)"
+literal|"(EPSG4326_MAXX>= ? AND EPSG4326_MINX<= ?)"
 operator|+
-literal|" AND (WSG84_MAXY>= ? AND WSG84_MINY<= ?)"
+literal|" AND (EPSG4326_MAXY>= ? AND EPSG4326_MINY<= ?)"
 expr_stmt|;
 break|break;
 comment|//BBoxe is fully within
@@ -2397,9 +3324,9 @@ name|WITHIN
 case|:
 name|bboxConstraint
 operator|=
-literal|"(WSG84_MINX>= ? AND WSG84_MAXX<= ?)"
+literal|"(EPSG4326_MINX>= ? AND EPSG4326_MAXX<= ?)"
 operator|+
-literal|" AND (WSG84_MINY>= ? AND WSG84_MAXY<= ?)"
+literal|" AND (EPSG4326_MINY>= ? AND EPSG4326_MAXY<= ?)"
 expr_stmt|;
 break|break;
 case|case
@@ -2409,9 +3336,9 @@ name|CONTAINS
 case|:
 name|bboxConstraint
 operator|=
-literal|"(WSG84_MINX<= ? AND WSG84_MAXX>= ?)"
+literal|"(EPSG4326_MINX<= ? AND EPSG4326_MAXX>= ?)"
 operator|+
-literal|" AND (WSG84_MINY<= ? AND WSG84_MAXY>= ?)"
+literal|" AND (EPSG4326_MINY<= ? AND EPSG4326_MAXY>= ?)"
 expr_stmt|;
 break|break;
 default|default:
@@ -2432,7 +3359,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT WSG84_BASE64_WKB, DOCUMENT_URI, NODE_ID"
+literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID"
 operator|+
 operator|(
 name|extraSelection
@@ -2478,7 +3405,7 @@ name|setDouble
 argument_list|(
 literal|1
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2493,7 +3420,7 @@ name|setDouble
 argument_list|(
 literal|2
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2508,7 +3435,7 @@ name|setDouble
 argument_list|(
 literal|3
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2523,7 +3450,7 @@ name|setDouble
 argument_list|(
 literal|4
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2686,10 +3613,10 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MAXX"
+literal|"EPSG4326_MAXX"
 argument_list|)
 operator|<
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2701,10 +3628,10 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MINX"
+literal|"EPSG4326_MINX"
 argument_list|)
 operator|>
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2716,10 +3643,10 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MAXY"
+literal|"EPSG4326_MAXY"
 argument_list|)
 operator|<
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2731,10 +3658,10 @@ name|rs
 operator|.
 name|getDouble
 argument_list|(
-literal|"WSG84_MINY"
+literal|"EPSG4326_MINY"
 argument_list|)
 operator|>
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -2774,7 +3701,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_BASE64_WKB"
+literal|"EPSG4326_BASE64_WKB"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2807,7 +3734,7 @@ name|geometry
 operator|.
 name|equals
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2822,7 +3749,7 @@ name|geometry
 operator|.
 name|disjoint
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2837,7 +3764,7 @@ name|geometry
 operator|.
 name|intersects
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2852,7 +3779,7 @@ name|geometry
 operator|.
 name|touches
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2867,7 +3794,7 @@ name|geometry
 operator|.
 name|crosses
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2882,7 +3809,7 @@ name|geometry
 operator|.
 name|within
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2897,7 +3824,7 @@ name|geometry
 operator|.
 name|contains
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2912,7 +3839,7 @@ name|geometry
 operator|.
 name|overlaps
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 expr_stmt|;
 break|break;
@@ -3033,7 +3960,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Geometry
-name|wsg84_geometry
+name|EPSG4326_geometry
 parameter_list|,
 name|Connection
 name|conn
@@ -3044,9 +3971,9 @@ block|{
 name|String
 name|bboxConstraint
 init|=
-literal|"(WSG84_MINX = ? AND WSG84_MAXX = ?)"
+literal|"(EPSG4326_MINX = ? AND EPSG4326_MAXX = ?)"
 operator|+
-literal|" AND (WSG84_MINY = ? AND WSG84_MAXY = ?)"
+literal|" AND (EPSG4326_MINY = ? AND EPSG4326_MAXY = ?)"
 decl_stmt|;
 name|NodeSet
 name|result
@@ -3060,7 +3987,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT WSG84_BASE64_WKB, DOCUMENT_URI, NODE_ID"
+literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID"
 operator|+
 literal|" FROM "
 operator|+
@@ -3081,7 +4008,7 @@ name|setDouble
 argument_list|(
 literal|1
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -3096,7 +4023,7 @@ name|setDouble
 argument_list|(
 literal|2
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -3111,7 +4038,7 @@ name|setDouble
 argument_list|(
 literal|3
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -3126,7 +4053,7 @@ name|setDouble
 argument_list|(
 literal|4
 argument_list|,
-name|wsg84_geometry
+name|EPSG4326_geometry
 operator|.
 name|getEnvelopeInternal
 argument_list|()
@@ -3177,7 +4104,7 @@ name|rs
 operator|.
 name|getString
 argument_list|(
-literal|"WSG84_BASE64_WKB"
+literal|"EPSG4326_BASE64_WKB"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3201,7 +4128,7 @@ name|geometry
 operator|.
 name|equals
 argument_list|(
-name|wsg84_geometry
+name|EPSG4326_geometry
 argument_list|)
 decl_stmt|;
 if|if
