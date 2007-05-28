@@ -647,10 +647,6 @@ name|WKTWriter
 import|;
 end_import
 
-begin_comment
-comment|/**  *  * Each index entry maps a key (collectionId, ngram) to a list of occurrences, which has the  * following structure:  *  *<pre>[docId : int, nameType: byte, occurrenceCount: int, entrySize: long, [id: NodeId, offset: int, ...]* ]</pre>  */
-end_comment
-
 begin_class
 specifier|public
 specifier|abstract
@@ -767,7 +763,6 @@ name|GMLStreamListener
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|GeometryCoordinateSequenceTransformer
 name|coordinateTransformer
 init|=
@@ -776,7 +771,6 @@ name|GeometryCoordinateSequenceTransformer
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|WKTWriter
 name|wktWriter
 init|=
@@ -785,7 +779,6 @@ name|WKTWriter
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|WKTReader
 name|wktReader
 init|=
@@ -794,7 +787,6 @@ name|WKTReader
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|WKBWriter
 name|wkbWriter
 init|=
@@ -803,7 +795,6 @@ name|WKBWriter
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|WKBReader
 name|wkbReader
 init|=
@@ -812,7 +803,6 @@ name|WKBReader
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|Base64Encoder
 name|base64Encoder
 init|=
@@ -821,7 +811,6 @@ name|Base64Encoder
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|static
 name|Base64Decoder
 name|base64Decoder
 init|=
@@ -852,7 +841,7 @@ name|getIndexId
 parameter_list|()
 block|{
 return|return
-name|index
+name|AbstractGMLJDBCIndex
 operator|.
 name|ID
 return|;
@@ -2250,7 +2239,7 @@ name|Connection
 name|conn
 parameter_list|)
 function_decl|;
-specifier|protected
+specifier|private
 name|void
 name|saveDocumentNodes
 parameter_list|(
@@ -2362,7 +2351,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+specifier|private
 name|void
 name|dropDocumentNode
 parameter_list|(
@@ -2444,7 +2433,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+specifier|private
 name|void
 name|removeDocument
 parameter_list|(
