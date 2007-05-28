@@ -493,12 +493,8 @@ name|UNKNOWN
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : we need a broker to perform that operation !
-comment|//Use the last worker ? try something else ?
 name|removeIndexContent
-argument_list|(
-name|conn
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|shutdownDatabase
 argument_list|()
@@ -562,14 +558,13 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
+comment|//TODO : we need a broker to perform that operation !
+comment|//Use the last worker ? try something else ?
 specifier|protected
 specifier|abstract
 name|void
 name|removeIndexContent
-parameter_list|(
-name|Connection
-name|conn
-parameter_list|)
+parameter_list|()
 throws|throws
 name|DBException
 function_decl|;

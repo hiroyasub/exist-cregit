@@ -1577,7 +1577,7 @@ expr_stmt|;
 else|else
 block|{
 name|String
-name|srsName
+name|targetSrsName
 init|=
 literal|null
 decl_stmt|;
@@ -1593,7 +1593,7 @@ argument_list|()
 operator|==
 literal|2
 condition|)
-name|srsName
+name|targetSrsName
 operator|=
 name|args
 index|[
@@ -1606,6 +1606,9 @@ literal|0
 argument_list|)
 operator|.
 name|getStringValue
+argument_list|()
+operator|.
+name|trim
 argument_list|()
 expr_stmt|;
 name|AbstractGMLJDBCIndexWorker
@@ -1677,9 +1680,9 @@ name|optimizeOnEpsg4326
 operator|=
 literal|"EPSG:4326"
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
-name|srsName
+name|targetSrsName
 argument_list|)
 expr_stmt|;
 name|String
@@ -2053,13 +2056,9 @@ argument_list|)
 throw|;
 block|}
 comment|//Transform the geometry if necessary
-if|if
-condition|(
-name|srsName
-operator|!=
-literal|null
-operator|&&
-operator|!
+name|String
+name|originSrsName
+init|=
 operator|(
 operator|(
 name|Element
@@ -2072,26 +2071,24 @@ argument_list|(
 literal|"srsName"
 argument_list|)
 operator|.
-name|equals
+name|trim
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|targetSrsName
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|originSrsName
+operator|.
+name|equalsIgnoreCase
 argument_list|(
-name|srsName
+name|targetSrsName
 argument_list|)
 condition|)
 block|{
-comment|//provisional workaround
-if|if
-condition|(
-literal|"osgb:BNG"
-operator|.
-name|equals
-argument_list|(
-name|srsName
-argument_list|)
-condition|)
-name|srsName
-operator|=
-literal|"EPSG:27700"
-expr_stmt|;
 name|MathTransform
 name|mathTransform
 init|=
@@ -2099,9 +2096,9 @@ name|indexWorker
 operator|.
 name|getTransform
 argument_list|(
-name|srsName
+name|originSrsName
 argument_list|,
-literal|"EPSG:4326"
+name|targetSrsName
 argument_list|)
 decl_stmt|;
 if|if
@@ -2117,9 +2114,13 @@ name|XPathException
 argument_list|(
 literal|"Unable to get a transformation from '"
 operator|+
-name|srsName
+name|originSrsName
 operator|+
-literal|"' to 'EPSG:4326'"
+literal|"' to '"
+operator|+
+name|targetSrsName
+operator|+
+literal|"'"
 argument_list|)
 throw|;
 block|}

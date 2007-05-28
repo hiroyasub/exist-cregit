@@ -417,6 +417,11 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
+name|boolean
+name|deleted
+init|=
+literal|true
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -434,7 +439,8 @@ name|i
 operator|++
 control|)
 block|{
-comment|//TODO : raise an error if false is returned ?
+name|deleted
+operator|&=
 name|files
 index|[
 name|i
@@ -444,19 +450,19 @@ name|delete
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : raise an error if deleted == false ?
 block|}
 specifier|protected
 name|void
 name|removeIndexContent
-parameter_list|(
-name|Connection
-name|conn
-parameter_list|)
+parameter_list|()
 throws|throws
 name|DBException
 block|{
 try|try
 block|{
+comment|//Let's be lazy here : we only delete th index content if we have a connection
+comment|//deleteDatabase() should be far more efficient ;-)
 if|if
 condition|(
 name|conn

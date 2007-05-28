@@ -1089,8 +1089,9 @@ operator|+
 literal|" is not a GML geometry node"
 argument_list|)
 throw|;
+comment|//Transform the geometry to EPSG:4326
 name|String
-name|srsName
+name|originSrsName
 init|=
 operator|(
 operator|(
@@ -1103,21 +1104,10 @@ name|getAttribute
 argument_list|(
 literal|"srsName"
 argument_list|)
-decl_stmt|;
-comment|//provisional workaround
-if|if
-condition|(
-literal|"osgb:BNG"
 operator|.
-name|equals
-argument_list|(
-name|srsName
-argument_list|)
-condition|)
-name|srsName
-operator|=
-literal|"EPSG:27700"
-expr_stmt|;
+name|trim
+argument_list|()
+decl_stmt|;
 name|MathTransform
 name|mathTransform
 init|=
@@ -1125,7 +1115,7 @@ name|indexWorker
 operator|.
 name|getTransform
 argument_list|(
-name|srsName
+name|originSrsName
 argument_list|,
 literal|"EPSG:4326"
 argument_list|)
@@ -1143,7 +1133,7 @@ name|XPathException
 argument_list|(
 literal|"Unable to get a transformation from '"
 operator|+
-name|srsName
+name|originSrsName
 operator|+
 literal|"' to 'EPSG:4326'"
 argument_list|)
@@ -1300,6 +1290,7 @@ name|SpatialOperator
 operator|.
 name|OVERLAPS
 expr_stmt|;
+comment|//Search the EPSG:4326 in the index
 name|result
 operator|=
 name|indexWorker

@@ -556,20 +556,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-comment|//Let's fallback to this during the tests :-)
-if|if
-condition|(
-literal|"osgb:BNG"
-operator|.
-name|equals
-argument_list|(
-name|srsName
-argument_list|)
-condition|)
-name|srsName
-operator|=
-literal|"EPSG:27700"
-expr_stmt|;
 comment|//TODO : use a default SRS from the config file ?
 if|if
 condition|(
