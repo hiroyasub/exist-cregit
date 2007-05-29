@@ -6771,6 +6771,144 @@ block|}
 block|}
 specifier|public
 name|void
+name|testNamespaceWithTransform
+parameter_list|()
+block|{
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|String
+name|query
+init|=
+literal|"xquery version \"1.0\";\n"
+operator|+
+literal|"declare namespace transform=\"http://exist-db.org/xquery/transform\";\n"
+operator|+
+literal|"declare variable $xml {\n"
+operator|+
+literal|"<node>text</node>\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"declare variable $xslt {\n"
+operator|+
+literal|"<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"2.0\">\n"
+operator|+
+literal|"<xsl:template match=\"node\">\n"
+operator|+
+literal|"<div><xsl:value-of select=\".\"/></div>\n"
+operator|+
+literal|"</xsl:template>\n"
+operator|+
+literal|"</xsl:stylesheet>\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
+operator|+
+literal|"<body>\n"
+operator|+
+literal|"		{transform:transform($xml, $xslt, ())}\n"
+operator|+
+literal|"</body>\n"
+operator|+
+literal|"</html>"
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+comment|//check there is one result
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|String
+name|content
+init|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+decl_stmt|;
+comment|//check the namespace
+name|assertTrue
+argument_list|(
+name|content
+operator|.
+name|startsWith
+argument_list|(
+literal|"<html xmlns=\"http://www.w3.org/1999/xhtml\">"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//check the content
+name|assertTrue
+argument_list|(
+name|content
+operator|.
+name|indexOf
+argument_list|(
+literal|"<div>text</div>"
+argument_list|)
+operator|>
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
 name|testModule
 parameter_list|()
 block|{
