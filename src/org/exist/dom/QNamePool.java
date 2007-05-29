@@ -104,7 +104,7 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/**      * Return a QName object for the given local name, namespace and      * prefix. Return null if the QName has not yet been added to the pool.      *      * @param type      * @param namespaceURI      * @param localName      * @param prefix      * @return      */
+comment|/**      * Return a QName object for the given local name, namespace and      * prefix. Return null if the QName has not yet been added to the pool.      *      * @param type      * @param namespaceURI      * @param localName      * @param prefix      * @return QName object      */
 specifier|public
 name|QName
 name|get

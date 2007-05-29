@@ -89,7 +89,7 @@ name|String
 name|getIndexName
 parameter_list|()
 function_decl|;
-comment|/**      * Returns an id which uniquely identifies this index. This is usually the class name      * @return a unique name identifying this index.      */
+comment|/**      * Returns an id which uniquely identifies this index. This is usually the class name      * return a unique name identifying this index.      */
 specifier|public
 name|String
 name|ID
