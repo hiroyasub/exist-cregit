@@ -435,7 +435,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml')"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -549,9 +549,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/validationtest/xsd/catalog.xml')"
+literal|" xs:anyURI('/db/validationtest/xsd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -594,9 +594,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_invalid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_invalid.xml'), "
 operator|+
-literal|"'/db/validationtest/xsd/catalog.xml')"
+literal|" xs:anyURI('/db/validationtest/xsd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -639,9 +639,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/validationtest/dtd/catalog.xml')"
+literal|" xs:anyURI('/db/validationtest/dtd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -684,9 +684,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_invalid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_invalid.xml'),"
 operator|+
-literal|"'/db/validationtest/dtd/catalog.xml')"
+literal|" xs:anyURI('/db/validationtest/dtd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -797,9 +797,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/validationtest/xsd/addressbook.xsd')"
+literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -842,9 +842,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_invalid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_invalid.xml'), "
 operator|+
-literal|"'/db/validationtest/xsd/addressbook.xsd')"
+literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -958,9 +958,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/validationtest/xsd/')"
+literal|" xs:anyURI('/db/validationtest/xsd/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1003,9 +1003,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/validationtest/dtd/')"
+literal|" xs:anyURI('/db/validationtest/dtd/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1048,9 +1048,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_valid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_valid.xml'), "
 operator|+
-literal|"'/db/')"
+literal|" xs:anyURI('/db/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1093,9 +1093,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate('/db/validationtest/addressbook_invalid.xml',"
+literal|"validation:validate( xs:anyURI('/db/validationtest/addressbook_invalid.xml') ,"
 operator|+
-literal|"'/db/')"
+literal|" xs:anyURI('/db/') )"
 argument_list|)
 expr_stmt|;
 name|r

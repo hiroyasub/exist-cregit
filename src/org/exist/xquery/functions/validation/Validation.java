@@ -283,6 +283,28 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|simpleFunctionTxt
+init|=
+literal|"Validate document specified by $a. The grammar files "
+operator|+
+literal|"are resolved using the global catalog file(s)."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|extendedFunctionTxt
+init|=
+literal|"Validate document specified by $a using $b. "
+operator|+
+literal|"$b can point to an OASIS catalog file, a grammar (xml schema only) "
+operator|+
+literal|"or a collection (path ends with '/')"
+decl_stmt|;
+specifier|private
 specifier|final
 name|Validator
 name|validator
@@ -318,9 +340,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a. The grammar files "
-operator|+
-literal|"are searched inside the database."
+name|simpleFunctionTxt
 argument_list|,
 operator|new
 name|SequenceType
@@ -331,7 +351,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -352,6 +372,16 @@ name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 block|,
+comment|//       new FunctionSignature(
+comment|//                new QName("validate", ValidationModule.NAMESPACE_URI,
+comment|//                                          ValidationModule.PREFIX),
+comment|//                    "Validate document specified by $a. The grammar files "
+comment|//                    +"are searched inside the database.",
+comment|//                    new SequenceType[]{
+comment|//                        new SequenceType(Type.NODE, Cardinality.EXACTLY_ONE)
+comment|//                    },
+comment|//                    new SequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE)
+comment|//                ),
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -369,11 +399,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a using path $b. "
-operator|+
-literal|"$b can point a grammar, a collection containing "
-operator|+
-literal|"grammars (usefull for XSD) or a OASIS catalog file."
+name|extendedFunctionTxt
 argument_list|,
 operator|new
 name|SequenceType
@@ -384,7 +410,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -396,7 +422,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -417,6 +443,18 @@ name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 block|,
+comment|//        new FunctionSignature(
+comment|//                    new QName("validate", ValidationModule.NAMESPACE_URI,
+comment|//                                          ValidationModule.PREFIX),
+comment|//                    "Validate document specified by $a using path $b. "
+comment|//                    +"$b can point a grammar, a collection containing "
+comment|//                    +"grammars (usefull for XSD) or a OASIS catalog file.",
+comment|//                    new SequenceType[]{
+comment|//                        new SequenceType(Type.NODE, Cardinality.EXACTLY_ONE),
+comment|//                        new SequenceType(Type.STRING, Cardinality.EXACTLY_ONE)
+comment|//                    },
+comment|//                    new SequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE)
+comment|//                ),
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -434,9 +472,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a, return a simple report"
-operator|+
-literal|". The grammar files are searched inside the database."
+name|simpleFunctionTxt
 argument_list|,
 operator|new
 name|SequenceType
@@ -447,7 +483,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -485,13 +521,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Validate document specified by $a using path $b, "
-operator|+
-literal|"return a simple report. "
-operator|+
-literal|"$b can point a grammar, a collection containing "
-operator|+
-literal|"grammars (usefull for XSD) or a OASIS catalog file."
+name|extendedFunctionTxt
 argument_list|,
 operator|new
 name|SequenceType
@@ -502,7 +532,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -514,7 +544,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ANY_URI
 argument_list|,
 name|Cardinality
 operator|.
@@ -536,7 +566,6 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** Creates a new instance */
 specifier|public
 name|Validation
 parameter_list|(
@@ -573,7 +602,7 @@ name|brokerPool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see BasicFunction#eval(Sequence[], Sequence)      */
+comment|/**       * @see BasicFunction#eval(Sequence[], Sequence)      */
 specifier|public
 name|Sequence
 name|eval
