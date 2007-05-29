@@ -843,10 +843,7 @@ block|{
 comment|// add the document to the list of locked documents
 name|context
 operator|.
-name|getLockedDocuments
-argument_list|()
-operator|.
-name|add
+name|addLockedDocument
 argument_list|(
 name|doc
 argument_list|)

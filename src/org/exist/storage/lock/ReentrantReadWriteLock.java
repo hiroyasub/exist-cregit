@@ -1170,6 +1170,31 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|release
+parameter_list|(
+name|int
+name|mode
+parameter_list|,
+name|int
+name|count
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" does not support releasing multiple locks"
+argument_list|)
+throw|;
+block|}
 comment|/** 	 * Return the number of unreleased acquires performed 	 * by the current thread. 	 * Returns zero if current thread does not hold lock. 	 **/
 specifier|public
 specifier|synchronized

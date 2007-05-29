@@ -94,6 +94,17 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|release
+parameter_list|(
+name|int
+name|mode
+parameter_list|,
+name|int
+name|count
+parameter_list|)
+function_decl|;
 comment|/**      * Returns true if there are active or pending      * write locks.      */
 specifier|public
 name|boolean

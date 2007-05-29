@@ -1356,18 +1356,8 @@ operator|.
 name|getUpdateLock
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|checkExisting
-operator|&&
-name|dlock
-operator|.
-name|isLockedForRead
-argument_list|(
-name|thread
-argument_list|)
-condition|)
-continue|continue;
+comment|//            if (checkExisting&& dlock.isLockedForRead(thread))
+comment|//                continue;
 if|if
 condition|(
 name|exclusive
