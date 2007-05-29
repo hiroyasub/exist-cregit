@@ -15,13 +15,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|dom
-operator|.
-name|DocumentSet
+name|Iterator
 import|;
 end_import
 
@@ -212,16 +210,6 @@ operator|.
 name|value
 operator|.
 name|ValueSequence
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -1141,24 +1129,14 @@ operator|instanceof
 name|NodeSet
 condition|)
 block|{
-name|DocumentSet
-name|contextDocs
-init|=
-operator|(
-operator|(
-name|NodeSet
-operator|)
-name|in
-operator|)
-operator|.
-name|getDocumentSet
-argument_list|()
-decl_stmt|;
 name|var
 operator|.
 name|setContextDocs
 argument_list|(
-name|contextDocs
+name|in
+operator|.
+name|getDocumentSet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
