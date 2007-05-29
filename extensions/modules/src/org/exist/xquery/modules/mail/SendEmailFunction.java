@@ -408,7 +408,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * The email sending functionality of the eXist Mail Module Extension that  * allows email to be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-01  * @version 1.11  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * The email sending functionality of the eXist Mail Module Extension that  * allows email to be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-05-29  * @version 1.12  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -449,7 +449,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sends an email $a through the SMTP Server $b, or if $b is () tries to use the local sendmail program. $a is the email in the following format<mail><from/><to/><cc/><bcc/><subject/><message><text/><xhtml/></message></mail>. $c defines the charset value used in the \"Content-Type\" message header (Defaults to UTF-8)"
+literal|"Sends an email $a through the SMTP Server $b, or if $b is () tries to use the local sendmail program. $a is the email in the following format<mail><from/><reply-to/><to/><cc/><bcc/><subject/><message><text/><xhtml/></message></mail>. $c defines the charset value used in the \"Content-Type\" message header (Defaults to UTF-8)"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1650,6 +1650,32 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|aMail
+operator|.
+name|getReplyTo
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Reply-To: "
+operator|+
+name|encode64Address
+argument_list|(
+name|aMail
+operator|.
+name|getReplyTo
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -2119,7 +2145,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/** 	 * Constructs a mail Object from an XML representation of an email 	 *  	 * The XML email Representation is expected to look something like this 	 *  	 *<mail> 	 *<from></from> 	 *<to></to> 	 *<cc></cc> 	 *<bcc></bcc> 	 *<subject></subject> 	 *<message> 	 *<text></text> 	 *<xhtml></xhtml> 	 *</message> 	 *</mail> 	 *  	 * @param message	The XML mail Node 	 * @return		A mail Object representing the XML mail Node 	 */
+comment|/** 	 * Constructs a mail Object from an XML representation of an email 	 *  	 * The XML email Representation is expected to look something like this 	 *  	 *<mail> 	 *<from></from> 	 *<reply-to></reply-to> 	 *<to></to> 	 *<cc></cc> 	 *<bcc></bcc> 	 *<subject></subject> 	 *<message> 	 *<text></text> 	 *<xhtml></xhtml> 	 *</message> 	 *</mail> 	 *  	 * @param message	The XML mail Node 	 * @return		A mail Object representing the XML mail Node 	 */
 specifier|private
 name|mail
 name|ParseMailXML
@@ -2211,6 +2237,33 @@ block|{
 name|theMail
 operator|.
 name|setFrom
+argument_list|(
+name|child
+operator|.
+name|getFirstChild
+argument_list|()
+operator|.
+name|getNodeValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"reply-to"
+argument_list|)
+condition|)
+block|{
+name|theMail
+operator|.
+name|setReplyTo
 argument_list|(
 name|child
 operator|.
@@ -3278,7 +3331,7 @@ operator|)
 return|;
 block|}
 comment|//Class that Represents an email
-comment|/** 	 * A simple data class to represent an email 	 * doesnt do anything fancy just has private 	 * members and get and set methods 	 *  	 * @version 1.0 	 */
+comment|/** 	 * A simple data class to represent an email 	 * doesnt do anything fancy just has private 	 * members and get and set methods 	 *  	 * @version 1.1 	 */
 specifier|private
 class|class
 name|mail
@@ -3290,6 +3343,13 @@ init|=
 literal|""
 decl_stmt|;
 comment|//Who is the mail from
+specifier|private
+name|String
+name|replyTo
+init|=
+literal|null
+decl_stmt|;
+comment|//Who should you reply to
 specifier|private
 name|Vector
 name|to
@@ -3365,6 +3425,31 @@ name|this
 operator|.
 name|from
 operator|)
+return|;
+block|}
+comment|//reply-to
+specifier|public
+name|void
+name|setReplyTo
+parameter_list|(
+name|String
+name|replyTo
+parameter_list|)
+block|{
+name|this
+operator|.
+name|replyTo
+operator|=
+name|replyTo
+expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getReplyTo
+parameter_list|()
+block|{
+return|return
+name|replyTo
 return|;
 block|}
 comment|//To
