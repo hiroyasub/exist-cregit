@@ -704,6 +704,46 @@ literal|"/db/validationtest/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//            assertTrue( "specified grammar", service.validateResource("/db/validationtest/hamlet_valid.xml",
+comment|//                "/db/validationtest/dtd/hamlet.dtd") );
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|bugtestDtdValidDocument2
+parameter_list|()
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testDtdValidDocument"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|assertTrue
 argument_list|(
 literal|"specified grammar"

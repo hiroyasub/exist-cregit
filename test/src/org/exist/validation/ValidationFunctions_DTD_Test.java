@@ -738,7 +738,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testSpecifiedGrammar
+name|bugtestSpecifiedGrammar
 parameter_list|()
 block|{
 name|System
