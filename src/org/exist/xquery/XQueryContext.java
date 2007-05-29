@@ -3984,7 +3984,7 @@ return|return
 name|var
 return|;
 block|}
-specifier|private
+specifier|protected
 name|Variable
 name|resolveLocalVariable
 parameter_list|(
