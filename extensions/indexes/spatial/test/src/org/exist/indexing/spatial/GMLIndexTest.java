@@ -241,20 +241,6 @@ name|org
 operator|.
 name|geotools
 operator|.
-name|geometry
-operator|.
-name|jts
-operator|.
-name|GeometryCoordinateSequenceTransformer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|geotools
-operator|.
 name|gml
 operator|.
 name|GMLFilterDocument
@@ -546,6 +532,21 @@ literal|"</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs>"
 operator|+
 literal|"</gml:Polygon>"
 decl_stmt|;
+name|String
+name|WKT_POLYGON
+init|=
+literal|"POLYGON ((-3.7530493069563913 51.5695210244188, "
+operator|+
+literal|"-3.7526220716233705 51.569500427086325, -3.752191300029012 51.569481679670055, "
+operator|+
+literal|"-3.7516853221460167 51.5694586575048, -3.751687839470607 51.569430291017945, "
+operator|+
+literal|"-3.752106350923544 51.56944922336166, -3.752595638781826 51.5694697950237, "
+operator|+
+literal|"-3.753034464037513 51.56949156828257, -3.753052048201362 51.56949850020053, "
+operator|+
+literal|"-3.7530493069563913 51.5695210244188))"
+decl_stmt|;
 specifier|private
 name|Database
 name|database
@@ -557,15 +558,6 @@ decl_stmt|;
 specifier|private
 name|Geometry
 name|currentGeometry
-decl_stmt|;
-specifier|protected
-specifier|static
-name|GeometryCoordinateSequenceTransformer
-name|coordinateTransformer
-init|=
-operator|new
-name|GeometryCoordinateSequenceTransformer
-argument_list|()
 decl_stmt|;
 specifier|public
 name|void
@@ -1968,6 +1960,87 @@ name|seq
 argument_list|)
 expr_stmt|;
 comment|//assertTrue(seq.getItemCount()> 0);
+comment|//Tests with empty sequences
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:equals(//gml:*, ())"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:overlaps((), //gml:Point[gml:coordinates[. = '278697.450,187740.900']])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
 comment|//In-memory test
 name|query
 operator|=
@@ -2866,6 +2939,87 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+comment|//Tests with empty sequences
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:GMLtoWKT(())"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:GMLtoWKT((), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
 comment|//In-memory tests
 name|query
 operator|=
@@ -3703,6 +3857,1279 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testGMLProducers
+parameter_list|()
+block|{
+name|BrokerPool
+name|pool
+init|=
+literal|null
+decl_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|pool
+operator|=
+name|BrokerPool
+operator|.
+name|getInstance
+argument_list|()
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|pool
+argument_list|)
+expr_stmt|;
+name|broker
+operator|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|xquery
+argument_list|)
+expr_stmt|;
+name|String
+name|query
+init|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:WKTtoGML('"
+operator|+
+name|WKT_POLYGON
+operator|+
+literal|"', 'EPSG:4326')"
+decl_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer(//gml:Polygon[1], 100)"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer(//gml:Polygon[1], 100, 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer(//gml:Polygon[1], 100, 1)"
+expr_stmt|;
+comment|//seq = xquery.execute(query, null, AccessContext.TEST);
+comment|//assertNotNull(seq);
+comment|//assertTrue(seq.getItemCount()> 0);
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer(//gml:Polygon[1], 100, 1, 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:convexHull(//gml:Polygon[1])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:convexHull(//gml:Polygon[1], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:boundary(//gml:Polygon[1])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:boundary(//gml:Polygon[1], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:intersection(//gml:Polygon[1], //gml:Polygon[2])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:intersection(//gml:Polygon[1], //gml:Polygon[2], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:union(//gml:Polygon[1], //gml:Polygon[2])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:union(//gml:Polygon[1], //gml:Polygon[2], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:difference(//gml:Polygon[1], //gml:Polygon[2])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:difference(//gml:Polygon[1], //gml:Polygon[2], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:symetricDifference(//gml:Polygon[1], //gml:Polygon[2])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:symetricDifference(//gml:Polygon[1], //gml:Polygon[2], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+comment|//Tests with empty sequences
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:GMLtoWKT(())"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:GMLtoWKT((), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer((), 100)"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer((), 100, 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer((), 100, 1)"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:buffer((), 100, 1, 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:convexHull(())"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:convexHull((), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:boundary(())"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:boundary((), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:union((), (), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:union(//gml:Polygon[1], (), 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|1
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:union((), //gml:Polygon[1], 'EPSG:4326')"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|1
+argument_list|)
+expr_stmt|;
+comment|//In-memory tests
+comment|//TODO
 block|}
 catch|catch
 parameter_list|(
