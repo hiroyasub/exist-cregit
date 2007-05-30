@@ -659,13 +659,6 @@ name|STRING
 condition|)
 block|{
 comment|// anyURI provided
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"URI"
-argument_list|)
-expr_stmt|;
 name|String
 name|url
 init|=
@@ -677,6 +670,29 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|url
+operator|.
+name|endsWith
+argument_list|(
+literal|".dtd"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Unable to validate with a specified DTD. "
+operator|+
+literal|"Please register the DTD in an xml catalog document."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|url

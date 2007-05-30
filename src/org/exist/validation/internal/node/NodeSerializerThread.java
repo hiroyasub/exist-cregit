@@ -108,7 +108,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|NodeDownloadThread
+name|NodeSerializerThread
 extends|extends
 name|Thread
 block|{
@@ -122,7 +122,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|NodeDownloadThread
+name|NodeSerializerThread
 operator|.
 name|class
 argument_list|)
@@ -139,9 +139,9 @@ specifier|private
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
-comment|/** Creates a new instance of NodeDownloadThread */
+comment|/**      * Creates a new instance of NodeSerializerThread      */
 specifier|public
-name|NodeDownloadThread
+name|NodeSerializerThread
 parameter_list|(
 name|XQueryContext
 name|context
@@ -222,11 +222,11 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
-name|NodeDownload
+name|NodeSerializer
 name|ed
 init|=
 operator|new
-name|NodeDownload
+name|NodeSerializer
 argument_list|(
 name|context
 argument_list|)

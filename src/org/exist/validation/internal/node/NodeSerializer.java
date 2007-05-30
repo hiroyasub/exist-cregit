@@ -182,15 +182,15 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|NodeDownload
+name|NodeSerializer
 block|{
 specifier|private
 name|XQueryContext
 name|context
 decl_stmt|;
-comment|/** Creates a new instance of NodeDownload */
+comment|/**      * Creates a new instance of NodeSerializer      */
 specifier|public
-name|NodeDownload
+name|NodeSerializer
 parameter_list|(
 name|XQueryContext
 name|context

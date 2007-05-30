@@ -138,7 +138,7 @@ name|BlockingOutputStream
 name|bos
 decl_stmt|;
 specifier|private
-name|NodeDownloadThread
+name|NodeSerializerThread
 name|rt
 decl_stmt|;
 comment|/** Creates a new instance of NodeInputStream */
@@ -175,7 +175,7 @@ expr_stmt|;
 name|rt
 operator|=
 operator|new
-name|NodeDownloadThread
+name|NodeSerializerThread
 argument_list|(
 name|context
 argument_list|,
