@@ -23,16 +23,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStream
 import|;
 end_import
@@ -44,16 +34,6 @@ operator|.
 name|net
 operator|.
 name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
 import|;
 end_import
 
@@ -97,6 +77,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|ExistIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|ValidationReport
@@ -121,9 +115,13 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
+name|validation
 operator|.
-name|XmldbURI
+name|internal
+operator|.
+name|node
+operator|.
+name|NodeInputStream
 import|;
 end_import
 
@@ -288,9 +286,11 @@ specifier|final
 name|String
 name|simpleFunctionTxt
 init|=
-literal|"Validate document specified by $a. The grammar files "
+literal|"Validate document specified by $a. "
 operator|+
-literal|"are resolved using the global catalog file(s)."
+literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
+operator|+
+literal|"The grammar files are resolved using the global catalog file(s)."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -299,6 +299,8 @@ name|String
 name|extendedFunctionTxt
 init|=
 literal|"Validate document specified by $a using $b. "
+operator|+
+literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
 operator|+
 literal|"$b can point to an OASIS catalog file, a grammar (xml schema only) "
 operator|+
@@ -351,7 +353,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -372,16 +374,6 @@ name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 block|,
-comment|//       new FunctionSignature(
-comment|//                new QName("validate", ValidationModule.NAMESPACE_URI,
-comment|//                                          ValidationModule.PREFIX),
-comment|//                    "Validate document specified by $a. The grammar files "
-comment|//                    +"are searched inside the database.",
-comment|//                    new SequenceType[]{
-comment|//                        new SequenceType(Type.NODE, Cardinality.EXACTLY_ONE)
-comment|//                    },
-comment|//                    new SequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE)
-comment|//                ),
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -410,7 +402,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -443,18 +435,6 @@ name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 block|,
-comment|//        new FunctionSignature(
-comment|//                    new QName("validate", ValidationModule.NAMESPACE_URI,
-comment|//                                          ValidationModule.PREFIX),
-comment|//                    "Validate document specified by $a using path $b. "
-comment|//                    +"$b can point a grammar, a collection containing "
-comment|//                    +"grammars (usefull for XSD) or a OASIS catalog file.",
-comment|//                    new SequenceType[]{
-comment|//                        new SequenceType(Type.NODE, Cardinality.EXACTLY_ONE),
-comment|//                        new SequenceType(Type.STRING, Cardinality.EXACTLY_ONE)
-comment|//                    },
-comment|//                    new SequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE)
-comment|//                ),
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -473,6 +453,8 @@ name|PREFIX
 argument_list|)
 argument_list|,
 name|simpleFunctionTxt
+operator|+
+literal|" A simple report is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -483,7 +465,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -522,6 +504,8 @@ name|PREFIX
 argument_list|)
 argument_list|,
 name|extendedFunctionTxt
+operator|+
+literal|" A simple report is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -532,7 +516,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -642,9 +626,46 @@ block|}
 comment|// Get inputstream
 name|InputStream
 name|is
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ANY_URI
+operator|||
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+comment|// anyURI provided
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"URI"
+argument_list|)
+expr_stmt|;
 name|String
 name|url
 init|=
@@ -685,17 +706,113 @@ name|openStream
 argument_list|()
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ELEMENT
+operator|||
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|DOCUMENT
+condition|)
+block|{
+comment|// Node provided
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Node"
+argument_list|)
+expr_stmt|;
+name|is
+operator|=
+operator|new
+name|NodeInputStream
+argument_list|(
+name|context
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|iterate
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// new NodeInputStream()
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Wrong item type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"wrong item type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
+block|}
+block|}
 catch|catch
 parameter_list|(
 name|MalformedURLException
 name|ex
 parameter_list|)
 block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//ex.printStackTrace();
 name|LOG
 operator|.
 name|error
@@ -718,7 +835,40 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|ExistIOException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//ex.getCause().printStackTrace();
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"eXistIOexception"
+argument_list|,
+name|ex
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
 name|ex
 parameter_list|)
 block|{
@@ -729,11 +879,7 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//ex.printStackTrace();
 throw|throw
 operator|new
 name|XPathException
@@ -741,7 +887,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"IOexception"
+literal|"exception"
 argument_list|,
 name|ex
 argument_list|)
@@ -875,6 +1021,13 @@ block|}
 else|else
 block|{
 comment|// ohoh
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"invoked with wrong function name"
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|Sequence
