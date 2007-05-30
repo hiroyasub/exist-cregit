@@ -296,7 +296,7 @@ name|p
 parameter_list|)
 block|{
 name|NodeProxy
-name|first
+name|firstParent
 init|=
 name|getFirstParent
 argument_list|(
@@ -316,10 +316,10 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// Timo Boehme: getFirstParent returns now only real parents
-comment|//              therefore test if node is child of context
+comment|// therefore test if node is child of context
 if|if
 condition|(
-name|first
+name|firstParent
 operator|!=
 literal|null
 condition|)
@@ -329,7 +329,7 @@ literal|true
 return|;
 block|}
 comment|//	if (context.get(p.getDocument(), p.getNodeId().getParentId()) != null) {
-comment|//            return true;
+comment|//      return true;
 comment|//	}
 return|return
 literal|false
@@ -392,10 +392,10 @@ name|NodeProxy
 name|getFirstParent
 parameter_list|(
 name|NodeProxy
-name|node
+name|self
 parameter_list|,
 name|NodeProxy
-name|first
+name|firstParent
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -407,9 +407,9 @@ block|{
 return|return
 name|getFirstParent
 argument_list|(
-name|node
+name|self
 argument_list|,
-name|first
+name|firstParent
 argument_list|,
 name|includeSelf
 argument_list|,
@@ -425,25 +425,26 @@ name|NodeProxy
 name|getFirstParent
 parameter_list|(
 name|NodeProxy
-name|node
+name|self
 parameter_list|,
 name|NodeProxy
-name|first
+name|candidateFirstParent
 parameter_list|,
 name|boolean
 name|includeSelf
 parameter_list|,
 name|boolean
-name|directParent
+name|restrictToDirectParent
 parameter_list|,
 name|int
 name|recursions
 parameter_list|)
 block|{
+comment|/* if the node has is a doument node we still need to           * complete this method to check if we have found a potential parent          * in one of the iterations before.          */
 name|NodeId
-name|pid
+name|parentOfSelfId
 init|=
-name|node
+name|self
 operator|.
 name|getNodeId
 argument_list|()
@@ -451,12 +452,9 @@ operator|.
 name|getParentId
 argument_list|()
 decl_stmt|;
-comment|/* if the node has no parent, i.e. pid == -1, we still need to           * complete this method to check if we have found a potential parent          * in one of the iterations before.          */
-name|NodeProxy
-name|parent
-decl_stmt|;
 comment|// check if the start-node should be included, e.g. to process an
 comment|// expression like *[. = 'xxx']
+comment|//TODO : investigate on expression like *[.//* = 'xxx']
 if|if
 condition|(
 name|recursions
@@ -469,10 +467,12 @@ name|test
 operator|.
 name|matches
 argument_list|(
-name|node
+name|self
 argument_list|)
 condition|)
 block|{
+comment|// if we're on the child axis, test if
+comment|// the node is a direct child of the context node
 if|if
 condition|(
 name|axis
@@ -482,22 +482,23 @@ operator|.
 name|CHILD_AXIS
 condition|)
 block|{
-comment|// if we're on the child axis, test if
-comment|// the node is a direct child of the context node
+comment|//WARNING : get() realizes virtual node sets
+comment|//TODO : investigate more efficent solutions
+name|NodeProxy
 name|parent
-operator|=
+init|=
 name|context
 operator|.
 name|get
 argument_list|(
-name|node
+name|self
 operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentOfSelfId
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|parent
@@ -505,7 +506,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|node
+name|self
 operator|.
 name|copyContext
 argument_list|(
@@ -519,13 +520,13 @@ operator|&&
 name|inPredicate
 condition|)
 block|{
-name|node
+name|self
 operator|.
 name|addContextNode
 argument_list|(
 name|contextId
 argument_list|,
-name|node
+name|self
 argument_list|)
 expr_stmt|;
 block|}
@@ -533,7 +534,7 @@ if|else if
 condition|(
 name|inPredicate
 condition|)
-name|node
+name|self
 operator|.
 name|addContextNode
 argument_list|(
@@ -543,63 +544,59 @@ name|parent
 argument_list|)
 expr_stmt|;
 return|return
-name|node
+name|self
 return|;
 block|}
 block|}
 else|else
 block|{
 comment|// descendant axis: remember the node and continue
-name|first
+name|candidateFirstParent
 operator|=
-name|node
+name|self
 expr_stmt|;
 block|}
 block|}
 comment|// if this is the first call to this method, remember the first
-comment|// parent node and re-evaluate the method. We can't just return
-comment|// the first parent as we need a parent that is actually contained
-comment|// in the context set. We thus call the method again to complete.
+comment|// parent node and continue to evaluate the method. We can't just return
+comment|// the first parent as we need a parent that is *actually* contained
+comment|// in the context set. We will thus call the method again to complete.
 if|if
 condition|(
-name|first
+name|candidateFirstParent
 operator|==
 literal|null
 condition|)
 block|{
+comment|//given node was already document element -> no parent
 if|if
 condition|(
-name|pid
+name|parentOfSelfId
 operator|==
 name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
 block|{
-comment|// given node was already document element -> no parent
 return|return
 literal|null
 return|;
 block|}
-name|first
+name|candidateFirstParent
 operator|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|node
+name|self
 operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentOfSelfId
 argument_list|,
 name|Node
 operator|.
 name|ELEMENT_NODE
-argument_list|,
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 comment|// if we are on the self axis, check if the first parent can be selected
@@ -612,20 +609,23 @@ operator|.
 name|DESCENDANT_SELF_AXIS
 condition|)
 block|{
+comment|//WARNING : get() realizes virtual node sets
+comment|//TODO : investigate more efficent solutions
+name|NodeProxy
 name|parent
-operator|=
+init|=
 name|context
 operator|.
 name|get
 argument_list|(
-name|first
+name|candidateFirstParent
 operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentOfSelfId
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|parent
@@ -640,7 +640,7 @@ name|parent
 argument_list|)
 condition|)
 block|{
-name|first
+name|candidateFirstParent
 operator|.
 name|copyContext
 argument_list|(
@@ -654,13 +654,13 @@ operator|&&
 name|inPredicate
 condition|)
 block|{
-name|first
+name|candidateFirstParent
 operator|.
 name|addContextNode
 argument_list|(
 name|contextId
 argument_list|,
-name|first
+name|candidateFirstParent
 argument_list|)
 expr_stmt|;
 block|}
@@ -668,7 +668,7 @@ if|else if
 condition|(
 name|inPredicate
 condition|)
-name|first
+name|candidateFirstParent
 operator|.
 name|addContextNode
 argument_list|(
@@ -678,21 +678,21 @@ name|parent
 argument_list|)
 expr_stmt|;
 return|return
-name|first
+name|candidateFirstParent
 return|;
 block|}
 block|}
-comment|// Timo Boehme: we need a real parent (child from context)
+comment|// We need a real parent : keep the candidate and continue to ierate from this one
 return|return
 name|getFirstParent
 argument_list|(
-name|first
+name|candidateFirstParent
 argument_list|,
-name|first
+name|candidateFirstParent
 argument_list|,
 literal|false
 argument_list|,
-name|directParent
+name|restrictToDirectParent
 argument_list|,
 name|recursions
 operator|+
@@ -700,24 +700,27 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|// is pid member of the context set?
-name|parent
-operator|=
+comment|// is the node's parent in the context set?
+comment|//WARNING : get() realizes virtual node sets
+comment|//TODO : investigate more efficent solutions
+name|NodeProxy
+name|parentOfSelf
+init|=
 name|context
 operator|.
 name|get
 argument_list|(
-name|node
+name|self
 operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentOfSelfId
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|parent
+name|parentOfSelf
 operator|!=
 literal|null
 operator|&&
@@ -725,7 +728,7 @@ name|test
 operator|.
 name|matches
 argument_list|(
-name|node
+name|self
 argument_list|)
 condition|)
 block|{
@@ -738,19 +741,19 @@ operator|.
 name|CHILD_AXIS
 condition|)
 block|{
-comment|// if we are on the descendant-axis, we return the first node
+comment|// if we are on the descendant axis, we return the first node
 comment|// we found while walking bottom-up.
 comment|// Otherwise, we return the last one (which is node)
-name|node
+name|self
 operator|=
-name|first
+name|candidateFirstParent
 expr_stmt|;
 block|}
-name|node
+name|self
 operator|.
 name|copyContext
 argument_list|(
-name|parent
+name|parentOfSelf
 argument_list|)
 expr_stmt|;
 if|if
@@ -760,13 +763,13 @@ operator|&&
 name|inPredicate
 condition|)
 block|{
-name|node
+name|self
 operator|.
 name|addContextNode
 argument_list|(
 name|contextId
 argument_list|,
-name|node
+name|self
 argument_list|)
 expr_stmt|;
 block|}
@@ -775,24 +778,24 @@ condition|(
 name|inPredicate
 condition|)
 block|{
-name|node
+name|self
 operator|.
 name|addContextNode
 argument_list|(
 name|contextId
 argument_list|,
-name|parent
+name|parentOfSelf
 argument_list|)
 expr_stmt|;
 block|}
 comment|// Timo Boehme: we return the ancestor which is child of context
 return|return
-name|node
+name|self
 return|;
 block|}
 if|else if
 condition|(
-name|pid
+name|parentOfSelfId
 operator|==
 name|NodeId
 operator|.
@@ -806,7 +809,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|directParent
+name|restrictToDirectParent
 operator|&&
 name|axis
 operator|==
@@ -827,33 +830,29 @@ block|}
 else|else
 block|{
 comment|// continue for expressions like //*/n or /*//n
-name|parent
+name|parentOfSelf
 operator|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|node
+name|self
 operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentOfSelfId
 argument_list|,
 name|Node
 operator|.
 name|ELEMENT_NODE
-argument_list|,
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 return|return
 name|getFirstParent
 argument_list|(
-name|parent
+name|parentOfSelf
 argument_list|,
-name|first
+name|candidateFirstParent
 argument_list|,
 literal|false
 argument_list|,
@@ -955,7 +954,7 @@ name|NodeProxy
 name|proxy
 parameter_list|,
 name|boolean
-name|directParent
+name|restrictToDirectParent
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -975,7 +974,7 @@ literal|null
 argument_list|,
 name|includeSelf
 argument_list|,
-name|directParent
+name|restrictToDirectParent
 argument_list|,
 literal|0
 argument_list|)
@@ -1008,7 +1007,7 @@ name|NodeId
 name|nodeId
 parameter_list|,
 name|boolean
-name|directParent
+name|restrictToDirectParent
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -1031,7 +1030,7 @@ literal|null
 argument_list|,
 name|includeSelf
 argument_list|,
-name|directParent
+name|restrictToDirectParent
 argument_list|,
 literal|0
 argument_list|)
