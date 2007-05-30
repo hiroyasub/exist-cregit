@@ -2483,6 +2483,9 @@ parameter_list|(
 name|Geometry
 name|geometry
 parameter_list|,
+name|String
+name|srsName
+parameter_list|,
 name|Receiver
 name|receiver
 parameter_list|)
