@@ -6870,7 +6870,7 @@ name|setMode
 argument_list|(
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 if|if
@@ -6908,7 +6908,7 @@ name|reindexRoot
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 block|}
@@ -7406,7 +7406,7 @@ name|reindexRoot
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 comment|// Remove the actual node data
@@ -7659,7 +7659,7 @@ name|setMode
 argument_list|(
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 if|if
@@ -7697,7 +7697,7 @@ name|reindexRoot
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 block|}
@@ -7923,7 +7923,7 @@ name|old
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 name|getBroker
@@ -8397,7 +8397,7 @@ name|setMode
 argument_list|(
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 if|if
@@ -8435,7 +8435,7 @@ name|reindexRoot
 argument_list|,
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 block|}

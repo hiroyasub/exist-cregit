@@ -1017,7 +1017,7 @@ case|:
 case|case
 name|StreamListener
 operator|.
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 case|:
 name|dropIndex
 argument_list|(

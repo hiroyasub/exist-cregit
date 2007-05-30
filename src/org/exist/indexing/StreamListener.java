@@ -115,7 +115,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|REMOVE_NODES
+name|REMOVE_SOME_NODES
 init|=
 literal|2
 decl_stmt|;

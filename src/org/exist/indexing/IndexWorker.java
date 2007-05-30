@@ -193,7 +193,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
 name|void
 name|setMode
 parameter_list|(
@@ -201,7 +201,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
 parameter_list|(
