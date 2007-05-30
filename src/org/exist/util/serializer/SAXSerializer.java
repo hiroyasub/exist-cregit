@@ -129,6 +129,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -2479,6 +2491,16 @@ name|node
 parameter_list|)
 block|{
 comment|// just ignore.
+block|}
+specifier|public
+name|Document
+name|getDocument
+parameter_list|()
+block|{
+comment|//just ignore.
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class

@@ -65,6 +65,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -176,6 +188,16 @@ parameter_list|()
 block|{
 return|return
 name|currentNode
+return|;
+block|}
+specifier|public
+name|Document
+name|getDocument
+parameter_list|()
+block|{
+comment|//TODO return currentNode.getDocument() ?
+return|return
+literal|null
 return|;
 block|}
 specifier|public
