@@ -719,7 +719,9 @@ block|{
 name|context
 operator|.
 name|reset
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|expr
 operator|.

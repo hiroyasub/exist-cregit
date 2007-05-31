@@ -2844,11 +2844,25 @@ return|return
 name|remaining
 return|;
 block|}
-comment|/** 	 * Prepare this XQueryContext to be reused. This should be      * called when adding an XQuery to the cache. 	 */
 specifier|public
 name|void
 name|reset
 parameter_list|()
+block|{
+name|reset
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Prepare this XQueryContext to be reused. This should be      * called when adding an XQuery to the cache. 	 */
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|boolean
+name|keepGlobals
+parameter_list|)
 block|{
 name|builder
 operator|=
@@ -2886,6 +2900,11 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|keepGlobals
+condition|)
 name|globalVariables
 operator|.
 name|clear
