@@ -151,6 +151,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|IndexUseReporter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -315,7 +327,14 @@ class|class
 name|FunGMLProducers
 extends|extends
 name|BasicFunction
+implements|implements
+name|IndexUseReporter
 block|{
+name|boolean
+name|hasUsedIndex
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -1196,6 +1215,10 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 comment|//Otherwise, build it
 block|}
 else|else
@@ -1440,6 +1463,10 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
 expr_stmt|;
 comment|//Otherwise, build it
 block|}
@@ -1735,6 +1762,10 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 comment|//Otherwise, build it
 block|}
 else|else
@@ -1860,6 +1891,10 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
 expr_stmt|;
 comment|//Otherwise, build it
 block|}
@@ -2093,6 +2128,10 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -2144,6 +2183,10 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|//Otherwise build them
@@ -2404,6 +2447,15 @@ throw|;
 block|}
 return|return
 name|result
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasUsedIndex
+parameter_list|()
+block|{
+return|return
+name|hasUsedIndex
 return|;
 block|}
 block|}

@@ -5458,7 +5458,11 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getArea(//gml:Polygon[1])"
+literal|"(# exist:force-index-use #) { "
+operator|+
+literal|"spatial:getArea(//gml:Polygon[1]) "
+operator|+
+literal|"}"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -5551,7 +5555,11 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
+literal|"(# exist:force-index-use #) { "
+operator|+
 literal|"spatial:getArea(//gml:Polygon[1])"
+operator|+
+literal|"}"
 expr_stmt|;
 name|seq
 operator|=
