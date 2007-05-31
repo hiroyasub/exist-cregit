@@ -305,6 +305,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|IndexUseReporter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|LocationStep
 import|;
 end_import
@@ -507,6 +519,8 @@ extends|extends
 name|Function
 implements|implements
 name|Optimizable
+implements|,
+name|IndexUseReporter
 block|{
 specifier|public
 specifier|final

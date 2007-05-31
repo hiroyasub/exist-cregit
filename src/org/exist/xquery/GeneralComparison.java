@@ -59,18 +59,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -203,6 +191,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -307,6 +307,8 @@ extends|extends
 name|BinaryOp
 implements|implements
 name|Optimizable
+implements|,
+name|IndexUseReporter
 block|{
 comment|/** 	 * The type of operator used for the comparison, i.e. =, !=,&lt;,&gt; ... 	 * One of the constants declared in class {@link Constants}. 	 */
 specifier|protected

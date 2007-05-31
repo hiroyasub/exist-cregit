@@ -166,14 +166,14 @@ if|if
 condition|(
 name|expression
 operator|instanceof
-name|FunMatches
+name|IndexUseReporter
 condition|)
 name|bailout
 operator|=
 operator|!
 operator|(
 operator|(
-name|FunMatches
+name|IndexUseReporter
 operator|)
 name|expression
 operator|)
