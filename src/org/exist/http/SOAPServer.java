@@ -838,7 +838,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author Jose Maria Fernandez (contributor)  *   * @serial 20061128T11:49:00  *   * The SOAPServer allows Web Services to be written in XQuery; it translates a   * SOAP Request to an XQuery function call and then translates the result of the  * XQuery function to a SOAP Response.  *   * This is done by managing an internal representation of an XQWS (XQuery Web Service),  * through this it is able to provide enough information to an XSLT proccessor to  * generate WSDL and human readable descriptions of the web service and individual  * functions.  *   * XSLT's are provided for document-oriented Web Service's and are located  * in $EXIST_HOME/tools/SOAPServer  *   */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Jose Maria Fernandez  *   * @serial 20070531T12:18:00  *   * The SOAPServer allows Web Services to be written in XQuery; it translates a   * SOAP Request to an XQuery function call and then translates the result of the  * XQuery function to a SOAP Response.  *   * This is done by managing an internal representation of an XQWS (XQuery Web Service),  * through this it is able to provide enough information to an XSLT proccessor to  * generate WSDL and human readable descriptions of the web service and individual  * functions.  *   * XSLT's are provided for both document literal and RPC style Web Service's and are  * located in $EXIST_HOME/tools/SOAPServer  */
 end_comment
 
 begin_class
@@ -2357,13 +2357,58 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//WSDL
+comment|//WSDL document literal
 name|result
 operator|=
 name|description
 operator|.
 name|getWSDL
 argument_list|()
+expr_stmt|;
+comment|//set output content type for wsdl
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"WSDLRPC"
+argument_list|)
+operator|!=
+literal|null
+operator|||
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"wsdlrpc"
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//WSDL RPC
+name|result
+operator|=
+name|description
+operator|.
+name|getWSDL
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 comment|//set output content type for wsdl
 name|response
@@ -2757,7 +2802,6 @@ argument_list|,
 literal|"Body"
 argument_list|)
 decl_stmt|;
-comment|//NodeList nlBody = soapRequest.getElementsByTagName("SOAP-ENV:Body");
 name|Node
 name|nSOAPBody
 init|=
@@ -2930,6 +2974,48 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|// 4.5) Detemine encoding style
+name|String
+name|encodingStyle
+init|=
+operator|(
+operator|(
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+operator|)
+name|nSOAPFunction
+operator|)
+operator|.
+name|getAttributeNS
+argument_list|(
+name|Namespaces
+operator|.
+name|SOAP_ENVELOPE
+argument_list|,
+literal|"encodingStyle"
+argument_list|)
+decl_stmt|;
+name|boolean
+name|isRpcEncoded
+init|=
+operator|(
+name|encodingStyle
+operator|!=
+literal|null
+operator|&&
+name|encodingStyle
+operator|.
+name|equals
+argument_list|(
+literal|"http://schemas.xmlsoap.org/soap/encoding/"
+argument_list|)
+operator|)
+decl_stmt|;
 comment|// 5) Execute the XQWS function indicated by the SOAP request
 try|try
 block|{
@@ -3021,6 +3107,8 @@ argument_list|,
 name|xqwsResult
 argument_list|,
 name|request
+argument_list|,
+name|isRpcEncoded
 argument_list|)
 decl_stmt|;
 comment|// 7) Send the SOAP Response to the http servlet response
@@ -3555,7 +3643,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//        response.setCharacterEncoding(encoding);
 comment|// possible format contentType: text/xml; charset=UTF-8
 if|if
 condition|(
@@ -3720,9 +3807,14 @@ decl_stmt|;
 specifier|private
 name|byte
 index|[]
+index|[]
 name|descriptionWSDL
 init|=
+block|{
 literal|null
+block|,
+literal|null
+block|}
 decl_stmt|;
 comment|//cache for XQWS Human Readable description
 specifier|private
@@ -3944,10 +4036,42 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
+return|return
+name|getWSDL
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**     	 * Returns the WSDL for the XQWS Description     	 * Caches the result, however the cache is regenerated if     	 * the StyleSheet used for the transformation changes     	 *      	 * @return byte array containing the WSDL     	 */
+specifier|public
+name|byte
+index|[]
+name|getWSDL
+parameter_list|(
+name|boolean
+name|isDocumentLiteral
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|TransformerConfigurationException
+throws|,
+name|SAXException
+block|{
 name|DocumentImpl
 name|docStyleSheet
 init|=
 literal|null
+decl_stmt|;
+name|int
+name|wsdlIndex
+init|=
+name|isDocumentLiteral
+condition|?
+literal|0
+else|:
+literal|1
 decl_stmt|;
 try|try
 block|{
@@ -3984,13 +4108,39 @@ operator|!=
 name|lastModifiedWSDL
 operator|||
 name|descriptionWSDL
+index|[
+name|wsdlIndex
+index|]
 operator|==
 literal|null
 condition|)
 block|{
 comment|//TODO: validate the WSDL
+name|Properties
+name|params
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+name|params
+operator|.
+name|put
+argument_list|(
+literal|"isDocumentLiteral"
+argument_list|,
+name|isDocumentLiteral
+condition|?
+literal|"true"
+else|:
+literal|"false"
+argument_list|)
+expr_stmt|;
 comment|//yes, so re-run the transformation
 name|descriptionWSDL
+index|[
+name|wsdlIndex
+index|]
 operator|=
 name|Transform
 argument_list|(
@@ -3998,7 +4148,7 @@ name|docXQWSDescription
 argument_list|,
 name|docStyleSheet
 argument_list|,
-literal|null
+name|params
 argument_list|)
 expr_stmt|;
 name|lastModifiedWSDL
@@ -4015,6 +4165,9 @@ block|}
 comment|//return the result of the transformation
 return|return
 name|descriptionWSDL
+index|[
+name|wsdlIndex
+index|]
 return|;
 block|}
 finally|finally
@@ -4025,6 +4178,7 @@ name|docStyleSheet
 operator|!=
 literal|null
 condition|)
+block|{
 comment|//close the Stylesheet Document and release the read lock
 name|docStyleSheet
 operator|.
@@ -4038,6 +4192,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**     	 * Returns the Human Readable description for the XQWS Description     	 * Caches the result, however the cache is regenerated if     	 * the StyleSheet used for the transformation changes     	 *      	 * @return byte array containing the WSDL     	 */
@@ -4133,6 +4288,7 @@ name|docStyleSheet
 operator|!=
 literal|null
 condition|)
+block|{
 comment|//close the Stylesheet Document and release the read lock
 name|docStyleSheet
 operator|.
@@ -4146,6 +4302,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**     	 * Returns the (Human Readable) description of a Function for the XQWS Description     	 * Caches the result, however the cache is regenerated if     	 * the StyleSheet used for the transformation changes     	 *      	 * @param functionName The name of the function to describe     	 *      	 * @return byte array containing the Function Description     	 */
@@ -4290,6 +4447,7 @@ name|docStyleSheet
 operator|!=
 literal|null
 condition|)
+block|{
 comment|//close the Stylesheet Document and release the read lock
 name|docStyleSheet
 operator|.
@@ -4303,6 +4461,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**     	 * Returns the function node from the internal description     	 *      	 * @param functionName	The name of the function to return     	 *      	 * @return the node from the internal description     	 */
@@ -4833,6 +4992,9 @@ name|functionResult
 parameter_list|,
 name|HttpServletRequest
 name|request
+parameter_list|,
+name|boolean
+name|isRpcEncoded
 parameter_list|)
 throws|throws
 name|XPathException
@@ -4889,6 +5051,26 @@ name|functionResult
 argument_list|)
 decl_stmt|;
 comment|//return the SOAP Response
+name|Properties
+name|params
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+name|params
+operator|.
+name|put
+argument_list|(
+literal|"isDocumentLiteral"
+argument_list|,
+name|isRpcEncoded
+condition|?
+literal|"false"
+else|:
+literal|"true"
+argument_list|)
+expr_stmt|;
 return|return
 name|Transform
 argument_list|(
@@ -4896,7 +5078,7 @@ name|docResult
 argument_list|,
 name|docStyleSheet
 argument_list|,
-literal|null
+name|params
 argument_list|)
 return|;
 block|}
@@ -4934,6 +5116,7 @@ name|docXQWS
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NotFoundException
@@ -4951,6 +5134,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|xqwsFileURI
 operator|=
 name|docXQWS
@@ -5468,7 +5652,19 @@ name|builderWebserviceDoc
 init|=
 operator|new
 name|MemTreeBuilder
+argument_list|(
+name|broker
+operator|.
+name|getXQueryService
 argument_list|()
+operator|.
+name|newContext
+argument_list|(
+name|AccessContext
+operator|.
+name|REST
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|builderWebserviceDoc
 operator|.
