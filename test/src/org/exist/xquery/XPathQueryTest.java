@@ -6061,6 +6061,157 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|query
+operator|=
+literal|"declare function local:f ($n) { "
+operator|+
+literal|"$n "
+operator|+
+literal|"}; "
+operator|+
+literal|" "
+operator|+
+literal|"declare function local:g( $n ) { "
+operator|+
+literal|"('OK','Fine','Wrong') [local:f($n) + 1 ] "
+operator|+
+literal|"} ; "
+operator|+
+literal|" "
+operator|+
+literal|"declare function local:h( $n ) { "
+operator|+
+literal|"('OK','Fine','Wrong') [local:f($n) ] "
+operator|+
+literal|"} ; "
+operator|+
+literal|" "
+operator|+
+literal|"declare function local:j( $n ) { "
+operator|+
+literal|"let $m := local:f($n) "
+operator|+
+literal|"return "
+operator|+
+literal|"('OK','Fine','Wrong') [$m + 1 ] "
+operator|+
+literal|"} ; "
+operator|+
+literal|" "
+operator|+
+literal|"declare function local:k ( $n ) { "
+operator|+
+literal|"('OK','Fine','Wrong') [ $n + 1 ] "
+operator|+
+literal|"} ; "
+operator|+
+literal|" "
+operator|+
+literal|"local:f(1),local:g(1), local:h(1), local:j(1), local:k(1) "
+expr_stmt|;
+name|result
+operator|=
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"numbers.xml"
+argument_list|,
+name|query
+argument_list|,
+literal|5
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Fine"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"OK"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|2
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Fine"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|3
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Fine"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|4
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//The collection doesn't exist : let's see how the query behaves with empty sequences
 name|query
 operator|=
