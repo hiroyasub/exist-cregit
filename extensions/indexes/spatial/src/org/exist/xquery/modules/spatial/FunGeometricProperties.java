@@ -177,6 +177,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|Base64Binary
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|BooleanValue
 import|;
 end_import
@@ -301,6 +315,20 @@ name|jts
 operator|.
 name|io
 operator|.
+name|WKBWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|vividsolutions
+operator|.
+name|jts
+operator|.
+name|io
+operator|.
 name|WKTWriter
 import|;
 end_import
@@ -318,6 +346,22 @@ name|boolean
 name|hasUsedIndex
 init|=
 literal|false
+decl_stmt|;
+specifier|protected
+name|WKTWriter
+name|wktWriter
+init|=
+operator|new
+name|WKTWriter
+argument_list|()
+decl_stmt|;
+specifier|protected
+name|WKBWriter
+name|wkbWriter
+init|=
+operator|new
+name|WKBWriter
+argument_list|()
 decl_stmt|;
 specifier|public
 specifier|final
@@ -369,6 +413,55 @@ argument_list|(
 name|Type
 operator|.
 name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"getWKB"
+argument_list|,
+name|SpatialModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|SpatialModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Returns the WKB representation of geometry $a"
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
@@ -725,6 +818,55 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
+literal|"getEPSG4326WKB"
+argument_list|,
+name|SpatialModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|SpatialModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Returns the WKB representation of geometry $a in the EPSG:4326 SRS"
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|BASE64_BINARY
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
 literal|"getEPSG4326MinX"
 argument_list|,
 name|SpatialModule
@@ -736,7 +878,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal X of geometry $a"
+literal|"Returns the minimal X of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -785,7 +927,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximal X of geometry $a"
+literal|"Returns the maximal X of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -834,7 +976,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal Y of geometry $a"
+literal|"Returns the minimal Y of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -883,7 +1025,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximal Y of geometry $a"
+literal|"Returns the maximal Y of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -932,7 +1074,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the X of centroid of geometry $a"
+literal|"Returns the X of centroid of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -981,7 +1123,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the Y of centroid of geometry $a"
+literal|"Returns the Y of centroid of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1030,7 +1172,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the area of geometry $a"
+literal|"Returns the area of geometry $a in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1461,6 +1603,19 @@ if|else if
 condition|(
 name|isCalledAs
 argument_list|(
+literal|"getWKB"
+argument_list|)
+condition|)
+block|{
+name|propertyName
+operator|=
+literal|"BASE64_WKB"
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
 literal|"getMinX"
 argument_list|)
 condition|)
@@ -1546,6 +1701,19 @@ block|{
 name|propertyName
 operator|=
 literal|"AREA"
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"getEPSG4326WKB"
+argument_list|)
+condition|)
+block|{
+name|propertyName
+operator|=
+literal|"EPSG4326_BASE64_WKB"
 expr_stmt|;
 block|}
 if|else if
@@ -1868,6 +2036,28 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
+literal|"getEPSG4326WKB"
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|Base64Binary
+argument_list|(
+name|wkbWriter
+operator|.
+name|write
+argument_list|(
+name|geometry
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
 literal|"getEPSG4326MinX"
 argument_list|)
 condition|)
@@ -2031,19 +2221,34 @@ literal|"GMLtoWKT"
 argument_list|)
 condition|)
 block|{
-name|WKTWriter
-name|wktWriter
-init|=
-operator|new
-name|WKTWriter
-argument_list|()
-decl_stmt|;
 name|result
 operator|=
 operator|new
 name|StringValue
 argument_list|(
 name|wktWriter
+operator|.
+name|write
+argument_list|(
+name|geometry
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"getWKB"
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|Base64Binary
+argument_list|(
+name|wkbWriter
 operator|.
 name|write
 argument_list|(
