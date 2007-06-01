@@ -83,6 +83,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|storage
@@ -185,42 +197,28 @@ class|class
 name|NodeSerializer
 block|{
 specifier|private
-name|XQueryContext
-name|context
-decl_stmt|;
-comment|/**      * Creates a new instance of NodeSerializer      */
-specifier|public
-name|NodeSerializer
-parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|)
-block|{
-name|this
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
 operator|.
-name|context
-operator|=
-name|context
-expr_stmt|;
-block|}
-comment|//    public Properties parseSerializationOptions(SequenceIterator siSerializeParams) throws XPathException
-comment|//    {
-comment|//    	//parse serialization options
-comment|//        Properties outputProperties = new Properties();
-comment|//        outputProperties.setProperty(OutputKeys.INDENT, "yes");
-comment|//        outputProperties.setProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-comment|//        while(siSerializeParams.hasNext())
-comment|//        {
-comment|//            String opt[] = Option.parseKeyValuePair(siSerializeParams.nextItem().getStringValue());
-comment|//            outputProperties.setProperty(opt[0], opt[1]);
-comment|//        }
-comment|//
-comment|//        return outputProperties;
-comment|//    }
+name|getLogger
+argument_list|(
+name|NodeSerializer
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
+specifier|static
 name|void
 name|serialize
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|SequenceIterator
 name|siNode
 parameter_list|,
@@ -233,7 +231,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// serialize the node set
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing started."
+argument_list|)
+expr_stmt|;
 name|SAXSerializer
 name|sax
 init|=
@@ -367,11 +371,29 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|String
+name|txt
+init|=
+literal|"A problem ocurred while serializing the node set"
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|txt
+operator|+
+literal|"."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ExistIOException
 argument_list|(
-literal|"A problem ocurred while serializing the node set: "
+name|txt
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -384,6 +406,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing done."
+argument_list|)
+expr_stmt|;
 name|SerializerPool
 operator|.
 name|getInstance
