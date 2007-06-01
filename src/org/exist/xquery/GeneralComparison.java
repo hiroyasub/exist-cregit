@@ -1162,6 +1162,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
+name|preselectResult
+operator|=
+literal|null
+expr_stmt|;
 name|int
 name|indexType
 init|=
@@ -1549,6 +1554,26 @@ operator|=
 name|temp
 expr_stmt|;
 else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Union: "
+operator|+
+name|preselectResult
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" -> "
+operator|+
+name|temp
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|preselectResult
 operator|=
 name|preselectResult
@@ -1558,6 +1583,7 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return

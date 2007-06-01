@@ -739,6 +739,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
+name|preselectResult
+operator|=
+literal|null
+expr_stmt|;
 name|NGramIndexWorker
 name|index
 init|=
