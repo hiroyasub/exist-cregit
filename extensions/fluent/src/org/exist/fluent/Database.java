@@ -2189,7 +2189,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"test/conf.xml"
+literal|"conf.xml"
 argument_list|)
 decl_stmt|;
 specifier|protected

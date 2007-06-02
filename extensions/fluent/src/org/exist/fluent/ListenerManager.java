@@ -255,7 +255,7 @@ literal|"//trigger["
 operator|+
 literal|"	@event='store update remove create-collection rename-collection delete-collection' and"
 operator|+
-literal|"	@class='com.ideanest.reef.db.ListenerManager$TriggerDispatcher']"
+literal|"	@class='org.exist.fluent.ListenerManager$TriggerDispatcher']"
 argument_list|)
 decl_stmt|;
 if|if
@@ -434,7 +434,7 @@ name|attr
 argument_list|(
 literal|"class"
 argument_list|,
-literal|"com.ideanest.reef.db.ListenerManager$TriggerDispatcher"
+literal|"org.exist.fluent.ListenerManager$TriggerDispatcher"
 argument_list|)
 operator|.
 name|end
