@@ -2717,8 +2717,6 @@ specifier|static
 class|class
 name|Test
 extends|extends
-name|Database
-operator|.
 name|DatabaseTest
 block|{
 specifier|private
