@@ -4359,6 +4359,14 @@ name|boolean
 name|killed
 parameter_list|)
 block|{
+if|if
+condition|(
+name|status
+operator|==
+name|SHUTDOWN
+condition|)
+comment|// we are already shut down
+return|return;
 name|status
 operator|=
 name|SHUTDOWN
