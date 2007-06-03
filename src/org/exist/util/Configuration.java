@@ -6898,14 +6898,17 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/// DWES Why? makes jUnit happy
+comment|/// DWES Why? let's make jUnit happy
 name|webappHome
 operator|=
 operator|new
 name|File
 argument_list|(
-literal|"."
+literal|"webapp"
 argument_list|)
+operator|.
+name|getAbsoluteFile
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -6928,6 +6931,9 @@ argument_list|)
 operator|.
 name|getParentFile
 argument_list|()
+operator|.
+name|getAbsoluteFile
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -6941,6 +6947,9 @@ name|dbHome
 argument_list|,
 literal|"webapp"
 argument_list|)
+operator|.
+name|getAbsoluteFile
+argument_list|()
 expr_stmt|;
 block|}
 name|LOG
