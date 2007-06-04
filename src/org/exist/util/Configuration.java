@@ -4050,6 +4050,7 @@ argument_list|(
 literal|"password-encoding"
 argument_list|)
 decl_stmt|;
+comment|//Unused
 name|config
 operator|.
 name|put
@@ -4108,6 +4109,7 @@ argument_list|(
 literal|"password-realm"
 argument_list|)
 decl_stmt|;
+comment|//Unused
 name|config
 operator|.
 name|put
@@ -4163,7 +4165,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.security.class"
+name|BrokerPool
+operator|.
+name|PROPERTY_SECURITY_CLASS
 argument_list|,
 name|Class
 operator|.
@@ -4177,13 +4181,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.security.class: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SECURITY_CLASS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.security.class"
+name|BrokerPool
+operator|.
+name|PROPERTY_SECURITY_CLASS
 argument_list|)
 argument_list|)
 expr_stmt|;

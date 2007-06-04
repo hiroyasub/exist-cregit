@@ -82,7 +82,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty("db-connection.security.class");
+comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty(BrokerPool.PROPERTY_SECURITY_CLASS);
 return|return
 operator|(
 name|Permission
@@ -124,7 +124,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty("db-connection.security.class");
+comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty(BrokerPool.PROPERTY_SECURITY_CLASS);
 return|return
 operator|(
 name|Permission
@@ -174,7 +174,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty("db-connection.security.class");
+comment|//Class permissionClass = (Class)broker.getConfiguration().getProperty(BrokerPool.PROPERTY_SECURITY_CLASS);
 return|return
 operator|(
 name|Permission

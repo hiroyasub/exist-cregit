@@ -501,22 +501,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|CONFIGURATION_ELEMENT_NAME
-init|=
-literal|"pool"
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|PROPERTY_DATA_DIR
-init|=
-literal|"db-connection.data-dir"
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -536,7 +520,23 @@ name|DEFAULT_INSTANCE_NAME
 init|=
 literal|"exist"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"pool"
+decl_stmt|;
 comment|//Various configuration property keys (set by the configuration manager)
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_DATA_DIR
+init|=
+literal|"db-connection.data-dir"
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -576,6 +576,14 @@ name|String
 name|PROPERTY_COLLECTION_CACHE_SIZE
 init|=
 literal|"db-connection.collection-cache-size"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SECURITY_CLASS
+init|=
+literal|"db-connection.security.class"
 decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
@@ -2333,7 +2341,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.security.class"
+name|PROPERTY_SECURITY_CLASS
 argument_list|)
 decl_stmt|;
 return|return
