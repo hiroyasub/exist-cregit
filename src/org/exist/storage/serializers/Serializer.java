@@ -822,6 +822,22 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_TAG_MATCHING_ELEMENTS
+init|=
+literal|"serialization.match-tagging-elements"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
+init|=
+literal|"serialization.match-tagging-attributes"
+decl_stmt|;
 comment|// constants to configure the highlighting of matches in text and attributes
 specifier|public
 specifier|final
@@ -1322,7 +1338,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"serialization.match-tagging-elements"
+name|PROPERTY_TAG_MATCHING_ELEMENTS
 argument_list|)
 operator|)
 operator|!=
@@ -1349,7 +1365,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"serialization.match-tagging-attributes"
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
 argument_list|)
 operator|)
 operator|!=

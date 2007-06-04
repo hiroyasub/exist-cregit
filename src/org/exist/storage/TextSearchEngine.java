@@ -526,7 +526,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"serialization.match-tagging-elements"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ELEMENTS
 argument_list|)
 decl_stmt|;
 if|if
@@ -561,7 +563,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"serialization.match-tagging-attributes"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
 argument_list|)
 expr_stmt|;
 if|if

@@ -349,6 +349,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|serializers
+operator|.
+name|Serializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|GrammarPool
@@ -2816,7 +2830,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.match-tagging-elements"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ELEMENTS
 argument_list|,
 name|tagElementMatches
 argument_list|)
@@ -2825,13 +2841,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.match-tagging-elements: "
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ELEMENTS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.match-tagging-elements"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ELEMENTS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2857,7 +2879,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.match-tagging-attributes"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
 argument_list|,
 name|tagAttributeMatches
 argument_list|)
@@ -2866,13 +2890,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.match-tagging-attributes: "
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.match-tagging-attributes"
+name|Serializer
+operator|.
+name|PROPERTY_TAG_MATCHING_ATTRIBUTES
 argument_list|)
 argument_list|)
 expr_stmt|;
