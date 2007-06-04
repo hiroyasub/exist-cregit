@@ -141,6 +141,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Indexer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -1012,14 +1022,7 @@ block|,
 name|DOM_DBX_ID
 block|}
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|TEMP_FRAGMENT_REMOVE_ERROR
-init|=
-literal|"Could not remove temporary fragment"
-decl_stmt|;
+comment|//private static final String TEMP_FRAGMENT_REMOVE_ERROR = "Could not remove temporary fragment";
 comment|// private static final String TEMP_STORE_ERROR = "An error occurred while storing temporary data: ";
 specifier|private
 specifier|static
@@ -1386,7 +1389,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.config"
+name|Indexer
+operator|.
+name|PROPERTY_INDEXER_CONFIG
 argument_list|)
 expr_stmt|;
 name|xmlSerializer
@@ -1464,7 +1469,7 @@ operator|.
 name|isReadOnly
 argument_list|()
 expr_stmt|;
-comment|// Initialize collections storage
+comment|//Initialize collections storage
 name|collectionsDb
 operator|=
 operator|(
@@ -1759,74 +1764,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
-name|void
-name|notifyStoreAttribute
-parameter_list|(
-name|AttrImpl
-name|attr
-parameter_list|,
-name|NodePath
-name|currentPath
-parameter_list|,
-name|int
-name|indexingHint
-parameter_list|,
-name|RangeIndexSpec
-name|spec
-parameter_list|,
-name|boolean
-name|remove
-parameter_list|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|contentLoadingObservers
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|ContentLoadingObserver
-name|observer
-init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
-name|contentLoadingObservers
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-name|observer
-operator|.
-name|storeAttribute
-argument_list|(
-name|attr
-argument_list|,
-name|currentPath
-argument_list|,
-name|indexingHint
-argument_list|,
-name|spec
-argument_list|,
-name|remove
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//private void notifyStoreAttribute(AttrImpl attr, NodePath currentPath, int indexingHint, RangeIndexSpec spec, boolean remove) {
+comment|//    for (int i = 0; i< contentLoadingObservers.size(); i++) {
+comment|//        ContentLoadingObserver observer = (ContentLoadingObserver) contentLoadingObservers.get(i);
+comment|//        observer.storeAttribute(attr, currentPath, indexingHint, spec, remove);
+comment|//    }
+comment|//}
 specifier|private
 name|void
 name|notifyStoreText
@@ -4169,6 +4112,7 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+comment|//TODO : relativize URI !!!
 if|if
 condition|(
 name|newUri
@@ -18187,7 +18131,7 @@ name|MODE_REMOVE
 argument_list|)
 expr_stmt|;
 block|}
-comment|//	                    notifyStoreAttribute((AttrImpl)node, currentPath, NativeValueIndex.WITH_PATH, null);
+comment|//notifyStoreAttribute((AttrImpl)node, currentPath, NativeValueIndex.WITH_PATH, null);
 name|elementIndex
 operator|.
 name|setDocument

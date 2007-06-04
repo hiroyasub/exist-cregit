@@ -6481,7 +6481,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.preserve-whitespace-mixed-content"
+name|Indexer
+operator|.
+name|PROPERTY_PRESERVE_WS_MIXED_CONTENT
 argument_list|,
 name|Boolean
 operator|.
@@ -6500,13 +6502,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.preserve-whitespace-mixed-content: "
+name|Indexer
+operator|.
+name|PROPERTY_PRESERVE_WS_MIXED_CONTENT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.preserve-whitespace-mixed-content"
+name|Indexer
+operator|.
+name|PROPERTY_PRESERVE_WS_MIXED_CONTENT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6560,7 +6568,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"indexer.config"
+name|Indexer
+operator|.
+name|PROPERTY_INDEXER_CONFIG
 argument_list|,
 name|spec
 argument_list|)

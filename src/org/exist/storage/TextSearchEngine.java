@@ -379,6 +379,7 @@ operator|.
 name|TAG_ELEMENT_MATCHES
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_INDEX_NUMBERS
@@ -386,6 +387,7 @@ init|=
 literal|"indexer.indexNumbers"
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_STEM
@@ -393,6 +395,7 @@ init|=
 literal|"indexer.stem"
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_STORE_TERM_FREQUENCY
@@ -400,6 +403,7 @@ init|=
 literal|"indexer.store-term-freq"
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_TOKENIZER
