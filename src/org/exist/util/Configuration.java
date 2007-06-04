@@ -2641,7 +2641,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.enable-xinclude"
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XINCLUDE
 argument_list|,
 name|xinclude
 argument_list|)
@@ -2650,13 +2652,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.enable-xinclude: "
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XINCLUDE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.enable-xinclude"
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XINCLUDE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2682,7 +2690,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.enable-xsl"
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XSL
 argument_list|,
 name|xsl
 argument_list|)
@@ -2691,13 +2701,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.enable-xsl: "
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XSL
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.enable-xsl"
+name|Serializer
+operator|.
+name|PROPERTY_ENABLE_XSL
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2723,7 +2739,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.indent"
+name|Serializer
+operator|.
+name|PROPERTY_INDENT
 argument_list|,
 name|indent
 argument_list|)
@@ -2732,13 +2750,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.indent: "
+name|Serializer
+operator|.
+name|PROPERTY_INDENT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.indent"
+name|Serializer
+operator|.
+name|PROPERTY_INDENT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2759,15 +2783,39 @@ name|compress
 operator|!=
 literal|null
 condition|)
+block|{
 name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.compress-output"
+name|Serializer
+operator|.
+name|PROPERTY_COMPRESS_OUTPUT
 argument_list|,
 name|compress
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|Serializer
+operator|.
+name|PROPERTY_COMPRESS_OUTPUT
+operator|+
+literal|": "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+name|Serializer
+operator|.
+name|PROPERTY_COMPRESS_OUTPUT
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 name|String
 name|internalId
 init|=
@@ -2789,7 +2837,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"serialization.add-exist-id"
+name|Serializer
+operator|.
+name|PROPERTY_ADD_EXIST_ID
 argument_list|,
 name|internalId
 argument_list|)
@@ -2798,13 +2848,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"serialization.add-exist-id: "
+name|Serializer
+operator|.
+name|PROPERTY_ADD_EXIST_ID
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"serialization.add-exist-id"
+name|Serializer
+operator|.
+name|PROPERTY_ADD_EXIST_ID
 argument_list|)
 argument_list|)
 expr_stmt|;
