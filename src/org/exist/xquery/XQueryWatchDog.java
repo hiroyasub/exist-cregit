@@ -107,6 +107,7 @@ init|=
 literal|"watchdog"
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_QUERY_TIMEOUT
@@ -114,6 +115,7 @@ init|=
 literal|"db-connection.watchdog.query-timeout"
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_OUTPUT_SIZE_LIMIT

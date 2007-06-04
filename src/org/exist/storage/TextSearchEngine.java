@@ -410,6 +410,14 @@ name|PROPERTY_TOKENIZER
 init|=
 literal|"indexer.tokenizer"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_STOPWORD_FILE
+init|=
+literal|"stopwords"
+decl_stmt|;
 comment|/** 	 * Construct a new instance and configure it. 	 *  	 * @param broker 	 * @param conf 	 */
 specifier|public
 name|TextSearchEngine
@@ -737,7 +745,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"stopwords"
+name|PROPERTY_STOPWORD_FILE
 argument_list|)
 operator|)
 operator|!=

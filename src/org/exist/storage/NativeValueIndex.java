@@ -657,6 +657,7 @@ init|=
 literal|true
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_INDEX_CASE_SENSITIVE

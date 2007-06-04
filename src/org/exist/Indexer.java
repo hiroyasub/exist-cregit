@@ -376,6 +376,14 @@ init|=
 literal|"indexer.config"
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SUPPRESS_WHITESPACE
+init|=
+literal|"indexer.suppress-whitespace"
+decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -561,13 +569,6 @@ init|=
 operator|new
 name|Stack
 argument_list|()
-decl_stmt|;
-specifier|public
-specifier|static
-name|String
-name|PROPERTY_SUPPRESS_WHITESPACE
-init|=
-literal|"indexer.suppress-whitespace"
 decl_stmt|;
 comment|/**      *  Create a new parser using the given database broker and      * user to store the document.      *      *@param  broker      *@exception  EXistException        */
 specifier|public

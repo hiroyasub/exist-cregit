@@ -87,6 +87,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_TRANSFORMER_CLASS
+init|=
+literal|"transformer.class"
+decl_stmt|;
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
@@ -120,7 +128,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"transformer.class"
+name|PROPERTY_TRANSFORMER_CLASS
 argument_list|)
 decl_stmt|;
 comment|//        LOG.debug("transformerFactoryClassName=" + transformerFactoryClassName);
