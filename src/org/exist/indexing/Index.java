@@ -84,23 +84,22 @@ specifier|public
 interface|interface
 name|Index
 block|{
-comment|/**      * Returns a name which uniquely identifies this index. This is configured by the user      * @return a unique name identifying this index.      */
+comment|/**      * Returns an id which uniquely identifies this index.  This is usually the class name.       * @return a unique name identifying this index.      */
+name|String
+name|getIndexId
+parameter_list|()
+function_decl|;
+comment|/**      * Returns a human-readable name which uniquely identifies this index. This is configured by the user      * @return a unique name identifying this index.      */
 name|String
 name|getIndexName
 parameter_list|()
 function_decl|;
-comment|/**      * Returns an id which uniquely identifies this index. This is usually the class name      * return a unique name identifying this index.      */
-specifier|public
-name|String
-name|ID
-init|=
-literal|null
-decl_stmt|;
+comment|/**      * Returns the {@link org.exist.storage.BrokerPool} on with this Index operates.      *       * @return the broker pool      */
 name|BrokerPool
 name|getBrokerPool
 parameter_list|()
 function_decl|;
-comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing..      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files.      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
+comment|/**      * Configure the index and all resources associated with it. This method      * is called while the database instance is initializing and receives the      *<pre>&lt;module id="foo" class="bar"/&gt;</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance.      * @param dataDir the main data directory where eXist stores its files (if relevant).      * @param config the module element which configures this index, as found in conf.xml      * @throws DatabaseConfigurationException      */
 name|void
 name|configure
 parameter_list|(
@@ -116,14 +115,14 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
-comment|/**      * Open the index for writing and reading. Will be called during initialization, but also      * if the database had to be restarted.      *      * @throws DatabaseConfigurationException      */
+comment|/**      * Opens the index for writing and reading. Will be called during initialization, but also      * if the database has to be restarted.      *      * @throws DatabaseConfigurationException      */
 name|void
 name|open
 parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
-comment|/**      * Close the index and all associated resources.      *      * @throws DBException      */
+comment|/**      * Closes the index and all associated resources.      *      * @throws DBException      */
 name|void
 name|close
 parameter_list|()
@@ -137,7 +136,14 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Create a new IndexWorker, which is used to access the index in a multi-threaded      * environment.      *      * Every database instance has a number of      * {@link org.exist.storage.DBBroker} objects. All operations on the db      * have to go through one of these brokers. Each DBBroker retrieves an      * IndexWorker for every index by calling this method.      *      * @param broker The DBBroker that owns this worker      * @return a new IndexWorker that can be used for concurrent access to the index.      */
+comment|/**      * Closes the index and removes it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are reindexed.      */
+name|void
+name|remove
+parameter_list|()
+throws|throws
+name|DBException
+function_decl|;
+comment|/**      * Returns a new IndexWorker, which is used to access the index in a multi-threaded      * environment.      *      * Every database instance has a number of      * {@link org.exist.storage.DBBroker} objects. All operations on the db      * have to go through one of these brokers. Each DBBroker retrieves an      * IndexWorker for every index by calling this method.      *      * @param broker The DBBroker that owns this worker      * @return a new IndexWorker that can be used for concurrent access to the index.      */
 name|IndexWorker
 name|getWorker
 parameter_list|(
@@ -145,12 +151,13 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/**      * Close the index and remove it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are reindexed.      */
-name|void
-name|remove
-parameter_list|()
-throws|throws
-name|DBException
+comment|/**      * Convenience method that allows to check index consistency.      *       * @param broker the broker that will perform the operation.      * @return whether or not the index is in a consistent state.       * The definition of "consistency" is left to the user.      */
+name|boolean
+name|checkIndex
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 function_decl|;
 block|}
 end_interface

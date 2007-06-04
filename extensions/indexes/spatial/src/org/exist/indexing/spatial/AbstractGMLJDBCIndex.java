@@ -177,6 +177,7 @@ name|AbstractGMLJDBCIndex
 extends|extends
 name|AbstractIndex
 block|{
+comment|/** 	 * Holds the index ID. Notice that we delegate this task to the abstract JDBC class, 	 * not to the concrete HSQL (or whatever) one. This allows spatial functions to use 	 * the available JDBC index, whatever its underlying engine is. 	 */
 specifier|public
 specifier|final
 specifier|static
@@ -219,6 +220,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+comment|/**      * The spatial operators to test spatial relationshipds beween geometries.      * See http://www.vividsolutions.com/jts/bin/JTS%20Technical%20Specs.pdf (chapter 11).         */
 specifier|public
 interface|interface
 name|SpatialOperator
@@ -536,6 +538,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
+comment|/**      * Checks if the JDBC database that contains the indexed spatial data is available an reachable.      * Creates it if necessary.      *       * @throws ClassNotFoundException if the JDBC driver can not be found      * @throws SQLException if the database is not reachable      */
 specifier|protected
 specifier|abstract
 name|void
@@ -546,6 +549,7 @@ name|ClassNotFoundException
 throws|,
 name|SQLException
 function_decl|;
+comment|/**      * Shuts down the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
 specifier|protected
 specifier|abstract
 name|void
@@ -554,6 +558,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
+comment|/**      * Deletes the JDBC database that contains the indexed spatial data.      *       * @throws DBException      */
 specifier|protected
 specifier|abstract
 name|void
@@ -562,8 +567,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|//TODO : we need a broker to perform that operation !
-comment|//Use the last worker ? try something else ?
+comment|/**      * Deletes the spatial data contained in the JDBC database.      *       * @throws DBException      */
 specifier|protected
 specifier|abstract
 name|void
@@ -572,6 +576,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
+comment|/**      * Convenience method that can be used by the IndexWorker to acquire a connection       * to the JDBC database that contains the indexed spatial data.      *       * @param broker the broker that will use th connection      * @return the connection      */
 specifier|protected
 specifier|abstract
 name|Connection
@@ -581,6 +586,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
+comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *       */
 specifier|protected
 specifier|abstract
 name|void

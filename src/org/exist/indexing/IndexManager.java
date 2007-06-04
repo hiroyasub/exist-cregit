@@ -153,7 +153,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
+comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object, i.e. in the :      *<pre>      *&lt;modules&gt;      *&lt;module id="foo" class="bar"/&gt;      *&lt;/modules&gt;      *</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
 specifier|public
 name|IndexManager
 parameter_list|(
@@ -425,6 +425,17 @@ block|}
 block|}
 block|}
 block|}
+comment|/**      * Returns the {@link org.exist.storage.BrokerPool} on with this IndexManager operates.      *       * @return the broker pool      */
+specifier|public
+name|BrokerPool
+name|getBrokerPool
+parameter_list|()
+block|{
+return|return
+name|pool
+return|;
+block|}
+comment|/**      * Returns an iterator over the registered indexes.      *       * @return the iterator      */
 specifier|public
 name|Iterator
 name|iterator
@@ -440,6 +451,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
+comment|/**       * Returns the index registered with the provided ID.      *       * @param indexId the ID      * @return the index      */
 specifier|public
 specifier|synchronized
 name|Index
@@ -483,7 +495,8 @@ name|equals
 argument_list|(
 name|indexer
 operator|.
-name|ID
+name|getIndexId
+argument_list|()
 argument_list|)
 condition|)
 empty_stmt|;
@@ -495,6 +508,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**       * Returns the index registered with the provided human-readable name.      * @param indexName the name      * @return the index      */
 specifier|public
 specifier|synchronized
 name|Index
@@ -516,7 +530,7 @@ name|indexName
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to do the      * actual work.      *      * @return set of IndexWorkers      */
+comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to perform the      * actual indexing work.      *      * @return set of IndexWorkers      */
 specifier|public
 specifier|synchronized
 name|IndexWorker
@@ -598,7 +612,7 @@ return|return
 name|workers
 return|;
 block|}
-comment|/**      * Shutdown all registered indexes by calling {@link org.exist.indexing.Index#close()}      * on them.      *      * @throws DBException      */
+comment|/**      * Shutdowns all registered indexes by calling {@link org.exist.indexing.Index#close()}      * on them.      *      * @throws DBException      */
 specifier|public
 name|void
 name|shutdown
@@ -641,6 +655,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**       * Physically destroy the registered indexes by calling {@link org.exist.indexing.Index#remove()}      * on them.      *       * @throws DBException      */
 specifier|public
 name|void
 name|removeIndexes
@@ -683,6 +698,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** Reopens the registered index in case they have been closed by a previous operation       * such as {@link org.exist.indexing.Index#close()} by calling {@link org.exist.indexing.Index#open()}      * on them.      *       * @throws DatabaseConfigurationException      */
 specifier|public
 name|void
 name|reopenIndexes
