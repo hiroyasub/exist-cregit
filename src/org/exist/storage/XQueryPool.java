@@ -199,6 +199,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"query-pool"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_MAX_STACK_SIZE
 init|=
 literal|"db-connection.query-pool.max-stack-size"

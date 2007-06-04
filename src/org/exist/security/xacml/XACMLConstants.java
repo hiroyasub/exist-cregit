@@ -162,6 +162,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"xacml"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|ENABLE_XACML_ATTRIBUTE
 init|=
 literal|"enable"

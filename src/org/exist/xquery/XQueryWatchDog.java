@@ -100,6 +100,14 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"watchdog"
+decl_stmt|;
+specifier|public
+specifier|static
 name|String
 name|PROPERTY_QUERY_TIMEOUT
 init|=

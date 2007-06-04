@@ -527,12 +527,21 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 comment|//Configuration
+comment|//TODO : extract this
 specifier|public
 specifier|static
 specifier|final
 class|class
 name|SystemTaskConfig
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"system-task"
+decl_stmt|;
 specifier|protected
 name|String
 name|className
@@ -1097,7 +1106,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"indexer"
+name|Indexer
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1300,7 +1311,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"xacml"
+name|XACMLConstants
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4129,7 +4142,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"pool"
+name|BrokerPool
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4155,7 +4170,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"query-pool"
+name|XQueryPool
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4181,7 +4198,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"watchdog"
+name|XQueryWatchDog
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4207,7 +4226,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"system-task"
+name|SystemTaskConfig
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if

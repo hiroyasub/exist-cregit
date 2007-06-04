@@ -501,6 +501,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"pool"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
