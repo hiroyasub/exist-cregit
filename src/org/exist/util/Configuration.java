@@ -3293,7 +3293,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.data-dir"
+name|BrokerPool
+operator|.
+name|PROPERTY_DATA_DIR
 argument_list|,
 name|df
 operator|.
@@ -3303,14 +3305,22 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"data directory = "
-operator|+
-name|df
+name|BrokerPool
 operator|.
-name|getAbsolutePath
-argument_list|()
+name|PROPERTY_DATA_DIR
+operator|+
+literal|": "
+operator|+
+name|config
+operator|.
+name|get
+argument_list|(
+name|BrokerPool
+operator|.
+name|PROPERTY_DATA_DIR
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

@@ -467,6 +467,7 @@ name|TEMP_COLLECTION_NAME
 decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_XUPDATE_GROWTH_FACTOR
@@ -475,6 +476,7 @@ literal|"xupdate.growth-factor"
 decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
@@ -483,6 +485,7 @@ literal|"xupdate.fragmentation"
 decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
+specifier|final
 specifier|static
 name|String
 name|PROPERTY_XUPDATE_CONSISTENCY_CHECKS

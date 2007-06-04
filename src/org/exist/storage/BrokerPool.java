@@ -509,6 +509,14 @@ name|CONFIGURATION_ELEMENT_NAME
 init|=
 literal|"pool"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_DATA_DIR
+init|=
+literal|"db-connection.data-dir"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -2119,7 +2127,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.data-dir"
+name|PROPERTY_DATA_DIR
 argument_list|)
 decl_stmt|;
 if|if
@@ -2205,7 +2213,7 @@ name|conf
 operator|.
 name|setProperty
 argument_list|(
-literal|"db-connection.data-dir"
+name|PROPERTY_DATA_DIR
 argument_list|,
 name|dataDir
 argument_list|)
@@ -2484,7 +2492,7 @@ name|NotificationService
 argument_list|()
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
-comment|//TODO : journal directory *may* be different from "db-connection.data-dir"
+comment|//TODO : journal directory *may* be different from BrokerPool.PROPERTY_DATA_DIR
 name|transactionManager
 operator|=
 operator|new
@@ -2502,7 +2510,9 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.data-dir"
+name|BrokerPool
+operator|.
+name|PROPERTY_DATA_DIR
 argument_list|)
 argument_list|)
 argument_list|,

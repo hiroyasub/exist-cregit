@@ -201,7 +201,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.data-dir"
+name|BrokerPool
+operator|.
+name|PROPERTY_DATA_DIR
 argument_list|)
 decl_stmt|;
 if|if
