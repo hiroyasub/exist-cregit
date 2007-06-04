@@ -116,6 +116,14 @@ specifier|public
 class|class
 name|FunctionFactory
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_ENABLE_JAVA_BINDING
+init|=
+literal|"xquery.enable-java-binding"
+decl_stmt|;
 comment|/** 	 * Create a function call.  	 *  	 * This method handles all calls to built-in or user-defined 	 * functions. It also deals with constructor functions and 	 * optimizes some function calls like starts-with, ends-with or 	 * contains.  	 */
 specifier|public
 specifier|static
@@ -1163,7 +1171,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"xquery.enable-java-binding"
+name|PROPERTY_ENABLE_JAVA_BINDING
 argument_list|)
 decl_stmt|;
 if|if

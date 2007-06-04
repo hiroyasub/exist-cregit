@@ -742,6 +742,30 @@ specifier|public
 class|class
 name|XQueryContext
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_BUILT_IN_MODULES
+init|=
+literal|"xquery.modules"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_XQUERY_BACKWARD_COMPATIBLE
+init|=
+literal|"xquery.backwardCompatible"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_ENABLE_QUERY_REWRITING
+init|=
+literal|"xquery.enable-query-rewriting"
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -7319,7 +7343,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
-comment|//TODO : include err namespace ?
+comment|//TODO : include "err" namespace ?
 block|}
 catch|catch
 parameter_list|(
@@ -7343,7 +7367,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"xquery.enable-query-rewriting"
+name|PROPERTY_ENABLE_QUERY_REWRITING
 argument_list|)
 decl_stmt|;
 name|enableOptimizer
@@ -7372,7 +7396,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"xquery.backwardCompatible"
+name|PROPERTY_XQUERY_BACKWARD_COMPATIBLE
 argument_list|)
 expr_stmt|;
 name|backwardsCompatible
@@ -7416,7 +7440,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"xquery.modules"
+name|PROPERTY_BUILT_IN_MODULES
 argument_list|)
 decl_stmt|;
 if|if
@@ -7443,7 +7467,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|//				LOG.debug("Loading module " + modules[i][0]);
+comment|//LOG.debug("Loading module " + modules[i][0]);
 name|loadBuiltInModule
 argument_list|(
 name|modules

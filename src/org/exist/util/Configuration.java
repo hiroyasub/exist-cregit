@@ -391,6 +391,30 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|FunctionFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryWatchDog
 import|;
 end_import
@@ -1940,7 +1964,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xquery.enable-java-binding"
+name|FunctionFactory
+operator|.
+name|PROPERTY_ENABLE_JAVA_BINDING
 argument_list|,
 name|javabinding
 argument_list|)
@@ -1949,13 +1975,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xquery.enable-java-binding: "
+name|FunctionFactory
+operator|.
+name|PROPERTY_ENABLE_JAVA_BINDING
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xquery.enable-java-binding"
+name|FunctionFactory
+operator|.
+name|PROPERTY_ENABLE_JAVA_BINDING
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1988,7 +2020,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xquery.enable-query-rewriting"
+name|XQueryContext
+operator|.
+name|PROPERTY_ENABLE_QUERY_REWRITING
 argument_list|,
 name|optimize
 argument_list|)
@@ -1997,13 +2031,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xquery.enable-query-rewriting: "
+name|XQueryContext
+operator|.
+name|PROPERTY_ENABLE_QUERY_REWRITING
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xquery.enable-query-rewriting"
+name|XQueryContext
+operator|.
+name|PROPERTY_ENABLE_QUERY_REWRITING
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2036,7 +2076,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xquery.backwardCompatible"
+name|XQueryContext
+operator|.
+name|PROPERTY_XQUERY_BACKWARD_COMPATIBLE
 argument_list|,
 name|backwardCompatible
 argument_list|)
@@ -2045,18 +2087,24 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"xquery.backwardCompatible: "
+name|XQueryContext
+operator|.
+name|PROPERTY_XQUERY_BACKWARD_COMPATIBLE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"xquery.backwardCompatible"
+name|XQueryContext
+operator|.
+name|PROPERTY_XQUERY_BACKWARD_COMPATIBLE
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//builin-modules
+comment|//built-in-modules
 name|NodeList
 name|builtins
 init|=
@@ -2233,7 +2281,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"xquery.modules"
+name|XQueryContext
+operator|.
+name|PROPERTY_BUILT_IN_MODULES
 argument_list|,
 name|moduleList
 argument_list|)

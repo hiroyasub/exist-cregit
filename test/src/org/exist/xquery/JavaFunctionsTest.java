@@ -400,7 +400,9 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"xquery.enable-java-binding"
+name|FunctionFactory
+operator|.
+name|PROPERTY_ENABLE_JAVA_BINDING
 argument_list|)
 decl_stmt|;
 if|if

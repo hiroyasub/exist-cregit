@@ -445,7 +445,7 @@ name|int
 name|index
 parameter_list|)
 block|{
-comment|/*String modules[][] = (String[][])config.getProperty("xquery.modules"); 		if(modules == null) 			return; 		for(int i = 0; i< modules.length; i++) 			values.add(modules[i][index]);*/
+comment|/*String modules[][] = (String[][])config.getProperty(XQueryContext.PROPERTY_BULT_IN_MODULES); 		if(modules == null) 			return; 		for(int i = 0; i< modules.length; i++) 			values.add(modules[i][index]);*/
 block|}
 specifier|public
 name|void
