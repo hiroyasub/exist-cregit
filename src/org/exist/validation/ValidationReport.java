@@ -121,7 +121,7 @@ literal|1L
 decl_stmt|;
 specifier|private
 name|Throwable
-name|exception
+name|throwed
 init|=
 literal|null
 decl_stmt|;
@@ -292,7 +292,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|exception
+name|throwed
 operator|=
 name|ex
 expr_stmt|;
@@ -315,7 +315,7 @@ literal|0
 operator|)
 operator|&&
 operator|(
-name|exception
+name|throwed
 operator|==
 literal|null
 operator|)
@@ -324,7 +324,7 @@ return|;
 block|}
 specifier|public
 name|List
-name|getReport
+name|getValidationReportItemList
 parameter_list|()
 block|{
 return|return
@@ -333,7 +333,7 @@ return|;
 block|}
 specifier|public
 name|List
-name|getValidationReport
+name|getTextValidationReport
 parameter_list|()
 block|{
 name|List
@@ -364,6 +364,26 @@ operator|.
 name|add
 argument_list|(
 literal|"Document is not valid."
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|throwed
+operator|!=
+literal|null
+condition|)
+block|{
+name|textReport
+operator|.
+name|add
+argument_list|(
+literal|"Exception: "
+operator|+
+name|throwed
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -398,26 +418,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|exception
-operator|!=
-literal|null
-condition|)
-block|{
-name|textReport
-operator|.
-name|add
-argument_list|(
-literal|"Exception: "
-operator|+
-name|exception
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|textReport
 operator|.
 name|add
@@ -442,7 +442,7 @@ block|{
 name|List
 name|validationReport
 init|=
-name|getValidationReport
+name|getTextValidationReport
 argument_list|()
 decl_stmt|;
 name|String
@@ -538,7 +538,7 @@ decl_stmt|;
 name|Iterator
 name|reportIterator
 init|=
-name|getValidationReport
+name|getTextValidationReport
 argument_list|()
 operator|.
 name|iterator
@@ -580,6 +580,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
 name|void
 name|start
 parameter_list|()
@@ -592,6 +593,7 @@ name|currentTimeMillis
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
 name|void
 name|stop
 parameter_list|()
@@ -622,6 +624,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
 name|void
 name|setThrowable
 parameter_list|(
@@ -629,10 +632,19 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
-name|exception
+name|throwed
 operator|=
 name|throwable
 expr_stmt|;
+block|}
+specifier|public
+name|Throwable
+name|getThrowable
+parameter_list|()
+block|{
+return|return
+name|throwed
+return|;
 block|}
 block|}
 end_class

@@ -214,10 +214,6 @@ specifier|private
 name|Validator
 name|validator
 decl_stmt|;
-specifier|private
-name|DatabaseResources
-name|grammaraccess
-decl_stmt|;
 specifier|public
 name|LocalValidationService
 parameter_list|(
@@ -263,13 +259,6 @@ name|Validator
 argument_list|(
 name|pool
 argument_list|)
-expr_stmt|;
-name|grammaraccess
-operator|=
-name|validator
-operator|.
-name|getDatabaseResources
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Validate specified resource.      */

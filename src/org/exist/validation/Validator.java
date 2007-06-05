@@ -159,20 +159,6 @@ name|exist
 operator|.
 name|validation
 operator|.
-name|internal
-operator|.
-name|DatabaseResources
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
 name|resolver
 operator|.
 name|SearchResourceResolver
@@ -284,29 +270,20 @@ comment|// These are made static to prevent expensive double initialization
 comment|// of classes.
 specifier|private
 specifier|static
-name|GrammarPool
-name|grammarPool
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|DatabaseResources
-name|dbResources
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
 name|SAXParserFactory
 name|saxFactory
 init|=
 literal|null
 decl_stmt|;
 specifier|private
-specifier|static
 name|BrokerPool
 name|brokerPool
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|GrammarPool
+name|grammarPool
 init|=
 literal|null
 decl_stmt|;
@@ -406,23 +383,6 @@ operator|.
 name|error
 argument_list|(
 name|xmlLibMessage
-argument_list|)
-expr_stmt|;
-block|}
-comment|// setup access to grammars ; be sure just one instance!
-if|if
-condition|(
-name|dbResources
-operator|==
-literal|null
-condition|)
-block|{
-name|dbResources
-operator|=
-operator|new
-name|DatabaseResources
-argument_list|(
-name|pool
 argument_list|)
 expr_stmt|;
 block|}
@@ -963,14 +923,6 @@ name|ExistIOException
 name|ex
 parameter_list|)
 block|{
-name|ex
-operator|.
-name|getCause
-argument_list|()
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|logger
 operator|.
 name|error
@@ -998,11 +950,6 @@ name|Exception
 name|ex
 parameter_list|)
 block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|logger
 operator|.
 name|error
@@ -1043,46 +990,6 @@ block|}
 return|return
 name|report
 return|;
-block|}
-comment|/**      *  Get access to internal DatabaseResources.      *       *       * @return Internally usedDatabaseResourcess.      */
-specifier|public
-name|DatabaseResources
-name|getDatabaseResources
-parameter_list|()
-block|{
-return|return
-name|dbResources
-return|;
-block|}
-comment|//    /**
-comment|//     *  Get access to internal XMLEntityResolver.
-comment|//     * @return Internally used XMLEntityResolver.
-comment|//     */
-comment|//    public XMLEntityResolver getXMLEntityResolver(){
-comment|//        return entityResolver;
-comment|//    }
-comment|/**      *  Get access to internal GrammarPool.      * @return Internally used GrammarPool.      */
-specifier|public
-name|GrammarPool
-name|getGrammarPool
-parameter_list|()
-block|{
-return|return
-name|grammarPool
-return|;
-block|}
-specifier|public
-name|void
-name|setGrammarPool
-parameter_list|(
-name|GrammarPool
-name|gp
-parameter_list|)
-block|{
-name|grammarPool
-operator|=
-name|gp
-expr_stmt|;
 block|}
 block|}
 end_class
