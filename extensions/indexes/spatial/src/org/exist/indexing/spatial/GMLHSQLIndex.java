@@ -876,81 +876,83 @@ operator|+
 comment|/*1*/
 literal|"DOCUMENT_URI VARCHAR, "
 operator|+
-comment|//TODO : use binary format ?
 comment|/*2*/
-literal|"NODE_ID VARCHAR, "
+literal|"NODE_ID_UNITS INTEGER, "
 operator|+
 comment|/*3*/
-literal|"GEOMETRY_TYPE VARCHAR, "
+literal|"NODE_ID BINARY, "
 operator|+
 comment|/*4*/
-literal|"SRS_NAME VARCHAR, "
+literal|"GEOMETRY_TYPE VARCHAR, "
 operator|+
 comment|/*5*/
+literal|"SRS_NAME VARCHAR, "
+operator|+
+comment|/*6*/
 literal|"WKT VARCHAR, "
 operator|+
 comment|//TODO : use binary format ?
-comment|/*6*/
+comment|/*7*/
 literal|"BASE64_WKB VARCHAR, "
 operator|+
-comment|/*7*/
+comment|/*8*/
 literal|"MINX DOUBLE, "
 operator|+
-comment|/*8*/
+comment|/*9*/
 literal|"MAXX DOUBLE, "
 operator|+
-comment|/*9*/
+comment|/*10*/
 literal|"MINY DOUBLE, "
 operator|+
-comment|/*10*/
+comment|/*11*/
 literal|"MAXY DOUBLE, "
 operator|+
-comment|/*11*/
+comment|/*12*/
 literal|"CENTROID_X DOUBLE, "
 operator|+
-comment|/*12*/
+comment|/*13*/
 literal|"CENTROID_Y DOUBLE, "
 operator|+
-comment|/*13*/
+comment|/*14*/
 literal|"AREA DOUBLE, "
 operator|+
 comment|//Boundary ?
-comment|/*14*/
+comment|/*15*/
 literal|"EPSG4326_WKT VARCHAR, "
 operator|+
 comment|//TODO : use binary format ?
-comment|/*15*/
+comment|/*16*/
 literal|"EPSG4326_BASE64_WKB VARCHAR, "
 operator|+
-comment|/*16*/
+comment|/*17*/
 literal|"EPSG4326_MINX DOUBLE, "
 operator|+
-comment|/*17*/
+comment|/*18*/
 literal|"EPSG4326_MAXX DOUBLE, "
 operator|+
-comment|/*18*/
+comment|/*19*/
 literal|"EPSG4326_MINY DOUBLE, "
 operator|+
-comment|/*19*/
+comment|/*20*/
 literal|"EPSG4326_MAXY DOUBLE, "
 operator|+
-comment|/*20*/
+comment|/*21*/
 literal|"EPSG4326_CENTROID_X DOUBLE, "
 operator|+
-comment|/*21*/
+comment|/*22*/
 literal|"EPSG4326_CENTROID_Y DOUBLE, "
 operator|+
-comment|/*22*/
+comment|/*23*/
 literal|"EPSG4326_AREA DOUBLE, "
 operator|+
 comment|//Boundary ?
-comment|/*23*/
+comment|/*24*/
 literal|"IS_CLOSED BOOLEAN, "
 operator|+
-comment|/*24*/
+comment|/*25*/
 literal|"IS_SIMPLE BOOLEAN, "
 operator|+
-comment|/*25*/
+comment|/*26*/
 literal|"IS_VALID BOOLEAN, "
 operator|+
 comment|//Enforce uniqueness

@@ -489,81 +489,83 @@ operator|+
 comment|/*1*/
 literal|"DOCUMENT_URI, "
 operator|+
-comment|//TODO : use binary format ?
 comment|/*2*/
-literal|"NODE_ID, "
+literal|"NODE_ID_UNITS, "
 operator|+
 comment|/*3*/
-literal|"GEOMETRY_TYPE, "
+literal|"NODE_ID, "
 operator|+
 comment|/*4*/
-literal|"SRS_NAME, "
+literal|"GEOMETRY_TYPE, "
 operator|+
 comment|/*5*/
+literal|"SRS_NAME, "
+operator|+
+comment|/*6*/
 literal|"WKT, "
 operator|+
 comment|//TODO : use binary format ?
-comment|/*6*/
+comment|/*7*/
 literal|"BASE64_WKB, "
 operator|+
-comment|/*7*/
+comment|/*8*/
 literal|"MINX, "
 operator|+
-comment|/*8*/
+comment|/*9*/
 literal|"MAXX, "
 operator|+
-comment|/*9*/
+comment|/*10*/
 literal|"MINY, "
 operator|+
-comment|/*10*/
+comment|/*11*/
 literal|"MAXY, "
 operator|+
-comment|/*11*/
+comment|/*12*/
 literal|"CENTROID_X, "
 operator|+
-comment|/*12*/
+comment|/*13*/
 literal|"CENTROID_Y, "
 operator|+
-comment|/*13*/
+comment|/*14*/
 literal|"AREA, "
 operator|+
 comment|//Boundary ?
-comment|/*14*/
+comment|/*15*/
 literal|"EPSG4326_WKT, "
 operator|+
 comment|//TODO : use binary format ?
-comment|/*15*/
+comment|/*16*/
 literal|"EPSG4326_BASE64_WKB, "
 operator|+
-comment|/*16*/
+comment|/*17*/
 literal|"EPSG4326_MINX, "
 operator|+
-comment|/*17*/
+comment|/*18*/
 literal|"EPSG4326_MAXX, "
 operator|+
-comment|/*18*/
+comment|/*19*/
 literal|"EPSG4326_MINY, "
 operator|+
-comment|/*19*/
+comment|/*20*/
 literal|"EPSG4326_MAXY, "
 operator|+
-comment|/*20*/
+comment|/*21*/
 literal|"EPSG4326_CENTROID_X, "
 operator|+
-comment|/*21*/
+comment|/*22*/
 literal|"EPSG4326_CENTROID_Y, "
 operator|+
-comment|/*22*/
+comment|/*23*/
 literal|"EPSG4326_AREA,"
 operator|+
 comment|//Boundary ?
-comment|/*23*/
+comment|/*24*/
 literal|"IS_CLOSED, "
 operator|+
-comment|/*24*/
+comment|/*25*/
 literal|"IS_SIMPLE, "
 operator|+
-comment|/*25*/
+comment|/*26*/
 literal|"IS_VALID"
 operator|+
 literal|") VALUES ("
@@ -576,7 +578,9 @@ literal|"?, ?, ?, ?, ?, "
 operator|+
 literal|"?, ?, ?, ?, ?, "
 operator|+
-literal|"?, ?, ?, ?, ?"
+literal|"?, ?, ?, ?, ?, "
+operator|+
+literal|"?"
 operator|+
 literal|")"
 argument_list|)
@@ -691,17 +695,49 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*NODE_ID*/
+comment|/*NODE_ID_UNITS*/
 name|ps
 operator|.
-name|setString
+name|setInt
 argument_list|(
 literal|2
 argument_list|,
 name|nodeId
 operator|.
-name|toString
+name|units
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|byte
+index|[]
+name|bytes
+init|=
+operator|new
+name|byte
+index|[
+name|nodeId
+operator|.
+name|size
+argument_list|()
+index|]
+decl_stmt|;
+name|nodeId
+operator|.
+name|serialize
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+comment|/*NODE_ID*/
+name|ps
+operator|.
+name|setBytes
+argument_list|(
+literal|3
+argument_list|,
+name|bytes
 argument_list|)
 expr_stmt|;
 comment|/*GEOMETRY_TYPE*/
@@ -709,7 +745,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|3
+literal|4
 argument_list|,
 name|geometry
 operator|.
@@ -722,7 +758,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|4
+literal|5
 argument_list|,
 name|srsName
 argument_list|)
@@ -732,7 +768,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|5
+literal|6
 argument_list|,
 name|wktWriter
 operator|.
@@ -764,7 +800,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|6
+literal|7
 argument_list|,
 operator|new
 name|String
@@ -781,7 +817,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|7
+literal|8
 argument_list|,
 name|geometry
 operator|.
@@ -797,7 +833,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|8
+literal|9
 argument_list|,
 name|geometry
 operator|.
@@ -813,7 +849,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|9
+literal|10
 argument_list|,
 name|geometry
 operator|.
@@ -829,7 +865,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|10
+literal|11
 argument_list|,
 name|geometry
 operator|.
@@ -845,7 +881,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|11
+literal|12
 argument_list|,
 name|geometry
 operator|.
@@ -863,7 +899,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|12
+literal|13
 argument_list|,
 name|geometry
 operator|.
@@ -882,7 +918,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|13
+literal|14
 argument_list|,
 name|geometry
 operator|.
@@ -896,7 +932,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|14
+literal|15
 argument_list|,
 name|wktWriter
 operator|.
@@ -928,7 +964,7 @@ name|ps
 operator|.
 name|setString
 argument_list|(
-literal|15
+literal|16
 argument_list|,
 operator|new
 name|String
@@ -945,7 +981,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|16
+literal|17
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -961,7 +997,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|17
+literal|18
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -977,7 +1013,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|18
+literal|19
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -993,7 +1029,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|19
+literal|20
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -1009,7 +1045,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|20
+literal|21
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -1027,7 +1063,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|21
+literal|22
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -1046,7 +1082,7 @@ name|ps
 operator|.
 name|setDouble
 argument_list|(
-literal|22
+literal|23
 argument_list|,
 name|EPSG4326_geometry
 operator|.
@@ -1063,7 +1099,7 @@ name|ps
 operator|.
 name|setBoolean
 argument_list|(
-literal|23
+literal|24
 argument_list|,
 operator|!
 name|geometry
@@ -1077,7 +1113,7 @@ name|ps
 operator|.
 name|setBoolean
 argument_list|(
-literal|24
+literal|25
 argument_list|,
 name|geometry
 operator|.
@@ -1091,7 +1127,7 @@ name|ps
 operator|.
 name|setBoolean
 argument_list|(
-literal|25
+literal|26
 argument_list|,
 name|geometry
 operator|.
@@ -1138,7 +1174,7 @@ name|DocumentImpl
 name|doc
 parameter_list|,
 name|NodeId
-name|nodeID
+name|nodeId
 parameter_list|,
 name|Connection
 name|conn
@@ -1177,16 +1213,35 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|byte
+index|[]
+name|bytes
+init|=
+operator|new
+name|byte
+index|[
+name|nodeId
+operator|.
+name|size
+argument_list|()
+index|]
+decl_stmt|;
+name|nodeId
+operator|.
+name|serialize
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 name|ps
 operator|.
-name|setString
+name|setBytes
 argument_list|(
 literal|2
 argument_list|,
-name|nodeID
-operator|.
-name|toString
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 try|try
@@ -1442,7 +1497,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID"
+literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID_UNITS, NODE_ID"
 operator|+
 literal|" FROM "
 operator|+
@@ -1626,10 +1681,19 @@ name|DLN
 argument_list|(
 name|rs
 operator|.
-name|getString
+name|getInt
+argument_list|(
+literal|"NODE_ID_UNITS"
+argument_list|)
+argument_list|,
+name|rs
+operator|.
+name|getBytes
 argument_list|(
 literal|"NODE_ID"
 argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|NodeProxy
@@ -1879,7 +1943,7 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID"
+literal|"SELECT EPSG4326_BASE64_WKB, DOCUMENT_URI, NODE_ID_UNITS, NODE_ID"
 operator|+
 operator|(
 name|extraSelection
@@ -2059,10 +2123,19 @@ name|DLN
 argument_list|(
 name|rs
 operator|.
-name|getString
+name|getInt
+argument_list|(
+literal|"NODE_ID_UNITS"
+argument_list|)
+argument_list|,
+name|rs
+operator|.
+name|getBytes
 argument_list|(
 literal|"NODE_ID"
 argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|p
@@ -3372,10 +3445,19 @@ name|DLN
 argument_list|(
 name|rs
 operator|.
-name|getString
+name|getInt
+argument_list|(
+literal|"NODE_ID_UNITS"
+argument_list|)
+argument_list|,
+name|rs
+operator|.
+name|getBytes
 argument_list|(
 literal|"NODE_ID"
 argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|StoredNode
@@ -3835,19 +3917,41 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ps
-operator|.
-name|setString
-argument_list|(
-literal|2
-argument_list|,
+name|byte
+index|[]
+name|bytes
+init|=
+operator|new
+name|byte
+index|[
 name|p
 operator|.
 name|getNodeId
 argument_list|()
 operator|.
-name|toString
+name|size
 argument_list|()
+index|]
+decl_stmt|;
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|serialize
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|ps
+operator|.
+name|setBytes
+argument_list|(
+literal|2
+argument_list|,
+name|bytes
 argument_list|)
 expr_stmt|;
 name|ResultSet
@@ -4143,19 +4247,41 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ps
-operator|.
-name|setString
-argument_list|(
-literal|2
-argument_list|,
+name|byte
+index|[]
+name|bytes
+init|=
+operator|new
+name|byte
+index|[
 name|p
 operator|.
 name|getNodeId
 argument_list|()
 operator|.
-name|toString
+name|size
 argument_list|()
+index|]
+decl_stmt|;
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|serialize
+argument_list|(
+name|bytes
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|ps
+operator|.
+name|setBytes
+argument_list|(
+literal|2
+argument_list|,
+name|bytes
 argument_list|)
 expr_stmt|;
 name|ResultSet
