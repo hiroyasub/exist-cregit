@@ -2303,6 +2303,9 @@ name|broker
 parameter_list|,
 name|NodeProxy
 name|p
+parameter_list|,
+name|boolean
+name|getEPSG4326
 parameter_list|)
 throws|throws
 name|SpatialIndexException
@@ -2325,6 +2328,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|p
+argument_list|,
+name|getEPSG4326
 argument_list|,
 name|conn
 argument_list|)
@@ -3219,6 +3224,9 @@ name|broker
 parameter_list|,
 name|NodeProxy
 name|p
+parameter_list|,
+name|boolean
+name|getEPSG4326
 parameter_list|,
 name|Connection
 name|conn

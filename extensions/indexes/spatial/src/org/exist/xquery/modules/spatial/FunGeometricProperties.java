@@ -1923,6 +1923,7 @@ block|}
 else|else
 block|{
 comment|//Or, at least, its geometry for further processing
+comment|//TODO : think ; the signature may require getEPSG4326
 name|geometry
 operator|=
 name|indexWorker
@@ -1938,6 +1939,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|sourceCRS

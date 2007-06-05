@@ -4095,6 +4095,9 @@ parameter_list|,
 name|NodeProxy
 name|p
 parameter_list|,
+name|boolean
+name|getEPSG4326
+parameter_list|,
 name|Connection
 name|conn
 parameter_list|)
@@ -4108,7 +4111,15 @@ name|conn
 operator|.
 name|prepareStatement
 argument_list|(
-literal|"SELECT EPSG4326_WKB"
+literal|"SELECT "
+operator|+
+operator|(
+name|getEPSG4326
+condition|?
+literal|"EPSG4326_WKB"
+else|:
+literal|"WKB"
+operator|)
 operator|+
 literal|" FROM "
 operator|+
@@ -4201,7 +4212,7 @@ return|return
 literal|null
 return|;
 name|Geometry
-name|EPSG4326_geometry
+name|geometry
 init|=
 name|wkbReader
 operator|.
@@ -4211,7 +4222,7 @@ name|rs
 operator|.
 name|getBytes
 argument_list|(
-literal|"EPSG4326_WKB"
+literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4235,7 +4246,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|EPSG4326_geometry
+name|geometry
 return|;
 block|}
 catch|catch

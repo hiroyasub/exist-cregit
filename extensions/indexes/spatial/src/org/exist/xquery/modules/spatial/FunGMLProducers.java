@@ -1240,6 +1240,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|sourceSRS
@@ -1489,6 +1491,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName
@@ -1787,6 +1791,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName
@@ -1917,6 +1923,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName
@@ -2047,6 +2055,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName
@@ -2283,6 +2293,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode1
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName1
@@ -2339,6 +2351,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode2
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|srsName2

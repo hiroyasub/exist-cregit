@@ -241,10 +241,6 @@ name|Geometry
 import|;
 end_import
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wolf  * Date: 28-Feb-2007  * Time: 15:18:59  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -915,6 +911,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|geometryNode
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
