@@ -6906,6 +6906,9 @@ literal|"ClientFrame.142"
 argument_list|)
 operator|+
 name|next
+operator|.
+name|getName
+argument_list|()
 operator|+
 name|Messages
 operator|.
