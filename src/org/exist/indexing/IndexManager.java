@@ -446,7 +446,7 @@ name|pool
 return|;
 block|}
 comment|/**      * Returns an iterator over the registered indexes.      *       * @return the iterator      */
-specifier|public
+specifier|protected
 name|Iterator
 name|iterator
 parameter_list|()
@@ -541,7 +541,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns a set of IndexWorkers, one for each registered index. The      * returned IndexWorkers are used by the DBBroker instances to perform the      * actual indexing work.      *      * @return set of IndexWorkers      */
-specifier|public
+specifier|protected
 specifier|synchronized
 name|IndexWorker
 index|[]
