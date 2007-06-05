@@ -141,6 +141,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_INDEXER_MODULES
+init|=
+literal|"indexer.modules"
+decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
@@ -153,7 +161,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object, i.e. in the :      *<pre>      *&lt;modules&gt;      *&lt;module id="foo" class="bar"/&gt;      *&lt;/modules&gt;      *</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
+comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object, i.e. in the :      *<pre>      *&lt;modules&gt;      *&lt;module id="foo" class="bar" foo1="bar1" ... /&gt;      *&lt;/modules&gt;      *</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
 specifier|public
 name|IndexManager
 parameter_list|(
@@ -188,7 +196,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.modules"
+name|PROPERTY_INDEXER_MODULES
 argument_list|)
 decl_stmt|;
 name|String

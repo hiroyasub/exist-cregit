@@ -3919,6 +3919,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|collectionsCache
 operator|.
 name|add
@@ -3926,6 +3927,7 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Important :
 comment|//This code must remain ouside of the synchonized block
@@ -5416,7 +5418,7 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//TODO : resolve from collection's base URI
-comment|//TODO : resulve URIs !!! (uri.resolve(childName))
+comment|//TODO : resolve URIs !!! (uri.resolve(childName))
 name|Collection
 name|childCollection
 init|=
@@ -7391,7 +7393,7 @@ operator|.
 name|LENGTH_COLLECTION_ID
 argument_list|)
 expr_stmt|;
-comment|//              LOG.debug("reusing collection id: " + freeCollectionId);
+comment|//LOG.debug("reusing collection id: " + freeCollectionId);
 if|if
 condition|(
 name|data
@@ -12223,7 +12225,7 @@ operator|-
 literal|4
 argument_list|)
 expr_stmt|;
-comment|//				LOG.debug("reusing document id: " + freeDocId);
+comment|//LOG.debug("reusing document id: " + freeDocId);
 if|if
 condition|(
 name|data
