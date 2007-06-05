@@ -1609,7 +1609,7 @@ condition|)
 block|{
 name|propertyName
 operator|=
-literal|"BASE64_WKB"
+literal|"WKB"
 expr_stmt|;
 block|}
 if|else if
@@ -1713,7 +1713,7 @@ condition|)
 block|{
 name|propertyName
 operator|=
-literal|"EPSG4326_BASE64_WKB"
+literal|"EPSG4326_WKB"
 expr_stmt|;
 block|}
 if|else if

@@ -891,9 +891,8 @@ operator|+
 comment|/*6*/
 literal|"WKT VARCHAR, "
 operator|+
-comment|//TODO : use binary format ?
 comment|/*7*/
-literal|"BASE64_WKB VARCHAR, "
+literal|"WKB BINARY, "
 operator|+
 comment|/*8*/
 literal|"MINX DOUBLE, "
@@ -920,9 +919,8 @@ comment|//Boundary ?
 comment|/*15*/
 literal|"EPSG4326_WKT VARCHAR, "
 operator|+
-comment|//TODO : use binary format ?
 comment|/*16*/
-literal|"EPSG4326_BASE64_WKB VARCHAR, "
+literal|"EPSG4326_WKB BINARY, "
 operator|+
 comment|/*17*/
 literal|"EPSG4326_MINX DOUBLE, "
@@ -1007,6 +1005,28 @@ operator|+
 name|TABLE_NAME
 operator|+
 literal|" (SRS_NAME);"
+argument_list|)
+expr_stmt|;
+name|stmt
+operator|.
+name|executeUpdate
+argument_list|(
+literal|"CREATE INDEX WKB ON "
+operator|+
+name|TABLE_NAME
+operator|+
+literal|" (WKB);"
+argument_list|)
+expr_stmt|;
+name|stmt
+operator|.
+name|executeUpdate
+argument_list|(
+literal|"CREATE INDEX EPSG4326_WKB ON "
+operator|+
+name|TABLE_NAME
+operator|+
+literal|" (EPSG4326_WKB);"
 argument_list|)
 expr_stmt|;
 name|stmt
