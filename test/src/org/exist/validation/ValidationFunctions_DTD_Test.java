@@ -352,7 +352,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:grammar-cache-clear()"
+literal|"validation:clear-grammar-cache()"
 argument_list|)
 expr_stmt|;
 block|}
