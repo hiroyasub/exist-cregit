@@ -210,6 +210,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"cluster"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_CLUSTER_PROTOCOL
 init|=
 literal|"cluster.protocol"

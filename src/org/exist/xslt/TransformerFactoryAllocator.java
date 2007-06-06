@@ -88,6 +88,14 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"transformer"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String

@@ -826,6 +826,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"serializer"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_ENABLE_XINCLUDE
 init|=
 literal|"serialization.enable-xinclude"

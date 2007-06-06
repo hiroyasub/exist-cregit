@@ -1235,7 +1235,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"scheduler"
+name|Scheduler
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1307,7 +1309,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"transformer"
+name|TransformerFactoryAllocator
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1342,7 +1346,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"serializer"
+name|Serializer
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1377,7 +1383,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"xupdate"
+name|DBBroker
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1412,7 +1420,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"xquery"
+name|XQueryContext
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1484,7 +1494,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"cluster"
+name|ClusterComunication
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -1519,7 +1531,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"validation"
+name|XMLReaderObjectFactory
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if

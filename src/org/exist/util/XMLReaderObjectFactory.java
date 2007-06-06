@@ -181,6 +181,14 @@ init|=
 literal|2
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"validation"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String

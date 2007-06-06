@@ -236,6 +236,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"scheduler"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_SCHEDULER_JOBS
 init|=
 literal|"scheduler.jobs"

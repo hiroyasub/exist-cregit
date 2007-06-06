@@ -467,6 +467,15 @@ name|TEMP_COLLECTION_NAME
 decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"xupdate"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
 specifier|final
 specifier|static
 name|String

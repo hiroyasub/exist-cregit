@@ -746,6 +746,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CONFIGURATION_ELEMENT_NAME
+init|=
+literal|"xquery"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_BUILT_IN_MODULES
 init|=
 literal|"xquery.modules"
