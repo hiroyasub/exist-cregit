@@ -141,7 +141,25 @@ name|FunctionDef
 argument_list|(
 name|IndexTerms
 operator|.
-name|signature
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|IndexTerms
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|IndexTerms
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
 argument_list|,
 name|IndexTerms
 operator|.
@@ -190,6 +208,8 @@ operator|.
 name|class
 argument_list|)
 block|,
+comment|//        new FunctionDef(KWICDisplay2.signatures[0], KWICDisplay2.class),
+comment|//        new FunctionDef(KWICDisplay2.signatures[1], KWICDisplay2.class),
 operator|new
 name|FunctionDef
 argument_list|(
