@@ -701,7 +701,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|getIndexWorkerById
+name|getWorkerByIndexId
 argument_list|(
 name|AbstractGMLJDBCIndex
 operator|.
@@ -715,6 +715,19 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"No spatial index found"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 try|try
 block|{
 name|Connection
@@ -881,6 +894,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|XMLDBException
@@ -1003,7 +1017,16 @@ name|index
 operator|==
 literal|null
 condition|)
-return|return;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"No spatial index found"
+argument_list|)
+expr_stmt|;
+else|else
 name|assertTrue
 argument_list|(
 name|index
@@ -1269,7 +1292,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|getIndexWorkerById
+name|getWorkerByIndexId
 argument_list|(
 name|AbstractGMLJDBCIndex
 operator|.
@@ -1283,7 +1306,17 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
-return|return;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"No spatial index found"
+argument_list|)
+expr_stmt|;
+else|else
+block|{
 name|SAXParserFactory
 name|factory
 init|=
@@ -1560,6 +1593,7 @@ argument_list|)
 expr_stmt|;
 comment|//ns = ((GMLIndexWorker)index.getWorker()).search(broker, EPSG4326_geometry, SpatialOperator.OVERLAPS);
 comment|//assertTrue(ns.getLength()> 0);
+block|}
 block|}
 catch|catch
 parameter_list|(

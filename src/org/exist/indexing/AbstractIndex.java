@@ -89,7 +89,7 @@ specifier|static
 name|String
 name|ID
 init|=
-literal|null
+literal|"Give me an ID !"
 decl_stmt|;
 specifier|protected
 name|String

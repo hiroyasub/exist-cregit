@@ -570,7 +570,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|getIndexWorkerByName
+name|getWorkerByIndexName
 argument_list|(
 name|args
 index|[

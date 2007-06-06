@@ -1536,7 +1536,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|getIndexWorkerById
+name|getWorkerByIndexId
 argument_list|(
 name|AbstractGMLJDBCIndex
 operator|.

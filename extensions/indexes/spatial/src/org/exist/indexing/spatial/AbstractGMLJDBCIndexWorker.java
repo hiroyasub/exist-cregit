@@ -1082,6 +1082,12 @@ name|index
 operator|=
 name|index
 expr_stmt|;
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
+expr_stmt|;
 block|}
 specifier|public
 name|String

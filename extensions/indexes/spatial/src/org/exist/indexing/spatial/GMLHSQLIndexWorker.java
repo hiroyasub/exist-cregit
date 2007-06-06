@@ -440,15 +440,6 @@ expr_stmt|;
 comment|//TODO : evaluate one connection per worker
 comment|/*         try { 	         conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +  					index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
 block|}
-specifier|public
-name|String
-name|getID
-parameter_list|()
-block|{
-return|return
-name|ID
-return|;
-block|}
 specifier|protected
 name|boolean
 name|saveGeometryNode

@@ -219,14 +219,12 @@ name|HashMap
 argument_list|()
 decl_stmt|;
 specifier|protected
-name|StreamListener
-name|listener
-init|=
-literal|null
+name|DBBroker
+name|broker
 decl_stmt|;
 specifier|protected
-name|StoredNode
-name|reindexNode
+name|StreamListener
+name|listener
 init|=
 literal|null
 decl_stmt|;
@@ -251,6 +249,12 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
+expr_stmt|;
 name|IndexWorker
 index|[]
 name|workers
@@ -401,7 +405,7 @@ block|}
 comment|/**      * Returns an {@link org.exist.indexing.IndexWorker} instance corresponding      * to the specified type of index in indexId. The indexId should be the same one      * as returned by {@link org.exist.indexing.IndexWorker#getIndexId()}.      *       * @param indexId      * @return instance of index worker      */
 specifier|public
 name|IndexWorker
-name|getIndexWorkerById
+name|getWorkerByIndexId
 parameter_list|(
 name|String
 name|indexId
@@ -422,7 +426,7 @@ block|}
 comment|/**      * Returns an {@link org.exist.indexing.IndexWorker} instance corresponding      * to the specified index named by indexName. The indexName should be the same one      * as returned by {@link org.exist.indexing.IndexWorker#getIndexName()}.      *       * @param indexName      * @return instance of index worker      */
 specifier|public
 name|IndexWorker
-name|getIndexWorkerByName
+name|getWorkerByIndexName
 parameter_list|(
 name|String
 name|indexName
