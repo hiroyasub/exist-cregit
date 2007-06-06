@@ -965,7 +965,7 @@ return|return
 name|top
 return|;
 block|}
-comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured on the current document for the current mode.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.        *      * @return chain of StreamListeners      */
+comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured on the current document for the current mode.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.        *      * @return the first listener in the chain of StreamListeners      */
 specifier|public
 name|StreamListener
 name|getStreamListener
@@ -1242,7 +1242,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param proxy      * @return the MatchListener      */
+comment|/**      * Returns the match listener for this node.      *       * @param proxy a proxy to the node.      * @return the MatchListener       */
 specifier|public
 name|MatchListener
 name|getMatchListener
