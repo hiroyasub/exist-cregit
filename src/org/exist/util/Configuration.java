@@ -179,6 +179,32 @@ name|org
 operator|.
 name|exist
 operator|.
+name|cluster
+operator|.
+name|ClusterComunication
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|cluster
+operator|.
+name|journal
+operator|.
+name|JournalManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|indexing
 operator|.
 name|IndexManager
@@ -1583,7 +1609,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.protocol"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PROTOCOL
 argument_list|,
 name|protocol
 argument_list|)
@@ -1592,13 +1620,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.protocol: "
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PROTOCOL
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.protocol"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PROTOCOL
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1624,7 +1658,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.user"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_USER
 argument_list|,
 name|user
 argument_list|)
@@ -1633,13 +1669,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.user: "
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_USER
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.user"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_USER
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1665,7 +1707,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.pwd"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PWD
 argument_list|,
 name|pwd
 argument_list|)
@@ -1674,13 +1718,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.pwd: "
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PWD
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.pwd"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_PWD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1706,7 +1756,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.journalDir"
+name|JournalManager
+operator|.
+name|PROPERTY_JOURNAL_DIR
 argument_list|,
 name|dir
 argument_list|)
@@ -1715,13 +1767,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.journalDir: "
+name|JournalManager
+operator|.
+name|PROPERTY_JOURNAL_DIR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.journalDir"
+name|JournalManager
+operator|.
+name|PROPERTY_JOURNAL_DIR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1815,7 +1873,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.exclude"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_EXCLUDE
 argument_list|,
 name|list
 argument_list|)
@@ -1824,13 +1884,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.exlude: "
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_EXCLUDE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.exclude"
+name|ClusterComunication
+operator|.
+name|PROPERTY_CLUSTER_EXCLUDE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1871,7 +1937,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.journal.maxStore"
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_MAXSTORE
 argument_list|,
 name|Integer
 operator|.
@@ -1885,13 +1953,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.journal.maxStore: "
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_MAXSTORE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.journal.maxStore"
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_MAXSTORE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1931,7 +2005,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"cluster.journal.shift"
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_SHIFT
 argument_list|,
 name|Integer
 operator|.
@@ -1945,13 +2021,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"cluster.journal.shift: "
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_SHIFT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"cluster.journal.shift"
+name|JournalManager
+operator|.
+name|PROPERTY_CLUSTER_JOURNAL_SHIFT
 argument_list|)
 argument_list|)
 expr_stmt|;
