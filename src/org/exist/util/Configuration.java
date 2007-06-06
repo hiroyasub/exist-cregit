@@ -389,6 +389,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|journal
+operator|.
+name|Journal
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|Serializer
@@ -4659,7 +4673,9 @@ expr_stmt|;
 block|}
 name|setProperty
 argument_list|(
-literal|"db-connection.recovery.enabled"
+name|BrokerPool
+operator|.
+name|PROPERTY_RECOVERY_ENABLED
 argument_list|,
 operator|new
 name|Boolean
@@ -4672,13 +4688,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.recovery.enabled: "
+name|BrokerPool
+operator|.
+name|PROPERTY_RECOVERY_ENABLED
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.recovery.enabled"
+name|BrokerPool
+operator|.
+name|PROPERTY_RECOVERY_ENABLED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4714,7 +4736,9 @@ expr_stmt|;
 block|}
 name|setProperty
 argument_list|(
-literal|"db-connection.recovery.sync-on-commit"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SYNC_ON_COMMIT
 argument_list|,
 operator|new
 name|Boolean
@@ -4727,13 +4751,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.recovery.sync-on-commit: "
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SYNC_ON_COMMIT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.recovery.sync-on-commit"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SYNC_ON_COMMIT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4810,7 +4840,9 @@ condition|)
 block|{
 name|setProperty
 argument_list|(
-literal|"db-connection.recovery.journal-dir"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_JOURNAL_DIR
 argument_list|,
 name|option
 argument_list|)
@@ -4819,13 +4851,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.recovery.journal-dir: "
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_JOURNAL_DIR
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.recovery.journal-dir"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_JOURNAL_DIR
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4891,7 +4929,9 @@ argument_list|)
 decl_stmt|;
 name|setProperty
 argument_list|(
-literal|"db-connection.recovery.size-limit"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SIZE_LIMIT
 argument_list|,
 name|size
 argument_list|)
@@ -4900,13 +4940,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.recovery.size-limit: "
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SIZE_LIMIT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.recovery.size-limit"
+name|Journal
+operator|.
+name|PROPERTY_RECOVERY_SIZE_LIMIT
 argument_list|)
 operator|+
 literal|"m"

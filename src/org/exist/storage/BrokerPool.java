@@ -585,6 +585,14 @@ name|PROPERTY_SECURITY_CLASS
 init|=
 literal|"db-connection.security.class"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_RECOVERY_ENABLED
+init|=
+literal|"db-connection.recovery.enabled"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -1772,7 +1780,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.recovery.enabled"
+name|PROPERTY_RECOVERY_ENABLED
 argument_list|)
 expr_stmt|;
 if|if
