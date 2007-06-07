@@ -617,6 +617,14 @@ name|PROPERTY_RECOVERY_ENABLED
 init|=
 literal|"db-connection.recovery.enabled"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_SYSTEM_TASK_CONFIG
+init|=
+literal|"db-connection.system-task-config"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -1856,7 +1864,9 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.system-task-config"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYSTEM_TASK_CONFIG
 argument_list|)
 decl_stmt|;
 if|if

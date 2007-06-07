@@ -267,6 +267,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|XMLSecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|XACMLConstants
@@ -5121,7 +5133,9 @@ argument_list|)
 decl_stmt|;
 name|setProperty
 argument_list|(
-literal|"indexer.permissions.resource"
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_RESOURCES
 argument_list|,
 name|perms
 argument_list|)
@@ -5130,13 +5144,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.permissions.resource: "
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_RESOURCES
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.permissions.resource"
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_RESOURCES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5464,7 +5484,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"db-connection.system-task-config"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYSTEM_TASK_CONFIG
 argument_list|,
 name|taskList
 argument_list|)
@@ -5473,13 +5495,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.system-task-config: "
+name|BrokerPool
+operator|.
+name|PROPERTY_SYSTEM_TASK_CONFIG
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.system-task-config"
+name|BrokerPool
+operator|.
+name|PROPERTY_SYSTEM_TASK_CONFIG
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7161,7 +7189,9 @@ name|validation
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"entity-resolver"
+name|XMLReaderObjectFactory
+operator|.
+name|CONFIGURATION_ENTITY_RESOLVER_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -7194,7 +7224,9 @@ name|r
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"catalog"
+name|XMLReaderObjectFactory
+operator|.
+name|CONFIGURATION_CATALOG_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 name|LOG

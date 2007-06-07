@@ -329,6 +329,14 @@ implements|implements
 name|SecurityManager
 block|{
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_PERMISSIONS_RESOURCES
+init|=
+literal|"indexer.permissions.resource"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String
@@ -1181,7 +1189,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.permissions.resource"
+name|PROPERTY_PERMISSIONS_RESOURCES
 argument_list|)
 expr_stmt|;
 if|if
