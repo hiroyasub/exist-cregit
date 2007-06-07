@@ -162,11 +162,11 @@ literal|false
 decl_stmt|;
 specifier|protected
 name|int
-name|actualReturnType
+name|staticReturnType
 init|=
 name|Type
 operator|.
-name|NODE
+name|ITEM
 decl_stmt|;
 specifier|public
 name|Step
@@ -522,6 +522,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// if we are on the self axis, remember the static return type given in the context
+if|if
+condition|(
+name|this
+operator|.
+name|axis
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+condition|)
+name|staticReturnType
+operator|=
+name|contextInfo
+operator|.
+name|getStaticType
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
@@ -792,14 +810,26 @@ name|Constants
 operator|.
 name|SELF_AXIS
 condition|)
+block|{
 comment|//Type.ITEM by default : this may change *after* evaluation
-comment|//return actualReturnType;
-comment|//Grrrrrrrrrrrrrrrr : I let it as such for now !
-return|return
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"My static type: "
+operator|+
 name|Type
 operator|.
-name|NODE
+name|getTypeName
+argument_list|(
+name|staticReturnType
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|staticReturnType
 return|;
+block|}
 else|else
 return|return
 name|Type

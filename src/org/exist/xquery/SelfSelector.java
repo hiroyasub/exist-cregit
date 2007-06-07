@@ -176,6 +176,13 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+name|p
+operator|.
+name|addMatches
+argument_list|(
+name|contextNode
+argument_list|)
+expr_stmt|;
 return|return
 name|p
 return|;

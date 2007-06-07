@@ -1033,7 +1033,6 @@ block|{
 if|if
 condition|(
 name|inPredicate
-comment|/*&& !invalidNodeEvaluation */
 operator|&&
 operator|(
 operator|!
@@ -1050,9 +1049,12 @@ argument_list|)
 operator|)
 condition|)
 block|{
-comment|/* If one argument is a node set we directly 			 * return the matching nodes from the context set. This works 			 * only inside predicates. 			 * Since the context sequence can be of Type.ATOMIC, we return actualReturnType (default Type.ITEM) 			 * ... unless we are *sure* we have another type (after evaluation) 			 */
 return|return
-name|actualReturnType
+name|getLeft
+argument_list|()
+operator|.
+name|returnsType
+argument_list|()
 return|;
 block|}
 comment|// In all other cases, we return boolean

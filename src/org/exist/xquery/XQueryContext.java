@@ -6436,6 +6436,8 @@ argument_list|,
 name|qname
 argument_list|,
 name|contents
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

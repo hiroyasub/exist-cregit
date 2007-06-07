@@ -139,6 +139,14 @@ name|other
 operator|.
 name|contextStep
 expr_stmt|;
+name|this
+operator|.
+name|staticType
+operator|=
+name|other
+operator|.
+name|staticType
+expr_stmt|;
 block|}
 comment|/** 	 * Returns the current context id. The context id is used 	 * to keep track of the context node set within a predicate 	 * expression or where-clause. The id identifies the ancestor  	 * expression to which the context applies. 	 *  	 * @return  current context id. 	 */
 specifier|public
