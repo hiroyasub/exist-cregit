@@ -1498,6 +1498,24 @@ name|next
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"()"
+argument_list|)
+expr_stmt|;
+else|else
+block|{
 name|int
 name|count
 init|=
@@ -1600,6 +1618,7 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 operator|.
@@ -1621,6 +1640,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+comment|//Not so simple. ITEM should be retuned in some circumstances that have to be determined
 return|return
 name|Type
 operator|.
