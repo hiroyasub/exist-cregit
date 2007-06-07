@@ -84,6 +84,7 @@ specifier|public
 interface|interface
 name|StreamListener
 block|{
+comment|/**      * Undefined mode      */
 specifier|public
 specifier|final
 specifier|static
@@ -93,6 +94,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/**      * Mode for storing nodes of a document      */
 specifier|public
 specifier|final
 specifier|static
@@ -119,6 +121,11 @@ name|REMOVE_SOME_NODES
 init|=
 literal|2
 decl_stmt|;
+comment|/**      * Retunrs the IndexWorker that owns this listener.      *       * @return the IndexWorker      */
+name|IndexWorker
+name|getWorker
+parameter_list|()
+function_decl|;
 comment|/**      * Set the next stream listener in the chain. Events should always be forwarded      * to the next listener.      *      * @param listener the next listener in the chain.      */
 name|void
 name|setNextInChain
@@ -160,20 +167,6 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
-comment|/**      * Processed the closing tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
-name|void
-name|endElement
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
-name|ElementImpl
-name|element
-parameter_list|,
-name|NodePath
-name|path
-parameter_list|)
-function_decl|;
 comment|/**      * A text node has been stored.      * @param transaction the current transaction      * @param text the text node which has been stored to the db.      * @param path the current node path      */
 name|void
 name|characters
@@ -188,10 +181,19 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
-specifier|public
-name|IndexWorker
-name|getWorker
-parameter_list|()
+comment|/**      * Processed the closing tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
+name|void
+name|endElement
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
+name|ElementImpl
+name|element
+parameter_list|,
+name|NodePath
+name|path
+parameter_list|)
 function_decl|;
 block|}
 end_interface

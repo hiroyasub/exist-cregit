@@ -180,25 +180,12 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 function_decl|;
-comment|/**      * Flush the index. This method will be called when indexing a document. The implementation should      * immediately process all data it has buffered (if there is any), release as many memory resources      * as it can and prepare for being reused for a different job.      */
-name|void
-name|flush
-parameter_list|()
-function_decl|;
 comment|/**      * Notify this worker to operate on the specified document.      *      * @param doc the document which is processed      */
 name|void
 name|setDocument
 parameter_list|(
 name|DocumentImpl
 name|doc
-parameter_list|)
-function_decl|;
-comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
-name|void
-name|setMode
-parameter_list|(
-name|int
-name|mode
 parameter_list|)
 function_decl|;
 comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
@@ -210,6 +197,38 @@ name|doc
 parameter_list|,
 name|int
 name|mode
+parameter_list|)
+function_decl|;
+comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
+name|void
+name|setMode
+parameter_list|(
+name|int
+name|mode
+parameter_list|)
+function_decl|;
+comment|/**      * Returns the document for the next operation.      *       * @return the document      */
+name|DocumentImpl
+name|getDocument
+parameter_list|()
+function_decl|;
+comment|/**      * Returns the mode for the next operation.      *       * @return the document      */
+name|int
+name|getMode
+parameter_list|()
+function_decl|;
+comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to reindex some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be reindexed      */
+name|StoredNode
+name|getReindexRoot
+parameter_list|(
+name|StoredNode
+name|node
+parameter_list|,
+name|NodePath
+name|path
+parameter_list|,
+name|boolean
+name|includeSelf
 parameter_list|)
 function_decl|;
 comment|/**      * Return a stream listener to index the current document in the current mode.      * There will never be more than one StreamListener being used per thread, so it is safe      * for the implementation to reuse a single StreamListener.      *      * Parameter mode specifies the type of the current operation.      *      * @return a StreamListener      */
@@ -224,6 +243,11 @@ parameter_list|(
 name|NodeProxy
 name|proxy
 parameter_list|)
+function_decl|;
+comment|/**      * Flush the index. This method will be called when indexing a document. The implementation should      * immediately process all data it has buffered (if there is any), release as many memory resources      * as it can and prepare for being reused for a different job.      */
+name|void
+name|flush
+parameter_list|()
 function_decl|;
 comment|/**      * Remove all indexes for the given collection, its subcollections and      * all resources..      *      * @param collection The collection to remove      * @param broker The broker that will perform the operation      */
 name|void
@@ -254,20 +278,6 @@ name|docs
 parameter_list|)
 function_decl|;
 comment|//TODO : a scanIndex() method that would return an unaggregated list of index entries ?
-comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to reindex some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be reindexed      */
-name|StoredNode
-name|getReindexRoot
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|,
-name|NodePath
-name|path
-parameter_list|,
-name|boolean
-name|includeSelf
-parameter_list|)
-function_decl|;
 block|}
 end_interface
 

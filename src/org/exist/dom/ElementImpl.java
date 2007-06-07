@@ -3352,7 +3352,6 @@ argument_list|,
 name|elem
 argument_list|)
 expr_stmt|;
-comment|// index now?
 name|getBroker
 argument_list|()
 operator|.
@@ -3382,6 +3381,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+comment|//getBroker().getIndexController().startElement(transaction, elem, lastPath, listener);
 name|elem
 operator|.
 name|setChildCount
@@ -3389,7 +3389,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// process child nodes
 name|last
 operator|.
 name|setNode
@@ -3397,6 +3396,7 @@ argument_list|(
 name|elem
 argument_list|)
 expr_stmt|;
+comment|//process child nodes
 name|elem
 operator|.
 name|appendChildren
@@ -3435,7 +3435,7 @@ operator|.
 name|getIndexController
 argument_list|()
 operator|.
-name|indexEndElement
+name|endElement
 argument_list|(
 name|transaction
 argument_list|,
@@ -3531,6 +3531,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+comment|//getBroker().getIndexController().characters(transaction, text, lastPath, listener);
 name|last
 operator|.
 name|setNode
@@ -3792,7 +3793,6 @@ argument_list|,
 name|attrib
 argument_list|)
 expr_stmt|;
-comment|// index now?
 name|getBroker
 argument_list|()
 operator|.
@@ -3822,6 +3822,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+comment|//getBroker().getIndexController().attribute(transaction, attrib, lastPath, listener);
 name|last
 operator|.
 name|setNode

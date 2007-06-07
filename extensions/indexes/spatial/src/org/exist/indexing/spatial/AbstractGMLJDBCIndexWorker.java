@@ -1401,6 +1401,26 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Returns the document for the next operation.      *       * @return the document      */
+specifier|public
+name|DocumentImpl
+name|getDocument
+parameter_list|()
+block|{
+return|return
+name|currentDoc
+return|;
+block|}
+comment|/**      * Returns the mode for the next operation.      *       * @return the document      */
+specifier|public
+name|int
+name|getMode
+parameter_list|()
+block|{
+return|return
+name|mode
+return|;
+block|}
 specifier|public
 name|StreamListener
 name|getListener
