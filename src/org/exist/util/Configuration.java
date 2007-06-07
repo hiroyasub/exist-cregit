@@ -1286,7 +1286,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"db-connection"
+name|BrokerPool
+operator|.
+name|CONFIGURATION_CONNECTION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -2302,7 +2304,9 @@ name|xquery
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"builtin-modules"
+name|XQueryContext
+operator|.
+name|CONFIGURATION_MODULES_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -2335,7 +2339,9 @@ name|elem
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"module"
+name|XQueryContext
+operator|.
+name|CONFIGURATION_MODULE_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 name|String
@@ -3189,7 +3195,9 @@ name|scheduler
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"job"
+name|Scheduler
+operator|.
+name|CONFIGURATION_JOB_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4183,7 +4191,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"security"
+name|BrokerPool
+operator|.
+name|CONFIGURATION_SECURITY_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 name|String
@@ -4433,7 +4443,7 @@ name|getElementsByTagName
 argument_list|(
 name|BrokerPool
 operator|.
-name|CONFIGURATION_ELEMENT_NAME
+name|CONFIGURATION_POOL_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -4567,7 +4577,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"recovery"
+name|BrokerPool
+operator|.
+name|CONFIGURATION_RECOVERY_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -6729,7 +6741,9 @@ name|doc
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"index"
+name|Indexer
+operator|.
+name|CONFIGURATION_INDEX_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -6777,6 +6791,7 @@ argument_list|,
 name|spec
 argument_list|)
 expr_stmt|;
+comment|//LOG.debug(Indexer.PROPERTY_INDEXER_CONFIG + ": " + config.get(Indexer.PROPERTY_INDEXER_CONFIG));
 block|}
 comment|// stopwords
 name|NodeList
@@ -6786,7 +6801,9 @@ name|indexer
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"stopwords"
+name|Indexer
+operator|.
+name|CONFIGURATION_STOPWORDS_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -6880,7 +6897,9 @@ name|indexer
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"modules"
+name|IndexManager
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -6909,7 +6928,9 @@ operator|)
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"module"
+name|IndexManager
+operator|.
+name|CONFIGURATION_MODULE_ELEMENT_NAME
 argument_list|)
 expr_stmt|;
 name|IndexModuleConfig
