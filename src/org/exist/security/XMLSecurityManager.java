@@ -337,6 +337,14 @@ init|=
 literal|"indexer.permissions.resource"
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_PERMISSIONS_COLLECTIONS
+init|=
+literal|"indexer.permissions.collection"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String
@@ -1161,7 +1169,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"indexer.permissions.collection"
+name|PROPERTY_PERMISSIONS_COLLECTIONS
 argument_list|)
 decl_stmt|;
 if|if

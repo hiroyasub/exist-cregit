@@ -156,6 +156,14 @@ specifier|public
 class|class
 name|TransactionManager
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_RECOVERY_GROUP_COMMIT
+init|=
+literal|"db-connection.recovery.group-commit"
+decl_stmt|;
 comment|/**      * Logger for this class      */
 specifier|private
 specifier|static
@@ -239,7 +247,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.recovery.group-commit"
+name|PROPERTY_RECOVERY_GROUP_COMMIT
 argument_list|)
 decl_stmt|;
 if|if

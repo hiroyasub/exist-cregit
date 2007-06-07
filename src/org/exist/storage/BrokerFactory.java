@@ -42,6 +42,14 @@ name|BrokerFactory
 block|{
 specifier|public
 specifier|static
+specifier|final
+name|String
+name|PROPERTY_DATABASE
+init|=
+literal|"database"
+decl_stmt|;
+specifier|public
+specifier|static
 name|DBBroker
 name|getInstance
 parameter_list|(
@@ -64,7 +72,7 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"database"
+name|PROPERTY_DATABASE
 argument_list|)
 decl_stmt|;
 if|if

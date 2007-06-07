@@ -293,6 +293,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|BrokerPool
 import|;
 end_import
@@ -418,6 +430,20 @@ operator|.
 name|serializers
 operator|.
 name|Serializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|TransactionManager
 import|;
 end_import
 
@@ -3408,7 +3434,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"database"
+name|BrokerFactory
+operator|.
+name|PROPERTY_DATABASE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3422,7 +3450,9 @@ name|config
 operator|.
 name|put
 argument_list|(
-literal|"database"
+name|BrokerFactory
+operator|.
+name|PROPERTY_DATABASE
 argument_list|,
 name|mysql
 argument_list|)
@@ -3431,13 +3461,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"database: "
+name|BrokerFactory
+operator|.
+name|PROPERTY_DATABASE
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"database"
+name|BrokerFactory
+operator|.
+name|PROPERTY_DATABASE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4823,7 +4859,9 @@ expr_stmt|;
 block|}
 name|setProperty
 argument_list|(
-literal|"db-connection.recovery.group-commit"
+name|TransactionManager
+operator|.
+name|PROPERTY_RECOVERY_GROUP_COMMIT
 argument_list|,
 operator|new
 name|Boolean
@@ -4836,13 +4874,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"db-connection.recovery.group-commit: "
+name|TransactionManager
+operator|.
+name|PROPERTY_RECOVERY_GROUP_COMMIT
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"db-connection.recovery.group-commit"
+name|TransactionManager
+operator|.
+name|PROPERTY_RECOVERY_GROUP_COMMIT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5053,7 +5097,9 @@ argument_list|)
 decl_stmt|;
 name|setProperty
 argument_list|(
-literal|"indexer.permissions.collection"
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_COLLECTIONS
 argument_list|,
 name|perms
 argument_list|)
@@ -5062,13 +5108,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"indexer.permissions.collection: "
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_COLLECTIONS
+operator|+
+literal|": "
 operator|+
 name|config
 operator|.
 name|get
 argument_list|(
-literal|"indexer.permissions.collection"
+name|XMLSecurityManager
+operator|.
+name|PROPERTY_PERMISSIONS_COLLECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6178,9 +6230,7 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-name|BrokerPool
-operator|.
-name|PROPERTY_SHUTDOWN_DELAY
+literal|"wait-before-shutdown"
 argument_list|)
 decl_stmt|;
 if|if
