@@ -206,12 +206,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|protected
-name|Connection
-name|conn
-init|=
-literal|null
-decl_stmt|;
+comment|/**      * An IndexWorker "pool"      */
 specifier|protected
 name|HashMap
 name|workers
@@ -219,6 +214,13 @@ init|=
 operator|new
 name|HashMap
 argument_list|()
+decl_stmt|;
+comment|/**      * The connection to the DB that will be needed for global operations       */
+specifier|protected
+name|Connection
+name|conn
+init|=
+literal|null
 decl_stmt|;
 comment|/**      * The spatial operators to test spatial relationshipds beween geometries.      * See http://www.vividsolutions.com/jts/bin/JTS%20Technical%20Specs.pdf (chapter 11).         */
 specifier|public

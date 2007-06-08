@@ -188,26 +188,6 @@ parameter_list|()
 block|{
 block|}
 specifier|public
-name|boolean
-name|checkIndex
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-return|return
-name|getWorker
-argument_list|(
-name|broker
-argument_list|)
-operator|.
-name|checkIndex
-argument_list|(
-name|broker
-argument_list|)
-return|;
-block|}
-specifier|public
 name|IndexWorker
 name|getWorker
 parameter_list|(
@@ -465,7 +445,7 @@ name|DBException
 block|{
 try|try
 block|{
-comment|//Let's be lazy here : we only delete th index content if we have a connection
+comment|//Let's be lazy here : we only delete the index content if we have a connection
 comment|//deleteDatabase() should be far more efficient ;-)
 if|if
 condition|(
@@ -531,7 +511,6 @@ literal|" nodes removed"
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : should we remove the db files as well ?
 block|}
 catch|catch
 parameter_list|(
@@ -861,8 +840,6 @@ operator|.
 name|createStatement
 argument_list|()
 decl_stmt|;
-comment|//Use CACHED table, not MEMORY one
-comment|//TODO : use hsqldb.default_table_type
 name|stmt
 operator|.
 name|executeUpdate
