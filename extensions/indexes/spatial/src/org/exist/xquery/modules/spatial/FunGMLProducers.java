@@ -2604,7 +2604,7 @@ name|NodeValue
 operator|)
 name|indexWorker
 operator|.
-name|getGML
+name|streamGeometry
 argument_list|(
 name|geometry
 argument_list|,
