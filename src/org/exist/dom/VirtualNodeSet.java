@@ -945,7 +945,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**      * The method<code>parentWithChild</code>      *      * @param proxy a<code>NodeProxy</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param level an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * The method<code>parentWithChild</code>      *      * @param proxy a<code>NodeProxy</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param level an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -995,7 +995,7 @@ return|return
 name|first
 return|;
 block|}
-comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|parentWithChild
