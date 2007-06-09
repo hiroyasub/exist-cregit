@@ -1054,7 +1054,7 @@ operator|+
 comment|//Enforce uniqueness
 literal|"UNIQUE ("
 operator|+
-literal|"DOCUMENT_URI, NODE_ID"
+literal|"DOCUMENT_URI, NODE_ID_UNITS, NODE_ID"
 operator|+
 literal|")"
 operator|+
