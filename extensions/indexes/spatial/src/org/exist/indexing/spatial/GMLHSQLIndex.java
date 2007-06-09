@@ -659,6 +659,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|SQLException
 block|{
 synchronized|synchronized
 init|(
@@ -740,7 +742,7 @@ operator|==
 literal|null
 condition|)
 comment|//We should never get there since the connection should have been initialized
-comment|///by the first request from a worker
+comment|//by the first request from a worker
 name|initializeConnection
 argument_list|()
 expr_stmt|;
@@ -809,6 +811,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|SQLException
 block|{
 name|connectionOwner
 operator|=
@@ -819,8 +823,8 @@ specifier|private
 name|void
 name|initializeConnection
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|SQLException
 block|{
 name|System
 operator|.
@@ -1244,27 +1248,6 @@ name|rs
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|SQLException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|conn
-operator|=
-literal|null
 expr_stmt|;
 block|}
 block|}

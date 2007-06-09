@@ -587,6 +587,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|SQLException
 function_decl|;
 comment|/**      * Convenience method that can be used by the IndexWorker to release a connection       * to the JDBC database that contains the indexed spatial data. This connection should have been      * previously acquired by {@link org.exist.indexing.spatial.AbstractGMLJDBCIndex#acquireConnection(DBBroker)}       *       * @param broker the broker that will use th connection      *       */
 specifier|protected
@@ -597,6 +599,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|SQLException
 function_decl|;
 block|}
 end_class
