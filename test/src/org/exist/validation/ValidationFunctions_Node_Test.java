@@ -441,11 +441,11 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"let $doc := doc('/db/validationtest/addressbook_valid.xml') "
+literal|"let $doc := doc('/db/validation/addressbook_valid.xml') "
 operator|+
 literal|"let $result := validation:validate( $doc, "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') ) "
+literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
 operator|+
 literal|"return $result"
 expr_stmt|;
@@ -524,11 +524,11 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"let $doc := doc('/db/validationtest/addressbook_invalid.xml') "
+literal|"let $doc := doc('/db/validation/addressbook_invalid.xml') "
 operator|+
 literal|"let $result := validation:validate( $doc, "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') ) "
+literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
 operator|+
 literal|"return $result"
 expr_stmt|;
@@ -667,7 +667,7 @@ literal|"</addressBook> "
 operator|+
 literal|"let $result := validation:validate( $doc, "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') ) "
+literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
 operator|+
 literal|"return $result"
 expr_stmt|;
@@ -760,7 +760,7 @@ literal|"</addressBook> "
 operator|+
 literal|"let $result := validation:validate( $doc, "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/addressbook.xsd') ) "
+literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
 operator|+
 literal|"return $result"
 expr_stmt|;

@@ -88,7 +88,7 @@ specifier|static
 name|String
 name|VALIDATION_HOME
 init|=
-literal|"/db/validationtest"
+literal|"/db/validation"
 decl_stmt|;
 specifier|public
 specifier|final

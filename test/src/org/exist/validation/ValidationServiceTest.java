@@ -476,7 +476,7 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_valid.xml"
+literal|"/db/validation/addressbook_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -488,9 +488,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_valid.xml"
+literal|"/db/validation/addressbook_valid.xml"
 argument_list|,
-literal|"/db/validationtest/xsd/catalog.xml"
+literal|"/db/validation/xsd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -502,9 +502,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_valid.xml"
+literal|"/db/validation/addressbook_valid.xml"
 argument_list|,
-literal|"/db/validationtest/xsd/addressbook.xsd"
+literal|"/db/validation/xsd/addressbook.xsd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -554,7 +554,7 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_invalid.xml"
+literal|"/db/validation/addressbook_invalid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -566,9 +566,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_invalid.xml"
+literal|"/db/validation/addressbook_invalid.xml"
 argument_list|,
-literal|"/db/validationtest/xsd/catalog.xml"
+literal|"/db/validation/xsd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -580,9 +580,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/addressbook_invalid.xml"
+literal|"/db/validation/addressbook_invalid.xml"
 argument_list|,
-literal|"/db/validationtest/xsd/addressbook.xsd"
+literal|"/db/validation/xsd/addressbook.xsd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -686,7 +686,7 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_valid.xml"
+literal|"/db/validation/hamlet_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -698,14 +698,14 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_valid.xml"
+literal|"/db/validation/hamlet_valid.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/catalog.xml"
+literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//            assertTrue( "specified grammar", service.validateResource("/db/validationtest/hamlet_valid.xml",
-comment|//                "/db/validationtest/dtd/hamlet.dtd") );
+comment|//            assertTrue( "specified grammar", service.validateResource("/db/validation/hamlet_valid.xml",
+comment|//                "/db/validation/dtd/hamlet.dtd") );
 block|}
 catch|catch
 parameter_list|(
@@ -752,9 +752,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_valid.xml"
+literal|"/db/validation/hamlet_valid.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/hamlet.dtd"
+literal|"/db/validation/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -816,9 +816,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_invalid.xml"
+literal|"/db/validation/hamlet_invalid.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/catalog.xml"
+literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -830,9 +830,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_invalid.xml"
+literal|"/db/validation/hamlet_invalid.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/hamlet.dtd"
+literal|"/db/validation/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -882,7 +882,7 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_nodoctype.xml"
+literal|"/db/validation/hamlet_nodoctype.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -894,9 +894,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_nodoctype.xml"
+literal|"/db/validation/hamlet_nodoctype.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/catalog.xml"
+literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -908,9 +908,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_nodoctype.xml"
+literal|"/db/validation/hamlet_nodoctype.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/hamlet.dtd"
+literal|"/db/validation/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -960,7 +960,7 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+literal|"/db/validation/hamlet_wrongdoctype.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -972,9 +972,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+literal|"/db/validation/hamlet_wrongdoctype.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/catalog.xml"
+literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -986,9 +986,9 @@ name|service
 operator|.
 name|validateResource
 argument_list|(
-literal|"/db/validationtest/hamlet_wrongdoctype.xml"
+literal|"/db/validation/hamlet_wrongdoctype.xml"
 argument_list|,
-literal|"/db/validationtest/dtd/hamlet.dtd"
+literal|"/db/validation/dtd/hamlet.dtd"
 argument_list|)
 argument_list|)
 expr_stmt|;

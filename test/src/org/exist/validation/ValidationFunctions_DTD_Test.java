@@ -432,7 +432,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/tmp/hamlet_valid.xml') )"
+literal|"validation:validate( xs:anyURI('/db/validation/tmp/hamlet_valid.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -543,9 +543,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml') ,"
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml') ,"
 operator|+
-literal|" xs:anyURI('/db/validationtest/dtd/catalog.xml') )"
+literal|" xs:anyURI('/db/validation/dtd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -588,9 +588,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_invalid.xml') ,"
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_invalid.xml') ,"
 operator|+
-literal|" xs:anyURI('/db/validationtest/dtd/catalog.xml') )"
+literal|" xs:anyURI('/db/validation/dtd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -633,9 +633,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/catalog.xml') )"
+literal|" xs:anyURI('/db/validation/xsd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -678,9 +678,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_invalid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_invalid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/catalog.xml') )"
+literal|" xs:anyURI('/db/validation/xsd/catalog.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -791,9 +791,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/dtd/hamlet.dtd') )"
+literal|" xs:anyURI('/db/validation/dtd/hamlet.dtd') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -836,9 +836,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_invalid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_invalid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/dtd/hamlet.dtd') )"
+literal|" xs:anyURI('/db/validation/dtd/hamlet.dtd') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -952,9 +952,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/dtd/') )"
+literal|" xs:anyURI('/db/validation/dtd/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -997,9 +997,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/validationtest/xsd/') )"
+literal|" xs:anyURI('/db/validation/xsd/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1042,7 +1042,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_valid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml'), "
 operator|+
 literal|" xs:anyURI('/db/') )"
 argument_list|)
@@ -1087,7 +1087,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validationtest/hamlet_invalid.xml'), "
+literal|"validation:validate( xs:anyURI('/db/validation/hamlet_invalid.xml'), "
 operator|+
 literal|" xs:anyURI('/db/') )"
 argument_list|)
