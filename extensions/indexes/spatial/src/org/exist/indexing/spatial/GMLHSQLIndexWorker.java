@@ -361,18 +361,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|vividsolutions
@@ -1776,6 +1764,7 @@ expr_stmt|;
 comment|//Ignore since the broker has no right on the document
 continue|continue;
 block|}
+comment|//contextSet == null should be use to scan the whole index
 if|if
 condition|(
 name|contextSet
@@ -4021,6 +4010,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//Untested, but that is roughly what should be returned.
 if|if
 condition|(
 name|rs
