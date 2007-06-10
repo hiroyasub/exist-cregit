@@ -957,6 +957,23 @@ literal|"EPSG:4326"
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|EPSG4326_geometry
+operator|==
+literal|null
+condition|)
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+else|else
+block|{
 name|int
 name|spatialOp
 init|=
@@ -1094,6 +1111,7 @@ name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(

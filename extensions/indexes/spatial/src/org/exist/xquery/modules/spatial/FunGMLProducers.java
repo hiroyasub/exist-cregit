@@ -1311,6 +1311,28 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
 name|geometry
 operator|=
 name|indexWorker
@@ -1419,6 +1441,21 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 block|}
 block|}
 if|else if
@@ -1544,6 +1581,29 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 name|double
 name|distance
 init|=
@@ -1721,6 +1781,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1844,6 +1905,28 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
 name|geometry
 operator|=
 name|geometry
@@ -1976,6 +2059,28 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
 name|geometry
 operator|=
 name|geometry
@@ -2108,6 +2213,29 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 name|geometry
 operator|=
 name|geometry
@@ -2115,6 +2243,7 @@ operator|.
 name|getBoundary
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -2435,6 +2564,33 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry1
+operator|==
+literal|null
+operator|||
+name|geometry2
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|//Transform the second geometry if necessary
 if|if
 condition|(
@@ -2532,6 +2688,7 @@ argument_list|(
 name|geometry2
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

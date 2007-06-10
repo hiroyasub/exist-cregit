@@ -2001,6 +2001,29 @@ operator|=
 literal|"osgb:BNG"
 expr_stmt|;
 block|}
+comment|//Provisional workaround : Geotools sometimes returns null geometries
+comment|//due to a too strict check.
+comment|//I can't see a way to return something useful in such a case
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+name|hasUsedIndex
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|//Transform the geometry to EPSG:4326 if relevant
 if|if
 condition|(
@@ -2542,6 +2565,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 catch|catch
