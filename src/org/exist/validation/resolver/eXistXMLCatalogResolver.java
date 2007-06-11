@@ -815,7 +815,12 @@ operator|.
 name|getSystemId
 argument_list|()
 operator|+
-literal|"'"
+literal|"' BaseSystemId="
+operator|+
+name|retValue
+operator|.
+name|getBaseSystemId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

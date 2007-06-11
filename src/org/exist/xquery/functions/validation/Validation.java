@@ -1130,9 +1130,13 @@ argument_list|(
 literal|"invoked with wrong function name"
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"unknown function"
+argument_list|)
+throw|;
 block|}
 specifier|private
 name|NodeImpl
