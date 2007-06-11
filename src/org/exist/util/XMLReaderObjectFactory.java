@@ -515,6 +515,13 @@ argument_list|(
 name|CATALOG_RESOLVER
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|resolver
+operator|!=
+literal|null
+condition|)
+block|{
 name|parser
 operator|.
 name|setProperty
@@ -524,6 +531,7 @@ argument_list|,
 name|resolver
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|parser
 return|;
