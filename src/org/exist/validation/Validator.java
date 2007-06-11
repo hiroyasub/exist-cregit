@@ -293,35 +293,6 @@ name|config
 init|=
 literal|null
 decl_stmt|;
-comment|// Xerces feature and property names
-specifier|final
-specifier|static
-name|String
-name|FEATURE_SCHEMA
-init|=
-literal|"http://apache.org/xml/features/validation/schema"
-decl_stmt|;
-specifier|final
-specifier|static
-name|String
-name|PROPERTIES_GRAMMARPOOL
-init|=
-literal|"http://apache.org/xml/properties/internal/grammar-pool"
-decl_stmt|;
-specifier|final
-specifier|static
-name|String
-name|PROPERTIES_RESOLVER
-init|=
-literal|"http://apache.org/xml/properties/internal/entity-resolver"
-decl_stmt|;
-specifier|final
-specifier|static
-name|String
-name|PROPERTIES_LOAD_EXT_DTD
-init|=
-literal|"http://apache.org/xml/features/nonvalidating/load-external-dtd"
-decl_stmt|;
 comment|/**      *  Setup Validator object with brokerpool as centre.      */
 specifier|public
 name|Validator
@@ -460,6 +431,8 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
+name|XMLReaderObjectFactory
+operator|.
 name|FEATURE_SCHEMA
 argument_list|,
 literal|true
@@ -469,6 +442,8 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
+name|XMLReaderObjectFactory
+operator|.
 name|PROPERTIES_LOAD_EXT_DTD
 argument_list|,
 literal|true
@@ -644,6 +619,8 @@ name|sax
 operator|.
 name|setProperty
 argument_list|(
+name|XMLReaderObjectFactory
+operator|.
 name|PROPERTIES_GRAMMARPOOL
 argument_list|,
 name|grammarPool
