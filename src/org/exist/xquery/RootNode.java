@@ -356,7 +356,7 @@ name|ds
 operator|.
 name|lock
 argument_list|(
-literal|false
+name|lockOnLoad
 argument_list|,
 literal|true
 argument_list|)

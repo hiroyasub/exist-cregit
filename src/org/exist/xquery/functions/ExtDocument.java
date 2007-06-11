@@ -783,7 +783,7 @@ name|docs
 operator|.
 name|lock
 argument_list|(
-literal|false
+name|lockOnLoad
 argument_list|,
 literal|true
 argument_list|)
@@ -900,7 +900,7 @@ name|docs
 operator|.
 name|unlock
 argument_list|(
-literal|false
+name|lockOnLoad
 argument_list|)
 expr_stmt|;
 block|}

@@ -810,6 +810,12 @@ name|dlock
 operator|.
 name|acquire
 argument_list|(
+name|lockOnLoad
+condition|?
+name|Lock
+operator|.
+name|WRITE_LOCK
+else|:
 name|Lock
 operator|.
 name|READ_LOCK
