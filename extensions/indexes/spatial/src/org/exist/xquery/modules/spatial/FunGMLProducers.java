@@ -1278,7 +1278,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -1566,7 +1566,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -1890,7 +1890,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -2044,7 +2044,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -2198,7 +2198,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -2523,7 +2523,7 @@ name|geometry1
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -2549,7 +2549,7 @@ name|geometry2
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
@@ -2761,7 +2761,7 @@ name|NodeValue
 operator|)
 name|indexWorker
 operator|.
-name|streamGeometry
+name|streamGeometryToElement
 argument_list|(
 name|geometry
 argument_list|,

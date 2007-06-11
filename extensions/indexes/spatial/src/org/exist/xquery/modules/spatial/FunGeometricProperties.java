@@ -1986,7 +1986,7 @@ name|geometry
 operator|=
 name|indexWorker
 operator|.
-name|streamGeometryForNode
+name|streamNodeToGeometry
 argument_list|(
 name|context
 argument_list|,
