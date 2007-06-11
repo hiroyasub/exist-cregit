@@ -112,7 +112,6 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-comment|//TODO : something useful here
 name|String
 name|param
 init|=
