@@ -670,7 +670,7 @@ name|value
 operator|.
 name|scale
 argument_list|()
-operator|!=
+operator|>
 literal|0
 operator|)
 return|;
