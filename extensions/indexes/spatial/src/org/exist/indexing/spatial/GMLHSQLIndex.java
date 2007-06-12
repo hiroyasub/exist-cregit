@@ -814,6 +814,19 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
+if|if
+condition|(
+name|connectionOwner
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|SQLException
+argument_list|(
+literal|"Attempted to release a connection that wasn't acquired"
+argument_list|)
+throw|;
 name|connectionOwner
 operator|=
 literal|null
