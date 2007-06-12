@@ -229,6 +229,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|vividsolutions
@@ -895,7 +907,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
-comment|//The node should be indexed
+comment|//Get the geometry from the index if available
 name|EPSG4326_geometry
 operator|=
 name|indexWorker
@@ -922,6 +934,27 @@ operator|==
 literal|null
 condition|)
 block|{
+name|String
+name|sourceCRS
+init|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+decl_stmt|;
 name|Geometry
 name|geometry
 init|=
@@ -934,15 +967,6 @@ argument_list|,
 name|geometryNode
 argument_list|)
 decl_stmt|;
-comment|//Argl ! No SRS !
-comment|//sourceCRS = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|String
-name|sourceCRS
-init|=
-literal|"osgb:BNG"
-decl_stmt|;
-comment|//Transform the geometry to EPSG:4326
 name|EPSG4326_geometry
 operator|=
 name|indexWorker
@@ -957,23 +981,19 @@ literal|"EPSG:4326"
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|EPSG4326_geometry
 operator|==
 literal|null
 condition|)
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-else|else
-block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
 name|int
 name|spatialOp
 init|=
@@ -1111,7 +1131,6 @@ name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(

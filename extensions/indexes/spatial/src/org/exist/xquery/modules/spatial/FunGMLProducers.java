@@ -265,6 +265,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|vividsolutions
@@ -854,7 +866,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the intersection of geometry $a and geometry $b."
+literal|"Returns the GML representation of the intersection of geometry $a and geometry $b in the SRS of $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -915,7 +927,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the union of geometry $a and geometry $b."
+literal|"Returns the GML representation of the union of geometry $a and geometry $b in the SRS of $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -976,7 +988,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the difference of geometry $a and geometry $b."
+literal|"Returns the GML representation of the difference of geometry $a and geometry $b in the SRS of $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1037,7 +1049,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the symetric difference of geometry $a and geometry $b."
+literal|"Returns the GML representation of the symetric difference of geometry $a and geometry $b in the SRS of $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1161,7 +1173,7 @@ init|=
 literal|null
 decl_stmt|;
 name|String
-name|srsName
+name|targetSRS
 init|=
 literal|null
 decl_stmt|;
@@ -1207,12 +1219,12 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|//Try to get the geometry from the index
 name|String
 name|sourceSRS
 init|=
 literal|null
 decl_stmt|;
-comment|//Try to get the geometry from the index
 if|if
 condition|(
 name|geometryNode
@@ -1225,25 +1237,6 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 name|sourceSRS
 operator|=
 name|indexWorker
@@ -1266,14 +1259,58 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-comment|//Otherwise, build it
 block|}
-else|else
+comment|//Otherwise, build it
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
 block|{
+name|sourceSRS
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry
 operator|=
 name|indexWorker
@@ -1285,15 +1322,21 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//sourceSRS = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|sourceSRS
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-name|srsName
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
+name|targetSRS
 operator|=
 name|args
 index|[
@@ -1311,28 +1354,6 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
-if|if
-condition|(
-name|geometry
-operator|==
-literal|null
-condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
 name|geometry
 operator|=
 name|indexWorker
@@ -1343,7 +1364,7 @@ name|geometry
 argument_list|,
 name|sourceSRS
 argument_list|,
-name|srsName
+name|targetSRS
 argument_list|)
 expr_stmt|;
 block|}
@@ -1408,7 +1429,35 @@ argument_list|(
 name|wkt
 argument_list|)
 expr_stmt|;
-name|srsName
+block|}
+catch|catch
+parameter_list|(
+name|ParseException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
+name|targetSRS
 operator|=
 name|args
 index|[
@@ -1425,36 +1474,6 @@ argument_list|()
 operator|.
 name|trim
 argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
-if|if
-condition|(
-name|geometry
-operator|==
-literal|null
-condition|)
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
 expr_stmt|;
 block|}
 block|}
@@ -1513,26 +1532,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|srsName
+name|targetSRS
 operator|=
 name|indexWorker
 operator|.
@@ -1554,14 +1554,58 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-comment|//Otherwise, build it
 block|}
-else|else
+comment|//Otherwise, build it
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
 block|{
+name|targetSRS
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry
 operator|=
 name|indexWorker
@@ -1573,37 +1617,20 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|geometry
 operator|==
 literal|null
 condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
-block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
 name|double
 name|distance
 init|=
@@ -1781,7 +1808,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1837,26 +1863,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|srsName
+name|targetSRS
 operator|=
 name|indexWorker
 operator|.
@@ -1878,14 +1885,58 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-comment|//Otherwise, build it
 block|}
-else|else
+comment|//Otherwise, build it
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
 block|{
+name|targetSRS
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry
 operator|=
 name|indexWorker
@@ -1897,36 +1948,20 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|geometry
 operator|==
 literal|null
 condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
 name|geometry
 operator|=
 name|geometry
@@ -1991,26 +2026,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|srsName
+name|targetSRS
 operator|=
 name|indexWorker
 operator|.
@@ -2032,14 +2048,58 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-comment|//Otherwise, build it
 block|}
-else|else
+comment|//Otherwise, build it
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
 block|{
+name|targetSRS
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry
 operator|=
 name|indexWorker
@@ -2051,36 +2111,20 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|geometry
 operator|==
 literal|null
 condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
 name|geometry
 operator|=
 name|geometry
@@ -2145,26 +2189,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|srsName
+name|targetSRS
 operator|=
 name|indexWorker
 operator|.
@@ -2186,14 +2211,58 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
 expr_stmt|;
-comment|//Otherwise, build it
 block|}
-else|else
+comment|//Otherwise, build it
+if|if
+condition|(
+name|geometry
+operator|==
+literal|null
+condition|)
 block|{
+name|targetSRS
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry
 operator|=
 name|indexWorker
@@ -2205,37 +2274,20 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName = ((Element)geometryNode).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|geometry
 operator|==
 literal|null
 condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
-block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+throw|;
 name|geometry
 operator|=
 name|geometry
@@ -2243,7 +2295,6 @@ operator|.
 name|getBoundary
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 else|else
@@ -2407,25 +2458,6 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry1
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode1
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 name|srsName1
 operator|=
 name|indexWorker
@@ -2447,6 +2479,25 @@ argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
+expr_stmt|;
+name|geometry1
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode1
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
 name|hasUsedIndex
 operator|=
@@ -2465,25 +2516,6 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-name|geometry2
-operator|=
-name|indexWorker
-operator|.
-name|getGeometryForNode
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-operator|(
-name|NodeProxy
-operator|)
-name|geometryNode2
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 name|srsName2
 operator|=
 name|indexWorker
@@ -2506,6 +2538,25 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+name|geometry2
+operator|=
+name|indexWorker
+operator|.
+name|getGeometryForNode
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+operator|(
+name|NodeProxy
+operator|)
+name|geometryNode2
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|hasUsedIndex
 operator|=
 literal|true
@@ -2519,6 +2570,26 @@ operator|==
 literal|null
 condition|)
 block|{
+name|srsName1
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode1
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry1
 operator|=
 name|indexWorker
@@ -2530,13 +2601,6 @@ argument_list|,
 name|geometryNode1
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName1 = ((Element)geometryNode1).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName1
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
 if|if
 condition|(
@@ -2545,6 +2609,26 @@ operator|==
 literal|null
 condition|)
 block|{
+name|srsName2
+operator|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|geometryNode2
+operator|.
+name|getNode
+argument_list|()
+operator|)
+operator|.
+name|getAttribute
+argument_list|(
+literal|"srsName"
+argument_list|)
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|geometry2
 operator|=
 name|indexWorker
@@ -2556,42 +2640,34 @@ argument_list|,
 name|geometryNode2
 argument_list|)
 expr_stmt|;
-comment|//Argl ! No SRS !
-comment|//srsName2 = ((Element)geometryNode2).getAttribute("srsName").trim();
-comment|//Erroneous workaround
-name|srsName2
-operator|=
-literal|"osgb:BNG"
-expr_stmt|;
 block|}
-comment|//Provisional workaround : Geotools sometimes returns null geometries
-comment|//due to a too strict check.
-comment|//I can't see a way to return something useful in such a case
 if|if
 condition|(
 name|geometry1
 operator|==
 literal|null
-operator|||
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the first node"
+argument_list|)
+throw|;
+if|if
+condition|(
 name|geometry2
 operator|==
 literal|null
 condition|)
-block|{
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-name|hasUsedIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//Transform the second geometry if necessary
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a geometry from the second node"
+argument_list|)
+throw|;
+comment|//Transform the second geometry in the SRS of the first one if necessary
 if|if
 condition|(
 operator|!
@@ -2689,7 +2765,10 @@ name|geometry2
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+name|targetSRS
+operator|=
+name|srsName1
+expr_stmt|;
 block|}
 block|}
 if|if
@@ -2765,7 +2844,7 @@ name|streamGeometryToElement
 argument_list|(
 name|geometry
 argument_list|,
-name|srsName
+name|targetSRS
 argument_list|,
 name|receiver
 argument_list|)
