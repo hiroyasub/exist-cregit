@@ -1033,7 +1033,7 @@ argument_list|()
 decl_stmt|;
 specifier|protected
 name|GeometryTransformer
-name|gmltransformer
+name|gmlTransformer
 init|=
 operator|new
 name|GeometryTransformer
@@ -3354,10 +3354,10 @@ comment|//TODO : find a way to pass
 comment|//1) the SRS
 comment|//2) gmlPrefix
 comment|//3) other stuff...
-comment|//This willr equire some changes in GeometryTransformer
+comment|//This will possible require some changes in GeometryTransformer
 name|gmlString
 operator|=
-name|gmltransformer
+name|gmlTransformer
 operator|.
 name|transform
 argument_list|(
