@@ -493,7 +493,7 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<gml flushAfter='200'/>"
+literal|"<gml/>"
 operator|+
 literal|"</index>"
 operator|+
@@ -2206,7 +2206,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:GMLtoWKT(//gml:Polygon[1])"
+literal|"spatial:getWKT(//gml:Polygon[1])"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -2528,6 +2528,46 @@ operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
 literal|"spatial:getArea(//gml:Polygon[1])"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:getEPSG4326WKT(//gml:Polygon[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -3088,7 +3128,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:GMLtoWKT(())"
+literal|"spatial:getWKT(())"
 expr_stmt|;
 name|seq
 operator|=
@@ -3169,7 +3209,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:GMLtoWKT("
+literal|"spatial:getWKT("
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -3522,6 +3562,50 @@ operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
 literal|"spatial:getArea("
+operator|+
+name|IN_MEMORY_GML
+operator|+
+literal|")"
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
+operator|+
+literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+operator|+
+literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
+operator|+
+literal|"spatial:getEPSG4326WKT("
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -4270,11 +4354,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:WKTtoGML('"
-operator|+
-name|WKT_POLYGON
-operator|+
-literal|"', 'EPSG:4326')"
+literal|"spatial:getWKT(//gml:Polygon[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4715,7 +4795,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:GMLtoWKT(())"
+literal|"spatial:getWKT(())"
 expr_stmt|;
 name|seq
 operator|=
