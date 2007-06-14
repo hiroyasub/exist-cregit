@@ -132,6 +132,14 @@ condition|(
 name|param
 operator|!=
 literal|null
+operator|&&
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|param
+argument_list|)
 condition|)
 block|{
 try|try
@@ -154,7 +162,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|info
 argument_list|(
 literal|"Invalid value for '"
 operator|+
