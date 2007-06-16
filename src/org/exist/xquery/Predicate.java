@@ -1670,6 +1670,8 @@ operator|.
 name|isValid
 argument_list|(
 name|contextSequence
+argument_list|,
+literal|null
 argument_list|)
 operator|&&
 name|nodes
@@ -1902,6 +1904,8 @@ operator|(
 name|NodeSet
 operator|)
 name|contextSequence
+argument_list|,
+literal|null
 argument_list|,
 name|result
 argument_list|)

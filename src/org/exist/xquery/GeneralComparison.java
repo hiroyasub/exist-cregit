@@ -1720,6 +1720,8 @@ operator|.
 name|isValid
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 condition|)
 block|{
@@ -2015,6 +2017,8 @@ operator|(
 name|NodeSet
 operator|)
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|,
 name|result
 argument_list|)
