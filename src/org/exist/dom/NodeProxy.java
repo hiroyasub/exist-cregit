@@ -1922,6 +1922,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+comment|//TODO : return Type.DOCUMENT for somein-memory nodes :
+comment|//http://sourceforge.net/tracker/index.php?func=detail&aid=1730690&group_id=17691&atid=117691
+comment|//Ideally compute this when proxy is constructed
 return|return
 name|Type
 operator|.
