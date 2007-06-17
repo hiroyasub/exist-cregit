@@ -11559,7 +11559,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestOrderCompareAtomicType_1733265
+name|testOrderCompareAtomicType_1733265
 parameter_list|()
 block|{
 try|try

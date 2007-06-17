@@ -1574,6 +1574,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|other
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
 comment|//A value of type xs:anyURI (or any type derived by restriction from xs:anyURI)
 comment|//can be promoted to the type xs:string.
 comment|//The result of this promotion is created by casting the original value to the type xs:string.
