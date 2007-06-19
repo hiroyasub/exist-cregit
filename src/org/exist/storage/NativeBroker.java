@@ -7905,6 +7905,8 @@ name|MODE_STORE
 condition|)
 name|dropCollectionIndex
 argument_list|(
+name|transaction
+argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
@@ -8028,6 +8030,10 @@ specifier|public
 name|void
 name|dropCollectionIndex
 parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
@@ -8179,6 +8185,8 @@ name|domDb
 operator|.
 name|remove
 argument_list|(
+name|transaction
+argument_list|,
 name|query
 argument_list|,
 literal|null
