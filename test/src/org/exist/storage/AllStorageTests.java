@@ -51,6 +51,10 @@ operator|.
 name|SuiteClasses
 argument_list|(
 block|{
+name|RemoveCollectionTest
+operator|.
+name|class
+block|,
 name|ReindexTest
 operator|.
 name|class
@@ -84,10 +88,6 @@ operator|.
 name|class
 block|,
 name|RecoveryTest
-operator|.
-name|class
-block|,
-name|RemoveCollectionTest
 operator|.
 name|class
 block|,

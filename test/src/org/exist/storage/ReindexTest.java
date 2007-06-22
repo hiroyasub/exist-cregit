@@ -278,9 +278,30 @@ name|directory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Store some documents, reindex the collection and crash without commit.      */
 annotation|@
 name|Test
+specifier|public
+name|void
+name|runTests
+parameter_list|()
+block|{
+name|storeDocuments
+argument_list|()
+expr_stmt|;
+name|closeDB
+argument_list|()
+expr_stmt|;
+name|removeCollection
+argument_list|()
+expr_stmt|;
+name|closeDB
+argument_list|()
+expr_stmt|;
+name|restart
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**      * Store some documents, reindex the collection and crash without commit.      */
 specifier|public
 name|void
 name|storeDocuments
@@ -648,8 +669,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Recover, remove the collection, then crash after commit.      */
-annotation|@
-name|Test
 specifier|public
 name|void
 name|removeCollection
@@ -790,6 +809,16 @@ argument_list|)
 expr_stmt|;
 name|transact
 operator|.
+name|getJournal
+argument_list|()
+operator|.
+name|flushToLog
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|transact
+operator|.
 name|commit
 argument_list|(
 name|transaction
@@ -837,8 +866,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Just recover.      */
-annotation|@
-name|Test
 specifier|public
 name|void
 name|restart
