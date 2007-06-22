@@ -5754,7 +5754,7 @@ name|domDb
 operator|.
 name|remove
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|query
 argument_list|,
@@ -5875,7 +5875,7 @@ name|domDb
 operator|.
 name|removeOverflowValue
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|page
 argument_list|)
@@ -5899,7 +5899,7 @@ name|domDb
 operator|.
 name|removeAll
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|node
 operator|.
@@ -8536,7 +8536,7 @@ name|DOMIndexer
 argument_list|(
 name|this
 argument_list|,
-literal|null
+name|transaction
 argument_list|,
 name|doc
 argument_list|,
@@ -8559,7 +8559,7 @@ name|temp
 operator|.
 name|addDocument
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|this
 argument_list|,
@@ -8569,7 +8569,7 @@ expr_stmt|;
 comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|storeXMLResource
 argument_list|(
-literal|null
+name|transaction
 argument_list|,
 name|targetDoc
 argument_list|)
