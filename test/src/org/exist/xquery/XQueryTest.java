@@ -12345,6 +12345,108 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=1740886
+specifier|public
+name|void
+name|bugtestCardinalityIssues_1740886
+parameter_list|()
+block|{
+name|String
+name|xmldoc
+init|=
+literal|"<Foo><Bar/><Bar/><Bar/></Foo>"
+decl_stmt|;
+name|String
+name|query
+init|=
+literal|"declare namespace tst = \"urn:test\"; "
+operator|+
+comment|//======
+literal|"declare function tst:bar( $foo as element(Foo) ) as element(Foo) { "
+operator|+
+literal|"let $dummy := $foo/Bar "
+operator|+
+literal|"return $foo }; "
+operator|+
+comment|//====== if you leave /test out......
+literal|"let $foo := doc(\"/db/test/foo.xml\")/element() "
+operator|+
+literal|"return tst:bar($foo)"
+decl_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+literal|"foo.xml"
+argument_list|,
+name|xmldoc
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Oops"
+argument_list|,
+name|xmldoc
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// ======================================
 comment|/** 	 * @return 	 * @throws XMLDBException 	 */
 specifier|private
