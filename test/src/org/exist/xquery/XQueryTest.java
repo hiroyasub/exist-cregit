@@ -11855,6 +11855,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=1740880
 specifier|public
 name|void
 name|bugtestElementConstructionWithNamespace_1740880
@@ -11933,6 +11934,80 @@ argument_list|(
 name|ex
 operator|.
 name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=1740883
+specifier|public
+name|void
+name|bugtestNoErrorNeOperatorWithSequence_1740883
+parameter_list|()
+block|{
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"let $foo :=<Foo><Bar>A</Bar><Bar>B</Bar><Bar>C</Bar></Foo> "
+operator|+
+literal|"return $foo[Bar ne \"B\"]"
+decl_stmt|;
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"result should have yielded into an error like "
+operator|+
+literal|"'A sequence of more than one item is not allowed as the first "
+operator|+
+literal|"operand of 'ne'"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+comment|// TODO add real test criterium
+name|fail
+argument_list|(
+literal|"To be removed"
+operator|+
+name|ex
+operator|.
+name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
