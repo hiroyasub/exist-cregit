@@ -34,7 +34,7 @@ literal|false
 decl_stmt|;
 specifier|private
 specifier|final
-name|Object
+name|Thread
 name|owner
 decl_stmt|;
 specifier|private
@@ -46,7 +46,7 @@ decl_stmt|;
 specifier|public
 name|LockOwner
 parameter_list|(
-name|Object
+name|Thread
 name|owner
 parameter_list|)
 block|{
@@ -74,7 +74,7 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|final
-name|Object
+name|Thread
 name|getOwner
 parameter_list|()
 block|{

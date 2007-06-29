@@ -21,17 +21,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
+name|*
 import|;
 end_import
 
@@ -56,18 +46,6 @@ operator|.
 name|util
 operator|.
 name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentImpl
 import|;
 end_import
 
@@ -235,8 +213,8 @@ throws|throws
 name|LockException
 block|{
 specifier|final
-name|Object
-name|owner
+name|Thread
+name|thisThread
 init|=
 name|Thread
 operator|.
@@ -247,7 +225,7 @@ if|if
 condition|(
 name|writeLockedThread
 operator|==
-name|owner
+name|thisThread
 condition|)
 block|{
 comment|// add acquired lock to the current list of read locks
@@ -258,7 +236,7 @@ argument_list|(
 operator|new
 name|LockOwner
 argument_list|(
-name|owner
+name|thisThread
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -269,6 +247,38 @@ block|}
 name|waitingForReadLock
 operator|++
 expr_stmt|;
+name|deadlockCheck
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|writeLockedThread
+operator|!=
+literal|null
+condition|)
+block|{
+name|WaitingThread
+name|waiter
+init|=
+operator|new
+name|WaitingThread
+argument_list|(
+name|thisThread
+argument_list|,
+name|this
+argument_list|,
+name|this
+argument_list|)
+decl_stmt|;
+name|DeadlockDetection
+operator|.
+name|addResourceWaiter
+argument_list|(
+name|thisThread
+argument_list|,
+name|waiter
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|writeLockedThread
@@ -277,29 +287,20 @@ literal|null
 condition|)
 block|{
 comment|//            LOG.debug("readLock wait");
-try|try
-block|{
-name|wait
+name|waiter
+operator|.
+name|doWait
+argument_list|()
+expr_stmt|;
+comment|//            LOG.debug("wake up from readLock wait");
+block|}
+name|DeadlockDetection
+operator|.
+name|clearResourceWaiter
 argument_list|(
-literal|100
+name|thisThread
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|LockException
-argument_list|(
-literal|"Interrupted while waiting for read lock"
-argument_list|)
-throw|;
-block|}
-comment|//            LOG.debug("wake up from readLock wait");
 block|}
 comment|//        LOG.debug("readLock acquired by thread: " + Thread.currentThread().getName());
 name|waitingForReadLock
@@ -313,7 +314,7 @@ argument_list|(
 operator|new
 name|LockOwner
 argument_list|(
-name|owner
+name|thisThread
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -337,11 +338,28 @@ operator|.
 name|currentThread
 argument_list|()
 decl_stmt|;
+name|WaitingThread
+name|waiter
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
+if|if
+condition|(
+name|writeLockedThread
+operator|==
+name|thisThread
+condition|)
+block|{
+name|outstandingWriteLocks
+operator|++
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 name|writeLockedThread
@@ -381,18 +399,49 @@ argument_list|(
 literal|3
 argument_list|)
 expr_stmt|;
+name|waiter
+operator|=
+operator|new
+name|WaitingThread
+argument_list|(
+name|thisThread
+argument_list|,
+name|thisThread
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
 name|waitingForWriteLock
 operator|.
 name|add
 argument_list|(
-name|thisThread
+name|waiter
 argument_list|)
+expr_stmt|;
+name|DeadlockDetection
+operator|.
+name|addResourceWaiter
+argument_list|(
+name|thisThread
+argument_list|,
+name|waiter
+argument_list|)
+expr_stmt|;
+name|deadlockCheck
+argument_list|()
 expr_stmt|;
 block|}
 synchronized|synchronized
 init|(
 name|thisThread
 init|)
+block|{
+if|if
+condition|(
+name|thisThread
+operator|!=
+name|writeLockedThread
+condition|)
 block|{
 while|while
 condition|(
@@ -416,6 +465,21 @@ literal|"writeLock wait on "
 operator|+
 name|hashCode
 argument_list|()
+operator|+
+literal|". held by "
+operator|+
+operator|(
+name|writeLockedThread
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
+name|writeLockedThread
+operator|.
+name|getName
+argument_list|()
+operator|)
 operator|+
 literal|". outstanding: "
 operator|+
@@ -462,7 +526,7 @@ name|append
 argument_list|(
 operator|(
 operator|(
-name|Thread
+name|WaitingThread
 operator|)
 name|waitingForWriteLock
 operator|.
@@ -471,6 +535,9 @@ argument_list|(
 name|i
 argument_list|)
 operator|)
+operator|.
+name|getThread
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -493,43 +560,31 @@ literal|"WAIT"
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-comment|// set this so if there is an error the app will not
-comment|// completely die!
-name|thisThread
+name|waiter
 operator|.
-name|wait
+name|doWait
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|LockException
-argument_list|(
-literal|"Interrupted"
-argument_list|)
-throw|;
-block|}
-comment|//                log.debug( "wake up from writeLock wait" );
 block|}
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
 comment|//testing
-comment|//            log.debug( "writeLock acquired " + writeLockedThread.getName());
+comment|//            LOG.debug( "writeLock acquired by " + writeLockedThread.getName());
 block|}
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
+name|DeadlockDetection
+operator|.
+name|clearResourceWaiter
+argument_list|(
+name|thisThread
+argument_list|)
+expr_stmt|;
 name|int
 name|i
 init|=
@@ -537,7 +592,7 @@ name|waitingForWriteLock
 operator|.
 name|indexOf
 argument_list|(
-name|thisThread
+name|waiter
 argument_list|)
 decl_stmt|;
 name|waitingForWriteLock
@@ -585,7 +640,9 @@ operator|.
 name|WRITE_LOCK
 case|:
 name|releaseWrite
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 break|break;
 default|default:
@@ -619,7 +676,9 @@ operator|.
 name|WRITE_LOCK
 case|:
 name|releaseWrite
-argument_list|()
+argument_list|(
+name|count
+argument_list|)
 expr_stmt|;
 break|break;
 default|default:
@@ -635,7 +694,10 @@ specifier|private
 specifier|synchronized
 name|void
 name|releaseWrite
-parameter_list|()
+parameter_list|(
+name|int
+name|count
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -655,7 +717,8 @@ operator|>
 literal|0
 condition|)
 name|outstandingWriteLocks
-operator|--
+operator|-=
+name|count
 expr_stmt|;
 comment|//            else {
 comment|//                LOG.info("extra lock release, writelocks are " + outstandingWriteLocks + "and done was called");
@@ -679,10 +742,11 @@ name|grantWriteLockAfterRead
 argument_list|()
 condition|)
 block|{
-name|writeLockedThread
-operator|=
+name|WaitingThread
+name|waiter
+init|=
 operator|(
-name|Thread
+name|WaitingThread
 operator|)
 name|waitingForWriteLock
 operator|.
@@ -690,6 +754,13 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+decl_stmt|;
+name|writeLockedThread
+operator|=
+name|waiter
+operator|.
+name|getThread
+argument_list|()
 expr_stmt|;
 comment|//                if (LOG.isDebugEnabled()) {
 comment|//                    LOG.debug("writeLock released and before notifying a write lock waiting thread " + writeLockedThread);
@@ -706,7 +777,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//                if (LOG.isDebugEnabled()) {
-comment|//                    LOG.debug("writeLock released and after notifying a write lock waiting thread " + writeLockedThread);
+comment|//                    LOG.debug("writeLock released by " + Thread.currentThread().getName() +
+comment|//                            " after notifying a write lock waiting thread " + writeLockedThread.getName());
 comment|//                }
 block|}
 else|else
@@ -722,7 +794,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//                    LOG.debug("writeLock released, notified waiting readers");
+comment|//                    LOG.debug("writeLock " + Thread.currentThread().getName() + " released, notified waiting readers");
 comment|// wake up pending read locks
 name|notifyAll
 argument_list|()
@@ -794,10 +866,11 @@ name|grantWriteLockAfterRead
 argument_list|()
 condition|)
 block|{
-name|writeLockedThread
-operator|=
+name|WaitingThread
+name|waiter
+init|=
 operator|(
-name|Thread
+name|WaitingThread
 operator|)
 name|waitingForWriteLock
 operator|.
@@ -805,6 +878,13 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+decl_stmt|;
+name|writeLockedThread
+operator|=
+name|waiter
+operator|.
+name|getThread
+argument_list|()
 expr_stmt|;
 comment|//                if (LOG.isDebugEnabled()) {
 comment|//                    LOG.debug("readLock released and before notifying a write lock waiting thread " + writeLockedThread);
@@ -1056,7 +1136,80 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Check if a write lock can be granted, either because there are no      * read locks or the read lock belongs to the current thread and can be      * upgraded.      *      * @return true if the write lock can be granted      */
+specifier|private
+name|void
+name|deadlockCheck
+parameter_list|()
+block|{
+specifier|final
+name|int
+name|size
+init|=
+name|outstandingReadLocks
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
+name|LockOwner
+name|next
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|size
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|next
+operator|=
+operator|(
+name|LockOwner
+operator|)
+name|outstandingReadLocks
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+name|Lock
+name|lock
+init|=
+name|DeadlockDetection
+operator|.
+name|isWaitingFor
+argument_list|(
+name|next
+operator|.
+name|getOwner
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lock
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//                LOG.debug("Checking for deadlock...");
+name|lock
+operator|.
+name|wakeUp
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/**      * Check if a write lock can be granted, either because there are no      * read locks, the read lock belongs to the current thread and can be      * upgraded or the thread which holds the lock is blocked by another      * lock held by the current thread.      *      * @return true if the write lock can be granted      */
 specifier|private
 name|boolean
 name|grantWriteLock
@@ -1091,6 +1244,7 @@ decl_stmt|;
 name|LockOwner
 name|next
 decl_stmt|;
+comment|// walk through outstanding read locks
 for|for
 control|(
 name|int
@@ -1118,6 +1272,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+comment|// if the read lock is owned by the current thread, all is ok and we continue
 if|if
 condition|(
 name|next
@@ -1127,9 +1282,31 @@ argument_list|()
 operator|!=
 name|waiter
 condition|)
+block|{
+comment|// otherwise, check if the lock belongs to a thread which is currently blocked
+comment|// by a lock owned by the current thread. if yes, it will be safe to grant the
+comment|// write lock: the other thread will be blocked anyway.
+if|if
+condition|(
+operator|!
+name|DeadlockDetection
+operator|.
+name|isBlockedBy
+argument_list|(
+name|waiter
+argument_list|,
+name|next
+operator|.
+name|getOwner
+argument_list|()
+argument_list|)
+condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+block|}
 block|}
 return|return
 literal|true
@@ -1174,12 +1351,11 @@ literal|0
 condition|)
 block|{
 comment|// grant lock if all read locks are held by the write thread
-specifier|final
-name|Thread
-name|waitingWrite
+name|WaitingThread
+name|waiter
 init|=
 operator|(
-name|Thread
+name|WaitingThread
 operator|)
 name|waitingForWriteLock
 operator|.
@@ -1191,7 +1367,10 @@ decl_stmt|;
 return|return
 name|isCompatible
 argument_list|(
-name|waitingWrite
+name|waiter
+operator|.
+name|getThread
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1203,6 +1382,96 @@ block|}
 return|return
 literal|false
 return|;
+block|}
+comment|/**      * Check if the specified thread has a read lock on the resource.      *      * @param owner the thread      * @return true if owner has a read lock      */
+specifier|private
+name|boolean
+name|hasReadLock
+parameter_list|(
+name|Thread
+name|owner
+parameter_list|)
+block|{
+name|LockOwner
+name|next
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|outstandingReadLocks
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|next
+operator|=
+operator|(
+name|LockOwner
+operator|)
+name|outstandingReadLocks
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|next
+operator|.
+name|getOwner
+argument_list|()
+operator|==
+name|owner
+condition|)
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+comment|/**      * Check if the specified thread holds either a write or a read lock      * on the resource.      *      * @param owner the thread      * @return true if owner has a lock      */
+specifier|public
+name|boolean
+name|hasLock
+parameter_list|(
+name|Thread
+name|owner
+parameter_list|)
+block|{
+if|if
+condition|(
+name|writeLockedThread
+operator|==
+name|owner
+condition|)
+return|return
+literal|true
+return|;
+return|return
+name|hasReadLock
+argument_list|(
+name|owner
+argument_list|)
+return|;
+block|}
+specifier|public
+name|void
+name|wakeUp
+parameter_list|()
+block|{
 block|}
 comment|/**      * Check if the pending request for a write lock is compatible      * with existing read locks and other write requests. A lock request is      * compatible with another lock request if: (a) it belongs to the same thread,      * (b) it belongs to a different thread, but this thread is also waiting for a write lock.      *      * @param waiting      * @return true if the lock request is compatible with all other requests and the      * lock can be granted.      */
 specifier|private
@@ -1246,6 +1515,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+comment|// if the read lock is owned by the current thread, all is ok and we continue
 if|if
 condition|(
 name|next
@@ -1254,27 +1524,32 @@ name|getOwner
 argument_list|()
 operator|!=
 name|waiting
-operator|&&
-operator|(
-name|waitingForWriteLock
-operator|==
-literal|null
-operator|||
+condition|)
+block|{
+comment|// otherwise, check if the lock belongs to a thread which is currently blocked
+comment|// by a lock owned by the current thread. if yes, it will be safe to grant the
+comment|// write lock: the other thread will be blocked anyway.
+if|if
+condition|(
 operator|!
-name|waitingForWriteLock
+name|DeadlockDetection
 operator|.
-name|contains
+name|isBlockedBy
 argument_list|(
+name|waiting
+argument_list|,
 name|next
 operator|.
 name|getOwner
 argument_list|()
 argument_list|)
-operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+block|}
 block|}
 return|return
 literal|true

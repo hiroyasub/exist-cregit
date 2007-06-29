@@ -286,16 +286,14 @@ parameter_list|)
 block|{
 name|Lock
 name|dlock
-decl_stmt|;
-name|dlock
-operator|=
+init|=
 name|d
 operator|.
 name|document
 operator|.
 name|getUpdateLock
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|dlock
 operator|.
 name|release
@@ -312,37 +310,9 @@ expr_stmt|;
 comment|//        for (int i = 0; i< d.locksAcquired; i++) {
 comment|//            dlock.release(Lock.READ_LOCK);
 comment|//        }
-if|if
-condition|(
-name|dlock
-operator|.
-name|isLockedForRead
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Thread is still LOCKED: "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        if (dlock.isLockedForRead(Thread.currentThread())) {
+comment|//            System.out.println("Thread is still LOCKED: " + Thread.currentThread().getName());
+comment|//        }
 block|}
 specifier|private
 specifier|static

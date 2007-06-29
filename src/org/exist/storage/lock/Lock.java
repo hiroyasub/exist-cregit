@@ -120,9 +120,25 @@ name|Thread
 name|owner
 parameter_list|)
 function_decl|;
+comment|/**      * Check if the lock is currently locked by someone.      *      * @return true if there's an active read or write lock      */
 specifier|public
 name|boolean
 name|hasLock
+parameter_list|()
+function_decl|;
+comment|/**      * Check if the specified thread holds either a write or a read lock      * on the resource.      *      * @param owner the thread      * @return true if owner has a lock      */
+specifier|public
+name|boolean
+name|hasLock
+parameter_list|(
+name|Thread
+name|owner
+parameter_list|)
+function_decl|;
+comment|/**      * Wake up waiting threads and recompute dependencies.      * Currently used to rerun deadlock detection.      */
+specifier|public
+name|void
+name|wakeUp
 parameter_list|()
 function_decl|;
 block|}
