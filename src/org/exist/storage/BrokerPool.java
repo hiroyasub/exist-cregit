@@ -4826,10 +4826,6 @@ name|notificationService
 operator|=
 literal|null
 expr_stmt|;
-name|status
-operator|=
-name|OPERATING
-expr_stmt|;
 block|}
 comment|//TODO : move this elsewhere
 specifier|public
