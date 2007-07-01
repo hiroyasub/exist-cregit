@@ -288,11 +288,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resolving '"
+literal|"Resolving publicId='"
 operator|+
 name|publicId
 operator|+
-literal|"','"
+literal|"', systemId='"
 operator|+
 name|systemId
 operator|+
@@ -380,23 +380,23 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resolving '"
+literal|"Resolving type='"
 operator|+
 name|type
 operator|+
-literal|"','"
+literal|"', namespaceURI='"
 operator|+
 name|namespaceURI
 operator|+
-literal|"','"
+literal|"', publicId='"
 operator|+
 name|publicId
 operator|+
-literal|"','"
+literal|"', systemId='"
 operator|+
 name|systemId
 operator|+
-literal|"','"
+literal|"', baseURI='"
 operator|+
 name|baseURI
 operator|+
@@ -500,19 +500,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resolving '"
+literal|"Resolving name='"
 operator|+
 name|name
 operator|+
-literal|"','"
+literal|"', publicId='"
 operator|+
 name|publicId
 operator|+
-literal|"','"
+literal|"', baseURI='"
 operator|+
 name|baseURI
 operator|+
-literal|"','"
+literal|"', systemId='"
 operator|+
 name|systemId
 operator|+
@@ -641,7 +641,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resolving '"
+literal|"Resolving XMLResourceIdentifier='"
 operator|+
 name|xri
 operator|.
@@ -757,7 +757,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resolving '"
+literal|"Resolving XMLResourceIdentifier='"
 operator|+
 name|xri
 operator|.

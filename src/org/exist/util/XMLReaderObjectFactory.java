@@ -253,7 +253,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|FEATURE_SCHEMA
+name|FEATURES_VALIDATION_SCHEMA
 init|=
 literal|"http://apache.org/xml/features/validation/schema"
 decl_stmt|;
@@ -261,7 +261,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTIES_GRAMMARPOOL
+name|PROPERTIES_INTERNAL_GRAMMARPOOL
 init|=
 literal|"http://apache.org/xml/properties/internal/grammar-pool"
 decl_stmt|;
@@ -277,7 +277,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 init|=
 literal|"http://apache.org/xml/properties/internal/entity-resolver"
 decl_stmt|;
@@ -467,21 +467,6 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://apache.org/xml/features/nonvalidating/load-external-dtd"
-argument_list|,
-name|validation
-operator|==
-name|VALIDATION_AUTO
-operator|||
-name|validation
-operator|==
-name|VALIDATION_ENABLED
-argument_list|)
-expr_stmt|;
-name|saxFactory
-operator|.
-name|setFeature
-argument_list|(
 name|Namespaces
 operator|.
 name|SAX_VALIDATION_DYNAMIC
@@ -495,7 +480,7 @@ name|saxFactory
 operator|.
 name|setFeature
 argument_list|(
-literal|"http://apache.org/xml/features/validation/schema"
+name|FEATURES_VALIDATION_SCHEMA
 argument_list|,
 name|validation
 operator|==
@@ -506,6 +491,23 @@ operator|==
 name|VALIDATION_ENABLED
 argument_list|)
 expr_stmt|;
+name|saxFactory
+operator|.
+name|setFeature
+argument_list|(
+name|PROPERTIES_LOAD_EXT_DTD
+argument_list|,
+name|validation
+operator|==
+name|VALIDATION_AUTO
+operator|||
+name|validation
+operator|==
+name|VALIDATION_ENABLED
+argument_list|)
+expr_stmt|;
+comment|// Attempt to make validation function equal to inser mode
+comment|//saxFactory.setFeature(Namespaces.SAX_NAMESPACES_PREFIXES, true);
 block|}
 catch|catch
 parameter_list|(
@@ -566,7 +568,7 @@ name|sax
 operator|.
 name|setProperty
 argument_list|(
-name|PROPERTIES_GRAMMARPOOL
+name|PROPERTIES_INTERNAL_GRAMMARPOOL
 argument_list|,
 name|grammarPool
 argument_list|)
@@ -596,7 +598,7 @@ name|parser
 operator|.
 name|setProperty
 argument_list|(
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)

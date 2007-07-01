@@ -433,7 +433,7 @@ name|setFeature
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|FEATURE_SCHEMA
+name|FEATURES_VALIDATION_SCHEMA
 argument_list|,
 literal|true
 argument_list|)
@@ -621,7 +621,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_GRAMMARPOOL
+name|PROPERTIES_INTERNAL_GRAMMARPOOL
 argument_list|,
 name|grammarPool
 argument_list|)
@@ -692,7 +692,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -745,7 +745,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -790,7 +790,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -827,7 +827,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_RESOLVER
+name|PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
