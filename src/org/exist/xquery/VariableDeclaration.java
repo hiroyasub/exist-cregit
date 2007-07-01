@@ -103,6 +103,11 @@ decl_stmt|;
 name|Expression
 name|expression
 decl_stmt|;
+name|boolean
+name|analyzeDone
+init|=
+literal|false
+decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|VariableDeclaration
@@ -199,6 +204,12 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|analyzeDone
+condition|)
+block|{
 name|Module
 name|myModule
 init|=
@@ -220,9 +231,29 @@ literal|null
 condition|)
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
-comment|//            if (myModule.isVarDeclared(qn))
-comment|//                throw new XPathException(getASTNode(), "err:XQST0049: It is a static error if more than one " +
-comment|//                    "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
+if|if
+condition|(
+name|myModule
+operator|.
+name|isVarDeclared
+argument_list|(
+name|qn
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"err:XQST0049: It is a static error if more than one "
+operator|+
+literal|"variable declared or imported by a module has the same expanded QName. Variable: "
+operator|+
+name|qn
+argument_list|)
+throw|;
 name|myModule
 operator|.
 name|declareVariable
@@ -234,16 +265,42 @@ block|}
 else|else
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
-comment|//            if(context.isVarDeclared(qn)) {
-comment|//                throw new XPathException(getASTNode(), "err:XQST0049: It is a static error if more than one " +
-comment|//                        "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
-comment|//            }
+if|if
+condition|(
+name|context
+operator|.
+name|isVarDeclared
+argument_list|(
+name|qn
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"err:XQST0049: It is a static error if more than one "
+operator|+
+literal|"variable declared or imported by a module has the same expanded QName. Variable: "
+operator|+
+name|qn
+argument_list|)
+throw|;
+block|}
 name|context
 operator|.
 name|declareGlobalVariable
 argument_list|(
 name|var
 argument_list|)
+expr_stmt|;
+block|}
+name|analyzeDone
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|expression
@@ -745,6 +802,10 @@ name|expression
 operator|.
 name|resetState
 argument_list|()
+expr_stmt|;
+name|analyzeDone
+operator|=
+literal|false
 expr_stmt|;
 block|}
 block|}
