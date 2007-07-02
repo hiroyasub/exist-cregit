@@ -526,7 +526,7 @@ block|{
 comment|// ignore: feature only recognized by xerces
 block|}
 name|SAXParser
-name|sax
+name|saxParser
 init|=
 name|saxFactory
 operator|.
@@ -534,9 +534,9 @@ name|newSAXParser
 argument_list|()
 decl_stmt|;
 name|XMLReader
-name|parser
+name|xmlReader
 init|=
-name|sax
+name|saxParser
 operator|.
 name|getXMLReader
 argument_list|()
@@ -564,7 +564,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|sax
+name|saxParser
 operator|.
 name|setProperty
 argument_list|(
@@ -594,7 +594,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|parser
+name|xmlReader
 operator|.
 name|setProperty
 argument_list|(
@@ -605,7 +605,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|parser
+name|xmlReader
 return|;
 block|}
 catch|catch
