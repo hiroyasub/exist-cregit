@@ -794,7 +794,7 @@ name|get
 argument_list|(
 name|proxy
 argument_list|)
-operator|==
+operator|!=
 literal|null
 expr_stmt|;
 block|}

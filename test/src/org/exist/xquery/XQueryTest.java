@@ -12766,7 +12766,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740886
 specifier|public
 name|void
-name|bugtestCardinalityIssues_1740886
+name|testCardinalityIssues_1740886
 parameter_list|()
 block|{
 name|String
@@ -12777,6 +12777,8 @@ decl_stmt|;
 name|String
 name|query
 init|=
+literal|"declare option exist:serialize 'indent=no';"
+operator|+
 literal|"declare namespace tst = \"urn:test\"; "
 operator|+
 comment|//======
@@ -12823,7 +12825,7 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertXMLEqual
 argument_list|(
 literal|"Oops"
 argument_list|,
@@ -12846,7 +12848,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
+name|Exception
 name|ex
 parameter_list|)
 block|{
