@@ -1149,6 +1149,7 @@ name|MemTreeBuilder
 name|builder
 parameter_list|)
 block|{
+comment|// start root element
 name|int
 name|nodeNr
 init|=
@@ -1165,6 +1166,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+comment|// validation status: valid or invalid
 name|builder
 operator|.
 name|startElement
@@ -1209,6 +1211,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+comment|// validation duration
 name|builder
 operator|.
 name|startElement
@@ -1239,6 +1242,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+comment|// print exceptions if any
 if|if
 condition|(
 name|report
@@ -1283,6 +1287,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+comment|// reusable attributes
 name|AttributesImpl
 name|attribs
 init|=
@@ -1290,6 +1295,7 @@ operator|new
 name|AttributesImpl
 argument_list|()
 decl_stmt|;
+comment|// iterate validation report items, write message
 name|List
 name|cr
 init|=
@@ -1326,14 +1332,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|String
-name|level
-init|=
-name|vri
-operator|.
-name|getTypeText
-argument_list|()
-decl_stmt|;
+comment|// construct attributes
 name|attribs
 operator|.
 name|addAttribute
@@ -1346,7 +1345,10 @@ literal|"level"
 argument_list|,
 literal|"CDATA"
 argument_list|,
-name|level
+name|vri
+operator|.
+name|getTypeText
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attribs
@@ -1395,6 +1397,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// write message
 name|builder
 operator|.
 name|startElement
@@ -1423,17 +1426,20 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+comment|// Reuse attributes
 name|attribs
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|// finish root element
 name|builder
 operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+comment|// return result
 return|return
 operator|(
 operator|(
