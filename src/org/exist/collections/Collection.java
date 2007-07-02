@@ -6961,7 +6961,21 @@ throws|,
 name|IOException
 block|{
 comment|// TODO dizzzz remove later on
-comment|// LOG.debug("Resolve publicId='"+publicId+"', systemId='"+systemId+"'.");
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Resolve publicId='"
+operator|+
+name|publicId
+operator|+
+literal|"', systemId='"
+operator|+
+name|systemId
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 name|InputSource
 name|is
 init|=
