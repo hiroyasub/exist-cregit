@@ -608,14 +608,14 @@ name|reader
 argument_list|)
 decl_stmt|;
 name|SAXParser
-name|sax
+name|saxParser
 init|=
 name|saxFactory
 operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
-name|sax
+name|saxParser
 operator|.
 name|setProperty
 argument_list|(
@@ -629,7 +629,7 @@ expr_stmt|;
 name|XMLReader
 name|xmlReader
 init|=
-name|sax
+name|saxParser
 operator|.
 name|getXMLReader
 argument_list|()

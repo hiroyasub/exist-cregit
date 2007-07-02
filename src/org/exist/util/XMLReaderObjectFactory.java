@@ -533,14 +533,6 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
-name|XMLReader
-name|xmlReader
-init|=
-name|saxParser
-operator|.
-name|getXMLReader
-argument_list|()
-decl_stmt|;
 comment|// Setup grammar cache
 name|GrammarPool
 name|grammarPool
@@ -574,6 +566,15 @@ name|grammarPool
 argument_list|)
 expr_stmt|;
 block|}
+name|XMLReader
+name|xmlReader
+init|=
+name|saxParser
+operator|.
+name|getXMLReader
+argument_list|()
+decl_stmt|;
+comment|// Setup catalog resolver
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
