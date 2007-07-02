@@ -6997,6 +6997,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Resolve failed, fallback scenario"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|publicId
