@@ -565,6 +565,17 @@ name|path
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|String
+name|mimeType
+init|=
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
 specifier|protected
 name|int
 name|handle
@@ -2309,6 +2320,12 @@ name|String
 name|mime
 parameter_list|)
 block|{
+name|this
+operator|.
+name|mimeType
+operator|=
+name|mime
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.EXistResource#getMimeType()      */
 specifier|public
@@ -2317,12 +2334,7 @@ name|getMimeType
 parameter_list|()
 block|{
 return|return
-name|MimeType
-operator|.
-name|XML_TYPE
-operator|.
-name|getName
-argument_list|()
+name|mimeType
 return|;
 block|}
 specifier|public
