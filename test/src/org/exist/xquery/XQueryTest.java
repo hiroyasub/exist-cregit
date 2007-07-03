@@ -12539,7 +12539,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740891
 specifier|public
 name|void
-name|bugtestEvalLoosesContext_1740891
+name|testEvalLoosesContext_1740891
 parameter_list|()
 block|{
 name|String

@@ -1343,6 +1343,23 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+name|copyFields
+argument_list|(
+name|ctx
+argument_list|)
+expr_stmt|;
+return|return
+name|ctx
+return|;
+block|}
+specifier|protected
+name|void
+name|copyFields
+parameter_list|(
+name|XQueryContext
+name|ctx
+parameter_list|)
+block|{
 name|ctx
 operator|.
 name|baseURI
@@ -1478,9 +1495,6 @@ name|this
 operator|.
 name|contextStack
 expr_stmt|;
-return|return
-name|ctx
-return|;
 block|}
 comment|/** 	 * Prepares the current context before xquery execution 	 */
 specifier|public
