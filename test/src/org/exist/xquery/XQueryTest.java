@@ -12426,7 +12426,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740885
 specifier|public
 name|void
-name|bugtestNeOperatorDoesNotWork_1740885
+name|testNeOperatorDoesNotWork_1740885
 parameter_list|()
 block|{
 try|try

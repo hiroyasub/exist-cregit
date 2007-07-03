@@ -581,9 +581,7 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 argument_list|,
-name|Constants
-operator|.
-name|EQ
+name|relation
 argument_list|)
 condition|)
 name|result
