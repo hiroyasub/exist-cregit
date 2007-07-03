@@ -12266,7 +12266,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740880
 specifier|public
 name|void
-name|bugtestElementConstructionWithNamespace_1740880
+name|testElementConstructionWithNamespace_1740880
 parameter_list|()
 block|{
 try|try
