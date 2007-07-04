@@ -526,11 +526,19 @@ block|{
 comment|// ignore: feature only recognized by xerces
 block|}
 name|SAXParser
-name|saxParser
+name|sax
 init|=
 name|saxFactory
 operator|.
 name|newSAXParser
+argument_list|()
+decl_stmt|;
+name|XMLReader
+name|parser
+init|=
+name|sax
+operator|.
+name|getXMLReader
 argument_list|()
 decl_stmt|;
 comment|// Setup grammar cache
@@ -556,7 +564,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|saxParser
+name|sax
 operator|.
 name|setProperty
 argument_list|(
@@ -566,15 +574,6 @@ name|grammarPool
 argument_list|)
 expr_stmt|;
 block|}
-name|XMLReader
-name|xmlReader
-init|=
-name|saxParser
-operator|.
-name|getXMLReader
-argument_list|()
-decl_stmt|;
-comment|// Setup catalog resolver
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -595,7 +594,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|xmlReader
+name|parser
 operator|.
 name|setProperty
 argument_list|(
@@ -606,7 +605,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|xmlReader
+name|parser
 return|;
 block|}
 catch|catch

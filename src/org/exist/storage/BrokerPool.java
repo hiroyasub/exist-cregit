@@ -2480,6 +2480,8 @@ operator|=
 operator|new
 name|XMLReaderPool
 argument_list|(
+name|conf
+argument_list|,
 operator|new
 name|XMLReaderObjectFactory
 argument_list|(
