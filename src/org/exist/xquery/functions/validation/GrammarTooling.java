@@ -316,7 +316,9 @@ specifier|final
 name|String
 name|TYPE_DTD
 init|=
-literal|"http://www.w3.org/TR/REC-xml"
+name|Namespaces
+operator|.
+name|DTD_NS
 decl_stmt|;
 specifier|private
 specifier|static
