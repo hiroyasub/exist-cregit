@@ -40,6 +40,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|DTD_NS
+init|=
+literal|"http://www.w3.org/TR/REC-xml"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|SCHEMA_DATATYPES_NS
 init|=
 literal|"http://www.w3.org/2001/XMLSchema-datatypes"
