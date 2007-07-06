@@ -432,7 +432,13 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/tmp/hamlet_valid.xml') )"
+literal|"validation:validate( xs:anyURI('"
+operator|+
+name|TestTools
+operator|.
+name|VALIDATION_TMP
+operator|+
+literal|"/hamlet_valid.xml') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -543,7 +549,13 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/hamlet_valid.xml') ,"
+literal|"validation:validate( xs:anyURI('"
+operator|+
+name|TestTools
+operator|.
+name|VALIDATION_HOME
+operator|+
+literal|"/hamlet_valid.xml') ,"
 operator|+
 literal|" xs:anyURI('/db/validation/dtd/catalog.xml') )"
 argument_list|)
