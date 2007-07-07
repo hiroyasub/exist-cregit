@@ -141,6 +141,12 @@ name|void
 name|wakeUp
 parameter_list|()
 function_decl|;
+comment|/**      * Create a LockInfo entry for the given lock.      *       * @return the lock info      */
+specifier|public
+name|LockInfo
+name|getLockInfo
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

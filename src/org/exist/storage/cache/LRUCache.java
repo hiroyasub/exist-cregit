@@ -85,6 +85,10 @@ name|cacheManager
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|String
+name|type
+decl_stmt|;
 specifier|public
 name|LRUCache
 parameter_list|(
@@ -96,6 +100,9 @@ name|growthFactor
 parameter_list|,
 name|double
 name|growthThreshold
+parameter_list|,
+name|String
+name|type
 parameter_list|)
 block|{
 name|max
@@ -133,6 +140,12 @@ argument_list|(
 name|max
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|type
+operator|=
+name|type
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cache#add(org.exist.storage.cache.Cacheable, int) 	 */
 specifier|public
@@ -151,6 +164,15 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getType
+parameter_list|()
+block|{
+return|return
+name|type
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.Cache#add(org.exist.storage.cache.Cacheable) 	 */
 specifier|public

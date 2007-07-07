@@ -32,6 +32,22 @@ specifier|public
 interface|interface
 name|CacheManager
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|BTREE_CACHE
+init|=
+literal|"BTREE"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DATA_CACHE
+init|=
+literal|"DATA"
+decl_stmt|;
 comment|/**      * Register a cache, i.e. put it under control of      * the cache manager.      *      * @param cache      */
 name|void
 name|registerCache
@@ -63,6 +79,18 @@ function_decl|;
 comment|/**      * Called from the global minor sync event to check if a smaller      * cache wants to be resized. If a huge cache is availabe, the method      * might decide to shrink this cache by a certain amount to make      * room for the smaller cache to grow.      */
 name|void
 name|checkDistribution
+parameter_list|()
+function_decl|;
+name|long
+name|getMaxTotal
+parameter_list|()
+function_decl|;
+name|long
+name|getMaxSingle
+parameter_list|()
+function_decl|;
+name|long
+name|getCurrentSize
 parameter_list|()
 function_decl|;
 block|}

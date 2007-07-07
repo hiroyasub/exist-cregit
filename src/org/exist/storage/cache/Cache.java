@@ -48,6 +48,12 @@ specifier|public
 interface|interface
 name|Cache
 block|{
+comment|/**      * Returns the type of this cache. Should be one of the      * constants defined in {@link org.exist.storage.CacheManager}.      *      * @return the type of this cache      */
+specifier|public
+name|String
+name|getType
+parameter_list|()
+function_decl|;
 comment|/** 	 * Add the item to the cache. If it is already in the cache, 	 * update the references. 	 *  	 * @param item 	 */
 specifier|public
 name|void

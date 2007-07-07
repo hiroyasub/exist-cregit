@@ -2455,7 +2455,7 @@ operator|=
 operator|new
 name|DefaultCacheManager
 argument_list|(
-name|conf
+name|this
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then configure
@@ -4827,6 +4827,10 @@ expr_stmt|;
 name|notificationService
 operator|=
 literal|null
+expr_stmt|;
+name|status
+operator|=
+name|OPERATING
 expr_stmt|;
 block|}
 comment|//TODO : move this elsewhere

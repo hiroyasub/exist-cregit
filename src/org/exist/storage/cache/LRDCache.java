@@ -55,6 +55,9 @@ name|growthFactor
 parameter_list|,
 name|double
 name|growthThreshold
+parameter_list|,
+name|String
+name|type
 parameter_list|)
 block|{
 name|super
@@ -64,6 +67,8 @@ argument_list|,
 name|growthFactor
 argument_list|,
 name|growthThreshold
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 name|maxReferences
