@@ -15,11 +15,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|util
+name|log4j
 operator|.
-name|LockException
+name|Logger
 import|;
 end_import
 
@@ -27,11 +27,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|log4j
+name|util
 operator|.
-name|Logger
+name|LockException
 import|;
 end_import
 
