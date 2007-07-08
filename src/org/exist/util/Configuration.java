@@ -2829,7 +2829,7 @@ name|getAttribute
 argument_list|(
 name|TransformerFactoryAllocator
 operator|.
-name|PROPERTY_TRANSFORMER_ATTRIBUTE
+name|TRANSFORMER_CLASS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2888,7 +2888,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enable-xinclude"
+name|Serializer
+operator|.
+name|ENABLE_XINCLUDE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2937,7 +2939,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enable-xsl"
+name|Serializer
+operator|.
+name|ENABLE_XSL_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2986,7 +2990,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"indent"
+name|Serializer
+operator|.
+name|INDENT_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3035,7 +3041,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"compress-output"
+name|Serializer
+operator|.
+name|COMPRESS_OUTPUT_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3084,7 +3092,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"add-exist-id"
+name|Serializer
+operator|.
+name|ADD_EXIST_ID_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3133,7 +3143,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"match-tagging-elements"
+name|Serializer
+operator|.
+name|TAG_MATCHING_ELEMENTS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3182,7 +3194,9 @@ name|serializer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"match-tagging-attributes"
+name|Serializer
+operator|.
+name|TAG_MATCHING_ATTRIBUTES_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
