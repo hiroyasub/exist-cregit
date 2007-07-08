@@ -178,6 +178,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|CACHE_SIZE_ATTRIBUTE
+init|=
+literal|"cacheSize"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_CACHE_SIZE
 init|=
 literal|"db-connection.cache-size"

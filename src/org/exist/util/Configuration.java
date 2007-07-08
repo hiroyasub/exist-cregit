@@ -3508,7 +3508,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"files"
+name|BrokerPool
+operator|.
+name|DATA_DIR_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3592,7 +3594,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"cacheSize"
+name|DefaultCacheManager
+operator|.
+name|CACHE_SIZE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3696,7 +3700,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"collectionCache"
+name|CollectionCacheManager
+operator|.
+name|CACHE_SIZE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3800,7 +3806,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"pageSize"
+name|NativeBroker
+operator|.
+name|PAGE_SIZE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3870,7 +3878,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"free_mem_min"
+name|NativeBroker
+operator|.
+name|MIN_FREE_MEMORY_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -3941,7 +3951,9 @@ name|con
 operator|.
 name|getAttribute
 argument_list|(
-literal|"collectionCacheSize"
+name|BrokerPool
+operator|.
+name|COLLECTION_CACHE_SIZE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -4269,7 +4281,9 @@ decl_stmt|;
 name|String
 name|securityManagerClassName
 init|=
-literal|"org.exist.security.XMLSecurityManager"
+name|BrokerPool
+operator|.
+name|DEFAULT_SECURITY_CLASS
 decl_stmt|;
 if|if
 condition|(

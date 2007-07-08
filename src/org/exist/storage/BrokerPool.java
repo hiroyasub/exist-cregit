@@ -576,6 +576,23 @@ name|CONFIGURATION_RECOVERY_ELEMENT_NAME
 init|=
 literal|"recovery"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DATA_DIR_ATTRIBUTE
+init|=
+literal|"files"
+decl_stmt|;
+comment|//TODO : move elsewhere ?
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COLLECTION_CACHE_SIZE_ATTRIBUTE
+init|=
+literal|"collectionCacheSize"
+decl_stmt|;
 comment|//Various configuration property keys (set by the configuration manager)
 specifier|public
 specifier|static
@@ -617,6 +634,7 @@ name|PROPERTY_SHUTDOWN_DELAY
 init|=
 literal|"wait-before-shutdown"
 decl_stmt|;
+comment|//TODO : move elsewhere ?
 specifier|public
 specifier|final
 specifier|static
@@ -624,6 +642,15 @@ name|String
 name|PROPERTY_COLLECTION_CACHE_SIZE
 init|=
 literal|"db-connection.collection-cache-size"
+decl_stmt|;
+comment|//TODO : move elsewhere ? Get fully qualified class name ?
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DEFAULT_SECURITY_CLASS
+init|=
+literal|"org.exist.security.XMLSecurityManager"
 decl_stmt|;
 specifier|public
 specifier|final
