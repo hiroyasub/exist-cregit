@@ -6621,7 +6621,9 @@ name|indexer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"caseSensitive"
+name|NativeValueIndex
+operator|.
+name|INDEX_CASE_SENSITIVE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6681,7 +6683,7 @@ name|indexer
 operator|.
 name|getElementsByTagName
 argument_list|(
-name|Indexer
+name|TextSearchEngine
 operator|.
 name|CONFIGURATION_STOPWORDS_ELEMENT_NAME
 argument_list|)

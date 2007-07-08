@@ -660,6 +660,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|INDEX_CASE_SENSITIVE_ATTRIBUTE
+init|=
+literal|"caseSensitive"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_INDEX_CASE_SENSITIVE
 init|=
 literal|"indexer.case-sensitive"

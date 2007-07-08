@@ -411,6 +411,14 @@ init|=
 literal|"tokenizer"
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONFIGURATION_STOPWORDS_ELEMENT_NAME
+init|=
+literal|"stopwords"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String

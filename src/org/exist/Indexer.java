@@ -571,14 +571,6 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|CONFIGURATION_STOPWORDS_ELEMENT_NAME
-init|=
-literal|"stopwords"
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|String
 name|SUPPRESS_WHITESPACE_ATTRIBUTE
 init|=
 literal|"suppress-whitespace"
