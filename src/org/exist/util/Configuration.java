@@ -2647,7 +2647,9 @@ name|xupdate
 operator|.
 name|getAttribute
 argument_list|(
-literal|"growth-factor"
+name|DBBroker
+operator|.
+name|XUPDATE_GROWTH_FACTOR_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2700,7 +2702,9 @@ name|xupdate
 operator|.
 name|getAttribute
 argument_list|(
-literal|"allowed-fragmentation"
+name|DBBroker
+operator|.
+name|XUPDATE_FRAGMENTATION_FACTOR_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2753,7 +2757,9 @@ name|xupdate
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enable-consistency-checks"
+name|DBBroker
+operator|.
+name|XUPDATE_CONSISTENCY_CHECKS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2821,7 +2827,9 @@ name|transformer
 operator|.
 name|getAttribute
 argument_list|(
-literal|"class"
+name|TransformerFactoryAllocator
+operator|.
+name|PROPERTY_TRANSFORMER_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if

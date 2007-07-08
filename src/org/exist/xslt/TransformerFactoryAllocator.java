@@ -99,6 +99,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|PROPERTY_TRANSFORMER_ATTRIBUTE
+init|=
+literal|"class"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_TRANSFORMER_CLASS
 init|=
 literal|"transformer.class"

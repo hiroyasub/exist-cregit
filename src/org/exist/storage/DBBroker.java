@@ -479,6 +479,15 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|XUPDATE_GROWTH_FACTOR_ATTRIBUTE
+init|=
+literal|"growth-factor"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_XUPDATE_GROWTH_FACTOR
 init|=
 literal|"xupdate.growth-factor"
@@ -488,9 +497,27 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|XUPDATE_FRAGMENTATION_FACTOR_ATTRIBUTE
+init|=
+literal|"allowed-fragmentation"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 init|=
 literal|"xupdate.fragmentation"
+decl_stmt|;
+comment|//TODO : move elsewhere
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XUPDATE_CONSISTENCY_CHECKS_ATTRIBUTE
+init|=
+literal|"enable-consistency-checks"
 decl_stmt|;
 comment|//TODO : move elsewhere
 specifier|public
