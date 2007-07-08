@@ -2180,7 +2180,9 @@ name|xquery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enable-java-binding"
+name|FunctionFactory
+operator|.
+name|ENABLE_JAVA_BINDING_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2229,7 +2231,9 @@ name|xquery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enable-query-rewriting"
+name|XQueryContext
+operator|.
+name|ENABLE_QUERY_REWRITING_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2285,7 +2289,9 @@ name|xquery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"backwardCompatible"
+name|XQueryContext
+operator|.
+name|XQUERY_BACKWARD_COMPATIBLE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2382,6 +2388,16 @@ operator|.
 name|CONFIGURATION_MODULE_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|modules
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|String
 name|moduleList
 index|[]
@@ -2436,7 +2452,9 @@ name|elem
 operator|.
 name|getAttribute
 argument_list|(
-literal|"uri"
+name|XQueryContext
+operator|.
+name|BUILT_IN_MODULE_URI_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 name|String
@@ -2446,7 +2464,9 @@ name|elem
 operator|.
 name|getAttribute
 argument_list|(
-literal|"class"
+name|XQueryContext
+operator|.
+name|BUILT_IN_MODULE_CLASS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2522,6 +2542,7 @@ argument_list|,
 name|moduleList
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -7241,7 +7262,9 @@ name|validation
 operator|.
 name|getAttribute
 argument_list|(
-literal|"mode"
+name|XMLReaderObjectFactory
+operator|.
+name|VALIDATION_MODE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -7257,7 +7280,7 @@ name|put
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTY_VALIDATION
+name|PROPERTY_VALIDATION_MODE
 argument_list|,
 name|mode
 argument_list|)
@@ -7268,7 +7291,7 @@ name|debug
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTY_VALIDATION
+name|PROPERTY_VALIDATION_MODE
 operator|+
 literal|": "
 operator|+
@@ -7278,7 +7301,7 @@ name|get
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTY_VALIDATION
+name|PROPERTY_VALIDATION_MODE
 argument_list|)
 argument_list|)
 expr_stmt|;

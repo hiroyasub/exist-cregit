@@ -120,6 +120,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|ENABLE_JAVA_BINDING_ATTRIBUTE
+init|=
+literal|"enable-java-binding"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|PROPERTY_ENABLE_JAVA_BINDING
 init|=
 literal|"xquery.enable-java-binding"

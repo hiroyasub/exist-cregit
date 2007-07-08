@@ -216,11 +216,20 @@ name|CONFIGURATION_ELEMENT_NAME
 init|=
 literal|"validation"
 decl_stmt|;
+comment|//TOO : move elsewhere ?
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTY_VALIDATION
+name|VALIDATION_MODE_ATTRIBUTE
+init|=
+literal|"mode"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_VALIDATION_MODE
 init|=
 literal|"validation.mode"
 decl_stmt|;
@@ -335,7 +344,7 @@ name|config
 operator|.
 name|getProperty
 argument_list|(
-name|PROPERTY_VALIDATION
+name|PROPERTY_VALIDATION_MODE
 argument_list|)
 decl_stmt|;
 if|if

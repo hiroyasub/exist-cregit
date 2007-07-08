@@ -297,7 +297,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTY_VALIDATION
+name|PROPERTY_VALIDATION_MODE
 argument_list|,
 literal|"auto"
 argument_list|)
