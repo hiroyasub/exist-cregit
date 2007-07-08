@@ -1719,7 +1719,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"protocol"
+name|ClusterComunication
+operator|.
+name|CLUSTER_PROTOCOL_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -1768,7 +1770,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"dbaUser"
+name|ClusterComunication
+operator|.
+name|CLUSTER_USER_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -1817,7 +1821,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"dbaPassword"
+name|ClusterComunication
+operator|.
+name|CLUSTER_PWD_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -1866,7 +1872,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"journalDir"
+name|JournalManager
+operator|.
+name|JOURNAL_DIR_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -1915,7 +1923,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"exclude"
+name|ClusterComunication
+operator|.
+name|CLUSTER_EXCLUDED_COLLECTIONS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 name|ArrayList
@@ -1999,7 +2009,7 @@ name|put
 argument_list|(
 name|ClusterComunication
 operator|.
-name|PROPERTY_CLUSTER_EXCLUDE
+name|PROPERTY_CLUSTER_EXCLUDED_COLLECTIONS
 argument_list|,
 name|list
 argument_list|)
@@ -2010,7 +2020,7 @@ name|debug
 argument_list|(
 name|ClusterComunication
 operator|.
-name|PROPERTY_CLUSTER_EXCLUDE
+name|PROPERTY_CLUSTER_EXCLUDED_COLLECTIONS
 operator|+
 literal|": "
 operator|+
@@ -2020,7 +2030,7 @@ name|get
 argument_list|(
 name|ClusterComunication
 operator|.
-name|PROPERTY_CLUSTER_EXCLUDE
+name|PROPERTY_CLUSTER_EXCLUDED_COLLECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2032,7 +2042,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"journalMaxItem"
+name|JournalManager
+operator|.
+name|CLUSTER_JOURNAL_MAXSTORE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -2100,7 +2112,9 @@ name|cluster
 operator|.
 name|getAttribute
 argument_list|(
-literal|"journalIndexShift"
+name|JournalManager
+operator|.
+name|CLUSTER_JOURNAL_SHIFT_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if

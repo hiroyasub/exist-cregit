@@ -1382,7 +1382,7 @@ name|getProperty
 argument_list|(
 name|ClusterComunication
 operator|.
-name|PROPERTY_CLUSTER_EXCLUDE
+name|PROPERTY_CLUSTER_EXCLUDED_COLLECTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
