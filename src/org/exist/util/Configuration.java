@@ -4742,7 +4742,9 @@ name|recovery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"enabled"
+name|BrokerPool
+operator|.
+name|RECOVERY_ENABLED_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -4806,7 +4808,9 @@ name|recovery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"sync-on-commit"
+name|Journal
+operator|.
+name|RECOVERY_SYNC_ON_COMMIT_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 name|value
@@ -4869,7 +4873,9 @@ name|recovery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"group-commit"
+name|TransactionManager
+operator|.
+name|RECOVERY_GROUP_COMMIT_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 name|value
@@ -4932,7 +4938,9 @@ name|recovery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"journal-dir"
+name|Journal
+operator|.
+name|RECOVERY_JOURNAL_DIR_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 if|if
@@ -4978,7 +4986,9 @@ name|recovery
 operator|.
 name|getAttribute
 argument_list|(
-literal|"size"
+name|Journal
+operator|.
+name|RECOVERY_SIZE_LIMIT_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 if|if

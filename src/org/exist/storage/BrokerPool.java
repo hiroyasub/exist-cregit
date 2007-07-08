@@ -589,6 +589,15 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|RECOVERY_ENABLED_ATTRIBUTE
+init|=
+literal|"enabled"
+decl_stmt|;
+comment|//TODO : move elsewhere ?
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|COLLECTION_CACHE_SIZE_ATTRIBUTE
 init|=
 literal|"collectionCacheSize"

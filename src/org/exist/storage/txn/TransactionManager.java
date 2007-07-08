@@ -160,6 +160,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|RECOVERY_GROUP_COMMIT_ATTRIBUTE
+init|=
+literal|"group-commit"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_RECOVERY_GROUP_COMMIT
 init|=
 literal|"db-connection.recovery.group-commit"
