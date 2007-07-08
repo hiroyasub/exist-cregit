@@ -3367,7 +3367,9 @@ name|job
 operator|.
 name|getAttribute
 argument_list|(
-literal|"class"
+name|Scheduler
+operator|.
+name|JOB_CLASS_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 if|if
@@ -3382,7 +3384,9 @@ name|job
 operator|.
 name|getAttribute
 argument_list|(
-literal|"xquery"
+name|Scheduler
+operator|.
+name|JOB_XQUERY_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 comment|//get the job schedule
@@ -3392,7 +3396,9 @@ name|job
 operator|.
 name|getAttribute
 argument_list|(
-literal|"cron-trigger"
+name|Scheduler
+operator|.
+name|JOB_CRON_TRIGGER_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 if|if
@@ -3407,7 +3413,9 @@ name|job
 operator|.
 name|getAttribute
 argument_list|(
-literal|"period"
+name|Scheduler
+operator|.
+name|JOB_PERIOD_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 comment|//check we have both a resource and a schedule
@@ -4732,7 +4740,9 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"default-permissions"
+name|XMLSecurityManager
+operator|.
+name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -5129,7 +5139,7 @@ name|void
 name|configurePermissions
 parameter_list|(
 name|Element
-name|defautPermission
+name|defaultPermission
 parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
@@ -5137,11 +5147,13 @@ block|{
 name|String
 name|option
 init|=
-name|defautPermission
+name|defaultPermission
 operator|.
 name|getAttribute
 argument_list|(
-literal|"collection"
+name|XMLSecurityManager
+operator|.
+name|COLLECTION_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -5225,11 +5237,13 @@ block|}
 block|}
 name|option
 operator|=
-name|defautPermission
+name|defaultPermission
 operator|.
 name|getAttribute
 argument_list|(
-literal|"resource"
+name|XMLSecurityManager
+operator|.
+name|RESOURCE_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 if|if
