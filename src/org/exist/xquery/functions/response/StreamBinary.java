@@ -263,7 +263,11 @@ argument_list|)
 argument_list|,
 literal|"Streams the binary data passed in $a to the current servlet response output stream. The ContentType "
 operator|+
-literal|"HTTP header is set to the value given in $b. This function only works within a servlet context, not within "
+literal|"HTTP header is set to the value given in $b. The filename is set to the value given in $c, if no filename is specified then"
+operator|+
+literal|"that of the current request is used."
+operator|+
+literal|"This function only works within a servlet context, not within "
 operator|+
 literal|"Cocoon. Note: the servlet output stream will be closed afterwards and mime-type settings in the prolog "
 operator|+
@@ -295,6 +299,18 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
 argument_list|)
 block|}
 argument_list|,
@@ -461,6 +477,34 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+name|String
+name|filename
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|filename
+operator|=
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+expr_stmt|;
+block|}
 name|ResponseModule
 name|myModule
 init|=
@@ -599,6 +643,25 @@ argument_list|,
 name|contentType
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|filename
+operator|!=
+literal|null
+condition|)
+block|{
+name|response
+operator|.
+name|setHeader
+argument_list|(
+literal|"Content-Disposition"
+argument_list|,
+literal|"inline; filename="
+operator|+
+name|filename
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|OutputStream
