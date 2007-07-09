@@ -483,7 +483,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|Document
+name|DocumentImpl
 name|doc
 parameter_list|,
 name|XmldbURI
@@ -495,6 +495,13 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 block|{
+name|doc
+operator|.
+name|setBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|Element
 name|root
 init|=

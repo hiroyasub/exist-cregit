@@ -510,6 +510,13 @@ name|READ
 argument_list|)
 condition|)
 block|{
+name|doc
+operator|.
+name|setBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|put
 argument_list|(
 name|doc
