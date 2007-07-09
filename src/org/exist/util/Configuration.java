@@ -4360,6 +4360,7 @@ argument_list|(
 literal|"class"
 argument_list|)
 expr_stmt|;
+comment|//Unused
 name|String
 name|encoding
 init|=
@@ -4370,7 +4371,6 @@ argument_list|(
 literal|"password-encoding"
 argument_list|)
 decl_stmt|;
-comment|//Unused
 name|config
 operator|.
 name|put
@@ -4419,6 +4419,7 @@ literal|"No password encoding set, defaulting."
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Unused
 name|String
 name|realm
 init|=
@@ -4429,7 +4430,6 @@ argument_list|(
 literal|"password-realm"
 argument_list|)
 decl_stmt|;
-comment|//Unused
 name|config
 operator|.
 name|put
@@ -5825,7 +5825,9 @@ name|queryPool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"max-stack-size"
+name|XQueryPool
+operator|.
+name|MAX_STACK_SIZE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -5895,7 +5897,9 @@ name|queryPool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"size"
+name|XQueryPool
+operator|.
+name|POOL_SIZE_ATTTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -5965,7 +5969,9 @@ name|queryPool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"timeout"
+name|XQueryPool
+operator|.
+name|TIMEOUT_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6035,7 +6041,9 @@ name|queryPool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"timeout-check-interval"
+name|XQueryPool
+operator|.
+name|TIMEOUT_CHECK_INTERVAL_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6115,7 +6123,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"min"
+name|BrokerPool
+operator|.
+name|MIN_CONNECTIONS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6185,7 +6195,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"max"
+name|BrokerPool
+operator|.
+name|MAX_CONNECTIONS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6255,7 +6267,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"sync-period"
+name|BrokerPool
+operator|.
+name|SYNC_PERIOD_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
@@ -6325,7 +6339,9 @@ name|pool
 operator|.
 name|getAttribute
 argument_list|(
-literal|"wait-before-shutdown"
+name|BrokerPool
+operator|.
+name|SHUTDOWN_DELAY_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
