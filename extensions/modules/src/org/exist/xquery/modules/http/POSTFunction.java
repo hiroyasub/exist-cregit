@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -161,6 +161,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|NodeValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -262,7 +276,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 20070428  * @version 1.0  */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 20070710  * @version 1.1  */
 end_comment
 
 begin_class
@@ -295,7 +309,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Performs a HTTP POST request. $a is the URL, $b is the XML POST, $c determines if cookies persist for the query lifetime."
+literal|"Performs a HTTP POST request. $a is the URL, $b is the XML POST, $c determines if cookies persist for the query lifetime. $d defines any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>."
 argument_list|,
 operator|new
 name|SequenceType
@@ -335,6 +349,18 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ELEMENT
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
 argument_list|)
 block|}
 argument_list|,
@@ -551,6 +577,45 @@ argument_list|(
 name|entity
 argument_list|)
 expr_stmt|;
+comment|//setup POST Request Headers
+if|if
+condition|(
+operator|!
+name|args
+index|[
+literal|3
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|HTTPModule
+operator|.
+name|parseHeaders
+argument_list|(
+name|post
+argument_list|,
+operator|(
+operator|(
+name|NodeValue
+operator|)
+name|args
+index|[
+literal|3
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 comment|//execute the request
