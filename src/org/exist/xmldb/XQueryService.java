@@ -147,7 +147,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Compiles the specified XQuery and returns a handle to the compiled 	 * code, which can then be passed to {@link #execute(CompiledExpression)}. 	 *   	 * @param query 	 * @throws XMLDBException 	 */
+comment|/** 	 * Compiles the specified XQuery and returns a handle to the compiled 	 * code, which can then be passed to {@link #execute(CompiledExpression)}.      *      * Note: {@link CompiledExpression} is not thread safe. Please make sure you don't      * call the same compiled expression from two threads at the same time. 	 *   	 * @param query 	 * @throws XMLDBException 	 */
 specifier|public
 name|CompiledExpression
 name|compile
@@ -181,7 +181,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Execute a compiled XQuery. 	 *  	 * The implementation should pass all namespaces and variables declared through 	 * {@link XQueryService} to the compiled XQuery code. 	 *  	 * @param expression 	 * @throws XMLDBException 	 */
+comment|/** 	 * Execute a compiled XQuery. 	 *  	 * The implementation should pass all namespaces and variables declared through 	 * {@link XQueryService} to the compiled XQuery code. 	 *      * Note: {@link CompiledExpression} is not thread safe. Please make sure you don't      * call the same compiled expression from two threads at the same time. 	 * @param expression 	 * @throws XMLDBException 	 */
 specifier|public
 name|ResourceSet
 name|execute
