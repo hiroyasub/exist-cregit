@@ -5007,6 +5007,25 @@ name|void
 name|functionEnd
 parameter_list|()
 block|{
+if|if
+condition|(
+name|callStack
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Function call stack is empty, but XQueryContext.functionEnd() was called. This "
+operator|+
+literal|"could indicate a concurrency issue (shared XQueryContext?)"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 name|callStack
 operator|.
 name|pop
