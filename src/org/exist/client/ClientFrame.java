@@ -9363,7 +9363,7 @@ argument_list|)
 operator|+
 literal|") \n\n"
 operator|+
-literal|"Copyright (C) 2001-2006 Wolfgang Meier\n\n"
+literal|"Copyright (C) 2001-2007 Wolfgang Meier\n\n"
 operator|+
 literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
 operator|+
