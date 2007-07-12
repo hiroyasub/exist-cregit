@@ -137,7 +137,7 @@ name|waiter
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Deregister a waiting thread.      *        * @param thread      * @return      */
+comment|/**      * Deregister a waiting thread.      *        * @param thread      * @return lock      */
 specifier|public
 specifier|static
 name|Lock
@@ -176,7 +176,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if there's a risk for a circular wait between threadA and threadB. The method tests if      * threadB is currently waiting for a resource lock (read or write). It then checks      * if threadA holds a lock on this resource. If yes, the {@link org.exist.storage.lock.WaitingThread}      * object for threadB is returned. This object can be used to suspend the waiting thread      * in order to temporarily yield the lock to threadA.      *      * @param threadA      * @param threadB      * @return      */
+comment|/**      * Check if there's a risk for a circular wait between threadA and threadB. The method tests if      * threadB is currently waiting for a resource lock (read or write). It then checks      * if threadA holds a lock on this resource. If yes, the {@link org.exist.storage.lock.WaitingThread}      * object for threadB is returned. This object can be used to suspend the waiting thread      * in order to temporarily yield the lock to threadA.      *      * @param threadA      * @param threadB      * @return waiting thread      */
 specifier|public
 specifier|static
 name|WaitingThread
