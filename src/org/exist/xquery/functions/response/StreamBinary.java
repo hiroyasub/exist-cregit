@@ -286,7 +286,7 @@ name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|)
 block|,
 operator|new
@@ -440,6 +440,14 @@ condition|(
 name|args
 index|[
 literal|0
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|args
+index|[
+literal|1
 index|]
 operator|.
 name|isEmpty
