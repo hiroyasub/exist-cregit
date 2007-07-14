@@ -388,6 +388,12 @@ name|RANGE_INDEX_MASK
 operator|)
 operator|>
 literal|0
+operator|&&
+operator|!
+name|hasQNameIndex
+argument_list|(
+name|type
+argument_list|)
 return|;
 block|}
 specifier|public
