@@ -122,6 +122,10 @@ block|,
 name|ResourceTest
 operator|.
 name|class
+block|,
+name|RangeIndexUpdateTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
