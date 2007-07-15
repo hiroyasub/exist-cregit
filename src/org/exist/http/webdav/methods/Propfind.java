@@ -1310,6 +1310,7 @@ operator|new
 name|DAVProperties
 argument_list|()
 decl_stmt|;
+comment|//                LOG.debug("input:\n"+xmlToString(doc));
 if|if
 condition|(
 name|doc
@@ -1546,6 +1547,7 @@ block|}
 block|}
 block|}
 block|}
+comment|// write response
 name|String
 name|servletPath
 init|=
@@ -4265,6 +4267,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//    public static String xmlToString(Node node) {
+comment|//        try {
+comment|//            Source source = new DOMSource(node);
+comment|//            StringWriter stringWriter = new StringWriter();
+comment|//            Result result = new StreamResult(stringWriter);
+comment|//            TransformerFactory factory = TransformerFactory.newInstance();
+comment|//            Transformer transformer = factory.newTransformer();
+comment|//            transformer.transform(source, result);
+comment|//            return stringWriter.getBuffer().toString();
+comment|//        } catch (TransformerConfigurationException e) {
+comment|//            e.printStackTrace();
+comment|//        } catch (TransformerException e) {
+comment|//            e.printStackTrace();
+comment|//        }
+comment|//        return null;
+comment|//    }
 specifier|private
 specifier|static
 class|class

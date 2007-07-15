@@ -131,14 +131,14 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|// TODO DWES change to 2
+comment|// TODO DWES changed to 2 ; check regression
 name|response
 operator|.
 name|addHeader
 argument_list|(
 literal|"DAV"
 argument_list|,
-literal|"1"
+literal|"2"
 argument_list|)
 expr_stmt|;
 name|response
