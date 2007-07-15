@@ -327,13 +327,38 @@ name|limit
 argument_list|)
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|spec
+operator|.
+name|startsWith
+argument_list|(
+literal|"xmldb:/"
+argument_list|)
+condition|)
+block|{
+comment|// very dirty
+name|super
+operator|.
+name|parseURL
+argument_list|(
+name|url
+argument_list|,
+name|spec
+argument_list|,
+name|start
+argument_list|,
+name|limit
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Expected xmldb: URL, found "
+literal|"Expected 'xmldb:'-like URL, found "
 operator|+
 name|spec
 argument_list|)
