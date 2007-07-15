@@ -2104,6 +2104,20 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|reservedBroker
+operator|!=
+literal|null
+condition|)
+comment|// if a previous broker was not properly released, do it now (just to be sure)
+name|brokerPool
+operator|.
+name|release
+argument_list|(
+name|reservedBroker
+argument_list|)
+expr_stmt|;
 name|CompiledXQuery
 name|expr
 init|=
@@ -2127,6 +2141,11 @@ name|expr
 operator|.
 name|getContext
 argument_list|()
+decl_stmt|;
+name|boolean
+name|keepLocks
+init|=
+name|lockDocuments
 decl_stmt|;
 try|try
 block|{
@@ -2167,7 +2186,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|lockDocuments
+name|keepLocks
 condition|)
 name|context
 operator|.
@@ -2189,7 +2208,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|lockDocuments
+name|keepLocks
 condition|)
 block|{
 name|lockedDocuments
@@ -2213,6 +2232,10 @@ name|context
 operator|.
 name|releaseLockedDocuments
 argument_list|()
+expr_stmt|;
+name|keepLocks
+operator|=
+literal|false
 expr_stmt|;
 throw|throw
 operator|new
@@ -2241,6 +2264,10 @@ name|context
 operator|.
 name|releaseLockedDocuments
 argument_list|()
+expr_stmt|;
+name|keepLocks
+operator|=
+literal|false
 expr_stmt|;
 throw|throw
 operator|new
@@ -2271,6 +2298,10 @@ operator|.
 name|releaseLockedDocuments
 argument_list|()
 expr_stmt|;
+name|keepLocks
+operator|=
+literal|false
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
@@ -2292,7 +2323,7 @@ finally|finally
 block|{
 if|if
 condition|(
-name|lockDocuments
+name|keepLocks
 condition|)
 name|reservedBroker
 operator|=
