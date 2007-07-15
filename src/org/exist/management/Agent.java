@@ -25,6 +25,18 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_comment
 comment|/**  */
 end_comment
@@ -34,6 +46,13 @@ specifier|public
 interface|interface
 name|Agent
 block|{
+name|void
+name|initDBInstance
+parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|)
+function_decl|;
 name|void
 name|addMBean
 parameter_list|(

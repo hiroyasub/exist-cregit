@@ -25,6 +25,18 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_comment
 comment|/**  * A dummy agent which will be used if JMX is disabled. It just acts as an empty  * placeholder.  */
 end_comment
@@ -36,6 +48,16 @@ name|DummyAgent
 implements|implements
 name|Agent
 block|{
+specifier|public
+name|void
+name|initDBInstance
+parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|)
+block|{
+comment|// do nothing
+block|}
 specifier|public
 name|void
 name|addMBean

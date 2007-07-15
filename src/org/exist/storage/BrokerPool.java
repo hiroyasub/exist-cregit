@@ -3059,57 +3059,17 @@ control|)
 name|createBroker
 argument_list|()
 expr_stmt|;
-comment|// register an MBean to provide access to this instance
-name|Agent
-name|agent
-init|=
+comment|// register some MBeans to provide access to this instance
 name|AgentFactory
 operator|.
 name|getInstance
 argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|agent
 operator|.
-name|addMBean
-argument_list|(
-literal|"org.exist.management."
-operator|+
-name|instanceName
-operator|+
-literal|":type=Database"
-argument_list|,
-operator|new
-name|org
-operator|.
-name|exist
-operator|.
-name|management
-operator|.
-name|Database
+name|initDBInstance
 argument_list|(
 name|this
 argument_list|)
-argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|DatabaseConfigurationException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Exception while registering database mbean."
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -3320,6 +3280,19 @@ name|activeBrokers
 operator|.
 name|size
 argument_list|()
+return|;
+block|}
+specifier|public
+name|Map
+name|getActiveBrokers
+parameter_list|()
+block|{
+return|return
+operator|new
+name|HashMap
+argument_list|(
+name|activeBrokers
+argument_list|)
 return|;
 block|}
 comment|/** 	 * Returns the number of inactive brokers for the database instance. 	 *@return The brokers count 	 */
@@ -3838,6 +3811,7 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|//Inform the other threads that we have a new-comer
+comment|// TODO: do they really need to be informed here???????
 name|this
 operator|.
 name|notifyAll

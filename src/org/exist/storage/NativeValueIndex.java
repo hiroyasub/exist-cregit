@@ -2762,6 +2762,8 @@ name|LENGTH_NODE_IDS
 argument_list|)
 expr_stmt|;
 block|}
+comment|//                        if(os.data().size() == 0)
+comment|//                            dbValues.remove(value);
 if|if
 condition|(
 name|dbValues
