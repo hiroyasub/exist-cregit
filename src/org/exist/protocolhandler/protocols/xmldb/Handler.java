@@ -337,7 +337,7 @@ literal|"xmldb:/"
 argument_list|)
 condition|)
 block|{
-comment|// very dirty
+comment|// little dirty
 name|super
 operator|.
 name|parseURL
