@@ -3942,13 +3942,6 @@ name|receiver
 operator|=
 name|ftmatch
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Applying FTMatchListener"
-argument_list|)
-expr_stmt|;
 block|}
 if|if
 condition|(
