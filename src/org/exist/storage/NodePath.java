@@ -373,6 +373,12 @@ name|void
 name|removeLastComponent
 parameter_list|()
 block|{
+if|if
+condition|(
+name|pos
+operator|>
+literal|0
+condition|)
 name|components
 index|[
 operator|--
