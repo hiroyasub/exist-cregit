@@ -302,6 +302,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
 name|String
 index|[]
 name|words
