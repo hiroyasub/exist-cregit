@@ -943,6 +943,9 @@ name|collection
 operator|.
 name|getURI
 argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|context
@@ -954,6 +957,9 @@ argument_list|,
 name|request
 operator|.
 name|getRequestURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
