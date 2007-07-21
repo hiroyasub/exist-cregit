@@ -1040,7 +1040,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
+if|else if
 condition|(
 name|item
 operator|.
