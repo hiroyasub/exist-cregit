@@ -341,13 +341,9 @@ return|;
 if|if
 condition|(
 name|target
-operator|.
-name|isArray
-argument_list|()
-operator|&&
-name|target
 operator|==
-name|Byte
+name|byte
+index|[]
 operator|.
 name|class
 condition|)
