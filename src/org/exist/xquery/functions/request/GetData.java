@@ -149,6 +149,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|MimeTable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -212,6 +236,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Base64Binary
 import|;
 end_import
 
@@ -381,7 +419,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the content of a POST request as an XML document or a string representaion. Returns an empty sequence if there is no data."
+literal|"Returns the content of a POST request.If its a binary document xs:base64Binary is returned or if its an XML document a node() is returned. All other data is returned as an xs:string representaion. Returns an empty sequence if there is no data."
 argument_list|,
 literal|null
 argument_list|,
@@ -421,7 +459,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the content of a POST request as an XML document or a string representaion. Returns an empty sequence if there is no data."
+literal|"Returns the content of a POST request. If its a binary document xs:base64Binary is returned or if its an XML document a node() is returned. All other data is returned as an xs:string representaion. Returns an empty sequence if there is no data."
 argument_list|,
 literal|null
 argument_list|,
@@ -689,7 +727,7 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-comment|//if the POST content is not null, it may be an xml document, so we first try to return the xml document
+comment|//was there any POST content
 if|if
 condition|(
 name|bufRequestData
@@ -697,6 +735,92 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//determine if exists mime database considers this binary data
+name|String
+name|contentType
+init|=
+name|request
+operator|.
+name|getContentType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|contentType
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//strip off any charset encoding info
+if|if
+condition|(
+name|contentType
+operator|.
+name|indexOf
+argument_list|(
+literal|";"
+argument_list|)
+operator|>
+operator|-
+literal|1
+condition|)
+name|contentType
+operator|=
+name|contentType
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|contentType
+operator|.
+name|indexOf
+argument_list|(
+literal|";"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|MimeType
+name|mimeType
+init|=
+name|MimeTable
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getContentType
+argument_list|(
+name|contentType
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|mimeType
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|mimeType
+operator|.
+name|isXMLType
+argument_list|()
+condition|)
+block|{
+comment|//binary data
+return|return
+operator|new
+name|Base64Binary
+argument_list|(
+name|bufRequestData
+argument_list|)
+return|;
+block|}
+block|}
+block|}
+comment|//try and parse as an XML documemnt, otherwise fallback to returning the data as a string
 name|context
 operator|.
 name|pushDocumentContext
@@ -831,8 +955,7 @@ name|popDocumentContext
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|//else, return a string representation of the xml document
+comment|//not a valid XML document, return a string representation of the document
 name|String
 name|encoding
 init|=
@@ -894,6 +1017,16 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+block|}
+else|else
+block|{
+comment|//no post data
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 block|}
 block|}
 else|else
