@@ -320,7 +320,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the url indicated by the parameter named "url".  *   * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggeredEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * xxx is the namespace prefix within the XQuery  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the url indicated by the parameter named "url".  *   * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggerEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * xxx is the namespace prefix within the XQuery  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
 end_comment
 
 begin_class
