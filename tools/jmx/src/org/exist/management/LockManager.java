@@ -135,6 +135,8 @@ literal|"lockType"
 block|,
 literal|"lockMode"
 block|,
+literal|"id"
+block|,
 literal|"owner"
 block|,
 literal|"waitingForRead"
@@ -154,6 +156,8 @@ block|,
 literal|"Type of the lock (COLLECTION or RESOURCE)"
 block|,
 literal|"Mode of the lock (READ or WRITE)"
+block|,
+literal|"Id of the lock (resource or collection path)"
 block|,
 literal|"The names of the threads currently holding the lock"
 block|,
@@ -187,6 +191,10 @@ index|[]
 name|itemTypes
 init|=
 block|{
+name|SimpleType
+operator|.
+name|STRING
+block|,
 name|SimpleType
 operator|.
 name|STRING
@@ -335,6 +343,11 @@ block|,
 name|info
 operator|.
 name|getLockMode
+argument_list|()
+block|,
+name|info
+operator|.
+name|getId
 argument_list|()
 block|,
 name|info

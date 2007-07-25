@@ -670,7 +670,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Thread %20s: %3d"
+literal|"\t%20s: %3d"
 argument_list|,
 name|data
 operator|.
@@ -1102,6 +1102,25 @@ operator|.
 name|get
 argument_list|(
 literal|"lockMode"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|echo
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%20s: %s"
+argument_list|,
+literal|"Lock id"
+argument_list|,
+name|data
+operator|.
+name|get
+argument_list|(
+literal|"id"
 argument_list|)
 argument_list|)
 argument_list|)
