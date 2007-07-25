@@ -634,15 +634,6 @@ return|return
 name|cached
 return|;
 block|}
-comment|// check if the loaded documents should remain locked
-name|boolean
-name|lockOnLoad
-init|=
-name|context
-operator|.
-name|lockDocumentsOnLoad
-argument_list|()
-decl_stmt|;
 comment|// build the document set
 name|DocumentSet
 name|docs
@@ -804,23 +795,36 @@ operator|.
 name|getUpdateLock
 argument_list|()
 expr_stmt|;
+name|boolean
+name|lockAcquired
+init|=
+literal|false
+decl_stmt|;
 try|try
+block|{
+if|if
+condition|(
+operator|!
+name|dlock
+operator|.
+name|hasLock
+argument_list|()
+condition|)
 block|{
 name|dlock
 operator|.
 name|acquire
 argument_list|(
-name|lockOnLoad
-condition|?
-name|Lock
-operator|.
-name|WRITE_LOCK
-else|:
 name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+name|lockAcquired
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -833,31 +837,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// , -1, Node.DOCUMENT_NODE));
-if|if
-condition|(
-name|lockOnLoad
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Locking document: "
-operator|+
-name|doc
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|addLockedDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -869,7 +848,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Could not acquire read lock on document "
+literal|"Could not acquire lock on document "
 operator|+
 name|doc
 operator|.
@@ -882,8 +861,7 @@ finally|finally
 block|{
 if|if
 condition|(
-operator|!
-name|lockOnLoad
+name|lockAcquired
 condition|)
 name|dlock
 operator|.

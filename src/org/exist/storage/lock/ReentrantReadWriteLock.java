@@ -61,6 +61,14 @@ implements|implements
 name|Lock
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|int
+name|WAIT_CHECK_PERIOD
+init|=
+literal|200
+decl_stmt|;
+specifier|private
 class|class
 name|SuspendedWaiter
 block|{
@@ -70,6 +78,9 @@ decl_stmt|;
 name|int
 name|lockMode
 decl_stmt|;
+name|int
+name|lockCount
+decl_stmt|;
 specifier|public
 name|SuspendedWaiter
 parameter_list|(
@@ -78,6 +89,9 @@ name|thread
 parameter_list|,
 name|int
 name|lockMode
+parameter_list|,
+name|int
+name|lockCount
 parameter_list|)
 block|{
 name|this
@@ -91,6 +105,12 @@ operator|.
 name|lockMode
 operator|=
 name|lockMode
+expr_stmt|;
+name|this
+operator|.
+name|lockCount
+operator|=
+name|lockCount
 expr_stmt|;
 block|}
 block|}
@@ -110,7 +130,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
-name|String
+name|Object
 name|id_
 init|=
 literal|null
@@ -130,7 +150,7 @@ name|Stack
 argument_list|()
 decl_stmt|;
 specifier|protected
-name|long
+name|int
 name|holds_
 init|=
 literal|0
@@ -182,7 +202,7 @@ decl_stmt|;
 specifier|public
 name|ReentrantReadWriteLock
 parameter_list|(
-name|String
+name|Object
 name|id
 parameter_list|)
 block|{
@@ -201,7 +221,19 @@ name|Stack
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* @deprecated Use other method 	 * @see org.exist.storage.lock.Lock#acquire() 	 */
+specifier|public
+name|String
+name|getId
+parameter_list|()
+block|{
+return|return
+name|id_
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+comment|/* @deprecated Use other method       * @see org.exist.storage.lock.Lock#acquire()       */
 specifier|public
 name|boolean
 name|acquire
@@ -425,7 +457,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                LOG.warn("DEADLOCK detected: " + owner_.getName() + " -> " + caller.getName());
+comment|//                LOG.warn("DEADLOCK detected on " + getId() + ": " + owner_.getName() + " -> " + caller.getName());
 name|waitingOnResource
 operator|.
 name|suspendWaiting
@@ -440,6 +472,8 @@ argument_list|(
 name|owner_
 argument_list|,
 name|mode_
+argument_list|,
+name|holds_
 argument_list|)
 decl_stmt|;
 name|suspendedThreads
@@ -515,7 +549,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-comment|//                LOG.warn(caller.getName() + " waiting on WRITE lock held by " + owner_.getName());
+comment|//                LOG.warn(caller.getName() + " waiting on lock held by " + owner_.getName());
 try|try
 block|{
 for|for
@@ -526,7 +560,7 @@ control|)
 block|{
 name|wait
 argument_list|(
-name|waitTime
+name|WAIT_CHECK_PERIOD
 argument_list|)
 expr_stmt|;
 if|if
@@ -562,6 +596,8 @@ argument_list|(
 name|owner_
 argument_list|,
 name|mode_
+argument_list|,
+name|holds_
 argument_list|)
 decl_stmt|;
 name|suspendedThreads
@@ -1299,7 +1335,12 @@ operator|.
 name|currentThread
 argument_list|()
 operator|+
-literal|" released a lock it didn't hold. Either the "
+literal|" released a lock on "
+operator|+
+name|getId
+argument_list|()
+operator|+
+literal|" it didn't hold. Either the "
 operator|+
 literal|"thread was interrupted or it never acquired the lock. The lock was owned by: "
 operator|+
@@ -1440,6 +1481,15 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|//        LOG.debug("Lock " + getId() + " released by " + owner_.getName());
+if|if
+condition|(
+operator|--
+name|holds_
+operator|==
+literal|0
+condition|)
+block|{
 if|if
 condition|(
 operator|!
@@ -1472,14 +1522,14 @@ name|suspended
 operator|.
 name|lockMode
 expr_stmt|;
-block|}
-if|else if
-condition|(
-operator|--
 name|holds_
-operator|==
-literal|0
-condition|)
+operator|=
+name|suspended
+operator|.
+name|lockCount
+expr_stmt|;
+block|}
+else|else
 block|{
 name|owner_
 operator|=
@@ -1494,6 +1544,7 @@ expr_stmt|;
 name|notify
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1593,6 +1644,9 @@ operator|.
 name|COLLECTION_LOCK
 argument_list|,
 name|lockType
+argument_list|,
+name|getId
+argument_list|()
 argument_list|,
 operator|new
 name|String

@@ -332,14 +332,6 @@ return|return
 name|cached
 return|;
 comment|// check if the loaded documents should remain locked
-name|boolean
-name|lockOnLoad
-init|=
-name|context
-operator|.
-name|lockDocumentsOnLoad
-argument_list|()
-decl_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -356,7 +348,7 @@ name|ds
 operator|.
 name|lock
 argument_list|(
-name|lockOnLoad
+literal|false
 argument_list|,
 literal|true
 argument_list|)
@@ -416,19 +408,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|lockOnLoad
-condition|)
-block|{
-name|context
-operator|.
-name|addLockedDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 name|cached
 operator|=
@@ -458,11 +437,6 @@ throw|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|lockOnLoad
-condition|)
 comment|// release all locks
 name|ds
 operator|.

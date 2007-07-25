@@ -141,6 +141,11 @@ name|void
 name|wakeUp
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|getId
+parameter_list|()
+function_decl|;
 comment|/**      * Create a LockInfo entry for the given lock.      *       * @return the lock info      */
 specifier|public
 name|LockInfo

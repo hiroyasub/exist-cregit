@@ -913,6 +913,15 @@ name|getBuffers
 argument_list|()
 operator|>=
 name|minSize
+operator|||
+name|cache
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|CacheManager
+operator|.
+name|DATA_CACHE
 condition|)
 block|{
 name|int

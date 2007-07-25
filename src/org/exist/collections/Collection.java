@@ -557,6 +557,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|LockedDocumentMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|sync
 operator|.
 name|Sync
@@ -585,55 +599,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|MimeType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|SyntaxException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLReaderObjectFactory
+name|*
 import|;
 end_import
 
@@ -976,11 +942,7 @@ operator|=
 operator|new
 name|ReentrantReadWriteLock
 argument_list|(
-name|getURI
-argument_list|()
-operator|.
-name|getRawCollectionPath
-argument_list|()
+name|path
 argument_list|)
 expr_stmt|;
 block|}
@@ -1688,44 +1650,210 @@ return|return
 name|docs
 return|;
 block|}
-comment|//    public DocumentSet allDocs(DBBroker broker, DocumentSet docs,
-comment|//            boolean recursive, boolean checkPermissions) {
-comment|//        if (permissions.validate(broker.getUser(), Permission.READ)) {
-comment|//            CollectionCache cache = broker.getBrokerPool().getCollectionsCache();
-comment|//            synchronized (cache) {
-comment|//                getDocuments(broker, docs, checkPermissions);
-comment|//                if (recursive)
-comment|//                    allDocs(broker, docs, checkPermissions);
-comment|//            }
-comment|//        }
-comment|//        return docs;
-comment|//    }
-comment|//
-comment|//    private DocumentSet allDocs(DBBroker broker, DocumentSet docs, boolean checkPermissions) {
-comment|//        try {
-comment|//            getLock().acquire(Lock.READ_LOCK);
-comment|//            Collection child;
-comment|//            XmldbURI childName;
-comment|//            Iterator i = subcollections.iterator();
-comment|//            while (i.hasNext() ) {
-comment|//                childName = (XmldbURI) i.next();
-comment|//                child = broker.getCollection(path.appendInternal(childName));
-comment|//                if(child == null) {
-comment|//                    LOG.warn("child collection " + path.appendInternal(childName) + " not found. Skipping ...");
-comment|//                    // we always check if we have permissions to read the child collection
-comment|//                } else if (child.permissions.validate(broker.getUser(), Permission.READ)) {
-comment|//                    child.getDocuments(broker, docs, checkPermissions);
-comment|//                    if (child.getChildCollectionCount()> 0)
-comment|//                        child.allDocs(broker, docs, checkPermissions);
-comment|//                }
-comment|//            }
-comment|//        } catch (LockException e) {
-comment|//            LOG.warn(e.getMessage(), e);
-comment|//        } finally {
-comment|//            getLock().release();
-comment|//        }
-comment|//        return docs;
-comment|//    }
+specifier|public
+name|DocumentSet
+name|allDocs
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|DocumentSet
+name|docs
+parameter_list|,
+name|boolean
+name|recursive
+parameter_list|,
+name|LockedDocumentMap
+name|lockMap
+parameter_list|,
+name|int
+name|lockType
+parameter_list|)
+throws|throws
+name|LockException
+block|{
+if|if
+condition|(
+name|permissions
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+block|{
+name|List
+name|subColls
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// acquire a lock on the collection
+name|getLock
+argument_list|()
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+comment|// add all docs in this collection to the returned set
+name|getDocuments
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+name|lockMap
+argument_list|,
+name|lockType
+argument_list|)
+expr_stmt|;
+comment|// get a list of subcollection URIs. We will process them after unlocking this collection.
+comment|// otherwise we may deadlock ourselves
+name|subColls
+operator|=
+name|subcollections
+operator|.
+name|keys
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
+finally|finally
+block|{
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|recursive
+operator|&&
+name|subColls
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// process the child collections
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|subColls
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|XmldbURI
+name|childName
+init|=
+operator|(
+name|XmldbURI
+operator|)
+name|subColls
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+comment|//TODO : resolve URI !
+name|Collection
+name|child
+init|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|path
+operator|.
+name|appendInternal
+argument_list|(
+name|childName
+argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|NO_LOCK
+argument_list|)
+decl_stmt|;
+comment|// a collection may have been removed in the meantime, so check first
+if|if
+condition|(
+name|child
+operator|!=
+literal|null
+condition|)
+name|child
+operator|.
+name|allDocs
+argument_list|(
+name|broker
+argument_list|,
+name|docs
+argument_list|,
+name|recursive
+argument_list|,
+name|lockMap
+argument_list|,
+name|lockType
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|docs
+return|;
+block|}
 comment|/**      * Add all documents to the specified document set.      *      * @param docs      */
 specifier|public
 name|DocumentSet
@@ -1793,6 +1921,100 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|getLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|docs
+return|;
+block|}
+specifier|public
+name|DocumentSet
+name|getDocuments
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|DocumentSet
+name|docs
+parameter_list|,
+name|LockedDocumentMap
+name|lockMap
+parameter_list|,
+name|int
+name|lockType
+parameter_list|)
+throws|throws
+name|LockException
+block|{
+try|try
+block|{
+name|getLock
+argument_list|()
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+name|docs
+operator|.
+name|addCollection
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|docs
+operator|.
+name|addAll
+argument_list|(
+name|broker
+argument_list|,
+name|documents
+operator|.
+name|values
+argument_list|()
+argument_list|,
+name|lockMap
+argument_list|,
+name|lockType
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 finally|finally
 block|{
