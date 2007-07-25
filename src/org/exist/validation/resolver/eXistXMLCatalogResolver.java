@@ -669,13 +669,6 @@ if|if
 condition|(
 name|xri
 operator|.
-name|getBaseSystemId
-argument_list|()
-operator|==
-literal|null
-operator|&&
-name|xri
-operator|.
 name|getExpandedSystemId
 argument_list|()
 operator|==
@@ -781,13 +774,6 @@ name|IOException
 block|{
 if|if
 condition|(
-name|xri
-operator|.
-name|getBaseSystemId
-argument_list|()
-operator|==
-literal|null
-operator|&&
 name|xri
 operator|.
 name|getExpandedSystemId
