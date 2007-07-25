@@ -498,6 +498,15 @@ name|TEST_ALL_COLLECTIONS
 init|=
 literal|2
 decl_stmt|;
+comment|/** query a single document */
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|TEST_SINGLE_DOC
+init|=
+literal|3
+decl_stmt|;
 comment|/** apply a random mixture of the other modes */
 specifier|private
 specifier|static
@@ -505,7 +514,7 @@ specifier|final
 name|int
 name|TEST_MIXED
 init|=
-literal|3
+literal|4
 decl_stmt|;
 comment|/** Use 4 test runs, querying different collections */
 annotation|@
@@ -568,6 +577,18 @@ name|Integer
 index|[]
 block|{
 name|TEST_ALL_COLLECTIONS
+block|}
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+index|[]
+block|{
+name|TEST_SINGLE_DOC
 block|}
 argument_list|)
 expr_stmt|;
@@ -739,7 +760,7 @@ name|configure
 argument_list|(
 literal|1
 argument_list|,
-literal|5
+literal|10
 argument_list|,
 name|config
 argument_list|)
@@ -1118,7 +1139,7 @@ name|Executors
 operator|.
 name|newFixedThreadPool
 argument_list|(
-literal|8
+literal|20
 argument_list|)
 decl_stmt|;
 operator|new
@@ -1143,7 +1164,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|200
 condition|;
 name|i
 operator|++
@@ -1605,7 +1626,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|3
+literal|4
 argument_list|)
 expr_stmt|;
 if|if
@@ -1787,6 +1808,47 @@ expr_stmt|;
 name|collection
 operator|=
 literal|"/db/test"
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|currentMode
+operator|==
+name|TEST_SINGLE_DOC
+condition|)
+block|{
+name|int
+name|collectionId
+init|=
+name|random
+operator|.
+name|nextInt
+argument_list|(
+name|collectionCount
+argument_list|)
+decl_stmt|;
+name|collection
+operator|=
+literal|"/db/test/"
+operator|+
+name|collectionId
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"doc('"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|collection
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"/test1.xml')//chapter/section[@id = 'sect1']"
+argument_list|)
 expr_stmt|;
 block|}
 else|else
