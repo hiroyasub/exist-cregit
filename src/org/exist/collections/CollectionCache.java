@@ -457,6 +457,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+name|bucket
+operator|<
+literal|0
+condition|)
+name|bucket
+operator|=
+literal|0
+expr_stmt|;
 name|old
 operator|=
 operator|(
