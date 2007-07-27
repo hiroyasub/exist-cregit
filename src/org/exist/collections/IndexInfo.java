@@ -266,6 +266,12 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+if|if
+condition|(
+name|entityResolver
+operator|!=
+literal|null
+condition|)
 name|reader
 operator|.
 name|setEntityResolver

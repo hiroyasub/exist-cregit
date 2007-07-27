@@ -2118,32 +2118,7 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|InputSource
-name|resolveEntity
-parameter_list|(
-name|String
-name|publicId
-parameter_list|,
-name|String
-name|systemId
-parameter_list|)
-throws|throws
-name|SAXException
-throws|,
-name|IOException
-block|{
-return|return
-name|collection
-operator|.
-name|resolveEntity
-argument_list|(
-name|publicId
-argument_list|,
-name|systemId
-argument_list|)
-return|;
-block|}
+comment|/*public InputSource resolveEntity(String publicId, String systemId)             throws SAXException, IOException {         return collection.resolveEntity(publicId, systemId);     }*/
 comment|/* (non-Javadoc) 	 * @see java.util.Observable#addObserver(java.util.Observer) 	 */
 specifier|public
 name|void
