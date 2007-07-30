@@ -1830,7 +1830,7 @@ if|if
 condition|(
 name|mn
 operator|.
-name|hasMatchEndingAt
+name|hasMatchAround
 argument_list|(
 name|len
 argument_list|)
