@@ -470,7 +470,7 @@ literal|"backup"
 argument_list|,
 name|CLOptionDescriptor
 operator|.
-name|ARGUMENT_OPTIONAL
+name|ARGUMENT_REQUIRED
 argument_list|,
 name|BACKUP_OPT
 argument_list|,
