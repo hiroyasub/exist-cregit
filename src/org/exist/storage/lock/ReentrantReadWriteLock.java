@@ -163,12 +163,7 @@ name|Lock
 operator|.
 name|NO_LOCK
 decl_stmt|;
-specifier|private
-name|long
-name|timeOut_
-init|=
-literal|240000L
-decl_stmt|;
+comment|//	private long timeOut_ = 240000L;
 specifier|private
 name|Stack
 name|modeStack
@@ -528,11 +523,6 @@ block|}
 else|else
 block|{
 name|long
-name|waitTime
-init|=
-name|timeOut_
-decl_stmt|;
-name|long
 name|start
 init|=
 name|System
@@ -801,263 +791,48 @@ return|return
 literal|true
 return|;
 block|}
-else|else
-block|{
-name|waitTime
-operator|=
-name|timeOut_
-operator|-
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-expr_stmt|;
-if|if
-condition|(
-name|waitTime
-operator|<=
-literal|0
-condition|)
-block|{
-comment|// blocking thread found: if the lock is read only, remove it
-if|if
-condition|(
-name|writeLocks
-operator|==
-literal|0
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"releasing blocking thread "
-operator|+
-name|owner_
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" on "
-operator|+
-name|id_
-operator|+
-literal|" ("
-operator|+
-name|modeStack
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" acquisitions)"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Lock was acquired by :"
-argument_list|)
-expr_stmt|;
-while|while
-condition|(
-operator|!
-name|seStack
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|StackTraceElement
-index|[]
-name|se
-init|=
-operator|(
-name|StackTraceElement
-index|[]
-operator|)
-name|seStack
-operator|.
-name|pop
-argument_list|()
-decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|se
-argument_list|)
-expr_stmt|;
-name|se
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-name|owner_
-operator|=
-name|caller
-expr_stmt|;
-while|while
-condition|(
-operator|!
-name|modeStack
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|Integer
-name|top
-init|=
-operator|(
-name|Integer
-operator|)
-name|modeStack
-operator|.
-name|pop
-argument_list|()
-decl_stmt|;
-name|top
-operator|=
-literal|null
-expr_stmt|;
-block|}
-name|holds_
-operator|=
-literal|1
-expr_stmt|;
-name|modeStack
-operator|.
-name|push
-argument_list|(
-operator|new
-name|Integer
-argument_list|(
-name|mode
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|Throwable
-name|t
-init|=
-operator|new
-name|Throwable
-argument_list|()
-decl_stmt|;
-name|seStack
-operator|.
-name|push
-argument_list|(
-name|t
-operator|.
-name|getStackTrace
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|mode_
-operator|=
-name|mode
-expr_stmt|;
-name|DeadlockDetection
-operator|.
-name|clearCollectionWaiter
-argument_list|(
-name|owner_
-argument_list|)
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-else|else
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Write lock timed out"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Lock was acquired by :"
-argument_list|)
-expr_stmt|;
-while|while
-condition|(
-operator|!
-name|seStack
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|StackTraceElement
-index|[]
-name|se
-init|=
-operator|(
-name|StackTraceElement
-index|[]
-operator|)
-name|seStack
-operator|.
-name|pop
-argument_list|()
-decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|se
-argument_list|)
-expr_stmt|;
-name|se
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-name|DeadlockDetection
-operator|.
-name|clearCollectionWaiter
-argument_list|(
-name|owner_
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|LockException
-argument_list|(
-literal|"time out while acquiring a lock"
-argument_list|)
-throw|;
-block|}
-block|}
+comment|// else {
+comment|//							long waitTime = timeOut_ - (System.currentTimeMillis() - start);
+comment|//							if (waitTime<= 0) {
+comment|//								// blocking thread found: if the lock is read only, remove it
+comment|//								if (writeLocks == 0) {
+comment|//						our			System.out.println("releasing blocking thread " + owner_.getName() + " on " + id_ + " (" + modeStack.size() + " acquisitions)");
+comment|//									if (DEBUG) {
+comment|//										LOG.debug("Lock was acquired by :");
+comment|//										while (!seStack.isEmpty()) {
+comment|//											StackTraceElement[] se = (StackTraceElement[])seStack.pop();
+comment|//											LOG.debug(se);
+comment|//									    	se = null;
+comment|//										}
+comment|//									}
+comment|//									owner_ = caller;
+comment|//									while (!modeStack.isEmpty()) {
+comment|//								    	Integer top = (Integer)modeStack.pop();
+comment|//								    	top = null;
+comment|//									}
+comment|//									holds_ = 1;
+comment|//									modeStack.push(new Integer(mode));
+comment|//									if (DEBUG) {
+comment|//										Throwable t = new Throwable();
+comment|//										seStack.push(t.getStackTrace());
+comment|//									}
+comment|//									mode_ = mode;
+comment|//                                    DeadlockDetection.clearCollectionWaiter(owner_);
+comment|//                                    return true;
+comment|//								} else
+comment|//									LOG.warn("Write lock timed out");
+comment|//									if (DEBUG) {
+comment|//										LOG.debug("Lock was acquired by :");
+comment|//										while (!seStack.isEmpty()) {
+comment|//											StackTraceElement[] se = (StackTraceElement[])seStack.pop();
+comment|//											LOG.debug(se);
+comment|//									    	se = null;
+comment|//										}
+comment|//									}
+comment|//                                DeadlockDetection.clearCollectionWaiter(owner_);
+comment|//                                throw new LockException("time out while acquiring a lock");
+comment|//							}
+comment|//						}
 block|}
 block|}
 catch|catch
