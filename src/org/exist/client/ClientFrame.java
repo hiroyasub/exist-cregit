@@ -833,7 +833,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|SingleInstanceConfiguration
+name|MimeTable
 import|;
 end_import
 
@@ -845,7 +845,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|MimeTable
+name|SingleInstanceConfiguration
 import|;
 end_import
 

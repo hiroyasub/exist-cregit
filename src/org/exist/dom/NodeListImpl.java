@@ -15,13 +15,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|w3c
+name|util
 operator|.
-name|dom
-operator|.
-name|NodeList
+name|ArrayList
 import|;
 end_import
 
@@ -39,11 +37,13 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|w3c
 operator|.
-name|ArrayList
+name|dom
+operator|.
+name|NodeList
 import|;
 end_import
 

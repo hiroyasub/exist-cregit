@@ -75,6 +75,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|EmptyNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -88,18 +100,6 @@ operator|.
 name|dom
 operator|.
 name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|EmptyNodeSet
 import|;
 end_import
 

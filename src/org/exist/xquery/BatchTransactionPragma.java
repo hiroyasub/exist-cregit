@@ -61,18 +61,6 @@ name|TransactionException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class

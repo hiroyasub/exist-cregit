@@ -35,6 +35,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|numbering
+operator|.
+name|NodeId
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|XPathException
@@ -66,18 +78,6 @@ operator|.
 name|value
 operator|.
 name|SequenceIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|NodeId
 import|;
 end_import
 

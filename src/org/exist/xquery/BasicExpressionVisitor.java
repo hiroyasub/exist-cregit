@@ -11,15 +11,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|ExtFulltext
+name|ArrayList
 import|;
 end_import
 
@@ -35,11 +31,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|ArrayList
+name|xquery
+operator|.
+name|functions
+operator|.
+name|ExtFulltext
 import|;
 end_import
 

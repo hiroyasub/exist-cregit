@@ -197,7 +197,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|StringValue
 import|;
 end_import
 
@@ -211,7 +211,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|Type
 import|;
 end_import
 

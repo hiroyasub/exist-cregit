@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|BasicFunction
 import|;
 end_import
 
@@ -69,7 +69,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|BasicFunction
+name|Cardinality
 import|;
 end_import
 
@@ -147,7 +147,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|StringValue
 import|;
 end_import
 
@@ -161,7 +161,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|Type
 import|;
 end_import
 

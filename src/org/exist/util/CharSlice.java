@@ -15,7 +15,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Writer
+name|Serializable
 import|;
 end_import
 
@@ -25,7 +25,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Serializable
+name|Writer
 import|;
 end_import
 

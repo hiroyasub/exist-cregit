@@ -69,9 +69,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|analysis
-operator|.
-name|Tokenizer
+name|DBBroker
 import|;
 end_import
 
@@ -83,7 +81,9 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|analysis
+operator|.
+name|Tokenizer
 import|;
 end_import
 

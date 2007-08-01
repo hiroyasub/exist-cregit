@@ -71,18 +71,6 @@ name|Handler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Factory class for creating custom stream handlers for the 'xmldb' protocol.  *  * @see java.net.URLStreamHandler  * @see java.net.URLStreamHandlerFactory  *  * @author Dannes Wessels  */
 end_comment

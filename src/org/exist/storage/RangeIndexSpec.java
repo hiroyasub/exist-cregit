@@ -29,11 +29,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|dom
 operator|.
-name|value
-operator|.
-name|Type
+name|QName
 import|;
 end_import
 
@@ -43,9 +41,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xquery
 operator|.
-name|QName
+name|value
+operator|.
+name|Type
 import|;
 end_import
 

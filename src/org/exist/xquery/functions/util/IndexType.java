@@ -49,6 +49,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|AnalyzeContextInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|BasicFunction
 import|;
 end_import
@@ -122,18 +134,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|AnalyzeContextInfo
 import|;
 end_import
 

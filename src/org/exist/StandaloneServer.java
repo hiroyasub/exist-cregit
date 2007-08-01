@@ -527,7 +527,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Node
+name|NamedNodeMap
 import|;
 end_import
 
@@ -539,7 +539,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|NamedNodeMap
+name|Node
 import|;
 end_import
 

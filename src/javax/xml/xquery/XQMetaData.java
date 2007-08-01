@@ -9,18 +9,6 @@ name|xquery
 package|;
 end_package
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|xquery
-operator|.
-name|XQException
-import|;
-end_import
-
 begin_comment
 comment|/**  * XQJ interfaces reconstructed from version 0.5 documentation  */
 end_comment

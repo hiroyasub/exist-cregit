@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Base64Encoder
+name|Base64Decoder
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Base64Decoder
+name|Base64Encoder
 import|;
 end_import
 

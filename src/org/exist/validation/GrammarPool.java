@@ -33,11 +33,9 @@ name|apache
 operator|.
 name|xerces
 operator|.
-name|xni
+name|util
 operator|.
-name|grammars
-operator|.
-name|XMLGrammarPool
+name|XMLGrammarPoolImpl
 import|;
 end_import
 
@@ -81,9 +79,11 @@ name|apache
 operator|.
 name|xerces
 operator|.
-name|util
+name|xni
 operator|.
-name|XMLGrammarPoolImpl
+name|grammars
+operator|.
+name|XMLGrammarPool
 import|;
 end_import
 

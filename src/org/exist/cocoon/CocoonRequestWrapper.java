@@ -111,7 +111,7 @@ name|servlet
 operator|.
 name|http
 operator|.
-name|HttpServletRequest
+name|Cookie
 import|;
 end_import
 
@@ -123,7 +123,7 @@ name|servlet
 operator|.
 name|http
 operator|.
-name|Cookie
+name|HttpServletRequest
 import|;
 end_import
 

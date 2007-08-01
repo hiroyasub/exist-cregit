@@ -43,6 +43,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|memtree
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -146,18 +158,6 @@ operator|.
 name|value
 operator|.
 name|ValueSequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|NodeImpl
 import|;
 end_import
 

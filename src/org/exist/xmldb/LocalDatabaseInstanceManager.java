@@ -37,7 +37,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|PermissionDeniedException
 import|;
 end_import
 
@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|PermissionDeniedException
+name|User
 import|;
 end_import
 

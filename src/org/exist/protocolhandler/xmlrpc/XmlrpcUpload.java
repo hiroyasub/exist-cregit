@@ -87,11 +87,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|protocolhandler
 operator|.
-name|io
+name|xmldb
 operator|.
-name|ExistIOException
+name|XmldbURL
 import|;
 end_import
 
@@ -101,11 +101,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|protocolhandler
+name|storage
 operator|.
-name|xmldb
+name|io
 operator|.
-name|XmldbURL
+name|ExistIOException
 import|;
 end_import
 

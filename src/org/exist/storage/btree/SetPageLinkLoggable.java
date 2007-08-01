@@ -17,15 +17,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|nio
 operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|Txn
+name|ByteBuffer
 import|;
 end_import
 
@@ -57,11 +53,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|nio
+name|exist
 operator|.
-name|ByteBuffer
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
 import|;
 end_import
 

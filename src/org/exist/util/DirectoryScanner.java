@@ -13,9 +13,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|ArrayList
+name|File
 import|;
 end_import
 
@@ -23,9 +23,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|File
+name|ArrayList
 import|;
 end_import
 

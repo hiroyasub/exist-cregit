@@ -13,6 +13,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|sun
@@ -46,16 +56,6 @@ operator|.
 name|ctx
 operator|.
 name|Result
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URI
 import|;
 end_import
 

@@ -43,7 +43,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Iterator
 import|;
 end_import
 
@@ -53,7 +53,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|List
 import|;
 end_import
 
@@ -66,6 +66,18 @@ operator|.
 name|dom
 operator|.
 name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|EmptyNodeSet
 import|;
 end_import
 
@@ -99,9 +111,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|numbering
 operator|.
-name|EmptyNodeSet
+name|NodeId
 import|;
 end_import
 
@@ -126,18 +138,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|NodeId
 import|;
 end_import
 

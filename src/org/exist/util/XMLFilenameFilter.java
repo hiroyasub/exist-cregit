@@ -15,7 +15,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FilenameFilter
+name|File
 import|;
 end_import
 
@@ -25,31 +25,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Matcher
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
+name|FilenameFilter
 import|;
 end_import
 

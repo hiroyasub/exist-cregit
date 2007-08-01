@@ -51,18 +51,6 @@ name|NodeProxy
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|SwapVals
-import|;
-end_import
-
 begin_comment
 comment|/** 	This class implements a version  	of the insertion sort algorithm.  	The implementation is inspired on 	the work of Michael Maniscalco in 	C++ 	http://www.michael-maniscalco.com/sorting.htm 	 	@author JosÃ© MarÃ­a FernÃ¡ndez */
 end_comment

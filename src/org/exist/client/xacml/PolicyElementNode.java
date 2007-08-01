@@ -13,18 +13,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|xacml
-operator|.
-name|PolicyTreeElement
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|net
@@ -44,6 +32,18 @@ operator|.
 name|xacml
 operator|.
 name|XACMLUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|sun
+operator|.
+name|xacml
+operator|.
+name|PolicyTreeElement
 import|;
 end_import
 

@@ -13,20 +13,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|xacml
-operator|.
-name|ctx
-operator|.
-name|Result
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|swing
@@ -42,6 +28,20 @@ operator|.
 name|swing
 operator|.
 name|DefaultComboBoxModel
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|sun
+operator|.
+name|xacml
+operator|.
+name|ctx
+operator|.
+name|Result
 import|;
 end_import
 

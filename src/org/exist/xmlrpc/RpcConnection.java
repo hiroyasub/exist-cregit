@@ -573,7 +573,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|SecurityManager
 import|;
 end_import
 
@@ -585,7 +585,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
+name|User
 import|;
 end_import
 

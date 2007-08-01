@@ -35,20 +35,6 @@ name|QName
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|FunMatches
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class

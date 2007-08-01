@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|AttrImpl
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|AttrImpl
+name|QName
 import|;
 end_import
 

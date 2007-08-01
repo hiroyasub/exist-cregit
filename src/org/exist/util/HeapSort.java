@@ -55,18 +55,6 @@ name|NodeProxy
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|SwapVals
-import|;
-end_import
-
 begin_comment
 comment|/** 	This class implements a simple version  	of the heapsort algorithm, improved.  	The implementation is based on the 	implementation of J. Mohr, which was 	based on the implementation of a sorting 	framework by Cay Horstmann.  	@author JosÃ© MarÃ­a FernÃ¡ndez */
 end_comment

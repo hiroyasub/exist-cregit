@@ -11,25 +11,21 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|xml
+name|io
 operator|.
-name|sax
-operator|.
-name|InputSource
+name|IOException
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|w3c
+name|net
 operator|.
-name|dom
-operator|.
-name|Node
+name|URI
 import|;
 end_import
 
@@ -47,21 +43,25 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|net
+name|w3c
 operator|.
-name|URI
+name|dom
+operator|.
+name|Node
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|xml
 operator|.
-name|IOException
+name|sax
+operator|.
+name|InputSource
 import|;
 end_import
 

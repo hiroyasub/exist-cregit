@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionSignature
+name|Function
 import|;
 end_import
 
@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Function
+name|FunctionSignature
 import|;
 end_import
 

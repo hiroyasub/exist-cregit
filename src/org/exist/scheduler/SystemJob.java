@@ -41,6 +41,16 @@ name|org
 operator|.
 name|quartz
 operator|.
+name|Job
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
 name|JobDataMap
 import|;
 end_import
@@ -62,16 +72,6 @@ operator|.
 name|quartz
 operator|.
 name|JobExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|Job
 import|;
 end_import
 

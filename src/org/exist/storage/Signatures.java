@@ -13,11 +13,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|util
 operator|.
-name|Node
+name|ByteConversion
 import|;
 end_import
 
@@ -25,11 +25,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|w3c
 operator|.
-name|util
+name|dom
 operator|.
-name|*
+name|Node
 import|;
 end_import
 

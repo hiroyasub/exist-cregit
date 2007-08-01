@@ -13,20 +13,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|xacml
-operator|.
-name|cond
-operator|.
-name|Apply
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -36,6 +22,20 @@ operator|.
 name|xacml
 operator|.
 name|XACMLUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|sun
+operator|.
+name|xacml
+operator|.
+name|cond
+operator|.
+name|Apply
 import|;
 end_import
 

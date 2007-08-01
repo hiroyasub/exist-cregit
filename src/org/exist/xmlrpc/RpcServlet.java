@@ -207,18 +207,6 @@ name|Configuration
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|MimeType
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class

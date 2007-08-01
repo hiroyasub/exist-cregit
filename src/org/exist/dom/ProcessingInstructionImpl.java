@@ -29,6 +29,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|numbering
+operator|.
+name|NodeId
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|Signatures
@@ -58,18 +70,6 @@ operator|.
 name|pool
 operator|.
 name|NodePool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
-name|NodeId
 import|;
 end_import
 

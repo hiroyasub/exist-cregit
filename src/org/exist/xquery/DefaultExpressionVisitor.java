@@ -19,7 +19,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|List
 import|;
 end_import
 
@@ -29,7 +29,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Stack
 import|;
 end_import
 

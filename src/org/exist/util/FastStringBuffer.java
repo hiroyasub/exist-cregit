@@ -11,25 +11,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|io
 operator|.
-name|util
-operator|.
-name|CharSlice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|CompressedWhitespace
+name|Serializable
 import|;
 end_import
 
@@ -40,16 +26,6 @@ operator|.
 name|io
 operator|.
 name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 import|;
 end_import
 

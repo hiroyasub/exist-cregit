@@ -131,9 +131,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|xmldb
 operator|.
-name|Constants
+name|XmldbURI
 import|;
 end_import
 
@@ -143,9 +143,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
+name|xquery
 operator|.
-name|XmldbURI
+name|Constants
 import|;
 end_import
 

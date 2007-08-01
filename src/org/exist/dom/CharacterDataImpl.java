@@ -31,9 +31,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|XMLString
+name|btree
+operator|.
+name|Value
 import|;
 end_import
 
@@ -55,11 +57,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|btree
-operator|.
-name|Value
+name|XMLString
 import|;
 end_import
 

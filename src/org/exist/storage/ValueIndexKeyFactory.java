@@ -13,16 +13,6 @@ name|storage
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|EXistException
-import|;
-end_import
-
 begin_comment
 comment|/** Factory for Keys for Value Indices;  * provides through serialize() the persistant storage key. */
 end_comment

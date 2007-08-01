@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -53,11 +63,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|protocolhandler
 operator|.
-name|io
+name|xmldb
 operator|.
-name|BlockingInputStream
+name|XmldbURL
 import|;
 end_import
 
@@ -67,11 +77,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|protocolhandler
+name|storage
 operator|.
-name|xmldb
+name|io
 operator|.
-name|XmldbURL
+name|BlockingInputStream
 import|;
 end_import
 

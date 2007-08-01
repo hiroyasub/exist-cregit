@@ -11,20 +11,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|xacml
-operator|.
-name|ctx
-operator|.
-name|RequestCtx
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -146,6 +132,20 @@ operator|.
 name|value
 operator|.
 name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|sun
+operator|.
+name|xacml
+operator|.
+name|ctx
+operator|.
+name|RequestCtx
 import|;
 end_import
 

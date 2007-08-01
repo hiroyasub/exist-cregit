@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -38,6 +48,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -203,18 +225,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -236,16 +246,6 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
 import|;
 end_import
 
