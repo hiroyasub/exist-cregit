@@ -2047,6 +2047,13 @@ name|readers
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|waitingForWriteLock
+operator|!=
+literal|null
+condition|)
+block|{
 name|String
 name|waitingForWrite
 index|[]
@@ -2109,6 +2116,7 @@ argument_list|(
 name|waitingForWrite
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|info
 return|;

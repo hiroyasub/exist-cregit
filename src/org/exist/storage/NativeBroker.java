@@ -3373,7 +3373,7 @@ if|if
 condition|(
 name|current
 operator|.
-name|hasSubcollection
+name|hasSubcollectionNoLock
 argument_list|(
 name|temp
 argument_list|)
@@ -3422,7 +3422,7 @@ condition|(
 operator|!
 name|current
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
