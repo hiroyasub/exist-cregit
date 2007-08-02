@@ -997,14 +997,12 @@ name|getParentId
 argument_list|()
 decl_stmt|;
 comment|//Filter out the temporary nodes wrapper element
+comment|// Removed this test for document nodes for /a/parent::node() to work
+comment|// it passes the test suite so please report if it does not work for you,
+comment|// especially Adam who reported a recursivity problem with previous attempt. /ljo
+comment|//if (parentID != NodeId.DOCUMENT_NODE&&
 if|if
 condition|(
-name|parentID
-operator|!=
-name|NodeId
-operator|.
-name|DOCUMENT_NODE
-operator|&&
 operator|!
 operator|(
 name|parentID
@@ -1061,6 +1059,15 @@ name|parentID
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|parentID
+operator|!=
+name|NodeId
+operator|.
+name|DOCUMENT_NODE
+condition|)
+block|{
 name|parent
 operator|=
 operator|new
@@ -1082,6 +1089,31 @@ operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|parent
+operator|=
+operator|new
+name|NodeProxy
+argument_list|(
+name|current
+operator|.
+name|getDocument
+argument_list|()
+argument_list|,
+name|parentID
+argument_list|,
+name|Node
+operator|.
+name|DOCUMENT_NODE
+argument_list|,
+name|StoredNode
+operator|.
+name|UNKNOWN_NODE_IMPL_ADDRESS
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1127,12 +1159,6 @@ name|parent
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if (parentID == NodeId.DOCUMENT_NODE&&
-comment|//  !current.getDocument().getCollection().isTempCollection()) {
-comment|// fixme! merge with above? Causing recursive failures reported by Adam /ljo
-comment|//	System.out.println("AbstractNodeSet::getParents() NodeId.DOCUMENT_NODE : type " + current.getNodeId());
-comment|//parents.add(current);
-comment|//}
 block|}
 return|return
 name|parents

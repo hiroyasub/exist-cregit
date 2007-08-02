@@ -4479,7 +4479,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                    if (test.matches(p)&& !(p.getNodeId().getParentId() == NodeId.DOCUMENT_NODE&& test.getType() == Type.ELEMENT)) {                 */
 if|if
 condition|(
 name|test
@@ -4490,8 +4489,6 @@ name|p
 argument_list|)
 condition|)
 block|{
-comment|// For NodeId.DOCUMENT_NODE add only if
-comment|// parent::node() not parent::element().
 name|result
 operator|.
 name|add
