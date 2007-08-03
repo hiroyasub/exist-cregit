@@ -15,6 +15,18 @@ name|parser
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
 begin_interface
 specifier|public
 interface|interface

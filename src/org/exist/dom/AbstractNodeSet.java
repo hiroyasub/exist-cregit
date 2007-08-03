@@ -997,12 +997,17 @@ name|getParentId
 argument_list|()
 decl_stmt|;
 comment|//Filter out the temporary nodes wrapper element
-comment|// Removed this test for document nodes for /a/parent::node() to work
-comment|// it passes the test suite so please report if it does not work for you,
-comment|// especially Adam who reported a recursivity problem with previous attempt. /ljo
-comment|//if (parentID != NodeId.DOCUMENT_NODE&&
+comment|// Moved the parentID != NodeId.DOCUMENT_NODE test inside for /a/parent::node() to work
+comment|// correctly.
+comment|// Added the needed test parentID != null, detected in org.exist.xquery.OptimizerTest
+comment|// "//node()[parent::mods:title&= 'ethnic']" which caused an NPE here
+comment|// since I dont know when. /ljo
 if|if
 condition|(
+name|parentID
+operator|!=
+literal|null
+operator|&&
 operator|!
 operator|(
 name|parentID
