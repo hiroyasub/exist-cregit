@@ -15,41 +15,13 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
+name|log4j
 operator|.
-name|framework
-operator|.
-name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
+name|BasicConfigurator
 import|;
 end_import
 
@@ -71,11 +43,75 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|ExistIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|service
 operator|.
 name|ValidationService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -127,8 +163,6 @@ begin_class
 specifier|public
 class|class
 name|ValidationServiceTest
-extends|extends
-name|TestCase
 block|{
 specifier|private
 specifier|final
@@ -164,40 +198,30 @@ name|service
 init|=
 literal|null
 decl_stmt|;
-specifier|public
-name|ValidationServiceTest
-parameter_list|(
-name|String
-name|testName
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|testName
-argument_list|)
-expr_stmt|;
-block|}
+comment|//    public ValidationServiceTest(String testName) {
+comment|//        super(testName);
+comment|//    }
+comment|//
+comment|//    public static Test suite() {
+comment|//        TestSuite suite = new TestSuite(ValidationServiceTest.class);
+comment|//        return suite;
+comment|//    }
+annotation|@
+name|BeforeClass
 specifier|public
 specifier|static
-name|Test
-name|suite
+name|void
+name|init
 parameter_list|()
 block|{
-name|TestSuite
-name|suite
-init|=
-operator|new
-name|TestSuite
-argument_list|(
-name|ValidationServiceTest
+name|BasicConfigurator
 operator|.
-name|class
-argument_list|)
-decl_stmt|;
-return|return
-name|suite
-return|;
+name|configure
+argument_list|()
+expr_stmt|;
 block|}
+annotation|@
+name|Before
 specifier|public
 name|void
 name|setUp
@@ -264,6 +288,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertNotNull
 argument_list|(
 literal|"Could not connect to database."
@@ -295,6 +321,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -337,6 +365,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -350,6 +380,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testGetName
@@ -392,6 +424,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -402,6 +436,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testGetVersion
@@ -418,6 +454,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertEquals
 argument_list|(
 literal|"ValidationService check"
@@ -442,6 +480,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -452,6 +492,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testXsdValidDocument
@@ -468,6 +510,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -480,6 +524,8 @@ literal|"/db/validation/addressbook_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertTrue
 argument_list|(
 literal|"specified catalog"
@@ -494,6 +540,8 @@ literal|"/db/validation/xsd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertTrue
 argument_list|(
 literal|"specified grammar"
@@ -520,6 +568,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -530,6 +580,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testXsdInvalidDocument
@@ -546,6 +598,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -558,6 +612,8 @@ literal|"/db/validation/addressbook_invalid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"specified catalog"
@@ -572,6 +628,8 @@ literal|"/db/validation/xsd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"specified grammar"
@@ -598,6 +656,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -608,6 +668,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testNonexistingDocument
@@ -624,6 +686,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"non existing document"
@@ -652,6 +716,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -662,6 +728,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testDtdValidDocument
@@ -678,6 +746,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -690,6 +760,8 @@ literal|"/db/validation/hamlet_valid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertTrue
 argument_list|(
 literal|"specified catalog"
@@ -704,7 +776,7 @@ literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//            assertTrue( "specified grammar", service.validateResource("/db/validation/hamlet_valid.xml",
+comment|//            Assert.assertTrue( "specified grammar", service.validateResource("/db/validation/hamlet_valid.xml",
 comment|//                "/db/validation/dtd/hamlet.dtd") );
 block|}
 catch|catch
@@ -718,6 +790,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -728,9 +802,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"cannot specify dtd as second parameter"
+argument_list|)
+annotation|@
+name|Test
 specifier|public
 name|void
-name|bugtestDtdValidDocument2
+name|testDtdValidDocument2
 parameter_list|()
 block|{
 name|System
@@ -744,6 +825,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertTrue
 argument_list|(
 literal|"specified grammar"
@@ -770,6 +853,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -780,6 +865,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testDtdInvalidDocument
@@ -796,6 +883,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -808,6 +897,8 @@ literal|"/db/grammar/hamlet_invalid.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"specified catalog"
@@ -822,20 +913,8 @@ literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"specified grammar"
-argument_list|,
-name|service
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_invalid.xml"
-argument_list|,
-literal|"/db/validation/dtd/hamlet.dtd"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_invalid.xml",
+comment|//                "/db/validation/dtd/hamlet.dtd") );
 block|}
 catch|catch
 parameter_list|(
@@ -848,6 +927,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -858,6 +939,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testNoDoctype
@@ -874,6 +957,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -886,6 +971,8 @@ literal|"/db/validation/hamlet_nodoctype.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"specified catalog"
@@ -900,20 +987,8 @@ literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"specified grammar"
-argument_list|,
-name|service
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_nodoctype.xml"
-argument_list|,
-literal|"/db/validation/dtd/hamlet.dtd"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_nodoctype.xml",
+comment|//                "/db/validation/dtd/hamlet.dtd") );
 block|}
 catch|catch
 parameter_list|(
@@ -926,6 +1001,8 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -936,6 +1013,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testWrongDoctype
@@ -952,6 +1031,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"system catalog"
@@ -964,6 +1045,8 @@ literal|"/db/validation/hamlet_wrongdoctype.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|Assert
+operator|.
 name|assertFalse
 argument_list|(
 literal|"specified catalog"
@@ -978,20 +1061,8 @@ literal|"/db/validation/dtd/catalog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"specified grammar"
-argument_list|,
-name|service
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_wrongdoctype.xml"
-argument_list|,
-literal|"/db/validation/dtd/hamlet.dtd"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_wrongdoctype.xml",
+comment|//                "/db/validation/dtd/hamlet.dtd") );
 block|}
 catch|catch
 parameter_list|(
@@ -999,11 +1070,44 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|ExistIOException
+condition|)
+block|{
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|Assert
+operator|.
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|e
 operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|Assert
+operator|.
 name|fail
 argument_list|(
 name|e
@@ -1012,6 +1116,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

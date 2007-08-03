@@ -250,46 +250,52 @@ name|XNIException
 throws|,
 name|IOException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"BaseSystemId='"
-operator|+
-name|xri
-operator|.
-name|getBaseSystemId
-argument_list|()
-operator|+
-literal|"' ExpandedSystemId="
-operator|+
+if|if
+condition|(
 name|xri
 operator|.
 name|getExpandedSystemId
 argument_list|()
-operator|+
-literal|"' LiteralSystemId="
-operator|+
+operator|==
+literal|null
+operator|&&
 name|xri
 operator|.
 name|getLiteralSystemId
 argument_list|()
-operator|+
-literal|"' Namespace="
-operator|+
+operator|==
+literal|null
+operator|&&
 name|xri
 operator|.
 name|getNamespace
 argument_list|()
-operator|+
-literal|"' PublicId="
-operator|+
+operator|==
+literal|null
+operator|&&
 name|xri
 operator|.
 name|getPublicId
 argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+comment|// quick fail
+return|return
+literal|null
+return|;
+block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Resolving XMLResourceIdentifier: "
 operator|+
-literal|"'"
+name|getXriDetails
+argument_list|(
+name|xri
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|String
@@ -348,7 +354,11 @@ operator|.
 name|getNamespace
 argument_list|()
 operator|+
-literal|"'."
+literal|"' in database from "
+operator|+
+name|collection
+operator|+
+literal|"..."
 argument_list|)
 expr_stmt|;
 name|resourcePath
@@ -367,7 +377,7 @@ argument_list|,
 name|user
 argument_list|)
 expr_stmt|;
-comment|// set systemid?
+comment|// DIZZZ: set systemid?
 block|}
 if|else if
 condition|(
@@ -391,7 +401,11 @@ operator|.
 name|getPublicId
 argument_list|()
 operator|+
-literal|"'."
+literal|"' in catalogs in database from "
+operator|+
+name|collection
+operator|+
+literal|"..."
 argument_list|)
 expr_stmt|;
 name|String
@@ -415,7 +429,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Found catalog='"
+literal|"Found publicId in catalog '"
 operator|+
 name|catalogPath
 operator|+
@@ -523,6 +537,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|// Another escape route
 if|if
 condition|(
 name|resourcePath
@@ -534,9 +549,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"resourcePath="
-operator|+
-name|resourcePath
+literal|"resourcePath=null"
 argument_list|)
 expr_stmt|;
 return|return
@@ -568,9 +581,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"resourcePath="
+literal|"resourcePath='"
 operator|+
 name|resourcePath
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|InputStream
@@ -613,6 +628,128 @@ argument_list|)
 decl_stmt|;
 return|return
 name|retVal
+return|;
+block|}
+specifier|private
+name|String
+name|getXriDetails
+parameter_list|(
+name|XMLResourceIdentifier
+name|xrid
+parameter_list|)
+block|{
+name|StringBuffer
+name|sb
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"PublicId='"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|xrid
+operator|.
+name|getPublicId
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"' "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"BaseSystemId='"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|xrid
+operator|.
+name|getBaseSystemId
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"' "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"ExpandedSystemId='"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|xrid
+operator|.
+name|getExpandedSystemId
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"' "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"LiteralSystemId='"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|xrid
+operator|.
+name|getLiteralSystemId
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"' "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"Namespace='"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|xrid
+operator|.
+name|getNamespace
+argument_list|()
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"' "
+argument_list|)
+expr_stmt|;
+return|return
+name|sb
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
