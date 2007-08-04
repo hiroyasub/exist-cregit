@@ -550,6 +550,27 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|XmldbURI
+name|collUri
+init|=
+name|path
+operator|.
+name|removeLastSegment
+argument_list|()
+decl_stmt|;
+name|collection
+operator|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|collUri
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 comment|//TODO : if the collection lock has been released
 comment|//Reacquire one here
 if|if

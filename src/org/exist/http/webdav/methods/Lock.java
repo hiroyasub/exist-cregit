@@ -642,6 +642,13 @@ argument_list|(
 literal|"Storing NULL xml resource"
 argument_list|)
 expr_stmt|;
+name|String
+name|txt
+init|=
+literal|"<!-- place holder for null byte sized "
+operator|+
+literal|"nullresource XML document --><nullresource/>"
+decl_stmt|;
 name|IndexInfo
 name|info
 init|=
@@ -655,7 +662,7 @@ name|broker
 argument_list|,
 name|docName
 argument_list|,
-literal|"<nullresource/>"
+name|txt
 argument_list|)
 decl_stmt|;
 comment|//TODO : unlock the collection here ?
@@ -689,7 +696,7 @@ name|broker
 argument_list|,
 name|info
 argument_list|,
-literal|"<nullresource/>"
+name|txt
 argument_list|,
 literal|false
 argument_list|)

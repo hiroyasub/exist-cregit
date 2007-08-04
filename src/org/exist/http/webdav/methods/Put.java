@@ -587,12 +587,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//            MimeType mime = MimeTable.getInstance().getContentTypeFor(path);
-comment|//            if (mime == null){
-comment|//                mime = MimeType.BINARY_TYPE;
-comment|//            }
-comment|// TODO why is content type involved here? would not like to use it,
-comment|// as it seems to block binary file upload by MS office.
 name|MimeType
 name|mime
 decl_stmt|;
@@ -683,17 +677,19 @@ name|mime
 operator|==
 literal|null
 condition|)
+block|{
 name|mime
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"storing document "
+literal|"Storing document "
 operator|+
 name|pathUri
 operator|+
@@ -721,9 +717,92 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"storing XML resource"
+literal|"Storing XML resource"
 argument_list|)
 expr_stmt|;
+comment|// 0 byte XML files cannot exist, create place colder
+if|if
+condition|(
+name|tempFile
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0L
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Create '0 byte' place for XML resource"
+argument_list|)
+expr_stmt|;
+name|String
+name|txt
+init|=
+literal|"<!-- place holder for null byte sized XML document --><null/>"
+decl_stmt|;
+name|InputSource
+name|is
+init|=
+operator|new
+name|InputSource
+argument_list|(
+name|url
+argument_list|)
+decl_stmt|;
+name|IndexInfo
+name|info
+init|=
+name|collection
+operator|.
+name|validateXMLResource
+argument_list|(
+name|txn
+argument_list|,
+name|broker
+argument_list|,
+name|pathUri
+argument_list|,
+name|txt
+argument_list|)
+decl_stmt|;
+name|doc
+operator|=
+name|info
+operator|.
+name|getDocument
+argument_list|()
+expr_stmt|;
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setMimeType
+argument_list|(
+name|contentType
+argument_list|)
+expr_stmt|;
+name|collection
+operator|.
+name|store
+argument_list|(
+name|txn
+argument_list|,
+name|broker
+argument_list|,
+name|info
+argument_list|,
+name|txt
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|InputSource
 name|is
 init|=
@@ -766,20 +845,6 @@ argument_list|(
 name|contentType
 argument_list|)
 expr_stmt|;
-comment|//TODO : put this in a finally clause.
-name|collection
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-name|collectionLocked
-operator|=
-literal|false
-expr_stmt|;
 name|collection
 operator|.
 name|store
@@ -795,6 +860,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -809,7 +875,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"storing Binary resource"
+literal|"Storing binary resource"
 argument_list|)
 expr_stmt|;
 name|FileInputStream
