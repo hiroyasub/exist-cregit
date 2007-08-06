@@ -554,8 +554,30 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|//		params.add(new Integer[] { TEST_RANDOM_COLLECTION });
-comment|//		params.add(new Integer[] { TEST_SINGLE_COLLECTION });
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+index|[]
+block|{
+name|TEST_RANDOM_COLLECTION
+block|}
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+index|[]
+block|{
+name|TEST_SINGLE_COLLECTION
+block|}
+argument_list|)
+expr_stmt|;
 name|params
 operator|.
 name|add
