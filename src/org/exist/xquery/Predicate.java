@@ -445,6 +445,7 @@ operator|.
 name|NUMBER
 argument_list|)
 operator|&&
+operator|(
 name|inner
 operator|.
 name|getCardinality
@@ -465,6 +466,29 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
+operator|)
+operator|||
+comment|//TOTHINK :
+comment|//No context item dependency check for functions that return at most one number
+operator|(
+name|Cardinality
+operator|.
+name|checkCardinality
+argument_list|(
+name|inner
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+operator|&&
+name|inner
+operator|instanceof
+name|Function
+operator|)
 condition|)
 name|executionMode
 operator|=
