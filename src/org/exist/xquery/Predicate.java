@@ -446,6 +446,7 @@ name|NUMBER
 argument_list|)
 operator|&&
 operator|(
+operator|(
 name|inner
 operator|.
 name|getCardinality
@@ -488,6 +489,7 @@ operator|&&
 name|inner
 operator|instanceof
 name|Function
+operator|)
 operator|)
 condition|)
 name|executionMode
