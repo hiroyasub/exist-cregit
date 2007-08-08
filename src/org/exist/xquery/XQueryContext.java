@@ -1185,16 +1185,12 @@ init|=
 literal|0
 decl_stmt|;
 comment|/** 	 * Should all documents loaded by the query be locked? 	 * If set to true, it is the responsibility of the calling client 	 * code to unlock documents after the query has completed. 	 */
-specifier|private
-name|boolean
-name|lockDocumentsOnLoad
-init|=
-literal|false
-decl_stmt|;
+comment|//	private boolean lockDocumentsOnLoad = false;
 comment|/**      * Documents locked during the query.      */
+comment|//	private LockedDocumentMap lockedDocuments = null;
 specifier|private
 name|LockedDocumentMap
-name|lockedDocuments
+name|protectedDocuments
 init|=
 literal|null
 decl_stmt|;
@@ -2634,6 +2630,24 @@ comment|// the document set has already been built, return it
 return|return
 name|staticDocuments
 return|;
+if|if
+condition|(
+name|protectedDocuments
+operator|!=
+literal|null
+condition|)
+block|{
+name|staticDocuments
+operator|=
+name|protectedDocuments
+operator|.
+name|toDocumentSet
+argument_list|()
+expr_stmt|;
+return|return
+name|staticDocuments
+return|;
+block|}
 name|staticDocuments
 operator|=
 operator|new
@@ -2811,40 +2825,59 @@ return|return
 name|staticDocuments
 return|;
 block|}
-comment|/** 	 * Should loaded documents be locked? 	 *           * @see #setLockDocumentsOnLoad(boolean)          *  	 */
+specifier|public
+name|void
+name|setProtectedDocs
+parameter_list|(
+name|LockedDocumentMap
+name|map
+parameter_list|)
+block|{
+name|this
+operator|.
+name|protectedDocuments
+operator|=
+name|map
+expr_stmt|;
+block|}
+specifier|public
+name|LockedDocumentMap
+name|getProtectedDocs
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|protectedDocuments
+return|;
+block|}
+specifier|public
+name|boolean
+name|inProtectedMode
+parameter_list|()
+block|{
+return|return
+name|protectedDocuments
+operator|!=
+literal|null
+return|;
+block|}
+comment|/** 	 * Should loaded documents be locked? 	 *       * @see #setLockDocumentsOnLoad(boolean)      * 	 */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
 parameter_list|()
 block|{
 return|return
-name|lockDocumentsOnLoad
+literal|false
 return|;
 block|}
 comment|/** 	 * If lock is true, all documents loaded during query execution 	 * will be locked. This way, we avoid that query results become 	 * invalid before the entire result has been processed by the client 	 * code. All attempts to modify nodes which are part of the result 	 * set will be blocked. 	 *  	 * However, it is the client's responsibility to proper unlock 	 * all documents once processing is completed. 	 *  	 * @param lock 	 */
-specifier|public
-name|void
-name|setLockDocumentsOnLoad
-parameter_list|(
-name|boolean
-name|lock
-parameter_list|)
-block|{
-name|lockDocumentsOnLoad
-operator|=
-name|lock
-expr_stmt|;
-if|if
-condition|(
-name|lock
-condition|)
-name|lockedDocuments
-operator|=
-operator|new
-name|LockedDocumentMap
-argument_list|()
-expr_stmt|;
-block|}
+comment|//	public void setLockDocumentsOnLoad(boolean lock) {
+comment|//	    lockDocumentsOnLoad = lock;
+comment|//	    if(lock)
+comment|//	        lockedDocuments = new LockedDocumentMap();
+comment|//	}
 specifier|public
 name|void
 name|addLockedDocument
@@ -2853,196 +2886,38 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
-if|if
-condition|(
-name|lockedDocuments
-operator|!=
-literal|null
-condition|)
-name|lockedDocuments
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//        if (lockedDocuments != null)
+comment|//           lockedDocuments.add(doc);
 block|}
 comment|/**      * Release all locks on documents that have been locked      * during query execution.      *      *@see #setLockDocumentsOnLoad(boolean)      */
-specifier|public
-name|void
-name|releaseLockedDocuments
-parameter_list|()
-block|{
-if|if
-condition|(
-name|lockedDocuments
-operator|!=
-literal|null
-condition|)
-name|lockedDocuments
-operator|.
-name|unlock
-argument_list|()
-expr_stmt|;
-name|lockDocumentsOnLoad
-operator|=
-literal|false
-expr_stmt|;
-name|lockedDocuments
-operator|=
-literal|null
-expr_stmt|;
-block|}
+comment|//	public void releaseLockedDocuments() {
+comment|//        if(lockedDocuments != null)
+comment|//	        lockedDocuments.unlock();
+comment|//	    lockDocumentsOnLoad = false;
+comment|//		lockedDocuments = null;
+comment|//	}
 comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @throws XPathException       */
-specifier|public
-name|LockedDocumentMap
-name|releaseUnusedDocuments
-parameter_list|(
-name|Sequence
-name|seq
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-if|if
-condition|(
-name|lockedDocuments
-operator|==
-literal|null
-condition|)
-return|return
-literal|null
-return|;
-comment|// determine the set of documents referenced by nodes in the sequence
-name|DocumentSet
-name|usedDocs
-init|=
-operator|new
-name|DocumentSet
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|SequenceIterator
-name|i
-init|=
-name|seq
-operator|.
-name|iterate
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|Item
-name|next
-init|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
-name|next
-operator|.
-name|getType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|)
-condition|)
-block|{
-name|NodeValue
-name|node
-init|=
-operator|(
-name|NodeValue
-operator|)
-name|next
-decl_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|getImplementationType
-argument_list|()
-operator|==
-name|NodeValue
-operator|.
-name|PERSISTENT_NODE
-condition|)
-block|{
-name|DocumentImpl
-name|doc
-init|=
-operator|(
-operator|(
-name|NodeProxy
-operator|)
-name|node
-operator|)
-operator|.
-name|getDocument
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|usedDocs
-operator|.
-name|contains
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-condition|)
-name|usedDocs
-operator|.
-name|add
-argument_list|(
-name|doc
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-name|LockedDocumentMap
-name|remaining
-init|=
-name|lockedDocuments
-operator|.
-name|unlockSome
-argument_list|(
-name|usedDocs
-argument_list|)
-decl_stmt|;
-name|lockDocumentsOnLoad
-operator|=
-literal|false
-expr_stmt|;
-name|lockedDocuments
-operator|=
-literal|null
-expr_stmt|;
-return|return
-name|remaining
-return|;
-block|}
+comment|//	public LockedDocumentMap releaseUnusedDocuments(Sequence seq) throws XPathException {
+comment|//	    if(lockedDocuments == null)
+comment|//	        return null;
+comment|//        // determine the set of documents referenced by nodes in the sequence
+comment|//        DocumentSet usedDocs = new DocumentSet();
+comment|//        for(SequenceIterator i = seq.iterate(); i.hasNext(); ) {
+comment|//            Item next = i.nextItem();
+comment|//            if(Type.subTypeOf(next.getType(), Type.NODE)) {
+comment|//                NodeValue node = (NodeValue) next;
+comment|//                if(node.getImplementationType() == NodeValue.PERSISTENT_NODE) {
+comment|//                    DocumentImpl doc = ((NodeProxy)node).getDocument();
+comment|//                    if(!usedDocs.contains(doc.getDocId()))
+comment|//	                    usedDocs.add(doc, false);
+comment|//                }
+comment|//            }
+comment|//        }
+comment|//        LockedDocumentMap remaining = lockedDocuments.unlockSome(usedDocs);
+comment|//        lockDocumentsOnLoad = false;
+comment|//		lockedDocuments = null;
+comment|//        return remaining;
+comment|//    }
 specifier|public
 name|void
 name|reset
@@ -3098,6 +2973,10 @@ name|callStack
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|protectedDocuments
+operator|=
+literal|null
 expr_stmt|;
 if|if
 condition|(

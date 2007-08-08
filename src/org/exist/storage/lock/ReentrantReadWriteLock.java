@@ -1079,6 +1079,17 @@ operator|==
 name|owner
 return|;
 block|}
+specifier|public
+name|Thread
+name|getOwner
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|owner_
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.Lock#release(int)      */
 specifier|public
 specifier|synchronized
