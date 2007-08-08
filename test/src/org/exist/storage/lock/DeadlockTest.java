@@ -590,8 +590,30 @@ name|TEST_ALL_COLLECTIONS
 block|}
 argument_list|)
 expr_stmt|;
-comment|//		params.add(new Integer[] { TEST_SINGLE_DOC });
-comment|//		params.add(new Integer[] { TEST_MIXED });
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+index|[]
+block|{
+name|TEST_SINGLE_DOC
+block|}
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Integer
+index|[]
+block|{
+name|TEST_MIXED
+block|}
+argument_list|)
+expr_stmt|;
 return|return
 name|params
 return|;
@@ -610,7 +632,7 @@ specifier|final
 name|int
 name|QUERY_COUNT
 init|=
-literal|900
+literal|1000
 decl_stmt|;
 specifier|private
 specifier|static
@@ -1240,7 +1262,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//        new StoreTask("store", COLL_COUNT, DOC_COUNT).run();
 for|for
 control|(
 name|int
