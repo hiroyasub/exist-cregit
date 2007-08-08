@@ -820,13 +820,6 @@ argument_list|(
 name|sout
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|println
-argument_list|(
-literal|"Die Sabine ist blÃ¶d"
-argument_list|)
-expr_stmt|;
 name|debug
 argument_list|(
 name|writer
