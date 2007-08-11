@@ -567,11 +567,11 @@ literal|"COLON"
 block|,
 literal|"\"external\""
 block|,
-literal|"\"at\""
-block|,
 literal|"\"schema\""
 block|,
 literal|"\"as\""
+block|,
+literal|"\"at\""
 block|,
 literal|"\"empty-sequence\""
 block|,
