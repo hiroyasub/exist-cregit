@@ -266,7 +266,7 @@ block|{
 return|return
 name|trigger
 operator|.
-name|getNextFireTime
+name|getFinalFireTime
 argument_list|()
 return|;
 block|}
