@@ -1124,7 +1124,7 @@ name|DatabaseConfigurationException
 argument_list|(
 literal|"Unable to read configuration file at "
 operator|+
-name|config
+name|configFile
 argument_list|)
 throw|;
 name|configFilePath
