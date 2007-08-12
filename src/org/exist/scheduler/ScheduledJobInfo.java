@@ -257,7 +257,7 @@ name|getNextFireTime
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the Final Time the Job will be Fired 	 *  	 * @return the time the Job will be Fired for the Final time, or null of the job is Scheduled forever 	 */
+comment|/** 	 * Get the Final Time the Job will be Fired 	 *  	 * @return the time the Job will be Fired for the Final time, or null if the job is Scheduled forever 	 */
 specifier|public
 name|Date
 name|getFinalFireTime
