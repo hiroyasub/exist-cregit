@@ -366,6 +366,22 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|waiters
+operator|.
+name|contains
+argument_list|(
+name|wt
+argument_list|)
+condition|)
+block|{
+comment|// probably a deadlock, but not directly connected to the current thread
+comment|// return to avoid endless loop
+return|return
+literal|false
+return|;
+block|}
 name|waiters
 operator|.
 name|add
