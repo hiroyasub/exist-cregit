@@ -812,20 +812,7 @@ name|SELF_AXIS
 condition|)
 block|{
 comment|//Type.ITEM by default : this may change *after* evaluation
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"My static type: "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|staticReturnType
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("My static type: " + Type.getTypeName(staticReturnType));
 return|return
 name|staticReturnType
 return|;
