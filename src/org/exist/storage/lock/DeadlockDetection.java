@@ -79,6 +79,16 @@ block|{
 specifier|private
 specifier|final
 specifier|static
+name|Object
+name|latch
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|Map
 name|waitForResource
 init|=
@@ -92,14 +102,9 @@ specifier|static
 name|Map
 name|waitForCollection
 init|=
-name|Collections
-operator|.
-name|synchronizedMap
-argument_list|(
 operator|new
 name|HashMap
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|/**      * Register a thread as waiting for a resource lock.      *      * @param thread the thread      * @param waiter the WaitingThread object which wraps around the thread      */
 specifier|public
@@ -116,7 +121,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 name|waitForResource
@@ -142,7 +147,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 name|WaitingThread
@@ -186,7 +191,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 return|return
@@ -217,7 +222,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 comment|// check if threadB is waiting for a resource lock
@@ -279,7 +284,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 comment|// check if threadB is waiting for a resource lock
@@ -338,7 +343,7 @@ parameter_list|)
 block|{
 synchronized|synchronized
 init|(
-name|waitForResource
+name|latch
 init|)
 block|{
 name|WaitingThread
@@ -396,47 +401,10 @@ operator|==
 name|owner
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Waiter: "
-operator|+
-name|waiter
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" Thread: "
-operator|+
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" == "
-operator|+
-name|owner
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|debug
-argument_list|(
-name|t
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|l
-operator|.
-name|getLockInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                System.out.println("Waiter: " + waiter.getName() + " Thread: " + t.getName() + " == " + owner.getName() +
+comment|//                    " type: " + wt.getLockType());
+comment|//                debug(t.getName(), l.getLockInfo());
+comment|// the thread acquired the lock in the meantime
 return|return
 literal|false
 return|;
@@ -515,40 +483,9 @@ operator|==
 name|owner
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Thread "
-operator|+
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" == "
-operator|+
-name|owner
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|debug
-argument_list|(
-name|t
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|l
-operator|.
-name|getLockInfo
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                    System.out.println("Thread " + t.getName() + " == " + owner.getName());
+comment|//                    debug(t.getName(), l.getLockInfo());
+comment|// the thread acquired the lock in the meantime
 return|return
 literal|false
 return|;
@@ -600,6 +537,11 @@ name|Lock
 name|lock
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|latch
+init|)
+block|{
 name|waitForCollection
 operator|.
 name|put
@@ -610,6 +552,7 @@ name|lock
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 specifier|static
 name|Lock
@@ -618,6 +561,11 @@ parameter_list|(
 name|Thread
 name|waiter
 parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|latch
+init|)
 block|{
 return|return
 operator|(
@@ -631,6 +579,7 @@ name|waiter
 argument_list|)
 return|;
 block|}
+block|}
 specifier|public
 specifier|static
 name|Lock
@@ -639,6 +588,11 @@ parameter_list|(
 name|Thread
 name|waiter
 parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|latch
+init|)
 block|{
 return|return
 operator|(
@@ -651,6 +605,7 @@ argument_list|(
 name|waiter
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|static
@@ -831,6 +786,11 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|writer
+operator|.
 name|close
 argument_list|()
 expr_stmt|;
@@ -866,9 +826,18 @@ name|writer
 operator|.
 name|println
 argument_list|(
+literal|"THREAD: "
+operator|+
 name|name
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|info
+operator|!=
+literal|null
+condition|)
+block|{
 name|writer
 operator|.
 name|println
@@ -973,6 +942,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|static

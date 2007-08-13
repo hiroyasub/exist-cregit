@@ -2016,6 +2016,11 @@ comment|// if a previous broker was not properly released, do it now (just to be
 comment|//            brokerPool.release(reservedBroker);
 try|try
 block|{
+name|boolean
+name|deadlockCaught
+decl_stmt|;
+do|do
+block|{
 name|reservedBroker
 operator|=
 name|brokerPool
@@ -2025,11 +2030,6 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|boolean
-name|deadlockCaught
-decl_stmt|;
-do|do
-block|{
 name|deadlockCaught
 operator|=
 literal|false
@@ -2114,6 +2114,13 @@ name|lockedDocuments
 operator|.
 name|unlock
 argument_list|()
+expr_stmt|;
+name|brokerPool
+operator|.
+name|release
+argument_list|(
+name|reservedBroker
+argument_list|)
 expr_stmt|;
 name|deadlockCaught
 operator|=
