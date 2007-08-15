@@ -3040,7 +3040,9 @@ decl_stmt|;
 name|module
 operator|.
 name|reset
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 name|clearUpdateListeners

@@ -493,6 +493,16 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+name|Statement
+name|stmt
+init|=
+literal|null
+decl_stmt|;
+name|ResultSet
+name|rs
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|StringBuffer
@@ -515,14 +525,13 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|//execute the sql statement
-name|Statement
 name|stmt
-init|=
+operator|=
 name|con
 operator|.
 name|createStatement
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|//execute the query statement
 if|if
 condition|(
@@ -536,14 +545,13 @@ condition|)
 block|{
 comment|/* SQL Query returned results */
 comment|//iterate through the result set building an xml document
-name|ResultSet
 name|rs
-init|=
+operator|=
 name|stmt
 operator|.
 name|getResultSet
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|ResultSetMetaData
 name|rsmd
 init|=
@@ -904,6 +912,60 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+comment|//close any recordset or statement
+try|try
+block|{
+if|if
+condition|(
+name|rs
+operator|!=
+literal|null
+condition|)
+name|rs
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|stmt
+operator|!=
+literal|null
+condition|)
+name|stmt
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SQLException
+name|se
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Unable to cleanup JDBC results"
+argument_list|,
+name|se
+argument_list|)
+expr_stmt|;
+block|}
+comment|//explicitly ready for gc
+name|rs
+operator|=
+literal|null
+expr_stmt|;
+name|stmt
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Converts a SQL data type to an XML data type 	 *  	 * @param	sqlType	The SQL data type as specified by JDBC 	 * 	 * @return	The XML Type as specified by eXist 	 */

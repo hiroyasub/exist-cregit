@@ -41,6 +41,18 @@ name|FunctionDef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-24  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
@@ -181,6 +193,32 @@ block|{
 return|return
 literal|"A module for performing SQL queries against Databases, returning XML representations of the result sets."
 return|;
+block|}
+comment|/** 	 * Resets the Module Context and closes any JDBC connections for the XQueryContext 	 *  	 * @param xqueryContext The XQueryContext 	 */
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|XQueryContext
+name|xqueryContext
+parameter_list|)
+block|{
+comment|//reset the module context
+name|super
+operator|.
+name|reset
+argument_list|(
+name|xqueryContext
+argument_list|)
+expr_stmt|;
+comment|//close any open connections
+name|GetConnectionFunction
+operator|.
+name|closeAll
+argument_list|(
+name|xqueryContext
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

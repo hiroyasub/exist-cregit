@@ -796,7 +796,10 @@ block|}
 specifier|public
 name|void
 name|reset
-parameter_list|()
+parameter_list|(
+name|XQueryContext
+name|xqueryContext
+parameter_list|)
 block|{
 block|}
 block|}
