@@ -6836,7 +6836,7 @@ name|contents
 argument_list|)
 return|;
 block|}
-if|else if
+if|if
 condition|(
 name|Optimize
 operator|.
@@ -6921,6 +6921,28 @@ block|{
 return|return
 operator|new
 name|ProfilePragma
+argument_list|(
+name|qname
+argument_list|,
+name|contents
+argument_list|)
+return|;
+block|}
+if|if
+condition|(
+name|NoIndexPragma
+operator|.
+name|NO_INDEX_PRAGMA
+operator|.
+name|equalsSimple
+argument_list|(
+name|qname
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|NoIndexPragma
 argument_list|(
 name|qname
 argument_list|,

@@ -218,7 +218,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|TimerPragma
+name|Optimize
 operator|.
 name|class
 argument_list|)

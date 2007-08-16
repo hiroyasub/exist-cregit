@@ -93,6 +93,17 @@ name|contents
 expr_stmt|;
 block|}
 specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|AnalyzeContextInfo
+name|contextInfo
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+block|}
+specifier|public
 name|Sequence
 name|eval
 parameter_list|(

@@ -139,6 +139,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|USE_TREE_TRAVERSAL
+init|=
+literal|32
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DOT_TEST
 init|=
 literal|128
