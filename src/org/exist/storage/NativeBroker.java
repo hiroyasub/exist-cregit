@@ -3921,6 +3921,37 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+operator|!
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|equalsInternal
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"The collection received from the cache is not the requested: "
+operator|+
+name|uri
+operator|+
+literal|"; received: "
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|collectionsCache
 operator|.
 name|add
