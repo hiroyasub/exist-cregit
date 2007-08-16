@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-2006, The eXist team  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id: FunEndsWith.java 4163 2006-08-24 14:23:13Z wolfgang_m $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -274,7 +274,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"The purpose of this function is to enable a relative URI $a to be resolved against the absolute URI $b."
+literal|"The purpose of this function is to enable a relative URI $a to be resolved against the absolute URI $b. If $a is the empty sequence, the empty sequence is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -475,30 +475,17 @@ condition|)
 block|{
 if|if
 condition|(
+operator|!
 name|context
 operator|.
-name|getBaseURI
+name|isBaseURIDeclared
 argument_list|()
-operator|==
-literal|null
-operator|||
-name|context
-operator|.
-name|getBaseURI
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|AnyURIValue
-operator|.
-name|EMPTY_URI
-argument_list|)
 condition|)
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FONS0005: static context has no base URI."
+literal|"err:FONS0005: base URI of the static context has not been assigned a value."
 argument_list|)
 throw|;
 name|base
@@ -559,7 +546,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"FORG0002: "
+literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
@@ -594,12 +581,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|AnyURIValue
@@ -645,7 +634,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"FORG0002: "
+literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
@@ -684,6 +673,8 @@ name|base
 operator|.
 name|getStringValue
 argument_list|()
+operator|+
+literal|"/"
 argument_list|)
 expr_stmt|;
 block|}
@@ -700,7 +691,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"FORG0009: "
+literal|"err:FORG0009: unable to resolve a relative URI against a base URI in fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
@@ -718,11 +709,14 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|relative
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -736,6 +730,7 @@ name|relativeURI
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

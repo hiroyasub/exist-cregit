@@ -623,6 +623,8 @@ literal|"\"in\""
 block|,
 literal|"\"by\""
 block|,
+literal|"\"stable\""
+block|,
 literal|"\"ascending\""
 block|,
 literal|"\"descending\""

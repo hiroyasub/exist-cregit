@@ -2430,10 +2430,8 @@ if|else if
 condition|(
 name|context
 operator|.
-name|getBaseURI
+name|isBaseURIDeclared
 argument_list|()
-operator|!=
-literal|null
 condition|)
 block|{
 name|context

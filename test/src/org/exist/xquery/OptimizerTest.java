@@ -1623,12 +1623,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|query
-operator|=
-name|NAMESPACES
-operator|+
-name|query
-expr_stmt|;
 if|if
 condition|(
 name|optimize
@@ -1643,6 +1637,12 @@ else|else
 name|query
 operator|=
 name|NO_OPTIMIZE
+operator|+
+name|query
+expr_stmt|;
+name|query
+operator|=
+name|NAMESPACES
 operator|+
 name|query
 expr_stmt|;

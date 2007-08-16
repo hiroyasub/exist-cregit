@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database Copyright (C) 2001-06 Wolfgang M. Meier  * wolfgang@exist-db.org http://exist.sourceforge.net  *   * This program is free software; you can redistribute it and/or modify it under  * the terms of the GNU Lesser General Public License as published by the Free  * Software Foundation; either version 2 of the License, or (at your option) any  * later version.  *   * This program is distributed in the hope that it will be useful, but WITHOUT  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more  * details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation, Inc.,  * 675 Mass Ave, Cambridge, MA 02139, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -170,6 +170,18 @@ operator|.
 name|serializer
 operator|.
 name|Receiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -2685,6 +2697,7 @@ else|:
 name|nextNr
 return|;
 block|}
+comment|/**      * The method<code>getParentNodeFor</code>      *      * @param nodeNumber an<code>int</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getParentNodeFor
@@ -5321,6 +5334,58 @@ name|context
 operator|=
 name|context
 expr_stmt|;
+block|}
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+specifier|public
+name|String
+name|getBaseURI
+parameter_list|()
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|isBaseURIDeclared
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+return|return
+name|context
+operator|.
+name|getBaseURI
+argument_list|()
+operator|+
+literal|""
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"memtree/DocumentImpl::getBaseURI() exception catched: "
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|XmldbURI
+operator|.
+name|EMPTY_URI
+operator|.
+name|toString
+argument_list|()
+return|;
+comment|//return XmldbURI.ROOT_COLLECTION_URI.toString();
 block|}
 specifier|public
 name|String

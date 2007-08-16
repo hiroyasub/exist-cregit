@@ -4061,24 +4061,38 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
-comment|//TODO : read it from broker's context -pb
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getBaseURI not implemented on class "
+try|try
+block|{
+return|return
+name|getURI
+argument_list|()
 operator|+
-name|getClass
-argument_list|()
+literal|""
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|System
 operator|.
-name|getName
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"dom/DocumentImpl::getBaseURI() 2 exception catched: "
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+return|return
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+operator|+
+literal|""
+return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public
