@@ -1879,7 +1879,7 @@ literal|0
 condition|)
 return|return;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -2373,7 +2373,7 @@ literal|0
 condition|)
 return|return;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -3314,7 +3314,7 @@ throws|throws
 name|ReadOnlyException
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|document
@@ -3848,7 +3848,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -4364,7 +4364,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -4681,7 +4681,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -5073,7 +5073,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -6982,7 +6982,7 @@ comment|// 3
 specifier|public
 name|SimpleValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -7011,7 +7011,7 @@ name|IDX_GENERIC
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -7028,7 +7028,7 @@ block|}
 specifier|public
 name|SimpleValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|Indexable
@@ -7065,7 +7065,7 @@ name|IDX_GENERIC
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -7129,7 +7129,7 @@ comment|//sizeof byte
 specifier|public
 name|SimplePrefixValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|int
@@ -7167,7 +7167,7 @@ name|IDX_GENERIC
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -7287,7 +7287,7 @@ comment|//8
 specifier|public
 name|QNameValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -7316,7 +7316,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -7333,7 +7333,7 @@ block|}
 specifier|public
 name|QNameValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName
@@ -7404,7 +7404,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -7500,7 +7500,7 @@ comment|//sizeof byte
 specifier|public
 name|QNamePrefixValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName
@@ -7540,7 +7540,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,

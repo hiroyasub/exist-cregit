@@ -717,9 +717,9 @@ specifier|static
 name|int
 name|LENGTH_COLLECTION_ID
 init|=
-literal|2
+literal|4
 decl_stmt|;
-comment|//sizeof short
+comment|//sizeof int
 specifier|public
 name|Collection
 parameter_list|()
@@ -762,7 +762,7 @@ comment|//private final static int VALIDATION_DISABLED = 2;
 specifier|public
 specifier|final
 specifier|static
-name|short
+name|int
 name|UNKNOWN_COLLECTION_ID
 init|=
 operator|-
@@ -770,7 +770,7 @@ literal|1
 decl_stmt|;
 comment|// Internal id
 specifier|private
-name|short
+name|int
 name|collectionId
 init|=
 name|UNKNOWN_COLLECTION_ID
@@ -2628,7 +2628,7 @@ block|}
 block|}
 comment|/**      *  Get the internal id.      *      *@return    The id value      */
 specifier|public
-name|short
+name|int
 name|getId
 parameter_list|()
 block|{
@@ -2894,7 +2894,7 @@ name|collectionId
 operator|=
 name|istream
 operator|.
-name|readShort
+name|readInt
 argument_list|()
 expr_stmt|;
 specifier|final
@@ -6597,7 +6597,7 @@ specifier|public
 name|void
 name|setId
 parameter_list|(
-name|short
+name|int
 name|id
 parameter_list|)
 block|{
@@ -6758,7 +6758,7 @@ name|IOException
 block|{
 name|ostream
 operator|.
-name|writeShort
+name|writeInt
 argument_list|(
 name|collectionId
 argument_list|)

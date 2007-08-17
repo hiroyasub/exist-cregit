@@ -348,6 +348,13 @@ name|keys
 index|[
 name|idx
 index|]
+operator|!=
+name|REMOVED
+operator|&&
+name|keys
+index|[
+name|idx
+index|]
 operator|.
 name|equals
 argument_list|(

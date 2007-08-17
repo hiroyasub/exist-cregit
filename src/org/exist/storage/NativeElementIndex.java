@@ -1231,7 +1231,7 @@ literal|5
 argument_list|)
 decl_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -1760,7 +1760,7 @@ literal|0
 condition|)
 return|return;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -2725,7 +2725,7 @@ throws|throws
 name|ReadOnlyException
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|document
@@ -3214,7 +3214,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|short
+name|int
 name|collectionId
 init|=
 name|collection
@@ -3717,7 +3717,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|short
+name|int
 name|collectionId
 init|=
 name|collection
@@ -4995,7 +4995,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|short
+name|int
 name|storedCollectionId
 init|=
 name|storedCollection
@@ -5489,7 +5489,7 @@ name|getSymbols
 argument_list|()
 decl_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|document
@@ -6108,7 +6108,7 @@ specifier|private
 name|Value
 name|computeKey
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName
@@ -6136,7 +6136,7 @@ parameter_list|(
 name|byte
 name|type
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName

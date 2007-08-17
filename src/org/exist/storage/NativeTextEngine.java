@@ -2404,7 +2404,7 @@ condition|;
 control|)
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -3378,7 +3378,7 @@ condition|;
 control|)
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -3669,7 +3669,7 @@ condition|;
 control|)
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -3893,7 +3893,7 @@ condition|;
 control|)
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -4253,7 +4253,7 @@ condition|;
 control|)
 block|{
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 operator|(
@@ -5952,7 +5952,7 @@ literal|100
 argument_list|)
 decl_stmt|;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -6347,7 +6347,7 @@ parameter_list|(
 name|int
 name|currentSection
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|Object
@@ -6573,7 +6573,7 @@ literal|null
 condition|)
 return|return;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|document
@@ -7128,7 +7128,7 @@ literal|null
 condition|)
 return|return;
 specifier|final
-name|short
+name|int
 name|collectionId
 init|=
 name|this
@@ -9731,7 +9731,7 @@ comment|//3
 specifier|public
 name|WordRef
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -9762,7 +9762,7 @@ name|IDX_GENERIC
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -9775,7 +9775,7 @@ block|}
 specifier|public
 name|WordRef
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|String
@@ -9816,7 +9816,7 @@ name|IDX_GENERIC
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -9968,7 +9968,7 @@ name|Collection
 operator|.
 name|LENGTH_COLLECTION_ID
 decl_stmt|;
-comment|//3
+comment|//4
 specifier|public
 specifier|static
 name|int
@@ -10006,7 +10006,7 @@ comment|//8
 specifier|public
 name|QNameWordRef
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -10037,7 +10037,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -10054,7 +10054,7 @@ block|}
 specifier|public
 name|QNameWordRef
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName
@@ -10131,7 +10131,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -10176,7 +10176,7 @@ block|}
 specifier|public
 name|QNameWordRef
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|QName
@@ -10261,7 +10261,7 @@ name|IDX_QNAME
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,

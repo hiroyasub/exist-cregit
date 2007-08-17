@@ -604,7 +604,7 @@ comment|//4
 specifier|public
 name|DocumentKey
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -629,7 +629,7 @@ name|KEY_TYPE_DOCUMENT
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -654,7 +654,7 @@ block|}
 specifier|public
 name|DocumentKey
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|byte
@@ -691,7 +691,7 @@ name|KEY_TYPE_DOCUMENT
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,

@@ -1572,7 +1572,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|short
+name|int
 name|getId
 parameter_list|()
 block|{
@@ -1939,7 +1939,7 @@ specifier|public
 name|void
 name|setId
 parameter_list|(
-name|short
+name|int
 name|id
 parameter_list|)
 block|{

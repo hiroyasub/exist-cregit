@@ -19,57 +19,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|EOFException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
+name|*
 import|;
 end_import
 
@@ -7118,7 +7068,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|short
+name|int
 name|id
 parameter_list|)
 throws|throws
@@ -7217,7 +7167,7 @@ argument_list|)
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|id
 argument_list|,
@@ -7256,7 +7206,7 @@ index|]
 decl_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|id
 argument_list|,
@@ -7334,7 +7284,7 @@ block|}
 block|}
 comment|/**      * Get the next free collection id. If a collection is removed, its collection id      * is released so it can be reused.      *       * @return next free collection id.      * @throws ReadOnlyException      */
 specifier|public
-name|short
+name|int
 name|getFreeCollectionId
 parameter_list|(
 name|Txn
@@ -7343,7 +7293,7 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
-name|short
+name|int
 name|freeCollectionId
 init|=
 name|Collection
@@ -7412,7 +7362,7 @@ name|freeCollectionId
 operator|=
 name|ByteConversion
 operator|.
-name|byteToShort
+name|byteToInt
 argument_list|(
 name|data
 argument_list|,
@@ -7496,6 +7446,17 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
+comment|//            } else {
+comment|//                try {
+comment|//                    StringWriter sw = new StringWriter();
+comment|//                    collectionsDb.dump(sw);
+comment|//                    LOG.debug(CollectionStore.FREE_COLLECTION_ID_KEY + ": " + key.dump());
+comment|//                    LOG.debug(sw.toString());
+comment|//                } catch (IOException e) {
+comment|//                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+comment|//                } catch (BTreeException e) {
+comment|//                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+comment|//                }
 block|}
 return|return
 name|freeCollectionId
@@ -7546,7 +7507,7 @@ block|}
 block|}
 comment|/**      * Get the next available unique collection id.      *       * @return next available unique collection id      * @throws ReadOnlyException      */
 specifier|public
-name|short
+name|int
 name|getNextCollectionId
 parameter_list|(
 name|Txn
@@ -7555,7 +7516,7 @@ parameter_list|)
 throws|throws
 name|ReadOnlyException
 block|{
-name|short
+name|int
 name|nextCollectionId
 init|=
 name|getFreeCollectionId
@@ -7627,7 +7588,7 @@ name|nextCollectionId
 operator|=
 name|ByteConversion
 operator|.
-name|byteToShort
+name|byteToInt
 argument_list|(
 name|data
 operator|.
@@ -7655,7 +7616,7 @@ index|]
 decl_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|nextCollectionId
 argument_list|,

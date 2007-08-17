@@ -188,7 +188,7 @@ block|}
 decl_stmt|;
 name|ElementValue
 parameter_list|(
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -208,7 +208,7 @@ index|]
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -227,7 +227,7 @@ parameter_list|(
 name|byte
 name|type
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|)
 block|{
@@ -251,7 +251,7 @@ index|]
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -277,7 +277,7 @@ parameter_list|(
 name|byte
 name|type
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|short
@@ -308,7 +308,7 @@ index|]
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -345,7 +345,7 @@ parameter_list|(
 name|byte
 name|type
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|short
@@ -381,7 +381,7 @@ index|]
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -429,7 +429,7 @@ parameter_list|(
 name|byte
 name|type
 parameter_list|,
-name|short
+name|int
 name|collectionId
 parameter_list|,
 name|String
@@ -465,7 +465,7 @@ index|]
 expr_stmt|;
 name|ByteConversion
 operator|.
-name|shortToByte
+name|intToByte
 argument_list|(
 name|collectionId
 argument_list|,
@@ -494,14 +494,14 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : reset pos, just like in other contructors ?
 block|}
-name|short
+name|int
 name|getCollectionId
 parameter_list|()
 block|{
 return|return
 name|ByteConversion
 operator|.
-name|byteToShort
+name|byteToInt
 argument_list|(
 name|data
 argument_list|,
@@ -529,7 +529,7 @@ literal|"Collection id : "
 operator|+
 name|ByteConversion
 operator|.
-name|byteToShort
+name|byteToInt
 argument_list|(
 name|data
 argument_list|,
