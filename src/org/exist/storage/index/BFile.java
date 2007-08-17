@@ -500,7 +500,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|9
+literal|10
 decl_stmt|;
 specifier|public
 specifier|final
