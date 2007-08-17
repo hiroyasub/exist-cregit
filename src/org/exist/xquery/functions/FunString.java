@@ -163,6 +163,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|StringValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Type
 import|;
 end_import
@@ -447,7 +461,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"XPDY0002 : undefined context sequence for '"
+literal|"err:XPDY0002 : undefined context sequence for '"
 operator|+
 name|this
 operator|.
@@ -467,14 +481,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-comment|//result = StringValue.EMPTY_STRING;
-comment|//Despite : fn:string($arg as item()?) as xs:string in the specs
 name|result
 operator|=
-name|Sequence
+name|StringValue
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_STRING
 expr_stmt|;
+comment|//Despite : fn:string($arg as item()?) as xs:string in the specs
+comment|//result = Sequence.EMPTY_SEQUENCE;
 else|else
 name|result
 operator|=
