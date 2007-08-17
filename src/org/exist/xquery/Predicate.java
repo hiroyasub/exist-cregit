@@ -445,17 +445,6 @@ operator|.
 name|NUMBER
 argument_list|)
 operator|&&
-operator|(
-operator|(
-name|inner
-operator|.
-name|getCardinality
-argument_list|()
-operator|==
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-operator|&&
 operator|!
 name|Dependency
 operator|.
@@ -467,11 +456,7 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
-operator|)
-operator|||
-comment|//TOTHINK :
-comment|//No context item dependency check for functions that return at most one number
-operator|(
+operator|&&
 name|Cardinality
 operator|.
 name|checkCardinality
@@ -485,18 +470,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
-operator|&&
-name|inner
-operator|instanceof
-name|Function
-operator|)
-operator|)
 condition|)
 name|executionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
-comment|// Case 3: all other cases, boolean evaluation (that can be reevaluated later)
+comment|// Case 3: all other cases, boolean evaluation (that can be "promoted" later)
 else|else
 name|executionMode
 operator|=
@@ -815,6 +794,7 @@ operator|.
 name|CONTEXT_ITEM
 argument_list|)
 comment|//Hack : GeneralComparison lies on its dependencies
+comment|//TODO : try to remove this since our dependency computation should now be better
 operator|&&
 operator|!
 operator|(
@@ -1363,6 +1343,11 @@ operator|(
 name|NumericValue
 operator|)
 name|innerSeq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 comment|//Non integers return... nothing, not even an error !
 if|if

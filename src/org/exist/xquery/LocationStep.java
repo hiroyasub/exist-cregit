@@ -365,6 +365,33 @@ name|Dependency
 operator|.
 name|CONTEXT_SET
 decl_stmt|;
+comment|//self axis has an obvious dependency on the context item
+comment|//TODO : I guess every other axis too... so we might consider using Constants.UNKNOWN_AXIS here
+comment|//BUT
+comment|//in a predicate, the expression can't depend on... itself
+if|if
+condition|(
+operator|!
+name|this
+operator|.
+name|inPredicate
+operator|&&
+name|this
+operator|.
+name|axis
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+condition|)
+name|deps
+operator|=
+name|deps
+operator||
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+expr_stmt|;
 comment|//TODO : normally, we should call this one...
 comment|//int deps = super.getDependencies(); ???
 for|for
@@ -400,6 +427,8 @@ name|getDependencies
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO : should we remove the CONTEXT_ITEM dependency returned by the predicates ? See the comment above.
+comment|//consider nested predicates however...
 return|return
 name|deps
 return|;
@@ -621,6 +650,11 @@ name|result
 argument_list|,
 name|axis
 argument_list|)
+expr_stmt|;
+comment|//subsequent predicates operate on the result of the previous one
+name|outerSequence
+operator|=
+name|result
 expr_stmt|;
 block|}
 return|return

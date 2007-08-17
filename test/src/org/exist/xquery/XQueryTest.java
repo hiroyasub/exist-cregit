@@ -1003,6 +1003,51 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testLet 3: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $test :=<test><a> a</a><a>a</a></test> "
+operator|+
+literal|"return distinct-values($test/a/normalize-space(.))"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
