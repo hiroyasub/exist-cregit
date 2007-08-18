@@ -817,6 +817,8 @@ parameter_list|(
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|IllegalArgumentException
 block|{
 name|int
 name|p
@@ -852,6 +854,37 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
+comment|// fixme! Should we not use isQName() here? /ljo
+if|if
+condition|(
+name|Character
+operator|.
+name|isDigit
+argument_list|(
+name|qname
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|charAt
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Illegal QName: starts with a digit"
+argument_list|)
+throw|;
+block|}
 return|return
 name|qname
 operator|.
@@ -872,6 +905,8 @@ parameter_list|(
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|IllegalArgumentException
 block|{
 name|int
 name|p
@@ -923,6 +958,23 @@ argument_list|(
 literal|"Illegal QName: ends with a :"
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+name|isQName
+argument_list|(
+name|qname
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Illegal QName: not a valid local name."
+argument_list|)
+throw|;
+block|}
 return|return
 name|qname
 operator|.

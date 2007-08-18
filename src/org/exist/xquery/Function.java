@@ -181,13 +181,14 @@ name|Function
 extends|extends
 name|PathExpr
 block|{
+comment|// Declare it in Namespaces instead? /ljo
 specifier|public
 specifier|final
 specifier|static
 name|String
 name|BUILTIN_FUNCTION_NS
 init|=
-literal|"http://www.w3.org/2003/05/xpath-functions"
+literal|"http://www.w3.org/2005/xpath-functions"
 decl_stmt|;
 comment|// The signature of the function.
 specifier|protected

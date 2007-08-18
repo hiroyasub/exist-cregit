@@ -1895,7 +1895,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>getPrefixes</code>      *      * @return a<code>String</code> value      */
+comment|/**      * The method<code>getPrefixes</code>      *      * @return a<code>Set</code> value      */
 specifier|public
 name|Set
 name|getPrefixes
