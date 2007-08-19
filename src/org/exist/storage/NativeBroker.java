@@ -3021,25 +3021,8 @@ name|u
 init|=
 name|user
 decl_stmt|;
-name|Lock
-name|lock
-init|=
-name|collectionsDb
-operator|.
-name|getLock
-argument_list|()
-decl_stmt|;
 try|try
 block|{
-name|lock
-operator|.
-name|acquire
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
 name|user
 operator|=
 name|pool
@@ -3089,15 +3072,6 @@ block|{
 name|user
 operator|=
 name|u
-expr_stmt|;
-name|lock
-operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -8412,7 +8386,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//lock the temp collection
+comment|// unlock the temp collection
 if|if
 condition|(
 name|transaction
