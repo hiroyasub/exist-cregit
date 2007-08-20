@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 The eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org/  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -134,6 +134,20 @@ operator|.
 name|value
 operator|.
 name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|IntegerValue
 import|;
 end_import
 
@@ -637,7 +651,6 @@ operator|>
 literal|2
 condition|)
 block|{
-comment|//three arguments, get the third argument value for the length
 name|argLength
 operator|=
 name|getArgument
@@ -645,10 +658,20 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-comment|//check for a valid length for the substring
 name|NumericValue
 name|length
 init|=
+operator|new
+name|IntegerValue
+argument_list|(
+name|sourceString
+operator|.
+name|length
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|length
+operator|=
 operator|(
 operator|(
 name|NumericValue
@@ -677,13 +700,59 @@ operator|)
 operator|.
 name|round
 argument_list|()
+expr_stmt|;
+comment|// Relocate length to position according to spec:
+comment|// fn:round($startingLoc)<=
+comment|// $p
+comment|//< fn:round($startingLoc) + fn:round($length)
+name|NumericValue
+name|endingLoc
 decl_stmt|;
 if|if
 condition|(
 operator|!
-name|validLength
-argument_list|(
 name|length
+operator|.
+name|isInfinite
+argument_list|()
+condition|)
+block|{
+name|endingLoc
+operator|=
+operator|(
+name|NumericValue
+operator|)
+operator|new
+name|IntegerValue
+argument_list|(
+name|startingLoc
+operator|.
+name|getInt
+argument_list|()
+operator|+
+name|length
+operator|.
+name|getInt
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|endingLoc
+operator|=
+name|length
+expr_stmt|;
+block|}
+comment|//check for a valid end position for the substring
+if|if
+condition|(
+operator|!
+name|validEndPosition
+argument_list|(
+name|endingLoc
+argument_list|,
+name|startingLoc
 argument_list|)
 condition|)
 block|{
@@ -697,10 +766,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//if the length extends past the end of the string, just return the string from the start position
 if|if
 condition|(
-name|length
+name|endingLoc
 operator|.
 name|getInt
 argument_list|()
@@ -710,24 +778,7 @@ operator|.
 name|length
 argument_list|()
 operator|||
-name|startingLoc
-operator|.
-name|getInt
-argument_list|()
-operator|-
-literal|1
-operator|+
-name|length
-operator|.
-name|getInt
-argument_list|()
-operator|>
-name|sourceString
-operator|.
-name|length
-argument_list|()
-operator|||
-name|length
+name|endingLoc
 operator|.
 name|isInfinite
 argument_list|()
@@ -746,7 +797,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//three arguments fn:substring(string, start, length)
+comment|//three arguments fn:substring(string, start, end)
 name|result
 operator|=
 name|substring
@@ -755,7 +806,7 @@ name|sourceString
 argument_list|,
 name|startingLoc
 argument_list|,
-name|length
+name|endingLoc
 argument_list|)
 expr_stmt|;
 block|}
@@ -763,6 +814,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// No length argument
 comment|//two arguments fn:substring(string, start)
 name|result
 operator|=
@@ -871,21 +923,66 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Checks that the length is valid for the $sourceString 	 *  	 * @param length		The user specified length for the fn:substring() 	 *  	 * @return true if the length is valid, false otherwise 	 */
+comment|/**      * Checks that the end position is valid for the $sourceString 	 *       * @param end a<code>NumericValue</code> value      * @param start a<code>NumericValue</code> value      * @return true if the length is valid, false otherwise      * @exception XPathException if an error occurs      */
 specifier|private
 name|boolean
-name|validLength
+name|validEndPosition
 parameter_list|(
 name|NumericValue
-name|length
+name|end
+parameter_list|,
+name|NumericValue
+name|start
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
-comment|//if length is not a number return false
+comment|//if end position is not a number
 if|if
 condition|(
-name|length
+name|end
 operator|.
 name|isNaN
+argument_list|()
+condition|)
+return|return
+literal|false
+return|;
+comment|//if end position is Â±infinite
+if|if
+condition|(
+name|end
+operator|.
+name|isInfinite
+argument_list|()
+condition|)
+return|return
+literal|true
+return|;
+comment|//if end position is less than 1
+if|if
+condition|(
+name|end
+operator|.
+name|getInt
+argument_list|()
+operator|<
+literal|1
+condition|)
+return|return
+literal|false
+return|;
+comment|//if end position is less than start position
+if|if
+condition|(
+name|end
+operator|.
+name|getInt
+argument_list|()
+operator|<=
+name|start
+operator|.
+name|getInt
 argument_list|()
 condition|)
 return|return
@@ -896,7 +993,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * fn:substring($sourceString, $startingLoc) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start index is 1 	 *  	 * @return The StringValue of the substring 	 */
+comment|/** 	 * fn:substring($sourceString, $startingLoc) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 *  	 * @return The StringValue of the substring 	 */
 specifier|private
 name|StringValue
 name|substring
@@ -929,7 +1026,7 @@ name|sourceString
 argument_list|)
 return|;
 block|}
-comment|//start index of xs:string is 1, whereas java string is 0; so subtract 1
+comment|// transition from xs:string index to Java string index.
 return|return
 operator|new
 name|StringValue
@@ -948,7 +1045,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * fn:substring($sourceString, $startingLoc, $length) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start index is 1 	 * @param length	The length of the substring 	 *  	 * @return The StringValue of the substring 	 */
+comment|/** 	 * fn:substring($sourceString, $startingLoc, $length) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 * @param length	The length of the substring 	 *  	 * @return The StringValue of the substring 	 */
 specifier|private
 name|StringValue
 name|substring
@@ -960,12 +1057,11 @@ name|NumericValue
 name|startingLoc
 parameter_list|,
 name|NumericValue
-name|length
+name|endingLoc
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//if start value is 1 or less, start at the start of the string and adjust the length appropriately
 if|if
 condition|(
 name|startingLoc
@@ -976,25 +1072,6 @@ operator|<=
 literal|1
 condition|)
 block|{
-comment|//the -1 is to transition from xs:string index which starts at 1 to Java string index which starts at 0
-name|int
-name|endIndex
-init|=
-name|length
-operator|.
-name|getInt
-argument_list|()
-operator|+
-operator|(
-operator|-
-literal|1
-operator|+
-name|startingLoc
-operator|.
-name|getInt
-argument_list|()
-operator|)
-decl_stmt|;
 return|return
 operator|new
 name|StringValue
@@ -1005,7 +1082,12 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|endIndex
+name|endingLoc
+operator|.
+name|getInt
+argument_list|()
+operator|-
+literal|1
 argument_list|)
 argument_list|)
 return|;
@@ -1025,17 +1107,12 @@ argument_list|()
 operator|-
 literal|1
 argument_list|,
-name|startingLoc
+name|endingLoc
 operator|.
 name|getInt
 argument_list|()
 operator|-
 literal|1
-operator|+
-name|length
-operator|.
-name|getInt
-argument_list|()
 argument_list|)
 argument_list|)
 return|;

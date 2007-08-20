@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -456,6 +456,8 @@ argument_list|()
 expr_stmt|;
 name|String
 name|value
+init|=
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -481,7 +483,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"XPDY0002: Undefined context item"
+literal|"err:XPDY0002: Undefined context item"
 argument_list|)
 throw|;
 name|value
@@ -533,22 +535,17 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"XPDY0002: Undefined context item"
+literal|"err:XPDY0002: Undefined context item"
 argument_list|)
 throw|;
 if|if
 condition|(
+operator|!
 name|seq
 operator|.
 name|isEmpty
 argument_list|()
 condition|)
-comment|//TODO : it this the right value ? -pb
-name|value
-operator|=
-literal|null
-expr_stmt|;
-else|else
 name|value
 operator|=
 name|seq
@@ -568,9 +565,9 @@ literal|null
 condition|)
 name|result
 operator|=
-name|Sequence
+name|StringValue
 operator|.
-name|EMPTY_SEQUENCE
+name|EMPTY_STRING
 expr_stmt|;
 else|else
 block|{
@@ -645,7 +642,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Zero-length string constant? -ljo
 block|}
 if|if
 condition|(
