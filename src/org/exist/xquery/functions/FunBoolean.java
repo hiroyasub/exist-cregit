@@ -381,21 +381,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
-name|contextSequence
-operator|=
+comment|//if(contextItem != null)
+comment|//	contextSequence = contextItem.toSequence();
+name|Sequence
+name|arg
+init|=
 name|getArgument
 argument_list|(
 literal|0
@@ -404,12 +394,14 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Sequence
 name|result
 init|=
-name|contextSequence
+name|arg
 operator|.
 name|effectiveBooleanValue
 argument_list|()
