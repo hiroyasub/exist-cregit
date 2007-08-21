@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org/  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -221,8 +221,22 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
+import|;
+end_import
+
 begin_comment
-comment|/**  * Built-in function fn:substring().  *  *	@author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Built-in function fn:substring().  *  *	@author Adam Retter<adam.retter@devon.gov.uk>  *	@author ljo<ellefj@gmail.com>  */
 end_comment
 
 begin_class
@@ -948,7 +962,7 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//if end position is Â±infinite
+comment|//if end position is +/-infinite
 if|if
 condition|(
 name|end
@@ -1026,15 +1040,27 @@ name|sourceString
 argument_list|)
 return|;
 block|}
+name|ValueSequence
+name|codepoints
+init|=
+name|FunStringToCodepoints
+operator|.
+name|getCodePoints
+argument_list|(
+name|sourceString
+argument_list|)
+decl_stmt|;
 comment|// transition from xs:string index to Java string index.
 return|return
 operator|new
 name|StringValue
 argument_list|(
-name|sourceString
+name|FunStringToCodepoints
 operator|.
-name|substring
+name|subSequence
 argument_list|(
+name|codepoints
+argument_list|,
 name|startingLoc
 operator|.
 name|getInt
@@ -1062,44 +1088,27 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|startingLoc
+name|ValueSequence
+name|codepoints
+init|=
+name|FunStringToCodepoints
 operator|.
-name|getInt
-argument_list|()
-operator|<=
-literal|1
-condition|)
-block|{
+name|getCodePoints
+argument_list|(
+name|sourceString
+argument_list|)
+decl_stmt|;
+comment|// transition from xs:string index to Java string index.
 return|return
 operator|new
 name|StringValue
 argument_list|(
-name|sourceString
+name|FunStringToCodepoints
 operator|.
-name|substring
+name|subSequence
 argument_list|(
-literal|0
+name|codepoints
 argument_list|,
-name|endingLoc
-operator|.
-name|getInt
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-argument_list|)
-return|;
-block|}
-return|return
-operator|new
-name|StringValue
-argument_list|(
-name|sourceString
-operator|.
-name|substring
-argument_list|(
 name|startingLoc
 operator|.
 name|getInt

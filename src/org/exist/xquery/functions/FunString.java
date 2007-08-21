@@ -487,8 +487,6 @@ name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
-comment|//Despite : fn:string($arg as item()?) as xs:string in the specs
-comment|//result = Sequence.EMPTY_SEQUENCE;
 else|else
 name|result
 operator|=

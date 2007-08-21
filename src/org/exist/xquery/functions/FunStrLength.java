@@ -454,7 +454,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"XPDY0002: Undefined context item"
+literal|"err:XPDY0002: Undefined context item"
 argument_list|)
 throw|;
 name|String
@@ -471,9 +471,14 @@ init|=
 operator|new
 name|IntegerValue
 argument_list|(
-name|strval
+name|FunStringToCodepoints
 operator|.
-name|length
+name|getCodePoints
+argument_list|(
+name|strval
+argument_list|)
+operator|.
+name|getItemCount
 argument_list|()
 argument_list|)
 decl_stmt|;
