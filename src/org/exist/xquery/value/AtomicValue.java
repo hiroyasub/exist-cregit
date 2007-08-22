@@ -712,16 +712,13 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#effectiveBooleanValue() 	 */
 specifier|public
+specifier|abstract
 name|boolean
 name|effectiveBooleanValue
 parameter_list|()
 throws|throws
 name|XPathException
-block|{
-return|return
-literal|false
-return|;
-block|}
+function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
 specifier|public
 name|NodeSet
@@ -1342,6 +1339,17 @@ name|requiredType
 argument_list|)
 throw|;
 block|}
+block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+literal|false
+return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#compareTo(java.lang.Object) 		 */
 specifier|public

@@ -375,6 +375,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Why override ?
 specifier|public
 name|int
 name|returnsType
@@ -498,20 +499,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
-name|String
+comment|//if (contextItem != null)
+comment|//contextSequence = contextItem.toSequence();
+name|Sequence
 name|s1
 init|=
 name|getArgument
@@ -522,12 +512,11 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
-operator|.
-name|getStringValue
-argument_list|()
 decl_stmt|;
-name|String
+name|Sequence
 name|s2
 init|=
 name|getArgument
@@ -538,10 +527,9 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
-operator|.
-name|getStringValue
-argument_list|()
 decl_stmt|;
 name|Sequence
 name|result
@@ -550,17 +538,13 @@ if|if
 condition|(
 name|s1
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 operator|||
 name|s2
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 name|result
 operator|=
@@ -591,8 +575,14 @@ argument_list|(
 name|collator
 argument_list|,
 name|s1
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|,
 name|s2
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 condition|)
 name|result

@@ -148,6 +148,21 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Called effectiveBooleanValue() on FunctionReference"
+argument_list|)
+throw|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(java.text.Collator, int, org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|boolean

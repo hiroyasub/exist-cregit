@@ -579,19 +579,6 @@ condition|)
 return|return
 literal|false
 return|;
-if|if
-condition|(
-name|OLD_EXIST_VERSION_COMPATIBILITY
-condition|)
-comment|//TODO : get rid of getLength()
-if|if
-condition|(
-name|hasMany
-argument_list|()
-condition|)
-return|return
-literal|true
-return|;
 name|Item
 name|first
 init|=
@@ -600,7 +587,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// If operand is a sequence whose first item is a node, fn:boolean returns true.
+comment|//If its operand is a sequence whose first item is a node, fn:boolean returns true.
 if|if
 condition|(
 name|Type
@@ -617,22 +604,23 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
-block|{
 return|return
 literal|true
 return|;
-block|}
-if|if
-condition|(
-operator|!
-name|OLD_EXIST_VERSION_COMPATIBILITY
-condition|)
-comment|//TODO : get rid of getLength()
 if|if
 condition|(
 name|hasMany
 argument_list|()
 condition|)
+block|{
+if|if
+condition|(
+name|OLD_EXIST_VERSION_COMPATIBILITY
+condition|)
+return|return
+literal|true
+return|;
+else|else
 throw|throw
 operator|new
 name|XPathException
@@ -667,7 +655,10 @@ operator|+
 literal|"' is not a node, and sequence length> 1"
 argument_list|)
 throw|;
-comment|// If $arg is a singleton value of type xs:boolean or a derived from xs:boolean, fn:boolean returns $arg.
+block|}
+comment|//TODO : type a single cast to AtomicValue
+comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
+comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
 if|if
 condition|(
 name|first
@@ -689,6 +680,42 @@ if|else if
 condition|(
 name|first
 operator|instanceof
+name|AnyURIValue
+condition|)
+return|return
+operator|(
+operator|(
+name|AnyURIValue
+operator|)
+name|first
+operator|)
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+return|;
+if|else if
+condition|(
+name|first
+operator|instanceof
+name|UntypedAtomicValue
+condition|)
+return|return
+operator|(
+operator|(
+name|UntypedAtomicValue
+operator|)
+name|first
+operator|)
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+return|;
+comment|//If its operand is a singleton value of type xs:boolean or derived from xs:boolean,
+comment|//fn:boolean returns the value of its operand unchanged.
+if|else if
+condition|(
+name|first
+operator|instanceof
 name|BooleanValue
 condition|)
 return|return
@@ -702,6 +729,9 @@ operator|.
 name|getValue
 argument_list|()
 return|;
+comment|//If its operand is a singleton value of any numeric type or derived from a numeric type,
+comment|//fn:boolean returns false if the operand value is NaN or is numerically equal to zero;
+comment|//otherwise it returns true.
 if|else if
 condition|(
 name|first
@@ -733,7 +763,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"error FORG0006: effectiveBooleanValue: sequence of length 1, but not castable to a number or Boolean"
+literal|"error FORG0006: effectiveBooleanValue: sequence of length 1, "
+operator|+
+literal|"but not castable to a number or Boolean"
 argument_list|)
 throw|;
 block|}

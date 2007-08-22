@@ -442,39 +442,7 @@ name|ATOMIC
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-name|int
-name|deps
-init|=
-name|Dependency
-operator|.
-name|CONTEXT_SET
-decl_stmt|;
-if|if
-condition|(
-name|getArgumentCount
-argument_list|()
-operator|==
-literal|1
-condition|)
-name|deps
-operator||=
-name|getArgument
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getDependencies
-argument_list|()
-expr_stmt|;
-return|return
-name|deps
-return|;
-block|}
+comment|/* 	public int getDependencies() { 		int deps = Dependency.CONTEXT_SET; 		if (getArgumentCount() == 1) 			deps |= getArgument(0).getDependencies(); 		return deps; 	} 	*/
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
@@ -588,21 +556,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if (contextItem != null)
+comment|//contextSequence = contextItem.toSequence();
 name|Sequence
-name|values
+name|seq
 init|=
 name|getArgument
 argument_list|(
@@ -612,6 +569,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 name|Collator
@@ -662,7 +621,7 @@ control|(
 name|SequenceIterator
 name|i
 init|=
-name|values
+name|seq
 operator|.
 name|iterate
 argument_list|()
