@@ -354,6 +354,7 @@ name|valueStart
 decl_stmt|;
 try|try
 block|{
+comment|//Currently breaks 1e3 to 3
 name|valueStart
 operator|=
 operator|(
@@ -436,6 +437,7 @@ name|valueEnd
 decl_stmt|;
 try|try
 block|{
+comment|//Currently breaks 3 to 1e3
 name|valueEnd
 operator|=
 operator|(
@@ -513,6 +515,7 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//Implied by previous conversion
 if|if
 condition|(
 name|valueStart
@@ -572,6 +575,7 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//Implied by previous conversion
 if|if
 condition|(
 name|valueEnd
