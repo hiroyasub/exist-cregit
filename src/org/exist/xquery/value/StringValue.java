@@ -498,11 +498,8 @@ literal|false
 decl_stmt|;
 name|char
 name|high
-decl_stmt|;
-name|int
-name|surrogateCounter
 init|=
-literal|0
+literal|'\0'
 decl_stmt|;
 for|for
 control|(
@@ -530,10 +527,6 @@ name|charAt
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
-name|high
-operator|=
-name|ch
 expr_stmt|;
 if|if
 condition|(
@@ -578,7 +571,12 @@ name|buf
 operator|.
 name|append
 argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
 name|suppChar
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buf
@@ -594,6 +592,10 @@ block|{
 name|secondSurrChar
 operator|=
 literal|true
+expr_stmt|;
+name|high
+operator|=
+name|ch
 expr_stmt|;
 block|}
 block|}
@@ -2835,6 +2837,9 @@ name|buf
 operator|.
 name|append
 argument_list|(
+operator|(
+name|char
+operator|)
 name|expandEntity
 argument_list|(
 name|entityRef
