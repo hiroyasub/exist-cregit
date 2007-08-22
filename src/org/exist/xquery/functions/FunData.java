@@ -386,19 +386,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if(contextItem != null)
+comment|//	contextSequence = contextItem.toSequence();
 name|Sequence
 name|arg
 init|=
@@ -410,6 +399,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 name|Sequence

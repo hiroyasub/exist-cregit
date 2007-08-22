@@ -553,11 +553,6 @@ expr_stmt|;
 block|}
 comment|//if (contextItem != null)
 comment|//	contextSequence = contextItem.toSequence();
-name|boolean
-name|computableProcessing
-init|=
-literal|false
-decl_stmt|;
 name|Sequence
 name|result
 decl_stmt|;
@@ -591,6 +586,11 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
+name|boolean
+name|computableProcessing
+init|=
+literal|false
+decl_stmt|;
 comment|//TODO : test if a range index is defined *iff* it is compatible with the collator
 name|Collator
 name|collator

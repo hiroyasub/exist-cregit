@@ -249,7 +249,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|" Returns an expanded-QName for node kinds that can have names. For other kinds "
+literal|"Returns an expanded-QName for node kinds that can have names. For other kinds "
 operator|+
 literal|"of nodes it returns the empty sequence. If $a is the empty sequence, the "
 operator|+
@@ -413,19 +413,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if(contextItem != null)
+comment|//    contextSequence = contextItem.toSequence();
 name|Sequence
 name|result
 decl_stmt|;
@@ -440,6 +429,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 if|if
