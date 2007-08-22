@@ -6473,6 +6473,15 @@ name|count
 operator|++
 control|)
 block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+name|pos
+operator|+
+literal|"/"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|short
 name|tid
@@ -6492,6 +6501,18 @@ name|pos
 operator|+=
 name|LENGTH_TID
 expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+name|ItemId
+operator|.
+name|getId
+argument_list|(
+name|tid
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|ItemId
@@ -6506,7 +6527,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|'L'
+literal|"L"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6524,26 +6545,10 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|'R'
+literal|"R"
 argument_list|)
 expr_stmt|;
 block|}
-name|buf
-operator|.
-name|append
-argument_list|(
-name|ItemId
-operator|.
-name|getId
-argument_list|(
-name|tid
-argument_list|)
-operator|+
-literal|"["
-operator|+
-name|pos
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|ItemId
@@ -6583,7 +6588,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|"] "
+literal|" "
 argument_list|)
 expr_stmt|;
 name|pos
@@ -6633,14 +6638,19 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|":illegal length] "
+literal|"[illegal length : "
+operator|+
+name|vlen
+operator|+
+literal|"] "
 argument_list|)
 operator|.
 name|toString
 argument_list|()
 return|;
+comment|//Probably unable to continue...
 block|}
-if|if
+if|else if
 condition|(
 name|ItemId
 operator|.
@@ -6656,6 +6666,15 @@ operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
+else|else
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"["
+argument_list|)
+expr_stmt|;
 switch|switch
 condition|(
 name|Signatures
@@ -6678,11 +6697,6 @@ name|ELEMENT_NODE
 case|:
 block|{
 name|buf
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
 operator|.
 name|append
 argument_list|(
@@ -6919,21 +6933,11 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|':'
-argument_list|)
-operator|.
-name|append
-argument_list|(
 literal|"text"
 argument_list|)
 expr_stmt|;
 else|else
 name|buf
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
 operator|.
 name|append
 argument_list|(
@@ -7177,11 +7181,6 @@ name|ATTRIBUTE_NODE
 case|:
 block|{
 name|buf
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
 operator|.
 name|append
 argument_list|(
@@ -7612,12 +7611,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|':'
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"UNKNOWN !"
+literal|"Unknown node type !"
 argument_list|)
 operator|.
 name|append
@@ -7625,6 +7619,7 @@ argument_list|(
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|pos
 operator|+=

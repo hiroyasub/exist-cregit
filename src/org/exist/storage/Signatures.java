@@ -296,7 +296,9 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"unknown node type"
+literal|"Unknown node type"
+operator|+
+name|type
 argument_list|)
 expr_stmt|;
 return|return
