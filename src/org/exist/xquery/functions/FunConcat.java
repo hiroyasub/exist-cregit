@@ -349,6 +349,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Why a specific method here ?
 specifier|public
 name|int
 name|returnsType
@@ -461,6 +462,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Why a specific method here ?
 specifier|public
 name|void
 name|analyze
@@ -646,19 +648,8 @@ argument_list|(
 literal|"concat requires at least two arguments"
 argument_list|)
 throw|;
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if(contextItem != null)
+comment|//	contextSequence = contextItem.toSequence();
 name|StringBuffer
 name|concat
 init|=
@@ -694,6 +685,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 operator|.
 name|getStringValue

@@ -483,19 +483,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if(contextItem != null)
+comment|//	contextSequence = contextItem.toSequence();
 name|Sequence
 name|seq1
 init|=
@@ -507,6 +496,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 name|Sequence
@@ -520,6 +511,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 name|Sequence
@@ -545,22 +538,6 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
-name|String
-name|s1
-init|=
-name|seq1
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-name|String
-name|s2
-init|=
-name|seq2
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
 name|Collator
 name|collator
 init|=
@@ -582,9 +559,15 @@ name|compare
 argument_list|(
 name|collator
 argument_list|,
-name|s1
+name|seq1
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|,
-name|s2
+name|seq2
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -605,7 +588,6 @@ operator|.
 name|EQUAL
 argument_list|)
 expr_stmt|;
-comment|//TODO :
 if|else if
 condition|(
 name|comparison
