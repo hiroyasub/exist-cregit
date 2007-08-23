@@ -243,20 +243,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
-import|;
-end_import
-
-begin_import
-import|import
 name|antlr
 operator|.
 name|RecognitionException
