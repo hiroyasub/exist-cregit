@@ -17,16 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -458,17 +448,10 @@ init|=
 operator|new
 name|DateTimeValue
 argument_list|(
-operator|new
-name|Date
-argument_list|(
 name|context
 operator|.
-name|getWatchDog
+name|getCalendar
 argument_list|()
-operator|.
-name|getStartTime
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if

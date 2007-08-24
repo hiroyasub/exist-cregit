@@ -13,16 +13,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -127,7 +117,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|DateTimeValue
+name|DayTimeDurationValue
 import|;
 end_import
 
@@ -361,31 +351,28 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Sequence result = new DayTimeDurationValue(TimeUtils.getInstance().getLocalTimezoneOffsetMillis());
-comment|//TODO : very ugly workaround that makes implicit-timeout() stable
-comment|//and independant from the context's implicit time zone
-comment|//not counting that its stability might be discussed
 name|Sequence
 name|result
 init|=
 operator|new
-name|DateTimeValue
-argument_list|(
-operator|new
-name|Date
+name|DayTimeDurationValue
 argument_list|(
 name|context
 operator|.
-name|getWatchDog
+name|getImplicitTimeZone
 argument_list|()
 operator|.
-name|getStartTime
+name|getRawOffset
 argument_list|()
-argument_list|)
-argument_list|)
+operator|+
+name|context
 operator|.
-name|getTimezone
+name|getImplicitTimeZone
 argument_list|()
+operator|.
+name|getDSTSavings
+argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
