@@ -339,6 +339,32 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Should be handled by the parser
+if|if
+condition|(
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|ATOMIC
+comment|/*|| requiredType == Type.NOTATION*/
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XPST0080: cannot cast to "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
+argument_list|)
+throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
