@@ -1303,6 +1303,9 @@ argument_list|,
 literal|null
 argument_list|,
 name|x
+operator|.
+name|abs
+argument_list|()
 argument_list|)
 argument_list|)
 return|;

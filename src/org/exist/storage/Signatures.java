@@ -296,7 +296,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"Unknown node type"
+literal|"Unknown node type : "
 operator|+
 name|type
 argument_list|)
