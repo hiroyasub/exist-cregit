@@ -1297,7 +1297,10 @@ name|Dimension
 argument_list|(
 literal|200
 argument_list|,
-literal|30
+name|statusbar
+operator|.
+name|getHeight
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
