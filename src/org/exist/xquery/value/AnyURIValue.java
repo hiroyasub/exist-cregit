@@ -398,11 +398,38 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/* 		The URI value is whitespace normalized according to the rules for the xs:anyURI type in [XML Schema].<xs:simpleType name="anyURI" id="anyURI"> 			...<xs:restriction base="xs:anySimpleType"><xs:whiteSpace fixed="true" value="collapse" id="anyURI.whiteSpace"/></xs:restriction></xs:simpleType> 		*/
+comment|//TODO : find a way to perform the 3 operations at the same time
+name|s
+operator|=
+name|StringValue
+operator|.
+name|expand
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+comment|//Should we have character entities
+name|s
+operator|=
+name|StringValue
+operator|.
+name|normalizeWhitespace
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+comment|//Should we have TABs, new lines...
 name|this
 operator|.
 name|uri
 operator|=
+name|StringValue
+operator|.
+name|collapseWhitespace
+argument_list|(
 name|s
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * This function accepts a String representation of an xs:anyURI and applies 	 * the escaping method described in Section 5.4 of XML Linking (http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators) 	 * to turn it into a valid URI 	 *           * @see<a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators">http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators</A> 	 * @param uri The xs:anyURI to escape into a valid URI 	 * @return An escaped string representation of the provided xs:anyURI 	 */

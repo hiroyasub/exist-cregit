@@ -146,18 +146,16 @@ specifier|static
 name|String
 name|langRegex
 init|=
-literal|"/(([a-z]|[A-Z])([a-z]|[A-Z])|"
-comment|// ISO639Code
-operator|+
-literal|"([iI]-([a-z]|[A-Z])+)|"
-comment|// IanaCode
-operator|+
-literal|"([xX]-([a-z]|[A-Z])+))"
-comment|// UserCode
-operator|+
-literal|"(-([a-z]|[A-Z])+)*/"
+comment|//http://www.w3.org/TR/xmlschema-2/#language
+comment|//The lexical space of language is the set of all strings that conform
+comment|//to the pattern [a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})* .
+literal|"[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"
 decl_stmt|;
-comment|// Subcode
+comment|//Old definition : not sure where it comes from
+comment|//"/(([a-z]|[A-Z])([a-z]|[A-Z])|" // ISO639Code
+comment|//+ "([iI]-([a-z]|[A-Z])+)|"     // IanaCode
+comment|//+ "([xX]-([a-z]|[A-Z])+))"     // UserCode
+comment|//+ "(-([a-z]|[A-Z])+)*/";        // Subcode"
 specifier|private
 specifier|final
 specifier|static
@@ -187,7 +185,7 @@ specifier|public
 name|StringValue
 parameter_list|(
 name|String
-name|stringValue
+name|string
 parameter_list|,
 name|int
 name|type
@@ -201,6 +199,16 @@ name|type
 operator|=
 name|type
 expr_stmt|;
+name|string
+operator|=
+name|StringValue
+operator|.
+name|expand
+argument_list|(
+name|string
+argument_list|)
+expr_stmt|;
+comment|//Should we have character entities
 if|if
 condition|(
 name|type
@@ -213,7 +221,7 @@ name|this
 operator|.
 name|value
 operator|=
-name|stringValue
+name|string
 expr_stmt|;
 if|else if
 condition|(
@@ -229,7 +237,7 @@ name|value
 operator|=
 name|normalizeWhitespace
 argument_list|(
-name|stringValue
+name|string
 argument_list|)
 expr_stmt|;
 else|else
@@ -240,7 +248,7 @@ name|value
 operator|=
 name|collapseWhitespace
 argument_list|(
-name|stringValue
+name|string
 argument_list|)
 expr_stmt|;
 name|checkType
@@ -252,12 +260,13 @@ specifier|public
 name|StringValue
 parameter_list|(
 name|String
-name|stringValue
+name|string
 parameter_list|)
 block|{
+comment|//string = StringValue.expand(string); //Should we have character entities
 name|value
 operator|=
-name|stringValue
+name|string
 expr_stmt|;
 block|}
 specifier|public
