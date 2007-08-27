@@ -41,16 +41,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|Namespaces
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|ElementImpl
@@ -78,18 +68,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
 import|;
 end_import
 
@@ -742,8 +720,27 @@ operator|.
 name|getNodeType
 argument_list|()
 decl_stmt|;
-comment|// Only elements, document nodes and processing instructions have a base-uri
+comment|//A direct processing instruction constructor creates a processing instruction node
+comment|//whose target property is PITarget and whose content property is DirPIContents.
+comment|//The base-uri property of the node is empty.
+comment|//The parent property of the node is empty.
 if|if
+condition|(
+name|type
+operator|==
+name|Node
+operator|.
+name|PROCESSING_INSTRUCTION_NODE
+condition|)
+block|{
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+block|}
+if|else if
 condition|(
 name|type
 operator|==
@@ -756,14 +753,9 @@ operator|==
 name|Node
 operator|.
 name|DOCUMENT_NODE
-operator|||
-name|type
-operator|==
-name|Node
-operator|.
-name|PROCESSING_INSTRUCTION_NODE
 condition|)
 block|{
+comment|//Only elements, document nodes have a base-uri
 name|URI
 name|relativeURI
 decl_stmt|;
