@@ -921,32 +921,10 @@ expr_stmt|;
 block|}
 comment|// we synchronize on the global CollectionCache to avoid deadlocks.
 comment|// the calling code does mostly already hold a lock on CollectionCache.
-name|CollectionCache
-name|collectionCache
-init|=
-name|pool
-operator|.
-name|getCollectionsCache
-argument_list|()
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|collectionCache
-init|)
-block|{
-name|cache
-operator|.
-name|put
-argument_list|(
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|,
-name|conf
-argument_list|)
-expr_stmt|;
-block|}
+comment|//		CollectionCache collectionCache = pool.getCollectionsCache();
+comment|//		synchronized (collectionCache) {
+comment|//			cache.put(collection.getURI(), conf);
+comment|//		}
 return|return
 name|conf
 return|;
