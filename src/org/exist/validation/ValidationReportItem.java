@@ -219,9 +219,9 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|publicId
+name|systemId
 operator|=
-name|publicId
+name|systemId
 expr_stmt|;
 block|}
 specifier|public
