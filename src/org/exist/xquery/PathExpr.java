@@ -1266,6 +1266,13 @@ name|LetExpr
 operator|)
 operator|&&
 operator|!
+operator|(
+name|expr
+operator|instanceof
+name|EnclosedExpr
+operator|)
+operator|&&
+operator|!
 name|Type
 operator|.
 name|subTypeOf
