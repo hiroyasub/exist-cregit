@@ -320,7 +320,44 @@ name|rr
 argument_list|)
 expr_stmt|;
 comment|//<test>{() or ()}</test> should return<test>false</test>
-comment|/* 			if (contextSequence.isEmpty()) { 				result = result.isEmpty() ? BooleanValue.FALSE : BooleanValue.TRUE; 			} 			*/
+if|if
+condition|(
+name|getParent
+argument_list|()
+operator|instanceof
+name|EnclosedExpr
+operator|||
+comment|//First, the intermediate PathExpr
+operator|(
+operator|(
+name|PathExpr
+operator|)
+name|getParent
+argument_list|()
+operator|)
+operator|.
+name|getParent
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+name|result
+operator|=
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|BooleanValue
+operator|.
+name|FALSE
+else|:
+name|BooleanValue
+operator|.
+name|TRUE
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{

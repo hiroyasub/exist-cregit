@@ -220,6 +220,7 @@ name|Dependency
 operator|.
 name|LOCAL_VARS
 argument_list|)
+comment|/*&&  				//If in an enclosed expression, return the boolean value, not a NodeSet 				//Commented out since we don't want to lose the benefit of the optimization 				//The boolean value will be returned by derived classes 				//See below, returnsType() however...  				!(getParent() instanceof EnclosedExpr)*/
 condition|)
 name|optimize
 operator|=
@@ -239,6 +240,32 @@ block|{
 return|return
 name|optimize
 condition|?
+comment|//Possibly more expression types to add there
+operator|(
+name|getParent
+argument_list|()
+operator|instanceof
+name|EnclosedExpr
+operator|||
+comment|//First, the intermediate PathExpr
+operator|(
+operator|(
+name|PathExpr
+operator|)
+name|getParent
+argument_list|()
+operator|)
+operator|.
+name|getParent
+argument_list|()
+operator|==
+literal|null
+operator|)
+condition|?
+name|Type
+operator|.
+name|BOOLEAN
+else|:
 name|Type
 operator|.
 name|NODE
