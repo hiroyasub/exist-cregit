@@ -714,17 +714,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"LocaXML string 0 "
-operator|+
-name|content
-argument_list|)
-expr_stmt|;
 return|return
 name|content
 return|;

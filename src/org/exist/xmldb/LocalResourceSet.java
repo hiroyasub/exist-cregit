@@ -633,17 +633,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"LocalResourceSet::add = "
-operator|+
-name|resource
-argument_list|)
-expr_stmt|;
 name|resources
 operator|.
 name|add
