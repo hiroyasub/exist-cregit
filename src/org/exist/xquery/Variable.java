@@ -634,7 +634,6 @@ name|ATOMIC
 argument_list|)
 condition|)
 block|{
-comment|//if(!Type.subTypeOf(value.getItemType(), Type.ATOMIC))ll
 if|if
 condition|(
 operator|!
@@ -661,6 +660,8 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+comment|//TODO : we should recheck the dependencies of this method
+comment|//and remove that conversion !
 if|if
 condition|(
 name|requiredType
