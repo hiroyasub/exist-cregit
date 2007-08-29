@@ -26907,6 +26907,10 @@ name|inPragma
 operator|=
 literal|false
 expr_stmt|;
+name|wsExplicit
+operator|=
+literal|true
+expr_stmt|;
 name|_ttype
 operator|=
 name|PRAGMA_END
