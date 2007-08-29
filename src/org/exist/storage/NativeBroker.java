@@ -6254,6 +6254,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|childCollection
+operator|!=
+literal|null
+condition|)
 name|childCollection
 operator|.
 name|getLock
@@ -6264,6 +6270,14 @@ argument_list|(
 name|Lock
 operator|.
 name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+else|else
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"childCollection is null !"
 argument_list|)
 expr_stmt|;
 block|}
