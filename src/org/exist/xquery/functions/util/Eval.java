@@ -53,16 +53,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Calendar
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Date
 import|;
 end_import
@@ -764,7 +754,7 @@ literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
-literal|"It should have the format:<static-context><current-dateTime value=\"dateTime\"/>"
+literal|"It should have the format:<static-context><output-size-limit value=\"-1\"><current-dateTime value=\"dateTime\"/>"
 operator|+
 literal|"implicit-timezone value=\"duration\"/><variable name=\"qname\">"
 operator|+
@@ -861,7 +851,9 @@ literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
-literal|"It should have the format:<static-context><current-dateTime value=\"dateTime\"/>"
+literal|"It should have the format:<static-context><output-size-limit value=\"-1\">"
+operator|+
+literal|"<current-dateTime value=\"dateTime\"/>"
 operator|+
 literal|"implicit-timezone value=\"duration\"/><variable name=\"qname\">"
 operator|+
@@ -2334,6 +2326,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//TODO : more check on attributes existence and on their values
 if|if
 condition|(
 name|child
@@ -2410,6 +2403,61 @@ argument_list|(
 name|qname
 argument_list|,
 name|value
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+operator|&&
+literal|"output-size-limit"
+operator|.
+name|equals
+argument_list|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|Element
+name|elem
+init|=
+operator|(
+name|Element
+operator|)
+name|child
+decl_stmt|;
+comment|//TODO : error check
+name|innerContext
+operator|.
+name|getWatchDog
+argument_list|()
+operator|.
+name|setMaxNodes
+argument_list|(
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
+name|elem
+operator|.
+name|getAttribute
+argument_list|(
+literal|"value"
+argument_list|)
+argument_list|)
+operator|.
+name|intValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
