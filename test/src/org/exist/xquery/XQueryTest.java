@@ -1646,7 +1646,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testConstructedNode1
+name|bugtestConstructedNode1
 parameter_list|()
 block|{
 try|try
@@ -6833,7 +6833,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testNamespaceWithTransform
+name|bugtestNamespaceWithTransform
 parameter_list|()
 block|{
 try|try
@@ -11777,7 +11777,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestQnameToString_1632365
+name|testQnameToString_1632365
 parameter_list|()
 block|{
 name|String
@@ -13010,7 +13010,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1755910
 specifier|public
 name|void
-name|bugtestQNameString_1755910
+name|testQNameString_1755910
 parameter_list|()
 block|{
 try|try
