@@ -1646,7 +1646,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|testConstructedNode1
+name|bugtestConstructedNode1
 parameter_list|()
 block|{
 try|try
