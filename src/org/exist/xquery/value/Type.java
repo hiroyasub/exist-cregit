@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -677,7 +687,6 @@ argument_list|,
 name|ATOMIC
 argument_list|)
 expr_stmt|;
-comment|//TODO :; haven't we here UNTYPED_ATOMIC descendants ?
 name|defineSubType
 argument_list|(
 name|ATOMIC
@@ -1027,6 +1036,8 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
+comment|//TODO : use NODETYPES above ?
+comment|//TODO use parentheses after the nodes name  ?
 name|defineBuiltInType
 argument_list|(
 name|NODE
@@ -1713,6 +1724,7 @@ condition|)
 return|return
 literal|true
 return|;
+comment|//Note that it will return true even if subtype == EMPTY
 if|if
 condition|(
 name|supertype
@@ -1723,9 +1735,12 @@ name|supertype
 operator|==
 name|ANY_TYPE
 condition|)
+comment|//maybe return subtype != EMPTY ?
 return|return
 literal|true
 return|;
+comment|//Note that EMPTY is *not* a sub-type of anything else than itself
+comment|//EmptySequence has to take care of this when it checks its type
 if|if
 condition|(
 name|subtype
@@ -1868,6 +1883,7 @@ name|int
 name|type2
 parameter_list|)
 block|{
+comment|//Super shortcut
 if|if
 condition|(
 name|type1
@@ -1877,33 +1893,102 @@ condition|)
 return|return
 name|type1
 return|;
+comment|//TODO : optimize by swapping the arguments based on their numeric values ?
+comment|//Processing lower value first *should* reduce the size of the Set
+comment|//Collect type1's super-types
+name|HashSet
+name|t1
+init|=
+operator|new
+name|HashSet
+argument_list|()
+decl_stmt|;
+comment|//Don't introduce a shortcut (starting at getSuperType(type1) here
+comment|//type2 might be a super-type of type1
+name|int
+name|t
+decl_stmt|;
+for|for
+control|(
+name|t
+operator|=
 name|type1
+init|;
+name|t
+operator|!=
+name|ITEM
+condition|;
+name|t
 operator|=
 name|getSuperType
 argument_list|(
-name|type1
+name|t
 argument_list|)
-expr_stmt|;
+control|)
+block|{
+comment|//Shortcut
 if|if
 condition|(
-name|type1
+name|t
 operator|==
 name|type2
 condition|)
 return|return
-name|type1
+name|t
 return|;
-else|else
-return|return
-name|getCommonSuperType
+name|t1
+operator|.
+name|add
 argument_list|(
-name|type1
-argument_list|,
+operator|new
+name|Integer
+argument_list|(
+name|t
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|//Starting from type2's super type : the shortcut should have done its job
+for|for
+control|(
+name|t
+operator|=
 name|getSuperType
 argument_list|(
 name|type2
 argument_list|)
+init|;
+name|t
+operator|!=
+name|ITEM
+condition|;
+name|t
+operator|=
+name|getSuperType
+argument_list|(
+name|t
 argument_list|)
+control|)
+block|{
+if|if
+condition|(
+name|t1
+operator|.
+name|contains
+argument_list|(
+operator|new
+name|Integer
+argument_list|(
+name|t
+argument_list|)
+argument_list|)
+condition|)
+return|return
+name|t
+return|;
+block|}
+return|return
+name|ITEM
 return|;
 block|}
 block|}

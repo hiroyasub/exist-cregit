@@ -367,6 +367,17 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|int
+name|getItemType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|NAMESPACE
+return|;
+block|}
 comment|//Untested
 specifier|public
 name|String

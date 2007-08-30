@@ -394,6 +394,17 @@ literal|false
 return|;
 block|}
 specifier|public
+name|int
+name|getItemType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|ATTRIBUTE
+return|;
+block|}
+specifier|public
 name|String
 name|toString
 parameter_list|()

@@ -1183,17 +1183,6 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
-specifier|public
-name|int
-name|returnsType
-parameter_list|()
-block|{
-comment|//Type.ITEM by default : this may change *after* evaluation
-return|return
-name|actualReturnType
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void

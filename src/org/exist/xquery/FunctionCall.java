@@ -41,6 +41,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|VirtualNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -656,7 +668,9 @@ name|e
 throw|;
 block|}
 block|}
-return|return
+name|Sequence
+name|result
+init|=
 name|evalFunction
 argument_list|(
 name|contextSequence
@@ -665,6 +679,76 @@ name|contextItem
 argument_list|,
 name|seq
 argument_list|)
+decl_stmt|;
+try|try
+block|{
+comment|//Don't check deferred calls : it would result in a stack overflow
+comment|//TODO : find a solution or... is it already here ?
+if|if
+condition|(
+operator|!
+operator|(
+name|result
+operator|instanceof
+name|DeferredFunctionCall
+operator|)
+operator|&&
+comment|//TODO : should we introduce a deffered type check on VirtualNodeSet
+comment|// and trigger it when the nodeSet is realized ?
+operator|!
+operator|(
+name|result
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+condition|)
+name|getSignature
+argument_list|()
+operator|.
+name|getReturnType
+argument_list|()
+operator|.
+name|checkType
+argument_list|(
+name|result
+operator|.
+name|getItemType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"err:XPTY004 in function '"
+operator|+
+name|getSignature
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'. "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+return|return
+name|result
 return|;
 block|}
 comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @throws XPathException      */
