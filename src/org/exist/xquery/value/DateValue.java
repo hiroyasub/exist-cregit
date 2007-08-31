@@ -440,7 +440,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert "
+literal|"err:FORG0001: can not convert "
 operator|+
 name|Type
 operator|.
