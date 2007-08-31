@@ -453,6 +453,22 @@ operator|.
 name|ITEM
 condition|)
 return|return;
+comment|//Although xs:anyURI is not a subtype of xs:string, both types are compatible
+if|if
+condition|(
+name|type
+operator|==
+name|Type
+operator|.
+name|ANY_URI
+operator|&&
+name|primaryType
+operator|==
+name|Type
+operator|.
+name|STRING
+condition|)
+return|return;
 if|if
 condition|(
 operator|!

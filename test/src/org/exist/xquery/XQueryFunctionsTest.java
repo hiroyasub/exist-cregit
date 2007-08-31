@@ -292,6 +292,129 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|testArguments
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+name|ResourceSet
+name|result
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|r
+init|=
+literal|""
+decl_stmt|;
+try|try
+block|{
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare function local:testAnyURI($uri as xs:string) as xs:string { "
+operator|+
+literal|"concat('Successfully processed as xs:string : ',$uri) "
+operator|+
+literal|"}; "
+operator|+
+literal|"let $a := xs:anyURI('http://exist.sourceforge.net/') "
+operator|+
+literal|"return local:testAnyURI($a)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Successfully processed as xs:string : http://exist.sourceforge.net/"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"declare function local:testEmpty($blah as xs:string)  as element()* { "
+operator|+
+literal|"for $a in (1,2,3) order by $a "
+operator|+
+literal|"return () "
+operator|+
+literal|"}; "
+operator|+
+literal|"local:testEmpty('test')"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testSum(): "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** Tests the XQuery-/XPath-function fn:round-half-to-even 	 * with the rounding value typed xs:integer 	 */
 specifier|public
 name|void
