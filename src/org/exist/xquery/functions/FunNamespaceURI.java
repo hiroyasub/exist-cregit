@@ -452,19 +452,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|contextItem
-operator|!=
-literal|null
-condition|)
-name|contextSequence
-operator|=
-name|contextItem
-operator|.
-name|toSequence
-argument_list|()
-expr_stmt|;
+comment|//if(contextItem != null)
+comment|//    contextSequence = contextItem.toSequence();
 name|Item
 name|item
 init|=
@@ -515,7 +504,7 @@ else|else
 block|{
 if|if
 condition|(
-name|contextSequence
+name|contextItem
 operator|==
 literal|null
 condition|)
@@ -529,33 +518,16 @@ argument_list|,
 literal|"XPDY0002: Undefined context item"
 argument_list|)
 throw|;
-if|if
-condition|(
-operator|!
-name|contextSequence
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"XPDY0002: Undefined context item"
-argument_list|)
-throw|;
 name|item
 operator|=
-name|contextSequence
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
+name|contextItem
 expr_stmt|;
+comment|//if (contextSequence == null)
+comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
+comment|//Doh !
+comment|//if(!contextSequence.isEmpty())
+comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
+comment|//item = contextSequence.itemAt(0);
 block|}
 name|Sequence
 name|result

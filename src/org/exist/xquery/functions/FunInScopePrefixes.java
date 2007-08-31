@@ -586,18 +586,6 @@ name|NodeImpl
 operator|)
 name|node
 decl_stmt|;
-comment|// Add xmlNS to all in-memory construcs. /ljo
-name|prefixes
-operator|.
-name|put
-argument_list|(
-literal|"xml"
-argument_list|,
-name|Namespaces
-operator|.
-name|XML_NS
-argument_list|)
-expr_stmt|;
 do|do
 block|{
 name|collectNamespacePrefixes
@@ -736,6 +724,18 @@ name|Map
 name|prefixes
 parameter_list|)
 block|{
+comment|// Add xmlNS to all constructs. -pb
+name|prefixes
+operator|.
+name|put
+argument_list|(
+literal|"xml"
+argument_list|,
+name|Namespaces
+operator|.
+name|XML_NS
+argument_list|)
+expr_stmt|;
 name|String
 name|namespaceURI
 init|=
@@ -848,6 +848,18 @@ name|Map
 name|prefixes
 parameter_list|)
 block|{
+comment|// Add xmlNS to all constructs. -pb
+name|prefixes
+operator|.
+name|put
+argument_list|(
+literal|"xml"
+argument_list|,
+name|Namespaces
+operator|.
+name|XML_NS
+argument_list|)
+expr_stmt|;
 name|String
 name|namespaceURI
 init|=
@@ -945,6 +957,18 @@ name|Map
 name|prefixes
 parameter_list|)
 block|{
+comment|// Add xmlNS to all in-memory constructs. /ljo
+name|prefixes
+operator|.
+name|put
+argument_list|(
+literal|"xml"
+argument_list|,
+name|Namespaces
+operator|.
+name|XML_NS
+argument_list|)
+expr_stmt|;
 name|String
 name|namespaceURI
 init|=
