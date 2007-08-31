@@ -3541,7 +3541,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * Should loaded documents be locked? 	 *       * @see #setLockDocumentsOnLoad(boolean)      * 	 */
+comment|/** 	 * Should loaded documents be locked? 	 *       * see #setLockDocumentsOnLoad(boolean)      * 	 */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
@@ -3551,7 +3551,18 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * If lock is true, all documents loaded during query execution 	 * will be locked. This way, we avoid that query results become 	 * invalid before the entire result has been processed by the client 	 * code. All attempts to modify nodes which are part of the result 	 * set will be blocked. 	 *  	 * However, it is the client's responsibility to proper unlock 	 * all documents once processing is completed. 	 *  	 * @param lock 	 */
+comment|//	/**
+comment|//	 * If lock is true, all documents loaded during query execution
+comment|//	 * will be locked. This way, we avoid that query results become
+comment|//	 * invalid before the entire result has been processed by the client
+comment|//	 * code. All attempts to modify nodes which are part of the result
+comment|//	 * set will be blocked.
+comment|//	 *
+comment|//	 * However, it is the client's responsibility to proper unlock
+comment|//	 * all documents once processing is completed.
+comment|//	 *
+comment|//	 * @param lock
+comment|//	 */
 comment|//	public void setLockDocumentsOnLoad(boolean lock) {
 comment|//	    lockDocumentsOnLoad = lock;
 comment|//	    if(lock)
@@ -3568,14 +3579,27 @@ block|{
 comment|//        if (lockedDocuments != null)
 comment|//           lockedDocuments.add(doc);
 block|}
-comment|/**      * Release all locks on documents that have been locked      * during query execution.      *      *@see #setLockDocumentsOnLoad(boolean)      */
+comment|//    /**
+comment|//     * Release all locks on documents that have been locked
+comment|//     * during query execution.
+comment|//     *
+comment|//     *@see #setLockDocumentsOnLoad(boolean)
+comment|//     */
 comment|//	public void releaseLockedDocuments() {
 comment|//        if(lockedDocuments != null)
 comment|//	        lockedDocuments.unlock();
 comment|//	    lockDocumentsOnLoad = false;
 comment|//		lockedDocuments = null;
 comment|//	}
-comment|/**      * Release all locks on documents not being referenced by the sequence.      * This is called after query execution has completed. Only locks on those      * documents contained in the final result set will be preserved. All other      * locks are released as they are no longer needed.      *       * @param seq      * @throws XPathException       */
+comment|//    /**
+comment|//     * Release all locks on documents not being referenced by the sequence.
+comment|//     * This is called after query execution has completed. Only locks on those
+comment|//     * documents contained in the final result set will be preserved. All other
+comment|//     * locks are released as they are no longer needed.
+comment|//     *
+comment|//     * @param seq
+comment|//     * @throws XPathException
+comment|//     */
 comment|//	public LockedDocumentMap releaseUnusedDocuments(Sequence seq) throws XPathException {
 comment|//	    if(lockedDocuments == null)
 comment|//	        return null;
