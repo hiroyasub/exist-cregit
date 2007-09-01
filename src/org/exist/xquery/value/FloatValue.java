@@ -299,28 +299,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
-specifier|public
-name|boolean
-name|effectiveBooleanValue
-parameter_list|()
-throws|throws
-name|XPathException
-block|{
-if|if
-condition|(
-name|isNaN
-argument_list|()
-condition|)
-return|return
-literal|false
-return|;
-return|return
-name|value
-operator|!=
-literal|0.0f
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#isNaN() 	 */
 specifier|public
 name|boolean

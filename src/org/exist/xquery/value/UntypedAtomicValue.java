@@ -1038,6 +1038,8 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
+comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
 return|return
 name|value
 operator|.

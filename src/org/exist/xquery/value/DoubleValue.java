@@ -822,35 +822,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
-specifier|public
-name|boolean
-name|effectiveBooleanValue
-parameter_list|()
-throws|throws
-name|XPathException
-block|{
-if|if
-condition|(
-name|value
-operator|==
-literal|0.0
-condition|)
-return|return
-literal|false
-return|;
-if|if
-condition|(
-name|isNaN
-argument_list|()
-condition|)
-return|return
-literal|false
-return|;
-return|return
-literal|true
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getDouble() 	 */
 specifier|public
 name|double

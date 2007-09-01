@@ -889,23 +889,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
-specifier|public
-name|boolean
-name|effectiveBooleanValue
-parameter_list|()
-throws|throws
-name|XPathException
-block|{
-return|return
-name|value
-operator|.
-name|signum
-argument_list|()
-operator|!=
-literal|0
-return|;
-block|}
 specifier|public
 name|boolean
 name|isNaN
@@ -932,15 +915,12 @@ block|{
 return|return
 name|value
 operator|.
-name|compareTo
-argument_list|(
-name|ZERO_BIGDECIMAL
-argument_list|)
+name|signum
+argument_list|()
 operator|==
-name|Constants
-operator|.
-name|EQUAL
+literal|0
 return|;
+comment|//return value.compareTo(ZERO_BIGDECIMAL) == Constants.EQUAL;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#negate() 	 */
 specifier|public

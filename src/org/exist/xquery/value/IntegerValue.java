@@ -1105,15 +1105,12 @@ block|{
 return|return
 name|value
 operator|.
-name|compareTo
-argument_list|(
-name|ZERO_BIGINTEGER
-argument_list|)
+name|signum
+argument_list|()
 operator|==
-name|Constants
-operator|.
-name|EQUAL
+literal|0
 return|;
+comment|//return value.compareTo(ZERO_BIGINTEGER) == Constants.EQUAL;
 block|}
 empty_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
@@ -1400,32 +1397,6 @@ name|doubleValue
 argument_list|()
 return|;
 comment|// (double) value;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
-specifier|public
-name|boolean
-name|effectiveBooleanValue
-parameter_list|()
-throws|throws
-name|XPathException
-block|{
-return|return
-operator|(
-name|value
-operator|.
-name|compareTo
-argument_list|(
-name|ZERO_BIGINTEGER
-argument_list|)
-operator|==
-literal|0
-operator|)
-condition|?
-literal|false
-else|:
-literal|true
-return|;
-comment|// value != 0;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
 specifier|public

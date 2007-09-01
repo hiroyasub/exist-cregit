@@ -171,6 +171,27 @@ name|boolean
 name|isZero
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|effectiveBooleanValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+comment|//If its operand is a singleton value of any numeric type or derived from a numeric type,
+comment|//fn:boolean returns false if the operand value is NaN or is numerically equal to zero;
+comment|//otherwise it returns true.
+return|return
+operator|!
+operator|(
+name|isNaN
+argument_list|()
+operator|||
+name|isZero
+argument_list|()
+operator|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 name|boolean

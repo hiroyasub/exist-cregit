@@ -300,6 +300,7 @@ name|requiredType
 argument_list|)
 return|;
 else|else
+comment|//TODO : clean atomization
 return|return
 operator|new
 name|StringValue
@@ -656,101 +657,8 @@ literal|"' is not a node, and sequence length> 1"
 argument_list|)
 throw|;
 block|}
-comment|//TODO : type a single cast to AtomicValue
-comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
-comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
-if|if
-condition|(
-name|first
-operator|instanceof
-name|StringValue
-condition|)
-return|return
-operator|(
-operator|(
-name|StringValue
-operator|)
-name|first
-operator|)
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-return|;
-if|else if
-condition|(
-name|first
-operator|instanceof
-name|AnyURIValue
-condition|)
-return|return
-operator|(
-operator|(
-name|AnyURIValue
-operator|)
-name|first
-operator|)
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-return|;
-if|else if
-condition|(
-name|first
-operator|instanceof
-name|UntypedAtomicValue
-condition|)
-return|return
-operator|(
-operator|(
-name|UntypedAtomicValue
-operator|)
-name|first
-operator|)
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-return|;
-comment|//If its operand is a singleton value of type xs:boolean or derived from xs:boolean,
-comment|//fn:boolean returns the value of its operand unchanged.
-if|else if
-condition|(
-name|first
-operator|instanceof
-name|BooleanValue
-condition|)
-return|return
-operator|(
-operator|(
-name|BooleanValue
-operator|)
-name|first
-operator|)
-operator|.
-name|getValue
-argument_list|()
-return|;
-comment|//If its operand is a singleton value of any numeric type or derived from a numeric type,
-comment|//fn:boolean returns false if the operand value is NaN or is numerically equal to zero;
-comment|//otherwise it returns true.
-if|else if
-condition|(
-name|first
-operator|instanceof
-name|NumericValue
-condition|)
-return|return
-operator|(
-operator|(
-name|NumericValue
-operator|)
-name|first
-operator|)
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-return|;
-else|else
-block|{
+comment|//From now, we'll work with singletons...
+comment|//Not sure about this one : does it mean than any singleton, including false() and 0 will return true ?
 if|if
 condition|(
 name|OLD_EXIST_VERSION_COMPATIBILITY
@@ -758,17 +666,19 @@ condition|)
 return|return
 literal|true
 return|;
-comment|// In all other cases, fn:boolean raises a type error [err:FORG0006].
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"error FORG0006: effectiveBooleanValue: sequence of length 1, "
-operator|+
-literal|"but not castable to a number or Boolean"
-argument_list|)
-throw|;
-block|}
+else|else
+return|return
+operator|(
+operator|(
+name|AtomicValue
+operator|)
+name|first
+operator|)
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+return|;
+comment|/*  		// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,  		//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true. 		if(first instanceof StringValue) 			return ((StringValue)first).effectiveBooleanValue(); 		else if(first instanceof AnyURIValue) 			return ((AnyURIValue)first).effectiveBooleanValue(); 		else if(first instanceof UntypedAtomicValue) 			return ((UntypedAtomicValue)first).effectiveBooleanValue(); 		//If its operand is a singleton value of type xs:boolean or derived from xs:boolean,  		//fn:boolean returns the value of its operand unchanged. 		else if(first instanceof BooleanValue) 			return ((BooleanValue)first).getValue(); 		//If its operand is a singleton value of any numeric type or derived from a numeric type,  		//fn:boolean returns false if the operand value is NaN or is numerically equal to zero;  		//otherwise it returns true.		 		else if(first instanceof NumericValue) 			return ((NumericValue)first).effectiveBooleanValue(); 		else { 			if (OLD_EXIST_VERSION_COMPATIBILITY) 				return true; 			// In all other cases, fn:boolean raises a type error [err:FORG0006]. 			throw new XPathException( 				"error FORG0006: effectiveBooleanValue: sequence of length 1, " + 				"but not castable to a number or Boolean"); 		} 		 		*/
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class) 	 */
 specifier|public
