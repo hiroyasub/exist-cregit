@@ -199,6 +199,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|indexing
 operator|.
 name|IndexManager
@@ -2934,6 +2946,8 @@ name|initializePolicyCollection
 argument_list|()
 expr_stmt|;
 comment|//Get a manager to handle further collectios configuration
+try|try
+block|{
 name|collectionConfigurationManager
 operator|=
 operator|new
@@ -2942,6 +2956,28 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"Found an error while initializing database: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 if|if

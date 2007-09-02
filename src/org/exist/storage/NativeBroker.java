@@ -6035,6 +6035,17 @@ argument_list|()
 operator|==
 literal|null
 decl_stmt|;
+comment|// Notify the collection configuration manager
+name|pool
+operator|.
+name|getConfigurationManager
+argument_list|()
+operator|.
+name|invalidateAll
+argument_list|(
+name|uri
+argument_list|)
+expr_stmt|;
 comment|//Drop all index entries
 name|notifyDropIndex
 argument_list|(

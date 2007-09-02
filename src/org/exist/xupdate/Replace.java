@@ -340,7 +340,9 @@ name|ql
 index|[]
 init|=
 name|selectAndLock
-argument_list|()
+argument_list|(
+name|transaction
+argument_list|)
 decl_stmt|;
 name|IndexListener
 name|listener
@@ -710,7 +712,9 @@ block|}
 finally|finally
 block|{
 name|unlockDocuments
-argument_list|()
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 block|}
 return|return

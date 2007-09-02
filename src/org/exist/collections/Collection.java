@@ -839,13 +839,6 @@ name|observers
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *      * @uml.property name="configuration"      * @uml.associationEnd multiplicity="(0 1)"      */
-specifier|private
-name|CollectionConfiguration
-name|configuration
-init|=
-literal|null
-decl_stmt|;
 specifier|private
 name|boolean
 name|collectionConfEnabled
@@ -3296,6 +3289,8 @@ name|config
 operator|!=
 literal|null
 condition|)
+try|try
+block|{
 name|trigger
 operator|=
 operator|(
@@ -3303,13 +3298,44 @@ name|DocumentTrigger
 operator|)
 name|config
 operator|.
-name|getTrigger
+name|newTrigger
 argument_list|(
 name|Trigger
 operator|.
 name|REMOVE_DOCUMENT_EVENT
+argument_list|,
+name|broker
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"An error occurred while initializing a trigger for collection "
+operator|+
+name|getURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -3777,6 +3803,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|trigger
 operator|=
 operator|(
@@ -3784,13 +3812,44 @@ name|DocumentTrigger
 operator|)
 name|config
 operator|.
-name|getTrigger
+name|newTrigger
 argument_list|(
 name|Trigger
 operator|.
 name|REMOVE_DOCUMENT_EVENT
+argument_list|,
+name|broker
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"An error occurred while initializing a trigger for collection "
+operator|+
+name|getURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -4549,6 +4608,9 @@ name|manager
 operator|!=
 literal|null
 condition|)
+block|{
+try|try
+block|{
 name|manager
 operator|.
 name|invalidateAll
@@ -4557,6 +4619,38 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|manager
+operator|.
+name|loadConfiguration
+argument_list|(
+name|broker
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"Error while reading new collection configuration: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 block|}
 specifier|private
@@ -5476,40 +5570,14 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|transaction
-argument_list|,
-name|this
-argument_list|)
-expr_stmt|;
-name|CollectionConfigurationManager
-name|confMgr
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getConfigurationManager
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|confMgr
-operator|!=
-literal|null
-condition|)
-name|confMgr
-operator|.
-name|invalidateAll
-argument_list|(
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        broker.saveCollection(transaction, this);
+comment|//        CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
+comment|//        if(confMgr != null)
+comment|//            try {
+comment|//                confMgr.reload(broker, this);
+comment|//            } catch (CollectionConfigurationException e) {
+comment|//                throw new EXistException("An error occurred while reloading the updated collection configuration: " + e.getMessage(), e);
+comment|//            }
 block|}
 comment|/** add observers to the indexer      * @param broker      * @param indexer      */
 specifier|private
@@ -5912,25 +5980,8 @@ argument_list|)
 condition|)
 block|{
 comment|// we are updating collection.xconf. Notify configuration manager
-name|CollectionConfigurationManager
-name|confMgr
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getConfigurationManager
-argument_list|()
-decl_stmt|;
-name|confMgr
-operator|.
-name|invalidateAll
-argument_list|(
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
+comment|//            confMgr.invalidateAll(getURI());
 name|collectionConfEnabled
 operator|=
 literal|false
@@ -5966,7 +6017,11 @@ literal|null
 return|;
 name|DocumentTrigger
 name|trigger
+init|=
+literal|null
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|update
@@ -5978,11 +6033,15 @@ name|DocumentTrigger
 operator|)
 name|config
 operator|.
-name|getTrigger
+name|newTrigger
 argument_list|(
 name|Trigger
 operator|.
 name|UPDATE_DOCUMENT_EVENT
+argument_list|,
+name|broker
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 else|else
@@ -5993,13 +6052,44 @@ name|DocumentTrigger
 operator|)
 name|config
 operator|.
-name|getTrigger
+name|newTrigger
 argument_list|(
 name|Trigger
 operator|.
 name|STORE_DOCUMENT_EVENT
+argument_list|,
+name|broker
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"An error occurred while initializing a trigger for collection "
+operator|+
+name|getURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|trigger
@@ -6358,6 +6448,8 @@ name|Trigger
 operator|.
 name|STORE_DOCUMENT_EVENT
 expr_stmt|;
+try|try
+block|{
 name|trigger
 operator|=
 operator|(
@@ -6365,11 +6457,42 @@ name|DocumentTrigger
 operator|)
 name|config
 operator|.
-name|getTrigger
+name|newTrigger
 argument_list|(
 name|event
+argument_list|,
+name|broker
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"An error occurred while initializing a trigger for collection "
+operator|+
+name|getURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|trigger
@@ -6969,15 +7092,6 @@ condition|)
 return|return
 literal|null
 return|;
-if|if
-condition|(
-name|configuration
-operator|!=
-literal|null
-condition|)
-return|return
-name|configuration
-return|;
 comment|//System collection has no configuration
 if|if
 condition|(
@@ -7015,6 +7129,11 @@ return|return
 literal|null
 return|;
 comment|//Attempt to get configuration
+name|CollectionConfiguration
+name|configuration
+init|=
+literal|null
+decl_stmt|;
 name|collectionConfEnabled
 operator|=
 literal|false
@@ -7075,16 +7194,6 @@ block|{
 name|collectionConfEnabled
 operator|=
 name|enabled
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|invalidateConfiguration
-parameter_list|()
-block|{
-name|configuration
-operator|=
-literal|null
 expr_stmt|;
 block|}
 comment|/**      * Set the internal storage address of the collection data.      *      * @param addr      */

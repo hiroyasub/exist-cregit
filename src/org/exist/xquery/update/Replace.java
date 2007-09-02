@@ -725,8 +725,6 @@ argument_list|(
 name|contentSeq
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|//start a transaction
 name|Txn
 name|transaction
@@ -734,12 +732,16 @@ init|=
 name|getTransaction
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 name|StoredNode
 name|ql
 index|[]
 init|=
 name|selectAndLock
 argument_list|(
+name|transaction
+argument_list|,
 name|inSeq
 operator|.
 name|toNodeSet
@@ -1118,6 +1120,11 @@ argument_list|(
 name|transaction
 argument_list|,
 name|modifiedDocuments
+argument_list|)
+expr_stmt|;
+name|finishTriggers
+argument_list|(
+name|transaction
 argument_list|)
 expr_stmt|;
 comment|//commit the transaction

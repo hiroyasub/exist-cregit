@@ -792,6 +792,8 @@ name|ql
 init|=
 name|selectAndLock
 argument_list|(
+name|transaction
+argument_list|,
 name|inSeq
 operator|.
 name|toNodeSet
@@ -1060,6 +1062,11 @@ argument_list|(
 name|transaction
 argument_list|,
 name|modifiedDocuments
+argument_list|)
+expr_stmt|;
+name|finishTriggers
+argument_list|(
+name|transaction
 argument_list|)
 expr_stmt|;
 comment|//commit the transaction
