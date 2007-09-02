@@ -595,6 +595,7 @@ name|checkType
 argument_list|()
 expr_stmt|;
 comment|//... because is makes some conversions
+comment|//Binds the variable : now in scope
 name|LocalVariable
 name|mark
 init|=
@@ -612,6 +613,7 @@ argument_list|(
 name|var
 argument_list|)
 expr_stmt|;
+comment|//Evaluate the return clause for the current value of the variable
 name|Sequence
 name|satisfiesSeq
 init|=
@@ -624,6 +626,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+comment|//Unbind the variable until the next iteration : now out of scope
 name|context
 operator|.
 name|popLocalVariables
