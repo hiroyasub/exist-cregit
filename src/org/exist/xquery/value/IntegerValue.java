@@ -429,16 +429,18 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"failed to convert '"
+literal|"FORG0001: can not convert '"
 operator|+
 name|stringValue
 operator|+
-literal|"' to an integer: "
+literal|"' to "
 operator|+
-name|e
+name|Type
 operator|.
-name|getMessage
-argument_list|()
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
 argument_list|)
 throw|;
 block|}

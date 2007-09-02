@@ -1876,7 +1876,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: can not compare xs:string() with "
+literal|"XPTY0004: can not compare xs:string('"
+operator|+
+name|value
+operator|+
+literal|"') with "
 operator|+
 name|Type
 operator|.
@@ -1887,6 +1891,15 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|other
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
 argument_list|)
 throw|;
 block|}
