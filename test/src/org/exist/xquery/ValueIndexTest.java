@@ -689,6 +689,17 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[itemno eq 3]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -794,7 +805,29 @@ name|service
 argument_list|,
 literal|"items.xml"
 argument_list|,
+literal|"declare namespace xx=\"http://test.com\"; //item[@xx:test eq 123]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
 literal|"//item[mixed = 'uneven']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[mixed eq 'uneven']"
 argument_list|,
 literal|1
 argument_list|)
@@ -839,6 +872,17 @@ argument_list|,
 literal|"items.xml"
 argument_list|,
 literal|"//item[price/@specialprice = true()]"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+literal|"items.xml"
+argument_list|,
+literal|"//item[price/@specialprice eq true()]"
 argument_list|,
 literal|1
 argument_list|)
