@@ -831,41 +831,6 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
-if|if
-condition|(
-operator|!
-name|collection
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|equalsInternal
-argument_list|(
-name|path
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|VENDOR_ERROR
-argument_list|,
-literal|"The collection returned does not correspond to "
-operator|+
-literal|"the collection requested: "
-operator|+
-name|path
-operator|+
-literal|"; received: "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-throw|;
 name|collection
 operator|.
 name|setReader
