@@ -750,15 +750,25 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+literal|"util:eval('xmldb:exist:///db/test/test.xq').\n"
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
-literal|"It should have the format:<static-context><output-size-limit value=\"-1\"><current-dateTime value=\"dateTime\"/>"
+literal|"It should have the format:\n"
 operator|+
-literal|"implicit-timezone value=\"duration\"/><variable name=\"qname\">"
+literal|"<static-context>\n"
 operator|+
-literal|"variable value</variable></static-context>. "
+literal|"\t<output-size-limit value=\"-1\">\n"
+operator|+
+literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
+operator|+
+literal|"\t<current-dateTime value=\"dateTime\"/>\n"
+operator|+
+literal|"\t<implicit-timezone value=\"duration\"/>\n"
+operator|+
+literal|"\t<variable name=\"qname\">variable value</variable>\n"
+operator|+
+literal|"</static-context>.\n"
 operator|+
 literal|"The third argument specifies if the compiled query expression "
 operator|+
@@ -847,17 +857,25 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+literal|"util:eval('xmldb:exist:///db/test/test.xq').\n"
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
-literal|"It should have the format:<static-context><output-size-limit value=\"-1\">"
+literal|"It should have the format:\n"
 operator|+
-literal|"<current-dateTime value=\"dateTime\"/>"
+literal|"<static-context>\n"
 operator|+
-literal|"implicit-timezone value=\"duration\"/><variable name=\"qname\">"
+literal|"\t<output-size-limit value=\"-1\">\n"
 operator|+
-literal|"variable value</variable></static-context>. "
+literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
+operator|+
+literal|"\t<current-dateTime value=\"dateTime\"/>\n"
+operator|+
+literal|"\t<implicit-timezone value=\"duration\"/>\n"
+operator|+
+literal|"\t<variable name=\"qname\">variable value</variable>\n"
+operator|+
+literal|"</static-context>.\n"
 operator|+
 literal|"The third argument specifies if the compiled query expression "
 operator|+
@@ -2588,6 +2606,65 @@ literal|"XQuery context"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+operator|&&
+literal|"unbind-namespace"
+operator|.
+name|equals
+argument_list|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|Element
+name|elem
+init|=
+operator|(
+name|Element
+operator|)
+name|child
+decl_stmt|;
+comment|//TODO : error check
+if|if
+condition|(
+name|elem
+operator|.
+name|getAttribute
+argument_list|(
+literal|"uri"
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//TODO : doesn't work when trying to unbind exist's NS. Possibly because
+comment|//NS are copied from context to context
+name|innerContext
+operator|.
+name|removeNamespace
+argument_list|(
+name|elem
+operator|.
+name|getAttribute
+argument_list|(
+literal|"uri"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
