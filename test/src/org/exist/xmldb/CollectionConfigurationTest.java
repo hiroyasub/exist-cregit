@@ -351,7 +351,7 @@ specifier|static
 name|String
 name|DOCUMENT_CONTENT2
 init|=
-literal|"<test>"
+literal|"<test x='0'>"
 operator|+
 literal|"<c c='2002-12-07T12:20:46.275+01:00'>2002-12-07T12:20:46.275+01:00</c>"
 operator|+
@@ -365,7 +365,7 @@ literal|"<g g='1'>1</g>"
 operator|+
 literal|"<h h='1'>1</h>"
 operator|+
-literal|"</test>"
+literal|"<test x='1'><test x='2'></test></test></test>"
 decl_stmt|;
 specifier|private
 name|String
@@ -418,6 +418,8 @@ operator|+
 literal|"<create path=\"//@g\" type=\"xs:integer\"/>"
 operator|+
 literal|"<create path=\"//@h\" type=\"xs:string\"/>"
+operator|+
+literal|"<create path=\"//test/@x\" type=\"xs:integer\"/>"
 operator|+
 literal|"</index>"
 operator|+
@@ -4648,6 +4650,82 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//test[@x = 0]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//test[@x eq 0]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//test[(# exist:force-index-use #) { @x = 0 }]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"//test[(# exist:force-index-use #) { @x eq 0 }]"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|service
