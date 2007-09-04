@@ -191,6 +191,15 @@ name|int
 name|arg1
 parameter_list|)
 function_decl|;
+comment|/**      * @param arg0      */
+specifier|public
+name|void
+name|setStatusCode
+parameter_list|(
+name|int
+name|arg0
+parameter_list|)
+function_decl|;
 comment|/** 	 * @param arg0 	 */
 specifier|public
 name|void

@@ -481,6 +481,23 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @param arg0      */
+specifier|public
+name|void
+name|setStatusCode
+parameter_list|(
+name|int
+name|arg0
+parameter_list|)
+block|{
+name|response
+operator|.
+name|setStatus
+argument_list|(
+name|arg0
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 * @param arg0 	 */
 specifier|public
 name|void
