@@ -2922,7 +2922,7 @@ parameter_list|)
 block|{
 comment|// try in-scope namespace declarations
 name|String
-name|ns
+name|uri
 init|=
 name|inScopeNamespaces
 operator|==
@@ -2942,11 +2942,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ns
-operator|==
+name|uri
+operator|!=
 literal|null
 condition|)
-block|{
+return|return
+name|uri
+return|;
 comment|// Check global declarations
 return|return
 operator|(
@@ -2959,14 +2961,7 @@ argument_list|(
 name|prefix
 argument_list|)
 return|;
-block|}
-else|else
-block|{
-return|return
-name|ns
-return|;
-block|}
-comment|/* old code checked namespaces first 		String ns = (String) namespaces.get(prefix); 		if (ns == null) 			// try in-scope namespace declarations 			return inScopeNamespaces == null 				? null 				: (String) inScopeNamespaces.get(prefix); 		else 			return ns;             */
+comment|/* old code checked namespaces first 		String ns = (String) namespaces.get(prefix); 		if (ns == null) 			// try in-scope namespace declarations 			return inScopeNamespaces == null 				? null 				: (String) inScopeNamespaces.get(prefix); 		else 			return ns;         */
 block|}
 comment|/** 	 * @param uri          * @return the prefix mapped to the registered URI or null if the URI           * is not registered. 	 */
 specifier|public
@@ -2980,23 +2975,6 @@ block|{
 name|String
 name|prefix
 init|=
-operator|(
-name|String
-operator|)
-name|prefixes
-operator|.
-name|get
-argument_list|(
-name|uri
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|prefix
-operator|==
-literal|null
-condition|)
-return|return
 name|inScopePrefixes
 operator|==
 literal|null
@@ -3006,16 +2984,32 @@ else|:
 operator|(
 name|String
 operator|)
-name|inScopeNamespaces
+name|inScopePrefixes
 operator|.
 name|get
 argument_list|(
 name|uri
 argument_list|)
-return|;
-else|else
+decl_stmt|;
+if|if
+condition|(
+name|prefix
+operator|!=
+literal|null
+condition|)
 return|return
 name|prefix
+return|;
+return|return
+operator|(
+name|String
+operator|)
+name|prefixes
+operator|.
+name|get
+argument_list|(
+name|uri
+argument_list|)
 return|;
 block|}
 comment|/** 	 * Removes the namespace URI from the prefix/namespace  	 * mappings table. 	 *  	 * @param uri 	 */
