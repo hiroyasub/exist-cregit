@@ -2650,8 +2650,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//TODO : doesn't work when trying to unbind exist's NS. Possibly because
-comment|//NS are copied from context to context
 name|innerContext
 operator|.
 name|removeNamespace
