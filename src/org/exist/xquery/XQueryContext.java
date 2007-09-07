@@ -1049,7 +1049,6 @@ argument_list|()
 decl_stmt|;
 comment|// Local prefix/namespace mappings in the current context
 specifier|protected
-specifier|final
 name|HashMap
 name|inScopePrefixes
 init|=
@@ -2503,6 +2502,15 @@ operator|new
 name|HashMap
 argument_list|()
 expr_stmt|;
+name|inScopePrefixes
+operator|.
+name|put
+argument_list|(
+name|uri
+argument_list|,
+name|prefix
+argument_list|)
+expr_stmt|;
 name|inScopeNamespaces
 operator|.
 name|put
@@ -2940,6 +2948,7 @@ argument_list|(
 name|prefix
 argument_list|)
 decl_stmt|;
+comment|//TODO : search into inheritedInScopeNamespaces... if the settings allow to do so
 if|if
 condition|(
 name|uri
@@ -3135,6 +3144,7 @@ return|return;
 block|}
 block|}
 block|}
+comment|//TODO : remove also in inheritedInScopeNamespaces ?
 block|}
 comment|/** 	 * Clear all user-defined prefix/namespace mappings. 	 */
 specifier|public
@@ -3169,6 +3179,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|//TODO : clear also inheritedInScopeNamespaces ?
 block|}
 name|loadDefaults
 argument_list|(
@@ -5626,6 +5637,7 @@ name|void
 name|pushInScopeNamespaces
 parameter_list|()
 block|{
+comment|//TODO : push into an inheritedInScopeNamespaces HashMap... and return an empty HashMap
 name|HashMap
 name|m
 init|=
@@ -5637,6 +5649,17 @@ operator|.
 name|clone
 argument_list|()
 decl_stmt|;
+name|HashMap
+name|p
+init|=
+operator|(
+name|HashMap
+operator|)
+name|inScopePrefixes
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
 name|namespaceStack
 operator|.
 name|push
@@ -5644,9 +5667,20 @@ argument_list|(
 name|inScopeNamespaces
 argument_list|)
 expr_stmt|;
+name|namespaceStack
+operator|.
+name|push
+argument_list|(
+name|inScopePrefixes
+argument_list|)
+expr_stmt|;
 name|inScopeNamespaces
 operator|=
 name|m
+expr_stmt|;
+name|inScopePrefixes
+operator|=
+name|p
 expr_stmt|;
 block|}
 specifier|public
@@ -5654,6 +5688,16 @@ name|void
 name|popInScopeNamespaces
 parameter_list|()
 block|{
+name|inScopePrefixes
+operator|=
+operator|(
+name|HashMap
+operator|)
+name|namespaceStack
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
 name|inScopeNamespaces
 operator|=
 operator|(
@@ -5664,6 +5708,7 @@ operator|.
 name|pop
 argument_list|()
 expr_stmt|;
+comment|//TODO : pop the inheritedInScopeNamespaces Hashmap
 block|}
 specifier|public
 name|void
