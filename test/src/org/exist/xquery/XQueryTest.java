@@ -1048,10 +1048,113 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//Ordered value sequence
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testLet 4: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"let $unordset := (for $val in reverse(1 to 100) return "
+operator|+
+literal|"<value>{$val}</value>)"
+operator|+
+literal|"let $ordset := (for $newval in $unordset "
+operator|+
+literal|"where $newval mod 2 eq 1 "
+operator|+
+literal|"order by $newval "
+operator|+
+literal|"return $newval/text()) "
+operator|+
+literal|"return $ordset/ancestor::node()"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|queryResource
+argument_list|(
+name|NUMBERS_XML
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|printResult
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|50
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//WARNING : the return order CHANGES !!!!!!!!!!!!!!!!!!
+name|assertXMLEqual
+argument_list|(
+literal|"<value>99</value>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<value>1</value>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|49
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
+name|Exception
 name|e
 parameter_list|)
 block|{

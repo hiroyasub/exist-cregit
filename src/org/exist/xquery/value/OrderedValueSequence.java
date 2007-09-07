@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|AVLTreeNodeSet
 import|;
 end_import
 
@@ -557,11 +557,13 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+comment|//Was ExtArrayNodeset() which orders the nodes in document order
+comment|//The order seems to change between different invocations !!!
 name|NodeSet
 name|set
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|AVLTreeNodeSet
 argument_list|()
 decl_stmt|;
 comment|//We can't make it from an ExtArrayNodeSet (probably because it is sorted ?)
@@ -582,6 +584,17 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
+comment|//TODO : investigate why we could have null here
+if|if
+condition|(
+name|items
+index|[
+name|i
+index|]
+operator|!=
+literal|null
+condition|)
 block|{
 name|NodeValue
 name|v
@@ -608,7 +621,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
-comment|/*                     // found an in-memory document                     DocumentImpl doc = ((NodeImpl)v).getDocument();                     // make this document persistent: doc.makePersistent()                     // returns a map of all root node ids mapped to the corresponding                     // persistent node. We scan the current sequence and replace all                     // in-memory nodes with their new persistent node objects.                     Int2ObjectHashMap newRoots = doc.makePersistent();                     for (int j = i; j< items.length; j++) {                         v = (NodeValue) items[j];                         if(v.getImplementationType() != NodeValue.PERSISTENT_NODE) {                             NodeImpl node = (NodeImpl) v;                             if (node.getDocument() == doc) {                                 NodeProxy p = (NodeProxy) newRoots.get(node.getNodeNumber());                                 if (p != null) {                                     // replace the node by the NodeProxy                                     items[j] = p;                                 }                             }                         }                     }                     */
+comment|/* 	                    // found an in-memory document 	                    DocumentImpl doc = ((NodeImpl)v).getDocument(); 	                    // make this document persistent: doc.makePersistent() 	                    // returns a map of all root node ids mapped to the corresponding 	                    // persistent node. We scan the current sequence and replace all 	                    // in-memory nodes with their new persistent node objects. 	                    Int2ObjectHashMap newRoots = doc.makePersistent(); 	                    for (int j = i; j< items.length; j++) { 	                        v = (NodeValue) items[j]; 	                        if(v.getImplementationType() != NodeValue.PERSISTENT_NODE) { 	                            NodeImpl node = (NodeImpl) v; 	                            if (node.getDocument() == doc) { 	                                NodeProxy p = (NodeProxy) newRoots.get(node.getNodeNumber()); 	                                if (p != null) { 	                                    // replace the node by the NodeProxy 	                                    items[j] = p; 	                                } 	                            } 	                        } 	                    } 	                    */
 name|set
 operator|.
 name|add
@@ -632,6 +645,7 @@ operator|)
 name|v
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
