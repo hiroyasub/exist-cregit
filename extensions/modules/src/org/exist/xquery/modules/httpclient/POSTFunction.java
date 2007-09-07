@@ -295,9 +295,9 @@ argument_list|)
 argument_list|,
 literal|"Performs a HTTP POST request. $a is the URL, $b is the XML POST payload/content, $c determines if cookies persist for the query lifetime. $d defines any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>."
 operator|+
-literal|" This method returns the HTTP response encoded as an XML fragment, that looks as follows:<httpclient:response xmlns:httpclient=\"http://exist-db.org/xquery/httpclient\" statusCode=\"200\"><httpclient:headers><httpclient:header name=\"name\" value=\"value\"/>...</httpclient:headers><httpclient:body>body content</httpclient:body></httpclient:response>"
+literal|" This method returns the HTTP response encoded as an XML fragment, that looks as follows:<httpclient:response xmlns:httpclient=\"http://exist-db.org/xquery/httpclient\" statusCode=\"200\"><httpclient:headers><httpclient:header name=\"name\" value=\"value\"/>...</httpclient:headers><httpclient:body type=\"xml|xhtml|text|binary\" mimetype=\"returned content mimetype\">body content</httpclient:body></httpclient:response>"
 operator|+
-literal|" where XML body content will be returned as a Node, HTML body content will be tidied into an XML compatible form, any other body content will be returned as xs:base64Binary encoded data."
+literal|" where XML body content will be returned as a Node, HTML body content will be tidied into an XML compatible form, a body with mime-type of \"text/...\" will be returned as a URLEncoded string, and any other body content will be returned as xs:base64Binary encoded data."
 argument_list|,
 operator|new
 name|SequenceType
