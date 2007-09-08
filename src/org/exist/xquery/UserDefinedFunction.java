@@ -823,6 +823,16 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Return the functions parameters list      *       * @return List of function parameters      */
+specifier|public
+name|List
+name|getParameters
+parameter_list|()
+block|{
+return|return
+name|parameters
+return|;
+block|}
 block|}
 end_class
 
