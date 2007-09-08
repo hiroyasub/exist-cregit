@@ -750,7 +750,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestSpecifiedGrammar
+name|testSpecifiedGrammar
 parameter_list|()
 block|{
 name|System

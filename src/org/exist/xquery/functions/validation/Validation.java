@@ -991,45 +991,12 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|url
-operator|.
-name|endsWith
-argument_list|(
-literal|".dtd"
-argument_list|)
-condition|)
-block|{
-name|String
-name|txt
-init|=
-literal|"Unable to validate with a specified DTD ("
-operator|+
-name|url
-operator|+
-literal|"). "
-operator|+
-literal|"Please register the DTD in an xml catalog document."
-decl_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|txt
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-name|txt
-argument_list|)
-throw|;
-block|}
+comment|//            if(url.endsWith(".dtd")){
+comment|//                String txt =  "Unable to validate with a specified DTD ("+url+"). "+
+comment|//                    "Please register the DTD in an xml catalog document.";
+comment|//                LOG.error(txt);
+comment|//                throw new XPathException(getASTNode(), txt);
+comment|//            }
 if|if
 condition|(
 name|url
