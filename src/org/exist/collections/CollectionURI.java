@@ -51,39 +51,13 @@ name|String
 name|path
 parameter_list|)
 block|{
-name|uri
-operator|=
-operator|new
-name|char
-index|[
-name|path
-operator|.
-name|length
-argument_list|()
-index|]
-expr_stmt|;
-name|path
-operator|.
-name|getChars
+comment|//    	uri = new char[path.length()];
+comment|//        path.getChars(0, path.length(), uri, 0);
+comment|//        length = path.length();
+name|append
 argument_list|(
-literal|0
-argument_list|,
 name|path
-operator|.
-name|length
-argument_list|()
-argument_list|,
-name|uri
-argument_list|,
-literal|0
 argument_list|)
-expr_stmt|;
-name|length
-operator|=
-name|path
-operator|.
-name|length
-argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -154,6 +128,28 @@ name|String
 name|segment
 parameter_list|)
 block|{
+name|int
+name|startOffset
+init|=
+literal|0
+decl_stmt|;
+if|if
+condition|(
+name|segment
+operator|.
+name|charAt
+argument_list|(
+literal|0
+argument_list|)
+operator|==
+name|FRAGMENT_SEPARATOR
+condition|)
+block|{
+name|startOffset
+operator|=
+literal|1
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|uri
@@ -172,6 +168,8 @@ name|length
 argument_list|()
 operator|+
 literal|1
+operator|-
+name|startOffset
 index|]
 expr_stmt|;
 name|uri
@@ -185,7 +183,7 @@ name|segment
 operator|.
 name|getChars
 argument_list|(
-literal|0
+name|startOffset
 argument_list|,
 name|segment
 operator|.
@@ -215,6 +213,8 @@ name|segment
 operator|.
 name|length
 argument_list|()
+operator|-
+name|startOffset
 index|]
 decl_stmt|;
 name|System
@@ -243,7 +243,7 @@ name|segment
 operator|.
 name|getChars
 argument_list|(
-literal|0
+name|startOffset
 argument_list|,
 name|segment
 operator|.
@@ -270,6 +270,8 @@ name|length
 argument_list|()
 operator|+
 literal|1
+operator|-
+name|startOffset
 expr_stmt|;
 comment|//reset the cache
 name|hash
