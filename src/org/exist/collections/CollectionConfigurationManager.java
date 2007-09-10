@@ -713,9 +713,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|debugCache
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @return The collection configuration      * @throws CollectionConfigurationException      */
 specifier|protected
@@ -773,13 +770,6 @@ name|COLLECTION_CONFIG_PATH
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
 name|conf
 operator|=
 operator|(
