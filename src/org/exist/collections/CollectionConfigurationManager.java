@@ -1153,10 +1153,14 @@ name|configurations
 operator|.
 name|remove
 argument_list|(
+operator|new
+name|CollectionURI
+argument_list|(
 name|collectionPath
 operator|.
 name|getRawCollectionPath
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
