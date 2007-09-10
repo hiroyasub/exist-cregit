@@ -3840,7 +3840,7 @@ return|return
 name|preserveNamespaces
 return|;
 block|}
-comment|/**      * The method<code>setPreserveNamespaces</code>      *      * @param strip a<code>boolean</code> value      */
+comment|/**      * The method<code>setPreserveNamespaces</code>      *      * @param preserve a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setPreserveNamespaces
