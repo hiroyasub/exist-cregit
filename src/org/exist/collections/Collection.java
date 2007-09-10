@@ -7095,14 +7095,17 @@ return|;
 comment|//System collection has no configuration
 if|if
 condition|(
-name|getURI
-argument_list|()
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 operator|.
 name|equals
 argument_list|(
-name|XmldbURI
+name|getURI
+argument_list|()
 operator|.
-name|SYSTEM_COLLECTION_URI
+name|getRawCollectionPath
+argument_list|()
 argument_list|)
 condition|)
 return|return
