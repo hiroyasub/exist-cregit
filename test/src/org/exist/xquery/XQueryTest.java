@@ -6936,7 +6936,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestNamespaceWithTransform
+name|testNamespaceWithTransform
 parameter_list|()
 block|{
 try|try
@@ -6972,7 +6972,7 @@ literal|"};\n"
 operator|+
 literal|"declare variable $xslt {\n"
 operator|+
-literal|"<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"2.0\">\n"
+literal|"<xsl:stylesheet xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"2.0\">\n"
 operator|+
 literal|"<xsl:template match=\"node\">\n"
 operator|+
