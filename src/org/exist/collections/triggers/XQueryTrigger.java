@@ -798,6 +798,25 @@ expr_stmt|;
 if|if
 condition|(
 name|existingDocument
+operator|==
+literal|null
+condition|)
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+literal|"document"
+argument_list|,
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|existingDocument
 operator|instanceof
 name|BinaryDocument
 condition|)

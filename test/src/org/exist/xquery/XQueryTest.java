@@ -7795,7 +7795,7 @@ name|message
 operator|.
 name|indexOf
 argument_list|(
-literal|"is not bound"
+literal|"XPDY0002"
 argument_list|)
 operator|>
 operator|-
@@ -7866,7 +7866,7 @@ name|message
 operator|.
 name|indexOf
 argument_list|(
-literal|"is not bound"
+literal|"XPDY0002"
 argument_list|)
 operator|>
 operator|-

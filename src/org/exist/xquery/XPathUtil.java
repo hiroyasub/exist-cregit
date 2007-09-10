@@ -491,10 +491,9 @@ name|obj
 operator|==
 literal|null
 condition|)
+comment|//return Sequence.EMPTY_SEQUENCE;
 return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+literal|null
 return|;
 if|if
 condition|(

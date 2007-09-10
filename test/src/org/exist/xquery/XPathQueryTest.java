@@ -9151,9 +9151,9 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"declare variable $local:string external;"
+literal|"declare variable $x external;"
 operator|+
-literal|"/test/string[. = $local:string]"
+literal|"$x"
 decl_stmt|;
 name|CompiledExpression
 name|expr
@@ -9165,6 +9165,55 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+comment|//Do not declare the variable...
+name|boolean
+name|exceptionThrown
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|service
+operator|.
+name|execute
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|exceptionThrown
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+literal|"Expected XPTY0002"
+argument_list|,
+name|exceptionThrown
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare variable $local:string external;"
+operator|+
+literal|"/test/string[. = $local:string]"
+expr_stmt|;
+name|expr
+operator|=
+name|service
+operator|.
+name|compile
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
 name|service
 operator|.
 name|declareVariable

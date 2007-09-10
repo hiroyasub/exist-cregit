@@ -138,6 +138,26 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|var
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002 : variable '$"
+operator|+
+name|qname
+operator|+
+literal|"' is not set."
+argument_list|)
+throw|;
+if|if
+condition|(
 operator|!
 name|var
 operator|.
@@ -151,7 +171,11 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"XQST0054: variable declaration cannot "
+literal|"XQST0054: variable declaration of '$"
+operator|+
+name|qname
+operator|+
+literal|"' cannot "
 operator|+
 literal|"be executed because of a circularity."
 argument_list|)
@@ -284,19 +308,29 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|Sequence
-name|result
-init|=
-operator|(
+if|if
+condition|(
 name|seq
 operator|==
 literal|null
-operator|)
-condition|?
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002 : undefined value for variable '$"
+operator|+
+name|qname
+operator|+
+literal|"'"
+argument_list|)
+throw|;
 name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-else|:
+name|result
+init|=
 name|seq
 decl_stmt|;
 if|if

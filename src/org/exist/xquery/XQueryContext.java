@@ -4929,23 +4929,8 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|var
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"variable $"
-operator|+
-name|qname
-operator|+
-literal|" is not bound"
-argument_list|)
-throw|;
+comment|//if (var == null)
+comment|//	throw new XPathException("variable $" + qname + " is not bound");
 return|return
 name|var
 return|;
