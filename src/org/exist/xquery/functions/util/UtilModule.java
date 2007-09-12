@@ -879,6 +879,18 @@ operator|.
 name|class
 argument_list|)
 block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|GetSequenceType
+operator|.
+name|signature
+argument_list|,
+name|GetSequenceType
+operator|.
+name|class
+argument_list|)
+block|,
 comment|// deprecated functions
 operator|new
 name|FunctionDef
