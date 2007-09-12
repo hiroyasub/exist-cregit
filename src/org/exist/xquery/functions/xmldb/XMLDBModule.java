@@ -798,7 +798,19 @@ name|FunDocument
 operator|.
 name|class
 argument_list|)
-block|,     }
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|FunXCollection
+operator|.
+name|signature
+argument_list|,
+name|FunXCollection
+operator|.
+name|class
+argument_list|)
+block|}
 decl_stmt|;
 static|static
 block|{

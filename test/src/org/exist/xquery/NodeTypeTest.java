@@ -493,7 +493,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"    if (empty(xcollection($collection)/page[@version=$target])) then \n"
+literal|"    if (empty(xmldb:xcollection($collection)/page[@version=$target])) then \n"
 argument_list|)
 expr_stmt|;
 name|query
@@ -536,7 +536,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $live := xcollection($collection)/page[@version=\"live\"],\n"
+literal|"let $live := xmldb:xcollection($collection)/page[@version=\"live\"],\n"
 argument_list|)
 expr_stmt|;
 name|query

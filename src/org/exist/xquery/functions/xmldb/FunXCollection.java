@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExtXCollection.java 6320 2007-08-01 18:01:06Z ellefj $  */
 end_comment
 
 begin_package
@@ -12,6 +12,8 @@ operator|.
 name|xquery
 operator|.
 name|functions
+operator|.
+name|xmldb
 package|;
 end_package
 
@@ -36,18 +38,6 @@ operator|.
 name|xquery
 operator|.
 name|Cardinality
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Function
 import|;
 end_import
 
@@ -85,9 +75,7 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|xmldb
-operator|.
-name|XMLDBModule
+name|ExtCollection
 import|;
 end_import
 
@@ -126,7 +114,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ExtXCollection
+name|FunXCollection
 extends|extends
 name|ExtCollection
 block|{
@@ -144,9 +132,13 @@ name|QName
 argument_list|(
 literal|"xcollection"
 argument_list|,
-name|Function
+name|XMLDBModule
 operator|.
-name|BUILTIN_FUNCTION_NS
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Works like fn:collection(), but does not include documents "
@@ -195,7 +187,7 @@ argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|ExtXCollection
+name|FunXCollection
 parameter_list|(
 name|XQueryContext
 name|context

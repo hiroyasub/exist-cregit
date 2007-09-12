@@ -876,7 +876,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"<xu:append select=\"xcollection('"
+literal|"<xu:append select=\"xmldb:xcollection('"
 operator|+
 name|DBBroker
 operator|.
