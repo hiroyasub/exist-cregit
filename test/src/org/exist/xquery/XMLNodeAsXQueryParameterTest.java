@@ -1005,7 +1005,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $survey := document(concat('"
+literal|"let $survey := xmldb:document(concat('"
 operator|+
 name|DBBroker
 operator|.

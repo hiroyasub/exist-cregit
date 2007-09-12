@@ -895,7 +895,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"document('"
+literal|"xmldb:document('"
 operator|+
 name|TEST_COLLECTION
 operator|+

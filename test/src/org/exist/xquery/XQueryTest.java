@@ -11293,7 +11293,7 @@ literal|"</xu:modifications>"
 operator|+
 literal|"let $count := xmldb:update($coll , $xu)"
 operator|+
-literal|"for $textNode in document('/db/xupdateTest.xml')/test/text()"
+literal|"for $textNode in xmldb:document('/db/xupdateTest.xml')/test/text()"
 operator|+
 literal|"	return<text id='{util:node-id($textNode)}'>{$textNode}</text>"
 expr_stmt|;
@@ -11416,7 +11416,7 @@ literal|"return update insert attribute points {4} into $frame\n"
 operator|+
 literal|"};\n"
 operator|+
-literal|"let $series := document('bowling.xml')/series\n"
+literal|"let $series := xmldb:document('bowling.xml')/series\n"
 operator|+
 literal|"let $nul1 := for $game in $series/game return local:update-game($game)\n"
 operator|+

@@ -8619,7 +8619,7 @@ name|service
 argument_list|,
 literal|"strings.xml"
 argument_list|,
-literal|"document()/blah[not(blah)]"
+literal|"xmldb:document()/blah[not(blah)]"
 argument_list|,
 literal|0
 argument_list|)

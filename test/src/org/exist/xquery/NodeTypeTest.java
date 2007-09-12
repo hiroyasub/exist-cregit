@@ -754,7 +754,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $result := document(concat('"
+literal|"let $result := xmldb:document(concat('"
 operator|+
 name|DBBroker
 operator|.

@@ -51,6 +51,20 @@ name|FunctionDef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|ExtDocument
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  *  Some modifications Copyright (C) 2004 Luigi P. Bai  *  finder@users.sf.net  */
 end_comment
@@ -772,7 +786,19 @@ name|XMLDBGetMimeType
 operator|.
 name|class
 argument_list|)
-block|}
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|FunDocument
+operator|.
+name|signature
+argument_list|,
+name|FunDocument
+operator|.
+name|class
+argument_list|)
+block|,     }
 decl_stmt|;
 static|static
 block|{

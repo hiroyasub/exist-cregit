@@ -248,7 +248,7 @@ name|int
 name|getDependencies
 parameter_list|()
 function_decl|;
-comment|/** 	 * Called to inform an expression that it should reset to its initial state.  	 *  	 * All cached data in the expression object should be dropped. For example, 	 * the document() function calls this method whenever the input document 	 * set has changed. 	 */
+comment|/** 	 * Called to inform an expression that it should reset to its initial state.  	 *  	 * All cached data in the expression object should be dropped. For example, 	 * the xmldb:document() function calls this method whenever the input document 	 * set has changed. 	 */
 specifier|public
 name|void
 name|resetState

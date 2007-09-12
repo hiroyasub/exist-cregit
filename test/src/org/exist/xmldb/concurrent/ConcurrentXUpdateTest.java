@@ -236,8 +236,8 @@ argument_list|,
 name|tempFile
 argument_list|)
 expr_stmt|;
-comment|//String query0 = "document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
-comment|//String query1 = "document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
+comment|//String query0 = "xmldb:document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
+comment|//String query1 = "xmldb:document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
 name|addAction
 argument_list|(
 operator|new

@@ -382,14 +382,14 @@ name|doQuery
 argument_list|(
 name|collection1
 argument_list|,
-literal|"document()//SPEECH[LINE&= 'cursed spite']"
+literal|"xmldb:document()//SPEECH[LINE&= 'cursed spite']"
 argument_list|)
 expr_stmt|;
 name|doQuery
 argument_list|(
 name|collection2
 argument_list|,
-literal|"document()//SPEECH[LINE&= 'love' and SPEAKER = 'JULIET']"
+literal|"xmldb:document()//SPEECH[LINE&= 'love' and SPEAKER = 'JULIET']"
 argument_list|)
 expr_stmt|;
 name|doXUpdate

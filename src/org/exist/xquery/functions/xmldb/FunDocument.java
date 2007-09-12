@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExtDocument.java 6320 2007-08-01 18:01:06Z ellefj $  */
 end_comment
 
 begin_package
@@ -12,6 +12,8 @@ operator|.
 name|xquery
 operator|.
 name|functions
+operator|.
+name|xmldb
 package|;
 end_package
 
@@ -281,22 +283,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
-operator|.
-name|xmldb
-operator|.
-name|XMLDBModule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -380,7 +366,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ExtDocument
+name|FunDocument
 extends|extends
 name|Function
 block|{
@@ -398,16 +384,16 @@ name|QName
 argument_list|(
 literal|"document"
 argument_list|,
-name|Function
+name|XMLDBModule
 operator|.
-name|BUILTIN_FUNCTION_NS
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the documents specified in the input sequence. "
-operator|+
-literal|"This function is specific to eXist and "
-operator|+
-literal|"will be replaced with the corresponding fn:doc function. "
 operator|+
 literal|"The arguments are either document pathes like '"
 operator|+
@@ -459,14 +445,6 @@ name|ZERO_OR_MORE
 argument_list|)
 argument_list|,
 literal|true
-argument_list|,
-literal|"Moved to the '"
-operator|+
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-operator|+
-literal|"' namespace since it conflicts with the XSLT 2.0 function."
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -495,7 +473,7 @@ literal|null
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|ExtDocument
+name|FunDocument
 parameter_list|(
 name|XQueryContext
 name|context
@@ -1289,7 +1267,7 @@ name|void
 name|unsubscribe
 parameter_list|()
 block|{
-name|ExtDocument
+name|FunDocument
 operator|.
 name|this
 operator|.
@@ -1330,7 +1308,7 @@ argument_list|()
 operator|+
 literal|": "
 operator|+
-name|ExtDocument
+name|FunDocument
 operator|.
 name|this
 operator|.

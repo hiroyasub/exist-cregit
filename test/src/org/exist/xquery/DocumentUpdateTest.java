@@ -240,7 +240,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"-- TEST 2: document() function --"
+literal|"-- TEST 2: xmldb:document() function --"
 argument_list|)
 expr_stmt|;
 name|query
@@ -249,7 +249,7 @@ name|imports
 operator|+
 literal|"declare function local:get-doc($path as xs:string) {\n"
 operator|+
-literal|"    document($path)\n"
+literal|"    xmldb:document($path)\n"
 operator|+
 literal|"};\n"
 operator|+
