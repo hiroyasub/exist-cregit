@@ -861,42 +861,12 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|namespaceDecls
-index|[
-name|i
-index|]
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-condition|)
-block|{
+comment|//if ("".equals(namespaceDecls[i].getNamespaceURI())) {
 comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
-name|context
-operator|.
-name|inScopeNamespaces
-operator|.
-name|remove
-argument_list|(
-name|namespaceDecls
-index|[
-name|i
-index|]
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
 comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
 comment|//		        		throw new XPathException("XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
-block|}
-else|else
+comment|//} else
 name|context
 operator|.
 name|declareInScopeNamespace
@@ -1254,6 +1224,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Use the default namespace if specified
+comment|/* 		 	if (qn.getPrefix() == null&& context.inScopeNamespaces.get("xmlns") != null) { 	 			qn.setNamespaceURI((String)context.inScopeNamespaces.get("xmlns")); 	 		} 	 		*/
 if|if
 condition|(
 name|qn
@@ -1269,7 +1240,7 @@ name|inScopeNamespaces
 operator|.
 name|get
 argument_list|(
-literal|"xmlns"
+literal|""
 argument_list|)
 operator|!=
 literal|null
@@ -1288,7 +1259,7 @@ name|inScopeNamespaces
 operator|.
 name|get
 argument_list|(
-literal|"xmlns"
+literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;

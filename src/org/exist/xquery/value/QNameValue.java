@@ -92,6 +92,10 @@ specifier|private
 name|QName
 name|qname
 decl_stmt|;
+specifier|private
+name|String
+name|stringValue
+decl_stmt|;
 comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *       * @param context      * @param name      * @throws XPathException      */
 specifier|public
 name|QNameValue
@@ -164,6 +168,11 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|stringValue
+operator|=
+name|computeStringValue
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|QNameValue
@@ -186,6 +195,11 @@ operator|.
 name|qname
 operator|=
 name|name
+expr_stmt|;
+name|stringValue
+operator|=
+name|computeStringValue
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
@@ -218,13 +232,41 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+comment|//TODO : previous approach was to resolve the qname when needed. We now try to keep the original qname
+return|return
+name|stringValue
+return|;
+block|}
+specifier|private
+name|String
+name|computeStringValue
+parameter_list|()
+block|{
+comment|//TODO : previous approach was to resolve the qname when needed. We now try to keep the original qname
 name|String
 name|prefix
 init|=
-literal|null
+name|qname
+operator|.
+name|getPrefix
+argument_list|()
 decl_stmt|;
+comment|//Not clear what to work with here...
 if|if
 condition|(
+operator|(
+name|prefix
+operator|==
+literal|null
+operator|||
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|prefix
+argument_list|)
+operator|)
+operator|&&
 name|qname
 operator|.
 name|needsNamespaceDecl
@@ -259,6 +301,7 @@ expr_stmt|;
 comment|//throw new XPathException(
 comment|//	"namespace " + qname.getNamespaceURI() + " is not defined");
 block|}
+comment|//TODO : check that the prefix matches the URI in the current context ?
 if|if
 condition|(
 name|prefix

@@ -6906,10 +6906,59 @@ comment|//Interesting one : let's see with XQuery gurus :-)
 comment|//declare namespace fn="";
 comment|//fn:current-time()
 comment|/* 			 If the URILiteral part of a namespace declaration is a zero-length string,  			 any existing namespace binding for the given prefix is removed from  			 the statically known namespaces. This feature provides a way  			 to remove predeclared namespace prefixes such as local. 			 */
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testNamespace 9: ========"
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"declare option exist:serialize 'indent=no';"
+operator|+
+literal|"for $x in<parent4 xmlns=\"http://www.example.com/parent4\"><child4/></parent4> "
+operator|+
+literal|"return<new>{$x//*:child4}</new>"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+literal|"<new><child4 xmlns='http://www.example.com/parent4'/></new>"
+argument_list|,
+operator|(
+operator|(
+name|XMLResource
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -6919,10 +6968,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testNamespace : XMLDBException: "
+literal|"testNamespace : "
 operator|+
 name|e
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(

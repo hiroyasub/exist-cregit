@@ -563,6 +563,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TOCHECK : context.declareInScopeNamespace(prefix, uri) ?
 name|context
 operator|.
 name|declareNamespace

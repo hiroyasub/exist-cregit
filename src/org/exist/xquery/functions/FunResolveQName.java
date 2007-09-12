@@ -492,6 +492,11 @@ return|;
 block|}
 else|else
 block|{
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
 name|String
 name|qnameString
 init|=
@@ -813,6 +818,11 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -838,7 +848,6 @@ block|}
 block|}
 comment|/**      * The method<code>findNamespaceURI</code>      *      * @param element an<code>ElementImpl</code> value      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      */
 specifier|public
-specifier|static
 name|String
 name|findNamespaceURI
 parameter_list|(
@@ -921,6 +930,20 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+name|context
+operator|.
+name|declareInScopeNamespace
+argument_list|(
+name|elementPrefix
+argument_list|,
+name|element
+operator|.
+name|getNamespaceForPrefix
+argument_list|(
+name|elementPrefix
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|prefix
