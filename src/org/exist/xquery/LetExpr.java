@@ -1303,7 +1303,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid cardinality for variable $"
+literal|"XPTY0004: Invalid cardinality for variable $"
 operator|+
 name|varName
 operator|+
@@ -1325,10 +1325,7 @@ name|Cardinality
 operator|.
 name|getDescription
 argument_list|(
-name|resultSequence
-operator|.
-name|getCardinality
-argument_list|()
+name|actualCardinality
 argument_list|)
 argument_list|)
 throw|;
@@ -1385,7 +1382,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid type for variable $"
+literal|"XPTY0004: Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -1456,7 +1453,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid type for variable $"
+literal|"XPTY0004: Invalid type for variable $"
 operator|+
 name|varName
 operator|+
