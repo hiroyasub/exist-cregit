@@ -11761,7 +11761,7 @@ block|}
 comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1691177&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestAttribute_1691177
+name|testAttribute_1691177
 parameter_list|()
 block|{
 name|String
