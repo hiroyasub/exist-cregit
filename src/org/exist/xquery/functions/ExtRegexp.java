@@ -506,7 +506,7 @@ literal|true
 argument_list|,
 literal|"This function is eXist-specific and should not be in the standard functions namespace. Please "
 operator|+
-literal|"use text:match-all instead."
+literal|"use text:match-all() instead."
 argument_list|)
 decl_stmt|;
 specifier|protected

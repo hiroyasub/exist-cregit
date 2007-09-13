@@ -276,7 +276,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * near() function.  *   * @author Wolfgang Meier<wolfgang@exist-db.org> (July 31, 2002)  */
+comment|/**  * text:near() function.  *   * @author Wolfgang Meier<wolfgang@exist-db.org> (July 31, 2002)  */
 end_comment
 
 begin_class

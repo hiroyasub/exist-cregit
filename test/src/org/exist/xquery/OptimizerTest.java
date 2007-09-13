@@ -702,18 +702,19 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+comment|//Test old and new functions
 name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[fn:match-all(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[fn:match-all(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -733,18 +734,19 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+comment|//Test old and new functions
 name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[fn:match-any(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[fn:match-any(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,

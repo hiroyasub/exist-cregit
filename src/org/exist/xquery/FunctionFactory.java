@@ -230,6 +230,7 @@ name|BUILTIN_FUNCTION_NS
 argument_list|)
 condition|)
 block|{
+comment|//TODO : move to text:near()
 comment|// near(node-set, string)
 if|if
 condition|(
