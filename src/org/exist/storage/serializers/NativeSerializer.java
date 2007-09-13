@@ -434,6 +434,9 @@ name|p
 parameter_list|,
 name|boolean
 name|generateDocEvent
+parameter_list|,
+name|boolean
+name|checkAttributes
 parameter_list|)
 throws|throws
 name|SAXException
@@ -518,7 +521,7 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|,
-literal|true
+name|checkAttributes
 argument_list|,
 name|p
 operator|.
