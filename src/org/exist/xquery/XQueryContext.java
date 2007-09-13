@@ -3906,6 +3906,13 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|keepGlobals
+condition|)
+block|{
+comment|// do not reset the statically known documents
 name|staticDocumentPaths
 operator|=
 literal|null
@@ -3914,6 +3921,7 @@ name|staticDocuments
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|lastVar
 operator|=
 literal|null
