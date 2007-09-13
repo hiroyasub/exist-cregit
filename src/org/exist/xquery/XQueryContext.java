@@ -1190,6 +1190,14 @@ name|staticDocuments
 init|=
 literal|null
 decl_stmt|;
+comment|/**  	 * The set of statically known documents specified as 	 * an array of paths to documents and collections. 	 */
+specifier|protected
+name|XmldbURI
+index|[]
+name|staticCollections
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 * The main database broker object providing access 	 * to storage and indexes. Every XQuery has its own 	 * DBBroker object. 	 */
 specifier|protected
 name|DBBroker
