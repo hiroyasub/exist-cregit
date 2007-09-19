@@ -160,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Resolve a resource straight out of database.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  *  Resolve a resource specified by xs:anyURI. First time the  * resource is resolved by the URL as specified in the constructor,   * the second the URL of the ExpandedSystemId is used.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -199,7 +199,7 @@ name|firstTime
 init|=
 literal|true
 decl_stmt|;
-comment|/** Creates a new instance of StoredResourceResolver */
+comment|/** Creates a new instance of AnyUriResolver */
 specifier|public
 name|AnyUriResolver
 parameter_list|(
