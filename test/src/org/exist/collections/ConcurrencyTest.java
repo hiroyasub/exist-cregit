@@ -246,7 +246,7 @@ specifier|final
 name|int
 name|N_THREADS
 init|=
-literal|12
+literal|4
 decl_stmt|;
 specifier|private
 specifier|static
@@ -254,7 +254,7 @@ specifier|final
 name|int
 name|DOC_COUNT
 init|=
-literal|1000
+literal|100
 decl_stmt|;
 specifier|private
 specifier|static
