@@ -175,7 +175,7 @@ name|validation
 operator|.
 name|resolver
 operator|.
-name|StoredResourceResolver
+name|AnyUriResolver
 import|;
 end_import
 
@@ -812,11 +812,11 @@ argument_list|)
 expr_stmt|;
 comment|// Just find the document using empty resolver
 comment|//eXistXMLCatalogResolver resolver = new eXistXMLCatalogResolver();
-name|StoredResourceResolver
+name|AnyUriResolver
 name|resolver
 init|=
 operator|new
-name|StoredResourceResolver
+name|AnyUriResolver
 argument_list|(
 name|grammarPath
 argument_list|)
@@ -884,12 +884,7 @@ name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Parse errors \n"
-operator|+
-name|report
-operator|.
-name|toString
-argument_list|()
+literal|"Document is not valid."
 argument_list|)
 expr_stmt|;
 block|}
