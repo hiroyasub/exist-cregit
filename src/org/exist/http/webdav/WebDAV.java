@@ -644,6 +644,14 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -687,6 +695,16 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+comment|// for debugging webdav
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|WebDAVMethod
 name|method
 init|=
@@ -768,6 +786,37 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// for debugging webdav
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Completed in "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+operator|+
+literal|" msecs."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
