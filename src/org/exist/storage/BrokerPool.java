@@ -4584,6 +4584,10 @@ parameter_list|)
 block|{
 while|while
 condition|(
+name|waitingSystemTasks
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|waitingSystemTasks
 operator|.
@@ -5014,8 +5018,9 @@ operator|=
 literal|null
 expr_stmt|;
 name|waitingSystemTasks
-operator|=
-literal|null
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 name|xmlReaderPool
 operator|=
