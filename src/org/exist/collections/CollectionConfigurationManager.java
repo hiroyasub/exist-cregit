@@ -798,27 +798,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isTraceEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|trace
-argument_list|(
-literal|"Reading collection configuration for '"
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|"' from index configuration"
-argument_list|)
-expr_stmt|;
 comment|// use default configuration
 return|return
 name|defaultConfig
