@@ -155,23 +155,9 @@ name|xmldb
 operator|.
 name|api
 operator|.
-name|modules
+name|base
 operator|.
-name|XQueryService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XMLResource
+name|CompiledExpression
 import|;
 end_import
 
@@ -185,7 +171,7 @@ name|api
 operator|.
 name|base
 operator|.
-name|CompiledExpression
+name|ResourceIterator
 import|;
 end_import
 
@@ -211,9 +197,23 @@ name|xmldb
 operator|.
 name|api
 operator|.
-name|base
+name|modules
 operator|.
-name|ResourceIterator
+name|XMLResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XQueryService
 import|;
 end_import
 
@@ -535,7 +535,7 @@ argument_list|(
 literal|"count"
 argument_list|,
 operator|new
-name|IntegerValue
+name|Integer
 argument_list|(
 name|i
 argument_list|)
@@ -831,7 +831,7 @@ argument_list|(
 literal|"count"
 argument_list|,
 operator|new
-name|IntegerValue
+name|Integer
 argument_list|(
 name|i
 argument_list|)
