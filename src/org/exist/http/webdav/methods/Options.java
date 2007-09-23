@@ -138,7 +138,7 @@ name|addHeader
 argument_list|(
 literal|"DAV"
 argument_list|,
-literal|"2"
+literal|"1, 2"
 argument_list|)
 expr_stmt|;
 name|response
@@ -147,7 +147,7 @@ name|addHeader
 argument_list|(
 literal|"Allow"
 argument_list|,
-literal|"OPTIONS, GET, HEAD, PUT, PROPFIND, MKCOL, LOCK, UNLOCK"
+literal|"OPTIONS, GET, HEAD, PUT, PROPFIND, MKCOL, LOCK, UNLOCK, DELETE, COPY, MOVE"
 argument_list|)
 expr_stmt|;
 comment|// MS specific
