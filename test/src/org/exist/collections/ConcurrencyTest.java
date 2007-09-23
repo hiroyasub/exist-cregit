@@ -246,7 +246,7 @@ specifier|final
 name|int
 name|N_THREADS
 init|=
-literal|4
+literal|10
 decl_stmt|;
 specifier|private
 specifier|static
@@ -254,7 +254,7 @@ specifier|final
 name|int
 name|DOC_COUNT
 init|=
-literal|100
+literal|200
 decl_stmt|;
 specifier|private
 specifier|static
@@ -320,7 +320,7 @@ literal|1
 init|;
 name|i
 operator|<=
-literal|5
+literal|20
 condition|;
 name|i
 operator|++
@@ -548,7 +548,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
+name|Exception
 name|e
 parameter_list|)
 block|{
