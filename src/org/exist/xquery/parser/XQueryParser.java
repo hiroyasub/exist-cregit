@@ -30872,21 +30872,6 @@ name|wsExplicit
 operator|=
 literal|false
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Undantag i pragma ="
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|//return;
 throw|throw
 operator|new
 name|XPathException

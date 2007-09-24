@@ -13812,6 +13812,9 @@ case|case
 literal|68
 case|:
 block|{
+try|try
+block|{
+comment|// for error handling
 name|AST
 name|__t20
 init|=
@@ -14175,6 +14178,21 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RecognitionException
+name|se
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XPST0003: XQuery syntax error."
+argument_list|)
+throw|;
+block|}
 break|break;
 block|}
 case|case
