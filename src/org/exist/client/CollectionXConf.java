@@ -3158,7 +3158,7 @@ name|xconf
 operator|.
 name|append
 argument_list|(
-name|rangeIndexes
+name|qnameIndexes
 index|[
 name|q
 index|]
