@@ -1608,7 +1608,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|metadata
+name|getMetadata
+argument_list|()
 operator|.
 name|write
 argument_list|(
