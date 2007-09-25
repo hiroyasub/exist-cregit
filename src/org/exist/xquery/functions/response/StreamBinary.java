@@ -492,6 +492,12 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|args
+operator|.
+name|length
+operator|>
+literal|2
+operator|&&
 operator|!
 name|args
 index|[
