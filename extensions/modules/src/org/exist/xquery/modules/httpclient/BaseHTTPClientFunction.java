@@ -915,6 +915,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|encodedResponse
 operator|=
 name|encodeErrorResponse
@@ -1319,6 +1324,12 @@ argument_list|,
 literal|"URLEncoded"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|message
+operator|!=
+literal|null
+condition|)
 name|builder
 operator|.
 name|characters
@@ -1391,6 +1402,22 @@ name|responseNode
 init|=
 literal|null
 decl_stmt|;
+name|String
+name|bodyAsString
+init|=
+name|method
+operator|.
+name|getResponseBodyAsString
+argument_list|()
+decl_stmt|;
+comment|// check if there is a response body
+if|if
+condition|(
+name|bodyAsString
+operator|==
+literal|null
+condition|)
+return|return;
 comment|// determine the type of the response document
 name|MimeType
 name|responseMimeType
@@ -1445,10 +1472,7 @@ name|stringToXML
 argument_list|(
 name|context
 argument_list|,
-name|method
-operator|.
-name|getResponseBodyAsString
-argument_list|()
+name|bodyAsString
 argument_list|)
 expr_stmt|;
 name|builder
