@@ -1414,10 +1414,10 @@ comment|// check if there is a response body
 if|if
 condition|(
 name|bodyAsString
-operator|==
+operator|!=
 literal|null
 condition|)
-return|return;
+block|{
 comment|// determine the type of the response document
 name|MimeType
 name|responseMimeType
@@ -1779,6 +1779,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
