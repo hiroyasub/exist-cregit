@@ -90,7 +90,7 @@ name|ClassVersion
 argument_list|(
 literal|"Saxon"
 argument_list|,
-literal|"8.7.3"
+literal|"8.9.0.3"
 argument_list|,
 literal|"net.sf.saxon.Version.getProductVersion()"
 argument_list|)
