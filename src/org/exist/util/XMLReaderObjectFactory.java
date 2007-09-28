@@ -312,7 +312,7 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/** (non-Javadoc)      * @see org.apache.commons.pool.BasePoolableObjectFactory#makeObject()      */
+comment|/**      * @see org.apache.commons.pool.BasePoolableObjectFactory#makeObject()      */
 specifier|public
 name|Object
 name|makeObject
@@ -328,7 +328,7 @@ operator|.
 name|getConfiguration
 argument_list|()
 decl_stmt|;
-comment|// get validation settings
+comment|// Get validation settings
 name|int
 name|validation
 init|=
@@ -393,7 +393,7 @@ operator|=
 name|VALIDATION_DISABLED
 expr_stmt|;
 block|}
-comment|// create a SAX parser
+comment|// Create a xmlreader
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -438,9 +438,24 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-try|try
-block|{
+name|SAXParser
+name|saxParser
+init|=
 name|saxFactory
+operator|.
+name|newSAXParser
+argument_list|()
+decl_stmt|;
+name|XMLReader
+name|xmlReader
+init|=
+name|saxParser
+operator|.
+name|getXMLReader
+argument_list|()
+decl_stmt|;
+comment|// Configure xmlreader see http://xerces.apache.org/xerces2-j/features.html
+name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
@@ -453,9 +468,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// TODO check does this work?
-comment|// http://xerces.apache.org/xerces2-j/features.html
-name|saxFactory
+name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
@@ -472,7 +485,7 @@ operator|==
 name|VALIDATION_ENABLED
 argument_list|)
 expr_stmt|;
-name|saxFactory
+name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
@@ -485,7 +498,7 @@ operator|==
 name|VALIDATION_AUTO
 argument_list|)
 expr_stmt|;
-name|saxFactory
+name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
@@ -500,7 +513,7 @@ operator|==
 name|VALIDATION_ENABLED
 argument_list|)
 expr_stmt|;
-name|saxFactory
+name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
@@ -515,7 +528,7 @@ operator|==
 name|VALIDATION_ENABLED
 argument_list|)
 expr_stmt|;
-comment|// Attempt to make validation function equal to inser mode
+comment|// Attempt to make validation function equal to insert mode
 comment|//saxFactory.setFeature(Namespaces.SAX_NAMESPACES_PREFIXES, true);
 block|}
 catch|catch
@@ -524,7 +537,7 @@ name|SAXNotRecognizedException
 name|e1
 parameter_list|)
 block|{
-comment|// ignore: feature only recognized by xerces
+comment|// Ignore: feature only recognized by xerces
 block|}
 catch|catch
 parameter_list|(
@@ -532,24 +545,8 @@ name|SAXNotSupportedException
 name|e1
 parameter_list|)
 block|{
-comment|// ignore: feature only recognized by xerces
+comment|// Ignore: feature only recognized by xerces
 block|}
-name|SAXParser
-name|sax
-init|=
-name|saxFactory
-operator|.
-name|newSAXParser
-argument_list|()
-decl_stmt|;
-name|XMLReader
-name|parser
-init|=
-name|sax
-operator|.
-name|getXMLReader
-argument_list|()
-decl_stmt|;
 comment|// Setup grammar cache
 name|GrammarPool
 name|grammarPool
@@ -573,7 +570,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|sax
+name|xmlReader
 operator|.
 name|setProperty
 argument_list|(
@@ -583,6 +580,7 @@ name|grammarPool
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Setup xml catalog resolver
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -603,7 +601,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|parser
+name|xmlReader
 operator|.
 name|setProperty
 argument_list|(
@@ -614,23 +612,8 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|parser
+name|xmlReader
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|ParserConfigurationException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 end_class
