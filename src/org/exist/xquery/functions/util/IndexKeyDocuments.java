@@ -614,17 +614,24 @@ name|getStringValue
 argument_list|()
 argument_list|)
 throw|;
-comment|//TODO : how to take the nodes into account ?
-comment|//TODO : how to take the start value into account as well ?
 name|Occurrences
 index|[]
 name|occur
 init|=
 name|indexWorker
 operator|.
-name|scanIndex
+name|scanIndexKeys
 argument_list|(
+name|context
+argument_list|,
 name|docs
+argument_list|,
+name|nodes
+argument_list|,
+name|args
+index|[
+literal|1
+index|]
 argument_list|)
 decl_stmt|;
 if|if

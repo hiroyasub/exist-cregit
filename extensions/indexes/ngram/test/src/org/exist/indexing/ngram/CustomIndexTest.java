@@ -3741,6 +3741,8 @@ argument_list|,
 name|found
 argument_list|)
 expr_stmt|;
+comment|//TODO : we  could use this, but how to get an XQueryContext?
+comment|//Occurrences[] occurrences = index.scanIndex(context, docs, null, term);
 block|}
 specifier|protected
 name|void
