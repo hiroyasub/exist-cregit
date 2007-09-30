@@ -1993,37 +1993,42 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"error at line "
+name|String
+name|msg
+init|=
+literal|"error at ("
 operator|+
 name|e
 operator|.
 name|getLineNumber
 argument_list|()
-argument_list|,
+operator|+
+literal|","
+operator|+
 name|e
+operator|.
+name|getColumnNumber
+argument_list|()
+operator|+
+literal|") : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"error at line "
-operator|+
-name|e
-operator|.
-name|getLineNumber
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|msg
 argument_list|,
 name|e
 argument_list|)
@@ -2039,35 +2044,42 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"fatal error at line "
+name|String
+name|msg
+init|=
+literal|"fatal error at ("
 operator|+
 name|e
 operator|.
 name|getLineNumber
 argument_list|()
+operator|+
+literal|","
+operator|+
+name|e
+operator|.
+name|getColumnNumber
+argument_list|()
+operator|+
+literal|") : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"fatal error at line "
-operator|+
-name|e
-operator|.
-name|getLineNumber
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|msg
 argument_list|,
 name|e
 argument_list|)
@@ -3811,37 +3823,35 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"warning at line "
-operator|+
-name|e
-operator|.
-name|getLineNumber
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SAXException
-argument_list|(
-literal|"warning at line "
+name|String
+name|msg
+init|=
+literal|"error at ("
 operator|+
 name|e
 operator|.
 name|getLineNumber
 argument_list|()
 operator|+
-literal|": "
+literal|","
+operator|+
+name|e
+operator|.
+name|getColumnNumber
+argument_list|()
+operator|+
+literal|") : "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+throw|throw
+operator|new
+name|SAXException
+argument_list|(
+name|msg
 argument_list|,
 name|e
 argument_list|)
