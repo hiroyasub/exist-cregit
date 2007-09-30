@@ -617,20 +617,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|validation
-operator|.
-name|resolver
-operator|.
-name|eXistXMLCatalogResolver
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -827,10 +813,6 @@ name|long
 name|created
 init|=
 literal|0
-decl_stmt|;
-specifier|private
-name|eXistXMLCatalogResolver
-name|resolver
 decl_stmt|;
 specifier|private
 name|Observer
@@ -4144,15 +4126,32 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|CollectionConfiguration
+name|colconf
+init|=
+name|info
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 name|XMLReader
 name|reader
 init|=
 name|getReader
 argument_list|(
 name|broker
+argument_list|,
+name|colconf
 argument_list|)
 decl_stmt|;
-comment|//info.setReader(reader, Collection.this);
 name|info
 operator|.
 name|setReader
@@ -4258,15 +4257,32 @@ name|SAXException
 throws|,
 name|EXistException
 block|{
+name|CollectionConfiguration
+name|colconf
+init|=
+name|info
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 name|XMLReader
 name|reader
 init|=
 name|getReader
 argument_list|(
 name|broker
+argument_list|,
+name|colconf
 argument_list|)
 decl_stmt|;
-comment|//info.setReader(reader, Collection.this);
 name|info
 operator|.
 name|setReader
@@ -4862,15 +4878,32 @@ name|SAXException
 throws|,
 name|EXistException
 block|{
+name|CollectionConfiguration
+name|colconf
+init|=
+name|info
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getCollection
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 name|XMLReader
 name|reader
 init|=
 name|getReader
 argument_list|(
 name|broker
+argument_list|,
+name|colconf
 argument_list|)
 decl_stmt|;
-comment|//info.setReader(reader, Collection.this);
 name|info
 operator|.
 name|setReader
@@ -7413,51 +7446,51 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
-comment|/** If user-defined Reader is set, return it; otherwise return JAXP default XMLReader      * configured by eXist. */
+comment|//    /**
+comment|//     * If user-defined Reader is set, return it; otherwise return JAXP
+comment|//     * default XMLReader configured by eXist.
+comment|//     */
+comment|//    private XMLReader getReader(DBBroker broker) throws EXistException,
+comment|//            SAXException {
+comment|//
+comment|//        if(userReader != null){
+comment|//            return userReader;
+comment|//        }
+comment|//
+comment|//        return broker.getBrokerPool().getParserPool().borrowXMLReader();
+comment|//    }
+comment|/**       * Get xml reader from readerpool and setup validation when needed.      */
 specifier|private
 name|XMLReader
 name|getReader
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|CollectionConfiguration
+name|colconfig
 parameter_list|)
 throws|throws
 name|EXistException
 throws|,
 name|SAXException
 block|{
+comment|// If user-defined Reader is set, return it;
 if|if
 condition|(
 name|userReader
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|userReader
 return|;
-name|Configuration
-name|config
+block|}
+comment|// Get reader from readerpool.
+name|XMLReader
+name|reader
 init|=
-name|broker
-operator|.
-name|getConfiguration
-argument_list|()
-decl_stmt|;
-name|resolver
-operator|=
-operator|(
-name|eXistXMLCatalogResolver
-operator|)
-name|config
-operator|.
-name|getProperty
-argument_list|(
-name|XMLReaderObjectFactory
-operator|.
-name|CATALOG_RESOLVER
-argument_list|)
-expr_stmt|;
-return|return
 name|broker
 operator|.
 name|getBrokerPool
@@ -7468,8 +7501,40 @@ argument_list|()
 operator|.
 name|borrowXMLReader
 argument_list|()
+decl_stmt|;
+comment|// If Collection configuration exists (try to) get validation mode
+comment|// and setup reader with this information.
+if|if
+condition|(
+name|colconfig
+operator|!=
+literal|null
+condition|)
+block|{
+name|int
+name|mode
+init|=
+name|colconfig
+operator|.
+name|getValidationMode
+argument_list|()
+decl_stmt|;
+name|XMLReaderObjectFactory
+operator|.
+name|setReaderValidationMode
+argument_list|(
+name|mode
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Return configured reader.
+return|return
+name|reader
 return|;
 block|}
+comment|/**      * Reset validation mode of reader and return reader to reader pool.      */
 specifier|private
 name|void
 name|releaseReader
@@ -7487,7 +7552,54 @@ name|userReader
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+comment|// Get validation mode from static configuration
+name|Configuration
+name|config
+init|=
+name|broker
+operator|.
+name|getConfiguration
+argument_list|()
+decl_stmt|;
+name|String
+name|optionValue
+init|=
+operator|(
+name|String
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION_MODE
+argument_list|)
+decl_stmt|;
+name|int
+name|validationMode
+init|=
+name|XMLReaderObjectFactory
+operator|.
+name|convertValidationMode
+argument_list|(
+name|optionValue
+argument_list|)
+decl_stmt|;
+comment|// Restore default validation mode
+name|XMLReaderObjectFactory
+operator|.
+name|setReaderValidationMode
+argument_list|(
+name|validationMode
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+comment|// Return reader
 name|broker
 operator|.
 name|getBrokerPool
