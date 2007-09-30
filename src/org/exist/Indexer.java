@@ -3826,7 +3826,7 @@ block|{
 name|String
 name|msg
 init|=
-literal|"error at ("
+literal|"warning at ("
 operator|+
 name|e
 operator|.
