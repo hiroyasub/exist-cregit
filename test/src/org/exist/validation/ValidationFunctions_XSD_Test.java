@@ -1050,7 +1050,7 @@ name|query
 argument_list|(
 literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
 operator|+
-literal|" xs:anyURI('/db/') )"
+literal|" xs:anyURI('/db/validation/') )"
 argument_list|)
 expr_stmt|;
 name|r
@@ -1095,7 +1095,7 @@ name|query
 argument_list|(
 literal|"validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml') ,"
 operator|+
-literal|" xs:anyURI('/db/') )"
+literal|" xs:anyURI('/db/validation/') )"
 argument_list|)
 expr_stmt|;
 name|r
