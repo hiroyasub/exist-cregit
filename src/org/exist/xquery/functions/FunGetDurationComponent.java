@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigDecimal
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -803,7 +813,6 @@ argument_list|)
 operator|==
 literal|null
 condition|)
-comment|//TODO sign inot account ?
 name|result
 operator|=
 operator|new
@@ -818,6 +827,9 @@ operator|=
 operator|new
 name|DecimalValue
 argument_list|(
+operator|(
+name|BigDecimal
+operator|)
 name|duration
 operator|.
 name|getCanonicalDuration
@@ -829,10 +841,10 @@ name|DatatypeConstants
 operator|.
 name|SECONDS
 argument_list|)
-operator|.
-name|doubleValue
-argument_list|()
-operator|*
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 name|duration
 operator|.
 name|getCanonicalDuration
@@ -840,7 +852,20 @@ argument_list|()
 operator|.
 name|getSign
 argument_list|()
-argument_list|)
+operator|<
+literal|0
+condition|)
+name|result
+operator|=
+operator|(
+operator|(
+name|DecimalValue
+operator|)
+name|result
+operator|)
+operator|.
+name|negate
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
