@@ -1635,6 +1635,9 @@ operator|.
 name|Entry
 name|nsEntry
 decl_stmt|;
+name|String
+name|optPrefix
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1667,7 +1670,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|prefix
+name|optPrefix
 operator|=
 operator|(
 name|String
@@ -1691,7 +1694,7 @@ name|receiver
 operator|.
 name|namespace
 argument_list|(
-name|prefix
+name|optPrefix
 argument_list|,
 name|uri
 argument_list|)
@@ -1700,7 +1703,7 @@ name|nsSupport
 operator|.
 name|declarePrefix
 argument_list|(
-name|prefix
+name|optPrefix
 argument_list|,
 name|uri
 argument_list|)
@@ -1739,7 +1742,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|prefix
+name|optPrefix
 operator|=
 operator|(
 name|String
@@ -1751,7 +1754,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|prefix
+name|optPrefix
 operator|.
 name|equals
 argument_list|(
@@ -1778,7 +1781,7 @@ name|optionalNamespaceDecls
 operator|.
 name|containsKey
 argument_list|(
-name|prefix
+name|optPrefix
 argument_list|)
 condition|)
 block|{
@@ -1786,7 +1789,7 @@ name|receiver
 operator|.
 name|namespace
 argument_list|(
-name|prefix
+name|optPrefix
 argument_list|,
 name|uri
 argument_list|)
