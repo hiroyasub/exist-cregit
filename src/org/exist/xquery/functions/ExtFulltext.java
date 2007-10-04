@@ -1753,11 +1753,27 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|type
+operator|==
+name|Constants
+operator|.
+name|FULLTEXT_AND
+condition|)
 name|result
 operator|.
 name|append
 argument_list|(
 literal|"&= "
+argument_list|)
+expr_stmt|;
+else|else
+name|result
+operator|.
+name|append
+argument_list|(
+literal|" |= "
 argument_list|)
 expr_stmt|;
 name|result
@@ -1793,11 +1809,27 @@ argument_list|(
 name|dumper
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|type
+operator|==
+name|Constants
+operator|.
+name|FULLTEXT_AND
+condition|)
 name|dumper
 operator|.
 name|display
 argument_list|(
 literal|"&= "
+argument_list|)
+expr_stmt|;
+else|else
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|" |= "
 argument_list|)
 expr_stmt|;
 name|searchTerm
