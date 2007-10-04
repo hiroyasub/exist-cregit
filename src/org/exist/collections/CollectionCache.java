@@ -484,6 +484,17 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|pool
+operator|.
+name|getConfigurationManager
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// might be null during db initialization
 name|pool
 operator|.
 name|getConfigurationManager
@@ -497,6 +508,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|map
 operator|.
 name|remove
