@@ -1293,11 +1293,7 @@ argument_list|,
 name|different
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"I expected a failure here. to be checked by DIZZZZ"
-argument_list|)
-expr_stmt|;
+comment|//            fail("I expected a failure here. to be checked by DIZZZZ");
 block|}
 catch|catch
 parameter_list|(
@@ -1313,36 +1309,11 @@ operator|.
 name|getMessage
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|msg
-operator|.
-name|contains
-argument_list|(
-literal|"Cannot find the declaration of element 'schema'."
-argument_list|)
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|fail
 argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

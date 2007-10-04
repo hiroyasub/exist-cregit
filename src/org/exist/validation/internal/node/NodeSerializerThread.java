@@ -208,7 +208,7 @@ name|OutputKeys
 operator|.
 name|INDENT
 argument_list|,
-literal|"no"
+literal|"yes"
 argument_list|)
 expr_stmt|;
 name|outputProperties
