@@ -297,8 +297,6 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 block|,
 operator|new
@@ -348,8 +346,6 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 block|}
 decl_stmt|;
