@@ -151,6 +151,7 @@ name|prefix_
 init|=
 literal|null
 decl_stmt|;
+comment|//TODO ; use ElementValue.INKNOWN and type explicitely ?
 specifier|private
 name|byte
 name|nameType_

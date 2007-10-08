@@ -346,7 +346,7 @@ argument_list|()
 argument_list|,
 name|attrQName
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|,
 literal|"CDATA"
@@ -377,7 +377,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|,
 name|a
@@ -411,7 +411,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;

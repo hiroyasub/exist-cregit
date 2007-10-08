@@ -90,6 +90,15 @@ specifier|public
 specifier|static
 specifier|final
 name|byte
+name|UNKNOWN
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|byte
 name|ELEMENT
 init|=
 literal|0
