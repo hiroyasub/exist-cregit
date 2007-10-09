@@ -1382,7 +1382,16 @@ argument_list|(
 name|m
 argument_list|)
 condition|)
+block|{
+name|next
+operator|.
+name|mergeOffsets
+argument_list|(
+name|m
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
 if|if
 condition|(
 name|next

@@ -2517,6 +2517,12 @@ name|XMLAssert
 operator|.
 name|assertXpathEvaluatesTo
 argument_list|(
+name|i
+operator|<
+literal|2
+condition|?
+literal|"2"
+else|:
 literal|"1"
 argument_list|,
 literal|"count(//exist:match)"
