@@ -295,6 +295,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Item
@@ -3675,6 +3687,19 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
+name|XQueryContext
+name|context
+init|=
+operator|new
+name|XQueryContext
+argument_list|(
+name|broker
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
 name|Occurrences
 index|[]
 name|occurrences
@@ -3683,7 +3708,13 @@ name|index
 operator|.
 name|scanIndex
 argument_list|(
+name|context
+argument_list|,
 name|docs
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|int
@@ -3741,8 +3772,6 @@ argument_list|,
 name|found
 argument_list|)
 expr_stmt|;
-comment|//TODO : we  could use this, but how to get an XQueryContext?
-comment|//Occurrences[] occurrences = index.scanIndex(context, docs, null, term);
 block|}
 specifier|protected
 name|void

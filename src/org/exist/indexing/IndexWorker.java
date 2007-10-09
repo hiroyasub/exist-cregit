@@ -19,16 +19,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -186,6 +176,15 @@ specifier|public
 interface|interface
 name|IndexWorker
 block|{
+comment|/**      * A key to a QName {@link java.util.List} "hint" to be used when the index scans its index entries      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VALUE_COUNT
+init|=
+literal|"value_count"
+decl_stmt|;
 comment|/**      * Returns an ID which uniquely identifies this worker's index.      * @return a unique name identifying this worker's index.      */
 specifier|public
 name|String
@@ -302,21 +301,12 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/**       * Return<strong>ordered</strong> (whatever the ordering semantics) and<strong>aggregated</strong>      * (on a document count basis) index entries for the specified document set.       * @param docs The documents to which the index entries belong      * @return Occurrences objects that contain :      *<ol>      *<li>a<strong>string</strong> representation of the index entry</li>      *<li>the number of occurrences for the index entry over all the documents</li>      *<li>the list of the documents in which the index entry is</li>      *</ol>       */
+comment|/**       * Return<strong>aggregated</strong> (on a document count basis)       * index entries for the specified document set. Aggregation can only occur if      * the index entries can be compared, i.e. if the index implements       * {@link org.exist.indexing.OrderedValuesIndex}, otherwise each entry will be considered      * as a single occurence.      * @param context       * @param docs The documents to which the index entries belong 	 * @param contextSet      * @param hints Some "hints" for retrieving the index entries. See such hints in      * {@link org.exist.indexing.OrderedValuesIndex} and {@link org.exist.indexing.QNamedKeysIndex}.      * @return Occurrences objects that contain :      *<ol>      *<li>a<strong>string</strong> representation of the index entry. This may change in the future.</li>      *<li>the number of occurrences for the index entry over all the documents</li>      *<li>the list of the documents in which the index entry is</li>      *</ol>       */
 specifier|public
 name|Occurrences
 index|[]
 name|scanIndex
 parameter_list|(
-name|DocumentSet
-name|docs
-parameter_list|)
-function_decl|;
-specifier|public
-name|Occurrences
-index|[]
-name|scanIndexKeys
-parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|,
@@ -326,32 +316,8 @@ parameter_list|,
 name|NodeSet
 name|contextSet
 parameter_list|,
-name|Object
-name|start
-parameter_list|)
-function_decl|;
-specifier|public
-name|Occurrences
-index|[]
-name|scanIndexKeys
-parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
-name|DocumentSet
-name|docs
-parameter_list|,
-name|NodeSet
-name|contextSet
-parameter_list|,
-name|List
-name|qnames
-parameter_list|,
-name|Object
-name|start
-parameter_list|,
-name|Object
-name|end
+name|Map
+name|hints
 parameter_list|)
 function_decl|;
 comment|//TODO : a scanIndex() method that would return an unaggregated list of index entries ?
