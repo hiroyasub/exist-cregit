@@ -14278,10 +14278,15 @@ argument_list|(
 operator|new
 name|AnyURIValue
 argument_list|(
+name|StringValue
+operator|.
+name|expand
+argument_list|(
 name|base
 operator|.
 name|getText
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|,
 literal|true
