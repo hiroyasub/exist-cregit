@@ -400,16 +400,7 @@ block|}
 block|}
 comment|/* 		The URI value is whitespace normalized according to the rules for the xs:anyURI type in [XML Schema].<xs:simpleType name="anyURI" id="anyURI"> 			...<xs:restriction base="xs:anySimpleType"><xs:whiteSpace fixed="true" value="collapse" id="anyURI.whiteSpace"/></xs:restriction></xs:simpleType> 		*/
 comment|//TODO : find a way to perform the 3 operations at the same time
-name|s
-operator|=
-name|StringValue
-operator|.
-name|expand
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-comment|//Should we have character entities
+comment|//s = StringValue.expand(s); //Should we have character entities
 name|s
 operator|=
 name|StringValue
