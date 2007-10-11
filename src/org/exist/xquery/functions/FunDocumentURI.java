@@ -480,6 +480,15 @@ name|NodeProxy
 operator|)
 name|value
 decl_stmt|;
+comment|//Returns the empty sequence if the node is not a document node.
+if|if
+condition|(
+name|node
+operator|.
+name|isDocument
+argument_list|()
+condition|)
+block|{
 name|XmldbURI
 name|path
 init|=
@@ -499,6 +508,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
