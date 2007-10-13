@@ -4859,7 +4859,7 @@ name|query
 init|=
 literal|"let $a :=<a><b>-1</b><b>-2</b></a> "
 operator|+
-literal|"return $a/b[document-uri(.) ne '']"
+literal|"return $a/b[empty(document-uri(.))]"
 decl_stmt|;
 try|try
 block|{
