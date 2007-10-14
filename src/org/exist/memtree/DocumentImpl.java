@@ -540,6 +540,12 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|protected
+name|String
+name|documentURI
+init|=
+literal|null
+decl_stmt|;
 comment|// reference nodes (link to an external, persistent document fragment)
 specifier|protected
 name|NodeProxy
@@ -5291,9 +5297,8 @@ name|String
 name|getDocumentURI
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
-literal|null
+name|documentURI
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
@@ -5305,7 +5310,12 @@ name|String
 name|documentURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+name|this
+operator|.
+name|documentURI
+operator|=
+name|documentURI
+expr_stmt|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node) 	 */
 specifier|public

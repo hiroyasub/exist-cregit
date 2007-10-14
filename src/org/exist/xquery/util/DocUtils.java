@@ -602,6 +602,13 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+name|memtreeDoc
+operator|.
+name|setDocumentURI
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
 name|document
 operator|=
 name|memtreeDoc
