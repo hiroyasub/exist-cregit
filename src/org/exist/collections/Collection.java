@@ -4735,6 +4735,7 @@ name|CollectionConfigurationException
 name|e
 parameter_list|)
 block|{
+comment|// DIZ: should this exception really been thrown? bugid=1807744
 throw|throw
 operator|new
 name|EXistException
