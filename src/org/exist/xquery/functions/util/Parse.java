@@ -561,7 +561,9 @@ name|adapter
 init|=
 operator|new
 name|SAXAdapter
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|xr
 operator|.
