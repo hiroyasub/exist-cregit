@@ -41,6 +41,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|util
+operator|.
+name|ExpressionDumper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -229,6 +243,8 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+block|{
 name|args
 index|[
 name|i
@@ -246,6 +262,41 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|prependMessage
+argument_list|(
+literal|"Error checking function parameter "
+operator|+
+operator|(
+name|i
+operator|+
+literal|1
+operator|)
+operator|+
+literal|" in call "
+operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|this
+argument_list|)
+operator|+
+literal|": "
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 name|Sequence
 name|result
