@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -1127,7 +1131,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Execute XPath query and return a reference to the result set. The 	 *  returned reference may be used later to get a summary of results or 	 *  retrieve the actual hits. 	 * 	 *@param  xpath                          Description of the Parameter 	 *@param  encoding                       Description of the Parameter 	 *@param  user                           Description of the Parameter 	 *@return                                Description of the Return Value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
+comment|/**      * Execute XPath query and return a reference to the result set. The 	 *  returned reference may be used later to get a summary of results or 	 *  retrieve the actual hits. 	 *      * @param  user                           Description of the Parameter      * @param  xpath                          Description of the Parameter      * @param  encoding                       Description of the Parameter      * @param parameters a<code>Hashtable</code> value      * @return                                Description of the Return Value      * @exception  EXistException             Description of the Exception      * @exception  PermissionDeniedException  Description of the Exception      */
 name|int
 name|executeQuery
 parameter_list|(

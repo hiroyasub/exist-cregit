@@ -1236,6 +1236,7 @@ name|BrokerPool
 operator|.
 name|DEFAULT_INSTANCE_NAME
 decl_stmt|;
+comment|/**      * Creates a new<code>RpcConnection</code> instance.      *      * @param conf a<code>Configuration</code> value      * @param pool a<code>RpcServer.ConnectionPool</code> value      * @param id a<code>String</code> value      * @exception EXistException if an error occurs      */
 specifier|public
 name|RpcConnection
 parameter_list|(
@@ -1292,6 +1293,7 @@ name|databaseid
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>createCollection</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @param created a<code>Date</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|void
 name|createCollection
@@ -1327,6 +1329,7 @@ name|created
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>createCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param created a<code>Date</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|void
 name|createCollection
@@ -1484,6 +1487,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>configureCollection</code>      *      * @param user an<code>User</code> value      * @param collName a<code>String</code> value      * @param configuration a<code>String</code> value      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|void
 name|configureCollection
@@ -1517,6 +1521,7 @@ name|configuration
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>configureCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param configuration a<code>String</code> value      * @exception EXistException if an error occurs      */
 specifier|public
 name|void
 name|configureCollection
@@ -1708,6 +1713,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>createId</code>      *      * @param user an<code>User</code> value      * @param collName a<code>String</code> value      * @return a<code>String</code> value      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|String
 name|createId
@@ -1902,6 +1908,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>doQuery</code>      *      * @param user an<code>User</code> value      * @param broker a<code>DBBroker</code> value      * @param xpath a<code>String</code> value      * @param contextSet a<code>NodeSet</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>QueryResult</code> value      * @exception Exception if an error occurs      */
 specifier|protected
 name|QueryResult
 name|doQuery
@@ -2072,6 +2079,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>compile</code>      *      * @param user an<code>User</code> value      * @param broker a<code>DBBroker</code> value      * @param source a<code>Source</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>CompiledXQuery</code> value      * @exception XPathException if an error occurs      * @exception IOException if an error occurs      */
 specifier|private
 name|CompiledXQuery
 name|compile
@@ -2474,6 +2482,7 @@ return|return
 name|compiled
 return|;
 block|}
+comment|/**      * The method<code>printDiagnostics</code>      *      * @param user an<code>User</code> value      * @param query a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|printDiagnostics
@@ -2733,6 +2742,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>executeQuery</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return an<code>int</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|int
 name|executeQuery
@@ -2835,6 +2845,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>formatErrorMsg</code>      *      * @param message a<code>String</code> value      * @return a<code>String</code> value      */
 specifier|protected
 name|String
 name|formatErrorMsg
@@ -2852,6 +2863,7 @@ name|message
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>formatErrorMsg</code>      *      * @param type a<code>String</code> value      * @param message a<code>String</code> value      * @return a<code>String</code> value      */
 specifier|protected
 name|String
 name|formatErrorMsg
@@ -2946,6 +2958,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>getCollectionDesc</code>      *      * @param user an<code>User</code> value      * @param rootCollection a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|getCollectionDesc
@@ -2985,6 +2998,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getCollectionDesc</code>      *      * @param user an<code>User</code> value      * @param rootUri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|getCollectionDesc
@@ -3376,6 +3390,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>describeResource</code>      *      * @param user an<code>User</code> value      * @param resourceName a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|describeResource
@@ -3407,6 +3422,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>describeResource</code>      *      * @param user an<code>User</code> value      * @param resourceUri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Hashtable
 name|describeResource
@@ -3697,6 +3713,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>describeCollection</code>      *      * @param user an<code>User</code> value      * @param rootCollection a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|describeCollection
@@ -3736,6 +3753,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>describeCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|describeCollection
@@ -3981,6 +3999,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getDocument</code>      *      * @param user an<code>User</code> value      * @param docName a<code>String</code> value      * @param parametri a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|String
 name|getDocument
@@ -4015,6 +4034,7 @@ name|parametri
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getDocument</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @param parametri a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|getDocument
@@ -4281,6 +4301,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getDocumentData</code>      *      * @param user an<code>User</code> value      * @param docName a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|getDocumentData
@@ -4915,6 +4936,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getNextChunk</code>      *      * @param user an<code>User</code> value      * @param handle a<code>String</code> value      * @param offset an<code>int</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|getNextChunk
@@ -5074,6 +5096,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**      * The method<code>getChunk</code>      *      * @param file a<code>File</code> value      * @param offset an<code>int</code> value      * @return a<code>byte[]</code> value      * @exception IOException if an error occurs      */
 specifier|private
 name|byte
 index|[]
@@ -5160,6 +5183,7 @@ return|return
 name|data
 return|;
 block|}
+comment|/**      * The method<code>getBinaryResource</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>byte[]</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|byte
 index|[]
@@ -5192,6 +5216,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getBinaryResource</code>      *      * @param user an<code>User</code> value      * @param name a<code>XmldbURI</code> value      * @return a<code>byte[]</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|byte
 index|[]
@@ -5346,6 +5371,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>xupdate</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|int
 name|xupdate
@@ -5388,6 +5414,7 @@ name|xupdate
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>xupdate</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      */
 specifier|public
 name|int
 name|xupdate
@@ -5646,6 +5673,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>xupdateResource</code>      *      * @param user an<code>User</code> value      * @param resource a<code>String</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|int
 name|xupdateResource
@@ -5688,6 +5716,7 @@ name|xupdate
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>xupdateResource</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      */
 specifier|public
 name|int
 name|xupdateResource
@@ -5978,6 +6007,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>sync</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|sync
@@ -6044,6 +6074,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>isXACMLEnabled</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|isXACMLEnabled
@@ -6059,6 +6090,7 @@ name|isXACMLEnabled
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>dataBackup</code>      *      * @param user an<code>User</code> value      * @param dest a<code>String</code> value      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|dataBackup
@@ -6085,6 +6117,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>getDocumentListing</code>      *      * @param user an<code>User</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      */
 specifier|public
 name|Vector
 name|getDocumentListing
@@ -6183,6 +6216,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getDocumentListing</code>      *      * @param user an<code>User</code> value      * @param collName a<code>String</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Vector
 name|getDocumentListing
@@ -6214,6 +6248,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getDocumentListing</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Vector
 name|getDocumentListing
@@ -6363,6 +6398,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getResourceCount</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @return an<code>int</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|int
 name|getResourceCount
@@ -6394,6 +6430,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getResourceCount</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return an<code>int</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|int
 name|getResourceCount
@@ -6476,6 +6513,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>createResourceId</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @return a<code>String</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|String
 name|createResourceId
@@ -6662,6 +6700,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>listDocumentPermissions</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|listDocumentPermissions
@@ -6693,6 +6732,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>listDocumentPermissions</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Hashtable
 name|listDocumentPermissions
@@ -6924,6 +6964,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>listCollectionPermissions</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|listCollectionPermissions
@@ -6955,6 +6996,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>listCollectionPermissions</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Hashtable
 name|listCollectionPermissions
@@ -7198,6 +7240,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getHits</code>      *      * @param user an<code>User</code> value      * @param resultId an<code>int</code> value      * @return an<code>int</code> value      * @exception EXistException if an error occurs      */
 specifier|public
 name|int
 name|getHits
@@ -7265,6 +7308,7 @@ name|getItemCount
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>getPermissions</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|getPermissions
@@ -7296,6 +7340,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getPermissions</code>      *      * @param user an<code>User</code> value      * @param uri a<code>XmldbURI</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Hashtable
 name|getPermissions
@@ -7511,6 +7556,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getCreationDate</code>      *      * @param user an<code>User</code> value      * @param collectionPath a<code>String</code> value      * @return a<code>Date</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Date
 name|getCreationDate
@@ -7542,6 +7588,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getCreationDate</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>Date</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      */
 specifier|public
 name|Date
 name|getCreationDate
@@ -7645,6 +7692,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getTimestamps</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Vector
 name|getTimestamps
@@ -7676,6 +7724,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getTimestamps</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      */
 specifier|public
 name|Vector
 name|getTimestamps
@@ -7829,6 +7878,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getUser</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Hashtable
 name|getUser
@@ -7972,6 +8022,7 @@ return|return
 name|tab
 return|;
 block|}
+comment|/**      * The method<code>getUsers</code>      *      * @param user an<code>User</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Vector
 name|getUsers
@@ -8139,6 +8190,7 @@ return|return
 name|r
 return|;
 block|}
+comment|/**      * The method<code>getGroups</code>      *      * @param user an<code>User</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Vector
 name|getGroups
@@ -8206,6 +8258,7 @@ return|return
 name|v
 return|;
 block|}
+comment|/**      * The method<code>hasDocument</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -8235,6 +8288,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>hasDocument</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -8288,6 +8342,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>hasCollection</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|hasCollection
@@ -8317,6 +8372,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>hasCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|hasCollection
@@ -8370,6 +8426,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>parse</code>      *      * @param user an<code>User</code> value      * @param xml a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @param replace a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|parse
@@ -8409,6 +8466,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parse</code>      *      * @param user an<code>User</code> value      * @param xml a<code>byte</code> value      * @param docUri a<code>XmldbURI</code> value      * @param replace a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|parse
@@ -8446,6 +8504,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parse</code>      *      * @param user an<code>User</code> value      * @param xml a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @param replace a<code>boolean</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|parse
@@ -8496,6 +8555,7 @@ name|modified
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parse</code>      *      * @param user an<code>User</code> value      * @param xml a<code>byte</code> value      * @param docUri a<code>XmldbURI</code> value      * @param replace a<code>boolean</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|parse
@@ -8904,6 +8964,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parseLocal</code>      *      * @param user an<code>User</code> value      * @param localFile a<code>String</code> value      * @param docUri a<code>XmldbURI</code> value      * @param replace a<code>boolean</code> value      * @param mimeType a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -8945,6 +9006,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parseLocal</code>      *      * @param user an<code>User</code> value      * @param localFile a<code>String</code> value      * @param documentPath a<code>String</code> value      * @param replace a<code>boolean</code> value      * @param mimeType a<code>String</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -8999,6 +9061,7 @@ name|modified
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>parseLocal</code>      *      * @param user an<code>User</code> value      * @param localFile a<code>String</code> value      * @param docUri a<code>XmldbURI</code> value      * @param replace a<code>boolean</code> value      * @param mimeType a<code>String</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|parseLocal
@@ -9490,6 +9553,7 @@ literal|true
 return|;
 comment|// when arrived here, insert/update was successfull
 block|}
+comment|/**      * The method<code>storeBinary</code>      *      * @param user an<code>User</code> value      * @param data a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @param mimeType a<code>String</code> value      * @param replace a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|storeBinary
@@ -9534,6 +9598,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>storeBinary</code>      *      * @param user an<code>User</code> value      * @param data a<code>byte</code> value      * @param docUri a<code>XmldbURI</code> value      * @param mimeType a<code>String</code> value      * @param replace a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|storeBinary
@@ -9576,6 +9641,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>storeBinary</code>      *      * @param user an<code>User</code> value      * @param data a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @param mimeType a<code>String</code> value      * @param replace a<code>boolean</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|storeBinary
@@ -9631,6 +9697,7 @@ name|modified
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>storeBinary</code>      *      * @param user an<code>User</code> value      * @param data a<code>byte</code> value      * @param docUri a<code>XmldbURI</code> value      * @param mimeType a<code>String</code> value      * @param replace a<code>boolean</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|storeBinary
@@ -9918,6 +9985,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/**      * The method<code>upload</code>      *      * @param user an<code>User</code> value      * @param chunk a<code>byte</code> value      * @param length an<code>int</code> value      * @param fileName a<code>String</code> value      * @param compressed a<code>boolean</code> value      * @return a<code>String</code> value      * @exception EXistException if an error occurs      * @exception IOException if an error occurs      */
 specifier|public
 name|String
 name|upload
@@ -10066,6 +10134,7 @@ return|return
 name|fileName
 return|;
 block|}
+comment|/**      * The method<code>printAll</code>      *      * @param broker a<code>DBBroker</code> value      * @param resultSet a<code>Sequence</code> value      * @param howmany an<code>int</code> value      * @param start an<code>int</code> value      * @param properties a<code>Hashtable</code> value      * @param queryTime a<code>long</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|protected
 name|String
 name|printAll
@@ -10395,6 +10464,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * The method<code>compile</code>      *      * @param user an<code>User</code> value      * @param query a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|compile
@@ -10583,6 +10653,7 @@ return|return
 name|ret
 return|;
 block|}
+comment|/**      * The method<code>query</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param howmany an<code>int</code> value      * @param start an<code>int</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|query
@@ -10721,6 +10792,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**      * The method<code>queryP</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param documentPath a<code>String</code> value      * @param s_id a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Hashtable
 name|queryP
@@ -10773,6 +10845,7 @@ name|parameters
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>queryP</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param docUri a<code>XmldbURI</code> value      * @param s_id a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|queryP
@@ -11435,6 +11508,7 @@ return|return
 name|ret
 return|;
 block|}
+comment|/**      * The method<code>execute</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|execute
@@ -11950,6 +12024,7 @@ return|return
 name|ret
 return|;
 block|}
+comment|/**      * The method<code>releaseQueryResult</code>      *      * @param handle an<code>int</code> value      */
 specifier|public
 name|void
 name|releaseQueryResult
@@ -11982,6 +12057,7 @@ name|handle
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>remove</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|void
 name|remove
@@ -12010,6 +12086,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>remove</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|void
 name|remove
@@ -12222,6 +12299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>removeCollection</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|removeCollection
@@ -12251,6 +12329,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>removeCollection</code>      *      * @param user an<code>User</code> value      * @param collURI a<code>XmldbURI</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|removeCollection
@@ -12412,6 +12491,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>removeUser</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|removeUser
@@ -12463,6 +12543,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>retrieve</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @param s_id a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|String
 name|retrieve
@@ -12502,6 +12583,7 @@ name|parameters
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>retrieve</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @param s_id a<code>String</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|retrieve
@@ -12655,6 +12737,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>retrieve</code>      *      * @param user an<code>User</code> value      * @param resultId an<code>int</code> value      * @param num an<code>int</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|retrieve
@@ -12833,6 +12916,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>retrieveAll</code>      *      * @param user an<code>User</code> value      * @param resultId an<code>int</code> value      * @param parameters a<code>Hashtable</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|retrieveAll
@@ -13174,6 +13258,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>run</code>      *      */
 specifier|public
 name|void
 name|run
@@ -13209,6 +13294,7 @@ block|}
 block|}
 comment|// broker.shutdown();
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param user an<code>User</code> value      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -13255,6 +13341,7 @@ name|permissions
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param user an<code>User</code> value      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -13779,6 +13866,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param user an<code>User</code> value      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -13825,6 +13913,7 @@ name|permissions
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>setPermissions</code>      *      * @param user an<code>User</code> value      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|setPermissions
@@ -14303,6 +14392,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>setUser</code>      *      * @param user an<code>User</code> value      * @param name a<code>String</code> value      * @param passwd a<code>String</code> value      * @param passwdDigest a<code>String</code> value      * @param groups a<code>Vector</code> value      * @param home a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|setUser
@@ -14960,6 +15050,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * The method<code>lockResource</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @param userName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|lockResource
@@ -14994,6 +15085,7 @@ name|userName
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>lockResource</code>      *      * @param user an<code>User</code> value      * @param docURI a<code>XmldbURI</code> value      * @param userName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|lockResource
@@ -15273,6 +15365,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>hasUserLock</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|String
 name|hasUserLock
@@ -15302,6 +15395,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>hasUserLock</code>      *      * @param user an<code>User</code> value      * @param docURI a<code>XmldbURI</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|String
 name|hasUserLock
@@ -15440,6 +15534,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>unlockResource</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|unlockResource
@@ -15469,6 +15564,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>unlockResource</code>      *      * @param user an<code>User</code> value      * @param docURI a<code>XmldbURI</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|unlockResource
@@ -15686,6 +15782,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>summary</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @return a<code>Hashtable</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|Hashtable
 name|summary
@@ -16232,6 +16329,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>summary</code>      *      * @param user an<code>User</code> value      * @param resultId an<code>int</code> value      * @return a<code>Hashtable</code> value      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      */
 specifier|public
 name|Hashtable
 name|summary
@@ -16783,6 +16881,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>getIndexedElements</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Vector
 name|getIndexedElements
@@ -16819,6 +16918,7 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getIndexedElements</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Vector
 name|getIndexedElements
@@ -17049,6 +17149,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>scanIndexTerms</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @param start a<code>String</code> value      * @param end a<code>String</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Vector
 name|scanIndexTerms
@@ -17095,6 +17196,7 @@ name|inclusive
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>scanIndexTerms</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param start a<code>String</code> value      * @param end a<code>String</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      */
 specifier|public
 name|Vector
 name|scanIndexTerms
@@ -17244,6 +17346,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>scanIndexTerms</code>      *      * @param user an<code>User</code> value      * @param xpath a<code>String</code> value      * @param start a<code>String</code> value      * @param end a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      */
 specifier|public
 name|Vector
 name|scanIndexTerms
@@ -17471,6 +17574,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**      * The method<code>synchronize</code>      *      */
 specifier|public
 name|void
 name|synchronize
@@ -17482,6 +17586,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * The method<code>terminate</code>      *      */
 specifier|public
 name|void
 name|terminate
@@ -17492,6 +17597,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getProperties</code>      *      * @param parameters a<code>Hashtable</code> value      * @return a<code>Properties</code> value      */
 specifier|private
 name|Properties
 name|getProperties
@@ -17568,6 +17674,7 @@ return|return
 name|properties
 return|;
 block|}
+comment|/**      * The class<code>CachedQuery</code>      *      */
 class|class
 name|CachedQuery
 block|{
@@ -17613,6 +17720,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The class<code>DoctypeCount</code>      *      */
 class|class
 name|DoctypeCount
 block|{
@@ -17649,6 +17757,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The class<code>NodeCount</code>      *      */
 class|class
 name|NodeCount
 block|{
@@ -17831,6 +17940,7 @@ return|return
 name|buffer
 return|;
 block|}
+comment|/**      * The method<code>moveOrCopyResource</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @param destinationPath a<code>String</code> value      * @param newName a<code>String</code> value      * @param move a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|moveOrCopyResource
@@ -17887,6 +17997,7 @@ name|move
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>moveOrCopyResource</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @param destUri a<code>XmldbURI</code> value      * @param newName a<code>XmldbURI</code> value      * @param move a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|moveOrCopyResource
@@ -18253,6 +18364,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>moveOrCopyCollection</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @param destinationPath a<code>String</code> value      * @param newName a<code>String</code> value      * @param move a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|moveOrCopyCollection
@@ -18309,6 +18421,7 @@ name|move
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>moveOrCopyCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @param destUri a<code>XmldbURI</code> value      * @param newName a<code>XmldbURI</code> value      * @param move a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
 name|moveOrCopyCollection
@@ -18604,6 +18717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>reindexCollection</code>      *      * @param user an<code>User</code> value      * @param collectionName a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|void
 name|reindexCollection
@@ -18634,6 +18748,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>reindexCollection</code>      *      * @param user an<code>User</code> value      * @param collUri a<code>XmldbURI</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|void
 name|reindexCollection
@@ -18712,6 +18827,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>backup</code>      *      * @param user an<code>User</code> value      * @param userbackup a<code>String</code> value      * @param password a<code>String</code> value      * @param destcollection a<code>String</code> value      * @param collection a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|void
 name|backup
@@ -18822,6 +18938,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>isValid</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @return a<code>boolean</code> value      * @exception PermissionDeniedException if an error occurs      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|isValid
@@ -18943,6 +19060,7 @@ return|return
 name|retVal
 return|;
 block|}
+comment|/**      * The method<code>getDocType</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|Vector
 name|getDocType
@@ -18974,6 +19092,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getDocType</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      */
 specifier|public
 name|Vector
 name|getDocType
@@ -19213,6 +19332,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>setDocType</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @param doctypename a<code>String</code> value      * @param publicid a<code>String</code> value      * @param systemid a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
 name|boolean
 name|setDocType
@@ -19257,6 +19377,7 @@ name|systemid
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>setDocType</code>      *      * @param user an<code>User</code> value      * @param docUri a<code>XmldbURI</code> value      * @param doctypename a<code>String</code> value      * @param publicid a<code>String</code> value      * @param systemid a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      */
 specifier|public
 name|boolean
 name|setDocType
