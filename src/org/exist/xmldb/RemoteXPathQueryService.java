@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -252,6 +256,7 @@ name|outputProperties
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * Creates a new<code>RemoteXPathQueryService</code> instance.      *      * @param collection a<code>RemoteCollection</code> value      */
 specifier|public
 name|RemoteXPathQueryService
 parameter_list|(
@@ -278,6 +283,7 @@ name|properties
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>query</code>      *      * @param query a<code>String</code> value      * @return a<code>ResourceSet</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|ResourceSet
 name|query
@@ -297,6 +303,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>query</code>      *      * @param query a<code>String</code> value      * @param sortExpr a<code>String</code> value      * @return a<code>ResourceSet</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|ResourceSet
 name|query
@@ -569,6 +576,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * The method<code>compile</code>      *      * @param query a<code>String</code> value      * @return a<code>CompiledExpression</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|CompiledExpression
 name|compile
@@ -612,6 +620,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * The method<code>compileAndCheck</code>      *      * @param query a<code>String</code> value      * @return a<code>CompiledExpression</code> value      * @exception XMLDBException if an error occurs      * @exception XPathException if an error occurs      */
 specifier|public
 name|CompiledExpression
 name|compileAndCheck
@@ -811,7 +820,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @param result      * @throws XPathException  	 */
+comment|/**      * The method<code>throwException</code>      *      * @param result      * @exception XMLDBException if an error occurs      */
 specifier|private
 name|void
 name|throwException
@@ -922,6 +931,7 @@ name|cause
 argument_list|)
 throw|;
 block|}
+comment|/**      * The method<code>throwXPathException</code>      *      * @param result a<code>Hashtable</code> value      * @exception XPathException if an error occurs      */
 specifier|private
 name|void
 name|throwXPathException
@@ -1071,6 +1081,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * The method<code>query</code>      *      * @param res a<code>XMLResource</code> value      * @param query a<code>String</code> value      * @return a<code>ResourceSet</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|ResourceSet
 name|query
@@ -1095,6 +1106,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>query</code>      *      * @param res a<code>XMLResource</code> value      * @param query a<code>String</code> value      * @param sortExpr a<code>String</code> value      * @return a<code>ResourceSet</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|ResourceSet
 name|query
@@ -1415,6 +1427,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * The method<code>queryResource</code>      *      * @param resource a<code>String</code> value      * @param query a<code>String</code> value      * @return a<code>ResourceSet</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|ResourceSet
 name|queryResource
@@ -1499,6 +1512,7 @@ name|query
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>getVersion</code>      *      * @return a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|String
 name|getVersion
@@ -1510,6 +1524,7 @@ return|return
 literal|"1.0"
 return|;
 block|}
+comment|/**      * The method<code>setCollection</code>      *      * @param col a<code>Collection</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|void
 name|setCollection
@@ -1521,6 +1536,7 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
+comment|/**      * The method<code>getName</code>      *      * @return a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|String
 name|getName
@@ -1532,6 +1548,7 @@ return|return
 literal|"XPathQueryService"
 return|;
 block|}
+comment|/**      * The method<code>getProperty</code>      *      * @param property a<code>String</code> value      * @return a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|String
 name|getProperty
@@ -1551,6 +1568,7 @@ name|property
 argument_list|)
 return|;
 block|}
+comment|/**      * The method<code>setProperty</code>      *      * @param property a<code>String</code> value      * @param value a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|void
 name|setProperty
@@ -1574,6 +1592,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>clearNamespaces</code>      *      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|void
 name|clearNamespaces
@@ -1587,10 +1606,12 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * The method<code>removeNamespace</code>      *      * @param ns a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|void
 name|removeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|ns
 parameter_list|)
@@ -1641,6 +1662,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * The method<code>setNamespace</code>      *      * @param prefix a<code>String</code> value      * @param namespace a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|void
 name|setNamespace
@@ -1674,6 +1696,7 @@ name|namespace
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * The method<code>getNamespace</code>      *      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      * @exception XMLDBException if an error occurs      */
 specifier|public
 name|String
 name|getNamespace
