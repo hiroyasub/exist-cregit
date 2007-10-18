@@ -435,11 +435,9 @@ literal|"Store a new resource into the database. The first "
 operator|+
 literal|"argument denotes the collection where the resource should be stored. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI, or a collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. The second argument is the name of the new "
+literal|"an XMLDB URI. The second argument is the name of the new "
 operator|+
 literal|"resource. The third argument is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+
@@ -526,11 +524,9 @@ literal|"Store a new resource into the database. The first "
 operator|+
 literal|"argument denotes the collection where the resource should be stored. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI, or a collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. The second argument is the name of the new "
+literal|"an XMLDB URI. The second argument is the name of the new "
 operator|+
 literal|"resource. The third argument is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+

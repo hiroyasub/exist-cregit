@@ -269,7 +269,7 @@ argument_list|)
 argument_list|,
 literal|"Sets the permissions of the specified resource. $a is the collection, which can be specified "
 operator|+
-literal|"as a simple collection path, an XMLDB URI or a collection object. $b denotes the resource to"
+literal|"as a simple collection path or an XMLDB URI. $b denotes the resource to"
 operator|+
 literal|"change. $c specifies the user which will become the owner of the resource, $d the group. "
 operator|+

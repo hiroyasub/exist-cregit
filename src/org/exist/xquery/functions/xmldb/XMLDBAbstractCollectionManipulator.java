@@ -127,20 +127,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|JavaObjectValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|NodeValue
 import|;
 end_import
@@ -373,7 +359,6 @@ name|collectionNeedsClose
 init|=
 literal|false
 decl_stmt|;
-comment|// If the incoming is a collection object, use it:
 name|Collection
 name|collection
 init|=
@@ -393,45 +378,6 @@ literal|0
 argument_list|)
 decl_stmt|;
 if|if
-condition|(
-name|item
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|JAVA_OBJECT
-condition|)
-block|{
-name|Object
-name|o
-init|=
-operator|(
-operator|(
-name|JavaObjectValue
-operator|)
-name|item
-operator|)
-operator|.
-name|getObject
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|o
-operator|instanceof
-name|Collection
-condition|)
-name|collection
-operator|=
-operator|(
-name|Collection
-operator|)
-name|o
-expr_stmt|;
-block|}
-if|else if
 condition|(
 name|Type
 operator|.
@@ -567,12 +513,12 @@ return|;
 block|}
 if|if
 condition|(
-literal|null
-operator|==
 name|collection
+operator|==
+literal|null
 condition|)
 block|{
-comment|// Otherwise, just extract the name as a string:
+comment|//Otherwise, just extract the name as a string:
 name|String
 name|collectionURI
 init|=
@@ -586,9 +532,9 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-literal|null
-operator|!=
 name|collectionURI
+operator|!=
+literal|null
 condition|)
 block|{
 try|try
@@ -744,9 +690,9 @@ block|}
 block|}
 if|if
 condition|(
-literal|null
-operator|==
 name|collection
+operator|==
+literal|null
 operator|&&
 name|errorIfAbsent
 condition|)
@@ -764,14 +710,6 @@ name|collectionURI
 argument_list|)
 throw|;
 block|}
-block|}
-else|else
-block|{
-comment|// Don't close incoming JavaObjects:
-name|collectionNeedsClose
-operator|=
-literal|false
-expr_stmt|;
 block|}
 name|Sequence
 name|s
@@ -804,6 +742,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|collection
@@ -830,6 +769,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 return|return

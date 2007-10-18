@@ -241,7 +241,7 @@ literal|"If no lock is in place, the empty sequence is returned. "
 operator|+
 literal|"The collection can be passed as a simple collection "
 operator|+
-literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
+literal|"path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType

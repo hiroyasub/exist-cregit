@@ -203,7 +203,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the mode of the specified Collection. Required: collection, mode (as xs:integer). "
+literal|"Sets the mode of the specified Collection. $a is the Collection path, $b is the mode (as xs:integer). "
 operator|+
 literal|"PLEASE REMEMBER that 0755 is 7*64+5*8+5, NOT decimal 755."
 argument_list|,
@@ -264,7 +264,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)  * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)  *  */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 * 	 */
 specifier|public
 name|Sequence
 name|evalWithCollection

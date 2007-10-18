@@ -296,7 +296,7 @@ specifier|public
 class|class
 name|XMLDBXUpdate
 extends|extends
-name|BasicFunction
+name|XMLDBAbstractCollectionManipulator
 block|{
 specifier|public
 specifier|final
@@ -321,15 +321,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Process an XUpdate request on the current collection. The first "
+literal|"Process an XUpdate request against a collection. The first "
 operator|+
-literal|"argument specifies the collection object as returned by the collection or "
+literal|"argument specifies the collection as a simple collection "
 operator|+
-literal|"create-collection functions. The second argument specifies the XUpdate "
+literal|"path or an XMLDB URI. "
+operator|+
+literal|"The second argument specifies the XUpdate "
 operator|+
 literal|"modifications to be processed. Modifications are passed in a "
 operator|+
-literal|"document conforming to the XUpdate specification."
+literal|"document conforming to the XUpdate specification. "
+operator|+
+literal|"The function returns the number of modifications caused by the XUpdate."
 argument_list|,
 operator|new
 name|SequenceType
@@ -340,7 +344,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|JAVA_OBJECT
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -391,8 +395,11 @@ block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
-name|eval
+name|evalWithCollection
 parameter_list|(
+name|Collection
+name|c
+parameter_list|,
 name|Sequence
 index|[]
 name|args
@@ -403,44 +410,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|JavaObjectValue
-name|object
-init|=
-operator|(
-name|JavaObjectValue
-operator|)
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|object
-operator|.
-name|getObject
-argument_list|()
-operator|instanceof
-name|Collection
-operator|)
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"Specified Java object is not an XMLDB collection object"
-argument_list|)
-throw|;
 name|NodeValue
 name|data
 init|=
@@ -565,15 +534,7 @@ init|=
 operator|(
 name|XUpdateQueryService
 operator|)
-operator|(
-operator|(
-name|Collection
-operator|)
-name|object
-operator|.
-name|getObject
-argument_list|()
-operator|)
+name|c
 operator|.
 name|getService
 argument_list|(

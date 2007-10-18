@@ -249,7 +249,7 @@ literal|"Returns the creation date of a resource in the collection specified by 
 operator|+
 literal|"The collection can be passed as a simple collection "
 operator|+
-literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
+literal|"path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType
@@ -312,7 +312,7 @@ argument_list|)
 argument_list|,
 literal|"Returns the creation date of a collection. The collection can be passed as a simple collection "
 operator|+
-literal|"path, an XMLDB URI or a collection object (obtained from the collection function)."
+literal|"path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType
@@ -372,9 +372,7 @@ literal|"Returns the last-modification date of a resource, whose name is "
 operator|+
 literal|"specified by $b, in the collection specified by $a. The collection "
 operator|+
-literal|"can be passed as a simple collection path, an XMLDB URI or a"
-operator|+
-literal|"collection object (obtained from the collection function)."
+literal|"can be passed as a simple collection path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType

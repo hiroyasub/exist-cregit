@@ -51,20 +51,6 @@ name|FunctionDef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|ExtDocument
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  *  Some modifications Copyright (C) 2004 Luigi P. Bai  *  finder@users.sf.net  */
 end_comment
@@ -100,18 +86,6 @@ index|[]
 name|functions
 init|=
 block|{
-operator|new
-name|FunctionDef
-argument_list|(
-name|XMLDBCollection
-operator|.
-name|signature
-argument_list|,
-name|XMLDBCollection
-operator|.
-name|class
-argument_list|)
-block|,
 operator|new
 name|FunctionDef
 argument_list|(

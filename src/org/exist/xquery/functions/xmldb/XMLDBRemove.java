@@ -227,7 +227,7 @@ argument_list|)
 argument_list|,
 literal|"Remove a collection. The collection can be specified either as "
 operator|+
-literal|"a simple collection path, an XMLDB URI or a collection object."
+literal|"a simple collection path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType
@@ -278,9 +278,7 @@ argument_list|)
 argument_list|,
 literal|"Remove a resource from the collection specified in $a. The collection "
 operator|+
-literal|"can be either specified as a simple collection path, an XMLDB URI or "
-operator|+
-literal|"a collection object."
+literal|"can be either specified as a simple collection path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType

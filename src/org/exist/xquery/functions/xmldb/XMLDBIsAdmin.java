@@ -255,7 +255,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true if user exists. Requires username. Does not delete the user's home collection."
+literal|"Returns true if user is an Admin. Requires username."
 argument_list|,
 operator|new
 name|SequenceType

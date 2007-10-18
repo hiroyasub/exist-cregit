@@ -225,7 +225,7 @@ argument_list|)
 argument_list|,
 literal|"Move a collection $a. The collection can be specified either as "
 operator|+
-literal|"a simple collection path, an XMLDB URI or a collection object."
+literal|"a simple collection path or an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType
@@ -288,9 +288,9 @@ argument_list|)
 argument_list|,
 literal|"Move a resource from the collection specified in $a to collection in $b. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI or a collection object."
+literal|"an XMLDB URI."
 argument_list|,
 operator|new
 name|SequenceType

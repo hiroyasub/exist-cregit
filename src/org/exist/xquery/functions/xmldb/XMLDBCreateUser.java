@@ -255,7 +255,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user in the database. Arguments are: username, password, group memberships,"
+literal|"Create a new user in the database. Arguments are: username, password, group memberships and "
 operator|+
 literal|"home collection."
 argument_list|,

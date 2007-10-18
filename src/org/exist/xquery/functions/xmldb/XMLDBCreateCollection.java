@@ -23,6 +23,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -101,20 +113,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|JavaObjectValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Sequence
 import|;
 end_import
@@ -130,6 +128,20 @@ operator|.
 name|value
 operator|.
 name|SequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|StringValue
 import|;
 end_import
 
@@ -227,11 +239,13 @@ literal|"Create a new collection as a child of the collection specified in the "
 operator|+
 literal|"first argument. The collection can be passed as a simple collection "
 operator|+
-literal|"path, an XMLDB URI or as a collection object (obtained from the collection function)."
+literal|"path or an XMLDB URI."
 operator|+
 literal|"The second argument specifies the name of the new "
 operator|+
-literal|"collection."
+literal|"collection. The function returns the path to the new collection "
+operator|+
+literal|"as an xs:string or - if the collection could not be created - the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -267,7 +281,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|JAVA_OBJECT
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -371,9 +385,12 @@ return|;
 else|else
 return|return
 operator|new
-name|JavaObjectValue
+name|StringValue
 argument_list|(
 name|newCollection
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 return|;
 block|}

@@ -327,11 +327,9 @@ literal|"file system, using file patterns. "
 operator|+
 literal|"The first argument denotes the collection where resources should be stored. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI, or a collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. "
+literal|"an XMLDB URI. "
 operator|+
 literal|"The second argument is the directory in the file system wherefrom the files are read."
 operator|+
@@ -424,11 +422,9 @@ literal|"file system, using file patterns. "
 operator|+
 literal|"The first argument denotes the collection where resources should be stored. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI, or a collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. "
+literal|"an XMLDB URI. "
 operator|+
 literal|"The second argument is the directory in the file system wherefrom the files are read."
 operator|+
@@ -539,11 +535,9 @@ literal|"file system, using file patterns. "
 operator|+
 literal|"The first argument denotes the collection where resources should be stored. "
 operator|+
-literal|"The collection can be either specified as a simple collection path, "
+literal|"The collection can be either specified as a simple collection path or "
 operator|+
-literal|"an XMLDB URI, or a collection object as returned by the collection or "
-operator|+
-literal|"create-collection functions. "
+literal|"an XMLDB URI. "
 operator|+
 literal|"The second argument is the directory in the file system wherefrom the files are read."
 operator|+
