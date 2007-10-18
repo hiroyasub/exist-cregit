@@ -708,7 +708,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection('"
+literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
@@ -723,7 +723,15 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"$doc := xdb:store($root, $document, $survey)"
+literal|"$doc := xdb:store(\""
+operator|+
+name|eXistUrl
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\", $document, $survey)"
 argument_list|)
 expr_stmt|;
 name|query

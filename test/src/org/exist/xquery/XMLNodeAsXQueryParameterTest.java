@@ -745,22 +745,26 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection('"
-operator|+
-name|eXistUrl
+literal|"let $loggedIn := xdb:login(\""
 operator|+
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"', 'admin', 'admin'),"
+literal|"\", \"admin\", \"admin\"),"
 argument_list|)
 expr_stmt|;
 name|query
 operator|.
 name|append
 argument_list|(
-literal|"$doc := xdb:store($root, $document, $data)"
+literal|"$doc := xdb:store(\""
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\", $document, $data)"
 argument_list|)
 expr_stmt|;
 name|query
@@ -917,7 +921,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection('"
+literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
@@ -932,7 +936,15 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"$mods := xdb:update($root, $xupdate)"
+literal|"$mods := xdb:update(\""
+operator|+
+name|eXistUrl
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\", $xupdate)"
 argument_list|)
 expr_stmt|;
 name|query

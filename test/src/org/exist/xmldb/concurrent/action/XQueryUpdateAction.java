@@ -70,7 +70,7 @@ literal|"util:exclusive-lock(collection('/db/C1'),\n"
 operator|+
 literal|"	let $maxId := max(for $i in //node/@id return xs:integer($i)) + 1\n"
 operator|+
-literal|"	let $collection := xmldb:collection('/db/C1', 'guest', 'guest')\n"
+literal|"	let $isLoggedIn := xmldb:login('/db/C1', 'guest', 'guest')\n"
 operator|+
 literal|"	let $update :=\n"
 operator|+
@@ -86,7 +86,7 @@ literal|"</xu:modifications>\n"
 operator|+
 literal|"	return\n"
 operator|+
-literal|"		xmldb:update($collection, $update)"
+literal|"		xmldb:update('/db/C1', $update)"
 operator|+
 literal|")"
 decl_stmt|;

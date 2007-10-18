@@ -323,7 +323,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection('"
+literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
@@ -338,7 +338,15 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"$doc := xdb:store($root, $document, $data)"
+literal|"$doc := xdb:store(\""
+operator|+
+name|eXistUrl
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\", $document, $data)"
 argument_list|)
 expr_stmt|;
 name|query
@@ -500,14 +508,14 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"        let $root := xdb:collection(concat(\"xmldb:exist://\", $collection), 'admin', 'admin') \n"
+literal|"        let $isLoggedIn := xdb:login(concat(\"xmldb:exist://\", $collection), 'admin', 'admin') \n"
 argument_list|)
 expr_stmt|;
 name|query
 operator|.
 name|append
 argument_list|(
-literal|"        return xdb:store($root, concat($target, \".xml\"), f:create($data, $target)) \n"
+literal|"        return xdb:store(concat(\"xmldb:exist://\", $collection), concat($target, \".xml\"), f:create($data, $target)) \n"
 argument_list|)
 expr_stmt|;
 name|query
@@ -655,7 +663,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $root := xdb:collection('"
+literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
@@ -670,7 +678,15 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"$mods := xdb:remove($root, \""
+literal|"$mods := xdb:remove(\""
+operator|+
+name|eXistUrl
+operator|+
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
+operator|+
+literal|"\", \""
 operator|+
 name|doc
 operator|+

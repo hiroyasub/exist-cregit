@@ -442,9 +442,7 @@ literal|"declare variable $log:document external;"
 operator|+
 literal|"declare function log:log($id as xs:string?) {"
 operator|+
-literal|"xmldb:update("
-operator|+
-literal|"xmldb:collection('"
+literal|"let $isLoggedIn := xmldb:login('"
 operator|+
 name|URI
 operator|+
@@ -452,7 +450,19 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"', 'admin', ''), "
+literal|"', 'admin', '') return "
+operator|+
+literal|"xmldb:update("
+operator|+
+literal|"'"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"', "
 operator|+
 literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
 operator|+
