@@ -342,6 +342,23 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|Object
+name|getAttribute
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|servletRequest
+operator|.
+name|getAttribute
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 comment|/**      * Returns an array of Cookies      */
 specifier|public
 name|Cookie

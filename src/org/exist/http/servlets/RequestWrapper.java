@@ -97,6 +97,14 @@ interface|interface
 name|RequestWrapper
 block|{
 specifier|public
+name|Object
+name|getAttribute
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
+specifier|public
 name|String
 name|getCharacterEncoding
 parameter_list|()
