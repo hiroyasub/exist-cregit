@@ -5710,6 +5710,8 @@ operator|instanceof
 name|SessionWrapper
 condition|)
 block|{
+try|try
+block|{
 return|return
 operator|(
 name|User
@@ -5729,6 +5731,18 @@ argument_list|(
 name|HTTP_SESSIONVAR_XMLDB_USER
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|e
+parameter_list|)
+block|{
+comment|// session is invalid
+return|return
+literal|null
+return|;
+block|}
 block|}
 block|}
 block|}
