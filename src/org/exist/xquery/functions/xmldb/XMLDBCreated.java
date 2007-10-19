@@ -245,7 +245,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of a resource in the collection specified by $a. "
+literal|"Returns the creation date of a resource $b in the collection specified by $a. "
 operator|+
 literal|"The collection can be passed as a simple collection "
 operator|+
@@ -260,7 +260,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -310,7 +310,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of a collection. The collection can be passed as a simple collection "
+literal|"Returns the creation date of a collection $a. The collection can be passed as a simple collection "
 operator|+
 literal|"path or an XMLDB URI."
 argument_list|,
@@ -323,7 +323,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

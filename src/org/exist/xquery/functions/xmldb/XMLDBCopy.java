@@ -223,7 +223,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Copy a collection. The collections can be specified either as "
+literal|"Copy a collection $a to the collection $b. The collections can be specified either as "
 operator|+
 literal|"a simple collection path or an XMLDB URI."
 argument_list|,
@@ -236,7 +236,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -286,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Copy a resource from the collection specified in $a to collection in $b. "
+literal|"Copy a resource $c from the collection specified in $a to collection in $b. "
 operator|+
 literal|"The collections can be either specified as a simple collection path "
 operator|+
@@ -301,7 +301,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

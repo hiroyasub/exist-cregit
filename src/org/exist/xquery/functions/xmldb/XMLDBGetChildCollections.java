@@ -218,7 +218,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

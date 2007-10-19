@@ -235,7 +235,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the estimated size of a resource (in bytes) in the collection specified by $a. "
+literal|"Returns the estimated size of a resource $b (in bytes) in the collection specified by $a. "
 operator|+
 literal|"The estimation is based on the number of pages occupied by a resource. If the "
 operator|+
@@ -256,7 +256,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

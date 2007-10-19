@@ -225,7 +225,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Remove a collection. The collection can be specified either as "
+literal|"Remove a collection $a. The collection can be specified either as "
 operator|+
 literal|"a simple collection path or an XMLDB URI."
 argument_list|,
@@ -238,7 +238,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -289,7 +289,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

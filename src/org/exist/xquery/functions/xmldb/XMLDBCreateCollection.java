@@ -23,18 +23,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|CollectionURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|QName
@@ -256,7 +244,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

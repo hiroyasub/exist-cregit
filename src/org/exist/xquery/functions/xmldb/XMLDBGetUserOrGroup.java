@@ -209,7 +209,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the owner group of a collection. The collection can be passed as a simple collection "
+literal|"Returns the owner group of the collection $a. The collection can be passed as a simple collection "
 operator|+
 literal|"path or an XMLDB URI."
 argument_list|,
@@ -222,7 +222,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -275,7 +275,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.

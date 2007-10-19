@@ -235,7 +235,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the permissions assigned to the collection. "
+literal|"Returns the permissions assigned to the collection $a. "
 operator|+
 literal|"The collection can be specified as a simple collection path or "
 operator|+
@@ -250,7 +250,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -303,7 +303,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
