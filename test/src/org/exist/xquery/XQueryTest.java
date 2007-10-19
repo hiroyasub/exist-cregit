@@ -11331,9 +11331,7 @@ name|query
 decl_stmt|;
 name|query
 operator|=
-literal|"let $coll := xmldb:collection('/db', 'guest', 'guest')"
-operator|+
-literal|"let $name := xmldb:store($coll , 'xupdateTest.xml',<test>aaa</test>)"
+literal|"let $name := xmldb:store('/db' , 'xupdateTest.xml',<test>aaa</test>)"
 operator|+
 literal|"let $xu :="
 operator|+
@@ -11347,7 +11345,7 @@ literal|"</xu:append>"
 operator|+
 literal|"</xu:modifications>"
 operator|+
-literal|"let $count := xmldb:update($coll , $xu)"
+literal|"let $count := xmldb:update('/db' , $xu)"
 operator|+
 literal|"for $textNode in xmldb:document('/db/xupdateTest.xml')/test/text()"
 operator|+
