@@ -127,13 +127,10 @@ name|super
 argument_list|(
 name|fillCalendar
 argument_list|(
-operator|(
-name|XMLGregorianCalendar
-operator|)
+name|cloneXMLGregorianCalendar
+argument_list|(
 name|calendar
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
