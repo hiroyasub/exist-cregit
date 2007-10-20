@@ -358,7 +358,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Servlet to redirect HTTP requests. The request is passed to an XQuery whose return value  * determines where the request will be redirected to. The query should return a single XML element:  *  *<pre>  *&lt;exist:dispatch xmlns:exist="http://exist.sourceforge.net/NS/exist"  *      path="/preview.xql" servlet-name="MyServlet">  *&lt;exist:add-parameter name="new-param" value="new-param-value"/>  *&lt;/exist:dispatch>  *</pre>  *  * If the servlet-name attribute is present, the request will be forwarded to the named servlet  * (name as specified in web.xml). Alternatively, path can point to an arbitrary resource. It can be either absolute or relative.  * Relative paths are resolved relative to the original request.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * When forwarding to other servlets, the fields in {@link javax.servlet.http.HttpServletRequest} will be  * updated to point to the new, redirected URI. However, the original request URI is stored in the  * request attribute org.exist.forward.request-uri.  *  * RedirectorServlet takes a single parameter in web.xml: "xquery". This parameter should point to an  * XQuery script. It should be relative to the current web context.  *  *<pre>  *&lt;servlet>  *&lt;servlet-name>RedirectorServlet</servlet-name>  *&lt;servlet-class>org.exist.http.servlets.RedirectorServlet</servlet-class>  *  *&lt;init-param>  *&lt;param-name>xquery</param-name>  *&lt;param-value>dispatcher.xql</param-value>  *&lt;/init-param>  *&lt;/servlet>  *  *&lt;servlet-mapping>  *&lt;servlet-name>RedirectorServlet</servlet-name>  *&lt;url-pattern>/wiki/*</url-pattern>  *&lt;/servlet-mapping>  *</pre>  */
+comment|/**  * Servlet to redirect HTTP requests. The request is passed to an XQuery whose return value  * determines where the request will be redirected to. The query should return a single XML element:  *  *<pre>  *&lt;exist:dispatch xmlns:exist="http://exist.sourceforge.net/NS/exist"  *      path="/preview.xql" servlet-name="MyServlet" redirect="path">  *&lt;exist:add-parameter name="new-param" value="new-param-value"/>  *&lt;/exist:dispatch>  *</pre>  *  * The element should have one of three attributes:<em>path</em>,<em>servlet-name</em> or  *<em>redirect</em>.  *  * If the servlet-name attribute is present, the request will be forwarded to the named servlet  * (name as specified in web.xml). Alternatively, path can point to an arbitrary resource. It can be either absolute or relative.  * Relative paths are resolved relative to the original request.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * When forwarding to other servlets, the fields in {@link javax.servlet.http.HttpServletRequest} will be  * updated to point to the new, redirected URI. However, the original request URI is stored in the  * request attribute org.exist.forward.request-uri.  *  * If present, the "redirect" attribute causes the server to send a redirect request to the client, which will usually respond  * with a new request to the redirected location. Note that this is quite different from a forwarding via RequestDispatcher,  * which is completely transparent to the client.  *  * RedirectorServlet takes a single parameter in web.xml: "xquery". This parameter should point to an  * XQuery script. It should be relative to the current web context.  *  *<pre>  *&lt;servlet>  *&lt;servlet-name>RedirectorServlet</servlet-name>  *&lt;servlet-class>org.exist.http.servlets.RedirectorServlet</servlet-class>  *  *&lt;init-param>  *&lt;param-name>xquery</param-name>  *&lt;param-value>dispatcher.xql</param-value>  *&lt;/init-param>  *&lt;/servlet>  *  *&lt;servlet-mapping>  *&lt;servlet-name>RedirectorServlet</servlet-name>  *&lt;url-pattern>/wiki/*</url-pattern>  *&lt;/servlet-mapping>  *</pre>  */
 end_comment
 
 begin_class
@@ -856,6 +856,11 @@ name|source
 argument_list|)
 decl_stmt|;
 name|String
+name|redirectTo
+init|=
+literal|null
+decl_stmt|;
+name|String
 name|servletName
 init|=
 literal|null
@@ -1049,6 +1054,24 @@ argument_list|(
 literal|"servlet-name"
 argument_list|)
 expr_stmt|;
+if|else if
+condition|(
+name|elem
+operator|.
+name|hasAttribute
+argument_list|(
+literal|"redirect"
+argument_list|)
+condition|)
+name|redirectTo
+operator|=
+name|elem
+operator|.
+name|getAttribute
+argument_list|(
+literal|"redirect"
+argument_list|)
+expr_stmt|;
 else|else
 block|{
 name|response
@@ -1166,6 +1189,23 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|redirectTo
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// directly redirect to the specified URI
+name|response
+operator|.
+name|sendRedirect
+argument_list|(
+name|redirectTo
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 comment|// Get a RequestDispatcher, either from the servlet context or the request
 name|RequestDispatcher
