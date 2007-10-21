@@ -237,6 +237,12 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+name|String
+name|targetFile
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|FileSet
 name|fileSet
 init|=
@@ -602,14 +608,24 @@ literal|"XMLResource"
 else|:
 literal|"BinaryResource"
 expr_stmt|;
-name|log
-argument_list|(
-literal|"Creating resource "
-operator|+
+if|if
+condition|(
+name|targetFile
+operator|==
+literal|null
+condition|)
+name|targetFile
+operator|=
 name|srcFile
 operator|.
 name|getName
 argument_list|()
+expr_stmt|;
+name|log
+argument_list|(
+literal|"Creating resource "
+operator|+
+name|targetFile
 operator|+
 literal|" in collection "
 operator|+
@@ -640,10 +656,7 @@ name|col
 operator|.
 name|createResource
 argument_list|(
-name|srcFile
-operator|.
-name|getName
-argument_list|()
+name|targetFile
 argument_list|,
 name|resourceType
 argument_list|)
@@ -1049,6 +1062,21 @@ operator|.
 name|srcFile
 operator|=
 name|file
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setTargetFile
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|this
+operator|.
+name|targetFile
+operator|=
+name|name
 expr_stmt|;
 block|}
 specifier|public
