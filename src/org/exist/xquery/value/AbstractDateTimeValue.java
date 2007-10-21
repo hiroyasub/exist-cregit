@@ -4083,7 +4083,7 @@ return|return
 name|timeValue
 return|;
 block|}
-comment|/**      * Utility method that is able to clone a calendarwhose year is 0      * @param calendar      * @return      */
+comment|/**      * Utility method that is able to clone a calendar whose year is 0      * (whatever a year 0 means).       * It looks like the JDK is unable to do that.      * @param calendar The Calendar to clone      * @return the cloned Calendar      */
 specifier|public
 specifier|static
 name|XMLGregorianCalendar
