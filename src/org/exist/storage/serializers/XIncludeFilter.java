@@ -1132,6 +1132,19 @@ argument_list|(
 name|paramStr
 argument_list|)
 expr_stmt|;
+comment|// strip query part
+name|docUri
+operator|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|docUri
+operator|.
+name|getRawCollectionPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// if docName has no collection specified, assume
 comment|// current collection
