@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -162,7 +162,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * @author wolf  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  * @author ljo  */
 end_comment
 
 begin_class
@@ -269,7 +269,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^(--\\d\\d\\d-\\d\\d)([+-])(\\d\\d):(\\d\\d)"
+literal|"^(--\\d\\d-\\d\\d)([+-])(\\d\\d):(\\d\\d)"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -377,7 +377,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"(^0(\\d\\d\\d\\d\\d*)-(\\d\\d)-(\\d\\d)|^0(\\d\\d\\d\\d)-(\\d\\d\\d)$)"
+literal|"(^0(\\d\\d\\d\\d\\d*)-(\\d\\d)-(\\d\\d)|^0(\\d\\d\\d\\d)-(\\d\\d\\d)|^0(\\d\\d\\d\\d)-(\\d\\d)|^0(\\d\\d\\d\\d)|^0(\\d\\d\\d\\d\\d*)-(\\d\\d)-(\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d))"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -3208,7 +3208,7 @@ condition|(
 name|tzMins
 operator|>=
 literal|60
-operator|&&
+operator|||
 name|tzMins
 operator|<
 literal|0
@@ -3350,7 +3350,7 @@ condition|(
 name|tzMins
 operator|>=
 literal|60
-operator|&&
+operator|||
 name|tzMins
 operator|<
 literal|0
@@ -3737,24 +3737,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
-name|hours
-operator|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
-name|m
-operator|.
-name|group
-argument_list|(
-literal|2
-argument_list|)
-argument_list|)
-operator|.
-name|intValue
-argument_list|()
-expr_stmt|;
-name|mins
+name|tzHours
 operator|=
 name|Integer
 operator|.
@@ -3771,23 +3754,6 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
-name|tzHours
-operator|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
-name|m
-operator|.
-name|group
-argument_list|(
-literal|5
-argument_list|)
-argument_list|)
-operator|.
-name|intValue
-argument_list|()
-expr_stmt|;
 name|tzMins
 operator|=
 name|Integer
@@ -3798,7 +3764,7 @@ name|m
 operator|.
 name|group
 argument_list|(
-literal|6
+literal|4
 argument_list|)
 argument_list|)
 operator|.
@@ -3807,14 +3773,6 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|mins
-operator|>=
-literal|60
-operator|||
-name|mins
-operator|<
-literal|0
-operator|||
 name|tzMins
 operator|>=
 literal|60
@@ -3838,19 +3796,19 @@ throw|;
 block|}
 if|if
 condition|(
-name|hours
+name|tzHours
 operator|==
 literal|24
 condition|)
 block|{
 if|if
 condition|(
-name|mins
+name|tzMins
 operator|==
 literal|0
 condition|)
 block|{
-name|hours
+name|tzHours
 operator|=
 literal|0
 expr_stmt|;
@@ -3880,36 +3838,11 @@ argument_list|(
 literal|1
 argument_list|)
 operator|+
-name|df
-operator|.
-name|format
-argument_list|(
-name|hours
-argument_list|)
-operator|+
-literal|":"
-operator|+
-name|df
-operator|.
-name|format
-argument_list|(
-name|mins
-argument_list|)
-operator|+
-literal|":"
-operator|+
-name|df
-operator|.
-name|format
-argument_list|(
-name|secs
-argument_list|)
-operator|+
 name|m
 operator|.
 name|group
 argument_list|(
-literal|4
+literal|2
 argument_list|)
 operator|+
 name|df
