@@ -442,6 +442,13 @@ argument_list|(
 name|child
 argument_list|)
 expr_stmt|;
+name|parent
+operator|.
+name|addMatches
+argument_list|(
+name|child
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add

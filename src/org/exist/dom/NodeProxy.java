@@ -4411,6 +4411,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|p
+operator|.
+name|addMatches
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
