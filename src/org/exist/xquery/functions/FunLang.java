@@ -233,7 +233,7 @@ specifier|static
 name|String
 name|queryString
 init|=
-literal|"(ancestor-or-self::*/@xml:lang)[last()]"
+literal|"(ancestor-or-self::*/@xml:lang)[position() = last()]"
 decl_stmt|;
 specifier|public
 name|CompiledXQuery
