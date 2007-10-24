@@ -332,6 +332,13 @@ name|var
 operator|.
 name|getValue
 argument_list|()
+operator|==
+literal|null
+operator|||
+name|var
+operator|.
+name|getValue
+argument_list|()
 operator|.
 name|getItemType
 argument_list|()

@@ -328,6 +328,13 @@ condition|(
 name|var
 operator|==
 literal|null
+operator|||
+name|var
+operator|.
+name|getValue
+argument_list|()
+operator|==
+literal|null
 condition|)
 throw|throw
 operator|new

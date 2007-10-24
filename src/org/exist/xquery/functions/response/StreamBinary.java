@@ -552,6 +552,13 @@ condition|(
 name|respVar
 operator|==
 literal|null
+operator|||
+name|respVar
+operator|.
+name|getValue
+argument_list|()
+operator|==
+literal|null
 condition|)
 throw|throw
 operator|new
