@@ -2259,7 +2259,7 @@ operator|new
 name|Sync
 argument_list|()
 argument_list|,
-literal|false
+literal|2500
 argument_list|)
 expr_stmt|;
 block|}
@@ -3204,7 +3204,10 @@ argument_list|(
 name|task
 argument_list|)
 argument_list|,
-literal|false
+name|config
+operator|.
+name|getPeriod
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

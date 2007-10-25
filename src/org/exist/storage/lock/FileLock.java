@@ -530,7 +530,8 @@ name|getName
 argument_list|()
 argument_list|)
 argument_list|,
-literal|true
+operator|-
+literal|1
 argument_list|,
 name|params
 argument_list|)
