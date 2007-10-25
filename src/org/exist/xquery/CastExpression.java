@@ -347,14 +347,30 @@ operator|==
 name|Type
 operator|.
 name|ATOMIC
-comment|/*|| requiredType == Type.NOTATION*/
+operator|||
+operator|(
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|NOTATION
+operator|&&
+name|expression
+operator|.
+name|returnsType
+argument_list|()
+operator|!=
+name|Type
+operator|.
+name|NOTATION
+operator|)
 condition|)
 block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0080: cannot cast to "
+literal|"err:XPST0080: cannot cast to "
 operator|+
 name|Type
 operator|.
