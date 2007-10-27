@@ -654,7 +654,7 @@ expr_stmt|;
 comment|//subsequent predicates operate on the result of the previous one
 name|outerSequence
 operator|=
-name|result
+literal|null
 expr_stmt|;
 block|}
 return|return
