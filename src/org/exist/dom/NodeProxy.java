@@ -943,7 +943,7 @@ name|doc
 operator|.
 name|getDocId
 argument_list|()
-operator|<
+operator|!=
 name|otherNode
 operator|.
 name|doc
@@ -951,12 +951,13 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+comment|//Totally arbitrary
 return|return
 name|doc
 operator|.
 name|getDocId
 argument_list|()
-operator|>
+operator|<
 name|otherNode
 operator|.
 name|doc
@@ -1031,6 +1032,7 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+comment|//Totally arbitrary
 return|return
 name|doc
 operator|.

@@ -3030,7 +3030,7 @@ name|VariableByteOutputStream
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Lookup elements or attributes in the index matching a given {@link QName} and      * {@link NodeSelector}. The NodeSelector argument is optional. If selector is      * null, all elements or attributes matching qname will be returned.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID}      * @param docs the set of documents to look up in the index      * @param qname the QName of the attribute or element      * @param selector an (optional) NodeSelector      */
+comment|/**      * Lookup elements or attributes in the index matching a given {@link QName} and      * {@link NodeSelector}. The NodeSelector argument is optional. If selector is      * null, all elements or attributes matching qname will be returned.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID} or {@link ElementValue#ATTRIBUTE_IDREF}      *      or {@link ElementValue#ATTRIBUTE_IDREFS}      * @param docs the set of documents to look up in the index      * @param qname the QName of the attribute or element      * @param selector an (optional) NodeSelector      */
 specifier|public
 name|NodeSet
 name|findElementsByTagName
@@ -3518,7 +3518,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Optimized lookup method which directly implements the ancestor-descendant join. The algorithm      * does directly operate on the input stream containing the potential descendant nodes. It thus needs      * less comparisons than {@link #findElementsByTagName(byte, DocumentSet, QName, NodeSelector)}.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID}      * @param docs the set of documents to look up in the index      * @param contextSet the set of ancestor nodes for which the method will try to find descendants      * @param contextId id of the current context expression as passed by the query engine      * @param qname the QName to search for      */
+comment|/**      * Optimized lookup method which directly implements the ancestor-descendant join. The algorithm      * does directly operate on the input stream containing the potential descendant nodes. It thus needs      * less comparisons than {@link #findElementsByTagName(byte, DocumentSet, QName, NodeSelector)}.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID} or {@link ElementValue#ATTRIBUTE_IDREF}       *      or {@link ElementValue#ATTRIBUTE_IDREFS}      * @param docs the set of documents to look up in the index      * @param contextSet the set of ancestor nodes for which the method will try to find descendants      * @param contextId id of the current context expression as passed by the query engine      * @param qname the QName to search for      */
 specifier|public
 name|NodeSet
 name|findDescendantsByTagName
@@ -4714,6 +4714,18 @@ case|case
 name|ElementValue
 operator|.
 name|ATTRIBUTE_ID
+case|:
+comment|//is this correct ? -pb
+case|case
+name|ElementValue
+operator|.
+name|ATTRIBUTE_IDREF
+case|:
+comment|//is this correct ? -pb
+case|case
+name|ElementValue
+operator|.
+name|ATTRIBUTE_IDREFS
 case|:
 comment|//is this correct ? -pb
 case|case
@@ -6051,6 +6063,54 @@ operator|==
 name|ElementValue
 operator|.
 name|ATTRIBUTE_ID
+condition|)
+block|{
+return|return
+operator|new
+name|ElementValue
+argument_list|(
+name|type
+argument_list|,
+name|collectionId
+argument_list|,
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|type
+operator|==
+name|ElementValue
+operator|.
+name|ATTRIBUTE_IDREF
+condition|)
+block|{
+return|return
+operator|new
+name|ElementValue
+argument_list|(
+name|type
+argument_list|,
+name|collectionId
+argument_list|,
+name|qname
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+return|;
+block|}
+if|if
+condition|(
+name|type
+operator|==
+name|ElementValue
+operator|.
+name|ATTRIBUTE_IDREFS
 condition|)
 block|{
 return|return

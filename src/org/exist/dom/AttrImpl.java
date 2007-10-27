@@ -264,6 +264,22 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|IDREF
+init|=
+literal|2
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IDREFS
+init|=
+literal|3
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DEFAULT_ATTRIBUTE_TYPE
 init|=
 name|CDATA
@@ -1876,9 +1892,13 @@ name|boolean
 name|isId
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
-literal|false
+name|this
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|ID
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
