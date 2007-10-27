@@ -455,10 +455,6 @@ literal|"GROUP_BY"
 block|,
 literal|"POSITIONAL_VAR"
 block|,
-literal|"BEFORE"
-block|,
-literal|"AFTER"
-block|,
 literal|"MODULE_DECL"
 block|,
 literal|"MODULE_IMPORT"
@@ -653,9 +649,9 @@ literal|"\"castable\""
 block|,
 literal|"\"cast\""
 block|,
-literal|"<"
+literal|"BEFORE"
 block|,
-literal|">"
+literal|"AFTER"
 block|,
 literal|"\"eq\""
 block|,
@@ -671,7 +667,11 @@ literal|"\"ge\""
 block|,
 literal|"!="
 block|,
+literal|">"
+block|,
 literal|">="
+block|,
+literal|"<"
 block|,
 literal|"<="
 block|,
