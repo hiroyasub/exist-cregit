@@ -2890,11 +2890,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mSLASH"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|SLASH
@@ -2902,9 +2897,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'/'
@@ -2960,16 +2952,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mSLASH"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|protected
 specifier|final
@@ -3002,11 +2984,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDSLASH"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DSLASH
@@ -3014,9 +2991,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'/'
@@ -3078,16 +3052,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDSLASH"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3119,11 +3083,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mCOLON"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|COLON
@@ -3131,9 +3090,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|':'
@@ -3190,16 +3146,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mCOLON"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3231,11 +3177,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mCOMMA"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|COMMA
@@ -3243,9 +3184,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|','
@@ -3302,16 +3240,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mCOMMA"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3343,11 +3271,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mSEMICOLON"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|SEMICOLON
@@ -3355,9 +3278,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|';'
@@ -3414,16 +3334,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mSEMICOLON"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3455,11 +3365,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mSTAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|STAR
@@ -3467,9 +3372,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'*'
@@ -3526,16 +3428,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mSTAR"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3567,11 +3459,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mQUESTION"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|QUESTION
@@ -3579,9 +3466,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'?'
@@ -3638,16 +3522,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mQUESTION"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3679,11 +3553,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mPLUS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|PLUS
@@ -3691,9 +3560,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'+'
@@ -3750,16 +3616,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mPLUS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3791,11 +3647,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mMINUS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|MINUS
@@ -3803,9 +3654,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'-'
@@ -3862,16 +3710,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mMINUS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -3903,11 +3741,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLPPAREN"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LPPAREN
@@ -3915,9 +3748,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'['
@@ -3974,16 +3804,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLPPAREN"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4015,11 +3835,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mRPPAREN"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|RPPAREN
@@ -4027,9 +3842,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|']'
@@ -4086,16 +3898,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mRPPAREN"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4127,11 +3929,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLPAREN"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LPAREN
@@ -4139,9 +3936,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'('
@@ -4198,16 +3992,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLPAREN"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4239,11 +4023,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mRPAREN"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|RPAREN
@@ -4251,9 +4030,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|')'
@@ -4310,16 +4086,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mRPAREN"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4351,11 +4117,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mSELF"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|SELF
@@ -4363,9 +4124,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'.'
@@ -4422,16 +4180,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mSELF"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4463,11 +4211,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mPARENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|PARENT
@@ -4475,9 +4218,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|".."
@@ -4534,16 +4274,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mPARENT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4575,11 +4305,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mUNION"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|UNION
@@ -4587,9 +4312,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'|'
@@ -4646,16 +4368,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mUNION"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4687,11 +4399,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mAT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|AT
@@ -4699,9 +4406,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'@'
@@ -4758,16 +4462,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mAT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4799,11 +4493,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDOLLAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DOLLAR
@@ -4811,9 +4500,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'$'
@@ -4870,16 +4556,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDOLLAR"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -4911,11 +4587,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mANDEQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|ANDEQ
@@ -4923,9 +4594,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"&="
@@ -4982,16 +4650,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mANDEQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5023,11 +4681,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mOREQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|OREQ
@@ -5035,9 +4688,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"|="
@@ -5094,16 +4744,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mOREQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5135,11 +4775,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mEQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|EQ
@@ -5147,9 +4782,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'='
@@ -5206,16 +4838,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mEQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5247,11 +4869,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mNEQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|NEQ
@@ -5259,9 +4876,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"!="
@@ -5318,16 +4932,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mNEQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5359,11 +4963,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mGT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|GT
@@ -5371,9 +4970,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'>'
@@ -5430,16 +5026,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mGT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5471,11 +5057,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mGTEQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|GTEQ
@@ -5483,9 +5064,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|">="
@@ -5542,16 +5120,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mGTEQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5583,11 +5151,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mQUOT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|QUOT
@@ -5595,9 +5158,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'"'
@@ -5654,16 +5214,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mQUOT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5695,11 +5245,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mAPOS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|APOS
@@ -5707,9 +5252,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"'"
@@ -5766,16 +5308,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mAPOS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5807,11 +5339,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLTEQ"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LTEQ
@@ -5819,9 +5346,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"<="
@@ -5878,16 +5402,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLTEQ"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -5919,11 +5433,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mBEFORE"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|BEFORE
@@ -5931,9 +5440,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"<<"
@@ -5990,16 +5496,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mBEFORE"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6031,11 +5527,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mAFTER"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|AFTER
@@ -6043,9 +5534,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|">>"
@@ -6102,16 +5590,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mAFTER"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6143,11 +5621,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LT
@@ -6155,9 +5628,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'<'
@@ -6214,16 +5684,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6255,11 +5715,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mEND_TAG_START"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|END_TAG_START
@@ -6267,9 +5722,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"</"
@@ -6326,16 +5778,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mEND_TAG_START"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6367,11 +5809,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLCURLY"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LCURLY
@@ -6379,9 +5816,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'{'
@@ -6438,16 +5872,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLCURLY"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6479,11 +5903,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mRCURLY"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|RCURLY
@@ -6491,9 +5910,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'}'
@@ -6550,16 +5966,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mRCURLY"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6591,11 +5997,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_COMMENT_END"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_COMMENT_END
@@ -6603,9 +6004,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"-->"
@@ -6662,16 +6060,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_COMMENT_END"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6703,11 +6091,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_PI_START"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_PI_START
@@ -6715,9 +6098,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"<?"
@@ -6774,16 +6154,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_PI_START"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6815,11 +6185,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_PI_END"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_PI_END
@@ -6827,9 +6192,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"?>"
@@ -6886,16 +6248,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_PI_END"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -6927,11 +6279,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_CDATA_START"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_CDATA_START
@@ -6939,9 +6286,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"<![CDATA["
@@ -6998,16 +6342,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_CDATA_START"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -7039,11 +6373,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_CDATA_END"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_CDATA_END
@@ -7051,9 +6380,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"]]>"
@@ -7110,16 +6436,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_CDATA_END"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -7151,11 +6467,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mLETTER"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|LETTER
@@ -7163,9 +6474,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 if|if
 condition|(
@@ -7286,16 +6594,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mLETTER"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -7327,11 +6625,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mBASECHAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|BASECHAR
@@ -7339,9 +6632,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -16206,16 +15496,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mBASECHAR"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -16247,11 +15527,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mIDEOGRAPHIC"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|IDEOGRAPHIC
@@ -16259,9 +15534,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -16427,16 +15699,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mIDEOGRAPHIC"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -16468,11 +15730,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDIGITS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DIGITS
@@ -16480,9 +15737,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt441
@@ -16614,16 +15868,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDIGITS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -16655,11 +15899,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDIGIT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DIGIT
@@ -16667,9 +15906,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -17354,16 +16590,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDIGIT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -17395,11 +16621,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mHEX_DIGITS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|HEX_DIGITS
@@ -17407,9 +16628,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt444
@@ -17625,16 +16843,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mHEX_DIGITS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -17666,11 +16874,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mNMSTART"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|NMSTART
@@ -17678,9 +16881,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 if|if
 condition|(
@@ -17798,16 +16998,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mNMSTART"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -17839,11 +17029,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mNMCHAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|NMCHAR
@@ -17851,9 +17036,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -18100,16 +17282,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mNMCHAR"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -18141,11 +17313,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mCOMBINING_CHAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|COMBINING_CHAR
@@ -18153,9 +17320,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -20446,16 +19610,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mCOMBINING_CHAR"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -20487,11 +19641,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mEXTENDER"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|EXTENDER
@@ -20499,9 +19648,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -20737,16 +19883,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mEXTENDER"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -20778,11 +19914,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mNCNAME"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|NCNAME
@@ -20790,9 +19921,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|mNMSTART
 argument_list|(
 literal|false
@@ -20913,16 +20041,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mNCNAME"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -20954,11 +20072,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mWS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|WS
@@ -20966,9 +20079,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt454
@@ -21212,16 +20322,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mWS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -21253,11 +20353,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mEXPR_COMMENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|EXPR_COMMENT
@@ -21265,9 +20360,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"(:"
@@ -21598,16 +20690,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mEXPR_COMMENT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -21639,11 +20721,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mINTEGER_LITERAL"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|INTEGER_LITERAL
@@ -21651,9 +20728,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 if|if
 condition|(
 operator|!
@@ -21728,16 +20802,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mINTEGER_LITERAL"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|protected
 specifier|final
@@ -21770,11 +20834,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDOUBLE_LITERAL"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DOUBLE_LITERAL
@@ -21782,9 +20841,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 if|if
 condition|(
 operator|!
@@ -22163,16 +21219,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDOUBLE_LITERAL"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -22204,11 +21250,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mDECIMAL_LITERAL"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|DECIMAL_LITERAL
@@ -22216,9 +21257,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 if|if
 condition|(
 operator|(
@@ -22416,16 +21454,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mDECIMAL_LITERAL"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -22457,11 +21485,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mPREDEFINED_ENTITY_REF"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|PREDEFINED_ENTITY_REF
@@ -22469,9 +21492,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'&'
@@ -22657,16 +21677,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mPREDEFINED_ENTITY_REF"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -22698,11 +21708,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mCHAR_REF"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|CHAR_REF
@@ -22710,9 +21715,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'&'
@@ -22852,16 +21854,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mCHAR_REF"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -22893,11 +21885,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mSTRING_LITERAL"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|STRING_LITERAL
@@ -22905,9 +21892,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 switch|switch
 condition|(
 name|LA
@@ -23409,16 +22393,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mSTRING_LITERAL"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -23450,11 +22424,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mQUOT_ATTRIBUTE_CONTENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|QUOT_ATTRIBUTE_CONTENT
@@ -23462,9 +22431,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt492
@@ -23597,16 +22563,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mQUOT_ATTRIBUTE_CONTENT"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/**  * The following definition differs from the spec by allowing the  * '&' character, which is handled by the constructor classes.  *  * TODO: Allow escaped quotes in attribute content. Doesn't work.  */
 specifier|protected
@@ -23640,11 +22596,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mAPOS_ATTRIBUTE_CONTENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|APOS_ATTRIBUTE_CONTENT
@@ -23652,9 +22603,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt496
@@ -23788,16 +22736,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mAPOS_ATTRIBUTE_CONTENT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -23829,11 +22767,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mESCAPE_APOS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|ESCAPE_APOS
@@ -23841,9 +22774,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'\''
@@ -23904,16 +22834,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mESCAPE_APOS"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|protected
 specifier|final
@@ -23946,11 +22866,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mESCAPE_QUOT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|ESCAPE_QUOT
@@ -23958,9 +22873,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|'"'
@@ -24021,16 +22933,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mESCAPE_QUOT"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/**  * The following definition differs from the spec by allowing the  * '&' character, which is handled by the constructor classes.  *  * TODO: Allow escaped quotes in attribute content. Doesn't work.  */
 specifier|protected
@@ -24064,11 +22966,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mELEMENT_CONTENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|ELEMENT_CONTENT
@@ -24076,9 +22973,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt501
@@ -24575,16 +23469,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mELEMENT_CONTENT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -24616,11 +23500,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_COMMENT"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_COMMENT
@@ -24628,9 +23507,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|_saveIndex
 operator|=
 name|text
@@ -24829,16 +23705,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_COMMENT"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -24870,11 +23736,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_PI"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_PI
@@ -24882,9 +23743,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|_saveIndex
 operator|=
 name|text
@@ -25111,16 +23969,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_PI"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -25152,11 +24000,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mXML_CDATA"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|XML_CDATA
@@ -25164,9 +24007,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|_saveIndex
 operator|=
 name|text
@@ -25579,16 +24419,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mXML_CDATA"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -25620,11 +24450,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mS"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|S
@@ -25632,9 +24457,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 name|int
 name|_cnt531
@@ -25859,16 +24681,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mS"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -25900,11 +24712,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mPRAGMA_START"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|PRAGMA_START
@@ -25912,9 +24719,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|match
 argument_list|(
 literal|"(#"
@@ -26029,16 +24833,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mPRAGMA_START"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -26070,11 +24864,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mPRAGMA_END"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|PRAGMA_END
@@ -26082,9 +24871,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -26340,16 +25126,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mPRAGMA_END"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|/**  * Main method that decides which token to return next.  * We need this as many things depend on the current  * context.  */
 specifier|public
 specifier|final
@@ -26382,11 +25158,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mNEXT_TOKEN"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|NEXT_TOKEN
@@ -26394,9 +25165,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 name|Token
 name|ncname
 init|=
@@ -30104,16 +28872,6 @@ operator|=
 name|_token
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mNEXT_TOKEN"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 specifier|protected
 specifier|final
 name|void
@@ -30145,11 +28903,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-name|traceIn
-argument_list|(
-literal|"mCHAR"
-argument_list|)
-expr_stmt|;
 name|_ttype
 operator|=
 name|CHAR
@@ -30157,9 +28910,6 @@ expr_stmt|;
 name|int
 name|_saveIndex
 decl_stmt|;
-try|try
-block|{
-comment|// debugging
 block|{
 switch|switch
 condition|(
@@ -30439,16 +29189,6 @@ name|_returnToken
 operator|=
 name|_token
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// debugging
-name|traceOut
-argument_list|(
-literal|"mCHAR"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|private
 specifier|static
