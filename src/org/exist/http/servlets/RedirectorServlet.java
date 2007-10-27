@@ -873,11 +873,7 @@ decl_stmt|;
 name|RequestWrapper
 name|modifiedRequest
 init|=
-operator|new
-name|RequestWrapper
-argument_list|(
-name|request
-argument_list|)
+literal|null
 decl_stmt|;
 comment|// parse the query result element
 if|if
@@ -1159,6 +1155,20 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|modifiedRequest
+operator|==
+literal|null
+condition|)
+name|modifiedRequest
+operator|=
+operator|new
+name|RequestWrapper
+argument_list|(
+name|request
+argument_list|)
+expr_stmt|;
 name|modifiedRequest
 operator|.
 name|addParameter
@@ -1291,8 +1301,18 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|// store the original request URI to org.exist.forward.request-uri
+if|if
+condition|(
 name|modifiedRequest
+operator|!=
+literal|null
+condition|)
+name|request
+operator|=
+name|modifiedRequest
+expr_stmt|;
+comment|// store the original request URI to org.exist.forward.request-uri
+name|request
 operator|.
 name|setAttribute
 argument_list|(
@@ -1309,7 +1329,7 @@ name|dispatcher
 operator|.
 name|forward
 argument_list|(
-name|modifiedRequest
+name|request
 argument_list|,
 name|response
 argument_list|)

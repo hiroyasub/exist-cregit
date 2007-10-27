@@ -1205,6 +1205,8 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+try|try
+block|{
 name|request
 operator|.
 name|setCharacterEncoding
@@ -1212,6 +1214,14 @@ argument_list|(
 name|formEncoding
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|e
+parameter_list|)
+block|{
+block|}
 name|ServletOutputStream
 name|sout
 init|=
