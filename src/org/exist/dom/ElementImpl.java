@@ -8543,6 +8543,12 @@ expr_stmt|;
 name|getBroker
 argument_list|()
 operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|getBroker
+argument_list|()
+operator|.
 name|getIndexController
 argument_list|()
 operator|.
