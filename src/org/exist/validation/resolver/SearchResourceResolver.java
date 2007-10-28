@@ -228,6 +228,15 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Specified collectionPath="
+operator|+
+name|collectionPath
+argument_list|)
+expr_stmt|;
 name|collection
 operator|=
 name|collectionPath
@@ -298,11 +307,6 @@ name|xri
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|String
-name|documentName
-init|=
-literal|null
-decl_stmt|;
 name|String
 name|resourcePath
 init|=
@@ -558,10 +562,6 @@ return|;
 block|}
 if|if
 condition|(
-name|resourcePath
-operator|!=
-literal|null
-operator|&&
 name|resourcePath
 operator|.
 name|startsWith
