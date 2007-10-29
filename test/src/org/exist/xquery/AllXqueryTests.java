@@ -232,15 +232,6 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
-name|FtQueryTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|suite
-operator|.
-name|addTestSuite
-argument_list|(
 name|DocumentUpdateTest
 operator|.
 name|class
