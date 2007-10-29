@@ -309,6 +309,28 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * TODO: temporary method to plug in fulltext index.      * Remove once new fulltext index module is ready.      *       * @param worker      */
+specifier|public
+name|void
+name|addIndexWorker
+parameter_list|(
+name|IndexWorker
+name|worker
+parameter_list|)
+block|{
+name|indexWorkers
+operator|.
+name|put
+argument_list|(
+name|worker
+operator|.
+name|getIndexId
+argument_list|()
+argument_list|,
+name|worker
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Configures all index workers registered with the db instance.      *       * @param configNodes lists the top-level child nodes below the&lt;index&gt; element in collection.xconf      * @param namespaces the active prefix/namespace map      * @return an arbitrary configuration object to be kept for this index in the collection configuration      * @throws DatabaseConfigurationException if a configuration error occurs      */
 specifier|public
 name|Map

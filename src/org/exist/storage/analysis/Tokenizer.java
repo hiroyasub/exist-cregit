@@ -25,6 +25,17 @@ name|text
 parameter_list|)
 function_decl|;
 specifier|public
+name|void
+name|setText
+parameter_list|(
+name|CharSequence
+name|text
+parameter_list|,
+name|int
+name|offset
+parameter_list|)
+function_decl|;
+specifier|public
 name|TextToken
 name|nextToken
 parameter_list|()
