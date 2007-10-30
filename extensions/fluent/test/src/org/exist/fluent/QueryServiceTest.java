@@ -16,7 +16,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|QueryServiceHelper
+name|QueryServiceTest
 extends|extends
 name|DatabaseHelper
 block|{

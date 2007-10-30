@@ -10,13 +10,13 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:50:16 PM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:50:47 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ItemHelper
+name|ItemListTest
 extends|extends
 name|DatabaseHelper
 block|{
@@ -129,7 +129,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Item
+name|ItemList
 name|res
 init|=
 name|doc
@@ -137,14 +137,14 @@ operator|.
 name|query
 argument_list|()
 operator|.
-name|single
+name|all
 argument_list|(
-literal|"//b"
+literal|"//(b|d)"
 argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|doc
 operator|.
@@ -155,7 +155,12 @@ name|all
 argument_list|(
 literal|"$_1//c"
 argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|res
+block|}
 argument_list|)
 operator|.
 name|size

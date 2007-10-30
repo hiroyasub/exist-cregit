@@ -15,9 +15,7 @@ name|org
 operator|.
 name|jmock
 operator|.
-name|core
-operator|.
-name|Constraint
+name|Mock
 import|;
 end_import
 
@@ -29,7 +27,7 @@ name|jmock
 operator|.
 name|core
 operator|.
-name|Stub
+name|Constraint
 import|;
 end_import
 
@@ -51,7 +49,9 @@ name|org
 operator|.
 name|jmock
 operator|.
-name|Mock
+name|core
+operator|.
+name|Stub
 import|;
 end_import
 
@@ -62,7 +62,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ListenerManagerHelper
+name|ListenerManagerTest
 extends|extends
 name|DatabaseHelper
 block|{

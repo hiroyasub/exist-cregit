@@ -17,7 +17,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|*
+name|NamedNodeMap
 import|;
 end_import
 
@@ -33,6 +33,18 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:48:19 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
@@ -40,7 +52,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ElementBuilderHelper
+name|ElementBuilderTest
 extends|extends
 name|DatabaseHelper
 block|{
@@ -1406,7 +1418,7 @@ name|assertEquals
 argument_list|(
 literal|"<test/>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1495,7 +1507,7 @@ name|assertEquals
 argument_list|(
 literal|"<test><test2/></test>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1594,7 +1606,7 @@ name|assertEquals
 argument_list|(
 literal|"<test foo='bar'/>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1690,7 +1702,7 @@ name|assertEquals
 argument_list|(
 literal|"<test>blah</test>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1784,7 +1796,7 @@ name|assertEquals
 argument_list|(
 literal|"<test foo='bar'/>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1882,7 +1894,7 @@ name|assertEquals
 argument_list|(
 literal|"<test/>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1980,7 +1992,7 @@ name|assertEquals
 argument_list|(
 literal|"<test1/><test2/>"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -1990,7 +2002,7 @@ literal|0
 index|]
 argument_list|)
 operator|+
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -2089,7 +2101,7 @@ name|assertEquals
 argument_list|(
 literal|"blahfoo"
 argument_list|,
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(
@@ -2099,7 +2111,7 @@ literal|0
 index|]
 argument_list|)
 operator|+
-name|ElementBuilderHelper
+name|ElementBuilderTest
 operator|.
 name|toString
 argument_list|(

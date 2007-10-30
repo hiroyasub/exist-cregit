@@ -10,13 +10,13 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:46:20 PM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007                                   {lib.endorsed}  * Time: 8:46:20 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|DatabaseMiscHelper
+name|DatabaseMiscTest
 extends|extends
 name|DatabaseHelper
 block|{
