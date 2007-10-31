@@ -260,12 +260,6 @@ name|scheduler
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|User
-name|user
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -337,13 +331,6 @@ operator|.
 name|getScheduler
 argument_list|()
 expr_stmt|;
-name|user
-operator|=
-name|context
-operator|.
-name|getUser
-argument_list|()
-expr_stmt|;
 block|}
 comment|/** 	 * evaluate the call to the xquery function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the  function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
@@ -360,6 +347,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|User
+name|user
+init|=
+name|context
+operator|.
+name|getUser
+argument_list|()
+decl_stmt|;
 name|boolean
 name|userhasDBARole
 init|=
