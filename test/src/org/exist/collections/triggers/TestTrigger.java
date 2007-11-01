@@ -182,7 +182,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wolf  * Date: Aug 28, 2007  * Time: 6:41:26 PM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Test trigger to check if trigger configuration is working properly.  */
 end_comment
 
 begin_class
@@ -247,6 +247,15 @@ argument_list|(
 literal|"messages.xml"
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TestTrigger prepares"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|doc

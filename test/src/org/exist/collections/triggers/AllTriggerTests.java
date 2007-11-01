@@ -61,19 +61,7 @@ argument_list|)
 specifier|public
 class|class
 name|AllTriggerTests
-block|{
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-block|}
-block|}
+block|{ }
 end_class
 
 end_unit
