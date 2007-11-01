@@ -1131,6 +1131,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|current
+operator|!=
+literal|null
+condition|)
 name|previous
 operator|.
 name|setNextInChain
@@ -1139,6 +1145,12 @@ name|current
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|current
+operator|!=
+literal|null
+condition|)
 name|previous
 operator|=
 name|current
