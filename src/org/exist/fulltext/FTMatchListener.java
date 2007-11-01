@@ -277,7 +277,7 @@ operator|.
 name|getIndexId
 argument_list|()
 operator|==
-name|FTIndexWorker
+name|FTIndex
 operator|.
 name|ID
 condition|)
@@ -841,7 +841,7 @@ operator|.
 name|getIndexId
 argument_list|()
 operator|==
-name|FTIndexWorker
+name|FTIndex
 operator|.
 name|ID
 operator|&&
@@ -1053,7 +1053,7 @@ operator|.
 name|getIndexId
 argument_list|()
 operator|==
-name|FTIndexWorker
+name|FTIndex
 operator|.
 name|ID
 operator|&&

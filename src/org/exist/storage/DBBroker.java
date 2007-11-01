@@ -722,6 +722,15 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|initIndexModules
+argument_list|()
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|initIndexModules
+parameter_list|()
+block|{
 name|indexController
 operator|=
 operator|new

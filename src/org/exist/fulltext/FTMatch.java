@@ -153,7 +153,7 @@ name|getIndexId
 parameter_list|()
 block|{
 return|return
-name|FTIndexWorker
+name|FTIndex
 operator|.
 name|ID
 return|;

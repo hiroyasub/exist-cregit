@@ -868,12 +868,6 @@ return|return
 name|tokenizer
 return|;
 block|}
-specifier|public
-specifier|abstract
-name|FTIndexWorker
-name|getWorker
-parameter_list|()
-function_decl|;
 comment|/** 	 * Tokenize and index the given text node. 	 *  	 * @param indexSpec 	 * @param node 	 */
 specifier|public
 specifier|abstract
