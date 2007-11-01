@@ -497,6 +497,8 @@ literal|"<gml/>"
 operator|+
 literal|"</index>"
 operator|+
+literal|"<validation mode=\"no\"/> "
+operator|+
 literal|"</collection>"
 decl_stmt|;
 name|String
