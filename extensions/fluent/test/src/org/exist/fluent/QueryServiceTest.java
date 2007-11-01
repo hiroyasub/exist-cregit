@@ -9,16 +9,12 @@ name|fluent
 package|;
 end_package
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:56:25 PM  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
 name|QueryServiceTest
 extends|extends
-name|DatabaseHelper
+name|DatabaseTestCase
 block|{
 specifier|public
 name|void
@@ -63,7 +59,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"item"
+literal|"item()"
 argument_list|,
 name|qa
 operator|.
@@ -115,7 +111,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"item"
+literal|"item()"
 argument_list|,
 name|qa
 operator|.
@@ -167,7 +163,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"item"
+literal|"item()"
 argument_list|,
 name|qa
 operator|.
@@ -219,7 +215,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"node"
+literal|"node()"
 argument_list|,
 name|qa
 operator|.

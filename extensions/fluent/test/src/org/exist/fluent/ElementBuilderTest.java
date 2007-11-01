@@ -45,16 +45,12 @@ name|NodeList
 import|;
 end_import
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:48:19 PM  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
 name|ElementBuilderTest
 extends|extends
-name|DatabaseHelper
+name|DatabaseTestCase
 block|{
 specifier|public
 name|void

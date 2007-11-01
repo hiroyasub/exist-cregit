@@ -102,12 +102,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A superclass for database unit tests.  It takes care of starting up and clearing the database in  * its<code>setUp</code> method, and supports mocking with jMock.  By default, the database  * will be configured from the file "conf.xml" in the current directory, but you can annotate your  * test class with {@link DatabaseHelper.ConfigFile} to specify a different one.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * A superclass for database unit tests.  It takes care of starting up and clearing the database in  * its<code>setUp</code> method, and supports mocking with jMock.  By default, the database  * will be configured from the file "conf.xml" in the current directory, but you can annotate your  * test class with {@link DatabaseTestCase.ConfigFile} to specify a different one.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
 annotation|@
-name|DatabaseHelper
+name|DatabaseTestCase
 operator|.
 name|ConfigFile
 argument_list|(
@@ -116,7 +116,7 @@ argument_list|)
 specifier|public
 specifier|abstract
 class|class
-name|DatabaseHelper
+name|DatabaseTestCase
 extends|extends
 name|MockObjectTestCase
 block|{

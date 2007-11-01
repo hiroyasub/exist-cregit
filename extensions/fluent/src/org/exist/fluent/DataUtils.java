@@ -31,6 +31,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Base64Encoder
+import|;
+end_import
+
 begin_comment
 comment|/**  * A bunch of static data conversion utility methods.  *  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
@@ -249,7 +261,7 @@ name|normalize
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Convert a Java object to its equivalent XML datatype string representation. 	 * At the moment, there is special treatment for<code>java.util.Date</code> 	 * and<code>java.util.Calendar</code>; for all other objects, we simply invoke 	 *<code>toString()</code>. 	 *  	 * @param o the object to convert 	 * @return a string representation of the object, according to XML Schema Datatype rules if possible 	 */
+comment|/** 	 * Convert a Java object to its equivalent XML datatype string representation. 	 * At the moment, there is special treatment for<code>java.util.Date</code>, 	 *<code>java.util.Calendar</code> and<code>byte[]</code> (Base64 encoding); 	 * for all other objects, we simply invoke<code>toString()</code>. 	 *  	 * @param o the object to convert 	 * @return a string representation of the object, according to XML Schema Datatype rules if possible 	 */
 specifier|public
 specifier|static
 name|String
@@ -302,6 +314,44 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+if|else if
+condition|(
+name|o
+operator|instanceof
+name|byte
+index|[]
+condition|)
+block|{
+name|Base64Encoder
+name|encoder
+init|=
+operator|new
+name|Base64Encoder
+argument_list|()
+decl_stmt|;
+name|encoder
+operator|.
+name|translate
+argument_list|(
+operator|(
+name|byte
+index|[]
+operator|)
+name|o
+argument_list|)
+expr_stmt|;
+return|return
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|encoder
+operator|.
+name|getCharArray
+argument_list|()
+argument_list|)
 return|;
 block|}
 else|else

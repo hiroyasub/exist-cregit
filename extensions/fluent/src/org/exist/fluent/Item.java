@@ -803,17 +803,5 @@ decl_stmt|;
 block|}
 end_class
 
-begin_comment
-comment|///////////////////////////////////////////////////
-end_comment
-
-begin_comment
-comment|//            --X-X--
-end_comment
-
-begin_comment
-comment|///////////////////////////////////////////////////
-end_comment
-
 end_unit
 

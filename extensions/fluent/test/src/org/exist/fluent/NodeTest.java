@@ -9,16 +9,12 @@ name|fluent
 package|;
 end_package
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:55:21 PM  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
 name|NodeTest
 extends|extends
-name|DatabaseHelper
+name|DatabaseTestCase
 block|{
 specifier|public
 name|void

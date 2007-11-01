@@ -1764,7 +1764,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^variable \\$(\\S+) is not bound .*"
+literal|"^XPDY0002 : variable '\\$(\\S+)' is not set\\..*"
 argument_list|)
 decl_stmt|;
 comment|/** 	 * Statically analyze a query for various properties. 	 * 	 * @param query the query to analyze 	 * @param params parameters for the query; if necessary parameters are left out they will be listed as required variables in the analysis 	 * @return a query analysis facet 	 */
@@ -1962,18 +1962,12 @@ operator|=
 name|requiredVariables
 expr_stmt|;
 block|}
-comment|/** 		 * Return the name of the statically determined return type of the query expression. 		 * The name is in a standard form, see {@link org.exist.xquery.value.Type} for a list 		 * of possible values.  If the return type cannot be statically determined, it defaults to 		 *<code>"item"</code>, the universal supertype in XQuery. 		 * 		 * @return the name of the return type of the query being analyzed 		 */
+comment|/** 		 * Return the name of the statically determined return type of the query expression. 		 * The name is in a standard form, see {@link org.exist.xquery.value.Type} for a list 		 * of possible values.  If the return type cannot be statically determined, it defaults to 		 *<code>Type.ITEM</code>, the universal supertype in XQuery. 		 * 		 * @return the name of the return type of the query being analyzed 		 */
 specifier|public
 name|String
 name|returnTypeName
 parameter_list|()
 block|{
-if|if
-condition|(
-name|query
-operator|instanceof
-name|Expression
-condition|)
 return|return
 name|org
 operator|.
@@ -1987,6 +1981,10 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
+name|query
+operator|instanceof
+name|Expression
+condition|?
 operator|(
 operator|(
 name|PathExpr
@@ -1996,10 +1994,19 @@ operator|)
 operator|.
 name|returnsType
 argument_list|()
+else|:
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+operator|.
+name|ITEM
 argument_list|)
-return|;
-return|return
-literal|"item"
 return|;
 block|}
 comment|/** 		 * The enumeration of recognized cardinalities for parameter and return types. 		 */

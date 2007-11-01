@@ -31,16 +31,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -93,7 +83,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|*
+name|SecurityManager
 import|;
 end_import
 
@@ -105,7 +95,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
+name|User
 import|;
 end_import
 
@@ -1390,17 +1380,6 @@ name|String
 name|key
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|">>> stale "
-operator|+
-name|key
-argument_list|)
-expr_stmt|;
 synchronized|synchronized
 init|(
 name|staleMap
@@ -1732,7 +1711,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-literal|"com.ideanest.reef.Database.indexChangeListener"
+literal|"org.exist.fluent.Database.indexChangeListener"
 argument_list|)
 decl_stmt|;
 specifier|public

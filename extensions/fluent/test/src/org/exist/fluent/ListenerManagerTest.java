@@ -55,16 +55,12 @@ name|Stub
 import|;
 end_import
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wessels  * Date: Oct 29, 2007  * Time: 8:53:16 PM  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
 name|ListenerManagerTest
 extends|extends
-name|DatabaseHelper
+name|DatabaseTestCase
 block|{
 specifier|private
 name|Mock
