@@ -1209,6 +1209,9 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
+name|IndexSpec
+name|indexSpec
+parameter_list|,
 name|boolean
 name|index
 parameter_list|)
@@ -1225,6 +1228,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
+parameter_list|,
+name|IndexSpec
+name|indexSpec
 parameter_list|)
 block|{
 name|storeNode
@@ -1234,6 +1240,8 @@ argument_list|,
 name|node
 argument_list|,
 name|currentPath
+argument_list|,
+name|indexSpec
 argument_list|,
 literal|true
 argument_list|)

@@ -7299,6 +7299,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+comment|//        LOG.debug("Loaded configuration for collection:  " + getURI());
 return|return
 name|configuration
 return|;
