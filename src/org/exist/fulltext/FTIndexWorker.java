@@ -425,13 +425,12 @@ name|int
 name|newMode
 parameter_list|)
 block|{
-name|setDocument
-argument_list|(
-name|document
-argument_list|,
+name|mode
+operator|=
 name|newMode
-argument_list|)
 expr_stmt|;
+comment|// wolf: unnecessary call to setDocument?
+comment|//        setDocument(document, newMode);
 block|}
 specifier|public
 name|DocumentImpl

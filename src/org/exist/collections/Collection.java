@@ -4007,7 +4007,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param source      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param source      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4126,22 +4126,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|CollectionConfiguration
-name|colconf
-init|=
-name|info
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getConfiguration
-argument_list|(
-name|broker
-argument_list|)
-decl_stmt|;
 name|XMLReader
 name|reader
 init|=
@@ -4149,7 +4133,10 @@ name|getReader
 argument_list|(
 name|broker
 argument_list|,
-name|colconf
+name|info
+operator|.
+name|getCollectionConfig
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|info
@@ -4200,7 +4187,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param data      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param data      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4339,7 +4326,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param node      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param node      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4426,7 +4413,7 @@ throws|,
 name|SAXException
 function_decl|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(Txn, DBBroker, XmldbURI, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param privileged      * @param doParse      * @throws EXistException      * @throws SAXException      */
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param privileged      * @param doParse      * @throws EXistException      * @throws SAXException      */
 specifier|private
 name|void
 name|storeXMLInternal
@@ -4854,6 +4841,15 @@ name|LockException
 throws|,
 name|IOException
 block|{
+specifier|final
+name|CollectionConfiguration
+name|colconf
+init|=
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+decl_stmt|;
 return|return
 name|validateXMLResourceInternal
 argument_list|(
@@ -4862,6 +4858,8 @@ argument_list|,
 name|broker
 argument_list|,
 name|docUri
+argument_list|,
+name|colconf
 argument_list|,
 operator|new
 name|ValidateBlock
@@ -4879,22 +4877,6 @@ name|SAXException
 throws|,
 name|EXistException
 block|{
-name|CollectionConfiguration
-name|colconf
-init|=
-name|info
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getConfiguration
-argument_list|(
-name|broker
-argument_list|)
-decl_stmt|;
 name|XMLReader
 name|reader
 init|=
@@ -4994,6 +4976,11 @@ name|broker
 argument_list|,
 name|docUri
 argument_list|,
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+argument_list|,
 operator|new
 name|ValidateBlock
 argument_list|()
@@ -5047,6 +5034,9 @@ name|broker
 parameter_list|,
 name|XmldbURI
 name|docUri
+parameter_list|,
+name|CollectionConfiguration
+name|config
 parameter_list|,
 name|ValidateBlock
 name|doValidate
@@ -5145,14 +5135,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|CollectionConfiguration
-name|config
-init|=
-name|getConfiguration
-argument_list|(
-name|broker
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|config
@@ -5222,6 +5204,8 @@ operator|new
 name|IndexInfo
 argument_list|(
 name|indexer
+argument_list|,
+name|config
 argument_list|)
 decl_stmt|;
 name|indexer
@@ -5229,6 +5213,8 @@ operator|.
 name|setDocument
 argument_list|(
 name|document
+argument_list|,
+name|config
 argument_list|)
 expr_stmt|;
 name|addObserversToIndexer
@@ -5259,6 +5245,8 @@ argument_list|,
 name|oldDoc
 operator|!=
 literal|null
+argument_list|,
+name|config
 argument_list|)
 argument_list|,
 name|oldDoc
@@ -6082,6 +6070,9 @@ name|docUri
 parameter_list|,
 name|boolean
 name|update
+parameter_list|,
+name|CollectionConfiguration
+name|config
 parameter_list|)
 block|{
 comment|//TODO : is this the right place for such a task ? -pb
@@ -6116,14 +6107,6 @@ condition|)
 return|return
 literal|null
 return|;
-name|CollectionConfiguration
-name|config
-init|=
-name|getConfiguration
-argument_list|(
-name|broker
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|config

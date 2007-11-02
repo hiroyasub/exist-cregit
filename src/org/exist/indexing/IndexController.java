@@ -1032,18 +1032,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|next
-operator|.
-name|getWorker
-argument_list|()
-operator|.
-name|setDocument
-argument_list|(
-name|currentDoc
-argument_list|,
-name|currentMode
-argument_list|)
-expr_stmt|;
+comment|// wolf: setDocument() should have been called before
+comment|//                next.getWorker().setDocument(currentDoc, currentMode);
 name|next
 operator|=
 name|next
@@ -1101,15 +1091,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|worker
-operator|.
-name|setDocument
-argument_list|(
-name|currentDoc
-argument_list|,
-name|currentMode
-argument_list|)
-expr_stmt|;
+comment|// wolf: setDocument() should have been called before
+comment|//            worker.setDocument(currentDoc, currentMode);
 name|current
 operator|=
 name|worker

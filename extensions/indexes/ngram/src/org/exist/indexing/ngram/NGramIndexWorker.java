@@ -4507,12 +4507,11 @@ name|int
 name|newMode
 parameter_list|)
 block|{
-name|setDocument
-argument_list|(
-name|currentDoc
-argument_list|,
+comment|// wolf: unnecessary call to setDocument?
+comment|//    	setDocument(currentDoc, newMode);
+name|mode
+operator|=
 name|newMode
-argument_list|)
 expr_stmt|;
 block|}
 specifier|public
