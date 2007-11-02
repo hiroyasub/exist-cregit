@@ -205,7 +205,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generate an UUID string."
+literal|"Generate a Universally Unique Identifier string."
 argument_list|,
 name|FunctionSignature
 operator|.
