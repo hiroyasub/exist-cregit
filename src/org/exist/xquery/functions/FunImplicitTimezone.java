@@ -364,14 +364,6 @@ argument_list|()
 operator|.
 name|getRawOffset
 argument_list|()
-operator|+
-name|context
-operator|.
-name|getImplicitTimeZone
-argument_list|()
-operator|.
-name|getDSTSavings
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
