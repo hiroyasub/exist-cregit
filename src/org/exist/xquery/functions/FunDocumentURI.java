@@ -493,7 +493,14 @@ operator|)
 name|value
 decl_stmt|;
 comment|//Returns the empty sequence if the node is not a document node.
-comment|//if (node.isDocument()) {
+if|if
+condition|(
+name|node
+operator|.
+name|isDocument
+argument_list|()
+condition|)
+block|{
 name|XmldbURI
 name|path
 init|=
@@ -513,7 +520,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
-comment|//}
+block|}
 block|}
 else|else
 block|{
