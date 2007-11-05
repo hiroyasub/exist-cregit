@@ -609,7 +609,7 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
 operator|+
 comment|//TODO : to be discussed ; until now, it's been used with a null context
 literal|"The query inherits the current execution context, i.e. all "
@@ -679,7 +679,7 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
 operator|+
 literal|"The query inherits the current execution context, i.e. all "
 operator|+
@@ -764,7 +764,7 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq').\n"
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')).\n"
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
@@ -871,7 +871,7 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq').\n"
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')).\n"
 operator|+
 literal|"The query inherits the context described by the XML fragment in the second parameter. "
 operator|+
@@ -992,7 +992,7 @@ literal|"If the URI has no scheme, it is assumed that the query is stored in the
 operator|+
 literal|"URI is interpreted as a database path. This is the same as calling "
 operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
 operator|+
 literal|"The query inherits the first argument's context, i.e. all "
 operator|+
