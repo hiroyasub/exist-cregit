@@ -129,6 +129,27 @@ specifier|protected
 name|NamespaceMap
 name|parent
 decl_stmt|;
+comment|/** 	 * Return whether the given prefix is reserved by the XML spec and should not be 	 * manually bound to namespaces. 	 * 	 * @param prefix the prefix to check 	 * @return<code>true</code> if the prefix is reserved,<code>false</code> if it's available for binding 	 */
+specifier|public
+specifier|static
+name|boolean
+name|isReservedPrefix
+parameter_list|(
+name|String
+name|prefix
+parameter_list|)
+block|{
+return|return
+name|RESERVED
+operator|.
+name|get
+argument_list|(
+name|prefix
+argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
 comment|/** 	 * Create a new namespace map with no inherited bindings.  Immediate bindings can 	 * be specified as a list of key-URI pairs. 	 * @param args a list interleaving keys and their associated URIs; its length must be even 	 */
 specifier|public
 name|NamespaceMap
