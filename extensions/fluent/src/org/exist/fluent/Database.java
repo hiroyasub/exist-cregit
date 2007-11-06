@@ -391,12 +391,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|BrokerPool
-operator|.
-name|isConfigured
-argument_list|(
-name|dbName
-argument_list|)
+name|isStarted
+argument_list|()
 condition|)
 block|{
 name|String
@@ -448,6 +444,22 @@ name|configFile
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/** 	 * Return whether the database has been started and is currently running. 	 * 	 * @return<code>true</code> if the database has been started with any configuration file 	 */
+specifier|public
+specifier|static
+name|boolean
+name|isStarted
+parameter_list|()
+block|{
+return|return
+name|BrokerPool
+operator|.
+name|isConfigured
+argument_list|(
+name|dbName
+argument_list|)
+return|;
 block|}
 comment|/** 	 * Flush the contents of the database to disk.  This ensures that all transactions are written out 	 * and the state of the database is synced.  It shouldn't be necessary any more with the newly 	 * implemented transaction recovery and this method will probably be deprecated in the future. 	 */
 specifier|public

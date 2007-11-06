@@ -228,6 +228,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+name|Database
+operator|.
+name|isStarted
+argument_list|()
+condition|)
+block|{
 name|wipeDatabase
 argument_list|()
 expr_stmt|;
@@ -236,6 +244,7 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
