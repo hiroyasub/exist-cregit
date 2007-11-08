@@ -1764,7 +1764,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^XPDY0002 : variable '\\$(\\S+)' is not set\\..*"
+literal|"^XPDY0002 : variable '*(\\$\\S+)' is not set\\..*"
 argument_list|)
 decl_stmt|;
 comment|/** 	 * Statically analyze a query for various properties. 	 * 	 * @param query the query to analyze 	 * @param params parameters for the query; if necessary parameters are left out they will be listed as required variables in the analysis 	 * @return a query analysis facet 	 */
@@ -1895,6 +1895,11 @@ operator|.
 name|put
 argument_list|(
 name|varName
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
 argument_list|,
 literal|null
 argument_list|)
@@ -2154,7 +2159,7 @@ operator|.
 name|ZERO_OR_MORE
 return|;
 block|}
-comment|/** 		 * Return a list of variables that are required to be defined by this query, excluding any 		 * positional variables that were provided to the {@link QueryService#analyze(String, Object[]) analyze} 		 * method. 		 *  		 * @return a list of variables required by this query 		 */
+comment|/** 		 * Return a list of variables that are required to be defined by this query, excluding any 		 * positional variables that were provided to the {@link QueryService#analyze(String, Object[]) analyze} 		 * method.  The variable names will include the leading '$'. 		 *  		 * @return a list of variables required by this query 		 */
 specifier|public
 name|Collection
 argument_list|<
