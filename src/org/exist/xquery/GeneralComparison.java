@@ -2999,12 +2999,9 @@ literal|"quickNodeSetCompare"
 argument_list|)
 expr_stmt|;
 comment|//get the NodeSet on the left
-name|NodeSet
-name|nodes
+name|Sequence
+name|leftSeq
 init|=
-operator|(
-name|NodeSet
-operator|)
 name|getLeft
 argument_list|()
 operator|.
@@ -3012,6 +3009,23 @@ name|eval
 argument_list|(
 name|contextSequence
 argument_list|)
+decl_stmt|;
+name|NodeSet
+name|nodes
+init|=
+name|leftSeq
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|NodeSet
+operator|.
+name|EMPTY_SET
+else|:
+operator|(
+name|NodeSet
+operator|)
+name|leftSeq
 decl_stmt|;
 comment|//nothing on the left, so nothing to do
 if|if
