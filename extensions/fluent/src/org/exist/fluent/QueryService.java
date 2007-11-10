@@ -148,7 +148,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides facilities for performing queries on an XDatabase.  It cannot  * be instantiated directly; you must obtain an instance from a resource or the database.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * Provides facilities for performing queries on a database.  It cannot  * be instantiated directly; you must obtain an instance from a resource or the database.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
