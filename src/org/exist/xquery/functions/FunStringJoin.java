@@ -422,6 +422,11 @@ decl_stmt|;
 name|Item
 name|next
 decl_stmt|;
+name|boolean
+name|gotOne
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -451,12 +456,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|out
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
+name|gotOne
 operator|&&
 name|sep
 operator|!=
@@ -478,6 +478,10 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|gotOne
+operator|=
+literal|true
 expr_stmt|;
 block|}
 name|Sequence
