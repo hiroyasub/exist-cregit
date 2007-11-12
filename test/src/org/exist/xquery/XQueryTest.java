@@ -14441,7 +14441,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1828168
 specifier|public
 name|void
-name|bugtestPredicateInPredicateEmptyResult_1828168
+name|testPredicateInPredicateEmptyResult_1828168
 parameter_list|()
 block|{
 try|try
