@@ -27,7 +27,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -320,7 +340,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the url indicated by the parameter named "url".  *   * These external variables are accessible to the user XQuery statement :  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggerEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * xxx is the namespace prefix within the XQuery  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the url indicated by the parameter named "url".  *   * Any additional parameters will be declared as external variables with the type xs:string  *   * These external variables for the Trigger are accessible to the user XQuery statement  *<code>xxx:eventType</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collectionName</code> : the name of the collection from which the event is triggered  *<code>xxx:documentName</code> : the name of the document from wich the event is triggered  *<code>xxx:triggerEvent</code> : the kind of triggered event  *<code>xxx:document</code> : the document from wich the event is triggered  * xxx is the namespace prefix within the XQuery  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr> */
 end_comment
 
 begin_class
@@ -347,6 +367,14 @@ init|=
 literal|"finish"
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|DEFAULT_BINDING_PREFIX
+init|=
+literal|"local:"
+decl_stmt|;
+specifier|private
 name|SAXAdapter
 name|adapter
 decl_stmt|;
@@ -368,7 +396,15 @@ name|urlQuery
 init|=
 literal|null
 decl_stmt|;
-comment|/** namespace prefix associated to trigger */
+specifier|private
+name|Properties
+name|userDefinedVariables
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+comment|/** Namespace prefix associated to trigger */
 specifier|private
 name|String
 name|bindingPrefix
@@ -417,8 +453,8 @@ name|collection
 operator|=
 name|parent
 expr_stmt|;
-comment|//for an xquery trigger there must be at least
-comment|//one parameter to specify the xquery
+comment|//for an XQuery trigger there must be at least
+comment|//one parameter to specify the XQuery
 if|if
 condition|(
 name|parameters
@@ -450,6 +486,177 @@ argument_list|(
 literal|"query"
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|Iterator
+name|itParamName
+init|=
+name|parameters
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|itParamName
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|String
+name|paramName
+init|=
+operator|(
+name|String
+operator|)
+name|itParamName
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+comment|//get the binding prefix (if any)
+if|if
+condition|(
+name|paramName
+operator|.
+name|equals
+argument_list|(
+literal|"bindingPrefix"
+argument_list|)
+condition|)
+block|{
+name|String
+name|bindingPrefix
+init|=
+operator|(
+name|String
+operator|)
+name|parameters
+operator|.
+name|get
+argument_list|(
+literal|"bindingPrefix"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|bindingPrefix
+operator|!=
+literal|null
+operator|&&
+operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|bindingPrefix
+operator|.
+name|trim
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|this
+operator|.
+name|bindingPrefix
+operator|=
+name|bindingPrefix
+operator|.
+name|trim
+argument_list|()
+operator|+
+literal|":"
+expr_stmt|;
+block|}
+block|}
+comment|//get the URL of the query (if any)
+if|else if
+condition|(
+name|paramName
+operator|.
+name|equals
+argument_list|(
+literal|"url"
+argument_list|)
+condition|)
+block|{
+name|urlQuery
+operator|=
+operator|(
+name|String
+operator|)
+name|parameters
+operator|.
+name|get
+argument_list|(
+literal|"url"
+argument_list|)
+expr_stmt|;
+block|}
+comment|//get the query (if any)
+if|else if
+condition|(
+name|paramName
+operator|.
+name|equals
+argument_list|(
+literal|"query"
+argument_list|)
+condition|)
+block|{
+name|strQuery
+operator|=
+operator|(
+name|String
+operator|)
+name|parameters
+operator|.
+name|get
+argument_list|(
+literal|"query"
+argument_list|)
+expr_stmt|;
+block|}
+comment|//make any other parameters available as external variables for the query
+else|else
+block|{
+name|userDefinedVariables
+operator|.
+name|put
+argument_list|(
+name|paramName
+argument_list|,
+name|parameters
+operator|.
+name|get
+argument_list|(
+name|paramName
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//set a default binding prefix if none was specified
+if|if
+condition|(
+name|this
+operator|.
+name|bindingPrefix
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|bindingPrefix
+operator|=
+name|DEFAULT_BINDING_PREFIX
+expr_stmt|;
+block|}
+comment|//old
 if|if
 condition|(
 name|urlQuery
@@ -461,66 +668,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|this
-operator|.
-name|bindingPrefix
-operator|=
-operator|(
-name|String
-operator|)
-name|parameters
-operator|.
-name|get
-argument_list|(
-literal|"bindingPrefix"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|this
-operator|.
-name|bindingPrefix
-operator|!=
-literal|null
-operator|&&
-operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|this
-operator|.
-name|bindingPrefix
-operator|.
-name|trim
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|this
-operator|.
-name|bindingPrefix
-operator|=
-name|this
-operator|.
-name|bindingPrefix
-operator|.
-name|trim
-argument_list|()
-operator|+
-literal|":"
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//if no binding prefix is specified default to local
-name|this
-operator|.
-name|bindingPrefix
-operator|=
-literal|"local:"
-expr_stmt|;
-block|}
 name|service
 operator|=
 name|broker
@@ -531,6 +678,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|//no query to execute
 name|LOG
 operator|.
 name|error
@@ -560,7 +708,7 @@ name|querySource
 init|=
 literal|null
 decl_stmt|;
-comment|//try and get the xquery from a url
+comment|//try and get the XQuery from a URL
 if|if
 condition|(
 name|urlQuery
@@ -601,7 +749,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//try and get the xquery from a string
+comment|//try and get the XQuery from a string
 if|else if
 condition|(
 name|strQuery
@@ -714,13 +862,13 @@ operator|.
 name|TRIGGER
 argument_list|)
 decl_stmt|;
-comment|//TODO : futher initializations ?
+comment|//TODO : further initialisations ?
 name|CompiledXQuery
 name|compiledQuery
 decl_stmt|;
 try|try
 block|{
-comment|//compile the xquery
+comment|//compile the XQuery
 name|compiledQuery
 operator|=
 name|service
@@ -795,6 +943,64 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//declare user defined parameters as external variables
+for|for
+control|(
+name|Iterator
+name|itUserVarName
+init|=
+name|userDefinedVariables
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|itUserVarName
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|String
+name|varName
+init|=
+operator|(
+name|String
+operator|)
+name|itUserVarName
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|String
+name|varValue
+init|=
+name|userDefinedVariables
+operator|.
+name|getProperty
+argument_list|(
+name|varName
+argument_list|)
+decl_stmt|;
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+name|varName
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|varValue
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|existingDocument
@@ -862,7 +1068,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//xml document
+comment|//XML document
 name|context
 operator|.
 name|declareVariable
@@ -911,7 +1117,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|//execute the xquery
+comment|//execute the XQuery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
@@ -1047,7 +1253,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//compile the xquery
+comment|//compile the XQuery
 name|compiledQuery
 operator|=
 name|service
@@ -1125,6 +1331,64 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//declare user defined parameters as external variables
+for|for
+control|(
+name|Iterator
+name|itUserVarName
+init|=
+name|userDefinedVariables
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|itUserVarName
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|String
+name|varName
+init|=
+operator|(
+name|String
+operator|)
+name|itUserVarName
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|String
+name|varValue
+init|=
+name|userDefinedVariables
+operator|.
+name|getProperty
+argument_list|(
+name|varName
+argument_list|)
+decl_stmt|;
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|bindingPrefix
+operator|+
+name|varName
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|varValue
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|event
@@ -1154,7 +1418,7 @@ operator|instanceof
 name|BinaryDocument
 condition|)
 block|{
-comment|//binary document
+comment|//Binary document
 name|BinaryDocument
 name|bin
 init|=
@@ -1195,7 +1459,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//xml document
+comment|//XML document
 name|context
 operator|.
 name|declareVariable
@@ -1242,7 +1506,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//execute the xquery
+comment|//execute the XQuery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
