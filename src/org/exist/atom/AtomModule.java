@@ -123,6 +123,10 @@ name|URL
 name|getContextURL
 parameter_list|()
 function_decl|;
+name|String
+name|getModuleLoadPath
+parameter_list|()
+function_decl|;
 block|}
 name|void
 name|init
