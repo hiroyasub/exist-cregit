@@ -203,6 +203,8 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -236,6 +238,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
@@ -642,6 +646,8 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -675,6 +681,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode

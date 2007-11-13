@@ -1964,6 +1964,11 @@ return|return
 name|EMPTY_ITERATOR
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|static
 specifier|final
 name|Iterator
@@ -2006,6 +2011,11 @@ throw|;
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|static
 specifier|final
 name|Iterable
@@ -2015,6 +2025,11 @@ operator|new
 name|Iterable
 argument_list|()
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|Iterator
 name|iterator
