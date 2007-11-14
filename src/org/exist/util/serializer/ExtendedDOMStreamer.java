@@ -225,7 +225,7 @@ argument_list|)
 throw|;
 name|xmlSerializer
 operator|.
-name|toSAX
+name|toReceiver
 argument_list|(
 operator|(
 operator|(
@@ -236,6 +236,8 @@ operator|)
 operator|.
 name|getReference
 argument_list|()
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
