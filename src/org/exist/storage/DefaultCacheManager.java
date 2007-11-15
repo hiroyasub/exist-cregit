@@ -220,6 +220,10 @@ specifier|private
 name|int
 name|maxCacheSize
 decl_stmt|;
+specifier|private
+name|int
+name|pageSize
+decl_stmt|;
 comment|/**      * Signals that a resize had been requested by a cache, but      * the request could not be accepted during normal operations.      * The manager might try to shrink the largest cache during the      * next sync event.      */
 specifier|private
 name|Cache
@@ -248,8 +252,6 @@ name|getId
 argument_list|()
 expr_stmt|;
 name|int
-name|pageSize
-decl_stmt|,
 name|cacheSize
 decl_stmt|;
 if|if
@@ -1020,6 +1022,17 @@ parameter_list|()
 block|{
 return|return
 name|currentPageCount
+return|;
+block|}
+specifier|public
+name|long
+name|getSizeInBytes
+parameter_list|()
+block|{
+return|return
+name|currentPageCount
+operator|*
+name|pageSize
 return|;
 block|}
 specifier|public

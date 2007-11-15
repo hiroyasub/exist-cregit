@@ -3292,6 +3292,11 @@ parameter_list|()
 block|{
 return|return
 name|reservedMem
+operator|-
+name|cacheManager
+operator|.
+name|getSizeInBytes
+argument_list|()
 return|;
 block|}
 comment|/** 	 * Whether or not the database instance is being initialized.  	 *  	 * @return<code>true</code> is the database instance is being initialized 	 */
