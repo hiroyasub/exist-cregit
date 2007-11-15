@@ -4263,6 +4263,10 @@ condition|)
 block|{
 comment|// rewind the input stream to the position from where we started
 comment|// for the previous ancestor node
+name|prevPosition
+operator|=
+name|markedPosition
+expr_stmt|;
 operator|(
 operator|(
 name|BFile
@@ -4338,7 +4342,7 @@ name|prevPosition
 expr_stmt|;
 name|markedId
 operator|=
-name|lastMarked
+name|nodeId
 expr_stmt|;
 block|}
 block|}
