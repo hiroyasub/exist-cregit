@@ -1289,6 +1289,13 @@ name|inheritNamespaces
 init|=
 literal|true
 decl_stmt|;
+comment|/** 	 * Should empty order greatest or least? 	 */
+specifier|private
+name|boolean
+name|orderEmptyGreatest
+init|=
+literal|true
+decl_stmt|;
 comment|/** 	 * The position of the currently processed item in the context  	 * sequence. This field has to be set on demand, for example, 	 * before calling the fn:position() function.  	 */
 specifier|private
 name|int
@@ -1740,6 +1747,14 @@ operator|=
 name|this
 operator|.
 name|inheritNamespaces
+expr_stmt|;
+name|ctx
+operator|.
+name|orderEmptyGreatest
+operator|=
+name|this
+operator|.
+name|orderEmptyGreatest
 expr_stmt|;
 name|ctx
 operator|.
@@ -4145,6 +4160,33 @@ operator|.
 name|inheritNamespaces
 operator|=
 name|inherit
+expr_stmt|;
+block|}
+comment|/** 	 * Returns true if order empty is set to gretest, otherwise false      * for order empty is least. 	 */
+specifier|public
+name|boolean
+name|orderEmptyGreatest
+parameter_list|()
+block|{
+return|return
+name|orderEmptyGreatest
+return|;
+block|}
+comment|/**      * The method<code>setOrderEmptyGreatest</code>      *      * @param order a<code>boolean</code> value      */
+specifier|public
+name|void
+name|setOrderEmptyGreatest
+parameter_list|(
+specifier|final
+name|boolean
+name|order
+parameter_list|)
+block|{
+name|this
+operator|.
+name|orderEmptyGreatest
+operator|=
+name|order
 expr_stmt|;
 block|}
 comment|/** 	 * @return iterator over all built-in modules currently 	 * registered. 	 */
