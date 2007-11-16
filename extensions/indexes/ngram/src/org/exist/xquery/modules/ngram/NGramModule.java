@@ -120,6 +120,18 @@ name|NGramSearch
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|HighlightMatches
+operator|.
+name|signature
+argument_list|,
+name|HighlightMatches
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public
@@ -130,7 +142,7 @@ name|super
 argument_list|(
 name|functions
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
