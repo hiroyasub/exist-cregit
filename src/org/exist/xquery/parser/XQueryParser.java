@@ -3851,6 +3851,34 @@ operator|==
 literal|0
 condition|)
 block|{
+name|handleException
+argument_list|(
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XPST0003 in line "
+operator|+
+name|e
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|", column "
+operator|+
+name|e
+operator|.
+name|getColumn
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{

@@ -261,6 +261,14 @@ begin_import
 import|import
 name|antlr
 operator|.
+name|NoViableAltException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
 name|collections
 operator|.
 name|AST
@@ -618,6 +626,19 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|ast
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unknown XQuery parser error: the parser returned an empty syntax tree."
+argument_list|)
+throw|;
 comment|//            LOG.debug("Generated AST: " + ast.toStringTree());
 name|PathExpr
 name|expr
