@@ -738,7 +738,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"err:XPTY004 in function '"
+literal|"err:XPTY0004 in function '"
 operator|+
 name|getSignature
 argument_list|()

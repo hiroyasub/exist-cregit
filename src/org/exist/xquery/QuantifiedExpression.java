@@ -487,7 +487,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid type for variable $"
+literal|"XPTY0004: Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -685,7 +685,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid type for variable $"
+literal|"XPTY0004: Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -739,7 +739,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY004: Invalid type for variable $"
+literal|"XPTY0004: Invalid type for variable $"
 operator|+
 name|varName
 operator|+
