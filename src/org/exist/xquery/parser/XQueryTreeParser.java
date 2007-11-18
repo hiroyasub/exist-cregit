@@ -1443,22 +1443,7 @@ name|getNextSibling
 argument_list|()
 expr_stmt|;
 comment|// Added for handling empty mainModule /ljo
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"EMPTY EXPR = '"
-operator|+
-name|eof
-operator|.
-name|getText
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("EMPTY EXPR");
 if|if
 condition|(
 name|eof
