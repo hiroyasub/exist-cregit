@@ -1109,7 +1109,10 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-literal|"/db"
+name|collection
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 block|}
 decl_stmt|;
