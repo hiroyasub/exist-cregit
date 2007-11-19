@@ -128,6 +128,9 @@ name|DecimalValue
 extends|extends
 name|NumericValue
 block|{
+comment|// i Ã 10^-n where i, n = integers  and n>= 0
+comment|// All Â·minimally conformingÂ· processors Â·mustÂ· support decimal numbers
+comment|// with a minimum of 18 decimal digits (i.e., with a Â·totalDigitsÂ· of 18)
 specifier|private
 specifier|static
 specifier|final
@@ -873,11 +876,23 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert double value '"
+literal|"err:FORG0001: cannot convert  '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|this
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|" ("
 operator|+
 name|value
 operator|+
-literal|"' into "
+literal|")' into "
 operator|+
 name|Type
 operator|.

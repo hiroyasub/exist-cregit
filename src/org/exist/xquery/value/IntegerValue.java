@@ -1325,7 +1325,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert '"
+literal|"err:FORG0001: cannot convert '"
 operator|+
 name|Type
 operator|.
@@ -1337,11 +1337,11 @@ name|getType
 argument_list|()
 argument_list|)
 operator|+
-literal|"("
+literal|" ("
 operator|+
 name|value
 operator|+
-literal|")' "
+literal|")' into "
 operator|+
 name|Type
 operator|.

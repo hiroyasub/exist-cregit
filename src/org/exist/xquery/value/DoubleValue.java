@@ -90,6 +90,9 @@ name|DoubleValue
 extends|extends
 name|NumericValue
 block|{
+comment|// m Ã 2^e, where m is an integer whose absolute value is less than 2^53,
+comment|// and e is an integer between -1075 and 970, inclusive.
+comment|// In addition also -INF, +INF and NaN.
 specifier|public
 specifier|final
 specifier|static

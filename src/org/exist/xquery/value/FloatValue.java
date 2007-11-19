@@ -94,6 +94,9 @@ name|FloatValue
 extends|extends
 name|NumericValue
 block|{
+comment|// m Ã 2^e, where m is an integer whose absolute value is less than 2^24,
+comment|// and e is an integer between -149 and 104, inclusive.
+comment|// In addition also -INF, +INF and NaN.
 specifier|public
 specifier|final
 specifier|static
@@ -267,7 +270,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|/* 		if (value == Float.POSITIVE_INFINITY) 			return "INF";  		if (value == Float.NEGATIVE_INFINITY) 			return "-INF";		 		String s = String.valueOf(value); 		s = s.replaceAll("\\.0+$", "");		 		return s;	 		*/
+comment|/* 		if (value == Float.POSITIVE_INFINITY) 			return "INF";  		if (value == Float.NEGATIVE_INFINITY) 			return "-INF";		 		String s = String.valueOf(value); 		s = s.replaceAll("\\.0+$", ""); 		return s;	 		*/
 name|FastStringBuffer
 name|sb
 init|=
