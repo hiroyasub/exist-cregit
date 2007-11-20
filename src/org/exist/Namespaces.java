@@ -79,7 +79,7 @@ specifier|static
 name|String
 name|XQUERY_LOCAL_NS
 init|=
-literal|"http://www.w3.org/2003/08/xquery-local-functions"
+literal|"http://www.w3.org/2005/xquery-local-functions"
 decl_stmt|;
 specifier|public
 specifier|final
