@@ -769,6 +769,17 @@ operator|.
 name|makePersistent
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|newRoots
+operator|==
+literal|null
+condition|)
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
 for|for
 control|(
 name|int
