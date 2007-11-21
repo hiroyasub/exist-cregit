@@ -1324,6 +1324,18 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|request
+operator|.
+name|setAttribute
+argument_list|(
+literal|"org.exist.forward.servlet-path"
+argument_list|,
+name|request
+operator|.
+name|getServletPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// finally, execute the forward
 name|dispatcher
 operator|.
