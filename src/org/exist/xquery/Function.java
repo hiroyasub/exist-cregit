@@ -1404,8 +1404,8 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
 operator|!
+operator|(
 name|Type
 operator|.
 name|subTypeOf
@@ -1417,6 +1417,24 @@ argument_list|()
 argument_list|,
 name|returnType
 argument_list|)
+operator|||
+comment|//because () is seen as a node
+operator|(
+name|type
+operator|.
+name|getPrimaryType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|EMPTY
+operator|&&
+name|returnType
+operator|==
+name|Type
+operator|.
+name|NODE
+operator|)
 operator|)
 condition|)
 block|{
