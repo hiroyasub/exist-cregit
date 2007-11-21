@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension ExecuteFunction   *   * Execute a sql statement against a sql db  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-09-24  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension ExecuteFunction   *   * Execute a SQL statement against a SQL capable Database  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-11-21  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -377,7 +377,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery execute() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the execute() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		An xs:node representing the sql result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * evaluate the call to the XQuery execute() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the execute() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A node representing the SQL result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -392,7 +392,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//was a connection and sql statement specified?
+comment|//was a connection and SQL statement specified?
 if|if
 condition|(
 name|args
@@ -512,7 +512,7 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
-comment|//get the sql statement
+comment|//get the SQL statement
 name|String
 name|sql
 init|=
@@ -524,7 +524,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|//execute the sql statement
+comment|//execute the SQL statement
 name|stmt
 operator|=
 name|con
@@ -544,7 +544,7 @@ argument_list|)
 condition|)
 block|{
 comment|/* SQL Query returned results */
-comment|//iterate through the result set building an xml document
+comment|//iterate through the result set building an XML document
 name|rs
 operator|=
 name|stmt
@@ -585,7 +585,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<sql:row index=\""
+literal|"<"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":row index=\""
 operator|+
 name|rs
 operator|.
@@ -651,7 +657,7 @@ name|effectiveBooleanValue
 argument_list|()
 condition|)
 block|{
-comment|//use column names as the xml node
+comment|//use column names as the XML node
 comment|/** Spaces in column names are replaced with underscore's */
 name|xmlBuf
 operator|.
@@ -659,6 +665,8 @@ name|append
 argument_list|(
 literal|"<"
 operator|+
+name|escapeXmlAttr
+argument_list|(
 name|columnName
 operator|.
 name|replace
@@ -667,8 +675,15 @@ literal|' '
 argument_list|,
 literal|'_'
 argument_list|)
+argument_list|)
 operator|+
-literal|" sql:type=\""
+literal|" "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":type=\""
 operator|+
 name|rsmd
 operator|.
@@ -705,6 +720,8 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
+name|escapeXmlText
+argument_list|(
 name|rs
 operator|.
 name|getString
@@ -714,6 +731,7 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|xmlBuf
 operator|.
@@ -721,6 +739,8 @@ name|append
 argument_list|(
 literal|"</"
 operator|+
+name|escapeXmlAttr
+argument_list|(
 name|columnName
 operator|.
 name|replace
@@ -729,6 +749,7 @@ literal|' '
 argument_list|,
 literal|'_'
 argument_list|)
+argument_list|)
 operator|+
 literal|">"
 argument_list|)
@@ -736,14 +757,23 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//DONT use column names as the xml node
+comment|//DONT use column names as the XML node
 name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<sql:field name=\""
+literal|"<"
 operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":field name=\""
+operator|+
+name|escapeXmlAttr
+argument_list|(
 name|columnName
+argument_list|)
 operator|+
 literal|"\" sql:type=\""
 operator|+
@@ -782,6 +812,8 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
+name|escapeXmlText
+argument_list|(
 name|rs
 operator|.
 name|getString
@@ -791,12 +823,19 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</sql:field>"
+literal|"</"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":field>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -806,7 +845,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</sql:row>"
+literal|"</"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":row>"
 argument_list|)
 expr_stmt|;
 name|iRows
@@ -819,7 +864,19 @@ name|insert
 argument_list|(
 literal|0
 argument_list|,
-literal|"<sql:result xmlns:sql=\""
+literal|"<"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":result xmlns:"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|"=\""
 operator|+
 name|SQLModule
 operator|.
@@ -842,7 +899,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</sql:result>"
+literal|"</"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":result>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -853,7 +916,19 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<sql:result xmlns:sql=\""
+literal|"<"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":result xmlns:"
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|"=\""
 operator|+
 name|SQLModule
 operator|.
@@ -870,7 +945,7 @@ literal|"\"/>"
 argument_list|)
 expr_stmt|;
 block|}
-comment|//return the xml result set
+comment|//return the XML result set
 return|return
 name|ModuleUtils
 operator|.
@@ -915,7 +990,7 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|//close any recordset or statement
+comment|//close any record set or statement
 try|try
 block|{
 if|if
@@ -957,7 +1032,7 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
-comment|//explicitly ready for gc
+comment|//explicitly ready for Garbage Collection
 name|rs
 operator|=
 literal|null
@@ -1159,6 +1234,107 @@ operator|.
 name|ANY_TYPE
 return|;
 block|}
+block|}
+specifier|private
+specifier|static
+name|String
+name|escapeXmlText
+parameter_list|(
+name|String
+name|text
+parameter_list|)
+block|{
+name|String
+name|work
+init|=
+name|text
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\&"
+argument_list|,
+literal|"\\&amp;"
+argument_list|)
+decl_stmt|;
+name|work
+operator|=
+name|work
+operator|.
+name|replaceAll
+argument_list|(
+literal|"<"
+argument_list|,
+literal|"\\&lt;"
+argument_list|)
+expr_stmt|;
+name|work
+operator|=
+name|work
+operator|.
+name|replaceAll
+argument_list|(
+literal|">"
+argument_list|,
+literal|"\\&gt;"
+argument_list|)
+expr_stmt|;
+return|return
+name|work
+return|;
+block|}
+specifier|private
+specifier|static
+name|String
+name|escapeXmlAttr
+parameter_list|(
+name|String
+name|attr
+parameter_list|)
+block|{
+if|if
+condition|(
+name|attr
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|work
+init|=
+name|escapeXmlText
+argument_list|(
+name|attr
+argument_list|)
+decl_stmt|;
+name|work
+operator|=
+name|work
+operator|.
+name|replaceAll
+argument_list|(
+literal|"'"
+argument_list|,
+literal|"\\&apos;"
+argument_list|)
+expr_stmt|;
+name|work
+operator|=
+name|work
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\""
+argument_list|,
+literal|"\\&quot;"
+argument_list|)
+expr_stmt|;
+return|return
+name|work
+return|;
+block|}
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class
