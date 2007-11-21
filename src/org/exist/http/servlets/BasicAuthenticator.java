@@ -487,7 +487,7 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
-comment|//return the authenicated user
+comment|//return the authenticated user
 return|return
 name|user
 return|;

@@ -59,16 +59,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|security
 operator|.
 name|Principal
@@ -408,7 +398,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the REST-style interface if eXist is running within  * a servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
+comment|/**  * Implements the REST-style interface if eXist is running within  * a Servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -1521,7 +1511,7 @@ comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
 comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fouth, process the request
+comment|//fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -2226,7 +2216,7 @@ comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
 comment|//		"Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fouth, process the request
+comment|//fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -2423,7 +2413,7 @@ name|io
 operator|.
 name|IOException
 block|{
-comment|// First try to validate the principial if passed from the servlet engine
+comment|// First try to validate the principal if passed from the Servlet engine
 name|Principal
 name|principal
 init|=
@@ -2552,6 +2542,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//Secondly try basic authentication
 name|String
 name|auth
 init|=
