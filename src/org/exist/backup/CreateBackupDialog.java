@@ -183,7 +183,7 @@ name|exist
 operator|.
 name|client
 operator|.
-name|ZipFilter
+name|MimeTypeFileFilter
 import|;
 end_import
 
@@ -718,8 +718,10 @@ operator|.
 name|addChoosableFileFilter
 argument_list|(
 operator|new
-name|ZipFilter
-argument_list|()
+name|MimeTypeFileFilter
+argument_list|(
+literal|"application/zip"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|chooser
