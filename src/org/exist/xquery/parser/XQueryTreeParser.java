@@ -17424,8 +17424,7 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
-comment|// fixme! - need to check this and the other
-comment|// type tests again. /ljo
+comment|//QName qname= QName.parse(staticContext, qn2.getText(), "");
 name|QName
 name|qname
 init|=
@@ -17439,10 +17438,17 @@ name|qn2
 operator|.
 name|getText
 argument_list|()
-argument_list|,
-literal|""
 argument_list|)
 decl_stmt|;
+comment|// fixme! - use arity two parse()
+comment|// plus qname.setNamespaceURI(null)?
+name|qname
+operator|.
+name|setNamespaceURI
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 name|type
 operator|.
 name|setNodeName
@@ -25788,10 +25794,37 @@ name|getText
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// fixme! - check why these two make for a 120
-comment|// xqts test score difference./ljo
-comment|// Should not this be in the default/empty namespace?
-comment|//QName qname= QName.parse(staticContext, qn.getText(), "");
+if|if
+condition|(
+name|axis
+operator|==
+name|Constants
+operator|.
+name|ATTRIBUTE_AXIS
+condition|)
+block|{
+name|qname
+operator|.
+name|setNamespaceURI
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|test
+operator|=
+operator|new
+name|NameTest
+argument_list|(
+name|Type
+operator|.
+name|ATTRIBUTE
+argument_list|,
+name|qname
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|test
 operator|=
 operator|new
@@ -25804,23 +25837,7 @@ argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|axis
-operator|==
-name|Constants
-operator|.
-name|ATTRIBUTE_AXIS
-condition|)
-name|test
-operator|.
-name|setType
-argument_list|(
-name|Type
-operator|.
-name|ATTRIBUTE
-argument_list|)
-expr_stmt|;
+block|}
 break|break;
 block|}
 case|case
@@ -27994,8 +28011,6 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
-comment|//qname= QName.parse(staticContext, attr.getText(), null);
-comment|//fixme! - kolla ovan./ljo
 name|qname
 operator|=
 name|QName
@@ -28008,11 +28023,15 @@ name|attr
 operator|.
 name|getText
 argument_list|()
-argument_list|,
-literal|""
 argument_list|)
 expr_stmt|;
-comment|//qname.setNamespaceURI(null);
+name|qname
+operator|.
+name|setNamespaceURI
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 break|break;
 block|}
 case|case
