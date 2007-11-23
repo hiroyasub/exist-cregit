@@ -229,7 +229,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Start up the database, configured using the given config file.  This method must be 	 * called precisely once before making use of any facilities offered in this package. 	 * 	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database has already been started 	 */
+comment|/** 	 * Start up the database, configured using the given config file.  This method must be 	 * called precisely once before making use of any facilities offered in this package.  The 	 * configuration file is typically called 'conf.xml' and you can find a sample one in the root 	 * directory of eXist's distribution. 	 * 	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database has already been started 	 */
 specifier|public
 specifier|static
 name|void

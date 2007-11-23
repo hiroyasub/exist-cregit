@@ -1198,7 +1198,7 @@ return|return
 name|context
 return|;
 block|}
-comment|/** 	 * Convert the given object into a value appropriate for being defined as 	 * the value of a variable in an XQuery.  This will extract a sequence out 	 * of all database objects, and pass other objects through untouched. 	 * Convertible objects that are defined in the JDK will be automatically 	 * converted by eXist. 	 * @see org.exist.xquery.XPathUtil#javaObjectToXPath(Object, XQueryContext, boolean) 	 * 	 * @param o the object to convert to a database value 	 * @return the converted value, ready for assignment to an XQuery variable 	 */
+comment|/** 	 * Convert the given object into a value appropriate for being defined as 	 * the value of a variable in an XQuery.  This will extract a sequence out 	 * of all database objects, convert collections and arrays into sequences 	 * recursively, convert<code>null</code> into an empty sequence, and 	 * pass other objects through untouched. 	 * Convertible objects that are defined in the JDK will be automatically 	 * converted by eXist. 	 * @see org.exist.xquery.XPathUtil#javaObjectToXPath(Object, XQueryContext, boolean) 	 * 	 * @param o the object to convert to a database value 	 * @return the converted value, ready for assignment to an XQuery variable 	 */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1212,6 +1212,18 @@ name|Object
 name|o
 parameter_list|)
 block|{
+if|if
+condition|(
+name|o
+operator|==
+literal|null
+condition|)
+return|return
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+return|;
 if|if
 condition|(
 name|o
