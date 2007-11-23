@@ -8181,6 +8181,8 @@ return|return
 literal|null
 return|;
 block|}
+try|try
+block|{
 if|if
 condition|(
 operator|!
@@ -8209,8 +8211,6 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
-try|try
-block|{
 name|DocumentImpl
 name|doc
 init|=
