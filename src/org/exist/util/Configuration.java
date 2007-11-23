@@ -4701,6 +4701,8 @@ argument_list|(
 literal|"Cannot find security manager class "
 operator|+
 name|securityManagerClassName
+argument_list|,
+name|ex
 argument_list|)
 throw|;
 block|}
@@ -4720,6 +4722,8 @@ name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|ex
 argument_list|)
 throw|;
 block|}
