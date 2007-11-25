@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR 2.7.7 (2006-11-01): "XQuery.g" -> "XQueryParser.java"$
+comment|// $ANTLR 2.7.4: "XQuery.g" -> "XQueryParser.java"$
 end_comment
 
 begin_package

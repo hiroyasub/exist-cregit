@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR 2.7.7 (2006-11-01): "XQueryTree.g" -> "XQueryTreeParser.java"$
+comment|// $ANTLR 2.7.4: "XQueryTree.g" -> "XQueryTreeParser.java"$
 end_comment
 
 begin_package
@@ -17424,7 +17424,6 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
-comment|//QName qname= QName.parse(staticContext, qn2.getText(), "");
 name|QName
 name|qname
 init|=
@@ -17440,13 +17439,13 @@ name|getText
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// fixme! - use arity two parse()
-comment|// plus qname.setNamespaceURI(null)?
+comment|// WM: namespace should not be null as null means: incomplete
+comment|// QName == wildcard
 name|qname
 operator|.
 name|setNamespaceURI
 argument_list|(
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|type
@@ -28025,13 +28024,9 @@ name|getText
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|qname
-operator|.
-name|setNamespaceURI
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+comment|// WM: namespace should not be null as null means: incomplete
+comment|// QName == wildcard
+comment|//          qname.setNamespaceURI(null);
 break|break;
 block|}
 case|case
