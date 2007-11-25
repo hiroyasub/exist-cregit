@@ -391,6 +391,16 @@ name|DatabaseConfigurationException
 block|{
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|server
+operator|.
+name|isRegistered
+argument_list|(
+name|name
+argument_list|)
+condition|)
 name|server
 operator|.
 name|registerMBean
