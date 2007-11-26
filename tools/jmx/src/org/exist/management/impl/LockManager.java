@@ -10,8 +10,22 @@ operator|.
 name|exist
 operator|.
 name|management
+operator|.
+name|impl
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|management
+operator|.
+name|LockManagerMBean
+import|;
+end_import
 
 begin_import
 import|import
@@ -59,7 +73,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|Iterator
 import|;
 end_import
 
@@ -69,7 +83,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Map
 import|;
 end_import
 
