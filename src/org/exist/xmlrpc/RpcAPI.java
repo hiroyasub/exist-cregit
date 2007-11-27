@@ -112,7 +112,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Defines the methods callable through the XMLRPC interface.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  *  Defines the methods callable through the XMLRPC interface.  *  * @author     Wolfgang Meier<wolfgang@exist-db.org>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_interface
@@ -159,6 +159,14 @@ name|String
 name|STATIC_DOCUMENTS
 init|=
 literal|"static-documents"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROTECTED_MODE
+init|=
+literal|"protected"
 decl_stmt|;
 specifier|public
 specifier|static

@@ -256,6 +256,12 @@ name|outputProperties
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|boolean
+name|protectedMode
+init|=
+literal|false
+decl_stmt|;
 comment|/**      * Creates a new<code>RemoteXPathQueryService</code> instance.      *      * @param collection a<code>RemoteCollection</code> value      */
 specifier|public
 name|RemoteXPathQueryService
@@ -402,6 +408,24 @@ operator|.
 name|getPath
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|protectedMode
+condition|)
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|PROTECTED_MODE
+argument_list|,
+name|collection
+operator|.
+name|getPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Vector
@@ -1218,6 +1242,24 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|protectedMode
+condition|)
+name|optParams
+operator|.
+name|put
+argument_list|(
+name|RpcAPI
+operator|.
+name|PROTECTED_MODE
+argument_list|,
+name|collection
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Vector
 name|params
 init|=
@@ -2028,7 +2070,10 @@ name|void
 name|beginProtected
 parameter_list|()
 block|{
-comment|// not yet supported
+name|protectedMode
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.XPathQueryServiceImpl#endProtected()      */
 specifier|public
@@ -2036,7 +2081,10 @@ name|void
 name|endProtected
 parameter_list|()
 block|{
-comment|// not yet supported
+name|protectedMode
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 end_class
