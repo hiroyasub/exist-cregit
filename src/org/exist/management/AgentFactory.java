@@ -74,7 +74,7 @@ name|getProperty
 argument_list|(
 literal|"exist.jmxagent"
 argument_list|,
-literal|"org.exist.management.JMXAgent"
+literal|"org.exist.management.impl.JMXAgent"
 argument_list|)
 decl_stmt|;
 try|try
