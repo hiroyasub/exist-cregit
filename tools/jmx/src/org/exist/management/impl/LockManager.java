@@ -23,6 +23,8 @@ name|exist
 operator|.
 name|management
 operator|.
+name|impl
+operator|.
 name|LockManagerMBean
 import|;
 end_import

@@ -238,6 +238,8 @@ name|exist
 operator|.
 name|management
 operator|.
+name|impl
+operator|.
 name|LockManager
 argument_list|()
 argument_list|)
@@ -303,6 +305,8 @@ operator|.
 name|exist
 operator|.
 name|management
+operator|.
+name|impl
 operator|.
 name|Database
 argument_list|(
