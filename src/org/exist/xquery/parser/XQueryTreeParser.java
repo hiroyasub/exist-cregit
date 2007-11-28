@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR 2.7.4: "XQueryTree.g" -> "XQueryTreeParser.java"$
+comment|// $ANTLR 2.7.7 (2006-11-01): "XQueryTree.g" -> "XQueryTreeParser.java"$
 end_comment
 
 begin_package
@@ -17437,17 +17437,10 @@ name|qn2
 operator|.
 name|getText
 argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// WM: namespace should not be null as null means: incomplete
-comment|// QName == wildcard
-name|qname
-operator|.
-name|setNamespaceURI
-argument_list|(
+argument_list|,
 literal|""
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|type
 operator|.
 name|setNodeName
@@ -28022,11 +28015,10 @@ name|attr
 operator|.
 name|getText
 argument_list|()
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
-comment|// WM: namespace should not be null as null means: incomplete
-comment|// QName == wildcard
-comment|//          qname.setNamespaceURI(null);
 break|break;
 block|}
 case|case
