@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|scheduler
 operator|.
-name|SystemJob
+name|UserJavaJob
 import|;
 end_import
 
@@ -70,8 +70,16 @@ specifier|public
 class|class
 name|Sync
 extends|extends
-name|SystemJob
+name|UserJavaJob
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|JOB_GROUP
+init|=
+literal|"eXist.internal"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static

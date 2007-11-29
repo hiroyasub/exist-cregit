@@ -32,7 +32,6 @@ operator|.
 name|Job
 block|{
 specifier|public
-specifier|final
 specifier|static
 name|String
 name|JOB_GROUP

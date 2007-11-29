@@ -96,7 +96,7 @@ specifier|static
 name|String
 name|JOB_GROUP
 init|=
-literal|"eXist.SystemTask"
+literal|"eXist.System"
 decl_stmt|;
 specifier|private
 name|SystemTask

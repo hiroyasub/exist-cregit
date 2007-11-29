@@ -1534,14 +1534,7 @@ name|ArrayList
 argument_list|()
 decl_stmt|;
 comment|//TODO : remove when SystemTask has a getPeriodicity() method
-specifier|private
-name|Vector
-name|systemTasksPeriods
-init|=
-operator|new
-name|Vector
-argument_list|()
-decl_stmt|;
+comment|//private Vector systemTasksPeriods = new Vector();
 comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
 specifier|private
 name|Stack
@@ -1826,7 +1819,7 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
-comment|//TODO : sanity check : the synch period should be reasonible
+comment|//TODO : sanity check : the synch period should be reasonable
 name|LOG
 operator|.
 name|info
@@ -1846,17 +1839,6 @@ name|majorSyncPeriod
 argument_list|)
 operator|+
 literal|" ms"
-argument_list|)
-expr_stmt|;
-comment|//TODO : move this to initialize ?
-name|scheduler
-operator|=
-operator|new
-name|Scheduler
-argument_list|(
-name|this
-argument_list|,
-name|conf
 argument_list|)
 expr_stmt|;
 name|aLong
@@ -1888,7 +1870,7 @@ name|longValue
 argument_list|()
 expr_stmt|;
 block|}
-comment|//TODO : sanity check : the shutdown period should be reasonible
+comment|//TODO : sanity check : the shutdown period should be reasonable
 name|LOG
 operator|.
 name|info
@@ -1955,252 +1937,21 @@ operator|.
 name|transactionsEnabled
 argument_list|)
 expr_stmt|;
+comment|/* TODO: start -adam- remove OLD SystemTask initialization */
 comment|//How ugly : needs refactoring...
-name|Configuration
-operator|.
-name|SystemTaskConfig
-name|systemTasksConfigs
-index|[]
-init|=
-operator|(
-name|Configuration
-operator|.
-name|SystemTaskConfig
-index|[]
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|BrokerPool
-operator|.
-name|PROPERTY_SYSTEM_TASK_CONFIG
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|systemTasksConfigs
-operator|!=
-literal|null
-condition|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|systemTasksConfigs
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-try|try
-block|{
-name|Class
-name|clazz
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getClassName
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|SystemTask
-name|task
-init|=
-operator|(
-name|SystemTask
-operator|)
-name|clazz
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|task
-operator|instanceof
-name|SystemTask
-operator|)
-condition|)
-comment|//TODO : shall we ignore the exception ?
-throw|throw
+comment|/*		Configuration.SystemTaskConfig systemTasksConfigs[] = (Configuration.SystemTaskConfig[]) conf.getProperty(BrokerPool.PROPERTY_SYSTEM_TASK_CONFIG); 		if (systemTasksConfigs != null) { 	        for (int i = 0; i< systemTasksConfigs.length; i++) { 	        	try { 		            Class clazz = Class.forName(systemTasksConfigs[i].getClassName()); 		            SystemTask task = (SystemTask) clazz.newInstance();	 		            if (!(task instanceof SystemTask)) 		            	//TODO : shall we ignore the exception ? 		            	throw new EXistException("'" + task.getClass().getName() + "' is not an instance of org.exist.storage.SystemTask"); 		            task.configure(conf, systemTasksConfigs[i].getProperties()); 		            systemTasks.add(task); 		            //TODO : remove when SystemTask has a getPeriodicity() method 		            systemTasksPeriods.add(systemTasksConfigs[i]); 		            LOG.info("added system task instance '" + task.getClass().getName() + "' to be executed every " +  nf.format(systemTasksConfigs[i].getPeriod()) + " ms"); 	        	} 	        	catch (ClassNotFoundException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task class '" + systemTasksConfigs[i].getClassName() + "' not found"); 	        	} 	        	catch (InstantiationException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be instantiated"); 	        	} 	        	catch (IllegalAccessException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be accessed"); 	        	} 	        } 			//TODO : why not add a default Sync task here if there is no instanceof Sync in systemTasks ? 		}		 */
+comment|/* TODO: end -adam- remove OLD SystemTask initialization */
+comment|//TODO : move this to initialize ? (cant as we need it for FileLockHeartBeat)
+name|scheduler
+operator|=
 operator|new
-name|EXistException
+name|Scheduler
 argument_list|(
-literal|"'"
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' is not an instance of org.exist.storage.SystemTask"
-argument_list|)
-throw|;
-name|task
-operator|.
-name|configure
-argument_list|(
-name|conf
+name|this
 argument_list|,
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getProperties
-argument_list|()
+name|conf
 argument_list|)
 expr_stmt|;
-name|systemTasks
-operator|.
-name|add
-argument_list|(
-name|task
-argument_list|)
-expr_stmt|;
-comment|//TODO : remove when SystemTask has a getPeriodicity() method
-name|systemTasksPeriods
-operator|.
-name|add
-argument_list|(
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"added system task instance '"
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' to be executed every "
-operator|+
-name|nf
-operator|.
-name|format
-argument_list|(
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getPeriod
-argument_list|()
-argument_list|)
-operator|+
-literal|" ms"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassNotFoundException
-name|e
-parameter_list|)
-block|{
-comment|//TODO : shall we ignore the exception ?
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"system task class '"
-operator|+
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getClassName
-argument_list|()
-operator|+
-literal|"' not found"
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|InstantiationException
-name|e
-parameter_list|)
-block|{
-comment|//TODO : shall we ignore the exception ?
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"system task '"
-operator|+
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getClassName
-argument_list|()
-operator|+
-literal|"' can not be instantiated"
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalAccessException
-name|e
-parameter_list|)
-block|{
-comment|//TODO : shall we ignore the exception ?
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"system task '"
-operator|+
-name|systemTasksConfigs
-index|[
-name|i
-index|]
-operator|.
-name|getClassName
-argument_list|()
-operator|+
-literal|"' can not be accessed"
-argument_list|)
-throw|;
-block|}
-block|}
-comment|//TODO : why not add a default Sync task here if there is no instanceof Sync in systemTasks ?
-block|}
 comment|//TODO : since we need one :-( (see above)
 name|this
 operator|.
@@ -2232,15 +1983,8 @@ comment|//TODO : in the future, we should implement an Initializable interface
 name|initialize
 argument_list|()
 expr_stmt|;
-comment|//setup any configured jobs for the scheduler
-name|scheduler
-operator|.
-name|setupConfiguredJobs
-argument_list|(
-name|conf
-argument_list|)
-expr_stmt|;
 comment|//TODO : move this to initialize ?
+comment|//setup database synchronization job
 if|if
 condition|(
 name|majorSyncPeriod
@@ -3038,56 +2782,10 @@ comment|//TODO : why can't we call this from within CollectionConfigurationManag
 comment|//TODO : understand why we get a test suite failure
 comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(broker);
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
+comment|/* TODO: start adam */
 comment|//Schedule the system tasks
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|systemTasks
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-comment|//TODO : remove first argument when SystemTask has a getPeriodicity() method
-name|initSystemTask
-argument_list|(
-operator|(
-name|SingleInstanceConfiguration
-operator|.
-name|SystemTaskConfig
-operator|)
-name|systemTasksPeriods
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-argument_list|,
-operator|(
-name|SystemTask
-operator|)
-name|systemTasks
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|systemTasksPeriods
-operator|=
-literal|null
-expr_stmt|;
+comment|/*for (int i = 0; i< systemTasks.size(); i++) { 	    	//TODO : remove first argument when SystemTask has a getPeriodicity() method 	        initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i)); 	    }		 		systemTasksPeriods = null;*/
+comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
 control|(
@@ -3135,156 +2833,19 @@ operator|+
 literal|"' initialized"
 argument_list|)
 expr_stmt|;
+comment|//setup any configured jobs
+comment|//scheduler.setupConfiguredJobs();
+comment|//execute any startup jobs
+comment|//scheduler.executeStartupJobs();
+name|scheduler
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
 block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
 comment|//TODO : make it protected ?
-specifier|private
-name|void
-name|initSystemTask
-parameter_list|(
-name|SingleInstanceConfiguration
-operator|.
-name|SystemTaskConfig
-name|config
-parameter_list|,
-name|SystemTask
-name|task
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|config
-operator|.
-name|getCronExpr
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Scheduling system maintenance task "
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" every "
-operator|+
-name|config
-operator|.
-name|getPeriod
-argument_list|()
-operator|+
-literal|" ms"
-argument_list|)
-expr_stmt|;
-name|scheduler
-operator|.
-name|createPeriodicJob
-argument_list|(
-name|config
-operator|.
-name|getPeriod
-argument_list|()
-argument_list|,
-operator|new
-name|SystemTaskJob
-argument_list|(
-name|task
-argument_list|)
-argument_list|,
-name|config
-operator|.
-name|getPeriod
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Scheduling system maintenance task "
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" with cron expression: "
-operator|+
-name|config
-operator|.
-name|getCronExpr
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|scheduler
-operator|.
-name|createCronJob
-argument_list|(
-name|config
-operator|.
-name|getCronExpr
-argument_list|()
-argument_list|,
-operator|new
-name|SystemTaskJob
-argument_list|(
-name|task
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"Failed to initialize system maintenance task: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
-block|}
+comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJob(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJob(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
 specifier|public
 name|long
 name|getReservedMem
@@ -4451,6 +4012,14 @@ name|SystemTask
 name|task
 parameter_list|)
 block|{
+comment|//dont run the task if we are shutting down
+if|if
+condition|(
+name|status
+operator|==
+name|SHUTDOWN
+condition|)
+return|return;
 try|try
 block|{
 comment|//Flush everything
@@ -4635,6 +4204,19 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|isShuttingDown
+parameter_list|()
+block|{
+return|return
+operator|(
+name|status
+operator|==
+name|SHUTDOWN
+operator|)
+return|;
 block|}
 comment|/** 	 * Shuts downs the database instance 	 * @param killed<code>true</code> when the JVM is (cleanly) exiting 	 */
 specifier|public
@@ -5021,10 +4603,8 @@ name|systemTasks
 operator|=
 literal|null
 expr_stmt|;
-name|systemTasksPeriods
-operator|=
-literal|null
-expr_stmt|;
+comment|/* TODO: adam */
+comment|//systemTasksPeriods = null;
 name|waitingSystemTasks
 operator|.
 name|clear

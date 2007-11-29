@@ -103,7 +103,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Properties
 import|;
 end_import
 
@@ -491,11 +491,11 @@ argument_list|)
 throw|;
 block|}
 comment|//Schedule the heartbeat for the file lock
-name|HashMap
+name|Properties
 name|params
 init|=
 operator|new
-name|HashMap
+name|Properties
 argument_list|()
 decl_stmt|;
 name|params
@@ -699,6 +699,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|channel
@@ -765,6 +767,36 @@ name|lastHeartbeat
 operator|=
 name|now
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|npe
+parameter_list|)
+block|{
+if|if
+condition|(
+name|pool
+operator|.
+name|isShuttingDown
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"No need to save FileLock, database is shutting down"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+name|npe
+throw|;
+block|}
+block|}
 block|}
 specifier|private
 name|void
