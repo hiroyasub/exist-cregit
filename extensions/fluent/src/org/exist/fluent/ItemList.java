@@ -1032,7 +1032,7 @@ return|return
 name|seq
 return|;
 block|}
-comment|/** 	 * Return the number of elements in this item list 	 *  	 * @return the number of elements in this item list 	 */
+comment|/** 	 * Return the number of elements in this item list. 	 *  	 * @return the number of elements in this item list 	 */
 specifier|public
 name|int
 name|size
@@ -1042,6 +1042,19 @@ return|return
 name|seq
 operator|.
 name|getItemCount
+argument_list|()
+return|;
+block|}
+comment|/** 	 * Return whether this item list is empty. 	 * 	 * @return<code>true</code> if this item list has no elements 	 */
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|seq
+operator|.
+name|isEmpty
 argument_list|()
 return|;
 block|}
@@ -1197,6 +1210,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -1283,6 +1298,8 @@ literal|true
 return|;
 block|}
 comment|/** 	 * The hash code computation can be expensive, and the hash codes may not be very well distributed. 	 * You probably shouldn't use item lists in situations where they might get hashed. 	 */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode

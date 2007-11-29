@@ -15,17 +15,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
+name|*
 import|;
 end_import
 
@@ -47,7 +37,7 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|Collection
+name|*
 import|;
 end_import
 
@@ -59,7 +49,7 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|IndexInfo
+name|Collection
 import|;
 end_import
 
@@ -159,21 +149,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|AnyURIValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
+name|*
 import|;
 end_import
 
@@ -526,12 +502,30 @@ operator|+
 name|descendantName
 argument_list|)
 throw|;
+name|String
+name|parentPath
+init|=
+name|path
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|parentPath
+operator|.
+name|equals
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+name|parentPath
+operator|=
+literal|""
+expr_stmt|;
 return|return
 operator|new
 name|Folder
 argument_list|(
-name|path
-argument_list|()
+name|parentPath
 operator|+
 literal|"/"
 operator|+
