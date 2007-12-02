@@ -477,26 +477,14 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Removes all grammars from the pool.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#clear      */
+comment|/**      *  Removes all DTD grammars from the pool. Workaround for Xerces bug.      *      * @see org.apache.xerces.xni.grammars.XMLGrammarPool#clear      */
 specifier|public
 name|void
 name|clearDTDs
 parameter_list|()
 block|{
-if|if
-condition|(
-name|logger
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Removing DTD's from grammarpool."
-argument_list|)
-expr_stmt|;
+comment|//if (logger.isDebugEnabled())
+comment|//    logger.debug("Removing DTD's from grammarpool.");
 name|Grammar
 name|dtds
 index|[]
@@ -563,20 +551,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|logger
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"No DTDs to be removed."
-argument_list|)
-expr_stmt|;
+comment|//if (logger.isDebugEnabled())
+comment|//    logger.debug("No DTDs to be removed.");
 block|}
 block|}
 block|}
