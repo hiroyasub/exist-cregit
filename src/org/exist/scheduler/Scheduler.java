@@ -533,8 +533,6 @@ operator|.
 name|getScheduler
 argument_list|()
 expr_stmt|;
-comment|//start quartz
-comment|//scheduler.start();
 block|}
 catch|catch
 parameter_list|(
@@ -560,11 +558,9 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//System.out.println("isStarted=" + scheduler.isStarted());
 name|setupConfiguredJobs
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("isStarted=" + scheduler.isStarted());
 name|executeStartupJobs
 argument_list|()
 expr_stmt|;
@@ -573,7 +569,6 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("isStarted=" + scheduler.isStarted());
 block|}
 catch|catch
 parameter_list|(
