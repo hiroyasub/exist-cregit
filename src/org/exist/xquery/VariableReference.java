@@ -300,6 +300,26 @@ init|=
 name|getVariable
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|var
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"XPDY0002 : variable '$"
+operator|+
+name|qname
+operator|+
+literal|"' is not set."
+argument_list|)
+throw|;
 name|Sequence
 name|seq
 init|=

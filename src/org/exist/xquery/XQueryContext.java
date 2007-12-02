@@ -3397,67 +3397,21 @@ block|}
 block|}
 block|}
 comment|/** 	 * Clear all user-defined prefix/namespace mappings. 	 */
-specifier|public
-name|void
-name|clearNamespaces
-parameter_list|()
-block|{
-name|staticNamespaces
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|staticPrefixes
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|inScopeNamespaces
-operator|!=
-literal|null
-condition|)
-block|{
-name|inScopeNamespaces
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|inScopePrefixes
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
-comment|//TODO : it this relevant ?
-if|if
-condition|(
-name|inheritedInScopeNamespaces
-operator|!=
-literal|null
-condition|)
-block|{
-name|inheritedInScopeNamespaces
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|inheritedInScopePrefixes
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
-name|loadDefaults
-argument_list|(
-name|broker
-operator|.
-name|getConfiguration
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// TODO: remove since never used?
+comment|//	public void clearNamespaces() {
+comment|//		staticNamespaces.clear();
+comment|//		staticPrefixes.clear();
+comment|//		if (inScopeNamespaces != null) {
+comment|//			inScopeNamespaces.clear();
+comment|//			inScopePrefixes.clear();
+comment|//		}
+comment|//		//TODO : it this relevant ?
+comment|//		if (inheritedInScopeNamespaces != null) {
+comment|//			inheritedInScopeNamespaces.clear();
+comment|//			inheritedInScopePrefixes.clear();
+comment|//		}
+comment|//		loadDefaults(broker.getConfiguration());
+comment|//	}
 comment|/** 	 * Set the set of statically known documents for the current 	 * execution context. These documents will be processed if 	 * no explicit document set has been set for the current expression 	 * with fn:doc() or fn:collection(). 	 *  	 * @param docs 	 */
 specifier|public
 name|void
