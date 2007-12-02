@@ -1236,9 +1236,7 @@ literal|null
 operator|&&
 name|context
 operator|.
-name|inScopeNamespaces
-operator|.
-name|get
+name|getInScopeNamespace
 argument_list|(
 literal|""
 argument_list|)
@@ -1250,14 +1248,9 @@ name|qn
 operator|.
 name|setNamespaceURI
 argument_list|(
-operator|(
-name|String
-operator|)
 name|context
 operator|.
-name|inScopeNamespaces
-operator|.
-name|get
+name|getInScopeNamespace
 argument_list|(
 literal|""
 argument_list|)
