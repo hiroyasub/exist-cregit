@@ -171,20 +171,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|BooleanValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|DateTimeValue
 import|;
 end_import
@@ -244,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retreives details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retrieves details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-12-04  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -431,7 +417,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<scheduler:group name=\""
+literal|"<"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":group name=\""
 operator|+
 name|groups
 index|[
@@ -481,7 +473,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<scheduler:job name=\""
+literal|"<"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":job name=\""
 operator|+
 name|scheduledJobs
 index|[
@@ -498,7 +496,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"<scheduler:trigger name=\""
+literal|"<"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":trigger name=\""
 operator|+
 name|scheduledJobs
 index|[
@@ -782,14 +786,26 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</scheduler:trigger>"
+literal|"</"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":trigger>"
 argument_list|)
 expr_stmt|;
 name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</scheduler:job>"
+literal|"</"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":job>"
 argument_list|)
 expr_stmt|;
 name|iJobs
@@ -801,7 +817,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</scheduler:group>"
+literal|"</"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":group>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -812,7 +834,13 @@ name|insert
 argument_list|(
 literal|0
 argument_list|,
-literal|"<scheduler:jobs xmlns:scheduler=\""
+literal|"<"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":jobs xmlns:scheduler=\""
 operator|+
 name|SchedulerModule
 operator|.
@@ -829,7 +857,13 @@ name|xmlBuf
 operator|.
 name|append
 argument_list|(
-literal|"</scheduler:jobs>"
+literal|"</"
+operator|+
+name|SchedulerModule
+operator|.
+name|PREFIX
+operator|+
+literal|":jobs>"
 argument_list|)
 expr_stmt|;
 try|try
