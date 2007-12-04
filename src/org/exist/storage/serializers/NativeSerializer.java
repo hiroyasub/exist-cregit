@@ -1857,15 +1857,6 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"CDATA section found: "
-operator|+
-name|str
-argument_list|)
-expr_stmt|;
 name|data
 operator|=
 operator|new
