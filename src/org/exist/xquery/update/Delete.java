@@ -781,6 +781,31 @@ expr_stmt|;
 if|if
 condition|(
 name|parent
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Cannot remove the document element (no parent node)"
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"It is not possible to remove the document element."
+argument_list|)
+throw|;
+block|}
+if|else if
+condition|(
+name|parent
 operator|.
 name|getNodeType
 argument_list|()
@@ -824,6 +849,7 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 name|parent
 operator|.
 name|removeChild
@@ -833,6 +859,7 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|getMetadata
