@@ -8122,6 +8122,17 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+if|if
+condition|(
+name|fileName
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|fileName
 operator|=
 name|prepend
