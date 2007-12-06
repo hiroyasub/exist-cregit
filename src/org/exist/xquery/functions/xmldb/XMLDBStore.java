@@ -684,7 +684,12 @@ name|docName
 operator|=
 literal|null
 expr_stmt|;
-else|else
+if|else if
+condition|(
+name|docName
+operator|!=
+literal|null
+condition|)
 name|docName
 operator|=
 operator|new
