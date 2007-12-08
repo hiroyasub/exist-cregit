@@ -6338,19 +6338,6 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|key
-operator|+
-literal|" = "
-operator|+
-name|val
-argument_list|)
-expr_stmt|;
 name|properties
 operator|.
 name|setProperty
