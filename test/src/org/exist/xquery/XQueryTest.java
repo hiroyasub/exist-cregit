@@ -14163,7 +14163,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//    An exception occurred during query execution: XPTY004: Invalid type for
+comment|//    An exception occurred during query execution: XPTY0004: Invalid type for
 comment|//variable $arg1. Expected xs:string, got xs:integer
 comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1787285&group_id=17691&atid=117691
 specifier|public
@@ -14968,7 +14968,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// regression http://sourceforge.net/support/tracker.php?aid=1841105
+comment|// http://sourceforge.net/support/tracker.php?aid=1841105
+comment|// in a path expression, a step returning an empty sequence stops the evaluation
+comment|// (and return an empty sequence) as confirmed by Michael Kay on the XQuery mailing list
 specifier|public
 name|void
 name|bugtestStringOfEmptySequence_1841105
