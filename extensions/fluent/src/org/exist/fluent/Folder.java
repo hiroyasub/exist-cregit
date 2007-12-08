@@ -728,7 +728,7 @@ argument_list|)
 specifier|private
 name|Iterator
 argument_list|<
-name|String
+name|XmldbURI
 argument_list|>
 name|delegate
 init|=
@@ -809,6 +809,9 @@ argument_list|(
 name|delegate
 operator|.
 name|next
+argument_list|()
+operator|.
+name|getCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
