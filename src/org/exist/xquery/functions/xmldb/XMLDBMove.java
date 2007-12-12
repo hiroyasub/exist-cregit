@@ -286,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a resource from the collection specified in $a to collection in $b. "
+literal|"Move a resource $c from the collection specified in $a to collection in $b. "
 operator|+
 literal|"The collection can be either specified as a simple collection path or "
 operator|+
