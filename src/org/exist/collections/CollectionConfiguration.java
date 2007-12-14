@@ -1888,10 +1888,12 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
+literal|"Trigger class not found: "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -1899,8 +1901,12 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
+comment|//			throw new CollectionConfigurationException(e.getMessage(), e);
 block|}
+return|return
+literal|null
+return|;
 block|}
 specifier|public
 name|String
