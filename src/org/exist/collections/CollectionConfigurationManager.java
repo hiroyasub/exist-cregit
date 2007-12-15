@@ -1040,6 +1040,11 @@ name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// TODO DWES Temporary workaround for bug
+comment|// [ 1807744 ] Invalid collection.xconf causes a non startable database
+comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1807744&group_id=17691&atid=117691
+try|try
+block|{
 name|conf
 operator|.
 name|read
@@ -1059,6 +1064,54 @@ name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CollectionConfigurationException
+name|e
+parameter_list|)
+block|{
+name|String
+name|message
+init|=
+literal|"Failed to read configuration document "
+operator|+
+name|confDoc
+operator|.
+name|getFileURI
+argument_list|()
+operator|+
+literal|" in "
+operator|+
+name|configCollection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|". "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|latch
