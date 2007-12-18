@@ -1458,6 +1458,26 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
+name|testNSElements3
+parameter_list|()
+block|{
+name|createDocument
+argument_list|(
+literal|"test"
+argument_list|,
+literal|"<test><a/><a xmlns:z='foo'/></test>"
+argument_list|)
+expr_stmt|;
+name|assertQuery
+argument_list|(
+literal|true
+argument_list|,
+literal|"deep-equal(/test/*[1], /test/*[2])"
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|testForLoop
 parameter_list|()
 block|{
