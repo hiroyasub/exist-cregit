@@ -520,8 +520,11 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|DocumentImpl
+name|Document
 name|doc
+parameter_list|,
+name|boolean
+name|checkOnly
 parameter_list|,
 name|XmldbURI
 name|srcCollectionURI
@@ -532,13 +535,43 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 block|{
+if|if
+condition|(
 name|doc
+operator|instanceof
+name|DocumentImpl
+condition|)
+operator|(
+operator|(
+name|DocumentImpl
+operator|)
+name|doc
+operator|)
 operator|.
 name|setBroker
 argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|checkOnly
+condition|)
+block|{
+name|this
+operator|.
+name|docName
+operator|=
+name|docName
+expr_stmt|;
+name|this
+operator|.
+name|srcCollectionURI
+operator|=
+name|srcCollectionURI
+expr_stmt|;
+block|}
 name|Element
 name|root
 init|=
@@ -553,13 +586,16 @@ name|root
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Configuration document can not be parsed"
+argument_list|,
+name|checkOnly
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 operator|!
@@ -573,9 +609,8 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Expected element '"
 operator|+
@@ -589,8 +624,12 @@ name|getLocalName
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|checkOnly
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 operator|!
@@ -604,9 +643,8 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Expected namespace '"
 operator|+
@@ -624,20 +662,12 @@ name|getNamespaceURI
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|checkOnly
 argument_list|)
-throw|;
-name|this
-operator|.
-name|docName
-operator|=
-name|docName
 expr_stmt|;
-name|this
-operator|.
-name|srcCollectionURI
-operator|=
-name|srcCollectionURI
-expr_stmt|;
+return|return;
+block|}
 name|NodeList
 name|childNodes
 init|=
@@ -756,6 +786,8 @@ operator|(
 name|Element
 operator|)
 name|node
+argument_list|,
+name|checkOnly
 argument_list|)
 expr_stmt|;
 block|}
@@ -816,6 +848,10 @@ name|DatabaseConfigurationException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|checkOnly
+condition|)
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -828,6 +864,19 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+else|else
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 if|else if
@@ -904,6 +953,10 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|checkOnly
+condition|)
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -918,6 +971,21 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+else|else
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Ilegal value for permissions in configuration document : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|permsOpt
@@ -972,6 +1040,10 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|checkOnly
+condition|)
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -986,6 +1058,21 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+else|else
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Ilegal value for permissions in configuration document : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1069,9 +1156,7 @@ block|}
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|info
+name|throwOrLog
 argument_list|(
 literal|"Ignored node '"
 operator|+
@@ -1081,6 +1166,8 @@ name|getLocalName
 argument_list|()
 operator|+
 literal|"' in configuration document"
+argument_list|,
+name|checkOnly
 argument_list|)
 expr_stmt|;
 comment|//TODO : throw an exception like above ? -pb
@@ -1098,9 +1185,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|LOG
-operator|.
-name|info
+name|throwOrLog
 argument_list|(
 literal|"Ignored node '"
 operator|+
@@ -1117,10 +1202,45 @@ name|getNamespaceURI
 argument_list|()
 operator|+
 literal|"' in configuration document"
+argument_list|,
+name|checkOnly
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+specifier|private
+name|void
+name|throwOrLog
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|boolean
+name|throwExceptions
+parameter_list|)
+throws|throws
+name|CollectionConfigurationException
+block|{
+if|if
+condition|(
+name|throwExceptions
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+name|message
+argument_list|)
+throw|;
+else|else
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|XmldbURI
@@ -1265,6 +1385,9 @@ name|broker
 parameter_list|,
 name|Element
 name|node
+parameter_list|,
+name|boolean
+name|testConfig
 parameter_list|)
 throws|throws
 name|CollectionConfigurationException
@@ -1285,9 +1408,8 @@ name|eventAttr
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"'"
 operator|+
@@ -1301,8 +1423,12 @@ operator|+
 name|EVENT_ATTRIBUTE
 operator|+
 literal|"'"
+argument_list|,
+name|testConfig
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 name|String
 name|classAttr
 init|=
@@ -1319,9 +1445,8 @@ name|classAttr
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"'"
 operator|+
@@ -1335,8 +1460,12 @@ operator|+
 name|CLASS_ATTRIBUTE
 operator|+
 literal|"'"
+argument_list|,
+name|testConfig
 argument_list|)
-throw|;
+expr_stmt|;
+return|return;
+block|}
 name|TriggerConfig
 name|trigger
 init|=
@@ -1347,8 +1476,16 @@ argument_list|,
 name|node
 argument_list|,
 name|classAttr
+argument_list|,
+name|testConfig
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|testConfig
+condition|)
+block|{
 name|StringTokenizer
 name|tok
 init|=
@@ -1414,9 +1551,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1424,7 +1561,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1456,9 +1593,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1466,7 +1603,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1498,9 +1635,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1508,7 +1645,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1540,9 +1677,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1550,7 +1687,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1582,9 +1719,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1592,7 +1729,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1624,9 +1761,9 @@ index|]
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Trigger '"
 operator|+
@@ -1634,7 +1771,7 @@ name|classAttr
 operator|+
 literal|"' already registered"
 argument_list|)
-throw|;
+expr_stmt|;
 name|triggers
 index|[
 name|Trigger
@@ -1646,9 +1783,9 @@ name|trigger
 expr_stmt|;
 block|}
 else|else
-throw|throw
-operator|new
-name|CollectionConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Unknown event type '"
 operator|+
@@ -1660,7 +1797,8 @@ name|classAttr
 operator|+
 literal|"'"
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -1675,6 +1813,9 @@ name|node
 parameter_list|,
 name|String
 name|classname
+parameter_list|,
+name|boolean
+name|testOnly
 parameter_list|)
 throws|throws
 name|CollectionConfigurationException
@@ -1703,9 +1844,8 @@ argument_list|(
 name|clazz
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Trigger's class '"
 operator|+
@@ -1718,9 +1858,14 @@ operator|.
 name|class
 operator|+
 literal|"'"
+argument_list|,
+name|testOnly
 argument_list|)
-throw|;
-comment|//            Trigger trigger = (Trigger)clazz.newInstance();
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 name|TriggerConfig
 name|triggerConf
 init|=
@@ -1813,9 +1958,8 @@ name|name
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Expected attribute '"
 operator|+
@@ -1826,8 +1970,13 @@ operator|+
 name|PARAMETER_ELEMENT
 operator|+
 literal|"' in trigger's configuration."
+argument_list|,
+name|testOnly
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+else|else
+block|{
 name|String
 name|value
 init|=
@@ -1844,9 +1993,8 @@ name|value
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|CollectionConfigurationException
+block|{
+name|throwOrLog
 argument_list|(
 literal|"Expected attribute '"
 operator|+
@@ -1857,8 +2005,12 @@ operator|+
 name|PARAMETER_ELEMENT
 operator|+
 literal|"' in trigger's configuration."
+argument_list|,
+name|testOnly
 argument_list|)
-throw|;
+expr_stmt|;
+block|}
+else|else
 name|parameters
 operator|.
 name|put
@@ -1869,6 +2021,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|triggerConf
 operator|.
 name|setParameters
@@ -1877,7 +2030,6 @@ name|parameters
 argument_list|)
 expr_stmt|;
 block|}
-comment|//                trigger.configure(broker, collection, parameters);
 return|return
 name|triggerConf
 return|;
@@ -1888,6 +2040,23 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|testOnly
+condition|)
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+else|else
 name|LOG
 operator|.
 name|warn
@@ -1902,7 +2071,6 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//			throw new CollectionConfigurationException(e.getMessage(), e);
 block|}
 return|return
 literal|null
