@@ -1351,6 +1351,34 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// TODO: could check result
+name|result
+operator|=
+name|queryAndAssert
+argument_list|(
+name|service
+argument_list|,
+literal|"xs:anyURI('a') le xs:anyURI('b')"
+argument_list|,
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"true"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

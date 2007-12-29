@@ -754,7 +754,7 @@ name|LTEQ
 case|:
 return|return
 name|cmp
-operator|>=
+operator|<=
 literal|0
 return|;
 default|default :
