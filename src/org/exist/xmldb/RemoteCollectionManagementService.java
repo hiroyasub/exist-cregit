@@ -892,7 +892,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
-name|move
+name|moveResource
 argument_list|(
 name|XmldbURI
 operator|.
