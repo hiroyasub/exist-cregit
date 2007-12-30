@@ -530,7 +530,9 @@ name|t
 argument_list|,
 literal|0
 argument_list|,
-name|level
+name|prevNodeInLevel
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|prevNodeInLevel
