@@ -182,6 +182,25 @@ argument_list|,
 name|password
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|base
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|BuildException
+argument_list|(
+literal|"Collection "
+operator|+
+name|uri
+operator|+
+literal|" could not be found."
+argument_list|)
+throw|;
+block|}
 name|StringBuffer
 name|buf
 init|=

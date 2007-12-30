@@ -155,6 +155,25 @@ argument_list|,
 name|password
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|root
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|BuildException
+argument_list|(
+literal|"Collection "
+operator|+
+name|uri
+operator|+
+literal|" could not be found."
+argument_list|)
+throw|;
+block|}
 name|DatabaseInstanceManager
 name|mgr
 init|=

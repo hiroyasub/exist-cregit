@@ -445,17 +445,19 @@ name|root
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"collection "
+literal|"Collection "
 operator|+
 name|uri
 operator|+
-literal|" not found"
+literal|" could not be found."
 argument_list|)
 throw|;
+block|}
 name|MimeType
 name|mime
 init|=

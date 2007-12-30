@@ -286,6 +286,7 @@ name|base
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -294,9 +295,10 @@ literal|"Collection "
 operator|+
 name|uri
 operator|+
-literal|" not found."
+literal|" could not be found."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|resource
